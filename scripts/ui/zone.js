@@ -28,6 +28,25 @@ function updateZoneUI() {
         return
     }
 
+    // Option relance auto — uniquement pour l'onglet donjons
+    if (zoneTab === 'dungeon') {
+        const toggleEl = document.createElement('div')
+        toggleEl.className = 'dungeon-auto-toggle'
+        toggleEl.innerHTML = `
+            <label class="dungeon-auto-label">
+                <div class="dungeon-auto-switch">
+                    <input type="checkbox" id="dungeon-auto-restart" ${state.dungeonAutoRestart ? 'checked' : ''}>
+                    <span class="dungeon-auto-slider"></span>
+                </div>
+                <span>Relancer automatiquement tant qu'il y a une clé</span>
+            </label>`
+        toggleEl.querySelector('input').addEventListener('change', e => {
+            state.dungeonAutoRestart = e.target.checked
+            saveGame()
+        })
+        listing.appendChild(toggleEl)
+    }
+
     for (const [areaId, area] of matching) {
         const isActive    = state.currentArea === areaId && state.isRunning
         const isTutoLocked = state.tutorial === 'zones' && areaId !== 'cimetiereincarnam'

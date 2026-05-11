@@ -25,6 +25,7 @@ function saveGame() {
         defeatedBosses:            state.defeatedBosses || [],
         combatStartTime:           state.combatStartTime || null,
         offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
+        dungeonAutoRestart:        state.dungeonAutoRestart || false,
         version:                   '0.1'
     }
     try {
@@ -59,6 +60,7 @@ function loadGame() {
         if (data.defeatedBosses)                    state.defeatedBosses            = data.defeatedBosses
         if (data.combatStartTime != null)           state.combatStartTime           = data.combatStartTime
         if (data.offlineAutoPilotRemaining != null) state.offlineAutoPilotRemaining = data.offlineAutoPilotRemaining
+        if (data.dungeonAutoRestart != null)        state.dungeonAutoRestart        = data.dungeonAutoRestart
 
         // Migration : si previewTeams[clé active] est vide mais state.team ne l'est pas, sync
         const curKey = state.currentPreviewTeam || 'preview1'

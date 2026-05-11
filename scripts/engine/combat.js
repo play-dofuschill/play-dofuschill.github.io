@@ -8,9 +8,10 @@ const TICK_MS    = 1000 / 60   // 60 fps
 const BASE_TIME  = 2000        // ms pour remplir la barre
 
 
-let combatLoop  = null
-let combat      = null  // état du combat en cours
-let _autoPilot  = null  // { remaining: N, accumulated: sessionLoot } | null
+let combatLoop      = null
+let combat          = null  // état du combat en cours
+let _autoPilot      = null  // { remaining: N, accumulated: sessionLoot } | null
+let _dungeonAutoRun = null  // { accumulated: sessionLoot } | null — relance auto donjon
 
 // ─── gestion de l'xp ────────────────────────────────────────────────────────
 
@@ -112,9 +113,16 @@ function spawnEnemy(areaId) {
 
 function startCombat(areaId) {
     stopCombat()
-    state.currentArea    = areaId
-    state.isRunning      = true
+    state.currentArea     = areaId
+    state.isRunning       = true
     state.combatStartTime = Date.now()
+
+    // Donjon + relance auto : initialise l'accumulateur si pas déjà actif
+    if (areas[areaId]?.type === 'dungeon' && state.dungeonAutoRestart) {
+        if (!_dungeonAutoRun) _dungeonAutoRun = { accumulated: _emptySessionLoot() }
+    } else if (areas[areaId]?.type !== 'dungeon') {
+        _dungeonAutoRun = null
+    }
 
     // Réinitialise les HP de l'équipe
     for (const m of state.team) {
@@ -188,6 +196,11 @@ function leaveCombat() {
         _mergeSessionLoot(_autoPilot.accumulated, combat?.sessionLoot)
         if (combat) combat.sessionLoot = _autoPilot.accumulated
         _autoPilot = null
+    }
+    if (_dungeonAutoRun) {
+        _mergeSessionLoot(_dungeonAutoRun.accumulated, combat?.sessionLoot)
+        if (combat) combat.sessionLoot = _dungeonAutoRun.accumulated
+        _dungeonAutoRun = null
     }
     showSessionSummary('leave')
 }
@@ -629,11 +642,23 @@ function onVictory() {
     // Persiste immédiatement les niveaux gagnés pour ne pas les perdre en cas de changement de team
     if (anyLevelUp) saveGame()
 
-    // Donjon : victoire finale — consomme la clé et affiche l'écran de fin
+    // Donjon : victoire finale — consomme la clé, relance si option active
     if (areas[state.currentArea]?.type === 'dungeon') {
         combat.respawnPending = false
+        const doneArea = state.currentArea
         stopCombat()
-        consumeDungeonKey(state.currentArea)
+        consumeDungeonKey(doneArea)
+
+        if (_dungeonAutoRun) {
+            _mergeSessionLoot(_dungeonAutoRun.accumulated, combat.sessionLoot)
+            const keysLeft = state.inventory[areas[doneArea].keyId]?.count || 0
+            if (keysLeft > 0) {
+                setTimeout(() => startCombat(doneArea), 800)
+                return
+            }
+            combat.sessionLoot = _dungeonAutoRun.accumulated
+            _dungeonAutoRun = null
+        }
         showSessionSummary('dungeon')
         return
     }
@@ -660,6 +685,14 @@ function onDefeat() {
     stopCombat()
     state.isRunning = false
     combat.enemy = null
+
+    if (_dungeonAutoRun) {
+        _mergeSessionLoot(_dungeonAutoRun.accumulated, combat.sessionLoot)
+        combat.sessionLoot = _dungeonAutoRun.accumulated
+        _dungeonAutoRun = null
+        showSessionSummary('defeat')
+        return
+    }
 
     if (_autoPilot && _autoPilot.remaining > 0) {
         _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)

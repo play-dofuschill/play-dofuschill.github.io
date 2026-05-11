@@ -46,6 +46,7 @@ const state = {
     defeatedBosses: [],
     combatStartTime: null,
     offlineAutoPilotRemaining: 0,
+    dungeonAutoRestart: false,
     session: {
         killCount: 0,
         dropCount: 0,
