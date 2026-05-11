@@ -24,6 +24,8 @@ function elemIcon(elem, cssClass = 'elem-icon') {
 
 // ─── State global ─────────────────────────────────────────────────────────────
 
+const STARTER_CLASSES = ['iop', 'cra', 'eniripsa']
+
 const state = {
     team: [],
     currentArea: null,
@@ -39,6 +41,11 @@ const state = {
     currentPreviewTeam: 'preview1',
     classEquip: {},
     teamNames: {},
+    unlockedClasses: [],
+    totalKills: 0,
+    defeatedBosses: [],
+    combatStartTime: null,
+    offlineAutoPilotRemaining: 0,
     session: {
         killCount: 0,
         dropCount: 0,
@@ -74,7 +81,7 @@ const MENU_MAP = {
 function isTutorialLocked(menuName) {
     if (state.tutorial === 'intro')
         return menuName === 'worldmap' || menuName === 'zones'
-    if (state.tutorial === 'zones' || state.tutorial === 'combat')
+    if (state.tutorial === 'zones' || state.tutorial === 'team_prep' || state.tutorial === 'combat')
         return menuName !== 'worldmap' && menuName !== 'zones'
     return false
 }
@@ -220,11 +227,12 @@ function showNotification(message, type = 'info') {
 // ─── Tutoriel ─────────────────────────────────────────────────────────────────
 
 const TUTORIAL_STEPS = {
-    intro:  'Choisissez votre classe de départ pour commencer l\'aventure !',
-    zones:  'Rendez-vous dans le menu World Map pour lancer votre premier combat !',
-    combat: 'Votre équipe combat automatiquement. Regardez les dégâts !',
-    outro:  'Maintenant que vous avez compris les bases, explorez et découvrez par vous-même ! Au détour d\'un combat, un légendaire Dofus apparaîtra peut-être...',
-    none:   null
+    intro:     'Choisissez votre classe de départ pour commencer l\'aventure !',
+    zones:     'Rendez-vous dans le menu World Map pour lancer votre premier combat !',
+    team_prep: 'Clique sur un emplacement vide pour ajouter ton personnage à l\'équipe !',
+    combat:    'Votre équipe combat automatiquement. Regardez les dégâts !',
+    outro:     'Maintenant que vous avez compris les bases, explorez et découvrez par vous-même ! Au détour d\'un combat, un légendaire Dofus apparaîtra peut-être...',
+    none:      null
 }
 
 function showTutorial() {
@@ -243,7 +251,7 @@ function showTutorial() {
 
 function advanceTutorial(fromStep) {
     if (state.tutorial !== fromStep) return
-    const next = { intro: 'zones', zones: 'combat', combat: 'outro', outro: 'none' }
+    const next = { intro: 'zones', zones: 'team_prep', team_prep: 'combat', combat: 'outro', outro: 'none' }
     state.tutorial = next[fromStep] || 'none'
     showTutorial()
     saveGame()
@@ -522,6 +530,7 @@ function refreshTeamNames() {
 
 function initGame() {
     loadGame()
+    simulateOfflineProgress()
     changeTheme(state.theme || 'dark')
 
     const sel = document.getElementById('settings-theme')
@@ -637,6 +646,19 @@ function initGame() {
     // Corrige le tutorial si la sauvegarde est antérieure au système de tutorial
     if (state.hasChosenStarter && state.tutorial === 'intro') {
         state.tutorial = 'none'
+    }
+
+    // Initialise les classes débloquées pour les anciennes sauvegardes
+    if (!state.unlockedClasses) state.unlockedClasses = []
+    if (state.hasChosenStarter && state.unlockedClasses.length === 0) {
+        const starter = state.team.find(m => m) ||
+            Object.values(state.previewTeams || {}).flat().find(m => m)
+        if (starter) {
+            state.unlockedClasses = [starter.classId]
+            if (starter.level >= 10 && STARTER_CLASSES.includes(starter.classId)) {
+                state.unlockedClasses = [...STARTER_CLASSES]
+            }
+        }
     }
 
     if (!state.hasChosenStarter) {

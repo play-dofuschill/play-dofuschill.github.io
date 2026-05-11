@@ -3,6 +3,7 @@
 const MAX_TEAM = 6
 let _guildeTargetSlot = -1
 let _dragSourceIndex  = -1
+let _tutoTeamPicked   = false  // true une fois que le joueur a "ajouté" son perso pendant team_prep
 
 // ─── Rendu du menu équipe ─────────────────────────────────────────────────────
 
@@ -11,8 +12,10 @@ function updateTeamUI() {
     if (!preview) return
     preview.innerHTML = ''
 
+    const isTutoPrepEmpty = state.tutorial === 'team_prep' && !_tutoTeamPicked
+
     for (let i = 0; i < MAX_TEAM; i++) {
-        const member = state.team[i]
+        const member = isTutoPrepEmpty ? null : state.team[i]
         const card   = document.createElement('div')
 
         if (member) {
@@ -24,8 +27,10 @@ function updateTeamUI() {
             const xpPct = Math.min(100, Math.floor(((member.exp || 0) / xpRequired) * 100))
 
             const moveSlots = ['slot1', 'slot2', 'slot3', 'slot4']
-            const nonNull   = moveSlots.filter(s => member.moves[s])
-            const moveBars  = nonNull.map(s => {
+            const moveBars  = moveSlots.map(s => {
+                if (!member.moves[s]) {
+                    return `<div class="combat-move-bar combat-move-empty"><span class="combat-move-name">—</span></div>`
+                }
                 const mv      = move[member.moves[s]]
                 const elem    = mv?.effects?.[0]?.element || 'neutre'
                 const mvType  = mv?.effects?.[0]?.type || ''
@@ -55,7 +60,7 @@ function updateTeamUI() {
                     <div class="member-xp-bar">
                         <div class="member-xp-fill" style="width:${xpPct}%"></div>
                     </div>
-                    <div class="member-moves">${moveBars || '<span class="no-moves">Aucun sort assigné</span>'}</div>
+                    <div class="member-moves">${moveBars}</div>
                     <div class="member-equip-row">${renderEquipSlots(member, i)}</div>
                 </div>`
         } else {
@@ -71,9 +76,9 @@ function updateTeamUI() {
 
             card.className = 'explore-team-member team-menu-card team-menu-empty-card'
             card.dataset.slotIndex = i
-            card.style.opacity = '0.45'
-            card.style.cursor  = 'pointer'
-            card.onclick = () => openGuildePicker(i)
+            card.style.opacity = isTutoPrepEmpty && i > 0 ? '0.2' : '0.45'
+            card.style.cursor  = isTutoPrepEmpty && i > 0 ? 'default' : 'pointer'
+            card.onclick = isTutoPrepEmpty && i > 0 ? null : () => openGuildePicker(i)
             card.innerHTML = `
                 <div class="explore-team-member-flair"></div>
                 <div class="member-sprite-wrap">
@@ -150,6 +155,26 @@ function openGuildePicker(slotIndex) {
     picker.style.display = 'flex'
 }
 
+const CLASS_OBTAIN = {
+    iop:      'Atteignez le niveau 10 avec votre classe de départ pour débloquer automatiquement les trois classes de départ.',
+    cra:      'Atteignez le niveau 10 avec votre classe de départ pour débloquer automatiquement les trois classes de départ.',
+    eniripsa: 'Atteignez le niveau 10 avec votre classe de départ pour débloquer automatiquement les trois classes de départ.',
+}
+
+function showClassObtain(classId) {
+    const cls = classes[classId]
+    if (!cls) return
+    const obtainText = CLASS_OBTAIN[classId] || 'Moyen d\'obtention à venir.'
+    const body = `<div class="member-sheet">
+        <div style="text-align:center;padding:1rem 0;">
+            <img src="${cls.image}" style="width:6rem;height:6rem;object-fit:contain;filter:brightness(0) saturate(0);" onerror="this.src='img/icons/icon.png'">
+        </div>
+        <div class="ms-section-title">Classe verrouillée</div>
+        <div style="padding:0.5rem;opacity:0.7;font-size:0.9rem;line-height:1.5;">${obtainText}</div>
+    </div>`
+    openTooltip('???', body)
+}
+
 function closeGuildePicker() {
     const picker = document.getElementById('guilde-picker')
     if (picker) picker.style.display = 'none'
@@ -167,22 +192,36 @@ function showClassPreview(classId) {
 
 function _fillGuildeList(list, onClickFn, showAll = false) {
     list.innerHTML = ''
+    const isTutoPick = state.tutorial === 'team_prep'
     for (const classId of Object.keys(classes)) {
-        if (!showAll && state.team.some(m => m && m.classId === classId)) continue
+        const isUnlocked = state.unlockedClasses?.includes(classId)
+
+        // Picker (ajout à l'équipe) : exclure locked + déjà en équipe (sauf pendant tuto)
+        if (!showAll) {
+            if (!isUnlocked) continue
+            const alreadyInTeam = state.team.some(m => m && m.classId === classId)
+            if (alreadyInTeam && !isTutoPick) continue
+        }
+
         const cls  = classes[classId]
         const card = document.createElement('div')
-        card.className = 'guilde-class-card'
-        if (onClickFn) {
+        card.className = 'guilde-class-card' + (!isUnlocked ? ' guilde-class-locked' : '')
+
+        if (showAll) {
+            // Guilde menu : clic → fiche ou page d'obtention
+            const handler = () => isUnlocked ? showClassPreview(classId) : showClassObtain(classId)
+            card.onclick = handler
+            card.addEventListener('contextmenu', e => { e.preventDefault(); handler() })
+        } else if (onClickFn) {
             card.onclick = () => onClickFn(classId)
-        } else {
-            card.onclick = () => showClassPreview(classId)
         }
-        card.addEventListener('contextmenu', e => { e.preventDefault(); showClassPreview(classId) })
+
+        const imgStyle = isUnlocked ? '' : 'filter:brightness(0) saturate(0);'
         card.innerHTML = `
             <div class="guilde-sprite-wrap">
-                <img class="guilde-sprite" src="${cls.image}" onerror="this.src='img/icons/icon.png'">
+                <img class="guilde-sprite" src="${cls.image}" style="${imgStyle}" onerror="this.src='img/icons/icon.png'">
             </div>
-            <span class="guilde-class-name">${cls.name}</span>`
+            <span class="guilde-class-name">${isUnlocked ? cls.name : '???'}</span>`
         list.appendChild(card)
     }
 }
@@ -196,6 +235,10 @@ function updateGuildeUI() {
 function pickClassForSlot(classId) {
     const slot = _guildeTargetSlot
     closeGuildePicker()
+    // Pendant team_prep, on réajoute vraiment le perso (il avait été vidé de state.team)
+    if (state.tutorial === 'team_prep') {
+        _tutoTeamPicked = true
+    }
     addToTeam(classId, slot)
 }
 

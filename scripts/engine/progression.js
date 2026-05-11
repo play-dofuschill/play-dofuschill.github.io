@@ -125,6 +125,18 @@ function giveXP(member, xpAmount) {
 
     if (member.level >= LEVEL_CAP) member.exp = 0
 
+    // Déblocage des classes de départ à niveau 10
+    if (leveledUp && member.level >= 10 && STARTER_CLASSES.includes(member.classId)) {
+        if (!state.unlockedClasses) state.unlockedClasses = []
+        const before = state.unlockedClasses.length
+        for (const id of STARTER_CLASSES) {
+            if (!state.unlockedClasses.includes(id)) state.unlockedClasses.push(id)
+        }
+        if (state.unlockedClasses.length > before) {
+            showNotification('Nouvelles classes débloquées dans la Guilde !', 'info')
+        }
+    }
+
     return { leveledUp, newLevel: member.level, newMoves }
 }
 
@@ -202,6 +214,8 @@ function selectStarterClass(classId) {
 
     state.team = [member]
     state.hasChosenStarter = true
+    if (!state.unlockedClasses) state.unlockedClasses = []
+    if (!state.unlockedClasses.includes(classId)) state.unlockedClasses.push(classId)
 
     document.getElementById('starter-menu').style.display = 'none'
     const menuParent = document.getElementById('menu-button-parent')

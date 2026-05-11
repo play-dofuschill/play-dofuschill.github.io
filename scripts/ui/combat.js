@@ -265,8 +265,10 @@ function updateResourceBubbles() {
 
     const pierreCount = combat?.sessionLoot?.familiarDrops?.length || 0
     const caisseCount = combat?.sessionLoot?.caisseCount || 0
+    const keyDrops    = combat?.sessionLoot?.keyDrops || {}
+    const anyKey      = Object.values(keyDrops).some(c => c > 0)
 
-    if (!state.isRunning || (pierreCount === 0 && caisseCount === 0)) {
+    if (!state.isRunning || (pierreCount === 0 && caisseCount === 0 && !anyKey)) {
         container.innerHTML = ''
         return
     }
@@ -285,6 +287,15 @@ function updateResourceBubbles() {
         html += `<div class="res-bubble" onclick="showItemTooltip('caisseEquipement')" oncontextmenu="event.preventDefault();showItemTooltip('caisseEquipement')" title="${caisseItm.name}">
             <img src="${caisseItm.image}" onerror="this.src='img/icons/icon.png'">
             <span class="res-bubble-count">×${caisseCount}</span>
+        </div>`
+    }
+    for (const [keyId, count] of Object.entries(keyDrops)) {
+        if (count <= 0) continue
+        const keyItm = item[keyId]
+        if (!keyItm) continue
+        html += `<div class="res-bubble" onclick="showItemTooltip('${keyId}')" oncontextmenu="event.preventDefault();showItemTooltip('${keyId}')" title="${keyItm.name}">
+            <img src="${keyItm.image}" onerror="this.src='img/icons/icon.png'">
+            <span class="res-bubble-count">×${count}</span>
         </div>`
     }
     container.innerHTML = html

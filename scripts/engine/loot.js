@@ -8,6 +8,17 @@ function dropsNeededForLevel(level) {
     return Math.max(1, Math.ceil(level / 10))
 }
 
+function _familiarLevelFromDrops(drops) {
+    let level = 1
+    let threshold = 1
+    while (true) {
+        const next = threshold + dropsNeededForLevel(level)
+        if (next > drops) return level
+        threshold = next
+        level++
+    }
+}
+
 function _captureFamiliar(monsterId) {
     if (!state.collection[monsterId]) {
         state.collection[monsterId] = { drops: 1, level: 1, isArchi: false }
@@ -113,6 +124,11 @@ function consumeDungeonKey(areaId) {
 
 function processVictoryLoot(enemy) {
     state.session.killCount++
+    state.totalKills = (state.totalKills || 0) + 1
+    if (enemy.tier === 'boss' || enemy.tier === 'dungeon_boss') {
+        if (!state.defeatedBosses) state.defeatedBosses = []
+        if (!state.defeatedBosses.includes(enemy.id)) state.defeatedBosses.push(enemy.id)
+    }
 
     // XP distribuée par onVictory (combat.js) via calculateXPReward + giveXP
     const xpResults = []
@@ -147,6 +163,7 @@ function processVictoryLoot(enemy) {
     const equipDrops = itemDrops.filter(d => !item[d.itemId]?.isKey)
     const caisseDropped = equipDrops.length > 0
 
+    checkClassUnlocks()
     saveGame()
     return { xpResults, familiarDrop, itemDrops, caisseDropped }
 }

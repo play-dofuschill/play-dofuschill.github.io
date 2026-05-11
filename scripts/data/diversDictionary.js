@@ -35,6 +35,7 @@ item.cleDonjonKardorim = {
     name: 'Clef de la crypte de Kardorim',
     image: 'img/items/divers/donjonKardorim.png',
     type: 'resource',
+    isKey: true,
     description: "Cette clef permet d'entrer dans la Crypte de Kardorim, le plus redoutable des chafers d'Incarnam."
 }
 
@@ -43,5 +44,6 @@ item.cleDonjonBouftou = {
     name: 'Clef de la Cour du Bouftou Royal',
     image: 'img/items/divers/donjonBouftou.png',
     type: 'resource',
+    isKey: true,
     description: "Cette clef permet de rentrer dans la Cour du Bouftou Royal."
 }

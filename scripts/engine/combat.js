@@ -112,8 +112,9 @@ function spawnEnemy(areaId) {
 
 function startCombat(areaId) {
     stopCombat()
-    state.currentArea = areaId
-    state.isRunning   = true
+    state.currentArea    = areaId
+    state.isRunning      = true
+    state.combatStartTime = Date.now()
 
     // Réinitialise les HP de l'équipe
     for (const m of state.team) {
@@ -133,7 +134,7 @@ function startCombat(areaId) {
         log: [],
         pendingLoot: null,
         savedEnemy: null,
-        sessionLoot: { itemDrops: [], familiarDrops: [], caisseCount: 0, kamasFromDrops: 0, killCount: 0, memberDamage: {}, learnedMoves: [] }
+        sessionLoot: { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, learnedMoves: [] }
     }
     combat.enemy = spawnEnemy(areaId)
     combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
@@ -155,7 +156,8 @@ function startCombat(areaId) {
 
 function stopCombat() {
     if (combatLoop) { clearInterval(combatLoop); combatLoop = null }
-    state.isRunning = false
+    state.isRunning       = false
+    state.combatStartTime = null
 }
 
 function exitCombat() {
@@ -199,7 +201,7 @@ function rejoinArea() {
 // ─── Pilote automatique ───────────────────────────────────────────────────────
 
 function _emptySessionLoot() {
-    return { itemDrops: [], familiarDrops: [], caisseCount: 0, kamasFromDrops: 0, killCount: 0, memberDamage: {}, learnedMoves: [] }
+    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, learnedMoves: [] }
 }
 
 function _mergeSessionLoot(dest, src) {
@@ -213,6 +215,9 @@ function _mergeSessionLoot(dest, src) {
     for (const [idx, dmg] of Object.entries(src.memberDamage || {})) {
         dest.memberDamage[idx] = (dest.memberDamage[idx] || 0) + dmg
     }
+    for (const [keyId, count] of Object.entries(src.keyDrops || {})) {
+        dest.keyDrops[keyId] = (dest.keyDrops[keyId] || 0) + count
+    }
 }
 
 function startAutoPilot(qty) {
@@ -220,6 +225,7 @@ function startAutoPilot(qty) {
     const n = qty === 'max' ? available : Math.min(qty, available)
     if (n <= 0) return
     _autoPilot = { remaining: n, accumulated: _emptySessionLoot() }
+    state.offlineAutoPilotRemaining = n
     rejoinArea()
 }
 
@@ -568,64 +574,68 @@ function onVictory() {
     // les 500ms de respawn ; gameTick ignore les actions quand respawnPending est vrai
     const defeatedEnemy = combat.enemy
 
+    // XP calculée avant le loot pour ne pas être silencée par une erreur de loot
+    const xpResults = []
+    for (let i = 0; i < state.team.length; i++) {
+        const member = state.team[i]
+        if (!member || member.currentHp <= 0) continue          // mort → 0 XP
+        const mult   = (i === combat.activeMemberIndex) ? 1.0 : 0.5
+        const xp     = Math.floor(calculateXPReward(defeatedEnemy, member) * mult)
+        const result = giveXP(member, xp)
+        xpResults.push({ member, xp, ...result })
+    }
+
+    let loot = { xpResults, familiarDrop: null, itemDrops: [], caisseDropped: false }
     try {
-        const loot = processVictoryLoot(defeatedEnemy)
-
-        loot.xpResults = []
-
-        for (let i = 0; i < state.team.length; i++) {
-            const member = state.team[i]
-            if (!member || member.currentHp <= 0) continue          // mort → 0 XP
-            const mult   = (i === combat.activeMemberIndex) ? 1.0 : 0.5
-            const xp     = Math.floor(calculateXPReward(defeatedEnemy, member) * mult)
-            const result = giveXP(member, xp)
-            loot.xpResults.push({ member, xp, ...result })
-        }
-        combat.pendingLoot = loot
-        combat.sessionLoot.killCount++
-
-        // Accumule le loot de session
-        if (loot.itemDrops?.length > 0) {
-            for (const d of loot.itemDrops) {
-                if (d.convertedToKamas) {
-                    combat.sessionLoot.kamasFromDrops += d.kamas || 10
-                } else {
-                    combat.sessionLoot.itemDrops.push(d)
-                }
-            }
-        }
-        if (loot.familiarDrop) {
-            combat.sessionLoot.familiarDrops.push(loot.familiarDrop)
-            if (activeMenu === 'collection' || activeMenu === 'Encyclopedie') updateCollectionUI()
-        }
-        if (loot.caisseDropped) {
-            combat.sessionLoot.caisseCount++
-        }
-        let anyLevelUp = false
-        if (loot.xpResults) {
-            for (const r of loot.xpResults) {
-                if (r.leveledUp) {
-                    anyLevelUp = true
-                    showNotification(`${classes[r.member.classId]?.name} → Niveau ${r.newLevel} !`, 'level')
-                }
-                for (const moveId of (r.newMoves || [])) {
-                    combat.sessionLoot.learnedMoves.push({ member: r.member, moveId })
-                }
-            }
-        }
-        // Persiste immédiatement les niveaux gagnés pour ne pas les perdre en cas de changement de team
-        if (anyLevelUp) saveGame()
-
-        // Donjon : victoire finale — consomme la clé et affiche l'écran de fin
-        if (areas[state.currentArea]?.type === 'dungeon') {
-            combat.respawnPending = false
-            stopCombat()
-            consumeDungeonKey(state.currentArea)
-            showSessionSummary('dungeon')
-            return
-        }
+        loot = processVictoryLoot(defeatedEnemy)
+        loot.xpResults = xpResults
     } catch(e) {
         console.error('[onVictory] erreur traitement loot:', e)
+    }
+
+    combat.pendingLoot = loot
+    combat.sessionLoot.killCount++
+
+    // Accumule le loot de session
+    if (loot.itemDrops?.length > 0) {
+        for (const d of loot.itemDrops) {
+            if (d.convertedToKamas) {
+                combat.sessionLoot.kamasFromDrops += d.kamas || 10
+            } else {
+                combat.sessionLoot.itemDrops.push(d)
+                if (item[d.itemId]?.isKey) {
+                    combat.sessionLoot.keyDrops[d.itemId] = (combat.sessionLoot.keyDrops[d.itemId] || 0) + 1
+                }
+            }
+        }
+    }
+    if (loot.familiarDrop) {
+        combat.sessionLoot.familiarDrops.push(loot.familiarDrop)
+        if (activeMenu === 'collection' || activeMenu === 'Encyclopedie') updateCollectionUI()
+    }
+    if (loot.caisseDropped) {
+        combat.sessionLoot.caisseCount++
+    }
+    let anyLevelUp = false
+    for (const r of xpResults) {
+        if (r.leveledUp) {
+            anyLevelUp = true
+            showNotification(`${classes[r.member.classId]?.name} → Niveau ${r.newLevel} !`, 'level')
+        }
+        for (const moveId of (r.newMoves || [])) {
+            combat.sessionLoot.learnedMoves.push({ member: r.member, moveId })
+        }
+    }
+    // Persiste immédiatement les niveaux gagnés pour ne pas les perdre en cas de changement de team
+    if (anyLevelUp) saveGame()
+
+    // Donjon : victoire finale — consomme la clé et affiche l'écran de fin
+    if (areas[state.currentArea]?.type === 'dungeon') {
+        combat.respawnPending = false
+        stopCombat()
+        consumeDungeonKey(state.currentArea)
+        showSessionSummary('dungeon')
+        return
     }
 
     // Respawn ennemi (zone normale) — garanti même si le bloc loot a throw

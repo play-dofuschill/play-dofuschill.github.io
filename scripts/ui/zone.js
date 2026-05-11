@@ -30,7 +30,7 @@ function updateZoneUI() {
 
     for (const [areaId, area] of matching) {
         const isActive    = state.currentArea === areaId && state.isRunning
-        const isTutoLocked = state.tutorial === 'zones' && areaId !== 'incarnam'
+        const isTutoLocked = state.tutorial === 'zones' && areaId !== 'cimetiereincarnam'
         const keyCount    = area.keyId ? (state.inventory[area.keyId]?.count || 0) : null
         const isKeyLocked = keyCount !== null && keyCount === 0
 
@@ -68,11 +68,11 @@ function updateZoneUI() {
 }
 
 function joinArea(areaId) {
-    if (!state.hasChosenStarter || state.team.length === 0) {
+    if (!state.hasChosenStarter) {
         showNotification('Choisissez d\'abord une classe !', 'error')
         return
     }
-    if (state.tutorial === 'zones' && areaId !== 'incarnam') {
+    if ((state.tutorial === 'zones' || state.tutorial === 'team_prep') && areaId !== 'cimetiereincarnam') {
         showNotification('Commencez par Incarnam pour débuter l\'aventure !', 'error')
         return
     }
@@ -85,6 +85,17 @@ function joinArea(areaId) {
         }
     }
     _pendingAreaId = areaId
+
+    // Tuto : vide l'équipe pour que le joueur apprenne à ajouter son perso
+    if (state.tutorial === 'zones') {
+        if (!state.classEquip) state.classEquip = {}
+        for (const member of state.team) {
+            if (member) state.classEquip[member.classId] = { level: member.level, exp: member.exp }
+        }
+        state.team = []
+        _tutoTeamPicked = false
+        advanceTutorial('zones')
+    }
 
     // Ferme le menu zones
     const exploreEl = document.getElementById('explore-menu')
@@ -129,6 +140,12 @@ function cancelZoneConfirm() {
 function confirmStartCombat() {
     const areaId = _pendingAreaId
     if (!areaId) return
+
+    if (state.team.filter(Boolean).length === 0) {
+        showNotification('Comment ça ? Vous voulez partir au combat sans aucun équipier !?', 'error')
+        return
+    }
+
     _pendingAreaId = null
 
     const bar = document.getElementById('zone-confirm-bar')
@@ -143,4 +160,5 @@ function confirmStartCombat() {
 
     startCombat(areaId)
     advanceTutorial('zones')
+    advanceTutorial('team_prep')
 }

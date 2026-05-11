@@ -24,14 +24,14 @@ areas.cimetiereincarnam = {
         { id: 'sergentChafer',   weight: 20 }
     ],
     lootTable: [
-        { itemId: 'pierreDame',        dropRate: 0.33 },
-        { itemId: 'bottesAventurier',  dropRate: 0.02 },
-        { itemId: 'capeAventurier',    dropRate: 0.01 },
-        { itemId: 'chapeauAventurier', dropRate: 0.01 },
-        { itemId: 'anneauAventurier',  dropRate: 0.02 },
-        { itemId: 'ceintureAventurier',dropRate: 0.02 },
-        { itemId: 'amuletteAventurier',dropRate: 0.02 },
-        { itemId: 'cleDonjonKardorim', dropRate: 0.01, isKey: true }
+        { itemId: 'pierreDame',        dropRate: 0.45 },
+        { itemId: 'bottesAventurier',  dropRate: 0.03 },
+        { itemId: 'capeAventurier',    dropRate: 0.02 },
+        { itemId: 'chapeauAventurier', dropRate: 0.02 },
+        { itemId: 'anneauAventurier',  dropRate: 0.03 },
+        { itemId: 'ceintureAventurier',dropRate: 0.03 },
+        { itemId: 'amuletteAventurier',dropRate: 0.03 },
+        { itemId: 'cleDonjonKardorim', dropRate: 0.05, isKey: true }
     ]
 }
 
@@ -51,16 +51,16 @@ areas.tainela = {
         { id: 'bouftouChefDeGuerre', weight: 10 }
     ],
     lootTable: [
-        { itemId: 'pierreDame',      dropRate: 0.33 },
-        { itemId: 'capeBouftou',     dropRate: 0.01 },
-        { itemId: 'coiffeBouftou',   dropRate: 0.01 },
-        { itemId: 'bottesBouftou',   dropRate: 0.01 },
-        { itemId: 'marteauBouftou',  dropRate: 0.01 },
-        { itemId: 'anneauBouftou',   dropRate: 0.02 },
-        { itemId: 'amuletteBouftou', dropRate: 0.02 },
-        { itemId: 'ceintureBouftou', dropRate: 0.01 },
-        { itemId: 'bouclierBouftou', dropRate: 0.01 },
-        { itemId: 'cleDonjonBouftou', dropRate: 0.01, isKey: true }
+        { itemId: 'pierreDame',      dropRate: 0.45 },
+        { itemId: 'capeBouftou',     dropRate: 0.02 },
+        { itemId: 'coiffeBouftou',   dropRate: 0.02 },
+        { itemId: 'bottesBouftou',   dropRate: 0.02 },
+        { itemId: 'marteauBouftou',  dropRate: 0.02 },
+        { itemId: 'anneauBouftou',   dropRate: 0.03 },
+        { itemId: 'amuletteBouftou', dropRate: 0.03 },
+        { itemId: 'ceintureBouftou', dropRate: 0.02 },
+        { itemId: 'bouclierBouftou', dropRate: 0.02 },
+        { itemId: 'cleDonjonBouftou', dropRate: 0.05, isKey: true }
     ]
 }
 
@@ -79,9 +79,9 @@ areas.donjonIncarnam = {
     spawns: [{ id: 'kardorim',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDame',         dropRate: 0.45 },
-        { itemId: 'coiffeKardorim',     dropRate: 0.03 },
-        { itemId: 'anneauKardorim',     dropRate: 0.04 },
-        { itemId: 'capeKardorim',   dropRate: 0.03 }
+        { itemId: 'coiffeKardorim',     dropRate: 0.05 },
+        { itemId: 'anneauKardorim',     dropRate: 0.05 },
+        { itemId: 'capeKardorim',   dropRate: 0.05 }
     ]
 }
 
@@ -105,7 +105,7 @@ areas.evenementPious = {
         { id: 'piouViolet', weight: 15 }
     ],
     lootTable: [
-        { itemId: 'pierreDame',      dropRate: 0.33 },
-        { itemId: 'piloteAutomatique', dropRate: 0.95 }
+        { itemId: 'pierreDame',      dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.15 }
     ]
 }

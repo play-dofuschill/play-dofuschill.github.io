@@ -20,7 +20,12 @@ function saveGame() {
         currentPreviewTeam: state.currentPreviewTeam,
         classEquip:         state.classEquip,
         teamNames:          state.teamNames,
-        version:            '0.1'
+        unlockedClasses:    state.unlockedClasses || [],
+        totalKills:                state.totalKills || 0,
+        defeatedBosses:            state.defeatedBosses || [],
+        combatStartTime:           state.combatStartTime || null,
+        offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
+        version:                   '0.1'
     }
     try {
         localStorage.setItem(SAVE_KEY, JSON.stringify(saveData))
@@ -49,6 +54,11 @@ function loadGame() {
         if (data.currentPreviewTeam) state.currentPreviewTeam = data.currentPreviewTeam
         if (data.classEquip)         state.classEquip         = data.classEquip
         if (data.teamNames)          state.teamNames          = data.teamNames
+        if (data.unlockedClasses)    state.unlockedClasses    = data.unlockedClasses
+        if (data.totalKills != null)                state.totalKills                = data.totalKills
+        if (data.defeatedBosses)                    state.defeatedBosses            = data.defeatedBosses
+        if (data.combatStartTime != null)           state.combatStartTime           = data.combatStartTime
+        if (data.offlineAutoPilotRemaining != null) state.offlineAutoPilotRemaining = data.offlineAutoPilotRemaining
 
         // Migration : si previewTeams[clé active] est vide mais state.team ne l'est pas, sync
         const curKey = state.currentPreviewTeam || 'preview1'

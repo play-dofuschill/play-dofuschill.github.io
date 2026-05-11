@@ -4690,3 +4690,30 @@ transform: translateY(-1rem);
 .set-piece-bubble.set-piece-missing { opacity: 0.35; filter: grayscale(0.6); }
 .set-piece-bubble img        { width: 2.2rem; height: 2.2rem; object-fit: contain; }
 .set-piece-dot               { position: absolute; bottom: 0.1rem; right: 0.1rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #6ecf6e; }
+
+/* ── Résumé de progression offline ─────────────────────────── */
+#offline-summary {
+    position: fixed; inset: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
+}
+.offline-summary-box {
+    width: min(420px, 96vw); max-height: 90vh;
+    overflow-y: auto; overflow-x: hidden;
+    background: var(--light1);
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='black' fill-opacity='0.07' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    border-radius: 0.75rem; box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    display: flex; flex-direction: column; padding-bottom: 0.5rem;
+}
+.os-status  { text-align: center; font-size: 1rem; font-weight: bold; padding: 0.4rem 1rem 0.75rem; }
+.os-survived { color: #3DA83D; }
+.os-defeated { color: #C94040; }
+.os-kills    { text-align: center; font-size: 0.9rem; color: var(--dark1); opacity: 0.75; margin-bottom: 0.6rem; }
+.os-tickets  { text-align: center; font-size: 0.82rem; color: var(--dark1); opacity: 0.6; margin-bottom: 0.5rem; }
+.os-xp-list  { display: flex; flex-direction: column; gap: 0.4rem; padding: 0.75rem 1rem; }
+.os-xp-row   { display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.06); border-radius: 0.4rem; padding: 0.35rem 0.6rem; }
+.os-sprite   { width: 2rem; height: 2rem; object-fit: contain; flex-shrink: 0; }
+.os-name     { flex: 1; font-size: 0.82rem; font-weight: bold; color: var(--dark1); }
+.os-level    { font-size: 0.75rem; color: var(--dark1); opacity: 0.6; }
+.os-levelup  { font-size: 0.75rem; color: #3DA83D; font-weight: bold; }
+.os-xp-val   { font-size: 0.8rem; color: var(--dark1); opacity: 0.8; margin-left: auto; }
