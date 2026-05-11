@@ -1,0 +1,692 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DofusChill</title>
+    <link rel="icon" type="image/x-icon" href="img/icons/icon.png">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <div id="bg-pattern"></div>
+
+    <div id="debug-panel" style="display: none;">
+
+    <div onclick="changeTheme('dark')">Dark Theme</div>
+    <div onclick="changeTheme('light')">Light Theme</div>
+    <div onclick="changeTheme('verdant')">Verdant Theme</div>
+    <div onclick="changeTheme('lilac')">Lilac Theme</div>
+    <div onclick="changeTheme('cherry')">Cherry Theme</div>
+    <div onclick="changeTheme('coral')">Coral Theme</div>
+    <div onclick="changeTheme('onyx')">Onyx Theme</div>
+    <div onclick="changeTheme('oled')">Oled Theme</div>
+
+    </div>
+
+    <div id="game-version">v0.1</div>
+
+    <div id="main-content">
+
+    <div id="item-menu" style="display: none;" class="season-background">
+
+        <div id="item-menu-header">
+            <div>
+                
+            </div>
+            <div class="bag-category-tabs">
+                <button class="bag-tab active" data-cat="equipment"  onclick="setInventoryFilter('equipment')">⚔ Items</button>
+                <button class="bag-tab"        data-cat="dofus"      onclick="setInventoryFilter('dofus')">🔮 Dofus/Trophées</button>
+                <button class="bag-tab"        data-cat="consumable" onclick="setInventoryFilter('consumable')">🍶 Conso</button>
+                <button class="bag-tab"        data-cat="cosmetic"   onclick="setInventoryFilter('cosmetic')">✨ Cosmétiques</button>
+                <button class="bag-tab"        data-cat="divers"     onclick="setInventoryFilter('divers')">📦 Divers</button>
+            </div>
+
+            <div id="equip-filters">
+                <div class="equip-filter-row">
+                    <select id="equip-filter-slot" onchange="updateInventoryUI()">
+                        <option value="all">Slot</option>
+                        <option value="coiffe">Coiffe</option>
+                        <option value="amulette">Amulette</option>
+                        <option value="cape">Cape</option>
+                        <option value="anneau">Anneau</option>
+                        <option value="ceinture">Ceinture</option>
+                        <option value="bottes">Bottes</option>
+                        <option value="arme">Arme</option>
+                        <option value="bouclier">Bouclier</option>
+                    </select>
+                    <select id="equip-filter-bonus" onchange="updateInventoryUI()">
+                        <option value="all">Bonus</option>
+                        <option value="hp">PV</option>
+                        <option value="atk">ATK</option>
+                        <option value="spd">Vitesse</option>
+                        <option value="flatDmg">Dégâts fixes</option>
+                        <option value="res.eau">Rés. Eau</option>
+                        <option value="res.feu">Rés. Feu</option>
+                        <option value="res.air">Rés. Air</option>
+                        <option value="res.terre">Rés. Terre</option>
+                        <option value="res.neutre">Rés. Neutre</option>
+                    </select>
+                    <select id="equip-filter-level" onchange="updateInventoryUI()">
+                        <option value="all">Niveau</option>
+                        <option value="5">1 – 5</option>
+                        <option value="10">6 – 10</option>
+                        <option value="15">11 – 15</option>
+                        <option value="20">16 – 20</option>
+                    </select>
+                    <button class="sort-btn active" id="sort-level" onclick="toggleEquipSort('level')">Niv. ↓</button>
+                    <button class="sort-btn" id="sort-name" onclick="toggleEquipSort('name')">Nom ↕</button>
+                    <button class="clear-filters" onclick="resetEquipFilters()">Effacer</button>
+                    <input id="equip-search" type="text" placeholder="Rechercher…" oninput="onEquipSearch(this.value)">
+                </div>
+            </div>
+        </div>
+
+        <div id="item-menu-list"></div>
+
+    </div>
+
+    <div id="team-menu" style="display: none;" class="season-background">
+
+    <div class="team-menu-header">
+
+        <span id="zone-confirm-bar" style="display: none; justify-content: center; align-items: center; gap: auto; width: 100%;">
+
+        <div class="team-header-button" onclick="cancelZoneConfirm()">
+        <svg style="margin-right: 1rem; background:#E46B6F;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10.928 21a2.98 2.98 0 0 1-2.121-.879L1.686 13l7.121-7.121c1.133-1.134 3.109-1.134 4.242 0c.566.564.879 1.317.879 2.119c0 .746-.27 1.451-.764 2.002H18c1.654 0 3 1.346 3 3s-1.346 3-3 3h-4.836c.493.549.764 1.252.764 1.998a2.98 2.98 0 0 1-.879 2.124a2.98 2.98 0 0 1-2.121.878m-6.414-8l5.707 5.707a1.023 1.023 0 0 0 1.414 0c.189-.189.293-.441.293-.708s-.104-.517-.291-.705L8.342 14H18a1.001 1.001 0 0 0 0-2H8.342l3.293-3.293a.996.996 0 0 0 .001-1.413a1.023 1.023 0 0 0-1.415-.001z"/></svg>
+        Retour
+        </div>
+
+        <span id="zone-confirm-bar-name" style="flex:1; text-align:center; color:white; font-weight:bold; font-size:1rem; opacity:0.9;"></span>
+
+        <div id="zone-confirm-start-btn" class="team-header-button" onclick="confirmStartCombat()" style="background:#2d7a4f;">
+        <div style="display:flex; flex-direction:column; align-items:flex-start;">
+            <span id="zone-confirm-btn-text">Commencer</span>
+            <small id="zone-confirm-btn-sub" style="display:none; font-size:0.7em; opacity:0.8;"></small>
+        </div>
+        <svg style="margin-left: 1rem; border: 1px solid rgb(100, 220, 140);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        </div>
+
+        </span>
+
+        <div class="team-menu-selector-new">
+
+            <select id="team-slot-selector">
+                <option value="preview1">Team 1</option>
+                <option value="preview2">Team 2</option>
+                <option value="preview3">Team 3</option>
+                <option value="preview4">Team 4</option>
+                <option value="preview5">Team 5</option>
+                <option value="preview6">Team 6</option>
+                <option value="preview7">Team 7</option>
+                <option value="preview8">Team 8</option>
+                <option value="preview9">Team 9</option>
+                <option value="preview10">Team 10</option>
+                <option value="preview11">Team 11</option>
+                <option value="preview12">Team 12</option>
+                <option value="preview13">Team 13</option>
+                <option value="preview14">Team 14</option>
+                <option value="preview15">Team 15</option>
+                <option value="preview16">Team 16</option>
+                <option value="preview17">Team 17</option>
+                <option value="preview18">Team 18</option>
+                <option value="preview19">Team 19</option>
+                <option value="preview20">Team 20</option>
+                <option value="preview21">Team 21</option>
+                <option value="preview22">Team 22</option>
+                <option value="preview23">Team 23</option>
+                <option value="preview24">Team 24</option>
+                <option value="preview25">Team 25</option>
+                <option value="preview26">Team 26</option>
+                <option value="preview27">Team 27</option>
+                <option value="preview28">Team 28</option>
+                <option value="preview29">Team 29</option>
+                <option value="preview30">Team 30</option>
+            </select>
+
+            <svg onclick="editTeamName()" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.777 19.783l.607-4.162c.037-.272.161-.525.355-.72L15.5 3.124a1.26 1.26 0 0 1 1.19-.341a6.2 6.2 0 0 1 2.832 1.694a6.2 6.2 0 0 1 1.682 2.846a1.26 1.26 0 0 1-.341 1.19L9.089 20.275a1.26 1.26 0 0 1-.721.354l-4.161.607a1.264 1.264 0 0 1-1.43-1.454M13.275 5.364l5.363 5.363"/></svg>
+
+        </div>
+
+        <div class="team-menu-selector" style="display: none;">
+            <strong onClick="cyclePreviewTeams(-1)">◀</strong>
+            <div id="team-preview-slot-1"></div>
+            <div id="team-preview-slot-2"></div>
+            <div id="team-preview-slot-3"></div>
+            <div id="team-preview-slot-4"></div>
+            <div id="team-preview-slot-5"></div>
+            <div id="team-preview-slot-6"></div>
+            <strong onClick="cyclePreviewTeams(+1)">▶</strong>
+        </div>
+    </div>
+
+    <div id="team-preview">
+
+    </div>
+
+    <!-- ── Guilde (overlay sélection de classe) ── -->
+    <div id="guilde-picker" style="display: none;">
+        <div id="guilde-picker-header">
+            <button class="guilde-back-btn" onclick="closeGuildePicker()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10.928 21a2.98 2.98 0 0 1-2.121-.879L1.686 13l7.121-7.121c1.133-1.134 3.109-1.134 4.242 0c.566.564.879 1.317.879 2.119c0 .746-.27 1.451-.764 2.002H18c1.654 0 3 1.346 3 3s-1.346 3-3 3h-4.836c.493.549.764 1.252.764 1.998a2.98 2.98 0 0 1-.879 2.124a2.98 2.98 0 0 1-2.121.878m-6.414-8l5.707 5.707a1.023 1.023 0 0 0 1.414 0c.189-.189.293-.441.293-.708s-.104-.517-.291-.705L8.342 14H18a1.001 1.001 0 0 0 0-2H8.342l3.293-3.293a.996.996 0 0 0 .001-1.413a1.023 1.023 0 0 0-1.415-.001z"/></svg>
+                Retour
+            </button>
+            <span class="guilde-picker-title">Guilde</span>
+        </div>
+        <div id="guilde-picker-list"></div>
+    </div>
+
+    </div>
+
+    </div>
+
+    <!-- ── Guilde (menu standalone) ── -->
+    <div id="guilde-menu" style="display: none;" class="season-background">
+        <div id="guilde-menu-header">
+            <span>Guilde</span>
+        </div>
+        <div id="guilde-menu-list"></div>
+    </div>
+
+    <div id="encyclopédie-menu" style="display: none;">
+
+        <img class="encyclopédie-menu-flair" src="img/icons/dofus.png">
+        <svg id="encyclopédie-menu-return" onclick="document.getElementById('encyclopédie-menu').scrollTo({top:0,behavior:'smooth'});this.style.opacity='0';"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m12 4l-6 6m6-6l6 6m-6-6v10.5m0 5.5v-2.5"/></svg>
+
+        <div id="encyclopédie-filters">
+
+            <div class="collection-filter-row">
+                <select id="encyclopédie-filter-level" onchange="updateCollectionUI()">
+                    <option value="all">Niveau</option>
+                    <option value="10">1 – 10</option>
+                    <option value="20">11 – 20</option>
+                    <option value="30">21 – 30</option>
+                    <option value="50">31 – 50</option>
+                </select>
+
+                <select id="encyclopédie-filter-rarity" onchange="updateCollectionUI()">
+                    <option value="all">Rareté</option>
+                    <option value="commun">Commun</option>
+                    <option value="peu_commun">Peu commun</option>
+                    <option value="rare">Rare</option>
+                    <option value="legendaire">Légendaire</option>
+                </select>
+
+                <select id="encyclopédie-filter-tier" onchange="updateCollectionUI()">
+                    <option value="all">Tier</option>
+                    <option value="normal">Normal</option>
+                    <option value="elite">Élite</option>
+                    <option value="boss">Boss</option>
+                </select>
+
+                <select id="encyclopédie-filter-bonustype" onchange="updateCollectionUI()">
+                    <option value="all">Bonus familier</option>
+                    <option value="farming">🌾 Farming</option>
+                    <option value="combat">⚔ Combat</option>
+                    <option value="defense">🛡 Défense</option>
+                </select>
+
+                <button class="clear-filters" onclick="resetCollectionFilters()">Effacer</button>
+            </div>
+
+            <div class="encyclopédie-search">
+                <input id="encyclopédie-search" type="text" placeholder="Rechercher un monstre…" oninput="onCollectionSearch(this.value)">
+                <div id="encyclopédie-total">0 / 0</div>
+            </div>
+
+        </div>
+
+        <div id="collection-list"></div>
+
+    </div>
+
+        <div id="settings-menu" style="display: none;" class="season-background">
+
+        <div id="settings-menu-header">
+
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg>
+                Settings </span>
+            
+        </div>
+
+        <div class="settings-list">
+            <div onclick="exportData()">Export Data</div>
+            <div onclick="importData()">Import Data</div>
+            <div onclick="textData()">Data to Text</div>
+
+            <div>Theme: <select id="settings-theme">
+                <option value="default">default</option>
+                <option value="dark">dark</option>
+                <option value="verdant">verdant</option>
+                <option value="lilac">lilac</option>
+                <option value="cherry">cherry</option>
+                <option value="onyx">onyx</option>
+                <option value="coral">coral</option>
+                <option value="oled">oled</option>
+            </select></div>
+
+            <div 
+            onclick='document.getElementById("tooltipTop").style.display = `none`
+        document.getElementById("tooltipTitle").innerHTML = `Game Modifiers`
+        document.getElementById("tooltipMid").style.display = `none`
+        document.getElementById("tooltipBottom").innerHTML = `Right Click/Long press to see the details<div id="tooltip-modifiers-list"><div style="pointer-events:none; background:#AD5957; color:white">Challenges</div> <div data-help="ModNuzloke"><span>Nuzloke Mode</span> <input type="checkbox" id="checkbox-mode-nuzloke" onclick="updateSettings(true)"></div>  <div data-help="ModHard"><span>Hard Mode</span> <input type="checkbox" id="checkbox-mode-hard" onclick="updateSettings(true)"></div> <div style="pointer-events:none; background:#57AD5D; color:white">Cheats</div>  <div data-help="ModNoIvs"><span>No IVs</span><input type="checkbox" id="checkbox-mode-ivs" onclick="updateSettings(true)"></div>  <div data-help="ModAfk"><span>Longer AFK</span><input type="checkbox" id="checkbox-mode-afk" onclick="updateSettings(true)"></div> </div>`
+        openTooltip(); updateSettings()'
+        
+        >Game modifiers</div>
+
+            <div onclick='document.getElementById("tooltipTop").style.display = `none`
+        document.getElementById("tooltipTitle").innerHTML = `Credits`
+        document.getElementById("tooltipMid").style.display = `none`
+        document.getElementById("tooltipBottom").innerHTML = `Made by <span onclick="secretFight(areas.missingArea.id)">Duck</span><br><br>Monstre and trainer sprites by Monstre Showdown (Including artists: Beliot419, kyledove, Gnomowladny, Brumirage and ZacWeavile. Go check their work. Now.)<br><br>Gen 9 sprites by KingOfThe-X-Roads<br><br>All characters and related assets featured in this game are the exclusive property of Nintendo, Creatures Inc., and The Pokémon Company, and are used here strictly for non-commercial purposes.`
+        openTooltip()' >Credits</div>
+            <div onclick="window.open('https://discord.gg/VnukKfSs3S', '_blank')">Discord</div>
+
+            <div style="margin-top: 3rem;background: rgb(206, 83, 83); color: white; " onclick='document.getElementById("tooltipTop").style.display = `none`
+        document.getElementById("tooltipTitle").innerHTML = `Are you sure you want to delete all data forever?`
+        document.getElementById("tooltipMid").style.display = `none`
+        document.getElementById("tooltipBottom").innerHTML = `<div onClick = "clearData()" style="cursor:pointer; font-size:2rem" id="prevent-tooltip-exit">Yeah!</div>`
+        openTooltip()'
+            
+            >Wipe Data</div>
+
+        </div>
+
+        </div>
+
+       <div id="disclaimer-menu" style="display: none;">
+        Ce projet est entièrement non officiel
+        <br><br>
+        Tous les personnages et la propriété intellectuelle associée présentés sont la propriété exclusive de Ankama Company.
+        <br><br>
+        Toute utilisation de ces ressources est exclusivement réservée à des fins non commerciales et de divertissement. Aucun droit de propriété n'est revendiqué et tous les droits demeurent la propriété de leurs détenteurs respectifs.
+        <br><br>
+        Allez jouer aux jeux officiels !
+       </div>
+
+       <div id="starter-menu" style="display: none;">
+
+        <span>Sélectionnez votre classe de départ !</span>
+
+        <div class="starter-list">
+
+            <div onClick="selectStarterClass('iop')" data-help="iop">
+                <img src="img/classes/Iop_Male.png">Iop<br>DMG ++
+            </div>
+
+            <div onClick="selectStarterClass('cra')" data-help="cra">
+                <img src="img/classes/Cra_Male.png">Cra<br>DMG FARM
+            </div>
+
+            <div onClick="selectStarterClass('eniripsa')" data-help="eniripsa">
+                <img src="img/classes/Eniripsa_Female.png">Eniripsa<br>SOIN SUPP
+            </div>
+            </div>
+
+        <span style="color: white; background: rgba(0,0,0,0.55); padding: 0.75rem 1.5rem; border-radius: 0.5rem; max-width: 28rem;">
+            Tip: click droit (ou appuis prolongé sur mobile) sur
+            <br><br>
+            la pluspart des éléments pour avoir des infos supplémentaires!</span>
+
+        </div>
+
+       </div>
+
+       <div id="tutorial" style="display: none;">
+
+        <img class="sprite-trim" src="img/pnj/ganymede.png">
+        <span id="tutorial-text">While in combat, Monstre get tired and lose a very small fraction of their hp yada yada.</span>
+       </div>
+
+    </div>
+    
+    </div>
+
+       <div id="shop-menu" style="display: none;" class="season-background">
+            <div id="shop-header">
+                <div class="shop-tabs">
+                    <div class="shop-tab active" data-cat="items"       onclick="setShopFilter('items')">Items</div>
+                    <div class="shop-tab"        data-cat="consumables" onclick="setShopFilter('consumables')">Consommables</div>
+                    <div class="shop-tab"        data-cat="cosmetics"   onclick="setShopFilter('cosmetics')">Cosmétiques</div>
+                </div>
+                <div class="shop-header-kamas">
+                    <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon-header">
+                    <span id="shop-kamas-amount">0</span>
+                    <span>Kamas</span>
+                </div>
+            </div>
+            <div id="shop-list"></div>
+        </div>
+
+       </div>
+
+       <div id="vs-menu" style="display: none;" class="season-background">
+
+        <div id="vs-menu-header">
+
+            <span data-help="VS">VS Trainers
+                <svg style="pointer-events: none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8s8-3.59 8-8s-3.59-8-8-8m1 13h-2v-6h2zm0-8h-2V7h2z" opacity="0.3"/><path fill="currentColor" d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8"/></svg>
+            </span>
+            
+        </div>
+
+        <div class="explore-menu-selector" id="vs-selector">
+            <div style="background: #465f96; outline: solid 1px #3d61ff; color: white; z-index: 2;"  onclick="updateVS()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M17 22H7a2 2 0 0 1-2-2v-8.818a.6.6 0 0 0-.1-.333L3.1 8.15a.6.6 0 0 1-.1-.333V2.6a.6.6 0 0 1 .6-.6h1.8a.6.6 0 0 1 .6.6v1.8a.6.6 0 0 0 .6.6h2.8a.6.6 0 0 0 .6-.6V2.6a.6.6 0 0 1 .6-.6h2.8a.6.6 0 0 1 .6.6v1.8a.6.6 0 0 0 .6.6h2.8a.6.6 0 0 0 .6-.6V2.6a.6.6 0 0 1 .6-.6h1.8a.6.6 0 0 1 .6.6v5.218a.6.6 0 0 1-.1.333l-1.8 2.698a.6.6 0 0 0-.1.333V20a2 2 0 0 1-2 2Z"/></svg>
+
+                Trainers</div>
+            
+            <div onclick="updateFrontier()">Battle Frontier</div>
+        </div>
+
+            <div id="vs-listing">
+            </div>
+
+            <div id="frontier-listing">
+            </div>
+
+       </div>
+
+    <div id="explore-menu" style="display: none;" class="season-background">
+
+        <div id="explore-menu-header">
+            <span>World Map</span>
+        </div>
+
+        <div class="explore-menu-selector" id="explore-selector">
+            <div class="explore-tab-active" onclick="setZoneTab('wild')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m17.861 3.163l.16.054l1.202.4c.463.155.87.29 1.191.44c.348.162.667.37.911.709s.341.707.385 1.088c.04.353.04.781.04 1.27v8.212c0 .698 0 1.287-.054 1.753c-.056.484-.182.962-.535 1.348a2.25 2.25 0 0 1-.746.538c-.478.212-.971.18-1.448.081c-.46-.096-1.018-.282-1.68-.503l-.043-.014c-1.12-.374-1.505-.49-1.877-.477a2.3 2.3 0 0 0-.441.059c-.363.085-.703.299-1.686.954l-1.382.922l-.14.093c-1.062.709-1.8 1.201-2.664 1.317c-.863.116-1.705-.165-2.915-.57l-.16-.053l-1.202-.4c-.463-.155-.87-.29-1.191-.44c-.348-.162-.667-.37-.911-.71c-.244-.338-.341-.706-.385-1.088c-.04-.353-.04-.78-.04-1.269V8.665c0-.699 0-1.288.054-1.753c.056-.484.182-.962.535-1.348a2.25 2.25 0 0 1 .746-.538c.478-.213.972-.181 1.448-.081c.46.095 1.018.282 1.68.503l.043.014c1.12.373 1.505.49 1.878.477a2.3 2.3 0 0 0 .44-.059c.363-.086.703-.3 1.686-.954l1.382-.922l.14-.094c1.062-.708 1.8-1.2 2.663-1.316c.864-.116 1.706.165 2.916.57m-2.111.943V16.58c.536.058 1.1.246 1.843.494l.125.042c.717.239 1.192.396 1.555.472c.356.074.477.04.532.016a.75.75 0 0 0 .249-.179c.04-.044.11-.149.152-.51c.043-.368.044-.869.044-1.624V7.163c0-.54-.001-.88-.03-1.138c-.028-.239-.072-.328-.112-.382c-.039-.054-.109-.125-.326-.226c-.236-.11-.56-.218-1.07-.389l-1.165-.388c-.887-.296-1.413-.464-1.797-.534m-1.5 12.654V4.434c-.311.18-.71.441-1.276.818l-1.382.922l-.11.073c-.688.46-1.201.802-1.732.994v12.326c.311-.18.71-.442 1.276-.819l1.382-.921l.11-.073c.688-.46 1.201-.802 1.732-.994m-6 3.135V7.42c-.536-.058-1.1-.246-1.843-.494l-.125-.042c-.717-.239-1.192-.396-1.556-.472c-.355-.074-.476-.041-.53-.017a.75.75 0 0 0-.25.18c-.04.043-.11.148-.152.509c-.043.368-.044.87-.044 1.625v8.128c0 .54.001.88.03 1.138c.028.239.072.327.112.382c.039.054.109.125.326.226c.236.11.56.218 1.07.389l1.165.388c.887.295 1.412.463 1.797.534" clip-rule="evenodd"/></svg>
+                Zones sauvages</div>
+            <div onclick="setZoneTab('dungeon')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M4 10a8 8 0 1 1 16 0v8.667c0 1.246 0 1.869-.268 2.333a2 2 0 0 1-.732.732c-.464.268-1.087.268-2.333.268H7.333C6.087 22 5.464 22 5 21.732A2 2 0 0 1 4.268 21C4 20.536 4 19.913 4 18.667z"/><path d="M20 18H9c-.943 0-1.414 0-1.707.293S7 19.057 7 20v2m13-8h-7c-.943 0-1.414 0-1.707.293S11 15.057 11 16v2m9-8h-3c-.943 0-1.414 0-1.707.293S15 11.057 15 12v2"/></g></svg>
+                Donjons</div>
+            <div onclick="setZoneTab('event')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5.658 11.002l-1.47 3.308c-1.856 4.174-2.783 6.261-1.77 7.274s3.098.085 7.272-1.77L13 18.342c2.517-1.119 3.776-1.678 3.976-2.757s-.774-2.053-2.722-4l-1.838-1.839c-1.947-1.948-2.921-2.922-4-2.721c-1.079.2-1.638 1.459-2.757 3.976M6.5 10.5l7 7m-9-2l4 4M16 8l3-3m-4.803-3c.4.667.719 2.4-1.197 4m9 3.803c-.667-.4-2.4-.719-4 1.197m0-9v.02M22 6v.02M21 13v.02M11 3v.02"/></svg>
+                Événements</div>
+        </div>
+
+        <div id="explore-listing"></div>
+
+    </div>
+
+    <div id="white-transition"></div>
+
+        <div id="explore-transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="576" height="512" viewBox="0 0 576 512"><path fill="currentColor" d="M482.3 192c34.2 0 93.7 29 93.7 64c0 36-59.5 64-93.7 64H365.7L265.2 495.9c-5.7 10-16.3 16.1-27.8 16.1h-56.2c-10.6 0-18.3-10.2-15.4-20.4l49-171.6H112l-43.2 57.6c-3 4-7.8 6.4-12.8 6.4H14c-7.8 0-14-6.3-14-14c0-1.3.2-2.6.5-3.9L32 256L.5 145.9c-.4-1.3-.5-2.6-.5-3.9c0-7.8 6.3-14 14-14h42c5 0 9.8 2.4 12.8 6.4L112 192h102.9l-49-171.6c-3-10.2 4.7-20.4 15.3-20.4h56.2c11.5 0 22.1 6.2 27.8 16.1L365.7 192z"/></svg>
+        </div>
+
+
+    <div id="mstr-editor" style="display: none;">
+
+    <div class="mstr-editor-exit" onClick='closeMstrEditor(); saveGame()'>
+        <svg style="margin-right: 0.35rem;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h11.175q.4 0 .763.15t.637.425l2.85 2.85q.275.275.425.638t.15.762V19q0 .825-.587 1.413T19 21zm7-3q1.25 0 2.125-.875T15 15t-.875-2.125T12 12t-2.125.875T9 15t.875 2.125T12 18m-5-8h7q.425 0 .713-.288T15 9V7q0-.425-.288-.712T14 6H7q-.425 0-.712.288T6 7v2q0 .425.288.713T7 10"/></svg>
+        Save and exit
+    </div>
+
+    <div id="mstr-editor-header" style="flex-direction: column;">
+
+        <div style="display: flex; width: 100%; justify-content: center; align-items: center; gap: 0.3rem; position: relative;" >
+
+        <div class="mstr-editor-side" style="display: flex; flex-direction: column;" >
+
+            <span style="font-weight: 700; padding-left: 0.5rem; margin: 0.3rem 0; position: relative;"><strong class="mstr-editor-name" id="mstr-editor-name" style="font-size: 1.5rem; color: white;">Arcanine</strong><br><strong id="mstr-editor-level" class="mstr-editor-name">lvl 100</strong><br>
+            
+            <div id="mstr-edit-buttons">
+
+            </div>
+
+            </span>
+
+            <div id="mstr-editor-side-content">
+
+            <div class="explore-sprite sprite-box" style="cursor: default; animation: mstr-active 0.5s infinite; margin-right: 1.5rem;">
+            <img class="sprite-decor" id="mstr-edit-decor" >
+            <img class="sprite-trim" style=" z-index: 1;" src="img/mstr/sprite/mew.png" id="mstr-editor-sprite">
+            </div>
+
+            <div id="mstr-editor-ribbons">
+            
+            </div>
+
+            <div id="mstr-editor-type">
+            
+            </div>
+
+            <div style="display: none;" class="explore-mstr-tag">Tag: <select id="explore-mstr-tag">
+                <option value="none">none</option>
+                <option value="red">red</option>
+                <option value="orange">orange</option>
+                <option value="yellow">yellow</option>
+                <option value="green">green</option>
+                <option value="lime">lime</option>
+                <option value="blue">blue</option>
+                <option value="teal">teal</option>
+                <option value="pink">pink</option>
+                <option value="magenta">magenta</option>
+                <option value="hidden">hidden</option>
+            </select>
+
+        </div>
+                    
+            <div id="tag-system-editor-tags" onclick="tagMenuAssign()">
+                Click here to add tags
+            </div>
+
+        </div>
+
+            </div>
+
+            <div class="mstr-editor-side-2" >
+
+                <div class="mstr-stats-panel" id="mstr-editor-stats">
+
+                    <svg style="height: 3rem; width:3rem; margin-top:1rem; color:rgb(110, 105, 105)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.22 6.894a3.7 3.7 0 0 0-1.4-1.37l-6-3.31a3.83 3.83 0 0 0-3.63 0l-6 3.31a3.7 3.7 0 0 0-1.4 1.37a3.74 3.74 0 0 0-.52 1.9v6.41a3.79 3.79 0 0 0 1.92 3.27l6 3.3a3.74 3.74 0 0 0 3.63 0l6-3.31a3.72 3.72 0 0 0 1.91-3.26v-6.36a3.64 3.64 0 0 0-.51-1.95m-1 8.31a2.2 2.2 0 0 1-1.14 1.95l-6 3.31q-.158.089-.33.14v-8.18l7.3-4.39c.092.242.136.5.13.76z"/></svg>
+
+                </div>
+
+                <div class="mstr-stats-panel" id="mstr-editor-ivs" style="display: none;">
+
+                </div>
+
+                <div id="mstr-edit-division"><span>${returnDivisionLetter(returnMstrDivision(poke))}</span>division</div>
+
+            </div>
+
+</div>
+
+        <div class="mstr-stats-stat-switch">
+                    <div onclick='document.getElementById("mstr-editor-stats").style.display = "flex"; document.getElementById("mstr-editor-ivs").style.display = "none"; '>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.22 6.894a3.7 3.7 0 0 0-1.4-1.37l-6-3.31a3.83 3.83 0 0 0-3.63 0l-6 3.31a3.7 3.7 0 0 0-1.4 1.37a3.74 3.74 0 0 0-.52 1.9v6.41a3.79 3.79 0 0 0 1.92 3.27l6 3.3a3.74 3.74 0 0 0 3.63 0l6-3.31a3.72 3.72 0 0 0 1.91-3.26v-6.36a3.64 3.64 0 0 0-.51-1.95m-1 8.31a2.2 2.2 0 0 1-1.14 1.95l-6 3.31q-.158.089-.33.14v-8.18l7.3-4.39c.092.242.136.5.13.76z"/></svg>
+                        Base Stats</div>
+                    <div onclick='document.getElementById("mstr-editor-stats").style.display = "none"; document.getElementById("mstr-editor-ivs").style.display = "flex"; '>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q0-3.475 1.45-5.637t4-4.363q-2.55-2.2-4-4.362T5 2v-.25q0-.425.288-.712T6 .75t.713.288T7 1.75V2q0 .275.013.513T7.05 3h9.9q.025-.25.038-.488T17 2v-.25q0-.425.288-.712T18 .75t.713.288t.287.712V2q0 3.475-1.45 5.638t-4 4.362q2.55 2.2 4 4.363T19 22v.25q0 .425-.288.713T18 23.25t-.712-.288T17 22.25V22q0-.275-.012-.513T16.95 21h-9.9q-.025.25-.037.488T7 22v.25q0 .425-.288.713T6 23.25t-.712-.288T5 22.25zM8.45 7h7.1q.325-.475.563-.95T16.55 5h-9.1q.2.55.437 1.038T8.45 7M12 10.7q.5-.425.975-.85t.9-.85h-3.75q.425.425.9.85t.975.85M10.125 15h3.75q-.425-.425-.9-.85T12 13.3q-.5.425-.975.85t-.9.85M7.45 19h9.1q-.2-.55-.437-1.037T15.55 17h-7.1q-.325.475-.562.95T7.45 19"/></svg>
+                        IV's Stats</div>
+                </div>
+
+                <div class="mstr-stats-stat-abilities">
+
+                    Abilities
+                        <span style="display: flex; gap: 1rem;">
+                    <div id="mstr-edit-ability">
+                        [Coming Soon]</div>
+                    <div id="mstr-edit-ability-hidden" >
+                        [Coming Soon]</div>
+                </div>
+
+                <div class="mstr-stats-stat-abilities" id="mstr-stats-stat-signature">
+
+                    <text id="mstr-edit-signature-text">Signature Move</text>
+                        <span style="display: flex; gap: 1rem;">
+                    <div id="mstr-edit-signature">
+                        [Coming Soon]
+                    </div>
+                                    </span>
+                </div>
+
+        <span id="mstr-editor-extra-info"></span>
+
+                    <div id="mstr-stats-lore">
+
+                    <div onclick="if (document.getElementById('mstr-stats-lore-info').style.maxHeight == '10rem') {document.getElementById('mstr-stats-lore-info').style.maxHeight = '0rem'; document.getElementById('mstr-stats-lore-info').style.padding = '0rem'; return} document.getElementById('mstr-stats-lore-info').style.maxHeight = '10rem'; document.getElementById('mstr-stats-lore-info').style.padding = '0.5rem';">Expand Lore
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" fill-opacity="0.25" fill-rule="evenodd" d="M2.455 11.116C3.531 9.234 6.555 5 12 5c5.444 0 8.469 4.234 9.544 6.116c.221.386.331.58.32.868c-.013.288-.143.476-.402.852C20.182 14.694 16.706 19 12 19s-8.182-4.306-9.462-6.164c-.26-.376-.39-.564-.401-.852c-.013-.288.098-.482.318-.868M12 15a3 3 0 1 0 0-6a3 3 0 0 0 0 6" clip-rule="evenodd"/><path stroke="currentColor" stroke-width="1.2" d="M12 5c-5.444 0-8.469 4.234-9.544 6.116c-.221.386-.331.58-.32.868c.013.288.143.476.402.852C3.818 14.694 7.294 19 12 19s8.182-4.306 9.462-6.164c.26-.376.39-.564.401-.852s-.098-.482-.319-.868C20.47 9.234 17.444 5 12 5Z"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.2"/></g></svg>
+                    </div>
+                    <span id="mstr-stats-lore-info"  >
+                    Shaped by the Original One, when the universe was yet unmeasured, It was brought forth to give form to expanse. By its existence, space became vast; by its will, distance gained meaning. Without It, the world would have no breadth, no separation between sky and land, nor any path for life to walk.
+                    </span>
+                </div>
+
+        </div>
+
+        <span class="mstr-editor-move-title">Select a move below and replace it with one of the list of learnt moves</span>
+        <div class="mstr-editor-move-container" id="mstr-editor-current-moves">
+
+        </div>
+
+        <div class="mstr-editor-learnt-move-title">Learnt Moves</div>
+        <div class="mstr-editor-learnt-move-list" id="mstr-editor-movepool">
+           
+        </div>
+
+    </div>
+
+    <div id="tooltipBackground" onclick="if(event.target===this) closeTooltip()">
+        <div id="tooltipClose" onclick="closeTooltip()">✕</div>
+        <div id="tooltipBox">
+            <div id="tooltipTop">
+            </div>
+            <div id="tooltipTitle" >
+            </div>
+            <div id="tooltipMid" >
+
+            </div>
+            <div id="tooltipBottom" >
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="content-explore" class="season-background" style="display:none">
+
+        <!-- ── Ennemi ── -->
+        <div id="enemy-display" style="display:none" data-enemy-help="1">
+            <div class="enemy-sprite-wrap">
+                <img id="enemy-sprite" src="img/resources/none.png" onerror="this.src='img/icons/icon.png'">
+                <div class="enemy-sprite-shadow"></div>
+            </div>
+            <div class="enemy-info">
+                <div class="enemy-title-row">
+                    <span id="enemy-name">—</span>
+                    <span id="enemy-level" class="level-badge">lvl 1</span>
+                    <span id="enemy-element" class="elem-badge"></span>
+                </div>
+                <div class="hp-container">
+                    <div class="hp-bar">
+                        <div id="enemy-hp-fill" class="hp-fill"></div>
+                    </div>
+                    <span id="enemy-hp-text"></span>
+                </div>
+                <div id="enemy-moves-container"></div>
+            </div>
+        </div>
+
+        <!-- ── Membres de l'équipe (généré par JS) ── -->
+        <div id="explore-team"></div>
+
+        <!-- ── Ressources de session ── -->
+        <div id="explore-resources"></div>
+
+        <!-- ── Bouton quitter ── -->
+        <div id="explore-leave" onclick="leaveCombat()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M5 5v14a1 1 0 0 0 1 1h3v-2H7V6h2V4H6a1 1 0 0 0-1 1m14.242-.97l-8-2A1 1 0 0 0 10 3v18a.998.998 0 0 0 1.242.97l8-2A1 1 0 0 0 20 19V5a1 1 0 0 0-.758-.97M15 12.188a1.001 1.001 0 0 1-2 0v-.377a1 1 0 1 1 2 .001z"/></svg>
+            Leave Combat
+        </div>
+
+        <!-- ── Résumé de session (contenu généré par showSessionSummary) ── -->
+        <div id="area-end" style="display:none"></div>
+
+    </div>
+
+    </div>
+
+    <div id="notification-container"></div>
+
+    <div id="menu-button-parent"><div id="menu-button">
+
+<img src="img/icons/dofus.png" onclick="openMenu()" onerror="this.src='img/icons/icon.png'">
+
+    <div id="menu-items">
+
+        <div class="menu-item" id="menu-item-travel" onClick="switchMenu('worldmap')">
+            <img src="img/icons/menu_worldmap.png">
+            <span>World Map</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-items" onClick="switchMenu('items')">
+            <img src="img/icons/menu_items.png">
+            <span>Inventaire</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-team" onClick="switchMenu('team')">
+            <img src="img/icons/menu_team.png">
+            <span>Team</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-guilde" onClick="switchMenu('guilde')">
+            <img src="img/icons/menu_team.png">
+            <span>Guilde</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-dex" onClick="switchMenu('Encyclopedie')">
+            <img src="img/icons/encyclopedie.png">
+            <span>Encyclopedie</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-shop" onClick="switchMenu('shop')">
+            <img src="img/icons/menu_shop.png">
+            <span>Shop</span>
+        </div>
+
+    </div>
+
+    </div></div>
+
+    <!-- Bibliothèques tierces -->
+    <script src="scripts/libs/HackTimer.js"></script>
+    <script src="scripts/libs/fuse.js"></script>
+
+    <!-- Données -->
+    <script src="scripts/data/classDictionary.js"></script>
+    <script src="scripts/data/monsterDictionary.js"></script>
+    <script src="scripts/data/moveDictionary.js"></script>
+    <script src="scripts/data/mstrMoveDictionary.js"></script>
+    <script src="scripts/data/itemDictionary.js"></script>
+    <script src="scripts/data/panoplieDictionary.js"></script>
+    <script src="scripts/data/diversDictionary.js"></script>
+    <script src="scripts/data/shopDictionary.js"></script>
+    <script src="scripts/data/areaDictionary.js"></script>
+    <script src="scripts/data/familiarDictionary.js"></script>
+
+    <!-- Moteur (dépend des données) -->
+    <script src="scripts/engine/save.js"></script>
+    <script src="scripts/core/main.js"></script>
+    <script src="scripts/engine/stats.js"></script>
+    <script src="scripts/engine/progression.js"></script>
+    <script src="scripts/engine/loot.js"></script>
+    <script src="scripts/engine/combat.js"></script>
+    <script src="scripts/engine/shop.js"></script>
+
+    <!-- UI (dépend du moteur) -->
+    <script src="scripts/ui/combat.js"></script>
+    <script src="scripts/ui/zone.js"></script>
+    <script src="scripts/ui/team.js"></script>
+    <script src="scripts/ui/collection.js"></script>
+    <script src="scripts/ui/inventory.js"></script>
+    <script src="scripts/ui/tooltip.js"></script>
+    <script src="scripts/ui/shop.js"></script>
+
+
+</body>
+</html>

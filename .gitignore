@@ -1,0 +1,12 @@
+# Documents privés
+*.docx
+*.xlsx
+*.pptx
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+*.swp
