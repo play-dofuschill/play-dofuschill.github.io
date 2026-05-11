@@ -272,7 +272,8 @@ function showOfflineSummary({ elapsed, totalKills, survived, ticketsConsumed, lo
 
     const h    = Math.floor(elapsed / 3_600_000)
     const m    = Math.floor((elapsed % 3_600_000) / 60_000)
-    const duration = h > 0 ? `${h}h${String(m).padStart(2, '0')}` : `${m}min`
+    const s    = Math.floor((elapsed % 60_000) / 1000)
+    const duration = h > 0 ? `${h}h${String(m).padStart(2, '0')}` : m > 0 ? `${m}min` : `${s}s`
 
     // ── XP ──
     const xpHtml = xpResults.length > 0
