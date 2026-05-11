@@ -15,20 +15,18 @@ function _offlineMsPerKill(area, team) {
     const scale    = 1 + (avgLvl - area.mobMinLevel) * 0.05
     const avgMobHp = refMob ? Math.floor(refMob.bst.hp * scale) : Math.floor(20 + avgLvl * 8)
 
-    // DPS cumulé de toute l'équipe (tous les membres en vie attaquent en parallèle)
-    let totalDps = 0
-    for (const m of team) {
-        if (!m || m.currentHp <= 0) continue
-        const stats = getEffectiveStats(m)
-        if (!stats) continue
-        const spd   = Math.max(1, stats.spd || 100)
-        const atk   = Math.max(1, stats.atk || 10)
-        const barMs = 2000 * (100 / spd)
-        totalDps += atk / (barMs / 1000)
-    }
+    // Seul le membre actif (premier en vie) attaque
+    const member = team.find(m => m && m.currentHp > 0)
+    if (!member) return 60000
+    const stats  = getEffectiveStats(member)
+    if (!stats)  return 60000
+    const spd    = Math.max(1, stats.spd || 100)
+    const atk    = Math.max(1, stats.atk || 10)
+    const barMs  = 2000 * (100 / spd)
+    const dps    = atk / (barMs / 1000)
 
-    if (totalDps <= 0) return 60000
-    return (avgMobHp / totalDps) * 1000 + 500
+    if (dps <= 0) return 60000
+    return (avgMobHp / dps) * 1000 + 500
 }
 
 // ─── Estimation du temps de survie de l'équipe ───────────────────────────────
@@ -39,34 +37,34 @@ function _offlineSurvivalMs(area, team) {
     let totalHp = 0
     let healDps = 0   // soins nets par seconde de l'équipe
 
+    // HP totaux : tous les membres meurent séquentiellement
     for (const m of team) {
-        if (!m) continue
-        totalHp += Math.max(0, m.currentHp || 0)
+        if (m) totalHp += Math.max(0, m.currentHp || 0)
+    }
 
-        const stats = getEffectiveStats(m)
-        if (!stats) continue
-        const spd   = Math.max(1, stats.spd || 100)
-        const atk   = Math.max(1, stats.atk || 10)
-        const barMs = 2000 * (100 / spd)
+    // Soins/lifesteal : seul le membre actif attaque, donc seul lui peut en bénéficier
+    const activeMember = team.find(m => m && m.currentHp > 0)
+    if (activeMember) {
+        const stats = getEffectiveStats(activeMember)
+        if (stats) {
+            const spd         = Math.max(1, stats.spd || 100)
+            const atk         = Math.max(1, stats.atk || 10)
+            const barMs       = 2000 * (100 / spd)
+            const slots       = ['slot1','slot2','slot3','slot4']
+            const activeSlots = slots.filter(s => activeMember.moves?.[s])
 
-        const slots       = ['slot1','slot2','slot3','slot4']
-        const activeSlots = slots.filter(s => m.moves?.[s])
-        if (!activeSlots.length) continue
-
-        for (const s of activeSlots) {
-            const mv = move[m.moves[s]]
-            if (!mv?.effects) continue
-
-            let moveDmg = 0
-            for (const eff of mv.effects) {
-                if (eff.type === 'damage') {
-                    moveDmg = atk
-                } else if (eff.type === 'heal' && eff.heal > 0) {
-                    // Soin fixe ramené en soins/sec, pondéré sur les slots actifs
-                    healDps += (eff.heal / (barMs / 1000)) / activeSlots.length
-                } else if (eff.type === 'lifesteal' && eff.ratio > 0) {
-                    // Vol de vie : ratio des dégâts du sort précédent
-                    healDps += (moveDmg * eff.ratio / (barMs / 1000)) / activeSlots.length
+            for (const s of activeSlots) {
+                const mv = move[activeMember.moves[s]]
+                if (!mv?.effects) continue
+                let moveDmg = 0
+                for (const eff of mv.effects) {
+                    if (eff.type === 'damage') {
+                        moveDmg = atk
+                    } else if (eff.type === 'heal' && eff.heal > 0) {
+                        healDps += (eff.heal / (barMs / 1000)) / activeSlots.length
+                    } else if (eff.type === 'lifesteal' && eff.ratio > 0) {
+                        healDps += (moveDmg * eff.ratio / (barMs / 1000)) / activeSlots.length
+                    }
                 }
             }
         }
