@@ -73,7 +73,7 @@ function updateZoneUI() {
             <div>
                 <div class="explore-ticket-left">
                     <span>${area.name}</span>
-                    <strong>Niv. ${area.minLevel}–${area.maxLevel}</strong>
+                    <strong>Niv. ${area.minLevel === area.maxLevel ? area.minLevel : `${area.minLevel}–${area.maxLevel}`}</strong>
                     <span class="explore-ticket-desc">${area.description}</span>
                     ${tutoLockInfo || keyInfo}
                 </div>
