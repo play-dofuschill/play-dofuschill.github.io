@@ -10,47 +10,84 @@ const OFFLINE_MIN_MS = 10 * 1000            // ignore si < 10 secondes
 // ─── Estimation du temps moyen par kill ──────────────────────────────────────
 
 function _offlineMsPerKill(area, team) {
-    const member = team.find(m => m && m.currentHp > 0) || team[0]
-    if (!member) return 6000
-
-    const stats = getEffectiveStats(member)
-    const spd   = Math.max(1, stats?.spd || 100)
-    // Temps pour remplir la barre d'action du membre le plus rapide (ms)
-    const barMs = 2000 * (100 / spd)   // BASE_TIME = 2000
-
-    // HP moyen d'un mob de la zone (mob de référence = premier spawn)
     const refMob   = monsters[area.spawns[0]?.id]
     const avgLvl   = (area.mobMinLevel + area.mobMaxLevel) / 2
     const scale    = 1 + (avgLvl - area.mobMinLevel) * 0.05
     const avgMobHp = refMob ? Math.floor(refMob.bst.hp * scale) : Math.floor(20 + avgLvl * 8)
-    const avgAtk   = Math.max(1, stats?.atk || 10)
 
-    const hitsToKill = Math.max(1, Math.ceil(avgMobHp / avgAtk))
-    return barMs * hitsToKill + 500   // +500ms délai de respawn
+    // DPS cumulé de toute l'équipe (tous les membres en vie attaquent en parallèle)
+    let totalDps = 0
+    for (const m of team) {
+        if (!m || m.currentHp <= 0) continue
+        const stats = getEffectiveStats(m)
+        if (!stats) continue
+        const spd   = Math.max(1, stats.spd || 100)
+        const atk   = Math.max(1, stats.atk || 10)
+        const barMs = 2000 * (100 / spd)
+        totalDps += atk / (barMs / 1000)
+    }
+
+    if (totalDps <= 0) return 60000
+    return (avgMobHp / totalDps) * 1000 + 500
 }
 
 // ─── Estimation du temps de survie de l'équipe ───────────────────────────────
+// Utilise les HP actuels (pas les max) et estime les soins/vol de vie de l'équipe.
+// Les buffs d'ATK/vitesse ne sont pas modélisés (trop complexes à estimer).
 
 function _offlineSurvivalMs(area, team) {
-    const totalHp = team.reduce((sum, m) => {
-        if (!m) return sum
+    let totalHp = 0
+    let healDps = 0   // soins nets par seconde de l'équipe
+
+    for (const m of team) {
+        if (!m) continue
+        totalHp += Math.max(0, m.currentHp || 0)
+
         const stats = getEffectiveStats(m)
-        return sum + (stats?.hp || 0)
-    }, 0)
+        if (!stats) continue
+        const spd   = Math.max(1, stats.spd || 100)
+        const atk   = Math.max(1, stats.atk || 10)
+        const barMs = 2000 * (100 / spd)
+
+        const slots       = ['slot1','slot2','slot3','slot4']
+        const activeSlots = slots.filter(s => m.moves?.[s])
+        if (!activeSlots.length) continue
+
+        for (const s of activeSlots) {
+            const mv = move[m.moves[s]]
+            if (!mv?.effects) continue
+
+            let moveDmg = 0
+            for (const eff of mv.effects) {
+                if (eff.type === 'damage') {
+                    moveDmg = atk
+                } else if (eff.type === 'heal' && eff.heal > 0) {
+                    // Soin fixe ramené en soins/sec, pondéré sur les slots actifs
+                    healDps += (eff.heal / (barMs / 1000)) / activeSlots.length
+                } else if (eff.type === 'lifesteal' && eff.ratio > 0) {
+                    // Vol de vie : ratio des dégâts du sort précédent
+                    healDps += (moveDmg * eff.ratio / (barMs / 1000)) / activeSlots.length
+                }
+            }
+        }
+    }
+
     if (totalHp <= 0) return 0
 
     const refMob = monsters[area.spawns[0]?.id]
-    if (!refMob) return 8 * 3600 * 1000   // aucun mob de référence → survie max
+    if (!refMob) return 8 * 3600 * 1000
 
-    const avgLvl   = (area.mobMinLevel + area.mobMaxLevel) / 2
-    const scale    = 1 + (avgLvl - area.mobMinLevel) * 0.05
-    const mobAtk   = Math.floor(refMob.bst.atk * scale)
-    const mobSpd   = refMob.bst.spd || 100
+    const avgLvl     = (area.mobMinLevel + area.mobMaxLevel) / 2
+    const scale      = 1 + (avgLvl - area.mobMinLevel) * 0.05
+    const mobAtk     = Math.floor(refMob.bst.atk * scale)
+    const mobSpd     = refMob.bst.spd || 100
     const enemyBarMs = 2000 * (100 / mobSpd)
-    const enemyDps   = mobAtk / (enemyBarMs / 1000)  // dégâts/sec
+    const enemyDps   = mobAtk / (enemyBarMs / 1000)
 
-    if (enemyDps <= 0) return 8 * 3600 * 1000
-    return Math.max(60000, (totalHp / enemyDps) * 1000)  // min 1 min de survie
+    const netDps = Math.max(0, enemyDps - healDps)
+    if (netDps <= 0) return 8 * 3600 * 1000   // soins ≥ dégâts → survie max
+
+    return Math.max(60000, (totalHp / netDps) * 1000)
 }
 
 // ─── Tirage de loot pour UN kill (sans effets de bord) ───────────────────────
