@@ -1,2 +1,2 @@
-# play-pokechill.github.io
-Monsters and Chill
+# play-dofuschill.github.io
+Dofus mais sans prise de tête
