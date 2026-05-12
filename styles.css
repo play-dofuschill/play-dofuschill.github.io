@@ -4773,6 +4773,10 @@ transform: translateY(-1rem);
 
     /* Bulles d'équipement masquées */
     .member-equip-row { display: none !important; }
+
+    /* Tabs inventaire : passage en flex-wrap sur 2 lignes */
+    .bag-category-tabs { flex-wrap: wrap; }
+    .bag-tab { flex: 1 1 auto; min-width: calc(33% - 0.4rem); font-size: 0.75rem; padding: 0.3rem 0.2rem; white-space: normal; text-align: center; }
 }
 
 .game-bubble .bubble-count {
