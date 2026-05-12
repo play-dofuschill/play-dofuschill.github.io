@@ -3020,9 +3020,9 @@ background:
 }
 
 @media (max-width: 1000px) {
-    #tutorial {
-        width: 100%;
-    }
+    #tutorial { width: 100%; }
+    #tutorial img { scale: 1.2; margin-right: 0.5rem; }
+    #tutorial span { height: auto; min-height: 5rem; font-size: 0.82rem; padding: 1rem 1.5rem; }
 }
 
 #tutorial span{
@@ -3921,6 +3921,12 @@ transform: translateY(-1rem);
 .starter-list > div:hover { opacity: 1; }
 .starter-list img { width: 5rem; height: 5rem; object-fit: contain; }
 
+@media (max-width: 1000px) {
+    .starter-list { gap: 0.6rem; }
+    .starter-list > div { padding: 0.6rem 0.8rem; min-width: 5rem; }
+    .starter-list img { width: 3.5rem; height: 3.5rem; }
+}
+
 /* ── Badges niveau / élément ─────────────────────────────── */
 .level-badge    { font-size: 0.7rem; background: rgba(0,0,0,0.3); padding: 0.1rem 0.45rem; border-radius: 0.3rem; color: white; }
 .elem-badge     { font-size: 0.68rem; padding: 0.1rem 0.4rem; border-radius: 0.3rem; text-transform: capitalize; color: white; }
@@ -4257,6 +4263,13 @@ transform: translateY(-1rem);
 }
 #zone-confirm-start-btn:hover {
     background: #3a9e65 !important;
+}
+.zone-confirm-right {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; margin-left: auto;
+}
+#zone-confirm-bar-name {
+    font-size: 0.72rem; background: rgba(255,255,255,0.15); padding: 0.15rem 0.6rem;
+    border-radius: 0.3rem; color: white; font-weight: bold;
 }
 
 /* ── Résumé de fin de combat (area-end) ──────────────────── */
@@ -4617,7 +4630,7 @@ transform: translateY(-1rem);
     position: relative;
 }
 .shop-kamas-icon-header { width: 1.4rem; height: 1.4rem; object-fit: contain; }
-.shop-header-kamas { display: flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; font-weight: bold; white-space: nowrap; }
+.shop-header-kamas { display: flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; font-weight: bold; white-space: nowrap; position: absolute; top: 1.2rem; right: 1.5rem; }
 
 .shop-tabs       { display: flex; gap: 0.4rem; position: absolute; left: 50%; transform: translateX(-50%); }
 .shop-tab        { padding: 0.3rem 0.9rem; border-radius: 0.4rem; background: var(--dark1); cursor: pointer; font-size: 0.82rem; transition: background 0.12s; }
@@ -4746,6 +4759,18 @@ transform: translateY(-1rem);
 }
 .dungeon-auto-switch input:checked + .dungeon-auto-slider { background: #2D7A2D; }
 .dungeon-auto-switch input:checked + .dungeon-auto-slider::before { transform: translateX(1.1rem); }
+
+/* ── Responsive mobile ──────────────────────────────────────── */
+@media (max-width: 1000px) {
+    /* Sprite ennemi réduit pour laisser plus de place aux sorts */
+    .enemy-sprite-wrap { width: 6rem; height: 9rem; margin-left: 0; }
+    #enemy-sprite { height: 5rem; scale: 1.5; }
+    #enemy-display .hp-container { width: 100%; }
+    #enemy-moves-container { width: 100%; }
+
+    /* Bulles d'équipement masquées */
+    .member-equip-row { display: none !important; }
+}
 
 .game-bubble .bubble-count {
     position: absolute; bottom: -0.75rem;
