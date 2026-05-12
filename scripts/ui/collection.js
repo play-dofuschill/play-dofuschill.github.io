@@ -124,29 +124,57 @@ function showMonsterTooltip(monsterId) {
     const entry = state.collection[monsterId]
     if (!mob) return
 
-    const res = mob.bst.res
-    const resLine = Object.entries(res)
-        .filter(([, v]) => v !== 0)
-        .map(([k, v]) => `${formatElement(k)}: ${v}%`)
-        .join(', ') || 'Aucune'
+    const famLvl     = entry?.level || 0
+    const rarityHtml = mob.rarity ? `<span class="rarity-${mob.rarity}" style="font-size:0.72rem;">${mob.rarity.replace('_', ' ')}</span>` : ''
+    const elemHtml   = mob.element ? `<span class="elem-badge elem-${mob.element}" style="font-size:0.72rem;">${mob.element}</span>` : ''
 
-    const body = `
-        <div class="tooltip-monster">
-            <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
-            <div>
-                <p><strong>${entry ? mob.name : '???'}</strong></p>
-                <p>${_renderElementBadges(mob.element)}</p>
-                <p>Rareté : ${formatRarity(mob.rarity)}</p>
-                <p>PV: ${mob.bst.hp} | ATK: ${mob.bst.atk} | SPD: ${mob.bst.spd}</p>
-                <p>Résistances : ${resLine}</p>
-                ${mob.dropRate != null ? `<p>Taux de capture : ${(mob.dropRate * 100).toFixed(0)}%</p>` : ''}
-                <hr>
-                ${mob.familiar
-                    ? `<p>Familier : ${formatBonusType(mob.familiar.bonusType)} — ${formatBonusStat(mob.familiar.bonusStat)} (${mob.familiar.min}–${mob.familiar.max})</p>`
-                    : '<p><em>Pas de bonus familier</em></p>'}
-                ${entry ? `<p><strong>Niveau familier : ${entry.level}</strong></p>` : '<p><em>Non capturé</em></p>'}
+    const STAT_L = { atk: 'ATK', hp: 'PV', spd: 'Vitesse', dropRate: 'Taux de drop', xpGain: 'Gain XP',
+        flatDamage: 'Dég. fixes', finalDamagePct: 'Dég. finaux', damageReductionPct: 'Réd. dégâts', critChance: 'Crit',
+        'res.eau': 'Rés. Eau', 'res.feu': 'Rés. Feu', 'res.air': 'Rés. Air', 'res.terre': 'Rés. Terre', 'res.neutre': 'Rés. Neutre' }
+
+    let familiarSection = ''
+    const fam = mob.familiar
+    if (fam?.bonusStat) {
+        const statLbl    = STAT_L[fam.bonusStat] || fam.bonusStat
+        const typeLabel  = formatBonusType(fam.bonusType)
+        const isPercent  = fam.bonusStat === 'dropRate' || fam.bonusStat === 'xpGain' || fam.bonusStat?.endsWith('Pct') || fam.bonusStat?.startsWith('res.')
+        const unit       = isPercent ? '%' : ''
+        const curVal     = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max)) : null
+
+        familiarSection = `
+            <div class="ms-section-title" style="margin-top:0.5rem;">Familier</div>
+            <div class="ms-stats">
+                <div class="ms-stat-row">
+                    <span class="ms-stat-label" style="flex:1">${typeLabel}</span>
+                </div>
+                <div class="ms-stat-row">
+                    <span class="ms-stat-label">Bonus actuel</span>
+                    <span class="ms-stat-val">${curVal != null ? `+${curVal}${unit} ${statLbl}` : 'Non capturé'}</span>
+                </div>
+                <div class="ms-stat-row">
+                    <span class="ms-stat-label">Plage</span>
+                    <span class="ms-stat-val">+${fam.min}–${fam.max}${unit} ${statLbl}</span>
+                </div>
+            </div>`
+    } else {
+        familiarSection = `<div class="ms-section-title" style="margin-top:0.5rem;opacity:0.4;">Pas de bonus familier</div>`
+    }
+
+    const body = `<div class="member-sheet es-sheet">
+        <div class="es-header">
+            <img class="es-sprite" src="${mob.image}" onerror="this.src='img/icons/icon.png'">
+            <div class="es-header-info">
+                <span class="es-name">${entry ? mob.name : '???'}</span>
+                <div class="es-badges">
+                    <span class="level-badge">Niv. ${famLvl}/200</span>
+                    ${rarityHtml}
+                    ${elemHtml}
+                </div>
             </div>
-        </div>`
+        </div>
+        ${familiarSection}
+    </div>`
+
     openTooltip(entry ? mob.name : '???', body)
 }
 
