@@ -47,6 +47,7 @@ const state = {
     combatStartTime: null,
     offlineAutoPilotRemaining: 0,
     dungeonAutoRestart: false,
+    lastAlmanaxDate: null,
     session: {
         killCount: 0,
         dropCount: 0,
@@ -75,7 +76,8 @@ const MENU_MAP = {
     zones:        'explore-menu',
     worldmap:     'explore-menu',
     shop:         'shop-menu',
-    settings:     'settings-menu'
+    settings:     'settings-menu',
+    almanax:      'almanax-menu'
 }
 
 // Menus verrouillés selon l'étape du tutoriel
@@ -92,8 +94,9 @@ const MENU_ITEM_MAP = {
     'menu-item-items':  'items',
     'menu-item-team':   'team',
     'menu-item-guilde': 'guilde',
-    'menu-item-dex':    'Encyclopedie',
-    'menu-item-shop':   'shop'
+    'menu-item-dex':     'Encyclopedie',
+    'menu-item-shop':    'shop',
+    'menu-item-almanax': 'almanax'
 }
 
 function updateMenuLockUI() {
@@ -169,6 +172,7 @@ function switchMenu(menuName) {
         menuName === 'Encyclopedie')                 updateCollectionUI()
     if (menuName === 'zones' || menuName === 'worldmap') updateZoneUI()
     if (menuName === 'shop') updateShopUI()
+    if (menuName === 'almanax') updateAlmanaxUI()
 }
 
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────

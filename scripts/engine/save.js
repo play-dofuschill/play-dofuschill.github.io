@@ -26,6 +26,7 @@ function saveGame() {
         combatStartTime:           state.combatStartTime || null,
         offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
         dungeonAutoRestart:        state.dungeonAutoRestart || false,
+        lastAlmanaxDate:           state.lastAlmanaxDate || null,
         version:                   '0.1'
     }
     try {
@@ -61,6 +62,7 @@ function loadGame() {
         if (data.combatStartTime != null)           state.combatStartTime           = data.combatStartTime
         if (data.offlineAutoPilotRemaining != null) state.offlineAutoPilotRemaining = data.offlineAutoPilotRemaining
         if (data.dungeonAutoRestart != null)        state.dungeonAutoRestart        = data.dungeonAutoRestart
+        if (data.lastAlmanaxDate)                   state.lastAlmanaxDate           = data.lastAlmanaxDate
 
         // Migration : si previewTeams[clé active] est vide mais state.team ne l'est pas, sync
         const curKey = state.currentPreviewTeam || 'preview1'
