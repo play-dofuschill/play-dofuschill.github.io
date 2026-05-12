@@ -77,7 +77,7 @@ const MENU_MAP = {
     worldmap:     'explore-menu',
     shop:         'shop-menu',
     settings:     'settings-menu',
-    almanax:      'almanax-menu'
+    archives:     'archives-menu'
 }
 
 // Menus verrouillés selon l'étape du tutoriel
@@ -94,9 +94,9 @@ const MENU_ITEM_MAP = {
     'menu-item-items':  'items',
     'menu-item-team':   'team',
     'menu-item-guilde': 'guilde',
-    'menu-item-dex':     'Encyclopedie',
-    'menu-item-shop':    'shop',
-    'menu-item-almanax': 'almanax'
+    'menu-item-dex':      'Encyclopedie',
+    'menu-item-shop':     'shop',
+    'menu-item-archives': 'archives'
 }
 
 function updateMenuLockUI() {
@@ -172,7 +172,7 @@ function switchMenu(menuName) {
         menuName === 'Encyclopedie')                 updateCollectionUI()
     if (menuName === 'zones' || menuName === 'worldmap') updateZoneUI()
     if (menuName === 'shop') updateShopUI()
-    if (menuName === 'almanax') updateAlmanaxUI()
+    if (menuName === 'archives') updateArchivesUI()
 }
 
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────
@@ -685,6 +685,7 @@ function initGame() {
         showTutorial()
         updateTeamUI()
         updateCombatUI()
+        updateAlmanaxNavItem()
 
         for (const m of state.team) {
             if (!m) continue

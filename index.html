@@ -651,35 +651,29 @@
             <span>Shop</span>
         </div>
 
-        <div class="menu-item" id="menu-item-almanax" onClick="switchMenu('almanax')">
+        <div class="menu-item" id="menu-item-almanax" onClick="claimAlmanax()">
             <img src="img/icons/menu_parametres.png">
             <span>Almanax</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-archives" onClick="switchMenu('archives')">
+            <img src="img/icons/menu_parametres.png">
+            <span>Archives</span>
         </div>
 
     </div>
 
     </div></div>
 
-    <!-- Menu Almanax / Sauvegarde -->
-    <div id="almanax-menu" style="display: none;" class="season-background">
+    <!-- Menu Archives / Sauvegarde -->
+    <div id="archives-menu" style="display: none;" class="season-background">
         <div class="alm-header">
             <img src="img/icons/menu_parametres.png" class="alm-header-icon" onerror="this.src='img/icons/icon.png'">
-            <span>Almanax &amp; Sauvegarde</span>
+            <span>Archives</span>
         </div>
 
-        <!-- Almanax quotidien -->
         <div class="alm-card">
-            <div class="alm-section-title">Almanax du jour</div>
-            <p class="alm-desc">Réclamez votre récompense quotidienne : <strong>1 Pilote Automatique</strong>.<br>Votre sauvegarde sera automatiquement exportée.</p>
-            <button id="almanax-claim-btn" class="alm-btn almanax-btn-ready" onclick="claimAlmanax()">
-                🗓 Réclamer la récompense
-            </button>
-            <div id="almanax-claim-status" class="alm-status"></div>
-        </div>
-
-        <!-- Export / Import manuel -->
-        <div class="alm-card">
-            <div class="alm-section-title">Sauvegarde manuelle</div>
+            <div class="alm-section-title">Sauvegarde</div>
             <p class="alm-desc">Exportez votre progression pour la transférer sur un autre appareil, ou importez un fichier existant.</p>
             <div class="alm-actions">
                 <button class="alm-btn" onclick="exportData()">⬇ Exporter</button>
@@ -687,9 +681,8 @@
             </div>
         </div>
 
-        <!-- Résumé de progression -->
         <div class="alm-card">
-            <div id="almanax-progression"></div>
+            <div id="archives-progression"></div>
         </div>
     </div>
 

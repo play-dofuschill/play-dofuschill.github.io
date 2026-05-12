@@ -21,14 +21,13 @@ const SHOP_CATALOGUE = {
     ],
 
     consumables: [
-        { itemId: 'potionDeVie',   price: 15 },
-        { itemId: 'potionDeMana',  price: 15 },
-        { itemId: 'elixirDeForce', price: 30 }
+        { itemId: 'cleDonjonKardorim',   price: 2 },
+        { itemId: 'cleDonjonBouftou',  price: 2 },
+        { itemId: 'piloteAutomatique', price: 5 }
     ],
 
     cosmetics: [
-        { itemId: 'banniereDoree', price: 100 },
-        { itemId: 'auraFlamme',    price: 150 }
+        { itemId: 'banniereDoree', price: 100 }
     ]
 }
 

@@ -102,10 +102,11 @@ function spawnEnemy(areaId) {
         res:      { ...mob.bst.res },
         bonusAtkPct: 0,
         flatBonus:   0,
-        moves:    mob.moves || [],
-        rarity: mob.rarity || 'commun',
-        tier: mob.tier || 'normal',
-        dropRate: mob.dropRate
+        moves:     mob.moves || [],
+        moveIndex: 0,
+        rarity:    mob.rarity   || 'commun',
+        tier:      mob.tier     || 'normal',
+        dropRate:  mob.dropRate
     }
 }
 
@@ -458,7 +459,9 @@ function executeEnemyAction() {
     })
     if (!combat.enemy || combat.enemy.currentHp <= 0) return
 
-    const moveId = combat.enemy.moves[Math.floor(Math.random() * combat.enemy.moves.length)]
+    const e      = combat.enemy
+    const moveId = e.moves[e.moveIndex % e.moves.length]
+    e.moveIndex++
     if (!moveId) return
     const mv = move[moveId]
     if (!mv?.effects) return
@@ -510,15 +513,21 @@ function executeEnemyAction() {
     if (combat.enemy) combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 
     // Décompte des actions du familier invoqué
+    // _justSpawned : le summon vient d'apparaître dans ce même tick (invoqué par l'ennemi)
+    // → on ne décompte pas cette "action" qui était en réalité l'action de l'invocateur
     if (combat.enemy?.isSummon) {
-        combat.enemy.actionsRemaining--
-        if (combat.enemy.actionsRemaining <= 0) returnToOwner()
+        if (combat.enemy._justSpawned) {
+            delete combat.enemy._justSpawned
+        } else {
+            combat.enemy.actionsRemaining--
+            if (combat.enemy.actionsRemaining <= 0) returnToOwner()
+        }
     }
 }
 
 function pickNextEnemyMove(enemy) {
     if (!enemy?.moves?.length) return null
-    return enemy.moves[Math.floor(Math.random() * enemy.moves.length)]
+    return enemy.moves[enemy.moveIndex % enemy.moves.length]
 }
 
 // ─── DOTs ────────────────────────────────────────────────────────────────────
@@ -561,8 +570,10 @@ function spawnSummon(caster, effect) {
         dropRate:         0,
         buffs:            [],
         dots:             [],
+        moveIndex:        0,
         isSummon:         true,
-        actionsRemaining: effect.duration
+        actionsRemaining: effect.duration,
+        _justSpawned:     true
     }
     combat.enemyTimer = 0
     addLog(`${caster.name} invoque ${mob.name} !`)
@@ -571,9 +582,10 @@ function spawnSummon(caster, effect) {
 function returnToOwner() {
     if (!combat.savedEnemy) return
     addLog(`${combat.savedEnemy.name} reprend le combat !`)
-    combat.enemy      = combat.savedEnemy
-    combat.savedEnemy = null
-    combat.enemyTimer = 0
+    combat.enemy           = combat.savedEnemy
+    combat.savedEnemy      = null
+    combat.enemyTimer      = 0
+    combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 }
 
 // ─── Victoire / Défaite ───────────────────────────────────────────────────────
@@ -747,6 +759,9 @@ function setActiveMember(index) {
     if (!combat || !state.isRunning) return
     const m = state.team[index]
     if (!m || m.currentHp <= 0) return
+    if (index !== combat.activeMemberIndex) {
+        combat.memberTimers[index] = 0  // le sort repart de zéro à chaque switch
+    }
     combat.activeMemberIndex = index
     updateCombatUI()
 }

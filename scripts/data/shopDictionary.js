@@ -32,16 +32,9 @@ item.elixirDeForce = {
 
 item.banniereDoree = {
     id: 'banniereDoree',
-    name: 'Bannière Dorée',
+    name: "a terminer d'implanter",
     image: 'img/items/cosmetiques/banniere_doree.png',
     type: 'cosmetic',
     description: "Orne l'écran de combat d'une bannière aux reflets dorés."
 }
 
-item.auraFlamme = {
-    id: 'auraFlamme',
-    name: 'Aura de Flamme',
-    image: 'img/items/cosmetiques/aura_flamme.png',
-    type: 'cosmetic',
-    description: "Enveloppe vos personnages d'une aura enflammée en combat."
-}
