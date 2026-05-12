@@ -4265,11 +4265,14 @@ transform: translateY(-1rem);
     background: #3a9e65 !important;
 }
 .zone-confirm-buttons {
-    display: flex; flex-direction: row; align-items: center; gap: 0.5rem;
+    display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%;
+}
+.zone-confirm-buttons .team-header-button {
+    flex: 1;
 }
 #zone-confirm-bar-name {
-    font-size: 1.2rem; background: rgba(255,255,255,0.15); padding: 0.15rem 0.6rem;
-    border-radius: 0.3rem; color: white; font-weight: 100;
+    font-size: 1.2rem; padding: 0.15rem 0.6rem;
+    color: white; font-weight: 100; text-align: right;
 }
 
 /* ── Résumé de fin de combat (area-end) ──────────────────── */

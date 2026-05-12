@@ -91,26 +91,26 @@
 
     <div class="team-menu-header">
 
-        <span id="zone-confirm-bar" style="display: none; flex-direction: column; align-items: center; width: 100%; gap: 0.3rem;">
+        <div id="zone-confirm-bar" style="display: none; flex-direction: column; align-items: stretch; width: 100%; gap: 0.3rem;">
 
-        <span id="zone-confirm-bar-name"></span>
+            <span id="zone-confirm-bar-name"></span>
 
-        <div class="zone-confirm-buttons">
-            <div class="team-header-button" onclick="cancelZoneConfirm()">
-            <svg style="margin-right: 1rem; background:#E46B6F;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10.928 21a2.98 2.98 0 0 1-2.121-.879L1.686 13l7.121-7.121c1.133-1.134 3.109-1.134 4.242 0c.566.564.879 1.317.879 2.119c0 .746-.27 1.451-.764 2.002H18c1.654 0 3 1.346 3 3s-1.346 3-3 3h-4.836c.493.549.764 1.252.764 1.998a2.98 2.98 0 0 1-.879 2.124a2.98 2.98 0 0 1-2.121.878m-6.414-8l5.707 5.707a1.023 1.023 0 0 0 1.414 0c.189-.189.293-.441.293-.708s-.104-.517-.291-.705L8.342 14H18a1.001 1.001 0 0 0 0-2H8.342l3.293-3.293a.996.996 0 0 0 .001-1.413a1.023 1.023 0 0 0-1.415-.001z"/></svg>
-            Retour
+            <div class="zone-confirm-buttons">
+                <div class="team-header-button" onclick="cancelZoneConfirm()">
+                <svg style="margin-right: 1rem; background:#E46B6F;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10.928 21a2.98 2.98 0 0 1-2.121-.879L1.686 13l7.121-7.121c1.133-1.134 3.109-1.134 4.242 0c.566.564.879 1.317.879 2.119c0 .746-.27 1.451-.764 2.002H18c1.654 0 3 1.346 3 3s-1.346 3-3 3h-4.836c.493.549.764 1.252.764 1.998a2.98 2.98 0 0 1-.879 2.124a2.98 2.98 0 0 1-2.121.878m-6.414-8l5.707 5.707a1.023 1.023 0 0 0 1.414 0c.189-.189.293-.441.293-.708s-.104-.517-.291-.705L8.342 14H18a1.001 1.001 0 0 0 0-2H8.342l3.293-3.293a.996.996 0 0 0 .001-1.413a1.023 1.023 0 0 0-1.415-.001z"/></svg>
+                Retour
+                </div>
+
+                <div id="zone-confirm-start-btn" class="team-header-button" onclick="confirmStartCombat()" style="background:#2d7a4f;">
+                <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                    <span id="zone-confirm-btn-text">Commencer</span>
+                    <small id="zone-confirm-btn-sub" style="display:none; font-size:0.7em; opacity:0.8;"></small>
+                </div>
+                <svg style="margin-left: 1rem; border: 1px solid rgb(100, 220, 140);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
 
-            <div id="zone-confirm-start-btn" class="team-header-button" onclick="confirmStartCombat()" style="background:#2d7a4f;">
-            <div style="display:flex; flex-direction:column; align-items:flex-start;">
-                <span id="zone-confirm-btn-text">Commencer</span>
-                <small id="zone-confirm-btn-sub" style="display:none; font-size:0.7em; opacity:0.8;"></small>
-            </div>
-            <svg style="margin-left: 1rem; border: 1px solid rgb(100, 220, 140);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-            </div>
         </div>
-
-        </span>
 
         <div class="team-menu-selector-new">
 
