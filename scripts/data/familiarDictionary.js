@@ -17,7 +17,6 @@ const familiarCurves = {
     commun:     'log',
     peu_commun: 'linear',
     rare:       1.2,
-    tres_rare:  2.2,
     legendaire: 2.2
 }
 
