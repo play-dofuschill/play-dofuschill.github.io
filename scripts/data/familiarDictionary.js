@@ -12,18 +12,56 @@
 // Toutes les entrées équipées sur l'équipe s'additionnent.
 
 // ─── Courbe de progression ────────────────────────────────────────────────────
-//
-//  curvePower | effet
-//  ───────────┼──────────────────────────────────
-//  1.0        │ linéaire
-//  1.5        │ léger ramp-up
-//  2.0        │ classique RPG
-//  2.2        │ (défaut) lent début + gros late game
-//  3.0        │ très lent début + très gros late game
 
-function getFamiliarStatValue(level, min, max, maxLevel = 200, curvePower = 2.2) {
-    const t = Math.min(level, maxLevel) / maxLevel
-    return min + (max - min) * Math.pow(t, curvePower)
+const familiarCurves = {
+    commun:     'log',
+    peu_commun: 'linear',
+    rare:       1.2,
+    tres_rare:  2.2,
+    legendaire: 2.2
+}
+
+function getFamiliarStatValue(
+    level,
+    min,
+    max,
+    rarity = 'commun',
+    maxLevel = 200
+) {
+    const clampedLevel = Math.min(level, maxLevel)
+
+    // le niveau max donne TOUJOURS exactement la valeur max
+    if (clampedLevel >= maxLevel) {
+        return max
+    }
+
+    const t = clampedLevel / maxLevel
+
+    let progression
+
+    const curve = familiarCurves[rarity]
+
+    // COMMUN : logarithmique
+    if (curve === 'log') {
+        progression = Math.log10(1 + 9 * t)
+    }
+
+    // PEU COMMUN : linéaire
+    else if (curve === 'linear') {
+        progression = t
+    }
+
+    // RARE / LEGENDAIRE : exponentiel
+    else {
+        progression = Math.pow(t, curve)
+    }
+
+    const value = min + (max - min) * progression
+
+    // IMPORTANT :
+    // on arrondit toujours à l'entier inférieur
+    // pour éviter d'atteindre max avant le niveau max
+    return Math.floor(value)
 }
 
 // ─── Agrégat de tous les bonus familiers équipés ──────────────────────────────
@@ -45,7 +83,7 @@ function getAllFamiliarBonuses() {
         const entry = state.collection[famId]
         const level = entry?.level || 0
 
-        const value = Math.floor(getFamiliarStatValue(level, fam.min, fam.max))
+        const value = Math.floor(getFamiliarStatValue(level, fam.min, fam.max, mob.rarity))
         if (value === 0) continue
 
         totals[fam.bonusStat] = (totals[fam.bonusStat] || 0) + value
@@ -66,6 +104,6 @@ function getFamiliarBonusValue(monsterId) {
 
     return {
         stat:  fam.bonusStat,
-        value: Math.floor(getFamiliarStatValue(level, fam.min, fam.max))
+        value: Math.floor(getFamiliarStatValue(level, fam.min, fam.max, mob.rarity))
     }
 }

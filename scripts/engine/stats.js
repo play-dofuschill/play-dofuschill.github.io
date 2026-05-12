@@ -139,7 +139,7 @@ function getEffectiveStats(member) {
         if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
             const entry = state.collection[famId]
             const level = entry?.level || 0
-            const value = Math.floor(getFamiliarStatValue(level, fam.min, fam.max))
+            const value = Math.floor(getFamiliarStatValue(level, fam.min, fam.max, mob.rarity))
             if (value > 0) {
                 const bs = fam.bonusStat
                 if      (bs === 'atk')               atk                += value

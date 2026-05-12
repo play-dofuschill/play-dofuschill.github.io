@@ -385,7 +385,7 @@ function showEnemySheet(enemy) {
     if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
         const entry = state.collection?.[enemy.id]
         const famLvl = entry?.level || 0
-        const famVal = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max)) : null
+        const famVal = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max, mob.rarity)) : null
         const STAT_L = { atk: 'ATK', hp: 'PV', spd: 'Vitesse', flatDamage: 'Dég. fixes', finalDamagePct: 'Dég. finaux', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
         const statLbl = STAT_L[fam.bonusStat] || fam.bonusStat
         const valText = famLvl > 0 ? `Niv. ${famLvl} — +${famVal} ${statLbl}` : `+${fam.min}–${fam.max} ${statLbl}`

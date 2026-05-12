@@ -139,7 +139,7 @@ function showMonsterTooltip(monsterId) {
         const typeLabel  = formatBonusType(fam.bonusType)
         const isPercent  = fam.bonusStat === 'dropRate' || fam.bonusStat === 'xpGain' || fam.bonusStat?.endsWith('Pct') || fam.bonusStat?.startsWith('res.')
         const unit       = isPercent ? '%' : ''
-        const curVal     = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max)) : null
+        const curVal     = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max, mob.rarity)) : null
 
         familiarSection = `
             <div class="ms-section-title" style="margin-top:0.5rem;">Familier</div>
