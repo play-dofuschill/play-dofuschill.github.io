@@ -27,7 +27,7 @@ function saveGame() {
         offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
         dungeonAutoRestart:        state.dungeonAutoRestart || false,
         lastAlmanaxDate:           state.lastAlmanaxDate || null,
-        version:                   '0.1'
+        version:                   '0.2'
     }
     try {
         localStorage.setItem(SAVE_KEY, JSON.stringify(saveData))
