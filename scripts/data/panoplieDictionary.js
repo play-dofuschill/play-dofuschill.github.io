@@ -32,7 +32,7 @@ const panoplies = {
     },
     kardorim: {
         name: 'Panoplie de Kardorim',
-        pieces: ['capeKardorim','chapeauKardorim','anneauKardorim'],
+        pieces: ['capeKardorim','coiffeKardorim','anneauKardorim'],
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 50 }]}
         }
@@ -55,5 +55,72 @@ const panoplies = {
                         { stat: 'neutralResPct', value: 10 },
                         { stat: 'flatDamage', value: 5 }]
         }}
-    }
+    },
+    bouftouRoyal: {
+        name: 'Panoplie du Bouftou Royal',
+        pieces: ['capeKardorim','chapeauKardorim','anneauKardorim'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 20 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 20 }]
+        },
+            6: {stats: [{ stat: 'maxHp', value: 75 },
+                        { stat: 'atk', value: 40 },
+                        { stat: 'flatDamage', value: 5 }]
+        },
+            8: {stats: [{ stat: 'maxHp', value: 100 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'flatDamage', value: 10 },
+                        { stat: 'neutralResPct', value: 5 }]
+        }}
+    },
+    paysan: {
+        name: 'Panoplie du paysan',
+        pieces: ['sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 10 }]
+        },
+            6: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'spd', value: 2 },
+                        { stat: 'airResPct', value: 5 }]
+        },
+            8: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'spd', value: 5 },
+                        { stat: 'airResPct', value: 10 },
+                        { stat: 'flatDamage', value: 5 }]
+        }}
+    },
+    mousse: {
+        name: "Panoplie de Mob l'Eponge",
+        pieces: ['cape_mousse','coiffe_mousse','bottes_mousse','anneau_mousse','amulette_mousse','ceinture_mousse','pelle_mousse','bouclier_mousse'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 10 }]
+        },
+            6: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'critChance', value: 2 },
+                        { stat: 'waterResPct', value: 5 }]
+        },
+            8: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'critChance', value: 5 },
+                        { stat: 'waterResPct', value: 10 },
+                        { stat: 'flatDamage', value: 5 }]
+        }}
+    },
+
+
+
+
+
 }

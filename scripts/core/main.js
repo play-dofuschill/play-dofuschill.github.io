@@ -280,6 +280,15 @@ function showSessionSummary(type) {
         ? combat.sessionLoot
         : { itemDrops: [], familiarDrops: [], killCount: 0, memberDamage: {}, learnedMoves: [] }
 
+    // Ferme tout menu ouvert avant d'afficher l'écran de fin
+    for (const id of Object.values(MENU_MAP)) {
+        const el = document.getElementById(id)
+        if (el) { el.style.display = 'none'; el.style.zIndex = '30' }
+    }
+    document.getElementById('menu-button')?.classList.remove('menu-button-open')
+    document.getElementById('main-content').style.zIndex = ''
+    activeMenu = null
+
     const exploreTeam  = document.getElementById('explore-team')
     const exploreLeave = document.getElementById('explore-leave')
     const enemyDisplay = document.getElementById('enemy-display')
@@ -361,7 +370,9 @@ function showSessionSummary(type) {
             const mob = monsters[g.monsterId]
             if (!mob) return ''
             const countLabel = g.count > 1 ? ` ×${g.count}` : ''
-            return `<div class="game-bubble" title="${mob.name}${countLabel}${g.isNew ? ' (Nouveau !)' : ''}">
+            return `<div class="game-bubble" title="${mob.name}${countLabel}${g.isNew ? ' (Nouveau !)' : ''}"
+                onclick="showMonsterTooltip('${g.monsterId}')"
+                oncontextmenu="event.preventDefault();showMonsterTooltip('${g.monsterId}')">
                 <span class="bubble-level">Niv.${g.newLevel}</span>
                 <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
             </div>`
