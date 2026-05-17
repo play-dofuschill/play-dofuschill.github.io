@@ -22,10 +22,10 @@ function _familiarLevelFromDrops(drops) {
     return FAM_LEVEL_CAP
 }
 
-function _captureFamiliar(monsterId) {
+function _captureFamiliar(monsterId, isArchi = false) {
     if (!state.collection[monsterId]) {
-        state.collection[monsterId] = { drops: 1, level: 1, isArchi: false }
-        return { monsterId, isNew: true, newLevel: 1 }
+        state.collection[monsterId] = { drops: 1, level: 1, isArchi }
+        return { monsterId, isNew: true, newLevel: 1, isArchi }
     }
 
     const entry = state.collection[monsterId]
@@ -35,7 +35,8 @@ function _captureFamiliar(monsterId) {
     const oldLevel = entry.level
     entry.drops++
     entry.level = _familiarLevelFromDrops(entry.drops)
-    return { monsterId, isNew: false, newLevel: entry.level, leveledUp: entry.level > oldLevel }
+    if (isArchi) entry.isArchi = true  // une fois archi, toujours archi
+    return { monsterId, isNew: false, newLevel: entry.level, leveledUp: entry.level > oldLevel, isArchi }
 }
 
 // ─── Énutrof : membre actif est-il un Énutrof ? ───────────────────────────────
@@ -57,8 +58,8 @@ function rollItemDrops(areaId) {
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
     const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus
 
-    // Calcule la chance globale de drop (hors pierreDame et clés de donjon)
-    const itemEntries = area.lootTable.filter(e => e.itemId !== 'pierreDame' && !e.isKey)
+    // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
+    const itemEntries = area.lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
     const totalChance = Math.min(0.95, itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus)
 
     if (Math.random() >= totalChance) return []
@@ -145,27 +146,43 @@ function processVictoryLoot(enemy) {
     // XP distribuée par onVictory (combat.js) via calculateXPReward + giveXP
     const xpResults = []
 
-    // Pierre d'âme → capture mystère du familier
-    // Si la zone a une pierreDame dans sa loot table, on utilise son dropRate.
-    // Sinon on utilise le dropRate propre au monstre (fallback).
+    // Pierre d'âme → capture du familier
+    // Cherche pierreDame OU pierreDameGardien (donjons) dans la loot table.
     let familiarDrop = null
     const area = areas[state.currentArea]
-    const pierreDameEntry = area?.lootTable?.find(e => e.itemId === 'pierreDame')
+    const soulStoneEntry = area?.lootTable?.find(e => e.itemId === 'pierreDame' || e.itemId === 'pierreDameGardien')
+    const isGardienZone  = soulStoneEntry?.itemId === 'pierreDameGardien'
 
-    const famBonuses  = getAllFamiliarBonuses()
-    const dropBonus   = (famBonuses.dropRate || 0) / 100
-    const baseChance  = pierreDameEntry
-        ? pierreDameEntry.dropRate
-        : (monsters[enemy.id]?.dropRate ?? 0)
-    const dropChance  = Math.min(0.95, baseChance + dropBonus)
+    const famBonuses = getAllFamiliarBonuses()
+    const dropBonus  = (famBonuses.dropRate || 0) / 100
 
-    if (Math.random() < dropChance) {
-        familiarDrop = _captureFamiliar(enemy.id)
+    if (enemy.isArchi) {
+        // Archimonstre / Archiboss : capture garantie à 100%
+        familiarDrop = _captureFamiliar(enemy.id, true)
         if (familiarDrop) state.session.dropCount++
+    } else {
+        const baseChance = soulStoneEntry
+            ? soulStoneEntry.dropRate
+            : (monsters[enemy.id]?.dropRate ?? 0)
+        const dropChance = Math.min(0.95, baseChance + dropBonus)
+
+        if (Math.random() < dropChance) {
+            familiarDrop = _captureFamiliar(enemy.id)
+            if (familiarDrop) {
+                familiarDrop.isGardien = isGardienZone
+                state.session.dropCount++
+            }
+        }
     }
 
-    // Items ordinaires (pierreDame et clés exclues du pool principal)
+    // Items ordinaires (pierres d'âme et clés exclues du pool principal)
     const itemDrops = rollItemDrops(state.currentArea)
+
+    // Archimonstre : ajoute la pierre d'âme d'archimonstre à l'inventaire
+    if (enemy.isArchi && familiarDrop) {
+        const archiResult = addToInventory('pierreDameArchimonstre')
+        if (archiResult) itemDrops.push({ itemId: 'pierreDameArchimonstre', ...archiResult })
+    }
 
     // 3e pull indépendant : clé de donjon
     const keyDrop = rollKeyDrop(state.currentArea)

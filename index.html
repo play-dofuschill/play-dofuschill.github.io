@@ -230,6 +230,11 @@
                     <option value="defense">🛡 Défense</option>
                 </select>
 
+                <select id="encyclopédie-filter-archi" onchange="updateCollectionUI()">
+                    <option value="all">Archimonstre</option>
+                    <option value="archi">★ Archi capturé</option>
+                </select>
+
                 <button class="clear-filters" onclick="resetCollectionFilters()">Effacer</button>
             </div>
 
@@ -711,6 +716,7 @@
     <script src="scripts/engine/stats.js"></script>
     <script src="scripts/engine/progression.js"></script>
     <script src="scripts/engine/unlocks.js"></script>
+    <script src="scripts/engine/dailyRoll.js"></script>
     <script src="scripts/engine/loot.js"></script>
     <script src="scripts/engine/offline.js"></script>
     <script src="scripts/engine/combat.js"></script>

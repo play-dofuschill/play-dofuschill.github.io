@@ -48,6 +48,8 @@ const state = {
     offlineAutoPilotRemaining: 0,
     dungeonAutoRestart: false,
     lastAlmanaxDate: null,
+    dailyPool: null,
+    eventPool: null,
     session: {
         killCount: 0,
         dropCount: 0,
@@ -365,15 +367,19 @@ function showSessionSummary(type) {
             grouped[fd.monsterId].count++
             grouped[fd.monsterId].newLevel = fd.newLevel
             grouped[fd.monsterId].isNew    = grouped[fd.monsterId].isNew || fd.isNew
+            grouped[fd.monsterId].isArchi  = grouped[fd.monsterId].isArchi || fd.isArchi
         }
         famHtml = Object.values(grouped).map(g => {
             const mob = monsters[g.monsterId]
             if (!mob) return ''
             const countLabel = g.count > 1 ? ` ×${g.count}` : ''
-            return `<div class="game-bubble" title="${mob.name}${countLabel}${g.isNew ? ' (Nouveau !)' : ''}"
+            const archiLabel = g.isArchi ? ' ★ ARCHI !' : ''
+            return `<div class="game-bubble${g.isArchi ? ' bubble-archi-capture' : ''}" title="${mob.name}${countLabel}${archiLabel}${g.isNew ? ' (Nouveau !)' : ''}"
                 onclick="showMonsterTooltip('${g.monsterId}')"
                 oncontextmenu="event.preventDefault();showMonsterTooltip('${g.monsterId}')">
-                <span class="bubble-level">Niv.${g.newLevel}</span>
+                ${g.isArchi
+                    ? `<span class="bubble-level bubble-level-archi">★ Niv.${g.newLevel} ★</span>`
+                    : `<span class="bubble-level">Niv.${g.newLevel}</span>`}
                 <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
             </div>`
         }).join('')
@@ -570,6 +576,7 @@ function refreshTeamNames() {
 
 function initGame() {
     loadGame()
+    refreshDailyPools()
     simulateOfflineProgress()
     changeTheme(state.theme || 'dark')
 

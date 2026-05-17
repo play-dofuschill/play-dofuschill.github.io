@@ -263,24 +263,41 @@ function updateResourceBubbles() {
     const container = document.getElementById('explore-resources')
     if (!container) return
 
-    const pierreCount = combat?.sessionLoot?.familiarDrops?.length || 0
+    const allDrops    = combat?.sessionLoot?.familiarDrops || []
+    const pierreCount = allDrops.filter(d => !d.isArchi && !d.isGardien).length
+    const gardienCount = allDrops.filter(d => d.isGardien && !d.isArchi).length
+    const archiCount  = allDrops.filter(d =>  d.isArchi).length
     const caisseCount = combat?.sessionLoot?.caisseCount || 0
     const keyDrops    = combat?.sessionLoot?.keyDrops || {}
     const anyKey      = Object.values(keyDrops).some(c => c > 0)
 
-    if (!state.isRunning || (pierreCount === 0 && caisseCount === 0 && !anyKey)) {
+    if (!state.isRunning || (pierreCount === 0 && gardienCount === 0 && archiCount === 0 && caisseCount === 0 && !anyKey)) {
         container.innerHTML = ''
         return
     }
 
-    const pierreItm = item['pierreDame']
-    const caisseItm = item['caisseEquipement']
+    const pierreItm  = item['pierreDame']
+    const gardienItm = item['pierreDameGardien']
+    const archiItm   = item['pierreDameArchimonstre']
+    const caisseItm  = item['caisseEquipement']
 
     let html = ''
     if (pierreCount > 0 && pierreItm) {
         html += `<div class="res-bubble" onclick="showItemTooltip('pierreDame')" oncontextmenu="event.preventDefault();showItemTooltip('pierreDame')" title="${pierreItm.name}">
             <img src="${pierreItm.image}" onerror="this.src='img/icons/icon.png'">
             <span class="res-bubble-count">×${pierreCount}</span>
+        </div>`
+    }
+    if (gardienCount > 0 && gardienItm) {
+        html += `<div class="res-bubble" onclick="showItemTooltip('pierreDameGardien')" oncontextmenu="event.preventDefault();showItemTooltip('pierreDameGardien')" title="${gardienItm.name}">
+            <img src="${gardienItm.image}" onerror="this.src='img/icons/icon.png'">
+            <span class="res-bubble-count">×${gardienCount}</span>
+        </div>`
+    }
+    if (archiCount > 0 && archiItm) {
+        html += `<div class="res-bubble" onclick="showItemTooltip('pierreDameArchimonstre')" oncontextmenu="event.preventDefault();showItemTooltip('pierreDameArchimonstre')" title="${archiItm.name}">
+            <img src="${archiItm.image}" onerror="this.src='img/icons/icon.png'">
+            <span class="res-bubble-count">×${archiCount}</span>
         </div>`
     }
     if (caisseCount > 0 && caisseItm) {
@@ -306,4 +323,24 @@ function updateResourceBubbles() {
 function updateKamasDisplay() {
     const el = document.getElementById('kamas-amount')
     if (el) el.textContent = state.kamas
+}
+
+// ─── Popup dégâts sur l'ennemi ────────────────────────────────────────────────
+
+function showDamageNumber(damage) {
+    const spriteEl = document.getElementById('enemy-sprite')
+    if (!spriteEl) return
+
+    const rect = spriteEl.getBoundingClientRect()
+    const x = rect.left + rect.width  / 2
+    const y = rect.top  + rect.height / 2
+
+    const el = document.createElement('div')
+    el.className    = 'damage-popup'
+    el.textContent  = `-${damage}`
+    el.style.left   = `${x}px`
+    el.style.top    = `${y}px`
+    document.body.appendChild(el)
+
+    el.addEventListener('animationend', () => el.remove(), { once: true })
 }

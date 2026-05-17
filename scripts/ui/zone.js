@@ -15,18 +15,11 @@ function setZoneTab(type) {
 }
 
 function updateZoneUI() {
+    refreshDailyPools()
+
     const listing = document.getElementById('explore-listing')
     if (!listing) return
     listing.innerHTML = ''
-
-    const matching = Object.entries(areas).filter(([, area]) =>
-        (area.type || 'wild') === zoneTab
-    )
-
-    if (matching.length === 0) {
-        listing.innerHTML = `<div class="zone-empty">Aucune ${ZONE_TAB_LABELS[zoneTab] || 'zone'} disponible.<br>Revenez bientôt !</div>`
-        return
-    }
 
     // Option relance auto — uniquement pour l'onglet donjons
     if (zoneTab === 'dungeon') {
@@ -47,40 +40,102 @@ function updateZoneUI() {
         listing.appendChild(toggleEl)
     }
 
+    // Construire la liste selon l'onglet
+    let matching
+    let poolCount = 0   // nb de zones accessibles (pour l'en-tête)
+
+    if (zoneTab === 'wild') {
+        const pool      = state.dailyPool?.zones || []
+        const poolZones = pool.map(id => [id, areas[id]]).filter(([, a]) => a)
+        const locked    = Object.entries(areas)
+            .filter(([id, a]) => (a.type || 'wild') === 'wild' && !isZoneAccessible(a))
+        poolCount = poolZones.length
+        matching  = [...poolZones, ...locked]
+    } else if (zoneTab === 'event') {
+        const pool = state.eventPool?.zones || []
+        matching   = pool.map(id => [id, areas[id]]).filter(([, a]) => a)
+        poolCount  = matching.length
+    } else {
+        // Donjons : accessibles en premier, verrouillés ensuite
+        const all = Object.entries(areas).filter(([, a]) => a.type === 'dungeon')
+        matching  = [
+            ...all.filter(([, a]) =>  isZoneAccessible(a)),
+            ...all.filter(([, a]) => !isZoneAccessible(a))
+        ]
+    }
+
+    // En-tête avec compteur et timer pour wild / events
+    if (zoneTab === 'wild') {
+        const info = document.createElement('div')
+        info.className = 'zone-daily-info'
+        info.innerHTML = `<span>Zones du jour &bull; <strong>${poolCount}</strong> disponible${poolCount > 1 ? 's' : ''}</span>
+            <span>Renouvellement dans&nbsp;${nextWildRefreshLabel()}</span>`
+        listing.appendChild(info)
+    }
+    if (zoneTab === 'event') {
+        const info = document.createElement('div')
+        info.className = 'zone-daily-info'
+        info.innerHTML = `<span>Événements &bull; <strong>${poolCount}</strong> disponible${poolCount > 1 ? 's' : ''}</span>
+            <span>Renouvellement dans&nbsp;${nextEventRefreshLabel()}</span>`
+        listing.appendChild(info)
+    }
+
+    if (matching.length === 0) {
+        const empty = document.createElement('div')
+        empty.className = 'zone-empty'
+        empty.innerHTML = `Aucune ${ZONE_TAB_LABELS[zoneTab] || 'zone'} disponible.<br>Revenez bientôt !`
+        listing.appendChild(empty)
+        return
+    }
+
     for (const [areaId, area] of matching) {
-        const isActive    = state.currentArea === areaId && state.isRunning
+        const isActive     = state.currentArea === areaId && state.isRunning
         const isTutoLocked = state.tutorial === 'zones' && areaId !== 'cimetiereincarnam'
-        const keyCount    = area.keyId ? (state.inventory[area.keyId]?.count || 0) : null
-        const isKeyLocked = keyCount !== null && keyCount === 0
+        const isTierLocked = !isZoneAccessible(area)
+        const isLocked     = isTierLocked || isTutoLocked
+        const keyCount     = area.keyId ? (state.inventory[area.keyId]?.count || 0) : null
+        const lvlStr       = area.minLevel === area.maxLevel ? area.minLevel : `${area.minLevel}–${area.maxLevel}`
 
         const card = document.createElement('div')
         card.className = 'explore-ticket' +
-            (isActive                      ? ' explore-ticket-active'      : '') +
-            (isTutoLocked || isKeyLocked   ? ' explore-ticket-tuto-locked' : '')
+            (isLocked  ? ' explore-ticket-locked'  : '') +
+            (isActive  ? ' explore-ticket-active'  : '')
         card.dataset.help = areaId
 
-        const keyInfo = keyCount !== null
-            ? `<span style="font-size:0.75em; margin-top:4px; ${keyCount > 0 ? 'color:#2D7A2D;' : 'opacity:0.5;'}">
-                   ${keyCount > 0 ? `🗝 ${keyCount} clé${keyCount > 1 ? 's' : ''}` : 'Aucune clé disponible'}
-               </span>`
-            : ''
-
-        const tutoLockInfo = isTutoLocked
-            ? `<span style="font-size:0.75em; margin-top:4px; opacity:0.5;">Terminez le tutoriel</span>`
-            : ''
-
-        card.innerHTML = `
-            <div>
-                <div class="explore-ticket-left">
-                    <span>${area.name}</span>
-                    <strong>Niv. ${area.minLevel === area.maxLevel ? area.minLevel : `${area.minLevel}–${area.maxLevel}`}</strong>
-                    <span class="explore-ticket-desc">${area.description}</span>
-                    ${tutoLockInfo || keyInfo}
-                </div>
-                <div class="explore-ticket-right">
-                    <img class="explore-ticket-sprite" src="${area.icon}" onerror="this.src='img/icons/icon.png'">
-                </div>
-            </div>`
+        if (isLocked) {
+            const hint = isTierLocked
+                ? `Battez <strong>${getZoneUnlockHint(area) || '?'}</strong> pour accéder`
+                : 'Terminez le tutoriel pour accéder'
+            card.innerHTML = `
+                <div>
+                    <div class="explore-ticket-left">
+                        <span>${area.name}</span>
+                        <strong>Niv. ${lvlStr}</strong>
+                        <span class="explore-ticket-lock-msg">🔒 ${hint}</span>
+                    </div>
+                    <div class="explore-ticket-right">
+                        <img class="explore-ticket-sprite" src="${area.icon}" onerror="this.src='img/icons/icon.png'" style="opacity:0.2;filter:grayscale(1)">
+                    </div>
+                </div>`
+        } else {
+            const keyInfo = keyCount !== null
+                ? `<span style="font-size:0.75em; margin-top:4px; ${keyCount > 0 ? 'color:#2D7A2D;' : 'opacity:0.5;'}">
+                       ${keyCount > 0 ? `🗝 ${keyCount} clé${keyCount > 1 ? 's' : ''}` : 'Aucune clé disponible'}
+                   </span>`
+                : ''
+            card.innerHTML = `
+                <div>
+                    <div class="explore-ticket-left">
+                        <span>${area.name}</span>
+                        <strong>Niv. ${lvlStr}</strong>
+                        <span class="explore-ticket-desc">${area.description}</span>
+                        ${keyInfo}
+                    </div>
+                    <div class="explore-ticket-right">
+                        <img class="explore-ticket-sprite" src="${area.icon}" onerror="this.src='img/icons/icon.png'">
+                    </div>
+                </div>`
+        }
         card.onclick = () => joinArea(areaId)
         listing.appendChild(card)
     }
@@ -96,6 +151,11 @@ function joinArea(areaId) {
         return
     }
     const area = areas[areaId]
+    if (area && !isZoneAccessible(area)) {
+        const hint = getZoneUnlockHint(area) || '?'
+        showNotification(`Battez ${hint} pour accéder à cette zone !`, 'error')
+        return
+    }
     if (area?.keyId) {
         const keyCount = state.inventory[area.keyId]?.count || 0
         if (keyCount === 0) {

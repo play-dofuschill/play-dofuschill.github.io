@@ -137,9 +137,10 @@ function getEffectiveStats(member) {
         const mob = monsters[famId]
         const fam = mob?.familiar
         if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
-            const entry = state.collection[famId]
-            const level = entry?.level || 0
-            const value = Math.floor(getFamiliarStatValue(level, fam.min, fam.max, mob.rarity))
+            const entry  = state.collection[famId]
+            const level  = entry?.level || 0
+            const effMax = fam.max * (entry?.isArchi ? 1.5 : 1)
+            const value  = Math.floor(getFamiliarStatValue(level, fam.min, effMax, mob.rarity))
             if (value > 0) {
                 const bs = fam.bonusStat
                 if      (bs === 'atk')               atk                += value

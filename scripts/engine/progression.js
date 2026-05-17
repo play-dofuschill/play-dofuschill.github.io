@@ -3,41 +3,23 @@
 
 function getXPRequired(level) {
 
-    if (level <= 20) {
-        return Math.floor(40 + level * 25);
-    }
+    if (level <= 20) {return Math.floor(40 + level * 25);}
 
-    if (level <= 40) {
-        return Math.floor(300 + Math.pow(level, 1.5) * 20);
-    }
+    if (level <= 40) {return Math.floor(300 + Math.pow(level, 1.5) * 20);}
 
-    if (level <= 60) {
-        return Math.floor(600 + Math.pow(level, 1.5) * 23);
-    }
+    if (level <= 60) {return Math.floor(600 + Math.pow(level, 1.5) * 23);}
 
-    if (level <= 80) {
-        return Math.floor(900 + Math.pow(level, 1.5) * 27);
-    }
+    if (level <= 80) {return Math.floor(900 + Math.pow(level, 1.5) * 27);}
 
-    if (level <= 100) {
-        return Math.floor(1200 + Math.pow(level, 1.5) * 32);
-    }
+    if (level <= 100) {return Math.floor(1200 + Math.pow(level, 1.5) * 32);}
 
-    if (level <= 120) {
-        return Math.floor(1500 + Math.pow(level, 1.5) * 38);
-    }
+    if (level <= 120) {return Math.floor(1500 + Math.pow(level, 1.5) * 38);}
 
-    if (level <= 140) {
-        return Math.floor(1800 + Math.pow(level, 1.5) * 43);
-    }
+    if (level <= 140) {return Math.floor(1800 + Math.pow(level, 1.5) * 43);}
 
-    if (level <= 160) {
-        return Math.floor(2100 + Math.pow(level, 1.5) * 58);
-    }
+    if (level <= 160) {return Math.floor(2100 + Math.pow(level, 1.5) * 58);}
 
-    if (level <= 180) {
-        return Math.floor(2400 + Math.pow(level, 1.5) * 64);
-    }
+    if (level <= 180) {return Math.floor(2400 + Math.pow(level, 1.5) * 64);}
 
     return Math.floor(3000 + Math.pow(level, 1.5) * 75);
 }

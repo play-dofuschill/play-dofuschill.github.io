@@ -89,7 +89,7 @@ function spawnEnemy(areaId) {
     if (!state.seenMonsters) state.seenMonsters = {}
     state.seenMonsters[spawnId] = true
 
-    return {
+    const enemy = {
         id:       spawnId,
         name:     mob.name,
         element:  mob.element,
@@ -108,6 +108,17 @@ function spawnEnemy(areaId) {
         tier:      mob.tier     || 'normal',
         dropRate:  mob.dropRate
     }
+
+    // 1/400 chance d'archimonstre (archiboss pour les boss) : stats ×2, capture garantie
+    if (Math.random() < 1 / 400) {
+        enemy.isArchi   = true
+        enemy.maxHp     = Math.floor(enemy.maxHp * 2)
+        enemy.currentHp = enemy.maxHp
+        enemy.atk       = Math.floor(enemy.atk   * 2)
+        enemy.name      = `Archi-${enemy.name}`
+    }
+
+    return enemy
 }
 
 // ─── Démarrage / arrêt ────────────────────────────────────────────────────────
@@ -292,6 +303,12 @@ function gameTick() {
     if (!combat || !combat.enemy) return
     try {
 
+    // Garde-fou : HP NaN → 0 pour éviter la boucle infinie
+    for (const m of state.team) {
+        if (m && isNaN(m.currentHp)) m.currentHp = 0
+    }
+    if (combat.enemy && isNaN(combat.enemy.currentHp)) combat.enemy.currentHp = 0
+
     // Avance le timer du membre actif uniquement
     _autoSwitchActive()
     const activeIdx = combat.activeMemberIndex
@@ -473,6 +490,12 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength) {
     }
 }
 
+function _resolveEffectValue(v) {
+    if (v !== null && typeof v === 'object' && 'min' in v && 'max' in v)
+        return Math.floor(Math.random() * (v.max - v.min + 1)) + v.min
+    return v
+}
+
 function executeEffect(ctx) {
 
     const {caster, casterStats, targetEnemy, effect, moveData} = ctx
@@ -521,6 +544,10 @@ function executeEffect(ctx) {
             if (combat && memberHitIdx !== -1 && dmg > 0) {
                 combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + dmg
             }
+            // Popup dégâts uniquement quand c'est l'ennemi qui encaisse (pas un membre)
+            if (dmg > 0 && memberHitIdx === -1 && typeof showDamageNumber === 'function') {
+                showDamageNumber(dmg)
+            }
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
@@ -561,26 +588,29 @@ function executeEffect(ctx) {
 
         case 'buff': {
             caster.buffs = caster.buffs || []
-            caster.buffs.push({ stat: effect.stat, value: effect.value, duration: effect.duration })
-            addLog(`${moveData.name} → +${effect.value} ${effect.stat} (${effect.duration} tours)`)
+            const buffVal = _resolveEffectValue(effect.value)
+            caster.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
+            addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
             break
         }
 
         case 'buff_team': {
+            const buffTeamVal = _resolveEffectValue(effect.value)
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
                 m.buffs = m.buffs || []
-                m.buffs.push({ stat: effect.stat, value: effect.value, duration: effect.duration })
+                m.buffs.push({ stat: effect.stat, value: buffTeamVal, duration: effect.duration })
             }
-            addLog(`${moveData.name} → +${effect.value} ${effect.stat} équipe (${effect.duration} tours)`)
+            addLog(`${moveData.name} → +${buffTeamVal} ${effect.stat} équipe (${effect.duration} tours)`)
             break
         }
 
         case 'debuff': {
             // Applique un buff négatif à la cible
+            const debuffVal = _resolveEffectValue(effect.value)
             targetEnemy.buffs = targetEnemy.buffs || []
-            targetEnemy.buffs.push({ stat: effect.stat, value: -effect.value, duration: effect.duration })
-            addLog(`${ctx.logPrefix || ''}${moveData.name} → -${effect.value} ${effect.stat} (${effect.duration} tours)`)
+            targetEnemy.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+            addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
             break
         }
 

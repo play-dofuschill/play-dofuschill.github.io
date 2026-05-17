@@ -79,10 +79,11 @@ function getAllFamiliarBonuses() {
         const fam = mob?.familiar
         if (!fam?.bonusStat || fam.min == null || fam.max == null) continue
 
-        const entry = state.collection[famId]
-        const level = entry?.level || 0
+        const entry  = state.collection[famId]
+        const level  = entry?.level || 0
+        const effMax = fam.max * (entry?.isArchi ? 1.5 : 1)
 
-        const value = Math.floor(getFamiliarStatValue(level, fam.min, fam.max, mob.rarity))
+        const value = Math.floor(getFamiliarStatValue(level, fam.min, effMax, mob.rarity))
         if (value === 0) continue
 
         totals[fam.bonusStat] = (totals[fam.bonusStat] || 0) + value
@@ -98,11 +99,12 @@ function getFamiliarBonusValue(monsterId) {
     const fam = mob?.familiar
     if (!fam?.bonusStat) return null
 
-    const entry = state.collection[monsterId]
-    const level = entry?.level || 0
+    const entry  = state.collection[monsterId]
+    const level  = entry?.level || 0
+    const effMax = fam.max * (entry?.isArchi ? 1.5 : 1)
 
     return {
         stat:  fam.bonusStat,
-        value: Math.floor(getFamiliarStatValue(level, fam.min, fam.max, mob.rarity))
+        value: Math.floor(getFamiliarStatValue(level, fam.min, effMax, mob.rarity))
     }
 }

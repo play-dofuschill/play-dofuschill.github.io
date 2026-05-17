@@ -30,11 +30,13 @@ function resetCollectionFilters() {
     const rarity  = document.getElementById('encyclopédie-filter-rarity')
     const tier    = document.getElementById('encyclopédie-filter-tier')
     const bon     = document.getElementById('encyclopédie-filter-bonustype')
+    const archi   = document.getElementById('encyclopédie-filter-archi')
     if (srch)   srch.value   = ''
     if (lvl)    lvl.value    = 'all'
     if (rarity) rarity.value = 'all'
     if (tier)   tier.value   = 'all'
     if (bon)    bon.value    = 'all'
+    if (archi)  archi.value  = 'all'
     updateCollectionUI()
 }
 
@@ -48,6 +50,7 @@ function updateCollectionUI() {
     const rarityFilter    = document.getElementById('encyclopédie-filter-rarity')?.value    || 'all'
     const tierFilter      = document.getElementById('encyclopédie-filter-tier')?.value      || 'all'
     const bonusTypeFilter = document.getElementById('encyclopédie-filter-bonustype')?.value || 'all'
+    const archiFilter     = document.getElementById('encyclopédie-filter-archi')?.value     || 'all'
 
     let searchIds = null
     if (collectionFilters.search.length >= 1) {
@@ -78,6 +81,9 @@ function updateCollectionUI() {
         // Type de bonus familier
         if (bonusTypeFilter !== 'all' && mob.familiar?.bonusType !== bonusTypeFilter) continue
 
+        // Filtre archimonstre capturé
+        if (archiFilter === 'archi' && !state.collection[monsterId]?.isArchi) continue
+
         // Recherche Fuse
         if (searchIds && !searchIds.has(monsterId)) continue
 
@@ -88,8 +94,13 @@ function updateCollectionUI() {
         card.title     = seen ? mob.name : '???'
 
         if (seen) {
+            const lvlLabel = entry
+                ? (entry.isArchi
+                    ? `<span class="bubble-level bubble-level-archi">★ Niv.${entry.level} ★</span>`
+                    : `<span class="bubble-level">Niv.${entry.level}</span>`)
+                : ''
             card.innerHTML = `
-                ${entry ? `<span class="bubble-level">Niv.${entry.level}</span>` : ''}
+                ${lvlLabel}
                 <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">`
         } else {
             card.innerHTML = `
@@ -137,11 +148,17 @@ function showMonsterTooltip(monsterId) {
     let familiarSection = ''
     const fam = mob.familiar
     if (fam?.bonusStat) {
-        const statLbl    = STAT_L[fam.bonusStat] || fam.bonusStat
-        const typeLabel  = formatBonusType(fam.bonusType)
-        const isPercent  = fam.bonusStat === 'dropRate' || fam.bonusStat === 'xpGain' || fam.bonusStat?.endsWith('Pct') || fam.bonusStat?.startsWith('res.')
-        const unit       = isPercent ? '%' : ''
-        const curVal     = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max, mob.rarity)) : null
+        const isArchiEntry = !!entry?.isArchi
+        const effMax   = fam.max * (isArchiEntry ? 1.5 : 1)
+        const statLbl  = STAT_L[fam.bonusStat] || fam.bonusStat
+        const typeLabel = formatBonusType(fam.bonusType)
+        const isPercent = fam.bonusStat === 'dropRate' || fam.bonusStat === 'xpGain' || fam.bonusStat?.endsWith('Pct') || fam.bonusStat?.startsWith('res.')
+        const unit     = isPercent ? '%' : ''
+        const curVal   = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, effMax, mob.rarity)) : null
+        const rangeMax = isArchiEntry ? Math.ceil(effMax) : fam.max
+        const archiRangeNote = isArchiEntry
+            ? ` <span style="color:#ffd700;font-size:0.68rem;">(★ Archi ×1.5)</span>`
+            : ''
 
         familiarSection = `
             <div class="ms-section-title" style="margin-top:0.5rem;">Familier</div>
@@ -155,7 +172,7 @@ function showMonsterTooltip(monsterId) {
                 </div>
                 <div class="ms-stat-row">
                     <span class="ms-stat-label">Plage</span>
-                    <span class="ms-stat-val">+${fam.min}–${fam.max}${unit} ${statLbl}</span>
+                    <span class="ms-stat-val">+${fam.min}–${rangeMax}${unit} ${statLbl}${archiRangeNote}</span>
                 </div>
             </div>`
     } else {
@@ -166,6 +183,9 @@ function showMonsterTooltip(monsterId) {
     const famLvlBadge = entry
         ? `<span class="level-badge">Niv. ${famLvl}/200</span>`
         : seen ? `<span class="level-badge" style="opacity:0.5;">Non capturé</span>` : ''
+    const archiBadgeHtml = entry?.isArchi
+        ? `<span class="bubble-archi-badge" style="position:relative;top:0;right:0;font-size:0.7rem;padding:0.1rem 0.4rem;border-radius:0.3rem;">★ ARCHI</span>`
+        : ''
 
     const body = `<div class="member-sheet es-sheet">
         <div class="es-header">
@@ -174,6 +194,7 @@ function showMonsterTooltip(monsterId) {
                 <span class="es-name">${seen ? mob.name : '???'}</span>
                 <div class="es-badges">
                     ${famLvlBadge}
+                    ${archiBadgeHtml}
                     ${rarityHtml}
                     ${elemHtml}
                 </div>
