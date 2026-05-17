@@ -82,13 +82,14 @@ function updateCollectionUI() {
         if (searchIds && !searchIds.has(monsterId)) continue
 
         const entry = state.collection[monsterId]
+        const seen  = !!state.seenMonsters?.[monsterId]
         const card  = document.createElement('div')
-        card.className = `game-bubble ${entry ? '' : 'bubble-unknown'}`
-        card.title     = entry ? mob.name : '???'
+        card.className = `game-bubble ${seen ? '' : 'bubble-unknown'}`
+        card.title     = seen ? mob.name : '???'
 
-        if (entry) {
+        if (seen) {
             card.innerHTML = `
-                <span class="bubble-level">Niv.${entry.level}</span>
+                ${entry ? `<span class="bubble-level">Niv.${entry.level}</span>` : ''}
                 <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">`
         } else {
             card.innerHTML = `
@@ -122,11 +123,12 @@ function _getMonsterLevel(monsterId) {
 function showMonsterTooltip(monsterId) {
     const mob   = monsters[monsterId]
     const entry = state.collection[monsterId]
+    const seen  = !!state.seenMonsters?.[monsterId]
     if (!mob) return
 
     const famLvl     = entry?.level || 0
-    const rarityHtml = mob.rarity ? `<span class="rarity-${mob.rarity}" style="font-size:0.72rem;">${mob.rarity.replace('_', ' ')}</span>` : ''
-    const elemHtml   = mob.element ? `<span class="elem-badge elem-${mob.element}" style="font-size:0.72rem;">${mob.element}</span>` : ''
+    const rarityHtml = seen && mob.rarity ? `<span class="rarity-${mob.rarity}" style="font-size:0.72rem;">${mob.rarity.replace('_', ' ')}</span>` : ''
+    const elemHtml   = seen && mob.element ? `<span class="elem-badge elem-${mob.element}" style="font-size:0.72rem;">${mob.element}</span>` : ''
 
     const STAT_L = { atk: 'ATK', hp: 'PV', spd: 'Vitesse', dropRate: 'Taux de drop', xpGain: 'Gain XP',
         flatDamage: 'Dég. fixes', finalDamagePct: 'Dég. finaux', damageReductionPct: 'Réd. dégâts', critChance: 'Crit',
@@ -160,22 +162,27 @@ function showMonsterTooltip(monsterId) {
         familiarSection = `<div class="ms-section-title" style="margin-top:0.5rem;opacity:0.4;">Pas de bonus familier</div>`
     }
 
+    const imgStyle = seen ? '' : 'filter:brightness(0);'
+    const famLvlBadge = entry
+        ? `<span class="level-badge">Niv. ${famLvl}/200</span>`
+        : seen ? `<span class="level-badge" style="opacity:0.5;">Non capturé</span>` : ''
+
     const body = `<div class="member-sheet es-sheet">
         <div class="es-header">
-            <img class="es-sprite" src="${mob.image}" onerror="this.src='img/icons/icon.png'">
+            <img class="es-sprite" src="${mob.image}" style="${imgStyle}" onerror="this.src='img/icons/icon.png'">
             <div class="es-header-info">
-                <span class="es-name">${entry ? mob.name : '???'}</span>
+                <span class="es-name">${seen ? mob.name : '???'}</span>
                 <div class="es-badges">
-                    <span class="level-badge">Niv. ${famLvl}/200</span>
+                    ${famLvlBadge}
                     ${rarityHtml}
                     ${elemHtml}
                 </div>
             </div>
         </div>
-        ${familiarSection}
+        ${seen ? familiarSection : ''}
     </div>`
 
-    openTooltip(entry ? mob.name : '???', body)
+    openTooltip(seen ? mob.name : '???', body)
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

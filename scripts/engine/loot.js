@@ -5,18 +5,21 @@
 // Ne révèle rien pendant le combat — la découverte se fait dans showSessionSummary.
 
 function dropsNeededForLevel(level) {
-    return Math.max(1, Math.ceil(level / 10))
+    return Math.max(1, Math.ceil(level / 5))
 }
+
+const FAM_LEVEL_CAP = 200
 
 function _familiarLevelFromDrops(drops) {
     let level = 1
     let threshold = 1
-    while (true) {
+    while (level < FAM_LEVEL_CAP) {
         const next = threshold + dropsNeededForLevel(level)
         if (next > drops) return level
         threshold = next
         level++
     }
+    return FAM_LEVEL_CAP
 }
 
 function _captureFamiliar(monsterId) {
@@ -35,6 +38,14 @@ function _captureFamiliar(monsterId) {
     return { monsterId, isNew: false, newLevel: entry.level, leveledUp: entry.level > oldLevel }
 }
 
+// ─── Énutrof : membre actif est-il un Énutrof ? ───────────────────────────────
+
+function _isEnutrofActive() {
+    if (typeof combat === 'undefined' || !combat) return false
+    const m = state.team?.[combat.activeMemberIndex]
+    return classes[m?.classId]?.passive?.id === 'enutrofe'
+}
+
 // ─── Drop d'items depuis la loot table d'une zone ────────────────────────────
 // La pierreDame est exclue ici — elle est traitée dans processVictoryLoot.
 
@@ -42,8 +53,9 @@ function rollItemDrops(areaId) {
     const area = areas[areaId]
     if (!area || !area.lootTable) return []
 
-    const famBonuses = getAllFamiliarBonuses()
-    const dropBonus  = (famBonuses.dropRate || 0) / 100
+    const famBonuses  = getAllFamiliarBonuses()
+    const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus
 
     // Calcule la chance globale de drop (hors pierreDame et clés de donjon)
     const itemEntries = area.lootTable.filter(e => e.itemId !== 'pierreDame' && !e.isKey)
@@ -89,7 +101,7 @@ function addToInventory(itemId) {
         current.count = (current.count || 0) + 1
         return { itemId, level: current.level, leveledUp: true, convertedToKamas: false }
     } else {
-        const kamasGained = 1
+        const kamasGained = _isEnutrofActive() ? 2 : 1
         state.kamas += kamasGained
         return { itemId, level: current.level, leveledUp: false, convertedToKamas: true, kamas: kamasGained }
     }

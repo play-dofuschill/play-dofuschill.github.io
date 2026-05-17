@@ -159,6 +159,69 @@ function getEffectiveStats(member) {
         }
     }
 
+    // ─── Passifs de classe ─────────────────────────────────────────────────────
+
+    const passive = cls.passive
+    if (passive) {
+        const _combat  = typeof combat !== 'undefined' ? combat : null
+        const memberIdx = _combat ? state.team.indexOf(member) : -1
+
+        // Ouginak : +X% dégâts critiques de base
+        if (passive.baseCritDamagePct) {
+            critDamagePct += passive.baseCritDamagePct
+        }
+
+        // Sacrieur : bonus finalDamagePct selon seuil de PV
+        if (passive.id === 'sacrieur' && member.maxHp > 0 && member.currentHp != null) {
+            const hpPct = (member.currentHp / member.maxHp) * 100
+            if (hpPct <= 15)      finalDamagePct += 10
+            else if (hpPct <= 50) finalDamagePct += 5
+        }
+
+        // Sram : +1% finalDamagePct par ennemi tué (cap 5%)
+        if (passive.id === 'sram' && memberIdx !== -1 && _combat) {
+            const kills = _combat.memberKillCount?.[memberIdx] || 0
+            finalDamagePct += Math.min(5, kills)
+        }
+
+        // Féca : +2% résistances all par ennemi tué (cap 10%)
+        if (passive.id === 'feca' && memberIdx !== -1 && _combat) {
+            const kills = _combat.memberKillCount?.[memberIdx] || 0
+            const bonus = Math.min(10, kills * 2)
+            for (const e in res) res[e] += bonus
+        }
+
+        // Huppermage : +10% finalDamagePct si 4 sorts d'éléments tous différents (pré-calculé au départ du combat)
+        if (passive.id === 'huppermage' && memberIdx !== -1 && _combat) {
+            if (_combat.memberPassiveState?.[memberIdx]?.huppermageBonus) {
+                finalDamagePct += 10
+            }
+        }
+
+        // Ecaflip : effet roulette actif (tiré à chaque fin de cycle)
+        if (passive.id === 'ecaflip' && memberIdx !== -1 && _combat) {
+            const eff = _combat.memberPassiveState?.[memberIdx]?.ecaflipEffect
+            if (eff) {
+                if      (eff.stat === 'finalDamagePct') finalDamagePct += eff.value
+                else if (eff.stat === 'critChance')     critChance     += eff.value
+                else if (eff.stat === 'res_all')        for (const e in res) res[e] += eff.value
+            }
+        }
+
+        // Pandawa : bonus/malus selon état d'ébriété (état stocké dans combat.memberPassiveState)
+        if (passive.id === 'pandawa' && memberIdx !== -1 && _combat) {
+            const pst = _combat.memberPassiveState?.[memberIdx]?.state || 'normal'
+            if (pst === 'ivresse') {
+                spd             = Math.floor(spd * 0.8)
+                finalDamagePct += 20
+                for (const e in res) res[e] += 10
+            } else if (pst === 'gueule_de_bois') {
+                finalDamagePct -= 20
+                for (const e in res) res[e] -= 10
+            }
+        }
+    }
+
     // ─── Caps défensifs ───────────────────────────
 
     // résistances élémentaires max = 50%

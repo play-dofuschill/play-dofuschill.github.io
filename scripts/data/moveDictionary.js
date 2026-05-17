@@ -117,7 +117,7 @@ move.exemple_complexe = {
 
 */
 
-// ─── IOP ─────────────────────────────────────────────
+// #region IOP ─────────────────────────────────────────────
 
 move.pression = {
     id: 'pression',
@@ -133,7 +133,6 @@ move.pression = {
                        {lvl: 120,
                         patch: {damage: { min: 30, max: 38 }}}]
 }
-
 move.epee_divine = {
     id: 'epee_divine',
     name: 'Épée Divine',
@@ -145,7 +144,6 @@ move.epee_divine = {
     damage: {min: 14,max: 17},
     target: 'enemy'}]
 }
-
 move.couperet = {
     id: 'couperet',
     name: 'Couperet',
@@ -157,7 +155,6 @@ move.couperet = {
     damage: {min: 17,max: 19},
     target: 'enemy'}]
 }
-
 move.ferveur = {
     id: 'ferveur',
     name: 'Ferveur',
@@ -169,8 +166,36 @@ move.ferveur = {
     damage: {min: 16,max: 19},
     target: 'enemy'}]
 }
-
-// ─── CRA ─────────────────────────────────────────────
+move.intimidation = {
+    id: 'intimidation',
+    name: 'Intimidation',
+    classId: 'iop',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'neutre', damage: {min: 16,max: 18}, target: 'enemy'}],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 50,
+                        patch: {damage: { min: 22, max: 26 }}},
+                       {lvl: 120,
+                        patch: {damage: { min: 30, max: 38 }}}]
+}
+move.bond = {
+    id: 'bond',
+    name: 'Bond',
+    classId: 'iop',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self'}],
+    spellProgression: [{lvl: 24,
+                        patch: {}},
+                       {lvl: 50,  
+                        patch: {buff: { value: 30 }}},
+                       {lvl: 120,
+                        patch: {buff: { value: 40 }}}]
+}
+// #endregion
+// #region CRA ─────────────────────────────────────────────
 
 move.fleche_optique = {
     id: 'fleche_optique',
@@ -219,8 +244,8 @@ move.tir_repulsif = {
     damage: {min: 17,max: 19},
     target: 'enemy'}]
 }
-
-// ─── ENIRIPSA ─────────────────────────────────────────
+// #endregion
+// #region ENIRIPSA ─────────────────────────────────────────
 
 move.mot_tapageur = {
     id: 'mot_tapageur',
@@ -274,3 +299,6 @@ move.mot_espiegle = {
         damage: {min: 12,max: 14},
         target: 'enemy'}]
 }
+// #endregion
+
+

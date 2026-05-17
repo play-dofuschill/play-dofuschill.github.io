@@ -49,11 +49,11 @@ function updateTeamUI() {
             card.innerHTML   = `
                 <div class="explore-team-member-flair"></div>
                 <div class="member-sprite-wrap">
-                    <img class="member-sprite" src="${cls?.image}" onerror="this.src='img/icons/icon.png'">
+                    <img class="member-sprite" src="${getMemberImage(member)}" onerror="this.src='img/icons/icon.png'">
                 </div>
                 <div class="member-info">
                     <div class="member-title-row">
-                        <span class="member-name">${cls?.name || '?'}</span>
+                        <span class="member-name">${member.name || cls?.name || '?'}</span>
                         <span class="member-level level-badge">lvl ${member.level}</span>
                         <button class="team-slot-remove" onclick="removeFromTeam(${i})" title="Retirer">✕</button>
                     </div>
@@ -216,10 +216,12 @@ function _fillGuildeList(list, onClickFn, showAll = false) {
             card.onclick = () => onClickFn(classId)
         }
 
-        const imgStyle = isUnlocked ? '' : 'filter:brightness(0) saturate(0);'
+        const teamMember = state.team.find(m => m && m.classId === classId)
+        const imgSrc     = (isUnlocked && teamMember) ? getMemberImage(teamMember) : cls.image
+        const imgStyle   = isUnlocked ? '' : 'filter:brightness(0) saturate(0);'
         card.innerHTML = `
             <div class="guilde-sprite-wrap">
-                <img class="guilde-sprite" src="${cls.image}" style="${imgStyle}" onerror="this.src='img/icons/icon.png'">
+                <img class="guilde-sprite" src="${imgSrc}" style="${imgStyle}" onerror="this.src='img/icons/icon.png'">
             </div>
             <span class="guilde-class-name">${isUnlocked ? cls.name : '???'}</span>`
         list.appendChild(card)
@@ -254,7 +256,9 @@ function addToTeam(classId, slotIndex) {
     const level  = saved?.level || 1
     const member = createTeamMember(classId, level)
     if (!member) return
-    member.exp = saved?.exp || 0
+    member.exp    = saved?.exp    || 0
+    member.gender = saved?.gender || 'male'
+    member.name   = saved?.name   || null
 
     const stats = getEffectiveStats(member)
     if (stats) member.maxHp = stats.hp
@@ -276,8 +280,10 @@ function removeFromTeam(slotIndex) {
     if (member) {
         if (!state.classEquip) state.classEquip = {}
         state.classEquip[member.classId] = {
-            level: member.level,
-            exp:   member.exp
+            level:  member.level,
+            exp:    member.exp,
+            gender: member.gender || 'male',
+            name:   member.name   || null
         }
     }
     state.team[slotIndex] = null

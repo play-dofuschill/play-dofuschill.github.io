@@ -143,8 +143,33 @@ function startCombat(areaId) {
         log: [],
         pendingLoot: null,
         savedEnemy: null,
-        sessionLoot: { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, learnedMoves: [] }
+        memberKillCount:    {},
+        memberPassiveState: {},
+        memberDeathHandled: {},
+        sessionLoot: { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
     }
+
+    // Pré-calcul des états passifs initiaux
+    for (let i = 0; i < state.team.length; i++) {
+        const m = state.team[i]
+        if (!m) continue
+        const passive = classes[m.classId]?.passive
+        combat.memberPassiveState[i] = {}
+        if (passive?.id === 'pandawa')     combat.memberPassiveState[i].state = 'normal'
+        if (passive?.id === 'huppermage') {
+            const slots    = ['slot1', 'slot2', 'slot3', 'slot4']
+            const elements = slots.map(s => {
+                const mid = m.moves?.[s]
+                if (!mid) return null
+                const mv  = move[mid]
+                const eff = mv?.effects?.find(e => e.type === 'damage' || e.type === 'dot')
+                return eff?.element || null
+            }).filter(Boolean)
+            combat.memberPassiveState[i].huppermageBonus =
+                elements.length === 4 && new Set(elements).size === 4
+        }
+    }
+
     combat.enemy = spawnEnemy(areaId)
     combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 
@@ -223,7 +248,7 @@ function rejoinArea() {
 // ─── Pilote automatique ───────────────────────────────────────────────────────
 
 function _emptySessionLoot() {
-    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, learnedMoves: [] }
+    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
 }
 
 function _mergeSessionLoot(dest, src) {
@@ -236,6 +261,9 @@ function _mergeSessionLoot(dest, src) {
     dest.learnedMoves.push(...(src.learnedMoves || []))
     for (const [idx, dmg] of Object.entries(src.memberDamage || {})) {
         dest.memberDamage[idx] = (dest.memberDamage[idx] || 0) + dmg
+    }
+    for (const [idx, dmg] of Object.entries(src.memberDamageReceived || {})) {
+        dest.memberDamageReceived[idx] = (dest.memberDamageReceived[idx] || 0) + dmg
     }
     for (const [keyId, count] of Object.entries(src.keyDrops || {})) {
         dest.keyDrops[keyId] = (dest.keyDrops[keyId] || 0) + count
@@ -279,9 +307,14 @@ function gameTick() {
         }
     }
 
-    // Timer de l'ennemi
+    // Timer de l'ennemi (vitesse effective = spd + buffs/debuffs de vitesse)
     if (combat.enemy && combat.enemy.currentHp > 0 && !combat.respawnPending) {
-        const rate = (100 / (BASE_TIME / TICK_MS)) * ((combat.enemy.spd || 100) / 100)
+        let effectiveEnemySpd = combat.enemy.spd || 100
+        for (const b of (combat.enemy.buffs || [])) {
+            if (b.stat === 'spd') effectiveEnemySpd += b.value
+        }
+        effectiveEnemySpd = Math.max(1, effectiveEnemySpd)
+        const rate = (100 / (BASE_TIME / TICK_MS)) * (effectiveEnemySpd / 100)
         combat.enemyTimer = (combat.enemyTimer || 0) + rate
         if (combat.enemyTimer >= 100) {
             combat.enemyTimer = 0
@@ -314,13 +347,21 @@ function executeMemberAction(memberIndex) {
 
     if (!nonNull.length) return
 
-    // rotation cyclique
-    const idx =
-        combat.memberMoveIndex[memberIndex] % nonNull.length
+    // Rotation : Xelor = ping-pong 1-2-3-4-3-2-1 (7 pas), autres = cyclique
+    const XELOR_PATTERN  = [0, 1, 2, 3, 2, 1, 0]
+    const isXelor        = classes[member.classId]?.passive?.id === 'xelor' && nonNull.length === 4
+    const rawMoveIdx     = combat.memberMoveIndex[memberIndex]
 
-    const moveId =
-        member.moves[nonNull[idx]]
+    let idx, prevNonNullIdx
+    if (isXelor) {
+        idx            = XELOR_PATTERN[rawMoveIdx % 7]
+        prevNonNullIdx = XELOR_PATTERN[(rawMoveIdx + 6) % 7]
+    } else {
+        idx            = rawMoveIdx % nonNull.length
+        prevNonNullIdx = (idx - 1 + nonNull.length) % nonNull.length
+    }
 
+    const moveId = member.moves[nonNull[idx]]
     combat.memberMoveIndex[memberIndex]++
 
     const rawMv = move[moveId]
@@ -329,13 +370,16 @@ function executeMemberAction(memberIndex) {
 
     if (!mv?.effects) return
 
+    const rawPrevMv = move[member.moves[nonNull[prevNonNullIdx]]]
+    const prevMv    = rawPrevMv ? applyProgression(rawPrevMv, member.level) : null
+
     // exécution des effets
     let lastDamageDealt = 0
     let sessionDmg = 0
     for (const effect of mv.effects) {
         const dmg = executeEffect({
             caster: member, casterStats: stats, targetEnemy: combat.enemy,
-            effect, moveData: mv, lastDamageDealt,
+            effect, moveData: mv, prevMv, lastDamageDealt,
             onTargetKill: () => {
                 if (combat.enemy?.isSummon) returnToOwner()
                 else onVictory()
@@ -348,6 +392,85 @@ function executeMemberAction(memberIndex) {
     }
 
     tickBuffs(member)
+
+    // ─── Passifs déclenchés après l'action ───────────────────────────────────
+    const newRawIdx   = combat.memberMoveIndex[memberIndex]  // après incrément
+    const cycleLength = isXelor ? 7 : nonNull.length
+    _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength)
+}
+
+// ─── Passifs déclenchés par tick / cycle ─────────────────────────────────────
+
+function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength) {
+    const passive = classes[member.classId]?.passive
+    if (!passive) return
+
+    // ─── Périodiques (toutes les N actions) ──────────────────────────────────
+
+    // Eniripsa : tous les 6 sorts, soigne un membre vivant aléatoire de 20% PV max
+    if (passive.id === 'eniripsa' && newRawIdx % 6 === 0) {
+        const living = state.team.filter(m => m && m.currentHp > 0)
+        if (living.length) {
+            const target  = living[Math.floor(Math.random() * living.length)]
+            const healAmt = Math.floor((target.maxHp || 0) * 0.20)
+            target.currentHp = Math.min(target.maxHp, target.currentHp + healAmt)
+            addLog(`Eniripsa [Passif] → soigne ${target.name} de ${healAmt} PV`)
+        }
+    }
+
+    // Zobal : tous les 6 sorts, gagne un bouclier = niveau × 2 PV
+    if (passive.id === 'zobal' && newRawIdx % 6 === 0) {
+        const shieldVal = Math.floor((member.level || 1) * 2)
+        if (!member.shield || member.shield.value <= 0) {
+            member.shield = { value: shieldVal, duration: 999 }
+        } else {
+            member.shield.value += shieldVal
+        }
+        addLog(`Zobal [Passif] → bouclier +${shieldVal} PV`)
+    }
+
+    // Sadida : tous les 4 sorts, ralentit l'ennemi de -20 vitesse pendant 2 tours
+    if (passive.id === 'sadida' && newRawIdx % 4 === 0 && combat.enemy?.currentHp > 0) {
+        combat.enemy.buffs = combat.enemy.buffs || []
+        combat.enemy.buffs.push({ stat: 'spd', value: -20, duration: 2 })
+        addLog(`Sadida [Passif] → ${combat.enemy.name} ralenti de 20% (2 tours)`)
+    }
+
+    // ─── Fin de cycle ─────────────────────────────────────────────────────────
+
+    if (newRawIdx % cycleLength !== 0) return
+
+    // Pandawa : transition d'état à chaque cycle de sorts
+    if (passive.id === 'pandawa') {
+        const pst = combat.memberPassiveState[memberIndex] || {}
+        if (pst.state === 'normal') {
+            pst.state = 'ivresse'
+            addLog(`${member.name} [Passif] → Ivresse ! (-20% vit, +20% dmg, +10% res all)`)
+        } else if (pst.state === 'ivresse') {
+            pst.state = 'gueule_de_bois'
+            addLog(`${member.name} [Passif] → Gueule de bois... (-20% dmg, -10% res all)`)
+        } else {
+            pst.state = 'normal'
+            addLog(`${member.name} [Passif] → Retrouve ses esprits.`)
+        }
+        combat.memberPassiveState[memberIndex] = pst
+    }
+
+    // Ecaflip : roulette à chaque cycle — tire 1 effet parmi 6, remplace le précédent
+    if (passive.id === 'ecaflip') {
+        const ROULETTE = [
+            { stat: 'finalDamagePct', value:  15, label: '+15% dégâts' },
+            { stat: 'finalDamagePct', value:  -5, label: '-5% dégâts'  },
+            { stat: 'critChance',     value:  15, label: '+15% crit'    },
+            { stat: 'critChance',     value:  -5, label: '-5% crit'     },
+            { stat: 'res_all',        value:  10, label: '+10% rés all' },
+            { stat: 'res_all',        value:  -5, label: '-5% rés all'  },
+        ]
+        const rolled = ROULETTE[Math.floor(Math.random() * ROULETTE.length)]
+        if (!combat.memberPassiveState[memberIndex]) combat.memberPassiveState[memberIndex] = {}
+        combat.memberPassiveState[memberIndex].ecaflipEffect = rolled
+        addLog(`${member.name} [Roulette] → ${rolled.label} jusqu'au prochain cycle !`)
+    }
 }
 
 function executeEffect(ctx) {
@@ -375,7 +498,29 @@ function executeEffect(ctx) {
                 if (targetEnemy.shield.value <= 0) targetEnemy.shield = null
             }
 
+            // Renvoi : la cible renvoie les dégâts à l'attaquant
+            if (targetEnemy.renvoi && dmg > 0) {
+                const reflectedDmg = Math.max(1, Math.floor(dmg * targetEnemy.renvoi.ratio))
+                delete targetEnemy.renvoi
+                if (result.isCrit) addLog(`💥 Coup critique !`)
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → renvoyé ! ${reflectedDmg} dégâts à l'attaquant`)
+                ctx.caster.currentHp = Math.max(0, (ctx.caster.currentHp || 0) - reflectedDmg)
+                const renvoidIdx = state.team.indexOf(ctx.caster)
+                if (combat && renvoidIdx !== -1) {
+                    combat.sessionLoot.memberDamageReceived[renvoidIdx] = (combat.sessionLoot.memberDamageReceived[renvoidIdx] || 0) + reflectedDmg
+                }
+                if (ctx.caster.currentHp <= 0 && renvoidIdx !== -1) {
+                    _autoSwitchActive()
+                    if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
+                }
+                return 0
+            }
+
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
+            const memberHitIdx = state.team.indexOf(targetEnemy)
+            if (combat && memberHitIdx !== -1 && dmg > 0) {
+                combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + dmg
+            }
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
@@ -394,6 +539,13 @@ function executeEffect(ctx) {
             const healAmt = effect.heal || 0
             caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
             addLog(`${moveData.name} → soigne ${healAmt} PV`)
+            break
+        }
+
+        case 'heal%maxHp': {
+            const healAmt = Math.floor((caster.maxHp || 0) * ((effect.heal || 0) / 100))
+            caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
+            addLog(`${moveData.name} → soigne ${healAmt} PV (${effect.heal}% PV max)`)
             break
         }
 
@@ -449,8 +601,81 @@ function executeEffect(ctx) {
             break
         }
 
+        case 'renvoi': {
+            caster.renvoi = { ratio: effect.ratio }
+            addLog(`${moveData.name} → renvoi ${Math.round(effect.ratio * 100)}% actif`)
+            break
+        }
+
+        case 'switch': {
+            // Liste des indices d'équipe encore en vie
+            const living = []
+            for (let i = 0; i < state.team.length; i++) {
+                const m = state.team[i]
+                if (m && m.currentHp > 0) living.push(i)
+            }
+            // Besoin d'au moins 2 membres vivants
+            if (living.length <= 1) break
+            const curPos = living.indexOf(combat.activeMemberIndex)
+            // Si pas assez de membres pour avancer de value, aller au dernier disponible
+            const targetPos = Math.min(curPos + (effect.value || 1), living.length - 1)
+            // Aucun suivant (membre actif est déjà le dernier vivant)
+            if (targetPos === curPos) break
+            addLog(`${moveData.name} → changement de membre forcé !`)
+            setActiveMember(living[targetPos])
+            break
+        }
+
+        case 'repeat': {
+            const prevMv = ctx.prevMv
+            if (!prevMv?.effects) break
+            addLog(`${moveData.name} → relance ${prevMv.name} !`)
+            let repeatLastDmg = 0
+            for (const prevEffect of prevMv.effects) {
+                if (prevEffect.type === 'repeat') continue  // évite la récursion infinie
+                const dmg = executeEffect({ ...ctx, effect: prevEffect, moveData: prevMv, prevMv: null, lastDamageDealt: repeatLastDmg })
+                if (dmg !== undefined) repeatLastDmg = dmg
+            }
+            break
+        }
+
         case 'summon': {
-            spawnSummon(caster, effect)
+            let summonId = effect.summonId
+            if (effect.summonPool?.length) {
+                summonId = effect.summonPool[Math.floor(Math.random() * effect.summonPool.length)]
+            }
+            if (summonId) spawnSummon(caster, { ...effect, summonId })
+            break
+        }
+
+        case 'portal': {
+            // Éliotrope : portail actif N tours — boost caster +25% dmg, -10% res, alliés +10% dmg
+            const dur      = effect.duration || 3
+            const selfBonus = effect.selfBonus  || 25
+            const resMalus  = effect.resMalus   || 10
+            const allyBonus = effect.allyBonus  || 10
+            caster.buffs = caster.buffs || []
+            caster.buffs.push({ stat: 'finalDamagePct', value:  selfBonus, duration: dur })
+            caster.buffs.push({ stat: 'res_all',        value: -resMalus,  duration: dur })
+            for (const m of state.team) {
+                if (!m || m === caster || m.currentHp <= 0) continue
+                m.buffs = m.buffs || []
+                m.buffs.push({ stat: 'finalDamagePct', value: allyBonus, duration: dur })
+            }
+            addLog(`${moveData.name} → Portail ! +${selfBonus}% dmg, -${resMalus}% rés, alliés +${allyBonus}% dmg (${dur} tours)`)
+            break
+        }
+
+        case 'turret': {
+            // Steamer : tourelle — DoT élémentaire sur l'ennemi, label personnalisé
+            targetEnemy.dots = targetEnemy.dots || []
+            targetEnemy.dots.push({
+                label:    'Tourelle',
+                element:  effect.element  || 'neutre',
+                value:    effect.value,
+                duration: effect.duration || 3
+            })
+            addLog(`${moveData.name} → Tourelle déployée ! ${effect.value} dégâts/${effect.element || 'neutre'} × ${effect.duration || 3} tours`)
             break
         }
     }
@@ -467,12 +692,15 @@ function executeEnemyAction() {
     })
     if (!combat.enemy || combat.enemy.currentHp <= 0) return
 
-    const e      = combat.enemy
-    const moveId = e.moves[e.moveIndex % e.moves.length]
+    const e          = combat.enemy
+    const curMoveIdx = e.moveIndex % e.moves.length
+    const moveId     = e.moves[curMoveIdx]
     e.moveIndex++
     if (!moveId) return
     const mv = move[moveId]
     if (!mv?.effects) return
+    const prevMoveIdx = (curMoveIdx - 1 + e.moves.length) % e.moves.length
+    const prevMv      = e.moves[prevMoveIdx] ? (move[e.moves[prevMoveIdx]] || null) : null
 
     // cible = membre actif
     const target = state.team[combat.activeMemberIndex]
@@ -505,6 +733,7 @@ function executeEnemyAction() {
             targetStats,
             effect,
             moveData:    mv,
+            prevMv,
             lastDamageDealt,
             logPrefix,
             onTargetKill: () => {
@@ -542,9 +771,17 @@ function pickNextEnemyMove(enemy) {
 
 function tickDots(entity, onKill) {
     if (!entity.dots?.length) return
+    let dotTotalDmg = 0
     for (const dot of entity.dots) {
         entity.currentHp = Math.max(0, entity.currentHp - dot.value)
-        addLog(`Brûlure → ${dot.value} dégâts`)
+        addLog(`${dot.label || 'Brûlure'} → ${dot.value} dégâts`)
+        dotTotalDmg += dot.value
+    }
+    if (combat && dotTotalDmg > 0) {
+        const idx = state.team.indexOf(entity)
+        if (idx !== -1) {
+            combat.sessionLoot.memberDamageReceived[idx] = (combat.sessionLoot.memberDamageReceived[idx] || 0) + dotTotalDmg
+        }
     }
     entity.dots = entity.dots
         .map(d => ({ ...d, duration: d.duration - 1 }))
@@ -557,17 +794,19 @@ function tickDots(entity, onKill) {
 function spawnSummon(caster, effect) {
     const mob = monsters[effect.summonId]
     if (!mob) return
-    const level = caster.level || 1
-    const scale = 1 + ((level - 1) * 0.08)
+    const level    = caster.level || 1
+    const scale    = 1 + ((level - 1) * 0.08)
+    // Osamodas : invocations avec 2× PV et ATK
+    const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
     combat.savedEnemy = combat.enemy
     combat.enemy = {
         id:               effect.summonId,
         name:             mob.name,
         level,
         image:            mob.image,
-        maxHp:            Math.floor(mob.bst.hp  * scale),
-        currentHp:        Math.floor(mob.bst.hp  * scale),
-        atk:              Math.floor(mob.bst.atk * scale),
+        maxHp:            Math.floor(mob.bst.hp  * scale * statMult),
+        currentHp:        Math.floor(mob.bst.hp  * scale * statMult),
+        atk:              Math.floor(mob.bst.atk * scale * statMult),
         spd:              mob.bst.spd,
         res:              { ...mob.bst.res },
         bonusAtkPct:      0,
@@ -628,6 +867,10 @@ function onVictory() {
 
     combat.pendingLoot = loot
     combat.sessionLoot.killCount++
+
+    // Kill credit pour passifs Sram / Féca
+    const killerIdx = combat.activeMemberIndex
+    combat.memberKillCount[killerIdx] = (combat.memberKillCount[killerIdx] || 0) + 1
 
     // Accumule le loot de session
     if (loot.itemDrops?.length > 0) {
@@ -776,8 +1019,25 @@ function setActiveMember(index) {
 
 function _autoSwitchActive() {
     if (!combat) return
-    const cur = state.team[combat.activeMemberIndex]
+    const cur    = state.team[combat.activeMemberIndex]
+    const curIdx = combat.activeMemberIndex
     if (cur && cur.currentHp > 0) return
+
+    // Passif Roublard : explosion à la mort (une seule fois par membre)
+    if (cur && !combat.memberDeathHandled?.[curIdx]) {
+        combat.memberDeathHandled[curIdx] = true
+        if (classes[cur.classId]?.passive?.id === 'roublard' && combat.enemy?.currentHp > 0) {
+            const dmg = Math.floor((cur.maxHp || 0) * 0.30)
+            combat.enemy.currentHp = Math.max(0, combat.enemy.currentHp - dmg)
+            addLog(`${cur.name} [Passif] → Mort Explosive ! ${dmg} dégâts à ${combat.enemy.name} !`)
+            if (combat.enemy.currentHp <= 0) {
+                if (combat.enemy.isSummon) returnToOwner()
+                else onVictory()
+                return
+            }
+        }
+    }
+
     const next = state.team.findIndex(m => m && m.currentHp > 0)
     if (next !== -1) combat.activeMemberIndex = next
 }

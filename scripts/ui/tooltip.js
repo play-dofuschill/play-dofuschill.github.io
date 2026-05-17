@@ -1,5 +1,122 @@
 // ui/tooltip.js — Aide contextuelle DofusChill (clic droit / long-press)
 
+// ─── Image genrée ────────────────────────────────────────────────────────────
+// Remplace le suffixe _Male / _Female dans le chemin d'image selon member.gender
+
+function getMemberImage(member) {
+    const cls = classes[member?.classId]
+    if (!cls?.image) return 'img/icons/icon.png'
+    const suffix = (member?.gender === 'female') ? 'Female' : 'Male'
+    return cls.image.replace(/_(?:Male|Female)\.png$/i, `_${suffix}.png`)
+}
+
+// ─── Changement de genre (persiste dans state.classEquip + saveGame) ─────────
+
+function setMemberGender(classId, gender) {
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+    member.gender = gender
+    if (!state.classEquip)          state.classEquip = {}
+    if (!state.classEquip[classId]) state.classEquip[classId] = {}
+    state.classEquip[classId].gender = gender
+    saveGame()
+    // Pop silencieux : remplace la fiche sans l'empiler (évite la double-fermeture)
+    if (tooltipStack.length > 0) tooltipStack.pop()
+    showMemberSheet(member)
+    updateTeamUI()
+    if (typeof updateGuildeUI === 'function') updateGuildeUI()
+}
+
+// Slot actif sélectionné pour l'échange de sorts { classId, slot } | null
+let _selectedMoveSlot = null
+
+// ─── Renommage d'un membre ────────────────────────────────────────────────────
+
+function renameMember(classId) {
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+    const cls = classes[classId]
+    const current = member.name || ''
+    const newName = prompt(`Pseudo pour ${cls?.name || classId} (laisser vide pour revenir au nom de classe) :`, current)
+    if (newName === null) return
+    const trimmed = newName.trim().slice(0, 24)
+    member.name = trimmed || null
+    if (!state.classEquip)          state.classEquip = {}
+    if (!state.classEquip[classId]) state.classEquip[classId] = {}
+    state.classEquip[classId].name = member.name
+    saveGame()
+    if (tooltipStack.length > 0) tooltipStack.pop()
+    showMemberSheet(member)
+    updateTeamUI()
+}
+
+// Clic sur un slot actif : sélectionne, désélectionne ou échange deux slots
+function selectMoveSlot(classId, slot) {
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+
+    if (_selectedMoveSlot?.classId === classId && _selectedMoveSlot?.slot === slot) {
+        _selectedMoveSlot = null
+    } else if (_selectedMoveSlot?.classId === classId) {
+        const a = _selectedMoveSlot.slot
+        const tmp = member.moves[a]
+        member.moves[a] = member.moves[slot]
+        member.moves[slot] = tmp
+        _selectedMoveSlot = null
+        saveGame()
+        updateTeamUI()
+    } else {
+        _selectedMoveSlot = { classId, slot }
+    }
+
+    if (tooltipStack.length > 0) tooltipStack.pop()
+    showMemberSheet(member)
+}
+
+// Clic sur un sort appris : l'assigne dans le slot sélectionné
+function assignMoveToSlot(classId, moveId) {
+    if (!_selectedMoveSlot || _selectedMoveSlot.classId !== classId) return
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+
+    const targetSlot = _selectedMoveSlot.slot
+    const displaced  = member.moves[targetSlot]
+
+    // Si le sort est déjà dans un autre slot actif → échange (garde 4 slots remplis)
+    let sourceSlot = null
+    for (const s of ['slot1', 'slot2', 'slot3', 'slot4']) {
+        if (member.moves[s] === moveId && s !== targetSlot) { sourceSlot = s; break }
+    }
+
+    member.moves[targetSlot] = moveId
+    if (sourceSlot) member.moves[sourceSlot] = displaced
+
+    _selectedMoveSlot = null
+    saveGame()
+    updateTeamUI()
+
+    if (tooltipStack.length > 0) tooltipStack.pop()
+    showMemberSheet(member)
+}
+
+const PATCH_STAT_LABELS = {
+    atk:                'Puissance',
+    spd:                'Initiative',
+    maxHp:              'Points de Vie',
+    flatDamage:         'Dégâts fixes',
+    finalDamagePct:     'Dégâts finaux',
+    spellDamagePct:     'Dégâts de sorts',
+    damageReductionPct: 'Réduction de dégâts',
+    critChance:         'Chance critique',
+    critDamagePct:      'Dégâts critiques',
+    res_all:            'Résistances',
+    fireResPct:         'Résistance Feu',
+    waterResPct:        'Résistance Eau',
+    earthResPct:        'Résistance Terre',
+    airResPct:          'Résistance Air',
+    neutralResPct:      'Résistance Neutre',
+}
+
 const MS_SLOT_LABELS = {
     coiffe: 'Coiffe', bouclier: 'Bouclier', anneau: 'Anneau', ceinture: 'Ceinture',
     bottes: 'Bottes', amulette: 'Amulette', arme: 'Arme', cape: 'Cape',
@@ -142,13 +259,16 @@ function showMemberSheet(member) {
     // Sorts actifs (4 slots)
     const slotKeys = ['slot1', 'slot2', 'slot3', 'slot4']
     const activeMoves = slotKeys.map(s => {
-        const moveId  = member.moves?.[s]
-        const mv      = move[moveId]
-        if (!mv) return `<div class="ms-move-slot ms-move-empty">—</div>`
+        const moveId     = member.moves?.[s]
+        const mv         = move[moveId]
+        const isSelected = _selectedMoveSlot?.classId === member.classId && _selectedMoveSlot?.slot === s
+        const selStyle   = isSelected ? 'outline:2px solid #f44336;outline-offset:2px;' : ''
+        if (!mv) return `<div class="ms-move-slot ms-move-empty" onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}">—</div>`
         const elem    = mv.effects?.[0]?.element || 'neutre'
         const mvType  = mv.effects?.[0]?.type || ''
         const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'malus' : elem
-        return `<div class="ms-move-slot elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${member.classId}">
+        return `<div class="ms-move-slot elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${member.classId}"
+                     onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}">
             <span class="ms-move-name">${mv.name}</span>
             ${elemIcon(elem, 'ms-move-icon')}
         </div>`
@@ -179,8 +299,10 @@ function showMemberSheet(member) {
         const locked  = lvl < unlock
         const eqClass = !locked && equippedSet.has(moveId) ? ' ms-move-equipped' : ''
         const lockedClass = locked ? ' ms-move-locked' : ''
+        const canAssign = !locked && _selectedMoveSlot?.classId === member.classId
+        const assignAttrs = canAssign ? `onclick="assignMoveToSlot('${member.classId}','${moveId}')" style="cursor:pointer;"` : ''
 
-        return `<div class="ms-learned-row${eqClass}${lockedClass}" data-move-id="${moveId}" data-caster-class="${member.classId}">
+        return `<div class="ms-learned-row${eqClass}${lockedClass}" data-move-id="${moveId}" data-caster-class="${member.classId}" ${assignAttrs}>
             ${elemIcon(elem, 'ms-learned-icon')}
             <span class="ms-learned-name">${mv.name}</span>
             ${locked
@@ -201,7 +323,23 @@ function showMemberSheet(member) {
                 ${msEquipSlot('bottes')}
             </div>
             <div class="ms-sprite-col">
-                <img class="ms-sprite" src="${cls.image}" onerror="this.src='img/icons/icon.png'">
+                <img class="ms-sprite" src="${getMemberImage(member)}" onerror="this.src='img/icons/icon.png'">
+                ${member.name ? `<div style="text-align:center;font-size:0.7rem;opacity:0.6;margin-top:0.2rem;">${cls.name}</div>` : ''}
+                <div style="display:flex;gap:0.3rem;margin-top:0.3rem;justify-content:center;">
+                    <button onclick="setMemberGender('${member.classId}','male')"
+                        style="padding:0.2rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.75rem;
+                               background:${(member.gender||'male')==='male'?'#5dade2':'rgba(255,255,255,0.12)'};
+                               color:${(member.gender||'male')==='male'?'#0d0d1a':'#ccc'};">♂</button>
+                    <button onclick="setMemberGender('${member.classId}','female')"
+                        style="padding:0.2rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.75rem;
+                               background:${member.gender==='female'?'#e25d9e':'rgba(255,255,255,0.12)'};
+                               color:${member.gender==='female'?'#0d0d1a':'#ccc'};">♀</button>
+                </div>
+                <div style="display:flex;justify-content:center;margin-top:0.25rem;">
+                    <button onclick="renameMember('${member.classId}')"
+                        style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
+                               background:rgba(255,255,255,0.1);color:#ccc;">✏ Renommer</button>
+                </div>
             </div>
             <div class="ms-equip-col">
                 ${msEquipSlot('amulette')}
@@ -240,7 +378,7 @@ function showMemberSheet(member) {
         <div class="ms-learned-moves">${learnedRows}</div>
     </div>`
 
-    openTooltip(`${cls.name} — Niveau ${lvl}`, body)
+    openTooltip(`${member.name || cls.name} — Niveau ${lvl}`, body)
 }
 
 // ─── Sélecteur d'équipement depuis la fiche ───────────────────────────────────
@@ -708,8 +846,19 @@ function showMoveTooltip(moveId, casterStats) {
             const changes = []
             if (patch.damage)    changes.push(`dégâts ${patch.damage.min}–${patch.damage.max}`)
             if (patch.lifesteal) changes.push(`vol de vie ${Math.round(patch.lifesteal.ratio * 100)}%`)
-            if (patch.heal)      changes.push(`soin ${patch.heal.value ?? patch.heal}`)
-            if (patch.shield)    changes.push(`bouclier ${patch.shield.value ?? patch.shield}`)
+            if (patch.heal != null)    changes.push(`soin ${patch.heal}`)
+            if (patch.healPct != null) changes.push(`soin ${patch.healPct}% PV max`)
+            if (patch.shield)    changes.push(`bouclier ${patch.shield.value ?? '?'}`)
+            if (patch.buff) {
+                const _s   = PATCH_STAT_LABELS[patch.buff.stat] || patch.buff.stat || ''
+                const _sgn = patch.buff.value >= 0 ? '+' : ''
+                const _dur = patch.buff.duration ? ` (${patch.buff.duration} tours)` : ''
+                changes.push(`${_sgn}${patch.buff.value} ${_s}${_dur}`)
+            }
+            if (patch.dot) {
+                const _dur = patch.dot.duration ? ` ×${patch.dot.duration} tours` : ''
+                changes.push(`Brûlure ${patch.dot.value ?? '?'}${_dur}`)
+            }
             return `<div class="mt-prog-row">
                 <span class="mt-prog-lvl">Niv. ${entry.lvl}</span>
                 <span class="mt-prog-val">${changes.length ? changes.join(', ') : 'base'}</span>

@@ -216,7 +216,7 @@ function renderTeamSlots(container) {
         div.innerHTML = `
             <div class="explore-team-member-flair"></div>
             <div class="member-sprite-wrap">
-                <img class="member-sprite" src="${cls?.image}" onerror="this.src='img/icons/icon.png'">
+                <img class="member-sprite" src="${getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">
             </div>
             <div class="member-info">
                 <div class="member-title-row">

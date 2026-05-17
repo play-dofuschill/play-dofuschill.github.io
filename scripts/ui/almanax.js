@@ -67,7 +67,7 @@ function updateArchivesUI() {
     const teamHtml = teamMembers.length > 0
         ? teamMembers.map(m => `
             <div class="alm-team-row">
-                <img src="${classes[m.classId]?.image || 'img/icons/icon.png'}" class="alm-team-icon" onerror="this.src='img/icons/icon.png'">
+                <img src="${getMemberImage(m)}" class="alm-team-icon" onerror="this.src='img/icons/icon.png'">
                 <span>${m.name || m.classId}</span>
                 <span class="alm-stat-val">Niv. ${m.level}</span>
             </div>`).join('')

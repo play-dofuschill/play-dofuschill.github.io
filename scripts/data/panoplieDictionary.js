@@ -39,7 +39,7 @@ const panoplies = {
     },
     bouftou: {
         name: 'Panoplie Bouftou',
-        pieces: ['capeBouftou','coiffeBouftou','bottesBouftou','anneauBouftou','amuletteBouftou','ceintureBouftou','marteauBouftou','bouclierBouftou'],
+        pieces: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou'],
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 30 }]
         },
@@ -58,7 +58,7 @@ const panoplies = {
     },
     bouftouRoyal: {
         name: 'Panoplie du Bouftou Royal',
-        pieces: ['capeKardorim','chapeauKardorim','anneauKardorim'],
+        pieces: ['cape_bouftou_royal','coiffe_bouftou_royal','bottes_bouftou_royal','anneau_bouftou_royal','amulette_bouftou_royal','ceinture_bouftou_royal','epee_bouftou_royal','bouclier_bouftou_royal'],
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 40 },
                         { stat: 'atk', value: 20 }]

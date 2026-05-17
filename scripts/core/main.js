@@ -426,33 +426,57 @@ function showSessionSummary(type) {
 
 function showDamagePopup() {
     const session = (typeof combat !== 'undefined' && combat) ? combat.sessionLoot : null
-    const memberDamage = session?.memberDamage || {}
-    const total = Object.values(memberDamage).reduce((s, v) => s + v, 0)
 
-    const rows = Object.entries(memberDamage)
-        .sort(([, a], [, b]) => b - a)
-        .map(([idx, dmg]) => {
-            const member = state.team[parseInt(idx)]
-            if (!member) return ''
-            const cls = classes[member.classId]
-            const pct = total > 0 ? Math.round((dmg / total) * 100) : 0
-            const bar = `<div style="height:0.35rem;border-radius:0.2rem;background:rgba(255,255,255,0.12);margin-top:0.2rem;">
-                <div style="width:${pct}%;height:100%;background:#5dade2;border-radius:0.2rem;"></div></div>`
-            return `<div class="ms-stat-row" style="flex-direction:column;align-items:flex-start;gap:0.1rem;">
-                <div style="display:flex;align-items:center;gap:0.5rem;width:100%;">
-                    <img src="${cls?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'"
-                         style="width:2rem;height:2rem;object-fit:contain;flex-shrink:0;image-rendering:pixelated;">
-                    <span class="ms-stat-label">${cls?.name || '?'} <small style="opacity:0.45">niv.${member.level}</small></span>
-                    <span class="ms-stat-val" style="margin-left:auto;">${dmg.toLocaleString('fr-FR')} dég — ${pct}%</span>
-                </div>
-                ${bar}
-            </div>`
-        }).join('')
+    function buildPanel(damageMap, barColor) {
+        const total = Object.values(damageMap).reduce((s, v) => s + v, 0)
+        if (total === 0) return { html: '<span style="opacity:0.45;font-size:0.85rem">Aucun dégât enregistré.</span>', total }
+        const rows = Object.entries(damageMap)
+            .sort(([, a], [, b]) => b - a)
+            .map(([idx, dmg]) => {
+                const member = state.team[parseInt(idx)]
+                if (!member) return ''
+                const cls = classes[member.classId]
+                const pct = Math.round((dmg / total) * 100)
+                const bar = `<div style="height:0.35rem;border-radius:0.2rem;background:rgba(255,255,255,0.12);margin-top:0.2rem;">
+                    <div style="width:${pct}%;height:100%;background:${barColor};border-radius:0.2rem;"></div></div>`
+                return `<div class="ms-stat-row" style="flex-direction:column;align-items:flex-start;gap:0.1rem;">
+                    <div style="display:flex;align-items:center;gap:0.5rem;width:100%;">
+                        <img src="${cls?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'"
+                             style="width:2rem;height:2rem;object-fit:contain;flex-shrink:0;image-rendering:pixelated;">
+                        <span class="ms-stat-label">${cls?.name || '?'} <small style="opacity:0.45">niv.${member.level}</small></span>
+                        <span class="ms-stat-val" style="margin-left:auto;">${dmg.toLocaleString('fr-FR')} — ${pct}%</span>
+                    </div>
+                    ${bar}
+                </div>`
+            }).join('')
+        return { html: rows, total }
+    }
+
+    const dealt    = buildPanel(session?.memberDamage         || {}, '#5dade2')
+    const received = buildPanel(session?.memberDamageReceived || {}, '#e25d5d')
+    const kills    = session?.killCount || 0
+
+    const tabOn  = 'flex:1;padding:0.35rem 0;border:none;border-radius:0.4rem;cursor:pointer;font-size:0.82rem;font-weight:bold;background:var(--dark3,#2a2a2a);color:#fff;'
+    const tabOff = 'flex:1;padding:0.35rem 0;border:none;border-radius:0.4rem;cursor:pointer;font-size:0.82rem;font-weight:bold;background:transparent;color:rgba(255,255,255,0.35);'
 
     const body = `<div class="member-sheet">
-        <div class="ms-section-title">Total : ${total.toLocaleString('fr-FR')} dégâts — ${session?.killCount || 0} ennemi${(session?.killCount || 0) > 1 ? 's' : ''}</div>
-        <div class="ms-stats" style="gap:0.6rem;">
-            ${rows || '<span style="opacity:0.45;font-size:0.85rem">Aucun dégât enregistré.</span>'}
+        <div style="display:flex;gap:0.4rem;margin-bottom:0.7rem;">
+            <button id="dmg-tab-dealt" style="${tabOn}"
+                onclick="document.getElementById('dmg-panel-dealt').style.display='';document.getElementById('dmg-panel-received').style.display='none';document.getElementById('dmg-tab-dealt').style.cssText='${tabOn}';document.getElementById('dmg-tab-received').style.cssText='${tabOff}'">
+                Infligés
+            </button>
+            <button id="dmg-tab-received" style="${tabOff}"
+                onclick="document.getElementById('dmg-panel-received').style.display='';document.getElementById('dmg-panel-dealt').style.display='none';document.getElementById('dmg-tab-received').style.cssText='${tabOn}';document.getElementById('dmg-tab-dealt').style.cssText='${tabOff}'">
+                Subis
+            </button>
+        </div>
+        <div id="dmg-panel-dealt">
+            <div class="ms-section-title">${dealt.total.toLocaleString('fr-FR')} dégâts — ${kills} ennemi${kills > 1 ? 's' : ''} vaincu${kills > 1 ? 's' : ''}</div>
+            <div class="ms-stats" style="gap:0.6rem;">${dealt.html}</div>
+        </div>
+        <div id="dmg-panel-received" style="display:none;">
+            <div class="ms-section-title">${received.total.toLocaleString('fr-FR')} dégâts reçus</div>
+            <div class="ms-stats" style="gap:0.6rem;">${received.html}</div>
         </div>
     </div>`
 

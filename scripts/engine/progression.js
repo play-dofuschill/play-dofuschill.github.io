@@ -8,41 +8,40 @@ function getXPRequired(level) {
     }
 
     if (level <= 40) {
-        return Math.floor(600 + Math.pow(level, 1.9) * 20);
+        return Math.floor(300 + Math.pow(level, 1.5) * 20);
     }
 
     if (level <= 60) {
-        return Math.floor(1200 + Math.pow(level, 2.0) * 22);
+        return Math.floor(600 + Math.pow(level, 1.5) * 23);
     }
 
     if (level <= 80) {
-        return Math.floor(2500 + Math.pow(level, 2.1) * 25);
+        return Math.floor(900 + Math.pow(level, 1.5) * 27);
     }
 
     if (level <= 100) {
-        return Math.floor(5000 + Math.pow(level, 2.2) * 28);
+        return Math.floor(1200 + Math.pow(level, 1.5) * 32);
     }
 
     if (level <= 120) {
-        return Math.floor(8000 + Math.pow(level, 2.3) * 32);
+        return Math.floor(1500 + Math.pow(level, 1.5) * 38);
     }
 
     if (level <= 140) {
-        return Math.floor(12000 + Math.pow(level, 2.4) * 38);
+        return Math.floor(1800 + Math.pow(level, 1.5) * 43);
     }
 
     if (level <= 160) {
-        return Math.floor(16000 + Math.pow(level, 2.5) * 45);
+        return Math.floor(2100 + Math.pow(level, 1.5) * 58);
     }
 
     if (level <= 180) {
-        return Math.floor(22000 + Math.pow(level, 2.6) * 55);
+        return Math.floor(2400 + Math.pow(level, 1.5) * 64);
     }
 
-    return Math.floor(30000 + Math.pow(level, 2.75) * 70);
+    return Math.floor(3000 + Math.pow(level, 1.5) * 75);
 }
 
-// const XP_PER_LEVEL = 100  // XP nécessaire par niveau (linéaire pour la démo)
 const LEVEL_CAP    = 200
 
 // ─── Initialise un membre d'équipe à partir d'un classId ─────────────────────
@@ -56,6 +55,7 @@ function createTeamMember(classId, level) {
         classId,
         level: lv,
         exp: 0,
+        gender: 'male',
         moves: { slot1: null, slot2: null, slot3: null, slot4: null },
         equip: {
             coiffe: null, bouclier: null, anneau: null, ceinture: null, bottes: null,
@@ -180,6 +180,27 @@ function applyProgression(spell, lvl) {
         }
         if (effect.type === 'lifesteal' && patch.lifesteal) {
             effect.ratio = patch.lifesteal.ratio
+        }
+        // buff / debuff : patch ciblé par stat (ou premier buff si pas de stat spécifiée)
+        if ((effect.type === 'buff' || effect.type === 'debuff') && patch.buff) {
+            if (!patch.buff.stat || patch.buff.stat === effect.stat) {
+                if (patch.buff.value    !== undefined) effect.value    = patch.buff.value
+                if (patch.buff.duration !== undefined) effect.duration = patch.buff.duration
+            }
+        }
+        if (effect.type === 'dot' && patch.dot) {
+            if (patch.dot.value    !== undefined) effect.value    = patch.dot.value
+            if (patch.dot.duration !== undefined) effect.duration = patch.dot.duration
+        }
+        if (effect.type === 'heal' && patch.heal !== undefined) {
+            effect.heal = patch.heal
+        }
+        if (effect.type === 'heal%maxHp' && patch.healPct !== undefined) {
+            effect.heal = patch.healPct
+        }
+        if (effect.type === 'shield' && patch.shield) {
+            if (patch.shield.value    !== undefined) effect.value    = patch.shield.value
+            if (patch.shield.duration !== undefined) effect.duration = patch.shield.duration
         }
     }
 
