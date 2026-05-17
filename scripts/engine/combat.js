@@ -208,6 +208,14 @@ function leaveCombat() {
 
 function rejoinArea() {
     if (!state.currentArea) return
+    const area = areas[state.currentArea]
+    if (area?.keyId) {
+        const keyCount = state.inventory[area.keyId]?.count || 0
+        if (keyCount === 0) {
+            showNotification('Aucune clé disponible pour ce donjon !', 'error')
+            return
+        }
+    }
     document.getElementById('main-content').style.zIndex = ''
     startCombat(state.currentArea)
 }
