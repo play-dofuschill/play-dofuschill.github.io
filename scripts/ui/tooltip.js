@@ -52,6 +52,7 @@ function renameMember(classId) {
 
 // Clic sur un slot actif : sélectionne, désélectionne ou échange deux slots
 function selectMoveSlot(classId, slot) {
+    if (typeof combat !== 'undefined' && combat) return
     const member = state.team.find(m => m && m.classId === classId)
     if (!member) return
 
@@ -75,6 +76,7 @@ function selectMoveSlot(classId, slot) {
 
 // Clic sur un sort appris : l'assigne dans le slot sélectionné
 function assignMoveToSlot(classId, moveId) {
+    if (typeof combat !== 'undefined' && combat) return
     if (!_selectedMoveSlot || _selectedMoveSlot.classId !== classId) return
     const member = state.team.find(m => m && m.classId === classId)
     if (!member) return
