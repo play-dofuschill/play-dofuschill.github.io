@@ -36,11 +36,11 @@
                 
             </div>
             <div class="bag-category-tabs">
-                <button class="bag-tab active" data-cat="equipment"  onclick="setInventoryFilter('equipment')">⚔ Items</button>
-                <button class="bag-tab"        data-cat="dofus"      onclick="setInventoryFilter('dofus')">🔮 Dofus/Trophées</button>
-                <button class="bag-tab"        data-cat="consumable" onclick="setInventoryFilter('consumable')">🍶 Conso</button>
-                <button class="bag-tab"        data-cat="cosmetic"   onclick="setInventoryFilter('cosmetic')">✨ Cosmétiques</button>
-                <button class="bag-tab"        data-cat="divers"     onclick="setInventoryFilter('divers')">📦 Divers</button>
+                <button class="bag-tab active" data-cat="equipment"  onclick="setInventoryFilter('equipment')"><img src="img/icons/items.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Items</button>
+                <button class="bag-tab"        data-cat="dofus"      onclick="setInventoryFilter('dofus')"><img src="img/icons/dofus_trophees.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Dofus/Trophées</button>
+                <button class="bag-tab"        data-cat="consumable" onclick="setInventoryFilter('consumable')"><img src="img/icons/conso.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Conso</button>
+                <button class="bag-tab"        data-cat="cosmetic"   onclick="setInventoryFilter('cosmetic')"><img src="img/icons/consmetique.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Cosmétiques</button>
+                <button class="bag-tab"        data-cat="divers"     onclick="setInventoryFilter('divers')"><img src="img/icons/divers.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Divers</button>
             </div>
 
             <div id="equip-filters">
@@ -97,7 +97,7 @@
 
             <div class="zone-confirm-buttons">
                 <div class="team-header-button" onclick="cancelZoneConfirm()">
-                <svg style="margin-right: 1rem; background:#E46B6F;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10.928 21a2.98 2.98 0 0 1-2.121-.879L1.686 13l7.121-7.121c1.133-1.134 3.109-1.134 4.242 0c.566.564.879 1.317.879 2.119c0 .746-.27 1.451-.764 2.002H18c1.654 0 3 1.346 3 3s-1.346 3-3 3h-4.836c.493.549.764 1.252.764 1.998a2.98 2.98 0 0 1-.879 2.124a2.98 2.98 0 0 1-2.121.878m-6.414-8l5.707 5.707a1.023 1.023 0 0 0 1.414 0c.189-.189.293-.441.293-.708s-.104-.517-.291-.705L8.342 14H18a1.001 1.001 0 0 0 0-2H8.342l3.293-3.293a.996.996 0 0 0 .001-1.413a1.023 1.023 0 0 0-1.415-.001z"/></svg>
+                <img src="img/icons/retour.png" onerror="this.src='img/icons/icon.png'" style="margin-right: 1rem; width:48px; height:48px; object-fit:contain;">
                 Retour
                 </div>
 
@@ -106,7 +106,7 @@
                     <span id="zone-confirm-btn-text">Commencer</span>
                     <small id="zone-confirm-btn-sub" style="display:none; font-size:0.7em; opacity:0.8;"></small>
                 </div>
-                <svg style="margin-left: 1rem; border: 1px solid rgb(100, 220, 140);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                <img src="img/icons/commencer.png" onerror="this.src='img/icons/icon.png'" style="margin-left: 1rem; width:48px; height:48px; object-fit:contain;">
                 </div>
             </div>
 
@@ -147,7 +147,7 @@
                 <option value="preview30">Team 30</option>
             </select>
 
-            <svg onclick="editTeamName()" style="flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.777 19.783l.607-4.162c.037-.272.161-.525.355-.72L15.5 3.124a1.26 1.26 0 0 1 1.19-.341a6.2 6.2 0 0 1 2.832 1.694a6.2 6.2 0 0 1 1.682 2.846a1.26 1.26 0 0 1-.341 1.19L9.089 20.275a1.26 1.26 0 0 1-.721.354l-4.161.607a1.264 1.264 0 0 1-1.43-1.454M13.275 5.364l5.363 5.363"/></svg>
+            <img src="img/icons/modifier.png" onclick="editTeamName()" onerror="this.src='img/icons/icon.png'" style="flex-shrink:0;width:24px;height:24px;object-fit:contain;cursor:pointer;">
 
         </div>
 
@@ -358,7 +358,7 @@
                     <div class="shop-tab"        data-cat="cosmetics"   onclick="setShopFilter('cosmetics')">Cosmétiques</div>
                 </div>
                 <div class="shop-header-kamas">
-                    <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon-header">
+                    <img src="img/icons/total_kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon-header">
                     <span id="shop-kamas-amount">0</span>
                     <span>Kamas</span>
                 </div>
@@ -414,13 +414,13 @@
 
         <div class="explore-menu-selector" id="explore-selector">
             <div class="explore-tab-active" onclick="setZoneTab('wild')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m17.861 3.163l.16.054l1.202.4c.463.155.87.29 1.191.44c.348.162.667.37.911.709s.341.707.385 1.088c.04.353.04.781.04 1.27v8.212c0 .698 0 1.287-.054 1.753c-.056.484-.182.962-.535 1.348a2.25 2.25 0 0 1-.746.538c-.478.212-.971.18-1.448.081c-.46-.096-1.018-.282-1.68-.503l-.043-.014c-1.12-.374-1.505-.49-1.877-.477a2.3 2.3 0 0 0-.441.059c-.363.085-.703.299-1.686.954l-1.382.922l-.14.093c-1.062.709-1.8 1.201-2.664 1.317c-.863.116-1.705-.165-2.915-.57l-.16-.053l-1.202-.4c-.463-.155-.87-.29-1.191-.44c-.348-.162-.667-.37-.911-.71c-.244-.338-.341-.706-.385-1.088c-.04-.353-.04-.78-.04-1.269V8.665c0-.699 0-1.288.054-1.753c.056-.484.182-.962.535-1.348a2.25 2.25 0 0 1 .746-.538c.478-.213.972-.181 1.448-.081c.46.095 1.018.282 1.68.503l.043.014c1.12.373 1.505.49 1.878.477a2.3 2.3 0 0 0 .44-.059c.363-.086.703-.3 1.686-.954l1.382-.922l.14-.094c1.062-.708 1.8-1.2 2.663-1.316c.864-.116 1.706.165 2.916.57m-2.111.943V16.58c.536.058 1.1.246 1.843.494l.125.042c.717.239 1.192.396 1.555.472c.356.074.477.04.532.016a.75.75 0 0 0 .249-.179c.04-.044.11-.149.152-.51c.043-.368.044-.869.044-1.624V7.163c0-.54-.001-.88-.03-1.138c-.028-.239-.072-.328-.112-.382c-.039-.054-.109-.125-.326-.226c-.236-.11-.56-.218-1.07-.389l-1.165-.388c-.887-.296-1.413-.464-1.797-.534m-1.5 12.654V4.434c-.311.18-.71.441-1.276.818l-1.382.922l-.11.073c-.688.46-1.201.802-1.732.994v12.326c.311-.18.71-.442 1.276-.819l1.382-.921l.11-.073c.688-.46 1.201-.802 1.732-.994m-6 3.135V7.42c-.536-.058-1.1-.246-1.843-.494l-.125-.042c-.717-.239-1.192-.396-1.556-.472c-.355-.074-.476-.041-.53-.017a.75.75 0 0 0-.25.18c-.04.043-.11.148-.152.509c-.043.368-.044.87-.044 1.625v8.128c0 .54.001.88.03 1.138c.028.239.072.327.112.382c.039.054.109.125.326.226c.236.11.56.218 1.07.389l1.165.388c.887.295 1.412.463 1.797.534" clip-rule="evenodd"/></svg>
+                <img src="img/icons/zones_sauvages.png" onerror="this.src='img/icons/icon.png'" style="width:24px;height:24px;object-fit:contain;">
                 Zones sauvages</div>
             <div onclick="setZoneTab('dungeon')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M4 10a8 8 0 1 1 16 0v8.667c0 1.246 0 1.869-.268 2.333a2 2 0 0 1-.732.732c-.464.268-1.087.268-2.333.268H7.333C6.087 22 5.464 22 5 21.732A2 2 0 0 1 4.268 21C4 20.536 4 19.913 4 18.667z"/><path d="M20 18H9c-.943 0-1.414 0-1.707.293S7 19.057 7 20v2m13-8h-7c-.943 0-1.414 0-1.707.293S11 15.057 11 16v2m9-8h-3c-.943 0-1.414 0-1.707.293S15 11.057 15 12v2"/></g></svg>
+                <img src="img/icons/donjons.png" onerror="this.src='img/icons/icon.png'" style="width:24px;height:24px;object-fit:contain;">
                 Donjons</div>
             <div onclick="setZoneTab('event')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m5.658 11.002l-1.47 3.308c-1.856 4.174-2.783 6.261-1.77 7.274s3.098.085 7.272-1.77L13 18.342c2.517-1.119 3.776-1.678 3.976-2.757s-.774-2.053-2.722-4l-1.838-1.839c-1.947-1.948-2.921-2.922-4-2.721c-1.079.2-1.638 1.459-2.757 3.976M6.5 10.5l7 7m-9-2l4 4M16 8l3-3m-4.803-3c.4.667.719 2.4-1.197 4m9 3.803c-.667-.4-2.4-.719-4 1.197m0-9v.02M22 6v.02M21 13v.02M11 3v.02"/></svg>
+                <img src="img/icons/events.png" onerror="this.src='img/icons/icon.png'" style="width:24px;height:24px;object-fit:contain;">
                 Événements</div>
         </div>
 
@@ -569,23 +569,6 @@
 
     </div>
 
-    <div id="tooltipBackground" onclick="if(event.target===this) closeTooltip()">
-        <div id="tooltipClose" onclick="closeTooltip()">✕</div>
-        <div id="tooltipBox">
-            <div id="tooltipTop">
-            </div>
-            <div id="tooltipTitle" >
-            </div>
-            <div id="tooltipMid" >
-
-            </div>
-            <div id="tooltipBottom" >
-
-            </div>
-
-        </div>
-    </div>
-
     <div id="content-explore" class="season-background" style="display:none">
 
         <!-- ── Ennemi ── -->
@@ -622,11 +605,21 @@
             Leave Combat
         </div>
 
-        <!-- ── Résumé de session (contenu généré par showSessionSummary) ── -->
-        <div id="area-end" style="display:none"></div>
+    </div>
 
     </div>
 
+    <!-- ── Résumé de session (contenu généré par showSessionSummary) ── -->
+    <div id="area-end" style="display:none"></div>
+
+    <div id="tooltipBackground" onclick="if(event.target===this) closeTooltip()">
+        <div id="tooltipClose" onclick="closeTooltip()">✕</div>
+        <div id="tooltipBox">
+            <div id="tooltipTop"></div>
+            <div id="tooltipTitle"></div>
+            <div id="tooltipMid"></div>
+            <div id="tooltipBottom"></div>
+        </div>
     </div>
 
     <div id="notification-container"></div>
@@ -648,12 +641,12 @@
         </div>
 
         <div class="menu-item" id="menu-item-team" onClick="switchMenu('team')">
-            <img src="img/icons/menu_team.png">
+            <img src="img/icons/team.png" onerror="this.src='img/icons/icon.png'">
             <span>Team</span>
         </div>
 
         <div class="menu-item" id="menu-item-guilde" onClick="switchMenu('guilde')">
-            <img src="img/icons/menu_team.png">
+            <img src="img/icons/guilde.png" onerror="this.src='img/icons/icon.png'">
             <span>Guilde</span>
         </div>
 
@@ -668,17 +661,17 @@
         </div>
 
         <div class="menu-item" id="menu-item-almanax" onClick="claimAlmanax()">
-            <img src="img/icons/menu_parametres.png">
+            <img src="img/icons/almanax.png" onerror="this.src='img/icons/icon.png'">
             <span>Almanax</span>
         </div>
 
         <div class="menu-item" id="menu-item-archives" onClick="switchMenu('archives')">
-            <img src="img/icons/menu_parametres.png">
+            <img src="img/icons/archives.png" onerror="this.src='img/icons/icon.png'">
             <span>Archives</span>
         </div>
 
         <div class="menu-item" id="menu-item-poutch" onClick="switchMenu('poutch')">
-            <img src="img/icons/menu_parametres.png" onerror="this.src='img/icons/icon.png'">
+            <img src="img/pnj/Poutch.png" onerror="this.src='img/icons/icon.png'">
             <span>Poutch</span>
         </div>
 
@@ -688,22 +681,24 @@
 
     <!-- Menu Archives / Sauvegarde -->
     <div id="archives-menu" style="display: none;" class="season-background">
-        <div class="alm-header">
-            <img src="img/icons/menu_parametres.png" class="alm-header-icon" onerror="this.src='img/icons/icon.png'">
+        <div id="archives-menu-header">
+            <img src="img/icons/archives.png" onerror="this.src='img/icons/icon.png'">
             <span>Archives</span>
         </div>
 
-        <div class="alm-card">
-            <div class="alm-section-title">Sauvegarde</div>
-            <p class="alm-desc">Exportez votre progression pour la transférer sur un autre appareil, ou importez un fichier existant.</p>
-            <div class="alm-actions">
-                <button class="alm-btn" onclick="exportData()">⬇ Exporter</button>
-                <button class="alm-btn alm-btn-import" onclick="importData()">⬆ Importer</button>
+        <div class="archives-cards">
+            <div class="alm-card">
+                <div class="alm-section-title">Sauvegarde</div>
+                <p class="alm-desc">Exportez votre progression pour la transférer sur un autre appareil, ou importez un fichier existant.</p>
+                <div class="alm-actions">
+                    <button class="alm-btn" onclick="exportData()">⬇ Exporter</button>
+                    <button class="alm-btn alm-btn-import" onclick="importData()">⬆ Importer</button>
+                </div>
             </div>
-        </div>
 
-        <div class="alm-card">
-            <div id="archives-progression"></div>
+            <div class="alm-card">
+                <div id="archives-progression"></div>
+            </div>
         </div>
     </div>
 

@@ -821,16 +821,16 @@ monsters.piouViolet = {
 monsters.poutch = {
     id: 'poutch',
     name: 'Poutch',
-    image: 'img/monstres/sprites/poutch.png',
+    image: 'img/pnj/Poutch.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 5000,
-        atk: 25,
-        spd: 60,
+        hp: 50000,
+        atk: 0,
+        spd: 100,
         res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
     },
-    moves: ['petit_coup_du_Chafer'],
+    moves: ['coupdepoutch'],
     role: []
 }
 // #endregion

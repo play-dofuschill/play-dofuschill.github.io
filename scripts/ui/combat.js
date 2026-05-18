@@ -57,10 +57,10 @@ function updateEnemyDisplay() {
     }
     container.style.display = 'flex'
 
-    // Background de scène selon la zone
-    const bg = areas[state.currentArea]?.background
-    container.style.backgroundImage = bg
-        ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url(img/bg/${bg}.png)`
+    // Background de scène selon la zone (kanojedo pour le Poutch)
+    const bgName = combat?.isPoutch ? 'kanojedo' : (areas[state.currentArea]?.background || null)
+    container.style.backgroundImage = bgName
+        ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url(img/bg/${bgName}.png)`
         : 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))'
 
     const e      = combat.enemy

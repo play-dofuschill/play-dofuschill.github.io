@@ -102,6 +102,13 @@ move.monSort = {
 
 // mstrMoveDictionary.js — version format effects
 
+move.coupdepoutch = {
+    id: 'coupdepoutch',
+    name: "Coup de poutch",
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy'}]
+}
+
 // ═══════════════════════════════════════════════════════
 // #region INCARNAM
 move.petit_coup_du_Chafer = {

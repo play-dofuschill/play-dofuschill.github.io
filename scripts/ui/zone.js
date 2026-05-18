@@ -44,23 +44,26 @@ function updateZoneUI() {
     let matching
     let poolCount = 0   // nb de zones accessibles (pour l'en-tête)
 
+    const byLevel = ([, a], [, b]) => (a.minLevel || 0) - (b.minLevel || 0)
+
     if (zoneTab === 'wild') {
         const pool      = state.dailyPool?.zones || []
-        const poolZones = pool.map(id => [id, areas[id]]).filter(([, a]) => a)
+        const poolZones = pool.map(id => [id, areas[id]]).filter(([, a]) => a).sort(byLevel)
         const locked    = Object.entries(areas)
             .filter(([id, a]) => (a.type || 'wild') === 'wild' && !isZoneAccessible(a))
+            .sort(byLevel)
         poolCount = poolZones.length
         matching  = [...poolZones, ...locked]
     } else if (zoneTab === 'event') {
         const pool = state.eventPool?.zones || []
-        matching   = pool.map(id => [id, areas[id]]).filter(([, a]) => a)
+        matching   = pool.map(id => [id, areas[id]]).filter(([, a]) => a).sort(byLevel)
         poolCount  = matching.length
     } else {
-        // Donjons : accessibles en premier, verrouillés ensuite
+        // Donjons : accessibles en premier, verrouillés ensuite, triés par niveau dans chaque groupe
         const all = Object.entries(areas).filter(([, a]) => a.type === 'dungeon')
         matching  = [
-            ...all.filter(([, a]) =>  isZoneAccessible(a)),
-            ...all.filter(([, a]) => !isZoneAccessible(a))
+            ...all.filter(([, a]) =>  isZoneAccessible(a)).sort(byLevel),
+            ...all.filter(([, a]) => !isZoneAccessible(a)).sort(byLevel)
         ]
     }
 

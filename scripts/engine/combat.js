@@ -405,6 +405,7 @@ function onPoutchEnd() {
     if (combat?.respawnPending) return
     if (combat) combat.respawnPending = true
     stopCombat()
+    if (combat) combat.enemy = null
     showPoutchSummary('end')
 }
 
@@ -450,7 +451,7 @@ function gameTick() {
         }
     }
 
-    updateCombatUI()
+    if (state.isRunning) updateCombatUI()
     } catch(e) { console.error('[gameTick]', e) }
 }
 
@@ -978,7 +979,8 @@ function tickDots(entity, onKill) {
 function spawnSummon(caster, effect) {
     const mob = monsters[effect.summonId]
     if (!mob) return
-    const level    = caster.level || 1
+    const rawLevel = caster.level || 1
+    const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
     const scale    = 1 + ((level - 1) * 0.08)
     // Osamodas : invocations avec 2× PV et ATK
     const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
@@ -1131,6 +1133,7 @@ function onVictory() {
 function onDefeat() {
     if (combat?.isPoutch) {
         stopCombat()
+        if (combat) combat.enemy = null
         showPoutchSummary('defeat')
         return
     }

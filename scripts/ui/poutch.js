@@ -7,31 +7,31 @@ const POUTCH_MODES = [
         id: 'infinite',
         label: 'Vie et tours infinis',
         desc: 'Le Poutch se régénère indéfiniment. Quittez quand vous voulez pour voir vos stats.',
-        icon: '∞'
+        img: 'img/pnj/Poutch.png'
     },
     {
         id: 20,
         label: '20 tours',
         desc: '20 actions d\'équipe pour maximiser vos dégâts.',
-        icon: '20'
+        img: 'img/pnj/Poutch_crane_rose.png'
     },
     {
         id: 40,
         label: '40 tours',
         desc: '40 actions pour tester votre puissance.',
-        icon: '40'
+        img: 'img/pnj/Poutch_vil_smith.png'
     },
     {
         id: 80,
         label: '80 tours',
         desc: 'Un combat long pour optimiser votre DPT.',
-        icon: '80'
+        img: 'img/pnj/Poutch_hyperscampe.png'
     },
     {
         id: 200,
         label: '200 tours',
         desc: 'Simulation longue durée — voyez votre DPT réel sur la durée.',
-        icon: '200'
+        img: 'img/pnj/Poutch_sylargh.png'
     }
 ]
 
@@ -55,8 +55,9 @@ function updatePoutchUI() {
                     <span>${m.label}</span>
                     <span class="explore-ticket-desc">${m.desc}</span>
                 </div>
-                <div class="explore-ticket-right" style="align-items:center;justify-content:center;min-width:3.5rem;">
-                    <span style="font-size:1.6rem;font-weight:bold;opacity:0.85;">${m.icon}</span>
+                <div class="explore-ticket-right" style="align-items:center;justify-content:center;min-width:5rem;">
+                    <img src="${m.img}" onerror="this.src='img/icons/icon.png'"
+                         style="height:4.5rem;width:auto;object-fit:contain;image-rendering:pixelated;">
                 </div>
             </div>`
         card.onclick = () => joinPoutch(m.id)
@@ -128,14 +129,12 @@ function showPoutchSummary(type) {
     document.getElementById('main-content').style.zIndex = ''
     activeMenu = null
 
-    const exploreTeam  = document.getElementById('explore-team')
-    const exploreLeave = document.getElementById('explore-leave')
-    const enemyDisplay = document.getElementById('enemy-display')
-    const menuParent   = document.getElementById('menu-button-parent')
-    if (exploreTeam)  exploreTeam.style.display  = 'none'
-    if (exploreLeave) exploreLeave.style.display = 'none'
-    if (enemyDisplay) enemyDisplay.style.display = 'none'
-    if (menuParent)   menuParent.style.display   = 'none'
+    const contentExplore   = document.getElementById('content-explore')
+    const menuParent       = document.getElementById('menu-button-parent')
+    if (contentExplore) contentExplore.style.display = 'none'
+    if (menuParent)     menuParent.style.display     = 'none'
+    const exploreResources = document.getElementById('explore-resources')
+    if (exploreResources) exploreResources.innerHTML = ''
     end.style.display = 'flex'
 
     end.innerHTML = `

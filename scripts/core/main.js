@@ -194,8 +194,15 @@ function openTooltip(title, body) {
     if (ttl) ttl.innerHTML = title || ''
     if (bot) bot.innerHTML = body  || ''
     if (mid) { mid.innerHTML = ''; mid.style.display = 'none' }
+    // Align tooltip over the game panel regardless of where it sits in the DOM
+    const mc = document.getElementById('main-content')
+    if (mc) {
+        const rect = mc.getBoundingClientRect()
+        bg.style.left  = rect.left + 'px'
+        bg.style.width = rect.width + 'px'
+    }
     bg.style.display = 'flex'
-    bg.style.zIndex  = '50'
+    bg.style.zIndex  = '300'
 }
 
 function closeTooltip() {
@@ -208,7 +215,11 @@ function closeTooltip() {
         if (bot) bot.innerHTML = prev.body  || ''
     } else {
         const bg = document.getElementById('tooltipBackground')
-        if (bg) bg.style.display = 'none'
+        if (bg) {
+            bg.style.display = 'none'
+            bg.style.left  = ''
+            bg.style.width = ''
+        }
     }
 }
 
@@ -294,14 +305,12 @@ function showSessionSummary(type) {
     document.getElementById('main-content').style.zIndex = ''
     activeMenu = null
 
-    const exploreTeam  = document.getElementById('explore-team')
-    const exploreLeave = document.getElementById('explore-leave')
-    const enemyDisplay = document.getElementById('enemy-display')
-    const menuParent   = document.getElementById('menu-button-parent')
-    if (exploreTeam)  exploreTeam.style.display  = 'none'
-    if (exploreLeave) exploreLeave.style.display = 'none'
-    if (enemyDisplay) enemyDisplay.style.display = 'none'
-    if (menuParent)   menuParent.style.display   = 'none'
+    const contentExplore   = document.getElementById('content-explore')
+    const menuParent       = document.getElementById('menu-button-parent')
+    if (contentExplore) contentExplore.style.display = 'none'
+    if (menuParent)     menuParent.style.display     = 'none'
+    const exploreResources = document.getElementById('explore-resources')
+    if (exploreResources) exploreResources.innerHTML = ''
     end.style.display = 'flex'
 
     let titleText = 'Résumé'
