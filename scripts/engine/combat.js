@@ -228,6 +228,10 @@ function exitCombat() {
 }
 
 function leaveCombat() {
+    if (combat?.isPoutch) {
+        onPoutchEnd()
+        return
+    }
     stopCombat()
     if (_autoPilot) {
         _mergeSessionLoot(_autoPilot.accumulated, combat?.sessionLoot)
@@ -295,6 +299,113 @@ function _consumeAutoPilotTicket() {
     if (!entry) return
     entry.count--
     if (entry.count <= 0) delete state.inventory['piloteAutomatique']
+}
+
+// ─── Mode Poutch ─────────────────────────────────────────────────────────────
+
+function startPoutchCombat(mode) {
+    stopCombat()
+    state.currentArea     = null
+    state.isRunning       = true
+    state.combatStartTime = Date.now()
+    _dungeonAutoRun       = null
+    _autoPilot            = null
+
+    for (const m of state.team) {
+        if (!m) continue
+        const stats = getEffectiveStats(m)
+        if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
+        m.buffs  = []
+        m.dots   = []
+        m.shield = null
+    }
+
+    combat = {
+        memberTimers:       state.team.map(() => 0),
+        memberMoveIndex:    state.team.map(() => 0),
+        activeMemberIndex:  0,
+        enemyTimer:         0,
+        log:                [],
+        pendingLoot:        null,
+        savedEnemy:         null,
+        memberKillCount:    {},
+        memberPassiveState: {},
+        memberDeathHandled: {},
+        isPoutch:           true,
+        poutchMode:         mode,
+        poutchTurns:        0,
+        poutchBiggestHit:   0,
+        sessionLoot: {
+            itemDrops: [], familiarDrops: [], killCount: 0,
+            memberDamage: {}, memberDamageReceived: {},
+            learnedMoves: [], kamasFromDrops: 0, keyDrops: {}
+        }
+    }
+
+    for (let i = 0; i < state.team.length; i++) {
+        const m = state.team[i]
+        if (!m) continue
+        const passive = classes[m.classId]?.passive
+        combat.memberPassiveState[i] = {}
+        if (passive?.id === 'pandawa') combat.memberPassiveState[i].state = 'normal'
+        if (passive?.id === 'huppermage') {
+            const slots    = ['slot1', 'slot2', 'slot3', 'slot4']
+            const elements = slots.map(s => {
+                const mid = m.moves?.[s]
+                if (!mid) return null
+                const mv  = move[mid]
+                const eff = mv?.effects?.find(e => e.type === 'damage' || e.type === 'dot')
+                return eff?.element || null
+            }).filter(Boolean)
+            combat.memberPassiveState[i].huppermageBonus =
+                elements.length === 4 && new Set(elements).size === 4
+        }
+    }
+
+    const mob      = monsters.poutch
+    const poutchHp = mob.bst.hp
+    combat.enemy = {
+        id:          'poutch',
+        name:        'Poutch',
+        level:       1,
+        image:       mob.image,
+        maxHp:       poutchHp,
+        currentHp:   poutchHp,
+        atk:         mob.bst.atk,
+        spd:         mob.bst.spd,
+        res:         { ...mob.bst.res },
+        bonusAtkPct: 0,
+        flatBonus:   0,
+        moves:       mob.moves || [],
+        moveIndex:   0,
+        rarity:      'commun',
+        tier:        'normal',
+        dropRate:    0,
+        buffs:       [],
+        dots:        []
+    }
+    combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
+
+    document.getElementById('content-explore').style.display = 'flex'
+    document.getElementById('area-end').style.display        = 'none'
+    const exploreTeam  = document.getElementById('explore-team')
+    const exploreLeave = document.getElementById('explore-leave')
+    const enemyDisplay = document.getElementById('enemy-display')
+    if (exploreTeam)  exploreTeam.style.display  = ''
+    if (exploreLeave) exploreLeave.style.display = ''
+    if (enemyDisplay) enemyDisplay.style.display = ''
+    const menuParent = document.getElementById('menu-button-parent')
+    if (menuParent) menuParent.style.display = ''
+    updateCombatUI()
+
+    combatLoop = setInterval(gameTick, TICK_MS)
+}
+
+function onPoutchEnd() {
+    if (combat?.respawnPending) return
+    if (combat) combat.respawnPending = true
+    stopCombat()
+    showPoutchSummary('end')
 }
 
 // ─── Tick principal ───────────────────────────────────────────────────────────
@@ -406,6 +517,18 @@ function executeMemberAction(memberIndex) {
     }
     if (sessionDmg > 0) {
         combat.sessionLoot.memberDamage[memberIndex] = (combat.sessionLoot.memberDamage[memberIndex] || 0) + sessionDmg
+        if (combat.isPoutch && sessionDmg > (combat.poutchBiggestHit || 0)) {
+            combat.poutchBiggestHit = sessionDmg
+        }
+    }
+
+    // Décompte des tours en mode Poutch limité
+    if (combat.isPoutch && typeof combat.poutchMode === 'number' && !combat.respawnPending) {
+        combat.poutchTurns = (combat.poutchTurns || 0) + 1
+        if (combat.poutchTurns >= combat.poutchMode) {
+            onPoutchEnd()
+            return
+        }
     }
 
     tickBuffs(member)
@@ -540,6 +663,21 @@ function executeEffect(ctx) {
             }
 
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
+
+            // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate
+            // ou par un buff 'erosionBonus' sur le lanceur)
+            if (dmg > 0) {
+                const baseRate = effect.erosionRate !== undefined ? effect.erosionRate : 0.05
+                const bonus = (caster.buffs || [])
+                    .filter(b => b.stat === 'erosionBonus')
+                    .reduce((sum, b) => sum + b.value, 0)
+                const erosion = Math.floor(dmg * Math.max(0, baseRate + bonus))
+                if (erosion > 0) {
+                    targetEnemy.maxHp = Math.max(1, (targetEnemy.maxHp || 1) - erosion)
+                    if (targetEnemy.currentHp > targetEnemy.maxHp) targetEnemy.currentHp = targetEnemy.maxHp
+                }
+            }
+
             const memberHitIdx = state.team.indexOf(targetEnemy)
             if (combat && memberHitIdx !== -1 && dmg > 0) {
                 combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + dmg
@@ -551,7 +689,15 @@ function executeEffect(ctx) {
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
-            if (targetEnemy.currentHp <= 0) ctx.onTargetKill?.()
+            if (targetEnemy.currentHp <= 0) {
+                if (combat?.isPoutch && targetEnemy === combat.enemy) {
+                    targetEnemy.currentHp = targetEnemy.maxHp
+                    combat.sessionLoot.killCount++
+                    addLog(`Le Poutch reprend des forces !`)
+                } else {
+                    ctx.onTargetKill?.()
+                }
+            }
             return dmg
         }
 
@@ -816,7 +962,15 @@ function tickDots(entity, onKill) {
     entity.dots = entity.dots
         .map(d => ({ ...d, duration: d.duration - 1 }))
         .filter(d => d.duration > 0)
-    if (entity.currentHp <= 0) onKill?.()
+    if (entity.currentHp <= 0) {
+        if (combat?.isPoutch && entity === combat.enemy) {
+            entity.currentHp = entity.maxHp
+            combat.sessionLoot.killCount++
+            addLog(`Le Poutch reprend des forces !`)
+        } else {
+            onKill?.()
+        }
+    }
 }
 
 // ─── Invocations ─────────────────────────────────────────────────────────────
@@ -975,6 +1129,11 @@ function onVictory() {
 }
 
 function onDefeat() {
+    if (combat?.isPoutch) {
+        stopCombat()
+        showPoutchSummary('defeat')
+        return
+    }
     stopCombat()
     state.isRunning = false
     combat.enemy = null

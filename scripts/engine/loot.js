@@ -178,10 +178,9 @@ function processVictoryLoot(enemy) {
     // Items ordinaires (pierres d'âme et clés exclues du pool principal)
     const itemDrops = rollItemDrops(state.currentArea)
 
-    // Archimonstre : ajoute la pierre d'âme d'archimonstre à l'inventaire
+    // Archimonstre : ajoute silencieusement la pierre archi à l'inventaire (pas dans le résumé)
     if (enemy.isArchi && familiarDrop) {
-        const archiResult = addToInventory('pierreDameArchimonstre')
-        if (archiResult) itemDrops.push({ itemId: 'pierreDameArchimonstre', ...archiResult })
+        addToInventory('pierreDameArchimonstre')
     }
 
     // 3e pull indépendant : clé de donjon

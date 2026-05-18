@@ -79,7 +79,8 @@ const MENU_MAP = {
     worldmap:     'explore-menu',
     shop:         'shop-menu',
     settings:     'settings-menu',
-    archives:     'archives-menu'
+    archives:     'archives-menu',
+    poutch:       'poutch-menu'
 }
 
 // Menus verrouillés selon l'étape du tutoriel
@@ -98,7 +99,8 @@ const MENU_ITEM_MAP = {
     'menu-item-guilde': 'guilde',
     'menu-item-dex':      'Encyclopedie',
     'menu-item-shop':     'shop',
-    'menu-item-archives': 'archives'
+    'menu-item-archives': 'archives',
+    'menu-item-poutch':   'poutch'
 }
 
 function updateMenuLockUI() {
@@ -175,6 +177,7 @@ function switchMenu(menuName) {
     if (menuName === 'zones' || menuName === 'worldmap') updateZoneUI()
     if (menuName === 'shop') updateShopUI()
     if (menuName === 'archives') updateArchivesUI()
+    if (menuName === 'poutch') updatePoutchUI()
 }
 
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────

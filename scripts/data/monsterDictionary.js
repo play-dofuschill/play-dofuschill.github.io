@@ -144,7 +144,7 @@ monsters.sergentChafer = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 75, atk: 40, spd: 100,
+        hp: 60, atk: 40, spd: 100,
         res:{neutre: 0, terre: 0, feu: 14, eau: 0, air: 0 }
     },
     moves: ['petit_coup_du_Chafer'],
@@ -193,7 +193,7 @@ monsters.pissenliDiabolique = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res:{neutre: -10, terre: 20, feu: -10, eau: 0, air: 15 }
     },
     moves: ['zizou','herbeSauvage'],
@@ -207,7 +207,7 @@ monsters.epouvanteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res:{neutre: 5, terre: 0, feu: -10, eau: 15, air: 10 }
     },
     moves: ['fuyezPauvresFous','desherbant'],
@@ -221,7 +221,7 @@ monsters.gardienneChampetre = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res:{neutre: -10, terre: -10, feu: -15, eau: 20, air: 25 }
     },
     moves: ['protectiondesChamps','engrais'],
@@ -235,7 +235,7 @@ monsters.roseDemoniaque = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res:{neutre: 0, terre: -10, feu: 35, eau: -10, air: 10 }
     },
     moves: ['roseEpineuse','petalesEmpoisonnes'],
@@ -249,7 +249,7 @@ monsters.tournesolSauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 100, atk: 60, spd: 100,
         res:{neutre: 15, terre: 10, feu: -10, eau: 15, air: -15 }
     },
     moves: ['poisonSauvage','racinePivotante'],
@@ -287,7 +287,7 @@ monsters.pichonBlanc = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res: {neutre: 18, terre: -1, feu: -1, eau: 18, air: 66 }
     },
     moves: ['bouffeedAir', 'onde_Enrageante'],
@@ -301,7 +301,7 @@ monsters.pichonVert = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res: {neutre: 18, terre: 66, feu: -1, eau: 18, air: -1 }
     },
     moves: ['reflux', 'onde_Enrageante'],
@@ -315,7 +315,7 @@ monsters.pichonBleu = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res: {neutre: 18, terre: -1, feu: -1, eau: 66, air: 18 }
     },
     moves: ['vaguelette', 'resistivite'],
@@ -329,7 +329,7 @@ monsters.pichonOrange = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 90, atk: 60, spd: 100,
         res: {neutre: 18, terre: -1, feu: 66, eau: 18, air: -1 }
     },
     moves: ['Sable_Brulant', 'sel_Marin'],
@@ -343,7 +343,7 @@ monsters.pichonKloune = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 130, atk: 80, spd: 100,
+        hp: 100, atk: 60, spd: 100,
         res: {neutre: 20, terre: 20, feu: 20, eau: -1, air: 20 }
     },
     moves: ['blag', 'klounerie'],
@@ -386,7 +386,7 @@ monsters.bouftou = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 280, atk: 120, spd: 100,
+        hp: 170, atk: 80, spd: 100,
         res: {neutre: 5, terre: 15, feu: -10, eau: -5, air: 20 }
     },
     moves: ['morsure_du_bouftou'],
@@ -401,7 +401,7 @@ monsters.bouftonBlanc = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 250, atk: 120, spd: 100,
+        hp: 150, atk: 80, spd: 100,
         res: {neutre: 5, terre: 20, feu: -5, eau: -10, air: 15 }
     },
     moves: ['machouillage'],
@@ -416,7 +416,7 @@ monsters.bouftonNoir = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 250, atk: 120, spd: 100,
+        hp: 150, atk: 80, spd: 100,
         res: {neutre: 5, terre: -10, feu: 15, eau: 20, air: -5 }
     },
     moves: ['mordillement'],
@@ -431,7 +431,7 @@ monsters.bouftouNoir = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 300, atk: 120, spd: 100,
+        hp: 180, atk: 80, spd: 100,
         res: {neutre: 5, terre: -5, feu: 20, eau: 15, air: -10 }
     },
     moves: ['morsure_obscure', 'halaine_du_bouftou'],
@@ -446,7 +446,7 @@ monsters.bouftouChefDeGuerre = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: {
-        hp: 280, atk: 120, spd: 100,
+        hp: 200, atk: 90, spd: 100,
         res: {neutre: 15, terre: 0, feu: 0, eau: -5, air: 15 }
     },
     moves: ['fureur_du_bouftou', 'morsure_de_guerre'],
@@ -483,7 +483,7 @@ monsters.scarafeuilleBlanc = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 430, atk: 160, spd: 100,
+        hp: 310, atk: 90, spd: 100,
         res: {neutre: 25, terre: -50, feu: 25, eau: 25, air: 100 }
     },
     moves: ['', ''],
@@ -497,7 +497,7 @@ monsters.scarafeuilleVert = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 430, atk: 160, spd: 100,
+        hp: 310, atk: 90, spd: 100,
         res: {neutre: 25, terre: 100, feu: 25, eau: 25, air: -50 }
     },
     moves: ['', ''],
@@ -511,7 +511,7 @@ monsters.scarafeuilleBleu = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 430, atk: 160, spd: 100,
+        hp: 310, atk: 90, spd: 100,
         res: {neutre: 25, terre: 25, feu: -50, eau: 100, air: 25 }
     },
     moves: ['', ''],
@@ -525,7 +525,7 @@ monsters.scarafeuilleRouge = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 430, atk: 160, spd: 100,
+        hp: 310, atk: 90, spd: 100,
         res: {neutre: 25, terre: 25, feu: 100, eau: -50, air: 25 }
     },
     moves: ['', ''],
@@ -539,14 +539,13 @@ monsters.scarafeuilleNoir = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: {
-        hp: 430, atk: 160, spd: 100,
+        hp: 350, atk: 100, spd: 100,
         res: {neutre: 100, terre: 25, feu: 25, eau: 25, air: 25 }
     },
     moves: ['', ''],
     familiar: {bonusType: 'defense', bonusStat: 'neutralResPct', min: 1, max: 15 },
     role: ['defense']
 }
-
 
 // ═══════════════════════════════════════════════════════
 // DONJON SCARAFEUILLE
@@ -594,7 +593,7 @@ monsters.kwakereFlamme = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 630, atk: 200, spd: 105,
+        hp: 440, atk: 140, spd: 105,
         res: {neutre: 100, terre: 25, feu: 100, eau: -25, air: 25 }
     },
     moves: ['', ''],
@@ -608,7 +607,7 @@ monsters.kwakereGlace = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 630, atk: 200, spd: 105,
+        hp: 440, atk: 140, spd: 105,
         res: {neutre: 100, terre: 25, feu: -25, eau: 100, air: 25 }
     },
     moves: ['', ''],
@@ -622,7 +621,7 @@ monsters.kwakereTerre = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 630, atk: 200, spd: 105,
+        hp: 440, atk: 140, spd: 105,
         res: {neutre: 100, terre: 100, feu: 25, eau: 25, air: -25 }
     },
     moves: ['', ''],
@@ -636,7 +635,7 @@ monsters.kwakereVent = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 630, atk: 200, spd: 105,
+        hp: 440, atk: 140, spd: 105,
         res: {neutre: 100, terre: -25, feu: 25, eau: 25, air: 100 }
     },
     moves: ['', ''],
@@ -651,7 +650,7 @@ monsters.kwakFlamme = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 550, atk: 200, spd: 100,
+        hp: 440, atk: 140, spd: 100,
         res: {neutre: 75, terre: 10, feu: 75, eau: -50, air: 10 }
     },
     moves: ['', ''],
@@ -665,7 +664,7 @@ monsters.kwakGlace = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 550, atk: 200, spd: 100,
+        hp: 440, atk: 140, spd: 100,
         res: {neutre: 75, terre: 10, feu: -50, eau: 75, air: 10 }
     },
     moves: ['', ''],
@@ -679,7 +678,7 @@ monsters.kwakTerre = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 550, atk: 200, spd: 100,
+        hp: 440, atk: 140, spd: 100,
         res: {neutre: 75, terre: 75, feu: 10, eau: 10, air: -50 }
     },
     moves: ['', ''],
@@ -693,7 +692,7 @@ monsters.kwakVent = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 550, atk: 200, spd: 100,
+        hp: 440, atk: 140, spd: 100,
         res: {neutre: 75, terre: -50, feu: 10, eau: 10, air: 75 }
     },
     moves: ['', ''],
@@ -738,7 +737,7 @@ monsters.piouBleu = {
     rarity: 'rare',
     tier: 'normal',
     bst: {
-        hp: 81, atk: 60, spd: 100,
+        hp: 80, atk: 60, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 33, air: 0 }
     },
     moves: ['picore'],
@@ -752,7 +751,7 @@ monsters.piouRouge = {
     rarity: 'rare',
     tier: 'normal',
     bst: {
-        hp: 81, atk: 60, spd: 100,
+        hp: 80, atk: 60, spd: 100,
         res: {neutre: 0, terre: 0, feu: 33, eau: 0, air: 0 }
     },
     moves: ['picore'],
@@ -766,7 +765,7 @@ monsters.piouVert = {
     rarity: 'rare',
     tier: 'normal',
     bst: {
-        hp: 81, atk: 60, spd: 100,
+        hp: 80, atk: 60, spd: 100,
         res: {neutre: 0, terre: 33, feu: 0, eau: 0, air: 0 }
     },
     moves: ['picore'],
@@ -780,7 +779,7 @@ monsters.piouJaune = {
     rarity: 'rare',
     tier: 'normal',
     bst: {
-        hp: 81, atk: 60, spd: 100,
+        hp: 80, atk: 60, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 33 }
     },
     moves: ['picore'],
@@ -794,7 +793,7 @@ monsters.piouRose = {
     rarity: 'rare',
     tier: 'normal',
     bst: {
-        hp: 81, atk: 60, spd: 100,
+        hp: 80, atk: 60, spd: 100,
         res: {neutre: 0, terre: 17, feu: 0, eau: 0, air: 17 }
     },
     moves: ['picore'],
@@ -808,12 +807,31 @@ monsters.piouViolet = {
     rarity: 'rare',
     tier: 'normal',
     bst: {
-        hp: 81, atk: 60, spd: 100,
+        hp: 80, atk: 60, spd: 100,
         res: {neutre: 0, terre: 0, feu: 17, eau: 17, air: 0 }
     },
     moves: ['picore'],
     familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
     role: ['combat']
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region POUTCH — Cible d'entraînement
+monsters.poutch = {
+    id: 'poutch',
+    name: 'Poutch',
+    image: 'img/monstres/sprites/poutch.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 5000,
+        atk: 25,
+        spd: 60,
+        res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+    },
+    moves: ['petit_coup_du_Chafer'],
+    role: []
 }
 // #endregion
 

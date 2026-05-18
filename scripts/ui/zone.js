@@ -212,11 +212,36 @@ function cancelZoneConfirm() {
     const btnSub  = document.getElementById('zone-confirm-btn-sub')
     if (btnText) btnText.textContent   = 'Commencer'
     if (btnSub)  btnSub.style.display  = 'none'
+    // Retour au menu Poutch si c'est un défi Poutch en attente
+    if (typeof _pendingPoutchMode !== 'undefined' && _pendingPoutchMode !== null) {
+        _pendingPoutchMode = null
+        switchMenu('poutch')
+        return
+    }
     // Retourne au menu zones
     switchMenu('zones')
 }
 
 function confirmStartCombat() {
+    // Mode Poutch : délègue au démarrage Poutch
+    if (typeof _pendingPoutchMode !== 'undefined' && _pendingPoutchMode !== null) {
+        const mode = _pendingPoutchMode
+        _pendingPoutchMode = null
+        if (state.team.filter(Boolean).length === 0) {
+            showNotification('Comment ça ? Vous voulez partir au combat sans aucun équipier !?', 'error')
+            return
+        }
+        const bar = document.getElementById('zone-confirm-bar')
+        if (bar) bar.style.display = 'none'
+        const teamMenu = document.getElementById('team-menu')
+        if (teamMenu) { teamMenu.style.display = 'none'; teamMenu.style.zIndex = '30' }
+        document.getElementById('menu-button').classList.remove('menu-button-open')
+        document.getElementById('main-content').style.zIndex = ''
+        activeMenu = null
+        startPoutchCombat(mode)
+        return
+    }
+
     const areaId = _pendingAreaId
     if (!areaId) return
 

@@ -1520,22 +1520,18 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
 #area-end {
     position: fixed;
-    height: 100%;
+    inset: 0;
     width: 50%;
-    background: red;
     z-index: 150;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-
+    -webkit-overflow-scrolling: touch;
     display: flex;
-    justify-content: start;
-    align-items: center;
-    animation: bg-horizontal 600s infinite;
     flex-direction: column;
+    align-items: center;
     padding-bottom: 3rem;
     background-color: var(--light1);
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='black' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
-
 }
 
 @media (max-width: 1000px) {
@@ -1679,12 +1675,12 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
 
 
-#explore-menu {
+#explore-menu, #poutch-menu {
     position: fixed;
     height: 100%;
     width: 50%;
-    background: 
-   
+    background:
+
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='white' fill-opacity='0.03'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E")
     ,
     var(--dark1)
@@ -1705,12 +1701,18 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 1000px) {
+    #poutch-menu {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
     #explore-menu {
         width: 100%;
     }
 }
 
-#explore-listing{
+#explore-listing, #poutch-listing {
 
     margin-top: 1rem;
     height: 100%;
@@ -1725,6 +1727,32 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
     padding-bottom: 5rem;
 
+}
+
+#poutch-menu-header {
+    height: 8rem;
+    width: 100%;
+    background-image: url(img/bg/astrub.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 1rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+#poutch-menu-header span {
+    height: 2rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
 }
 
 .hitbox {
@@ -4276,6 +4304,9 @@ transform: translateY(-1rem);
 }
 
 /* ── Résumé de fin de combat (area-end) ──────────────────── */
+
+/* Empêche les enfants directs de se comprimer dans le conteneur scrollable */
+#area-end > * { flex-shrink: 0; }
 
 /* En-tête */
 .ae-header {
