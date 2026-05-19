@@ -14,8 +14,9 @@ const STAT_ICONS = {
     atk:        'img/icons/puissance.png',
     flatDamage: 'img/icons/Dommages.png',
     spd:        'img/icons/Vitesse.png',
-    soin:       'img/icons/Soin.png',
-    buff:       'img/icons/Boost.png'
+    soin:    'img/icons/Soin.png',
+    volVie:  'img/icons/Vol_Vie.png',
+    buff:    'img/icons/Boost.png'
 }
 function elemIcon(elem, cssClass = 'elem-icon') {
     const src = ELEM_ICONS[elem] || ELEM_ICONS.neutre
@@ -50,6 +51,8 @@ const state = {
     lastAlmanaxDate: null,
     dailyPool: null,
     eventPool: null,
+    skullLevel: 0,
+    skullUnequipped: null,
     session: {
         killCount: 0,
         dropCount: 0,
@@ -80,7 +83,8 @@ const MENU_MAP = {
     shop:         'shop-menu',
     settings:     'settings-menu',
     archives:     'archives-menu',
-    poutch:       'poutch-menu'
+    poutch:       'poutch-menu',
+    forge:        'forge-menu'
 }
 
 // Menus verrouillés selon l'étape du tutoriel
@@ -100,7 +104,8 @@ const MENU_ITEM_MAP = {
     'menu-item-dex':      'Encyclopedie',
     'menu-item-shop':     'shop',
     'menu-item-archives': 'archives',
-    'menu-item-poutch':   'poutch'
+    'menu-item-poutch':   'poutch',
+    'menu-item-forge':    'forge'
 }
 
 function updateMenuLockUI() {
@@ -178,6 +183,7 @@ function switchMenu(menuName) {
     if (menuName === 'shop') updateShopUI()
     if (menuName === 'archives') updateArchivesUI()
     if (menuName === 'poutch') updatePoutchUI()
+    if (menuName === 'forge')  updateForgeUI()
 }
 
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────
@@ -232,6 +238,7 @@ function closeAllTooltips() {
 // ─── Notifications ────────────────────────────────────────────────────────────
 
 function showNotification(message, type = 'info') {
+    if (typeof _offlineFastForward !== 'undefined' && _offlineFastForward) return
     const container = document.getElementById('notification-container')
     if (!container) return
     const el = document.createElement('div')
@@ -459,9 +466,9 @@ function showDamagePopup() {
                     <div style="width:${pct}%;height:100%;background:${barColor};border-radius:0.2rem;"></div></div>`
                 return `<div class="ms-stat-row" style="flex-direction:column;align-items:flex-start;gap:0.1rem;">
                     <div style="display:flex;align-items:center;gap:0.5rem;width:100%;">
-                        <img src="${cls?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'"
+                        <img src="${getMemberImage(member)}" onerror="this.src='img/icons/icon.png'"
                              style="width:2rem;height:2rem;object-fit:contain;flex-shrink:0;image-rendering:pixelated;">
-                        <span class="ms-stat-label">${cls?.name || '?'} <small style="opacity:0.45">niv.${member.level}</small></span>
+                        <span class="ms-stat-label">${member.name || cls?.name || '?'} <small style="opacity:0.45">niv.${member.level}</small></span>
                         <span class="ms-stat-val" style="margin-left:auto;">${dmg.toLocaleString('fr-FR')} — ${pct}%</span>
                     </div>
                     ${bar}
@@ -664,7 +671,7 @@ function initGame() {
             let casterStats = null
             if (moveBar.dataset.casterEnemy) {
                 const en = typeof combat !== 'undefined' && combat?.enemy
-                if (en) casterStats = { atk: en.atk || 0, flatDamage: en.flatBonus || 0, finalDamagePct: en.bonusAtkPct || 0, spellDamagePct: 0 }
+                if (en) casterStats = { atk: en.atk || 0, flatDamage: en.flatDamage || 0, finalDamagePct: en.finalDamagePct || 0, spellDamagePct: 0 }
             } else if (moveBar.dataset.casterClass) {
                 const classId = moveBar.dataset.casterClass
                 const teamMember = state.team?.find(m => m?.classId === classId)

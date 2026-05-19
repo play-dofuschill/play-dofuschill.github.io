@@ -29,6 +29,8 @@ function saveGame() {
         lastAlmanaxDate:           state.lastAlmanaxDate || null,
         dailyPool:                 state.dailyPool  || null,
         eventPool:                 state.eventPool  || null,
+        skullLevel:                state.skullLevel || 0,
+        skullUnequipped:           state.skullUnequipped || null,
         version:                   '0.2'
     }
     try {
@@ -67,6 +69,16 @@ function loadGame() {
         if (data.lastAlmanaxDate)                   state.lastAlmanaxDate           = data.lastAlmanaxDate
         if (data.dailyPool)                         state.dailyPool                 = data.dailyPool
         if (data.eventPool)                         state.eventPool                 = data.eventPool
+        if (data.skullLevel != null)                state.skullLevel                = data.skullLevel
+        if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
+
+        // Migration : forgedStat (ancien) → forgedStats (tableau)
+        for (const entry of Object.values(state.inventory)) {
+            if (entry.forgedStat && !entry.forgedStats) {
+                entry.forgedStats = [entry.forgedStat]
+                delete entry.forgedStat
+            }
+        }
 
         // Migration : si previewTeams[clé active] est vide mais state.team ne l'est pas, sync
         const curKey = state.currentPreviewTeam || 'preview1'

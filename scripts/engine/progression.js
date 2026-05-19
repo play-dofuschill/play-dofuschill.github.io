@@ -160,6 +160,9 @@ function applyProgression(spell, lvl) {
         if (effect.type === 'damage' && patch.damage) {
             effect.damage = patch.damage
         }
+        if (effect.type === 'damage' && patch.erosionRate !== undefined) {
+            effect.erosionRate = patch.erosionRate
+        }
         if (effect.type === 'lifesteal' && patch.lifesteal) {
             effect.ratio = patch.lifesteal.ratio
         }

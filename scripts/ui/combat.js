@@ -161,7 +161,11 @@ function updateMemberBars() {
         if (xpFill) xpFill.style.width = `${xpPct}%`
 
         const lvlBadge = card.querySelector('.level-badge')
-        if (lvlBadge) lvlBadge.textContent = `lvl ${m.level}`
+        if (lvlBadge) {
+            const isCapped = combat?.syncedLevel && m.level > combat.syncedLevel
+            lvlBadge.textContent = `lvl ${isCapped ? combat.syncedLevel : m.level}`
+            lvlBadge.classList.toggle('level-synced', !!isCapped)
+        }
 
         card.querySelectorAll('.combat-move-fill').forEach((f, idx) => {
             f.style.width = `${idx === nextIdx && isActive ? Math.min(100, timer) : 0}%`
@@ -220,8 +224,8 @@ function renderTeamSlots(container) {
             </div>
             <div class="member-info">
                 <div class="member-title-row">
-                    <span class="member-name">${cls?.name || '?'}</span>
-                    <span class="member-level level-badge">lvl ${m.level}</span>
+                    <span class="member-name">${m.name || cls?.name || '?'}</span>
+                    <span class="member-level level-badge${combat?.syncedLevel && m.level > combat.syncedLevel ? ' level-synced' : ''}">lvl ${combat?.syncedLevel && m.level > combat.syncedLevel ? combat.syncedLevel : m.level}</span>
                 </div>
                 <div class="member-hp-bar">
                     <div class="member-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}" style="width:${hpPct}%"></div>

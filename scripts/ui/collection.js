@@ -141,8 +141,9 @@ function showMonsterTooltip(monsterId) {
     const rarityHtml = seen && mob.rarity ? `<span class="rarity-${mob.rarity}" style="font-size:0.72rem;">${mob.rarity.replace('_', ' ')}</span>` : ''
     const elemHtml   = seen && mob.element ? `<span class="elem-badge elem-${mob.element}" style="font-size:0.72rem;">${mob.element}</span>` : ''
 
-    const STAT_L = { atk: 'ATK', hp: 'PV', spd: 'Vitesse', dropRate: 'Taux de drop', xpGain: 'Gain XP',
-        flatDamage: 'Dég. fixes', finalDamagePct: 'Dég. finaux', damageReductionPct: 'Réd. dégâts', critChance: 'Crit',
+    const STAT_L = { atk: 'Puissance', maxHp: 'PV', spd: 'Initiative', dropRate: 'Taux de drop', xpGain: 'Gain XP',
+        flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %', damageReductionPct: 'Réd. dégâts', critChance: 'Crit',
+        healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
         'res.eau': 'Rés. Eau', 'res.feu': 'Rés. Feu', 'res.air': 'Rés. Air', 'res.terre': 'Rés. Terre', 'res.neutre': 'Rés. Neutre' }
 
     let familiarSection = ''
@@ -227,8 +228,12 @@ function formatBonusStat(stat) {
     const map = {
         dropRate:     'Taux de drop',
         xpGain:       'Gain XP',
-        atk:          'ATK',
-        hp:           'PV',
+        atk:          'Puissance',
+        maxHp:        'PV',
+        healPct:      'Soins %',
+        healTeamPct:  'Soins équipe %',
+        healMaxHpPct: 'Soins PV max %',
+        lifestealPct: 'Vol de vie %',
         'res.eau':    'Rés. Eau',
         'res.feu':    'Rés. Feu',
         'res.air':    'Rés. Air',

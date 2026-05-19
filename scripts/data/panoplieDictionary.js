@@ -10,11 +10,11 @@ stats: [
         { stat: 'critChance', value: 10 },
         { stat: 'critDamagePct', value: 10 },
         { stat: 'maxHp', value: 10 },
-        { stat: 'fireResPct', value: 10 },
-        { stat: 'waterResPct', value: 10 },
-        { stat: 'earthResPct', value: 10 },
-        { stat: 'airResPct', value: 10 },
-        { stat: 'neutralResPct', value: 10 },
+        { stat: 'res.feu', value: 10 },
+        { stat: 'res.eau', value: 10 },
+        { stat: 'res.terre', value: 10 },
+        { stat: 'res.air', value: 10 },
+        { stat: 'res.neutre', value: 10 },
     ],
 */
 
@@ -48,11 +48,11 @@ const panoplies = {
         },
             6: {stats: [{ stat: 'maxHp', value: 50 },
                         { stat: 'atk', value: 20 },
-                        { stat: 'neutralResPct', value: 5 }]
+                        { stat: 'res.neutre', value: 5 }]
         },
             8: {stats: [{ stat: 'maxHp', value: 50 },
                         { stat: 'atk', value: 50 },
-                        { stat: 'neutralResPct', value: 10 },
+                        { stat: 'res.neutre', value: 10 },
                         { stat: 'flatDamage', value: 5 }]
         }}
     },
@@ -73,27 +73,25 @@ const panoplies = {
             8: {stats: [{ stat: 'maxHp', value: 100 },
                         { stat: 'atk', value: 50 },
                         { stat: 'flatDamage', value: 10 },
-                        { stat: 'neutralResPct', value: 5 }]
+                        { stat: 'res.neutre', value: 5 }]
         }}
     },
     paysan: {
         name: 'Panoplie du paysan',
         pieces: ['sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
         bonuses: {
-            2: {stats: [{ stat: 'maxHp', value: 20 }]
-        },
-            4: {stats: [{ stat: 'maxHp', value: 20 },
+            3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 10 }]
         },
-            6: {stats: [{ stat: 'maxHp', value: 20 },
+            5: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
                         { stat: 'spd', value: 2 },
-                        { stat: 'airResPct', value: 5 }]
+                        { stat: 'res.air', value: 5 }]
         },
-            8: {stats: [{ stat: 'maxHp', value: 30 },
+            7: {stats: [{ stat: 'maxHp', value: 30 },
                         { stat: 'atk', value: 30 },
                         { stat: 'spd', value: 5 },
-                        { stat: 'airResPct', value: 10 },
+                        { stat: 'res.air', value: 10 },
                         { stat: 'flatDamage', value: 5 }]
         }}
     },
@@ -109,12 +107,12 @@ const panoplies = {
             6: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
                         { stat: 'critChance', value: 2 },
-                        { stat: 'waterResPct', value: 5 }]
+                        { stat: 'res.eau', value: 5 }]
         },
             8: {stats: [{ stat: 'maxHp', value: 30 },
                         { stat: 'atk', value: 30 },
                         { stat: 'critChance', value: 5 },
-                        { stat: 'waterResPct', value: 10 },
+                        { stat: 'res.eau', value: 10 },
                         { stat: 'flatDamage', value: 5 }]
         }}
     },

@@ -3958,6 +3958,7 @@ transform: translateY(-1rem);
 
 /* ── Badges niveau / élément ─────────────────────────────── */
 .level-badge    { font-size: 0.7rem; background: rgba(0,0,0,0.3); padding: 0.1rem 0.45rem; border-radius: 0.3rem; color: white; }
+.level-synced   { background: rgba(180,100,10,0.75) !important; }
 .elem-badge     { font-size: 0.68rem; padding: 0.1rem 0.4rem; border-radius: 0.3rem; text-transform: capitalize; color: white; }
 .elem-badge.elem-feu    { background: rgba(200,60,20,0.5); }
 .elem-badge.elem-eau    { background: rgba(20,100,220,0.5); }
@@ -4192,6 +4193,7 @@ transform: translateY(-1rem);
 .equip-bubble .bubble-level { font-size: 0.52rem; top: -0.75rem; }
 .equip-bubble:hover .bubble-level { background: var(--light1); color: var(--dark2); }
 .equip-bubble-empty  { font-size: 0.52rem; opacity: 0.3; }
+.equip-bubble-placeholder { width: 1.8rem; height: 1.8rem; object-fit: contain; filter: brightness(0); opacity: 0.7; }
 
 /* Badges de sort (compatibilité) */
 .move-badge  { padding: 0.15rem 0.5rem; border-radius: 0.3rem; font-size: 0.7rem; background: rgba(255,255,255,0.1); }
@@ -4221,7 +4223,7 @@ transform: translateY(-1rem);
 
 /* ── Guilde (overlay sélecteur dans team-menu) ───────────── */
 #guilde-picker {
-    flex-direction: column; flex: 1; width: 100%; overflow: hidden;
+    display: flex; flex-direction: column; flex: 1; width: 100%; overflow: hidden; min-height: 0;
 }
 #guilde-picker-header {
     display: flex; align-items: center; gap: 0.75rem;
@@ -4240,7 +4242,8 @@ transform: translateY(-1rem);
 }
 #guilde-picker-list {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-    gap: 0.6rem; padding: 1rem; overflow-y: auto; flex: 1;
+    align-content: start;
+    gap: 0.6rem; padding: 1rem; overflow-y: auto; flex: 1; min-height: 0;
 }
 .guilde-class-card {
     display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
@@ -4283,7 +4286,8 @@ transform: translateY(-1rem);
 }
 #guilde-menu-list {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-    gap: 0.6rem; padding: 1rem; overflow-y: auto; width: 100%;
+    align-content: start;
+    gap: 0.6rem; padding: 1rem; overflow-y: auto; width: 100%; flex: 1; min-height: 0;
 }
 
 /* ── Zone confirm — bouton Commencer ────────────────────── */
@@ -4398,16 +4402,35 @@ transform: translateY(-1rem);
 
 .no-drop { opacity: 0.5; font-size: 0.82rem; color: var(--light2); }
 
-/* ── Sélecteur d'équipement (dans tooltip) ───────────────── */
-.equip-selector        { display: flex; flex-direction: column; gap: 0.5rem; max-height: 60vh; overflow-y: auto; }
-.equip-selector-header { font-weight: bold; opacity: 0.7; text-transform: capitalize; }
-.equip-selector-list   { display: flex; flex-direction: column; gap: 0.3rem; }
-.equip-option          { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0.6rem; background: rgba(255,255,255,0.05); border-radius: 0.4rem; cursor: pointer; }
-.equip-option:hover    { background: rgba(255,255,255,0.12); }
-.equip-option img      { width: 1.8rem; height: 1.8rem; object-fit: contain; }
-.equip-level           { margin-left: auto; opacity: 0.6; font-size: 0.75rem; }
-.equip-remove          { color: #ff6e6e; }
-.equip-option-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+/* ── Sélecteur d'équipement — grille ─────────────────────── */
+.equip-selector    { display: flex; flex-direction: column; gap: 0.5rem; max-height: 65vh; min-width: 18rem; }
+.equip-remove-row  { }
+.equip-remove-btn  { background: #c0392b; border: none; border-radius: 0.4rem; color: #fff; font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.7rem; cursor: pointer; width: 100%; transition: 0.1s; }
+.equip-remove-btn:hover { background: #e74c3c; }
+.equip-controls    { display: flex; flex-direction: column; gap: 0.25rem; }
+.equip-filter-bar  { display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: center; }
+.equip-sort-bar    { display: flex; gap: 0.25rem; justify-content: center; }
+.equip-filter-btn,
+.equip-sort-btn    { font-size: 0.68rem; padding: 0.18rem 0.55rem; border-radius: 1rem; border: none; background: var(--dark1); cursor: pointer; color: var(--light1); opacity: 0.6; transition: 0.1s; }
+.equip-filter-btn:hover,
+.equip-sort-btn:hover  { opacity: 0.9; }
+.equip-filter-btn.active,
+.equip-sort-btn.active { opacity: 1; background: var(--dark2); }
+.equip-pick-grid    { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; overflow-y: auto; padding: 1rem 0.1rem 0.3rem; }
+.equip-pick-item    { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; cursor: pointer; padding-top: 0.9rem; }
+.equip-pick-bubble  { height: 4rem; width: 4rem; border-radius: 100%; display: flex; justify-content: center; align-items: center; background: var(--dark1); position: relative; transition: 0.1s; flex-shrink: 0; }
+.equip-pick-item:active .equip-pick-bubble { scale: 0.9; }
+.equip-pick-item:hover  .equip-pick-bubble { background: var(--light1); }
+.equip-pick-bubble img  { width: 3.5rem; height: 3.5rem; object-fit: contain; z-index: 1; }
+.equip-pick-item:hover  .equip-pick-bubble img { animation: mstr-active 0.5s infinite; }
+.equip-pick-item:hover  .bubble-level,
+.equip-pick-item:hover  .pick-bubble-req { background: var(--light1); color: var(--dark1); }
+.pick-bubble-req    { background: var(--dark2); border-radius: 0.3rem; color: var(--light1); font-size: 0.62rem; padding: 0 0.3rem; white-space: nowrap; }
+.equip-pick-disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+.equip-pick-locked  { opacity: 0.35; cursor: default; pointer-events: none; filter: grayscale(1); }
+.equip-pick-empty   { opacity: 0.5; font-size: 0.82rem; padding: 0.5rem 0; width: 100%; text-align: center; }
+.equip-bubble-locked { opacity: 0.5; }
+.bubble-lock       { position: absolute; font-size: 0.65rem; bottom: -0.1rem; right: -0.1rem; line-height: 1; }
 
 /* ── Tooltip d'aide ──────────────────────────────────────── */
 .tooltip-help { display: flex; gap: 1rem; align-items: flex-start; }
@@ -4428,7 +4451,8 @@ transform: translateY(-1rem);
 }
 .ms-equip-filled img  { width: 2.1rem; height: 2.1rem; object-fit: contain; }
 .ms-equip-ilvl  { font-size: 0.55rem; opacity: 0.7; margin-top: 0.1rem; }
-.ms-equip-empty { opacity: 0.4; font-size: 0.58rem; text-align: center; padding: 0 0.2rem; }
+.ms-equip-empty { text-align: center; padding: 0 0.2rem; }
+.ms-equip-placeholder { width: 2.1rem; height: 2.1rem; object-fit: contain; filter: brightness(0); opacity: 0.7; }
 .ms-equip-slot  { cursor: pointer; }
 .ms-equip-slot:hover { background: rgba(0,0,0,0.18) !important; border-color: rgba(0,0,0,0.35) !important; }
 .ms-equip-bottom { display: flex; justify-content: center; margin-top: 0.3rem; }
@@ -4822,10 +4846,30 @@ transform: translateY(-1rem);
 
 /* ── Zone daily roll ────────────────────────────────────────── */
 .zone-daily-info {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; align-items: center;
     padding: 0.4rem 0.6rem 0.6rem;
-    font-size: 0.82rem; color: var(--light2); opacity: 0.75;
+    font-size: 0.82rem; color: var(--light2);
+    width: 100%;
 }
+.zone-daily-left {
+    flex: 1; display: flex; flex-direction: column; gap: 0.05rem; opacity: 0.75;
+}
+
+/* ── Skull difficulty selector ──────────────────────────────── */
+.skull-selector {
+    display: flex; gap: 0.25rem; align-items: center; flex-shrink: 0;
+    margin-left: auto;
+}
+.skull-btn {
+    cursor: pointer; user-select: none; display: inline-flex; align-items: center;
+    transition: opacity 0.15s, transform 0.1s;
+    opacity: 0.2; line-height: 1;
+}
+.skull-img { width: 1.6rem; height: 1.6rem; object-fit: contain; display: block; }
+.skull-btn:hover                { opacity: 0.55; transform: scale(1.15); }
+.skull-btn.skull-active         { opacity: 1; }
+.skull-btn.skull-active:hover   { opacity: 1; transform: scale(1.15); }
+
 .zone-empty {
     text-align: center; padding: 2.5rem 1rem;
     opacity: 0.45; font-size: 0.9rem; line-height: 1.7;
@@ -4967,3 +5011,237 @@ transform: translateY(-1rem);
     padding: 0 0.3rem; background: var(--dark2); border-radius: 0.3rem;
     color: var(--light2); font-size: 0.62rem; white-space: nowrap; z-index: 2;
 }
+
+
+/* ── Forge ─────────────────────────────────────────────────── */
+#forge-menu {
+    position: fixed; height: 100%; width: 50%;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='white' fill-opacity='0.03'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E"),
+        var(--dark1);
+    display: flex; flex-direction: column;
+    overflow: hidden; z-index: 30;
+}
+@media (max-width: 1000px) { #forge-menu { width: 100%; } }
+
+#forge-menu-header {
+    width: 100%;
+    background-image: url(img/bg/forgemagie.png);
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: column;
+    justify-content: space-between; align-items: stretch;
+    padding: 0.4rem 0.8rem 0.8rem;
+    flex-shrink: 0; min-height: 12rem;
+    box-shadow: rgba(0,0,0,0.4) 0 0 10px 10px; z-index: 1;
+    position: relative; overflow: visible;
+}
+.forge-header-toprow {
+    display: flex; justify-content: flex-end;
+}
+#forge-header-nav {
+    display: flex; justify-content: space-between; align-items: center;
+}
+.forge-header-badge {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,0,0,0.5); color: white;
+    border: 1px solid rgba(255,255,255,0.7); border-radius: 0.5rem;
+    padding: 0.5rem 0.9rem; font-size: 1.3rem; font-weight: bold;
+}
+.forge-header-badge img { width: 1.6rem; height: 1.6rem; object-fit: contain; }
+
+#forge-filters { display: flex; flex-direction: column; gap: 0.35rem; }
+#forge-filters .equip-filter-row { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+#forge-filters input {
+    flex: 1; min-width: 6rem;
+    background: var(--dark2); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.4rem; color: white; padding: 0.28rem 0.7rem;
+    font-size: 0.85rem; font-family: inherit;
+}
+#forge-filters input::placeholder { opacity: 0.45; }
+#forge-filters select {
+    font-size: 0.8rem; padding: 0.25rem 0.5rem; border-radius: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.2); background: var(--dark2);
+    color: white; cursor: pointer; flex: 1; min-width: 6rem;
+}
+
+#forge-content { display: flex; flex-direction: column; flex: 1; overflow-y: auto; padding: 0.8rem; gap: 0.6rem; }
+
+.forge-empty { text-align: center; opacity: 0.55; font-size: 0.9rem; padding: 2rem 1rem; line-height: 1.6; }
+
+/* ── Forge — bulles ────────────────────────────────────────── */
+.forge-bubble-list {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1.5rem; padding: 1rem 0.4rem 2rem; align-content: flex-start;
+}
+.forge-bubble-locked { opacity: 0.3; cursor: default !important; filter: grayscale(0.6); }
+.forge-bubble-locked:hover { background: var(--dark2) !important; }
+.forge-bubble-locked:hover img { animation: none !important; }
+
+.forge-bubble-badge {
+    position: absolute; bottom: -0.75rem;
+    padding: 0 0.3rem; background: #1a4a6e; border-radius: 0.3rem;
+    color: #4a9bdb; font-size: 0.6rem; white-space: nowrap; z-index: 2;
+    border: 1px solid rgba(74,155,219,0.4);
+}
+.forge-bubble-ready {
+    position: absolute; top: -0.3rem; right: -0.3rem;
+    font-size: 0.75rem; z-index: 2; line-height: 1;
+    filter: drop-shadow(0 0 3px rgba(255,200,100,0.7));
+}
+.game-bubble:has(.forge-bubble-badge) {
+    box-shadow: 0 0 0 2px rgba(74,155,219,0.5);
+}
+
+/* ── Forge — stat blue ─────────────────────────────────────── */
+.forge-stat-blue { color: #0262ab !important; }
+
+/* ── Forge — panel ─────────────────────────────────────────── */
+/* ── Onglets Forge / Fusion ─────────────────────────────────────────────── */
+#forge-tab-bar { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
+.forge-tab-btn {
+    flex: 1; padding: 0.4rem 0.6rem;
+    background: var(--dark2); border: 1px solid var(--light1);
+    border-radius: 0.4rem; color: var(--light1); cursor: pointer;
+    font-size: 0.82rem; font-weight: bold; transition: background 0.1s, border-color 0.1s;
+}
+.forge-tab-btn:hover { background: var(--dark1); }
+.forge-tab-active { border-color: var(--dark1) !important; background: var(--light1) !important; color: var(--dark1) !important; }
+
+#forge-back-btn, #forge-concassage-btn {
+    font-size: 0.85rem; cursor: pointer; color: white;
+    padding: 0.3rem 0.7rem; border-radius: 0.4rem;
+    background: var(--dark1); transition: filter 0.1s; font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+#forge-back-btn:hover, #forge-concassage-btn:hover { filter: brightness(1.3); }
+
+.forge-hero-anchor {
+    position: absolute; bottom: -6rem;
+    left: 50%; transform: translateX(-50%);
+    z-index: 10;
+}
+.forge-hero-bubble {
+    width: 12rem !important; height: 12rem !important;
+    pointer-events: auto; cursor: pointer;
+    border: 3px solid var(--light1) !important;
+}
+.forge-hero-bubble img { width: 10rem !important; height: 10rem !important; }
+.forge-hero-bubble:hover { background: var(--dark2) !important; }
+.forge-hero-bubble:hover img { animation: none !important; }
+.forge-panel { display: flex; flex-direction: column; gap: 0.7rem; }
+.forge-panel-head {
+    display: flex; align-items: center; gap: 0.8rem;
+    background: var(--dark2); border-radius: 0.6rem; padding: 0.6rem 0.8rem;
+}
+.forge-panel-img  { width: 3rem; height: 3rem; object-fit: contain; }
+.forge-item-name  { font-weight: bold; font-size: 0.92rem; color: var(--light2); }
+.forge-item-lvl   { font-size: 0.72rem; opacity: 0.55; }
+
+.forge-slots-indicator {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.78rem; color: white; font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.forge-slots-label { margin-right: 0.2rem; }
+.forge-slot-dot {
+    width: 0.65rem; height: 0.65rem; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+    flex-shrink: 0;
+}
+.forge-slot-filled { background: #4a9bdb; border-color: #4a9bdb; box-shadow: 0 0 4px rgba(74,155,219,0.5); }
+.forge-slots-count { margin-left: 0.2rem; }
+
+.forge-section { font-size: 0.78rem; color: white; font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; padding-top: 0.2rem; }
+.forge-rune-subsection { font-size: 0.72rem; color: #aaa; font-weight: 600; text-transform: none; letter-spacing: 0; padding-top: 0.5rem; }
+.forge-stats   { display: flex; flex-direction: column; gap: 0.3rem; }
+.forge-stat-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--dark2); border-radius: 0.45rem;
+    padding: 0.5rem 0.7rem; cursor: pointer;
+    border: 1px solid var(--light1); color: var(--light1); transition: border-color 0.1s;
+}
+.forge-stat-row:hover  { filter: brightness(1.1); }
+.forge-stat-active     { border-color: var(--dark1) !important; background: var(--light1) !important; color: var(--dark1) !important; }
+.forge-stat-active span { color: var(--dark1) !important; }
+.forge-stat-active .forge-radio { color: var(--dark1) !important; }
+.forge-stat-locked     { opacity: 0.35; cursor: not-allowed; }
+.forge-stat-locked:hover { border-color: transparent !important; }
+.forge-radio { font-size: 1rem; color: var(--accent,#6aa0ff); flex-shrink: 0; }
+
+.forge-rune-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.forge-rune-card {
+    display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+    background: var(--dark2); border: 1px solid var(--light1);
+    border-radius: 0.5rem; padding: 0.5rem 0.65rem; cursor: pointer;
+    min-width: 5.5rem; transition: border-color 0.1s, background 0.1s;
+}
+.forge-rune-card:hover { background: var(--dark1); filter: brightness(1.1); }
+.forge-rune-active { border-color: var(--dark1) !important; background: var(--light1) !important; }
+.forge-rune-active .forge-rune-stat { color: var(--dark1) !important; }
+.forge-rune-active .forge-rune-meta { color: var(--dark1) !important; }
+.forge-rune-img  { width: 2rem; height: 2rem; object-fit: contain; }
+.forge-rune-stat { font-size: 0.78rem; font-weight: bold; color: #4a9bdb; text-align: center; }
+.forge-rune-meta { font-size: 0.66rem; opacity: 0.6; color: white; text-align: center; }
+.forge-no-runes  { font-size: 0.82rem; opacity: 0.55; text-align: center; padding: 0.8rem 0; line-height: 1.6; }
+.forge-preview-warn { background: rgba(255,140,60,0.15) !important; color: #ff9955 !important; }
+.forge-rune-trans { border-color: rgba(180,100,255,0.5) !important; }
+.forge-rune-trans .forge-rune-stat { color: #b464ff !important; }
+.forge-rune-trans.forge-rune-active .forge-rune-stat { color: var(--dark1) !important; }
+.forge-trans-badge { font-size: 0.6rem; background: rgba(180,100,255,0.25); color: #b464ff; border-radius: 0.25rem; padding: 0.05rem 0.3rem; vertical-align: middle; }
+.forge-bonus       { font-size: 0.72rem; color: #4a9bdb; opacity: 0.85; }
+.forge-bonus-trans { font-size: 0.72rem; color: #b464ff; opacity: 0.85; }
+.forge-hint        { font-size: 0.76rem; opacity: 0.5; text-align: center; margin-bottom: 0.3rem; }
+
+/* ── Onglet Fusion ──────────────────────────────────────────────────────────── */
+.fusion-panel { display: flex; flex-direction: column; gap: 0.6rem; }
+.fusion-info  { font-size: 0.78rem; opacity: 0.6; line-height: 1.5; }
+.fusion-list  { display: flex; flex-direction: column; gap: 0.5rem; }
+.fusion-recipe {
+    display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    background: var(--dark2); border-radius: 0.5rem;
+    padding: 0.55rem 0.7rem; border: 1px solid var(--light1);
+}
+.fusion-recipe-disabled { opacity: 0.45; }
+.fusion-input  { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 8rem; }
+.fusion-details { display: flex; flex-direction: column; gap: 0.1rem; }
+.fusion-name   { font-size: 0.82rem; color: var(--light1); font-weight: bold; }
+.fusion-stock  { font-size: 0.72rem; opacity: 0.6; color: white; }
+.fusion-stock-ok { color: #6ddd6d !important; opacity: 1 !important; }
+.fusion-arrow  { font-size: 1rem; color: var(--light1); opacity: 0.5; flex-shrink: 0; }
+.fusion-output { display: flex; align-items: center; gap: 0.4rem; flex: 1; min-width: 7rem; }
+.fusion-trans-name { font-size: 0.78rem; color: #b464ff; font-weight: bold; }
+.fusion-btn    { padding: 0.4rem 0.8rem !important; font-size: 0.82rem !important; flex-shrink: 0; }
+
+.forge-preview {
+    background: var(--dark2); border-radius: 0.5rem;
+    padding: 0.6rem 0.8rem; display: flex; flex-direction: column; gap: 0.4rem;
+}
+.forge-preview-label    { font-size: 0.75rem; color: white; }
+.forge-preview-opts     { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.forge-preview-opt      { background: rgba(74,155,219,0.15); color: #4a9bdb; border-radius: 0.35rem; padding: 0.25rem 0.6rem; font-size: 0.82rem; }
+.forge-preview-unavail  { font-size: 0.8rem; opacity: 0.5; }
+
+/* ── Concassage ────────────────────────────────────────────── */
+.conc-actions { display: flex; gap: 0.5rem; }
+.conc-action-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    padding: 0.5rem 0.8rem; background: var(--dark2);
+    border: 1px solid var(--light1); border-radius: 0.4rem;
+    color: var(--light1); cursor: pointer; font-size: 0.85rem;
+    transition: background 0.1s, border-color 0.1s;
+}
+.conc-action-btn:hover { background: var(--dark1); }
+.conc-action-active { border-color: var(--dark1) !important; background: var(--light1) !important; color: var(--dark1) !important; }
+.conc-action-active .conc-cost { color: var(--dark1); }
+.conc-cost { font-size: 0.72rem; opacity: 0.75; }
+
+.forge-action { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
+.forge-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: #8b5a2b; color: white;
+    border: none; border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem; cursor: pointer;
+    font-size: 0.95rem; font-weight: bold; transition: filter 0.1s;
+}
+.forge-btn:hover { filter: brightness(1.15); }
+.forge-btn-off   { opacity: 0.35; cursor: not-allowed; filter: none !important; }
+.forge-warn      { font-size: 0.75rem; opacity: 0.5; text-align: center; }

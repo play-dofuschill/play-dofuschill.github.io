@@ -14,9 +14,9 @@ monsters. = {
     moves: ['', ''],
     familiar: [
         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-        {bonusType: 'défense', bonusStat: 'xpGain', min: 1, max: 10 },
-        {bonusType: 'défense', bonusStat: 'maxHp', min: 5, max: 50 }],
-    role: ['combat','farming','défense']
+        {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
+        {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
+    role: ['combat','farming','defense']
 }
 stats: [
         { bonusStat: 'atk', min: 1, max: 50 }, valeur brute
@@ -28,12 +28,12 @@ stats: [
         { bonusStat: 'critChance', min: 1, max: 50 }, valeur brute
         { bonusStat: 'critDamagePct', min: 1, max: 50 }, valeur en %
         { bonusStat: 'maxHp', min: 1, max: 50 }, valeur brutes
-        { bonusStat: 'fireResPct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'waterResPct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'earthResPct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'airResPct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'neutralResPct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'droprate', min: 1, max: 50 }, valeur en %
+        { bonusStat: 'res.feu', min: 1, max: 50 }, valeur en %
+        { bonusStat: 'res.eau', min: 1, max: 50 }, valeur en %
+        { bonusStat: 'res.terre', min: 1, max: 50 }, valeur en %
+        { bonusStat: 'res.air', min: 1, max: 50 }, valeur en %
+        { bonusStat: 'res.neutre', min: 1, max: 50 }, valeur en %
+        { bonusStat: 'dropRate', min: 1, max: 50 }, valeur en %
         { bonusStat: 'xpGain', min: 1, max: 50 }, valeur en %
     ],
 */
@@ -59,9 +59,9 @@ stats: [
 //     moves: ['', ''],
 //     familiar: [
 //         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'défense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'défense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','défense']
+//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
+//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
+//     role: ['combat','farming','defense']
 // }
 // #endregion
 
@@ -88,7 +88,7 @@ monsters.chaferDebutant = {
         res:{neutre: 14, terre: 0, feu: 0, eau: 0, air: 0 }
     },
     moves: ['petit_coup_du_Chafer'],
-    familiar: { bonusType: 'farming', bonusStat: 'droprate', min: 1, max: 10 },
+    familiar: { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
     role: ['farming']
 }
 
@@ -134,7 +134,7 @@ monsters.chaferPiquier = {
     },
     moves: ['empalement'],
     familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 20 },
-    role: ['défense']
+    role: ['defense']
 }
 
 monsters.sergentChafer = {
@@ -211,7 +211,7 @@ monsters.epouvanteur = {
         res:{neutre: 5, terre: 0, feu: -10, eau: 15, air: 10 }
     },
     moves: ['fuyezPauvresFous','desherbant'],
-    familiar: { bonusType: 'farming', bonusStat: 'droprate', min: 1, max: 10 },
+    familiar: { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
     role: ['farming']
 }
 monsters.gardienneChampetre = {
@@ -291,7 +291,7 @@ monsters.pichonBlanc = {
         res: {neutre: 18, terre: -1, feu: -1, eau: 18, air: 66 }
     },
     moves: ['bouffeedAir', 'onde_Enrageante'],
-    familiar: {bonusType: 'defense', bonusStat: 'airResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.pichonVert = {
@@ -305,7 +305,7 @@ monsters.pichonVert = {
         res: {neutre: 18, terre: 66, feu: -1, eau: 18, air: -1 }
     },
     moves: ['reflux', 'onde_Enrageante'],
-    familiar: {bonusType: 'defense', bonusStat: 'earthResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.pichonBleu = {
@@ -319,7 +319,7 @@ monsters.pichonBleu = {
         res: {neutre: 18, terre: -1, feu: -1, eau: 66, air: 18 }
     },
     moves: ['vaguelette', 'resistivite'],
-    familiar: {bonusType: 'defense', bonusStat: 'waterResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.pichonOrange = {
@@ -333,7 +333,7 @@ monsters.pichonOrange = {
         res: {neutre: 18, terre: -1, feu: 66, eau: 18, air: -1 }
     },
     moves: ['Sable_Brulant', 'sel_Marin'],
-    familiar: {bonusType: 'defense', bonusStat: 'fireResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.pichonKloune = {
@@ -347,7 +347,7 @@ monsters.pichonKloune = {
         res: {neutre: 20, terre: 20, feu: 20, eau: -1, air: 20 }
     },
     moves: ['blag', 'klounerie'],
-    familiar: {bonusType: 'defense', bonusStat: 'neutralResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 15 },
     role: ['defense']
 }
 
@@ -367,12 +367,12 @@ monsters.mobLeponge = {
     },
     moves: ['degraissage','rincage','Regeneration_Spontanee'],
     familiar: [
-        {bonusType: 'defense', bonusStat: 'neutralResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'earthResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'fireResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'waterResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'airResPct', min: 1, max: 7}],
-    role: ['défense']
+        {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 7}],
+    role: ['defense']
 }
 // #endregion
 
@@ -390,8 +390,8 @@ monsters.bouftou = {
         res: {neutre: 5, terre: 15, feu: -10, eau: -5, air: 20 }
     },
     moves: ['morsure_du_bouftou'],
-    familiar: { bonusType: 'défense', bonusStat: 'maxHp', min: 1, max: 35 },
-    role: ['défense']
+    familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 35 },
+    role: ['defense']
 }
 
 monsters.bouftonBlanc = {
@@ -468,9 +468,9 @@ monsters.bouftouRoyal = {
         res: {neutre: 35, terre: 20, feu: 20, eau: 25, air: 5 }
     },
     moves: ['morsure_royale', 'guerison_bouftou', 'morsure_de_guerre', 'cuirasse_laineuse'],
-    familiar: [{ bonusType: 'défense', bonusStat: 'maxHp', min: 5, max: 50 },
-               { bonusType: 'farming', bonusStat: 'droprate', min: 1, max: 10 }],
-    role: ['farming','défense']
+    familiar: [{ bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 },
+               { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }],
+    role: ['farming','defense']
 }
 // #endregion
 
@@ -487,7 +487,7 @@ monsters.scarafeuilleBlanc = {
         res: {neutre: 25, terre: -50, feu: 25, eau: 25, air: 100 }
     },
     moves: ['', ''],
-    familiar: {bonusType: 'defense', bonusStat: 'airResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.scarafeuilleVert = {
@@ -501,7 +501,7 @@ monsters.scarafeuilleVert = {
         res: {neutre: 25, terre: 100, feu: 25, eau: 25, air: -50 }
     },
     moves: ['', ''],
-    familiar: {bonusType: 'defense', bonusStat: 'earthResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.scarafeuilleBleu = {
@@ -515,7 +515,7 @@ monsters.scarafeuilleBleu = {
         res: {neutre: 25, terre: 25, feu: -50, eau: 100, air: 25 }
     },
     moves: ['', ''],
-    familiar: {bonusType: 'defense', bonusStat: 'waterResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.scarafeuilleRouge = {
@@ -529,7 +529,7 @@ monsters.scarafeuilleRouge = {
         res: {neutre: 25, terre: 25, feu: 100, eau: -50, air: 25 }
     },
     moves: ['', ''],
-    familiar: {bonusType: 'defense', bonusStat: 'fireResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 15 },
     role: ['defense']
 }
 monsters.scarafeuilleNoir = {
@@ -543,7 +543,7 @@ monsters.scarafeuilleNoir = {
         res: {neutre: 100, terre: 25, feu: 25, eau: 25, air: 25 }
     },
     moves: ['', ''],
-    familiar: {bonusType: 'defense', bonusStat: 'neutralResPct', min: 1, max: 15 },
+    familiar: {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 15 },
     role: ['defense']
 }
 
@@ -575,12 +575,12 @@ monsters.scrarabossDoree = {
     },
     moves: ['', ''],
     familiar: [
-        {bonusType: 'defense', bonusStat: 'neutralResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'earthResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'fireResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'waterResPct', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'airResPct', min: 1, max: 7}],
-    role: ['défense']
+        {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 7},
+        {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 7}],
+    role: ['defense']
 }
 // #endregion
 
@@ -720,7 +720,7 @@ monsters.kwakwa = {
         {bonusType: 'defense', bonusStat: 'maxHp', min: 3, max: 75 },
         {bonusType: 'combat', bonusStat: 'flatDamage', min: 2, max: 20 },
         {bonusType: 'combat', bonusStat: 'atk', min: 3, max: 65 }],
-    role: ['combat','farming','défense']
+    role: ['combat','farming','defense']
 }
 // #endregion
 
@@ -856,9 +856,9 @@ monsters.poutch = {
 //     moves: ['', ''],
 //     familiar: [
 //         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'défense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'défense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','défense']
+//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
+//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
+//     role: ['combat','farming','defense']
 // }
 // #endregion
 

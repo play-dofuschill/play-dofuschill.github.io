@@ -1,10 +1,12 @@
 // engine/stats.js — Calcul des stats et des dégâts DofusChill
 
-function getEffectiveStats(member) {
+function getEffectiveStats(member, syncedLevel = null) {
     const cls = classes[member.classId]
     if (!cls) return null
 
-    const lvl = member.level || 1
+    const _activeCombat = typeof combat !== 'undefined' ? combat : null
+    const _cap = syncedLevel ?? _activeCombat?.syncedLevel ?? null
+    const lvl  = _cap !== null ? Math.min(member.level ?? 1, _cap) : (member.level ?? 1)
     const g = cls.growthPerLevel
 
     let hp  = Math.floor(cls.bst.hp  + g.hp  * (lvl - 1))
@@ -24,8 +26,12 @@ function getEffectiveStats(member) {
     let finalDamagePct     = 0
     let spellDamagePct     = 0
     let damageReductionPct = 0
-    let critChance     = 0
-    let critDamagePct  = 50
+    let critChance         = 0
+    let critDamagePct      = 50
+    let healPct            = 0
+    let healTeamPct        = 0
+    let healMaxHpPct       = 0
+    let lifestealPct       = 0
 
     // scaling résistances
     for (const elem in res) {
@@ -43,7 +49,7 @@ function getEffectiveStats(member) {
             if (!itm?.stats) continue
 
             const ilvl     = Math.max(1, getItemLevel(itemId))
-            const computed = getItemStats(itm, ilvl)
+            const computed = getItemStats(itm, ilvl, state.inventory[itemId]?.forgedStats || null)
 
             for (const { stat, value } of computed) {
                 if      (stat === 'maxHp')              hp                 += value
@@ -55,11 +61,11 @@ function getEffectiveStats(member) {
                 else if (stat === 'damageReductionPct') damageReductionPct += value
                 else if (stat === 'critChance')         critChance         += value
                 else if (stat === 'critDamagePct')      critDamagePct      += value
-                else if (stat === 'fireResPct')         res.feu            += value
-                else if (stat === 'waterResPct')        res.eau            += value
-                else if (stat === 'earthResPct')        res.terre          += value
-                else if (stat === 'airResPct')          res.air            += value
-                else if (stat === 'neutralResPct')      res.neutre         += value
+                else if (stat === 'healPct')            healPct            += value
+                else if (stat === 'healTeamPct')        healTeamPct        += value
+                else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
+                else if (stat === 'lifestealPct')       lifestealPct       += value
+                else if (stat.startsWith('res.'))        { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
         }
     }
@@ -93,6 +99,11 @@ function getEffectiveStats(member) {
             if (buff.stat === 'critDamagePct')
                 critDamagePct += buff.value
 
+            if (buff.stat === 'healPct')        healPct        += buff.value
+            if (buff.stat === 'healTeamPct')    healTeamPct    += buff.value
+            if (buff.stat === 'healMaxHpPct')   healMaxHpPct   += buff.value
+            if (buff.stat === 'lifestealPct')   lifestealPct   += buff.value
+
             if (buff.stat === 'res_all') {
                 for (const e in res) {
                     res[e] += buff.value
@@ -120,11 +131,11 @@ function getEffectiveStats(member) {
                     else if (stat === 'damageReductionPct') damageReductionPct += value
                     else if (stat === 'critChance')         critChance         += value
                     else if (stat === 'critDamagePct')      critDamagePct      += value
-                    else if (stat === 'fireResPct')         res.feu            += value
-                    else if (stat === 'waterResPct')        res.eau            += value
-                    else if (stat === 'earthResPct')        res.terre          += value
-                    else if (stat === 'airResPct')          res.air            += value
-                    else if (stat === 'neutralResPct')      res.neutre         += value
+                    else if (stat === 'healPct')            healPct            += value
+                    else if (stat === 'healTeamPct')        healTeamPct        += value
+                    else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
+                    else if (stat === 'lifestealPct')       lifestealPct       += value
+                    else if (stat.startsWith('res.'))       { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
                 }
             }
         }
@@ -144,7 +155,7 @@ function getEffectiveStats(member) {
             if (value > 0) {
                 const bs = fam.bonusStat
                 if      (bs === 'atk')               atk                += value
-                else if (bs === 'hp')                hp                 += value
+                else if (bs === 'maxHp')             hp                 += value
                 else if (bs === 'spd')               spd                += value
                 else if (bs === 'flatDamage')        flatDamage         += value
                 else if (bs === 'finalDamagePct')    finalDamagePct     += value
@@ -152,6 +163,10 @@ function getEffectiveStats(member) {
                 else if (bs === 'damageReductionPct') damageReductionPct += value
                 else if (bs === 'critChance')        critChance         += value
                 else if (bs === 'critDamagePct')     critDamagePct      += value
+                else if (bs === 'healPct')           healPct            += value
+                else if (bs === 'healTeamPct')       healTeamPct        += value
+                else if (bs === 'healMaxHpPct')      healMaxHpPct       += value
+                else if (bs === 'lifestealPct')      lifestealPct       += value
                 else if (bs.startsWith('res.')) {
                     const elem = bs.split('.')[1]
                     if (res[elem] !== undefined) res[elem] += value
@@ -251,7 +266,12 @@ function getEffectiveStats(member) {
         spellDamagePct,
         damageReductionPct,
         critChance,
-        critDamagePct
+        critDamagePct,
+
+        healPct,
+        healTeamPct,
+        healMaxHpPct,
+        lifestealPct
     }
 }
 

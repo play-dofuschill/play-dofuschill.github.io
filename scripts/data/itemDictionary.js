@@ -9,11 +9,11 @@
 // damageReductionPct = % de réduction de dommages
 // critChance = %de chances de critique
 // critDamagePct = %de dommages en plus lors de critiques
-// fireResPct = % de résistance feu
-// waterResPct = % de résistance eau
-// earthResPct = % de résistance terre
-// airResPct = % de résistance air
-// neutralResPct = % de résistance neutre
+// res.feu = % de résistance feu
+// res.eau = % de résistance eau
+// res.terre = % de résistance terre
+// res.air = % de résistance air
+// res.neutre = % de résistance neutre
 /*
 item.exemple = {
     id: 'exemple',
@@ -29,11 +29,11 @@ item.exemple = {
         { stat: 'critChance', value: 10 },
         { stat: 'critDamagePct', value: 10 },
         { stat: 'maxHp', value: 10 },
-        { stat: 'fireResPct', value: 10 },
-        { stat: 'waterResPct', value: 10 },
-        { stat: 'earthResPct', value: 10 },
-        { stat: 'airResPct', value: 10 },
-        { stat: 'neutralResPct', value: 10 },
+        { stat: 'res.feu', value: 10 },
+        { stat: 'res.eau', value: 10 },
+        { stat: 'res.terre', value: 10 },
+        { stat: 'res.air', value: 10 },
+        { stat: 'res.neutre', value: 10 },
     ],
     // effects: [ pour plus tard si je veux rajouter des effets passifs aux équipements
     //     {type: 'shield',
@@ -69,15 +69,32 @@ const ITEM_TIER_MULTIPLIERS = {
     4: 1.50
 }
 
-function getItemStats(item, level) {
+function getMaxForgeSlots(statCount) {
+    return Math.ceil(statCount / 2)
+}
 
-    const tier = getItemTier(level)
+function getItemStats(itm, level, forgedStats = null) {
+    const tier       = getItemTier(level)
     const multiplier = ITEM_TIER_MULTIPLIERS[tier] || 1
 
-    return item.stats.map(stat => ({
-        stat: stat.stat,
-        value: Math.round(stat.value * multiplier)
-    }))
+    // support array (new) and single object (backward compat)
+    const arr = Array.isArray(forgedStats) ? forgedStats : (forgedStats ? [forgedStats] : [])
+    const map = {}
+    for (const f of arr) { map[f.statIndex] = f }
+
+    return itm.stats.map((s, i) => {
+        const forged = map[i]
+        if (forged) {
+            const base = Math.round(s.value * multiplier)
+            // Transcendance ou ancien exo (stat différente) : remplace complètement le slot
+            if (forged.transcendance || forged.stat !== s.stat) {
+                return { stat: forged.stat, value: forged.value, isForged: true, isTranscendance: true }
+            }
+            // Forgemagie normale : bonus absolu ajouté sur la stat de base scalée
+            return { stat: s.stat, value: base + forged.value, isForged: true, forgeBonus: forged.value }
+        }
+        return { stat: s.stat, value: Math.round(s.value * multiplier), isForged: false }
+    })
 }
 
 // ────────────────────────────────────────────────────────────────────────
@@ -334,7 +351,7 @@ item.bouclier_bouftou = {
     levelMax: 20,
     stats: [
         { stat: 'maxHp', value: 20 },
-        { stat: 'neutralResPct', value: 7 }],
+        { stat: 'res.neutre', value: 7 }],
     description: "Impressionnant grâce à l'odeur qu'il dégage."
 }
 // #endregion
@@ -350,7 +367,7 @@ item.cape_bouftou_royal = {
     levelMax: 20,
     stats: [
         { stat: 'maxHp', value: 25 },
-        { stat: 'earthResPct', value: 4 }],
+        { stat: 'res.terre', value: 4 }],
     description: "Cette cape portée par le grand Bouftou Royal confère, en plus d'un style fabuleux, une force hors du commun."
 }
 item.coiffe_bouftou_royal = {
@@ -447,7 +464,7 @@ item.bouclier_bouftou_royal = {
     stats: [
         { stat: 'maxHp', value: 14 },
         { stat: 'atk', value: 14 },
-        { stat: 'fireResPct', value: 7 }],
+        { stat: 'res.feu', value: 7 }],
     description: "Cette cuirasse royale vous donnera autorité sur les bouftous de Tainéla."
 }
 // #endregion
@@ -562,7 +579,7 @@ item.bouclier_mousse = {
     stats: [
         { stat: 'maxHp', value: 14 },
         { stat: 'atk', value: 10 },
-        { stat: 'airResPct', value: 4 }],
+        { stat: 'res.air', value: 4 }],
     description: "Ce bouclier jaune, poreux mais absorbant a été conçu à partir des restes d'un animal qui avait élu domicile dans un ananas tombé au fond de la mer."
 }
 // #endregion
@@ -675,3 +692,54 @@ item.faux_paysan = {
 // ────────────────────────────────────────────────────────────────────────
 
 
+
+
+// ─── Niveau minimum requis (modulation skull) ─────────────────────────────────
+;(function() {
+    const REQ = {
+        1:  ['bottesAventurier','capeAventurier','chapeauAventurier','anneauAventurier','ceintureAventurier','amuletteAventurier'],
+        10: ['cape_mousse','coiffe_mousse','bottes_mousse','anneau_mousse','amulette_mousse','ceinture_mousse','pelle_mousse','bouclier_mousse',
+             'sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
+        15: ['anneauKardorim','capeKardorim','coiffeKardorim'],
+        20: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou'],
+        25: [],
+        30: [],
+        35: ['cape_bouftou_royal','coiffe_bouftou_royal','bottes_bouftou_royal','anneau_bouftou_royal','amulette_bouftou_royal','ceinture_bouftou_royal','epee_bouftou_royal','bouclier_bouftou_royal'],
+        40: [],
+        45: [],
+        50: [],
+        55: [],
+        60: [],
+        65: [],
+        70: [],
+        75: [],
+        80: [],
+        85: [],
+        90: [],
+        95: [],
+        100: [],
+        105: [],
+        110: [],
+        115: [],
+        120: [],
+        125: [],
+        130: [],
+        135: [],
+        140: [],
+        145: [],
+        150: [],
+        155: [],
+        160: [],
+        165: [],
+        170: [],
+        175: [],
+        180: [],
+        185: [],
+        190: [],
+        195: [],
+        200: []
+    }
+    for (const [lvl, ids] of Object.entries(REQ)) {
+        for (const id of ids) { if (item[id]) item[id].requiredLevel = Number(lvl) }
+    }
+})()

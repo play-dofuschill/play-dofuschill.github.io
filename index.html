@@ -395,6 +395,49 @@
 
        </div>
 
+    <!-- Menu Forge -->
+    <div id="forge-menu" style="display: none;" class="season-background">
+        <div id="forge-menu-header">
+            <div class="forge-header-toprow">
+                <div class="forge-header-badge">
+                    <span>Forge Magique</span>
+                </div>
+            </div>
+            <div id="forge-tab-bar">
+                <button id="forge-tab-forge"  class="forge-tab-btn forge-tab-active" onclick="switchForgeTab('forge')">⚒ Forgemagie</button>
+                <button id="forge-tab-fusion" class="forge-tab-btn"                  onclick="switchForgeTab('fusion')">⚗ Fusion</button>
+            </div>
+            <div id="forge-header-nav" style="display:none">
+                <div id="forge-back-btn" onclick="forgeBackAction()">← Retour</div>
+                <div id="forge-concassage-btn" style="display:none" onclick="enterConcassage()">⚒ Concassage</div>
+            </div>
+            <div id="forge-filters">
+                <div class="equip-filter-row">
+                    <input type="text" id="forge-search" placeholder="Rechercher…" oninput="onForgeSearch(this.value)">
+                    <button id="forge-sort-level" class="sort-btn active" onclick="toggleForgeSort('level')">Niv. ↓</button>
+                    <button id="forge-sort-name"  class="sort-btn"        onclick="toggleForgeSort('name')">Nom ↕</button>
+                </div>
+                <div class="equip-filter-row">
+                    <select id="forge-filter-forgeable" onchange="setForgeFilter('forgeable',this.value)">
+                        <option value="all">Tous les items</option>
+                        <option value="forgeable">Forgemageable</option>
+                        <option value="forged">Déjà forgé</option>
+                        <option value="unforged">Non forgé</option>
+                    </select>
+                    <select id="forge-filter-slots" onchange="setForgeFilter('slots',this.value)">
+                        <option value="all">Tous slots</option>
+                        <option value="0">0 forgé</option>
+                        <option value="1">1 forgé</option>
+                        <option value="2">2 forgés</option>
+                        <option value="3">3 forgés</option>
+                        <option value="4">4 forgés</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="forge-content"></div>
+    </div>
+
     <!-- Menu Poutch / Entraînement -->
     <div id="poutch-menu" style="display: none;" class="season-background">
 
@@ -675,6 +718,11 @@
             <span>Poutch</span>
         </div>
 
+        <div class="menu-item" id="menu-item-forge" onClick="switchMenu('forge')">
+            <img src="img/icons/forge.png" onerror="this.src='img/icons/icon.png'">
+            <span>Forge</span>
+        </div>
+
     </div>
 
     </div></div>
@@ -732,6 +780,7 @@
     <script src="scripts/engine/offline.js"></script>
     <script src="scripts/engine/combat.js"></script>
     <script src="scripts/engine/shop.js"></script>
+    <script src="scripts/engine/forge.js"></script>
 
     <!-- UI (dépend du moteur) -->
     <script src="scripts/ui/combat.js"></script>
@@ -743,6 +792,7 @@
     <script src="scripts/ui/shop.js"></script>
     <script src="scripts/ui/almanax.js"></script>
     <script src="scripts/ui/poutch.js"></script>
+    <script src="scripts/ui/forge.js"></script>
 
 
 </body>

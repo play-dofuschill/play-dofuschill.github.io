@@ -5,6 +5,15 @@ let zoneTab = 'wild'
 
 const ZONE_TAB_LABELS = { wild: 'zones sauvages', dungeon: 'donjons', event: 'événements' }
 
+// Retourne le niveau après cap pour un membre en préparation (skull > 0, zone en attente, membre au-dessus du cap).
+// Retourne null si pas de cap applicable (membre déjà sous le maxLevel, ou skull inactif).
+function _getTeamPrepSyncedLevel(member) {
+    if (!_pendingAreaId || !state.skullLevel) return null
+    const cap = areas[_pendingAreaId]?.maxLevel
+    if (!cap || !member || member.level <= cap) return null
+    return cap
+}
+
 function setZoneTab(type) {
     zoneTab = type
     const tabs = ['wild', 'dungeon', 'event']
@@ -12,6 +21,29 @@ function setZoneTab(type) {
         el.classList.toggle('explore-tab-active', tabs[i] === type)
     })
     updateZoneUI()
+}
+
+function _buildSkullSelector() {
+    const sl = state.skullLevel || 0
+    const skullLabels = ['', '+100% difficulté', '+200% difficulté', '+400% difficulté']
+    const wrapper = document.createElement('div')
+    wrapper.className = 'skull-selector'
+    wrapper.title = sl > 0 ? skullLabels[sl] : 'Mode normal'
+    wrapper.innerHTML = `
+        <strong style="font-size:0.8rem; white-space:nowrap;">Difficulté modulée :</strong>
+        <span class="skull-btn${sl >= 1 ? ' skull-active' : ''}" data-level="1" title="+100% difficulté"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>
+        <span class="skull-btn${sl >= 2 ? ' skull-active' : ''}" data-level="2" title="+200% difficulté"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>
+        <span class="skull-btn${sl >= 3 ? ' skull-active' : ''}" data-level="3" title="+400% difficulté"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>`
+    wrapper.querySelectorAll('.skull-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.stopPropagation()
+            const level = parseInt(btn.dataset.level)
+            state.skullLevel = (state.skullLevel === level) ? 0 : level
+            saveGame()
+            updateZoneUI()
+        })
+    })
+    return wrapper
 }
 
 function updateZoneUI() {
@@ -71,8 +103,18 @@ function updateZoneUI() {
     if (zoneTab === 'wild') {
         const info = document.createElement('div')
         info.className = 'zone-daily-info'
-        info.innerHTML = `<span>Zones du jour &bull; <strong>${poolCount}</strong> disponible${poolCount > 1 ? 's' : ''}</span>
-            <span>Renouvellement dans&nbsp;${nextWildRefreshLabel()}</span>`
+        info.innerHTML = `
+            <div class="zone-daily-left">
+                <span>Zones du jour &bull; <strong>${poolCount}</strong> disponible${poolCount > 1 ? 's' : ''}</span>
+                <span>Renouvellement dans&nbsp;${nextWildRefreshLabel()}</span>
+            </div>`
+        info.appendChild(_buildSkullSelector())
+        listing.appendChild(info)
+    }
+    if (zoneTab === 'dungeon') {
+        const info = document.createElement('div')
+        info.className = 'zone-daily-info'
+        info.appendChild(_buildSkullSelector())
         listing.appendChild(info)
     }
     if (zoneTab === 'event') {

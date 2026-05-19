@@ -4,7 +4,7 @@
 //   familiar: { bonusType, bonusStat, min, max }
 //
 // bonusType 'farming' → dropRate ou xpGain (%, appliqué dans loot.js et progression.js)
-// bonusType 'combat'  → atk, hp, spd, flatDamage, critChance… (valeur brute, appliqué dans stats.js)
+// bonusType 'combat'  → atk, maxHp, spd, flatDamage, critChance… (valeur brute, appliqué dans stats.js)
 // bonusType 'defense' → res.feu, res.eau, res.air, res.terre, res.neutre, damageReductionPct (%, stats.js)
 //
 // La valeur du bonus suit une courbe de puissance (lente au début, forte en late game) :

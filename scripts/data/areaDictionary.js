@@ -8,6 +8,8 @@
 
 const areas = {}
 
+
+// #region ZONES SAUVAGES ────────────────────────────────────────────────────────────────
 areas.cimetiereincarnam = {
     id: 'cimetiereincarnam',
     name: "Cimetiere d'Incarnam",
@@ -25,10 +27,10 @@ areas.cimetiereincarnam = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'bottesAventurier',  dropRate: 0.03 },
-        { itemId: 'capeAventurier',    dropRate: 0.02 },
-        { itemId: 'chapeauAventurier', dropRate: 0.02 },
-        { itemId: 'anneauAventurier',  dropRate: 0.03 },
+        { itemId: 'bottesAventurier',  dropRate: 0.23 },
+        { itemId: 'capeAventurier',    dropRate: 0.22 },
+        { itemId: 'chapeauAventurier', dropRate: 0.22 },
+        { itemId: 'anneauAventurier',  dropRate: 0.13 },
         { itemId: 'ceintureAventurier',dropRate: 0.03 },
         { itemId: 'amuletteAventurier',dropRate: 0.03 },
         { itemId: 'cleDonjonKardorim', dropRate: 0.05, isKey: true }
@@ -117,8 +119,10 @@ areas.tainela = {
         { itemId: 'cleDonjonBouftou', dropRate: 0.05, isKey: true }
     ]
 }
+// #endregion
 
-// ─── Donjons ────────────────────────────────────────────────────────────────
+
+// #region DONJONS ────────────────────────────────────────────────────────────────
 
 areas.donjonIncarnam = {
     id: 'donjonIncarnam',
@@ -206,7 +210,44 @@ areas.donjonBouftou = {
         { itemId: 'bouclier_bouftou_royal', dropRate: 0.03 }
     ]
 }
-// ─── Événements ─────────────────────────────────────────────────────────────
+// #endregion
+
+
+// #region EVENTS ─────────────────────────────────────────────────────────────
+//
+// ── Lignes de drop disponibles pour les runes ────────────────────────────────
+// Copier-coller la ligne souhaitée dans le lootTable d'une zone ou d'un event.
+// Les dropRate sont indicatifs — ajuster selon la rareté voulue.
+//
+// PV
+//        { itemId: 'runeHpS',       dropRate: 0.10 },  // +20 PV   · coût −3 niv
+//        { itemId: 'runeHpM',       dropRate: 0.05 },  // +60 PV   · coût −7 niv
+//        { itemId: 'runeHpL',       dropRate: 0.02 },  // +150 PV  · coût −12 niv
+// ATK
+//        { itemId: 'runeAtkS',      dropRate: 0.10 },  // +15 ATK  · coût −3 niv
+//        { itemId: 'runeAtkM',      dropRate: 0.05 },  // +50 ATK  · coût −7 niv
+//        { itemId: 'runeAtkL',      dropRate: 0.02 },  // +130 ATK · coût −12 niv
+// Vitesse
+//        { itemId: 'runeSpdS',      dropRate: 0.08 },  // +5 Vit   · coût −4 niv
+//        { itemId: 'runeSpdM',      dropRate: 0.04 },  // +15 Vit  · coût −8 niv
+// Dégâts fixes
+//        { itemId: 'runeFlatDmgS',  dropRate: 0.10 },  // +5 Dég   · coût −3 niv
+//        { itemId: 'runeFlatDmgM',  dropRate: 0.05 },  // +15 Dég  · coût −7 niv
+// Critique
+//        { itemId: 'runeCritS',     dropRate: 0.08 },  // +5% Crit · coût −4 niv
+//        { itemId: 'runeCritDmgS',  dropRate: 0.06 },  // +10% DégCrit · coût −5 niv
+// Dégâts %
+//        { itemId: 'runeFinalDmgS', dropRate: 0.06 },  // +7% DégFin   · coût −6 niv
+//        { itemId: 'runeSpellDmgS', dropRate: 0.07 },  // +8% DégSort  · coût −5 niv
+// Défensif
+//        { itemId: 'runeDamRedS',   dropRate: 0.07 },  // +5% Réd.dég  · coût −5 niv
+// Résistances
+//        { itemId: 'runeFireResS',    dropRate: 0.08 },  // +8% Rés.Feu    · coût −4 niv
+//        { itemId: 'runeWaterResS',   dropRate: 0.08 },  // +8% Rés.Eau    · coût −4 niv
+//        { itemId: 'runeEarthResS',   dropRate: 0.08 },  // +8% Rés.Terre  · coût −4 niv
+//        { itemId: 'runeAirResS',     dropRate: 0.08 },  // +8% Rés.Air    · coût −4 niv
+//        { itemId: 'runeNeutralResS', dropRate: 0.08 },  // +8% Rés.Neutre · coût −4 niv
+// ─────────────────────────────────────────────────────────────────────────────
 
 areas.evenementPious = {
     id: 'evenementPious',
@@ -227,6 +268,19 @@ areas.evenementPious = {
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.15 }
+        //{ itemId: 'piloteAutomatique', dropRate: 0.15 }
+        { itemId: 'runeHpS',       dropRate: 0.10 },
+        { itemId: 'runeHpM',       dropRate: 0.10 },
+        { itemId: 'runeHpL',       dropRate: 0.10 },
+        { itemId: 'runeAtkS',      dropRate: 0.10 },
+        { itemId: 'runeAtkM',      dropRate: 0.10 },
+        { itemId: 'runeAtkL',      dropRate: 0.10 },
+        { itemId: 'runeSpdS',      dropRate: 0.08 },
+        { itemId: 'runeSpdM',      dropRate: 0.08 },
+        { itemId: 'runeCritS',     dropRate: 0.08 },
+        { itemId: 'runeCritDmgS',     dropRate: 0.08 },
+        { itemId: 'runeFinalDmgS', dropRate: 0.06 },
     ]
 }
+
+// #endregion

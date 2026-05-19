@@ -21,7 +21,7 @@ const BAG_CATEGORIES = {
     dofus:      itm => itm.type === 'dofus',
     consumable: itm => itm.type === 'consumable',
     cosmetic:   itm => itm.type === 'cosmetic',
-    divers:     itm => itm.type !== 'equipment' && itm.type !== 'dofus' && itm.type !== 'consumable' && itm.type !== 'cosmetic'
+    divers:     itm => itm.type !== 'equipment' && itm.type !== 'dofus' && itm.type !== 'consumable' && itm.type !== 'cosmetic' && !itm.hiddenInInventory
 }
 
 // ─── Filtres équipement ───────────────────────────────────────────────────────
@@ -178,34 +178,36 @@ function showItemTooltip(itemId) {
     const lvl   = entry?.level || 0
 
     const STAT_LABELS = {
-        maxHp: 'PV max', atk: 'ATK', spd: 'Vitesse',
+        maxHp: 'PV', atk: 'Puissance', spd: 'Initiative',
         flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %',
         spellDamagePct: 'Dégâts sorts %', damageReductionPct: 'Réd. dégâts %',
         critChance: 'Chance crit %', critDamagePct: 'Dégâts crit %',
-        fireResPct: 'Rés. Feu', waterResPct: 'Rés. Eau',
-        earthResPct: 'Rés. Terre', airResPct: 'Rés. Air', neutralResPct: 'Rés. Neutre',
+        healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
+        'res.feu': 'Rés. Feu', 'res.eau': 'Rés. Eau',
+        'res.terre': 'Rés. Terre', 'res.air': 'Rés. Air', 'res.neutre': 'Rés. Neutre',
     }
     const STAT_ICON_MAP = {
         maxHp: STAT_ICONS.hp, atk: STAT_ICONS.atk, spd: STAT_ICONS.spd,
         flatDamage: STAT_ICONS.flatDamage, finalDamagePct: STAT_ICONS.atk,
         spellDamagePct: STAT_ICONS.atk, damageReductionPct: STAT_ICONS.buff,
         critChance: STAT_ICONS.atk, critDamagePct: STAT_ICONS.atk,
-        fireResPct: ELEM_ICONS.feu, waterResPct: ELEM_ICONS.eau,
-        earthResPct: ELEM_ICONS.terre, airResPct: ELEM_ICONS.air,
-        neutralResPct: ELEM_ICONS.neutre,
+        healPct: STAT_ICONS.soin, healTeamPct: STAT_ICONS.soin, healMaxHpPct: STAT_ICONS.soin, lifestealPct: STAT_ICONS.volVie,
+        'res.feu': ELEM_ICONS.feu, 'res.eau': ELEM_ICONS.eau,
+        'res.terre': ELEM_ICONS.terre, 'res.air': ELEM_ICONS.air,
+        'res.neutre': ELEM_ICONS.neutre,
     }
 
     // Stats calculées au niveau actuel
     let statsHtml = ''
     if (itm.stats && itm.stats.length > 0) {
-        const computed = getItemStats(itm, Math.max(1, lvl))
-        for (const { stat, value } of computed) {
+        const computed = getItemStats(itm, Math.max(1, lvl), entry?.forgedStats || null)
+        for (const { stat, value, isForged } of computed) {
             const label = STAT_LABELS[stat] || stat
             const icon  = STAT_ICON_MAP[stat] || ''
-            const color = value > 0 ? '#2D7A2D' : value < 0 ? '#d45a43' : ''
+            const color = isForged ? '#4a9bdb' : (value > 0 ? '#2D7A2D' : value < 0 ? '#d45a43' : '')
             statsHtml += `<div class="item-stat-row">
                 ${icon ? `<img src="${icon}" class="item-stat-icon">` : ''}
-                <span style="${color ? `color:${color}` : ''}">${value > 0 ? '+' : ''}${value} ${label}</span>
+                <span style="${color ? `color:${color}` : ''}">${value > 0 ? '+' : ''}${value} ${label}${isForged ? ' ✦' : ''}</span>
             </div>`
         }
     }
@@ -287,5 +289,5 @@ function showItemTooltip(itemId) {
 }
 
 function formatStatName(stat) {
-    return { hp: 'PV', atk: 'ATK%', spd: 'Vitesse', flatDmg: 'Dégâts fixes' }[stat] || stat
+    return { maxHp: 'PV', atk: 'Puissance', spd: 'Initiative', flatDamage: 'Dégâts fixes' }[stat] || stat
 }

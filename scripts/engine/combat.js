@@ -8,10 +8,11 @@ const TICK_MS    = 1000 / 60   // 60 fps
 const BASE_TIME  = 2000        // ms pour remplir la barre
 
 
-let combatLoop      = null
-let combat          = null  // état du combat en cours
-let _autoPilot      = null  // { remaining: N, accumulated: sessionLoot } | null
-let _dungeonAutoRun = null  // { accumulated: sessionLoot } | null — relance auto donjon
+let combatLoop        = null
+let combat            = null   // état du combat en cours
+let _autoPilot        = null   // { remaining: N, accumulated: sessionLoot } | null
+let _dungeonAutoRun   = null   // { accumulated: sessionLoot } | null — relance auto donjon
+let _offlineFastForward = false  // true pendant le fast-forward offline
 
 // ─── gestion de l'xp ────────────────────────────────────────────────────────
 
@@ -100,8 +101,8 @@ function spawnEnemy(areaId) {
         atk:      Math.floor(mob.bst.atk * scale),
         spd:      mob.bst.spd,          // vitesse native 100 (pas de scaling par niveau)
         res:      { ...mob.bst.res },
-        bonusAtkPct: 0,
-        flatBonus:   0,
+        finalDamagePct: 0,
+        flatDamage:     0,
         moves:     mob.moves || [],
         moveIndex: 0,
         rarity:    mob.rarity   || 'commun',
@@ -109,13 +110,24 @@ function spawnEnemy(areaId) {
         dropRate:  mob.dropRate
     }
 
-    // 1/400 chance d'archimonstre (archiboss pour les boss) : stats ×2, capture garantie
-    if (Math.random() < 1 / 400) {
+    // Chance d'archimonstre selon niveau skull : 1/600, 1/500, 1/450, 1/400
+    const SKULL_ARCHI_CHANCE = [1 / 600, 1 / 500, 1 / 450, 1 / 400]
+    const archiChance = SKULL_ARCHI_CHANCE[state.skullLevel] || 1 / 400
+    if (Math.random() < archiChance) {
         enemy.isArchi   = true
         enemy.maxHp     = Math.floor(enemy.maxHp * 2)
         enemy.currentHp = enemy.maxHp
         enemy.atk       = Math.floor(enemy.atk   * 2)
         enemy.name      = `Archi-${enemy.name}`
+    }
+
+    // Difficulté modulée : multiplicateur skull appliqué après l'archi
+    const SKULL_MULT = [1, 2, 3, 5]
+    const skullMult  = SKULL_MULT[state.skullLevel] || 1
+    if (skullMult > 1) {
+        enemy.maxHp     = Math.floor(enemy.maxHp * skullMult)
+        enemy.currentHp = enemy.maxHp
+        enemy.atk       = Math.floor(enemy.atk   * skullMult)
     }
 
     return enemy
@@ -136,10 +148,38 @@ function startCombat(areaId) {
         _dungeonAutoRun = null
     }
 
-    // Réinitialise les HP de l'équipe
+    // Niveau synchro pour le mode modulé (skull > 0 → niveau = maxLevel de la zone)
+    const _startArea    = areas[areaId]
+    const _syncedLevel  = (state.skullLevel > 0 && _startArea?.maxLevel)
+        ? _startArea.maxLevel : null
+
+    // Auto-déséquipement : items dont requiredLevel > syncedLevel
+    if (_syncedLevel !== null) {
+        const unequipped = {}
+        for (const m of state.team) {
+            if (!m) continue
+            for (const slot of Object.keys(m.equip || {})) {
+                const itemId = m.equip[slot]
+                if (!itemId) continue
+                const reqLvl = item[itemId]?.requiredLevel
+                if (reqLvl && reqLvl > _syncedLevel) {
+                    if (!unequipped[m.classId]) unequipped[m.classId] = {}
+                    unequipped[m.classId][slot] = itemId
+                    m.equip[slot] = null
+                }
+            }
+        }
+        if (Object.keys(unequipped).length > 0) {
+            state.skullUnequipped = unequipped
+            const count = Object.values(unequipped).reduce((s, slots) => s + Object.keys(slots).length, 0)
+            showNotification(`${count} équipement${count > 1 ? 's' : ''} retiré${count > 1 ? 's' : ''} (niveau trop élevé pour cette zone modulée)`, 'warning')
+        }
+    }
+
+    // Réinitialise les HP de l'équipe (en tenant compte du niveau synchro si actif)
     for (const m of state.team) {
         if (!m) continue
-        const stats = getEffectiveStats(m)
+        const stats = getEffectiveStats(m, _syncedLevel)
         if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
         m.buffs  = []
         m.dots   = []
@@ -147,6 +187,7 @@ function startCombat(areaId) {
     }
 
     combat = {
+        syncedLevel: _syncedLevel,
         memberTimers: state.team.map(() => 0),
         memberMoveIndex: state.team.map(() => 0),
         activeMemberIndex: 0,
@@ -203,6 +244,17 @@ function stopCombat() {
     if (combatLoop) { clearInterval(combatLoop); combatLoop = null }
     state.isRunning       = false
     state.combatStartTime = null
+    // Restauration des équipements retirés pour modulation skull
+    if (state.skullUnequipped) {
+        for (const m of state.team) {
+            if (!m || !state.skullUnequipped[m.classId]) continue
+            if (!m.equip) m.equip = {}
+            for (const [slot, itemId] of Object.entries(state.skullUnequipped[m.classId])) {
+                m.equip[slot] = itemId
+            }
+        }
+        state.skullUnequipped = null
+    }
 }
 
 function exitCombat() {
@@ -374,8 +426,8 @@ function startPoutchCombat(mode) {
         atk:         mob.bst.atk,
         spd:         mob.bst.spd,
         res:         { ...mob.bst.res },
-        bonusAtkPct: 0,
-        flatBonus:   0,
+        finalDamagePct: 0,
+        flatDamage:     0,
         moves:       mob.moves || [],
         moveIndex:   0,
         rarity:      'commun',
@@ -451,7 +503,7 @@ function gameTick() {
         }
     }
 
-    if (state.isRunning) updateCombatUI()
+    if (state.isRunning && !_offlineFastForward) updateCombatUI()
     } catch(e) { console.error('[gameTick]', e) }
 }
 
@@ -472,7 +524,15 @@ function executeMemberAction(memberIndex) {
     const stats = getEffectiveStats(member)
 
     const slots = ['slot1', 'slot2', 'slot3', 'slot4']
-    const nonNull = slots.filter(s => member.moves[s])
+    const nonNull = slots.filter(s => {
+        if (!member.moves[s]) return false
+        if (!combat.syncedLevel) return true
+        const cls = classes[member.classId]
+        const moveId = member.moves[s]
+        if (moveId === cls?.startingMove) return true
+        const unlockLvl = Object.entries(cls?.learnset || {}).find(([, v]) => v === moveId)?.[0]
+        return !unlockLvl || parseInt(unlockLvl) <= combat.syncedLevel
+    })
 
     if (!nonNull.length) return
 
@@ -495,12 +555,13 @@ function executeMemberAction(memberIndex) {
 
     const rawMv = move[moveId]
     if (!rawMv) return
-    const mv = applyProgression(rawMv, member.level)
+    const effectiveLvl = combat.syncedLevel ? Math.min(member.level, combat.syncedLevel) : member.level
+    const mv = applyProgression(rawMv, effectiveLvl)
 
     if (!mv?.effects) return
 
     const rawPrevMv = move[member.moves[nonNull[prevNonNullIdx]]]
-    const prevMv    = rawPrevMv ? applyProgression(rawPrevMv, member.level) : null
+    const prevMv    = rawPrevMv ? applyProgression(rawPrevMv, effectiveLvl) : null
 
     // exécution des effets
     let lastDamageDealt = 0
@@ -555,7 +616,7 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength) {
             const target  = living[Math.floor(Math.random() * living.length)]
             const healAmt = Math.floor((target.maxHp || 0) * 0.20)
             target.currentHp = Math.min(target.maxHp, target.currentHp + healAmt)
-            addLog(`Eniripsa [Passif] → soigne ${target.name} de ${healAmt} PV`)
+            addLog(`Eniripsa [Passif] → soigne ${target.name || classes[target.classId]?.name || '?'} de ${healAmt} PV`)
         }
     }
 
@@ -586,13 +647,13 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength) {
         const pst = combat.memberPassiveState[memberIndex] || {}
         if (pst.state === 'normal') {
             pst.state = 'ivresse'
-            addLog(`${member.name} [Passif] → Ivresse ! (-20% vit, +20% dmg, +10% res all)`)
+            addLog(`${member.name || classes[member.classId]?.name || '?'} [Passif] → Ivresse ! (-20% vit, +20% dmg, +10% res all)`)
         } else if (pst.state === 'ivresse') {
             pst.state = 'gueule_de_bois'
-            addLog(`${member.name} [Passif] → Gueule de bois... (-20% dmg, -10% res all)`)
+            addLog(`${member.name || classes[member.classId]?.name || '?'} [Passif] → Gueule de bois... (-20% dmg, -10% res all)`)
         } else {
             pst.state = 'normal'
-            addLog(`${member.name} [Passif] → Retrouve ses esprits.`)
+            addLog(`${member.name || classes[member.classId]?.name || '?'} [Passif] → Retrouve ses esprits.`)
         }
         combat.memberPassiveState[memberIndex] = pst
     }
@@ -610,7 +671,7 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength) {
         const rolled = ROULETTE[Math.floor(Math.random() * ROULETTE.length)]
         if (!combat.memberPassiveState[memberIndex]) combat.memberPassiveState[memberIndex] = {}
         combat.memberPassiveState[memberIndex].ecaflipEffect = rolled
-        addLog(`${member.name} [Roulette] → ${rolled.label} jusqu'au prochain cycle !`)
+        addLog(`${member.name || classes[member.classId]?.name || '?'} [Roulette] → ${rolled.label} jusqu'au prochain cycle !`)
     }
 }
 
@@ -637,8 +698,12 @@ function executeEffect(ctx) {
             const result = calcDamage(casterStats, defStats, effect)
             let dmg = result.damage
 
+            if (effect.summonMultiplier && (targetEnemy.isSummon || targetEnemy.ownerId)) {
+                dmg = Math.floor(dmg * effect.summonMultiplier)
+            }
+
             // Le bouclier absorbe en priorité avant les HP
-            if (targetEnemy.shield?.value > 0) {
+            if (!effect.ignoreShield && targetEnemy.shield?.value > 0) {
                 const absorbed = Math.min(targetEnemy.shield.value, dmg)
                 targetEnemy.shield.value -= absorbed
                 dmg -= absorbed
@@ -684,7 +749,7 @@ function executeEffect(ctx) {
                 combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + dmg
             }
             // Popup dégâts uniquement quand c'est l'ennemi qui encaisse (pas un membre)
-            if (dmg > 0 && memberHitIdx === -1 && typeof showDamageNumber === 'function') {
+            if (dmg > 0 && memberHitIdx === -1 && !_offlineFastForward && typeof showDamageNumber === 'function') {
                 showDamageNumber(dmg)
             }
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
@@ -710,21 +775,21 @@ function executeEffect(ctx) {
         }
 
         case 'heal': {
-            const healAmt = effect.heal || 0
+            const healAmt = Math.floor((effect.heal || 0) * (1 + (casterStats?.healPct || 0) / 100))
             caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
             addLog(`${moveData.name} → soigne ${healAmt} PV`)
             break
         }
 
         case 'heal%maxHp': {
-            const healAmt = Math.floor((caster.maxHp || 0) * ((effect.heal || 0) / 100))
+            const healAmt = Math.floor((caster.maxHp || 0) * ((effect.heal || 0) / 100) * (1 + (casterStats?.healMaxHpPct || 0) / 100))
             caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
             addLog(`${moveData.name} → soigne ${healAmt} PV (${effect.heal}% PV max)`)
             break
         }
 
         case 'heal_team': {
-            const healAmt = effect.heal || 0
+            const healAmt = Math.floor((effect.heal || 0) * (1 + (casterStats?.healTeamPct || 0) / 100))
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
                 m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + healAmt)
@@ -736,8 +801,15 @@ function executeEffect(ctx) {
         case 'buff': {
             caster.buffs = caster.buffs || []
             const buffVal = _resolveEffectValue(effect.value)
-            caster.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
-            addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
+            if (effect.stat === 'maxHp') {
+                caster.maxHp = (caster.maxHp || 0) + buffVal
+                caster.currentHp = (caster.currentHp || 0) + buffVal
+                caster.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
+                addLog(`${moveData.name} → +${buffVal} PV max et courants (${effect.duration} tours)`)
+            } else {
+                caster.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
+                addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
+            }
             break
         }
 
@@ -764,13 +836,16 @@ function executeEffect(ctx) {
         case 'shield': {
             // N'applique pas si un bouclier est déjà actif (mais les autres effets du sort passent quand même)
             if (caster.shield?.value > 0) break
-            caster.shield = { value: effect.value, duration: effect.duration }
-            addLog(`${moveData.name} → bouclier ${effect.value} PV (${effect.duration} tours)`)
+            const shieldVal = effect.levelPct
+                ? Math.floor((caster.level || 1) * effect.levelPct)
+                : effect.value
+            caster.shield = { value: shieldVal, duration: effect.duration }
+            addLog(`${moveData.name} → bouclier ${shieldVal} PV (${effect.duration} tours)`)
             break
         }
 
         case 'lifesteal': {
-            const healAmt = Math.floor((ctx.lastDamageDealt || 0) * (effect.ratio || 0))
+            const healAmt = Math.floor((ctx.lastDamageDealt || 0) * ((effect.ratio || 0) + (casterStats?.lifestealPct || 0) / 100))
             if (healAmt > 0) {
                 caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
                 addLog(`${moveData.name} → soigne ${healAmt} PV`)
@@ -794,9 +869,8 @@ function executeEffect(ctx) {
             // Besoin d'au moins 2 membres vivants
             if (living.length <= 1) break
             const curPos = living.indexOf(combat.activeMemberIndex)
-            // Si pas assez de membres pour avancer de value, aller au dernier disponible
-            const targetPos = Math.min(curPos + (effect.value || 1), living.length - 1)
-            // Aucun suivant (membre actif est déjà le dernier vivant)
+            // Avance de value positions en bouclant sur les membres vivants
+            const targetPos = (curPos + (effect.value || 1)) % living.length
             if (targetPos === curPos) break
             addLog(`${moveData.name} → changement de membre forcé !`)
             setActiveMember(living[targetPos])
@@ -979,6 +1053,8 @@ function tickDots(entity, onKill) {
 function spawnSummon(caster, effect) {
     const mob = monsters[effect.summonId]
     if (!mob) return
+    if (!state.seenMonsters) state.seenMonsters = {}
+    state.seenMonsters[effect.summonId] = true
     const rawLevel = caster.level || 1
     const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
     const scale    = 1 + ((level - 1) * 0.08)
@@ -995,8 +1071,8 @@ function spawnSummon(caster, effect) {
         atk:              Math.floor(mob.bst.atk * scale * statMult),
         spd:              mob.bst.spd,
         res:              { ...mob.bst.res },
-        bonusAtkPct:      0,
-        flatBonus:        0,
+        finalDamagePct:   0,
+        flatDamage:       0,
         moves:            mob.moves || [],
         rarity:           mob.rarity  || 'commun',
         tier:             mob.tier    || 'normal',
@@ -1009,7 +1085,7 @@ function spawnSummon(caster, effect) {
         _justSpawned:     true
     }
     combat.enemyTimer = 0
-    addLog(`${caster.name} invoque ${mob.name} !`)
+    addLog(`${caster.name || classes[caster.classId]?.name || '?'} invoque ${mob.name} !`)
 }
 
 function returnToOwner() {
@@ -1127,10 +1203,19 @@ function onVictory() {
         combat.savedEnemy     = null
         combat.enemyTimer     = 0
         updateCombatUI()
-    }, 500)
+    }, _offlineFastForward ? 5 : 500)
 }
 
 function onDefeat() {
+    if (_offlineFastForward) {
+        _offlineFastForward = false
+        clearInterval(combatLoop)
+        combatLoop = null
+        stopCombat()
+        if (combat) combat.enemy = null
+        _offlineHandleDefeat()
+        return
+    }
     if (combat?.isPoutch) {
         stopCombat()
         if (combat) combat.enemy = null
@@ -1182,6 +1267,12 @@ function getMostWoundedMember() {
 
 function tickBuffs(entity) {
     if (entity.buffs) {
+        for (const b of entity.buffs) {
+            if (b.duration === 1 && b.directApplied && b.stat === 'maxHp') {
+                entity.maxHp = Math.max(1, (entity.maxHp || 1) - b.value)
+                entity.currentHp = Math.min(entity.currentHp || 0, entity.maxHp)
+            }
+        }
         entity.buffs = entity.buffs
             .map(b => ({ ...b, duration: b.duration - 1 }))
             .filter(b => b.duration > 0)
@@ -1221,7 +1312,7 @@ function _autoSwitchActive() {
         if (classes[cur.classId]?.passive?.id === 'roublard' && combat.enemy?.currentHp > 0) {
             const dmg = Math.floor((cur.maxHp || 0) * 0.30)
             combat.enemy.currentHp = Math.max(0, combat.enemy.currentHp - dmg)
-            addLog(`${cur.name} [Passif] → Mort Explosive ! ${dmg} dégâts à ${combat.enemy.name} !`)
+            addLog(`${cur.name || classes[cur.classId]?.name || '?'} [Passif] → Mort Explosive ! ${dmg} dégâts à ${combat.enemy.name} !`)
             if (combat.enemy.currentHp <= 0) {
                 if (combat.enemy.isSummon) returnToOwner()
                 else onVictory()

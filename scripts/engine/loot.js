@@ -56,7 +56,8 @@ function rollItemDrops(areaId) {
 
     const famBonuses  = getAllFamiliarBonuses()
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus
+    const skullBonus   = [0, 0.10, 0.15, 0.20][state.skullLevel] || 0
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
 
     // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
     const itemEntries = area.lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)

@@ -54,7 +54,7 @@ function updateTeamUI() {
                 <div class="member-info">
                     <div class="member-title-row">
                         <span class="member-name">${member.name || cls?.name || '?'}</span>
-                        <span class="member-level level-badge">lvl ${member.level}</span>
+                        <span class="member-level level-badge${_getTeamPrepSyncedLevel(member) ? ' level-synced' : ''}">lvl ${_getTeamPrepSyncedLevel(member) || member.level}</span>
                         <button class="team-slot-remove" onclick="removeFromTeam(${i})" title="Retirer">✕</button>
                     </div>
                     <div class="member-xp-bar">
@@ -118,25 +118,32 @@ function renderEquipSlots(member, slotIndex) {
             const flvl = itemId ? (state.collection[itemId]?.level || 0) : 0
             return `<div class="equip-bubble"
                          onclick="openEquipSelector(${slotIndex}, 'familier')"
-                         ${itemId ? `data-help="${itemId}"` : ''}
+                         ${mob ? `oncontextmenu="event.preventDefault(); event.stopPropagation(); showMonsterTooltip('${itemId}')"` : ''}
                          title="Familier">
                         ${mob
                             ? `<span class="bubble-level">Niv.${flvl}</span>
                                <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">`
-                            : `<span class="equip-bubble-empty">Fam</span>`}
+                            : `<img class="equip-bubble-placeholder" src="${MS_SLOT_ICONS['familier']}">`}
                     </div>`
         }
 
         const itm  = itemId ? item[itemId] : null
         const ilvl = itemId ? getItemLevel(itemId) : 0
-        return `<div class="equip-bubble"
+        const _skullCap = (() => {
+            if (_pendingAreaId && state.skullLevel > 0) return areas[_pendingAreaId]?.maxLevel || null
+            if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
+            return null
+        })()
+        const isLocked = itm && _skullCap !== null && itm.requiredLevel && itm.requiredLevel > _skullCap
+        return `<div class="equip-bubble${isLocked ? ' equip-bubble-locked' : ''}"
                      onclick="openEquipSelector(${slotIndex}, '${slot}')"
                      ${itemId ? `data-help="${itemId}"` : ''}
-                     title="${label}">
+                     title="${label}${isLocked ? ` (🔒 niv. ${itm.requiredLevel} requis)` : ''}">
                     ${itm
                         ? `<span class="bubble-level">Niv.${ilvl}</span>
-                           <img src="${itm.image}" onerror="this.src='img/icons/icon.png'">`
-                        : `<span class="equip-bubble-empty">${label.substring(0, 3)}</span>`}
+                           <img src="${itm.image}" onerror="this.src='img/icons/icon.png'" style="${isLocked ? 'opacity:0.35;filter:grayscale(1)' : ''}">
+                           ${isLocked ? '<span class="bubble-lock">🔒</span>' : ''}`
+                        : `<img class="equip-bubble-placeholder" src="${MS_SLOT_ICONS[slot] || 'img/icons/icon.png'}">`}
                 </div>`
     }).join('')
 }
@@ -292,7 +299,139 @@ function removeFromTeam(slotIndex) {
     updateTeamUI()
 }
 
-// ─── Sélecteur d'équipement ───────────────────────────────────────────────────
+// ─── Sélecteur d'équipement — grille avec filtre/tri ────────────────────────
+
+let _equipPickState = null
+
+const EQUIP_STAT_LABELS = {
+    maxHp: 'PV', atk: 'Puissance', spd: 'Initiative',
+    flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %',
+    spellDamagePct: 'Sorts %', critChance: 'Crit.',
+    critDamagePct: 'Dég. crit.', damageReductionPct: 'Réduction',
+    healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
+    'res.feu': 'Rés. Feu', 'res.eau': 'Rés. Eau',
+    'res.terre': 'Rés. Terre', 'res.air': 'Rés. Air',
+    'res.neutre': 'Rés. Neutre',
+}
+
+function _doEquipPick(itemId) {
+    if (_equipPickState?.onEquip) _equipPickState.onEquip(itemId)
+}
+function _doEquipRemove() {
+    if (_equipPickState?.onRemove) _equipPickState.onRemove()
+}
+
+function setEquipPickFilter(stat) {
+    if (!_equipPickState) return
+    _equipPickState.filter = stat || null
+    document.querySelectorAll('.equip-filter-btn').forEach(btn =>
+        btn.classList.toggle('active', (btn.dataset.filter || '') === (stat || ''))
+    )
+    renderEquipPickGrid()
+}
+
+function setEquipPickSort(sortKey) {
+    if (!_equipPickState) return
+    _equipPickState.sort = sortKey
+    document.querySelectorAll('.equip-sort-btn').forEach(btn =>
+        btn.classList.toggle('active', btn.dataset.sort === sortKey)
+    )
+    renderEquipPickGrid()
+}
+
+function renderEquipPickGrid() {
+    const grid = document.querySelector('.equip-pick-grid')
+    if (!grid || !_equipPickState) return
+    const { items, filter, sort, takenByOther, skullMaxLevel, isFamiliar } = _equipPickState
+
+    let filtered = filter
+        ? items.filter(e => isFamiliar
+            ? e.famBonus?.stat === filter
+            : e.stats?.some(s => s.stat === filter))
+        : [...items]
+
+    filtered.sort((a, b) => {
+        if (sort === 'bonus')  return (b.famBonus?.value || 0) - (a.famBonus?.value || 0)
+        if (sort === 'req')    return (a.requiredLevel   || 0) - (b.requiredLevel   || 0)
+        if (isFamiliar) return (b.entry?.level || 0) - (a.entry?.level || 0)
+        return getItemLevel(b.id) - getItemLevel(a.id)
+    })
+
+    const isDisabled = e =>
+        takenByOther.has(e.id) ||
+        (!isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel)
+
+    const available = filtered.filter(e => !isDisabled(e))
+    const disabled  = filtered.filter(e =>  isDisabled(e))
+
+    let html = ''
+    for (const e of [...available, ...disabled]) {
+        const taken    = takenByOther.has(e.id)
+        const locked   = !isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel
+        const disClass = locked ? ' equip-pick-locked' : taken ? ' equip-pick-disabled' : ''
+        const handler  = (taken || locked) ? '' : `onclick="_doEquipPick('${e.id}')"`
+
+        if (isFamiliar) {
+            const bonus = e.famBonus ? `+${e.famBonus.value} ${formatBonusStat(e.famBonus.stat)}` : '—'
+            html += `<div class="equip-pick-item${disClass}" ${handler}
+                         oncontextmenu="event.preventDefault(); showMonsterTooltip('${e.id}')"
+                         title="${e.mob?.name || e.id}">
+                <div class="equip-pick-bubble">
+                    <span class="bubble-level">${bonus}</span>
+                    <img src="${e.mob?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
+                </div>
+            </div>`
+        } else {
+            const lvl = getItemLevel(e.id)
+            const req = e.requiredLevel ? `lvl req. ${e.requiredLevel}` : '—'
+            html += `<div class="equip-pick-item${disClass}" ${handler}
+                         oncontextmenu="event.preventDefault(); showItemTooltip('${e.id}')"
+                         title="${e.name}">
+                <div class="equip-pick-bubble">
+                    <span class="bubble-level">Niv.${lvl}</span>
+                    <img src="${e.image}" onerror="this.src='img/icons/icon.png'">
+                </div>
+                <span class="pick-bubble-req">${req}</span>
+            </div>`
+        }
+    }
+
+    if (!html) {
+        if (items.length === 0) html = `<div class="equip-pick-empty">Aucun équipement disponible.</div>`
+        else html = `<div class="equip-pick-empty">Aucun résultat pour ce filtre.</div>`
+    }
+    grid.innerHTML = html
+
+    // Re-snapshot le contenu rendu dans le tooltip stack pour que closeTooltip
+    // puisse le restaurer intact (la grille était vide au moment du push initial)
+    const bot = document.getElementById('tooltipBottom')
+    const stackEntry = tooltipStack[tooltipStack.length - 1]
+    if (stackEntry && bot && bot.contains(grid)) stackEntry.body = bot.innerHTML
+}
+
+function _buildEquipSelectorShell(removeLabel, filterStats, isFamiliar) {
+    let filterHtml = `<button class="equip-filter-btn active" data-filter="" onclick="setEquipPickFilter(null)">Tous</button>`
+    for (const [stat, label] of filterStats) {
+        filterHtml += `<button class="equip-filter-btn" data-filter="${stat}" onclick="setEquipPickFilter('${stat}')">${label}</button>`
+    }
+
+    const sorts = isFamiliar
+        ? `<button class="equip-sort-btn active" data-sort="level" onclick="setEquipPickSort('level')">Niv. ↓</button>
+           <button class="equip-sort-btn" data-sort="bonus" onclick="setEquipPickSort('bonus')">Bonus ↓</button>`
+        : `<button class="equip-sort-btn active" data-sort="level" onclick="setEquipPickSort('level')">Niv. item ↓</button>
+           <button class="equip-sort-btn" data-sort="req" onclick="setEquipPickSort('req')">Niv. requis ↑</button>`
+
+    return `<div class="equip-selector">
+        <div class="equip-remove-row">
+            <button class="equip-remove-btn" onclick="_doEquipRemove()">${removeLabel}</button>
+        </div>
+        <div class="equip-controls">
+            <div class="equip-filter-bar">${filterHtml}</div>
+            <div class="equip-sort-bar">${sorts}</div>
+        </div>
+        <div class="equip-pick-grid"></div>
+    </div>`
+}
 
 function openFamiliarSelector(memberIndex, fromSheet = false) {
     const member = state.team[memberIndex]
@@ -304,42 +443,34 @@ function openFamiliarSelector(memberIndex, fromSheet = false) {
         if (other.equip?.familier) takenByOther.add(other.equip.familier)
     }
 
-    const removeCall = fromSheet
-        ? `equipFamiliarFromSheet('${member.classId}', null)`
-        : `equipFamiliar(${memberIndex}, null); closeTooltip()`
+    const famItems = Object.keys(state.collection).map(monsterId => {
+        const mob      = monsters[monsterId]
+        const entry    = state.collection[monsterId]
+        if (!mob || !entry) return null
+        const famBonus = mob.familiar ? getFamiliarBonusValue(monsterId) : null
+        return { id: monsterId, mob, entry, famBonus }
+    }).filter(Boolean)
 
-    const collected = Object.keys(state.collection)
-    let html = `<div class="equip-selector"><div class="equip-selector-list">`
-    html += `<div class="equip-option equip-remove" onclick="${removeCall}">
-                 Retirer le familier
-             </div>`
+    const bonusStats   = [...new Set(famItems.filter(e => e.famBonus).map(e => e.famBonus.stat))]
+    const filterStats  = bonusStats.map(s => [s, formatBonusStat(s)])
 
-    if (collected.length === 0) {
-        html += `<span style="opacity:0.5;font-size:0.85rem">Aucun familier capturé.</span>`
-    } else {
-        for (const monsterId of collected) {
-            const mob   = monsters[monsterId]
-            const entry = state.collection[monsterId]
-            if (!mob || !entry) continue
-            const lvl       = entry.level
-            const taken     = takenByOther.has(monsterId)
-            const takenNote = taken ? ' <em style="opacity:0.55">(déjà équipé)</em>' : ''
-            const cls       = taken ? ' equip-option-disabled' : ''
-            const equipCall = fromSheet
-                ? `equipFamiliarFromSheet('${member.classId}', '${monsterId}')`
-                : `equipFamiliar(${memberIndex}, '${monsterId}'); closeTooltip()`
-            const handler   = taken ? '' : `onclick="${equipCall}"`
-            const famBonus  = mob.familiar ? getFamiliarBonusValue(monsterId) : null
-            const bonusText = famBonus ? `+${famBonus.value} ${formatBonusStat(famBonus.stat)}` : ''
-            html += `<div class="equip-option${cls}" ${handler}>
-                         <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
-                         <span>${mob.name}${takenNote}</span>
-                         <span class="equip-level">Niv.${lvl} — ${bonusText}</span>
-                     </div>`
-        }
+    _equipPickState = {
+        items: famItems,
+        filter: null,
+        sort: 'level',
+        takenByOther,
+        skullMaxLevel: null,
+        isFamiliar: true,
+        onEquip:  fromSheet
+            ? (id) => equipFamiliarFromSheet(member.classId, id)
+            : (id) => { equipFamiliar(memberIndex, id); closeTooltip() },
+        onRemove: fromSheet
+            ? () => equipFamiliarFromSheet(member.classId, null)
+            : () => { equipFamiliar(memberIndex, null); closeTooltip() },
     }
-    html += '</div></div>'
-    openTooltip('Familier', html)
+
+    openTooltip('Familier', _buildEquipSelectorShell('Retirer le familier', filterStats, true))
+    renderEquipPickGrid()
 }
 
 function equipFamiliar(memberIndex, monsterId) {
@@ -372,31 +503,30 @@ function openEquipSelector(memberIndex, equipSlot) {
         (!itm.slot || itm.slot === targetSlot)
     )
 
-    const slotLabel = EQUIP_SLOT_LABEL[equipSlot] || equipSlot
-    let html = `<div class="equip-selector"><div class="equip-selector-list">`
-    html += `<div class="equip-option equip-remove"
-                  onclick="equipItem(${memberIndex}, '${equipSlot}', null); closeTooltip()">
-                 Retirer l'équipement
-             </div>`
+    const _skullMaxLevel = (() => {
+        if (_pendingAreaId && state.skullLevel > 0) return areas[_pendingAreaId]?.maxLevel || null
+        if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
+        return null
+    })()
 
-    if (compatible.length === 0) {
-        html += '<span style="opacity:0.5;font-size:0.85rem">Aucun équipement disponible.</span>'
-    } else {
-        for (const itm of compatible) {
-            const lvl       = getItemLevel(itm.id)
-            const taken     = takenByOther.has(itm.id)
-            const takenNote = taken ? ' <em style="opacity:0.55">(déjà équipé)</em>' : ''
-            const cls       = taken ? ' equip-option-disabled' : ''
-            const handler   = taken ? '' : `onclick="equipItem(${memberIndex}, '${equipSlot}', '${itm.id}'); closeTooltip()"`
-            html += `<div class="equip-option${cls}" ${handler}>
-                         <img src="${itm.image}" onerror="this.src='img/icons/icon.png'">
-                         <span>${itm.name}${takenNote}</span>
-                         <span class="equip-level">Niv.${lvl}</span>
-                     </div>`
-        }
+    const statSet = new Set()
+    compatible.forEach(itm => itm.stats?.forEach(s => statSet.add(s.stat)))
+    const filterStats = [...statSet].map(s => [s, EQUIP_STAT_LABELS[s] || s])
+
+    _equipPickState = {
+        items: compatible,
+        filter: null,
+        sort: 'level',
+        takenByOther,
+        skullMaxLevel: _skullMaxLevel,
+        isFamiliar: false,
+        onEquip:  (id) => { equipItem(memberIndex, equipSlot, id); closeTooltip() },
+        onRemove: () => { equipItem(memberIndex, equipSlot, null); closeTooltip() },
     }
-    html += '</div></div>'
-    openTooltip(slotLabel, html)
+
+    const slotLabel = EQUIP_SLOT_LABEL[equipSlot] || equipSlot
+    openTooltip(slotLabel, _buildEquipSelectorShell("Retirer l'équipement", filterStats, false))
+    renderEquipPickGrid()
 }
 
 function equipItem(memberIndex, equipSlot, itemId) {

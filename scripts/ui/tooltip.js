@@ -104,25 +104,42 @@ function assignMoveToSlot(classId, moveId) {
 const PATCH_STAT_LABELS = {
     atk:                'Puissance',
     spd:                'Initiative',
-    maxHp:              'Points de Vie',
+    maxHp:              'PV',
     flatDamage:         'Dégâts fixes',
     finalDamagePct:     'Dégâts finaux',
     spellDamagePct:     'Dégâts de sorts',
     damageReductionPct: 'Réduction de dégâts',
     critChance:         'Chance critique',
     critDamagePct:      'Dégâts critiques',
+    healPct:            'Soins %',
+    healTeamPct:        'Soins équipe %',
+    healMaxHpPct:       'Soins PV max %',
+    lifestealPct:       'Vol de vie %',
     res_all:            'Résistances',
-    fireResPct:         'Résistance Feu',
-    waterResPct:        'Résistance Eau',
-    earthResPct:        'Résistance Terre',
-    airResPct:          'Résistance Air',
-    neutralResPct:      'Résistance Neutre',
+    'res.feu':          'Résistance Feu',
+    'res.eau':          'Résistance Eau',
+    'res.terre':        'Résistance Terre',
+    'res.air':          'Résistance Air',
+    'res.neutre':       'Résistance Neutre',
 }
 
 const MS_SLOT_LABELS = {
     coiffe: 'Coiffe', bouclier: 'Bouclier', anneau: 'Anneau', ceinture: 'Ceinture',
     bottes: 'Bottes', amulette: 'Amulette', arme: 'Arme', cape: 'Cape',
     anneau2: 'Anneau', familier: 'Familier', accessoire: 'Accessoire'
+}
+const MS_SLOT_ICONS = {
+    coiffe:     'img/items/panoplies/coiffe_bouftou.png',
+    bouclier:   'img/items/panoplies/bouclier_bouftou.png',
+    anneau:     'img/items/panoplies/anneau_bouftou.png',
+    anneau2:    'img/items/panoplies/anneau_bouftou.png',
+    ceinture:   'img/items/panoplies/ceinture_bouftou.png',
+    bottes:     'img/items/panoplies/bottes_bouftou.png',
+    amulette:   'img/items/panoplies/amulette_bouftou.png',
+    arme:       'img/items/panoplies/marteau_bouftou.png',
+    cape:       'img/items/panoplies/cape_bouftou.png',
+    familier:   'img/monstres/sprites/bouftou.png',
+    accessoire: 'img/items/objets_bonus/Dofus_Emeraude.png',
 }
 
 function showDataHelp(key) {
@@ -217,12 +234,14 @@ function showMemberSheet(member) {
             const mob  = itemId ? monsters[itemId] : null
             const flvl = itemId ? (state.collection[itemId]?.level || 0) : 0
             return mob
-                ? `<div class="ms-equip-slot ms-equip-filled" ${click} title="${mob.name}">
+                ? `<div class="ms-equip-slot ms-equip-filled" ${click}
+                       oncontextmenu="event.preventDefault(); showMonsterTooltip('${itemId}')"
+                       title="${mob.name}">
                        <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
                        <span class="ms-equip-ilvl">Niv.${flvl}</span>
                    </div>`
                 : `<div class="ms-equip-slot ms-equip-empty" ${click} title="${label}">
-                       <span>${label}</span>
+                       <img class="ms-equip-placeholder" src="${MS_SLOT_ICONS[slotId] || 'img/icons/icon.png'}">
                    </div>`
         }
 
@@ -236,7 +255,7 @@ function showMemberSheet(member) {
                    <span class="ms-equip-ilvl">Niv.${ilvl}</span>
                </div>`
             : `<div class="ms-equip-slot ms-equip-empty" ${click} title="${label}">
-                   <span>${label}</span>
+                   <img class="ms-equip-placeholder" src="${MS_SLOT_ICONS[slotId] || 'img/icons/icon.png'}">
                </div>`
     }
 
@@ -357,21 +376,25 @@ function showMemberSheet(member) {
         <div class="ms-stats-grid">
             <div class="ms-stats">
                 ${statRow(STAT_ICONS.hp,     'PV',        base.hp,          eff.hp         )}
-                ${statRow(STAT_ICONS.atk,    'ATK',       base.atk,         eff.atk        )}
-                ${statRow(STAT_ICONS.spd,    'VIT',       base.spd,         eff.spd        )}
-                ${statRow(ELEM_ICONS.neutre, 'Ré Neutre', base.res.neutre,  eff.res.neutre, '%', true)}
-                ${statRow(ELEM_ICONS.terre,  'Ré Terre',  base.res.terre,   eff.res.terre,  '%', true)}
-                ${statRow(ELEM_ICONS.feu,    'Ré Feu',    base.res.feu,     eff.res.feu,    '%', true)}
-                ${statRow(ELEM_ICONS.eau,    'Ré Eau',    base.res.eau,     eff.res.eau,    '%', true)}
-                ${statRow(ELEM_ICONS.air,    'Ré Air',    base.res.air,     eff.res.air,    '%', true)}
+                ${statRow(STAT_ICONS.atk,    'Puissance', base.atk,         eff.atk        )}
+                ${statRow(STAT_ICONS.spd,    'Initiative',base.spd,         eff.spd        )}
+                ${statRow(ELEM_ICONS.neutre, 'Résistance Neutre', base.res.neutre,  eff.res.neutre, '%', true)}
+                ${statRow(ELEM_ICONS.terre,  'Résistance Terre',  base.res.terre,   eff.res.terre,  '%', true)}
+                ${statRow(ELEM_ICONS.feu,    'Résistance Feu',    base.res.feu,     eff.res.feu,    '%', true)}
+                ${statRow(ELEM_ICONS.eau,    'Résistance Eau',    base.res.eau,     eff.res.eau,    '%', true)}
+                ${statRow(ELEM_ICONS.air,    'Résistance Air',    base.res.air,     eff.res.air,    '%', true)}
             </div>
             <div class="ms-stats">
-                ${statRow(STAT_ICONS.flatDamage, 'Dég. fixes',  0,  eff.flatDamage,         ''  )}
-                ${statRow(STAT_ICONS.atk,        'Dég. finaux', 0,  eff.finalDamagePct,    '%'  )}
-                ${statRow(STAT_ICONS.atk,        'Dég. sorts',  0,  eff.spellDamagePct,    '%'  )}
-                ${statRow(STAT_ICONS.buff,       'Réd. dégâts', 0,  eff.damageReductionPct,'%'  )}
-                ${statRow(STAT_ICONS.atk,        'Crit chance', 0,  eff.critChance,        '%'  )}
-                ${statRow(STAT_ICONS.atk,        'Dég. crit',   50, eff.critDamagePct,     '%'  )}
+                ${statRow(STAT_ICONS.flatDamage, 'Dégâts fixes',        0,  eff.flatDamage,         ''  )}
+                ${statRow(STAT_ICONS.atk,        'Dégâts finaux %',     0,  eff.finalDamagePct,    '%'  )}
+                ${statRow(STAT_ICONS.atk,        'Dégâts sorts %',      0,  eff.spellDamagePct,    '%'  )}
+                ${statRow(STAT_ICONS.buff,        'Réduction dégâts %',  0,  eff.damageReductionPct,'%'  )}
+                ${statRow(STAT_ICONS.atk,        'Chance critique %',   0,  eff.critChance,        '%'  )}
+                ${statRow(STAT_ICONS.atk,        'Dégâts critiques %',  50, eff.critDamagePct,     '%'  )}
+                ${eff.healPct        ? statRow(STAT_ICONS.soin,   'Soins %',         0,  eff.healPct,        '%') : ''}
+                ${eff.healTeamPct    ? statRow(STAT_ICONS.soin,   'Soins équipe %',  0,  eff.healTeamPct,    '%') : ''}
+                ${eff.healMaxHpPct   ? statRow(STAT_ICONS.soin,   'Soins PV max %',  0,  eff.healMaxHpPct,   '%') : ''}
+                ${eff.lifestealPct   ? statRow(STAT_ICONS.volVie, 'Vol de vie %',    0,  eff.lifestealPct,   '%') : ''}
             </div>
         </div>
         <div class="ms-section-title">Sorts actifs</div>
@@ -392,12 +415,10 @@ function openEquipFromSheet(classId, slotId) {
     const member = state.team[memberIndex]
     if (!member) return
 
-    // Items déjà équipés (autres membres OU autre slot du même membre)
     const takenByOther = new Set()
     for (const other of state.team) {
         if (!other) continue
         for (const [s, itemId] of Object.entries(other.equip || {})) {
-            // Exclure uniquement le slot qu'on est en train d'ouvrir pour ce membre
             if (other.classId === classId && s === slotId) continue
             if (itemId) takenByOther.add(itemId)
         }
@@ -410,31 +431,24 @@ function openEquipFromSheet(classId, slotId) {
         (!itm.slot || itm.slot === targetSlot)
     )
 
-    let html = `<div class="equip-selector"><div class="equip-selector-list">`
-    html += `<div class="equip-option equip-remove"
-                  onclick="equipItemFromSheet('${classId}', '${slotId}', null)">
-                 Retirer l'équipement
-             </div>`
+    const statSet = new Set()
+    compatible.forEach(itm => itm.stats?.forEach(s => statSet.add(s.stat)))
+    const filterStats = [...statSet].map(s => [s, EQUIP_STAT_LABELS[s] || s])
 
-    if (compatible.length === 0) {
-        html += `<span style="opacity:0.5;font-size:0.85rem">Aucun équipement disponible.</span>`
-    } else {
-        for (const itm of compatible) {
-            const lvl     = getItemLevel(itm.id)
-            const taken   = takenByOther.has(itm.id)
-            const takenNote = taken ? ' <em style="opacity:0.55">(déjà équipé)</em>' : ''
-            const cls     = taken ? ' equip-option-disabled' : ''
-            const handler = taken ? '' : `onclick="equipItemFromSheet('${classId}', '${slotId}', '${itm.id}')"`
-            html += `<div class="equip-option${cls}" ${handler}>
-                         <img src="${itm.image}" onerror="this.src='img/icons/icon.png'">
-                         <span>${itm.name}${takenNote}</span>
-                         <span class="equip-level">Niv.${lvl}</span>
-                     </div>`
-        }
+    _equipPickState = {
+        items: compatible,
+        filter: null,
+        sort: 'level',
+        takenByOther,
+        skullMaxLevel: null,
+        isFamiliar: false,
+        onEquip:  (id) => equipItemFromSheet(classId, slotId, id),
+        onRemove: () => equipItemFromSheet(classId, slotId, null),
     }
-    html += `</div></div>`
 
-    openTooltip(MS_SLOT_LABELS[slotId] || slotId, html)
+    const label = MS_SLOT_LABELS[slotId] || slotId
+    openTooltip(label, _buildEquipSelectorShell("Retirer l'équipement", filterStats, false))
+    renderEquipPickGrid()
 }
 
 function equipItemFromSheet(classId, slotId, itemId) {
@@ -526,7 +540,7 @@ function showEnemySheet(enemy) {
         const entry = state.collection?.[enemy.id]
         const famLvl = entry?.level || 0
         const famVal = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max, mob.rarity)) : null
-        const STAT_L = { atk: 'ATK', hp: 'PV', spd: 'Vitesse', flatDamage: 'Dég. fixes', finalDamagePct: 'Dég. finaux', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
+        const STAT_L = { atk: 'Puissance', maxHp: 'PV', spd: 'Initiative', flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
         const statLbl = STAT_L[fam.bonusStat] || fam.bonusStat
         const valText = famLvl > 0 ? `Niv. ${famLvl} — +${famVal} ${statLbl}` : `+${fam.min}–${fam.max} ${statLbl}`
         familiarHtml = `<div class="ms-section-title">Familier</div>
@@ -552,10 +566,10 @@ function showEnemySheet(enemy) {
         <div class="es-hp-text">${enemy.currentHp} / ${enemy.maxHp} PV</div>
         <div class="ms-section-title" style="margin-top:0.5rem;">Stats</div>
         <div class="ms-stats">
-            ${statRow(STAT_ICONS.atk, 'ATK', enemy.atk)}
-            ${statRow(STAT_ICONS.spd, 'Vitesse', enemy.spd)}
-            ${enemy.bonusAtkPct ? statRow(STAT_ICONS.atk, 'Dég. finaux', enemy.bonusAtkPct, '%') : ''}
-            ${enemy.flatBonus   ? statRow(STAT_ICONS.flatDamage, 'Dég. fixes', enemy.flatBonus) : ''}
+            ${statRow(STAT_ICONS.atk, 'Puissance', enemy.atk)}
+            ${statRow(STAT_ICONS.spd, 'Initiative', enemy.spd)}
+            ${enemy.finalDamagePct ? statRow(STAT_ICONS.atk, 'Dég. finaux', enemy.finalDamagePct, '%') : ''}
+            ${enemy.flatDamage     ? statRow(STAT_ICONS.flatDamage, 'Dég. fixes', enemy.flatDamage) : ''}
         </div>
         <div class="ms-section-title">Résistances</div>
         <div class="ms-stats">${resRows}</div>
@@ -704,7 +718,7 @@ function showMobSheet(monsterId) {
     let familiarHtml = ''
     const fam = mob.familiar
     if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
-        const STAT_L = { atk: 'ATK', hp: 'PV', spd: 'Vitesse', flatDamage: 'Dég. fixes', finalDamagePct: 'Dég. finaux', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
+        const STAT_L = { atk: 'Puissance', maxHp: 'PV', spd: 'Initiative', flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
         const statLbl = STAT_L[fam.bonusStat] || fam.bonusStat
         familiarHtml = `<div class="ms-section-title">Familier</div>
         <div style="font-size:0.8rem;opacity:0.75;padding:0.15rem 0;">+${fam.min}–${fam.max} ${statLbl}</div>`
@@ -721,8 +735,8 @@ function showMobSheet(monsterId) {
         <div class="ms-section-title" style="margin-top:0.3rem;">Stats de base</div>
         <div class="ms-stats">
             ${bstRow(STAT_ICONS.hp,  'PV',      mob.bst.hp)}
-            ${bstRow(STAT_ICONS.atk, 'ATK',     mob.bst.atk)}
-            ${bstRow(STAT_ICONS.spd, 'Vitesse', mob.bst.spd)}
+            ${bstRow(STAT_ICONS.atk, 'Puissance',  mob.bst.atk)}
+            ${bstRow(STAT_ICONS.spd, 'Initiative', mob.bst.spd)}
         </div>
         <div class="ms-section-title">Résistances</div>
         <div class="ms-stats">${resRows}</div>
@@ -768,9 +782,10 @@ function showMoveTooltip(moveId, casterStats) {
         shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation'
     }
     const STAT_LABELS = {
-        atk: 'ATK', spd: 'Vitesse', flatDamage: 'Dég. fixes',
+        atk: 'Puissance', spd: 'Initiative', flatDamage: 'Dégâts fixes',
         finalDamagePct: 'Dég. finaux %', spellDamagePct: 'Dég. sorts %',
-        damageReductionPct: 'Réd. dégâts %', critChance: 'Crit', critDamagePct: 'Dég. crit %'
+        damageReductionPct: 'Réd. dégâts %', critChance: 'Crit', critDamagePct: 'Dég. crit %',
+        healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %'
     }
 
     // Niveau de déblocage depuis le learnset de la classe

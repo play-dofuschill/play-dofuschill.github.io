@@ -1,229 +1,26 @@
-// engine/offline.js — Simulation de progression offline DofusChill
+// engine/offline.js — Progression offline DofusChill
 //
-// Flux : simulateOfflineProgress() est appelé une fois au chargement (main.js).
-// Si isRunning + combatStartTime sont sauvegardés, on calcule ce qui s'est passé
-// pendant l'absence du joueur et on affiche le résumé.
+// Au chargement, rejoue le combat en accéléré pour couvrir la durée d'absence.
+// Si l'équipe survit → le combat reprend au rythme normal sans interruption.
+// Si l'équipe meurt sans autopilot → écran de défaite normal.
+// Si l'équipe meurt avec autopilot → ticket consommé, HP remis à fond, fast-forward continue.
 
-const OFFLINE_CAP_MS = 8 * 60 * 60 * 1000  // plafond 8h
-const OFFLINE_MIN_MS = 10 * 1000            // ignore si < 10 secondes
+const OFFLINE_CAP_MS          = 8 * 60 * 60 * 1000  // plafond 8 h
+const OFFLINE_MIN_MS          = 10 * 1000            // ignore si < 10 secondes
+const OFFLINE_FRAME_BUDGET_MS = 8                    // budget CPU max par frame (ms)
+const OFFLINE_UI_MS           = 100                  // période de refresh UI (~10 fps)
 
-// ─── Estimation du temps moyen par kill ──────────────────────────────────────
-
-function _offlineMsPerKill(area, team) {
-    const refMob   = monsters[area.spawns[0]?.id]
-    const avgLvl   = (area.mobMinLevel + area.mobMaxLevel) / 2
-    const scale    = 1 + (avgLvl - area.mobMinLevel) * 0.05
-    const avgMobHp = refMob ? Math.floor(refMob.bst.hp * scale) : Math.floor(20 + avgLvl * 8)
-
-    // Seul le membre actif (premier en vie) attaque
-    const member = team.find(m => m && m.currentHp > 0)
-    if (!member) return 60000
-    const stats  = getEffectiveStats(member)
-    if (!stats)  return 60000
-    const spd    = Math.max(1, stats.spd || 100)
-    const atk    = Math.max(1, stats.atk || 10)
-    const barMs  = 2000 * (100 / spd)
-    const dps    = atk / (barMs / 1000)
-
-    if (dps <= 0) return 60000
-    return (avgMobHp / dps) * 1000 + 500
-}
-
-// ─── Estimation du temps de survie de l'équipe ───────────────────────────────
-// Utilise les HP actuels (pas les max) et estime les soins/vol de vie de l'équipe.
-// Les buffs d'ATK/vitesse ne sont pas modélisés (trop complexes à estimer).
-
-function _offlineSurvivalMs(area, team) {
-    let totalHp = 0
-    let healDps = 0   // soins nets par seconde de l'équipe
-
-    // HP totaux : tous les membres meurent séquentiellement
-    for (const m of team) {
-        if (m) totalHp += Math.max(0, m.currentHp || 0)
-    }
-
-    // Soins/lifesteal : seul le membre actif attaque, donc seul lui peut en bénéficier
-    const activeMember = team.find(m => m && m.currentHp > 0)
-    if (activeMember) {
-        const stats = getEffectiveStats(activeMember)
-        if (stats) {
-            const spd         = Math.max(1, stats.spd || 100)
-            const atk         = Math.max(1, stats.atk || 10)
-            const barMs       = 2000 * (100 / spd)
-            const slots       = ['slot1','slot2','slot3','slot4']
-            const activeSlots = slots.filter(s => activeMember.moves?.[s])
-
-            for (const s of activeSlots) {
-                const mv = move[activeMember.moves[s]]
-                if (!mv?.effects) continue
-                let moveDmg = 0
-                for (const eff of mv.effects) {
-                    if (eff.type === 'damage') {
-                        moveDmg = atk
-                    } else if (eff.type === 'heal' && eff.heal > 0) {
-                        healDps += (eff.heal / (barMs / 1000)) / activeSlots.length
-                    } else if (eff.type === 'lifesteal' && eff.ratio > 0) {
-                        healDps += (moveDmg * eff.ratio / (barMs / 1000)) / activeSlots.length
-                    }
-                }
-            }
-        }
-    }
-
-    if (totalHp <= 0) return 0
-
-    const refMob = monsters[area.spawns[0]?.id]
-    if (!refMob) return 8 * 3600 * 1000
-
-    const avgLvl     = (area.mobMinLevel + area.mobMaxLevel) / 2
-    const scale      = 1 + (avgLvl - area.mobMinLevel) * 0.05
-    const mobAtk     = Math.floor(refMob.bst.atk * scale)
-    const mobSpd     = refMob.bst.spd || 100
-    const enemyBarMs = 2000 * (100 / mobSpd)
-    const enemyDps   = mobAtk / (enemyBarMs / 1000)
-
-    const netDps = Math.max(0, enemyDps - healDps)
-    if (netDps <= 0) return 8 * 3600 * 1000   // soins ≥ dégâts → survie max
-
-    return Math.max(60000, (totalHp / netDps) * 1000)
-}
-
-// ─── Tirage de loot pour UN kill (sans effets de bord) ───────────────────────
-
-function _offlineOneLootRoll(area, spawnId) {
-    const famBonuses = getAllFamiliarBonuses()
-    const dropBonus  = (famBonuses.dropRate || 0) / 100
-
-    // Pierre d'âme
-    let familiarId = null
-    const pierreDameEntry = area.lootTable?.find(e => e.itemId === 'pierreDame')
-    const baseChance = pierreDameEntry
-        ? pierreDameEntry.dropRate
-        : (monsters[spawnId]?.dropRate ?? 0)
-    if (Math.random() < Math.min(0.95, baseChance + dropBonus)) {
-        familiarId = spawnId
-    }
-
-    // Équipement
-    let itemId = null
-    const itemEntries = (area.lootTable || []).filter(e => e.itemId !== 'pierreDame' && !e.isKey)
-    const rawItemChance = itemEntries.reduce((s, e) => s + e.dropRate, 0)
-    const totalItemChance = Math.min(0.95, rawItemChance + dropBonus)
-    if (Math.random() < totalItemChance) {
-        let roll = Math.random() * rawItemChance
-        for (const e of itemEntries) {
-            roll -= e.dropRate
-            if (roll <= 0) { itemId = e.itemId; break }
-        }
-    }
-
-    // Clé de donjon
-    let keyId = null
-    for (const e of (area.lootTable || [])) {
-        if (!e.isKey) continue
-        if (Math.random() < e.dropRate) { keyId = e.itemId; break }
-    }
-
-    return { familiarId, itemId, keyId }
-}
-
-// ─── Accumulation des loots en batch (sans I/O) ──────────────────────────────
-
-function _offlineBatchRoll(area, kills) {
-    const familiarCounts = {}   // { monsterId: count }
-    const itemCounts     = {}   // { itemId: count }
-    const keyCounts      = {}   // { keyId: count }
-
-    const total = area.spawns.reduce((s, sp) => s + sp.weight, 0)
-    for (let i = 0; i < kills; i++) {
-        // Spawn pondéré aléatoire
-        let roll = Math.random() * total
-        let spawnId = area.spawns[area.spawns.length - 1].id
-        for (const sp of area.spawns) {
-            roll -= sp.weight
-            if (roll <= 0) { spawnId = sp.id; break }
-        }
-
-        const { familiarId, itemId, keyId } = _offlineOneLootRoll(area, spawnId)
-        if (familiarId) familiarCounts[familiarId] = (familiarCounts[familiarId] || 0) + 1
-        if (itemId)     itemCounts[itemId]         = (itemCounts[itemId] || 0) + 1
-        if (keyId)      keyCounts[keyId]           = (keyCounts[keyId] || 0) + 1
-    }
-    return { familiarCounts, itemCounts, keyCounts }
-}
-
-// ─── Application des loots à l'état du jeu ───────────────────────────────────
-
-function _offlineApplyLoot(area, kills) {
-    const { familiarCounts, itemCounts, keyCounts } = _offlineBatchRoll(area, kills)
-    const result = { familiarDrops: [], itemDrops: [], keyDrops: [], kamasFromDrops: 0 }
-
-    for (const [monsterId, count] of Object.entries(familiarCounts)) {
-        for (let i = 0; i < count; i++) {
-            const drop = _captureFamiliar(monsterId)
-            if (drop) result.familiarDrops.push(drop)
-        }
-    }
-
-    for (const [itemId, count] of Object.entries(itemCounts)) {
-        for (let i = 0; i < count; i++) {
-            const r = addToInventory(itemId)
-            if (!r) continue
-            if (r.convertedToKamas) {
-                result.kamasFromDrops += r.kamas || 1
-            } else {
-                result.itemDrops.push({ itemId, ...r })
-            }
-        }
-    }
-
-    for (const [keyId, count] of Object.entries(keyCounts)) {
-        for (let i = 0; i < count; i++) addToInventory(keyId)
-        result.keyDrops.push({ itemId: keyId, count })
-    }
-
-    return result
-}
-
-// ─── Application de l'XP en batch ────────────────────────────────────────────
-
-function _offlineApplyXP(area, kills, team) {
-    const results = []
-    const avgLvl    = Math.round((area.mobMinLevel + area.mobMaxLevel) / 2)
-    const refSpawnId = area.spawns[0]?.id
-    const refMob    = monsters[refSpawnId]
-    if (!refMob) return results
-
-    const fakeEnemy = {
-        id:     refSpawnId,
-        level:  avgLvl,
-        tier:   refMob.tier   || 'normal',
-        rarity: refMob.rarity || 'commun'
-    }
-
-    for (let i = 0; i < team.length; i++) {
-        const member = team[i]
-        if (!member) continue
-        const mult      = (i === 0) ? 1.0 : 0.5
-        const xpPerKill = Math.floor(calculateXPReward(fakeEnemy, member) * mult)
-        const totalXp   = xpPerKill * kills
-        if (totalXp <= 0) continue
-        const prevLevel = member.level
-        const r = giveXP(member, totalXp)
-        results.push({ member, xp: totalXp, prevLevel, ...r })
-    }
-    return results
-}
-
-// ─── Point d'entrée principal ─────────────────────────────────────────────────
+// État partagé avec combat.js (onDefeat l'interroge)
+let _offlineTicksRun   = 0
+let _offlineTotalTicks = 0
+let _offlineLastUiMs   = 0
 
 function simulateOfflineProgress() {
     if (!state.combatStartTime || !state.currentArea) return
 
     const area = areas[state.currentArea]
-    // Pas de simulation en donjon ou si zone inconnue
     if (!area || area.type === 'dungeon') {
-        state.isRunning = false
+        state.isRunning       = false
         state.combatStartTime = null
         return
     }
@@ -231,217 +28,103 @@ function simulateOfflineProgress() {
     const now        = Date.now()
     const rawElapsed = now - state.combatStartTime
     if (rawElapsed < OFFLINE_MIN_MS) {
-        state.isRunning = false
+        state.isRunning       = false
         state.combatStartTime = null
         return
     }
     const elapsed = Math.min(OFFLINE_CAP_MS, rawElapsed)
 
-    const team = state.team.filter(Boolean)
-    if (!team.length) {
-        state.isRunning = false
+    if (!state.team.some(Boolean)) {
+        state.isRunning       = false
         state.combatStartTime = null
         return
     }
 
-    const msPerKill   = _offlineMsPerKill(area, team)
-    const survivalMs  = _offlineSurvivalMs(area, team)
-    const tickets     = state.offlineAutoPilotRemaining || 0
+    const hpSnapshot       = state.team.map(m => m ? (m.currentHp || 0) : null)
+    _offlineTotalTicks     = Math.ceil(elapsed / TICK_MS)
+    _offlineTicksRun       = 0
+    _offlineLastUiMs       = 0
 
-    // ── Simulation des sessions ──
-    let timeLeft        = elapsed
-    let ticketsLeft     = tickets
-    let ticketsConsumed = 0
-    let totalKills      = 0
-    let survived        = false
+    startCombat(state.currentArea)
 
-    while (timeLeft > 0) {
-        const sessionMs    = Math.min(timeLeft, survivalMs)
-        const sessionKills = Math.max(0, Math.floor(sessionMs / msPerKill))
-        totalKills += sessionKills
-        timeLeft   -= sessionMs
-
-        if (timeLeft <= 0) {
-            survived = true   // l'équipe était encore en vie à notre retour
-            break
-        }
-        // L'équipe est morte dans cette session
-        if (ticketsLeft > 0) {
-            ticketsLeft--
-            ticketsConsumed++
-        } else {
-            survived = false
-            break
-        }
+    // Restaure les HP au moment de la déconnexion (pas de soins gratuits)
+    for (let i = 0; i < state.team.length; i++) {
+        const m = state.team[i]
+        if (!m || hpSnapshot[i] == null) continue
+        m.currentHp = Math.min(Math.max(0, hpSnapshot[i]), m.maxHp)
     }
 
-    // ── Application des résultats ──
-    const lootResult = _offlineApplyLoot(area, totalKills)
-    const xpResults  = _offlineApplyXP(area, totalKills, team)
-
-    state.totalKills = (state.totalKills || 0) + totalKills
-
-    // Consommation des tickets de pilote automatique
-    for (let i = 0; i < ticketsConsumed; i++) {
-        const entry = state.inventory['piloteAutomatique']
-        if (!entry || entry.count <= 0) break
-        entry.count--
-        if (entry.count <= 0) delete state.inventory['piloteAutomatique']
+    // Équipe déjà morte au moment de la déconnexion : défaite immédiate
+    if (!state.team.some(m => m && m.currentHp > 0)) {
+        stopCombat()
+        showSessionSummary('defeat')
+        return
     }
 
-    // Réinitialisation de l'état combat
-    state.isRunning                  = false
-    state.combatStartTime            = null
-    state.offlineAutoPilotRemaining  = 0
-
-    saveGame()
-
-    showOfflineSummary({ elapsed, totalKills, survived, ticketsConsumed, lootResult, xpResults, area })
+    _startOfflineFastForwardLoop()
 }
 
-// ─── Affichage du résumé d'absence ───────────────────────────────────────────
+// Démarre (ou redémarre après un respawn autopilot) la boucle accélérée.
+function _startOfflineFastForwardLoop() {
+    clearInterval(combatLoop)
+    _offlineFastForward = true
 
-function showOfflineSummary({ elapsed, totalKills, survived, ticketsConsumed, lootResult, xpResults, area }) {
-    const el = document.getElementById('offline-summary')
-    if (!el) return
+    combatLoop = setInterval(() => {
+        if (!_offlineFastForward) return
 
-    const h    = Math.floor(elapsed / 3_600_000)
-    const m    = Math.floor((elapsed % 3_600_000) / 60_000)
-    const s    = Math.floor((elapsed % 60_000) / 1000)
-    const duration = h > 0 ? `${h}h${String(m).padStart(2, '0')}` : m > 0 ? `${m}min` : `${s}s`
+        const frameStart = performance.now()
+        while (
+            performance.now() - frameStart < OFFLINE_FRAME_BUDGET_MS &&
+            _offlineTicksRun < _offlineTotalTicks &&
+            _offlineFastForward
+        ) {
+            gameTick()
+            _offlineTicksRun++
+        }
 
-    // ── XP ──
-    const xpHtml = xpResults.length > 0
-        ? xpResults.map(r => {
-            const cls        = classes[r.member.classId]
-            const levelBadge = r.leveledUp
-                ? `<span class="os-levelup">▲ Niv.${r.newLevel}</span>`
-                : `<span class="os-level">Niv.${r.newLevel}</span>`
-            return `<div class="os-xp-row">
-                <img class="os-sprite" src="${cls?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
-                <span class="os-name">${cls?.name || '?'}</span>
-                ${levelBadge}
-                <span class="os-xp-val">+${r.xp.toLocaleString('fr-FR')} XP</span>
-            </div>`
-        }).join('')
-        : `<span class="no-drop">Aucun gain d'XP</span>`
+        const now = performance.now()
+        if (now - _offlineLastUiMs >= OFFLINE_UI_MS) {
+            if (state.isRunning) updateCombatUI()
+            _offlineLastUiMs = now
+        }
 
-    // ── Familiers ──
-    const famGroups = {}
-    for (const fd of lootResult.familiarDrops) {
-        if (!famGroups[fd.monsterId]) famGroups[fd.monsterId] = { ...fd, count: 0 }
-        famGroups[fd.monsterId].count++
-        famGroups[fd.monsterId].newLevel = fd.newLevel
-        famGroups[fd.monsterId].isNew    = famGroups[fd.monsterId].isNew || fd.isNew
-    }
-    const famHtml = Object.keys(famGroups).length > 0
-        ? Object.values(famGroups).map(g => {
-            const mob = monsters[g.monsterId]
-            if (!mob) return ''
-            const countBadge = g.count > 1 ? `<span class="bubble-count">×${g.count}</span>` : ''
-            return `<div class="game-bubble" title="${mob.name}${g.isNew ? ' (Nouveau !)' : ''}">
-                <span class="bubble-level">Niv.${g.newLevel}</span>
-                ${countBadge}
-                <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
-            </div>`
-        }).join('')
-        : `<span class="no-drop">Aucune Pierre d'âme...</span>`
-
-    // ── Équipements ──
-    const itemGroups = {}
-    for (const d of lootResult.itemDrops) {
-        if (!itemGroups[d.itemId]) itemGroups[d.itemId] = { ...d, qty: 0 }
-        itemGroups[d.itemId].qty++
-        if ((d.level || 0) > (itemGroups[d.itemId].level || 0)) itemGroups[d.itemId].level = d.level
-    }
-    let itemsHtml = Object.values(itemGroups).map(d => {
-        const itm = item[d.itemId]
-        if (!itm) return ''
-        const badge = d.level > 0
-            ? `<span class="bubble-level">Niv.${d.level}</span>`
-            : d.qty > 1 ? `<span class="bubble-level">×${d.qty}</span>` : ''
-        return `<div class="game-bubble" title="${itm.name}" onclick="showItemTooltip('${d.itemId}')">
-            ${badge}
-            <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
-        </div>`
-    }).join('')
-
-    // ── Clés ──
-    for (const kd of lootResult.keyDrops) {
-        const itm = item[kd.itemId]
-        if (!itm) continue
-        const badge = kd.count > 1 ? `<span class="bubble-level">×${kd.count}</span>` : ''
-        itemsHtml += `<div class="game-bubble" title="${itm.name}" onclick="showItemTooltip('${kd.itemId}')">
-            ${badge}
-            <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
-        </div>`
-    }
-
-    // ── Kamas ──
-    const kamasBubble = lootResult.kamasFromDrops > 0
-        ? `<div class="game-bubble kamas-bubble" title="${lootResult.kamasFromDrops} kamas">
-               <span class="bubble-level">+${lootResult.kamasFromDrops}</span>
-               <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'">
-           </div>`
-        : ''
-
-    if (!itemsHtml && !kamasBubble) itemsHtml = `<span class="no-drop">Rien cette fois...</span>`
-
-    // ── Tickets consommés ──
-    const ticketsHtml = ticketsConsumed > 0
-        ? `<div class="os-tickets">🎟 ${ticketsConsumed} ticket${ticketsConsumed > 1 ? 's' : ''} de pilote automatique consommé${ticketsConsumed > 1 ? 's' : ''}</div>`
-        : ''
-
-    // ── Bouton d'action ──
-    const actionHtml = survived
-        ? `<div class="ae-btn ae-btn-rejoin" onclick="closeOfflineSummary(true)">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6c0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8m0 14c-3.31 0-6-2.69-6-6c0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4l-4-4z"/></svg>
-               Reprendre le combat
-           </div>`
-        : `<div class="ae-btn ae-btn-rejoin" onclick="closeOfflineSummary(false)">
-               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6c0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8m0 14c-3.31 0-6-2.69-6-6c0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4l-4-4z"/></svg>
-               Retourner à la carte
-           </div>`
-
-    el.innerHTML = `
-        <div class="offline-summary-box">
-            <div class="ae-header">En votre absence</div>
-            <div class="ae-title">${area.name} — ${duration}</div>
-            <div class="os-status ${survived ? 'os-survived' : 'os-defeated'}">
-                ${survived ? 'Votre équipe a tenu bon !' : 'Votre équipe a été vaincue...'}
-            </div>
-            <div class="os-kills">${totalKills.toLocaleString('fr-FR')} ennemi${totalKills > 1 ? 's' : ''} vaincu${totalKills > 1 ? 's' : ''}</div>
-            ${ticketsHtml}
-            <div class="ae-box">
-                <div class="ae-box-title">XP gagnée</div>
-                <div class="os-xp-list">${xpHtml}</div>
-            </div>
-            <div class="ae-box">
-                <div class="ae-box-title">Familiers collectés</div>
-                <div class="ae-box-content ae-bubbles">${famHtml}</div>
-            </div>
-            <div class="ae-box">
-                <div class="ae-box-title">Objets obtenus</div>
-                <div class="ae-box-content ae-bubbles">${itemsHtml}${kamasBubble}</div>
-            </div>
-            <div class="ae-actions">
-                ${actionHtml}
-                <div class="ae-btn ae-btn-quit" onclick="closeOfflineSummary(false)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h7v2zm11-4l-1.375-1.45l2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5z"/></svg>
-                    Fermer
-                </div>
-            </div>
-        </div>`
-
-    el.style.display = 'flex'
+        // Tous les ticks simulés : reprise du combat au rythme normal
+        if (_offlineTicksRun >= _offlineTotalTicks && _offlineFastForward) {
+            _offlineFastForward = false
+            clearInterval(combatLoop)
+            combatLoop = setInterval(gameTick, TICK_MS)
+            saveGame()
+        }
+    }, TICK_MS)
 }
 
-function closeOfflineSummary(resume) {
-    const el = document.getElementById('offline-summary')
-    if (el) el.style.display = 'none'
-    if (resume && state.currentArea) {
-        startCombat(state.currentArea)
-    } else {
-        if (typeof updateZoneUI === 'function') updateZoneUI()
+// Appelé depuis onDefeat quand _offlineFastForward était actif.
+// Consomme un ticket autopilot et continue le fast-forward, ou stoppe proprement.
+function _offlineHandleDefeat() {
+    if (_autoPilot && _autoPilot.remaining > 0 &&
+        (state.inventory['piloteAutomatique']?.count || 0) > 0) {
+
+        // Fusionne le loot de cette session dans l'accumulateur autopilot
+        if (combat) _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
+        _consumeAutoPilotTicket()
+        _autoPilot.remaining--
+        saveGame()
+
+        if (_autoPilot.remaining > 0 && (state.inventory['piloteAutomatique']?.count || 0) > 0) {
+            // Relance le combat et continue le fast-forward pour les ticks restants
+            startCombat(state.currentArea)
+            _startOfflineFastForwardLoop()
+            return
+        }
     }
+
+    // Plus de tickets (ou pas de pilote) : fin du fast-forward, défaite normale
+    _offlineFastForward    = false
+    _offlineTotalTicks     = 0
+    _offlineTicksRun       = 0
+    if (_autoPilot) {
+        if (combat) combat.sessionLoot = _autoPilot.accumulated
+        _autoPilot = null
+    }
+    showSessionSummary('defeat')
 }
