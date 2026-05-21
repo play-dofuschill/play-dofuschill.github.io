@@ -36,6 +36,32 @@ function updateShopUI() {
         const itm = item[entry.itemId]
         if (!itm) continue
 
+        // ── Skin cosmétique : achat unique ─────────────────────────────
+        if (itm.type === 'cosmetic_skin') {
+            const owned     = (state.ownedSkins || []).includes(entry.itemId)
+            const canAfford = state.kamas >= entry.price
+            const card = document.createElement('div')
+            card.className = `shop-card${owned ? ' shop-card-maxed' : (!canAfford ? ' shop-card-disabled' : '')}`
+            card.innerHTML = `
+                <div class="shop-card-bubble">
+                    <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
+                </div>
+                <div class="shop-card-info">
+                    <span class="shop-card-name">${itm.name}${owned ? '<span class="shop-card-max-badge">Possédé</span>' : ''}</span>
+                    ${itm.description ? `<span class="shop-card-desc">${itm.description}</span>` : ''}
+                </div>
+                <div class="shop-card-price${canAfford || owned ? '' : ' shop-price-unaffordable'}">
+                    ${owned
+                        ? `<span style="font-size:0.75rem;opacity:0.5;">✔</span>`
+                        : `<img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon"><span>${entry.price}</span>`}
+                </div>`
+            if (!owned) card.addEventListener('click', () => buyShopItem(entry.itemId, entry.price))
+            card.addEventListener('contextmenu', e => { e.preventDefault(); showItemTooltip(entry.itemId) })
+            list.appendChild(card)
+            continue
+        }
+
+        // ── Item standard ──────────────────────────────────────────────
         const currentLevel = state.inventory[entry.itemId]?.level || 0
         const isMaxed      = itm.levelMax && currentLevel >= itm.levelMax
         const canAfford    = state.kamas >= entry.price

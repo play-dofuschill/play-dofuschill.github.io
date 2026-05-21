@@ -7,7 +7,10 @@ function getMemberImage(member) {
     const cls = classes[member?.classId]
     if (!cls?.image) return 'img/icons/icon.png'
     const suffix = (member?.gender === 'female') ? 'Female' : 'Male'
-    return cls.image.replace(/_(?:Male|Female)\.png$/i, `_${suffix}.png`)
+    const skinId   = state.classEquip?.[member?.classId]?.skin
+    const skinItem = skinId ? item[skinId] : null
+    const base     = (skinItem?.image) ? skinItem.image : cls.image
+    return base.replace(/_(?:Male|Female)\.png$/i, `_${suffix}.png`)
 }
 
 // ─── Changement de genre (persiste dans state.classEquip + saveGame) ─────────
@@ -90,6 +93,20 @@ function assignMoveToSlot(classId, moveId) {
         if (member.moves[s] === moveId && s !== targetSlot) { sourceSlot = s; break }
     }
 
+    // Restriction : bloque si un autre slot (hors swap) a déjà le même sigle
+    const newRestriction = move[moveId]?.restriction
+    if (newRestriction && !sourceSlot) {
+        const sigleLabel = { star: '★', arrow: '→', shield: '🛡' }[newRestriction] || newRestriction
+        for (const s of ['slot1', 'slot2', 'slot3', 'slot4']) {
+            if (s === targetSlot) continue
+            if (move[member.moves[s]]?.restriction === newRestriction) {
+                showNotification(`Un sort ${sigleLabel} est déjà équipé sur ce membre !`, 'error')
+                _selectedMoveSlot = null
+                return
+            }
+        }
+    }
+
     member.moves[targetSlot] = moveId
     if (sourceSlot) member.moves[sourceSlot] = displaced
 
@@ -121,6 +138,7 @@ const PATCH_STAT_LABELS = {
     'res.terre':        'Résistance Terre',
     'res.air':          'Résistance Air',
     'res.neutre':       'Résistance Neutre',
+    erosionBonus:       'Érosion',
 }
 
 const MS_SLOT_LABELS = {
@@ -284,14 +302,15 @@ function showMemberSheet(member) {
         const mv         = move[moveId]
         const isSelected = _selectedMoveSlot?.classId === member.classId && _selectedMoveSlot?.slot === s
         const selStyle   = isSelected ? 'outline:2px solid #f44336;outline-offset:2px;' : ''
-        if (!mv) return `<div class="ms-move-slot ms-move-empty" onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}">—</div>`
+        if (!mv) return `<div class="combat-move-bar combat-move-empty" onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}"><span class="combat-move-name">—</span></div>`
         const elem    = mv.effects?.[0]?.element || 'neutre'
         const mvType  = mv.effects?.[0]?.type || ''
-        const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'malus' : elem
-        return `<div class="ms-move-slot elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${member.classId}"
+        const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
+        return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${member.classId}"
                      onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}">
-            <span class="ms-move-name">${mv.name}</span>
-            ${elemIcon(elem, 'ms-move-icon')}
+            <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
+            <span class="combat-move-name">${mv.name}${moveRestrictionSigle(mv, elem)}</span>
+            <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
         </div>`
     }).join('')
 
@@ -311,10 +330,13 @@ function showMemberSheet(member) {
         const eff0      = mv.effects?.[0]
         const elem      = eff0?.element || 'neutre'
         const typeLabel = { damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', heal: 'Soin', heal_team: 'Soin éq.', buff: 'Buff', buff_team: 'Buff éq.', debuff: 'Débuff', shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation' }[eff0?.type] || eff0?.type || '—'
+        const _statLabel = { spd: 'init', atk: 'atk', maxHp: 'PV', hp: 'PV', flatDamage: 'dég', finalDamagePct: 'dég%', damageReductionPct: 'rés%', critChance: 'crit%', critDamagePct: 'crit-dég%' }
+        const statLbl = s => _statLabel[s] || s
         let detail = ''
         if (eff0?.damage)                               detail = `${eff0.damage.min}-${eff0.damage.max} dég`
         if (eff0?.type === 'heal' || eff0?.type === 'heal_team')  detail = `soin`
-        if (eff0?.type === 'buff' || eff0?.type === 'buff_team')  detail = eff0.stat ? `+${eff0.value} ${eff0.stat}` : 'buff'
+        if (eff0?.type === 'buff'   || eff0?.type === 'buff_team')   detail = eff0.stat ? `+${eff0.value} ${statLbl(eff0.stat)}` : 'buff'
+        if (eff0?.type === 'debuff' || eff0?.type === 'debuff_team') detail = eff0.stat ? `${eff0.value} ${statLbl(eff0.stat)}` : 'débuff'
 
         const unlock  = unlockLevel[moveId] || 1
         const locked  = lvl < unlock
@@ -324,8 +346,8 @@ function showMemberSheet(member) {
         const assignAttrs = canAssign ? `onclick="assignMoveToSlot('${member.classId}','${moveId}')" style="cursor:pointer;"` : ''
 
         return `<div class="ms-learned-row${eqClass}${lockedClass}" data-move-id="${moveId}" data-caster-class="${member.classId}" ${assignAttrs}>
-            ${elemIcon(elem, 'ms-learned-icon')}
-            <span class="ms-learned-name">${mv.name}</span>
+            ${elemIcon(moveIconKey(mv), 'ms-learned-icon')}
+            <span class="ms-learned-name">${mv.name}${moveRestrictionSigle(mv, elem)}</span>
             ${locked
                 ? `<span class="ms-learned-lock">débloqué lvl ${unlock}</span>`
                 : `<span class="ms-learned-type">${typeLabel}</span>
@@ -356,10 +378,13 @@ function showMemberSheet(member) {
                                background:${member.gender==='female'?'#e25d9e':'rgba(255,255,255,0.12)'};
                                color:${member.gender==='female'?'#0d0d1a':'#ccc'};">♀</button>
                 </div>
-                <div style="display:flex;justify-content:center;margin-top:0.25rem;">
+                <div style="display:flex;gap:0.3rem;justify-content:center;margin-top:0.25rem;">
                     <button onclick="renameMember('${member.classId}')"
                         style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
-                               background:rgba(255,255,255,0.1);color:#ccc;">✏ Renommer</button>
+                               background:var(--dark2);color:#fff;">✏ Renommer</button>
+                    <button onclick="openCosmeticPicker('${member.classId}')"
+                        style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
+                               background:var(--dark2);color:#fff;">🎨 Apparence</button>
                 </div>
             </div>
             <div class="ms-equip-col">
@@ -515,7 +540,7 @@ function showEnemySheet(enemy) {
         const eff0     = mv.effects?.[0]
         const elem     = eff0?.element || 'neutre'
         const mvType   = eff0?.type || ''
-        const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'malus' : elem
+        const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
         const typeLabel = TYPE_LABELS[mvType] || mvType || '—'
         let detail = ''
         if (eff0?.damage) detail = `${eff0.damage.min}–${eff0.damage.max}`
@@ -525,7 +550,7 @@ function showEnemySheet(enemy) {
 
         const cdSec = mv.cooldownMs ? (mv.cooldownMs / 1000).toFixed(1) + 's' : ''
         return `<div class="es-move-row elem-bar-${barElem}" data-move-id="${moveId}" data-caster-enemy="1">
-            ${elemIcon(elem, 'es-move-elem-icon')}
+            ${elemIcon(moveIconKey(mv), 'es-move-elem-icon')}
             <span class="es-move-name">${mv.name}</span>
             <span class="es-move-type">${typeLabel}</span>
             <span class="es-move-detail">${detail}</span>
@@ -701,13 +726,13 @@ function showMobSheet(monsterId) {
         const eff0     = mv.effects?.[0]
         const elem     = eff0?.element || 'neutre'
         const mvType   = eff0?.type || ''
-        const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'malus' : elem
+        const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
         const typeLabel = TYPE_LABELS[mvType] || mvType || '—'
         let detail = ''
         if (eff0?.damage) detail = `${eff0.damage.min}–${eff0.damage.max}`
         const cdSec = mv.cooldownMs ? (mv.cooldownMs / 1000).toFixed(1) + 's' : ''
         return `<div class="es-move-row elem-bar-${barElem}" data-move-id="${moveId}">
-            ${elemIcon(elem, 'es-move-elem-icon')}
+            ${elemIcon(moveIconKey(mv), 'es-move-elem-icon')}
             <span class="es-move-name">${mv.name}</span>
             <span class="es-move-type">${typeLabel}</span>
             <span class="es-move-detail">${detail}</span>
@@ -777,15 +802,17 @@ function showMoveTooltip(moveId, casterStats) {
 
     const TYPE_LABELS = {
         damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT',
-        heal: 'Soin', heal_team: 'Soin (équipe)',
-        buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff',
-        shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation'
+        heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)',
+        buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff', debuff_team: 'Débuff (équipe)',
+        shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation', summon_random: 'Invocation',
+        renvoi: 'Renvoi', switch: 'Déplacement', repeat: 'Répétition'
     }
     const STAT_LABELS = {
         atk: 'Puissance', spd: 'Initiative', flatDamage: 'Dégâts fixes',
         finalDamagePct: 'Dég. finaux %', spellDamagePct: 'Dég. sorts %',
         damageReductionPct: 'Réd. dégâts %', critChance: 'Crit', critDamagePct: 'Dég. crit %',
-        healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %'
+        healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
+        erosionBonus: 'Érosion', maxHp: 'PV'
     }
 
     // Niveau de déblocage depuis le learnset de la classe
@@ -809,9 +836,9 @@ function showMoveTooltip(moveId, casterStats) {
         // Classe de couleur selon l'élément ou le type
         const effectClass = eff.element
             ? `mt-effect-${eff.element}`
-            : (eff.type === 'heal' || eff.type === 'heal_team') ? 'mt-effect-heal'
+            : (eff.type === 'heal' || eff.type === 'heal_team' || eff.type === 'heal%maxHp') ? 'mt-effect-heal'
             : (eff.type === 'buff' || eff.type === 'buff_team' || eff.type === 'shield') ? 'mt-effect-buff'
-            : eff.type === 'debuff' ? 'mt-effect-debuff'
+            : (eff.type === 'debuff' || eff.type === 'debuff_team') ? 'mt-effect-debuff'
             : 'mt-effect-neutre'
 
         let rows = `<div class="mt-row"><span class="mt-label">Type</span><span class="mt-val">${typeLabel} ${elemBadge}</span></div>`
@@ -828,8 +855,11 @@ function showMoveTooltip(moveId, casterStats) {
             }
         }
 
-        if ((eff.type === 'heal' || eff.type === 'heal_team') && eff.value) {
-            rows += `<div class="mt-row"><span class="mt-label">Soin</span><span class="mt-val">${eff.value}</span></div>`
+        if (eff.type === 'heal' || eff.type === 'heal_team') {
+            if (eff.heal != null) rows += `<div class="mt-row"><span class="mt-label">Soin</span><span class="mt-val">${eff.heal}</span></div>`
+        }
+        if (eff.type === 'heal%maxHp') {
+            if (eff.heal != null) rows += `<div class="mt-row"><span class="mt-label">Soin</span><span class="mt-val">${eff.heal}% des PV max</span></div>`
         }
 
         if (eff.ratio != null) {
@@ -868,9 +898,13 @@ function showMoveTooltip(moveId, casterStats) {
             if (patch.shield)    changes.push(`bouclier ${patch.shield.value ?? '?'}`)
             if (patch.buff) {
                 const _s   = PATCH_STAT_LABELS[patch.buff.stat] || patch.buff.stat || ''
-                const _sgn = patch.buff.value >= 0 ? '+' : ''
                 const _dur = patch.buff.duration ? ` (${patch.buff.duration} tours)` : ''
-                changes.push(`${_sgn}${patch.buff.value} ${_s}${_dur}`)
+                if (patch.buff.value != null) {
+                    const _sgn = patch.buff.value >= 0 ? '+' : ''
+                    changes.push(`${_sgn}${patch.buff.value} ${_s}${_dur}`)
+                } else if (_dur) {
+                    changes.push(`${_s ? _s + ' ' : ''}durée${_dur}`.trim())
+                }
             }
             if (patch.dot) {
                 const _dur = patch.dot.duration ? ` ×${patch.dot.duration} tours` : ''
@@ -913,4 +947,77 @@ function equipFamiliarFromSheet(classId, monsterId) {
     closeTooltip()
     closeTooltip()
     showMemberSheet(member)
+}
+
+// ─── Cosmétiques de classe ────────────────────────────────────────────────────
+
+function openCosmeticPicker(classId) {
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+
+    const suffix     = (member.gender === 'female') ? 'Female' : 'Male'
+    const activeSkin = state.classEquip?.[classId]?.skin || null
+    const cls        = classes[classId]
+    const defaultImg = cls?.image?.replace(/_(?:Male|Female)\.png$/i, `_${suffix}.png`) || 'img/icons/icon.png'
+
+    // Tous les skins compatibles avec cette classe
+    const skins = Object.values(item).filter(i => i.type === 'cosmetic_skin' && i.classId === classId)
+
+    const defaultCard = `
+        <div class="cosm-card${!activeSkin ? ' cosm-card-active' : ''}" onclick="equipSkin('${classId}', null)">
+            <img class="cosm-preview" src="${defaultImg}" onerror="this.src='img/icons/icon.png'">
+            <span class="cosm-name">Défaut</span>
+            <span class="cosm-status">${!activeSkin ? 'Équipé' : 'Appliquer'}</span>
+        </div>`
+
+    const skinCards = skins.map(sk => {
+        const owned  = (state.ownedSkins || []).includes(sk.id)
+        const active = activeSkin === sk.id
+        const img    = sk.image?.replace(/_(?:Male|Female)\.png$/i, `_${suffix}.png`) || 'img/icons/icon.png'
+        const price  = sk.price || 0
+        return `
+        <div class="cosm-card${active ? ' cosm-card-active' : ''}${!owned ? ' cosm-card-locked' : ''}"
+             onclick="${owned ? `equipSkin('${classId}','${sk.id}')` : `buySkin('${classId}','${sk.id}',${price})`}">
+            <img class="cosm-preview" src="${img}" onerror="this.src='img/icons/icon.png'">
+            <span class="cosm-name">${sk.name}</span>
+            ${active
+                ? `<span class="cosm-status cosm-status-active">Équipé</span>`
+                : owned
+                    ? `<span class="cosm-status">Appliquer</span>`
+                    : `<span class="cosm-status cosm-status-buy">${price} <img src="img/icons/kamas.png" style="width:0.85em;vertical-align:middle;"></span>`
+            }
+        </div>`
+    }).join('')
+
+    const empty = !skins.length
+        ? `<p style="opacity:0.5;font-size:0.8rem;margin:0.5rem 0 0;">Aucun skin disponible pour cette classe.</p>`
+        : ''
+
+    const body = `<div class="cosm-picker">${defaultCard}${skinCards}</div>${empty}`
+    openTooltip(`Apparence — ${cls?.name || classId}`, body)
+}
+
+function equipSkin(classId, skinId) {
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+    if (!state.classEquip)          state.classEquip = {}
+    if (!state.classEquip[classId]) state.classEquip[classId] = {}
+    state.classEquip[classId].skin = skinId || null
+    saveGame()
+    updateTeamUI()
+    // Refresh le picker en place
+    closeTooltip()
+    openCosmeticPicker(classId)
+}
+
+function buySkin(classId, skinId, price) {
+    if ((state.ownedSkins || []).includes(skinId)) { equipSkin(classId, skinId); return }
+    if (state.kamas < price) { showNotification('Pas assez de kamas !', 'error'); return }
+    state.kamas -= price
+    if (!state.ownedSkins) state.ownedSkins = []
+    state.ownedSkins.push(skinId)
+    saveGame()
+    updateKamasDisplay()
+    showNotification(`${item[skinId]?.name || 'Skin'} débloqué !`, 'info')
+    equipSkin(classId, skinId)
 }

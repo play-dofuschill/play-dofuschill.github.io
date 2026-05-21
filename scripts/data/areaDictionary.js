@@ -27,13 +27,13 @@ areas.cimetiereincarnam = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'bottesAventurier',  dropRate: 0.23 },
-        { itemId: 'capeAventurier',    dropRate: 0.22 },
-        { itemId: 'chapeauAventurier', dropRate: 0.22 },
-        { itemId: 'anneauAventurier',  dropRate: 0.13 },
-        { itemId: 'ceintureAventurier',dropRate: 0.03 },
-        { itemId: 'amuletteAventurier',dropRate: 0.03 },
-        { itemId: 'cleDonjonKardorim', dropRate: 0.05, isKey: true }
+        { itemId: 'bottesAventurier',  dropRate: 0.05 },
+        { itemId: 'capeAventurier',    dropRate: 0.05 },
+        { itemId: 'chapeauAventurier', dropRate: 0.05 },
+        { itemId: 'anneauAventurier',  dropRate: 0.05 },
+        { itemId: 'ceintureAventurier',dropRate: 0.05 },
+        { itemId: 'amuletteAventurier',dropRate: 0.05 },
+        { itemId: 'cleDonjonKardorim', dropRate: 0.15, isKey: true }
     ]
 }
 areas.champsAstrub = {
@@ -53,14 +53,14 @@ areas.champsAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',       dropRate: 0.45 },
-        { itemId: 'sac_paysan',       dropRate: 0.02 },
-        { itemId: 'chapeau_paysan',   dropRate: 0.02 },
-        { itemId: 'bottes_paysan',    dropRate: 0.02 },
-        { itemId: 'anneau_paysan',    dropRate: 0.02 },
-        { itemId: 'amulette_paysan',  dropRate: 0.03 },
-        { itemId: 'ceinture_paysan',  dropRate: 0.03 },
-        { itemId: 'faux_paysan',      dropRate: 0.02 },
-        { itemId: 'cleDonjonChamps',  dropRate: 0.05, isKey: true }
+        { itemId: 'sac_paysan',       dropRate: 0.05 },
+        { itemId: 'chapeau_paysan',   dropRate: 0.05 },
+        { itemId: 'bottes_paysan',    dropRate: 0.05 },
+        { itemId: 'anneau_paysan',    dropRate: 0.05 },
+        { itemId: 'amulette_paysan',  dropRate: 0.05 },
+        { itemId: 'ceinture_paysan',  dropRate: 0.05 },
+        { itemId: 'faux_paysan',      dropRate: 0.04 },
+        { itemId: 'cleDonjonChamps',  dropRate: 0.15, isKey: true }
     ]
 }
 areas.plageAstrub = {
@@ -80,15 +80,15 @@ areas.plageAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'cape_mousse',       dropRate: 0.02 },
-        { itemId: 'coiffe_mousse',     dropRate: 0.02 },
-        { itemId: 'bottes_mousse',     dropRate: 0.02 },
-        { itemId: 'anneau_mousse',     dropRate: 0.02 },
-        { itemId: 'amulette_mousse',   dropRate: 0.03 },
-        { itemId: 'ceinture_mousse',   dropRate: 0.03 },
-        { itemId: 'pelle_mousse',      dropRate: 0.02 },
-        { itemId: 'bouclier_mousse',   dropRate: 0.02 },
-        { itemId: 'cleDonjonSable',    dropRate: 0.05, isKey: true }
+        { itemId: 'cape_mousse',       dropRate: 0.04 },
+        { itemId: 'coiffe_mousse',     dropRate: 0.04 },
+        { itemId: 'bottes_mousse',     dropRate: 0.05 },
+        { itemId: 'anneau_mousse',     dropRate: 0.05 },
+        { itemId: 'amulette_mousse',   dropRate: 0.05 },
+        { itemId: 'ceinture_mousse',   dropRate: 0.05 },
+        { itemId: 'pelle_mousse',      dropRate: 0.05 },
+        { itemId: 'bouclier_mousse',   dropRate: 0.05 },
+        { itemId: 'cleDonjonSable',    dropRate: 0.15, isKey: true }
     ]
 }
 areas.tainela = {
@@ -108,15 +108,15 @@ areas.tainela = {
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
-        { itemId: 'cape_bouftou',     dropRate: 0.02 },
-        { itemId: 'coiffe_bouftou',   dropRate: 0.02 },
-        { itemId: 'bottes_bouftou',   dropRate: 0.02 },
-        { itemId: 'marteau_bouftou',  dropRate: 0.02 },
-        { itemId: 'anneau_bouftou',   dropRate: 0.03 },
-        { itemId: 'amulette_bouftou', dropRate: 0.03 },
-        { itemId: 'ceinture_bouftou', dropRate: 0.02 },
-        { itemId: 'bouclier_bouftou', dropRate: 0.02 },
-        { itemId: 'cleDonjonBouftou', dropRate: 0.05, isKey: true }
+        { itemId: 'cape_bouftou',     dropRate: 0.03 },
+        { itemId: 'coiffe_bouftou',   dropRate: 0.03 },
+        { itemId: 'bottes_bouftou',   dropRate: 0.04 },
+        { itemId: 'marteau_bouftou',  dropRate: 0.04 },
+        { itemId: 'anneau_bouftou',   dropRate: 0.04 },
+        { itemId: 'amulette_bouftou', dropRate: 0.04 },
+        { itemId: 'ceinture_bouftou', dropRate: 0.04 },
+        { itemId: 'bouclier_bouftou', dropRate: 0.04 },
+        { itemId: 'cleDonjonBouftou', dropRate: 0.15, isKey: true }
     ]
 }
 // #endregion
@@ -137,9 +137,9 @@ areas.donjonIncarnam = {
     spawns: [{ id: 'kardorim',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'coiffeKardorim',            dropRate: 0.05 },
-        { itemId: 'anneauKardorim',            dropRate: 0.05 },
-        { itemId: 'capeKardorim',              dropRate: 0.05 }
+        { itemId: 'coiffeKardorim',            dropRate: 0.08 },
+        { itemId: 'anneauKardorim',            dropRate: 0.08 },
+        { itemId: 'capeKardorim',              dropRate: 0.08 }
     ]
 }
 areas.donjonMousse = {
@@ -155,14 +155,14 @@ areas.donjonMousse = {
     spawns: [{ id: 'mobLeponge',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'cape_mousse',               dropRate: 0.03 },
-        { itemId: 'coiffe_mousse',             dropRate: 0.03 },
-        { itemId: 'bottes_mousse',             dropRate: 0.03 },
-        { itemId: 'anneau_mousse',             dropRate: 0.03 },
-        { itemId: 'amulette_mousse',           dropRate: 0.03 },
-        { itemId: 'ceinture_mousse',           dropRate: 0.03 },
-        { itemId: 'pelle_mousse',              dropRate: 0.03 },
-        { itemId: 'bouclier_mousse',           dropRate: 0.03 }
+        { itemId: 'cape_mousse',       dropRate: 0.04 },
+        { itemId: 'coiffe_mousse',     dropRate: 0.04 },
+        { itemId: 'bottes_mousse',     dropRate: 0.05 },
+        { itemId: 'anneau_mousse',     dropRate: 0.05 },
+        { itemId: 'amulette_mousse',   dropRate: 0.05 },
+        { itemId: 'ceinture_mousse',   dropRate: 0.05 },
+        { itemId: 'pelle_mousse',      dropRate: 0.05 },
+        { itemId: 'bouclier_mousse',   dropRate: 0.05 }
     ]
 }
 areas.donjonChamps = {
@@ -178,13 +178,13 @@ areas.donjonChamps = {
     spawns: [{ id: 'tournesolAffame',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'sac_paysan',                dropRate: 0.03 },
-        { itemId: 'chapeau_paysan',            dropRate: 0.03 },
-        { itemId: 'bottes_paysan',             dropRate: 0.03 },
-        { itemId: 'anneau_paysan',             dropRate: 0.03 },
-        { itemId: 'amulette_paysan',           dropRate: 0.03 },
-        { itemId: 'ceinture_paysan',           dropRate: 0.03 },
-        { itemId: 'faux_paysan',               dropRate: 0.03 }
+        { itemId: 'sac_paysan',       dropRate: 0.05 },
+        { itemId: 'chapeau_paysan',   dropRate: 0.05 },
+        { itemId: 'bottes_paysan',    dropRate: 0.05 },
+        { itemId: 'anneau_paysan',    dropRate: 0.05 },
+        { itemId: 'amulette_paysan',  dropRate: 0.05 },
+        { itemId: 'ceinture_paysan',  dropRate: 0.05 },
+        { itemId: 'faux_paysan',      dropRate: 0.04 }
     ]
 }
 areas.donjonBouftou = {
@@ -202,12 +202,12 @@ areas.donjonBouftou = {
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
         { itemId: 'cape_bouftou_royal',     dropRate: 0.03 },
         { itemId: 'coiffe_bouftou_royal',   dropRate: 0.03 },
-        { itemId: 'bottes_bouftou_royal',   dropRate: 0.03 },
-        { itemId: 'marteau_bouftou_royal',  dropRate: 0.03 },
-        { itemId: 'anneau_bouftou_royal',   dropRate: 0.03 },
-        { itemId: 'amulette_bouftou_royal', dropRate: 0.03 },
-        { itemId: 'ceinture_bouftou_royal', dropRate: 0.03 },
-        { itemId: 'bouclier_bouftou_royal', dropRate: 0.03 }
+        { itemId: 'bottes_bouftou_royal',   dropRate: 0.04 },
+        { itemId: 'marteau_bouftou_royal',  dropRate: 0.04 },
+        { itemId: 'anneau_bouftou_royal',   dropRate: 0.04 },
+        { itemId: 'amulette_bouftou_royal', dropRate: 0.04 },
+        { itemId: 'ceinture_bouftou_royal', dropRate: 0.04 },
+        { itemId: 'bouclier_bouftou_royal', dropRate: 0.04 }
     ]
 }
 // #endregion
@@ -249,6 +249,41 @@ areas.donjonBouftou = {
 //        { itemId: 'runeNeutralResS', dropRate: 0.08 },  // +8% Rés.Neutre · coût −4 niv
 // ─────────────────────────────────────────────────────────────────────────────
 
+        // { itemId: 'runeHpS',          dropRate: 0.01 },
+        // { itemId: 'runeHpM',          dropRate: 0.01 },
+        // { itemId: 'runeHpL',          dropRate: 0.01 },
+        // { itemId: 'runeAtkS',         dropRate: 0.01 },
+        // { itemId: 'runeAtkM',         dropRate: 0.01 },
+        // { itemId: 'runeAtkL',         dropRate: 0.01 },
+        // { itemId: 'runeSpdS',         dropRate: 0.01 },
+        // { itemId: 'runeSpdM',         dropRate: 0.01 },
+        // { itemId: 'runeSpdL',         dropRate: 0.01 },
+        // { itemId: 'runeFlatDmgS',     dropRate: 0.01 },
+        // { itemId: 'runeFlatDmgM',     dropRate: 0.01 },
+        // { itemId: 'runeFlatDmgL',     dropRate: 0.01 },
+        // { itemId: 'runeCritS',        dropRate: 0.01 },
+        // { itemId: 'runeCritM',        dropRate: 0.01 },
+        // { itemId: 'runeCritL',        dropRate: 0.01 },
+        // { itemId: 'runeCritDmgS',     dropRate: 0.01 },
+        // { itemId: 'runeCritDmgM',     dropRate: 0.01 },
+        // { itemId: 'runeFinalDmgS',    dropRate: 0.01 },
+        // { itemId: 'runeFinalDmgM',    dropRate: 0.01 },
+        // { itemId: 'runeSpellDmgS',    dropRate: 0.01 },
+        // { itemId: 'runeSpellDmgM',    dropRate: 0.01 },
+        // { itemId: 'runeDamRedS',      dropRate: 0.01 },
+        // { itemId: 'runeDamRedM',      dropRate: 0.01 },
+        // { itemId: 'runeFireResS',     dropRate: 0.01 },
+        // { itemId: 'runeWaterResS',    dropRate: 0.01 },
+        // { itemId: 'runeEarthResS',    dropRate: 0.01 },
+        // { itemId: 'runeAirResS',      dropRate: 0.01 },
+        // { itemId: 'runeNeutralResS',  dropRate: 0.01 },
+        // { itemId: 'runeFireResM',     dropRate: 0.01 },
+        // { itemId: 'runeWaterResM',    dropRate: 0.01 },
+        // { itemId: 'runeEarthResM',    dropRate: 0.01 },
+        // { itemId: 'runeAirResM',      dropRate: 0.01 },
+        // { itemId: 'runeNeutralResM',  dropRate: 0.01 }
+
+
 areas.evenementPious = {
     id: 'evenementPious',
     type: 'event',
@@ -268,19 +303,48 @@ areas.evenementPious = {
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
-        //{ itemId: 'piloteAutomatique', dropRate: 0.15 }
-        { itemId: 'runeHpS',       dropRate: 0.10 },
-        { itemId: 'runeHpM',       dropRate: 0.10 },
-        { itemId: 'runeHpL',       dropRate: 0.10 },
-        { itemId: 'runeAtkS',      dropRate: 0.10 },
-        { itemId: 'runeAtkM',      dropRate: 0.10 },
-        { itemId: 'runeAtkL',      dropRate: 0.10 },
-        { itemId: 'runeSpdS',      dropRate: 0.08 },
-        { itemId: 'runeSpdM',      dropRate: 0.08 },
-        { itemId: 'runeCritS',     dropRate: 0.08 },
-        { itemId: 'runeCritDmgS',     dropRate: 0.08 },
-        { itemId: 'runeFinalDmgS', dropRate: 0.06 },
+        { itemId: 'piloteAutomatique', dropRate: 0.05 }
     ]
 }
 
 // #endregion
+
+// #region RAIDS ────────────────────────────────────────────────────────────────────────────
+areas.raidCimetiere = {
+    id: 'raidCimetiere',
+    name: 'Raid — Crypte d\'Incarnam',
+    type: 'raid',
+    minLevel: 15, maxLevel: 40,
+    mobMinLevel: 15, mobMaxLevel: 25,
+    background: 'cimetiere_incarnam',
+    icon: 'img/monstres/sprites/kardorim.png',
+    description: 'Trois serviteurs de Kardorim surgissent simultanément. Coordonnez votre équipe !',
+    spawns: [
+        { id: 'chaferPiquier',   weight: 25 },
+        { id: 'sergentChafer',   weight: 25 },
+        { id: 'chaferEclaireur', weight: 25 },
+        { id: 'chaferFurtif',    weight: 15 }
+    ],
+    miniBoss: {
+        id: 'kardorim',
+        everyKills: 9,
+        statMult: 2.5
+    },
+    lootTable: [
+        { itemId: 'pierreDame',          dropRate: 0.55 },
+        { itemId: 'capeAventurier',      dropRate: 0.18 },
+        { itemId: 'chapeauAventurier',   dropRate: 0.18 },
+        { itemId: 'anneauAventurier',    dropRate: 0.12 },
+        { itemId: 'ceintureAventurier',  dropRate: 0.08 },
+        { itemId: 'amuletteAventurier',  dropRate: 0.08 }
+    ],
+    miniBossLootTable: [
+        { itemId: 'pierreDame',          dropRate: 0.90 },
+        { itemId: 'capeAventurier',      dropRate: 0.35 },
+        { itemId: 'chapeauAventurier',   dropRate: 0.35 },
+        { itemId: 'anneauAventurier',    dropRate: 0.25 },
+        { itemId: 'ceintureAventurier',  dropRate: 0.18 },
+        { itemId: 'amuletteAventurier',  dropRate: 0.18 }
+    ]
+}
+// #endregion RAIDS

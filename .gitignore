@@ -1,3 +1,6 @@
+# Outils de debug (jamais en prod)
+debug/
+
 # Documents privés
 *.docx
 *.xlsx

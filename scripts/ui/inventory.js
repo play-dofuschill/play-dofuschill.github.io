@@ -74,13 +74,7 @@ function resetEquipFilters() {
 function _itemMatchesEquipFilters(itm, slotFilter, bonusFilter, searchIds) {
     if (slotFilter !== 'all' && itm.slot !== slotFilter) return false
     if (bonusFilter !== 'all') {
-        if (!itm.statsPerLevel) return false
-        if (bonusFilter.startsWith('res.')) {
-            const elem = bonusFilter.split('.')[1]
-            if (itm.statsPerLevel.res?.[elem] === undefined) return false
-        } else {
-            if (itm.statsPerLevel[bonusFilter] === undefined) return false
-        }
+        if (!itm.stats?.some(s => s.stat === bonusFilter)) return false
     }
     if (searchIds && !searchIds.has(itm.id)) return false
     return true

@@ -3,16 +3,9 @@
 const move = {}
 
 /* 
-SYSTÈME DE SORTS — FORMAT STANDARD
 
-Chaque sort possède :
-- un id unique
-- un nom
-- une classe
-- un cooldown
-- une liste d'effets exécutés dans l'ordre
+restriction: 'star',   // ★  — ou 'arrow' (→) ou 'shield' (🛡)
 
-/*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RÉFÉRENCE EFFETS DE SORTS — copier-coller prêt à l'emploi
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -976,16 +969,15 @@ move.fleche_glacee = {
     classId: 'cra',
     cooldownMs: 1900,
     effects: [
-        {type: 'damage', element: 'eau', damage: {min: 14, max: 17}, target: 'enemy'},
-        {type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy'}
-    ],
+        {type: 'damage', element: 'eau', damage: { min: 14, max: 17 }, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 19, max: 22}, buff: {value: 60}}},
+                        patch: {damage: {min: 19, max: 22}, buff: {value: 70, duration: 7}}},
                        {lvl: 133,
-                        patch: {damage: {min: 24, max: 28}, buff: {value: 120}}}],
-    description: "Tape l'ennemi dans l'élément eau et lui retire 30 de puissance pour 2 coups."
+                        patch: {damage: {min: 24, max: 28}, buff: {value: 150, duration: 7}}}],
+    description: "Tape l'ennemi dans l'élément eau et retire de la puissance à l'ennemi."
 }
 move.fleche_cinglante = {
     id: 'fleche_cinglante',

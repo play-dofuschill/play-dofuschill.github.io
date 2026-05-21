@@ -27,13 +27,38 @@ const SHOP_CATALOGUE = {
     ],
 
     cosmetics: [
-        { itemId: 'banniereDoree', price: 100 }
+        { itemId: 'banniereDoree',  price: 100 },
+        { itemId: 'iop_skin_demo',  price: 500 }
     ]
 }
 
 // ─── Achat ────────────────────────────────────────────────────────────────────
 
 function buyShopItem(itemId, price, qty = 1) {
+    const itm = item[itemId]
+
+    // Achat unique pour les skins (cosmetic_skin)
+    if (itm?.type === 'cosmetic_skin') {
+        if ((state.ownedSkins || []).includes(itemId)) {
+            showNotification('Vous possédez déjà ce skin !', 'info')
+            return
+        }
+        if (state.kamas < price) {
+            showNotification('Pas assez de kamas !', 'error')
+            return
+        }
+        state.kamas -= price
+        if (!state.ownedSkins) state.ownedSkins = []
+        state.ownedSkins.push(itemId)
+        saveGame()
+        updateKamasDisplay()
+        const el = document.getElementById('shop-kamas-amount')
+        if (el) el.textContent = state.kamas
+        updateShopUI()
+        showNotification(`${itm.name} débloqué !`, 'info')
+        return
+    }
+
     const total = price * qty
     if (state.kamas < total) {
         showNotification('Pas assez de kamas !', 'error')
@@ -46,6 +71,6 @@ function buyShopItem(itemId, price, qty = 1) {
     const el = document.getElementById('shop-kamas-amount')
     if (el) el.textContent = state.kamas
     updateShopUI()
-    const name = item[itemId]?.name || itemId
+    const name = itm?.name || itemId
     showNotification(qty > 1 ? `${qty}× ${name} achetés !` : `${name} acheté !`, 'info')
 }

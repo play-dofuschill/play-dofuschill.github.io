@@ -49,7 +49,7 @@
     --type-feu: #FBA64C;
     --type-air: #60BE58;
     --type-terre: #6c5c3f;
-    --type-malus: #A0A29F;
+    --type-debuff: #A0A29F;
     --type-eau: #539DDF;
 }
 
@@ -1662,7 +1662,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     }
 }
 
-#explore-menu, #poutch-menu {
+#explore-menu, #poutch-menu, #guide-menu {
     position: fixed;
     height: 100%;
     width: 50%;
@@ -3050,7 +3050,7 @@ background:
 
 @media (max-width: 1000px) {
     #tutorial { width: 100%; }
-    #tutorial img { scale: 1.2; margin-right: 0.5rem; }
+    #tutorial img { scale: 1; max-height: 70px; width: auto; margin-right: 0.5rem; }
     #tutorial span { height: auto; min-height: 5rem; font-size: 0.82rem; padding: 1rem 1.5rem; }
 }
 
@@ -3960,11 +3960,11 @@ transform: translateY(-1rem);
 .level-badge    { font-size: 0.7rem; background: rgba(0,0,0,0.3); padding: 0.1rem 0.45rem; border-radius: 0.3rem; color: white; }
 .level-synced   { background: rgba(180,100,10,0.75) !important; }
 .elem-badge     { font-size: 0.68rem; padding: 0.1rem 0.4rem; border-radius: 0.3rem; text-transform: capitalize; color: white; }
-.elem-badge.elem-feu    { background: rgba(200,60,20,0.5); }
-.elem-badge.elem-eau    { background: rgba(20,100,220,0.5); }
-.elem-badge.elem-air    { background: rgba(100,190,240,0.4); }
-.elem-badge.elem-terre  { background: rgba(60,150,40,0.5); }
-.elem-badge.elem-neutre { background: rgba(140,140,140,0.35); }
+.elem-badge.elem-feu    { background: rgba(255,162,63,0.5); }
+.elem-badge.elem-eau    { background: rgba(83,157,223,0.5); }
+.elem-badge.elem-air    { background: rgba(146,189,45,0.5); }
+.elem-badge.elem-terre  { background: rgba(125,107,76,0.5); }
+.elem-badge.elem-neutre { background: rgba(89,87,97,0.35); }
 
 /* ── HP bars (partagées ennemi + membres) ────────────────── */
 .hp-container   { display: flex; flex-direction: column; gap: 0.15rem; width: 100%; }
@@ -4021,11 +4021,11 @@ transform: translateY(-1rem);
 /* Bordure permanente de la couleur de l'élément */
 .combat-move-bar.elem-bar-feu    { box-shadow: inset 0 0 0 2px #ffa23f; background: var(--dark1); }
 .combat-move-bar.elem-bar-eau    { box-shadow: inset 0 0 0 2px #539DDF; background: var(--dark1); }
-.combat-move-bar.elem-bar-air    { box-shadow: inset 0 0 0 2px #92BD2D; background: var(--dark1); }
+.combat-move-bar.elem-bar-air    { box-shadow: inset 0 0 0 2px #92bd2d; background: var(--dark1); }
 .combat-move-bar.elem-bar-terre  { box-shadow: inset 0 0 0 2px #7d6b4c; background: var(--dark1); }
 .combat-move-bar.elem-bar-neutre { box-shadow: inset 0 0 0 2px #595761; background: var(--dark1); }
 .combat-move-bar.elem-bar-buff   { box-shadow: inset 0 0 0 2px #ffe15e; background: var(--dark1); }
-.combat-move-bar.elem-bar-malus  { box-shadow: inset 0 0 0 2px #A0A29F; background: var(--dark1); }
+.combat-move-bar.elem-bar-debuff { box-shadow: inset 0 0 0 2px #9b50dc; background: var(--dark1); }
 .combat-move-bar.combat-move-empty { box-shadow: none; opacity: 0.2; }
 
 .combat-move-fill {
@@ -4052,12 +4052,12 @@ transform: translateY(-1rem);
 }
 /* Couleurs de remplissage par élément */
 .elem-bar-feu    { background: #ffa23f; }
-.elem-bar-eau    { background: #539DDF; }
+.elem-bar-eau    { background: #539ddf; }
 .elem-bar-air    { background: #92BD2D; }
 .elem-bar-terre  { background: #7d6b4c; }
 .elem-bar-neutre { background: #595761; }
 .elem-bar-buff   { background: #ffe262; }
-.elem-bar-malus  { background: #cf95ff; }
+.elem-bar-debuff { background: #9b50dc; }
 
 /* ── Barre d'attaque ennemi ──────────────────────────────── */
 #enemy-action-fill {
@@ -4198,11 +4198,11 @@ transform: translateY(-1rem);
 /* Badges de sort (compatibilité) */
 .move-badge  { padding: 0.15rem 0.5rem; border-radius: 0.3rem; font-size: 0.7rem; background: rgba(255,255,255,0.1); }
 .move-empty  { opacity: 0.3; }
-.elem-feu    { background: rgba(255, 80, 30, 0.25); }
-.elem-eau    { background: rgba(30, 130, 255, 0.25); }
-.elem-air    { background: rgba(150, 230, 255, 0.2); }
-.elem-terre  { background: rgba(100, 180, 60, 0.25); }
-.elem-neutre { background: rgba(180, 180, 180, 0.15); }
+.elem-feu    { background: rgba(255,162,63,0.25); }
+.elem-eau    { background: rgba(83,157,223,0.25); }
+.elem-air    { background: rgba(146,189,45,0.22); }
+.elem-terre  { background: rgba(125,107,76,0.25); }
+.elem-neutre { background: rgba(89,87,97,0.15); }
 
 /* ── Slot vide — bouton + ────────────────────────────────── */
 .add-slot-btn {
@@ -4478,14 +4478,33 @@ transform: translateY(-1rem);
 }
 
 /* Sorts actifs */
-.ms-active-moves { display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; }
-.ms-move-slot {
-    padding: 0.35rem 0.6rem; border-radius: 0.35rem;
-    display: flex; align-items: center; justify-content: space-between; gap: 0.3rem;
+.ms-active-moves { display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* ─── Cosmétique picker ─────────────────────────────────────────────────── */
+.cosm-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+    gap: 0.5rem;
+    padding: 0.25rem 0;
 }
-.ms-move-name  { font-size: 0.78rem; font-weight: bold; color: white; flex: 1; }
-.ms-move-icon  { width: 1rem; height: 1rem; object-fit: contain; flex-shrink: 0; }
-.ms-move-empty { background: rgba(0,0,0,0.1); justify-content: center; color: rgba(0,0,0,0.3); font-size: 0.78rem; }
+.cosm-card {
+    display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+    padding: 0.5rem 0.35rem 0.4rem;
+    border-radius: 0.4rem;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    text-align: center;
+}
+.cosm-card:hover           { background: rgba(255,255,255,0.12); }
+.cosm-card-active          { border-color: #ffe15e; background: rgba(255,225,94,0.1); }
+.cosm-card-locked          { opacity: 0.7; }
+.cosm-preview              { width: 3rem; height: 3rem; object-fit: contain; image-rendering: pixelated; }
+.cosm-name                 { font-size: 0.7rem; font-weight: bold; color: #fff; line-height: 1.2; }
+.cosm-status               { font-size: 0.65rem; color: rgba(255,255,255,0.55); margin-top: auto; }
+.cosm-status-active        { color: #ffe15e; font-weight: bold; }
+.cosm-status-buy           { color: #fba64c; font-weight: bold; }
 
 /* Sorts appris */
 .ms-learned-moves { display: flex; flex-direction: column; gap: 0.2rem; }
@@ -4508,14 +4527,14 @@ transform: translateY(-1rem);
 .mt-unlock         { font-size: 0.75rem; opacity: 0.6; font-style: italic; }
 .mt-desc           { font-size: 0.8rem; opacity: 0.75; padding: 0.2rem 0; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 0.35rem; }
 .mt-effect         { border-radius: 0.4rem; padding: 0.4rem 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; border-left: 2.5px solid rgba(0,0,0,0.15); background: rgba(0,0,0,0.07); }
-.mt-effect-feu     { background: rgba(255,112,67,0.12); border-left-color: rgba(255,112,67,0.55); }
-.mt-effect-eau     { background: rgba(66,165,245,0.12); border-left-color: rgba(66,165,245,0.55); }
-.mt-effect-air     { background: rgba(176,190,197,0.12); border-left-color: rgba(176,190,197,0.55); }
-.mt-effect-terre   { background: rgba(102,187,106,0.12); border-left-color: rgba(102,187,106,0.55); }
-.mt-effect-neutre  { background: rgba(189,189,189,0.12); border-left-color: rgba(189,189,189,0.55); }
+.mt-effect-feu     { background: rgba(255,162,63,0.12); border-left-color: rgba(255,112,67,0.55); }
+.mt-effect-eau     { background: rgba(83,157,223,0.12); border-left-color: rgba(66,165,245,0.55); }
+.mt-effect-air     { background: rgba(176,190,197,0.12); border-left-color: rgb(146,189,45,0.55); }
+.mt-effect-terre   { background: rgba(125,107,76,0.12); border-left-color: rgba(125,107,76,0.55); }
+.mt-effect-neutre  { background: rgba(89,87,97,0.12); border-left-color: rgba(189,189,189,0.55); }
 .mt-effect-heal    { background: rgba(80,200,120,0.12); border-left-color: rgba(80,200,120,0.55); }
 .mt-effect-buff    { background: rgba(255,215,0,0.1);   border-left-color: rgba(255,215,0,0.5);   }
-.mt-effect-debuff  { background: rgba(220,80,80,0.1);   border-left-color: rgba(220,80,80,0.5);   }
+.mt-effect-debuff  { background: rgba(155,80,220,0.1);   border-left-color: rgba(155,80,220,0.5);   }
 .mt-row            { display: flex; align-items: baseline; gap: 0.4rem; font-size: 0.8rem; }
 .mt-label          { opacity: 0.55; flex-shrink: 0; min-width: 7.5rem; }
 .mt-val            { color: var(--dark1); font-weight: 500; }
@@ -5245,3 +5264,308 @@ transform: translateY(-1rem);
 .forge-btn:hover { filter: brightness(1.15); }
 .forge-btn-off   { opacity: 0.35; cursor: not-allowed; filter: none !important; }
 .forge-warn      { font-size: 0.75rem; opacity: 0.5; text-align: center; }
+
+/* ═══════════════════════════════════════════════════════════════
+   MODE RAID — 3 vs 3
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Menu Raid (sélection de zone) ────────────────────────── */
+#raid-menu {
+    position: fixed; height: 100%; width: 50%;
+    display: none; flex-direction: column; overflow: hidden;
+    background: var(--dark2); z-index: 30;
+}
+@media (max-width: 1000px) { #raid-menu { width: 100%; } }
+
+#raid-menu-header {
+    height: 8rem; width: 100%;
+    background-image: url(img/bg/cimetiere_incarnam.png);
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: column;
+    justify-content: start; align-items: end; text-align: end;
+    flex-shrink: 0; gap: 0.5rem;
+    padding: 0.4rem 2%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: rgba(0,0,0,0.3) 0 4px 4px 0;
+    margin-bottom: 1rem;
+}
+#raid-menu-header span {
+    height: 2rem; display: flex;
+    justify-content: center; align-items: center;
+    background: rgba(0,0,0,0.5); color: white;
+    border: rgba(255,255,255,0.7) 1px solid;
+    border-radius: 0.5rem; font-size: 1.5rem;
+    padding: 1.3rem 1rem; font-weight: 100;
+    flex-shrink: 0; z-index: 2;
+}
+
+#raid-zone-list {
+    margin-top: 0; height: 100%; overflow-y: scroll;
+    width: 95%; padding: 0; align-self: center;
+    display: flex; justify-content: start; align-items: center;
+    flex-direction: column; gap: 0.3rem;
+    position: relative; padding-bottom: 5rem;
+}
+
+/* ── Affichage 3 ennemis raid ─────────────────────────────── */
+#raid-enemy-display {
+    display: none; flex-direction: column;
+    width: 100%; padding: 8rem 0.6rem 0.4rem;
+    gap: 0.3rem; flex-shrink: 0;
+    background-size: cover; background-position: center;
+    position: relative;
+}
+
+#raid-enemy-cards-row {
+    display: flex; flex-direction: row; align-items: stretch;
+    width: 100%; gap: 0.45rem;
+}
+
+#raid-kill-counter {
+    position: absolute; top: 1.8rem; right: 0.75rem;
+    text-align: right;
+    font-size: 1rem; font-weight: bold; letter-spacing: 0.04em; text-transform: uppercase;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+}
+#raid-kill-counter.raid-boss-active { color: #ffd84d; }
+
+.raid-enemy-card {
+    flex: 1; display: flex; flex-direction: column; gap: 0.2rem;
+    background: rgba(0,0,0,0.45); border-radius: 0.45rem;
+    padding: 0.4rem 0.45rem; min-width: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+}
+
+.raid-enemy-card.raid-respawning { opacity: 0.35; filter: grayscale(0.7); pointer-events: none; }
+.raid-enemy-card.raid-respawning::after {
+    content: '···';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem; letter-spacing: 0.2em; color: white;
+    background: rgba(0,0,0,0.55); border-radius: 0.3rem;
+    padding: 0.15rem 0.5rem; pointer-events: none;
+}
+
+.raid-slot-label {
+    font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.06em;
+    font-weight: bold; margin-bottom: 0.1rem;
+}
+.raid-slot-label.slot-0 { color: #ffd84d; }
+.raid-slot-label.slot-1 { color: #8ab4f8; }
+.raid-slot-label.slot-2 { color: #7ee8a2; }
+
+.raid-enemy-sprite-wrap {
+    display: flex; align-items: center; justify-content: center; height: 2.8rem;
+}
+.raid-enemy-sprite { height: 2.4rem; width: auto; image-rendering: pixelated; }
+
+.raid-enemy-name { font-size: 0.72rem; font-weight: bold; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.raid-enemy-hp-text { font-size: 0.58rem; opacity: 0.6; color: white; }
+
+.raid-enemy-card .hp-container { width: 100%; }
+.raid-enemy-card .hp-bar { height: 0.38rem; }
+.raid-enemy-card .member-moves { gap: 0.18rem; margin-top: 0.15rem; }
+.raid-enemy-card .combat-move-bar { height: 1.6rem; }
+.raid-enemy-card .combat-move-name { font-size: 0.62rem; padding: 0 1.8rem 0 0.4rem; }
+.raid-enemy-card .combat-move-icon-bg { width: 1.8rem; }
+.raid-enemy-card .combat-move-icon { width: 1rem; height: 1rem; }
+
+/* ── Membres en mode Raid (3 actifs + 3 banc) ─────────────── */
+#explore-team.raid-mode { cursor: pointer; }
+
+/* Rangée actifs : même layout que #raid-enemy-display */
+#raid-active-row {
+    display: flex; flex-direction: row;
+    width: 100%; gap: 0.45rem; padding: 0.3rem 0;
+}
+
+/* Carte membre actif : miroir de .raid-enemy-card */
+.raid-member-card {
+    flex: 1; display: flex; flex-direction: column; gap: 0.2rem;
+    background: rgba(255,255,255,0.08); border-radius: 0.45rem;
+    padding: 0.4rem 0.45rem; min-width: 0; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.15);
+    position: relative;
+}
+.raid-member-card:hover { background: rgba(255,255,255,0.13); }
+.raid-member-card.raid-swap-selected { box-shadow: 0 0 0 2px #ffd84d; }
+.raid-member-card .raid-member-sprite-wrap {
+    display: flex; align-items: center; justify-content: center; height: 2.8rem;
+}
+.raid-member-card .member-sprite { height: 2.4rem; width: auto; image-rendering: pixelated; animation: mstr-active 0.5s infinite; }
+.raid-member-card .raid-member-name { font-size: 0.72rem; font-weight: bold; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.raid-member-card .raid-member-hp-text { font-size: 0.58rem; opacity: 0.6; color: white; }
+.raid-member-card .hp-container { width: 100%; }
+.raid-member-card .hp-bar { height: 0.38rem; }
+.raid-member-card .member-moves { gap: 0.18rem; margin-top: 0.15rem; }
+.raid-member-card .combat-move-bar { height: 1.6rem; }
+.raid-member-card .combat-move-name { font-size: 0.62rem; padding: 0 1.8rem 0 0.4rem; }
+.raid-member-card .combat-move-icon-bg { width: 1.8rem; }
+.raid-member-card .combat-move-icon { width: 1rem; height: 1rem; }
+
+/* Séparateur actif / banc */
+#raid-bench-separator {
+    width: 100%; padding: 0.18rem 0.6rem;
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em;
+    opacity: 0.4; color: white; background: transparent;
+    pointer-events: none;
+}
+
+/* Rangée banc */
+#raid-bench-row {
+    display: flex; flex-direction: row;
+    width: 100%; gap: 0.35rem; padding: 0.2rem 0; flex-wrap: wrap;
+}
+
+/* Carte banc : compacte, sans sorts */
+.raid-bench-card {
+    display: flex; flex-direction: row; align-items: center; gap: 0.35rem;
+    background: rgba(0,0,0,0.3); border-radius: 0.35rem;
+    padding: 0.25rem 0.5rem; cursor: pointer; min-width: 0;
+    border: 1px solid rgba(255,255,255,0.08); opacity: 0.65; flex: 1;
+}
+.raid-bench-card:hover { opacity: 0.85; }
+.raid-bench-card.raid-swap-selected { box-shadow: 0 0 0 2px #ffd84d; opacity: 1; }
+.raid-bench-card .member-sprite { height: 1.5rem; width: auto; image-rendering: pixelated; }
+.raid-bench-card .raid-bench-name { font-size: 0.7rem; font-weight: bold; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.raid-bench-card .raid-bench-hp-bar { width: 100%; height: 0.3rem; background: rgba(255,255,255,0.15); border-radius: 0.15rem; overflow: hidden; margin-top: 0.15rem; }
+.raid-bench-card .raid-bench-hp-fill { height: 100%; background: #4caf50; border-radius: 0.15rem; transition: width 0.15s; }
+.raid-bench-card .raid-bench-hp-fill.hp-low  { background: #e53935; }
+.raid-bench-card .raid-bench-hp-fill.hp-mid  { background: #f57c00; }
+.raid-bench-card .raid-bench-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+
+/* Labels de slot */
+.raid-member-slot-label {
+    position: absolute; top: 0.2rem; right: 0.4rem;
+    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.05em;
+    font-weight: bold; opacity: 0.7; pointer-events: none;
+}
+.raid-member-slot-label.slot-0 { color: #ffd84d; }
+.raid-member-slot-label.slot-1 { color: #8ab4f8; }
+.raid-member-slot-label.slot-2 { color: #7ee8a2; }
+
+/* Ordre des slots : Principal (0) → centre, Secondaire (1) → gauche, Tertiaire (2) → droite */
+#raid-enemy-0, .raid-slot-order-0 { order: 2; }
+#raid-enemy-1, .raid-slot-order-1 { order: 1; }
+#raid-enemy-2, .raid-slot-order-2 { order: 3; }
+
+/* ─── Menu Guide ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+    #guide-menu {
+        width: 100%;
+    }
+}
+
+#guide-menu-header {
+    height: 8rem;
+    width: 100%;
+    background-image: url(img/bg/astrub.png);
+    background-size: cover;
+    background-position: 20%;
+    image-rendering: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    text-align: end;
+    flex-shrink: 0;
+    gap: 0.5rem;
+    padding: 0.4rem 2%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 4px 4px 0;
+}
+
+#guide-menu-header span {
+    height: 2rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: rgba(255, 255, 255, 0.7) 1px solid;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 1.3rem 1rem;
+    font-weight: 100;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+#guide-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.8rem;
+}
+
+.guide-section {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guide-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.1rem;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--light2);
+    transition: background 0.15s;
+    user-select: none;
+}
+
+.guide-section-header:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.guide-chevron {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+
+.guide-open .guide-chevron {
+    transform: rotate(90deg);
+}
+
+.guide-section-body {
+    display: none;
+    padding: 1rem 1.2rem;
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--light2);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.guide-open .guide-section-body {
+    display: block;
+}
+
+.guide-section-body p {
+    margin-bottom: 0.6rem;
+}
+
+.guide-section-body ul, .guide-section-body ol {
+    padding-left: 1.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.guide-section-body li {
+    margin-bottom: 0.3rem;
+}
+
+.guide-section-body b, .guide-section-body strong {
+    color: var(--accent);
+}

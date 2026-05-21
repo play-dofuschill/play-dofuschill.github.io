@@ -19,7 +19,7 @@ function simulateOfflineProgress() {
     if (!state.combatStartTime || !state.currentArea) return
 
     const area = areas[state.currentArea]
-    if (!area || area.type === 'dungeon') {
+    if (!area) {
         state.isRunning       = false
         state.combatStartTime = null
         return
@@ -40,11 +40,9 @@ function simulateOfflineProgress() {
         return
     }
 
-    const hpSnapshot       = state.team.map(m => m ? (m.currentHp || 0) : null)
-    _offlineTotalTicks     = Math.ceil(elapsed / TICK_MS)
-    _offlineTicksRun       = 0
-    _offlineLastUiMs       = 0
+    const hpSnapshot = state.team.map(m => m ? (m.currentHp || 0) : null)
 
+    // startCombat en premier (_offlineTotalTicks est encore 0 → intervalle normal créé)
     startCombat(state.currentArea)
 
     // Restaure les HP au moment de la déconnexion (pas de soins gratuits)
@@ -61,6 +59,10 @@ function simulateOfflineProgress() {
         return
     }
 
+    // Initialise les compteurs puis démarre la boucle accélérée
+    _offlineTotalTicks = Math.ceil(elapsed / TICK_MS)
+    _offlineTicksRun   = 0
+    _offlineLastUiMs   = 0
     _startOfflineFastForwardLoop()
 }
 
@@ -91,6 +93,8 @@ function _startOfflineFastForwardLoop() {
         // Tous les ticks simulés : reprise du combat au rythme normal
         if (_offlineTicksRun >= _offlineTotalTicks && _offlineFastForward) {
             _offlineFastForward = false
+            _offlineTotalTicks  = 0
+            _offlineTicksRun    = 0
             clearInterval(combatLoop)
             combatLoop = setInterval(gameTick, TICK_MS)
             saveGame()

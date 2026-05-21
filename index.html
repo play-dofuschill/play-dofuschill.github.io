@@ -58,10 +58,10 @@
                     </select>
                     <select id="equip-filter-bonus" onchange="updateInventoryUI()">
                         <option value="all">Bonus</option>
-                        <option value="hp">PV</option>
-                        <option value="atk">ATK</option>
-                        <option value="spd">Vitesse</option>
-                        <option value="flatDmg">Dégâts fixes</option>
+                        <option value="maxHp">PV</option>
+                        <option value="atk">Puissance</option>
+                        <option value="spd">Initiative</option>
+                        <option value="flatDamage">Dégâts fixes</option>
                         <option value="res.eau">Rés. Eau</option>
                         <option value="res.feu">Rés. Feu</option>
                         <option value="res.air">Rés. Air</option>
@@ -449,6 +449,14 @@
 
     </div>
 
+    <!-- Menu Raid -->
+    <div id="raid-menu" style="display: none;" class="season-background">
+        <div id="raid-menu-header">
+            <span>Raid</span>
+        </div>
+        <div id="raid-zone-list"></div>
+    </div>
+
     <div id="explore-menu" style="display: none;" class="season-background">
 
         <div id="explore-menu-header">
@@ -614,6 +622,16 @@
 
     <div id="content-explore" class="season-background" style="display:none">
 
+        <!-- ── Raid : 3 ennemis simultanés ── -->
+        <div id="raid-enemy-display" style="display:none">
+            <div id="raid-kill-counter" style="display:none"></div>
+            <div id="raid-enemy-cards-row">
+                <div class="raid-enemy-card" id="raid-enemy-0"></div>
+                <div class="raid-enemy-card" id="raid-enemy-1"></div>
+                <div class="raid-enemy-card" id="raid-enemy-2"></div>
+            </div>
+        </div>
+
         <!-- ── Ennemi ── -->
         <div id="enemy-display" style="display:none" data-enemy-help="1">
             <div class="enemy-sprite-wrap">
@@ -678,9 +696,29 @@
             <span>World Map</span>
         </div>
 
+        <div class="menu-item" id="menu-item-raid" onClick="switchMenu('raid')">
+            <img src="img/icons/Raids.png" onerror="this.src='img/icons/icon.png'">
+            <span>Raid</span>
+        </div>
+        
+        <div class="menu-item" id="menu-item-poutch" onClick="switchMenu('poutch')">
+            <img src="img/pnj/Poutch.png" onerror="this.src='img/icons/icon.png'">
+            <span>Poutch</span>
+        </div>
+
         <div class="menu-item" id="menu-item-items" onClick="switchMenu('items')">
             <img src="img/icons/menu_items.png">
             <span>Inventaire</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-dex" onClick="switchMenu('Encyclopedie')">
+            <img src="img/icons/encyclopedie.png">
+            <span>Encyclopedie</span>
+        </div>
+
+        <div class="menu-item" id="menu-item-forge" onClick="switchMenu('forge')">
+            <img src="img/icons/forge.png" onerror="this.src='img/icons/icon.png'">
+            <span>Forge</span>
         </div>
 
         <div class="menu-item" id="menu-item-team" onClick="switchMenu('team')">
@@ -691,11 +729,6 @@
         <div class="menu-item" id="menu-item-guilde" onClick="switchMenu('guilde')">
             <img src="img/icons/guilde.png" onerror="this.src='img/icons/icon.png'">
             <span>Guilde</span>
-        </div>
-
-        <div class="menu-item" id="menu-item-dex" onClick="switchMenu('Encyclopedie')">
-            <img src="img/icons/encyclopedie.png">
-            <span>Encyclopedie</span>
         </div>
 
         <div class="menu-item" id="menu-item-shop" onClick="switchMenu('shop')">
@@ -713,14 +746,9 @@
             <span>Archives</span>
         </div>
 
-        <div class="menu-item" id="menu-item-poutch" onClick="switchMenu('poutch')">
-            <img src="img/pnj/Poutch.png" onerror="this.src='img/icons/icon.png'">
-            <span>Poutch</span>
-        </div>
-
-        <div class="menu-item" id="menu-item-forge" onClick="switchMenu('forge')">
-            <img src="img/icons/forge.png" onerror="this.src='img/icons/icon.png'">
-            <span>Forge</span>
+        <div class="menu-item" id="menu-item-guide" onClick="switchMenu('guide')">
+            <img src="img/icons/guide.png" onerror="this.src='img/icons/icon.png'">
+            <span>Guide</span>
         </div>
 
     </div>
@@ -750,6 +778,14 @@
         </div>
     </div>
 
+    <!-- Menu Guide -->
+    <div id="guide-menu" style="display: none;" class="season-background">
+        <div id="guide-menu-header">
+            <span>Guide</span>
+        </div>
+        <div id="guide-list"></div>
+    </div>
+
     <!-- Résumé de progression offline -->
     <div id="offline-summary" style="display:none"></div>
 
@@ -768,6 +804,7 @@
     <script src="scripts/data/shopDictionary.js"></script>
     <script src="scripts/data/areaDictionary.js"></script>
     <script src="scripts/data/familiarDictionary.js"></script>
+    <script src="scripts/data/guideDictionary.js"></script>
 
     <!-- Moteur (dépend des données) -->
     <script src="scripts/engine/save.js"></script>
@@ -793,6 +830,8 @@
     <script src="scripts/ui/almanax.js"></script>
     <script src="scripts/ui/poutch.js"></script>
     <script src="scripts/ui/forge.js"></script>
+    <script src="scripts/ui/raid.js"></script>
+    <script src="scripts/ui/guide.js"></script>
 
 
 </body>

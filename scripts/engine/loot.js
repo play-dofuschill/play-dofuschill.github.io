@@ -50,9 +50,10 @@ function _isEnutrofActive() {
 // ─── Drop d'items depuis la loot table d'une zone ────────────────────────────
 // La pierreDame est exclue ici — elle est traitée dans processVictoryLoot.
 
-function rollItemDrops(areaId) {
-    const area = areas[areaId]
-    if (!area || !area.lootTable) return []
+function rollItemDrops(areaId, lootTableOverride = null) {
+    const area      = areas[areaId]
+    const lootTable = lootTableOverride || area?.lootTable
+    if (!lootTable) return []
 
     const famBonuses  = getAllFamiliarBonuses()
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
@@ -60,7 +61,7 @@ function rollItemDrops(areaId) {
     const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
 
     // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
-    const itemEntries = area.lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
+    const itemEntries = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
     const totalChance = Math.min(0.95, itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus)
 
     if (Math.random() >= totalChance) return []
@@ -136,7 +137,7 @@ function consumeDungeonKey(areaId) {
 
 // ─── Résumé de fin de combat ──────────────────────────────────────────────────
 
-function processVictoryLoot(enemy) {
+function processVictoryLoot(enemy, lootTableOverride = null) {
     state.session.killCount++
     state.totalKills = (state.totalKills || 0) + 1
     if (enemy.tier === 'boss' || enemy.tier === 'dungeon_boss') {
@@ -151,7 +152,8 @@ function processVictoryLoot(enemy) {
     // Cherche pierreDame OU pierreDameGardien (donjons) dans la loot table.
     let familiarDrop = null
     const area = areas[state.currentArea]
-    const soulStoneEntry = area?.lootTable?.find(e => e.itemId === 'pierreDame' || e.itemId === 'pierreDameGardien')
+    const activeLootTable = lootTableOverride || area?.lootTable
+    const soulStoneEntry = activeLootTable?.find(e => e.itemId === 'pierreDame' || e.itemId === 'pierreDameGardien')
     const isGardienZone  = soulStoneEntry?.itemId === 'pierreDameGardien'
 
     const famBonuses = getAllFamiliarBonuses()
@@ -177,7 +179,7 @@ function processVictoryLoot(enemy) {
     }
 
     // Items ordinaires (pierres d'âme et clés exclues du pool principal)
-    const itemDrops = rollItemDrops(state.currentArea)
+    const itemDrops = rollItemDrops(state.currentArea, lootTableOverride)
 
     // Archimonstre : ajoute silencieusement la pierre archi à l'inventaire (pas dans le résumé)
     if (enemy.isArchi && familiarDrop) {

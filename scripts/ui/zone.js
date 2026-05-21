@@ -23,7 +23,7 @@ function setZoneTab(type) {
     updateZoneUI()
 }
 
-function _buildSkullSelector() {
+function _buildSkullSelector(refreshFn) {
     const sl = state.skullLevel || 0
     const skullLabels = ['', '+100% difficulté', '+200% difficulté', '+400% difficulté']
     const wrapper = document.createElement('div')
@@ -40,7 +40,7 @@ function _buildSkullSelector() {
             const level = parseInt(btn.dataset.level)
             state.skullLevel = (state.skullLevel === level) ? 0 : level
             saveGame()
-            updateZoneUI()
+            if (refreshFn) refreshFn(); else updateZoneUI()
         })
     })
     return wrapper
@@ -249,6 +249,7 @@ function joinArea(areaId) {
 }
 
 function cancelZoneConfirm() {
+    const wasRaid = areas[_pendingAreaId]?.type === 'raid'
     _pendingAreaId = null
     const bar = document.getElementById('zone-confirm-bar')
     if (bar) bar.style.display = 'none'
@@ -261,6 +262,11 @@ function cancelZoneConfirm() {
     if (typeof _pendingPoutchMode !== 'undefined' && _pendingPoutchMode !== null) {
         _pendingPoutchMode = null
         switchMenu('poutch')
+        return
+    }
+    // Retour au menu Raid si c'était un Raid en attente
+    if (wasRaid) {
+        switchMenu('raid')
         return
     }
     // Retourne au menu zones

@@ -3,11 +3,18 @@
 // ─── Icônes globales ─────────────────────────────────────────────────────────
 
 const ELEM_ICONS = {
-    neutre: 'img/icons/Neutre.png',
-    feu:    'img/icons/Feu.png',
-    eau:    'img/icons/Eau.png',
-    air:    'img/icons/Air.png',
-    terre:  'img/icons/Terre.png'
+    neutre:    'img/icons/Neutre.png',
+    feu:       'img/icons/Feu.png',
+    eau:       'img/icons/Eau.png',
+    air:       'img/icons/Air.png',
+    terre:     'img/icons/Terre.png',
+    soigneur:  'img/icons/soigneur.png',
+    boost:     'img/icons/boost.png',
+    entrave:   'img/icons/entrave.png',
+    protection:'img/icons/protection.png',
+    tank:      'img/icons/tank.png',
+    placement: 'img/icons/placement.png',
+    invocation:'img/icons/invocation.png',
 }
 const STAT_ICONS = {
     hp:         'img/icons/Hp.png',
@@ -21,6 +28,49 @@ const STAT_ICONS = {
 function elemIcon(elem, cssClass = 'elem-icon') {
     const src = ELEM_ICONS[elem] || ELEM_ICONS.neutre
     return `<img src="${src}" class="${cssClass}" onerror="this.src='img/icons/Neutre.png'">`
+}
+const _MOVE_TYPE_ICON = {
+    damage:       null, // utilise l'élément
+    dot:          null,
+    heal:         'soigneur',
+    heal_team:    'soigneur',
+    'heal%maxHp': 'soigneur',
+    lifesteal:    'soigneur',
+    buff:         'boost',
+    buff_team:    'boost',
+    debuff:       'entrave',
+    shield:       'protection',
+    renvoi:       'tank',
+    switch:       'placement',
+    summon:       'invocation',
+    summon_random:'invocation',
+}
+function moveIconKey(mv) {
+    const type = mv?.effects?.[0]?.type || ''
+    const elem = mv?.effects?.[0]?.element || 'neutre'
+    const mapped = _MOVE_TYPE_ICON[type]
+    return mapped !== undefined ? (mapped ?? elem) : 'neutre'
+}
+
+const ELEM_COLORS = {
+    feu:    '#ffa23f',
+    eau:    '#539DDF',
+    air:    '#92BD2D',
+    terre:  '#7d6b4c',
+    neutre: '#595761',
+    buff:   '#ffe262',
+    debuff: '#cf95ff'
+}
+const _RESTRICTION_SVG = {
+    star:   c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M21.951 9.67a1 1 0 0 0-.807-.68l-5.699-.828l-2.548-5.164A.98.98 0 0 0 12 2.486v16.28l5.097 2.679a1 1 0 0 0 1.451-1.054l-.973-5.676l4.123-4.02a1 1 0 0 0 .253-1.025" opacity="0.5"/><path fill="currentColor" d="M11.103 2.998L8.555 8.162l-5.699.828a1 1 0 0 0-.554 1.706l4.123 4.019l-.973 5.676a1 1 0 0 0 1.45 1.054L12 18.765V2.503a1.03 1.03 0 0 0-.897.495"/></svg>`,
+    arrow:  c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>`,
+    shield: c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12.832 21.801c3.126-.626 7.168-2.875 7.168-8.69c0-5.291-3.873-8.815-6.658-10.434c-.619-.36-1.342.113-1.342.828v1.828c0 1.442-.606 4.074-2.29 5.169c-.86.559-1.79-.278-1.894-1.298l-.086-.838c-.1-.974-1.092-1.565-1.87-.971C4.461 8.46 3 10.33 3 13.11C3 20.221 8.289 22 10.933 22q.232 0 .484-.015c.446-.056 0 .099 1.415-.185" opacity="0.5"/><path fill="currentColor" d="M8 18.444c0 2.62 2.111 3.43 3.417 3.542c.446-.056 0 .099 1.415-.185C13.871 21.434 15 20.492 15 18.444c0-1.297-.819-2.098-1.46-2.473c-.196-.115-.424.03-.441.256c-.056.718-.746 1.29-1.215.744c-.415-.482-.59-1.187-.59-1.638v-.59c0-.354-.357-.59-.663-.408C9.495 15.008 8 16.395 8 18.445"/></svg>`
+}
+function moveRestrictionSigle(mv, elem) {
+    if (!mv?.restriction) return ''
+    const color = ELEM_COLORS[elem] || ELEM_COLORS.neutre
+    const fn = _RESTRICTION_SVG[mv.restriction]
+    return fn ? fn(color) : ''
 }
 
 // ─── State global ─────────────────────────────────────────────────────────────
@@ -41,6 +91,7 @@ const state = {
     previewTeams: { preview1: [] },
     currentPreviewTeam: 'preview1',
     classEquip: {},
+    ownedSkins: [],
     teamNames: {},
     unlockedClasses: [],
     totalKills: 0,
@@ -84,7 +135,9 @@ const MENU_MAP = {
     settings:     'settings-menu',
     archives:     'archives-menu',
     poutch:       'poutch-menu',
-    forge:        'forge-menu'
+    forge:        'forge-menu',
+    raid:         'raid-menu',
+    guide:        'guide-menu'
 }
 
 // Menus verrouillés selon l'étape du tutoriel
@@ -105,7 +158,9 @@ const MENU_ITEM_MAP = {
     'menu-item-shop':     'shop',
     'menu-item-archives': 'archives',
     'menu-item-poutch':   'poutch',
-    'menu-item-forge':    'forge'
+    'menu-item-forge':    'forge',
+    'menu-item-raid':     'raid',
+    'menu-item-guide':    'guide'
 }
 
 function updateMenuLockUI() {
@@ -124,8 +179,8 @@ function openMenu() {
 function switchMenu(menuName) {
     document.getElementById('menu-button').classList.remove('menu-button-open')
 
-    // En combat, World Map ramène à la vue de combat plutôt que la sélection de zone
-    if ((menuName === 'worldmap' || menuName === 'zones') && state.isRunning) {
+    // En combat, World Map et Raid ramènent à la vue de combat
+    if ((menuName === 'worldmap' || menuName === 'zones' || menuName === 'raid') && state.isRunning) {
         for (const id of Object.values(MENU_MAP)) {
             const el = document.getElementById(id)
             if (el) { el.style.display = 'none'; el.style.zIndex = '30' }
@@ -184,6 +239,8 @@ function switchMenu(menuName) {
     if (menuName === 'archives') updateArchivesUI()
     if (menuName === 'poutch') updatePoutchUI()
     if (menuName === 'forge')  updateForgeUI()
+    if (menuName === 'raid')   updateRaidUI()
+    if (menuName === 'guide')  renderGuide()
 }
 
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────

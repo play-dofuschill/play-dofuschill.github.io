@@ -103,6 +103,17 @@ function refreshDailyPools() {
         )
         const picked = new Set()
         const zones  = []
+
+        // Garantir au moins une zone Incarnam/départ (maxLevel ≤ 20) dans le pool
+        const starters = accessible.filter(a => a.maxLevel <= 20)
+        if (starters.length > 0) {
+            let s = (seed * 2654435761) >>> 0
+            s = (Math.imul(s, 1664525) + 1013904223) >>> 0
+            const starter = starters[s % starters.length]
+            picked.add(starter.id)
+            zones.push(starter.id)
+        }
+
         for (let i = 0; i < WILD_SLOTS.length; i++) {
             const { min, max } = WILD_SLOTS[i]
             const candidates = accessible.filter(a =>

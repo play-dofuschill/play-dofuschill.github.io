@@ -105,9 +105,10 @@ function getEffectiveStats(member, syncedLevel = null) {
             if (buff.stat === 'lifestealPct')   lifestealPct   += buff.value
 
             if (buff.stat === 'res_all') {
-                for (const e in res) {
-                    res[e] += buff.value
-                }
+                for (const e in res) res[e] += buff.value
+            } else if (buff.stat.startsWith('res.')) {
+                const e = buff.stat.split('.')[1]
+                if (res[e] !== undefined) res[e] += buff.value
             }
         }
     }
@@ -118,25 +119,26 @@ function getEffectiveStats(member, syncedLevel = null) {
         for (const [setId, count] of Object.entries(setCounts)) {
             const pano = panoplies[setId]
             if (!pano?.bonuses) continue
+            // Seul le palier le plus élevé atteint s'applique (remplace les paliers inférieurs)
             const thresholds = Object.keys(pano.bonuses).map(Number).sort((a, b) => a - b)
-            for (const t of thresholds) {
-                if (count < t) break
-                for (const { stat, value } of (pano.bonuses[t].stats || [])) {
-                    if      (stat === 'maxHp')              hp                 += value
-                    else if (stat === 'atk')                atk                += value
-                    else if (stat === 'spd')                spd                += value
-                    else if (stat === 'flatDamage')         flatDamage         += value
-                    else if (stat === 'finalDamagePct')     finalDamagePct     += value
-                    else if (stat === 'spellDamagePct')     spellDamagePct     += value
-                    else if (stat === 'damageReductionPct') damageReductionPct += value
-                    else if (stat === 'critChance')         critChance         += value
-                    else if (stat === 'critDamagePct')      critDamagePct      += value
-                    else if (stat === 'healPct')            healPct            += value
-                    else if (stat === 'healTeamPct')        healTeamPct        += value
-                    else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
-                    else if (stat === 'lifestealPct')       lifestealPct       += value
-                    else if (stat.startsWith('res.'))       { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
-                }
+            let activeT = null
+            for (const t of thresholds) { if (count >= t) activeT = t }
+            if (activeT === null) continue
+            for (const { stat, value } of (pano.bonuses[activeT].stats || [])) {
+                if      (stat === 'maxHp')              hp                 += value
+                else if (stat === 'atk')                atk                += value
+                else if (stat === 'spd')                spd                += value
+                else if (stat === 'flatDamage')         flatDamage         += value
+                else if (stat === 'finalDamagePct')     finalDamagePct     += value
+                else if (stat === 'spellDamagePct')     spellDamagePct     += value
+                else if (stat === 'damageReductionPct') damageReductionPct += value
+                else if (stat === 'critChance')         critChance         += value
+                else if (stat === 'critDamagePct')      critDamagePct      += value
+                else if (stat === 'healPct')            healPct            += value
+                else if (stat === 'healTeamPct')        healTeamPct        += value
+                else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
+                else if (stat === 'lifestealPct')       lifestealPct       += value
+                else if (stat.startsWith('res.'))       { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
         }
     }

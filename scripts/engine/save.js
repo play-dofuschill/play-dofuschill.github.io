@@ -31,6 +31,7 @@ function saveGame() {
         eventPool:                 state.eventPool  || null,
         skullLevel:                state.skullLevel || 0,
         skullUnequipped:           state.skullUnequipped || null,
+        ownedSkins:                state.ownedSkins || [],
         version:                   '0.2'
     }
     try {
@@ -71,6 +72,7 @@ function loadGame() {
         if (data.eventPool)                         state.eventPool                 = data.eventPool
         if (data.skullLevel != null)                state.skullLevel                = data.skullLevel
         if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
+        if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
 
         // Migration : forgedStat (ancien) → forgedStats (tableau)
         for (const entry of Object.values(state.inventory)) {

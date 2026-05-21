@@ -34,11 +34,11 @@ function updateTeamUI() {
                 const mv      = move[member.moves[s]]
                 const elem    = mv?.effects?.[0]?.element || 'neutre'
                 const mvType  = mv?.effects?.[0]?.type || ''
-                const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'malus' : elem
+                const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
                 return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${member.moves[s]}" data-caster-class="${member.classId}">
                     <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
-                    <span class="combat-move-name">${mv?.name || '—'}</span>
-                    <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(elem, 'combat-move-icon')}</div>
+                    <span class="combat-move-name">${mv?.name || '—'}${moveRestrictionSigle(mv, elem)}</span>
+                    <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
                 </div>`
             }).join('')
 
