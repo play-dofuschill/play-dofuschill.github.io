@@ -332,19 +332,17 @@ areas.raidCimetiere = {
     },
     lootTable: [
         { itemId: 'pierreDame',          dropRate: 0.55 },
-        { itemId: 'capeAventurier',      dropRate: 0.18 },
-        { itemId: 'chapeauAventurier',   dropRate: 0.18 },
-        { itemId: 'anneauAventurier',    dropRate: 0.12 },
-        { itemId: 'ceintureAventurier',  dropRate: 0.08 },
-        { itemId: 'amuletteAventurier',  dropRate: 0.08 }
+        { itemId: 'capeAventurier',      dropRate: 0.05 },
+        { itemId: 'chapeauAventurier',   dropRate: 0.05 },
+        { itemId: 'anneauAventurier',    dropRate: 0.05 },
+        { itemId: 'ceintureAventurier',  dropRate: 0.05 },
+        { itemId: 'amuletteAventurier',  dropRate: 0.05 }
     ],
     miniBossLootTable: [
-        { itemId: 'pierreDame',          dropRate: 0.90 },
-        { itemId: 'capeAventurier',      dropRate: 0.35 },
-        { itemId: 'chapeauAventurier',   dropRate: 0.35 },
-        { itemId: 'anneauAventurier',    dropRate: 0.25 },
-        { itemId: 'ceintureAventurier',  dropRate: 0.18 },
-        { itemId: 'amuletteAventurier',  dropRate: 0.18 }
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+        { itemId: 'coiffeKardorim',            dropRate: 0.15 },
+        { itemId: 'anneauKardorim',            dropRate: 0.15 },
+        { itemId: 'capeKardorim',              dropRate: 0.15 }
     ]
 }
 // #endregion RAIDS
