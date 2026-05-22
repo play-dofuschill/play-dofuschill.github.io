@@ -3344,7 +3344,7 @@ monsters.piouBleu = {
     id: 'piouBleu',
     name: 'Piou Bleu',
     image: 'img/monstres/sprites/piouBleu.png',
-    rarity: 'rare',
+    rarity: 'commun',
     tier: 'normal',
     bst: {
         hp: 80, atk: 60, spd: 100,
@@ -3358,7 +3358,7 @@ monsters.piouRouge = {
     id: 'piouRouge',
     name: 'Piou Rouge',
     image: 'img/monstres/sprites/piouRouge.png',
-    rarity: 'rare',
+    rarity: 'commun',
     tier: 'normal',
     bst: {
         hp: 80, atk: 60, spd: 100,
@@ -3372,7 +3372,7 @@ monsters.piouVert = {
     id: 'piouVert',
     name: 'Piou Vert',
     image: 'img/monstres/sprites/piouVert.png',
-    rarity: 'rare',
+    rarity: 'commun',
     tier: 'normal',
     bst: {
         hp: 80, atk: 60, spd: 100,
@@ -3386,7 +3386,7 @@ monsters.piouJaune = {
     id: 'piouJaune',
     name: 'Piou Jaune',
     image: 'img/monstres/sprites/piouJaune.png',
-    rarity: 'rare',
+    rarity: 'commun',
     tier: 'normal',
     bst: {
         hp: 80, atk: 60, spd: 100,
@@ -3400,7 +3400,7 @@ monsters.piouRose = {
     id: 'piouRose',
     name: 'Piou Rose',
     image: 'img/monstres/sprites/piouRose.png',
-    rarity: 'rare',
+    rarity: 'commun',
     tier: 'normal',
     bst: {
         hp: 80, atk: 60, spd: 100,
@@ -3414,7 +3414,7 @@ monsters.piouViolet = {
     id: 'piouViolet',
     name: 'Piou Violet',
     image: 'img/monstres/sprites/piouViolet.png',
-    rarity: 'rare',
+    rarity: 'commun',
     tier: 'normal',
     bst: {
         hp: 80, atk: 60, spd: 100,
@@ -3424,6 +3424,234 @@ monsters.piouViolet = {
     familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
     role: ['combat']
 }
+// #endregion
+// ═══════════════════════════════════════════════════════
+// #region EVENT DOPEULS
+// ═══════════════════════════════════════════════════════
+monsters.dopeul_cra = {
+    id: 'dopeul_cra',
+    name: 'Dopeul Cra',
+    image: 'img/monstres/sprites/dopeul_cra.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['fleche_optique_du_dopeul','fleche_glacee_du_dopeul']
+}
+monsters.dopeul_iop = {
+    id: 'dopeul_iop',
+    name: 'Dopeul Iop',
+    image: 'img/monstres/sprites/dopeul_iop.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['epee_divine_du_dopeul','pression_du_dopeul']
+}
+monsters.dopeul_eniripsa = {
+    id: 'dopeul_eniripsa',
+    name: 'Dopeul Eniripsa',
+    image: 'img/monstres/sprites/dopeul_eniripsa.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['mot_espiegle_du_dopeul','mot_tapageur_du_dopeul']
+}
+monsters.dopeul_ecaflip = {
+    id: 'dopeul_ecaflip',
+    name: 'Dopeul Ecaflip',
+    image: 'img/monstres/sprites/dopeul_ecaflip.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['pile_ou_face_du_dopeul', 'bonne_pioche_du_dopeul']
+}
+monsters.dopeul_eliotrope = {
+    id: 'dopeul_eliotrope',
+    name: 'Dopeul Eliotrope',
+    image: 'img/monstres/sprites/dopeul_eliotrope.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['affront_du_dopeul', 'rayon_de_wakfu_du_dopeul']
+}
+monsters.dopeul_enutrof = {
+    id: 'dopeul_enutrof',
+    name: 'Dopeul Enutrof',
+    image: 'img/monstres/sprites/dopeul_enutrof.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['roulage_de_pelle_du_dopeul', 'lancer_de_pieces_du_dopeul']
+}
+monsters.dopeul_feca = {
+    id: 'dopeul_feca',
+    name: 'Dopeul Feca',
+    image: 'img/monstres/sprites/dopeul_feca.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['retour_du_baton_du_dopeul', 'bulle_du_dopeul']
+}
+monsters.dopeul_forgelance = {
+    id: 'dopeul_forgelance',
+    name: 'Dopeul Forgelance',
+    image: 'img/monstres/sprites/dopeul_forgelance.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['trident_de_la_mer_du_dopeul', 'volee_d_airain_du_dopeul']
+}
+monsters.dopeul_huppermage = {
+    id: 'dopeul_huppermage',
+    name: 'Dopeul Huppermage',
+    image: 'img/monstres/sprites/dopeul_huppermage.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['onde_sismique_du_dopeul', 'stalagmite_du_dopeul']
+}
+monsters.dopeul_osamodas = {
+    id: 'dopeul_osamodas',
+    name: 'Dopeul Osamodas',
+    image: 'img/monstres/sprites/dopeul_osamodas.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['pics_du_prespic_du_dopeul', 'crocs_du_mulou_du_dopeul']
+}
+monsters.dopeul_ouginak = {
+    id: 'dopeul_ouginak',
+    name: 'Dopeul Ouginak',
+    image: 'img/monstres/sprites/dopeul_ouginak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['traque_du_dopeul', 'molosse_du_dopeul']
+}
+monsters.dopeul_pandawa = {
+    id: 'dopeul_pandawa',
+    name: 'Dopeul Pandawa',
+    image: 'img/monstres/sprites/dopeul_pandawa.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['paume_explosive_du_dopeul', 'ethylo_du_dopeul']
+}
+monsters.dopeul_roublard = {
+    id: 'dopeul_roublard',
+    name: 'Dopeul Roublard',
+    image: 'img/monstres/sprites/dopeul_roublard.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['espingole_du_dopeul', 'pulsar_du_dopeul']
+}
+monsters.dopeul_sacrieur = {
+    id: 'dopeul_sacrieur',
+    name: 'Dopeul Sacrieur',
+    image: 'img/monstres/sprites/dopeul_sacrieur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['supplice_du_dopeul', 'absorption_du_dopeul']
+}
+monsters.dopeul_sadida = {
+    id: 'dopeul_sadida',
+    name: 'Dopeul Sadida',
+    image: 'img/monstres/sprites/dopeul_sadida.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['ronce_du_dopeul', 'buisson_ardent_du_dopeul']
+}
+monsters.dopeul_sram = {
+    id: 'dopeul_sram',
+    name: 'Dopeul Sram',
+    image: 'img/monstres/sprites/dopeul_sram.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['truanderie_du_dopeul', 'arsenic_du_dopeul']
+}
+monsters.dopeul_steamer = {
+    id: 'dopeul_steamer',
+    name: 'Dopeul Steamer',
+    image: 'img/monstres/sprites/dopeul_steamer.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['longue_vue_du_dopeul', 'amarrage_du_dopeul']
+}
+monsters.dopeul_xelor = {
+    id: 'dopeul_xelor',
+    name: 'Dopeul Xelor',
+    image: 'img/monstres/sprites/dopeul_xelor.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['gelure_du_dopeul', 'frappe_de_xelor_du_dopeul']
+}
+monsters.dopeul_zobal = {
+    id: 'dopeul_zobal',
+    name: 'Dopeul Zobal',
+    image: 'img/monstres/sprites/dopeul_zobal.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['parafuso_du_dopeul', 'plastron_du_dopeul']
+}
+monsters.dopeul_darkvlad = {
+    id: 'dopeul_darkvlad',
+    name: 'Dopeul Dark Vlad',
+    image: 'img/monstres/sprites/dopeul_darkvlad.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    fixedLevel: 110,
+    bst: {
+        hp: 1200, atk: 350, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['lame_de_iop','lame_divine','tension'],
+    familiar: { bonusType: 'farming', bonusStat: 'dropRateElite', min: 5, max: 50 },
+    role: ['farming']
+}
+
 // #endregion
 
 // ═══════════════════════════════════════════════════════

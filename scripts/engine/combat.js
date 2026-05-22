@@ -74,20 +74,26 @@ function spawnEnemy(areaId) {
     const area = areas[areaId]
     if (!area) return null
 
-    // Sélection pondérée
-    const total = area.spawns.reduce((s, sp) => s + sp.weight, 0)
+    // Sélection pondérée — dropRateElite booste le poids des mobs elite/rare/légendaire
+    const _eliteBonus = (getAllFamiliarBonuses().dropRateElite || 0) / 100
+    const _spawns = _eliteBonus > 0
+        ? area.spawns.map(sp => {
+            const m = monsters[sp.id]
+            const isElite = m && (m.tier === 'elite' || m.rarity === 'rare' || m.rarity === 'legendaire')
+            return isElite ? { id: sp.id, weight: sp.weight * (1 + _eliteBonus) } : sp
+        })
+        : area.spawns
+    const total = _spawns.reduce((s, sp) => s + sp.weight, 0)
     let roll    = Math.random() * total
-    let spawnId = area.spawns[area.spawns.length - 1].id
-    for (const sp of area.spawns) {
+    let spawnId = _spawns[_spawns.length - 1].id
+    for (const sp of _spawns) {
         roll -= sp.weight
         if (roll <= 0) { spawnId = sp.id; break }
     }
 
-    
-
-    const mobLevel = randomInt(area.mobMinLevel, area.mobMaxLevel)
-    const mob   = monsters[spawnId]
-    const scale = 1 + (mobLevel - area.mobMinLevel) * 0.05
+    const mob      = monsters[spawnId]
+    const mobLevel = mob.fixedLevel ?? randomInt(area.mobMinLevel, area.mobMaxLevel)
+    const scale    = mob.fixedLevel != null ? 1 : 1 + (mobLevel - area.mobMinLevel) * 0.05
 
 
     if (!state.seenMonsters) state.seenMonsters = {}
@@ -1211,6 +1217,30 @@ function executeEffect(ctx) {
                 }
             }
             break
+        }
+
+        case 'random': {
+            if (!effect.choices?.length) break
+            // Weighted random pick — cumulative sum, fallback to last entry
+            const roll = Math.random()
+            let cumulative = 0
+            let chosen = effect.choices[effect.choices.length - 1]
+            for (const choice of effect.choices) {
+                cumulative += (choice.chance || 0)
+                if (roll < cumulative) { chosen = choice; break }
+            }
+            if (!chosen?.effects?.length) break
+            // Execute sub-effects, threading lastDamageDealt for lifesteal chaining
+            let subLastDmg = undefined
+            for (const subEffect of chosen.effects) {
+                const dmg = executeEffect({
+                    ...ctx,
+                    effect: subEffect,
+                    lastDamageDealt: subLastDmg ?? (ctx.lastDamageDealt || 0)
+                })
+                if (typeof dmg === 'number') subLastDmg = dmg
+            }
+            return subLastDmg
         }
     }
 }

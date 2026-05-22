@@ -27,12 +27,12 @@ areas.cimetiereincarnam = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'bottesAventurier',  dropRate: 0.05 },
-        { itemId: 'capeAventurier',    dropRate: 0.05 },
-        { itemId: 'chapeauAventurier', dropRate: 0.05 },
-        { itemId: 'anneauAventurier',  dropRate: 0.05 },
-        { itemId: 'ceintureAventurier',dropRate: 0.05 },
-        { itemId: 'amuletteAventurier',dropRate: 0.05 },
+        { itemId: 'bottesAventurier',  dropRate: 0.03 },
+        { itemId: 'capeAventurier',    dropRate: 0.03 },
+        { itemId: 'chapeauAventurier', dropRate: 0.03 },
+        { itemId: 'anneauAventurier',  dropRate: 0.03 },
+        { itemId: 'ceintureAventurier',dropRate: 0.03 },
+        { itemId: 'amuletteAventurier',dropRate: 0.03 },
         { itemId: 'cleDonjonKardorim', dropRate: 0.15, isKey: true }
     ]
 }
@@ -53,13 +53,13 @@ areas.champsAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',       dropRate: 0.45 },
-        { itemId: 'sac_paysan',       dropRate: 0.05 },
-        { itemId: 'chapeau_paysan',   dropRate: 0.05 },
-        { itemId: 'bottes_paysan',    dropRate: 0.05 },
-        { itemId: 'anneau_paysan',    dropRate: 0.05 },
-        { itemId: 'amulette_paysan',  dropRate: 0.05 },
-        { itemId: 'ceinture_paysan',  dropRate: 0.05 },
-        { itemId: 'faux_paysan',      dropRate: 0.04 },
+        { itemId: 'sac_paysan',       dropRate: 0.03 },
+        { itemId: 'chapeau_paysan',   dropRate: 0.03 },
+        { itemId: 'bottes_paysan',    dropRate: 0.03 },
+        { itemId: 'anneau_paysan',    dropRate: 0.03 },
+        { itemId: 'amulette_paysan',  dropRate: 0.03 },
+        { itemId: 'ceinture_paysan',  dropRate: 0.03 },
+        { itemId: 'faux_paysan',      dropRate: 0.02 },
         { itemId: 'cleDonjonChamps',  dropRate: 0.15, isKey: true }
     ]
 }
@@ -80,14 +80,14 @@ areas.plageAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'cape_mousse',       dropRate: 0.04 },
-        { itemId: 'coiffe_mousse',     dropRate: 0.04 },
-        { itemId: 'bottes_mousse',     dropRate: 0.05 },
-        { itemId: 'anneau_mousse',     dropRate: 0.05 },
-        { itemId: 'amulette_mousse',   dropRate: 0.05 },
-        { itemId: 'ceinture_mousse',   dropRate: 0.05 },
-        { itemId: 'pelle_mousse',      dropRate: 0.05 },
-        { itemId: 'bouclier_mousse',   dropRate: 0.05 },
+        { itemId: 'cape_mousse',       dropRate: 0.02 },
+        { itemId: 'coiffe_mousse',     dropRate: 0.02 },
+        { itemId: 'bottes_mousse',     dropRate: 0.03 },
+        { itemId: 'anneau_mousse',     dropRate: 0.03 },
+        { itemId: 'amulette_mousse',   dropRate: 0.03 },
+        { itemId: 'ceinture_mousse',   dropRate: 0.03 },
+        { itemId: 'pelle_mousse',      dropRate: 0.03 },
+        { itemId: 'bouclier_mousse',   dropRate: 0.03 },
         { itemId: 'cleDonjonSable',    dropRate: 0.15, isKey: true }
     ]
 }
@@ -108,14 +108,14 @@ areas.tainela = {
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
-        { itemId: 'cape_bouftou',     dropRate: 0.03 },
-        { itemId: 'coiffe_bouftou',   dropRate: 0.03 },
-        { itemId: 'bottes_bouftou',   dropRate: 0.04 },
-        { itemId: 'marteau_bouftou',  dropRate: 0.04 },
-        { itemId: 'anneau_bouftou',   dropRate: 0.04 },
-        { itemId: 'amulette_bouftou', dropRate: 0.04 },
-        { itemId: 'ceinture_bouftou', dropRate: 0.04 },
-        { itemId: 'bouclier_bouftou', dropRate: 0.04 },
+        { itemId: 'cape_bouftou',     dropRate: 0.02 },
+        { itemId: 'coiffe_bouftou',   dropRate: 0.02 },
+        { itemId: 'bottes_bouftou',   dropRate: 0.02 },
+        { itemId: 'marteau_bouftou',  dropRate: 0.02 },
+        { itemId: 'anneau_bouftou',   dropRate: 0.02 },
+        { itemId: 'amulette_bouftou', dropRate: 0.02 },
+        { itemId: 'ceinture_bouftou', dropRate: 0.02 },
+        { itemId: 'bouclier_bouftou', dropRate: 0.02 },
         { itemId: 'cleDonjonBouftou', dropRate: 0.15, isKey: true }
     ]
 }
@@ -433,6 +433,43 @@ areas.evenementPious = {
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.05 }
+    ]
+}
+
+areas.evenementDopeuls = {
+    id: 'evenementDopeuls',
+    type: 'event',
+    name: 'Invasion Dopeuls',
+    minLevel: 55, maxLevel: 75,
+    mobMinLevel: 55, mobMaxLevel: 70,
+    background: 'tainela',
+    icon: 'img/monstres/sprites/dopeul_iop.png',
+    description: "Le Village des Dopeuls ! Des reflets des douze classes et... quelques autres... envahissent le Monde des Douze. Affronte ces copies miroir avant qu'elles ne sèment le chaos.",
+    spawns: [
+        { id: 'dopeul_cra',        weight: 6 },
+        { id: 'dopeul_ecaflip',    weight: 5 },
+        { id: 'dopeul_eliotrope',  weight: 5 },
+        { id: 'dopeul_eniripsa',   weight: 6 },
+        { id: 'dopeul_enutrof',    weight: 5 },
+        { id: 'dopeul_feca',       weight: 6 },
+        { id: 'dopeul_forgelance', weight: 5 },
+        { id: 'dopeul_huppermage', weight: 5 },
+        { id: 'dopeul_iop',        weight: 6 },
+        { id: 'dopeul_osamodas',   weight: 5 },
+        { id: 'dopeul_ouginak',    weight: 5 },
+        { id: 'dopeul_pandawa',    weight: 5 },
+        { id: 'dopeul_roublard',   weight: 5 },
+        { id: 'dopeul_sacrieur',   weight: 5 },
+        { id: 'dopeul_sadida',     weight: 5 },
+        { id: 'dopeul_sram',       weight: 5 },
+        { id: 'dopeul_steamer',    weight: 5 },
+        { id: 'dopeul_xelor',      weight: 5 },
+        { id: 'dopeul_zobal',      weight: 5 },
+        { id: 'dopeul_darkvlad',   weight: 1 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'piloteAutomatique', dropRate: 0.05 }
     ]
 }
