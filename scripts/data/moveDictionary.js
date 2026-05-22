@@ -837,13 +837,7 @@ move.zenith = {
     name: 'Zénith',
     classId: 'iop',
     cooldownMs: 2000,
-    effects: [{
-        type: 'damage',
-        element: 'feu',
-        damage: {min: 12, max: 16},
-        slot1BonusPct: 300,
-        target: 'enemy'
-    }],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 16}, slot1BonusPct: 300, target: 'enemy'}],
     description: "Frappe l'ennemi dans l'élément air. Si le sort est en première position, inflige 300% de dommages supplémentaires."
 }
 // move.determination = {
@@ -914,11 +908,7 @@ move.fleche_optique = {
     name: 'Flèche Optique',
     classId: 'cra',
     cooldownMs: 1650,
-    effects: [{
-        type: 'damage', 
-        element: 'air', 
-        damage: {min: 14,max: 16}, 
-        target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 14,max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
@@ -996,8 +986,7 @@ move.tirs_eloignes = {
     name: 'Tirs Éloignés',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,  
@@ -1044,8 +1033,7 @@ move.balise_tactique = {
     name: 'Balise Tactique',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [
-        {type: 'buff', stat: 'flatDamage', value: 60, duration: 2, target: 'self'}],
+    effects: [{type: 'buff', stat: 'flatDamage', value: 60, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,  
@@ -1076,8 +1064,7 @@ move.fleche_empoisonnee = {
     name: 'Flèche Empoisonnée',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [
-        {type: 'dot', element: 'neutre', value: 11, duration: 2, target: 'enemy'}],
+    effects: [{type: 'dot', element: 'neutre', value: 11, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
@@ -1139,8 +1126,7 @@ move.fleches_erosives = {
     name: 'Flèches Érosives',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [
-        {type: 'debuff', stat: 'erosionBonus', value: 0.10, duration: 3, target: 'enemy'}],
+    effects: [{type: 'debuff', stat: 'erosionBonus', value: 0.10, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
@@ -1228,12 +1214,7 @@ move.fleche_explosive = {
     name: 'Flèche Explosive',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'damage',
-        element: 'feu',
-        damage: {min: 24, max: 27},
-        target: 'all_enemies'
-    }],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 27}, target: 'all_enemies'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
                        {lvl: 147,
@@ -1435,13 +1416,7 @@ move.balise_de_rappel = {
     name: 'Balise de Rappel',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'buff',
-        stat: 'pendingLifesteal',
-        value: 1.2,
-        duration: 2,
-        target: 'self'
-    }],
+    effects: [{type: 'buff', stat: 'pendingLifesteal', value: 1.2, duration: 2, target: 'self'}],
     description: "Octroi un effet de vol de vie sur le prochain sort."
 }
 // move.fleche_de_tourment = {
@@ -1539,12 +1514,7 @@ move.fleche_devorante = {
     name: 'Flèche Dévorante',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'damage',
-        element: 'air',
-        stackedDamage: [{min:1,max:3},{min:2,max:5},{min:4,max:9},{min:8,max:15},{min:13,max:20}],
-        target: 'enemy'
-    }],
+    effects: [{type: 'damage', element: 'air', stackedDamage: [{min:1,max:3},{min:2,max:5},{min:4,max:9},{min:8,max:15},{min:13,max:20}], target: 'enemy'}],
     description: "Augmente les dégats a chaque lancer (limite de 5)"
 }
 // move.fleche_du_jugement = {
@@ -1567,11 +1537,7 @@ move.miroir_aux_alouettes = {
     name: 'Miroir aux Alouettes',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'renvoi',
-        ratio: 1.0,
-        target: 'self'
-    }],
+    effects: [{type: 'renvoi', ratio: 1.0, target: 'self'}],
     description: "Renvoi le prochain dégat reçu."
 }
 // move.fleche_de_redemption = {
@@ -1686,8 +1652,7 @@ move.mot_espiegle = {
     name: 'Mot Espiègle',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'air', damage: {min: 12,max: 14}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 12,max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
@@ -1701,7 +1666,7 @@ move.mot_damitie = {
     name: "Mot d'amitié",
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{ type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'}],
+    effects: [{type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
@@ -1715,7 +1680,7 @@ move.mot_stimulant = {
     name: 'Mot Stimulant',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,  
@@ -1729,7 +1694,7 @@ move.mot_de_frayeur = {
     name: '',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{ type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
+    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,  
@@ -1743,14 +1708,7 @@ move.lamentations = {
     name: '',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,  
@@ -1764,14 +1722,7 @@ move.mot_turbulent = {
     name: '',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,  
@@ -1785,14 +1736,7 @@ move.mot_vivifiant = {
     name: '',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,  
@@ -1806,14 +1750,7 @@ move.mot_farceur = {
     name: '',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,  
@@ -1827,14 +1764,7 @@ move.peinture_de_guerre = {
     name: '',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [{ type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,  
@@ -2346,13 +2276,7 @@ move.fontaine_de_jouvence = {
     name: 'Fontaine de Jouvence',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: 'buff',
-        stat: 'healOnCast',
-        value: 0.1,
-        duration: 3,
-        target: 'self'
-    }],
+    effects: [{type: 'buff', stat: 'healOnCast', value: 0.1, duration: 3, target: 'self'}],
     description: "Soigne aléatoirement un allié de 10% HP max à chaque sort lancé (3 sorts)."
 }
 // move.choeur_strident = {
@@ -2390,13 +2314,7 @@ move.mot_de_solidarité = {
     name: 'Mot de Solidarité',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{
-        type: 'buff_team',
-        stat: 'spd',
-        value: 100,
-        duration: 3,
-        target: 'all_allies'
-    }],
+    effects: [{type: 'buff_team', stat: 'spd', value: 100, duration: 3, target: 'all_allies'}],
     description: "Double l'initiative de tous les membres de l'équipe pendant 3 tours."
 }
 // #endregion

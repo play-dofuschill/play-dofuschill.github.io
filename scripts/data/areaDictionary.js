@@ -470,7 +470,11 @@ areas.evenementDopeuls = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }
+        { itemId: 'runeHpS',           dropRate: 0.01 },
+        { itemId: 'runeAtkS',          dropRate: 0.01 },
+        { itemId: 'runeSpdS',          dropRate: 0.01 },
+        { itemId: 'runeFlatDmgS',      dropRate: 0.01 },
+        { itemId: 'runeCritS',         dropRate: 0.01 }
     ]
 }
 
