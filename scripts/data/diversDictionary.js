@@ -42,8 +42,8 @@ item.piloteAutomatique = {
 }
 // #endregion
 
-// ────────────────────────────────────────────────────────────────────────
-// #region ─────────────────── CLES DE DONJONS ────────────────────────────
+// ───────────────────────────────────────────────────────
+// #region ── CLES DE DONJONS ────────────────────────────
  
 
 item.cleDonjonKardorim = {
@@ -77,6 +77,22 @@ item.cleDonjonSable = {
     type: 'resource',
     isKey: true,
     description: "Cette clef permet de rentrer dans le Château Ensablé."
+}
+item.cleDonjonScarafeuille = {
+    id: 'cleDonjonScarafeuille',
+    name: "Clef du Donjon des Scarafeuilles",
+    image: 'img/items/divers/donjonScarafeuille.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon des Scarafeuilles."
+}
+item.cleDonjonKwakwa = {
+    id: 'cleDonjonKwakwa',
+    name: "Clef du Nid du Kwakwa",
+    image: 'img/items/divers/donjonKwakwa.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Nid du Kwakwa."
 }
 // #endregion
 

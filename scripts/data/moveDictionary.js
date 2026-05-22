@@ -11,7 +11,7 @@ RÉFÉRENCE EFFETS DE SORTS — copier-coller prêt à l'emploi
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ÉLÉMENTS   : neutre | terre | feu | eau | air
-TARGET      : enemy (cible adverse) | self (le caster) | all_allies (toute l'équipe alliée)
+TARGET      : enemy (cible adverse) | self (le caster) | all_allies (toute l'équipe alliée) | all_enemies (tous les ennemis — raid uniquement, solo = ennemi principal)
 STATS BUFF  : atk | spd | flatDamage | finalDamagePct | spellDamagePct | damageReductionPct | critChance | critDamagePct
 
 ──────────────────────────────────────────────────────────────────────────────
@@ -20,6 +20,25 @@ DÉGÂTS
 
 // Dégâts directs
 { type: 'damage', element: 'feu', damage: { min: 10, max: 20 }, target: 'enemy' }
+
+// Splash simple : e2 = X% des dégâts de e1 (bypass défenses, pas d'érosion)
+{ type: 'damage', element: 'air', damage: { min: 10, max: 20 }, splashPct: 50, target: 'enemy' }
+
+// Double splash : e2 = X% de e1, e3 = Y% de e1
+{ type: 'damage', element: 'air', damage: { min: 10, max: 20 }, splashPct: 75, splashPct2: 50, target: 'enemy' }
+
+// Double splash en cascade : e2 = X% de e1, e3 = Y% de e2 (chaîne brisée si e2 est mort)
+{ type: 'damage', element: 'air', damage: { min: 10, max: 20 }, splashPct: 75, splashPct2: 50, splashChain: true, target: 'enemy' }
+
+// Cible un slot ennemi fixe — enemy_1=slot0, enemy_2=slot1, enemy_3=slot2
+// En solo : enemy_1 = ennemi unique, enemy_2/enemy_3 = ignorés
+// ratio : multiplicateur de dégâts (optionnel, défaut 1.0)
+{ type: 'damage', element: 'terre', damage: { min: 10, max: 20 }, target: 'enemy_2', ratio: 0.5 }
+
+// Rotation cyclique (raid) : stack%3 détermine à la fois la cible ET le palier scalingMultipliers
+// Cast 1 → enemies[0] à mult[0], cast 2 → enemies[1] à mult[1], cast 3 → enemies[2] à mult[2], cycle
+// En solo : frappe toujours l'ennemi unique, scalingMultipliers cycle normalement
+{ type: 'damage', element: 'terre', damage: { min: 10, max: 20 }, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_cycle' }
 
 // Dégâts sur la durée (DOT — tique au début du tour de la cible)
 { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }
@@ -327,19 +346,17 @@ move.souffle = {
     name: 'Souffle',
     classId: 'iop',
     cooldownMs: 2000,
-    effects: [{
-        type: 'damage',
-        element: 'air',
-        damage: {min: 8, max: 10},
-        target: 'enemy'
-    }],
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 8, max: 10}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
                         patch: {damage: {min: 10, max: 12}}},
                        {lvl: 164,
                         patch: {damage: {min: 13, max: 15}}}],
-    description: "Tape l'ennemi dans l'élément air et le fait reculer d'un rang."
+    description: "Tape l'ennemi dans l'élément air et le fait reculer d'un rang. Le second effet ne s'applique qu'en Raid."
 }
 move.epee_destructrice = {
     id: 'epee_destructrice',
@@ -380,27 +397,26 @@ move.puissance = {
                         patch: {buff: { value: 400 }}}],
     description: "Augmente la puissance du lanceur pour 3 tours."
 }
-// move.tempete_de_puissance = {
-//     id: 'tempete_de_puissance',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 53,
-//                         patch: {}},
-//                        {lvl: 112,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 179,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
+move.tempete_de_puissance = {
+    id: 'tempete_de_puissance',
+    name: 'Tempête de Puissance',
+    classId: 'iop',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'damage',
+        element: 'terre',
+        damage: {min: 17, max: 19},
+        scalingMultipliers: [1.0, 1.2, 1.5],
+        target: 'enemy_cycle'
+    }],
+    spellProgression: [{lvl: 53,
+                        patch: {}},
+                       {lvl: 112,
+                        patch: {damage: {min: 22, max: 25}}},
+                       {lvl: 179,
+                        patch: {damage: {min: 27, max: 30}}}],
+    description: "Tape de plus en plus fort à chaque lancés, revient a la normale au 4ème. En raid, frappe successivement l'ennemi principal, le sondaire et le tertiaire."
+}
 // move.endurance = {
 //     id: 'endurance',
 //     name: '',
@@ -807,21 +823,18 @@ move.puissance = {
 //         target: ''}],
 //     description: ""
 // }
-// move.pugilat = {
-//     id: 'pugilat',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.pugilat = {
+    id: 'pugilat',
+    name: 'Pugilat',
+    classId: 'iop',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_1'},
+        {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_2', ratio: 0.5},
+        {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_3', ratio: 0.5}
+    ],
+    description: "Tape de plus en plus fort à chaque lancés, revient a la normale au 4ème. En raid, frappe l'ennemi principal avec 100% des dommages et les ennemis secondaire et tertiaires avec 50%."
+}
 // move.massacre = {
 //     id: 'massacre',
 //     name: '',
@@ -867,21 +880,20 @@ move.puissance = {
 //         target: ''}],
 //     description: ""
 // }
-// move.zenith = {
-//     id: 'zenith',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.zenith = {
+    id: 'zenith',
+    name: 'Zénith',
+    classId: 'iop',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'damage',
+        element: 'feu',
+        damage: {min: 12, max: 16},
+        slot1BonusPct: 300,
+        target: 'enemy'
+    }],
+    description: "Frappe l'ennemi dans l'élément air. Si le sort est en première position, inflige 300% de dommages supplémentaires."
+}
 // move.determination = {
 //     id: 'determination',
 //     name: '',
@@ -984,29 +996,25 @@ move.fleche_cinglante = {
     name: 'Flèche Cinglante',
     classId: 'cra',
     cooldownMs: 1900,
-    effects: [{
-    type: 'damage',
-    element: 'terre',
-    damage: {min: 15,max: 17},
-    target: 'enemy'}],
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'avance', target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
                         patch: {damage: { min: 20, max: 23 }}},
                        {lvl: 136,
                         patch: {damage: { min: 25, max: 29 }}}],
-    description: "Tape l'ennemi dans l'élément terre et le fait reculer d'un rang. Si l'ennemi est seul, la deuxième partie de l'effet ne se déclanche pas."
+    description: "Tape l'ennemi dans l'élément terre et le fait avancer d'un rang. Si l'ennemi est seul, la deuxième partie de l'effet ne se déclanche pas."
 }
 move.tir_repulsif = {
     id: 'tir_repulsif',
     name: 'Tir Répulsif',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-    type: 'damage',
-    element: 'feu',
-    damage: {min: 17,max: 19},
-    target: 'enemy'}],
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
@@ -1020,19 +1028,16 @@ move.fleche_de_dispersion = {
     name: 'Flèche de Dispersion',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'debuff', 
-        stat: 'spd', 
-        value: 20, 
-        duration: 3, 
-        target: 'enemy'}],
+    effects: [
+        {type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,  
                         patch: {buff: { value: 30 }}},
                        {lvl: 139,
                         patch: {buff: { value: 40 }}}],
-    description: "Réduit la vitesse de l'ennemi pour 3 tours."
+    description: "Réduit la vitesse de l'ennemi pour 3 tours et le fais reculer."
 }
 move.tirs_eloignes = {
     id: 'tirs_eloignes',
@@ -1040,11 +1045,7 @@ move.tirs_eloignes = {
     classId: 'cra',
     cooldownMs: 2000,
     effects: [{
-        type: 'buff', 
-        stat: 'spd', 
-        value: 20, 
-        duration: 3, 
-        target: 'self'}],
+        type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,  
@@ -1055,235 +1056,183 @@ move.tirs_eloignes = {
 }
 move.fleche_dimmobilisation = {
     id: 'fleche_dimmobilisation',
-    name: '',
+    name: "Flèche d'Immobilisation",
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [
+        {type: 'damage',  element: 'eau', damage: {min: 7, max: 9}, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.1, target: 'self'},
+        {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
-                       {lvl: 82,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 82,
+                        patch: {damage: {min: 8, max: 10}, buff: { value: 15 }}},
                        {lvl: 149,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: {min: 11, max: 13}, buff: { value: 20 }}}],
+    description: "Tape dans l'eau, vole de la vie et ralenti l'ennemi."
 }
 move.tir_de_recul = {
     id: 'tir_de_recul',
-    name: '',
+    name: 'Tir de Recul',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
-                       {lvl: 87,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 87,
+                        patch: {damage: { min: 20, max: 22 }}},
                        {lvl: 154,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: { min: 25, max: 38 }}}],
+    description: "Tape dans l'air et fait reculer l'ennemi d'un rang. Le recul ne s'applique qu'en Raid."
 }
 move.balise_tactique = {
     id: 'balise_tactique',
-    name: '',
+    name: 'Balise Tactique',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [
+        {type: 'buff', stat: 'flatDamage', value: 60, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,  
-                        patch: {buff: { value: 30 }}},
+                        patch: {buff: { value: 130 }}},
                        {lvl: 159,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {buff: { value: 300 }}}],
+    description: "Utilise une balise qui augmente les dégats du prochain sort lancé."
 }
 move.fleche_détonante = {
     id: 'fleche_détonante',
-    name: '',
+    name: 'Flèche Détonante',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [
+        {type: 'damage',    element: 'feu', damage: {min: 7, max: 9}, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.1, target: 'self'},
+        {type: 'dot',       element: 'feu', value: 10, duration: 2, target: 'enemy_2'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
-                       {lvl: 97,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 97,
+                        patch: {damage: { min: 10, max: 13 }}},
                        {lvl: 164,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: { min: 14, max: 17 }}}],
+    description: "Tape dans le feu, vole de la vie et applique un poison feu de 10 dégâts à l'ennemi secondaire pour 2 tours."
 }
 move.fleche_empoisonnee = {
     id: 'fleche_empoisonnee',
-    name: '',
+    name: 'Flèche Empoisonnée',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
+    effects: [
+        {type: 'dot', element: 'neutre', value: 11, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
-                       {lvl: 102,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 102,
+                        patch: {dot: {value: 15}}},
                        {lvl: 169,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {dot: {value: 18, duration: 3}}}],
+    description: "Applique un poison neutre pendant plusieurs tours."
 }
 move.tirs_puissants = {
     id: 'tirs_puissants',
-    name: '',
+    name: 'Tirs Puissants',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'buff', stat: 'atk',        value: 100, duration: 3, target: 'self'},
+        {type: 'buff', stat: 'flatDamage', value: 10,  duration: 3, target: 'self'}],
+    spellProgression: [{lvl: 49,
+                        patch: {}},
+                       {lvl: 107,
+                        patch: {buff: [{stat: 'atk', value: 150}, {stat: 'flatDamage', value: 25}]}},
+                       {lvl: 174,
+                        patch: {buff: [{stat: 'atk', value: 200}, {stat: 'flatDamage', value: 50}]}}],
+    description: "Augmente la puissance et les dommages bruts du lanceur pour 3 tours."
+}
+move.fleche_de_concentration = {
+    id: 'fleche_de_concentration',
+    name: 'Flèche de Concentration',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',       element: 'air', damage: {min: 14, max: 16}, target: 'enemy'},
+        {type: 'swap_enemies', target: 'enemy'}],
+    spellProgression: [{lvl: 53,
+                        patch: {}},
+                       {lvl: 112,
+                        patch: {damage: {min: 19, max: 22}}},
+                       {lvl: 179,
+                        patch: {damage: {min: 23, max: 26}}}],
+    description: "Tape dans l'élément air et échange les positions des ennemis secondaire et tertiaire (raid uniquement)."
+}
+move.oeil_de_taupe = {
+    id: 'oeil_de_taupe',
+    name: 'Œil de Taupe',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',    element: 'eau', damage: {min: 15, max: 17}, target: 'all_enemies'},
+        {type: 'lifesteal', ratio: 0.1, target: 'self'}],
+    spellProgression: [{lvl: 57,
+                        patch: {}},
+                       {lvl: 117,
+                        patch: {damage: {min: 21, max: 23}}},
+                       {lvl: 184,
+                        patch: {damage: {min: 25, max: 27}}}],
+    description: "Tape dans l'élément eau tous les ennemis (raid) et vole de la vie."
+}
+move.fleches_erosives = {
+    id: 'fleches_erosives',
+    name: 'Flèches Érosives',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff', stat: 'erosionBonus', value: 0.10, duration: 3, target: 'enemy'}],
+    spellProgression: [{lvl: 61,
+                        patch: {}},
+                       {lvl: 122,
+                        patch: {buff: { value: 0.15 }}},
+                       {lvl: 189,
+                        patch: {buff: { value: 0.20, duration: 4 }}}],
+    description: "L'ennemi subit plus d'érosion sur les prochains coups qu'il prend."
+}
+move.tir_perforant = {
+    id: 'tir_perforant',
+    name: 'Tir Perforant',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 29, max: 32}, splashPct: 50, target: 'enemy'}],
+    spellProgression: [{lvl: 65,
+                        patch: {}},
+                       {lvl: 127,
+                        patch: {damage: {min: 36, max: 39}}},
+                       {lvl: 194,
+                        patch: {damage: {min: 40, max: 44}}}],
+    description: "Tape air et inflige 50% des dommages à l'ennemi secondaire. Le second effet ne s'applique qu'en Raid."
+}
+move.fleche_punitive = {
+    id: 'fleche_punitive',
+    name: 'Flèche Punitive',
     classId: 'cra',
     cooldownMs: 2000,
     effects: [{
-        type: '',
-        element: '',
-        damage: {min: 1,max: 1},
-        stat: '', 
-        value: 1, 
-        duration: 1, 
-        target: ''}],
-    spellProgression: [{lvl: 49,
+        type: 'damage',
+        element: 'terre',
+        damage: {min: 21, max: 23},
+        scalingMultipliers: [1.0, 1.2, 1.5],
+        stayAtMax: true,
+        target: 'enemy'
+    }],
+    spellProgression: [{lvl: 69,
                         patch: {}},
-                       {lvl: 107,  
-                        patch: {buff: { value: 30 }}},
-                       {lvl: 174,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                       {lvl: 131,
+                        patch: {damage: {min: 1, max: 1}}},
+                       {lvl: 198,
+                        patch: {damage: {min: 1, max: 1}}}],
+    description: "Tape dans la terre. Les dégâts augmentent à chaque lancé (limite de 3)."
 }
-// move.fleche_de_concentration = {
-//     id: 'fleche_de_concentration',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 53,
-//                         patch: {}},
-//                        {lvl: 112,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 179,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.oeil_de_taupe = {
-//     id: 'oeil_de_taupe',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 57,
-//                         patch: {}},
-//                        {lvl: 117,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 184,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.fleches_erosives = {
-//     id: 'fleches_erosives',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 61,
-//                         patch: {}},
-//                        {lvl: 122,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 189,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.tir_perforant = {
-//     id: 'tir_perforant',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 65,
-//                         patch: {}},
-//                        {lvl: 127,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 194,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.fleche_punitive = {
-//     id: 'fleche_punitive',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 69,
-//                         patch: {}},
-//                        {lvl: 131,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 198,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
 // move.oeil_pour_oeil = {
 //     id: 'oeil_pour_oeil',
 //     name: '',
@@ -1322,25 +1271,23 @@ move.tirs_puissants = {
 //                         patch: {buff: { value: 30 }}}],
 //     description: ""
 // }
-// move.fleche_explosive = {
-//     id: 'fleche_explosive',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 81,
-//                         patch: {}},
-//                        {lvl: 147,  
-//                         patch: {buff: { value: 30 }}}],
-//     description: ""
-// }
+move.fleche_explosive = {
+    id: 'fleche_explosive',
+    name: 'Flèche Explosive',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'damage',
+        element: 'feu',
+        damage: {min: 24, max: 27},
+        target: 'all_enemies'
+    }],
+    spellProgression: [{lvl: 81,
+                        patch: {}},
+                       {lvl: 147,
+                        patch: {damage: {min: 30, max: 34}}}],
+    description: "Inflige des dommages feu à tous les ennemis en raid."
+}
 // move.fleche_persecutrice = {
 //     id: 'fleche_persecutrice',
 //     name: '',
@@ -1531,21 +1478,20 @@ move.tirs_puissants = {
 //                         patch: {buff: { value: 30 }}}],
 //     description: ""
 // }
-// move.balise_de_rappel = {
-//     id: 'balise_de_rappel',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.balise_de_rappel = {
+    id: 'balise_de_rappel',
+    name: 'Balise de Rappel',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'buff',
+        stat: 'pendingLifesteal',
+        value: 1.2,
+        duration: 2,
+        target: 'self'
+    }],
+    description: "Octroi un effet de vol de vie sur le prochain sort."
+}
 // move.fleche_de_tourment = {
 //     id: 'fleche_de_tourment',
 //     name: '',
@@ -1636,21 +1582,19 @@ move.tirs_puissants = {
 //         target: ''}],
 //     description: ""
 // }
-// move.fleche_devorante = {
-//     id: 'fleche_devorante',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.fleche_devorante = {
+    id: 'fleche_devorante',
+    name: 'Flèche Dévorante',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'damage',
+        element: 'air',
+        stackedDamage: [{min:1,max:3},{min:2,max:5},{min:4,max:9},{min:8,max:15},{min:13,max:20}],
+        target: 'enemy'
+    }],
+    description: "Augmente les dégats a chaque lancer (limite de 5)"
+}
 // move.fleche_du_jugement = {
 //     id: 'fleche_du_jugement',
 //     name: '',
@@ -1666,21 +1610,18 @@ move.tirs_puissants = {
 //         target: ''}],
 //     description: ""
 // }
-// move.miroir_aux_alouettes = {
-//     id: 'miroir_aux_alouettes',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.miroir_aux_alouettes = {
+    id: 'miroir_aux_alouettes',
+    name: 'Miroir aux Alouettes',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'renvoi',
+        ratio: 1.0,
+        target: 'self'
+    }],
+    description: "Renvoi le prochain dégat reçu."
+}
 // move.fleche_de_redemption = {
 //     id: 'fleche_de_redemption',
 //     name: '',
@@ -1760,7 +1701,7 @@ move.mot_tapageur = {
                         patch: {damage: { min: 18, max: 21 }}},
                        {lvl: 132,
                         patch: {damage: { min: 23, max: 27 }}}],
-    description: "Tape rapidement l'ennemi dans l'élément air."
+    description: "Tape rapidement l'ennemi dans l'élément feu."
 }
 move.juron = {
     id: 'juron',
@@ -1778,7 +1719,7 @@ move.juron = {
                         patch: {damage: { min: 19, max: 22 }}},
                        {lvl: 133,
                         patch: {damage: { min: 24, max: 28 }}}],
-    description: "Tape l'ennemi dans l'élément eau et retire xx puissance à l'ennemi."
+    description: "Tape l'ennemi dans l'élément terre."
 }
 move.mot_vampirique = {
     id: 'mot_vampirique',
@@ -1787,14 +1728,14 @@ move.mot_vampirique = {
     cooldownMs: 2300,
     effects: [
         {type: 'damage', element: 'eau', damage: { min: 16, max: 18 }, target: 'enemy'},
-        {type: 'lifesteal', ratio: 0.5, target: 'self'}],
+        {type: 'lifesteal', ratio: 0.3, target: 'self'}],
     spellProgression: [{ lvl: 12, 
                          patch: {} },
                        {lvl: 69,
-                        patch: {damage: { min: 22, max: 26 }, lifesteal: { ratio: 0.60 }}},
+                        patch: {damage: { min: 22, max: 26 }, lifesteal: { ratio: 0.40 }}},
                        {lvl: 136,
-                        patch: {damage: { min: 30, max: 38 },lifesteal: { ratio: 0.65 }}}],
-    description: "Tape l'ennemi et soigne de 50% des dégâts infligés."
+                        patch: {damage: { min: 30, max: 38 },lifesteal: { ratio: 0.50 }}}],
+    description: "Tape l'ennemi et soigne un pourcentage des dégâts infligés."
 }
 move.mot_espiegle = {
     id: 'mot_espiegle',
@@ -1812,7 +1753,7 @@ move.mot_espiegle = {
                         patch: {damage: { min: 22, max: 25 }}},
                        {lvl: 134,
                         patch: {damage: { min: 28, max: 32 }}}],
-    description: "Tape l'ennemi dans l'élément feu et le fait reculer d'un rang. Si l'ennemi est seul, la deuxième partie de l'effet ne se déclanche pas."
+    description: "Tape l'ennemi dans l'élément air."
 }
 move.mot_damitie = {
     id: 'mot_damitie',
@@ -1820,18 +1761,18 @@ move.mot_damitie = {
     classId: 'eniripsa',
     cooldownMs: 2000,
     effects: [{
-        type: 'debuff', 
-        stat: 'spd', 
-        value: -20, 
-        duration: 3, 
+        type: 'debuff',
+        stat: 'spd',
+        value: 20,
+        duration: 3,
         target: 'enemy'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
-                       {lvl: 72,  
-                        patch: {buff: { value: -30 }}},
+                       {lvl: 72,
+                        patch: {buff: { value: 30 }}},
                        {lvl: 139,
-                        patch: {buff: { value: -40 }}}],
-    description: "Réduit la vitesse de l'ennemi de xx% pour xx tours."
+                        patch: {buff: { value: 40 }}}],
+    description: "Réduit la vitesse de l'ennemi pour 3 tours."
 }
 move.mot_stimulant = {
     id: 'mot_stimulant',
@@ -2450,21 +2391,17 @@ move.peinture_de_guerre = {
 //         target: ''}],
 //     description: ""
 // }
-// move.mot_distrayant = {
-//     id: 'mot_distrayant',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.mot_distrayant = {
+    id: 'mot_distrayant',
+    name: 'Mot Distrayant',
+    classId: 'eniripsa',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 22, max: 26}, target: 'enemy'},
+        {type: 'heal_adjacent%maxHp', heal: 5, target: 'self'}
+    ],
+    description: "Frappe dans l'élément feu et soigne les alliés adjacents de 5% HP max."
+}
 // move.bosquet_enchante = {
 //     id: 'bosquet_enchante',
 //     name: '',
@@ -2480,21 +2417,20 @@ move.peinture_de_guerre = {
 //         target: ''}],
 //     description: ""
 // }
-// move.fontaine_de_jouvence = {
-//     id: 'fontaine_de_jouvence',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.fontaine_de_jouvence = {
+    id: 'fontaine_de_jouvence',
+    name: 'Fontaine de Jouvence',
+    classId: 'eniripsa',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'buff',
+        stat: 'healOnCast',
+        value: 0.1,
+        duration: 3,
+        target: 'self'
+    }],
+    description: "Soigne aléatoirement un allié de 10% HP max à chaque sort lancé (3 sorts)."
+}
 // move.choeur_strident = {
 //     id: 'choeur_strident',
 //     name: '',
@@ -2525,21 +2461,20 @@ move.peinture_de_guerre = {
 //         target: ''}],
 //     description: ""
 // }
-// move.mot_de_solidarité = {
-//     id: 'mot_de_solidarité',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     description: ""
-// }
+move.mot_de_solidarité = {
+    id: 'mot_de_solidarité',
+    name: 'Mot de Solidarité',
+    classId: 'eniripsa',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'buff_team',
+        stat: 'spd',
+        value: 100,
+        duration: 3,
+        target: 'all_allies'
+    }],
+    description: "Double l'initiative de tous les membres de l'équipe pendant 3 tours."
+}
 // #endregion
 
 

@@ -1662,7 +1662,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     }
 }
 
-#explore-menu, #poutch-menu, #guide-menu {
+#explore-menu, #poutch-menu, #guide-menu, #credits-menu {
     position: fixed;
     height: 100%;
     width: 50%;
@@ -5455,9 +5455,46 @@ transform: translateY(-1rem);
 /* ─── Menu Guide ──────────────────────────────────────────────────────────── */
 
 @media (max-width: 1000px) {
-    #guide-menu {
+    #guide-menu, #credits-menu {
         width: 100%;
     }
+}
+
+#credits-menu-header {
+    height: 8rem;
+    width: 100%;
+    background-image: url(img/bg/astrub.png);
+    background-size: cover;
+    background-position: 20%;
+    image-rendering: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    text-align: end;
+    flex-shrink: 0;
+    gap: 0.5rem;
+    padding: 0.4rem 2%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 4px 4px 0;
+}
+
+#credits-menu-header span {
+    height: 2rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: rgba(255, 255, 255, 0.7) 1px solid;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    padding: 1.3rem 1rem;
+    font-weight: 100;
+    flex-shrink: 0;
+    z-index: 2;
 }
 
 #guide-menu-header {
@@ -5502,6 +5539,19 @@ transform: translateY(-1rem);
     flex-direction: column;
     gap: 0;
     padding: 0.8rem;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    width: 100%;
+}
+
+#credits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.8rem;
+    overflow-y: auto;
+    height: calc(100% - 8rem);
 }
 
 .guide-section {
@@ -5509,6 +5559,7 @@ transform: translateY(-1rem);
     overflow: hidden;
     margin-bottom: 0.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .guide-section-header {

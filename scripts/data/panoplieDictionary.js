@@ -116,6 +116,191 @@ const panoplies = {
                         { stat: 'flatDamage', value: 5 }]
         }}
     },
+    scarafeuille_blanc: {
+        name: "Panoplie du scarafeuille blanc",
+        pieces: ['cape_scarafeuille_blanc','coiffe_scarafeuille_blanc','anneau_scarafeuille_blanc','ceinture_scarafeuille_blanc'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.air', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'res.air', value: 20 }]
+        }}
+    },
+    scarafeuille_vert: {
+        name: "Panoplie du scarafeuille vert",
+        pieces: ['cape_scarafeuille_vert','coiffe_scarafeuille_vert','anneau_scarafeuille_vert','ceinture_scarafeuille_vert'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.terre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'res.terre', value: 20 }]
+        }}
+    },
+    scarafeuille_bleu: {
+        name: "Panoplie du scarafeuille bleu",
+        pieces: ['cape_scarafeuille_bleu','coiffe_scarafeuille_bleu','anneau_scarafeuille_bleu','ceinture_scarafeuille_bleu'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.eau', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'res.eau', value: 20 }]
+        }}
+    },
+    scarafeuille_rouge: {
+        name: "Panoplie du scarafeuille rouge",
+        pieces: ['cape_scarafeuille_rouge','coiffe_scarafeuille_rouge','anneau_scarafeuille_rouge','ceinture_scarafeuille_rouge'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.feu', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'res.feu', value: 20 }]
+        }}
+    },
+    scarafeuille_noir: {
+        name: "Panoplie du scarafeuille noir",
+        pieces: ['cape_scarafeuille_noir','coiffe_scarafeuille_noir','anneau_scarafeuille_noir','ceinture_scarafeuille_noir'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'res.neutre', value: 20 }]
+        }}
+    },
+    scraraboss_doree: {
+        name: "Panoplie du Scraraboss Dorée",
+        pieces: ['cape_scaraboss_doree','coiffe_scaraboss_doree','bottes_scaraboss_doree','anneau_scaraboss_doree','amulette_scaraboss_doree','ceinture_scaraboss_doree','baguette_scaraboss_doree'],
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'flatDamage', value: 5 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'flatDamage', value: 7 },
+                        { stat: 'critChance', value: 2 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 80 },
+                        { stat: 'flatDamage', value: 10 },
+                        { stat: 'critChance', value: 3 },
+                        { stat: 'res.neutre', value: 5 },
+                        { stat: 'res.terre', value: 5 },
+                        { stat: 'res.feu', value: 5 },
+                        { stat: 'res.eau', value: 5 },
+                        { stat: 'res.air', value: 5 }]
+        }}
+    },
+    kwak_vent: {
+        name: "Panoplie du kwak de vent",
+        pieces: ['cape_kwak_vent','coiffe_kwak_vent','anneau_kwak_vent','ceinture_kwak_vent','bottes_kwak_vent','amulette_kwak_vent','epee_kwak_vent'],
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'res.air', value: 3 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.air', value: 6 },
+                        { stat: 'flatDamage', value: 5 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 80 },
+                        { stat: 'res.air', value: 10 },
+                        { stat: 'flatDamage', value: 10 }]
+        }}
+    },
+    kwak_glace: {
+        name: "Panoplie du kwak de glace",
+        pieces: ['cape_kwak_glace','coiffe_kwak_glace','anneau_kwak_glace','ceinture_kwak_glace','bottes_kwak_glace','amulette_kwak_glace','epee_kwak_glace'],
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'res.eau', value: 3 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.eau', value: 6 },
+                        { stat: 'flatDamage', value: 5 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 80 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'flatDamage', value: 10 }]
+        }}
+    },
+    kwak_flamme: {
+        name: "Panoplie du kwak de flamme",
+        pieces: ['cape_kwak_flamme','coiffe_kwak_flamme','anneau_kwak_flamme','ceinture_kwak_flamme','bottes_kwak_flamme','amulette_kwak_flamme','epee_kwak_flamme'],
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'res.feu', value: 3 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.feu', value: 6 },
+                        { stat: 'flatDamage', value: 5 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 80 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'flatDamage', value: 10 }]
+        }}
+    },
+    kwak_terre: {
+        name: "Panoplie du kwak de terre",
+        pieces: ['cape_kwak_terre','coiffe_kwak_terre','anneau_kwak_terre','ceinture_kwak_terre','bottes_kwak_terre','amulette_kwak_terre','epee_kwak_terre'],
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'res.terre', value: 3 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.terre', value: 6 },
+                        { stat: 'flatDamage', value: 5 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 80 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'flatDamage', value: 10 }]
+        }}
+    },
+    kwakwa: {
+        name: "Panoplie du Kwakwa",
+        pieces: ['kwakwanneau','kwakwalliance','kwakwaffe','kwakwalame'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.terre', value: 4 },
+                        { stat: 'res.feu', value: 4 },
+                        { stat: 'res.eau', value: 4 },
+                        { stat: 'res.air', value: 4 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 130 },
+                        { stat: 'atk', value: 100 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'res.air', value: 10 }]
+        }}
+    },
+    
 
 
 

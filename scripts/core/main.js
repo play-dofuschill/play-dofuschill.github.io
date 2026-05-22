@@ -137,7 +137,8 @@ const MENU_MAP = {
     poutch:       'poutch-menu',
     forge:        'forge-menu',
     raid:         'raid-menu',
-    guide:        'guide-menu'
+    guide:        'guide-menu',
+    credits:      'credits-menu'
 }
 
 // Menus verrouillés selon l'étape du tutoriel
@@ -160,7 +161,8 @@ const MENU_ITEM_MAP = {
     'menu-item-poutch':   'poutch',
     'menu-item-forge':    'forge',
     'menu-item-raid':     'raid',
-    'menu-item-guide':    'guide'
+    'menu-item-guide':    'guide',
+    'menu-item-credits':  'credits'
 }
 
 function updateMenuLockUI() {
@@ -240,7 +242,8 @@ function switchMenu(menuName) {
     if (menuName === 'poutch') updatePoutchUI()
     if (menuName === 'forge')  updateForgeUI()
     if (menuName === 'raid')   updateRaidUI()
-    if (menuName === 'guide')  renderGuide()
+    if (menuName === 'guide')   renderGuide()
+    if (menuName === 'credits') renderCredits()
 }
 
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────
@@ -756,14 +759,24 @@ function initGame() {
         showDataHelp(el.dataset.help)
     })
 
-    // Long-press mobile → tooltip d'aide
+    // Long-press mobile → déclenche contextmenu synthétique sur tous les éléments
     let longPressTimer = null
+    let _longPressAt = 0
+    // Listener persistant : avale les clicks synthétiques dans les 350ms qui suivent un long press
+    document.addEventListener('click', e => {
+        if (Date.now() - _longPressAt < 350) { e.stopPropagation(); e.preventDefault() }
+    }, { capture: true })
     document.addEventListener('touchstart', e => {
-        const el = e.target.closest('[data-help]')
-        if (!el) return
-        longPressTimer = setTimeout(() => showDataHelp(el.dataset.help), 600)
-    })
-    document.addEventListener('touchend',  () => { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null } })
+        const x = e.touches[0].clientX
+        const y = e.touches[0].clientY
+        const target = e.target
+        longPressTimer = setTimeout(() => {
+            longPressTimer = null
+            _longPressAt = Date.now()
+            target.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: x, clientY: y }))
+        }, 600)
+    }, { passive: true })
+    document.addEventListener('touchend', () => { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null } })
     document.addEventListener('touchmove', () => { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null } })
 
     // Corrige le tutorial si la sauvegarde est antérieure au système de tutorial

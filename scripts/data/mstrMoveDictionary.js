@@ -14,8 +14,18 @@ STATS BUFF  : atk | spd | flatDamage | finalDamagePct | spellDamagePct | damageR
 DÉGÂTS
 ──────────────────────────────────────────────────────────────────────────────
 
-// Dégâts directs
+// Dégâts directs (élément fixe)
 { type: 'damage', element: 'feu', damage: { min: 10, max: 20 }, target: 'enemy' }
+
+// Dégâts directs (élément aléatoire parmi une liste, tiré à chaque cast)
+{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 10, max: 20 }, target: 'enemy' }
+
+// Dégâts basés sur les HP (ignorent ATK et flatDamage, soumis aux résistances et critiques)
+// source : 'casterMaxHp' | 'casterCurrentHp' | 'targetMaxHp' | 'targetCurrentHp'
+{ type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp',     pct: 33 }, target: 'enemy' }
+{ type: 'damage', element: 'feu', damageHpPct: { source: 'casterCurrentHp', pct: 20 }, target: 'enemy' }
+{ type: 'damage', element: 'feu', damageHpPct: { source: 'targetMaxHp',     pct: 15 }, target: 'enemy' }
+{ type: 'damage', element: 'feu', damageHpPct: { source: 'targetCurrentHp', pct: 10 }, target: 'enemy' }
 
 // Dégâts sur la durée (DOT — tique au début du tour de la cible)
 { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }
@@ -399,6 +409,344 @@ move.picore = {
     name: 'Picore',
     cooldownMs: 1500,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 16, max: 20 }, target: 'enemy'}]
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region SCARAFEUILLE
+// Sorts partagés par les 5 scarafeuilles
+move.scaraforce = {
+    id: 'scaraforce',
+    name: 'Scaraforce',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 17, max: 19 }, target: 'enemy'}]
+}
+move.elemental_dispersion = {
+    id: 'elemental_dispersion',
+    name: 'Élémental Dispersion',
+    cooldownMs: 2500,
+    effects: [{type: 'buff', stat: 'flatDamage', value: 10, duration: 4, target: 'self'}]
+}
+// Scarafeuille Noir uniquement
+move.scarinvi = {
+    id: 'scarinvi',
+    name: 'Scarinvi',
+    cooldownMs: 3000,
+    // 50% de chance d'esquiver le prochain coup — modélisé comme renvoi ratio 0 (esquive totale 1 coup)
+    effects: [{type: 'renvoi', ratio: 0, target: 'self'}]
+}
+// Scarafeuille Blanc
+move.spriti_element_blanc = {
+    id: 'spriti_element_blanc',
+    name: 'Spriti Élémental',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy'}]
+}
+move.flammeche_air = {
+    id: 'flammeche_air',
+    name: 'Flammèche Air',
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+}
+// Scarafeuille Vert
+move.spriti_element_vert = {
+    id: 'spriti_element_vert',
+    name: 'Spriti Élémental',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy'}]
+}
+move.flammeche_terre = {
+    id: 'flammeche_terre',
+    name: 'Flammèche Terre',
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+}
+// Scarafeuille Rouge
+move.spriti_element_rouge = {
+    id: 'spriti_element_rouge',
+    name: 'Spriti Élémental',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy'}]
+}
+move.flammeche_feu = {
+    id: 'flammeche_feu',
+    name: 'Flammèche Feu',
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+}
+// Scarafeuille Bleu
+move.spriti_element_bleu = {
+    id: 'spriti_element_bleu',
+    name: 'Spriti Élémental',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy'}]
+}
+move.flammeche_eau = {
+    id: 'flammeche_eau',
+    name: 'Flammèche Eau',
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+}
+// Scarafeuille Immature
+move.scarapoison = {
+    id: 'scarapoison',
+    name: 'Scarapoison',
+    cooldownMs: 2000,
+    effects: [{type: 'dot', elements: ['feu', 'eau', 'terre', 'air'], value: 11, duration: 3, target: 'enemy'}]
+}
+// Scraraboss Dorée (boss)
+move.picoti = {
+    id: 'picoti',
+    name: 'Picoti',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',    elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 11, max: 15 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                                              target: 'self'}
+    ]
+}
+move.naissance = {
+    id: 'naissance',
+    name: 'Naissance',
+    cooldownMs: 3000,
+    effects: [{type: 'summon', summonId: 'scarafeuilleImmature', duration: 4, target: 'self'}]
+}
+move.premier_soins = {
+    id: 'premier_soins',
+    name: 'Premier Soins',
+    cooldownMs: 3000,
+    // soin entre 17% et 26% des HP max — valeur médiane fixe en attendant support de plage
+    effects: [{type: 'heal%maxHp', heal: 20, target: 'self'}]
+}
+move.expulsion = {
+    id: 'expulsion',
+    name: 'Expulsion',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'neutre', damage: { min: 22, max: 30 }, target: 'enemy'},
+        {type: 'switch', value: 1,                                         target: 'enemy'}
+    ]
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region KWAKWA
+move.griffes_acerees = {
+    id: 'griffes_acerees',
+    name: 'Griffes Acérées',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy'}]
+}
+move.eventrement = {
+    id: 'eventrement',
+    name: 'Éventrement',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy'}]
+}
+// Kwakere de Vent
+move.wakolanterne_vent = {
+    id: 'wakolanterne_vent',
+    name: 'Wakolanterne',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',    element: 'air', damage: { min: 6, max: 8 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                  target: 'self'},
+        {type: 'switch',    value: 1,                                    target: 'enemy'}
+    ]
+}
+move.wakzefeute_vent = {
+    id: 'wakzefeute_vent',
+    name: 'Wakzefeute',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'damage',    element: 'air', damage: { min: 8, max: 11 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                  target: 'self'}
+    ]
+}
+// Kwakere de Glace
+move.wakolanterne_glace = {
+    id: 'wakolanterne_glace',
+    name: 'Wakolanterne',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',    element: 'eau', damage: { min: 6, max: 8 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                  target: 'self'},
+        {type: 'switch',    value: 1,                                    target: 'enemy'}
+    ]
+}
+move.wakzefeute_glace = {
+    id: 'wakzefeute_glace',
+    name: 'Wakzefeute',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'damage',    element: 'eau', damage: { min: 8, max: 11 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                  target: 'self'}
+    ]
+}
+// Kwakere de Flamme
+move.wakolanterne_flamme = {
+    id: 'wakolanterne_flamme',
+    name: 'Wakolanterne',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',    element: 'feu', damage: { min: 6, max: 8 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                  target: 'self'},
+        {type: 'switch',    value: 1,                                    target: 'enemy'}
+    ]
+}
+move.wakzefeute_flamme = {
+    id: 'wakzefeute_flamme',
+    name: 'Wakzefeute',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'damage',    element: 'feu', damage: { min: 8, max: 11 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                  target: 'self'}
+    ]
+}
+// Kwakere de Terre
+move.wakolanterne_terre = {
+    id: 'wakolanterne_terre',
+    name: 'Wakolanterne',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage',    element: 'terre', damage: { min: 6, max: 8 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                    target: 'self'},
+        {type: 'switch',    value: 1,                                      target: 'enemy'}
+    ]
+}
+move.wakzefeute_terre = {
+    id: 'wakzefeute_terre',
+    name: 'Wakzefeute',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',    stat: 'atk', value: -50, duration: 2,         target: 'enemy'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 2,         target: 'self'},
+        {type: 'damage',    element: 'terre', damage: { min: 8, max: 11 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                    target: 'self'}
+    ]
+}
+// Kwak de Vent
+move.kwakoukas_vent = {
+    id: 'kwakoukas_vent',
+    name: 'Kwakoukas',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy'},
+        {type: 'switch', value: 1,                                      target: 'enemy'}
+    ]
+}
+move.wakpot_vent = {
+    id: 'wakpot_vent',
+    name: 'Wakpot',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',  stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'damage',  element: 'air', damage: { min: 6, max: 7 }, target: 'enemy'}
+    ]
+}
+// Kwak de Flamme
+move.kwakoukas_flamme = {
+    id: 'kwakoukas_flamme',
+    name: 'Kwakoukas',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy'},
+        {type: 'switch', value: 1,                                      target: 'enemy'}
+    ]
+}
+move.wakpot_flamme = {
+    id: 'wakpot_flamme',
+    name: 'Wakpot',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',  stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'damage',  element: 'feu', damage: { min: 6, max: 7 }, target: 'enemy'}
+    ]
+}
+// Kwak de Glace
+move.kwakoukas_glace = {
+    id: 'kwakoukas_glace',
+    name: 'Kwakoukas',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy'},
+        {type: 'switch', value: 1,                                      target: 'enemy'}
+    ]
+}
+move.wakpot_glace = {
+    id: 'wakpot_glace',
+    name: 'Wakpot',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',  stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'damage',  element: 'eau', damage: { min: 6, max: 7 }, target: 'enemy'}
+    ]
+}
+// Kwak de Terre
+move.kwakoukas_terre = {
+    id: 'kwakoukas_terre',
+    name: 'Kwakoukas',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy'},
+        {type: 'switch', value: 1,                                        target: 'enemy'}
+    ]
+}
+move.wakpot_terre = {
+    id: 'wakpot_terre',
+    name: 'Wakpot',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',  stat: 'atk', value: -50, duration: 2,         target: 'enemy'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 2,         target: 'self'},
+        {type: 'damage',  element: 'terre', damage: { min: 6, max: 7 }, target: 'enemy'}
+    ]
+}
+// Kwakwa (boss)
+move.kwakoukas_kwayal = {
+    id: 'kwakoukas_kwayal',
+    name: 'Kwakoukas Kwayal',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy'},
+        {type: 'switch', value: 1,                                         target: 'enemy'}
+    ]
+}
+move.wakpot_kwayal = {
+    id: 'wakpot_kwayal',
+    name: 'Wakpot Kwayal',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'debuff',    stat: 'atk', value: -50, duration: 4,                                    target: 'enemy'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 4,                                    target: 'self'},
+        {type: 'damage',    elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 8, max: 11 },   target: 'enemy'},
+        {type: 'lifesteal', ratio: 1.0,                                                               target: 'self'}
+    ]
+}
+move.kwabolition = {
+    id: 'kwabolition',
+    name: 'Kwabolition',
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'feu',   damage: { min: 7, max: 9 }, target: 'enemy'},
+        {type: 'damage', element: 'eau',   damage: { min: 7, max: 9 }, target: 'enemy'},
+        {type: 'damage', element: 'terre', damage: { min: 7, max: 9 }, target: 'enemy'},
+        {type: 'damage', element: 'air',   damage: { min: 7, max: 9 }, target: 'enemy'}
+    ]
+}
+move.kwarmee_kwayal = {
+    id: 'kwarmee_kwayal',
+    name: 'Kwarmée Kwayal',
+    cooldownMs: 3000,
+    effects: [{type: 'summon', summonPool: ['kwakGlace', 'kwakVent', 'kwakTerre', 'kwakFlamme'], duration: 1, target: 'self'}]
 }
 // #endregion
 

@@ -56,7 +56,10 @@ function calculateXPReward(enemy, member) {
 
     const levelPenalty = getLevelPenalty(member.level, enemy.level)
 
-    return Math.floor(baseXP * rarityMult * tierMult * levelPenalty)
+    const SKULL_MULT = [1, 2, 3, 5]
+    const skullMult = SKULL_MULT[state.skullLevel] || 1
+
+    return Math.floor(baseXP * rarityMult * tierMult * levelPenalty * skullMult)
 }
 
 // ─── Spawn de l'ennemi ────────────────────────────────────────────────────────
@@ -198,6 +201,7 @@ function startCombat(areaId) {
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
+        spellStacks: {},
         sessionLoot: { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
     }
 
@@ -391,6 +395,7 @@ function startPoutchCombat(mode) {
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
+        spellStacks:        {},
         isPoutch:           true,
         poutchMode:         mode,
         poutchTurns:        0,
@@ -583,7 +588,7 @@ function executeMemberAction(memberIndex) {
     for (const effect of mv.effects) {
         const dmg = executeEffect({
             caster: member, casterStats: stats, targetEnemy: combat.enemy,
-            effect, moveData: mv, prevMv, lastDamageDealt,
+            effect, moveData: mv, prevMv, lastDamageDealt, moveId,
             onTargetKill: () => {
                 if (combat.enemy?.isSummon) returnToOwner()
                 else onVictory()
@@ -607,6 +612,7 @@ function executeMemberAction(memberIndex) {
         }
     }
 
+    _applyHealOnCast(member, mv)
     tickBuffs(member)
 
     // ─── Passifs déclenchés après l'action ───────────────────────────────────
@@ -700,11 +706,92 @@ function _resolveEffectValue(v) {
 
 function executeEffect(ctx) {
 
-    const {caster, casterStats, targetEnemy, effect, moveData} = ctx
+    const {caster, casterStats, targetEnemy, effect, moveData, moveId} = ctx
 
     switch (effect.type) {
 
         case 'damage': {
+            // target:'all_enemies' — frappe tous les ennemis vivants en raid
+            // Les stacks (scalingMultipliers / stackedDamage) n'incrémentent qu'une fois (premier hit)
+            if (effect.target === 'all_enemies' && combat?.isRaid && combat.enemies) {
+                const primaryEff   = { ...effect, target: 'enemy' }
+                const secondaryEff = { ...effect, target: 'enemy' }
+                delete secondaryEff.scalingMultipliers
+                delete secondaryEff.stackedDamage
+                let totalDmg = 0
+                for (let i = 0; i < combat.enemies.length; i++) {
+                    const e = combat.enemies[i]
+                    if (!e || e.currentHp <= 0) continue
+                    const d = executeEffect({ ...ctx, targetEnemy: e, effect: i === 0 ? primaryEff : secondaryEff })
+                    if (typeof d === 'number') totalDmg += d
+                }
+                return totalDmg
+            }
+            // all_enemies en solo → frappe l'ennemi unique (fallthrough vers le chemin normal)
+            if (effect.target === 'all_enemies' && !combat?.isRaid) {
+                const eff = { ...effect, target: 'enemy' }
+                return executeEffect({ ...ctx, effect: eff })
+            }
+
+            // enemy_cycle : en raid, cible enemy[stack%3] — le même stack pilote cible ET scalingMultipliers
+            // En solo : frappe l'ennemi unique, scalingMultipliers cycle normalement
+            if (effect.target === 'enemy_cycle') {
+                if (combat?.isRaid && combat.enemies) {
+                    const currentStack = combat?.spellStacks?.[moveId] || 0
+                    const cycleSlot    = currentStack % 3
+                    let cycleTarget    = combat.enemies[cycleSlot]
+                    let resolvedSlot   = cycleSlot
+                    if (!cycleTarget || cycleTarget.currentHp <= 0) {
+                        // slot mort → premier ennemi vivant
+                        for (let ci = 0; ci < 3; ci++) {
+                            const ce = combat.enemies[ci]
+                            if (ce && ce.currentHp > 0) { cycleTarget = ce; resolvedSlot = ci; break }
+                        }
+                    }
+                    if (!cycleTarget || cycleTarget.currentHp <= 0) return 0
+                    const killerIdx = state.team.indexOf(ctx.caster)
+                    const onKill = () => onRaidEnemyDeath(resolvedSlot, killerIdx >= 0 ? killerIdx : -1)
+                    return executeEffect({ ...ctx, targetEnemy: cycleTarget, effect: { ...effect, target: 'enemy' }, onTargetKill: onKill })
+                }
+                // Solo : frappe l'ennemi courant, scalingMultipliers gère le cycle normalement
+                return executeEffect({ ...ctx, effect: { ...effect, target: 'enemy' } })
+            }
+
+            // Cible spécifique par slot ennemi : enemy_1=slot0, enemy_2=slot1, enemy_3=slot2
+            // En solo : enemy_1 frappe l'ennemi unique, enemy_2/enemy_3 ignorés (return 0)
+            // ratio : multiplicateur de dégâts appliqué sur les dommages de base
+            if (effect.target === 'enemy_1' || effect.target === 'enemy_2' || effect.target === 'enemy_3') {
+                const slotIdx = { 'enemy_1': 0, 'enemy_2': 1, 'enemy_3': 2 }[effect.target]
+                let actualTarget
+                if (combat?.isRaid && combat.enemies) {
+                    actualTarget = combat.enemies[slotIdx]
+                } else {
+                    actualTarget = slotIdx === 0 ? targetEnemy : null
+                }
+                if (!actualTarget || actualTarget.currentHp <= 0) return 0
+                const raidRatio = effect.ratio ?? 1.0
+                const effCopy = { ...effect, target: 'enemy' }
+                delete effCopy.ratio
+                // Slots 2 et 3 : même palier de scaling que le slot 1, sans incrémenter le compteur
+                if (slotIdx > 0) {
+                    effCopy._noStackIncrement = true
+                    delete effCopy.splashPct
+                }
+                if (raidRatio !== 1.0 && effCopy.damage) {
+                    effCopy.damage = {
+                        min: Math.max(1, Math.round(effCopy.damage.min * raidRatio)),
+                        max: Math.max(1, Math.round(effCopy.damage.max * raidRatio))
+                    }
+                }
+                // onTargetKill correct pour ce slot en raid
+                let onKill = ctx.onTargetKill
+                if (combat?.isRaid) {
+                    const killerIdx = state.team.indexOf(ctx.caster)
+                    onKill = () => onRaidEnemyDeath(slotIdx, killerIdx >= 0 ? killerIdx : -1)
+                }
+                return executeEffect({ ...ctx, targetEnemy: actualTarget, effect: effCopy, onTargetKill: onKill })
+            }
+
             // Défense effective : stats passées (attaque sur joueur) ou buffs actifs (attaque sur ennemi)
             const defStats = ctx.targetStats || {
                 res: targetEnemy.res || {},
@@ -712,12 +799,63 @@ function executeEffect(ctx) {
                     .filter(b => b.stat === 'damageReductionPct')
                     .reduce((sum, b) => sum + b.value, 0)
             }
-            const result = calcDamage(casterStats, defStats, effect)
+            // stackedDamage : remplace effect.damage par le palier courant
+            // _noStackIncrement : lit le palier du hit précédent sans incrémenter (hits secondaires d'un même sort)
+            let effectForCalc = effect
+            if (effect.stackedDamage && moveId && combat?.spellStacks) {
+                const s = combat.spellStacks
+                if (effect._noStackIncrement) {
+                    const prevTier = Math.min(Math.max(0, (s[moveId] || 0) - 1), effect.stackedDamage.length - 1)
+                    effectForCalc = { ...effect, damage: effect.stackedDamage[prevTier] }
+                } else {
+                    const tier = Math.min(s[moveId] || 0, effect.stackedDamage.length - 1)
+                    effectForCalc = { ...effect, damage: effect.stackedDamage[tier] }
+                    s[moveId] = (s[moveId] || 0) + 1
+                }
+            }
+
+            // scalingMultipliers : multiplicateur cyclique ×1 / ×1.2 / ×1.5
+            // stayAtMax:true → plafonne au dernier palier au lieu de cycler
+            // _noStackIncrement : lit le palier du hit précédent sans incrémenter (hits secondaires d'un même sort)
+            let scalingMult = 1
+            if (effect.scalingMultipliers && moveId && combat?.spellStacks) {
+                const s = combat.spellStacks
+                const mults = effect.scalingMultipliers
+                if (effect._noStackIncrement) {
+                    const prevStack = Math.max(0, (s[moveId] || 0) - 1)
+                    const idx = effect.stayAtMax
+                        ? Math.min(prevStack, mults.length - 1)
+                        : prevStack % mults.length
+                    scalingMult = mults[idx]
+                } else {
+                    const idx = effect.stayAtMax
+                        ? Math.min(s[moveId] || 0, mults.length - 1)
+                        : (s[moveId] || 0) % mults.length
+                    scalingMult = mults[idx]
+                    s[moveId] = (s[moveId] || 0) + 1
+                }
+            }
+
+            // slot1BonusPct : +X% dégâts finaux si le sort est équipé en slot1
+            let statsForCalc = casterStats
+            if (effect.slot1BonusPct && moveId && caster.moves?.slot1 === moveId) {
+                statsForCalc = { ...casterStats, finalDamagePct: (casterStats.finalDamagePct || 0) + effect.slot1BonusPct }
+            }
+
+            const hpCtx = {
+                casterMaxHp:     caster.maxHp         || 0,
+                casterCurrentHp: caster.currentHp     || 0,
+                targetMaxHp:     targetEnemy.maxHp     || targetEnemy.bst?.hp || 0,
+                targetCurrentHp: targetEnemy.currentHp || 0
+            }
+            const result = calcDamage(statsForCalc, defStats, effectForCalc, hpCtx)
             let dmg = result.damage
 
             if (effect.summonMultiplier && (targetEnemy.isSummon || targetEnemy.ownerId)) {
                 dmg = Math.floor(dmg * effect.summonMultiplier)
             }
+
+            if (scalingMult !== 1) dmg = Math.floor(dmg * scalingMult)
 
             // Le bouclier absorbe en priorité avant les HP
             if (!effect.ignoreShield && targetEnemy.shield?.value > 0) {
@@ -747,14 +885,18 @@ function executeEffect(ctx) {
 
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
 
-            // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate
-            // ou par un buff 'erosionBonus' sur le lanceur)
+            // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate,
+            // un buff 'erosionBonus' sur le lanceur, ou un debuff 'erosionBonus' sur la cible)
             if (dmg > 0) {
                 const baseRate = effect.erosionRate !== undefined ? effect.erosionRate : 0.05
-                const bonus = (caster.buffs || [])
+                const casterBonus = (caster.buffs || [])
                     .filter(b => b.stat === 'erosionBonus')
                     .reduce((sum, b) => sum + b.value, 0)
-                const erosion = Math.floor(dmg * Math.max(0, baseRate + bonus))
+                // debuff stocké comme valeur négative — on l'inverse pour obtenir le bonus positif
+                const targetBonus = (targetEnemy.buffs || [])
+                    .filter(b => b.stat === 'erosionBonus')
+                    .reduce((sum, b) => sum - b.value, 0)
+                const erosion = Math.floor(dmg * Math.max(0, baseRate + casterBonus + targetBonus))
                 if (erosion > 0) {
                     targetEnemy.maxHp = Math.max(1, (targetEnemy.maxHp || 1) - erosion)
                     if (targetEnemy.currentHp > targetEnemy.maxHp) targetEnemy.currentHp = targetEnemy.maxHp
@@ -772,6 +914,18 @@ function executeEffect(ctx) {
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
+            // pendingLifesteal : vol de vie sur le prochain sort de dégâts
+            if (dmg > 0 && caster.buffs) {
+                const pendingLS = caster.buffs.find(b => b.stat === 'pendingLifesteal')
+                if (pendingLS) {
+                    const healAmt = Math.floor(dmg * pendingLS.value)
+                    if (healAmt > 0) {
+                        caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
+                        addLog(`${moveData.name} → vol de vie ${healAmt} PV`)
+                    }
+                    caster.buffs = caster.buffs.filter(b => b !== pendingLS)
+                }
+            }
             if (targetEnemy.currentHp <= 0) {
                 if (combat?.isPoutch && targetEnemy === combat.enemy) {
                     targetEnemy.currentHp = targetEnemy.maxHp
@@ -781,16 +935,47 @@ function executeEffect(ctx) {
                     ctx.onTargetKill?.()
                 }
             }
+
+            // splashPct : ricochet brut sur e2 (bypass défenses, pas d'érosion)
+            // splashPct2 : ricochet sur e3 — % de e1 par défaut, % de e2 si splashChain:true
+            if (effect.splashPct && combat?.isRaid && dmg > 0) {
+                const secondary = combat.enemies?.[1]
+                let e2Dmg = 0
+                if (secondary && secondary.currentHp > 0) {
+                    e2Dmg = Math.max(1, Math.floor(dmg * effect.splashPct / 100))
+                    secondary.currentHp = Math.max(0, secondary.currentHp - e2Dmg)
+                    addLog(`${moveData.name} → ricochet : ${e2Dmg} dégâts (ennemi sec.)`)
+                }
+                if (effect.splashPct2) {
+                    const tertiary = combat.enemies?.[2]
+                    if (tertiary && tertiary.currentHp > 0) {
+                        const base = effect.splashChain ? e2Dmg : dmg
+                        if (base > 0) {
+                            const e3Dmg = Math.max(1, Math.floor(base * effect.splashPct2 / 100))
+                            tertiary.currentHp = Math.max(0, tertiary.currentHp - e3Dmg)
+                            addLog(`${moveData.name} → ricochet : ${e3Dmg} dégâts (ennemi ter.)`)
+                        }
+                    }
+                }
+            }
             return dmg
         }
 
         case 'dot': {
+            // enemy_2 / enemy_3 : applique le dot sur le slot ennemi ciblé (raid uniquement, ignoré en solo)
+            if (effect.target === 'enemy_2' || effect.target === 'enemy_3') {
+                if (!combat?.isRaid || !combat.enemies) break
+                const slotIdx  = effect.target === 'enemy_2' ? 1 : 2
+                const dotTarget = combat.enemies[slotIdx]
+                if (!dotTarget || dotTarget.currentHp <= 0) break
+                return executeEffect({ ...ctx, targetEnemy: dotTarget, effect: { ...effect, target: 'enemy' } })
+            }
             const dotBase    = _resolveEffectValue(effect.value)
             const dotScaled  = Math.max(1, Math.floor(
                 dotBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
             ))
             targetEnemy.dots = targetEnemy.dots || []
-            targetEnemy.dots.push({ element: effect.element, value: dotScaled, duration: effect.duration })
+            targetEnemy.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
             addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour (${effect.duration} tours)`)
             break
         }
@@ -829,7 +1014,12 @@ function executeEffect(ctx) {
                 addLog(`${moveData.name} → +${buffVal} PV max et courants (${effect.duration} tours)`)
             } else {
                 caster.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
-                addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
+                if (effect.stat === 'pendingLifesteal')
+                    addLog(`${moveData.name} → vol de vie ×${buffVal} actif (prochain sort)`)
+                else if (effect.stat === 'healOnCast')
+                    addLog(`${moveData.name} → fontaine active (${effect.duration} sorts)`)
+                else
+                    addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
             }
             break
         }
@@ -953,6 +1143,73 @@ function executeEffect(ctx) {
                 duration: effect.duration || 3
             })
             addLog(`${moveData.name} → Tourelle déployée ! ${turretScaled} dégâts/${effect.element || 'neutre'} × ${effect.duration || 3} tours`)
+            break
+        }
+
+        case 'recul': {
+            if (!combat?.isRaid || !combat.enemies) break
+            const enemySlot = ctx.enemySlotIdx ?? combat.enemies.indexOf(targetEnemy)
+            if (enemySlot === -1) break
+            const total    = combat.enemies.length
+            const nextSlot = (enemySlot + 1) % total
+            const tmpEnemy = combat.enemies[nextSlot]
+            const tmpTimer = combat.enemyTimers?.[nextSlot] ?? 0
+            const tmpMove  = combat.enemyNextMoveIds?.[nextSlot] ?? null
+            combat.enemies[nextSlot] = combat.enemies[enemySlot]
+            if (combat.enemyTimers)      combat.enemyTimers[nextSlot]      = combat.enemyTimers[enemySlot]
+            if (combat.enemyNextMoveIds) combat.enemyNextMoveIds[nextSlot] = combat.enemyNextMoveIds[enemySlot]
+            combat.enemies[enemySlot] = tmpEnemy
+            if (combat.enemyTimers)      combat.enemyTimers[enemySlot]      = tmpTimer
+            if (combat.enemyNextMoveIds) combat.enemyNextMoveIds[enemySlot] = tmpMove
+            addLog(`${moveData.name} → recul ! L'ennemi passe en rang ${nextSlot + 1}`)
+            break
+        }
+
+        case 'avance': {
+            if (!combat?.isRaid || !combat.enemies) break
+            const enemySlot = ctx.enemySlotIdx ?? combat.enemies.indexOf(targetEnemy)
+            if (enemySlot === -1) break
+            const total    = combat.enemies.length
+            const prevSlot = (enemySlot - 1 + total) % total
+            const tmpEnemy = combat.enemies[prevSlot]
+            const tmpTimer = combat.enemyTimers?.[prevSlot] ?? 0
+            const tmpMove  = combat.enemyNextMoveIds?.[prevSlot] ?? null
+            combat.enemies[prevSlot] = combat.enemies[enemySlot]
+            if (combat.enemyTimers)      combat.enemyTimers[prevSlot]      = combat.enemyTimers[enemySlot]
+            if (combat.enemyNextMoveIds) combat.enemyNextMoveIds[prevSlot] = combat.enemyNextMoveIds[enemySlot]
+            combat.enemies[enemySlot] = tmpEnemy
+            if (combat.enemyTimers)      combat.enemyTimers[enemySlot]      = tmpTimer
+            if (combat.enemyNextMoveIds) combat.enemyNextMoveIds[enemySlot] = tmpMove
+            addLog(`${moveData.name} → avance ! L'ennemi passe en rang ${prevSlot + 1}`)
+            break
+        }
+
+        case 'swap_enemies': {
+            if (!combat?.isRaid || !combat.enemies || combat.enemies.length < 3) break
+            const se1 = combat.enemies[1], st1 = combat.enemyTimers?.[1] ?? 0, sm1 = combat.enemyNextMoveIds?.[1] ?? null
+            combat.enemies[1] = combat.enemies[2]
+            if (combat.enemyTimers)      combat.enemyTimers[1]      = combat.enemyTimers[2]
+            if (combat.enemyNextMoveIds) combat.enemyNextMoveIds[1] = combat.enemyNextMoveIds[2]
+            combat.enemies[2] = se1
+            if (combat.enemyTimers)      combat.enemyTimers[2]      = st1
+            if (combat.enemyNextMoveIds) combat.enemyNextMoveIds[2] = sm1
+            addLog(`${moveData.name} → positions ennemies échangées !`)
+            break
+        }
+
+        case 'heal_adjacent%maxHp': {
+            const casterIdx = state.team.indexOf(caster)
+            if (casterIdx === -1) break
+            const healPct = (effect.heal || 0) / 100
+            for (const offset of [-1, 1]) {
+                const adj = state.team[casterIdx + offset]
+                if (!adj || adj.currentHp <= 0) continue
+                const amt = Math.floor(adj.maxHp * healPct)
+                if (amt > 0) {
+                    adj.currentHp = Math.min(adj.maxHp, adj.currentHp + amt)
+                    addLog(`${moveData.name} → soin ${adj.name || 'allié'} +${amt} PV`)
+                }
+            }
             break
         }
     }
@@ -1304,6 +1561,19 @@ function getMostWoundedMember() {
     return worst
 }
 
+function _applyHealOnCast(member, mv) {
+    const buff = (member.buffs || []).find(b => b.stat === 'healOnCast')
+    if (!buff) return
+    const alive = state.team.filter(m => m && m.currentHp > 0)
+    if (!alive.length) return
+    const target = alive[Math.floor(Math.random() * alive.length)]
+    const healAmt = Math.floor(target.maxHp * buff.value)
+    if (healAmt > 0) {
+        target.currentHp = Math.min(target.maxHp, target.currentHp + healAmt)
+        addLog(`${mv.name} → fontaine : ${healAmt} PV`)
+    }
+}
+
 function tickBuffs(entity) {
     if (entity.buffs) {
         for (const b of entity.buffs) {
@@ -1639,7 +1909,8 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     for (const effect of mv.effects) {
         const dmg = executeEffect({
             caster: member, casterStats: stats, targetEnemy,
-            effect, moveData: mv, prevMv, lastDamageDealt,
+            effect, moveData: mv, prevMv, lastDamageDealt, moveId,
+            enemySlotIdx: targetSlotIdx,
             onTargetKill: () => onRaidEnemyDeath(targetSlotIdx, memberIdx),
             raidSlotIdx: slotIdx
         })
@@ -1649,6 +1920,7 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
         combat.sessionLoot.memberDamage[memberIdx] = (combat.sessionLoot.memberDamage[memberIdx] || 0) + sessionDmg
     }
 
+    _applyHealOnCast(member, mv)
     tickBuffs(member)
 
     const newRawIdx   = combat.memberMoveIndex[memberIdx]

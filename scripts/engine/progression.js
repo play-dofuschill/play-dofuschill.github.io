@@ -166,11 +166,15 @@ function applyProgression(spell, lvl) {
         if (effect.type === 'lifesteal' && patch.lifesteal) {
             effect.ratio = patch.lifesteal.ratio
         }
-        // buff / debuff : patch ciblé par stat (ou premier buff si pas de stat spécifiée)
+        // buff / debuff : patch ciblé par stat (ou tous les buff si pas de stat spécifiée)
+        // patch.buff peut être un objet ou un tableau [{stat?, value?, duration?}]
         if ((effect.type === 'buff' || effect.type === 'debuff') && patch.buff) {
-            if (!patch.buff.stat || patch.buff.stat === effect.stat) {
-                if (patch.buff.value    !== undefined) effect.value    = patch.buff.value
-                if (patch.buff.duration !== undefined) effect.duration = patch.buff.duration
+            const buffPatches = Array.isArray(patch.buff) ? patch.buff : [patch.buff]
+            for (const b of buffPatches) {
+                if (!b.stat || b.stat === effect.stat) {
+                    if (b.value    !== undefined) effect.value    = b.value
+                    if (b.duration !== undefined) effect.duration = b.duration
+                }
             }
         }
         if (effect.type === 'dot' && patch.dot) {

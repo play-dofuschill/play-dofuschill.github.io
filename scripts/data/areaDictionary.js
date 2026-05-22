@@ -100,10 +100,10 @@ areas.tainela = {
     icon: 'img/monstres/sprites/bouftou.png',
     description: "Respirez cet air pur, imprégné de l'odeur du cuir et de la laine… Aucun doute, vous voici à Tainela.",
     spawns: [
-        { id: 'bouftou',             weight: 30 },
-        { id: 'bouftonBlanc',        weight: 25 },
-        { id: 'bouftonNoir',         weight: 20 },
-        { id: 'bouftouNoir',         weight: 15 },
+        { id: 'bouftou',             weight: 23 },
+        { id: 'bouftonBlanc',        weight: 23 },
+        { id: 'bouftonNoir',         weight: 23 },
+        { id: 'bouftouNoir',         weight: 21 },
         { id: 'bouftouChefDeGuerre', weight: 10 }
     ],
     lootTable: [
@@ -119,8 +119,98 @@ areas.tainela = {
         { itemId: 'cleDonjonBouftou', dropRate: 0.15, isKey: true }
     ]
 }
+areas.scarafeuilles = {
+    id: 'scarafeuilles',
+    name: 'Plaine des scarafeuilles',
+    minLevel: 30, maxLevel: 50,
+    mobMinLevel: 30, mobMaxLevel: 40,
+    background: 'scarafeuilles',
+    icon: 'img/monstres/sprites/scarafeuilleBleu.png',
+    description: "Une vaste plaine parsemée de cristaux colorés où pullulent des nuées de Scarafeuilles aux teintes éclatantes. Chaque couleur correspond à un élément différent, et les aventuriers imprudents qui s'y aventurent sans préparation font rapidement connaissance avec leurs résistances élémentaires les plus redoutables.",
+    spawns: [
+        { id: 'scarafeuilleBleu',  weight: 22 },
+        { id: 'scarafeuilleVert',  weight: 22 },
+        { id: 'scarafeuilleBlanc', weight: 22 },
+        { id: 'scarafeuilleRouge', weight: 22 },
+        { id: 'scarafeuilleNoir',  weight: 12 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',      dropRate: 0.45 },
+        { itemId: 'cape_scarafeuille_blanc',    dropRate: 0.02 },
+        { itemId: 'coiffe_scarafeuille_blanc',  dropRate: 0.02 },
+        { itemId: 'anneau_scarafeuille_blanc',  dropRate: 0.02 },
+        { itemId: 'ceinture_scarafeuille_blanc',dropRate: 0.02 },
+        { itemId: 'cape_scarafeuille_bleu',     dropRate: 0.02 },
+        { itemId: 'coiffe_scarafeuille_bleu',   dropRate: 0.02 },
+        { itemId: 'anneau_scarafeuille_bleu',   dropRate: 0.02 },
+        { itemId: 'ceinture_scarafeuille_bleu', dropRate: 0.02 },
+        { itemId: 'cape_scarafeuille_rouge',    dropRate: 0.02 },
+        { itemId: 'coiffe_scarafeuille_rouge',  dropRate: 0.02 },
+        { itemId: 'anneau_scarafeuille_rouge',  dropRate: 0.02 },
+        { itemId: 'ceinture_scarafeuille_rouge',dropRate: 0.02 },
+        { itemId: 'cape_scarafeuille_vert',     dropRate: 0.02 },
+        { itemId: 'coiffe_scarafeuille_vert',   dropRate: 0.02 },
+        { itemId: 'anneau_scarafeuille_vert',   dropRate: 0.02 },
+        { itemId: 'ceinture_scarafeuille_vert', dropRate: 0.02 },
+        { itemId: 'cape_scarafeuille_noir',     dropRate: 0.01 },
+        { itemId: 'coiffe_scarafeuille_noir',   dropRate: 0.01 },
+        { itemId: 'anneau_scarafeuille_noir',   dropRate: 0.01 },
+        { itemId: 'ceinture_scarafeuille_noir', dropRate: 0.01 },
+        { itemId: 'cleDonjonScarafeuille',      dropRate: 0.15, isKey: true }
+    ]
+}
+areas.Kwaks = {
+    id: 'Kwaks',
+    name: 'Falaise des Kwaks',
+    minLevel: 40, maxLevel: 60,
+    mobMinLevel: 40, mobMaxLevel: 50,
+    background: 'kwaks',
+    icon: 'img/monstres/sprites/kwakVent.png',
+    description: "Accrochées aux flancs de la Montagne des Kwaks, ces falaises balayées par des vents constants sont le territoire naturel des Kwakères et de leurs cousins kwaks. Les aventuriers qui parviennent à gravir ces hauteurs vertigineuses rapportent que le panorama est exceptionnel… pour peu qu'ils arrivent à tenir debout.",
+    spawns: [
+        { id: 'kwakVent',       weight: 17 },
+        { id: 'kwakFlamme',     weight: 17 },
+        { id: 'kwakGlace',      weight: 17 },
+        { id: 'kwakTerre',      weight: 17 },
+        { id: 'kwakereVent',    weight: 8 },
+        { id: 'kwakereFlamme',  weight: 8 },
+        { id: 'kwakereGlace',   weight: 8 },
+        { id: 'kwakereTerre',   weight: 8 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',            dropRate: 0.45 },
+        { itemId: 'cape_kwak_vent',        dropRate: 0.01 },
+        { itemId: 'coiffe_kwak_vent',      dropRate: 0.01 },
+        { itemId: 'bottes_kwak_vent',      dropRate: 0.01 },
+        { itemId: 'anneau_kwak_vent',      dropRate: 0.01 },
+        { itemId: 'amulette_kwak_vent',    dropRate: 0.01 },
+        { itemId: 'ceinture_kwak_vent',    dropRate: 0.01 },
+        { itemId: 'epee_kwak_vent',        dropRate: 0.01 },
+        { itemId: 'cape_kwak_glace',       dropRate: 0.01 },
+        { itemId: 'coiffe_kwak_glace',     dropRate: 0.01 },
+        { itemId: 'bottes_kwak_glace',     dropRate: 0.01 },
+        { itemId: 'anneau_kwak_glace',     dropRate: 0.01 },
+        { itemId: 'amulette_kwak_glace',   dropRate: 0.01 },
+        { itemId: 'ceinture_kwak_glace',   dropRate: 0.01 },
+        { itemId: 'epee_kwak_glace',       dropRate: 0.01 },
+        { itemId: 'cape_kwak_flamme',      dropRate: 0.01 },
+        { itemId: 'coiffe_kwak_flamme',    dropRate: 0.01 },
+        { itemId: 'bottes_kwak_flamme',    dropRate: 0.01 },
+        { itemId: 'anneau_kwak_flamme',    dropRate: 0.01 },
+        { itemId: 'amulette_kwak_flamme',  dropRate: 0.01 },
+        { itemId: 'ceinture_kwak_flamme',  dropRate: 0.01 },
+        { itemId: 'epee_kwak_flamme',      dropRate: 0.01 },
+        { itemId: 'cape_kwak_terre',       dropRate: 0.01 },
+        { itemId: 'coiffe_kwak_terre',     dropRate: 0.01 },
+        { itemId: 'bottes_kwak_terre',     dropRate: 0.01 },
+        { itemId: 'anneau_kwak_terre',     dropRate: 0.01 },
+        { itemId: 'amulette_kwak_terre',   dropRate: 0.01 },
+        { itemId: 'ceinture_kwak_terre',   dropRate: 0.01 },
+        { itemId: 'epee_kwak_terre',       dropRate: 0.01 },
+        { itemId: 'cleDonjonKwakwa',       dropRate: 0.15, isKey: true }
+    ]
+}
 // #endregion
-
 
 // #region DONJONS ────────────────────────────────────────────────────────────────
 
@@ -210,79 +300,119 @@ areas.donjonBouftou = {
         { itemId: 'bouclier_bouftou_royal', dropRate: 0.04 }
     ]
 }
+areas.donjonScarafeuille = {
+    id: 'donjonScarafeuille',
+    type: 'dungeon',
+    keyId: 'cleDonjonScarafeuille',
+    name: 'La Ruche du Scraraboss Dorée',
+    minLevel: 45, maxLevel: 45,
+    mobMinLevel: 45, mobMaxLevel: 45,
+    background: 'scarafeuilles',
+    icon: 'img/monstres/sprites/scrarabossDoree.png',
+    description: "Sous la plaine des Scarafeuilles se cache une immense ruche souterraine gardée par la plus imposante et la plus dorée de toutes les créatures de son espèce : le Scraraboss Dorée. Il est dit que quiconque parviendrait à s'emparer de ses trésors dorés vivrait dans l'opulence pour le reste de sa vie. Aucun aventurier n'est revenu pour le confirmer.",
+    spawns: [{ id: 'scrarabossDoree', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',          dropRate: 0.45 },
+        { itemId: 'cape_scaraboss_doree',        dropRate: 0.04 },
+        { itemId: 'coiffe_scaraboss_doree',      dropRate: 0.04 },
+        { itemId: 'bottes_scaraboss_doree',      dropRate: 0.04 },
+        { itemId: 'anneau_scaraboss_doree',      dropRate: 0.04 },
+        { itemId: 'amulette_scaraboss_doree',    dropRate: 0.04 },
+        { itemId: 'ceinture_scaraboss_doree',    dropRate: 0.04 },
+        { itemId: 'baguette_scaraboss_doree',    dropRate: 0.03 }
+    ]
+}
+areas.donjonKwakwa = {
+    id: 'donjonKwakwa',
+    type: 'dungeon',
+    keyId: 'cleDonjonKwakwa',
+    name: 'Le Nid du Kwakwa',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: 'kwaks',
+    icon: 'img/monstres/sprites/kwakwa.png',
+    description: "Au sommet de la Montagne des Kwaks, là où les vents soufflent si fort que même les oiseaux refusent de voler, se trouve le nid du Kwakwa. Cette créature majestueuse règne sur l'ensemble des Kwaks et Kwakères de la région. Rares sont les aventuriers assez courageux pour s'y aventurer, et plus rares encore ceux qui en reviennent avec une plume.",
+    spawns: [{ id: 'kwakwa', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'kwakwaffe',         dropRate: 0.05 },
+        { itemId: 'kwakwalliance',     dropRate: 0.05 },
+        { itemId: 'kwakwanneau',       dropRate: 0.05 },
+        { itemId: 'kwakwalame',        dropRate: 0.05 }
+    ]
+}
 // #endregion
 
-
 // #region EVENTS ─────────────────────────────────────────────────────────────
-//
-// ── Lignes de drop disponibles pour les runes ────────────────────────────────
-// Copier-coller la ligne souhaitée dans le lootTable d'une zone ou d'un event.
-// Les dropRate sont indicatifs — ajuster selon la rareté voulue.
-//
-// PV
-//        { itemId: 'runeHpS',       dropRate: 0.10 },  // +20 PV   · coût −3 niv
-//        { itemId: 'runeHpM',       dropRate: 0.05 },  // +60 PV   · coût −7 niv
-//        { itemId: 'runeHpL',       dropRate: 0.02 },  // +150 PV  · coût −12 niv
-// ATK
-//        { itemId: 'runeAtkS',      dropRate: 0.10 },  // +15 ATK  · coût −3 niv
-//        { itemId: 'runeAtkM',      dropRate: 0.05 },  // +50 ATK  · coût −7 niv
-//        { itemId: 'runeAtkL',      dropRate: 0.02 },  // +130 ATK · coût −12 niv
-// Vitesse
-//        { itemId: 'runeSpdS',      dropRate: 0.08 },  // +5 Vit   · coût −4 niv
-//        { itemId: 'runeSpdM',      dropRate: 0.04 },  // +15 Vit  · coût −8 niv
-// Dégâts fixes
-//        { itemId: 'runeFlatDmgS',  dropRate: 0.10 },  // +5 Dég   · coût −3 niv
-//        { itemId: 'runeFlatDmgM',  dropRate: 0.05 },  // +15 Dég  · coût −7 niv
-// Critique
-//        { itemId: 'runeCritS',     dropRate: 0.08 },  // +5% Crit · coût −4 niv
-//        { itemId: 'runeCritDmgS',  dropRate: 0.06 },  // +10% DégCrit · coût −5 niv
-// Dégâts %
-//        { itemId: 'runeFinalDmgS', dropRate: 0.06 },  // +7% DégFin   · coût −6 niv
-//        { itemId: 'runeSpellDmgS', dropRate: 0.07 },  // +8% DégSort  · coût −5 niv
-// Défensif
-//        { itemId: 'runeDamRedS',   dropRate: 0.07 },  // +5% Réd.dég  · coût −5 niv
-// Résistances
-//        { itemId: 'runeFireResS',    dropRate: 0.08 },  // +8% Rés.Feu    · coût −4 niv
-//        { itemId: 'runeWaterResS',   dropRate: 0.08 },  // +8% Rés.Eau    · coût −4 niv
-//        { itemId: 'runeEarthResS',   dropRate: 0.08 },  // +8% Rés.Terre  · coût −4 niv
-//        { itemId: 'runeAirResS',     dropRate: 0.08 },  // +8% Rés.Air    · coût −4 niv
-//        { itemId: 'runeNeutralResS', dropRate: 0.08 },  // +8% Rés.Neutre · coût −4 niv
-// ─────────────────────────────────────────────────────────────────────────────
+/*
+── Lignes de drop disponibles pour les runes ────────────────────────────────
+Copier-coller la ligne souhaitée dans le lootTable d'une zone ou d'un event.
+Les dropRate sont indicatifs — ajuster selon la rareté voulue.
 
-        // { itemId: 'runeHpS',          dropRate: 0.01 },
-        // { itemId: 'runeHpM',          dropRate: 0.01 },
-        // { itemId: 'runeHpL',          dropRate: 0.01 },
-        // { itemId: 'runeAtkS',         dropRate: 0.01 },
-        // { itemId: 'runeAtkM',         dropRate: 0.01 },
-        // { itemId: 'runeAtkL',         dropRate: 0.01 },
-        // { itemId: 'runeSpdS',         dropRate: 0.01 },
-        // { itemId: 'runeSpdM',         dropRate: 0.01 },
-        // { itemId: 'runeSpdL',         dropRate: 0.01 },
-        // { itemId: 'runeFlatDmgS',     dropRate: 0.01 },
-        // { itemId: 'runeFlatDmgM',     dropRate: 0.01 },
-        // { itemId: 'runeFlatDmgL',     dropRate: 0.01 },
-        // { itemId: 'runeCritS',        dropRate: 0.01 },
-        // { itemId: 'runeCritM',        dropRate: 0.01 },
-        // { itemId: 'runeCritL',        dropRate: 0.01 },
-        // { itemId: 'runeCritDmgS',     dropRate: 0.01 },
-        // { itemId: 'runeCritDmgM',     dropRate: 0.01 },
-        // { itemId: 'runeFinalDmgS',    dropRate: 0.01 },
-        // { itemId: 'runeFinalDmgM',    dropRate: 0.01 },
-        // { itemId: 'runeSpellDmgS',    dropRate: 0.01 },
-        // { itemId: 'runeSpellDmgM',    dropRate: 0.01 },
-        // { itemId: 'runeDamRedS',      dropRate: 0.01 },
-        // { itemId: 'runeDamRedM',      dropRate: 0.01 },
-        // { itemId: 'runeFireResS',     dropRate: 0.01 },
-        // { itemId: 'runeWaterResS',    dropRate: 0.01 },
-        // { itemId: 'runeEarthResS',    dropRate: 0.01 },
-        // { itemId: 'runeAirResS',      dropRate: 0.01 },
-        // { itemId: 'runeNeutralResS',  dropRate: 0.01 },
-        // { itemId: 'runeFireResM',     dropRate: 0.01 },
-        // { itemId: 'runeWaterResM',    dropRate: 0.01 },
-        // { itemId: 'runeEarthResM',    dropRate: 0.01 },
-        // { itemId: 'runeAirResM',      dropRate: 0.01 },
-        // { itemId: 'runeNeutralResM',  dropRate: 0.01 }
+PV
+       { itemId: 'runeHpS',       dropRate: 0.10 },  // +20 PV   · coût −3 niv
+       { itemId: 'runeHpM',       dropRate: 0.05 },  // +60 PV   · coût −7 niv
+       { itemId: 'runeHpL',       dropRate: 0.02 },  // +150 PV  · coût −12 niv
+ATK
+       { itemId: 'runeAtkS',      dropRate: 0.10 },  // +15 ATK  · coût −3 niv
+       { itemId: 'runeAtkM',      dropRate: 0.05 },  // +50 ATK  · coût −7 niv
+       { itemId: 'runeAtkL',      dropRate: 0.02 },  // +130 ATK · coût −12 niv
+Vitesse
+       { itemId: 'runeSpdS',      dropRate: 0.08 },  // +5 Vit   · coût −4 niv
+       { itemId: 'runeSpdM',      dropRate: 0.04 },  // +15 Vit  · coût −8 niv
+Dégâts fixes
+       { itemId: 'runeFlatDmgS',  dropRate: 0.10 },  // +5 Dég   · coût −3 niv
+       { itemId: 'runeFlatDmgM',  dropRate: 0.05 },  // +15 Dég  · coût −7 niv
+Critique
+       { itemId: 'runeCritS',     dropRate: 0.08 },  // +5% Crit · coût −4 niv
+       { itemId: 'runeCritDmgS',  dropRate: 0.06 },  // +10% DégCrit · coût −5 niv
+Dégâts %
+       { itemId: 'runeFinalDmgS', dropRate: 0.06 },  // +7% DégFin   · coût −6 niv
+       { itemId: 'runeSpellDmgS', dropRate: 0.07 },  // +8% DégSort  · coût −5 niv
+Défensif
+       { itemId: 'runeDamRedS',   dropRate: 0.07 },  // +5% Réd.dég  · coût −5 niv
+Résistances
+       { itemId: 'runeFireResS',    dropRate: 0.08 },  // +8% Rés.Feu    · coût −4 niv
+       { itemId: 'runeWaterResS',   dropRate: 0.08 },  // +8% Rés.Eau    · coût −4 niv
+       { itemId: 'runeEarthResS',   dropRate: 0.08 },  // +8% Rés.Terre  · coût −4 niv
+       { itemId: 'runeAirResS',     dropRate: 0.08 },  // +8% Rés.Air    · coût −4 niv
+       { itemId: 'runeNeutralResS', dropRate: 0.08 },  // +8% Rés.Neutre · coût −4 niv
+─────────────────────────────────────────────────────────────────────────────
 
+        { itemId: 'runeHpS',          dropRate: 0.01 },
+        { itemId: 'runeHpM',          dropRate: 0.01 },
+        { itemId: 'runeHpL',          dropRate: 0.01 },
+        { itemId: 'runeAtkS',         dropRate: 0.01 },
+        { itemId: 'runeAtkM',         dropRate: 0.01 },
+        { itemId: 'runeAtkL',         dropRate: 0.01 },
+        { itemId: 'runeSpdS',         dropRate: 0.01 },
+        { itemId: 'runeSpdM',         dropRate: 0.01 },
+        { itemId: 'runeSpdL',         dropRate: 0.01 },
+        { itemId: 'runeFlatDmgS',     dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM',     dropRate: 0.01 },
+        { itemId: 'runeFlatDmgL',     dropRate: 0.01 },
+        { itemId: 'runeCritS',        dropRate: 0.01 },
+        { itemId: 'runeCritM',        dropRate: 0.01 },
+        { itemId: 'runeCritL',        dropRate: 0.01 },
+        { itemId: 'runeCritDmgS',     dropRate: 0.01 },
+        { itemId: 'runeCritDmgM',     dropRate: 0.01 },
+        { itemId: 'runeFinalDmgS',    dropRate: 0.01 },
+        { itemId: 'runeFinalDmgM',    dropRate: 0.01 },
+        { itemId: 'runeSpellDmgS',    dropRate: 0.01 },
+        { itemId: 'runeSpellDmgM',    dropRate: 0.01 },
+        { itemId: 'runeDamRedS',      dropRate: 0.01 },
+        { itemId: 'runeDamRedM',      dropRate: 0.01 },
+        { itemId: 'runeFireResS',     dropRate: 0.01 },
+        { itemId: 'runeWaterResS',    dropRate: 0.01 },
+        { itemId: 'runeEarthResS',    dropRate: 0.01 },
+        { itemId: 'runeAirResS',      dropRate: 0.01 },
+        { itemId: 'runeNeutralResS',  dropRate: 0.01 },
+        { itemId: 'runeFireResM',     dropRate: 0.01 },
+        { itemId: 'runeWaterResM',    dropRate: 0.01 },
+        { itemId: 'runeEarthResM',    dropRate: 0.01 },
+        { itemId: 'runeAirResM',      dropRate: 0.01 },
+        { itemId: 'runeNeutralResM',  dropRate: 0.01 }
+*/
 
 areas.evenementPious = {
     id: 'evenementPious',

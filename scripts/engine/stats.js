@@ -277,21 +277,37 @@ function getEffectiveStats(member, syncedLevel = null) {
     }
 }
 
+// ─── Résolution de l'élément (fixe ou aléatoire parmi une liste) ─────────────
+
+function resolveElement(effect) {
+    if (Array.isArray(effect.elements) && effect.elements.length)
+        return effect.elements[Math.floor(Math.random() * effect.elements.length)]
+    return effect.element || 'neutre'
+}
+
 // ─── Calcul des dégâts ────────────────────────────────────────────────────────
 
-function calcDamage(attackerStats, defenderStats, effect) {
+// hpCtx : { casterMaxHp, casterCurrentHp, targetMaxHp, targetCurrentHp }
+function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}) {
 
-    const elem =
-        effect.element || 'neutre'
+    const elem = resolveElement(effect)
 
-    const damageData =
-        effect.damage || { min: 0, max: 0 }
-
-    const baseRoll =
-        Math.floor(
-            Math.random() *
-            (damageData.max - damageData.min + 1)
-        ) + damageData.min
+    // ─── Base roll : fixe, aléatoire, ou % de HP ──────────────────────────────
+    let baseRoll
+    let hpBased = false
+    if (effect.damageHpPct) {
+        const src    = effect.damageHpPct.source || 'casterMaxHp'
+        const hpVal  = hpCtx[src] || 0
+        baseRoll     = Math.floor(hpVal * effect.damageHpPct.pct / 100)
+        hpBased      = true
+    } else {
+        const damageData = effect.damage || { min: 0, max: 0 }
+        baseRoll =
+            Math.floor(
+                Math.random() *
+                (damageData.max - damageData.min + 1)
+            ) + damageData.min
+    }
 
     // ─── Stats offensives ─────────────────────
 
@@ -316,11 +332,14 @@ function calcDamage(attackerStats, defenderStats, effect) {
     const critDamagePct = attackerStats.critDamagePct || 50
 
     // ─── Calcul dégâts ────────────────────────
+    // Les dégâts basés sur les HP ignorent l'ATK et le flatDamage (comme dans Dofus)
 
-    let damage =baseRoll *(1 + atkPower / 100)
+    let damage = hpBased
+        ? baseRoll
+        : baseRoll * (1 + atkPower / 100)
 
-    // dégâts fixes
-    damage += flatDamage
+    // dégâts fixes (ignorés pour les sorts HP%)
+    if (!hpBased) damage += flatDamage
 
     // dégâts finaux
     damage *=(1 + finalDamagePct / 100)

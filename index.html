@@ -38,7 +38,7 @@
             <div class="bag-category-tabs">
                 <button class="bag-tab active" data-cat="equipment"  onclick="setInventoryFilter('equipment')"><img src="img/icons/items.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Items</button>
                 <button class="bag-tab"        data-cat="dofus"      onclick="setInventoryFilter('dofus')"><img src="img/icons/dofus_trophees.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Dofus/Trophées</button>
-                <button class="bag-tab"        data-cat="consumable" onclick="setInventoryFilter('consumable')"><img src="img/icons/conso.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Conso</button>
+                <button class="bag-tab"        data-cat="consumable" onclick="setInventoryFilter('consumable')"><img src="img/icons/conso.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Consommmables</button>
                 <button class="bag-tab"        data-cat="cosmetic"   onclick="setInventoryFilter('cosmetic')"><img src="img/icons/consmetique.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Cosmétiques</button>
                 <button class="bag-tab"        data-cat="divers"     onclick="setInventoryFilter('divers')"><img src="img/icons/divers.png" onerror="this.src='img/icons/icon.png'" class="bag-tab-icon"> Divers</button>
             </div>
@@ -751,6 +751,11 @@
             <span>Guide</span>
         </div>
 
+        <div class="menu-item" id="menu-item-credits" onClick="switchMenu('credits')">
+            <img src="img/icons/credits.png" onerror="this.src='img/icons/icon.png'">
+            <span>Crédits</span>
+        </div>
+
     </div>
 
     </div></div>
@@ -776,6 +781,14 @@
                 <div id="archives-progression"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Menu Crédits -->
+    <div id="credits-menu" style="display: none;" class="season-background">
+        <div id="credits-menu-header">
+            <span>Crédits</span>
+        </div>
+        <div id="credits-list"></div>
     </div>
 
     <!-- Menu Guide -->
@@ -805,6 +818,7 @@
     <script src="scripts/data/areaDictionary.js"></script>
     <script src="scripts/data/familiarDictionary.js"></script>
     <script src="scripts/data/guideDictionary.js"></script>
+    <script src="scripts/data/creditsDictionary.js"></script>
 
     <!-- Moteur (dépend des données) -->
     <script src="scripts/engine/save.js"></script>
@@ -832,6 +846,7 @@
     <script src="scripts/ui/forge.js"></script>
     <script src="scripts/ui/raid.js"></script>
     <script src="scripts/ui/guide.js"></script>
+    <script src="scripts/ui/credits.js"></script>
 
 
 </body>
