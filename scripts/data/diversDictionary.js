@@ -106,288 +106,35 @@ item.cleDonjonKwakwa = {
 // Runes de Transcendance (transcendance:true) : remplacent le slot par une stat entièrement nouvelle.
 //   Obtenues par fusion dans l'onglet "⚗ Fusion" de la forgemagie.
 // ── PV ─────────────────────────────────────────────────────────────────────────
-item.runeHpS = { 
-    id: 'runeHpS', 
-    type: 'rune', 
-    name: 'Rune PV+20',   
-    stat: 'maxHp', 
-    value: 20,  
-    levelCost: 3,  
-    minRequiredLevel: 0,   
-    fusionCost: 5,  
-    image: 'img/items/runes/maxHp1.png',    
-    description: '+20 PV sur un slot PV existant.' 
-}
-item.runeHpM = { 
-    id: 'runeHpM', 
-    type: 'rune', 
-    name: 'Rune PV+60',   
-    stat: 'maxHp', 
-    value: 60,  
-    levelCost: 7,  
-    minRequiredLevel: 80,  
-    fusionCost: 7,  
-    image: 'img/items/runes/maxHp2.png',    
-    description: '+60 PV sur un slot PV existant (item requis niv.80+).' 
-}
-item.runeHpL = { 
-    id: 'runeHpL', 
-    type: 'rune', 
-    name: 'Rune PV+150',  
-    stat: 'maxHp', 
-    value: 150, 
-    levelCost: 12, 
-    minRequiredLevel: 150, 
-    fusionCost: 10, 
-    image: 'img/items/runes/maxHp3.png',    
-    description: '+150 PV sur un slot PV existant (item requis niv.150+).' 
-}
+item.runeHpS = { id: 'runeHpS', type: 'rune', name: 'Rune S : PV+20', stat: 'maxHp', value: 20, levelCost: 3, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/maxHp1.png', description: '+20 PV sur un slot PV existant.' }
+item.runeHpM = { id: 'runeHpM', type: 'rune', name: 'Rune M : PV+60', stat: 'maxHp', value: 60, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/maxHp2.png', description: '+60 PV sur un slot PV existant (item requis niv.80+).' }
+item.runeHpL = { id: 'runeHpL', type: 'rune', name: 'Rune L : PV+150', stat: 'maxHp', value: 150, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/maxHp3.png', description: '+150 PV sur un slot PV existant (item requis niv.150+).' }
 // ── ATK ────────────────────────────────────────────────────────────────────────
-item.runeAtkS = { 
-    id: 'runeAtkS', 
-    type: 'rune', 
-    name: 'Rune ATK+15',  
-    stat: 'atk', 
-    value: 15,  
-    levelCost: 3,  
-    minRequiredLevel: 0,   
-    fusionCost: 5,  
-    image: 'img/items/runes/puissance1.png',  
-    description: '+15 ATK sur un slot ATK existant.' 
-}
-item.runeAtkM = { 
-    id: 'runeAtkM', 
-    type: 'rune', 
-    name: 'Rune ATK+50',  
-    stat: 'atk', 
-    value: 50,  
-    levelCost: 7,  
-    minRequiredLevel: 80,  
-    fusionCost: 7,  
-    image: 'img/items/runes/puissance2.png',  
-    description: '+50 ATK sur un slot ATK existant (item requis niv.80+).' 
-}
-item.runeAtkL = { 
-    id: 'runeAtkL', 
-    type: 'rune', 
-    name: 'Rune ATK+130', 
-    stat: 'atk', 
-    value: 130, 
-    levelCost: 12, 
-    minRequiredLevel: 150, 
-    fusionCost: 10, 
-    image: 'img/items/runes/puissance3.png',  
-    description: '+130 ATK sur un slot ATK existant (item requis niv.150+).' 
-}
+item.runeAtkS = { id: 'runeAtkS', type: 'rune', name: 'Rune S : Pui+15', stat: 'atk', value: 15, levelCost: 3, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/puissance1.png', description: '+15 ATK sur un slot ATK existant.' }
+item.runeAtkM = { id: 'runeAtkM', type: 'rune', name: 'Rune M : Pui+50', stat: 'atk', value: 50, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/puissance2.png', description: '+50 ATK sur un slot ATK existant (item requis niv.80+).' }
+item.runeAtkL = { id: 'runeAtkL', type: 'rune', name: 'Rune L : Pui+130', stat: 'atk', value: 130, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/puissance3.png', description: '+130 ATK sur un slot ATK existant (item requis niv.150+).' }
 // ── Vitesse ────────────────────────────────────────────────────────────────────
-item.runeSpdS = { 
-    id: 'runeSpdS', 
-    type: 'rune', 
-    name: 'Rune Vit+5',  
-    stat: 'spd', 
-    value: 5,  
-    levelCost: 4, 
-    minRequiredLevel: 0,   
-    fusionCost: 5,  
-    image: 'img/items/runes/vitesse1.png',   
-    description: '+5 Vit sur un slot Vitesse existant.' 
-}
-item.runeSpdM = { 
-    id: 'runeSpdM', 
-    type: 'rune', 
-    name: 'Rune Vit+15', 
-    stat: 'spd', 
-    value: 15, 
-    levelCost: 8, 
-    minRequiredLevel: 80,  
-    fusionCost: 7,  
-    image: 'img/items/runes/vitesse2.png',   
-    description: '+15 Vit sur un slot Vitesse existant (item requis niv.80+).' 
-}
-item.runeSpdL = {
-    id: 'runeSpdL',
-    type: 'rune',
-    name: 'Rune Vit+35',
-    stat: 'spd',
-    value: 35,
-    levelCost: 12,
-    minRequiredLevel: 150,
-    fusionCost: 10,
-    image: 'img/items/runes/vitesse3.png',
-    description: '+35 Vit sur un slot Vitesse existant (item requis niv.150+).'
-}
+item.runeSpdS = { id: 'runeSpdS', type: 'rune', name: 'Rune S : Init+5', stat: 'spd', value: 5, levelCost: 4, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/vitesse1.png', description: '+5 Vit sur un slot Vitesse existant.' }
+item.runeSpdM = { id: 'runeSpdM', type: 'rune', name: 'Rune M : Init+15', stat: 'spd', value: 15, levelCost: 8, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/vitesse2.png', description: '+15 Vit sur un slot Vitesse existant (item requis niv.80+).' }
+item.runeSpdL = { id: 'runeSpdL', type: 'rune', name: 'Rune L : Init+35', stat: 'spd', value: 35, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/vitesse3.png', description: '+35 Vit sur un slot Vitesse existant (item requis niv.150+).' }
 // ── Dégâts fixes ───────────────────────────────────────────────────────────────
-item.runeFlatDmgS = { 
-    id: 'runeFlatDmgS', 
-    type: 'rune', 
-    name: 'Rune Dégâts+5',  
-    stat: 'flatDamage', 
-    value: 5,  
-    levelCost: 3, 
-    minRequiredLevel: 0,   
-    fusionCost: 5,  
-    image: 'img/items/runes/flatDamage1.png',  
-    description: '+5 Dég.fixes sur un slot Dégâts fixes existant.' 
-}
-item.runeFlatDmgM = { 
-    id: 'runeFlatDmgM', 
-    type: 'rune', 
-    name: 'Rune Dégâts+15', 
-    stat: 'flatDamage', 
-    value: 15, 
-    levelCost: 7, 
-    minRequiredLevel: 80,  
-    fusionCost: 7,  
-    image: 'img/items/runes/flatDamage2.png',  
-    description: '+15 Dég.fixes sur un slot Dégâts fixes existant (item requis niv.80+).' 
-}
-item.runeFlatDmgL = {
-    id: 'runeFlatDmgL',
-    type: 'rune',
-    name: 'Rune Dégâts+40',
-    stat: 'flatDamage',
-    value: 40,
-    levelCost: 12,
-    minRequiredLevel: 150,
-    fusionCost: 10,
-    image: 'img/items/runes/flatDamage3.png',
-    description: '+40 Dég.fixes sur un slot Dégâts fixes existant (item requis niv.150+).'
-}
+item.runeFlatDmgS = { id: 'runeFlatDmgS', type: 'rune', name: 'Rune S : Dégâts+5', stat: 'flatDamage', value: 5, levelCost: 3, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/flatDamage1.png', description: '+5 Dég.fixes sur un slot Dégâts fixes existant.' }
+item.runeFlatDmgM = { id: 'runeFlatDmgM', type: 'rune', name: 'Rune M : Dégâts+15', stat: 'flatDamage', value: 15, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/flatDamage2.png', description: '+15 Dég.fixes sur un slot Dégâts fixes existant (item requis niv.80+).' }
+item.runeFlatDmgL = { id: 'runeFlatDmgL', type: 'rune', name: 'Rune L : Dégâts+40', stat: 'flatDamage', value: 40, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/flatDamage3.png', description: '+40 Dég.fixes sur un slot Dégâts fixes existant (item requis niv.150+).' }
 // ── Critique ───────────────────────────────────────────────────────────────────
-item.runeCritS = { 
-    id: 'runeCritS',    
-    type: 'rune', 
-    name: 'Rune Crit+5%',     
-    stat: 'critChance',    
-    value: 5,  
-    levelCost: 4, 
-    minRequiredLevel: 0, 
-    fusionCost: 5, 
-    image: 'img/items/runes/pourcent_crit1.png', 
-    description: '+5% Crit sur un slot Chance Crit existant.' 
-}
-item.runeCritM = {
-    id: 'runeCritM',
-    type: 'rune',
-    name: 'Rune Crit+10%',
-    stat: 'critChance',
-    value: 10,
-    levelCost: 8,
-    minRequiredLevel: 80,
-    fusionCost: 7,
-    image: 'img/items/runes/pourcent_crit2.png',
-    description: '+10% Crit sur un slot Chance Crit existant (item requis niv.80+).'
-}
-item.runeCritL = {
-    id: 'runeCritL',
-    type: 'rune',
-    name: 'Rune Crit+20%',
-    stat: 'critChance',
-    value: 20,
-    levelCost: 12,
-    minRequiredLevel: 150,
-    fusionCost: 10,
-    image: 'img/items/runes/pourcent_crit3.png',
-    description: '+20% Crit sur un slot Chance Crit existant (item requis niv.150+).'
-}
-item.runeCritDmgS = { 
-    id: 'runeCritDmgS', 
-    type: 'rune', 
-    name: 'Rune DégCrit+10%', 
-    stat: 'critDamagePct', 
-    value: 10, 
-    levelCost: 5, 
-    minRequiredLevel: 0, 
-    fusionCost: 5, 
-    image: 'img/items/runes/dommage_crit1.png', 
-    description: '+10% Dég.Crit sur un slot Dégâts Crit existant.' 
-}
-item.runeCritDmgM = {
-    id: 'runeCritDmgM',
-    type: 'rune',
-    name: 'Rune DégCrit+25%',
-    stat: 'critDamagePct',
-    value: 25,
-    levelCost: 9,
-    minRequiredLevel: 80,
-    fusionCost: 7,
-    image: 'img/items/runes/dommage_crit2.png',
-    description: '+25% Dég.Crit sur un slot Dégâts Crit existant (item requis niv.80+).'
-}
+item.runeCritS = { id: 'runeCritS', type: 'rune', name: 'Rune S : Crit+5%', stat: 'critChance', value: 5, levelCost: 4, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/pourcent_crit1.png', description: '+5% Crit sur un slot Chance Crit existant.' }
+item.runeCritM = { id: 'runeCritM', type: 'rune', name: 'Rune M : Crit+10%', stat: 'critChance', value: 10, levelCost: 8, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/pourcent_crit2.png', description: '+10% Crit sur un slot Chance Crit existant (item requis niv.80+).' }
+item.runeCritL = { id: 'runeCritL', type: 'rune', name: 'Rune L : Crit+20%', stat: 'critChance', value: 20, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/pourcent_crit3.png', description: '+20% Crit sur un slot Chance Crit existant (item requis niv.150+).' }
+item.runeCritDmgS = { id: 'runeCritDmgS', type: 'rune', name: 'Rune M : DégCrit+10%', stat: 'critDamagePct', value: 10, levelCost: 5, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/dommage_crit1.png', description: '+10% Dég.Crit sur un slot Dégâts Crit existant.' }
+item.runeCritDmgM = { id: 'runeCritDmgM', type: 'rune', name: 'Rune L : DégCrit+25%', stat: 'critDamagePct', value: 25, levelCost: 9, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/dommage_crit2.png', description: '+25% Dég.Crit sur un slot Dégâts Crit existant (item requis niv.80+).' }
 // ── Dégâts % ───────────────────────────────────────────────────────────────────
-item.runeFinalDmgS = { 
-    id: 'runeFinalDmgS', 
-    type: 'rune', 
-    name: 'Rune DégFin+7%',  
-    stat: 'finalDamagePct',  
-    value: 7, 
-    levelCost: 6, 
-    minRequiredLevel: 0, 
-    fusionCost: 5, 
-    image: 'img/items/runes/dommage_finaux1.png', 
-    description: '+7% Dég.finaux sur un slot Dégâts finaux existant.' 
-}
-item.runeFinalDmgM = {
-    id: 'runeFinalDmgM',
-    type: 'rune',
-    name: 'Rune DégFin+15%',
-    stat: 'finalDamagePct',
-    value: 15,
-    levelCost: 9,
-    minRequiredLevel: 80,
-    fusionCost: 7,
-    image: 'img/items/runes/dommage_finaux2.png',
-    description: '+15% Dég.finaux sur un slot Dégâts finaux existant (item requis niv.80+).'
-}
-item.runeSpellDmgS = { 
-    id: 'runeSpellDmgS', 
-    type: 'rune', 
-    name: 'Rune DégSort+8%', 
-    stat: 'spellDamagePct',  
-    value: 8, 
-    levelCost: 5, 
-    minRequiredLevel: 0, 
-    fusionCost: 5, 
-    image: 'img/items/runes/SpellDamage1.png', 
-    description: '+8% Dég.sorts sur un slot Dégâts sorts existant.' 
-}
-item.runeSpellDmgM = {
-    id: 'runeSpellDmgM',
-    type: 'rune',
-    name: 'Rune DégSort+20%',
-    stat: 'spellDamagePct',
-    value: 20,
-    levelCost: 9,
-    minRequiredLevel: 80,
-    fusionCost: 7,
-    image: 'img/items/runes/SpellDamage2.png',
-    description: '+20% Dég.sorts sur un slot Dégâts sorts existant (item requis niv.80+).'
-}
+item.runeFinalDmgS = { id: 'runeFinalDmgS', type: 'rune', name: 'Rune M : DégFin+7%', stat: 'finalDamagePct', value: 7, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/dommage_finaux1.png', description: '+7% Dég.finaux sur un slot Dégâts finaux existant.' }
+item.runeFinalDmgM = { id: 'runeFinalDmgM', type: 'rune', name: 'Rune L : DégFin+15%', stat: 'finalDamagePct', value: 15, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/dommage_finaux2.png', description: '+15% Dég.finaux sur un slot Dégâts finaux existant (item requis niv.80+).' }
+item.runeSpellDmgS = { id: 'runeSpellDmgS', type: 'rune', name: 'Rune M : DégSort+8%', stat: 'spellDamagePct', value: 8, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/SpellDamage1.png', description: '+8% Dég.sorts sur un slot Dégâts sorts existant.' }
+item.runeSpellDmgM = { id: 'runeSpellDmgM', type: 'rune', name: 'Rune L : DégSort+20%', stat: 'spellDamagePct', value: 20, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/SpellDamage2.png', description: '+20% Dég.sorts sur un slot Dégâts sorts existant (item requis niv.80+).' }
 // ── Défensif ───────────────────────────────────────────────────────────────────
-item.runeDamRedS = { 
-    id: 'runeDamRedS', 
-    type: 'rune', 
-    name: 'Rune Réd+5%', 
-    stat: 'damageReductionPct', 
-    value: 5, 
-    levelCost: 5, 
-    minRequiredLevel: 0, 
-    fusionCost: 5, 
-    image: 'img/items/runes/reduc_dommage_finaux1.png', 
-    description: '+5% Réd.dégâts sur un slot Réduction existant.' 
-}
-item.runeDamRedM = {
-    id: 'runeDamRedM',
-    type: 'rune',
-    name: 'Rune Réd+12%',
-    stat: 'damageReductionPct',
-    value: 12,
-    levelCost: 9,
-    minRequiredLevel: 80,
-    fusionCost: 7,
-    image: 'img/items/runes/reduc_dommage_finaux2.png',
-    description: '+12% Réd.dégâts sur un slot Réduction existant (item requis niv.80+).'
-}
+item.runeDamRedS = { id: 'runeDamRedS', type: 'rune', name: 'Rune M : Réd+5%', stat: 'damageReductionPct', value: 5, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/reduc_dommage_finaux1.png', description: '+5% Réd.dégâts sur un slot Réduction existant.' }
+item.runeDamRedM = { id: 'runeDamRedM', type: 'rune', name: 'Rune L : Réd+12%', stat: 'damageReductionPct', value: 12, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/reduc_dommage_finaux2.png', description: '+12% Réd.dégâts sur un slot Réduction existant (item requis niv.80+).' }
 // ── Résistances ────────────────────────────────────────────────────────────────
 item.runeFireResS    = { id: 'runeFireResS',    type: 'rune', name: 'Rune Feu+4%',    stat: 'res.feu',    value: 4, levelCost: 9, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/res_feu2.png',    description: '+4% Rés.Feu sur un slot Rés.Feu existant.' }
 item.runeWaterResS   = { id: 'runeWaterResS',   type: 'rune', name: 'Rune Eau+4%',    stat: 'res.eau',    value: 4, levelCost: 9, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/res_eau2.png',    description: '+4% Rés.Eau sur un slot Rés.Eau existant.' }
@@ -418,16 +165,16 @@ item.runeTransFlatDmgS = { id: 'runeTransFlatDmgS', type: 'rune', transcendance:
 item.runeTransFlatDmgM = { id: 'runeTransFlatDmgM', type: 'rune', transcendance: true, name: 'Rune Trans Dégâts+15', stat: 'flatDamage',      value: 15,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/flatDamage2.png',             description: '+15 Dég.fixes sur n\'importe quel slot (forge exotique).' }
 item.runeTransFlatDmgL = { id: 'runeTransFlatDmgL', type: 'rune', transcendance: true, name: 'Rune Trans Dégâts+40', stat: 'flatDamage',      value: 40,  levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/flatDamage3.png',             description: '+40 Dég.fixes sur n\'importe quel slot (forge exotique).' }
 item.runeTransCritS  = { id: 'runeTransCritS',  type: 'rune', transcendance: true, name: 'Rune Trans Crit+5%',     stat: 'critChance',        value: 5,   levelCost: 4,  minRequiredLevel: 0,   image: 'img/items/runes/pourcent_crit1.png',         description: '+5% Crit sur n\'importe quel slot (forge exotique).' }
-item.runeTransCritM  = { id: 'runeTransCritM',  type: 'rune', transcendance: true, name: 'Rune Trans Crit+10%',    stat: 'critChance',        value: 10,  levelCost: 8,  minRequiredLevel: 80,  image: 'img/items/runes/pourcent_crit2.png',         description: '+10% Crit sur n\'importe quel slot (forge exotique).' }
+item.runeTransCritM  = { id: 'runeTransCritM',  type: 'rune', transcendance: true, name: 'Rune Trans Crit+10%',    stat: 'critChance',        value: 10,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/pourcent_crit2.png',         description: '+10% Crit sur n\'importe quel slot (forge exotique).' }
 item.runeTransCritL  = { id: 'runeTransCritL',  type: 'rune', transcendance: true, name: 'Rune Trans Crit+20%',    stat: 'critChance',        value: 20,  levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/pourcent_crit3.png',         description: '+20% Crit sur n\'importe quel slot (forge exotique).' }
-item.runeTransCritDmgS = { id: 'runeTransCritDmgS', type: 'rune', transcendance: true, name: 'Rune Trans DégCrit+10%', stat: 'critDamagePct', value: 10,  levelCost: 5,  minRequiredLevel: 0,   image: 'img/items/runes/dommage_crit1.png',          description: '+10% Dég.Crit sur n\'importe quel slot (forge exotique).' }
-item.runeTransCritDmgM = { id: 'runeTransCritDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégCrit+25%', stat: 'critDamagePct', value: 25,  levelCost: 9,  minRequiredLevel: 80,  image: 'img/items/runes/dommage_crit2.png',          description: '+25% Dég.Crit sur n\'importe quel slot (forge exotique).' }
-item.runeTransFinalDmgS = { id: 'runeTransFinalDmgS', type: 'rune', transcendance: true, name: 'Rune Trans DégFin+7%',  stat: 'finalDamagePct', value: 7,  levelCost: 6,  minRequiredLevel: 0,   image: 'img/items/runes/dommage_finaux1.png',        description: '+7% Dég.finaux sur n\'importe quel slot (forge exotique).' }
-item.runeTransFinalDmgM = { id: 'runeTransFinalDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégFin+15%', stat: 'finalDamagePct', value: 15, levelCost: 9,  minRequiredLevel: 80,  image: 'img/items/runes/dommage_finaux2.png',        description: '+15% Dég.finaux sur n\'importe quel slot (forge exotique).' }
-item.runeTransSpellDmgS = { id: 'runeTransSpellDmgS', type: 'rune', transcendance: true, name: 'Rune Trans DégSort+8%',  stat: 'spellDamagePct', value: 8,  levelCost: 5,  minRequiredLevel: 0,   image: 'img/items/runes/SpellDamage1.png',           description: '+8% Dég.sorts sur n\'importe quel slot (forge exotique).' }
-item.runeTransSpellDmgM = { id: 'runeTransSpellDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégSort+20%', stat: 'spellDamagePct', value: 20, levelCost: 9,  minRequiredLevel: 80,  image: 'img/items/runes/SpellDamage2.png',           description: '+20% Dég.sorts sur n\'importe quel slot (forge exotique).' }
-item.runeTransDamRedS   = { id: 'runeTransDamRedS',   type: 'rune', transcendance: true, name: 'Rune Trans Réd+5%',      stat: 'damageReductionPct', value: 5,  levelCost: 5, minRequiredLevel: 0,   image: 'img/items/runes/reduc_dommage_finaux1.png', description: '+5% Réd.dégâts sur n\'importe quel slot (forge exotique).' }
-item.runeTransDamRedM   = { id: 'runeTransDamRedM',   type: 'rune', transcendance: true, name: 'Rune Trans Réd+12%',     stat: 'damageReductionPct', value: 12, levelCost: 9, minRequiredLevel: 80,  image: 'img/items/runes/reduc_dommage_finaux2.png', description: '+12% Réd.dégâts sur n\'importe quel slot (forge exotique).' }
+item.runeTransCritDmgS = { id: 'runeTransCritDmgS', type: 'rune', transcendance: true, name: 'Rune Trans DégCrit+10%', stat: 'critDamagePct', value: 10,  levelCost: 9,  minRequiredLevel: 80,   image: 'img/items/runes/dommage_crit1.png',          description: '+10% Dég.Crit sur n\'importe quel slot (forge exotique).' }
+item.runeTransCritDmgM = { id: 'runeTransCritDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégCrit+25%', stat: 'critDamagePct', value: 25,  levelCost: 12,  minRequiredLevel: 150,  image: 'img/items/runes/dommage_crit2.png',          description: '+25% Dég.Crit sur n\'importe quel slot (forge exotique).' }
+item.runeTransFinalDmgS = { id: 'runeTransFinalDmgS', type: 'rune', transcendance: true, name: 'Rune Trans DégFin+7%',  stat: 'finalDamagePct', value: 7,  levelCost: 9,  minRequiredLevel: 80,   image: 'img/items/runes/dommage_finaux1.png',        description: '+7% Dég.finaux sur n\'importe quel slot (forge exotique).' }
+item.runeTransFinalDmgM = { id: 'runeTransFinalDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégFin+15%', stat: 'finalDamagePct', value: 15, levelCost: 12,  minRequiredLevel: 150,  image: 'img/items/runes/dommage_finaux2.png',        description: '+15% Dég.finaux sur n\'importe quel slot (forge exotique).' }
+item.runeTransSpellDmgS = { id: 'runeTransSpellDmgS', type: 'rune', transcendance: true, name: 'Rune Trans DégSort+8%',  stat: 'spellDamagePct', value: 8,  levelCost: 9,  minRequiredLevel: 80,   image: 'img/items/runes/SpellDamage1.png',           description: '+8% Dég.sorts sur n\'importe quel slot (forge exotique).' }
+item.runeTransSpellDmgM = { id: 'runeTransSpellDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégSort+20%', stat: 'spellDamagePct', value: 20, levelCost: 12,  minRequiredLevel: 150,  image: 'img/items/runes/SpellDamage2.png',           description: '+20% Dég.sorts sur n\'importe quel slot (forge exotique).' }
+item.runeTransDamRedS   = { id: 'runeTransDamRedS',   type: 'rune', transcendance: true, name: 'Rune Trans Réd+5%',      stat: 'damageReductionPct', value: 5,  levelCost: 9, minRequiredLevel: 80,   image: 'img/items/runes/reduc_dommage_finaux1.png', description: '+5% Réd.dégâts sur n\'importe quel slot (forge exotique).' }
+item.runeTransDamRedM   = { id: 'runeTransDamRedM',   type: 'rune', transcendance: true, name: 'Rune Trans Réd+12%',     stat: 'damageReductionPct', value: 12, levelCost: 12, minRequiredLevel: 150,  image: 'img/items/runes/reduc_dommage_finaux2.png', description: '+12% Réd.dégâts sur n\'importe quel slot (forge exotique).' }
 item.runeTransFireResS   = { id: 'runeTransFireResS',   type: 'rune', transcendance: true, name: 'Rune Trans Feu+4%',    stat: 'res.feu',    value: 4, levelCost: 9, minRequiredLevel: 80, image: 'img/items/runes/res_feu2.png',    description: '+4% Rés.Feu sur n\'importe quel slot (forge exotique).' }
 item.runeTransWaterResS  = { id: 'runeTransWaterResS',  type: 'rune', transcendance: true, name: 'Rune Trans Eau+4%',    stat: 'res.eau',    value: 4, levelCost: 9, minRequiredLevel: 80, image: 'img/items/runes/res_eau2.png',    description: '+4% Rés.Eau sur n\'importe quel slot (forge exotique).' }
 item.runeTransEarthResS  = { id: 'runeTransEarthResS',  type: 'rune', transcendance: true, name: 'Rune Trans Terre+4%',  stat: 'res.terre',   value: 4, levelCost: 9, minRequiredLevel: 80, image: 'img/items/runes/res_terre2.png',  description: '+4% Rés.Terre sur n\'importe quel slot (forge exotique).' }

@@ -49,7 +49,7 @@ function getEffectiveStats(member, syncedLevel = null) {
             if (!itm?.stats) continue
 
             const ilvl     = Math.max(1, getItemLevel(itemId))
-            const computed = getItemStats(itm, ilvl, state.inventory[itemId]?.forgedStats || null)
+            const computed = getItemStats(itm, ilvl, state.inventory[itemId]?.forgedStats || null, state.inventory[itemId]?.transForge || null)
 
             for (const { stat, value } of computed) {
                 if      (stat === 'maxHp')              hp                 += value

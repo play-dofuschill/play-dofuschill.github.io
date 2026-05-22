@@ -14,6 +14,7 @@
 // res.terre = % de résistance terre
 // res.air = % de résistance air
 // res.neutre = % de résistance neutre
+// stat: 'healPct'
 /*
 item.exemple = {
     id: 'exemple',
@@ -58,7 +59,7 @@ function getMaxForgeSlots(statCount) {
     return Math.ceil(statCount / 2)
 }
 
-function getItemStats(itm, level, forgedStats = null) {
+function getItemStats(itm, level, forgedStats = null, transForge = null) {
     const tier       = getItemTier(level)
     const multiplier = ITEM_TIER_MULTIPLIERS[tier] || 1
 
@@ -67,19 +68,23 @@ function getItemStats(itm, level, forgedStats = null) {
     const map = {}
     for (const f of arr) { map[f.statIndex] = f }
 
-    return itm.stats.map((s, i) => {
+    const result = itm.stats.map((s, i) => {
         const forged = map[i]
         if (forged) {
             const base = Math.round(s.value * multiplier)
-            // Transcendance ou ancien exo (stat différente) : remplace complètement le slot
-            if (forged.transcendance || forged.stat !== s.stat) {
-                return { stat: forged.stat, value: forged.value, isForged: true, isTranscendance: true }
+            if (forged.stat !== s.stat) {
+                return { stat: forged.stat, value: forged.value, isForged: true, isTranscendance: false }
             }
-            // Forgemagie normale : bonus absolu ajouté sur la stat de base scalée
             return { stat: s.stat, value: base + forged.value, isForged: true, forgeBonus: forged.value }
         }
         return { stat: s.stat, value: Math.round(s.value * multiplier), isForged: false }
     })
+
+    if (transForge) {
+        result.push({ stat: transForge.stat, value: transForge.value, isForged: true, isTranscendance: true, forgeBonus: transForge.value })
+    }
+
+    return result
 }
 
 // ────────────────────────────────────────────────────────────────────────
@@ -929,12 +934,19 @@ item.kwakwalame = {
         15: ['anneauKardorim','capeKardorim','coiffeKardorim'],
         20: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou'],
         25: [],
-        30: [],
+        30: ['cape_scarafeuille_blanc','coiffe_scarafeuille_blanc','anneau_scarafeuille_blanc','ceinture_scarafeuille_blanc',
+             'cape_scarafeuille_vert','coiffe_scarafeuille_vert','anneau_scarafeuille_vert','ceinture_scarafeuille_vert',
+             'cape_scarafeuille_bleu','coiffe_scarafeuille_bleu','anneau_scarafeuille_bleu','ceinture_scarafeuille_bleu',
+             'cape_scarafeuille_rouge','coiffe_scarafeuille_rouge','anneau_scarafeuille_rouge','ceinture_scarafeuille_rouge',
+             'cape_scarafeuille_noir','coiffe_scarafeuille_noir','anneau_scarafeuille_noir','ceinture_scarafeuille_noir'],
         35: ['cape_bouftou_royal','coiffe_bouftou_royal','bottes_bouftou_royal','anneau_bouftou_royal','amulette_bouftou_royal','ceinture_bouftou_royal','epee_bouftou_royal','bouclier_bouftou_royal'],
-        40: [],
-        45: [],
+        40: ['cape_kwak_vent','coiffe_kwak_vent','bottes_kwak_vent','anneau_kwak_vent','amulette_kwak_vent','ceinture_kwak_vent','epee_kwak_vent',
+             'cape_kwak_glace','coiffe_kwak_glace','bottes_kwak_glace','anneau_kwak_glace','amulette_kwak_glace','ceinture_kwak_glace','epee_kwak_glace',
+             'cape_kwak_flamme','coiffe_kwak_flamme','bottes_kwak_flamme','anneau_kwak_flamme','amulette_kwak_flamme','ceinture_kwak_flamme','epee_kwak_flamme',
+             'cape_kwak_terre','coiffe_kwak_terre','bottes_kwak_terre','anneau_kwak_terre','amulette_kwak_terre','ceinture_kwak_terre','epee_kwak_terre'],
+        45: ['cape_scaraboss_doree','coiffe_scaraboss_doree','bottes_scaraboss_doree','anneau_scaraboss_doree','amulette_scaraboss_doree','ceinture_scaraboss_doree','baguette_scaraboss_doree'],
         50: [],
-        55: [],
+        55: ['kwakwaffe','kwakwalliance','kwakwanneau','kwakwalame'],
         60: [],
         65: [],
         70: [],

@@ -282,7 +282,7 @@ monsters.tournesolAffame = {
 // #region PLAGE ASTRUB — Zone niveau 10–30
 monsters.pichonBlanc = {
     id: 'pichonBlanc',
-    name: 'Scarafeuille Blanc',
+    name: 'Pichon Blanc',
     image: 'img/monstres/sprites/pichonBlanc.png',
     rarity: 'commun',
     tier: 'normal',
@@ -296,7 +296,7 @@ monsters.pichonBlanc = {
 }
 monsters.pichonVert = {
     id: 'pichonVert',
-    name: 'Scarafeuille Vert',
+    name: 'Pichon Vert',
     image: 'img/monstres/sprites/pichonVert.png',
     rarity: 'commun',
     tier: 'normal',
@@ -310,7 +310,7 @@ monsters.pichonVert = {
 }
 monsters.pichonBleu = {
     id: 'pichonBleu',
-    name: 'Scarafeuille Bleu',
+    name: 'Pichon Bleu',
     image: 'img/monstres/sprites/pichonBleu.png',
     rarity: 'commun',
     tier: 'normal',

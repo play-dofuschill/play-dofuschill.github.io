@@ -13,20 +13,29 @@ function applyForge(itemId, statIndex, runeItemId) {
     const runeEntry = state.inventory[runeItemId]
     if (!runeEntry || (runeEntry.count ?? 1) < 1) return { error: 'RUNE_UNAVAILABLE' }
 
-    if (statIndex < 0 || statIndex >= itm.stats.length) return { error: 'ITEM_INVALID' }
-
-    // L'item doit avoir strictement plus de niveaux que le coût de la rune
     const levelCost = rune.levelCost ?? 5
     if (entry.level <= levelCost) return { error: 'INSUFFICIENT_LEVEL', levelCost, itemLevel: entry.level }
 
-    // Le niveau requis de l'item doit être >= au niveau minimum de la rune
     const runeMinLevel = rune.minRequiredLevel ?? 0
     const itemReqLevel = itm.requiredLevel ?? 1
     if (itemReqLevel < runeMinLevel) return { error: 'RUNE_TIER_MISMATCH', runeMinLevel, itemReqLevel }
 
-    // La stat de la rune doit correspondre au slot cible (sauf rune de transcendance)
+    // ─── Rune de Transcendance : nouveau slot bonus, 1 seule par item ────────────
+    if (rune.transcendance) {
+        if (entry.transForge) return { error: 'TRANS_ALREADY_APPLIED' }
+        entry.transForge = { stat: rune.stat, value: rune.value, transcendance: true }
+        runeEntry.count = (runeEntry.count ?? 1) - 1
+        if (runeEntry.count <= 0) delete state.inventory[runeItemId]
+        entry.level = Math.max(1, entry.level - levelCost)
+        saveGame()
+        return { stat: rune.stat, value: rune.value, newLevel: entry.level, isTranscendance: true }
+    }
+
+    // ─── Rune normale : modifie un slot de stat existant ─────────────────────────
+    if (statIndex < 0 || statIndex >= itm.stats.length) return { error: 'ITEM_INVALID' }
+
     const itemStat = itm.stats[statIndex]
-    if (!rune.transcendance && rune.stat !== itemStat.stat) return { error: 'STAT_MISMATCH', runeStat: rune.stat, slotStat: itemStat.stat }
+    if (rune.stat !== itemStat.stat) return { error: 'STAT_MISMATCH', runeStat: rune.stat, slotStat: itemStat.stat }
 
     // migrate old single forgedStat → forgedStats array
     if (entry.forgedStat && !entry.forgedStats) {
@@ -42,23 +51,18 @@ function applyForge(itemId, statIndex, runeItemId) {
     if (!alreadyForged && entry.forgedStats.length >= maxSlots) return { error: 'SLOTS_FULL' }
 
     const newForge = { statIndex, stat: rune.stat, value: rune.value }
-    if (rune.transcendance) newForge.transcendance = true
-
     if (alreadyForged) {
         entry.forgedStats[existingIdx] = newForge
     } else {
         entry.forgedStats.push(newForge)
     }
 
-    // consommer la rune (utilise count, le champ standard de l'inventaire)
     runeEntry.count = (runeEntry.count ?? 1) - 1
     if (runeEntry.count <= 0) delete state.inventory[runeItemId]
-
-    // baisser le niveau de l'item
     entry.level = Math.max(1, entry.level - levelCost)
 
     saveGame()
-    return { stat: rune.stat, value: rune.value, newLevel: entry.level, isTranscendance: !!rune.transcendance }
+    return { stat: rune.stat, value: rune.value, newLevel: entry.level, isTranscendance: false }
 }
 
 // Fusionne N runes normales en 1 rune de transcendance
@@ -121,18 +125,26 @@ function applyConcassageSwap(itemId, sourceStatIdx, targetStatIdx) {
     return { cost }
 }
 
-// Retire une forgemagie d'un slot de stat (1 kama)
+// Retire une forgemagie d'un slot de stat (1 kama). statIdx === -1 retire le transForge.
 function applyConcassageRemove(itemId, statIdx) {
     const itm   = item[itemId]
     const entry = state.inventory[itemId]
     if (!itm || !entry) return null
+    if (state.kamas < 1) return null
+
+    if (statIdx === -1) {
+        if (!entry.transForge) return null
+        delete entry.transForge
+        state.kamas -= 1
+        saveGame()
+        if (typeof updateKamasDisplay === 'function') updateKamasDisplay()
+        return { cost: 1 }
+    }
 
     if (entry.forgedStat && !entry.forgedStats) {
         entry.forgedStats = [entry.forgedStat]; delete entry.forgedStat
     }
     if (!entry.forgedStats?.length) return null
-
-    if (state.kamas < 1) return null
 
     const before = entry.forgedStats.length
     entry.forgedStats = entry.forgedStats.filter(f => f.statIndex !== statIdx)

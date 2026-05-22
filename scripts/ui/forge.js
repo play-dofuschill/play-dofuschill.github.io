@@ -20,11 +20,12 @@ const FORGE_STAT_LABELS = {
 }
 
 const FORGE_ERROR_MSGS = {
-    INSUFFICIENT_LEVEL: (r) => `Niveau de l'item trop bas (${r.itemLevel}) — cette rune coûte −${r.levelCost} niv., il en faut strictement plus.`,
-    RUNE_TIER_MISMATCH: (r) => `Rune trop puissante pour cet item (zone niv.${r.runeMinLevel}+, item requis niv.${r.itemReqLevel}).`,
-    STAT_MISMATCH:      ()  => `La stat de la rune ne correspond pas à ce slot. Utilisez une Rune de Transcendance.`,
-    SLOTS_FULL:         ()  => `Plus de slots de forge disponibles sur cet item.`,
-    RUNE_UNAVAILABLE:   ()  => `Rune introuvable dans l'inventaire.`,
+    INSUFFICIENT_LEVEL:     (r) => `Niveau de l'item trop bas (${r.itemLevel}) — cette rune coûte −${r.levelCost} niv., il en faut strictement plus.`,
+    RUNE_TIER_MISMATCH:     (r) => `Rune trop puissante pour cet item (zone niv.${r.runeMinLevel}+, item requis niv.${r.itemReqLevel}).`,
+    STAT_MISMATCH:          ()  => `La stat de la rune ne correspond pas à ce slot.`,
+    SLOTS_FULL:             ()  => `Plus de slots de forge disponibles sur cet item.`,
+    RUNE_UNAVAILABLE:       ()  => `Rune introuvable dans l'inventaire.`,
+    TRANS_ALREADY_APPLIED:  ()  => `Une rune de Transcendance est déjà appliquée sur cet item. Retirez-la en concassage d'abord.`,
 }
 
 const forgeFilters = {
@@ -209,31 +210,26 @@ function _renderForgePanel(content) {
     const forgedCount = forgedStats.length
     const maxSlots    = getMaxForgeSlots(itm.stats?.length || 0)
     const canAddMore  = forgedCount < maxSlots
-    const computed    = getItemStats(itm, entry.level, forgedStats)
+    const computed    = getItemStats(itm, entry.level, forgedStats)  // sans transForge, pour le panel normal
 
-    // Slots indicator
+    // Slots indicator (ne compte pas le slot transcendance)
     const dotsHtml = Array.from({ length: maxSlots }, (_, i) =>
         `<span class="forge-slot-dot${i < forgedCount ? ' forge-slot-filled' : ''}"></span>`
     ).join('')
+    const transDot = entry.transForge ? `<span class="forge-slot-dot forge-slot-trans" title="Transcendance">✦</span>` : ''
     const slotsHtml = `<div class="forge-slots-indicator">
         <span class="forge-slots-label">Slots forgés :</span>
-        ${dotsHtml}
-        <span class="forge-slots-count">${forgedCount} / ${maxSlots}</span>
+        ${dotsHtml}${transDot}
+        <span class="forge-slots-count">${forgedCount} / ${maxSlots}${entry.transForge ? ' + ✦' : ''}</span>
     </div>`
 
-    // Stat rows
-    const statsHtml = computed.map(({ stat, value, isForged, forgeBonus, isTranscendance }, i) => {
+    // Stat rows (slots normaux uniquement)
+    const statsHtml = computed.map(({ stat, value, isForged, forgeBonus }, i) => {
         const lbl        = FORGE_STAT_LABELS[stat] || stat
         const sign       = value > 0 ? '+' : ''
         const active     = _forgeSelectedStatIdx === i
         const selectable = isForged || canAddMore
-
-        let bonusHtml = ''
-        if (isForged) {
-            bonusHtml = isTranscendance
-                ? ` <span class="forge-bonus-trans">[✦ Trans]</span>`
-                : ` <span class="forge-bonus">[+${forgeBonus} ✦]</span>`
-        }
+        const bonusHtml  = isForged ? ` <span class="forge-bonus">[+${forgeBonus} ✦]</span>` : ''
 
         return `<div class="forge-stat-row${active ? ' forge-stat-active' : ''}${selectable ? '' : ' forge-stat-locked'}" ${selectable ? `onclick="selectForgeStat(${i})"` : ''}>
             <span class="forge-radio">${active ? '●' : '○'}</span>
@@ -241,9 +237,19 @@ function _renderForgePanel(content) {
         </div>`
     }).join('')
 
-    // Rune selection — normales filtrées par slot, transcendances toujours visibles
+    // Bonus transcendance déjà appliqué (lecture seule ici)
+    const transLineHtml = entry.transForge
+        ? `<div class="forge-stat-row forge-stat-locked forge-stat-blue">
+            <span class="forge-radio">✦</span>
+            <span>+${entry.transForge.value} ${FORGE_STAT_LABELS[entry.transForge.stat] || entry.transForge.stat} <span class="forge-bonus-trans">[Transcendance]</span></span>
+           </div>`
+        : ''
+
+    // Rune selection
     const itemReqLevel     = itm.requiredLevel ?? 1
     const selectedStatType = _forgeSelectedStatIdx !== null ? itm.stats[_forgeSelectedStatIdx]?.stat : null
+    const selectedRuneData = _forgeSelectedRune ? item[_forgeSelectedRune] : null
+    const isTransRuneSelected = !!selectedRuneData?.transcendance
 
     const tierCompatible = _getPlayerRunes().filter(({ rune }) =>
         itemReqLevel >= (rune.minRequiredLevel ?? 0) && entry.level > (rune.levelCost ?? 5)
@@ -278,41 +284,54 @@ function _renderForgePanel(content) {
         runeHtml += `<div class="forge-section forge-rune-subsection">Runes normales :</div>${normalHtml}`
     }
 
-    // Section runes de transcendance — toujours visibles
+    // Section runes de transcendance — toujours visibles, bloquées si déjà appliquée
     const allTransPlayer = allPlayerRunes.filter(({ rune }) => rune.transcendance)
-    const transHtml = transRunes.length > 0
-        ? `<div class="forge-rune-grid">${transRunes.map(makeRuneCard).join('')}</div>`
-        : allTransPlayer.length > 0
-            ? `<div class="forge-no-runes">Vos runes de Transcendance sont de tier trop élevé pour cet item.</div>`
-            : `<div class="forge-no-runes">Aucune rune de Transcendance dans l'inventaire.</div>`
-    runeHtml += `<div class="forge-section forge-rune-subsection">Runes de Transcendance :</div>${transHtml}`
+    let transHtml
+    if (entry.transForge) {
+        transHtml = `<div class="forge-no-runes forge-no-runes-warn">Une rune de Transcendance est déjà appliquée. Retirez-la en concassage pour en appliquer une autre.</div>`
+    } else if (transRunes.length > 0) {
+        transHtml = `<div class="forge-rune-grid">${transRunes.map(makeRuneCard).join('')}</div>`
+    } else if (allTransPlayer.length > 0) {
+        transHtml = `<div class="forge-no-runes">Vos runes de Transcendance sont de tier trop élevé pour cet item.</div>`
+    } else {
+        transHtml = `<div class="forge-no-runes">Aucune rune de Transcendance dans l'inventaire.</div>`
+    }
+    runeHtml += `<div class="forge-section forge-rune-subsection">Rune de Transcendance (nouveau slot bonus) :</div>${transHtml}`
 
     // Preview
     let previewHtml = ''
-    if (_forgeSelectedRune && _forgeSelectedStatIdx !== null) {
+    if (_forgeSelectedRune) {
         const rune = item[_forgeSelectedRune]
         if (rune) {
             const lbl      = FORGE_STAT_LABELS[rune.stat] || rune.stat
             const newLevel = Math.max(1, entry.level - (rune.levelCost ?? 5))
-            const slotBase = computed[_forgeSelectedStatIdx]
-            const resultDesc = rune.transcendance
-                ? `+${rune.value} ${lbl} (remplace le slot)`
-                : `+${slotBase.value - (slotBase.forgeBonus || 0)} ${lbl} (base) + ${rune.value} (rune) = +${slotBase.value - (slotBase.forgeBonus || 0) + rune.value} ${lbl}`
-            previewHtml = `<div class="forge-preview">
-                <span class="forge-preview-label">Résultat :</span>
-                <div class="forge-preview-opts">
-                    <span class="forge-preview-opt">${resultDesc}</span>
-                    <span class="forge-preview-opt forge-preview-warn">Niv. ${entry.level} → ${newLevel}</span>
-                </div>
-            </div>`
+            let resultDesc
+            if (rune.transcendance) {
+                resultDesc = `Nouveau bonus : +${rune.value} ${lbl} [Transcendance]`
+            } else if (_forgeSelectedStatIdx !== null) {
+                const slotBase = computed[_forgeSelectedStatIdx]
+                resultDesc = `+${slotBase.value - (slotBase.forgeBonus || 0)} ${lbl} (base) + ${rune.value} (rune) = +${slotBase.value - (slotBase.forgeBonus || 0) + rune.value} ${lbl}`
+            }
+            if (resultDesc) {
+                previewHtml = `<div class="forge-preview">
+                    <span class="forge-preview-label">Résultat :</span>
+                    <div class="forge-preview-opts">
+                        <span class="forge-preview-opt">${resultDesc}</span>
+                        <span class="forge-preview-opt forge-preview-warn">Niv. ${entry.level} → ${newLevel}</span>
+                    </div>
+                </div>`
+            }
         }
     }
 
     // Forge button
     const selectedIsForged = _forgeSelectedStatIdx !== null && computed[_forgeSelectedStatIdx]?.isForged
-    const canForge = _forgeSelectedStatIdx !== null && _forgeSelectedRune !== null &&
-                     (selectedIsForged || canAddMore)
-    const hintText = !selectedStatType
+    const canForge = _forgeSelectedRune !== null && (
+        isTransRuneSelected
+            ? !entry.transForge
+            : (_forgeSelectedStatIdx !== null && (selectedIsForged || canAddMore))
+    )
+    const hintText = !isTransRuneSelected && !selectedStatType
         ? 'Sélectionnez un slot ci-dessus pour voir les runes normales compatibles'
         : ''
     const actionHtml = `<div class="forge-action">
@@ -327,7 +346,7 @@ function _renderForgePanel(content) {
         <div class="forge-panel">
             ${slotsHtml}
             <div class="forge-section">Choisir le slot à forger :</div>
-            <div class="forge-stats">${statsHtml}</div>
+            <div class="forge-stats">${statsHtml}${transLineHtml}</div>
             <div class="forge-section">Choisir une rune :</div>
             ${runeHtml}
             ${previewHtml}
@@ -417,12 +436,13 @@ function _renderConcassagePanel(content) {
     const statCount     = itm.stats?.length || 2
     const swapCost      = 5 * (statCount - 1)
     const hasForged     = forgedStats.length > 0
+    const hasTransForge = !!entry.transForge
     const canAffordSwap = state.kamas >= swapCost
     const canAffordRm   = state.kamas >= 1
     const computed      = getItemStats(itm, entry.level, forgedStats)
 
     const swapDisabled = !hasForged || !canAffordSwap
-    const rmDisabled   = !hasForged || !canAffordRm
+    const rmDisabled   = (!hasForged && !hasTransForge) || !canAffordRm
     const actionsHtml = `<div class="conc-actions">
         <button class="conc-action-btn${_concassageAction === 'swap'   ? ' conc-action-active' : ''}${swapDisabled ? ' forge-btn-off' : ''}"
             ${swapDisabled ? 'disabled' : `onclick="selectConcassageAction('swap')"`}>
@@ -442,7 +462,7 @@ function _renderConcassagePanel(content) {
             ? (sourceChosen ? 'Choisir la destination :' : 'Choisir la forgemagie à déplacer :')
             : 'Choisir la forgemagie à retirer :'
 
-        const rows = computed.map(({ stat, value, isForged, isTranscendance, forgeBonus }, i) => {
+        const rows = computed.map(({ stat, value, isForged, forgeBonus }, i) => {
             const lbl  = FORGE_STAT_LABELS[stat] || stat
             const sign = value > 0 ? '+' : ''
             const isSelectedSource = i === _concassageSourceIdx
@@ -457,9 +477,7 @@ function _renderConcassagePanel(content) {
             }
 
             const cls = ['forge-stat-row', isSelectedSource ? 'forge-stat-active' : '', (!clickable && !isSelectedSource) ? 'forge-stat-locked' : ''].filter(Boolean).join(' ')
-            const bonusHtml = isForged
-                ? (isTranscendance ? ` <span class="forge-bonus-trans">[✦ Trans]</span>` : ` <span class="forge-bonus">[+${forgeBonus} ✦]</span>`)
-                : ''
+            const bonusHtml = isForged ? ` <span class="forge-bonus">[+${forgeBonus} ✦]</span>` : ''
 
             return `<div class="${cls}" ${onclick}>
                 <span class="forge-radio">${isSelectedSource ? '●' : '○'}</span>
@@ -467,11 +485,24 @@ function _renderConcassagePanel(content) {
             </div>`
         }).join('')
 
+        // Ligne transcendance — uniquement pour l'action "retirer" (pas déplaçable)
+        let transRowHtml = ''
+        if (!isSwap && entry.transForge) {
+            const tf  = entry.transForge
+            const lbl = FORGE_STAT_LABELS[tf.stat] || tf.stat
+            const isSelectedTrans = _concassageSourceIdx === -1
+            const cls = ['forge-stat-row forge-stat-blue', isSelectedTrans ? 'forge-stat-active' : ''].filter(Boolean).join(' ')
+            transRowHtml = `<div class="${cls}" onclick="selectConcassageSource(-1)">
+                <span class="forge-radio">${isSelectedTrans ? '●' : '○'}</span>
+                <span>+${tf.value} ${lbl} <span class="forge-bonus-trans">[Transcendance ✦]</span></span>
+            </div>`
+        }
+
         const confirmHtml = (!isSwap && sourceChosen)
             ? `<div class="forge-action"><button class="forge-btn" onclick="confirmConcassageRemove('${itemId}', ${_concassageSourceIdx})">Confirmer le retrait</button></div>`
             : ''
 
-        selectionHtml = `<div class="forge-section">${stepLabel}</div><div class="forge-stats">${rows}</div>${confirmHtml}`
+        selectionHtml = `<div class="forge-section">${stepLabel}</div><div class="forge-stats">${rows}${transRowHtml}</div>${confirmHtml}`
     }
 
     content.innerHTML = `
@@ -534,7 +565,7 @@ function selectForgeStat(idx) {
         _forgeSelectedStatIdx = null
     } else {
         _forgeSelectedStatIdx = idx
-        _forgeSelectedRune    = null  // reset rune quand on change de slot
+        _forgeSelectedRune    = null  // reset rune quand on change de slot (transcendance n'utilise pas ce flow)
     }
     updateForgeUI()
 }
@@ -545,8 +576,10 @@ function selectForgeRune(runeId) {
 }
 
 function confirmForge(itemId) {
-    if (_forgeSelectedStatIdx === null || !_forgeSelectedRune) return
-    const result = applyForge(itemId, _forgeSelectedStatIdx, _forgeSelectedRune)
+    if (!_forgeSelectedRune) return
+    const runeData = item[_forgeSelectedRune]
+    if (!runeData?.transcendance && _forgeSelectedStatIdx === null) return
+    const result = applyForge(itemId, runeData?.transcendance ? null : _forgeSelectedStatIdx, _forgeSelectedRune)
 
     if (!result || result.error) {
         const msgFn = result?.error ? FORGE_ERROR_MSGS[result.error] : null

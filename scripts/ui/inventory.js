@@ -194,11 +194,11 @@ function showItemTooltip(itemId) {
     // Stats calculées au niveau actuel
     let statsHtml = ''
     if (itm.stats && itm.stats.length > 0) {
-        const computed = getItemStats(itm, Math.max(1, lvl), entry?.forgedStats || null)
-        for (const { stat, value, isForged } of computed) {
+        const computed = getItemStats(itm, Math.max(1, lvl), entry?.forgedStats || null, entry?.transForge || null)
+        for (const { stat, value, isForged, isTranscendance } of computed) {
             const label = STAT_LABELS[stat] || stat
             const icon  = STAT_ICON_MAP[stat] || ''
-            const color = isForged ? '#4a9bdb' : (value > 0 ? '#2D7A2D' : value < 0 ? '#d45a43' : '')
+            const color = isTranscendance ? '#a855f7' : isForged ? '#4a9bdb' : (value > 0 ? '#2D7A2D' : value < 0 ? '#d45a43' : '')
             statsHtml += `<div class="item-stat-row">
                 ${icon ? `<img src="${icon}" class="item-stat-icon">` : ''}
                 <span style="${color ? `color:${color}` : ''}">${value > 0 ? '+' : ''}${value} ${label}${isForged ? ' ✦' : ''}</span>
