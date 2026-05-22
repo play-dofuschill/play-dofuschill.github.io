@@ -441,7 +441,7 @@ areas.evenementDopeuls = {
     id: 'evenementDopeuls',
     type: 'event',
     name: 'Invasion Dopeuls',
-    minLevel: 55, maxLevel: 75,
+    minLevel: 55, maxLevel: 80,
     mobMinLevel: 55, mobMaxLevel: 70,
     background: 'tainela',
     icon: 'img/monstres/sprites/dopeul_iop.png',
