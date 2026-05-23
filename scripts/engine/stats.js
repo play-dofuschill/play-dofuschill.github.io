@@ -31,6 +31,7 @@ function getEffectiveStats(member, syncedLevel = null) {
     let healPct            = 0
     let healTeamPct        = 0
     let healMaxHpPct       = 0
+    let healFlat           = 0
     let lifestealPct       = 0
 
     // scaling résistances
@@ -64,6 +65,7 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (stat === 'healPct')            healPct            += value
                 else if (stat === 'healTeamPct')        healTeamPct        += value
                 else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
+                else if (stat === 'healFlat')           healFlat           += value
                 else if (stat === 'lifestealPct')       lifestealPct       += value
                 else if (stat.startsWith('res.'))        { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
@@ -102,6 +104,7 @@ function getEffectiveStats(member, syncedLevel = null) {
             if (buff.stat === 'healPct')        healPct        += buff.value
             if (buff.stat === 'healTeamPct')    healTeamPct    += buff.value
             if (buff.stat === 'healMaxHpPct')   healMaxHpPct   += buff.value
+            if (buff.stat === 'healFlat')       healFlat       += buff.value
             if (buff.stat === 'lifestealPct')   lifestealPct   += buff.value
 
             if (buff.stat === 'res_all') {
@@ -137,6 +140,7 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (stat === 'healPct')            healPct            += value
                 else if (stat === 'healTeamPct')        healTeamPct        += value
                 else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
+                else if (stat === 'healFlat')           healFlat           += value
                 else if (stat === 'lifestealPct')       lifestealPct       += value
                 else if (stat.startsWith('res.'))       { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
@@ -168,6 +172,7 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (bs === 'healPct')           healPct            += value
                 else if (bs === 'healTeamPct')       healTeamPct        += value
                 else if (bs === 'healMaxHpPct')      healMaxHpPct       += value
+                else if (bs === 'healFlat')          healFlat           += value
                 else if (bs === 'lifestealPct')      lifestealPct       += value
                 else if (bs.startsWith('res.')) {
                     const elem = bs.split('.')[1]
@@ -273,6 +278,7 @@ function getEffectiveStats(member, syncedLevel = null) {
         healPct,
         healTeamPct,
         healMaxHpPct,
+        healFlat,
         lifestealPct
     }
 }

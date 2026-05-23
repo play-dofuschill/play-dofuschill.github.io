@@ -107,13 +107,13 @@ function giveXP(member, xpAmount) {
 
     if (member.level >= LEVEL_CAP) member.exp = 0
 
-    // Déblocage des classes de départ à niveau 10
-    if (leveledUp && member.level >= 10 && STARTER_CLASSES.includes(member.classId)) {
+    // Déblocage progressif des classes de départ
+    if (leveledUp && STARTER_CLASSES.includes(member.classId)) {
         if (!state.unlockedClasses) state.unlockedClasses = []
         const before = state.unlockedClasses.length
-        for (const id of STARTER_CLASSES) {
-            if (!state.unlockedClasses.includes(id)) state.unlockedClasses.push(id)
-        }
+        if (member.level >= 10 && !state.unlockedClasses.includes('iop'))      state.unlockedClasses.push('iop')
+        if (member.level >= 15 && !state.unlockedClasses.includes('cra'))      state.unlockedClasses.push('cra')
+        if (member.level >= 25 && !state.unlockedClasses.includes('eniripsa')) state.unlockedClasses.push('eniripsa')
         if (state.unlockedClasses.length > before) {
             showNotification('Nouvelles classes débloquées dans la Guilde !', 'info')
         }
@@ -184,12 +184,32 @@ function applyProgression(spell, lvl) {
         if (effect.type === 'heal' && patch.heal !== undefined) {
             effect.heal = patch.heal
         }
+        if (effect.type === 'hot' && patch.heal !== undefined) {
+            effect.heal = patch.heal
+        }
+        if (effect.type === 'hot' && patch.duration !== undefined) {
+            effect.duration = patch.duration
+        }
         if (effect.type === 'heal%maxHp' && patch.healPct !== undefined) {
             effect.heal = patch.healPct
         }
         if (effect.type === 'shield' && patch.shield) {
             if (patch.shield.value    !== undefined) effect.value    = patch.shield.value
+            if (patch.shield.levelPct !== undefined) effect.levelPct = patch.shield.levelPct
             if (patch.shield.duration !== undefined) effect.duration = patch.shield.duration
+        }
+        if (effect.type === 'renvoi' && patch.renvoi) {
+            if (patch.renvoi.ratio !== undefined) effect.ratio = patch.renvoi.ratio
+        }
+        if (effect.type === 'renvoiTotal' && patch.renvoiTotal) {
+            if (patch.renvoiTotal.ratio !== undefined) effect.ratio = patch.renvoiTotal.ratio
+        }
+        if (effect.type === 'oeilPourOeil' && patch.oeilPourOeil) {
+            if (patch.oeilPourOeil.ratio !== undefined) effect.ratio = patch.oeilPourOeil.ratio
+        }
+        if (effect.type === 'summon' && patch.summon) {
+            if (patch.summon.summonId !== undefined) effect.summonId = patch.summon.summonId
+            if (patch.summon.duration !== undefined) effect.duration = patch.summon.duration
         }
     }
 

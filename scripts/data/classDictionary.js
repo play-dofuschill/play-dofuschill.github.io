@@ -8,7 +8,7 @@ classes.iop = {
     name: 'Iop',
     role: 'DPS',
     image: 'img/classes/Iop_Male.png',
-    description: 'Guerrier brutal, dégâts physiques élevés.',
+    description: 'Guerrier brutal, puissance physiques élevés.',
     bst: {
         hp: 150, atk: 100, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 },
@@ -68,7 +68,7 @@ classes.cra = {
     name: 'Cra',
     role: 'Farm / DPS',
     image: 'img/classes/Cra_Male.png',
-    description: 'Archer agile, distance et taux de drop élevé.',
+    description: 'Archer agile, rapide et efficasse.',
     bst: {
         hp: 140, atk: 100, spd: 105,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 },

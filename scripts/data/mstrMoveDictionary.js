@@ -6,9 +6,9 @@
 RÉFÉRENCE EFFETS DE SORTS — copier-coller prêt à l'emploi
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-ÉLÉMENTS   : neutre | terre | feu | eau | air
-TARGET      : enemy (cible adverse) | self (le caster) | all_allies (toute l'équipe alliée)
-STATS BUFF  : atk | spd | flatDamage | finalDamagePct | spellDamagePct | damageReductionPct | critChance | critDamagePct
+ÉLÉMENTS    : neutre | terre | feu | eau | air
+TARGET       : enemy | self | all_allies | ally_random | ally_min_hp | all_enemies (raid, solo = ennemi principal)
+STATS BUFF   : atk | spd | flatDamage | finalDamagePct | spellDamagePct | damageReductionPct | critChance | critDamagePct
 
 ──────────────────────────────────────────────────────────────────────────────
 DÉGÂTS
@@ -34,14 +34,18 @@ DÉGÂTS
 SOINS
 ──────────────────────────────────────────────────────────────────────────────
 
-// Soin fixe sur le caster
-{ type: 'heal', heal: 50, target: 'self' }
+// heal accepte une valeur fixe ou une plage aléatoire : heal: 50  ou  heal: { min: 40, max: 60 }
+{ type: 'heal', heal: 50,                   target: 'self' }
+{ type: 'heal', heal: { min: 40, max: 60 }, target: 'self' }
 
-// Soin fixe sur toute l'équipe alliée
-{ type: 'heal_team', heal: 30, target: 'all_allies' }
+// Soin fixe sur toute l'équipe (formule : heal × (1 + healTeamPct/100))
+{ type: 'heal_team', heal: 30 }
 
-// Soin en % des HP max du caster (heal = valeur en %, ex: 70 = 70% des HP max)
+// Soin en % des HP max du caster
 { type: 'heal%maxHp', heal: 70, target: 'self' }
+
+// Soin en % des HP max de chaque allié vivant
+{ type: 'heal%maxHp_team', heal: 20 }
 
 // Vol de vie — soigne le caster d'un % des dégâts infligés par l'effet PRÉCÉDENT
 // (placer obligatoirement après un effet damage dans le tableau effects)
@@ -55,7 +59,7 @@ BUFFS / DEBUFFS
 { type: 'buff', stat: 'atk', value: 30, duration: 3, target: 'self' }
 
 // Buff sur toute l'équipe alliée
-{ type: 'buff_team', stat: 'atk', value: 20, duration: 2, target: 'all_allies' }
+{ type: 'buff_team', stat: 'atk', value: 20, duration: 2 }
 
 // Debuff sur la cible adverse
 { type: 'debuff', stat: 'atk', value: 40, duration: 3, target: 'enemy' }
@@ -67,31 +71,34 @@ SPÉCIAUX
 // Bouclier absorbant les dégâts avant les HP (ne se restack pas)
 { type: 'shield', value: 100, duration: 3, target: 'self' }
 
-// Renvoi de dégâts — le prochain coup reçu est renvoyé à l'attaquant au ratio indiqué
-// (ratio: 0.5 = 50% renvoyé, la cible prend 0 dégâts, usage unique)
+// Renvoi partiel — renvoie ratio% du prochain coup reçu, le caster encaisse le reste (usage unique)
 { type: 'renvoi', ratio: 0.5, target: 'self' }
 
+// Renvoi total — renvoie ratio% du prochain coup reçu, le caster encaisse 0 (usage unique)
+{ type: 'renvoiTotal', ratio: 1.0, target: 'self' }
+
 // Switch forcé du membre actif adverse
-// value: nb de crans à avancer dans la liste des membres vivants
-// (si pas assez de membres, prend le dernier disponible ; 1 seul vivant = aucun effet)
+// value: nb de crans à avancer dans la liste des membres vivants (1 seul vivant = aucun effet)
 { type: 'switch', value: 1, target: 'enemy' }
 
 // Relance le sort PRÉCÉDENT dans la rotation une deuxième fois
 // (sequence [A, B, repeat, C] → A – B – repeat – B – C – A – B – repeat – B – C)
 { type: 'repeat', target: 'self' }
 
-// Invocation d'une entité fixe pour N actions
-{ type: 'summon', summonId: 'kardorib', duration: 4, target: 'self' }
+// Invocation ennemie — remplace l'ennemi actif pour N actions
+{ type: 'summon', summonId: 'kardorib', duration: 4, target: 'enemy' }
 
-// Invocation aléatoire depuis une liste (un id tiré au hasard à chaque cast)
-{ type: 'summon', summonPool: ['tofu', 'bouftou', 'arakne'], duration: 3, target: 'self' }
+// Invocation aléatoire depuis une liste
+{ type: 'summon', summonPool: ['tofu', 'bouftou', 'arakne'], duration: 3, target: 'enemy' }
 
 // Portail Éliotrope : boost caster (+selfBonus% dmg, -resMalus% rés) + alliés (+allyBonus% dmg)
-// Tous les buffs durent N tours. Par défaut : selfBonus=25, resMalus=10, allyBonus=10
 { type: 'portal', duration: 3, selfBonus: 25, resMalus: 10, allyBonus: 10, target: 'self' }
 
 // Tourelle Steamer : DoT élémentaire sur l'ennemi, s'affiche "Tourelle" dans le log
 { type: 'turret', element: 'feu', value: 20, duration: 3, target: 'enemy' }
+
+// Bloque totalement tous les soins de la cible pendant N tours
+{ type: 'antiHeal', duration: 3, target: 'enemy' }
 
 // Effet aléatoire pondéré — tire une branche parmi choices selon les probabilités (sum = 1.0)
 // Chaque branche a un `chance` (0.0–1.0) et un tableau `effects` exécuté si tiré

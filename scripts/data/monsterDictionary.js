@@ -3431,7 +3431,7 @@ monsters.piouViolet = {
 monsters.dopeul_cra = {
     id: 'dopeul_cra',
     name: 'Dopeul Cra',
-    image: 'img/monstres/sprites/dopeul_cra.png',
+    image: 'img/monstres/Events/dopeul_cra.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3442,7 +3442,7 @@ monsters.dopeul_cra = {
 monsters.dopeul_iop = {
     id: 'dopeul_iop',
     name: 'Dopeul Iop',
-    image: 'img/monstres/sprites/dopeul_iop.png',
+    image: 'img/monstres/Events/dopeul_iop.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3453,7 +3453,7 @@ monsters.dopeul_iop = {
 monsters.dopeul_eniripsa = {
     id: 'dopeul_eniripsa',
     name: 'Dopeul Eniripsa',
-    image: 'img/monstres/sprites/dopeul_eniripsa.png',
+    image: 'img/monstres/Events/dopeul_eniripsa.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3464,7 +3464,7 @@ monsters.dopeul_eniripsa = {
 monsters.dopeul_ecaflip = {
     id: 'dopeul_ecaflip',
     name: 'Dopeul Ecaflip',
-    image: 'img/monstres/sprites/dopeul_ecaflip.png',
+    image: 'img/monstres/Events/dopeul_ecaflip.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3475,7 +3475,7 @@ monsters.dopeul_ecaflip = {
 monsters.dopeul_eliotrope = {
     id: 'dopeul_eliotrope',
     name: 'Dopeul Eliotrope',
-    image: 'img/monstres/sprites/dopeul_eliotrope.png',
+    image: 'img/monstres/Events/dopeul_eliotrope.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3486,7 +3486,7 @@ monsters.dopeul_eliotrope = {
 monsters.dopeul_enutrof = {
     id: 'dopeul_enutrof',
     name: 'Dopeul Enutrof',
-    image: 'img/monstres/sprites/dopeul_enutrof.png',
+    image: 'img/monstres/Events/dopeul_enutrof.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3497,7 +3497,7 @@ monsters.dopeul_enutrof = {
 monsters.dopeul_feca = {
     id: 'dopeul_feca',
     name: 'Dopeul Feca',
-    image: 'img/monstres/sprites/dopeul_feca.png',
+    image: 'img/monstres/Events/dopeul_feca.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3508,7 +3508,7 @@ monsters.dopeul_feca = {
 monsters.dopeul_forgelance = {
     id: 'dopeul_forgelance',
     name: 'Dopeul Forgelance',
-    image: 'img/monstres/sprites/dopeul_forgelance.png',
+    image: 'img/monstres/Events/dopeul_forgelance.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3519,7 +3519,7 @@ monsters.dopeul_forgelance = {
 monsters.dopeul_huppermage = {
     id: 'dopeul_huppermage',
     name: 'Dopeul Huppermage',
-    image: 'img/monstres/sprites/dopeul_huppermage.png',
+    image: 'img/monstres/Events/dopeul_huppermage.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3530,7 +3530,7 @@ monsters.dopeul_huppermage = {
 monsters.dopeul_osamodas = {
     id: 'dopeul_osamodas',
     name: 'Dopeul Osamodas',
-    image: 'img/monstres/sprites/dopeul_osamodas.png',
+    image: 'img/monstres/Events/dopeul_osamodas.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3541,7 +3541,7 @@ monsters.dopeul_osamodas = {
 monsters.dopeul_ouginak = {
     id: 'dopeul_ouginak',
     name: 'Dopeul Ouginak',
-    image: 'img/monstres/sprites/dopeul_ouginak.png',
+    image: 'img/monstres/Events/dopeul_ouginak.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3552,7 +3552,7 @@ monsters.dopeul_ouginak = {
 monsters.dopeul_pandawa = {
     id: 'dopeul_pandawa',
     name: 'Dopeul Pandawa',
-    image: 'img/monstres/sprites/dopeul_pandawa.png',
+    image: 'img/monstres/Events/dopeul_pandawa.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3563,7 +3563,7 @@ monsters.dopeul_pandawa = {
 monsters.dopeul_roublard = {
     id: 'dopeul_roublard',
     name: 'Dopeul Roublard',
-    image: 'img/monstres/sprites/dopeul_roublard.png',
+    image: 'img/monstres/Events/dopeul_roublard.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3574,7 +3574,7 @@ monsters.dopeul_roublard = {
 monsters.dopeul_sacrieur = {
     id: 'dopeul_sacrieur',
     name: 'Dopeul Sacrieur',
-    image: 'img/monstres/sprites/dopeul_sacrieur.png',
+    image: 'img/monstres/Events/dopeul_sacrieur.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3585,7 +3585,7 @@ monsters.dopeul_sacrieur = {
 monsters.dopeul_sadida = {
     id: 'dopeul_sadida',
     name: 'Dopeul Sadida',
-    image: 'img/monstres/sprites/dopeul_sadida.png',
+    image: 'img/monstres/Events/dopeul_sadida.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3596,7 +3596,7 @@ monsters.dopeul_sadida = {
 monsters.dopeul_sram = {
     id: 'dopeul_sram',
     name: 'Dopeul Sram',
-    image: 'img/monstres/sprites/dopeul_sram.png',
+    image: 'img/monstres/Events/dopeul_sram.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3607,7 +3607,7 @@ monsters.dopeul_sram = {
 monsters.dopeul_steamer = {
     id: 'dopeul_steamer',
     name: 'Dopeul Steamer',
-    image: 'img/monstres/sprites/dopeul_steamer.png',
+    image: 'img/monstres/Events/dopeul_steamer.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3618,7 +3618,7 @@ monsters.dopeul_steamer = {
 monsters.dopeul_xelor = {
     id: 'dopeul_xelor',
     name: 'Dopeul Xelor',
-    image: 'img/monstres/sprites/dopeul_xelor.png',
+    image: 'img/monstres/Events/dopeul_xelor.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3629,7 +3629,7 @@ monsters.dopeul_xelor = {
 monsters.dopeul_zobal = {
     id: 'dopeul_zobal',
     name: 'Dopeul Zobal',
-    image: 'img/monstres/sprites/dopeul_zobal.png',
+    image: 'img/monstres/Events/dopeul_zobal.png',
     rarity: 'commun',
     tier: 'normal',
     bst: {
@@ -3640,7 +3640,7 @@ monsters.dopeul_zobal = {
 monsters.dopeul_darkvlad = {
     id: 'dopeul_darkvlad',
     name: 'Dopeul Dark Vlad',
-    image: 'img/monstres/sprites/dopeul_darkvlad.png',
+    image: 'img/monstres/Events/dopeul_darkvlad.png',
     rarity: 'peu_commun',
     tier: 'elite',
     fixedLevel: 110,

@@ -3968,10 +3968,11 @@ transform: translateY(-1rem);
 
 /* ── HP bars (partagées ennemi + membres) ────────────────── */
 .hp-container   { display: flex; flex-direction: column; gap: 0.15rem; width: 100%; }
-.hp-bar         { background: rgba(0,0,0,0.3); border-radius: 0.3rem; height: 0.5rem; overflow: hidden; }
+.hp-bar         { position: relative; background: rgba(0,0,0,0.3); border-radius: 0.3rem; height: 0.7rem; overflow: hidden; }
 .hp-fill        { height: 100%; background: #2D7A2D; border-radius: 0.3rem; transition: width 0.12s; }
-.hp-fill.hp-mid { background: #ff9800; }
-.hp-fill.hp-low { background: #f44336; }
+.hp-fill.hp-mid    { background: #ff9800; }
+.hp-fill.hp-low    { background: #f44336; }
+.hp-fill.hp-shield { background: #b07fd4; }
 
 /* ── Section ennemi ──────────────────────────────────────── */
 #enemy-display {
@@ -4101,10 +4102,12 @@ transform: translateY(-1rem);
 .member-info     { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
 .member-title-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.1rem; }
 .member-name     { font-size: 0.9rem; font-weight: bold; color: white; }
-.member-hp-bar   { height: 0.4rem; background: rgba(0,0,0,0.3); border-radius: 0.2rem; overflow: hidden; }
+.member-hp-bar   { position: relative; height: 0.7rem; background: rgba(0,0,0,0.3); border-radius: 0.2rem; overflow: hidden; }
 .member-hp-fill  { height: 100%; background: #2D7A2D; transition: width 0.12s; }
-.member-hp-fill.hp-mid { background: #ff9800; }
-.member-hp-fill.hp-low { background: #f44336; }
+.member-hp-fill.hp-mid    { background: #ff9800; }
+.member-hp-fill.hp-low    { background: #f44336; }
+.member-hp-fill.hp-shield { background: #b07fd4; }
+.hp-bar-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.25rem; font-size: 0.48rem; font-weight: bold; color: white; text-shadow: 0 0 3px rgba(0,0,0,0.9); pointer-events: none; line-height: 1; }
 .member-xp-bar   { height: 0.3rem; background: rgba(0,0,0,0.3); border-radius: 0.2rem; overflow: hidden; margin-bottom: 0.25rem; }
 .member-xp-fill  { height: 100%; background: #007bc7; border-radius: 0.2rem; }
 .member-moves    { display: flex; flex-direction: column; gap: 0.3rem; }
@@ -5431,10 +5434,11 @@ transform: translateY(-1rem);
 .raid-bench-card.raid-swap-selected { box-shadow: 0 0 0 2px #ffd84d; opacity: 1; }
 .raid-bench-card .member-sprite { height: 1.5rem; width: auto; image-rendering: pixelated; }
 .raid-bench-card .raid-bench-name { font-size: 0.7rem; font-weight: bold; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.raid-bench-card .raid-bench-hp-bar { width: 100%; height: 0.3rem; background: rgba(255,255,255,0.15); border-radius: 0.15rem; overflow: hidden; margin-top: 0.15rem; }
+.raid-bench-card .raid-bench-hp-bar { position: relative; width: 100%; height: 0.7rem; background: rgba(255,255,255,0.15); border-radius: 0.15rem; overflow: hidden; margin-top: 0.15rem; }
 .raid-bench-card .raid-bench-hp-fill { height: 100%; background: #4caf50; border-radius: 0.15rem; transition: width 0.15s; }
-.raid-bench-card .raid-bench-hp-fill.hp-low  { background: #e53935; }
-.raid-bench-card .raid-bench-hp-fill.hp-mid  { background: #f57c00; }
+.raid-bench-card .raid-bench-hp-fill.hp-low    { background: #e53935; }
+.raid-bench-card .raid-bench-hp-fill.hp-mid    { background: #f57c00; }
+.raid-bench-card .raid-bench-hp-fill.hp-shield { background: #b07fd4; }
 .raid-bench-card .raid-bench-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 
 /* Labels de slot */

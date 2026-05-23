@@ -96,7 +96,7 @@ function assignMoveToSlot(classId, moveId) {
     // Restriction : bloque si un autre slot (hors swap) a déjà le même sigle
     const newRestriction = move[moveId]?.restriction
     if (newRestriction && !sourceSlot) {
-        const sigleLabel = { star: '★', arrow: '→', shield: '🛡' }[newRestriction] || newRestriction
+        const sigleLabel = { star: '★', arrow: '→', shield: '🛡', coeur: '❤' }[newRestriction] || newRestriction
         for (const s of ['slot1', 'slot2', 'slot3', 'slot4']) {
             if (s === targetSlot) continue
             if (move[member.moves[s]]?.restriction === newRestriction) {
@@ -216,6 +216,35 @@ function showDataHelp(key) {
     }
 
     openTooltip(title, body)
+}
+
+// ─── Textes des passifs ───────────────────────────────────────────────────────
+
+const PASSIVE_TEXTS = {
+    iop:        'Augmente sa Puissance de 10 / niveau au lieu de 5.',
+    cra:        'Augmente son Initiative de 0.2 / niveau au lieu de 0',
+    eniripsa:   'Tous les 6 sorts, soigne un allié vivant aléatoire de 20% de ses PV max.',
+    zobal:      'Tous les 6 sorts utilisés, gagne un bouclier = Niveau × 2 PV.',
+    sacrieur:   '≤ 50% PV : +5% dégâts finaux. ≤ 15% PV : +10% dégâts finaux.',
+    sram:       '+1% dégâts finaux par ennemi éliminé dans le combat (max +5%).',
+    feca:       '+2% résistances à tous les éléments par ennemi éliminé (max +10%).',
+    osamodas:   'Les invocations ont 2× plus de PV et d\'ATK.',
+    enutrofe:   '+15% taux de drop d\'items. Kamas × 2 quand un item est au niveau maximum.',
+    xelor:      'Cycle de 7 sorts (1→2→3→4→3→2→1) au lieu du cycle standard 1→2→3→4.',
+    huppermage: '+10% dégâts finaux si les 4 sorts équipés couvrent 4 éléments différents.',
+    sadida:     'Tous les 4 sorts, inflige −20 Initiative à l\'ennemi pendant 2 tours.',
+    roublard:   'À la mort, inflige 30% de ses PV max en dégâts neutres à l\'ennemi.',
+    ecaflip:    'À chaque cycle de 4 sorts, gagne un bonus ou malus aléatoire.',
+    steamer:    'Peut déployer des tourelles autonomes infligeant des dégâts à chaque tour.',
+    ouginak:    '+20% dégâts critiques.',
+    forgelance: 'Tous les sorts frappent en zone (tous les ennemis présents sont touchés).',
+    pandawa:    'Cycle : Normal → Ivresse (−20% Init, +20% dégâts, +10% rés.) → Gueule de bois (−20% dégâts, −10% rés.).',
+    eliotrope:  'Sorts de type portail — amplifie les dégâts alliés et les siens via des portails.',
+}
+
+function togglePassiveInfo(classId) {
+    const el = document.getElementById(`ms-passive-${classId}`)
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none'
 }
 
 // ─── Fiche personnage détaillée ───────────────────────────────────────────────
@@ -385,7 +414,15 @@ function showMemberSheet(member) {
                     <button onclick="openCosmeticPicker('${member.classId}')"
                         style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
                                background:var(--dark2);color:#fff;">🎨 Apparence</button>
+                    ${cls.passive ? `<button onclick="togglePassiveInfo('${member.classId}')"
+                        style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
+                               background:var(--dark2);color:#fff;">⚡ Passif</button>` : ''}
                 </div>
+                ${cls.passive ? `<div id="ms-passive-${member.classId}" style="display:none;margin-top:0.3rem;
+                    padding:0.4rem 0.6rem;background:rgba(255,255,255,0.07);border-radius:4px;
+                    font-size:0.75rem;text-align:center;color:rgba(255,255,255,0.85);line-height:1.4;">
+                    ${PASSIVE_TEXTS[member.classId] || 'Passif en cours d\'implémentation.'}
+                </div>` : ''}
             </div>
             <div class="ms-equip-col">
                 ${msEquipSlot('amulette')}

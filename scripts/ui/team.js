@@ -163,9 +163,25 @@ function openGuildePicker(slotIndex) {
 }
 
 const CLASS_OBTAIN = {
-    iop:      'Atteignez le niveau 10 avec votre classe de départ pour débloquer automatiquement les trois classes de départ.',
-    cra:      'Atteignez le niveau 10 avec votre classe de départ pour débloquer automatiquement les trois classes de départ.',
-    eniripsa: 'Atteignez le niveau 10 avec votre classe de départ pour débloquer automatiquement les trois classes de départ.',
+        iop:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
+        cra:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
+        eniripsa:   'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
+        enutrofe:   'Vieillard ayant connu la guerre opposant Bonta à Brâkmar, il est particulièrement proche de ses kamas... Peut-être que si vous en accumulez assez, il acceptera de rejoindre votre guilde ?',
+        xelor:      "Maîtres du temps, ce n'est qu'après avoir prouvé votre valeur en vous imposant victorieux face à l'un de ses semblables qu'il vous rejoindra.",
+        huppermage: "Grand maître des éléments, il vous faudra lui prouver que vous aussi, vous savez dompter les créatures maîtrisant ces quatre magies que sont la Terre, le Feu, l'Eau et l'Air.",
+        zobal:      "Gardiens des Masques Ancestraux, ils ne s'allient qu'à ceux dont la collection de familiers témoigne d'une vraie compréhension du monde.",
+        sacrieur:   "Guerriers au sang lié à leurs douleurs, ils ne s'éveillent qu'au contact de ceux qui ont encaissé des centaines de combats sans jamais fuir.",
+        sram:       "Assassin des ombres qui tire sa puissance des âmes terrassées, le Sram n'émerge que lorsqu'il flaire un chasseur d'élite.",
+        feca:       "Gardien de troupeau aux glyphes impénétrables, cet aventurier ne vous rejoindra que si vous triomphez d'un adversaire aussi inébranlable que lui.",
+        osamodas:   "Maître du monde animal, il ne fait confiance qu'aux aventuriers dont la collection de créatures rivalise avec la sienne.",
+        sadida:     "Esprit de la forêt qui communique avec les plantes, il est trop occupé à essayer d'apaiser les arbres corrompus. Attendez que quelqu'un parvienne à trouver comment soigner ce mal avant de vous accorder sa bénédiction.",
+        roublard:   "Artificier kamikaze au sens du danger... inexistant, vous ne le recruterez pas, car il n'accepte dans ses rangs que les téméraires ayant survécu aux pires affrontements... (Enfin, c'est son amour-propre qui parle ; il saura vous prêter main-forte contre quelques kamas).",
+        ecaflip:    "Joueur invétéré dont la fortune ne tient qu'à un fil, si vous le battez aux cartes, peut-être aurez-vous la chance de le compter parmi vous.",
+        steamer:    "Ingénieur de guerre implacable, cet homme de fer ne vous prêtera main-forte que si vous capturez un certain pirate des hauts-fonds en possession d'un important arsenal technomagique.",
+        ouginak:    "Chasseur bestial dont l'instinct prédateur ne s'éveille qu'au contact de vrais guerriers — ceux capables de traquer et d'abattre les proies les plus redoutables.",
+        forgelance: "Lancier dont la puissance n'a d'égal que sa précision, il ne jure que par sa lance et ne ploie le genou que devant les aventuriers ayant mis à genoux les plus grands boss du monde.",
+        pandawa:    "Bretteur ivre dont l'équilibre défie toute logique, il s'allie à ceux qui savent rester... à peu près debout face aux adversaires les plus coriaces. Son péché mignon (après l'alcool) ? Il adore le poulpe.",
+        eliotrope:  "Maître des portails dont les arcanes transcendent l'espace, cet être à l'apparence rappelant celle des dragons ne vous rejoindra que si vous êtes plus fort qu'eux.",
 }
 
 function showClassObtain(classId) {
@@ -372,7 +388,9 @@ function renderEquipPickGrid() {
         const handler  = (taken || locked) ? '' : `onclick="_doEquipPick('${e.id}')"`
 
         if (isFamiliar) {
-            const bonus = e.famBonus ? `+${e.famBonus.value} ${formatBonusStat(e.famBonus.stat)}` : '—'
+            const FAM_BUBBLE_LABELS = { atk: 'Pui', dropRate: '% drop', xpGain: 'XP' }
+            const statLabel = e.famBonus ? (FAM_BUBBLE_LABELS[e.famBonus.stat] ?? formatBonusStat(e.famBonus.stat)) : null
+            const bonus = e.famBonus ? `+${e.famBonus.value} ${statLabel}` : '—'
             html += `<div class="equip-pick-item${disClass}" ${handler}
                          oncontextmenu="event.preventDefault(); showMonsterTooltip('${e.id}')"
                          title="${e.mob?.name || e.id}">
@@ -547,6 +565,8 @@ function initTeamDragDrop() {
     const preview = document.getElementById('team-preview')
     if (!preview) return
 
+    // ── Desktop (HTML5 drag API) ──────────────────────────────────────────────
+
     preview.addEventListener('dragstart', e => {
         const card = e.target.closest('[data-slot-index]')
         if (!card || !card.classList.contains('explore-team-member')) return
@@ -579,12 +599,141 @@ function initTeamDragDrop() {
         if (!card.classList.contains('explore-team-member')) return
         e.preventDefault()
 
-        // Swap
         const tmp = state.team[_dragSourceIndex]
         state.team[_dragSourceIndex] = state.team[targetIndex]
         state.team[targetIndex] = tmp
 
         saveGame()
         updateTeamUI()
+    })
+
+    // ── Mobile (touch drag) ───────────────────────────────────────────────────
+
+    let _touchDragCard   = null
+    let _touchDragSrc    = -1
+    let _canStartDrag    = false
+    let _touchDragActive = false
+    let _touchDragTimer  = null
+    let _touchStartX     = 0
+    let _touchStartY     = 0
+    let _touchGhost      = null
+
+    function _touchDragCleanup() {
+        if (_touchGhost) { _touchGhost.remove(); _touchGhost = null }
+        if (_touchDragCard) {
+            _touchDragCard.style.opacity    = ''
+            _touchDragCard.style.transform  = ''
+            _touchDragCard.style.transition = ''
+        }
+        preview.querySelectorAll('.drag-dragging, .drag-over')
+            .forEach(el => el.classList.remove('drag-dragging', 'drag-over'))
+        _touchDragCard   = null
+        _touchDragSrc    = -1
+        _canStartDrag    = false
+        _touchDragActive = false
+    }
+
+    preview.addEventListener('touchstart', e => {
+        const card = e.target.closest('.explore-team-member[data-slot-index]')
+        if (!card || state.isRunning || e.touches.length !== 1) return
+        // Laisse les clics sur les boutons équip / retirer se propager normalement
+        if (e.target.closest('.equip-bubble, .team-slot-remove')) return
+
+        _touchDragCard   = card
+        _touchDragSrc    = parseInt(card.dataset.slotIndex)
+        _touchStartX     = e.touches[0].clientX
+        _touchStartY     = e.touches[0].clientY
+        _canStartDrag    = false
+        _touchDragActive = false
+
+        clearTimeout(_touchDragTimer)
+        _touchDragTimer = setTimeout(() => {
+            _touchDragTimer = null
+            _canStartDrag   = true
+            window.cancelLongPress?.()   // empêche l'ouverture du tooltip de classe
+            navigator.vibrate?.(50)
+            card.style.transform  = 'scale(1.02)'
+            card.style.transition = 'transform 0.1s'
+        }, 250)
+    }, { passive: true })
+
+    preview.addEventListener('touchmove', e => {
+        if (_touchDragSrc === -1 || !_touchDragCard) return
+
+        const touch = e.touches[0]
+        const dx    = touch.clientX - _touchStartX
+        const dy    = touch.clientY - _touchStartY
+
+        if (!_canStartDrag) {
+            if (Math.hypot(dx, dy) > 10) {
+                // Mouvement trop rapide → scroll normal, annule le drag
+                clearTimeout(_touchDragTimer)
+                _touchDragTimer = null
+                _touchDragCard.style.transform  = ''
+                _touchDragCard.style.transition = ''
+                _touchDragCard  = null
+                _touchDragSrc   = -1
+            }
+            return
+        }
+
+        e.preventDefault()
+
+        if (!_touchDragActive) {
+            _touchDragActive = true
+            _touchDragCard.style.opacity    = '0.4'
+            _touchDragCard.style.transform  = ''
+            _touchDragCard.style.transition = ''
+
+            _touchGhost = _touchDragCard.cloneNode(true)
+            Object.assign(_touchGhost.style, {
+                position:      'fixed',
+                pointerEvents: 'none',
+                zIndex:        '9999',
+                opacity:       '0.85',
+                transform:     'scale(1.05)',
+                transition:    'none',
+                width:         _touchDragCard.offsetWidth  + 'px',
+                left:          (touch.clientX - _touchDragCard.offsetWidth  / 2) + 'px',
+                top:           (touch.clientY - _touchDragCard.offsetHeight / 2) + 'px',
+            })
+            document.body.appendChild(_touchGhost)
+        }
+
+        if (_touchGhost) {
+            _touchGhost.style.left = (touch.clientX - _touchGhost.offsetWidth  / 2) + 'px'
+            _touchGhost.style.top  = (touch.clientY - _touchGhost.offsetHeight / 2) + 'px'
+        }
+
+        const below  = document.elementFromPoint(touch.clientX, touch.clientY)
+        const target = below?.closest('.explore-team-member[data-slot-index]')
+        preview.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'))
+        if (target && parseInt(target.dataset.slotIndex) !== _touchDragSrc) {
+            target.classList.add('drag-over')
+        }
+    }, { passive: false })
+
+    // touchend sur document pour capturer le relâché hors du preview
+    document.addEventListener('touchend', e => {
+        if (_touchDragSrc === -1) return
+        clearTimeout(_touchDragTimer)
+        _touchDragTimer = null
+
+        if (_touchDragActive) {
+            window.suppressNextClick?.()
+            const touch  = e.changedTouches[0]
+            const below  = document.elementFromPoint(touch.clientX, touch.clientY)
+            const target = below?.closest('.explore-team-member[data-slot-index]')
+            const tIdx   = target ? parseInt(target.dataset.slotIndex) : -1
+            if (tIdx !== -1 && tIdx !== _touchDragSrc) {
+                const tmp = state.team[_touchDragSrc]
+                state.team[_touchDragSrc] = state.team[tIdx]
+                state.team[tIdx]          = tmp
+                saveGame()
+                updateTeamUI()
+            }
+        }
+
+        _touchDragCleanup()
     })
 }

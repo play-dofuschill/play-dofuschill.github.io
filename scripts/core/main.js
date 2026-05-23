@@ -64,7 +64,8 @@ const ELEM_COLORS = {
 const _RESTRICTION_SVG = {
     star:   c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M21.951 9.67a1 1 0 0 0-.807-.68l-5.699-.828l-2.548-5.164A.98.98 0 0 0 12 2.486v16.28l5.097 2.679a1 1 0 0 0 1.451-1.054l-.973-5.676l4.123-4.02a1 1 0 0 0 .253-1.025" opacity="0.5"/><path fill="currentColor" d="M11.103 2.998L8.555 8.162l-5.699.828a1 1 0 0 0-.554 1.706l4.123 4.019l-.973 5.676a1 1 0 0 0 1.45 1.054L12 18.765V2.503a1.03 1.03 0 0 0-.897.495"/></svg>`,
     arrow:  c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>`,
-    shield: c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12.832 21.801c3.126-.626 7.168-2.875 7.168-8.69c0-5.291-3.873-8.815-6.658-10.434c-.619-.36-1.342.113-1.342.828v1.828c0 1.442-.606 4.074-2.29 5.169c-.86.559-1.79-.278-1.894-1.298l-.086-.838c-.1-.974-1.092-1.565-1.87-.971C4.461 8.46 3 10.33 3 13.11C3 20.221 8.289 22 10.933 22q.232 0 .484-.015c.446-.056 0 .099 1.415-.185" opacity="0.5"/><path fill="currentColor" d="M8 18.444c0 2.62 2.111 3.43 3.417 3.542c.446-.056 0 .099 1.415-.185C13.871 21.434 15 20.492 15 18.444c0-1.297-.819-2.098-1.46-2.473c-.196-.115-.424.03-.441.256c-.056.718-.746 1.29-1.215.744c-.415-.482-.59-1.187-.59-1.638v-.59c0-.354-.357-.59-.663-.408C9.495 15.008 8 16.395 8 18.445"/></svg>`
+    shield: c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12.832 21.801c3.126-.626 7.168-2.875 7.168-8.69c0-5.291-3.873-8.815-6.658-10.434c-.619-.36-1.342.113-1.342.828v1.828c0 1.442-.606 4.074-2.29 5.169c-.86.559-1.79-.278-1.894-1.298l-.086-.838c-.1-.974-1.092-1.565-1.87-.971C4.461 8.46 3 10.33 3 13.11C3 20.221 8.289 22 10.933 22q.232 0 .484-.015c.446-.056 0 .099 1.415-.185" opacity="0.5"/><path fill="currentColor" d="M8 18.444c0 2.62 2.111 3.43 3.417 3.542c.446-.056 0 .099 1.415-.185C13.871 21.434 15 20.492 15 18.444c0-1.297-.819-2.098-1.46-2.473c-.196-.115-.424.03-.441.256c-.056.718-.746 1.29-1.215.744c-.415-.482-.59-1.187-.59-1.638v-.59c0-.354-.357-.59-.663-.408C9.495 15.008 8 16.395 8 18.445"/></svg>`,
+    coeur:  c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20.703l-.343.667a.75.75 0 0 0 .686 0zm0 0l.343.667a.75.75 0 0 1-.686 0zM2.019 10.39c-.144-3.4 2.496-6.14 5.761-6.14c1.718 0 3.291.757 4.22 1.986c.93-1.23 2.502-1.987 4.22-1.987c3.265 0 5.905 2.74 5.761 6.14c-.14 3.312-2.374 6.25-5.498 8.368l-.003.002l-4.137 2.556a.75.75 0 0 1-.686 0l-4.14-2.558l-.003-.002C4.393 16.641 2.16 13.703 2.02 10.39"/></svg>`
 }
 function moveRestrictionSigle(mv, elem) {
     if (!mv?.restriction) return ''
@@ -84,7 +85,7 @@ const state = {
     inventory: {},
     collection: {},
     seenMonsters: {},
-    kamas: 50,
+    kamas: 0,
     hasChosenStarter: false,
     theme: 'dark',
     tutorial: 'intro',
@@ -761,10 +762,10 @@ function initGame() {
 
     // Long-press mobile → déclenche contextmenu synthétique sur tous les éléments
     let longPressTimer = null
-    let _longPressAt = 0
-    // Listener persistant : avale les clicks synthétiques dans les 350ms qui suivent un long press
+    let _suppressNextClick = false
+    // Listener persistant : avale uniquement le click synthétique généré juste après un long-press
     document.addEventListener('click', e => {
-        if (Date.now() - _longPressAt < 350) { e.stopPropagation(); e.preventDefault() }
+        if (_suppressNextClick) { _suppressNextClick = false; e.stopPropagation(); e.preventDefault() }
     }, { capture: true })
     document.addEventListener('touchstart', e => {
         const x = e.touches[0].clientX
@@ -772,12 +773,16 @@ function initGame() {
         const target = e.target
         longPressTimer = setTimeout(() => {
             longPressTimer = null
-            _longPressAt = Date.now()
+            _suppressNextClick = true
             target.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: x, clientY: y }))
         }, 600)
     }, { passive: true })
     document.addEventListener('touchend', () => { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null } })
     document.addEventListener('touchmove', () => { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null } })
+
+    // Fonctions utilitaires exposées pour le touch drag-and-drop (team.js)
+    window.cancelLongPress    = () => { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null } }
+    window.suppressNextClick  = () => { _suppressNextClick = true }
 
     // Corrige le tutorial si la sauvegarde est antérieure au système de tutorial
     if (state.hasChosenStarter && state.tutorial === 'intro') {
@@ -831,3 +836,7 @@ window.addEventListener('load', initGame)
 
 // Sauvegarde automatique toutes les 30s
 setInterval(saveGame, 30000)
+
+// Sauvegarde immédiate à la fermeture (beforeunload desktop, visibilitychange mobile)
+window.addEventListener('beforeunload', saveGame)
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveGame() })

@@ -2,17 +2,18 @@
 
 const move = {}
 
-/* 
+/*
 
-restriction: 'star',   // ★  — ou 'arrow' (→) ou 'shield' (🛡)
+restriction: 'star',   // ★  — ou 'arrow' (→) ou 'shield' (🛡) ou 'coeur' (❤)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RÉFÉRENCE EFFETS DE SORTS — copier-coller prêt à l'emploi
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-ÉLÉMENTS   : neutre | terre | feu | eau | air
-TARGET      : enemy (cible adverse) | self (le caster) | all_allies (toute l'équipe alliée) | all_enemies (tous les ennemis — raid uniquement, solo = ennemi principal)
-STATS BUFF  : atk | spd | flatDamage | finalDamagePct | spellDamagePct | damageReductionPct | critChance | critDamagePct
+ÉLÉMENTS    : neutre | terre | feu | eau | air
+TARGET       : enemy | self | all_allies | ally_random | ally_min_hp | all_enemies (raid, solo = ennemi principal)
+STATS BUFF   : atk | spd | flatDamage | finalDamagePct | spellDamagePct | damageReductionPct | critChance | critDamagePct
+               healPct | healFlat | healTeamPct | healMaxHpPct | lifestealPct
 
 ──────────────────────────────────────────────────────────────────────────────
 DÉGÂTS
@@ -20,6 +21,10 @@ DÉGÂTS
 
 // Dégâts directs
 { type: 'damage', element: 'feu', damage: { min: 10, max: 20 }, target: 'enemy' }
+
+// Auto-dégâts (caster ou allié — utilise les résistances de la cible)
+{ type: 'damage', element: 'neutre', damage: { min: 10, max: 20 }, target: 'self' }
+{ type: 'damage', element: 'neutre', damage: { min: 10, max: 20 }, target: 'ally_random' }
 
 // Splash simple : e2 = X% des dégâts de e1 (bypass défenses, pas d'érosion)
 { type: 'damage', element: 'air', damage: { min: 10, max: 20 }, splashPct: 50, target: 'enemy' }
@@ -30,14 +35,10 @@ DÉGÂTS
 // Double splash en cascade : e2 = X% de e1, e3 = Y% de e2 (chaîne brisée si e2 est mort)
 { type: 'damage', element: 'air', damage: { min: 10, max: 20 }, splashPct: 75, splashPct2: 50, splashChain: true, target: 'enemy' }
 
-// Cible un slot ennemi fixe — enemy_1=slot0, enemy_2=slot1, enemy_3=slot2
-// En solo : enemy_1 = ennemi unique, enemy_2/enemy_3 = ignorés
-// ratio : multiplicateur de dégâts (optionnel, défaut 1.0)
+// Cible un slot ennemi fixe — enemy_1=slot0, enemy_2=slot1, enemy_3=slot2 (ratio : mult dégâts, défaut 1.0)
 { type: 'damage', element: 'terre', damage: { min: 10, max: 20 }, target: 'enemy_2', ratio: 0.5 }
 
-// Rotation cyclique (raid) : stack%3 détermine à la fois la cible ET le palier scalingMultipliers
-// Cast 1 → enemies[0] à mult[0], cast 2 → enemies[1] à mult[1], cast 3 → enemies[2] à mult[2], cycle
-// En solo : frappe toujours l'ennemi unique, scalingMultipliers cycle normalement
+// Rotation cyclique (raid) : stack%3 détermine cible ET palier scalingMultipliers
 { type: 'damage', element: 'terre', damage: { min: 10, max: 20 }, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_cycle' }
 
 // Dégâts sur la durée (DOT — tique au début du tour de la cible)
@@ -46,15 +47,29 @@ DÉGÂTS
 ──────────────────────────────────────────────────────────────────────────────
 SOINS
 ──────────────────────────────────────────────────────────────────────────────
+// Formule heal : (heal × (1 + ATK×0.30/100) + healFlat) × (1 + healPct/100) × antiHeal
+// heal accepte une valeur fixe ou une plage aléatoire : heal: 50  ou  heal: { min: 40, max: 60 }
 
-// Soin fixe sur le caster
-{ type: 'heal', heal: 50, target: 'self' }
+// Soin sur le caster / l'allié le moins en vie / un allié aléatoire
+{ type: 'heal', heal: 50,                   target: 'self' }
+{ type: 'heal', heal: { min: 40, max: 60 }, target: 'ally_min_hp' }
+{ type: 'heal', heal: 50,                   target: 'ally_random' }
 
-// Soin fixe sur toute l'équipe alliée
-{ type: 'heal_team', heal: 30, target: 'all_allies' }
+// Soin fixe sur toute l'équipe (formule : heal × (1 + healTeamPct/100))
+{ type: 'heal_team', heal: 30 }
 
-// Soin en % des HP max du caster (heal = valeur en %, ex: 70 = 70% des HP max)
+// Soin en % des HP max de la cible (caster, ally_min_hp ou ally_random)
 { type: 'heal%maxHp', heal: 70, target: 'self' }
+{ type: 'heal%maxHp', heal: 10, target: 'ally_min_hp' }
+
+// Soin en % des HP max de chaque allié vivant (% calculé sur les HP max de chacun)
+{ type: 'heal%maxHp_team', heal: 20 }
+
+// Soin sur la durée (HoT — tique au début du tour de la cible, antiHeal bloque le tick)
+// Formule identique à heal : (heal × (1 + ATK×0.30/100) + healFlat) × (1 + healPct/100), calculée à l'application
+// heal accepte une valeur fixe ou une plage : heal: 20  ou  heal: { min: 15, max: 25 }
+{ type: 'hot', heal: 20, duration: 3, target: 'self' }
+{ type: 'hot', heal: 20, duration: 3, target: 'ally_random' }
 
 // Vol de vie — soigne le caster d'un % des dégâts infligés par l'effet PRÉCÉDENT
 // (placer obligatoirement après un effet damage dans le tableau effects)
@@ -64,14 +79,19 @@ SOINS
 BUFFS / DEBUFFS
 ──────────────────────────────────────────────────────────────────────────────
 
-// Buff sur le caster
+// Buff sur le caster / l'allié le moins en vie / un allié aléatoire
 { type: 'buff', stat: 'atk', value: 30, duration: 3, target: 'self' }
+{ type: 'buff', stat: 'atk', value: 30, duration: 3, target: 'ally_min_hp' }
+{ type: 'buff', stat: 'atk', value: 30, duration: 3, target: 'ally_random' }
 
 // Buff sur toute l'équipe alliée
-{ type: 'buff_team', stat: 'atk', value: 20, duration: 2, target: 'all_allies' }
+{ type: 'buff_team', stat: 'atk', value: 20, duration: 2 }
 
 // Debuff sur la cible adverse
 { type: 'debuff', stat: 'atk', value: 40, duration: 3, target: 'enemy' }
+
+// Auto-debuff (caster ou allié)
+{ type: 'debuff', stat: 'atk', value: 10, duration: 2, target: 'self' }
 
 ──────────────────────────────────────────────────────────────────────────────
 SPÉCIAUX
@@ -80,99 +100,45 @@ SPÉCIAUX
 // Bouclier absorbant les dégâts avant les HP (ne se restack pas)
 { type: 'shield', value: 100, duration: 3, target: 'self' }
 
-// Renvoi de dégâts — le prochain coup reçu est renvoyé à l'attaquant au ratio indiqué
-// (ratio: 0.5 = 50% renvoyé, la cible prend 0 dégâts, usage unique)
+// Renvoi partiel — renvoie ratio% du prochain coup reçu, le caster encaisse le reste (usage unique)
 { type: 'renvoi', ratio: 0.5, target: 'self' }
 
+// Renvoi total — renvoie ratio% du prochain coup reçu, le caster encaisse 0 (usage unique)
+{ type: 'renvoiTotal', ratio: 1.0, target: 'self' }
+
+// Oeil pour Oeil — copie le prochain buff ennemi à ratio% sur le caster (usage unique)
+{ type: 'oeilPourOeil', ratio: 0.8, target: 'self' }
+
 // Switch forcé du membre actif adverse
-// value: nb de crans à avancer dans la liste des membres vivants
-// (si pas assez de membres, prend le dernier disponible ; 1 seul vivant = aucun effet)
+// value: nb de crans à avancer dans la liste des membres vivants (1 seul vivant = aucun effet)
 { type: 'switch', value: 1, target: 'enemy' }
 
 // Relance le sort PRÉCÉDENT dans la rotation une deuxième fois
 // (sequence [A, B, repeat, C] → A – B – repeat – B – C – A – B – repeat – B – C)
 { type: 'repeat', target: 'self' }
 
-// Invocation d'une entité fixe pour N actions
-{ type: 'summon', summonId: 'kardorib', duration: 4, target: 'self' }
+// Invocation alliée — remplace le caster dans son slot pour N actions, onDeath déclenche à la fin
+{ type: 'summon', summonId: 'lapino', duration: 2, target: 'self' }
 
-// Invocation aléatoire depuis une liste (un id tiré au hasard à chaque cast)
-{ type: 'summon', summonPool: ['tofu', 'bouftou', 'arakne'], duration: 3, target: 'self' }
+// Invocation ennemie — remplace l'ennemi actif pour N actions
+{ type: 'summon', summonId: 'kardorib', duration: 4, target: 'enemy' }
+
+// Invocation aléatoire depuis une liste
+{ type: 'summon', summonPool: ['tofu', 'bouftou', 'arakne'], duration: 3, target: 'enemy' }
 
 // Portail Éliotrope : boost caster (+selfBonus% dmg, -resMalus% rés) + alliés (+allyBonus% dmg)
-// Tous les buffs durent N tours. Par défaut : selfBonus=25, resMalus=10, allyBonus=10
 { type: 'portal', duration: 3, selfBonus: 25, resMalus: 10, allyBonus: 10, target: 'self' }
 
 // Tourelle Steamer : DoT élémentaire sur l'ennemi, s'affiche "Tourelle" dans le log
 { type: 'turret', element: 'feu', value: 20, duration: 3, target: 'enemy' }
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-STRUCTURE D'UN SORT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+──────────────────────────────────────────────────────────────────────────────
+ANTI-SOIN
+──────────────────────────────────────────────────────────────────────────────
 
-─────────────────────────────────────────────────────────────
-EXEMPLE DE SORT SIMPLE SANS EFFETS
-─────────────────────────────────────────────────────────────
+// Bloque totalement tous les soins de la cible pendant N tours (heal, heal%maxHp, lifesteal, etc.)
+{ type: 'antiHeal', duration: 3, target: 'enemy' }
 
-move.exemple = {
-    id: 'exemple',
-    name: 'Sort Exemple',
-    classId: 'iop',
-    cooldownMs: 2000,
-    effects: [{
-    type: 'damage',
-    element: 'feu',
-    damage: {min: 10,max: 15},
-    target: 'enemy'}]
-}
-
-─────────────────────────────────────────────────────────────
-EXEMPLE DE SORT COMPLEXE
-─────────────────────────────────────────────────────────────
-
-move.exemple_complexe = {
-    id: 'exemple_complexe',
-    name: 'Sort Complexe',
-    classId: 'eniripsa',
-    cooldownMs: 3000,
-    effects: [
-    // dégâts{
-    type: 'damage',
-    element: 'eau',
-    damage: {min: 20,max: 25},
-    target: 'enemy'},
-    // soin basé sur dégâts infligés{
-    type: 'lifesteal',
-    ratio: 0.5,
-    target: 'self'},
-    // buff{
-    type: 'buff',
-    stat: 'atk',
-    value: 20,
-    duration: 2,
-    target: 'self'}]
-}
-─────────────────────────────────────────────POUR METTRE DE L'EROSION SUPP SUR LES SORTS─────────────────────────────────────────────
-move.erosion_maximale = {
-    id: 'erosion_maximale',
-    name: 'Érosion Maximale',
-    classId: 'iop',
-    effects: [{
-        type: 'buff_team',      // s'applique à tous les membres vivants
-        stat: 'erosionBonus',
-        value: 0.05,            // +5% d'érosion supplémentaire (soit 10% total)
-        duration: 8
-    }]
-}
-move.epee_divine = {
-    effects: [{
-        type: 'damage',
-        element: 'air',
-        damage: { min: 14, max: 17 },
-        target: 'enemy',
-        erosionRate: 0        // 0 = pas d'érosion, 0.10 = 10%
-    }]
-}
 */
 
 // #region IOP ─────────────────────────────────────────────
@@ -184,13 +150,13 @@ move.pression = {
     cooldownMs: 2000,
     effects: [
         {type: 'damage', element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'},
-        {type: 'buff', stat: 'erosionBonus', value: 0.10, duration: 3, target: 'self'}],
+        {type: 'buff', stat: 'erosionBonus', value: 0.10, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 20, max: 23}, buff: {duration: 4}}},
+                        patch: {damage: {min: 20, max: 23}, buff: {duration: 5}}},
                        {lvl: 132,
-                        patch: {damage: {min: 26, max: 30}, buff: {duration: 5}}}],
+                        patch: {damage: {min: 26, max: 30}, buff: {duration: 6}}}],
     description: "Tape l'ennemi dans l'élément terre et augmente l'érosion de 10% sur tous les prochains sorts."
 }
 move.epee_divine = {
@@ -216,13 +182,13 @@ move.couperet = {
     cooldownMs: 2000,
     effects: [
         {type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'},
-        {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
+        {type: 'debuff', stat: 'spd', value: 10, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 22, max: 25}, buff: {value: 15, duration: 2}}},
+                        patch: {damage: {min: 22, max: 25}, buff: {value: 15, duration: 3}}},
                        {lvl: 134,
-                        patch: {damage: {min: 28, max: 32}, buff: {value: 20, duration: 3}}}],
+                        patch: {damage: {min: 28, max: 32}, buff: {value: 20, duration: 4}}}],
     description: "Tape l'ennemi dans l'élément feu et réduit sa vitesse pour ses prochains coups."
 }
 move.ferveur = {
@@ -259,8 +225,8 @@ move.bond = {
     id: 'bond',
     name: 'Bond',
     classId: 'iop',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self'}],
+    cooldownMs: 1000,
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,  
@@ -301,8 +267,8 @@ move.vitalite = {
     id: 'vitalite',
     name: 'Vitalité',
     classId: 'iop',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'maxHp', value: 100, duration: 2, target: 'self'}],
+    cooldownMs: 2200,
+    effects: [{type: 'buff', stat: 'maxHp', value: 100, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,  
@@ -345,8 +311,8 @@ move.puissance = {
     id: 'puissance',
     name: 'Puissance',
     classId: 'iop',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self'}],
+    cooldownMs: 2200,
+    effects: [{type: 'buff', stat: 'atk', value: 100, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,  
@@ -369,109 +335,76 @@ move.tempete_de_puissance = {
                         patch: {damage: {min: 27, max: 30}}}],
     description: "Tape de plus en plus fort à chaque lancés, revient a la normale au 4ème. En raid, frappe successivement l'ennemi principal, le sondaire et le tertiaire."
 }
-// move.endurance = {
-//     id: 'endurance',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 57,
-//                         patch: {}},
-//                        {lvl: 117,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 184,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.vertu = {
-//     id: 'vertu',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 61,
-//                         patch: {}},
-//                        {lvl: 122,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 189,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.epee_de_iop = {
-//     id: 'epee_de_iop',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 65,
-//                         patch: {}},
-//                        {lvl: 127,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 194,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.friction = {
-//     id: 'friction',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 69,
-//                         patch: {}},
-//                        {lvl: 131,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 198,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.epee_celeste = {
-//     id: 'epee_celeste',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 73,
-//                         patch: {}},
-//                        {lvl: 137,  
-//                         patch: {buff: { value: 30 }}}],
-//     description: ""
-// }
+move.endurance = {
+    id: 'endurance',
+    name: 'Endurance',
+    classId: 'iop',
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 22, max: 25}, target: 'enemy'},
+        {type: 'shield', levelPct: 0.75, duration: 4, target: 'self'}],
+    spellProgression: [{lvl: 57,
+                        patch: {}},
+                       {lvl: 117,  
+                        patch: {damage: {min: 27, max: 30}}},
+                       {lvl: 184,
+                        patch: {damage: {min: 30, max: 34}}}],
+    description: "Tape l'ennemi dans l'élément eau et applique un bouclier égal à 75% de son niveau pour 2 coups."
+}
+move.vertu = {
+    id: 'vertu',
+    name: 'Vertu',
+    classId: 'iop',
+    cooldownMs: 3000,
+    effects: [{type: 'shield', levelPct: 3, duration: 3, target: 'self'}],
+    spellProgression: [{lvl: 37,
+                        patch: {}},
+                       {lvl: 92,  
+                        patch: {shield: { levelPct: 4 }}},
+                       {lvl: 159,
+                        patch: {shield: { levelPct: 5, duration: 4 }}}],
+    description: "S'applique des bouclier afin de résister aux prochains coups reçus."
+}
+move.epee_de_iop = {
+    id: 'epee_de_iop',
+    name: 'Épée de iop',
+    classId: 'iop',
+    cooldownMs: 3500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 27, max: 30}, target: 'all_enemies'}],
+    spellProgression: [{lvl: 65,
+                        patch: {}},
+                       {lvl: 127,  
+                        patch: {damage: {min: 33, max: 37}}},
+                       {lvl: 194,
+                        patch: {damage: {min: 37, max: 41}}}],
+    description: "Inflige des dommages terre à tous les ennemis en raid."
+}
+move.friction = {
+    id: 'friction',
+    name: 'Friction',
+    classId: 'iop',
+    cooldownMs: 1800,
+    effects: [{ type: 'renvoi', ratio: 0.5, target: 'self' }],
+    spellProgression: [{lvl: 69,
+                        patch: {}},
+                       {lvl: 131,
+                        patch: {renvoi: { ratio: 0.6 }}},
+                       {lvl: 198,
+                        patch: {renvoi: { ratio: 0.75 }}}],
+    description: "Se frictionne avec les ennemis lors qu'il va se faire attaquer, ça à pour effet de renvoyer une partie des dommages subits."
+}
+move.epee_celeste = {
+    id: 'epee_celeste',
+    name: 'Épée Céleste',
+    classId: 'iop',
+    cooldownMs: 3100,
+    effects: [{type: 'damage', element: 'air', damage: {min: 28, max: 31}, target: 'all_enemies'}],
+    spellProgression: [{lvl: 73,
+                        patch: {}},
+                       {lvl: 137,  
+                        patch: {damage: {min: 36, max: 40}}}],
+    description: ""
+}
 // move.precipitation = {
 //     id: 'precipitation',
 //     name: '',
@@ -837,7 +770,7 @@ move.zenith = {
     name: 'Zénith',
     classId: 'iop',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 16}, slot1BonusPct: 300, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 16}, slot1BonusPct: 300, target: 'enemy'}],
     description: "Frappe l'ennemi dans l'élément air. Si le sort est en première position, inflige 300% de dommages supplémentaires."
 }
 // move.determination = {
@@ -924,13 +857,13 @@ move.fleche_glacee = {
     cooldownMs: 1900,
     effects: [
         {type: 'damage', element: 'eau', damage: { min: 14, max: 17 }, target: 'enemy'},
-        {type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy'}],
+        {type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 19, max: 22}, buff: {value: 70, duration: 7}}},
+                        patch: {damage: {min: 19, max: 22}, buff: {value: 70, duration: 4}}},
                        {lvl: 133,
-                        patch: {damage: {min: 24, max: 28}, buff: {value: 150, duration: 7}}}],
+                        patch: {damage: {min: 24, max: 28}, buff: {value: 150, duration: 5}}}],
     description: "Tape l'ennemi dans l'élément eau et retire de la puissance à l'ennemi."
 }
 move.fleche_cinglante = {
@@ -969,9 +902,9 @@ move.fleche_de_dispersion = {
     id: 'fleche_de_dispersion',
     name: 'Flèche de Dispersion',
     classId: 'cra',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
-        {type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 20, duration: 4, target: 'enemy'},
         {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
@@ -985,8 +918,8 @@ move.tirs_eloignes = {
     id: 'tirs_eloignes',
     name: 'Tirs Éloignés',
     classId: 'cra',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+    cooldownMs: 1500,
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,  
@@ -1079,8 +1012,8 @@ move.tirs_puissants = {
     classId: 'cra',
     cooldownMs: 2000,
     effects: [
-        {type: 'buff', stat: 'atk',        value: 100, duration: 3, target: 'self'},
-        {type: 'buff', stat: 'flatDamage', value: 10,  duration: 3, target: 'self'}],
+        {type: 'buff', stat: 'atk',        value: 100, duration: 4, target: 'self'},
+        {type: 'buff', stat: 'flatDamage', value: 10,  duration: 4, target: 'self'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
@@ -1126,13 +1059,13 @@ move.fleches_erosives = {
     name: 'Flèches Érosives',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'erosionBonus', value: 0.10, duration: 3, target: 'enemy'}],
+    effects: [{type: 'debuff', stat: 'erosionBonus', value: 0.10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
                         patch: {buff: { value: 0.15 }}},
                        {lvl: 189,
-                        patch: {buff: { value: 0.20, duration: 4 }}}],
+                        patch: {buff: { value: 0.20, duration: 3 }}}],
     description: "L'ennemi subit plus d'érosion sur les prochains coups qu'il prend."
 }
 move.tir_perforant = {
@@ -1166,30 +1099,23 @@ move.fleche_punitive = {
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 26, max: 28}}},
                        {lvl: 198,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 31}}}],
     description: "Tape dans la terre. Les dégâts augmentent à chaque lancé (limite de 3)."
 }
-// move.oeil_pour_oeil = {
-//     id: 'oeil_pour_oeil',
-//     name: '',
-//     classId: 'cra',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 73,
-//                         patch: {}},
-//                        {lvl: 137,  
-//                         patch: {buff: { value: 30 }}}],
-//     description: ""
-// }
+move.oeil_pour_oeil = {
+    id: 'oeil_pour_oeil',
+    name: 'Oeil pour oeil',
+    classId: 'cra',
+    cooldownMs: 2000,
+    effects: [{ type: 'oeilPourOeil', ratio: 0.6, target: 'self' }],
+    spellProgression: [{lvl: 73,
+                        patch: {}},
+                       {lvl: 137,
+                        patch: {oeilPourOeil: { ratio: 0.75 }}}],
+    description: "Pour chaque boost que l'ennemi s'applique, gagne une valeur équivalente."
+}
 // move.fleche_dexpiation = {
 //     id: 'fleche_dexpiation',
 //     name: '',
@@ -1607,7 +1533,7 @@ move.mot_tapageur = {
     id: 'mot_tapageur',
     name: 'Mot Tapageur',
     classId: 'eniripsa',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: {min: 12,max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
@@ -1621,7 +1547,7 @@ move.juron = {
     id: 'juron',
     name: 'Juron',
     classId: 'eniripsa',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 14,max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
@@ -1635,10 +1561,11 @@ move.mot_vampirique = {
     id: 'mot_vampirique',
     name: 'Mot Vampirique',
     classId: 'eniripsa',
-    cooldownMs: 2300,
+    restriction: 'coeur',
+    cooldownMs: 2500,
     effects: [
         {type: 'damage', element: 'eau', damage: { min: 16, max: 18 }, target: 'enemy'},
-        {type: 'lifesteal', ratio: 0.3, target: 'self'}],
+        {type: 'lifesteal', ratio: 0.2, target: 'self'}],
     spellProgression: [{ lvl: 12, 
                          patch: {} },
                        {lvl: 69,
@@ -1651,7 +1578,7 @@ move.mot_espiegle = {
     id: 'mot_espiegle',
     name: 'Mot Espiègle',
     classId: 'eniripsa',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 12,max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
@@ -1666,237 +1593,208 @@ move.mot_damitie = {
     name: "Mot d'amitié",
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'}],
+    effects: [{type: 'summon', summonId: 'lapino', duration: 2, target: 'self'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
-                        patch: {buff: { value: 30 }}},
+                        patch: {summon: { summonId: 'lapino2' }}},
                        {lvl: 139,
-                        patch: {buff: { value: 40 }}}],
-    description: "Réduit la vitesse de l'ennemi pour 3 tours."
+                        patch: {summon: { summonId: 'lapino3' }}}],
+    description: "Invoque un lapino qui va soigner le membre ayant le moins de vie."
 }
 move.mot_stimulant = {
     id: 'mot_stimulant',
     name: 'Mot Stimulant',
     classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+    cooldownMs: 1000,
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,  
                         patch: {buff: { value: 30 }}},
                        {lvl: 144,
                         patch: {buff: { value: 40 }}}],
-    description: "Augmente la vitesse du lanceur de xx% pour xx tours."
+    description: "Augmente la vitesse du lanceur pour les 3 prochains tours."
 }
 move.mot_de_frayeur = {
     id: 'mot_de_frayeur',
-    name: '',
+    name: 'Mot de Frayeur',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
-    spellProgression: [{lvl: 28,
+    effects: [{type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'},
+              {type: 'recul', target: 'enemy'}],
+    spellProgression: [{lvl: 20,
                         patch: {}},
-                       {lvl: 82,  
+                       {lvl: 72,
                         patch: {buff: { value: 30 }}},
-                       {lvl: 149,
+                       {lvl: 139,
                         patch: {buff: { value: 40 }}}],
-    description: ""
+    description: "Réduit la vitesse de l'ennemi pour 3 tours et pousse l'ennemi en raid."
 }
 move.lamentations = {
     id: 'lamentations',
-    name: '',
+    name: 'Lamentations',
     classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
+    restriction: 'coeur',
+    cooldownMs: 3500,
+    effects: [
+        {type: 'damage', element: 'eau', damage: { min: 18, max: 20 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.5, target: 'self'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,  
-                        patch: {buff: { value: 30 }}},
+                        patch: {damage: { min: 23, max: 26 }}},
                        {lvl: 154,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: { min: 29, max: 32 }}}],
+    description: "Frappe l'ennemi dans l'élément eau et se soigne de la moitié des dommages infligés."
 }
 move.mot_turbulent = {
     id: 'mot_turbulent',
-    name: '',
+    name: 'Mot Turbulent',
     classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 23,max: 26}, target: 'enemy'},
+              { type: 'heal', heal: {min: 23,max: 26}, target: 'ally_min_hp' }],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,  
-                        patch: {buff: { value: 30 }}},
+                        patch: {damage: {min: 29,max: 33}, heal: {min: 29,max: 33}}},
                        {lvl: 159,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: {min: 36,max: 41}, heal: {min: 36,max: 41}}}],
+    description: "Frappe l'ennemi dans l'élément feu et soigne l'allier ayant le moins de PV."
 }
 move.mot_vivifiant = {
     id: 'mot_vivifiant',
-    name: '',
+    name: 'Mot Vivifiant',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
-    spellProgression: [{lvl: 41,
+    effects: [{type: 'summon', summonId: 'fee_vivifiante', duration: 2, target: 'self'}],
+    spellProgression: [{lvl: 20,
                         patch: {}},
-                       {lvl: 97,  
-                        patch: {buff: { value: 30 }}},
-                       {lvl: 164,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                       {lvl: 72,
+                        patch: {summon: { summonId: 'fee_vivifiante_tier_2' }}},
+                       {lvl: 139,
+                        patch: {summon: { summonId: 'fee_vivifiante_tier_3' }}}],
+    description: "Invoque une fée qui temporise et lorsqu'elle meurt, buff la vitesse d'un allier aléatoire."
 }
 move.mot_farceur = {
     id: 'mot_farceur',
-    name: '',
+    name: 'Mot Farceur',
     classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 15,max: 17}, target: 'enemy'},
+              { type: 'heal', heal: {min: 15,max: 17}, target: 'ally_random' },
+              {type: 'avance', target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
-                       {lvl: 102,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 102,
+                        patch: {damage: {min: 18,max: 20}, heal: {min: 18,max: 20}}},
                        {lvl: 169,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: {min: 22,max: 24}, heal: {min: 22,max: 24}}}],
+    description: "Frappe l'enemis dans l'élément air, soigne un allier aléatoire et attire l'ennemi en raid."
 }
 move.peinture_de_guerre = {
     id: 'peinture_de_guerre',
-    name: '',
+    name: 'Peinture de Guerre',
     classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{ type: '', element: '', damage: {min: 1,max: 1}, stat: '', value: 1, duration: 1, target: ''}],
+    cooldownMs: 1800,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 6,max: 7}, target: 'enemy'},
+              { type: 'heal', heal: {min: 6,max: 7}, target: 'ally_random' }],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,  
-                        patch: {buff: { value: 30 }}},
+                        patch: {damage: {min: 7,max: 9},heal:{min: 7,max: 9}}},
                        {lvl: 174,
-                        patch: {buff: { value: 40 }}}],
-    description: ""
+                        patch: {damage: {min: 9,max: 11},heal:{min: 9,max: 11}}}],
+    description: "Frappe dans l'élément terre et soigne un allier aléatoire."
 }
-// move.mot_de_jouvence = {
-//     id: 'mot_de_jouvence',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 53,
-//                         patch: {}},
-//                        {lvl: 112,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 179,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.cri_de_guerre = {
-//     id: 'cri_de_guerre',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 57,
-//                         patch: {}},
-//                        {lvl: 117,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 184,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.mot_interdit = {
-//     id: 'mot_interdit',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 61,
-//                         patch: {}},
-//                        {lvl: 122,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 189,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.mot_accablant = {
-//     id: 'mot_accablant',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 65,
-//                         patch: {}},
-//                        {lvl: 127,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 194,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.chapardage = {
-//     id: 'chapardage',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 69,
-//                         patch: {}},
-//                        {lvl: 131,  
-//                         patch: {buff: { value: 30 }}},
-//                        {lvl: 198,
-//                         patch: {buff: { value: 40 }}}],
-//     description: ""
-// }
-// move.mot_fleuri = {
-//     id: 'mot_fleuri',
-//     name: '',
-//     classId: 'eniripsa',
-//     cooldownMs: 2000,
-//     effects: [{
-//         type: '',
-//         element: '',
-//         damage: {min: 1,max: 1},
-//         stat: '', 
-//         value: 1, 
-//         duration: 1, 
-//         target: ''}],
-//     spellProgression: [{lvl: 73,
-//                         patch: {}},
-//                        {lvl: 137,  
-//                         patch: {buff: { value: 30 }}}],
-//     description: ""
-// }
+move.mot_de_jouvence = {
+    id: 'mot_de_jouvence',
+    name: 'Mot de Jouvence',
+    classId: 'eniripsa',
+    cooldownMs: 2000,
+    effects: [{type: 'summon', summonId: 'fee_de_jouvence', duration: 2, target: 'self'}],
+    spellProgression: [{lvl: 53,
+                        patch: {}},
+                       {lvl: 112,
+                        patch: {summon: { summonId: 'fee_de_jouvence_tier_2' }}},
+                       {lvl: 179,
+                        patch: {summon: { summonId: 'fee_de_jouvence_tier_3' }}}],
+    description: "Invoque une fée qui temporise et lorsqu'elle meurt, soigne l'ensemble des alliers encore en vie."
+}
+move.cri_de_guerre = {
+    id: 'cri_de_guerre',
+    name: 'Cri de Guerre',
+    classId: 'eniripsa',
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 23,max: 26}, target: 'enemy'}],
+    spellProgression: [{lvl: 57,
+                        patch: {}},
+                       {lvl: 117,  
+                        patch: {damage: {min: 31,max: 35}}},
+                       {lvl: 184,
+                        patch: {damage: {min: 37,max: 41}}}],
+    description: "Frappe dans l'élément terre."
+}
+move.mot_interdit = {
+    id: 'mot_interdit',
+    name: 'Mot Interdit',
+    classId: 'eniripsa',
+    cooldownMs: 3500,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 30,max: 33}, target: 'enemy'}],
+    spellProgression: [{lvl: 61,
+                        patch: {}},
+                       {lvl: 122,  
+                        patch: {damage: {min: 40,max: 44}}},
+                       {lvl: 189,
+                        patch: {damage: {min: 46,max: 50}}}],
+    description: "Frappe dans l'élément eau."
+}
+move.mot_accablant = {
+    id: 'mot_accablant',
+    name: 'Mot Accablant',
+    classId: 'eniripsa',
+    cooldownMs: 2000,
+    effects: [{type: 'summon', summonId: 'fee_accablante', duration: 2, target: 'self'}],
+    spellProgression: [{lvl: 65,
+                        patch: {}},
+                       {lvl: 127,  
+                        patch: {summonId: 'fee_accablante_tier_2'}},
+                       {lvl: 194,
+                        patch: {summonId: 'fee_accablante_tier_3'}}],
+    description: "Invoque une fée qui temporise et lorsqu'elle meurt, debuff la vitesse de l'ennemi."
+}
+move.chapardage = {
+    id: 'chapardage',
+    name: 'Chapardage',
+    classId: 'eniripsa',
+    restriction: 'coeur',
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'feu', damage: { min: 15, max: 17 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.5, target: 'self'}],
+    spellProgression: [{lvl: 69,
+                        patch: {}},
+                       {lvl: 131,  
+                        patch: {damage: { min: 18, max: 20 }}},
+                       {lvl: 198,
+                        patch: {damage: { min: 20, max: 22 }}}],
+    description: "Frappe l'ennemi dans l'élément feu et se soigne de la moitié des dommages infligés."
+}
+move.mot_fleuri = {
+    id: 'mot_fleuri',
+    name: 'Mot Fleuri',
+    classId: 'eniripsa',
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'air', damage: { min: 26, max: 29 }, target: 'enemy'},
+        { type: 'hot', heal: { min: 26, max: 29 }, duration : 2, target: 'ally_random' }],
+    spellProgression: [{lvl: 73,
+                        patch: {}},
+                       {lvl: 137,  
+                        patch: {damage: { min: 33, max: 37 }, heal: { min: 33, max: 37 }}}],
+    description: "Frappe l'ennemi dans l'élément air et soigne un allier aléatoire pendant 2 tours."
+}
 // move.mot_denvol = {
 //     id: 'mot_denvol',
 //     name: '',
@@ -2276,7 +2174,7 @@ move.fontaine_de_jouvence = {
     name: 'Fontaine de Jouvence',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'healOnCast', value: 0.1, duration: 3, target: 'self'}],
+    effects: [{type: 'buff', stat: 'healOnCast', value: 0.1, duration: 4, target: 'self'}],
     description: "Soigne aléatoirement un allié de 10% HP max à chaque sort lancé (3 sorts)."
 }
 // move.choeur_strident = {
@@ -2314,7 +2212,7 @@ move.mot_de_solidarité = {
     name: 'Mot de Solidarité',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{type: 'buff_team', stat: 'spd', value: 100, duration: 3, target: 'all_allies'}],
+    effects: [{type: 'buff_team', stat: 'spd', value: 100, duration: 4}],
     description: "Double l'initiative de tous les membres de l'équipe pendant 3 tours."
 }
 // #endregion

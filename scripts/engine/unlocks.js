@@ -14,11 +14,19 @@
 //   s.unlockedClasses                     — classes déjà débloquées
 
 const CLASS_UNLOCK_CONDITIONS = {
-    // Exemples (décommenter et adapter pour chaque future classe) :
-    // futurClasse1: (s) => s.defeatedBosses?.includes('kardorim'),
-    // futurClasse2: (s) => Object.values(s.collection).filter(f => f.level >= 100).length >= 5,
-    // futurClasse3: (s) => s.kamas >= 100,
-    // futurClasse4: (s) => s.totalKills >= 1000,
+    enutrofe: (s) => s.kamas >= 100,
+
+    xelor: (s) => s.defeatedBosses?.includes('comteHarebourg'),
+
+    huppermage: (s) => {
+        const required = [
+            'kwakereFlamme', 'kwakereGlace', 'kwakereTerre', 'kwakereVent',
+            'kwakFlamme', 'kwakGlace', 'kwakTerre', 'kwakVent',
+            'scarafeuilleBlanc', 'scarafeuilleVert', 'scarafeuilleBleu', 'scarafeuilleRouge', 'scarafeuilleNoir',
+            'scrarabossDoree', 'kwakwa',
+        ]
+        return required.every(id => (s.collection[id]?.drops ?? 0) >= 1)
+    },
 }
 
 function checkClassUnlocks() {

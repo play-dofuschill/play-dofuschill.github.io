@@ -40,6 +40,12 @@ function simulateOfflineProgress() {
         return
     }
 
+    // Réinitialise _autoPilot depuis la sauvegarde (perdu au rechargement de page)
+    if (!_autoPilot && state.offlineAutoPilotRemaining > 0 &&
+        (state.inventory['piloteAutomatique']?.count || 0) > 0) {
+        _autoPilot = { remaining: state.offlineAutoPilotRemaining, accumulated: _emptySessionLoot() }
+    }
+
     const hpSnapshot = state.team.map(m => m ? (m.currentHp || 0) : null)
 
     // startCombat en premier (_offlineTotalTicks est encore 0 → intervalle normal créé)

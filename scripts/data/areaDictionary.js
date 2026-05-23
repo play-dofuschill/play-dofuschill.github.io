@@ -444,7 +444,7 @@ areas.evenementDopeuls = {
     minLevel: 55, maxLevel: 80,
     mobMinLevel: 55, mobMaxLevel: 70,
     background: 'tainela',
-    icon: 'img/monstres/sprites/dopeul_iop.png',
+    icon: 'img/monstres/Events/dopeul_iop.png',
     description: "Le Village des Dopeuls ! Des reflets des douze classes et... quelques autres... envahissent le Monde des Douze. Affronte ces copies miroir avant qu'elles ne sèment le chaos.",
     spawns: [
         { id: 'dopeul_cra',        weight: 6 },

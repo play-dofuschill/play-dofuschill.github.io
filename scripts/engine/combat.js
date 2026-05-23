@@ -192,6 +192,7 @@ function startCombat(areaId) {
         if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
         m.buffs  = []
         m.dots   = []
+        m.hots   = []
         m.shield = null
     }
 
@@ -387,6 +388,7 @@ function startPoutchCombat(mode) {
         if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
         m.buffs  = []
         m.dots   = []
+        m.hots   = []
         m.shield = null
     }
 
@@ -504,7 +506,7 @@ function gameTick() {
     const activeM   = state.team[activeIdx]
     if (activeM && activeM.currentHp > 0) {
         const stats = getEffectiveStats(activeM)
-        const rate  = (100 / (BASE_TIME / TICK_MS)) * ((stats.spd || 100) / 100)
+        const rate  = (100 / (BASE_TIME / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100)
         combat.memberTimers[activeIdx] = (combat.memberTimers[activeIdx] || 0) + rate
 
         if (combat.memberTimers[activeIdx] >= 100) {
@@ -545,8 +547,9 @@ function executeMemberAction(memberIndex) {
         if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
     })
     if (member.currentHp <= 0) return
+    tickHots(member)
 
-    const stats = getEffectiveStats(member)
+    const stats = getEffectiveStats(member) ?? member._stats
 
     const slots = ['slot1', 'slot2', 'slot3', 'slot4']
     const nonNull = slots.filter(s => {
@@ -609,6 +612,12 @@ function executeMemberAction(memberIndex) {
         }
     }
 
+    // Décompte des actions de l'invocation alliée
+    if (member.isSummon && member.ownerSlot !== undefined) {
+        member.actionsRemaining--
+        if (member.actionsRemaining <= 0) returnAllyToOwner(member.ownerSlot)
+    }
+
     // Décompte des tours en mode Poutch limité
     if (combat.isPoutch && typeof combat.poutchMode === 'number' && !combat.respawnPending) {
         combat.poutchTurns = (combat.poutchTurns || 0) + 1
@@ -625,6 +634,8 @@ function executeMemberAction(memberIndex) {
     const newRawIdx   = combat.memberMoveIndex[memberIndex]  // après incrément
     const cycleLength = isXelor ? 7 : nonNull.length
     _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength)
+
+    combat.memberTimers[memberIndex] = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
 }
 
 // ─── Passifs déclenchés par tick / cycle ─────────────────────────────────────
@@ -640,7 +651,7 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength, slotEnem
         const living = state.team.filter(m => m && m.currentHp > 0)
         if (living.length) {
             const target  = living[Math.floor(Math.random() * living.length)]
-            const healAmt = Math.floor((target.maxHp || 0) * 0.20)
+            const healAmt = Math.floor((target.maxHp || 0) * 0.20 * _getAntiHealFactor(target))
             target.currentHp = Math.min(target.maxHp, target.currentHp + healAmt)
             addLog(`Eniripsa [Passif] → soigne ${target.name || classes[target.classId]?.name || '?'} de ${healAmt} PV`)
         }
@@ -710,6 +721,30 @@ function _resolveEffectValue(v) {
     return v
 }
 
+// Retourne 0 si l'entité a un debuff antiHeal actif (tous les soins bloqués), 1 sinon
+function _getAntiHealFactor(entity) {
+    return (entity?.buffs || []).some(b => b.stat === 'antiHeal') ? 0 : 1
+}
+
+// Résout la cible alliée en fonction de effect.target
+// Supporte : 'self' / défaut → caster, 'ally_random' → allié vivant aléatoire, 'ally_min_hp' → allié le moins en vie
+function _resolveAllyTarget(effect, caster) {
+    if (effect.target === 'ally_random') {
+        const alive = state.team.filter(m => m && m.currentHp > 0)
+        return alive.length > 0 ? alive[Math.floor(Math.random() * alive.length)] : caster
+    }
+    if (effect.target === 'ally_min_hp') {
+        let best = caster, bestRatio = Infinity
+        for (const m of state.team) {
+            if (!m || m.currentHp <= 0) continue
+            const r = m.currentHp / (m.maxHp || 1)
+            if (r < bestRatio) { bestRatio = r; best = m }
+        }
+        return best
+    }
+    return caster
+}
+
 function executeEffect(ctx) {
 
     const {caster, casterStats, targetEnemy, effect, moveData, moveId} = ctx
@@ -717,6 +752,20 @@ function executeEffect(ctx) {
     switch (effect.type) {
 
         case 'damage': {
+            // cible alliée (auto-dégâts) : redirige avec les stats défensives de l'allié
+            {
+                const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp'])
+                if (_ALLY_TARGETS.has(effect.target)) {
+                    const allyTarget = _resolveAllyTarget(effect, caster)
+                    if (!allyTarget || allyTarget.currentHp <= 0) return 0
+                    const allyEffStats = getEffectiveStats(allyTarget) ?? allyTarget._stats ?? {}
+                    const allyDefStats = {
+                        res:               allyEffStats.res || allyTarget.res || {},
+                        damageReductionPct: allyEffStats.damageReductionPct || 0
+                    }
+                    return executeEffect({ ...ctx, targetEnemy: allyTarget, targetStats: allyDefStats, effect: { ...effect, target: 'enemy' } })
+                }
+            }
             // target:'all_enemies' — frappe tous les ennemis vivants en raid
             // Les stacks (scalingMultipliers / stackedDamage) n'incrémentent qu'une fois (premier hit)
             if (effect.target === 'all_enemies' && combat?.isRaid && combat.enemies) {
@@ -871,10 +920,10 @@ function executeEffect(ctx) {
                 if (targetEnemy.shield.value <= 0) targetEnemy.shield = null
             }
 
-            // Renvoi : la cible renvoie les dégâts à l'attaquant
-            if (targetEnemy.renvoi && dmg > 0) {
-                const reflectedDmg = Math.max(1, Math.floor(dmg * targetEnemy.renvoi.ratio))
-                delete targetEnemy.renvoi
+            // RenvoiTotal : réfléchit ratio% des dégâts, le caster encaisse 0
+            if (targetEnemy.renvoiTotal && dmg > 0) {
+                const reflectedDmg = Math.max(1, Math.floor(dmg * targetEnemy.renvoiTotal.ratio))
+                delete targetEnemy.renvoiTotal
                 if (result.isCrit) addLog(`💥 Coup critique !`)
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → renvoyé ! ${reflectedDmg} dégâts à l'attaquant`)
                 ctx.caster.currentHp = Math.max(0, (ctx.caster.currentHp || 0) - reflectedDmg)
@@ -887,6 +936,33 @@ function executeEffect(ctx) {
                     if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
                 }
                 return 0
+            }
+
+            // Renvoi : réfléchit ratio% des dégâts, le caster encaisse le reste
+            if (targetEnemy.renvoi && dmg > 0) {
+                const reflectedDmg = Math.max(1, Math.floor(dmg * targetEnemy.renvoi.ratio))
+                const takenDmg     = dmg - reflectedDmg
+                delete targetEnemy.renvoi
+                if (result.isCrit) addLog(`💥 Coup critique !`)
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → ${reflectedDmg} renvoyés, ${takenDmg} absorbés`)
+                ctx.caster.currentHp = Math.max(0, (ctx.caster.currentHp || 0) - reflectedDmg)
+                const renvoidIdx = state.team.indexOf(ctx.caster)
+                if (combat && renvoidIdx !== -1) {
+                    combat.sessionLoot.memberDamageReceived[renvoidIdx] = (combat.sessionLoot.memberDamageReceived[renvoidIdx] || 0) + reflectedDmg
+                }
+                if (ctx.caster.currentHp <= 0 && renvoidIdx !== -1) {
+                    _autoSwitchActive()
+                    if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
+                }
+                if (takenDmg > 0) {
+                    targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - takenDmg)
+                    const memberHitIdx = state.team.indexOf(targetEnemy)
+                    if (combat && memberHitIdx !== -1) {
+                        combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + takenDmg
+                    }
+                    if (targetEnemy.currentHp <= 0) ctx.onTargetKill?.()
+                }
+                return takenDmg
             }
 
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
@@ -924,7 +1000,7 @@ function executeEffect(ctx) {
             if (dmg > 0 && caster.buffs) {
                 const pendingLS = caster.buffs.find(b => b.stat === 'pendingLifesteal')
                 if (pendingLS) {
-                    const healAmt = Math.floor(dmg * pendingLS.value)
+                    const healAmt = Math.floor(dmg * pendingLS.value * _getAntiHealFactor(caster))
                     if (healAmt > 0) {
                         caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
                         addLog(`${moveData.name} → vol de vie ${healAmt} PV`)
@@ -987,45 +1063,93 @@ function executeEffect(ctx) {
         }
 
         case 'heal': {
-            const healAmt = Math.floor((effect.heal || 0) * (1 + (casterStats?.healPct || 0) / 100))
-            caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
-            addLog(`${moveData.name} → soigne ${healAmt} PV`)
+            const healTarget = _resolveAllyTarget(effect, caster)
+            const healRoll   = _resolveEffectValue(effect.heal) || 0
+            const baseHeal   = healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
+            const healAmt    = Math.max(1, Math.floor(
+                (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100) * _getAntiHealFactor(healTarget)
+            ))
+            healTarget.currentHp = Math.min(healTarget.maxHp, (healTarget.currentHp || 0) + healAmt)
+            const tName = healTarget.name || classes[healTarget.classId]?.name || '?'
+            addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV`)
             break
         }
 
         case 'heal%maxHp': {
-            const healAmt = Math.floor((caster.maxHp || 0) * ((effect.heal || 0) / 100) * (1 + (casterStats?.healMaxHpPct || 0) / 100))
-            caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
-            addLog(`${moveData.name} → soigne ${healAmt} PV (${effect.heal}% PV max)`)
+            const healTarget = _resolveAllyTarget(effect, caster)
+            const healPct = _resolveEffectValue(effect.heal) || 0
+            const healAmt = Math.floor((healTarget.maxHp || 0) * (healPct / 100) * (1 + (casterStats?.healMaxHpPct || 0) / 100) * _getAntiHealFactor(healTarget))
+            healTarget.currentHp = Math.min(healTarget.maxHp, (healTarget.currentHp || 0) + healAmt)
+            const tName = healTarget.name || classes[healTarget.classId]?.name || '?'
+            addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV (${healPct}% PV max)`)
+            break
+        }
+
+        case 'heal%maxHp_team': {
+            const healPctBonus = 1 + (casterStats?.healMaxHpPct || 0) / 100
+            const healPct      = _resolveEffectValue(effect.heal) || 0
+            for (const m of state.team) {
+                if (!m || m.currentHp <= 0) continue
+                const healAmt = Math.floor((m.maxHp || 0) * (healPct / 100) * healPctBonus * _getAntiHealFactor(m))
+                m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + healAmt)
+            }
+            addLog(`${moveData.name} → soigne ${healPct}% PV max (équipe)`)
             break
         }
 
         case 'heal_team': {
-            const healAmt = Math.floor((effect.heal || 0) * (1 + (casterStats?.healTeamPct || 0) / 100))
+            const healBase = Math.floor((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.healTeamPct || 0) / 100))
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
+                const healAmt = Math.floor(healBase * _getAntiHealFactor(m))
                 m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + healAmt)
             }
-            addLog(`${moveData.name} → soigne ${healAmt} PV (équipe)`)
+            addLog(`${moveData.name} → soigne ${healBase} PV (équipe)`)
+            break
+        }
+
+        case 'hot': {
+            const hotTarget = _resolveAllyTarget(effect, caster)
+            const hotRoll   = _resolveEffectValue(effect.heal) || 0
+            const baseHeal  = hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
+            const hotVal    = Math.max(1, Math.floor(
+                (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
+            ))
+            hotTarget.hots = hotTarget.hots || []
+            hotTarget.hots.push({ value: hotVal, duration: effect.duration, label: moveData.name })
+            const tName = hotTarget.name || classes[hotTarget.classId]?.name || '?'
+            addLog(`${moveData.name} → soin continu ${hotVal} PV/tour × ${effect.duration} tours → ${tName}`)
             break
         }
 
         case 'buff': {
-            caster.buffs = caster.buffs || []
+            const buffTarget = _resolveAllyTarget(effect, caster)
+            buffTarget.buffs = buffTarget.buffs || []
             const buffVal = _resolveEffectValue(effect.value)
             if (effect.stat === 'maxHp') {
-                caster.maxHp = (caster.maxHp || 0) + buffVal
-                caster.currentHp = (caster.currentHp || 0) + buffVal
-                caster.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
+                buffTarget.maxHp = (buffTarget.maxHp || 0) + buffVal
+                buffTarget.currentHp = (buffTarget.currentHp || 0) + buffVal
+                buffTarget.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
                 addLog(`${moveData.name} → +${buffVal} PV max et courants (${effect.duration} tours)`)
             } else {
-                caster.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
+                buffTarget.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
                 if (effect.stat === 'pendingLifesteal')
                     addLog(`${moveData.name} → vol de vie ×${buffVal} actif (prochain sort)`)
                 else if (effect.stat === 'healOnCast')
                     addLog(`${moveData.name} → fontaine active (${effect.duration} sorts)`)
                 else
                     addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
+            }
+            // OeilPourOeil : si le caster est un ennemi, les membres actifs qui ont l'effet en miroir gagnent un buff équivalent
+            if (state.team.indexOf(caster) === -1) {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0 || !m.oeilPourOeil) continue
+                    const mirrorVal = Math.max(1, Math.floor(buffVal * m.oeilPourOeil.ratio))
+                    m.buffs = m.buffs || []
+                    m.buffs.push({ stat: effect.stat, value: mirrorVal, duration: effect.duration })
+                    delete m.oeilPourOeil
+                    addLog(`Oeil pour Oeil → +${mirrorVal} ${effect.stat} (${effect.duration} tours)`)
+                }
             }
             break
         }
@@ -1042,10 +1166,11 @@ function executeEffect(ctx) {
         }
 
         case 'debuff': {
-            // Applique un buff négatif à la cible
-            const debuffVal = _resolveEffectValue(effect.value)
-            targetEnemy.buffs = targetEnemy.buffs || []
-            targetEnemy.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+            const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp', 'all_allies'])
+            const debuffEntity = _ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy
+            const debuffVal    = _resolveEffectValue(effect.value)
+            debuffEntity.buffs = debuffEntity.buffs || []
+            debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
             break
         }
@@ -1062,7 +1187,7 @@ function executeEffect(ctx) {
         }
 
         case 'lifesteal': {
-            const healAmt = Math.floor((ctx.lastDamageDealt || 0) * ((effect.ratio || 0) + (casterStats?.lifestealPct || 0) / 100))
+            const healAmt = Math.floor((ctx.lastDamageDealt || 0) * ((effect.ratio || 0) + (casterStats?.lifestealPct || 0) / 100) * _getAntiHealFactor(caster))
             if (healAmt > 0) {
                 caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
                 addLog(`${moveData.name} → soigne ${healAmt} PV`)
@@ -1070,9 +1195,28 @@ function executeEffect(ctx) {
             break
         }
 
+        case 'antiHeal': {
+            targetEnemy.buffs = targetEnemy.buffs || []
+            targetEnemy.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+            addLog(`${ctx.logPrefix || ''}${moveData.name} → anti-soin (${effect.duration} tours)`)
+            break
+        }
+
         case 'renvoi': {
             caster.renvoi = { ratio: effect.ratio }
             addLog(`${moveData.name} → renvoi ${Math.round(effect.ratio * 100)}% actif`)
+            break
+        }
+
+        case 'renvoiTotal': {
+            caster.renvoiTotal = { ratio: effect.ratio }
+            addLog(`${moveData.name} → renvoi total ${Math.round(effect.ratio * 100)}% actif`)
+            break
+        }
+
+        case 'oeilPourOeil': {
+            caster.oeilPourOeil = { ratio: effect.ratio }
+            addLog(`${moveData.name} → oeil pour oeil ${Math.round(effect.ratio * 100)}% actif`)
             break
         }
 
@@ -1210,7 +1354,7 @@ function executeEffect(ctx) {
             for (const offset of [-1, 1]) {
                 const adj = state.team[casterIdx + offset]
                 if (!adj || adj.currentHp <= 0) continue
-                const amt = Math.floor(adj.maxHp * healPct)
+                const amt = Math.floor(adj.maxHp * healPct * _getAntiHealFactor(adj))
                 if (amt > 0) {
                     adj.currentHp = Math.min(adj.maxHp, adj.currentHp + amt)
                     addLog(`${moveData.name} → soin ${adj.name || 'allié'} +${amt} PV`)
@@ -1324,6 +1468,8 @@ function executeEnemyAction() {
             if (combat.enemy.actionsRemaining <= 0) returnToOwner()
         }
     }
+
+    combat.enemyTimer = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
 }
 
 function pickNextEnemyMove(enemy) {
@@ -1361,44 +1507,120 @@ function tickDots(entity, onKill) {
     }
 }
 
+function tickHots(member) {
+    if (!member.hots?.length) return
+    const antiHeal = _getAntiHealFactor(member)
+    for (const hot of member.hots) {
+        const healAmt = Math.floor(hot.value * antiHeal)
+        if (healAmt > 0) {
+            member.currentHp = Math.min(member.maxHp, (member.currentHp || 0) + healAmt)
+            addLog(`${hot.label || 'Soin continu'} → +${healAmt} PV`)
+        }
+    }
+    member.hots = member.hots
+        .map(h => ({ ...h, duration: h.duration - 1 }))
+        .filter(h => h.duration > 0)
+}
+
 // ─── Invocations ─────────────────────────────────────────────────────────────
 
 function spawnSummon(caster, effect) {
-    const mob = monsters[effect.summonId]
+    const mob = monsters[effect.summonId] || summons[effect.summonId]
     if (!mob) return
-    if (!state.seenMonsters) state.seenMonsters = {}
-    state.seenMonsters[effect.summonId] = true
     const rawLevel = caster.level || 1
-    const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
-    const scale    = 1 + ((level - 1) * 0.08)
-    // Osamodas : invocations avec 2× PV et ATK
-    const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
-    combat.savedEnemy = combat.enemy
-    combat.enemy = {
-        id:               effect.summonId,
-        name:             mob.name,
-        level,
-        image:            mob.image,
-        maxHp:            Math.floor(mob.bst.hp  * scale * statMult),
-        currentHp:        Math.floor(mob.bst.hp  * scale * statMult),
-        atk:              Math.floor(mob.bst.atk * scale * statMult),
-        spd:              mob.bst.spd,
-        res:              { ...mob.bst.res },
-        finalDamagePct:   0,
-        flatDamage:       0,
-        moves:            mob.moves || [],
-        rarity:           mob.rarity  || 'commun',
-        tier:             mob.tier    || 'normal',
-        dropRate:         0,
-        buffs:            [],
-        dots:             [],
-        moveIndex:        0,
-        isSummon:         true,
-        actionsRemaining: effect.duration,
-        _justSpawned:     true
+    const slotIdx  = state.team.indexOf(caster)
+
+    if (slotIdx !== -1) {
+        // ── Invocation alliée : remplace le membre dans son slot ─────────────
+        const scale  = 1 + ((rawLevel - 1) * 0.08)
+        const maxHp  = Math.floor(mob.bst.hp  * scale)
+        const atk    = Math.floor(mob.bst.atk * scale)
+        const mvSlots = { slot1: null, slot2: null, slot3: null, slot4: null }
+        ;(mob.moves || []).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
+        combat.savedMembers          = combat.savedMembers || {}
+        combat.savedMembers[slotIdx] = caster
+        state.team[slotIdx] = {
+            id:               effect.summonId,
+            name:             mob.name,
+            image:            mob.image,
+            classId:          null,
+            _stats:           { atk, spd: mob.bst.spd, hp: maxHp, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst.res || {}) }, healPct: 0 },
+            level:            rawLevel,
+            currentHp:        maxHp,
+            maxHp,
+            exp:              0,
+            moves:            mvSlots,
+            buffs:            [],
+            dots:             [],
+            shield:           null,
+            isSummon:         true,
+            ownerSlot:        slotIdx,
+            actionsRemaining: effect.duration,
+            onDeath:          mob.onDeath || null
+        }
+        combat.memberMoveIndex[slotIdx] = 0
+        addLog(`${caster.name || classes[caster.classId]?.name || '?'} invoque ${mob.name} !`)
+    } else {
+        // ── Invocation ennemie : remplace l'ennemi (comportement existant) ───
+        if (monsters[effect.summonId]) {
+            if (!state.seenMonsters) state.seenMonsters = {}
+            state.seenMonsters[effect.summonId] = true
+        }
+        const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
+        const scale    = 1 + ((level - 1) * 0.08)
+        const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
+        combat.savedEnemy = combat.enemy
+        combat.enemy = {
+            id:               effect.summonId,
+            name:             mob.name,
+            level,
+            image:            mob.image,
+            maxHp:            Math.floor(mob.bst.hp  * scale * statMult),
+            currentHp:        Math.floor(mob.bst.hp  * scale * statMult),
+            atk:              Math.floor(mob.bst.atk * scale * statMult),
+            spd:              mob.bst.spd,
+            res:              { ...(mob.bst.res || {}) },
+            finalDamagePct:   0,
+            flatDamage:       0,
+            moves:            mob.moves || [],
+            rarity:           mob.rarity  || 'commun',
+            tier:             mob.tier    || 'normal',
+            dropRate:         0,
+            buffs:            [],
+            dots:             [],
+            moveIndex:        0,
+            isSummon:         true,
+            actionsRemaining: effect.duration,
+            _justSpawned:     true
+        }
+        combat.enemyTimer = 0
+        addLog(`${caster.name || classes[caster.classId]?.name || '?'} invoque ${mob.name} !`)
     }
-    combat.enemyTimer = 0
-    addLog(`${caster.name || classes[caster.classId]?.name || '?'} invoque ${mob.name} !`)
+}
+
+function returnAllyToOwner(slotIdx) {
+    const original = combat.savedMembers?.[slotIdx]
+    if (!original) return
+    const summon     = state.team[slotIdx]
+    const summonName = summon?.name || '?'
+
+    if (summon?.onDeath) {
+        const summonStats = summon._stats || {}
+        for (const eff of summon.onDeath) {
+            executeEffect({
+                caster:      summon,
+                casterStats: summonStats,
+                targetEnemy: combat.enemy,
+                effect:      eff,
+                moveData:    { name: summonName },
+                moveId:      null
+            })
+        }
+    }
+
+    state.team[slotIdx] = original
+    delete combat.savedMembers[slotIdx]
+    addLog(`${original.name || classes[original.classId]?.name || '?'} reprend le combat !`)
 }
 
 function returnToOwner() {
@@ -1522,6 +1744,7 @@ function onVictory() {
             if (!m) continue
             m.buffs  = []
             m.dots   = []
+            m.hots   = []
             m.shield = null
         }
         combat.enemy          = spawnEnemy(state.currentArea)
@@ -1597,7 +1820,7 @@ function _applyHealOnCast(member, mv) {
     const alive = state.team.filter(m => m && m.currentHp > 0)
     if (!alive.length) return
     const target = alive[Math.floor(Math.random() * alive.length)]
-    const healAmt = Math.floor(target.maxHp * buff.value)
+    const healAmt = Math.floor(target.maxHp * buff.value * _getAntiHealFactor(target))
     if (healAmt > 0) {
         target.currentHp = Math.min(target.maxHp, target.currentHp + healAmt)
         addLog(`${mv.name} → fontaine : ${healAmt} PV`)
@@ -1648,6 +1871,12 @@ function _autoSwitchActive() {
     const cur    = state.team[combat.activeMemberIndex]
     const curIdx = combat.activeMemberIndex
     if (cur && cur.currentHp > 0) return
+
+    // Invocation alliée morte : restaurer le propriétaire
+    if (cur?.isSummon && cur.ownerSlot !== undefined) {
+        returnAllyToOwner(cur.ownerSlot)
+        if (state.team[curIdx]?.currentHp > 0) return
+    }
 
     // Passif Roublard : explosion à la mort (une seule fois par membre)
     if (cur && !combat.memberDeathHandled?.[curIdx]) {
@@ -1765,13 +1994,17 @@ function _spawnRaidMiniBoss() {
     const e1 = combat.enemies[1], t1 = combat.enemyTimers[1], m1 = combat.enemyNextMoveIds[1]
 
     // Push : slot1 → slot2, slot0 → slot1, boss → slot0
-    combat.enemies[2]          = e1
-    combat.enemyTimers[2]      = (e1 && e1.currentHp > 0) ? t1 : 0
-    combat.enemyNextMoveIds[2] = (e1 && e1.currentHp > 0) ? m1 : null
+    // Si l'ennemi poussé est mort (ex: c'est lui qui a déclenché le seuil), on en spawn un frais
+    // plutôt que de pousser un cadavre avec raidRespawnPending=false → slot bloqué indéfiniment
+    const e1Live = e1 && e1.currentHp > 0
+    combat.enemies[2]          = e1Live ? e1 : spawnEnemy(state.currentArea)
+    combat.enemyTimers[2]      = e1Live ? t1 : 0
+    combat.enemyNextMoveIds[2] = e1Live ? m1 : pickNextEnemyMove(combat.enemies[2])
 
-    combat.enemies[1]          = e0
-    combat.enemyTimers[1]      = (e0 && e0.currentHp > 0) ? t0 : 0
-    combat.enemyNextMoveIds[1] = (e0 && e0.currentHp > 0) ? m0 : null
+    const e0Live = e0 && e0.currentHp > 0
+    combat.enemies[1]          = e0Live ? e0 : spawnEnemy(state.currentArea)
+    combat.enemyTimers[1]      = e0Live ? t0 : 0
+    combat.enemyNextMoveIds[1] = e0Live ? m0 : pickNextEnemyMove(combat.enemies[1])
 
     combat.enemies[0]          = boss
     combat.enemyTimers[0]      = 0
@@ -1890,6 +2123,7 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
         if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
     })
     if (member.currentHp <= 0) return
+    tickHots(member)
 
     const targetSlotIdx = _getRaidTargetSlot(slotIdx)
     if (targetSlotIdx === -1) return
@@ -1956,6 +2190,8 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     const newRawIdx   = combat.memberMoveIndex[memberIdx]
     const cycleLength = isXelor ? 7 : nonNull.length
     _applyPassiveTick(member, memberIdx, newRawIdx, cycleLength, targetEnemy)
+
+    combat.memberTimers[memberIdx] = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
 }
 
 // ─── Action d'un ennemi (Raid) ────────────────────────────────
@@ -2013,6 +2249,8 @@ function executeEnemyActionRaid(slotIdx) {
     if (combat.enemies[slotIdx]) {
         combat.enemyNextMoveIds[slotIdx] = pickNextEnemyMove(combat.enemies[slotIdx])
     }
+
+    combat.enemyTimers[slotIdx] = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
 }
 
 // ─── Mort d'un ennemi Raid → loot + respawn ───────────────────

@@ -165,7 +165,9 @@ function updateMemberBars() {
         const isActive = combat?.activeMemberIndex === teamIdx
 
         const hpFill = card.querySelector('.member-hp-fill')
-        if (hpFill) { hpFill.style.width = `${hpPct}%`; hpFill.className = `member-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}` }
+        if (hpFill) { hpFill.style.width = `${hpPct}%`; hpFill.className = `member-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}` }
+        const hpBarText = card.querySelector('.member-hp-bar .hp-bar-text')
+        if (hpBarText) hpBarText.textContent = `${m.currentHp}/${maxHp}${m.shield?.value > 0 ? ' • ' + m.shield.value : ''}`
 
         const xpFill = card.querySelector('.member-xp-fill')
         if (xpFill) xpFill.style.width = `${xpPct}%`
@@ -238,7 +240,8 @@ function renderTeamSlots(container) {
                     <span class="member-level level-badge${combat?.syncedLevel && m.level > combat.syncedLevel ? ' level-synced' : ''}">lvl ${combat?.syncedLevel && m.level > combat.syncedLevel ? combat.syncedLevel : m.level}</span>
                 </div>
                 <div class="member-hp-bar">
-                    <div class="member-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}" style="width:${hpPct}%"></div>
+                    <div class="member-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}" style="width:${hpPct}%"></div>
+                    <span class="hp-bar-text">${m.currentHp}/${maxHp}${m.shield?.value > 0 ? ' • ' + m.shield.value : ''}</span>
                 </div>
                 <div class="member-xp-bar">
                     <div class="member-xp-fill" style="width:${xpPct}%"></div>
@@ -584,9 +587,9 @@ function _buildRaidActiveMemberCard(m, teamIdx, slotIdx, slots) {
         <div class="raid-member-name">${m.name || cls?.name || '?'}</div>
         <div class="hp-container">
             <div class="hp-bar">
-                <div class="hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}" style="width:${hpPct}%"></div>
+                <div class="hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}" style="width:${hpPct}%"></div>
+                <span class="hp-bar-text">${m.currentHp}/${maxHp}${m.shield?.value > 0 ? ' • ' + m.shield.value : ''}</span>
             </div>
-            <span class="raid-member-hp-text">${m.currentHp}/${maxHp}</span>
         </div>
         <div class="member-moves">${moveBars}</div>`
 
@@ -612,7 +615,8 @@ function _buildRaidBenchMemberCard(m, teamIdx) {
         <div class="raid-bench-info">
             <span class="raid-bench-name">${m.name || cls?.name || '?'}</span>
             <div class="raid-bench-hp-bar">
-                <div class="raid-bench-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}" style="width:${hpPct}%"></div>
+                <div class="raid-bench-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}" style="width:${hpPct}%"></div>
+                <span class="hp-bar-text">${m.currentHp}/${maxHp}${m.shield?.value > 0 ? ' • ' + m.shield.value : ''}</span>
             </div>
         </div>`
     return div
@@ -654,9 +658,9 @@ function updateMemberBarsRaid(container) {
         const isPending = combat?.pendingRaidSwap === teamIdx
 
         const hpFill = card.querySelector('.hp-fill')
-        if (hpFill) { hpFill.style.width = `${hpPct}%`; hpFill.className = `hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}` }
-        const hpText = card.querySelector('.raid-member-hp-text')
-        if (hpText) hpText.textContent = `${m.currentHp}/${maxHp}`
+        if (hpFill) { hpFill.style.width = `${hpPct}%`; hpFill.className = `hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}` }
+        const hpText = card.querySelector('.hp-bar-text')
+        if (hpText) hpText.textContent = `${m.currentHp}/${maxHp}${m.shield?.value > 0 ? ' • ' + m.shield.value : ''}`
 
         card.classList.toggle('raid-swap-selected', isPending)
         card.style.opacity = m.currentHp > 0 ? '1' : '0.4'
@@ -678,7 +682,9 @@ function updateMemberBarsRaid(container) {
             const isPending = combat?.pendingRaidSwap === teamIdx
 
             const hpFill = card.querySelector('.raid-bench-hp-fill')
-            if (hpFill) { hpFill.style.width = `${hpPct}%`; hpFill.className = `raid-bench-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}` }
+            if (hpFill) { hpFill.style.width = `${hpPct}%`; hpFill.className = `raid-bench-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}` }
+            const hpBarText = card.querySelector('.raid-bench-hp-bar .hp-bar-text')
+            if (hpBarText) hpBarText.textContent = `${m.currentHp}/${maxHp}${m.shield?.value > 0 ? ' • ' + m.shield.value : ''}`
 
             card.classList.toggle('raid-swap-selected', isPending)
             card.style.opacity = m.currentHp > 0 ? '0.65' : '0.35'
