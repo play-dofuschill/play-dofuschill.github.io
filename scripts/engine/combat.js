@@ -296,6 +296,7 @@ function exitCombat() {
     if (menuParent) menuParent.style.display = state.hasChosenStarter ? '' : 'none'
     saveGame()
     if (typeof updateCollectionUI === 'function') updateCollectionUI()
+    switchMenu('worldmap')
 }
 
 function leaveCombat() {
@@ -328,7 +329,8 @@ function rejoinArea() {
         }
     }
     document.getElementById('main-content').style.zIndex = ''
-    startCombat(state.currentArea)
+    const areaToRejoin = state.currentArea
+    playZaapTransition(() => startCombat(areaToRejoin))
 }
 
 // ─── Pilote automatique ───────────────────────────────────────────────────────

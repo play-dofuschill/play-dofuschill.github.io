@@ -83,22 +83,24 @@ function joinPoutch(mode) {
     // Libellé du mode
     const modeLabel = mode === 'infinite' ? 'Poutch — Vie et tours infinis' : `Poutch — ${mode} tours`
 
-    // Affiche la barre de confirmation dans le menu team
-    const bar     = document.getElementById('zone-confirm-bar')
-    const barName = document.getElementById('zone-confirm-bar-name')
-    if (bar)     bar.style.display = 'flex'
-    if (barName) barName.textContent = modeLabel
+    playZaapTransition(() => {
+        // Affiche la barre de confirmation dans le menu team
+        const bar     = document.getElementById('zone-confirm-bar')
+        const barName = document.getElementById('zone-confirm-bar-name')
+        if (bar)     bar.style.display = 'flex'
+        if (barName) barName.textContent = modeLabel
 
-    const btnText = document.getElementById('zone-confirm-btn-text')
-    const btnSub  = document.getElementById('zone-confirm-btn-sub')
-    if (btnText) btnText.textContent  = 'Lancer le combat'
-    if (btnSub)  btnSub.style.display = 'none'
+        const btnText = document.getElementById('zone-confirm-btn-text')
+        const btnSub  = document.getElementById('zone-confirm-btn-sub')
+        if (btnText) btnText.textContent  = 'Lancer le combat'
+        if (btnSub)  btnSub.style.display = 'none'
 
-    // Ouvre le menu team
-    const teamMenu = document.getElementById('team-menu')
-    if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }
-    activeMenu = 'team'
-    updateTeamUI()
+        // Ouvre le menu team
+        const teamMenu = document.getElementById('team-menu')
+        if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }
+        activeMenu = 'team'
+        updateTeamUI()
+    })
 }
 
 // ─── Écran de résultats Poutch ────────────────────────────────────────────────

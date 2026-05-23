@@ -2200,11 +2200,11 @@ z-index: 0;
     100%{transform:scaleX(0%); transform-origin: right;}
 }
 
-#explore-transition svg{
+#explore-transition img{
     height: 5rem;
     width: 5rem;
-    color: var(--dark2);
     position: absolute;
+    filter: brightness(0);
 }
 
 @media (max-width: 1000px) {
@@ -3050,12 +3050,12 @@ background:
 
 @media (max-width: 1000px) {
     #tutorial { width: 100%; }
-    #tutorial img { scale: 1; max-height: 70px; width: auto; margin-right: 0.5rem; }
-    #tutorial span { height: auto; min-height: 5rem; font-size: 0.82rem; padding: 1rem 1.5rem; }
+    #tutorial img { scale: 2; max-height: 70px; width: auto; margin-right: 0.5rem; }
+    #tutorial span { height: auto; min-height: 3rem; font-size: 0.82rem; padding: 1rem 1.5rem; }
 }
 
 #tutorial span{
-    height: 12rem;
+    height: 10rem;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
@@ -4107,7 +4107,7 @@ transform: translateY(-1rem);
 .member-hp-fill.hp-mid    { background: #ff9800; }
 .member-hp-fill.hp-low    { background: #f44336; }
 .member-hp-fill.hp-shield { background: #b07fd4; }
-.hp-bar-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.25rem; font-size: 0.48rem; font-weight: bold; color: white; text-shadow: 0 0 3px rgba(0,0,0,0.9); pointer-events: none; line-height: 1; }
+.hp-bar-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.25rem; font-size: 0.7rem; font-weight: bold; color: white; text-shadow: 0 0 3px rgba(0,0,0,0.9); pointer-events: none; line-height: 1; }
 .member-xp-bar   { height: 0.3rem; background: rgba(0,0,0,0.3); border-radius: 0.2rem; overflow: hidden; margin-bottom: 0.25rem; }
 .member-xp-fill  { height: 100%; background: #007bc7; border-radius: 0.2rem; }
 .member-moves    { display: flex; flex-direction: column; gap: 0.3rem; }

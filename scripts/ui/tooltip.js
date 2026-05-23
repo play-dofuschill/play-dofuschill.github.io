@@ -420,7 +420,7 @@ function showMemberSheet(member) {
                 </div>
                 ${cls.passive ? `<div id="ms-passive-${member.classId}" style="display:none;margin-top:0.3rem;
                     padding:0.4rem 0.6rem;background:rgba(255,255,255,0.07);border-radius:4px;
-                    font-size:0.75rem;text-align:center;color:rgba(255,255,255,0.85);line-height:1.4;">
+                    font-size:0.75rem;text-align:center;color:#000;line-height:1.4;">
                     ${PASSIVE_TEXTS[member.classId] || 'Passif en cours d\'implémentation.'}
                 </div>` : ''}
             </div>

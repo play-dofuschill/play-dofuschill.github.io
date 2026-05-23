@@ -25,6 +25,32 @@ const STAT_ICONS = {
     volVie:  'img/icons/Vol_Vie.png',
     buff:    'img/icons/Boost.png'
 }
+function voidAnimation(id, animation) {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.style.animation = 'none'
+    el.offsetHeight
+    el.style.animation = animation
+}
+
+let _zaapTransitionPending = false
+function playZaapTransition(callback) {
+    if (_zaapTransitionPending) return
+    const el = document.getElementById('explore-transition')
+    if (!el) { callback(); return }
+    _zaapTransitionPending = true
+    const mc = document.getElementById('main-content')
+    if (mc) mc.style.backgroundImage = 'none'
+    voidAnimation('explore-transition', 'exploreTransition 1s 1')
+    el.style.display = 'flex'
+    setTimeout(callback, 500)
+    setTimeout(() => {
+        el.style.display = 'none'
+        if (mc) mc.style.backgroundImage = ''
+        _zaapTransitionPending = false
+    }, 1000)
+}
+
 function elemIcon(elem, cssClass = 'elem-icon') {
     const src = ELEM_ICONS[elem] || ELEM_ICONS.neutre
     return `<img src="${src}" class="${cssClass}" onerror="this.src='img/icons/Neutre.png'">`

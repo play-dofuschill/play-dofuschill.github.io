@@ -228,24 +228,27 @@ function joinArea(areaId) {
     document.getElementById('main-content').style.zIndex = ''
     activeMenu = null
 
-    // Affiche la barre de confirmation dans le menu team
-    const bar     = document.getElementById('zone-confirm-bar')
-    const barName = document.getElementById('zone-confirm-bar-name')
-    if (bar)     bar.style.display = 'flex'
-    if (barName) barName.textContent = area?.name || ''
-
-    // Texte du bouton selon le type de zone
     const isDungeon = area?.type === 'dungeon'
-    const btnText = document.getElementById('zone-confirm-btn-text')
-    const btnSub  = document.getElementById('zone-confirm-btn-sub')
-    if (btnText) btnText.textContent   = isDungeon ? 'Rentrer dans le donjon' : 'Commencer'
-    if (btnSub)  { btnSub.style.display = isDungeon ? 'block' : 'none'; btnSub.textContent = isDungeon ? 'Utiliser 1 clé' : '' }
 
-    // Ouvre le menu team
-    const teamMenu = document.getElementById('team-menu')
-    if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }
-    activeMenu = 'team'
-    updateTeamUI()
+    playZaapTransition(() => {
+        // Affiche la barre de confirmation dans le menu team
+        const bar     = document.getElementById('zone-confirm-bar')
+        const barName = document.getElementById('zone-confirm-bar-name')
+        if (bar)     bar.style.display = 'flex'
+        if (barName) barName.textContent = area?.name || ''
+
+        // Texte du bouton selon le type de zone
+        const btnText = document.getElementById('zone-confirm-btn-text')
+        const btnSub  = document.getElementById('zone-confirm-btn-sub')
+        if (btnText) btnText.textContent   = isDungeon ? 'Rentrer dans le donjon' : 'Commencer'
+        if (btnSub)  { btnSub.style.display = isDungeon ? 'block' : 'none'; btnSub.textContent = isDungeon ? 'Utiliser 1 clé' : '' }
+
+        // Ouvre le menu team
+        const teamMenu = document.getElementById('team-menu')
+        if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }
+        activeMenu = 'team'
+        updateTeamUI()
+    })
 }
 
 function cancelZoneConfirm() {
@@ -289,7 +292,7 @@ function confirmStartCombat() {
         document.getElementById('menu-button').classList.remove('menu-button-open')
         document.getElementById('main-content').style.zIndex = ''
         activeMenu = null
-        startPoutchCombat(mode)
+        playZaapTransition(() => startPoutchCombat(mode))
         return
     }
 
@@ -313,7 +316,9 @@ function confirmStartCombat() {
     document.getElementById('main-content').style.zIndex = ''
     activeMenu = null
 
-    startCombat(areaId)
-    advanceTutorial('zones')
-    advanceTutorial('team_prep')
+    playZaapTransition(() => {
+        startCombat(areaId)
+        advanceTutorial('zones')
+        advanceTutorial('team_prep')
+    })
 }

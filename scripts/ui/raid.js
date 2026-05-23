@@ -74,14 +74,21 @@ function joinRaid(areaId) {
     if (bar)     bar.style.display = 'flex'
     if (barName) barName.textContent = areas[areaId]?.name || 'Raid'
 
-    const btnText = document.getElementById('zone-confirm-btn-text')
-    const btnSub  = document.getElementById('zone-confirm-btn-sub')
-    if (btnText) btnText.textContent  = 'Lancer le Raid'
-    if (btnSub)  btnSub.style.display = 'none'
+    playZaapTransition(() => {
+        const bar     = document.getElementById('zone-confirm-bar')
+        const barName = document.getElementById('zone-confirm-bar-name')
+        if (bar)     bar.style.display = 'flex'
+        if (barName) barName.textContent = areas[areaId]?.name || 'Raid'
 
-    // Ouvre le menu team
-    const teamMenu = document.getElementById('team-menu')
-    if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }
-    activeMenu = 'team'
-    updateTeamUI()
+        const btnText = document.getElementById('zone-confirm-btn-text')
+        const btnSub  = document.getElementById('zone-confirm-btn-sub')
+        if (btnText) btnText.textContent  = 'Lancer le Raid'
+        if (btnSub)  btnSub.style.display = 'none'
+
+        // Ouvre le menu team
+        const teamMenu = document.getElementById('team-menu')
+        if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }
+        activeMenu = 'team'
+        updateTeamUI()
+    })
 }
