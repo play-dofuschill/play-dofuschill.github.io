@@ -166,7 +166,7 @@ const CLASS_OBTAIN = {
         iop:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
         cra:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
         eniripsa:   'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
-        enutrofe:   'Vieillard ayant connu la guerre opposant Bonta à Brâkmar, il est particulièrement proche de ses kamas... Peut-être que si vous en accumulez assez, il acceptera de rejoindre votre guilde ?',
+        enutrof:   'Vieillard ayant connu la guerre opposant Bonta à Brâkmar, il est particulièrement proche de ses kamas... Peut-être que si vous en accumulez assez, il acceptera de rejoindre votre guilde ?',
         xelor:      "Maîtres du temps, ce n'est qu'après avoir prouvé votre valeur en vous imposant victorieux face à l'un de ses semblables qu'il vous rejoindra.",
         huppermage: "Grand maître des éléments, il vous faudra lui prouver que vous aussi, vous savez dompter les créatures maîtrisant ces quatre magies que sont la Terre, le Feu, l'Eau et l'Air.",
         zobal:      "Gardiens des Masques Ancestraux, ils ne s'allient qu'à ceux dont la collection de familiers témoigne d'une vraie compréhension du monde.",

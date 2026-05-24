@@ -44,7 +44,7 @@ function _captureFamiliar(monsterId, isArchi = false) {
 function _isEnutrofActive() {
     if (typeof combat === 'undefined' || !combat) return false
     const m = state.team?.[combat.activeMemberIndex]
-    return classes[m?.classId]?.passive?.id === 'enutrofe'
+    return classes[m?.classId]?.passive?.id === 'enutrof'
 }
 
 // ─── Drop d'items depuis la loot table d'une zone ────────────────────────────

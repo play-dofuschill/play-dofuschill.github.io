@@ -229,7 +229,7 @@ const PASSIVE_TEXTS = {
     sram:       '+1% dégâts finaux par ennemi éliminé dans le combat (max +5%).',
     feca:       '+2% résistances à tous les éléments par ennemi éliminé (max +10%).',
     osamodas:   'Les invocations ont 2× plus de PV et d\'ATK.',
-    enutrofe:   '+15% taux de drop d\'items. Kamas × 2 quand un item est au niveau maximum.',
+    enutrof:   '+15% taux de drop d\'items. Kamas × 2 quand un item est au niveau maximum.',
     xelor:      'Cycle de 7 sorts (1→2→3→4→3→2→1) au lieu du cycle standard 1→2→3→4.',
     huppermage: '+10% dégâts finaux si les 4 sorts équipés couvrent 4 éléments différents.',
     sadida:     'Tous les 4 sorts, inflige −20 Initiative à l\'ennemi pendant 2 tours.',

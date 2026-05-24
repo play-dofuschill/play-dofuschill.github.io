@@ -35,6 +35,8 @@ function saveGame() {
         lastAlmanaxDate:           state.lastAlmanaxDate || null,
         dailyPool:                 state.dailyPool  || null,
         eventPool:                 state.eventPool  || null,
+        shopPool:                  state.shopPool      || null,
+        shopPurchases:             state.shopPurchases || null,
         skullLevel:                state.skullLevel || 0,
         skullUnequipped:           state.skullUnequipped || null,
         ownedSkins:                state.ownedSkins || [],
@@ -79,6 +81,8 @@ function loadGame() {
         if (data.lastAlmanaxDate)                   state.lastAlmanaxDate           = data.lastAlmanaxDate
         if (data.dailyPool)                         state.dailyPool                 = data.dailyPool
         if (data.eventPool)                         state.eventPool                 = data.eventPool
+        if (data.shopPool)                          state.shopPool                  = data.shopPool
+        if (data.shopPurchases)                     state.shopPurchases              = data.shopPurchases
         if (data.skullLevel != null)                state.skullLevel                = data.skullLevel
         if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins

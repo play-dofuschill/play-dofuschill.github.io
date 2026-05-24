@@ -14,7 +14,7 @@
 //   s.unlockedClasses                     — classes déjà débloquées
 
 const CLASS_UNLOCK_CONDITIONS = {
-    enutrofe: (s) => s.kamas >= 100,
+    enutrof: (s) => s.kamas >= 100,
 
     xelor: (s) => s.defeatedBosses?.includes('comteHarebourg'),
 

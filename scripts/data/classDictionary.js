@@ -268,8 +268,8 @@ classes.osamodas = {
     startingMove: null, learnset: {}
 }
 
-classes.enutrofe = {
-    id: 'enutrofe',
+classes.enutrof = {
+    id: 'enutrof',
     name: 'Énutrof',
     role: 'Farmer',
     image: 'img/classes/Enutrof_Male.png',
@@ -280,7 +280,7 @@ classes.enutrofe = {
         critChance: 0, critDamagePct: 50 },
     growthPerLevel: { hp: 5, atk: 5, spd: 0 },
     // Passif : +15% drop d'items, kamas ×2 (quand item au max)
-    passive: { id: 'enutrofe' },
+    passive: { id: 'enutrof' },
     startingMove: 'lancer_de_pieces',
     learnset: {
         8: "roulage_de_pelle",

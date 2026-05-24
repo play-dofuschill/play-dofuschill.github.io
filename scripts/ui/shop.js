@@ -5,6 +5,7 @@ let shopFilter = 'items'
 const SHOP_TAB_LABELS = {
     items:       'Items',
     consumables: 'Consommables',
+    runes:       'Runes',
     cosmetics:   'Cosmétiques'
 }
 
@@ -14,8 +15,8 @@ function setShopFilter(cat) {
 }
 
 function updateShopUI() {
-    const list      = document.getElementById('shop-list')
-    const kamasEl   = document.getElementById('shop-kamas-amount')
+    const list    = document.getElementById('shop-list')
+    const kamasEl = document.getElementById('shop-kamas-amount')
     if (!list) return
 
     if (kamasEl) kamasEl.textContent = state.kamas
@@ -25,10 +26,19 @@ function updateShopUI() {
     })
 
     list.innerHTML = ''
-    const entries = SHOP_CATALOGUE[shopFilter] || []
+
+    const banner = document.createElement('div')
+    banner.className = 'shop-rotation-banner'
+    banner.textContent = `Rotation dans ${nextShopRotationLabel()}`
+    list.appendChild(banner)
+
+    const entries = getShopEntries(shopFilter)
 
     if (entries.length === 0) {
-        list.innerHTML = `<div class="shop-empty">Aucun article disponible.<br>Revenez bientôt !</div>`
+        const empty = document.createElement('div')
+        empty.className = 'shop-empty'
+        empty.innerHTML = 'Aucun article disponible.<br>Revenez bientôt !'
+        list.appendChild(empty)
         return
     }
 
@@ -61,28 +71,38 @@ function updateShopUI() {
             continue
         }
 
-        // ── Item standard ──────────────────────────────────────────────
+        // ── Item avec limite de stock ───────────────────────────────────
+        const limit     = _shopItemLimit(entry.itemId)
+        const remaining = shopRemaining(entry.itemId)
+        const hasLimit  = limit !== Infinity
+        const soldOut   = hasLimit && remaining === 0
+
         const currentLevel = state.inventory[entry.itemId]?.level || 0
         const isMaxed      = itm.levelMax && currentLevel >= itm.levelMax
         const canAfford    = state.kamas >= entry.price
-        const isDisabled   = isMaxed || !canAfford
+        const isDisabled   = soldOut || isMaxed || !canAfford
+
+        const stockBadge = hasLimit
+            ? `<span class="shop-stock-badge${remaining === 0 ? ' shop-stock-empty' : ''}">${remaining}/${limit}</span>`
+            : ''
 
         const card = document.createElement('div')
-        card.className = `shop-card${isMaxed ? ' shop-card-maxed' : (!canAfford ? ' shop-card-disabled' : '')}`
+        card.className = `shop-card${(soldOut || isMaxed) ? ' shop-card-maxed' : (!canAfford ? ' shop-card-disabled' : '')}`
         card.innerHTML = `
             <div class="shop-card-bubble">
                 <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
             </div>
             <div class="shop-card-info">
-                <span class="shop-card-name">${itm.name}${isMaxed ? '<span class="shop-card-max-badge">MAX</span>' : ''}</span>
+                <span class="shop-card-name">${itm.name}${isMaxed ? '<span class="shop-card-max-badge">MAX</span>' : ''}${soldOut ? '<span class="shop-card-max-badge">Épuisé</span>' : ''}</span>
                 ${itm.description ? `<span class="shop-card-desc">${itm.description}</span>` : ''}
             </div>
-            <div class="shop-card-price${canAfford ? '' : ' shop-price-unaffordable'}">
+            <div class="shop-card-price${canAfford && !soldOut ? '' : ' shop-price-unaffordable'}">
+                ${stockBadge}
                 <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon">
                 <span>${entry.price}</span>
             </div>`
 
-        if (!isMaxed) {
+        if (!isDisabled) {
             card.addEventListener('click', () => showShopBuyPicker(entry, itm))
         }
         card.addEventListener('contextmenu', e => {
@@ -102,7 +122,12 @@ function showShopBuyPicker(entry, itm) {
     const currentLevel  = state.inventory[entry.itemId]?.level || 0
     const maxAffordable = Math.floor(state.kamas / entry.price)
     const maxUseful     = itm.levelMax ? Math.max(0, itm.levelMax - currentLevel) : maxAffordable
-    const maxQty        = Math.min(maxAffordable, maxUseful)
+    const remaining     = shopRemaining(entry.itemId)
+    const maxQty        = Math.min(
+        maxAffordable,
+        maxUseful,
+        remaining === Infinity ? maxAffordable : remaining
+    )
 
     if (maxQty <= 0) {
         showNotification('Pas assez de kamas !', 'error')
