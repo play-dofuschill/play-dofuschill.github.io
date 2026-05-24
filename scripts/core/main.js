@@ -133,6 +133,7 @@ const state = {
     lastAlmanaxDate: null,
     dailyPool: null,
     eventPool: null,
+    raidPool:  null,
     skullLevel: 0,
     skullUnequipped: null,
     session: {

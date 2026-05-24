@@ -45,6 +45,8 @@ const WILD_SLOTS = [
 
 const DAILY_EVENT_MAX    = 5
 const EVENT_REFRESH_DAYS = 3
+const DAILY_RAID_MAX     = 2
+const RAID_REFRESH_DAYS  = 3
 
 function _todayStr() {
     return new Date().toISOString().slice(0, 10)
@@ -67,7 +69,8 @@ function _seededShuffle(arr, seed) {
 
 // Retourne true si la zone est accessible d'après les boss battus.
 function isZoneAccessible(area) {
-    if (area.type === 'event') return true   // Les événements sont toujours accessibles
+    if (area.type === 'event') return true
+    if (area.type === 'raid')  return true
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return true
     for (const tier of UNLOCK_TIERS) {
         if (area.maxLevel <= tier.unlocksMaxLevel)
@@ -79,6 +82,7 @@ function isZoneAccessible(area) {
 // Retourne le texte d'indication pour l'overlay de verrouillage, ou null si toujours accessible.
 function getZoneUnlockHint(area) {
     if (area.type === 'event') return null
+    if (area.type === 'raid')  return null
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return null
     for (const tier of UNLOCK_TIERS) {
         if (area.maxLevel <= tier.unlocksMaxLevel) return tier.hint
@@ -143,6 +147,20 @@ function refreshDailyPools() {
             zones: _seededShuffle(allEvents, seed ^ 0xdeadbeef).slice(0, DAILY_EVENT_MAX).map(a => a.id)
         }
     }
+
+    // Raids : refresh tous les RAID_REFRESH_DAYS jours
+    const raidStale = !state.raidPool || (() => {
+        const ms = new Date(today) - new Date(state.raidPool.date)
+        return ms / 86400000 >= RAID_REFRESH_DAYS
+    })()
+
+    if (raidStale) {
+        const allRaids = Object.values(areas).filter(a => a.type === 'raid')
+        state.raidPool = {
+            date: today,
+            zones: _seededShuffle(allRaids, seed ^ 0xc0ffee).slice(0, DAILY_RAID_MAX).map(a => a.id)
+        }
+    }
 }
 
 // Labels de countdown pour l'UI.
@@ -162,6 +180,15 @@ function nextEventRefreshLabel() {
     const today   = _todayStr()
     const elapsed = Math.floor((new Date(today) - new Date(state.eventPool.date)) / 86400000)
     const rem     = EVENT_REFRESH_DAYS - elapsed
+    if (rem <= 1) return 'demain'
+    return `${rem} jours`
+}
+
+function nextRaidRefreshLabel() {
+    if (!state.raidPool) return '3 jours'
+    const today   = _todayStr()
+    const elapsed = Math.floor((new Date(today) - new Date(state.raidPool.date)) / 86400000)
+    const rem     = RAID_REFRESH_DAYS - elapsed
     if (rem <= 1) return 'demain'
     return `${rem} jours`
 }

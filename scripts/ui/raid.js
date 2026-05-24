@@ -12,7 +12,8 @@ function updateRaidUI() {
     header.appendChild(_buildSkullSelector(updateRaidUI))
     list.appendChild(header)
 
-    const raidAreas = Object.values(areas).filter(a => a.type === 'raid')
+    const pool      = state.raidPool?.zones || []
+    const raidAreas = pool.map(id => areas[id]).filter(Boolean)
 
     if (!raidAreas.length) {
         const empty = document.createElement('div')
@@ -21,6 +22,12 @@ function updateRaidUI() {
         list.appendChild(empty)
         return
     }
+
+    const countEl = document.createElement('div')
+    countEl.className = 'zone-daily-info'
+    countEl.innerHTML = `<span>Raids &bull; <strong>${raidAreas.length}</strong> disponible${raidAreas.length > 1 ? 's' : ''}</span>
+        <span>Renouvellement dans&nbsp;${nextRaidRefreshLabel()}</span>`
+    list.insertBefore(countEl, list.firstChild.nextSibling)
 
     for (const area of raidAreas) {
         const isActive = state.currentArea === area.id && state.isRunning

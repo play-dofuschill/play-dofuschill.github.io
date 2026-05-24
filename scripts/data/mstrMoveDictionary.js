@@ -517,21 +517,19 @@ move.picoti = {
     cooldownMs: 2000,
     effects: [
         {type: 'damage',    elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 11, max: 15 }, target: 'enemy'},
-        {type: 'lifesteal', ratio: 1.0,                                                              target: 'self'}
-    ]
+        {type: 'lifesteal', ratio: 0.2, target: 'self'}]
 }
 move.naissance = {
     id: 'naissance',
     name: 'Naissance',
-    cooldownMs: 3000,
+    cooldownMs: 4000,
     effects: [{type: 'summon', summonId: 'scarafeuilleImmature', duration: 4, target: 'self'}]
 }
 move.premier_soins = {
     id: 'premier_soins',
     name: 'Premier Soins',
-    cooldownMs: 3000,
-    // soin entre 17% et 26% des HP max — valeur médiane fixe en attendant support de plage
-    effects: [{type: 'heal%maxHp', heal: 20, target: 'self'}]
+    cooldownMs: 3500,
+    effects: [{type: 'heal%maxHp', heal: 5, target: 'self'}]
 }
 move.expulsion = {
     id: 'expulsion',
@@ -767,310 +765,405 @@ move.kwarmee_kwayal = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
-// #region EVENT DOPEUL
-move.fleche_optique_du_dopeul = {
-    id: 'fleche_optique_du_dopeul',
-    name: 'Flèche Optique du Dopeul',
+// #region EVENT FORET ASTRUB
+move.flair = {
+    id: 'flair',
+    name: 'Flair',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'atk', value: 40, duration: 3, target: 'self' }],
+}
+move.deboyautage = {
+    id: 'deboyautage',
+    name: 'Déboyautage',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 21,max: 30}, target: 'enemy'}],
+}
+move.moquerie = {
+    id: 'moquerie',
+    name: 'Moquerie',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 21,max: 26}, target: 'enemy'}],
+}
+move.cache_cache = {
+    id: 'cache_cache',
+    name: 'Cache Cache',
+    cooldownMs: 2200,
+    effects: [{type: 'renvoi', ratio: 0, target: 'self'}],
+}
+move.perce_vessie = {
+    id: 'perce_vessie',
+    name: 'Perce-Vessie',
     cooldownMs: 1650,
-    effects: [{ type: 'damage', element: 'air', damage: {min: 14,max: 16}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: { min: 17, max: 22 }, target: 'enemy'},
+              {type: 'switch', value: 1, target: 'enemy'}]
 }
-move.fleche_glacee_du_dopeul = {
-    id: 'fleche_glacee_du_dopeul',
-    name: 'Flèche Glacée du Dopeul',
-    cooldownMs: 1900,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 14,max: 16}, target: 'enemy'},
-              {type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy'}],
-}
-move.pression_du_dopeul = {
-    id: 'pression_du_dopeul',
-    name: 'Pression du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'},
-        {type: 'buff', stat: 'erosionBonus', value: 0.10, duration: 3, target: 'self'}]
-}
-move.epee_divine_du_dopeul = {
-    id: 'epee_divine_du_dopeul',
-    name: 'Épée Divine du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'air', damage: {min: 14, max: 17}, target: 'enemy'},
-        {type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}],
-}
-move.mot_espiegle_du_dopeul = {
-    id: 'mot_espiegle_du_dopeul',
-    name: 'Mot Espiègle du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 12,max: 14}, target: 'enemy'}],
-}
-move.mot_tapageur_du_dopeul = {
-    id: 'mot_tapageur_du_dopeul',
-    name: 'Mot Tapageur du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 12,max: 14}, target: 'enemy'}],
-}
-// feca
-move.retour_du_baton_du_dopeul = {
-    id: 'retour_du_baton_du_dopeul',
-    name: 'Retour du Bâton du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'terre', damage: {min: 17, max: 20}, target: 'enemy'},
-        {type: 'debuff', stat: 'atk', value: 40, duration: 2, target: 'enemy'}
-    ],
-}
-move.bulle_du_dopeul = {
-    id: 'bulle_du_dopeul',
-    name: 'Bulle du Dopeul',
-    cooldownMs: 1800,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}],
-}
-// osamodas
-move.pics_du_prespic_du_dopeul = {
-    id: 'pics_du_prespic_du_dopeul',
-    name: 'Pics du Prespic du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'neutre', damage: {min: 8, max: 10}, target: 'enemy'},
-        {type: 'lifesteal', ratio: 1.0, target: 'self'}
-    ],
-}
-move.crocs_du_mulou_du_dopeul = {
-    id: 'crocs_du_mulou_du_dopeul',
-    name: 'Crocs du Mulou du Dopeul',
+move.charge_forcee = {
+    id: 'charge_forcee',
+    name: 'Charge Forcée',
     cooldownMs: 2200,
-    effects: [
-        {type: 'damage', element: 'terre', damage: {min: 17, max: 20}, target: 'enemy'},
-        {type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}
-    ],
+    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self' }],
 }
-// enutrof
-move.roulage_de_pelle_du_dopeul = {
-    id: 'roulage_de_pelle_du_dopeul',
-    name: 'Roulage de Pelle du Dopeul',
+move.taie_de_gland = {
+    id: 'taie_de_gland',
+    name: 'Taie de Gland',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 11, max: 13}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 11,max: 16}, target: 'enemy'}],
 }
-move.lancer_de_pieces_du_dopeul = {
-    id: 'lancer_de_pieces_du_dopeul',
-    name: 'Lancer de Pièces du Dopeul',
-    cooldownMs: 1800,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 7, max: 9}, target: 'enemy'}],
-}
-// sram
-move.truanderie_du_dopeul = {
-    id: 'truanderie_du_dopeul',
-    name: 'Truanderie du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}],
-}
-move.arsenic_du_dopeul = {
-    id: 'arsenic_du_dopeul',
-    name: 'Arsenic du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'air', value: 11, duration: 3, target: 'enemy'}],
-}
-// xelor
-move.gelure_du_dopeul = {
-    id: 'gelure_du_dopeul',
-    name: 'Gelure du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'eau', damage: {min: 8, max: 10}, target: 'enemy'},
-        {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}
-    ],
-}
-move.frappe_de_xelor_du_dopeul = {
-    id: 'frappe_de_xelor_du_dopeul',
-    name: 'Frappe de Xélor du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 13, max: 15}, target: 'enemy'},
-              {type: 'recul', target: 'enemy'}],
-}
-// ecaflip
-move.pile_ou_face_du_dopeul = {
-    id: 'pile_ou_face_du_dopeul',
-    name: 'Pile ou Face du Dopeul',
-    cooldownMs: 2000,
-    effects: [{
-        type: 'random',
-        choices: [
-            { chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 18}, target: 'enemy'}] },
-            { chance: 0.30, effects: [{type: 'heal', heal: 50, target: 'self'}] }
-        ]
-    }],
-}
-move.bonne_pioche_du_dopeul = {
-    id: 'bonne_pioche_du_dopeul',
-    name: 'Bonne Pioche du Dopeul',
+move.rafale_venteuse = {
+    id: 'rafale_venteuse',
+    name: 'Rafale Venteuse',
     cooldownMs: 2200,
-    effects: [{
-        type: 'random',
-        choices: [
-            { chance: 0.30, effects: [{type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}] },
-            { chance: 0.30, effects: [{type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self'}] },
-            { chance: 0.30, effects: [{type: 'buff', stat: 'spd', value: 10, duration: 3, target: 'self'}] },
-            { chance: 0.10, effects: [{type: 'heal', heal: -80, target: 'self'}] }]}],
+    effects: [{ type: 'damage', element: 'vent', damage: {min: 21,max: 28}, target: 'enemy'},
+              { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
-// sadida
-move.ronce_du_dopeul = {
-    id: 'ronce_du_dopeul',
-    name: 'Ronce du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'}],
+move.griffe_de_ours = {
+    id: 'griffe_de_ours',
+    name: "Griffe de l'Homme-Ours",
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 50,max: 56}, target: 'enemy'}],
 }
-move.buisson_ardent_du_dopeul = {
-    id: 'buisson_ardent_du_dopeul',
-    name: 'Buisson Ardent du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'feu', value: 11, duration: 3, target: 'enemy'}],
+move.rage_de_Ours = {
+    id: 'rage_de_Ours',
+    name: "Rage de l'Ours",
+    cooldownMs: 2200,
+    effects: [{ type: 'buff', stat: 'flatDamage', value: 20, duration: 3, target: 'self' }],
 }
-// sacrieur
-move.supplice_du_dopeul = {
-    id: 'supplice_du_dopeul',
-    name: 'Supplice du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'terre', damage: {min: 13, max: 16}, target: 'enemy'},
-        {type: 'lifesteal', ratio: 1.0, target: 'self'}
-    ],
+
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region EVENT BIBLOP
+move.bibloperie_air = {
+    id: 'bibloperie_air',
+    name: 'Bibloperie',
+    cooldownMs: 1650,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
-move.absorption_du_dopeul = {
-    id: 'absorption_du_dopeul',
-    name: 'Absorption du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'feu', damage: {min: 13, max: 16}, target: 'enemy'},
-        {type: 'lifesteal', ratio: 1.0, target: 'self'}
-    ],
+move.biblopiment_air = {
+    id: 'biblopiment_air',
+    name: 'Biblopiment',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 17,max: 24}, target: 'enemy'},
+              { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
-// roublard
-move.espingole_du_dopeul = {
-    id: 'espingole_du_dopeul',
-    name: 'Espingole du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'}],
+move.bibloperie_terre = {
+    id: 'bibloperie_terre',
+    name: 'Bibloperie',
+    cooldownMs: 1650,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
-move.pulsar_du_dopeul = {
-    id: 'pulsar_du_dopeul',
-    name: 'Pulsar du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'}],
+move.biblopiment_terre = {
+    id: 'biblopiment_terre',
+    name: 'Biblopiment',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 17,max: 24}, target: 'enemy'},
+              { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
-// pandawa
-move.paume_explosive_du_dopeul = {
-    id: 'paume_explosive_du_dopeul',
-    name: 'Paume Explosive du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 14}, target: 'enemy'}],
+move.bibloperie_feu = {
+    id: 'bibloperie_feu',
+    name: 'Bibloperie',
+    cooldownMs: 1650,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
-move.ethylo_du_dopeul = {
-    id: 'ethylo_du_dopeul',
-    name: 'Ethylo du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'}],
+move.biblopiment_feu = {
+    id: 'biblopiment_feu',
+    name: 'Biblopiment',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 17,max: 24}, target: 'enemy'},
+              { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
-// zobal
-move.parafuso_du_dopeul = {
-    id: 'parafuso_du_dopeul',
-    name: 'Parafuso du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'},
-        {type: 'lifesteal', ratio: 1.0, target: 'self'}
-    ],
+move.bibloperie_eau = {
+    id: 'bibloperie_eau',
+    name: 'Bibloperie',
+    cooldownMs: 1650,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
-move.plastron_du_dopeul = {
-    id: 'plastron_du_dopeul',
-    name: 'Plastron du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'shield', value: 200, duration: 3, target: 'self'}],
-}
-// steamer
-move.longue_vue_du_dopeul = {
-    id: 'longue_vue_du_dopeul',
-    name: 'Longue-vue du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'}],
-}
-move.amarrage_du_dopeul = {
-    id: 'amarrage_du_dopeul',
-    name: 'Amarrage du Dopeul',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'terre', damage: {min: 11, max: 13}, target: 'enemy'},
-        {type: 'lifesteal', ratio: 1.0, target: 'self'}
-    ],
-}
-// eliotrope
-move.affront_du_dopeul = {
-    id: 'affront_du_dopeul',
-    name: 'Affront du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'}],
-}
-move.rayon_de_wakfu_du_dopeul = {
-    id: 'rayon_de_wakfu_du_dopeul',
-    name: 'Rayon de Wakfu du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'}],
-}
-// huppermage
-move.onde_sismique_du_dopeul = {
-    id: 'onde_sismique_du_dopeul',
-    name: 'Onde Sismique du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}],
-}
-move.stalagmite_du_dopeul = {
-    id: 'stalagmite_du_dopeul',
-    name: 'Stalagmite du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 17, max: 19}, target: 'enemy'}],
-}
-// ouginak
-move.traque_du_dopeul = {
-    id: 'traque_du_dopeul',
-    name: 'Traque du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 19, max: 21}, target: 'enemy'}],
-}
-move.molosse_du_dopeul = {
-    id: 'molosse_du_dopeul',
-    name: 'Molosse du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 20}, target: 'enemy'}],
-}
-// forgelance
-move.trident_de_la_mer_du_dopeul = {
-    id: 'trident_de_la_mer_du_dopeul',
-    name: 'Trident de la Mer du Dopeul',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'}],
-}
-move.volee_d_airain_du_dopeul = {
-    id: 'volee_d_airain_du_dopeul',
-    name: "Volée d'Airain du Dopeul",
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 14, max: 16}, target: 'enemy'}],
-}
-// dopeul_darkvlad
-move.lame_de_iop = {
-    id: 'lame_de_iop',
-    name: 'lame de Iop',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 30, max: 45}, target: 'enemy'}],
-}
-move.lame_divine = {
-    id: 'lame_divine',
-    name: "Lame Divine",
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 25, max: 40}, target: 'enemy'}],
-}
-move.tession = {
-    id: 'tession',
-    name: 'Tession',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 35}, target: 'enemy', erosionRate: 0.15}]
+move.biblopiment_eau = {
+    id: 'biblopiment_eau',
+    name: 'Biblopiment',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 17,max: 24}, target: 'enemy'},
+              { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
 // #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region EVENT ROBOT CANIA
+move.blast = {
+    id: 'blast',
+    name: 'Blast',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 21,max: 30}, target: 'enemy'},
+              {type: 'buff', stat: 'atk', value:  50, duration: 4, target: 'self'}],
+}
+move.turbine = {
+    id: 'turbine',
+    name: 'Turbine',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 21,max: 30}, target: 'enemy'},
+              {type: 'debuff', stat: 'atk', value: -50, duration: 4, target: 'enemy'}],
+}
+move.micro_onde = {
+    id: 'micro_onde',
+    name: 'Micro Onde',
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 21,max: 30}, target: 'enemy'},
+              { type: 'shield', value: 50, duration: 2, target: 'self' }],
+}
+move.macro_onde = {
+    id: 'macro_onde',
+    name: 'Macro Onde',
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 21,max: 30}, target: 'enemy'},
+              { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
+}
+move.pousse_moi = {
+    id: 'pousse_moi',
+    name: 'Pousse Moi',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 21,max: 30}, target: 'enemy'},
+              { type: 'switch', value: 5, target: 'enemy' }],
+}
+move.pousse_toi = {
+    id: 'pousse_toi',
+    name: 'Pousse Toi',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 21,max: 30}, target: 'enemy'},
+              { type: 'switch', value: 1, target: 'enemy' }],
+}
+move.construction = {
+    id: 'construction',
+    name: 'Construction',
+    cooldownMs: 3000,
+    effects: [{type: 'summon', summonPool: ['robotPoussePousse', 'robotFleau', 'robionicle'], duration: 2, target: 'self'}]
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region EVENT KRALAMOUR GEANT
+move.kraken_primaire = {
+    id: 'kraken_primaire',
+    name: 'Kraken Primaire',
+    cooldownMs: 5000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 3000,max: 4000}, target: 'enemy'}],
+}
+move.kraken_secondaire = {
+    id: 'kraken_secondaire',
+    name: 'Kraken Secondaire',
+    cooldownMs: 5000,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 55,max: 100}, target: 'enemy'},
+              { type: 'antiHeal', duration: 6, target: 'enemy' }],
+}
+move.kraken_tertiaire = {
+    id: 'kraken_tertiaire',
+    name: 'Kraken Tertiaire',
+    cooldownMs: 5000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 55,max: 100}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 400, duration: 6, target: 'enemy' }],
+}
+move.kraken_quartenaire = {
+    id: 'kraken_quartenaire',
+    name: 'Kraken Quartenaire',
+    cooldownMs: 5000,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 55,max: 100}, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 80, duration: 2, target: 'enemy' }],
+}
+move.motivation_naturelle = {
+    id: 'motivation_naturelle',
+    name: 'Motivation Naturelle',
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 55,max: 100}, target: 'enemy'}],
+}
+move.empoisonnement_tentaculaire = {
+    id: 'empoisonnement_tentaculaire',
+    name: 'Empoisonnement Tentaculaire',
+    cooldownMs: 3000,
+    effects: [{ type: 'dot', element: 'feu', value: 75, duration: 3, target: 'enemy'}],
+}
+move.malediction_tentaculaire = {
+    id: 'malediction_tentaculaire',
+    name: 'Malédiction Tentaculaire',
+    cooldownMs: 3000,
+    effects: [{ type: 'dot', element: 'eau', value: 75, duration: 3, target: 'enemy'},
+              { type: 'debuff', stat: 'flatDamage', value: 200, duration: 6, target: 'enemy' }],
+}
+move.paralysie_tentaculaire = {
+    id: 'paralysie_tentaculaire',
+    name: 'Paralysie Tentaculaire',
+    cooldownMs: 3000,
+    effects: [{ type: 'dot', element: 'eau', value: 75, duration: 3, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }],
+}
+move.kracheau_immobilisant = {
+    id: 'kracheau_immobilisant',
+    name: 'Kracheau Immobilisant',
+    cooldownMs: 3500,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 250,max: 350}, target: 'random_enemy'},
+              { type: 'lifesteal', ratio: 0.5, target: 'self' },
+              { type: 'debuff', stat: 'spd', value: 10, duration: 3, target: 'random_enemy' }],
+}
+move.vulnerabilite_de_la_tourbiere = {
+    id: 'vulnerabilite_de_la_tourbiere',
+    name: 'Vulnérabilité de la Tourbière',
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 250,max: 350}, target: 'random_enemy'},
+              { type: 'debuff', stat: 'res_all', value: 25, duration: 3, target: 'all_enemies' },
+              { type: 'buff', stat: 'res_all', value: -70, duration: 4, target: 'self' }],
+}
+move.kraken = {
+    id: 'kraken',
+    name: 'Kraken',
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', stat: 'flatDamage', value: 800, duration: 3, target: 'enemy' }],
+}
+move.tourbe_ecrasante = {
+    id: 'tourbe_ecrasante',
+    name: 'Tourbe écrasante',
+    cooldownMs: 3500,
+    effects: [{ type: 'debuff', stat: 'spd', value: 50, duration: 3, target: 'all_enemies' }],
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region TOURBES DU ROISSINGUE
+
+// — La Ouassingue —
+move.oblativite = {
+    id: 'oblativite',
+    name: 'Oblativité',
+    cooldownMs: 2000,
+    effects: [{ type: 'renvoiTotal', ratio: 0.1, target: 'self' }],
+}
+move.serpilliere = {
+    id: 'serpilliere',
+    name: 'Serpillière',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 22, max: 26}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.3, target: 'self' },],
+}
+move.reconstitution_cellulaire = {
+    id: 'reconstitution_cellulaire',
+    name: 'Reconstitution Cellulaire',
+    cooldownMs: 3000,
+    effects: [{ type: 'heal%maxHp', heal: 15, target: 'self' }],
+}
+
+// — Le Ouassingue —
+move.equarrissage = {
+    id: 'equarrissage',
+    name: 'Équarrissage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 22, max: 26}, target: 'enemy'}],
+}
+move.interversion = {
+    id: 'interversion',
+    name: 'Interversion',
+    cooldownMs: 2000,
+    effects: [{type: 'recul', target: 'enemy'}],
+}
+
+// — Tourbassingue —
+move.tourbe_reparatrice = {
+    id: 'tourbe_reparatrice',
+    name: 'Tourbe réparatrice',
+    cooldownMs: 2000,
+    effects: [{ type: 'heal', heal: {min: 25, max: 30}, target: 'self'}],
+}
+move.tourbe_malveillante = {
+    id: 'tourbe_malveillante',
+    name: 'Tourbe Malveillante',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 21, max: 30}, target: 'enemy'}],
+}
+
+// — Bourbassingue —
+move.boue_sirupeuse = {
+    id: 'boue_sirupeuse',
+    name: 'Boue sirupeuse',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 0, max: 0}, target: 'enemy'}],
+}
+move.bourbier = {
+    id: 'bourbier',
+    name: 'Bourbier',
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', element: 'spd', value : 20, duration : 4, target: 'enemy'}],
+}
+
+// — Roissingue (boss) —
+move.retour_du_roi = {
+    id: 'retour_du_roi',
+    name: 'Retour du Roi',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', element: 'atk', value : 100, duration : 6, target: 'self'}],
+}
+move.depouillage = {
+    id: 'depouillage',
+    name: 'Dépouillage',
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', element: 'atk', value : 500, duration : 4, target: 'all_enemy'}],
+}
+move.dechaussage = {
+    id: 'dechaussage',
+    name: 'Déchaussage',
+    cooldownMs: 4000,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 41, max: 60}, target: 'enemy'}],
+}
+
+// #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

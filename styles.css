@@ -64,6 +64,31 @@ body {
 }
 
 
+#music-toggle-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.35);
+    border: none;
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--light2);
+    opacity: 0.7;
+    transition: opacity 0.2s, background 0.2s;
+    padding: 0;
+}
+
+#music-toggle-btn:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.55);
+}
+
 #game-version{
     position: absolute;
     right: 1rem;

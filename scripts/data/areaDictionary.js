@@ -344,6 +344,7 @@ areas.donjonKwakwa = {
 // #endregion
 
 // #region EVENTS ─────────────────────────────────────────────────────────────
+// #region loot table runes 
 /*
 ── Lignes de drop disponibles pour les runes ────────────────────────────────
 Copier-coller la ligne souhaitée dans le lootTable d'une zone ou d'un event.
@@ -413,7 +414,7 @@ Résistances
         { itemId: 'runeAirResM',      dropRate: 0.01 },
         { itemId: 'runeNeutralResM',  dropRate: 0.01 }
 */
-
+// #endregion
 areas.evenementPious = {
     id: 'evenementPious',
     type: 'event',
@@ -436,7 +437,6 @@ areas.evenementPious = {
         { itemId: 'piloteAutomatique', dropRate: 0.05 }
     ]
 }
-
 areas.evenementDopeuls = {
     id: 'evenementDopeuls',
     type: 'event',
@@ -477,43 +477,131 @@ areas.evenementDopeuls = {
         { itemId: 'runeCritS',         dropRate: 0.01 }
     ]
 }
+areas.evenementBiblop = {
+    id: 'evenementBiblop',
+    type: 'event',
+    name: 'Invasion de Blops',
+    minLevel: 25, maxLevel: 30,
+    mobMinLevel: 25, mobMaxLevel: 30,
+    background: 'Blop',
+    icon: 'img/monstres/Events/biblop_griotte.png',
+    description: "Des habitants ont rapportés qu'aux alentours du lac des blops se multiplient vitesse grand V... Essayez de stoper cette invasion tant qu'ils ne sont pas pleinement développés.",
+    spawns: [
+        { id: 'biblop_coco',     weight: 25 },
+        { id: 'biblop_reinette', weight: 25 },
+        { id: 'biblop_griotte',  weight: 25 },
+        { id: 'biblop_indigo',   weight: 25 },
+    ],
+    lootTable: [
+        { itemId: 'piloteAutomatique', dropRate: 0.05 }
+    ]
+}
+areas.evenementRobots = {
+    id: 'evenementRobots',
+    type: 'event',
+    name: 'Régulation technologique',
+    minLevel: 55, maxLevel: 65,
+    mobMinLevel: 55, mobMaxLevel: 65,
+    background: 'Cania',
+    icon: 'img/monstres/Events/robionicle.png',
+    description: "Un steamer fou a été arrêté à l'Hotel des Ventes d'Astrub après une commande suspecte de pièces mécaniques. Depuis son arrestation de nombreux voyageurs racontent s'être fais prendre en chasse par de mystérieux robots.",
+    spawns: [
+        { id: 'robionicle',         weight: 30 },
+        { id: 'robotFleau',         weight: 30 },
+        { id: 'robotPoussePousse',  weight: 30 },
+        { id: 'malleOutillee',      weight: 10 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
+        { itemId: 'runeHpS',           dropRate: 0.015 },
+        { itemId: 'runeAtkS',          dropRate: 0.015 },
+        { itemId: 'runeSpdS',          dropRate: 0.015 },
+        { itemId: 'runeFlatDmgS',      dropRate: 0.015 },
+        { itemId: 'runeCritS',         dropRate: 0.015 }
+    ]
+}
+areas.evenementForetAstrub = {
+    id: 'evenementForetAstrub',
+    type: 'event',
+    name: 'Attention au loup !',
+    minLevel: 20, maxLevel: 35,
+    mobMinLevel: 20, mobMaxLevel: 30,
+    background: 'Foret_Astrub',
+    icon: 'img/monstres/Events/milimulou.png',
+    description: "Depuis plusieurs semaines, la forêt d'Astrub est le théâtre d'étranges disparitions. Entre les arbres rongés par la mousse et les sentiers envahis de brouillard, des voyageurs affirment avoir aperçu une silhouette massive rôdant dans l'ombre : l'Homme Ours. Certains le décrivent comme une bête sanguinaire surgie des profondeurs de la forêt, tandis que d'autres murmurent qu'il protégerait les créatures blessées et les secrets oubliés des bois.",
+    spawns: [
+        { id: 'milimulou',         weight: 22 },
+        { id: 'prespic',         weight: 22 },
+        { id: 'sanglier',  weight: 22 },
+        { id: 'ecurouille',      weight: 22 },
+        { id: 'hommeOurs',      weight: 12 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
+    ]
+}
+
+
+
+
 
 // #endregion
 
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
-areas.raidCimetiere = {
-    id: 'raidCimetiere',
-    name: 'Raid — Crypte d\'Incarnam',
+areas.raidTourbeduRoissingue = {
+    id: 'raidTourbeduRoissingue',
+    name: 'Raid de la tourbière du Roissingue',
     type: 'raid',
-    minLevel: 15, maxLevel: 40,
-    mobMinLevel: 15, mobMaxLevel: 25,
-    background: 'cimetiere_incarnam',
-    icon: 'img/monstres/sprites/kardorim.png',
-    description: 'Trois serviteurs de Kardorim surgissent simultanément. Coordonnez votre équipe !',
+    minLevel: 100, maxLevel: 170,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: 'tourbiere',
+    icon: 'img/monstres/Raids/roissingue.png',
+    description: "Au cœur de la Tourbière sans fond d'Otomaï s'étend le domaine du Roissingue, souverain grotesque d'un royaume noyé dans la boue et les eaux stagnantes. L'air y est lourd, chargé d'une odeur de moisissure et de tourbe humide, tandis que d'étranges créatures rôdent entre les marécages. Les aventuriers qui s'y aventurent racontent avoir aperçu des silhouettes simiesques vêtues de haillons trempés, riant dans l’obscurité avant de disparaître dans les brumes épaisses. Ici, chaque pas peut être le dernier… car la tourbière semble elle-même vouloir engloutir ceux qui osent troubler le règne du Roissingue.",
     spawns: [
-        { id: 'chaferPiquier',   weight: 25 },
-        { id: 'sergentChafer',   weight: 25 },
-        { id: 'chaferEclaireur', weight: 25 },
-        { id: 'chaferFurtif',    weight: 15 }
-    ],
-    miniBoss: {
-        id: 'kardorim',
-        everyKills: 9,
-        statMult: 2.5
-    },
+        { id: 'LAouassingue',   weight: 35 },
+        { id: 'LEouassingue',   weight: 35 },
+        { id: 'tourbassingue',    weight: 15 },
+        { id: 'bourbassingue',    weight: 15 }],
+    miniBoss: {id: 'roissingue', everyKills: 10, statMult: 1},
     lootTable: [
-        { itemId: 'pierreDame',          dropRate: 0.55 },
-        { itemId: 'capeAventurier',      dropRate: 0.05 },
-        { itemId: 'chapeauAventurier',   dropRate: 0.05 },
-        { itemId: 'anneauAventurier',    dropRate: 0.05 },
-        { itemId: 'ceintureAventurier',  dropRate: 0.05 },
-        { itemId: 'amuletteAventurier',  dropRate: 0.05 }
+        { itemId: 'pierreDame',          dropRate: 0.35 },
+        { itemId: 'cape_ouassingue',    dropRate: 0.03 },
+        { itemId: 'coiffe_ouassingue',    dropRate: 0.03 },
+        { itemId: 'bottes_ouassingue',    dropRate: 0.03 },
+        { itemId: 'amulette_ouassingue',    dropRate: 0.03 }
     ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'coiffeKardorim',            dropRate: 0.15 },
-        { itemId: 'anneauKardorim',            dropRate: 0.15 },
-        { itemId: 'capeKardorim',              dropRate: 0.15 }
+        { itemId: 'pierreDameGardien',   dropRate: 0.45 },
+        { itemId: 'cape_roissingue',    dropRate: 0.02 },
+        { itemId: 'coiffe_roissingue',    dropRate: 0.02 },
+        { itemId: 'anneau_roissingue',    dropRate: 0.02 }
+    ]
+}
+
+areas.raidKralamoureGeant = {
+    id: 'raidKralamoureGeant',
+    name: 'Raid de l\'Antre du Kralamoure Géant',
+    type: 'raid',
+    minLevel: 180, maxLevel: 190,
+    mobMinLevel: 180, mobMaxLevel: 180,
+    background: 'Kralamoure',
+    icon: 'img/monstres/Raids/KralamourGeant.png',
+    description: "Au plus profond des marécages d'Otomaï se dissimule l'Antre du Kralamoure Géant, une prison oubliée renfermant une créature aussi ancienne que l’île elle-même. Derrière ces portes scellées par un mécanisme complexe sommeille un monstre titanesque, dont les tentacules émergent des eaux souillées pour happer les aventuriers assez téméraires pour troubler son repos. Certains racontent que son encre noircit les marais, tandis que d'autres murmurent qu'il aurait autrefois dévoré un dragon et conservé son précieux Dofus.",
+    spawns: [
+        { id: 'tentaculePrimaire',   weight: 25 },
+        { id: 'tentaculeSecondaire',   weight: 25 },
+        { id: 'tentaculeTertiaire', weight: 25 },
+        { id: 'tentaculeQuartenaire',    weight: 25 }],
+    miniBoss: {id: 'kralamoureGeant', everyKills: 12, statMult: 1},
+    lootTable: [
+        { itemId: 'pierreDame',          dropRate: 0.35 },
+        { itemId: 'kralamansion',        dropRate: 0.01 },
+        { itemId: 'kralano',             dropRate: 0.01 },
+        { itemId: 'annolamour',          dropRate: 0.01 }
+    ],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',   dropRate: 0.45 },
+        { itemId: 'Dofus_Ocre',           dropRate: 0.005 }
     ]
 }
 // #endregion RAIDS

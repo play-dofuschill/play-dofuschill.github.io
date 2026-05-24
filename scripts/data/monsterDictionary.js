@@ -185,6 +185,95 @@ monsters.kardorim = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
+// #region EVENT PIOUS 10-15
+// ═══════════════════════════════════════════════════════
+monsters.piouBleu = {
+    id: 'piouBleu',
+    name: 'Piou Bleu',
+    image: 'img/monstres/sprites/piouBleu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 80, atk: 60, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 0, eau: 33, air: 0 }
+    },
+    moves: ['picore'],
+    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+    role: ['combat']
+}
+monsters.piouRouge = {
+    id: 'piouRouge',
+    name: 'Piou Rouge',
+    image: 'img/monstres/sprites/piouRouge.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 80, atk: 60, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 33, eau: 0, air: 0 }
+    },
+    moves: ['picore'],
+    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+    role: ['combat']
+}
+monsters.piouVert = {
+    id: 'piouVert',
+    name: 'Piou Vert',
+    image: 'img/monstres/sprites/piouVert.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 80, atk: 60, spd: 100,
+        res: {neutre: 0, terre: 33, feu: 0, eau: 0, air: 0 }
+    },
+    moves: ['picore'],
+    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+    role: ['combat']
+}
+monsters.piouJaune = {
+    id: 'piouJaune',
+    name: 'Piou Jaune',
+    image: 'img/monstres/sprites/piouJaune.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 80, atk: 60, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 33 }
+    },
+    moves: ['picore'],
+    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+    role: ['combat']
+}
+monsters.piouRose = {
+    id: 'piouRose',
+    name: 'Piou Rose',
+    image: 'img/monstres/sprites/piouRose.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 80, atk: 60, spd: 100,
+        res: {neutre: 0, terre: 17, feu: 0, eau: 0, air: 17 }
+    },
+    moves: ['picore'],
+    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+    role: ['combat']
+}
+monsters.piouViolet = {
+    id: 'piouViolet',
+    name: 'Piou Violet',
+    image: 'img/monstres/sprites/piouViolet.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 80, atk: 60, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 17, eau: 17, air: 0 }
+    },
+    moves: ['picore'],
+    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+    role: ['combat']
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
 // #region CHAMPS ASTRUB — Zone niveau 10–30
 monsters.pissenliDiabolique = {
     id: 'pissenliDiabolique',
@@ -377,6 +466,67 @@ monsters.mobLeponge = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
+// #region EVENT FORET ASTRUB 20-30
+// ═══════════════════════════════════════════════════════
+monsters.milimulou = {
+    id: 'milimulou',
+    name: 'Milimulou',
+    image: 'img/monstres/Events/milimulou.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 180, atk: 90, spd: 100,
+        res: {neutre: 26, terre: 0, feu: 16, eau: -9, air: -19 }},
+    moves: ['flair','deboyautage']
+}
+monsters.prespic = {
+    id: 'prespic',
+    name: 'Prespic',
+    image: 'img/monstres/Events/prespic.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 150, atk: 90, spd: 100,
+        res: {neutre: -9, terre: -14, feu: -19, eau: -9, air: -14 }},
+    moves: ['moquerie','cache_cache']
+}
+monsters.sanglier = {
+    id: 'sanglier',
+    name: 'Sanglier',
+    image: 'img/monstres/Events/sanglier.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 170, atk: 88, spd: 100,
+        res: {neutre: 6, terre: 16, feu: -14, eau: 0, air: 6 }},
+    moves: ['perce_vessie','charge_forcee']
+}
+monsters.ecurouille = {
+    id: 'ecurouille',
+    name: 'Écurouille',
+    image: 'img/monstres/Events/ecurouille.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 140, atk: 90, spd: 100,
+        res: {neutre: -14, terre: -9, feu: 6, eau: 11, air: 16 }},
+    moves: ['taie_de_gland','rafale_venteuse']
+}
+monsters.hommeOurs = {
+    id: 'hommeOurs',
+    name: 'Homme-Ours',
+    image: 'img/monstres/Events/hommeOurs.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: {
+        hp: 300, atk: 100, spd: 100,
+        res: {neutre: 20, terre: 15, feu: 15, eau: 15, air: 15 }},
+    moves: ['rage_de_Ours','griffe_de_ours']
+}
+
+// #endregion
+
+// ═══════════════════════════════════════════════════════
 // #region TAINELA — Zone niveau 20–40
 
 monsters.bouftou = {
@@ -471,6 +621,55 @@ monsters.bouftouRoyal = {
     familiar: [{ bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 },
                { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }],
     role: ['farming','defense']
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region EVENT BIBLOPS 25-30
+// ═══════════════════════════════════════════════════════
+monsters.biblop_coco = {
+    id: 'biblop_coco',
+    name: 'Biblop Coco',
+    image: 'img/monstres/Events/biblop_coco.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 210, atk: 70, spd: 100,
+        res: {neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 }},
+    moves: ['bibloperie_air','biblopiment_air']
+}
+monsters.biblop_reinette = {
+    id: 'biblop_reinette',
+    name: 'Biblop Reinette',
+    image: 'img/monstres/Events/biblop_reinette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 210, atk: 70, spd: 100,
+        res: {neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 }},
+    moves: ['bibloperie_terre','biblopiment_terre']
+}
+monsters.biblop_griotte = {
+    id: 'biblop_griotte',
+    name: 'Biblop Griotte',
+    image: 'img/monstres/Events/biblop_griotte.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 210, atk: 70, spd: 100,
+        res: {neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 }},
+    moves: ['bibloperie_feu','biblopiment_feu']
+}
+monsters.biblop_indigo = {
+    id: 'biblop_indigo',
+    name: 'Biblop Indigo',
+    image: 'img/monstres/Events/biblop_indigo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 210, atk: 70, spd: 100,
+        res: {neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 }},
+    moves: ['bibloperie_eau','biblopiment_eau']
 }
 // #endregion
 
@@ -921,6 +1120,285 @@ monsters.kwakwa = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
+// #region EVENT ROBOTS 55-65
+// ═══════════════════════════════════════════════════════
+monsters.robionicle = {
+    id: 'robionicle',
+    name: 'Robionicle',
+    image: 'img/monstres/Events/robionicle.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 740, atk: 135, spd: 100,
+        res: {neutre: 40, terre: -20, feu: 10, eau: 30, air: 10 }},
+    moves: ['blast','turbine']
+}
+monsters.robotFleau = {
+    id: 'robotFleau',
+    name: 'Robot Fleau',
+    image: 'img/monstres/Events/robotFleau.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 630, atk: 135, spd: 100,
+        res: {neutre: 20, terre: 30, feu: -20, eau: 30, air: 10 }},
+    moves: ['micro_onde','macro_onde']
+}
+monsters.robotPoussePousse = {
+    id: 'robotPoussePousse',
+    name: 'Robot Pousse-Pousse',
+    image: 'img/monstres/Events/robotPoussePousse.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 610, atk: 135, spd: 100,
+        res: {neutre: 20, terre: 20, feu: 30, eau: -10, air: -20 }},
+    moves: ['pousse_moi','pousse_toi']
+}
+monsters.malleOutillee = {
+    id: 'malleOutillee',
+    name: 'Malle Outillée',
+    image: 'img/monstres/Events/malleOutillee.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 570, atk: 135, spd: 100,
+        res: {neutre: 40, terre: 10, feu: 10, eau: 10, air: 10 }},
+    moves: ['construction']
+}
+
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region EVENT DOPEULS 55-70
+// ═══════════════════════════════════════════════════════
+monsters.dopeul_cra = {
+    id: 'dopeul_cra',
+    name: 'Dopeul Cra',
+    image: 'img/monstres/Events/dopeul_cra.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['fleche_optique_du_dopeul','fleche_glacee_du_dopeul']
+}
+monsters.dopeul_iop = {
+    id: 'dopeul_iop',
+    name: 'Dopeul Iop',
+    image: 'img/monstres/Events/dopeul_iop.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['epee_divine_du_dopeul','pression_du_dopeul']
+}
+monsters.dopeul_eniripsa = {
+    id: 'dopeul_eniripsa',
+    name: 'Dopeul Eniripsa',
+    image: 'img/monstres/Events/dopeul_eniripsa.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['mot_espiegle_du_dopeul','mot_tapageur_du_dopeul']
+}
+monsters.dopeul_ecaflip = {
+    id: 'dopeul_ecaflip',
+    name: 'Dopeul Ecaflip',
+    image: 'img/monstres/Events/dopeul_ecaflip.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['pile_ou_face_du_dopeul', 'bonne_pioche_du_dopeul']
+}
+monsters.dopeul_eliotrope = {
+    id: 'dopeul_eliotrope',
+    name: 'Dopeul Eliotrope',
+    image: 'img/monstres/Events/dopeul_eliotrope.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['affront_du_dopeul', 'rayon_de_wakfu_du_dopeul']
+}
+monsters.dopeul_enutrof = {
+    id: 'dopeul_enutrof',
+    name: 'Dopeul Enutrof',
+    image: 'img/monstres/Events/dopeul_enutrof.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['roulage_de_pelle_du_dopeul', 'lancer_de_pieces_du_dopeul']
+}
+monsters.dopeul_feca = {
+    id: 'dopeul_feca',
+    name: 'Dopeul Feca',
+    image: 'img/monstres/Events/dopeul_feca.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['retour_du_baton_du_dopeul', 'bulle_du_dopeul']
+}
+monsters.dopeul_forgelance = {
+    id: 'dopeul_forgelance',
+    name: 'Dopeul Forgelance',
+    image: 'img/monstres/Events/dopeul_forgelance.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['trident_de_la_mer_du_dopeul', 'volee_d_airain_du_dopeul']
+}
+monsters.dopeul_huppermage = {
+    id: 'dopeul_huppermage',
+    name: 'Dopeul Huppermage',
+    image: 'img/monstres/Events/dopeul_huppermage.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['onde_sismique_du_dopeul', 'stalagmite_du_dopeul']
+}
+monsters.dopeul_osamodas = {
+    id: 'dopeul_osamodas',
+    name: 'Dopeul Osamodas',
+    image: 'img/monstres/Events/dopeul_osamodas.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['pics_du_prespic_du_dopeul', 'crocs_du_mulou_du_dopeul']
+}
+monsters.dopeul_ouginak = {
+    id: 'dopeul_ouginak',
+    name: 'Dopeul Ouginak',
+    image: 'img/monstres/Events/dopeul_ouginak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['traque_du_dopeul', 'molosse_du_dopeul']
+}
+monsters.dopeul_pandawa = {
+    id: 'dopeul_pandawa',
+    name: 'Dopeul Pandawa',
+    image: 'img/monstres/Events/dopeul_pandawa.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['paume_explosive_du_dopeul', 'ethylo_du_dopeul']
+}
+monsters.dopeul_roublard = {
+    id: 'dopeul_roublard',
+    name: 'Dopeul Roublard',
+    image: 'img/monstres/Events/dopeul_roublard.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['espingole_du_dopeul', 'pulsar_du_dopeul']
+}
+monsters.dopeul_sacrieur = {
+    id: 'dopeul_sacrieur',
+    name: 'Dopeul Sacrieur',
+    image: 'img/monstres/Events/dopeul_sacrieur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['supplice_du_dopeul', 'absorption_du_dopeul']
+}
+monsters.dopeul_sadida = {
+    id: 'dopeul_sadida',
+    name: 'Dopeul Sadida',
+    image: 'img/monstres/Events/dopeul_sadida.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['ronce_du_dopeul', 'buisson_ardent_du_dopeul']
+}
+monsters.dopeul_sram = {
+    id: 'dopeul_sram',
+    name: 'Dopeul Sram',
+    image: 'img/monstres/Events/dopeul_sram.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['truanderie_du_dopeul', 'arsenic_du_dopeul']
+}
+monsters.dopeul_steamer = {
+    id: 'dopeul_steamer',
+    name: 'Dopeul Steamer',
+    image: 'img/monstres/Events/dopeul_steamer.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['longue_vue_du_dopeul', 'amarrage_du_dopeul']
+}
+monsters.dopeul_xelor = {
+    id: 'dopeul_xelor',
+    name: 'Dopeul Xelor',
+    image: 'img/monstres/Events/dopeul_xelor.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['gelure_du_dopeul', 'frappe_de_xelor_du_dopeul']
+}
+monsters.dopeul_zobal = {
+    id: 'dopeul_zobal',
+    name: 'Dopeul Zobal',
+    image: 'img/monstres/Events/dopeul_zobal.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 370, atk: 170, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['parafuso_du_dopeul', 'plastron_du_dopeul']
+}
+monsters.dopeul_darkvlad = {
+    id: 'dopeul_darkvlad',
+    name: 'Dopeul Dark Vlad',
+    image: 'img/monstres/Events/dopeul_darkvlad.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    fixedLevel: 110,
+    bst: {
+        hp: 1200, atk: 350, spd: 100,
+        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
+    moves: ['lame_de_iop','lame_divine','tension'],
+    familiar: { bonusType: 'farming', bonusStat: 'dropRateElite', min: 5, max: 50 },
+    role: ['farming']
+}
+
+// #endregion
+
+// ═══════════════════════════════════════════════════════
 // #region MANTISCORE — Zone niveau 60-80
 // monsters.ouroboulos = {
 //     id: 'ouroboulos',
@@ -1344,6 +1822,65 @@ monsters.kwakwa = {
 //         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
 //     role: ['combat','farming','defense']
 // }
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region TOURBES DU ROISSINGUE 100-110
+monsters.LAouassingue = {
+    id: 'LAouassingue',
+    name: 'La Ouassingue',
+    image: 'img/monstres/Raids/LAouassingue.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 250, atk: 120, spd: 100,
+        res: {neutre: 20, terre: 20, feu: 10, eau: -5, air: -15 }},
+    moves: ['oblativite','serpilliere','reconstitution_cellulaire']
+}
+monsters.LEouassingue = {
+    id: 'LEouassingue',
+    name: 'Le Ouassingue',
+    image: 'img/monstres/Raids/LEouassingue.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 250, atk: 120, spd: 100,
+        res: {neutre: -5, terre: -5, feu: 20, eau: -15, air: 10 }},
+    moves: ['equarrissage','interversion','reconstitution_cellulaire']
+}
+monsters.tourbassingue = {
+    id: 'tourbassingue',
+    name: 'Tourbassingue',
+    image: 'img/monstres/Raids/tourbassingue.png',
+    rarity: 'peu_commun',
+    tier: 'normal',
+    bst: {
+        hp: 1500, atk: 200, spd: 100,
+        res: {neutre: 20, terre: 15, feu: 33, eau: -27, air: -11 }},
+    moves: ['tourbe_reparatrice','tourbe_malveillante']
+}
+monsters.bourbassingue = {
+    id: 'bourbassingue',
+    name: 'Bourbassingue',
+    image: 'img/monstres/Raids/bourbassingue.png',
+    rarity: 'peu_commun',
+    tier: 'normal',
+    bst: {
+        hp: 1300, atk: 180, spd: 100,
+        res: {neutre: 13, terre: 35, feu: -31, eau: 15, air: 9 }},
+    moves: ['boue_sirupeuse','bourbier']
+}
+monsters.roissingue = {
+    id: 'roissingue',
+    name: 'Roissingue',
+    image: 'img/monstres/Raids/roissingue.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 5300, atk: 500, spd: 100,
+        res: {neutre: 22, terre: 12, feu: -30, eau: 41, air: 5 }},
+    moves: ['retour_du_roi','depouillage','dechaussage']
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════
@@ -2951,6 +3488,70 @@ monsters.kwakwa = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
+// #region KRALAMOURE GEANT 180
+monsters.tentaculePrimaire = {
+    id: 'tentaculePrimaire',
+    name: 'Tentacule Primaire',
+    image: 'img/monstres/Raids/tentaculePrimaire.png',
+    rarity: 'rare',
+    tier: 'elite',
+    bst: {
+        hp: 250, atk: 520, spd: 100,
+        res: {neutre: 95, terre: 95, feu: 95, eau: 95, air: 0 }},
+    moves: ['motivation_naturelle','kraken_primaire']
+}
+monsters.tentaculeSecondaire = {
+    id: 'tentaculeSecondaire',
+    name: 'Tentacule Secondaire',
+    image: 'img/monstres/Raids/tentaculeSecondaire.png',
+    rarity: 'rare',
+    tier: 'elite',
+    bst: {
+        hp: 250, atk: 520, spd: 100,
+        res: {neutre: 95, terre: 95, feu: 95, eau: 0, air: 95 }},
+    moves: ['empoisonnement_tentaculaire','kraken_secondaire']
+}
+monsters.tentaculeTertiaire = {
+    id: 'tentaculeTertiaire',
+    name: 'Tentacule Tertiaire',
+    image: 'img/monstres/Raids/tentaculeTertiaire.png',
+    rarity: 'rare',
+    tier: 'elite',
+    bst: {
+        hp: 250, atk: 520, spd: 100,
+        res: {neutre: 95, terre: 95, feu: 0, eau: 95, air: 95 }},
+    moves: ['malediction_tentaculaire','kraken_tertiaire']
+}
+monsters.tentaculeQuartenaire = {
+    id: 'tentaculeQuartenaire',
+    name: 'Tentacule Quartenaire',
+    image: 'img/monstres/Raids/tentaculeQuartenaire.png',
+    rarity: 'rare',
+    tier: 'elite',
+    bst: {
+        hp: 250, atk: 520, spd: 100,
+        res: {neutre: 95, terre: 0, feu: 95, eau: 95, air: 95 }},
+    moves: ['paralysie_tentaculaire','kraken_quartenaire']
+}
+monsters.kralamoureGeant = {
+    id: 'kralamoureGeant',
+    name: 'Kralamoure Geant',
+    image: 'img/monstres/Raids/kralamourGeant.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 5300, atk: 2500, spd: 100,
+        res: {neutre: 95, terre: 95, feu: 95, eau: 95, air: 95 }},
+    moves: ['kracheau_immobilisant','vulnerabilite_de_la_tourbiere','kraken','tourbe_ecrasante'],
+    familiar: [
+        {bonusType: 'combat', bonusStat:  'atk', min: 100, max: 300 },
+        {bonusType: 'defense', bonusStat: 'maxHp', min: 200, max: 400 },
+        {bonusType: 'farming', bonusStat: 'xpGain', min: 50, max: 200 }],
+    role: ['combat','farming','defense']
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
 // #region KOLOSSO — Zone niveau 170-190
 // monsters.croleur = {
 //     id: 'croleur',
@@ -3164,7 +3765,7 @@ monsters.kwakwa = {
 //         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
 //         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
 //     role: ['combat','farming','defense']
-// }meliglours
+// }
 // monsters.meliglours = {
 //     id: 'meliglours',
 //     name: 'Méliglours',
@@ -3336,323 +3937,18 @@ monsters.kwakwa = {
 
 
 
+// ═══════════════════════════════════════════════════════
 
-// ═══════════════════════════════════════════════════════
-// #region EVENT PIOU
-// ═══════════════════════════════════════════════════════
-monsters.piouBleu = {
-    id: 'piouBleu',
-    name: 'Piou Bleu',
-    image: 'img/monstres/sprites/piouBleu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 80, atk: 60, spd: 100,
-        res: {neutre: 0, terre: 0, feu: 0, eau: 33, air: 0 }
-    },
-    moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
-}
-monsters.piouRouge = {
-    id: 'piouRouge',
-    name: 'Piou Rouge',
-    image: 'img/monstres/sprites/piouRouge.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 80, atk: 60, spd: 100,
-        res: {neutre: 0, terre: 0, feu: 33, eau: 0, air: 0 }
-    },
-    moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
-}
-monsters.piouVert = {
-    id: 'piouVert',
-    name: 'Piou Vert',
-    image: 'img/monstres/sprites/piouVert.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 80, atk: 60, spd: 100,
-        res: {neutre: 0, terre: 33, feu: 0, eau: 0, air: 0 }
-    },
-    moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
-}
-monsters.piouJaune = {
-    id: 'piouJaune',
-    name: 'Piou Jaune',
-    image: 'img/monstres/sprites/piouJaune.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 80, atk: 60, spd: 100,
-        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 33 }
-    },
-    moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
-}
-monsters.piouRose = {
-    id: 'piouRose',
-    name: 'Piou Rose',
-    image: 'img/monstres/sprites/piouRose.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 80, atk: 60, spd: 100,
-        res: {neutre: 0, terre: 17, feu: 0, eau: 0, air: 17 }
-    },
-    moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
-}
-monsters.piouViolet = {
-    id: 'piouViolet',
-    name: 'Piou Violet',
-    image: 'img/monstres/sprites/piouViolet.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 80, atk: 60, spd: 100,
-        res: {neutre: 0, terre: 0, feu: 17, eau: 17, air: 0 }
-    },
-    moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
-}
-// #endregion
-// ═══════════════════════════════════════════════════════
-// #region EVENT DOPEULS
-// ═══════════════════════════════════════════════════════
-monsters.dopeul_cra = {
-    id: 'dopeul_cra',
-    name: 'Dopeul Cra',
-    image: 'img/monstres/Events/dopeul_cra.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['fleche_optique_du_dopeul','fleche_glacee_du_dopeul']
-}
-monsters.dopeul_iop = {
-    id: 'dopeul_iop',
-    name: 'Dopeul Iop',
-    image: 'img/monstres/Events/dopeul_iop.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['epee_divine_du_dopeul','pression_du_dopeul']
-}
-monsters.dopeul_eniripsa = {
-    id: 'dopeul_eniripsa',
-    name: 'Dopeul Eniripsa',
-    image: 'img/monstres/Events/dopeul_eniripsa.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['mot_espiegle_du_dopeul','mot_tapageur_du_dopeul']
-}
-monsters.dopeul_ecaflip = {
-    id: 'dopeul_ecaflip',
-    name: 'Dopeul Ecaflip',
-    image: 'img/monstres/Events/dopeul_ecaflip.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['pile_ou_face_du_dopeul', 'bonne_pioche_du_dopeul']
-}
-monsters.dopeul_eliotrope = {
-    id: 'dopeul_eliotrope',
-    name: 'Dopeul Eliotrope',
-    image: 'img/monstres/Events/dopeul_eliotrope.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['affront_du_dopeul', 'rayon_de_wakfu_du_dopeul']
-}
-monsters.dopeul_enutrof = {
-    id: 'dopeul_enutrof',
-    name: 'Dopeul Enutrof',
-    image: 'img/monstres/Events/dopeul_enutrof.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['roulage_de_pelle_du_dopeul', 'lancer_de_pieces_du_dopeul']
-}
-monsters.dopeul_feca = {
-    id: 'dopeul_feca',
-    name: 'Dopeul Feca',
-    image: 'img/monstres/Events/dopeul_feca.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['retour_du_baton_du_dopeul', 'bulle_du_dopeul']
-}
-monsters.dopeul_forgelance = {
-    id: 'dopeul_forgelance',
-    name: 'Dopeul Forgelance',
-    image: 'img/monstres/Events/dopeul_forgelance.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['trident_de_la_mer_du_dopeul', 'volee_d_airain_du_dopeul']
-}
-monsters.dopeul_huppermage = {
-    id: 'dopeul_huppermage',
-    name: 'Dopeul Huppermage',
-    image: 'img/monstres/Events/dopeul_huppermage.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['onde_sismique_du_dopeul', 'stalagmite_du_dopeul']
-}
-monsters.dopeul_osamodas = {
-    id: 'dopeul_osamodas',
-    name: 'Dopeul Osamodas',
-    image: 'img/monstres/Events/dopeul_osamodas.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['pics_du_prespic_du_dopeul', 'crocs_du_mulou_du_dopeul']
-}
-monsters.dopeul_ouginak = {
-    id: 'dopeul_ouginak',
-    name: 'Dopeul Ouginak',
-    image: 'img/monstres/Events/dopeul_ouginak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['traque_du_dopeul', 'molosse_du_dopeul']
-}
-monsters.dopeul_pandawa = {
-    id: 'dopeul_pandawa',
-    name: 'Dopeul Pandawa',
-    image: 'img/monstres/Events/dopeul_pandawa.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['paume_explosive_du_dopeul', 'ethylo_du_dopeul']
-}
-monsters.dopeul_roublard = {
-    id: 'dopeul_roublard',
-    name: 'Dopeul Roublard',
-    image: 'img/monstres/Events/dopeul_roublard.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['espingole_du_dopeul', 'pulsar_du_dopeul']
-}
-monsters.dopeul_sacrieur = {
-    id: 'dopeul_sacrieur',
-    name: 'Dopeul Sacrieur',
-    image: 'img/monstres/Events/dopeul_sacrieur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['supplice_du_dopeul', 'absorption_du_dopeul']
-}
-monsters.dopeul_sadida = {
-    id: 'dopeul_sadida',
-    name: 'Dopeul Sadida',
-    image: 'img/monstres/Events/dopeul_sadida.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['ronce_du_dopeul', 'buisson_ardent_du_dopeul']
-}
-monsters.dopeul_sram = {
-    id: 'dopeul_sram',
-    name: 'Dopeul Sram',
-    image: 'img/monstres/Events/dopeul_sram.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['truanderie_du_dopeul', 'arsenic_du_dopeul']
-}
-monsters.dopeul_steamer = {
-    id: 'dopeul_steamer',
-    name: 'Dopeul Steamer',
-    image: 'img/monstres/Events/dopeul_steamer.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['longue_vue_du_dopeul', 'amarrage_du_dopeul']
-}
-monsters.dopeul_xelor = {
-    id: 'dopeul_xelor',
-    name: 'Dopeul Xelor',
-    image: 'img/monstres/Events/dopeul_xelor.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['gelure_du_dopeul', 'frappe_de_xelor_du_dopeul']
-}
-monsters.dopeul_zobal = {
-    id: 'dopeul_zobal',
-    name: 'Dopeul Zobal',
-    image: 'img/monstres/Events/dopeul_zobal.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: {
-        hp: 370, atk: 170, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['parafuso_du_dopeul', 'plastron_du_dopeul']
-}
-monsters.dopeul_darkvlad = {
-    id: 'dopeul_darkvlad',
-    name: 'Dopeul Dark Vlad',
-    image: 'img/monstres/Events/dopeul_darkvlad.png',
-    rarity: 'peu_commun',
-    tier: 'elite',
-    fixedLevel: 110,
-    bst: {
-        hp: 1200, atk: 350, spd: 100,
-        res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['lame_de_iop','lame_divine','tension'],
-    familiar: { bonusType: 'farming', bonusStat: 'dropRateElite', min: 5, max: 50 },
-    role: ['farming']
-}
 
-// #endregion
+
+
+
+
+
+
+
+
+
 
 // ═══════════════════════════════════════════════════════
 // #region POUTCH — Cible d'entraînement
@@ -3671,33 +3967,6 @@ monsters.poutch = {
     moves: ['coupdepoutch'],
     role: []
 }
-// #endregion
-
-// ═══════════════════════════════════════════════════════
-// #region EXEMPLE
-
-
-
-// ═══════════════════════════════════════════════════════
-// DONJON EXEMPLE
-// ═══════════════════════════════════════════════════════
-// monsters. = {
-//     id: '',
-//     name: '',
-//     image: 'img/monstres/sprites/.png',
-//     rarity: 'commun','peu_commun','rare','legendaire',
-//     tier: 'boss','elite', 'normal'
-//     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
-// }
 // #endregion
 
 

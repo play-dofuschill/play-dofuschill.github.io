@@ -237,6 +237,7 @@ function startCombat(areaId) {
     if (!_isResume) stopCombat()
     state.currentArea = areaId
     state.isRunning   = true
+    if (typeof musicStartCombat === 'function') musicStartCombat(areaId)
 
     // Donjon + relance auto : initialise l'accumulateur si pas déjà actif
     if (areas[areaId]?.type === 'dungeon' && state.dungeonAutoRestart) {
@@ -381,6 +382,7 @@ function stopCombat() {
 function exitCombat() {
     state.savedCombatEnemy = null
     state.savedCombatState = null
+    if (typeof musicExitZone === 'function') musicExitZone()
     stopCombat()
     state.currentArea = null
     combat = null
@@ -408,6 +410,7 @@ function exitCombat() {
 function leaveCombat() {
     state.savedCombatEnemy = null
     state.savedCombatState = null
+    if (typeof musicExitZone === 'function') musicExitZone()
     if (combat?.isPoutch) {
         onPoutchEnd()
         return
@@ -894,6 +897,21 @@ function executeEffect(ctx) {
             if (effect.target === 'all_enemies' && !combat?.isRaid) {
                 const eff = { ...effect, target: 'enemy' }
                 return executeEffect({ ...ctx, effect: eff })
+            }
+
+            // random_enemy : en raid, cible un ennemi vivant aléatoire parmi combat.enemies
+            // En solo : frappe l'ennemi unique
+            if (effect.target === 'random_enemy') {
+                if (combat?.isRaid && combat.enemies) {
+                    const living = combat.enemies.filter(e => e && e.currentHp > 0)
+                    if (!living.length) return 0
+                    const picked = living[Math.floor(Math.random() * living.length)]
+                    const slotIdx = combat.enemies.indexOf(picked)
+                    const killerIdx = state.team.indexOf(ctx.caster)
+                    const onKill = () => onRaidEnemyDeath(slotIdx, killerIdx >= 0 ? killerIdx : -1)
+                    return executeEffect({ ...ctx, targetEnemy: picked, effect: { ...effect, target: 'enemy' }, onTargetKill: onKill })
+                }
+                return executeEffect({ ...ctx, effect: { ...effect, target: 'enemy' } })
             }
 
             // enemy_cycle : en raid, cible enemy[stack%3] — le même stack pilote cible ET scalingMultipliers
@@ -1687,7 +1705,7 @@ function spawnSummon(caster, effect) {
             state.seenMonsters[effect.summonId] = true
         }
         const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
-        const scale    = 1 + ((level - 1) * 0.08)
+        const scale    = mob.ownerId ? 1 : 1 + ((level - 1) * 0.08)
         const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
         combat.savedEnemy = combat.enemy
         combat.enemy = {
