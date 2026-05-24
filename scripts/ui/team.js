@@ -163,25 +163,25 @@ function openGuildePicker(slotIndex) {
 }
 
 const CLASS_OBTAIN = {
-        iop:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
-        cra:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
-        eniripsa:   'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...',
-        enutrof:    'Vieillard ayant connu la guerre opposant Bonta à Brâkmar, il est particulièrement proche de ses kamas... Peut-être que si vous en accumulez assez, il acceptera de rejoindre votre guilde ?',
-        xelor:      "Maîtres du temps, ce n'est qu'après avoir prouvé votre valeur en vous imposant victorieux face à l'un de ses semblables qu'il vous rejoindra.",
-        huppermage: "Grand maître des éléments, il vous faudra lui prouver que vous aussi, vous savez dompter les créatures maîtrisant ces quatre magies que sont la Terre, le Feu, l'Eau et l'Air.",
-        zobal:      "Gardiens des Masques Ancestraux, ils ne s'allient qu'à ceux dont la collection de familiers témoigne d'une vraie compréhension du monde.",
-        sacrieur:   "Guerriers au sang lié à leurs douleurs, ils ne s'éveillent qu'au contact de ceux qui ont encaissé des centaines de combats sans jamais fuir.",
-        sram:       "Assassin des ombres qui tire sa puissance des âmes terrassées, le Sram n'émerge que lorsqu'il flaire un chasseur d'élite.",
-        feca:       "Gardien de troupeau aux glyphes impénétrables, cet aventurier ne vous rejoindra que si vous triomphez d'un adversaire aussi inébranlable que lui.",
-        osamodas:   "Maître du monde animal, il ne fait confiance qu'aux aventuriers dont la collection de créatures rivalise avec la sienne.",
-        sadida:     "Esprit de la forêt qui communique avec les plantes, il est trop occupé à essayer d'apaiser les arbres corrompus. Attendez que quelqu'un parvienne à trouver comment soigner ce mal avant de vous accorder sa bénédiction.",
-        roublard:   "Artificier kamikaze au sens du danger... inexistant, vous ne le recruterez pas, car il n'accepte dans ses rangs que les téméraires ayant survécu aux pires affrontements... (Enfin, c'est son amour-propre qui parle ; il saura vous prêter main-forte contre quelques kamas).",
-        ecaflip:    "Joueur invétéré dont la fortune ne tient qu'à un fil, si vous le battez aux cartes, peut-être aurez-vous la chance de le compter parmi vous.",
-        steamer:    "Ingénieur de guerre implacable, cet homme de fer ne vous prêtera main-forte que si vous capturez un certain pirate des hauts-fonds en possession d'un important arsenal technomagique.",
-        ouginak:    "Chasseur bestial dont l'instinct prédateur ne s'éveille qu'au contact de vrais guerriers — ceux capables de traquer et d'abattre les proies les plus redoutables.",
-        forgelance: "Lancier dont la puissance n'a d'égal que sa précision, il ne jure que par sa lance et ne ploie le genou que devant les aventuriers ayant mis à genoux les plus grands boss du monde.",
-        pandawa:    "Bretteur ivre dont l'équilibre défie toute logique, il s'allie à ceux qui savent rester... à peu près debout face aux adversaires les plus coriaces. Son péché mignon (après l'alcool) ? Il adore le poulpe.",
-        eliotrope:  "Maître des portails dont les arcanes transcendent l'espace, cet être à l'apparence rappelant celle des dragons ne vous rejoindra que si vous êtes plus fort qu'eux.",
+        iop:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...', // starter
+        cra:        'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...', // starter
+        eniripsa:   'Nouvel aventurier également, il se peut que vos routes se croisent rapidement...', // starter
+        enutrof:    'Vieillard ayant connu la guerre opposant Bonta à Brâkmar, il est particulièrement proche de ses kamas... Peut-être que si vous en accumulez assez, il acceptera de rejoindre votre guilde ?', // avoir 100 kamas
+        xelor:      "Maîtres du temps, ce n'est qu'après avoir prouvé votre valeur en vous imposant victorieux face à l'un de ses semblables qu'il vous rejoindra.", // vaincre le comte Harebourg
+        huppermage: "Grand maître des éléments, il vous faudra lui prouver que vous aussi, vous savez dompter les créatures maîtrisant ces quatre magies que sont la Terre, le Feu, l'Eau et l'Air.", // avoir dropé au moins 1 familier de chaque kwakère/kwak (4 éléments), chaque scarafeuille (5 couleurs), la scraraboss dorée et le kwakwa
+        zobal:      "Gardiens des Masques Ancestraux, ils ne s'allient qu'à ceux dont la collection de familiers témoigne d'une vraie compréhension du monde.", // avoir un familier qui donne réellement +100 PV (bonus effectif selon son level)
+        sacrieur:   "Guerriers au sang lié à leurs douleurs, ils ne s'éveillent qu'au contact de ceux qui ont encaissé des centaines de combats sans jamais fuir.", // avoir tué 10 000 monstres au total
+        sram:       "Assassin des ombres qui tire sa puissance des âmes terrassées, le Sram n'émerge que lorsqu'il flaire un chasseur d'élite.", // posséder tous les items de la panoplie rat_noir (TODO: panoplie pas encore créée)
+        feca:       "Gardien de troupeau aux glyphes impénétrables, cet aventurier ne vous rejoindra que si vous êtes en possession de vetements en laine de qualité supérieure.", // avoir toute la panoplie bouftou royal au niveau max
+        osamodas:   "Maître du monde animal, il ne fait confiance qu'aux aventuriers dont la collection de créatures rivalise avec la sienne.", // avoir obtenu au moins 200 familiers différents (drops >= 1)
+        sadida:     "Esprit de la forêt qui communique avec les plantes, il est trop occupé à essayer d'apaiser les arbres corrompus. Attendez que quelqu'un parvienne à trouver comment soigner ce mal avant de vous accorder sa bénédiction.", // vaincre le boss cheneMou (TODO: pas encore implémenté)
+        roublard:   "Artificier kamikaze au sens du danger... inexistant, vous ne le recruterez pas, car il n'accepte dans ses rangs que les téméraires ayant survécu aux pires affrontements... (Enfin, c'est son amour-propre qui parle ; il saura vous prêter main-forte contre quelques kamas).", // non implémenté
+        ecaflip:    "Joueur invétéré dont la fortune ne tient qu'à un fil, de nature très chanceuse, il ne s'allit qua ceux ayant prouvé la leur au combat.", // réussir 2 coups critiques consécutifs (nécessite des items qui donnent du % crit)
+        steamer:    "Ingénieur de guerre implacable, cet homme de fer ne vous prêtera main-forte que si vous capturez un certain pirate des hauts-fonds en possession d'un important arsenal technomagique.", // vaincre hyperscampe (TODO: pas encore implémenté)
+        ouginak:    "Chasseur bestial dont l'instinct prédateur ne s'éveille qu'au contact de vrais guerriers — ceux capables de traquer et d'abattre les proies les plus redoutables.", // vaincre le boss meulou (TODO: pas encore implémenté)
+        forgelance: "Lancier dont la puissance n'a d'égal que sa précision, il ne jure que par sa lance et ne ploie le genou que devant les aventuriers ayant mis à genoux les plus grands boss du monde.", // vaincre au moins 4 boss niv 170+ (TODO: boss pas encore implémentés)
+        pandawa:    "Bretteur ivre dont l'équilibre défie toute logique, il s'allie à ceux qui savent rester... à peu près debout face aux adversaires les plus coriaces. Son péché mignon (après l'alcool) ? Il adore le poulpe.", // vaincre kralamourGeant en raid ET avoir son drop en collection (TODO: pas encore implémenté)
+        eliotrope:  "Maître des portails dont les arcanes transcendent l'espace, cet être à l'apparence rappelant celle des dragons ne vous rejoindra que si vous êtes plus fort qu'eux.", // non implémenté
 }
 
 function showClassObtain(classId) {

@@ -12,6 +12,7 @@
 //   s.inventory                           — { [itemId]: { count, level } }
 //   s.team                                — membres actifs
 //   s.unlockedClasses                     — classes déjà débloquées
+//   s.doubleCritAchieved                  — vrai si 2 crits consécutifs ont été infligés
 
 const CLASS_UNLOCK_CONDITIONS = {
     enutrof: (s) => s.kamas >= 100,
@@ -27,6 +28,48 @@ const CLASS_UNLOCK_CONDITIONS = {
         ]
         return required.every(id => (s.collection[id]?.drops ?? 0) >= 1)
     },
+
+    sacrieur: (s) => s.totalKills >= 10000,
+
+    osamodas: (s) => Object.values(s.collection).filter(c => (c.drops ?? 0) >= 1).length >= 200,
+
+    zobal: (s) => Object.entries(s.collection).some(([id, data]) => {
+        const mob = monsters[id]
+        if (!mob?.familiar) return false
+        return mob.familiar.some(fam => {
+            if (fam.bonusStat !== 'maxHp') return false
+            const effMax = fam.max * (data.isArchi ? 1.5 : 1)
+            return Math.floor(getFamiliarStatValue(data.level || 0, fam.min, effMax, mob.rarity)) >= 100
+        })
+    }),
+
+    sram: (s) => {
+        const ratNoirItems = [] // TODO: remplir avec les IDs des items de la panoplie rat_noir
+        return ratNoirItems.length > 0 && ratNoirItems.every(id => (s.inventory[id]?.count ?? 0) >= 1)
+    },
+
+    feca: (s) => {
+        const bouftouRoyalItems = Object.values(item).filter(i => i.set === 'bouftouRoyal')
+        return bouftouRoyalItems.length > 0 && bouftouRoyalItems.every(i => (s.inventory[i.id]?.level ?? 0) >= i.levelMax)
+    },
+
+    ouginak: (s) => s.defeatedBosses?.includes('meulou'),
+
+    sadida: (s) => s.defeatedBosses?.includes('cheneMou'),
+
+    steamer: (s) => s.defeatedBosses?.includes('hyperscampe'),
+
+    pandawa: (s) =>
+        s.defeatedBosses?.includes('kralamourGeant') &&
+        (s.collection['kralamourGeant']?.drops ?? 0) >= 1,
+
+    forgelance: (s) => {
+        // TODO: remplir avec les IDs des boss niv 170+ une fois implémentés
+        const highLevelBossIds = []
+        return highLevelBossIds.length > 0 && highLevelBossIds.filter(id => s.defeatedBosses?.includes(id)).length >= 4
+    },
+
+    ecaflip: (s) => s.doubleCritAchieved === true,
 }
 
 function checkClassUnlocks() {
