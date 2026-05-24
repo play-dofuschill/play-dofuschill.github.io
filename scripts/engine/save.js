@@ -3,6 +3,9 @@
 const SAVE_KEY = 'dofuschill_v01'
 
 function saveGame() {
+    // Snapshote l'état du combat en cours avant de sérialiser
+    if (typeof _syncCombatToState === 'function') _syncCombatToState()
+
     // Sync de l'équipe active dans previewTeams avant la sauvegarde
     state.previewTeams[state.currentPreviewTeam] = state.team
 
@@ -13,6 +16,7 @@ function saveGame() {
         seenMonsters:       state.seenMonsters,
         kamas:              state.kamas,
         currentArea:        state.currentArea,
+        isRunning:          state.isRunning || false,
         hasChosenStarter:   state.hasChosenStarter,
         theme:              state.theme,
         tutorial:           state.tutorial,
@@ -23,8 +27,10 @@ function saveGame() {
         unlockedClasses:    state.unlockedClasses || [],
         totalKills:                state.totalKills || 0,
         defeatedBosses:            state.defeatedBosses || [],
-        combatStartTime:           state.combatStartTime || null,
         offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
+        autoPilotAccumulated:      state.autoPilotAccumulated || null,
+        savedCombatEnemy:          state.savedCombatEnemy || null,
+        savedCombatState:          state.savedCombatState || null,
         dungeonAutoRestart:        state.dungeonAutoRestart || false,
         lastAlmanaxDate:           state.lastAlmanaxDate || null,
         dailyPool:                 state.dailyPool  || null,
@@ -64,8 +70,11 @@ function loadGame() {
         if (data.unlockedClasses)    state.unlockedClasses    = data.unlockedClasses
         if (data.totalKills != null)                state.totalKills                = data.totalKills
         if (data.defeatedBosses)                    state.defeatedBosses            = data.defeatedBosses
-        if (data.combatStartTime != null)           state.combatStartTime           = data.combatStartTime
+        if (data.isRunning != null)                 state.isRunning                 = data.isRunning
         if (data.offlineAutoPilotRemaining != null) state.offlineAutoPilotRemaining = data.offlineAutoPilotRemaining
+        if (data.autoPilotAccumulated)              state.autoPilotAccumulated      = data.autoPilotAccumulated
+        if (data.savedCombatEnemy)                  state.savedCombatEnemy          = data.savedCombatEnemy
+        if (data.savedCombatState)                  state.savedCombatState          = data.savedCombatState
         if (data.dungeonAutoRestart != null)        state.dungeonAutoRestart        = data.dungeonAutoRestart
         if (data.lastAlmanaxDate)                   state.lastAlmanaxDate           = data.lastAlmanaxDate
         if (data.dailyPool)                         state.dailyPool                 = data.dailyPool

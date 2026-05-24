@@ -8,11 +8,78 @@ const TICK_MS    = 1000 / 60   // 60 fps
 const BASE_TIME  = 2000        // ms pour remplir la barre
 
 
-let combatLoop        = null
-let combat            = null   // état du combat en cours
-let _autoPilot        = null   // { remaining: N, accumulated: sessionLoot } | null
-let _dungeonAutoRun   = null   // { accumulated: sessionLoot } | null — relance auto donjon
-let _offlineFastForward = false  // true pendant le fast-forward offline
+let _rafId         = null
+let _lastFrameTime = 0
+let _accumulator   = 0
+let combat         = null   // état du combat en cours
+let _autoPilot     = null   // { remaining: N, accumulated: sessionLoot } | null
+let _dungeonAutoRun = null  // { accumulated: sessionLoot } | null — relance auto donjon
+
+// ─── Boucle de jeu (requestAnimationFrame) ────────────────────────────────────
+
+function _gameLoop(now) {
+    _rafId = requestAnimationFrame(_gameLoop)
+    const delta = Math.min(now - _lastFrameTime, 250)
+    _lastFrameTime = now
+    state.lastFrameRecorded = Date.now()
+    if (!state.isRunning || !combat) { _accumulator = 0; return }
+    _accumulator += delta
+    while (_accumulator >= TICK_MS) {
+        gameTick()
+        _accumulator -= TICK_MS
+    }
+}
+
+function startGameLoop() {
+    if (_rafId) cancelAnimationFrame(_rafId)
+    _lastFrameTime = performance.now()
+    _accumulator   = 0
+    _rafId = requestAnimationFrame(_gameLoop)
+}
+
+// Snapshote l'état du combat vers state avant chaque sauvegarde.
+function _syncCombatToState() {
+    state.autoPilotAccumulated = _autoPilot
+        ? JSON.parse(JSON.stringify(_autoPilot.accumulated)) : null
+    if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch) {
+        state.savedCombatEnemy = null
+        state.savedCombatState = null
+        return
+    }
+    state.savedCombatEnemy = combat.enemy ? {
+        id:             combat.enemy.id,
+        name:           combat.enemy.name,
+        element:        combat.enemy.element,
+        level:          combat.enemy.level,
+        image:          combat.enemy.image,
+        maxHp:          combat.enemy.maxHp,
+        currentHp:      combat.enemy.currentHp,
+        atk:            combat.enemy.atk,
+        spd:            combat.enemy.spd,
+        res:            { ...combat.enemy.res },
+        finalDamagePct: combat.enemy.finalDamagePct,
+        flatDamage:     combat.enemy.flatDamage,
+        moves:          [...(combat.enemy.moves || [])],
+        moveIndex:      combat.enemy.moveIndex || 0,
+        rarity:         combat.enemy.rarity,
+        tier:           combat.enemy.tier,
+        dropRate:       combat.enemy.dropRate,
+        isArchi:        combat.enemy.isArchi || false,
+        buffs:          JSON.parse(JSON.stringify(combat.enemy.buffs || [])),
+        dots:           JSON.parse(JSON.stringify(combat.enemy.dots  || [])),
+    } : null
+    state.savedCombatState = {
+        memberTimers:       [...combat.memberTimers],
+        memberMoveIndex:    [...combat.memberMoveIndex],
+        activeMemberIndex:  combat.activeMemberIndex,
+        enemyTimer:         combat.enemyTimer,
+        memberKillCount:    { ...combat.memberKillCount },
+        memberPassiveState: JSON.parse(JSON.stringify(combat.memberPassiveState || {})),
+        spellStacks:        JSON.parse(JSON.stringify(combat.spellStacks        || {})),
+        sessionLoot:        JSON.parse(JSON.stringify(combat.sessionLoot)),
+        syncedLevel:        combat.syncedLevel || null,
+    }
+}
 
 // ─── gestion de l'xp ────────────────────────────────────────────────────────
 
@@ -145,10 +212,17 @@ function spawnEnemy(areaId) {
 // ─── Démarrage / arrêt ────────────────────────────────────────────────────────
 
 function startCombat(areaId) {
-    stopCombat()
-    state.currentArea     = areaId
-    state.isRunning       = true
-    state.combatStartTime = Date.now()
+    // Détecte si on reprend un combat sauvegardé (rechargement de page)
+    const _isResume = !!(
+        state.savedCombatEnemy &&
+        state.savedCombatState &&
+        state.currentArea === areaId
+    )
+    // stopCombat restaure les équipements skull ; on le saute sur reprise car
+    // l'état déséquipé est déjà dans state.team tel que sauvegardé.
+    if (!_isResume) stopCombat()
+    state.currentArea = areaId
+    state.isRunning   = true
 
     // Donjon + relance auto : initialise l'accumulateur si pas déjà actif
     if (areas[areaId]?.type === 'dungeon' && state.dungeonAutoRestart) {
@@ -158,12 +232,12 @@ function startCombat(areaId) {
     }
 
     // Niveau synchro pour le mode modulé (skull > 0 → niveau = maxLevel de la zone)
-    const _startArea    = areas[areaId]
-    const _syncedLevel  = (state.skullLevel > 0 && _startArea?.maxLevel)
+    const _startArea   = areas[areaId]
+    const _syncedLevel = (state.skullLevel > 0 && _startArea?.maxLevel)
         ? _startArea.maxLevel : null
 
-    // Auto-déséquipement : items dont requiredLevel > syncedLevel
-    if (_syncedLevel !== null) {
+    // Auto-déséquipement sur départ frais uniquement
+    if (!_isResume && _syncedLevel !== null) {
         const unequipped = {}
         for (const m of state.team) {
             if (!m) continue
@@ -185,55 +259,75 @@ function startCombat(areaId) {
         }
     }
 
-    // Réinitialise les HP de l'équipe (en tenant compte du niveau synchro si actif)
-    for (const m of state.team) {
-        if (!m) continue
-        const stats = getEffectiveStats(m, _syncedLevel)
-        if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
-        m.buffs  = []
-        m.dots   = []
-        m.hots   = []
-        m.shield = null
-    }
-
-    combat = {
-        syncedLevel: _syncedLevel,
-        memberTimers: state.team.map(() => 0),
-        memberMoveIndex: state.team.map(() => 0),
-        activeMemberIndex: 0,
-        enemyTimer: 0,
-        log: [],
-        pendingLoot: null,
-        savedEnemy: null,
-        memberKillCount:    {},
-        memberPassiveState: {},
-        memberDeathHandled: {},
-        spellStacks: {},
-        sessionLoot: { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
-    }
-
-    // Pré-calcul des états passifs initiaux
-    for (let i = 0; i < state.team.length; i++) {
-        const m = state.team[i]
-        if (!m) continue
-        const passive = classes[m.classId]?.passive
-        combat.memberPassiveState[i] = {}
-        if (passive?.id === 'pandawa')     combat.memberPassiveState[i].state = 'normal'
-        if (passive?.id === 'huppermage') {
-            const slots    = ['slot1', 'slot2', 'slot3', 'slot4']
-            const elements = slots.map(s => {
-                const mid = m.moves?.[s]
-                if (!mid) return null
-                const mv  = move[mid]
-                const eff = mv?.effects?.find(e => e.type === 'damage' || e.type === 'dot')
-                return eff?.element || null
-            }).filter(Boolean)
-            combat.memberPassiveState[i].huppermageBonus =
-                elements.length === 4 && new Set(elements).size === 4
+    // Réinitialise les HP seulement sur départ frais (reprise : HP sauvegardés dans state.team)
+    if (!_isResume) {
+        for (const m of state.team) {
+            if (!m) continue
+            const stats = getEffectiveStats(m, _syncedLevel)
+            if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
+            m.buffs  = []
+            m.dots   = []
+            m.hots   = []
+            m.shield = null
         }
     }
 
-    if (areas[areaId]?.type === 'raid') {
+    combat = {
+        syncedLevel:        _isResume ? (state.savedCombatState?.syncedLevel ?? _syncedLevel) : _syncedLevel,
+        memberTimers:       state.team.map(() => 0),
+        memberMoveIndex:    state.team.map(() => 0),
+        activeMemberIndex:  0,
+        enemyTimer:         0,
+        log:                [],
+        pendingLoot:        null,
+        savedEnemy:         null,
+        memberKillCount:    {},
+        memberPassiveState: {},
+        memberDeathHandled: {},
+        spellStacks:        {},
+        sessionLoot:        _emptySessionLoot()
+    }
+
+    if (_isResume && state.savedCombatState) {
+        // Restaure les timers, loot et états passifs depuis la sauvegarde
+        const sc = state.savedCombatState
+        if (sc.memberTimers)              combat.memberTimers       = [...sc.memberTimers]
+        if (sc.memberMoveIndex)           combat.memberMoveIndex    = [...sc.memberMoveIndex]
+        if (sc.activeMemberIndex != null) combat.activeMemberIndex  = sc.activeMemberIndex
+        if (sc.enemyTimer        != null) combat.enemyTimer         = sc.enemyTimer
+        if (sc.memberKillCount)           combat.memberKillCount    = { ...sc.memberKillCount }
+        if (sc.memberPassiveState)        combat.memberPassiveState = JSON.parse(JSON.stringify(sc.memberPassiveState))
+        if (sc.spellStacks)               combat.spellStacks        = JSON.parse(JSON.stringify(sc.spellStacks))
+        if (sc.sessionLoot)               combat.sessionLoot        = JSON.parse(JSON.stringify(sc.sessionLoot))
+        state.savedCombatState = null
+    } else {
+        // Pré-calcul des états passifs initiaux
+        for (let i = 0; i < state.team.length; i++) {
+            const m = state.team[i]
+            if (!m) continue
+            const passive = classes[m.classId]?.passive
+            combat.memberPassiveState[i] = {}
+            if (passive?.id === 'pandawa')     combat.memberPassiveState[i].state = 'normal'
+            if (passive?.id === 'huppermage') {
+                const slots    = ['slot1', 'slot2', 'slot3', 'slot4']
+                const elements = slots.map(s => {
+                    const mid = m.moves?.[s]
+                    if (!mid) return null
+                    const mv  = move[mid]
+                    const eff = mv?.effects?.find(e => e.type === 'damage' || e.type === 'dot')
+                    return eff?.element || null
+                }).filter(Boolean)
+                combat.memberPassiveState[i].huppermageBonus =
+                    elements.length === 4 && new Set(elements).size === 4
+            }
+        }
+    }
+
+    if (_isResume && state.savedCombatEnemy) {
+        combat.enemy = JSON.parse(JSON.stringify(state.savedCombatEnemy))
+        combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
+        state.savedCombatEnemy = null
+    } else if (areas[areaId]?.type === 'raid') {
         _initRaidCombat(areaId)
     } else {
         combat.enemy = spawnEnemy(areaId)
@@ -253,14 +347,10 @@ function startCombat(areaId) {
     const menuParent = document.getElementById('menu-button-parent')
     if (menuParent) menuParent.style.display = ''
     updateCombatUI()
-
-    combatLoop = setInterval(gameTick, TICK_MS)
 }
 
 function stopCombat() {
-    if (combatLoop) { clearInterval(combatLoop); combatLoop = null }
-    state.isRunning       = false
-    state.combatStartTime = null
+    state.isRunning = false
     // Restauration des équipements retirés pour modulation skull
     if (state.skullUnequipped) {
         for (const m of state.team) {
@@ -275,6 +365,8 @@ function stopCombat() {
 }
 
 function exitCombat() {
+    state.savedCombatEnemy = null
+    state.savedCombatState = null
     stopCombat()
     state.currentArea = null
     combat = null
@@ -300,6 +392,8 @@ function exitCombat() {
 }
 
 function leaveCombat() {
+    state.savedCombatEnemy = null
+    state.savedCombatState = null
     if (combat?.isPoutch) {
         onPoutchEnd()
         return
@@ -378,11 +472,10 @@ function _consumeAutoPilotTicket() {
 
 function startPoutchCombat(mode) {
     stopCombat()
-    state.currentArea     = null
-    state.isRunning       = true
-    state.combatStartTime = Date.now()
-    _dungeonAutoRun       = null
-    _autoPilot            = null
+    state.currentArea = null
+    state.isRunning   = true
+    _dungeonAutoRun   = null
+    _autoPilot        = null
 
     for (const m of state.team) {
         if (!m) continue
@@ -472,8 +565,6 @@ function startPoutchCombat(mode) {
     const menuParent = document.getElementById('menu-button-parent')
     if (menuParent) menuParent.style.display = ''
     updateCombatUI()
-
-    combatLoop = setInterval(gameTick, TICK_MS)
 }
 
 function onPoutchEnd() {
@@ -490,7 +581,7 @@ function gameTick() {
     if (!combat) return
     if (combat.isRaid) {
         raidGameTick()
-        if (state.isRunning && !_offlineFastForward) updateCombatUI()
+        if (state.isRunning) updateCombatUI()
         return
     }
     if (!combat.enemy) return
@@ -532,7 +623,7 @@ function gameTick() {
         }
     }
 
-    if (state.isRunning && !_offlineFastForward) updateCombatUI()
+    if (state.isRunning) updateCombatUI()
     } catch(e) { console.error('[gameTick]', e) }
 }
 
@@ -992,7 +1083,7 @@ function executeEffect(ctx) {
                 combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + dmg
             }
             // Popup dégâts uniquement quand c'est l'ennemi qui encaisse (pas un membre)
-            if (dmg > 0 && memberHitIdx === -1 && !_offlineFastForward && typeof showDamageNumber === 'function') {
+            if (dmg > 0 && memberHitIdx === -1 && typeof showDamageNumber === 'function') {
                 showDamageNumber(dmg)
             }
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
@@ -1715,24 +1806,11 @@ function onVictory() {
             _mergeSessionLoot(_dungeonAutoRun.accumulated, combat.sessionLoot)
             const keysLeft = state.inventory[areas[doneArea].keyId]?.count || 0
             if (keysLeft > 0) {
-                const inFastForward = _offlineFastForward
-                setTimeout(() => {
-                    startCombat(doneArea)
-                    // Reprend le fast-forward si la simulation offline est encore active
-                    if (inFastForward && typeof _startOfflineFastForwardLoop === 'function') {
-                        clearInterval(combatLoop)
-                        _startOfflineFastForwardLoop()
-                    }
-                }, inFastForward ? 5 : 800)
+                setTimeout(() => startCombat(doneArea), 800)
                 return
             }
             combat.sessionLoot = _dungeonAutoRun.accumulated
             _dungeonAutoRun = null
-        }
-        // Fin du fast-forward si le donjon se termine sans relance
-        if (_offlineFastForward) {
-            _offlineFastForward = false
-            if (typeof _offlineTotalTicks !== 'undefined') { _offlineTotalTicks = 0; _offlineTicksRun = 0 }
         }
         showSessionSummary('dungeon')
         return
@@ -1754,19 +1832,14 @@ function onVictory() {
         combat.savedEnemy     = null
         combat.enemyTimer     = 0
         updateCombatUI()
-    }, _offlineFastForward ? 5 : 500)
+    }, 500)
 }
 
 function onDefeat() {
-    if (_offlineFastForward) {
-        _offlineFastForward = false
-        clearInterval(combatLoop)
-        combatLoop = null
-        stopCombat()
-        if (combat) combat.enemy = null
-        _offlineHandleDefeat()
-        return
-    }
+    // Invalide toute reprise éventuelle : après une défaite on repart de zéro
+    state.savedCombatEnemy = null
+    state.savedCombatState = null
+
     if (combat?.isPoutch) {
         stopCombat()
         if (combat) combat.enemy = null
@@ -1791,14 +1864,12 @@ function onDefeat() {
         _autoPilot.remaining--
         state.offlineAutoPilotRemaining = _autoPilot.remaining
         if (_autoPilot.remaining > 0 && (state.inventory['piloteAutomatique']?.count || 0) > 0) {
-            // Prépare un état "combat prêt" pour la sim offline si le tab est tué pendant la pause
             for (const m of state.team) {
                 if (!m) continue
                 const stats = getEffectiveStats(m)
                 if (stats) { m.currentHp = stats.hp; m.maxHp = stats.hp }
                 m.buffs = []; m.dots = []; m.hots = []; m.shield = null
             }
-            state.combatStartTime = Date.now()
             saveGame()
             setTimeout(() => rejoinArea(), 800)
             return

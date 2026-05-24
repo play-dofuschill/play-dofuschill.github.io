@@ -123,7 +123,10 @@ const state = {
     unlockedClasses: [],
     totalKills: 0,
     defeatedBosses: [],
-    combatStartTime: null,
+    lastFrameRecorded: null,
+    savedCombatEnemy: null,
+    savedCombatState: null,
+    autoPilotAccumulated: null,
     offlineAutoPilotRemaining: 0,
     dungeonAutoRestart: false,
     lastAlmanaxDate: null,
@@ -325,7 +328,6 @@ function closeAllTooltips() {
 // ─── Notifications ────────────────────────────────────────────────────────────
 
 function showNotification(message, type = 'info') {
-    if (typeof _offlineFastForward !== 'undefined' && _offlineFastForward) return
     const container = document.getElementById('notification-container')
     if (!container) return
     const el = document.createElement('div')
@@ -683,7 +685,8 @@ function refreshTeamNames() {
 function initGame() {
     loadGame()
     refreshDailyPools()
-    simulateOfflineProgress()
+    resumeSavedCombat()
+    startGameLoop()
     changeTheme(state.theme || 'dark')
 
     const sel = document.getElementById('settings-theme')
@@ -860,8 +863,8 @@ function initGame() {
 
 window.addEventListener('load', initGame)
 
-// Sauvegarde automatique toutes les 30s
-setInterval(saveGame, 30000)
+// Sauvegarde automatique toutes les 5s
+setInterval(saveGame, 5000)
 
 // Sauvegarde immédiate à la fermeture (beforeunload desktop, visibilitychange mobile)
 window.addEventListener('beforeunload', saveGame)
