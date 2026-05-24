@@ -14,17 +14,29 @@ let _accumulator   = 0
 let combat         = null   // état du combat en cours
 let _autoPilot        = null   // { remaining: N, accumulated: sessionLoot } | null
 let _dungeonAutoRun   = null   // { accumulated: sessionLoot } | null — relance auto donjon
-let _offlineFastForward = false  // true pendant le fast-forward offline
+let _afkSeconds       = 0      // secondes d'absence à rattraper en fast-forward
 
 // ─── Boucle de jeu (requestAnimationFrame) ────────────────────────────────────
 
 function _gameLoop(now) {
     _rafId = requestAnimationFrame(_gameLoop)
-    if (_offlineFastForward) { _lastFrameTime = now; return }  // fast-forward gère ses propres ticks
     const delta = Math.min(now - _lastFrameTime, 250)
     _lastFrameTime = now
     state.lastFrameRecorded = Date.now()
     if (!state.isRunning || !combat) { _accumulator = 0; return }
+
+    // Fast-forward AFK : drainer le temps accumulé avec un budget CPU par frame
+    if (_afkSeconds > 0) {
+        const frameStart = performance.now()
+        while (_afkSeconds > 0 && performance.now() - frameStart < OFFLINE_FRAME_BUDGET_MS) {
+            gameTick()
+            _afkSeconds = Math.max(0, _afkSeconds - TICK_MS / 1000)
+        }
+        if (state.isRunning) updateCombatUI()
+        if (_afkSeconds <= 0) saveGame()
+        return
+    }
+
     _accumulator += delta
     while (_accumulator >= TICK_MS) {
         gameTick()
@@ -625,7 +637,7 @@ function gameTick() {
         }
     }
 
-    if (state.isRunning && !_offlineFastForward) updateCombatUI()
+    if (state.isRunning && _afkSeconds <= 0) updateCombatUI()
     } catch(e) { console.error('[gameTick]', e) }
 }
 
@@ -1808,20 +1820,20 @@ function onVictory() {
             _mergeSessionLoot(_dungeonAutoRun.accumulated, combat.sessionLoot)
             const keysLeft = state.inventory[areas[doneArea].keyId]?.count || 0
             if (keysLeft > 0) {
-                if (_offlineFastForward) { startCombat(doneArea); return }
+                if (_afkSeconds > 0) { startCombat(doneArea); return }
                 setTimeout(() => startCombat(doneArea), 800)
                 return
             }
             combat.sessionLoot = _dungeonAutoRun.accumulated
             _dungeonAutoRun = null
         }
-        if (_offlineFastForward) _offlineFastForward = false
+        _afkSeconds = 0
         showSessionSummary('dungeon')
         return
     }
 
     // Respawn ennemi (zone normale) — synchrone en fast-forward, async sinon
-    if (_offlineFastForward) {
+    if (_afkSeconds > 0) {
         combat.respawnPending = false
         for (const m of state.team) {
             if (!m) continue
@@ -1856,7 +1868,7 @@ function onDefeat() {
     state.savedCombatEnemy = null
     state.savedCombatState = null
 
-    if (_offlineFastForward) {
+    if (_afkSeconds > 0) {
         stopCombat()
         if (combat) combat.enemy = null
         _offlineHandleDefeat()
