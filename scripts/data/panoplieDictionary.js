@@ -119,6 +119,7 @@ const panoplies = {
     scarafeuille_blanc: {
         name: "Panoplie du scarafeuille blanc",
         pieces: ['cape_scarafeuille_blanc','coiffe_scarafeuille_blanc','anneau_scarafeuille_blanc','ceinture_scarafeuille_blanc'],
+        familiar: 'scarafeuilleBlanc',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -132,6 +133,7 @@ const panoplies = {
     scarafeuille_vert: {
         name: "Panoplie du scarafeuille vert",
         pieces: ['cape_scarafeuille_vert','coiffe_scarafeuille_vert','anneau_scarafeuille_vert','ceinture_scarafeuille_vert'],
+        familiar: 'scarafeuilleVert',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -145,6 +147,7 @@ const panoplies = {
     scarafeuille_bleu: {
         name: "Panoplie du scarafeuille bleu",
         pieces: ['cape_scarafeuille_bleu','coiffe_scarafeuille_bleu','anneau_scarafeuille_bleu','ceinture_scarafeuille_bleu'],
+        familiar: 'scarafeuilleBleu',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -158,6 +161,7 @@ const panoplies = {
     scarafeuille_rouge: {
         name: "Panoplie du scarafeuille rouge",
         pieces: ['cape_scarafeuille_rouge','coiffe_scarafeuille_rouge','anneau_scarafeuille_rouge','ceinture_scarafeuille_rouge'],
+        familiar: 'scarafeuilleRouge',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -171,6 +175,7 @@ const panoplies = {
     scarafeuille_noir: {
         name: "Panoplie du scarafeuille noir",
         pieces: ['cape_scarafeuille_noir','coiffe_scarafeuille_noir','anneau_scarafeuille_noir','ceinture_scarafeuille_noir'],
+        familiar: 'scarafeuilleNoir',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -184,6 +189,7 @@ const panoplies = {
     scraraboss_doree: {
         name: "Panoplie du Scraraboss Dorée",
         pieces: ['cape_scaraboss_doree','coiffe_scaraboss_doree','bottes_scaraboss_doree','anneau_scaraboss_doree','amulette_scaraboss_doree','ceinture_scaraboss_doree','baguette_scaraboss_doree'],
+        familiar: 'scrarabossDoree',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -208,6 +214,7 @@ const panoplies = {
     kwak_vent: {
         name: "Panoplie du kwak de vent",
         pieces: ['cape_kwak_vent','coiffe_kwak_vent','anneau_kwak_vent','ceinture_kwak_vent','bottes_kwak_vent','amulette_kwak_vent','epee_kwak_vent'],
+        familiar: 'kwakVent',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -227,6 +234,7 @@ const panoplies = {
     kwak_glace: {
         name: "Panoplie du kwak de glace",
         pieces: ['cape_kwak_glace','coiffe_kwak_glace','anneau_kwak_glace','ceinture_kwak_glace','bottes_kwak_glace','amulette_kwak_glace','epee_kwak_glace'],
+        familiar: 'kwakGlace',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -246,6 +254,7 @@ const panoplies = {
     kwak_flamme: {
         name: "Panoplie du kwak de flamme",
         pieces: ['cape_kwak_flamme','coiffe_kwak_flamme','anneau_kwak_flamme','ceinture_kwak_flamme','bottes_kwak_flamme','amulette_kwak_flamme','epee_kwak_flamme'],
+        familiar: 'kwakFlamme',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -265,6 +274,7 @@ const panoplies = {
     kwak_terre: {
         name: "Panoplie du kwak de terre",
         pieces: ['cape_kwak_terre','coiffe_kwak_terre','anneau_kwak_terre','ceinture_kwak_terre','bottes_kwak_terre','amulette_kwak_terre','epee_kwak_terre'],
+        familiar: 'kwakTerre',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -284,6 +294,7 @@ const panoplies = {
     kwakwa: {
         name: "Panoplie du Kwakwa",
         pieces: ['kwakwanneau','kwakwalliance','kwakwaffe','kwakwalame'],
+        familiar: 'kwakwa',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 40 },
                         { stat: 'atk', value: 50 },

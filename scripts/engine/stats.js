@@ -386,6 +386,12 @@ function countSetPieces(equip) {
     for (const slotId in equip) {
         const itemId = equip[slotId]
         if (!itemId) continue
+        if (slotId === 'familier') {
+            for (const [setId, pano] of Object.entries(panoplies)) {
+                if (pano.familiar === itemId) counts[setId] = (counts[setId] || 0) + 1
+            }
+            continue
+        }
         const itm = item[itemId]
         if (!itm || !itm.set) continue
         counts[itm.set] = (counts[itm.set] || 0) + 1

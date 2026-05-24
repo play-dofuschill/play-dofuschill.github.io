@@ -214,7 +214,10 @@ function showItemTooltip(itemId) {
         const equippedByTeam = new Set(
             state.team.flatMap(m => m ? Object.values(m.equip) : []).filter(Boolean)
         )
-        const equippedCount = pano.pieces.filter(p => equippedByTeam.has(p)).length
+        const famEquipped = pano.familiar && equippedByTeam.has(pano.familiar)
+        let equippedCount = pano.pieces.filter(p => equippedByTeam.has(p)).length
+        if (famEquipped) equippedCount++
+        const totalPieces = pano.pieces.length + (pano.familiar ? 1 : 0)
 
         // Seuils de bonus
         const thresholds = Object.keys(pano.bonuses).map(Number).sort((a, b) => a - b)
@@ -250,10 +253,26 @@ function showItemTooltip(itemId) {
             </div>`
         }
 
+        // Familier associé
+        if (pano.familiar) {
+            const mob = typeof monsters !== 'undefined' ? monsters[pano.familiar] : null
+            if (mob) {
+                const famInCollection = !!state.collection?.[pano.familiar]
+                const equipDot = famEquipped ? '<span class="set-piece-dot"></span>' : ''
+                const missingCls = !famInCollection ? ' set-piece-missing' : ''
+                piecesHtml += `<div class="set-piece-bubble${missingCls}"
+                    title="${mob.name} (Familier)"
+                    onclick="closeTooltip(); showMobSheet('${pano.familiar}')">
+                    <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
+                    ${equipDot}
+                </div>`
+            }
+        }
+
         setHtml = `<div class="item-set-section">
             <div class="item-set-title">
                 ${pano.name}
-                <span class="set-count-badge">${equippedCount}/${pano.pieces.length} équipées</span>
+                <span class="set-count-badge">${equippedCount}/${totalPieces} équipées</span>
             </div>
             <div class="item-set-bonuses">${bonusRows}</div>
             <div class="item-set-pieces">${piecesHtml}</div>
