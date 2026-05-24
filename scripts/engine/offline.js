@@ -89,8 +89,10 @@ function _offlineHandleDefeat() {
     // Plus de tickets (ou pas de pilote) : arrêt du fast-forward
     _afkSeconds = 0
     if (_autoPilot) {
-        if (combat) combat.sessionLoot = _autoPilot.accumulated
+        if (combat) combat.sessionLoot = JSON.parse(JSON.stringify(_autoPilot.accumulated))
         _autoPilot = null
+        showSessionSummary('autopilot')
+        return
     }
     showSessionSummary('defeat')
 }

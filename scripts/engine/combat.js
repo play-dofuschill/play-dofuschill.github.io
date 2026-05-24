@@ -472,6 +472,7 @@ function startAutoPilot(qty) {
     if (n <= 0) return
     _autoPilot = { remaining: n, accumulated: _emptySessionLoot() }
     state.offlineAutoPilotRemaining = n
+    saveGame()   // persiste immédiatement pour que le rechargement puisse restaurer _autoPilot
     rejoinArea()
 }
 
@@ -1012,6 +1013,18 @@ function executeEffect(ctx) {
             }
             const result = calcDamage(statsForCalc, defStats, effectForCalc, hpCtx)
             let dmg = result.damage
+
+            if (combat && state.team.includes(ctx.caster) && !state.doubleCritAchieved) {
+                if (result.isCrit) {
+                    combat.critStreak = (combat.critStreak || 0) + 1
+                    if (combat.critStreak >= 2) {
+                        state.doubleCritAchieved = true
+                        checkClassUnlocks()
+                    }
+                } else {
+                    combat.critStreak = 0
+                }
+            }
 
             if (effect.summonMultiplier && (targetEnemy.isSummon || targetEnemy.ownerId)) {
                 dmg = Math.floor(dmg * effect.summonMultiplier)
@@ -1910,9 +1923,9 @@ function onDefeat() {
             return
         }
         saveGame()
-        combat.sessionLoot = _autoPilot.accumulated
+        combat.sessionLoot = JSON.parse(JSON.stringify(_autoPilot.accumulated))
         _autoPilot = null
-        showSessionSummary('leave')
+        showSessionSummary('autopilot')
         return
     }
 

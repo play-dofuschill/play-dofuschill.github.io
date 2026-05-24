@@ -123,6 +123,7 @@ const state = {
     unlockedClasses: [],
     totalKills: 0,
     defeatedBosses: [],
+    doubleCritAchieved: false,
     lastFrameRecorded: null,
     savedCombatEnemy: null,
     savedCombatState: null,
@@ -412,6 +413,7 @@ function showSessionSummary(type) {
     let titleText = 'Résumé'
     if (type === 'defeat')       titleText = 'Équipe vaincue...'
     else if (type === 'dungeon') titleText = 'Donjon terminé !'
+    else if (type === 'autopilot') titleText = `Pilote auto — ${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
     else if (type === 'leave')   titleText = `${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
 
     // ── Sorts appris
