@@ -11,9 +11,10 @@ const OFFLINE_FRAME_BUDGET_MS = 8                    // budget CPU max par frame
 const OFFLINE_UI_MS           = 100                  // période de refresh UI (~10 fps)
 
 // État partagé avec combat.js (onDefeat l'interroge)
-let _offlineTicksRun   = 0
-let _offlineTotalTicks = 0
-let _offlineLastUiMs   = 0
+let _offlineTicksRun      = 0
+let _offlineTotalTicks    = 0
+let _offlineLastUiMs      = 0
+let _offlineLoopGeneration = 0  // incrémenté à chaque restart pour invalider l'ancien callback
 
 function simulateOfflineProgress() {
     if (!state.combatStartTime || !state.currentArea) return
@@ -76,9 +77,11 @@ function simulateOfflineProgress() {
 function _startOfflineFastForwardLoop() {
     clearInterval(combatLoop)
     _offlineFastForward = true
+    const myGeneration = ++_offlineLoopGeneration
 
     combatLoop = setInterval(() => {
-        if (!_offlineFastForward) return
+        // Invalide les anciennes invocations (callback zombie après un restart suite à une mort)
+        if (!_offlineFastForward || _offlineLoopGeneration !== myGeneration) return
 
         const frameStart = performance.now()
         while (
@@ -118,6 +121,7 @@ function _offlineHandleDefeat() {
         if (combat) _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
         _consumeAutoPilotTicket()
         _autoPilot.remaining--
+        state.offlineAutoPilotRemaining = _autoPilot.remaining
         saveGame()
 
         if (_autoPilot.remaining > 0 && (state.inventory['piloteAutomatique']?.count || 0) > 0) {

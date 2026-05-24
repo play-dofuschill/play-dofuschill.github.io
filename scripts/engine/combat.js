@@ -1789,11 +1789,21 @@ function onDefeat() {
         _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
         _consumeAutoPilotTicket()
         _autoPilot.remaining--
-        saveGame()
+        state.offlineAutoPilotRemaining = _autoPilot.remaining
         if (_autoPilot.remaining > 0 && (state.inventory['piloteAutomatique']?.count || 0) > 0) {
+            // Prépare un état "combat prêt" pour la sim offline si le tab est tué pendant la pause
+            for (const m of state.team) {
+                if (!m) continue
+                const stats = getEffectiveStats(m)
+                if (stats) { m.currentHp = stats.hp; m.maxHp = stats.hp }
+                m.buffs = []; m.dots = []; m.hots = []; m.shield = null
+            }
+            state.combatStartTime = Date.now()
+            saveGame()
             setTimeout(() => rejoinArea(), 800)
             return
         }
+        saveGame()
         combat.sessionLoot = _autoPilot.accumulated
         _autoPilot = null
         showSessionSummary('leave')

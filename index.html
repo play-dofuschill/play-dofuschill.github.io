@@ -673,8 +673,12 @@
     <!-- ── Résumé de session (contenu généré par showSessionSummary) ── -->
     <div id="area-end" style="display:none"></div>
 
-    <div id="tooltipBackground" onclick="if(event.target===this) closeTooltip()">
-        <div id="tooltipClose" onclick="closeTooltip()">✕</div>
+    <div id="tooltipBackground"
+         ontouchend="if(event.target===this){event.preventDefault();closeTooltip()}"
+         onclick="if(event.target===this) closeTooltip()">
+        <div id="tooltipClose"
+             ontouchend="event.preventDefault();closeTooltip()"
+             onclick="closeTooltip()">✕</div>
         <div id="tooltipBox">
             <div id="tooltipTop"></div>
             <div id="tooltipTitle"></div>
