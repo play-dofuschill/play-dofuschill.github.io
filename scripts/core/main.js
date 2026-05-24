@@ -685,7 +685,7 @@ function refreshTeamNames() {
 function initGame() {
     loadGame()
     refreshDailyPools()
-    resumeSavedCombat()
+    simulateOfflineProgress()
     startGameLoop()
     changeTheme(state.theme || 'dark')
 

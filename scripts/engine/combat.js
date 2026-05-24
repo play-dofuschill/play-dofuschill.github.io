@@ -12,13 +12,15 @@ let _rafId         = null
 let _lastFrameTime = 0
 let _accumulator   = 0
 let combat         = null   // état du combat en cours
-let _autoPilot     = null   // { remaining: N, accumulated: sessionLoot } | null
-let _dungeonAutoRun = null  // { accumulated: sessionLoot } | null — relance auto donjon
+let _autoPilot        = null   // { remaining: N, accumulated: sessionLoot } | null
+let _dungeonAutoRun   = null   // { accumulated: sessionLoot } | null — relance auto donjon
+let _offlineFastForward = false  // true pendant le fast-forward offline
 
 // ─── Boucle de jeu (requestAnimationFrame) ────────────────────────────────────
 
 function _gameLoop(now) {
     _rafId = requestAnimationFrame(_gameLoop)
+    if (_offlineFastForward) { _lastFrameTime = now; return }  // fast-forward gère ses propres ticks
     const delta = Math.min(now - _lastFrameTime, 250)
     _lastFrameTime = now
     state.lastFrameRecorded = Date.now()
@@ -623,7 +625,7 @@ function gameTick() {
         }
     }
 
-    if (state.isRunning) updateCombatUI()
+    if (state.isRunning && !_offlineFastForward) updateCombatUI()
     } catch(e) { console.error('[gameTick]', e) }
 }
 
@@ -1806,17 +1808,31 @@ function onVictory() {
             _mergeSessionLoot(_dungeonAutoRun.accumulated, combat.sessionLoot)
             const keysLeft = state.inventory[areas[doneArea].keyId]?.count || 0
             if (keysLeft > 0) {
+                if (_offlineFastForward) { startCombat(doneArea); return }
                 setTimeout(() => startCombat(doneArea), 800)
                 return
             }
             combat.sessionLoot = _dungeonAutoRun.accumulated
             _dungeonAutoRun = null
         }
+        if (_offlineFastForward) _offlineFastForward = false
         showSessionSummary('dungeon')
         return
     }
 
-    // Respawn ennemi (zone normale) — garanti même si le bloc loot a throw
+    // Respawn ennemi (zone normale) — synchrone en fast-forward, async sinon
+    if (_offlineFastForward) {
+        combat.respawnPending = false
+        for (const m of state.team) {
+            if (!m) continue
+            m.buffs = []; m.dots = []; m.hots = []; m.shield = null
+        }
+        combat.enemy           = spawnEnemy(state.currentArea)
+        combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
+        combat.savedEnemy      = null
+        combat.enemyTimer      = 0
+        return
+    }
     setTimeout(() => {
         combat.respawnPending = false
         if (!state.isRunning || !state.currentArea) return
@@ -1839,6 +1855,13 @@ function onDefeat() {
     // Invalide toute reprise éventuelle : après une défaite on repart de zéro
     state.savedCombatEnemy = null
     state.savedCombatState = null
+
+    if (_offlineFastForward) {
+        stopCombat()
+        if (combat) combat.enemy = null
+        _offlineHandleDefeat()
+        return
+    }
 
     if (combat?.isPoutch) {
         stopCombat()

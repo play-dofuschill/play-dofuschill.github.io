@@ -27,6 +27,7 @@ function saveGame() {
         unlockedClasses:    state.unlockedClasses || [],
         totalKills:                state.totalKills || 0,
         defeatedBosses:            state.defeatedBosses || [],
+        lastFrameRecorded:         state.lastFrameRecorded    || null,
         offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
         autoPilotAccumulated:      state.autoPilotAccumulated || null,
         savedCombatEnemy:          state.savedCombatEnemy || null,
@@ -73,6 +74,7 @@ function loadGame() {
         if (data.totalKills != null)                state.totalKills                = data.totalKills
         if (data.defeatedBosses)                    state.defeatedBosses            = data.defeatedBosses
         if (data.isRunning != null)                 state.isRunning                 = data.isRunning
+        if (data.lastFrameRecorded != null)         state.lastFrameRecorded         = data.lastFrameRecorded
         if (data.offlineAutoPilotRemaining != null) state.offlineAutoPilotRemaining = data.offlineAutoPilotRemaining
         if (data.autoPilotAccumulated)              state.autoPilotAccumulated      = data.autoPilotAccumulated
         if (data.savedCombatEnemy)                  state.savedCombatEnemy          = data.savedCombatEnemy
