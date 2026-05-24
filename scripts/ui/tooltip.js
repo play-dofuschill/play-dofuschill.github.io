@@ -1014,14 +1014,14 @@ function openCosmeticPicker(classId) {
         const price  = sk.price || 0
         return `
         <div class="cosm-card${active ? ' cosm-card-active' : ''}${!owned ? ' cosm-card-locked' : ''}"
-             onclick="${owned ? `equipSkin('${classId}','${sk.id}')` : `buySkin('${classId}','${sk.id}',${price})`}">
+             onclick="${owned ? `equipSkin('${classId}','${sk.id}')` : ''}">
             <img class="cosm-preview" src="${img}" onerror="this.src='img/icons/icon.png'">
             <span class="cosm-name">${sk.name}</span>
             ${active
                 ? `<span class="cosm-status cosm-status-active">Équipé</span>`
                 : owned
                     ? `<span class="cosm-status">Appliquer</span>`
-                    : `<span class="cosm-status cosm-status-buy">${price} <img src="img/icons/kamas.png" style="width:0.85em;vertical-align:middle;"></span>`
+                    : `<span class="cosm-status cosm-status-buy">Boutique</span>`
             }
         </div>`
     }).join('')
