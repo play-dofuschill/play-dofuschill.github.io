@@ -186,3 +186,92 @@ summons.fee_accablante_tier_3 = {
     onDeath: [{ type: 'debuff', stat: 'spd', value: 30, duration: 3, target: 'enemy' }]
 }
 // #endregion
+// #region ENUTROF ──────────────────────────────────────────────
+
+move.interception = {
+    id: 'interception',
+    name: 'Interception',
+    cooldownMs: 2000,
+    effects: [{ type: 'interception', target: 'self' }]
+}
+move.frappe_de_pelle = {
+    id: 'frappe_de_pelle',
+    name: 'Frappe de Pelle',
+    cooldownMs: 2000,
+    effects: [{ type: 'recul', target: 'enemy' },
+              { type: 'interception', target: 'self' }]
+}
+summons.pelle_animee = {
+    id:      'pelle_animee',
+    name:    'Pelle Animée',
+    image:   'img/classes/invocations/pelle_animee.png',
+    fixedHp: true,
+    bst:     { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['frappe_de_pelle']
+}
+summons.pelle_animee2 = {
+    id:      'pelle_animee2',
+    name:    'Pelle Animée',
+    image:   'img/classes/invocations/pelle_animee.png',
+    fixedHp: true,
+    bst:     { hp: 300, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['frappe_de_pelle']
+}
+summons.pelle_animee3 = {
+    id:      'pelle_animee3',
+    name:    'Pelle Animée',
+    image:   'img/classes/invocations/pelle_animee.png',
+    fixedHp: true,
+    bst:     { hp: 600, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['frappe_de_pelle']
+}
+summons.sac_anime = {
+    id:      'sac_anime',
+    name:    'Sac Animé',
+    image:   'img/classes/invocations/sac_anime.png',
+    fixedHp: true,
+    bst:     { hp: 300, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['interception']
+}
+summons.sac_anime2 = {
+    id:      'sac_anime2',
+    name:    'Sac Animé',
+    image:   'img/classes/invocations/sac_anime.png',
+    fixedHp: true,
+    bst:     { hp: 1000, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['interception']
+}
+summons.sac_anime3 = {
+    id:      'sac_anime3',
+    name:    'Sac Animé',
+    image:   'img/classes/invocations/sac_anime.png',
+    fixedHp: true,
+    bst:     { hp: 2500, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['interception']
+}
+
+// #endregion
+// #region HUPPERMAGE ──────────────────────────────────────────────
+
+move.interception = {
+    id: 'interception',
+    name: 'Interception',
+    cooldownMs: 2000,
+    effects: [{ type: 'interception', target: 'self' }]
+}
+move.rayon_quadramental = {
+    id: 'rayon_quadramental',
+    name: 'Rayon Quadramental',
+    cooldownMs: 2000,
+    effects: [{ type: 'absorbElementDmg', damage: { min: 10, max: 15 }, fallbackElement: 'neutre', target: 'enemy' }]
+    //description : Occasionne des dommages Neutre ou dans l'état élémentaire sur la cible.
+}
+summons.gardien_Elementaire = {
+    id:      'gardien_Elementaire',
+    name:    'Gardien Élémentaire',
+    image:   'img/classes/invocations/gardien_Elementaire.png',
+    fixedHp: true,
+    bst:     { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves:   ['frappe_de_pelle']
+}
+// #endregion

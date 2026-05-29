@@ -16,21 +16,95 @@
 // res.neutre = % de résistance neutre
 // stat: 'healPct'
 /*
-item.exemple = {
-    id: 'exemple',
-    name: 'Exemple',
-    rarity: 'legendary',
-    stats: [{ stat: 'atk', value: 10 }, { stat: 'spd', value: 10 }, { stat: 'flatDamage', value: 10 }, { stat: 'finalDamagePct', value: 10 }, { stat: 'spellDamagePct', value: 10 }, { stat: 'damageReductionPct', value: 10 }, { stat: 'critChance', value: 10 }, { stat: 'critDamagePct', value: 10 }, { stat: 'maxHp', value: 10 }, { stat: 'res.feu', value: 10 }, { stat: 'res.eau', value: 10 }, { stat: 'res.terre', value: 10 }, { stat: 'res.air', value: 10 }, { stat: 'res.neutre', value: 10 }],
-    // effects: [ pour plus tard si je veux rajouter des effets passifs aux équipements
-    //     {type: 'shield',
-    //      shield: 10,
-    //      target: 'self'},
-    //     {type: 'lifesteal',
-    //      ratio: 0.10,
-    //      target: 'self'
-    //     }
-    // ]
-}
+    ═══════════════════════════════════════════════════════════════════
+    EFFETS PASSIFS SUR LES ITEMS — comment les implémenter
+    ═══════════════════════════════════════════════════════════════════
+
+    Ajouter un tableau `effects` à l'item. Trois modes de déclenchement,
+    non cumulables entre eux. Le format des effets est IDENTIQUE aux sorts.
+
+    ── CIBLAGE ──────────────────────────────────────────────────────
+    Pas de champ target (ou target:'self')  →  soi-même
+    target:'ally_random'                    →  allié vivant aléatoire
+    target:'ally_min_hp'                    →  allié avec le moins de PV
+    dot / debuff / damage                   →  ennemi actif (pas de target)
+
+
+    ══ MODE 1 — PÉRIODIQUE : every ══════════════════════════════════
+
+    Se déclenche tous les N coups joués par le porteur.
+
+    { every:4, type:'heal%maxHp', heal:3, target:'self' }
+        → soin 3% PV max tous les 4 coups
+
+    { every:6, type:'shield', value:80, duration:999 }
+        → bouclier 80 PV tous les 6 coups (ignoré si bouclier déjà actif)
+
+    { every:5, type:'buff', stat:'finalDamagePct', value:10, duration:3, target:'self' }
+        → +10% dégâts pendant 3 tours, tous les 5 coups
+
+    { every:4, type:'dot', element:'feu', value:20, duration:2 }
+        → brûlure 20/tour × 2 tours sur l'ennemi, tous les 4 coups
+
+    { every:6, type:'debuff', stat:'spd', value:15, duration:2 }
+        → -15 vitesse ennemi 2 tours, tous les 6 coups
+
+    { every:3, type:'heal', heal:30, target:'ally_min_hp' }
+        → soigne l'allié le plus bas de 30 PV, tous les 3 coups
+
+    { every:4, type:'hot', heal:15, duration:3, target:'self' }
+        → soin continu 15/tour × 3 tours sur soi, tous les 4 coups
+
+
+    ══ MODE 2 — PÉRIODIQUE AVEC DÉLAI : every + after ═══════════════
+
+    Comme le mode 1, mais ne commence qu'à partir du Nème coup joué.
+
+    { every:4, after:8, type:'heal%maxHp', heal:5, target:'self' }
+        → ne se déclenche qu'à partir du 8e coup, puis tous les 4 coups
+
+
+    ══ MODE 3 — RÉACTIF : on_effect ═════════════════════════════════
+
+    Se déclenche quand un effet précis est lancé (par un allié ou un ennemi).
+    PAS de champ `every` dans ce mode.
+
+    Champs de on_effect :
+      source : 'enemy'  → réagit aux effets lancés par l'ennemi
+               'ally'   → réagit aux effets lancés par un allié/sort allié
+      type   : 'dot' / 'heal' / 'buff' / 'debuff' / 'damage' / etc.
+               (optionnel — si absent, réagit à n'importe quel type)
+
+    reaction : 'cancel'  → annule l'effet original
+               'trigger' → déclenche l'effet de l'item (l'original se passe quand même)
+
+    Exemples :
+
+    { on_effect:{ source:'enemy', type:'dot' }, reaction:'cancel' }
+        → annule le prochain DOT ennemi
+
+    { on_effect:{ source:'enemy', type:'dot' }, reaction:'trigger',
+      type:'heal%maxHp', heal:5, target:'self' }
+        → quand l'ennemi applique un DOT, se soigne de 5% PV max (le DOT passe quand même)
+
+    { on_effect:{ source:'enemy', type:'debuff' }, reaction:'cancel' }
+        → annule tous les debuffs ennemis
+
+    { on_effect:{ source:'ally', type:'heal' }, reaction:'trigger',
+      type:'buff', stat:'critChance', value:10, duration:2, target:'self' }
+        → quand un sort allié soigne, gagne +10% crit pendant 2 tours
+
+
+    ── MODÈLE D'ITEM LÉGENDAIRE COMPLET ─────────────────────────────
+    item.Dofus_Exemple = {
+        id:     'Dofus_Exemple',
+        name:   'Dofus Exemple',
+        rarity: 'legendary',
+        stats:  [{ stat: 'atk', value: 20 }, { stat: 'maxHp', value: 50 }],
+        effects: [
+            { every:4, after:8, type:'heal%maxHp', heal:3, target:'self' },
+            { on_effect:{ source:'enemy', type:'dot' }, reaction:'cancel' }]
+    }
 */
 
 // ────────────────────────────────────────────────────────────────────────
@@ -45,7 +119,7 @@ const LEVEL_TIERS = [
 ]
 
 function getItemTier(level) {
-    return LEVEL_TIERS.find(t => level <= t.maxLevel).tier
+    return (LEVEL_TIERS.find(t => level <= t.maxLevel) ?? LEVEL_TIERS[LEVEL_TIERS.length - 1]).tier
 }
 
 const ITEM_TIER_MULTIPLIERS = {
@@ -248,7 +322,7 @@ item.bouclier_bouftou = {
     description: "Impressionnant grâce à l'odeur qu'il dégage."
 }
 // #endregion
-// #region Panoplie Bouftou — Tainela ────────────────────────
+// #region Panoplie Bouftou royal — Tainela ────────────────────────
 item.cape_bouftou_royal = {
     id: 'cape_bouftou_royal',
     name: 'Cape Bouftou Royal',
@@ -312,6 +386,132 @@ item.bouclier_bouftou_royal = {
     type: 'equipment', slot: 'bouclier', set: 'bouftouRoyal', rarity: 'uncommon', levelMax: 20,
     stats: [{ stat: 'maxHp', value: 14 }, { stat: 'atk', value: 14 }, { stat: 'res.feu', value: 7 }],
     description: "Cette cuirasse royale vous donnera autorité sur les bouftous de Tainéla."
+}
+// #endregion
+// #region Panoplie Homme_Ours — foret ────────────────────────
+item.cape_de_lHomme_Ours = {
+    id: 'cape_de_lHomme_Ours',
+    name: "Cape de l'Homme Ours",
+    image: 'img/items/panoplies/cape_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'cape', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 16 }],
+    description: "Cette jolie cape a été portée pendant des années par le célèbre Homme Ours. Elle ne fera pas de vous un ours, mais vous pourrez rivaliser avec les plus grands."
+}
+item.coiffe_de_lHomme_Ours = {
+    id: 'coiffe_de_lHomme_Ours',
+    name: "Coiffe de l'Homme Ours",
+    image: 'img/items/panoplies/coiffe_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'coiffe', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 10 }, { stat: 'atk', value: 20 }],
+    description: "Cette étrange coiffe a appartenu au tristement célèbre Homme Ours. Cousue à partir des restes de la tête d'un ours en décomposition, cette coiffe vous permettra de ne pas passer inaperçu, et surtout, de laisser grâce à son odeur originale, une trace de votre passage."
+}
+item.bottes_de_lHomme_Ours = {
+    id: 'bottes_de_lHomme_Ours',
+    name: "Bottes de l'Homme Ours",
+    image: 'img/items/panoplies/bottes_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'bottes', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 10 }, { stat: 'critChance', value: 2 }],
+    description: "Ces bottes sont rembourrées avec de la fourrure d'ours. De quoi garder les pieds au chaud même pour ceux qui ont le sang froid."
+}
+item.anneau_de_lHomme_Ours = {
+    id: 'anneau_de_lHomme_Ours',
+    name: "Anneau de l'Homme Ours",
+    image: 'img/items/panoplies/anneau_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'anneau', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 15 }, { stat: 'spd', value: 5 }, { stat: 'flatDamage', value: 1 }],
+    description: "L'Homme Ours n'a jamais quitté cette alliance, bien que sa femme fût dévorée sous ses yeux, par un des ours qu'il venait d'invoquer, et cela pour impressionner sa dulcinée. Elle a effectivement été très impressionnée."
+}
+item.amulette_de_lHomme_Ours = {
+    id: 'amulette_de_lHomme_Ours',
+    name: "Amulette de l'Homme Ours",
+    image: 'img/items/panoplies/amulette_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'amulette', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 14 }, { stat: 'res.feu', value: 4 }],
+    description: "L'Homme Ours portait cette amulette autour du cou, lorsqu'il a affronté les brigandins de la tanière de Bimdhoul. La légende raconte qu'elle lui a sauvé la vie, mais quand on la regarde de près, on s'aperçoit qu'il s'agit bien d'une légende."
+}
+item.ceinture_de_lHomme_Ours = {
+    id: 'ceinture_de_lHomme_Ours',
+    name: "Ceinture de l'Homme Ours",
+    image: 'img/items/panoplies/ceinture_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'ceinture', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 14 }, { stat: 'healPct', value: 1 }],
+    description: "Cette petite ceinture recouverte de poils d'ours est idéale pour cacher vos poignées d'amour. Il est donc conseillé de ne jamais l'enlever, pour ne pas décevoir l'élu de votre cœur."
+}
+item.baton_de_lHomme_Ours = {
+    id: 'baton_de_lHomme_Ours',
+    name: "Bâton de l'Homme Ours",
+    image: 'img/items/panoplies/baton_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'arme', set: 'Homme_Ours', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 10 }],
+    description: "L'Homme Ours utilisait ce bâton pour dresser ses invocations d'ours, et parfois pour frapper les doigts de ses enfants, lorsque ces derniers ne faisaient pas leurs devoirs en revenant de l'école. Voilà un homme qui avait tout compris à l'éducation des enfants."
+}
+// #endregion
+// #region Panoplie sanglier — foret ────────────────────────
+item.bottes_du_sanglier = {
+    id: 'bottes_du_sanglier',
+    name: "Pied du Sanglier",
+    image: 'img/items/panoplies/bottes_de_lHomme_Ours.png',
+    type: 'equipment', slot: 'bottes', set: 'Sanglier', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 10 }, { stat: 'atk', value: -10 }, { stat: 'critChance', value: 5 }],
+    description: "Ces bottes sont parfaites pour marcher dans la boue et rayer les parquets. Elles sont généralement interdites sur toutes les pistes de danse."
+}
+item.anneau_du_sanglier = {
+    id: 'anneau_du_sanglier',
+    name: "Anneau du Sanglier",
+    image: 'img/items/panoplies/anneau_du_sanglier.png',
+    type: 'equipment', slot: 'anneau', set: 'Sanglier', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'critChance', value: 3 }],
+    description: "Cet anneau était placé sur les pattes des sangliers en rut, pour que les éleveurs puissent facilement les reconnaître. Aujourd'hui, c'est vous qui portez cet anneau. Toutes les interprétations sont possibles."
+}
+item.ceinture_du_sanglier = {
+    id: 'ceinture_du_sanglier',
+    name: "Sanglature",
+    image: 'img/items/panoplies/ceinture_du_sanglier.png',
+    type: 'equipment', slot: 'ceinture', set: 'Sanglier', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'critChance', value: 2 }, { stat: 'healPct', value: 2 }],
+    description: "Poilue mais élégante, cette ceinture devrait parfois vous faire penser à votre dulcinée."
+}
+// #endregion
+// #region Panoplie prespic — Tainela ────────────────────────
+item.cape_du_prespic = {
+    id: 'cape_du_prespic',
+    name: 'Cape du Prespic',
+    image: 'img/items/panoplies/cape_du_prespic.png',
+    type: 'equipment', slot: 'cape', set: 'Prespic', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 10 }, { stat: 'flaDamage', value: 4 }],
+    description: "Cette petite cape rousse peut également faire office de descente de lit, ou de paillasson, de quoi remettre au goût du jour l'intérieur de votre habitation, de manière économique."
+}
+item.coiffe_du_prespic = {
+    id: 'coiffe_du_prespic',
+    name: 'Coiffe du Prespic',
+    image: 'img/items/panoplies/coiffe_du_prespic.png',
+    type: 'equipment', slot: 'coiffe', set: 'Prespic', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'flaDamage', value: 4 }],
+    description: "Avec cette coiffe de Prespic sur la tête, vous ressemblez presque à Dévie Cloquette, célèbre chasseuse des temps modernes, prête à tout pour cacher sa calvitie naissante. Pas de chance pour vous si vous vouliez faire de même, vous devrez vous contenter d'une coiffe de couleur rousse, qui de toute évidence, dégagera une horrible odeur dès qu'il se mettra à pleuvoir."
+}
+item.anneau_du_prespic = {
+    id: 'anneau_du_prespic',
+    name: 'Anneau du Prespic',
+    image: 'img/items/panoplies/anneau_du_prespic.png',
+    type: 'equipment', slot: 'anneau', set: 'Prespic', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 10 }, { stat: 'critChance', value: 1 }],
+    description: "À la fois sobre et tout de même original, cet anneau saura séduire les aventuriers avides d'apparat de luxes mais complètement fauchés, au point d'aller dépouiller de ridicules petites créatures sauvages pour s'orner de bijoux. La mesquinerie ne connaît aucune limite."
+}
+item.ceinture_du_prespic = {
+    id: 'ceinture_du_prespic',
+    name: 'Ceinture du Prespic',
+    image: 'img/items/panoplies/ceinture_du_prespic.png',
+    type: 'equipment', slot: 'ceinture', set: 'Prespic', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'flaDamage', value: 4 }],
+    description: "Idéale pour garder ses hanches au chaud, cette ceinture a tout de même l'inconvénient d'irriter et de démanger les peaux douces. À réserver aux durs à cuir."
+}
+item.bouclier_du_prespic = {
+    id: 'bouclier_du_prespic',
+    name: 'Bouclier hérissé du Prespic',
+    image: 'img/items/panoplies/bouclier_du_prespic.png',
+    type: 'equipment', slot: 'bouclier', set: 'Prespic', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 10 }, { stat: 'flaDamage', value: 4 }],
+    description: "Ce bouclier en véritables poils de prespic se hérisse en présence d'ennemis. C'est bien pratique pour dissuader les plus hardis : qui s'approche trop près s'y pique !"
 }
 // #endregion
 // #region Panoplie Mousse — Plage d'Astrub ──────────────────
@@ -1007,12 +1207,22 @@ item.anneau_roissingue = {
 // ────────────────────────────────────────────────────────────────────────
 // ─────────────────── ITEMS ACCESOIRES ──────────────────────
 // ────────────────────────────────────────────────────────────────────────
+item.Dofus_Argente = {
+    id: 'Dofus_Argente',
+    name: 'Dofus Argenté',
+    image: 'img/items/objets_bonus/Dofus_Argente.png',
+    type: 'equipment', slot: 'accessoire', rarity: 'legendaire', levelMax: 20,
+    stats:  [{ stat: 'atk', value: 20 }, { stat: 'maxHp', value: 50 }],
+    effects: [{ every: 4, after: 8, type:'heal%maxHp', heal:5, target:'self' }],
+    description: "Créé par Rathrosk le dragon gris, cet œuf est une énigme. Bien que son pouvoir n'égale pas celui d'un Dofus Primordial, il semble plus ancien que le temps... Vous feriez bien de le garder précieusement. Après tout, seules les Nordes et le dieu Xélor savent de quoi l'avenir sera fait."
+}
 item.Dofus_Ocre = {
     id: 'Dofus_Ocre',
     name: 'Dofus Ocre',
     image: 'img/items/objets_bonus/Dofus_Ocre.png',
     type: 'equipment', slot: 'accessoire', rarity: 'legendaire', levelMax: 20,
-    stats: [{ stat: 'spd', value: 100 }, { stat: 'finalDamagePct', value: 15 }],
+    stats: [{ stat: 'spd', value: 50 }, { stat: 'finalDamagePct', value: 10 }],
+    effects: [{ on_effect:{ source:'enemy', type:'dot' }, reaction:'cancel' }],
     description: "Créé par Terrakourial, le Dragon de la Terre, puis avalé par le Kralamour Géant, ce Dofus concentre de grands pouvoirs à ne pas mettre entre toutes les mains... Ni entre tous les pieds d'ailleurs."
 }
 
@@ -1025,7 +1235,10 @@ item.Dofus_Ocre = {
         10: ['cape_mousse','coiffe_mousse','bottes_mousse','anneau_mousse','amulette_mousse','ceinture_mousse','pelle_mousse','bouclier_mousse',
              'sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
         15: ['anneauKardorim','capeKardorim','coiffeKardorim'],
-        20: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou'],
+        20: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou',
+             'cape_de_lHomme_Ours','coiffe_de_lHomme_Ours','bottes_de_lHomme_Ours','anneau_de_lHomme_Ours','amulette_de_lHomme_Ours','ceinture_de_lHomme_Ours','baton_de_lHomme_Ours',
+             'bottes_du_sanglier','anneau_du_sanglier','ceinture_du_sanglier',
+             'cape_du_prespic','coiffe_du_prespic','anneau_du_prespic','ceinture_du_prespic','bouclier_du_prespic'],
         25: [],
         30: ['cape_scarafeuille_blanc','coiffe_scarafeuille_blanc','anneau_scarafeuille_blanc','ceinture_scarafeuille_blanc',
              'cape_scarafeuille_vert','coiffe_scarafeuille_vert','anneau_scarafeuille_vert','ceinture_scarafeuille_vert',

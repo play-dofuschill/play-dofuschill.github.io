@@ -924,11 +924,14 @@ function showMoveTooltip(moveId, casterStats) {
     if (!mv) return
 
     const TYPE_LABELS = {
-        damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT',
-        heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)',
+        damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', best_element_damage: 'Attaque (meilleur élément)',
+        heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)', 'heal%maxHp_team': 'Soin (% PV max équipe)', hot: 'Soin continu',
         buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff', debuff_team: 'Débuff (équipe)',
-        shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation', summon_random: 'Invocation',
-        renvoi: 'Renvoi', switch: 'Déplacement', repeat: 'Répétition'
+        shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
+        summon: 'Invocation', summon_random: 'Invocation',
+        renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
+        switch: 'Déplacement', repeat: 'Répétition', random: 'Aléatoire',
+        portal: 'Portail', turret: 'Tourelle', recul: 'Recul', avance: 'Avance'
     }
     const STAT_LABELS = {
         atk: 'Puissance', spd: 'Initiative', flatDamage: 'Dégâts fixes',
@@ -966,7 +969,20 @@ function showMoveTooltip(moveId, casterStats) {
 
         let rows = `<div class="mt-row"><span class="mt-label">Type</span><span class="mt-val">${typeLabel} ${elemBadge}</span></div>`
 
-        if (eff.damage) {
+        if (eff.type === 'best_element_damage' && eff.damage) {
+            rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${eff.damage.min}–${eff.damage.max}</span></div>`
+            rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Adaptatif (résistance la plus faible)</span></div>`
+        }
+
+        if (eff.type === 'random' && eff.choices?.length) {
+            for (const choice of eff.choices) {
+                const pct = Math.round((choice.chance || 0) * 100)
+                const subLabels = (choice.effects || []).map(se => TYPE_LABELS[se.type] || se.type).join(', ')
+                rows += `<div class="mt-row"><span class="mt-label">${pct}%</span><span class="mt-val">${subLabels}</span></div>`
+            }
+        }
+
+        if (eff.damage && eff.type !== 'best_element_damage') {
             rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${eff.damage.min}–${eff.damage.max}</span></div>`
             if (casterStats) {
                 const minF = _mvDmg(casterStats, eff.damage.min)

@@ -211,6 +211,18 @@ function applyProgression(spell, lvl) {
             if (patch.summon.summonId !== undefined) effect.summonId = patch.summon.summonId
             if (patch.summon.duration !== undefined) effect.duration = patch.summon.duration
         }
+        if (effect.type === 'buffDrain' && patch.buffDrain) {
+            if (patch.buffDrain.value !== undefined) effect.value = patch.buffDrain.value
+        }
+        if (effect.type === 'esquive' && patch.esquive) {
+            if (patch.esquive.chancePct    !== undefined) effect.chancePct    = patch.esquive.chancePct
+            if (patch.esquive.reductionPct !== undefined) effect.reductionPct = patch.esquive.reductionPct
+            if (patch.esquive.duration     !== undefined) effect.duration     = patch.esquive.duration
+        }
+    }
+
+    if (active.patch.cooldownMs !== undefined) {
+        result.cooldownMs = active.patch.cooldownMs
     }
 
     return result

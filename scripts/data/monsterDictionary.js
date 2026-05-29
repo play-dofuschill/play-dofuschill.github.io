@@ -624,6 +624,21 @@ monsters.bouftouRoyal = {
 }
 // #endregion
 
+monsters.Rathrosk = {
+    id: 'Rathrosk',
+    name: 'Rathrosk',
+    image: 'img/monstres/sprites/Rathrosk.png',
+    rarity: 'legendaire',
+    tier: 'boss',
+    bst: {
+        hp: 2400, atk: 280, spd: 105,
+        res: {neutre: 25, terre: 25, feu: 25, eau: 25, air: 25}
+    },
+    moves: ['souffle_de_rathrosk','queue_du_dragon','regain_de_vie'],
+    familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 50, max: 500 },
+    role: ['defense']
+}
+
 // ═══════════════════════════════════════════════════════
 // #region EVENT BIBLOPS 25-30
 // ═══════════════════════════════════════════════════════
@@ -1291,7 +1306,7 @@ monsters.dopeul_ouginak = {
     bst: {
         hp: 370, atk: 170, spd: 100,
         res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
-    moves: ['traque_du_dopeul', 'molosse_du_dopeul']
+    moves: ['cubitus_du_dopeul', 'molosse_du_dopeul']
 }
 monsters.dopeul_pandawa = {
     id: 'dopeul_pandawa',

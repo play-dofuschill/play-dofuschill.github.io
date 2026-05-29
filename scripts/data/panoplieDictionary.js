@@ -313,6 +313,64 @@ const panoplies = {
     },
     
 
+    Homme_Ours: {
+        name: "Panoplie de l'Homme Ours",
+        pieces: ['cape_de_lHomme_Ours','coiffe_de_lHomme_Ours','bottes_de_lHomme_Ours','anneau_de_lHomme_Ours','amulette_de_lHomme_Ours','ceinture_de_lHomme_Ours','baton_de_lHomme_Ours'],
+        bonuses: {
+            3: {stats: [{ stat: 'atk', value: 10 },
+                        { stat: 'res.terre', value: 2 }, 
+                        { stat: 'res.feu', value: 2 }, 
+                        { stat: 'res.eau', value: 2 }, 
+                        { stat: 'res.air', value: 2 }, 
+                        { stat: 'res.neutre', value: 2 },
+                        { stat: 'flatDamage', value: 2 }]
+        },
+            5: {stats: [{ stat: 'atk', value: 30 },
+                        { stat: 'res.terre', value: 4 }, 
+                        { stat: 'res.feu', value: 4 }, 
+                        { stat: 'res.eau', value: 4 }, 
+                        { stat: 'res.air', value: 4 }, 
+                        { stat: 'res.neutre', value: 4 },
+                        { stat: 'flatDamage', value: 4 }]
+        },
+            7: {stats: [{ stat: 'atk', value: 40 }, 
+                        { stat: 'maxHp', value: 40 },
+                        { stat: 'res.terre', value: 4 }, 
+                        { stat: 'res.feu', value: 4 }, 
+                        { stat: 'res.eau', value: 4 }, 
+                        { stat: 'res.air', value: 4 }, 
+                        { stat: 'res.neutre', value: 4 },
+                        { stat: 'flatDamage', value: 4 }]
+        }}
+    },
+    Sanglier: {
+        name: "Panoplie du Sanglier",
+        pieces: ['bottes_du_sanglier','anneau_du_sanglier','ceinture_du_sanglier'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 30 }, 
+                        { stat: 'critChance', value: 3 }, 
+                        { stat: 'spd', value: 10 }]
+        },
+            3: {stats: [{ stat: 'maxHp', value: 60 }, 
+                        { stat: 'critChance', value: 6 }, 
+                        { stat: 'spd', value: 15 }]
+        }}
+    },
+    Prespic: {
+        name: "Panoplie du Prespic",
+        pieces: ['cape_du_prespic','coiffe_du_prespic','anneau_du_prespic','ceinture_du_prespic','bouclier_du_prespic'],
+        bonuses: {
+            2: {stats: [{ stat: 'flatDamage', value: 2 }, 
+                        { stat: 'atk', value: 20 }]
+        },
+            4: {stats: [{ stat: 'flatDamage', value: 5 }, 
+                        { stat: 'atk', value: 50 }]
+        },
+            5: {stats: [{ stat: 'flatDamage', value: 10 }, 
+                        { stat: 'atk', value: 80 }]
+        }}
+    },
+
     ouassingue: {
         name: "Panoplie Vassale",
         pieces: ['cape_ouassingue','coiffe_ouassingue','bottes_ouassingue','amulette_ouassingue'],

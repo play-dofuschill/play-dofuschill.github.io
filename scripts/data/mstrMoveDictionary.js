@@ -940,7 +940,31 @@ move.construction = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
-// #region EVENT KRALAMOUR GEANT
+// #region RAID DOFUS ARGENTE
+move.regain_de_vie = {
+    id: 'regain_de_vie',
+    name: 'Regain de vie',
+    cooldownMs: 2000,
+    effects: [{ type: 'heal%maxHp', heal: 15, target: 'self'},
+              { type: 'antiHeal', duration: 6, target: 'all_enemies' }],
+}
+move.queue_du_dragon = {
+    id: 'queue_du_dragon',
+    name: 'Queue du dragon',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 35,max: 55}, target: 'enemy'}],
+}
+move.souffle_de_rathrosk = {
+    id: 'souffle_de_rathrosk',
+    name: 'Souffle de Rathrosk',
+    cooldownMs: 3500,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 25,max: 35}, target: 'all_enemies' },
+              { type: 'lifesteal', ratio: 0.1, target: 'self' }],
+}
+// #endregion
+
+// ═══════════════════════════════════════════════════════
+// #region RAID KRALAMOUR GEANT
 move.kraken_primaire = {
     id: 'kraken_primaire',
     name: 'Kraken Primaire',
@@ -1025,7 +1049,7 @@ move.tourbe_ecrasante = {
 // #endregion
 
 // ═══════════════════════════════════════════════════════
-// #region TOURBES DU ROISSINGUE
+// #region RAID TOURBES DU ROISSINGUE
 
 // — La Ouassingue —
 move.oblativite = {
@@ -1081,7 +1105,7 @@ move.boue_sirupeuse = {
     id: 'boue_sirupeuse',
     name: 'Boue sirupeuse',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 0, max: 0}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
 move.bourbier = {
     id: 'bourbier',
@@ -1121,14 +1145,14 @@ move.dechaussage = {
 move.fleche_optique_du_dopeul = {
     id: 'fleche_optique_du_dopeul',
     name: 'Flèche Optique du Dopeul',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    cooldownMs: 1600,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 18 }, target: 'enemy' }],
 }
 move.fleche_glacee_du_dopeul = {
     id: 'fleche_glacee_du_dopeul',
     name: 'Flèche Glacée du Dopeul',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    cooldownMs: 1600,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy' }],
 }
 
 // — Dopeul Iop —
@@ -1136,7 +1160,8 @@ move.epee_divine_du_dopeul = {
     id: 'epee_divine_du_dopeul',
     name: 'Épée Divine du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
+              {type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}],
 }
 move.pression_du_dopeul = {
     id: 'pression_du_dopeul',
@@ -1150,13 +1175,13 @@ move.mot_espiegle_du_dopeul = {
     id: 'mot_espiegle_du_dopeul',
     name: 'Mot Espiègle du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.mot_tapageur_du_dopeul = {
     id: 'mot_tapageur_du_dopeul',
     name: 'Mot Tapageur du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 
 // — Dopeul Ecaflip —
@@ -1164,13 +1189,17 @@ move.pile_ou_face_du_dopeul = {
     id: 'pile_ou_face_du_dopeul',
     name: 'Pile ou Face du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{
+        type: 'random',
+        choices: [{ chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' }] },
+                  { chance: 0.30, effects: [{ type: 'heal%maxHp', heal: 10, target: 'enemy' }] }]
+    }],
 }
 move.bonne_pioche_du_dopeul = {
     id: 'bonne_pioche_du_dopeul',
     name: 'Bonne Pioche du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'best_element_damage', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 
 // — Dopeul Eliotrope —
@@ -1178,13 +1207,13 @@ move.affront_du_dopeul = {
     id: 'affront_du_dopeul',
     name: 'Affront du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.rayon_de_wakfu_du_dopeul = {
     id: 'rayon_de_wakfu_du_dopeul',
     name: 'Rayon de Wakfu du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 
 // — Dopeul Enutrof —
@@ -1192,13 +1221,13 @@ move.roulage_de_pelle_du_dopeul = {
     id: 'roulage_de_pelle_du_dopeul',
     name: 'Roulage de Pelle du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.lancer_de_pieces_du_dopeul = {
     id: 'lancer_de_pieces_du_dopeul',
     name: 'Lancer de Pièces du Dopeul',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    cooldownMs: 1000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 8, max: 12 }, target: 'enemy' }],
 }
 
 // — Dopeul Feca —
@@ -1206,13 +1235,15 @@ move.retour_du_baton_du_dopeul = {
     id: 'retour_du_baton_du_dopeul',
     name: 'Retour du Bâton du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
+              { type: 'debuff', stat: 'atk', value: 20,  duration: 3, target: 'enemy'},
+              { type: 'buff', stat: 'atk', value: 20,  duration: 3, target: 'self'}],
 }
 move.bulle_du_dopeul = {
     id: 'bulle_du_dopeul',
     name: 'Bulle du Dopeul',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    cooldownMs: 1000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 8, max: 12 }, target: 'enemy' }],
 }
 
 // — Dopeul Forgelance —
@@ -1220,13 +1251,13 @@ move.trident_de_la_mer_du_dopeul = {
     id: 'trident_de_la_mer_du_dopeul',
     name: 'Trident de la Mer du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.volee_d_airain_du_dopeul = {
     id: 'volee_d_airain_du_dopeul',
     name: "Volée d'Airain du Dopeul",
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 
 // — Dopeul Huppermage —
@@ -1240,7 +1271,8 @@ move.stalagmite_du_dopeul = {
     id: 'stalagmite_du_dopeul',
     name: 'Stalagmite du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 12, max: 18 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.2, target: 'self' }],
 }
 
 // — Dopeul Osamodas —
@@ -1248,7 +1280,7 @@ move.pics_du_prespic_du_dopeul = {
     id: 'pics_du_prespic_du_dopeul',
     name: 'Pics du Prespic du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.crocs_du_mulou_du_dopeul = {
     id: 'crocs_du_mulou_du_dopeul',
@@ -1258,11 +1290,12 @@ move.crocs_du_mulou_du_dopeul = {
 }
 
 // — Dopeul Ouginak —
-move.traque_du_dopeul = {
-    id: 'traque_du_dopeul',
-    name: 'Traque du Dopeul',
+move.cubitus_du_dopeul = {
+    id: 'cubitus_du_dopeul',
+    name: 'Cubitus du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy' },
+              {type: 'buff', stat: 'spd', value: 20,  duration: 3, target: 'self'}],
 }
 move.molosse_du_dopeul = {
     id: 'molosse_du_dopeul',
@@ -1276,13 +1309,14 @@ move.paume_explosive_du_dopeul = {
     id: 'paume_explosive_du_dopeul',
     name: 'Paume Explosive du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.ethylo_du_dopeul = {
     id: 'ethylo_du_dopeul',
     name: 'Éthylo du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' },
+              {type: 'debuff', stat: 'spd', value: 20,  duration: 3, target: 'enemy'}],
 }
 
 // — Dopeul Roublard —
@@ -1290,13 +1324,14 @@ move.espingole_du_dopeul = {
     id: 'espingole_du_dopeul',
     name: 'Espingole du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 18 }, target: 'enemy' },
+              {type: 'recul', target: 'enemy'}],
 }
 move.pulsar_du_dopeul = {
     id: 'pulsar_du_dopeul',
     name: 'Pulsar du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 
 // — Dopeul Sacrieur —
@@ -1304,13 +1339,15 @@ move.supplice_du_dopeul = {
     id: 'supplice_du_dopeul',
     name: 'Supplice du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.1, target: 'self' }],
 }
 move.absorption_du_dopeul = {
     id: 'absorption_du_dopeul',
     name: 'Absorption du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.1, target: 'self' }],
 }
 
 // — Dopeul Sadida —
@@ -1324,7 +1361,8 @@ move.buisson_ardent_du_dopeul = {
     id: 'buisson_ardent_du_dopeul',
     name: 'Buisson Ardent du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 8, max: 12 }, target: 'enemy' },
+              { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }],
 }
 
 // — Dopeul Sram —
@@ -1338,7 +1376,8 @@ move.arsenic_du_dopeul = {
     id: 'arsenic_du_dopeul',
     name: 'Arsenic du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 8, max: 12 }, target: 'enemy' },
+              { type: 'dot', element: 'air', value: 10, duration: 3, target: 'enemy' }],
 }
 
 // — Dopeul Steamer —
@@ -1346,13 +1385,27 @@ move.longue_vue_du_dopeul = {
     id: 'longue_vue_du_dopeul',
     name: 'Longue Vue du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
 move.amarrage_du_dopeul = {
     id: 'amarrage_du_dopeul',
     name: 'Amarrage du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }],
+}
+
+// — Dopeul Zobal —
+move.parafuso_du_dopeul = {
+    id: 'parafuso_du_dopeul',
+    name: 'Parafuso du Dopeul',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' }],
+}
+move.plastron_du_dopeul = {
+    id: 'plastron_du_dopeul',
+    name: 'Plastron du Dopeul',
+    cooldownMs: 2000,
+    effects: [{ type: 'shield', value: 200, duration: 3, target: 'self' }],
 }
 
 // — Dopeul Xelor —
@@ -1360,15 +1413,37 @@ move.gelure_du_dopeul = {
     id: 'gelure_du_dopeul',
     name: 'Gelure du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
+              {type: 'recul', target: 'enemy'}],
 }
 move.frappe_de_xelor_du_dopeul = {
     id: 'frappe_de_xelor_du_dopeul',
     name: 'Frappe de Xélor du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
+              {type: 'avance', target: 'enemy'}],
 }
-
+move.lame_de_iop = {
+    id: 'lame_de_iop',
+    name: 'Lame de iop',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 37, max: 40 }, target: 'enemy' }],
+}
+move.lame_divine = {
+    id: 'lame_divine',
+    name: 'Lame divine',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 21, max: 24 }, target: 'enemy' },
+              {type: 'buff', stat: 'flatDamage', value: 20,  duration: 4, target: 'self'}],
+}
+move.tension = {
+    id: 'tension',
+    name: 'Tension',
+    cooldownMs: 2000,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 21, max: 26}, target: 'enemy'},
+        {type: 'buff', stat: 'erosionBonus', value: 15, duration: 4, target: 'self'}]
+}
 // #endregion
 
 

@@ -133,16 +133,112 @@ SPÉCIAUX
 { type: 'turret', element: 'feu', value: 20, duration: 3, target: 'enemy' }
 
 ──────────────────────────────────────────────────────────────────────────────
+ESQUIVE
+──────────────────────────────────────────────────────────────────────────────
+// chancePct   : chance (%) que chaque coup reçu soit réduit/annulé
+// reductionPct: % de réduction appliqué si le dé passe (100 = 0 dégât, 50 = moitié, 30 = 70% des dégâts)
+// Ne s'applique qu'aux dégâts directs (type 'damage'), pas aux DoT
+
+// Full miss — 40% de chance d'esquiver totalement pendant 3 tours
+{ type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' }
+
+// Réduction partielle — 50% de chance de ne prendre que la moitié des dégâts pendant 3 tours
+{ type: 'esquive', chancePct: 50, reductionPct: 50, duration: 3, target: 'self' }
+
+──────────────────────────────────────────────────────────────────────────────
+BUFF DRAIN
+──────────────────────────────────────────────────────────────────────────────
+// Réduit de N tours la durée des buffs positifs (value > 0) de la cible — les buffs à 0 expirent immédiatement.
+// Ne touche pas les debuffs appliqués par le joueur (valeurs négatives).
+
+// Réduit de 1 tour tous les buffs positifs de l'ennemi
+{ type: 'buffDrain', value: 1, target: 'enemy' }
+
+// Réduit de 2 tours
+{ type: 'buffDrain', value: 2, target: 'enemy' }
+
+──────────────────────────────────────────────────────────────────────────────
 ANTI-SOIN
 ──────────────────────────────────────────────────────────────────────────────
 
 // Bloque totalement tous les soins de la cible pendant N tours (heal, heal%maxHp, lifesteal, etc.)
 { type: 'antiHeal', duration: 3, target: 'enemy' }
 
+──────────────────────────────────────────────────────────────────────────────
+ÉTATS ÉNUTROF (air / terre / eau)
+──────────────────────────────────────────────────────────────────────────────
+// Mécanique exclusive à l'Énutrof.
+// Un sort pose un état interne (air, terre ou eau) qui dure N actions membres.
+// Ce compteur décrémente à chaque action de n'importe quel membre — sauf si l'état
+// a été (re)posé dans cette même action (pas de double-décrément).
+//
+// Tant que l'état est actif, les sorts qui ont l'effet enutrof_bonus correspondant
+// déclenchent des dégâts bonus en PLUS de leurs effets normaux.
+//
+// RÈGLE D'ORDRE dans le tableau effects :
+//   1. enutrof_bonus  ← en premier (vérifie l'état AVANT qu'il soit reposé)
+//   2. damage / debuff / etc.
+//   3. setEnutrof     ← en dernier (pose/rafraîchit l'état)
+//
+// ─ Sort qui POSE l'état ─────────────────────────────────────────────────────
+// Monnaie Sonnante : pose enutrof_air_active=3 + bonus air SI l'ennemi a déjà un débuff spd
+{ type: 'dmgIfDebuff', stat: 'spd', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }
+{ type: 'damage',      element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' }
+{ type: 'setEnutrof',  state: 'air' }
+//
+// ─ Sort qui PROFITE de l'état ────────────────────────────────────────────────
+// Abattement : pose un débuff spd, bonus air SI enutrof_air_active > 0
+{ type: 'enutrof_bonus', state: 'air', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }
+{ type: 'damage',        element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' }
+{ type: 'debuff',        stat: 'spd', value: 10, duration: 7, target: 'enemy' }
+// (pas de setEnutrof ici — seul Monnaie Sonnante pose l'état)
+//
+// ─ dmgIfDebuff — générique ────────────────────────────────────────────────────
+// Bonus damage si l'ennemi a actuellement un débuff actif sur le stat spécifié
+{ type: 'dmgIfDebuff', stat: 'atk', element: 'terre', damage: { min: 10, max: 15 }, target: 'enemy' }
+//
+// Durée par défaut : 3. Modifiable : { type: 'setEnutrof', state: 'terre', duration: 4 }
+// États disponibles : 'air' | 'terre' | 'eau'  (combat.enutrof_air_active, etc.)
+
+──────────────────────────────────────────────────────────────────────────────
+COMBOS ÉLÉMENTAIRES HUPPERMAGE
+──────────────────────────────────────────────────────────────────────────────
+// Mécanique exclusive à l'Huppermage (caster.classId === 'huppermage').
+// Chaque effet damage à élément (terre/feu/eau/air) mémorise l'élément sur l'ennemi frappé :
+//   combat.huppermageLastElement[enemyIndex]   (0 en solo, 0-2 en raid)
+// Si l'effet suivant frappe le MÊME ennemi avec un élément DIFFÉRENT → combo déclenché, état réinitialisé.
+// Si l'ennemi change (mort, cible différente en raid) → pas de combo.
+// Les lignes d'un même sort se combinent entre elles normalement :
+//   sort [terre, feu]           → combo terre/feu déclenché, état vidé
+//   sort [terre, feu] + état eau → combo eau/terre (ligne 1) + combo terre/feu (ligne 2), état vidé
+//
+// TABLE DES COMBOS :
+//   terre + feu  → +15% sur le prochain sort reçu par l'ennemi (tout lanceur)    [one-shot]
+//   terre + air  → 7% de chance que le prochain sort Huppermage fasse +50%        [one-shot]
+//   terre + eau  → debuff ATK -50 sur l'ennemi (2 tours)
+//   feu   + eau  → 7% de chance que le prochain sort ennemi fasse -50%            [one-shot]
+//   feu   + air  → debuff SPD -15 sur l'ennemi (2 tours)
+//   eau   + air  → prochain sort ennemi fait -15%                                 [one-shot]
+//
+// COMPTEUR DE COMBOS (depuis le début du combat) :
+//   combat.huppermageComboCount   // s'incrémente à chaque combo déclenché
+// Exemple d'utilisation dans un effet de sort :
+//   const n = combat.huppermageComboCount
+//   const dmgBase = n <= 3 ? 2 : n <= 6 ? 5 : 10
+//
+// LIRE l'état élémentaire depuis un effet de sort :
+//   const slotIdx = combat?.isRaid ? combat.enemies.indexOf(targetEnemy) : 0
+//   const elem = combat.huppermageLastElement[slotIdx]   // 'terre'|'feu'|'eau'|'air'|undefined
+//
+// ABSORBER l'élément stocké : le consommer ET s'en servir comme élément du coup.
+// Ne laisse pas de nouvel état, ne déclenche pas de combo.
+{ type: 'absorbElementDmg', damage: { min: 10, max: 15 }, target: 'enemy' }
+// Avec fallback si aucun élément stocké (défaut : 'neutre')
+{ type: 'absorbElementDmg', damage: { min: 10, max: 15 }, fallbackElement: 'feu', target: 'enemy' }
+
 */
 
 // #region IOP ─────────────────────────────────────────────
-
 move.pression = {
     id: 'pression',
     name: 'Pression',
@@ -403,7 +499,7 @@ move.epee_celeste = {
                         patch: {}},
                        {lvl: 137,  
                         patch: {damage: {min: 36, max: 40}}}],
-    description: ""
+    description: "Frappe tous les ennemis dans l'élément air."
 }
 // move.precipitation = {
 //     id: 'precipitation',
@@ -708,18 +804,18 @@ move.epee_celeste = {
 //         target: ''}],
 //     description: ""
 // }
-move.pugilat = {
-    id: 'pugilat',
-    name: 'Pugilat',
-    classId: 'iop',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_1'},
-        {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_2', ratio: 0.5},
-        {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_3', ratio: 0.5}
-    ],
-    description: "Tape de plus en plus fort à chaque lancés, revient a la normale au 4ème. En raid, frappe l'ennemi principal avec 100% des dommages et les ennemis secondaire et tertiaires avec 50%."
-}
+// move.pugilat = {
+//     id: 'pugilat',
+//     name: 'Pugilat',
+//     classId: 'iop',
+//     cooldownMs: 2000,
+//     effects: [
+//         {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_1'},
+//         {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_2', ratio: 0.5},
+//         {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_3', ratio: 0.5}
+//     ],
+//     description: "Tape de plus en plus fort à chaque lancés, revient a la normale au 4ème. En raid, frappe l'ennemi principal avec 100% des dommages et les ennemis secondaire et tertiaires avec 50%."
+// }
 // move.massacre = {
 //     id: 'massacre',
 //     name: '',
@@ -765,14 +861,14 @@ move.pugilat = {
 //         target: ''}],
 //     description: ""
 // }
-move.zenith = {
-    id: 'zenith',
-    name: 'Zénith',
-    classId: 'iop',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 16}, slot1BonusPct: 300, target: 'enemy'}],
-    description: "Frappe l'ennemi dans l'élément air. Si le sort est en première position, inflige 300% de dommages supplémentaires."
-}
+// move.zenith = {
+//     id: 'zenith',
+//     name: 'Zénith',
+//     classId: 'iop',
+//     cooldownMs: 2000,
+//     effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 16}, slot1BonusPct: 300, target: 'enemy'}],
+//     description: "Frappe l'ennemi dans l'élément air. Si le sort est en première position, inflige 300% de dommages supplémentaires."
+// }
 // move.determination = {
 //     id: 'determination',
 //     name: '',
@@ -834,8 +930,8 @@ move.zenith = {
 //     description: ""
 // }
 // #endregion
-// #region CRA ─────────────────────────────────────────────
 
+// #region CRA ─────────────────────────────────────────────
 move.fleche_optique = {
     id: 'fleche_optique',
     name: 'Flèche Optique',
@@ -1088,14 +1184,7 @@ move.fleche_punitive = {
     name: 'Flèche Punitive',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{
-        type: 'damage',
-        element: 'terre',
-        damage: {min: 21, max: 23},
-        scalingMultipliers: [1.0, 1.2, 1.5],
-        stayAtMax: true,
-        target: 'enemy'
-    }],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 21, max: 23}, scalingMultipliers: [1.0, 1.2, 1.5], stayAtMax: true, target: 'enemy'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
@@ -1135,18 +1224,18 @@ move.oeil_pour_oeil = {
 //                         patch: {buff: { value: 30 }}}],
 //     description: ""
 // }
-move.fleche_explosive = {
-    id: 'fleche_explosive',
-    name: 'Flèche Explosive',
-    classId: 'cra',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 27}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 81,
-                        patch: {}},
-                       {lvl: 147,
-                        patch: {damage: {min: 30, max: 34}}}],
-    description: "Inflige des dommages feu à tous les ennemis en raid."
-}
+// move.fleche_explosive = {
+//     id: 'fleche_explosive',
+//     name: 'Flèche Explosive',
+//     classId: 'cra',
+//     cooldownMs: 2000,
+//     effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 27}, target: 'all_enemies'}],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,
+//                         patch: {damage: {min: 30, max: 34}}}],
+//     description: "Inflige des dommages feu à tous les ennemis en raid."
+// }
 // move.fleche_persecutrice = {
 //     id: 'fleche_persecutrice',
 //     name: '',
@@ -1337,14 +1426,14 @@ move.fleche_explosive = {
 //                         patch: {buff: { value: 30 }}}],
 //     description: ""
 // }
-move.balise_de_rappel = {
-    id: 'balise_de_rappel',
-    name: 'Balise de Rappel',
-    classId: 'cra',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'pendingLifesteal', value: 1.2, duration: 2, target: 'self'}],
-    description: "Octroi un effet de vol de vie sur le prochain sort."
-}
+// move.balise_de_rappel = {
+//     id: 'balise_de_rappel',
+//     name: 'Balise de Rappel',
+//     classId: 'cra',
+//     cooldownMs: 2000,
+//     effects: [{type: 'buff', stat: 'pendingLifesteal', value: 1.2, duration: 2, target: 'self'}],
+//     description: "Octroi un effet de vol de vie sur le prochain sort."
+// }
 // move.fleche_de_tourment = {
 //     id: 'fleche_de_tourment',
 //     name: '',
@@ -1435,14 +1524,14 @@ move.balise_de_rappel = {
 //         target: ''}],
 //     description: ""
 // }
-move.fleche_devorante = {
-    id: 'fleche_devorante',
-    name: 'Flèche Dévorante',
-    classId: 'cra',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', stackedDamage: [{min:1,max:3},{min:2,max:5},{min:4,max:9},{min:8,max:15},{min:13,max:20}], target: 'enemy'}],
-    description: "Augmente les dégats a chaque lancer (limite de 5)"
-}
+// move.fleche_devorante = {
+//     id: 'fleche_devorante',
+//     name: 'Flèche Dévorante',
+//     classId: 'cra',
+//     cooldownMs: 2000,
+//     effects: [{type: 'damage', element: 'air', stackedDamage: [{min:1,max:3},{min:2,max:5},{min:4,max:9},{min:8,max:15},{min:13,max:20}], target: 'enemy'}],
+//     description: "Augmente les dégats a chaque lancer (limite de 5)"
+// }
 // move.fleche_du_jugement = {
 //     id: 'fleche_du_jugement',
 //     name: '',
@@ -1458,14 +1547,14 @@ move.fleche_devorante = {
 //         target: ''}],
 //     description: ""
 // }
-move.miroir_aux_alouettes = {
-    id: 'miroir_aux_alouettes',
-    name: 'Miroir aux Alouettes',
-    classId: 'cra',
-    cooldownMs: 2000,
-    effects: [{type: 'renvoi', ratio: 1.0, target: 'self'}],
-    description: "Renvoi le prochain dégat reçu."
-}
+// move.miroir_aux_alouettes = {
+//     id: 'miroir_aux_alouettes',
+//     name: 'Miroir aux Alouettes',
+//     classId: 'cra',
+//     cooldownMs: 2000,
+//     effects: [{type: 'renvoi', ratio: 1.0, target: 'self'}],
+//     description: "Renvoi le prochain dégat reçu."
+// }
 // move.fleche_de_redemption = {
 //     id: 'fleche_de_redemption',
 //     name: '',
@@ -1527,8 +1616,8 @@ move.miroir_aux_alouettes = {
 //     description: ""
 // }
 // #endregion
-// #region ENIRIPSA ─────────────────────────────────────────
 
+// #region ENIRIPSA ─────────────────────────────────────────
 move.mot_tapageur = {
     id: 'mot_tapageur',
     name: 'Mot Tapageur',
@@ -2143,17 +2232,17 @@ move.mot_fleuri = {
 //         target: ''}],
 //     description: ""
 // }
-move.mot_distrayant = {
-    id: 'mot_distrayant',
-    name: 'Mot Distrayant',
-    classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [
-        {type: 'damage', element: 'feu', damage: {min: 22, max: 26}, target: 'enemy'},
-        {type: 'heal_adjacent%maxHp', heal: 5, target: 'self'}
-    ],
-    description: "Frappe dans l'élément feu et soigne les alliés adjacents de 5% HP max."
-}
+// move.mot_distrayant = {
+//     id: 'mot_distrayant',
+//     name: 'Mot Distrayant',
+//     classId: 'eniripsa',
+//     cooldownMs: 2000,
+//     effects: [
+//         {type: 'damage', element: 'feu', damage: {min: 22, max: 26}, target: 'enemy'},
+//         {type: 'heal_adjacent%maxHp', heal: 5, target: 'self'}
+//     ],
+//     description: "Frappe dans l'élément feu et soigne les alliés adjacents de 5% HP max."
+// }
 // move.bosquet_enchante = {
 //     id: 'bosquet_enchante',
 //     name: '',
@@ -2169,14 +2258,14 @@ move.mot_distrayant = {
 //         target: ''}],
 //     description: ""
 // }
-move.fontaine_de_jouvence = {
-    id: 'fontaine_de_jouvence',
-    name: 'Fontaine de Jouvence',
-    classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'healOnCast', value: 0.1, duration: 4, target: 'self'}],
-    description: "Soigne aléatoirement un allié de 10% HP max à chaque sort lancé (3 sorts)."
-}
+// move.fontaine_de_jouvence = {
+//     id: 'fontaine_de_jouvence',
+//     name: 'Fontaine de Jouvence',
+//     classId: 'eniripsa',
+//     cooldownMs: 2000,
+//     effects: [{type: 'buff', stat: 'healOnCast', value: 0.1, duration: 4, target: 'self'}],
+//     description: "Soigne aléatoirement un allié de 10% HP max à chaque sort lancé (3 sorts)."
+// }
 // move.choeur_strident = {
 //     id: 'choeur_strident',
 //     name: '',
@@ -2207,14 +2296,8175 @@ move.fontaine_de_jouvence = {
 //         target: ''}],
 //     description: ""
 // }
-move.mot_de_solidarité = {
-    id: 'mot_de_solidarité',
-    name: 'Mot de Solidarité',
-    classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{type: 'buff_team', stat: 'spd', value: 100, duration: 4}],
-    description: "Double l'initiative de tous les membres de l'équipe pendant 3 tours."
-}
+// move.mot_de_solidarité = {
+//     id: 'mot_de_solidarité',
+//     name: 'Mot de Solidarité',
+//     classId: 'eniripsa',
+//     cooldownMs: 2000,
+//     effects: [{type: 'buff_team', stat: 'spd', value: 100, duration: 4}],
+//     description: "Double l'initiative de tous les membres de l'équipe pendant 3 tours."
+// }
 // #endregion
 
+// #region ENUTROF ─────────────────────────────────────────
+move.lancer_de_pieces = {
+    id: 'lancer_de_pieces',
+    name: 'Lancer de Pièces',
+    classId: 'enutrof',
+    cooldownMs: 1300,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 7, max: 9 }, target: 'enemy' }],
+    spellProgression: [{lvl: 1,
+                        patch: {}},
+                       {lvl: 66,
+                        patch: {damage: { min: 10, max: 12 }}},
+                       {lvl: 132,
+                        patch: {damage: { min: 13, max: 15 }}}],
+    description: "Frappe rapidement l'ennemi dans l'élément eau."
+}
+move.roulage_de_pelle = {
+    id: 'roulage_de_pelle',
+    name: 'Roulage de Pelle',
+    classId: 'enutrof',
+    cooldownMs: 1900,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 11, max: 13 }, target: 'enemy' }],
+    spellProgression: [{lvl: 8,
+                        patch: {}},
+                       {lvl: 67,
+                        patch: {damage: { min: 15, max: 18 }}},
+                       {lvl: 133,
+                        patch: {damage: { min: 19, max: 23 }}}],
+    description: "Frappe l'ennemi dans l'élément feu."
+}
+move.force_de_l_age = {
+    id: 'force_de_l_age',
+    name: "Force de l'Âge",
+    classId: 'enutrof',
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 10, max: 20 }, target: 'enemy' },
+              { type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self' }],
+    spellProgression: [{ lvl: 12,
+                         patch: {} },
+                       {lvl: 69,
+                        patch: {damage: { min: 22, max: 25 }}},
+                       {lvl: 136,
+                        patch: {damage: { min: 28, max: 32 }}}],
+    description: "Frappe l'ennemi dans l'élément terre et augmente sa propre vitesse de 20%."
+}
+move.opportunite = {
+    id: 'opportunite',
+    name: 'Opportunité',
+    classId: 'enutrof',
+    cooldownMs: 1800,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 8, max: 10 }, target: 'enemy' },
+              { type: 'buff', stat: 'atk', value: 30, duration: 2, target: 'self' }],
+    spellProgression: [{lvl: 16,
+                        patch: {}},
+                       {lvl: 68,
+                        patch: {damage: { min: 11, max: 13 }, buff: {value: 50 }}},
+                       {lvl: 134,
+                        patch: {damage: { min: 14, max: 16 }, buff: {value: 100 }}}],
+    description: "Frappe l'ennemi dans l'élément air et augmente légèrement sa puissance."
+}
+move.sac_anime = {
+    id: 'sac_anime',
+    name: 'Sac Animé',
+    classId: 'enutrof',
+    cooldownMs: 3500,
+    effects: [{ type: 'summon', summonId: 'sac_anime', duration: 8, target: 'self' }],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: { summon: { summonId: 'sac_anime2' } }},
+                       {lvl: 139,
+                        patch: { summon: { summonId: 'sac_anime3' } }}],
+    description: "Invoque un sac animé qui permet de prendre les prochains dégats infligés à la place de l'équipe."
+}
+move.ruee_vers_l_or = {
+    id: 'ruee_vers_l_or',
+    name: "Ruée vers l'Or",
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'atk', value: 100, duration: 2, target: 'self' },
+              { type: 'buff', stat: 'spd', value: 20,  duration: 2, delay: 2, target: 'self' }],
+    spellProgression: [{lvl: 24,
+                        patch: {}},
+                       {lvl: 77,
+                        patch: { buff: [{ stat: 'atk', value: 200 }, { stat: 'spd', value: 25 }] }},
+                       {lvl: 144,
+                        patch: { buff: [{ stat: 'atk', value: 350, duration: 3 }, { stat: 'spd', value: 30 }] }}],
+    description: "Augmente la puissance d'attaque dans un premier temps puis la vitesse du lanceur pour plusieurs tours."
+}
+move.boite_de_pandore = {
+    id: 'boite_de_pandore',
+    name: 'Boîte de Pandore',
+    classId: 'enutrof',
+    cooldownMs: 5000,
+    effects: [{ type: 'heal%maxHp', heal: 10, target: 'self' }],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: { cooldownMs: 4500 }},
+                       {lvl: 139,
+                        patch: { cooldownMs: 3500 }}],
+    description: "Une boite que l'on ouvre que pour se soigner en urgence."
+}
+move.remblai = {
+    id: 'remblai',
+    name: 'Remblai',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 12, max: 14 }, target: 'enemy', summonMultiplier: 1.2 }],
+    spellProgression: [{lvl: 33,
+                        patch: {}},
+                       {lvl: 87,
+                        patch: {damage: { min: 16, max: 18 }, summonMultiplier: 1.4}},
+                       {lvl: 154,
+                        patch: {damage: { min: 20, max: 22 }, summonMultiplier: 1.7}}],
+    description: "Tape l'ennemi dans l'élément terre. Les dégâts sont multipliés sur les invocations."
+}
+move.clef_du_tresor = {
+    id: 'clef_du_tresor',
+    name: 'Clef du Trésor',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'esquive', chancePct: 35, reductionPct: 100, duration: 3, target: 'self' }],
+    spellProgression: [{lvl: 37,
+                        patch: {}},
+                       {lvl: 92,
+                        patch: { esquive: { chancePct: 40 } }},
+                       {lvl: 159,
+                        patch: { esquive: { chancePct: 45 } }}],
+    description: "Augmente les chances d'esquiver les prochains coups."
+}
+move.abattement = {
+    id: 'abattement',
+    name: 'Abattement',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
+              { type: 'debuff', stat: 'spd', value: 10, duration: 7, target: 'enemy' }],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: {damage: { min: 18, max: 20 }}},
+                       {lvl: 139,
+                        patch: {damage: { min: 23, max: 25 }}}],
+    description: "Frappe dans l'élément air et retire 10% de vitesse à l'ennemi."
+}
+move.pelle_animee = {
+    id: 'pelle_animee',
+    name: 'Pelle Animée',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{type: 'summon', summonId: 'pelle_animee', duration: 3, target: 'self'}],
+    spellProgression: [{lvl: 45,
+                        patch: {}},
+                       {lvl: 102,
+                        patch: { summon: { summonId: 'pelle_animee2' } }},
+                       {lvl: 169,
+                        patch: { summon: { summonId: 'pelle_animee3' } }}],
+    description: "Invoque une pelle animée qui pousse les ennemis et encaisse les dommages infligés à l'équipe."
+}
+move.avarice = {
+    id: 'avarice',
+    name: 'Avarice',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', stat: 'atk', value: 100, duration: 2, target: 'enemy' },
+              { type: 'debuff', stat: 'spd', value: 20,  duration: 2, delay: 2, target: 'enemy' }],
+    spellProgression: [{lvl: 49,
+                        patch: {}},
+                       {lvl: 107,
+                        patch: { debuff: [{ stat: 'atk', value: 200 }, { stat: 'spd', value: 25 }] }},
+                       {lvl: 174,
+                        patch: { debuff: [{ stat: 'atk', value: 350 }, { stat: 'spd', value: 30 }] }}],
+    description: "Réduit la puissance d'attaque dans un premier temps puis la vitesse de l'ennemi pour plusieurs tours."
+}
+move.pelle_aurifere = {
+    id: 'pelle_aurifere',
+    name: 'Pelle Aurifère',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 21, max: 23 }, target: 'enemy' },
+              { type: 'debuff', stat: 'atk', value: 50, duration: 7, target: 'enemy' }],
+    spellProgression: [{lvl: 53,
+                        patch: {}},
+                       {lvl: 112,
+                        patch: {damage: { min: 27, max: 31 }}},
+                       {lvl: 179,
+                        patch: {damage: { min: 33, max: 37 }}}],
+    description: "Frappe dans l'élément eau et retire 50 de puissance à l'ennemi."
+}
+move.maladresse = {
+    id: 'maladresse',
+    name: 'Maladresse',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', stat: 'spd', value: 50, duration: 3, target: 'enemy' }],
+    spellProgression: [{lvl: 57,
+                        patch: {}},
+                       {lvl: 117,
+                        patch: { debuff: { stat: 'spd', value: 60 }}},
+                       {lvl: 184,
+                        patch: { debuff: { stat: 'spd', value: 70 }}}],
+    description: "Réduit drastiquement la vitesse d'un ennemi pour 2 tours."
+}
+move.pelle_fantomatique = {
+    id: 'pelle_fantomatique',
+    name: 'Pelle Fantomatique',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 17, max: 19 }, target: 'enemy' },
+              { type: 'buffDrain', value: 1, target: 'enemy' }],
+    spellProgression: [{lvl: 61,
+                        patch: {}},
+                       {lvl: 122,
+                        patch: { damage: { min: 23, max: 25 }}},
+                       {lvl: 189,
+                        patch: { damage: { min: 26, max: 28 }, buffDrain: { value: 2 } }}],
+    description: "Frappe dans l'élément feu et réduit la durée des buffs ennemis."
+}
+move.banqueroute = {
+    id: 'banqueroute',
+    name: 'Banqueroute',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 26, max: 29 }, target: 'enemy', summonMultiplier: 1.2 }],
+    spellProgression: [{lvl: 65,
+                        patch: {}},
+                       {lvl: 127,
+                        patch: {damage: { min: 32, max: 36 }, summonMultiplier: 1.4}},
+                       {lvl: 194,
+                        patch: {damage: { min: 32, max: 36 }, summonMultiplier: 1.7}}],
+    description: "Tape l'ennemi dans l'élément air. Les dégâts sont multipliés sur les invocations."
+}
+move.souterrain = {
+    id: 'souterrain',
+    name: 'Souterrain',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 19, max: 22 }, target: 'enemy'},
+              {type: 'recul', target: 'enemy'}],
+    spellProgression: [{lvl: 69,
+                        patch: {}},
+                       {lvl: 131,
+                        patch: {damage: { min: 23, max: 26 }}},
+                       {lvl: 198,
+                        patch: {damage: { min: 26, max: 29 }}}],
+    description: "Frappe dans l'élément terre et fait reculer l'ennemi de 1 en raid."
+}
+move.pelle_des_anciens = {
+    id: 'pelle_des_anciens',
+    name: 'Pelle des Anciens',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 31, max: 34 }, target: 'enemy'},
+              { type: 'recul', target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 10, duration: 3, target: 'enemy' }],
+    spellProgression: [{lvl: 73,
+                        patch: {}},
+                       {lvl: 137,
+                        patch: {damage: { min: 40, max: 44 }}}],
+    description: "Frappe dans l'élément eau, fait reculer l'ennemi de 1 place et réduit sa vitesse de 10% pour 2 tours."
+}
+// move.peremption = {
+//     id: 'peremption',
+//     name: 'Péremption',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.corruption = {
+//     id: 'corruption',
+//     name: 'Corruption',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.retraite_anticipee = {
+//     id: 'retraite_anticipee',
+//     name: 'Retraite Anticipée',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.coffre_anime = {
+//     id: 'coffre_anime',
+//     name: 'Coffre Animé',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,
+//                         patch: {}}],
+//     description: ""
+// }
+move.eboulement = {
+    id: 'eboulement',
+    name: 'Éboulement',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
+              { type: 'enutrof_trap', id: 'eboulement', duration: 3,
+                trigger: { type: 'buff', stat: 'atk' }, element: 'terre', damage: { min: 10, max: 14 }, target: 'enemy' }],
+    spellProgression: [{lvl: 95,
+                        patch: {}},
+                       {lvl: 162,
+                        patch: {damage: { min: 18, max: 21 }}}],
+    description: "Frappe dans l'élément terre. Pose Éboulement (3 actions alliées) : tout buff de puissance sur un allié déclenche automatiquement des dégâts terre bonus."
+}
+move.monnaie_sonnante = {
+    id: 'monnaie_sonnante',
+    name: 'Monnaie Sonnante',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
+              { type: 'enutrof_trap', id: 'monnaie_sonnante', duration: 3,
+                trigger: { type: 'debuff', stat: 'spd' }, element: 'air', damage: { min: 10, max: 15 }, target: 'enemy' }],
+    spellProgression: [{lvl: 100,
+                        patch: {}},
+                       {lvl: 167,
+                        patch: {damage: { min: 18, max: 21 }}}],
+    description: "Frappe dans l'élément air. Pose Monnaie Sonnante (3 actions alliées) : tout débuff de vitesse sur l'ennemi déclenche automatiquement des dégâts air bonus."
+}
+move.orpaillage = {
+    id: 'orpaillage',
+    name: 'Orpaillage',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 16 }, target: 'enemy' },
+              { type: 'enutrof_trap', id: 'orpaillage', duration: 3,
+                trigger: { type: 'debuff', stat: 'atk' }, element: 'eau', damage: { min: 10, max: 14 }, target: 'enemy' }],
+    spellProgression: [{lvl: 105,
+                        patch: {}},
+                       {lvl: 177,
+                        patch: {damage: { min: 18, max: 21 }}}],
+    description: "Frappe dans l'élément eau. Pose Orpaillage (3 actions alliées) : tout débuff de puissance sur l'ennemi déclenche automatiquement des dégâts eau bonus."
+}
+move.coup_de_grisou = {
+    id: 'coup_de_grisou',
+    name: 'Coup de Grisou',
+    classId: 'enutrof',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 14, max: 16 }, target: 'enemy' },
+              { type: 'enutrof_trap', id: 'coup_de_grisou', duration: 3,
+                trigger: { type: 'heal' }, element: 'feu', damage: { min: 10, max: 14 }, target: 'enemy' }],
+    spellProgression: [{lvl: 110,
+                        patch: {}},
+                       {lvl: 172,
+                        patch: {damage: { min: 18, max: 21 }}}],
+    description: "Frappe dans l'élément feu. Pose Coup de Grisou (3 actions alliées) : tout soin reçu par un allié déclenche automatiquement des dégâts feu bonus."
+}
+// move.musette_animee = {
+//     id: 'musette_animee',
+//     name: 'Musette Animée',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.deambulation = {
+//     id: 'deambulation',
+//     name: 'Déambulation',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.boite_a_outils = {
+//     id: 'boite_a_outils',
+//     name: 'Boîte à Outils',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.feu_de_mine = {
+//     id: 'feu_de_mine',
+//     name: 'Feu de Mine',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.clef_de_bras = {
+//     id: 'clef_de_bras',
+//     name: 'Clef de Bras',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.obsolescence = {
+//     id: 'obsolescence',
+//     name: 'Obsolescence',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.beche_animee = {
+//     id: 'beche_animee',
+//     name: 'Bêche Animée',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.decadence = {
+//     id: 'decadence',
+//     name: 'Décadence',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.tourbiere = {
+//     id: 'tourbiere',
+//     name: 'Tourbière',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.age_d_or = {
+//     id: 'age_d_or',
+//     name: "Âge d'Or",
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.dernier_recours = {
+//     id: 'dernier_recours',
+//     name: 'Dernier Recours',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.lancer_de_pelle = {
+//     id: 'lancer_de_pelle',
+//     name: 'Lancer de Pelle',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.beche_des_anciens = {
+//     id: 'beche_des_anciens',
+//     name: 'Bêche des Anciens',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.gisement = {
+//     id: 'gisement',
+//     name: 'Gisement',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.tamisage = {
+//     id: 'tamisage',
+//     name: 'Tamisage',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.tunnel_de_fortune = {
+//     id: 'tunnel_de_fortune',
+//     name: 'Tunnel de Fortune',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.pelle_de_fortune = {
+//     id: 'pelle_de_fortune',
+//     name: 'Pelle de Fortune',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.malle_animee = {
+//     id: 'malle_animee',
+//     name: 'Malle Animée',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region HUPPERMAGE ─────────────────────────────────────────
+// move['lance-flamme'] = {
+//     id: 'lance-flamme',
+//     name: 'Lance-flamme',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.stalagmite = {
+//     id: 'stalagmite',
+//     name: 'Stalagmite',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.onde_sismique = {
+//     id: 'onde_sismique',
+//     name: 'Onde Sismique',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12,
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.ether = {
+//     id: 'ether',
+//     name: 'Éther',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.runification = {
+//     id: 'runification',
+//     name: 'Runification',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.drain_elementaire = {
+//     id: 'drain_elementaire',
+//     name: 'Drain Élémentaire',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.meteore = {
+//     id: 'meteore',
+//     name: 'Météore',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.lame_astrale = {
+//     id: 'lame_astrale',
+//     name: 'Lame Astrale',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.cycle_elementaire = {
+//     id: 'cycle_elementaire',
+//     name: 'Cycle Élémentaire',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.lance_solaire = {
+//     id: 'lance_solaire',
+//     name: 'Lance Solaire',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.deluge = {
+//     id: 'deluge',
+//     name: 'Déluge',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.traversee = {
+//     id: 'traversee',
+//     name: 'Traversée',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.contribution = {
+//     id: 'contribution',
+//     name: 'Contribution',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.trait_ardent = {
+//     id: 'trait_ardent',
+//     name: 'Trait Ardent',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.glacier = {
+//     id: 'glacier',
+//     name: 'Glacier',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.rafale = {
+//     id: 'rafale',
+//     name: 'Rafale',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.orage = {
+//     id: 'orage',
+//     name: 'Orage',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move.bouclier_elementaire = {
+//     id: 'bouclier_elementaire',
+//     name: 'Bouclier Élémentaire',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.polarite = {
+//     id: 'polarite',
+//     name: 'Polarité',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.surcharge_runique = {
+//     id: 'surcharge_runique',
+//     name: 'Surcharge Runique',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.propagation = {
+//     id: 'propagation',
+//     name: 'Propagation',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.supernova = {
+//     id: 'supernova',
+//     name: 'Supernova',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.lances_telluriques = {
+//     id: 'lances_telluriques',
+//     name: 'Lances Telluriques',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.onde_celeste = {
+//     id: 'onde_celeste',
+//     name: 'Onde Céleste',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.tison = {
+//     id: 'tison',
+//     name: 'Tison',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.cataracte = {
+//     id: 'cataracte',
+//     name: 'Cataracte',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.manifestation = {
+//     id: 'manifestation',
+//     name: 'Manifestation',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.tribut = {
+//     id: 'tribut',
+//     name: 'Tribut',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.avalanche = {
+//     id: 'avalanche',
+//     name: 'Avalanche',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.deflagration = {
+//     id: 'deflagration',
+//     name: 'Déflagration',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,
+//                         patch: {}}],
+//     description: ""
+// }
+// move.courant_quadramental = {
+//     id: 'courant_quadramental',
+//     name: 'Courant Quadramental',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.comete = {
+//     id: 'comete',
+//     name: 'Comète',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.asteroide = {
+//     id: 'asteroide',
+//     name: 'Astéroïde',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.repulsion_runique = {
+//     id: 'repulsion_runique',
+//     name: 'Répulsion Runique',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.empreinte = {
+//     id: 'empreinte',
+//     name: 'Empreinte',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.stalactite = {
+//     id: 'stalactite',
+//     name: 'Stalactite',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.volcan = {
+//     id: 'volcan',
+//     name: 'Volcan',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.breche = {
+//     id: 'breche',
+//     name: 'Brèche',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.ouragan = {
+//     id: 'ouragan',
+//     name: 'Ouragan',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.gardien_elementaire = {
+//     id: 'gardien_elementaire',
+//     name: 'Gardien Élémentaire',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.convection = {
+//     id: 'convection',
+//     name: 'Convection',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.sublimation = {
+//     id: 'sublimation',
+//     name: 'Sublimation',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.prisme_runique = {
+//     id: 'prisme_runique',
+//     name: 'Prisme Runique',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move.torrent_arcanique = {
+//     id: 'torrent_arcanique',
+//     name: 'Torrent Arcanique',
+//     classId: 'huppermage',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region Xelor ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region osamodas ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region feca ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region sram ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region sacrieur ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region zobal ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region sadida ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region roublard ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region ecaflip ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region steamer ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region ouginak ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region forgelance ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region pandawa ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
+
+// #region eliotrope ─────────────────────────────────────────
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 1,
+//                         patch: {}},
+//                        {lvl: 66,
+//                         patch: {}},
+//                        {lvl: 132,
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 8,
+//                         patch: {}},
+//                        {lvl: 67,
+//                         patch: {}},
+//                        {lvl: 133,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{ lvl: 12, 
+//                          patch: {} },
+//                        {lvl: 69,
+//                         patch: {}},
+//                        {lvl: 136,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 16,
+//                         patch: {}},
+//                        {lvl: 68,
+//                         patch: {}},
+//                        {lvl: 134,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 24,
+//                         patch: {}},
+//                        {lvl: 77,  
+//                         patch: {}},
+//                        {lvl: 144,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 33,
+//                         patch: {}},
+//                        {lvl: 87,  
+//                         patch: {}},
+//                        {lvl: 154,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 37,
+//                         patch: {}},
+//                        {lvl: 92,  
+//                         patch: {}},
+//                        {lvl: 159,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 20,
+//                         patch: {}},
+//                        {lvl: 72,
+//                         patch: {}},
+//                        {lvl: 139,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 45,
+//                         patch: {}},
+//                        {lvl: 102,
+//                         patch: {}},
+//                        {lvl: 169,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 49,
+//                         patch: {}},
+//                        {lvl: 107,  
+//                         patch: {}},
+//                        {lvl: 174,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 53,
+//                         patch: {}},
+//                        {lvl: 112,
+//                         patch: {}},
+//                        {lvl: 179,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 57,
+//                         patch: {}},
+//                        {lvl: 117,  
+//                         patch: {}},
+//                        {lvl: 184,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 61,
+//                         patch: {}},
+//                        {lvl: 122,  
+//                         patch: {}},
+//                        {lvl: 189,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 65,
+//                         patch: {}},
+//                        {lvl: 127,  
+//                         patch: {}},
+//                        {lvl: 194,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 69,
+//                         patch: {}},
+//                        {lvl: 131,  
+//                         patch: {}},
+//                        {lvl: 198,
+//                         patch: {}}],
+//     description: " "
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 73,
+//                         patch: {}},
+//                        {lvl: 137,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 77,
+//                         patch: {}},
+//                        {lvl: 142,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 81,
+//                         patch: {}},
+//                        {lvl: 147,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 85,
+//                         patch: {}},
+//                        {lvl: 152,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 90,
+//                         patch: {}},
+//                        {lvl: 157,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 115,
+//                         patch: {}},
+//                        {lvl: 182,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 120,
+//                         patch: {}},
+//                        {lvl: 187,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 125,
+//                         patch: {}},
+//                        {lvl: 192,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     spellProgression: [{lvl: 130,
+//                         patch: {}},
+//                        {lvl: 197,  
+//                         patch: {}}],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// move. = {
+//     id: '',
+//     name: '',
+//     classId: '',
+//     cooldownMs: 2000,
+//     effects: [],
+//     description: ""
+// }
+// #endregion
 

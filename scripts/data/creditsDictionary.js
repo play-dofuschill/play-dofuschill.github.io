@@ -48,6 +48,16 @@ const creditsSections = [
     },
 
     {
+        id: 'disclaimer',
+        title: '⚠️ disclaimer',
+        content: `
+            <p>
+                Je ne suis pas dev, je ne suis pas game designer, je ne suis pas équilibrateur de jeu ou je ne sais quoi donc si vous avez besoin de faire remonter des équilibrages que vous trouvez abusés ou autre faites remonter on ajustera !</strong>
+            </p>
+        `
+    },
+
+    {
         id: 'discord',
         title: '💬 Communauté Discord',
         content: `

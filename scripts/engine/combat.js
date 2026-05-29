@@ -27,7 +27,8 @@ function _peekNextCastCooldown(member, memberIndex) {
     const isXelor = classes[member.classId]?.passive?.id === 'xelor' && nonNull.length === 4
     const rawIdx = combat?.memberMoveIndex?.[memberIndex] ?? 0
     const idx = isXelor ? XELOR_PATTERN[rawIdx % 7] : rawIdx % nonNull.length
-    const cd = move[member.moves[nonNull[idx]]]?.cooldownMs
+    const rawSpell = move[member.moves[nonNull[idx]]]
+    const cd = rawSpell ? applyProgression(rawSpell, effectiveLvl).cooldownMs : undefined
     return cd ?? BASE_TIME
 }
 
@@ -35,7 +36,9 @@ function _peekNextCastCooldown(member, memberIndex) {
 function _peekEnemyCastCooldown(enemy) {
     if (!enemy?.moves?.length) return BASE_TIME
     const nextMoveId = enemy.moves[enemy.moveIndex % enemy.moves.length]
-    return (nextMoveId ? (move[nextMoveId]?.cooldownMs ?? BASE_TIME) : BASE_TIME)
+    if (!nextMoveId) return BASE_TIME
+    const rawSpell = move[nextMoveId]
+    return rawSpell ? (applyProgression(rawSpell, enemy.level || 1).cooldownMs ?? BASE_TIME) : BASE_TIME
 }
 
 
@@ -205,6 +208,7 @@ function spawnEnemy(areaId) {
     }
 
     const mob      = monsters[spawnId]
+    if (!mob) { console.error(`[spawnEnemy] Unknown monster: ${spawnId}`); return null }
     const mobLevel = mob.fixedLevel ?? randomInt(area.mobMinLevel, area.mobMaxLevel)
     const scale    = mob.fixedLevel != null ? 1 : 1 + (mobLevel - area.mobMinLevel) * 0.05
 
@@ -331,8 +335,14 @@ function startCombat(areaId) {
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
-        spellStacks:        {},
-        sessionLoot:        _emptySessionLoot()
+        spellStacks:           {},
+        huppermageLastElement: {},
+        huppermageComboCount:  0,
+        enutrof_air_active:    0,
+        enutrof_terre_active:  0,
+        enutrof_eau_active:    0,
+        enutrof_traps:         [],
+        sessionLoot:           _emptySessionLoot()
     }
 
     if (_isResume && state.savedCombatState) {
@@ -567,8 +577,14 @@ function startPoutchCombat(mode) {
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
-        spellStacks:        {},
-        isPoutch:           true,
+        spellStacks:           {},
+        huppermageLastElement: {},
+        huppermageComboCount:  0,
+        enutrof_air_active:    0,
+        enutrof_terre_active:  0,
+        enutrof_eau_active:    0,
+        enutrof_traps:         [],
+        isPoutch:              true,
         poutchMode:         mode,
         poutchTurns:        0,
         poutchBiggestHit:   0,
@@ -683,6 +699,7 @@ function gameTick() {
     if (combat.enemy && combat.enemy.currentHp > 0 && !combat.respawnPending) {
         let effectiveEnemySpd = combat.enemy.spd || 100
         for (const b of (combat.enemy.buffs || [])) {
+            if ((b.delay ?? 0) > 0) continue
             if (b.stat === 'spd') effectiveEnemySpd += b.value
         }
         effectiveEnemySpd = Math.max(1, effectiveEnemySpd)
@@ -756,6 +773,13 @@ function executeMemberAction(memberIndex) {
     const rawPrevMv = move[member.moves[nonNull[prevNonNullIdx]]]
     const prevMv    = rawPrevMv ? applyProgression(rawPrevMv, effectiveLvl) : null
 
+    // Snapshot des états Énutrof avant l'action (pour la règle de décrément)
+    const _prevEnutrof = {
+        air:   combat.enutrof_air_active   || 0,
+        terre: combat.enutrof_terre_active || 0,
+        eau:   combat.enutrof_eau_active   || 0
+    }
+
     // exécution des effets
     let lastDamageDealt = 0
     let sessionDmg = 0
@@ -775,6 +799,21 @@ function executeMemberAction(memberIndex) {
         if (combat.isPoutch && sessionDmg > (combat.poutchBiggestHit || 0)) {
             combat.poutchBiggestHit = sessionDmg
         }
+    }
+
+    // Décrément des états Énutrof — pas de décrément si l'état a été (re)posé ce tour
+    for (const s of ['air', 'terre', 'eau']) {
+        const k = `enutrof_${s}_active`
+        if ((combat[k] || 0) > 0 && combat[k] === _prevEnutrof[s]) combat[k]--
+    }
+
+    // Décrément des pièges Énutrof (par action alliée)
+    if (combat.enutrof_traps?.length) {
+        for (const trap of combat.enutrof_traps) {
+            if (trap._justSet) { trap._justSet = false; continue }
+            if (trap.active > 0) trap.active--
+        }
+        combat.enutrof_traps = combat.enutrof_traps.filter(t => t.active > 0)
     }
 
     // Décompte des actions de l'invocation alliée
@@ -799,6 +838,7 @@ function executeMemberAction(memberIndex) {
     const newRawIdx   = combat.memberMoveIndex[memberIndex]  // après incrément
     const cycleLength = isXelor ? 7 : nonNull.length
     _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength)
+    _applyItemPassives(member, memberIndex, newRawIdx)
 
     combat.memberTimers[memberIndex] = 0
 }
@@ -880,6 +920,74 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength, slotEnem
     }
 }
 
+// ─── Effets passifs des items équipés ─────────────────────────────────────────
+
+function _applyItemPassives(member, memberIndex, newRawIdx, slotEnemy) {
+    if (!member.equip) return
+    const stats = getEffectiveStats(member) ?? member._stats
+    const enemy = slotEnemy || combat.enemy
+
+    for (const slotId in member.equip) {
+        const itemId = member.equip[slotId]
+        if (!itemId) continue
+        const itm = item[itemId]
+        if (!itm?.effects?.length) continue
+
+        for (const eff of itm.effects) {
+            if (eff.on_effect) continue                               // géré dans executeEffect
+            if (eff.after  && newRawIdx < eff.after)  continue       // pas encore actif
+            if (!eff.every || newRawIdx % eff.every !== 0) continue   // pas le bon intervalle
+            executeEffect({
+                caster: member, casterStats: stats, targetEnemy: enemy,
+                effect: eff, moveData: { name: itm.name }, moveId: itm.id,
+                fromItemPassive: true
+            })
+        }
+    }
+}
+
+// ─── Réactions d'items aux effets de sorts ────────────────────────────────────
+// Retourne true si l'effet doit être annulé.
+
+function _applyItemOnEffectTriggers(ctx) {
+    if (ctx.fromItemPassive) return false
+    const { caster, effect } = ctx
+    const isCasterEnemy = state.team.indexOf(caster) === -1
+    let cancelled = false
+
+    for (const member of state.team) {
+        if (!member || member.currentHp <= 0 || !member.equip) continue
+        for (const slotId in member.equip) {
+            const itemId = member.equip[slotId]
+            if (!itemId) continue
+            const itm = item[itemId]
+            if (!itm?.effects?.length) continue
+
+            for (const eff of itm.effects) {
+                if (!eff.on_effect) continue
+                const trigger = eff.on_effect
+                if (trigger.source === 'enemy' && !isCasterEnemy) continue
+                if (trigger.source === 'ally'  &&  isCasterEnemy) continue
+                if (trigger.type && trigger.type !== effect.type)  continue
+
+                const mName = member.name || classes[member.classId]?.name || '?'
+                if (eff.reaction === 'cancel') {
+                    addLog(`${mName} [${itm.name}] → annule ${effect.type} !`)
+                    cancelled = true
+                } else if (eff.reaction === 'trigger') {
+                    const stats = getEffectiveStats(member) ?? member._stats
+                    executeEffect({
+                        caster: member, casterStats: stats, targetEnemy: ctx.targetEnemy || combat.enemy,
+                        effect: eff, moveData: { name: itm.name }, moveId: itm.id,
+                        fromItemPassive: true
+                    })
+                }
+            }
+        }
+    }
+    return cancelled
+}
+
 function _resolveEffectValue(v) {
     if (v !== null && typeof v === 'object' && 'min' in v && 'max' in v)
         return Math.floor(Math.random() * (v.max - v.min + 1)) + v.min
@@ -910,9 +1018,72 @@ function _resolveAllyTarget(effect, caster) {
     return caster
 }
 
+// ─── Combos élémentaires Huppermage ──────────────────────────────────────────
+// Déclenché quand 2 sorts élémentaires différents frappent le même ennemi en séquence.
+// Effets one-shot stockés avec duration:Infinity → jamais tickés, consommés manuellement.
+
+// Déclenche les pièges Énutrof actifs correspondant au trigger donné.
+// triggerType : 'debuff' | 'buff' | 'heal'
+// triggerStat : stat concernée (ignoré si trap.trigger.stat est absent)
+// reactionTarget : l'ennemi qui subit les dégâts de réaction
+function _fireEnutrofTraps(triggerType, triggerStat, reactionTarget) {
+    if (!combat?.enutrof_traps?.length || !reactionTarget) return
+    for (const trap of combat.enutrof_traps) {
+        if (trap.active <= 0) continue
+        if (trap.trigger.type !== triggerType) continue
+        if (trap.trigger.stat && trap.trigger.stat !== triggerStat) continue
+        addLog(`Réaction ${trap.id} → ${trap.element} !`)
+        executeEffect({
+            caster:      trap.caster,
+            casterStats: trap.casterStats,
+            targetEnemy: reactionTarget,
+            targetStats: null,
+            effect:      { type: 'damage', element: trap.element, damage: trap.damage, target: 'enemy' },
+            moveData:    { name: trap.id },
+            moveId:      trap.id,
+            memberHitIdx: -1
+        })
+    }
+}
+
+function _triggerHuppermageCombo(elemA, elemB, caster, enemy) {
+    if (combat) combat.huppermageComboCount = (combat.huppermageComboCount || 0) + 1
+    const key = [elemA, elemB].sort().join('/')
+    enemy.buffs = enemy.buffs || []
+    switch (key) {
+        case 'feu/terre':
+            enemy.buffs.push({ stat: 'amplifie_incoming', duration: Infinity })
+            addLog(`Combo ${elemA}/${elemB} → Amplification ! Prochain sort +15%`)
+            break
+        case 'air/terre':
+            caster.buffs = caster.buffs || []
+            caster.buffs.push({ stat: 'huppermage_amplify', duration: Infinity })
+            addLog(`Combo ${elemA}/${elemB} → Instabilité ! 7% de chance +50%`)
+            break
+        case 'eau/terre':
+            enemy.buffs.push({ stat: 'atk', value: -50, duration: 2 })
+            addLog(`Combo ${elemA}/${elemB} → Affaiblissement ! ATK -50 (2 tours)`)
+            break
+        case 'eau/feu':
+            enemy.buffs.push({ stat: 'feu_eau_debuff', duration: Infinity })
+            addLog(`Combo ${elemA}/${elemB} → Perturbation ! 7% de chance -50%`)
+            break
+        case 'air/feu':
+            enemy.buffs.push({ stat: 'spd', value: -15, duration: 2 })
+            addLog(`Combo ${elemA}/${elemB} → Ralentissement ! SPD -15 (2 tours)`)
+            break
+        case 'air/eau':
+            enemy.buffs.push({ stat: 'eau_air_debuff', duration: Infinity })
+            addLog(`Combo ${elemA}/${elemB} → Bouclier ! Prochain sort ennemi -15%`)
+            break
+    }
+}
+
 function executeEffect(ctx) {
 
     const {caster, casterStats, targetEnemy, effect, moveData, moveId} = ctx
+
+    if (_applyItemOnEffectTriggers(ctx)) return
 
     switch (effect.type) {
 
@@ -1157,6 +1328,39 @@ function executeEffect(ctx) {
                 return takenDmg
             }
 
+            // Esquive : chance de réduire ou annuler les dégâts reçus
+            const _esquiveBuff = (targetEnemy.buffs || []).find(b => b.stat === 'esquive')
+            if (_esquiveBuff && dmg > 0 && Math.random() * 100 < _esquiveBuff.value) {
+                const _reduction = _esquiveBuff.reductionPct ?? 100
+                if (_reduction >= 100) {
+                    addLog(`${ctx.logPrefix || ''}${moveData.name} → esquivé !`)
+                    return 0
+                }
+                dmg = Math.max(1, Math.floor(dmg * (1 - _reduction / 100)))
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → esquive partielle ! ${dmg} dégâts`)
+            }
+
+            // Combo Huppermage: huppermage_amplify (terre/air) — one-shot, 7% chance +50%
+            if (caster.classId === 'huppermage') {
+                const _huppAmp = (caster.buffs || []).find(b => b.stat === 'huppermage_amplify')
+                if (_huppAmp) {
+                    caster.buffs = caster.buffs.filter(b => b !== _huppAmp)
+                    if (Math.random() * 100 < 7) {
+                        dmg = Math.floor(dmg * 1.5)
+                        addLog(`Instabilité → +50% dégâts !`)
+                    }
+                }
+            }
+            // Combo Huppermage: amplifie_incoming (terre/feu) — one-shot +15%
+            {
+                const _ampInc = (targetEnemy.buffs || []).find(b => b.stat === 'amplifie_incoming')
+                if (_ampInc) {
+                    targetEnemy.buffs = targetEnemy.buffs.filter(b => b !== _ampInc)
+                    dmg = Math.floor(dmg * 1.15)
+                    addLog(`Amplification → +15% dégâts !`)
+                }
+            }
+
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
 
             // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate,
@@ -1211,6 +1415,25 @@ function executeEffect(ctx) {
                 }
             }
 
+            // Suivi élémentaire Huppermage : mémorise l'élément ou déclenche un combo.
+            // Les lignes d'un même sort se combinent entre elles normalement.
+            // _elementConsumed : posé par absorbElementDmg → pas de nouvel état élémentaire
+            if (caster.classId === 'huppermage' && effect.element && memberHitIdx === -1 && !effect._elementConsumed) {
+                const slotIdx = (combat?.isRaid && combat.enemies)
+                    ? combat.enemies.indexOf(targetEnemy)
+                    : 0
+                const key = slotIdx >= 0 ? slotIdx : 0
+                if (combat.huppermageLastElement !== undefined) {
+                    const prev = combat.huppermageLastElement[key]
+                    if (prev && prev !== effect.element) {
+                        _triggerHuppermageCombo(prev, effect.element, caster, targetEnemy)
+                        delete combat.huppermageLastElement[key]
+                    } else {
+                        combat.huppermageLastElement[key] = effect.element
+                    }
+                }
+            }
+
             // splashPct : ricochet brut sur e2 (bypass défenses, pas d'érosion)
             // splashPct2 : ricochet sur e3 — % de e1 par défaut, % de e2 si splashChain:true
             if (effect.splashPct && combat?.isRaid && dmg > 0) {
@@ -1249,6 +1472,27 @@ function executeEffect(ctx) {
             const dotScaled  = Math.max(1, Math.floor(
                 dotBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
             ))
+            if (effect.target === 'all_enemies' || effect.target === 'all_enemy') {
+                const isEnemyCasterDot = !state.team.includes(caster)
+                const dotTargets = isEnemyCasterDot
+                    ? state.team.filter(m => m && m.currentHp > 0)
+                    : combat?.isRaid && combat.enemies ? combat.enemies.filter(e => e && e.currentHp > 0) : [targetEnemy]
+                for (const t of dotTargets) {
+                    t.dots = t.dots || []
+                    t.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
+                }
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour × ${effect.duration} tours (tous)`)
+                break
+            }
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    m.dots = m.dots || []
+                    m.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
+                }
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour × ${effect.duration} tours (équipe)`)
+                break
+            }
             targetEnemy.dots = targetEnemy.dots || []
             targetEnemy.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
             addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour (${effect.duration} tours)`)
@@ -1256,25 +1500,54 @@ function executeEffect(ctx) {
         }
 
         case 'heal': {
-            const healTarget = _resolveAllyTarget(effect, caster)
-            const healRoll   = _resolveEffectValue(effect.heal) || 0
-            const baseHeal   = healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
-            const healAmt    = Math.max(1, Math.floor(
-                (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100) * _getAntiHealFactor(healTarget)
+            const healRoll = _resolveEffectValue(effect.heal) || 0
+            const baseHeal = healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
+            const healBase = Math.max(1, Math.floor(
+                (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
             ))
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + Math.floor(healBase * _getAntiHealFactor(m)))
+                }
+                addLog(`${moveData.name} → soigne ${healBase} PV (équipe)`)
+                _fireEnutrofTraps('heal', null, targetEnemy)
+                break
+            }
+            const healTarget = _resolveAllyTarget(effect, caster)
+            const healAmt    = Math.floor(healBase * _getAntiHealFactor(healTarget))
             healTarget.currentHp = Math.min(healTarget.maxHp, (healTarget.currentHp || 0) + healAmt)
             const tName = healTarget.name || classes[healTarget.classId]?.name || '?'
             addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV`)
+            _fireEnutrofTraps('heal', null, targetEnemy)
             break
         }
 
         case 'heal%maxHp': {
+            const healPct      = _resolveEffectValue(effect.heal) || 0
+            const healPctBonus = 1 + (casterStats?.healMaxHpPct || 0) / 100
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    const healAmt = Math.floor((m.maxHp || 0) * (healPct / 100) * healPctBonus * _getAntiHealFactor(m))
+                    m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + healAmt)
+                }
+                addLog(`${moveData.name} → soigne ${healPct}% PV max (équipe)`)
+                _fireEnutrofTraps('heal', null, targetEnemy)
+                break
+            }
+            if (effect.target === 'enemy') {
+                const healAmt = Math.floor((targetEnemy.maxHp || 0) * (healPct / 100) * _getAntiHealFactor(targetEnemy))
+                targetEnemy.currentHp = Math.min(targetEnemy.maxHp, (targetEnemy.currentHp || 0) + healAmt)
+                addLog(`${moveData.name} → soigne l'ennemi de ${healAmt} PV (${healPct}% PV max)`)
+                break
+            }
             const healTarget = _resolveAllyTarget(effect, caster)
-            const healPct = _resolveEffectValue(effect.heal) || 0
-            const healAmt = Math.floor((healTarget.maxHp || 0) * (healPct / 100) * (1 + (casterStats?.healMaxHpPct || 0) / 100) * _getAntiHealFactor(healTarget))
+            const healAmt = Math.floor((healTarget.maxHp || 0) * (healPct / 100) * healPctBonus * _getAntiHealFactor(healTarget))
             healTarget.currentHp = Math.min(healTarget.maxHp, (healTarget.currentHp || 0) + healAmt)
             const tName = healTarget.name || classes[healTarget.classId]?.name || '?'
             addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV (${healPct}% PV max)`)
+            _fireEnutrofTraps('heal', null, targetEnemy)
             break
         }
 
@@ -1287,6 +1560,7 @@ function executeEffect(ctx) {
                 m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + healAmt)
             }
             addLog(`${moveData.name} → soigne ${healPct}% PV max (équipe)`)
+            _fireEnutrofTraps('heal', null, targetEnemy)
             break
         }
 
@@ -1298,16 +1572,26 @@ function executeEffect(ctx) {
                 m.currentHp = Math.min(m.maxHp, (m.currentHp || 0) + healAmt)
             }
             addLog(`${moveData.name} → soigne ${healBase} PV (équipe)`)
+            _fireEnutrofTraps('heal', null, targetEnemy)
             break
         }
 
         case 'hot': {
-            const hotTarget = _resolveAllyTarget(effect, caster)
-            const hotRoll   = _resolveEffectValue(effect.heal) || 0
-            const baseHeal  = hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
-            const hotVal    = Math.max(1, Math.floor(
+            const hotRoll  = _resolveEffectValue(effect.heal) || 0
+            const baseHeal = hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
+            const hotVal   = Math.max(1, Math.floor(
                 (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
             ))
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    m.hots = m.hots || []
+                    m.hots.push({ value: hotVal, duration: effect.duration, label: moveData.name })
+                }
+                addLog(`${moveData.name} → soin continu ${hotVal} PV/tour × ${effect.duration} tours (équipe)`)
+                break
+            }
+            const hotTarget = _resolveAllyTarget(effect, caster)
             hotTarget.hots = hotTarget.hots || []
             hotTarget.hots.push({ value: hotVal, duration: effect.duration, label: moveData.name })
             const tName = hotTarget.name || classes[hotTarget.classId]?.name || '?'
@@ -1316,16 +1600,46 @@ function executeEffect(ctx) {
         }
 
         case 'buff': {
+            const buffVal = _resolveEffectValue(effect.value)
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    m.buffs = m.buffs || []
+                    if (effect.stat === 'maxHp') {
+                        m.maxHp = (m.maxHp || 0) + buffVal
+                        m.currentHp = (m.currentHp || 0) + buffVal
+                        m.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
+                    } else {
+                        m.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
+                    }
+                }
+                addLog(`${moveData.name} → +${buffVal} ${effect.stat} équipe (${effect.duration} tours)`)
+                _fireEnutrofTraps('buff', effect.stat, targetEnemy)
+                break
+            }
+            if (effect.target === 'enemy' || effect.target === 'all_enemies' || effect.target === 'all_enemy') {
+                const isEnemyCasterBuff = !state.team.includes(caster)
+                const buffEnemyTargets = (effect.target === 'all_enemies' || effect.target === 'all_enemy')
+                    ? (isEnemyCasterBuff
+                        ? (combat?.isRaid && combat.enemies ? combat.enemies : [combat?.enemy]).filter(t => t && t.currentHp > 0)
+                        : (combat?.isRaid && combat.enemies ? combat.enemies : [targetEnemy]).filter(t => t && t.currentHp > 0))
+                    : [targetEnemy]
+                for (const t of buffEnemyTargets) {
+                    t.buffs = t.buffs || []
+                    t.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
+                }
+                addLog(`${moveData.name} → +${buffVal} ${effect.stat} (ennemi(s)) (${effect.duration} tours)`)
+                break
+            }
             const buffTarget = _resolveAllyTarget(effect, caster)
             buffTarget.buffs = buffTarget.buffs || []
-            const buffVal = _resolveEffectValue(effect.value)
             if (effect.stat === 'maxHp') {
                 buffTarget.maxHp = (buffTarget.maxHp || 0) + buffVal
                 buffTarget.currentHp = (buffTarget.currentHp || 0) + buffVal
                 buffTarget.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
                 addLog(`${moveData.name} → +${buffVal} PV max et courants (${effect.duration} tours)`)
             } else {
-                buffTarget.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration })
+                buffTarget.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
                 if (effect.stat === 'pendingLifesteal')
                     addLog(`${moveData.name} → vol de vie ×${buffVal} actif (prochain sort)`)
                 else if (effect.stat === 'healOnCast')
@@ -1333,6 +1647,7 @@ function executeEffect(ctx) {
                 else
                     addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
             }
+            _fireEnutrofTraps('buff', effect.stat, targetEnemy)
             // OeilPourOeil : si le caster est un ennemi, les membres actifs qui ont l'effet en miroir gagnent un buff équivalent
             if (state.team.indexOf(caster) === -1) {
                 for (const m of state.team) {
@@ -1352,16 +1667,39 @@ function executeEffect(ctx) {
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
                 m.buffs = m.buffs || []
-                m.buffs.push({ stat: effect.stat, value: buffTeamVal, duration: effect.duration })
+                m.buffs.push({ stat: effect.stat, value: buffTeamVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
             }
             addLog(`${moveData.name} → +${buffTeamVal} ${effect.stat} équipe (${effect.duration} tours)`)
             break
         }
 
         case 'debuff': {
-            const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp', 'all_allies'])
+            const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp'])
             const debuffVal = _resolveEffectValue(effect.value)
-            if (effect.target === 'all_enemy') {
+            const isEnemyCasterDebuff = !state.team.includes(caster)
+            if (effect.target === 'all_enemy' || effect.target === 'all_enemies') {
+                if (isEnemyCasterDebuff) {
+                    for (const m of state.team) {
+                        if (!m || m.currentHp <= 0) continue
+                        m.buffs = m.buffs || []
+                        m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+                    }
+                } else if (combat?.isRaid && combat.enemies) {
+                    for (const e of combat.enemies) {
+                        if (!e || e.currentHp <= 0) continue
+                        e.buffs = e.buffs || []
+                        e.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+                        _fireEnutrofTraps('debuff', effect.stat, e)
+                    }
+                } else {
+                    targetEnemy.buffs = targetEnemy.buffs || []
+                    targetEnemy.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+                    _fireEnutrofTraps('debuff', effect.stat, targetEnemy)
+                }
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (tous) (${effect.duration} tours)`)
+                break
+            }
+            if (effect.target === 'all_allies') {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
                     m.buffs = m.buffs || []
@@ -1373,17 +1711,28 @@ function executeEffect(ctx) {
             const debuffEntity = _ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy
             debuffEntity.buffs = debuffEntity.buffs || []
             debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+            if (!_ALLY_TARGETS.has(effect.target)) _fireEnutrofTraps('debuff', effect.stat, debuffEntity)
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
             break
         }
 
         case 'shield': {
-            // N'applique pas si un bouclier est déjà actif (mais les autres effets du sort passent quand même)
-            if (caster.shield?.value > 0) break
             const shieldVal = effect.levelPct
                 ? Math.floor((caster.level || 1) * effect.levelPct)
                 : effect.value
-            caster.shield = { value: shieldVal, duration: effect.duration }
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0 || m.shield?.value > 0) continue
+                    m.shield = { value: shieldVal, duration: effect.duration }
+                }
+                addLog(`${moveData.name} → bouclier ${shieldVal} PV équipe (${effect.duration} tours)`)
+                break
+            }
+            const shieldTarget = ['ally_random', 'ally_min_hp'].includes(effect.target)
+                ? _resolveAllyTarget(effect, caster)
+                : caster
+            if (shieldTarget.shield?.value > 0) break
+            shieldTarget.shield = { value: shieldVal, duration: effect.duration }
             addLog(`${moveData.name} → bouclier ${shieldVal} PV (${effect.duration} tours)`)
             break
         }
@@ -1398,9 +1747,131 @@ function executeEffect(ctx) {
         }
 
         case 'antiHeal': {
-            targetEnemy.buffs = targetEnemy.buffs || []
-            targetEnemy.buffs.push({ stat: 'antiHeal', duration: effect.duration })
-            addLog(`${ctx.logPrefix || ''}${moveData.name} → anti-soin (${effect.duration} tours)`)
+            if (effect.target === 'all_enemies' || effect.target === 'all_enemy') {
+                const isEnemyCasterAH = !state.team.includes(caster)
+                if (isEnemyCasterAH) {
+                    for (const m of state.team) {
+                        if (!m || m.currentHp <= 0) continue
+                        m.buffs = m.buffs || []
+                        m.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                    }
+                } else if (combat?.isRaid && combat.enemies) {
+                    for (const e of combat.enemies) {
+                        if (!e || e.currentHp <= 0) continue
+                        e.buffs = e.buffs || []
+                        e.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                    }
+                } else {
+                    targetEnemy.buffs = targetEnemy.buffs || []
+                    targetEnemy.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                }
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → anti-soin (tous) (${effect.duration} tours)`)
+            } else {
+                targetEnemy.buffs = targetEnemy.buffs || []
+                targetEnemy.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → anti-soin (${effect.duration} tours)`)
+            }
+            break
+        }
+
+        case 'interception': {
+            const interceptorSlot = state.team.indexOf(caster)
+            if (interceptorSlot !== -1) {
+                combat.interceptor = interceptorSlot
+                addLog(`${moveData.name} → ${caster.name} intercepte tous les dégâts !`)
+            }
+            break
+        }
+
+        case 'buffDrain': {
+            const drainTarget = effect.target === 'enemy' ? targetEnemy : _resolveAllyTarget(effect, caster)
+            if (drainTarget?.buffs?.length) {
+                const before = drainTarget.buffs.length
+                drainTarget.buffs = drainTarget.buffs
+                    .map(b => b.value > 0 ? { ...b, duration: b.duration - effect.value } : b)
+                    .filter(b => b.duration > 0)
+                const removed = before - drainTarget.buffs.length
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → buffs réduits de ${effect.value} tour(s)${removed ? ` (${removed} expiré(s))` : ''}`)
+            } else {
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → aucun buff à drainer`)
+            }
+            break
+        }
+
+        case 'esquive': {
+            const esquiveTarget = _resolveAllyTarget(effect, caster)
+            esquiveTarget.buffs = esquiveTarget.buffs || []
+            esquiveTarget.buffs.push({ stat: 'esquive', value: effect.chancePct, reductionPct: effect.reductionPct ?? 100, duration: effect.duration })
+            addLog(`${moveData.name} → esquive ${effect.chancePct}% (${effect.duration} tours)`)
+            break
+        }
+
+        case 'absorbElementDmg': {
+            // Lit l'élément stocké sur l'ennemi, le consomme, puis inflige des dégâts avec cet élément.
+            // Ne laisse pas de nouvel élément et ne déclenche pas de combo.
+            const _absSlot = (combat?.isRaid && combat.enemies)
+                ? combat.enemies.indexOf(targetEnemy) : 0
+            const _absKey  = _absSlot >= 0 ? _absSlot : 0
+            const _stored  = combat.huppermageLastElement?.[_absKey] || null
+            if (_stored && combat.huppermageLastElement) delete combat.huppermageLastElement[_absKey]
+            const _absElem = _stored || effect.fallbackElement || 'neutre'
+            if (!_stored) addLog(`${moveData.name} → aucun élément à absorber (neutre)`)
+            return executeEffect({ ...ctx, effect: { ...effect, type: 'damage', element: _absElem, _elementConsumed: true } })
+        }
+
+        case 'dmgIfDebuff': {
+            // Dégâts bonus si l'ennemi a un débuff actif sur le stat indiqué.
+            // Si la condition n'est pas remplie : 0 dégâts (loggué).
+            const _hasDebuff = (targetEnemy.buffs || []).some(b => b.stat === effect.stat && b.value < 0)
+            if (!_hasDebuff) { addLog(`${moveData.name} → bonus annulé (pas de débuff ${effect.stat})`); break }
+            addLog(`${moveData.name} → bonus (débuff ${effect.stat} présent) !`)
+            return executeEffect({ ...ctx, effect: { ...effect, type: 'damage' } })
+        }
+
+        case 'setEnutrof': {
+            // Pose l'état Énutrof (air/terre/eau) pour N actions membres.
+            // Mettre en DERNIER dans le tableau effects (après enutrof_bonus).
+            const _sk = `enutrof_${effect.state}_active`
+            if (combat) combat[_sk] = effect.duration ?? 3
+            addLog(`${moveData.name} → état ${effect.state} actif (${effect.duration ?? 3} tours)`)
+            break
+        }
+
+        case 'enutrof_bonus': {
+            // Dégâts bonus si l'état Énutrof correspondant est actif.
+            // requiresDebuff (optionnel) : si présent, le bonus fait 0 si le débuff n'est pas sur l'ennemi
+            //   — mais l'état se consomme quand même (décrément géré dans executeMemberAction).
+            // Mettre en PREMIER dans le tableau effects (avant setEnutrof).
+            const _sk = `enutrof_${effect.state}_active`
+            if ((combat?.[_sk] || 0) <= 0) break
+            if (effect.requiresDebuff) {
+                const _hasReqDebuff = (targetEnemy.buffs || []).some(b => b.stat === effect.requiresDebuff && b.value < 0)
+                if (!_hasReqDebuff) {
+                    addLog(`${moveData.name} → bonus ${effect.state} : 0 (pas de débuff ${effect.requiresDebuff})`)
+                    break
+                }
+            }
+            addLog(`${moveData.name} → bonus ${effect.state} !`)
+            return executeEffect({ ...ctx, effect: { ...effect, type: 'damage' } })
+        }
+
+        case 'enutrof_trap': {
+            // Piège réactif Énutrof : se déclenche automatiquement quand trigger.type survient.
+            // trigger : { type: 'debuff'|'buff'|'heal', stat?: 'spd'|'atk'|... }
+            // La durée (en actions alliées) est décrémentée dans executeMemberAction.
+            combat.enutrof_traps = combat.enutrof_traps || []
+            combat.enutrof_traps = combat.enutrof_traps.filter(t => t.id !== effect.id)
+            combat.enutrof_traps.push({
+                id:       effect.id,
+                active:   effect.duration ?? 3,
+                trigger:  effect.trigger,
+                element:  effect.element,
+                damage:   effect.damage,
+                caster,
+                casterStats,
+                _justSet: true
+            })
+            addLog(`${moveData.name} → ${effect.id} actif (${effect.duration ?? 3} actions alliées)`)
             break
         }
 
@@ -1487,14 +1958,22 @@ function executeEffect(ctx) {
             const turretScaled = Math.max(1, Math.floor(
                 turretBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
             ))
+            const turretEntry  = { label: 'Tourelle', element: effect.element || 'neutre', value: turretScaled, duration: effect.duration || 3 }
+            if (effect.target === 'all_enemies' || effect.target === 'all_enemy') {
+                const isEnemyCasterTurret = !state.team.includes(caster)
+                const turretTargets = isEnemyCasterTurret
+                    ? state.team.filter(m => m && m.currentHp > 0)
+                    : combat?.isRaid && combat.enemies ? combat.enemies.filter(e => e && e.currentHp > 0) : [targetEnemy]
+                for (const t of turretTargets) {
+                    t.dots = t.dots || []
+                    t.dots.push({ ...turretEntry })
+                }
+                addLog(`${moveData.name} → Tourelle déployée ! ${turretScaled} dégâts/${turretEntry.element} × ${turretEntry.duration} tours (tous)`)
+                break
+            }
             targetEnemy.dots = targetEnemy.dots || []
-            targetEnemy.dots.push({
-                label:    'Tourelle',
-                element:  effect.element  || 'neutre',
-                value:    turretScaled,
-                duration: effect.duration || 3
-            })
-            addLog(`${moveData.name} → Tourelle déployée ! ${turretScaled} dégâts/${effect.element || 'neutre'} × ${effect.duration || 3} tours`)
+            targetEnemy.dots.push(turretEntry)
+            addLog(`${moveData.name} → Tourelle déployée ! ${turretScaled} dégâts/${turretEntry.element} × ${turretEntry.duration} tours`)
             break
         }
 
@@ -1588,6 +2067,17 @@ function executeEffect(ctx) {
             }
             return subLastDmg
         }
+
+        case 'best_element_damage': {
+            const _ELEMENTS = ['neutre', 'terre', 'feu', 'eau', 'air']
+            const _res = targetEnemy.res || {}
+            let bestEl = 'neutre', lowestRes = Infinity
+            for (const el of _ELEMENTS) {
+                const r = _res[el] ?? 0
+                if (r < lowestRes) { lowestRes = r; bestEl = el }
+            }
+            return executeEffect({ ...ctx, effect: { ...effect, type: 'damage', element: bestEl } })
+        }
     }
 }
 
@@ -1612,8 +2102,13 @@ function executeEnemyAction() {
     const prevMoveIdx = (curMoveIdx - 1 + e.moves.length) % e.moves.length
     const prevMv      = e.moves[prevMoveIdx] ? (move[e.moves[prevMoveIdx]] || null) : null
 
-    // cible = membre actif
-    const target = state.team[combat.activeMemberIndex]
+    // cible = membre actif (ou intercepteur si actif)
+    let target = state.team[combat.activeMemberIndex]
+    if (combat.interceptor !== undefined) {
+        const interceptor = state.team[combat.interceptor]
+        if (interceptor?.currentHp > 0) target = interceptor
+        else delete combat.interceptor
+    }
     if (!target || target.currentHp <= 0) { onDefeat(); return }
 
     // Stats d'attaque de l'ennemi (buffs actifs inclus)
@@ -1628,10 +2123,29 @@ function executeEnemyAction() {
         res:               combat.enemy.res || {}
     }
     for (const b of (combat.enemy.buffs || [])) {
+        if ((b.delay ?? 0) > 0) continue
         if (b.stat in enemyStats) enemyStats[b.stat] += b.value
     }
 
-    const targetStats = getEffectiveStats(target)
+    // Combos Huppermage one-shots : réduction dégâts ennemi ce tour
+    {
+        const _feuEau = (e.buffs || []).find(b => b.stat === 'feu_eau_debuff')
+        if (_feuEau) {
+            e.buffs = e.buffs.filter(b => b !== _feuEau)
+            if (Math.random() * 100 < 7) {
+                enemyStats.finalDamagePct -= 50
+                addLog(`Perturbation élémentaire → ${e.name} -50% dégâts ce tour`)
+            }
+        }
+        const _eauAir = (e.buffs || []).find(b => b.stat === 'eau_air_debuff')
+        if (_eauAir) {
+            e.buffs = e.buffs.filter(b => b !== _eauAir)
+            enemyStats.finalDamagePct -= 15
+            addLog(`Bouclier élémentaire → ${e.name} -15% dégâts ce tour`)
+        }
+    }
+
+    const targetStats = getEffectiveStats(target) ?? target._stats ?? null
     const logPrefix   = `${combat.enemy.name} utilise `
 
     let lastDamageDealt = 0
@@ -1647,7 +2161,12 @@ function executeEnemyAction() {
             lastDamageDealt,
             logPrefix,
             onTargetKill: () => {
-                _autoSwitchActive()
+                const interceptorSlot = combat.interceptor
+                if (interceptorSlot !== undefined && target === state.team[interceptorSlot]) {
+                    returnAllyToOwner(interceptorSlot)
+                } else {
+                    _autoSwitchActive()
+                }
                 if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
             }
         })
@@ -1734,7 +2253,7 @@ function spawnSummon(caster, effect) {
 
     if (slotIdx !== -1) {
         // ── Invocation alliée : remplace le membre dans son slot ─────────────
-        const scale  = 1 + ((rawLevel - 1) * 0.08)
+        const scale  = mob.fixedHp ? 1 : 1 + ((rawLevel - 1) * 0.08)
         const maxHp  = Math.floor(mob.bst.hp  * scale)
         const atk    = Math.floor(mob.bst.atk * scale)
         const mvSlots = { slot1: null, slot2: null, slot3: null, slot4: null }
@@ -1822,6 +2341,7 @@ function returnAllyToOwner(slotIdx) {
 
     state.team[slotIdx] = original
     delete combat.savedMembers[slotIdx]
+    if (combat.interceptor === slotIdx) delete combat.interceptor
     addLog(`${original.name || classes[original.classId]?.name || '?'} reprend le combat !`)
 }
 
@@ -2049,8 +2569,8 @@ function tickBuffs(entity) {
             }
         }
         entity.buffs = entity.buffs
-            .map(b => ({ ...b, duration: b.duration - 1 }))
-            .filter(b => b.duration > 0)
+            .map(b => b.delay > 0 ? { ...b, delay: b.delay - 1 } : { ...b, duration: b.duration - 1 })
+            .filter(b => (b.delay ?? 0) > 0 || b.duration > 0)
     }
     if (entity.shield) {
         entity.shield.duration--
@@ -2121,8 +2641,14 @@ function _initRaidCombat(areaId) {
     combat.enemies            = [spawnEnemy(areaId), spawnEnemy(areaId), spawnEnemy(areaId)]
     combat.enemyTimers        = [0, 0, 0]
     combat.enemyNextMoveIds   = combat.enemies.map(e => pickNextEnemyMove(e))
-    combat.raidRespawnPending = [false, false, false]
-    combat.raidSavedEnemies   = [null, null, null]
+    combat.raidRespawnPending    = [false, false, false]
+    combat.raidSavedEnemies      = [null, null, null]
+    combat.huppermageLastElement = {}
+    combat.huppermageComboCount  = 0
+    combat.enutrof_air_active    = 0
+    combat.enutrof_terre_active  = 0
+    combat.enutrof_eau_active    = 0
+    combat.enutrof_traps         = []
     combat.pendingRaidSwap    = null
     combat.raidKillCount      = 0
     combat.raidMiniBossActive = false
@@ -2272,6 +2798,7 @@ function raidGameTick() {
 
         let effectiveSpd = enemy.spd || 100
         for (const b of (enemy.buffs || [])) {
+            if ((b.delay ?? 0) > 0) continue
             if (b.stat === 'spd') effectiveSpd += b.value
         }
         effectiveSpd = Math.max(1, effectiveSpd)
@@ -2383,6 +2910,12 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     const rawPrevMv = move[member.moves[nonNull[prevNonNullIdx]]]
     const prevMv    = rawPrevMv ? applyProgression(rawPrevMv, effectiveLvl) : null
 
+    const _prevEnutrofRaid = {
+        air:   combat.enutrof_air_active   || 0,
+        terre: combat.enutrof_terre_active || 0,
+        eau:   combat.enutrof_eau_active   || 0
+    }
+
     let lastDamageDealt = 0
     let sessionDmg = 0
     for (const effect of mv.effects) {
@@ -2399,12 +2932,27 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
         combat.sessionLoot.memberDamage[memberIdx] = (combat.sessionLoot.memberDamage[memberIdx] || 0) + sessionDmg
     }
 
+    for (const s of ['air', 'terre', 'eau']) {
+        const k = `enutrof_${s}_active`
+        if ((combat[k] || 0) > 0 && combat[k] === _prevEnutrofRaid[s]) combat[k]--
+    }
+
+    // Décrément des pièges Énutrof (par action alliée)
+    if (combat.enutrof_traps?.length) {
+        for (const trap of combat.enutrof_traps) {
+            if (trap._justSet) { trap._justSet = false; continue }
+            if (trap.active > 0) trap.active--
+        }
+        combat.enutrof_traps = combat.enutrof_traps.filter(t => t.active > 0)
+    }
+
     _applyHealOnCast(member, mv)
     tickBuffs(member)
 
     const newRawIdx   = combat.memberMoveIndex[memberIdx]
     const cycleLength = isXelor ? 7 : nonNull.length
     _applyPassiveTick(member, memberIdx, newRawIdx, cycleLength, targetEnemy)
+    _applyItemPassives(member, memberIdx, newRawIdx, targetEnemy)
 
     combat.memberTimers[memberIdx] = 0
 }
@@ -2430,7 +2978,12 @@ function executeEnemyActionRaid(slotIdx) {
 
     const targetMemberIdx = _getRaidTargetMember(slotIdx)
     if (targetMemberIdx === -1) { onDefeat(); return }
-    const target = state.team[targetMemberIdx]
+    let target = state.team[targetMemberIdx]
+    if (combat.interceptor !== undefined) {
+        const interceptor = state.team[combat.interceptor]
+        if (interceptor?.currentHp > 0) target = interceptor
+        else delete combat.interceptor
+    }
     if (!target || target.currentHp <= 0) { onDefeat(); return }
 
     const enemyStats = {
@@ -2442,7 +2995,25 @@ function executeEnemyActionRaid(slotIdx) {
         if (b.stat in enemyStats) enemyStats[b.stat] += b.value
     }
 
-    const targetStats = getEffectiveStats(target)
+    // Combos Huppermage one-shots : réduction dégâts ennemi ce tour
+    {
+        const _feuEau = (e.buffs || []).find(b => b.stat === 'feu_eau_debuff')
+        if (_feuEau) {
+            e.buffs = e.buffs.filter(b => b !== _feuEau)
+            if (Math.random() * 100 < 7) {
+                enemyStats.finalDamagePct -= 50
+                addLog(`Perturbation élémentaire → ${e.name} -50% dégâts ce tour`)
+            }
+        }
+        const _eauAir = (e.buffs || []).find(b => b.stat === 'eau_air_debuff')
+        if (_eauAir) {
+            e.buffs = e.buffs.filter(b => b !== _eauAir)
+            enemyStats.finalDamagePct -= 15
+            addLog(`Bouclier élémentaire → ${e.name} -15% dégâts ce tour`)
+        }
+    }
+
+    const targetStats = getEffectiveStats(target) ?? target._stats ?? null
     const logPrefix   = `${e.name} utilise `
 
     let lastDamageDealt = 0
@@ -2453,7 +3024,12 @@ function executeEnemyActionRaid(slotIdx) {
             effect, moveData: mv, prevMv, lastDamageDealt,
             logPrefix,
             onTargetKill: () => {
-                _autoSwitchRaidSlot(slotIdx)
+                const interceptorSlot = combat.interceptor
+                if (interceptorSlot !== undefined && target === state.team[interceptorSlot]) {
+                    returnAllyToOwner(interceptorSlot)
+                } else {
+                    _autoSwitchRaidSlot(slotIdx)
+                }
                 if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
             }
         })
@@ -2473,6 +3049,8 @@ function executeEnemyActionRaid(slotIdx) {
 function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     if (combat.raidRespawnPending[slotIdx]) return
     combat.raidRespawnPending[slotIdx] = true
+
+    if (combat.huppermageLastElement) delete combat.huppermageLastElement[slotIdx]
 
     const defeatedEnemy = combat.enemies[slotIdx]
 

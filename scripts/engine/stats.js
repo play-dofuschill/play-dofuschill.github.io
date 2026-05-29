@@ -76,6 +76,7 @@ function getEffectiveStats(member, syncedLevel = null) {
 
     if (member.buffs) {
         for (const buff of member.buffs) {
+            if ((buff.delay ?? 0) > 0) continue
 
             if (buff.stat === 'atk')
                 atk += buff.value
