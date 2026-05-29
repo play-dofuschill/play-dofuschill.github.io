@@ -1494,7 +1494,44 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     height: 2rem;
     width: 2rem;
     margin-right: 0.5rem;
+}
 
+#combat-speed-controls {
+    width: 95%;
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+}
+
+.combat-speed-btn {
+    flex: 1;
+    height: 2.2rem;
+    border: none;
+    border-radius: 0.3rem;
+    background: var(--dark2);
+    outline: 2px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: scale 0.1s, background 0.15s;
+    flex-shrink: 0;
+}
+
+.combat-speed-btn:hover {
+    scale: 1.05;
+    background: var(--light1);
+    color: white;
+}
+
+.combat-speed-btn:active {
+    scale: 0.93;
+}
+
+.combat-speed-btn.active {
+    background: rgba(74, 139, 219, 0.85);
+    outline-color: rgba(146, 196, 255, 0.7);
+    color: white;
 }
 
 
@@ -4595,6 +4632,20 @@ transform: translateY(-1rem);
 .es-move-type  { opacity: 0.5; font-size: 0.72rem; }
 .es-move-detail { font-size: 0.75rem; color: var(--dark1); min-width: 2.5rem; text-align: right; }
 .es-move-cd    { font-size: 0.68rem; opacity: 0.45; min-width: 2rem; text-align: right; }
+
+/* ── Statut combat (buffs / debuffs / DOTs / HOTs) ────────────── */
+.es-combat-status { display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.2rem; }
+.es-status-row {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.18rem 0.55rem;
+    border-radius: 0.3rem;
+    color: var(--dark1);
+}
+.es-status-buff    { background: rgba(45, 122, 45,  0.18); border-left: 3px solid #2D7A2D; }
+.es-status-debuff  { background: rgba(212, 90,  67,  0.18); border-left: 3px solid #d45a43; }
+.es-status-shield  { background: rgba(74, 139, 219, 0.18); border-left: 3px solid #4a8bdb; }
+.es-status-dot     { background: rgba(212, 168, 67,  0.18); border-left: 3px solid #d4a843; }
+.es-status-hot     { background: rgba(67,  212, 120, 0.18); border-left: 3px solid #43d478; }
 
 /* ── Zones — état actif + description ───────────────────── */
 .explore-ticket        { cursor: pointer; }

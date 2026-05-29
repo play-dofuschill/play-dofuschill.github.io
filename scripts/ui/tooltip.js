@@ -453,13 +453,15 @@ function showMemberSheet(member) {
                 ${statRow(STAT_ICONS.buff,        'Réduction dégâts %',  0,  eff.damageReductionPct,'%'  )}
                 ${statRow(STAT_ICONS.atk,        'Chance critique %',   0,  eff.critChance,        '%'  )}
                 ${statRow(STAT_ICONS.atk,        'Dégâts critiques %',  50, eff.critDamagePct,     '%'  )}
+                ${(() => { const erosionActive = (member.buffs || []).filter(b => b.stat === 'erosionBonus').reduce((s,b)=>s+b.value,0); return erosionActive ? statRow(STAT_ICONS.atk, 'Érosion bonus', 0, Math.round(erosionActive), '%') : '' })()}
                 ${eff.healPct        ? statRow(STAT_ICONS.soin,   'Soins %',         0,  eff.healPct,        '%') : ''}
                 ${eff.healTeamPct    ? statRow(STAT_ICONS.soin,   'Soins équipe %',  0,  eff.healTeamPct,    '%') : ''}
                 ${eff.healMaxHpPct   ? statRow(STAT_ICONS.soin,   'Soins PV max %',  0,  eff.healMaxHpPct,   '%') : ''}
                 ${eff.lifestealPct   ? statRow(STAT_ICONS.volVie, 'Vol de vie %',    0,  eff.lifestealPct,   '%') : ''}
             </div>
         </div>
-        <div class="ms-section-title">Sorts actifs</div>
+        ${_renderCombatStatus(member)}
+        <div class="ms-section-title" style="margin-top:0.6rem;">Sorts actifs</div>
         <div class="ms-active-moves">${activeMoves}</div>
         <div class="ms-section-title">Sorts appris</div>
         <div class="ms-learned-moves">${learnedRows}</div>
@@ -529,6 +531,54 @@ function equipItemFromSheet(classId, slotId, itemId) {
     showMemberSheet(member)
 }
 
+// ─── Statut combat (buffs / debuffs / DOTs / HOTs / bouclier) ────────────────
+
+function _renderCombatStatus(entity) {
+    if (typeof combat === 'undefined' || !combat || !state.isRunning) return ''
+    const rows = []
+    const STAT_N = {
+        atk: 'Puissance', spd: 'Initiative', flatDamage: 'Dég. fixes',
+        finalDamagePct: 'Dég. finaux', spellDamagePct: 'Dég. sorts',
+        damageReductionPct: 'Réd. dégâts', critChance: 'Crit. %',
+        critDamagePct: 'Dég. crit.', maxHp: 'PV max', res_all: 'Rés. all',
+        antiHeal: 'Anti-soin', healOnCast: 'Fontaine',
+        pendingLifesteal: 'Vol de vie', erosionBonus: 'Érosion'
+    }
+    const PCT = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
+                         'critChance','critDamagePct','res_all','healOnCast','erosionBonus'])
+    const sName = s => {
+        if (!s) return '?'
+        if (STAT_N[s]) return STAT_N[s]
+        if (s.startsWith('res.')) return 'Rés. ' + s.split('.')[1]
+        return s
+    }
+    const unitOf = s => (PCT.has(s) || s?.startsWith('res.')) ? '%' : ''
+
+    if (entity.shield?.value > 0) {
+        rows.push(`<div class="es-status-row es-status-shield">Bouclier : +${entity.shield.value} PV (${entity.shield.duration} t.)</div>`)
+    }
+    for (const b of (entity.buffs || [])) {
+        if (b.stat === 'antiHeal') {
+            rows.push(`<div class="es-status-row es-status-debuff">Anti-soin (${b.duration} t.)</div>`)
+            continue
+        }
+        const name = sName(b.stat)
+        const sign = b.value > 0 ? '+' : ''
+        const unit = unitOf(b.stat)
+        const cls  = b.value >= 0 ? 'es-status-buff' : 'es-status-debuff'
+        rows.push(`<div class="es-status-row ${cls}">${sign}${Math.round(b.value)}${unit} ${name} (${b.duration} t.)</div>`)
+    }
+    for (const d of (entity.dots || [])) {
+        rows.push(`<div class="es-status-row es-status-dot">${d.label || 'DOT'} : −${d.value} PV/${d.element || 'neutre'} (${d.duration} t.)</div>`)
+    }
+    for (const h of (entity.hots || [])) {
+        rows.push(`<div class="es-status-row es-status-hot">${h.label || 'HOT'} : +${h.value} PV/tour (${h.duration} t.)</div>`)
+    }
+    if (!rows.length) return ''
+    return `<div class="ms-section-title" style="margin-top:0.6rem;">Statut combat</div>
+        <div class="es-combat-status">${rows.join('')}</div>`
+}
+
 // ─── Fiche ennemi ────────────────────────────────────────────────────────────
 
 function showEnemySheet(enemy) {
@@ -545,22 +595,49 @@ function showEnemySheet(enemy) {
     const rarityHtml    = enemy.rarity ? `<span class="rarity-${enemy.rarity}" style="font-size:0.72rem;">${enemy.rarity.replace('_', ' ')}</span>` : ''
     const elemHtml      = enemy.element ? `<span class="elem-badge elem-${enemy.element}" style="font-size:0.72rem;">${enemy.element}</span>` : ''
 
-    // Stats offensives
-    function statRow(iconSrc, label, value, unit = '') {
+    // Stats effectives (base + buffs actifs)
+    let effAtk        = enemy.atk            || 0
+    let effSpd        = enemy.spd            || 100
+    let effFinal      = enemy.finalDamagePct || 0
+    let effFlat       = enemy.flatDamage     || 0
+    let effDmgRedPct  = 0
+    let effSpellDmg   = 0
+    let effCritChance = 0
+    const effRes  = { ...enemy.res }
+    for (const b of (enemy.buffs || [])) {
+        if      (b.stat === 'atk')               effAtk       += b.value
+        else if (b.stat === 'spd')               effSpd       += b.value
+        else if (b.stat === 'finalDamagePct')    effFinal     += b.value
+        else if (b.stat === 'flatDamage')        effFlat      += b.value
+        else if (b.stat === 'damageReductionPct') effDmgRedPct += b.value
+        else if (b.stat === 'spellDamagePct')    effSpellDmg  += b.value
+        else if (b.stat === 'critChance')        effCritChance+= b.value
+        else if (b.stat === 'res_all')           { for (const e in effRes) effRes[e] += b.value }
+        else if (b.stat?.startsWith('res.'))     { const e = b.stat.split('.')[1]; if (e in effRes) effRes[e] += b.value }
+    }
+    effSpd = Math.max(1, effSpd)
+
+    // Ligne de stat avec coloration si la valeur a changé par rapport à la base
+    function statRow(iconSrc, label, baseVal, effVal, unit = '') {
+        const delta = effVal - baseVal
+        const color = delta > 0 ? '#2D7A2D' : delta < 0 ? '#d45a43' : ''
         return `<div class="ms-stat-row">
             <img src="${iconSrc}" class="ms-stat-icon" onerror="this.src='img/icons/icon.png'">
             <span class="ms-stat-label">${label}</span>
-            <span class="ms-stat-val">${Math.round(value)}${unit}</span>
+            <span class="ms-stat-val"${color ? ` style="color:${color}"` : ''}>${Math.round(effVal)}${unit}</span>
         </div>`
     }
 
     const elems = ['neutre', 'terre', 'feu', 'eau', 'air']
     const resRows = elems.map(el => {
-        const val = enemy.res?.[el] ?? 0
+        const base = enemy.res?.[el] ?? 0
+        const eff  = effRes[el] ?? base
+        const delta = eff - base
+        const color = delta !== 0 ? (delta > 0 ? 'color:#2D7A2D' : 'color:#d45a43') : (eff > 0 ? 'color:#2D7A2D' : eff < 0 ? 'color:#d45a43' : '')
         return `<div class="ms-stat-row">
             <img src="${ELEM_ICONS[el] || ELEM_ICONS.neutre}" class="ms-stat-icon">
             <span class="ms-stat-label">${el.charAt(0).toUpperCase() + el.slice(1)}</span>
-            <span class="ms-stat-val" style="${val > 0 ? 'color:#2D7A2D' : val < 0 ? 'color:#d45a43' : ''}">${val}%</span>
+            <span class="ms-stat-val" style="${color}">${eff}%</span>
         </div>`
     }).join('')
 
@@ -628,19 +705,28 @@ function showEnemySheet(enemy) {
         <div class="es-hp-text">${enemy.currentHp} / ${enemy.maxHp} PV</div>
         <div class="ms-section-title" style="margin-top:0.5rem;">Stats</div>
         <div class="ms-stats">
-            ${statRow(STAT_ICONS.atk, 'Puissance', enemy.atk)}
-            ${statRow(STAT_ICONS.spd, 'Initiative', enemy.spd)}
-            ${enemy.finalDamagePct ? statRow(STAT_ICONS.atk, 'Dég. finaux', enemy.finalDamagePct, '%') : ''}
-            ${enemy.flatDamage     ? statRow(STAT_ICONS.flatDamage, 'Dég. fixes', enemy.flatDamage) : ''}
+            ${statRow(STAT_ICONS.atk,       'Puissance',  enemy.atk  || 0,   effAtk           )}
+            ${statRow(STAT_ICONS.spd,       'Initiative', enemy.spd  || 100, effSpd           )}
+            ${(enemy.finalDamagePct || effFinal)    ? statRow(STAT_ICONS.atk,        'Dég. finaux',    enemy.finalDamagePct || 0, effFinal,      '%') : ''}
+            ${(enemy.flatDamage     || effFlat)     ? statRow(STAT_ICONS.flatDamage,  'Dég. fixes',    enemy.flatDamage     || 0, effFlat           ) : ''}
+            ${effDmgRedPct                          ? statRow(STAT_ICONS.buff,         'Réd. dégâts',  0,                        effDmgRedPct,  '%') : ''}
+            ${effSpellDmg                           ? statRow(STAT_ICONS.atk,          'Dég. sorts',   0,                        effSpellDmg,   '%') : ''}
+            ${effCritChance                         ? statRow(STAT_ICONS.atk,          'Crit. %',      0,                        effCritChance, '%') : ''}
         </div>
         <div class="ms-section-title">Résistances</div>
         <div class="ms-stats">${resRows}</div>
-        <div class="ms-section-title">Sorts</div>
+        ${_renderCombatStatus(enemy)}
+        <div class="ms-section-title" style="margin-top:0.6rem;">Sorts</div>
         <div class="es-moves">${moveRows || '<span style="opacity:0.4;font-size:0.8rem">Aucun sort</span>'}</div>
         ${familiarHtml}
     </div>`
 
     openTooltip(`${enemy.name} — Niveau ${enemy.level}`, body)
+}
+
+function _showRaidEnemySheet(slotIdx) {
+    const enemy = combat?.enemies?.[slotIdx]
+    if (enemy && enemy.currentHp > 0) showEnemySheet(enemy)
 }
 
 // ─── Fiche zone détaillée ─────────────────────────────────────────────────────

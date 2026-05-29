@@ -437,46 +437,46 @@ areas.evenementPious = {
         { itemId: 'piloteAutomatique', dropRate: 0.05 }
     ]
 }
-areas.evenementDopeuls = {
-    id: 'evenementDopeuls',
-    type: 'event',
-    name: 'Invasion Dopeuls',
-    minLevel: 55, maxLevel: 80,
-    mobMinLevel: 55, mobMaxLevel: 70,
-    background: 'tainela',
-    icon: 'img/monstres/Events/dopeul_iop.png',
-    description: "Le Village des Dopeuls ! Des reflets des douze classes et... quelques autres... envahissent le Monde des Douze. Affronte ces copies miroir avant qu'elles ne sèment le chaos.",
-    spawns: [
-        { id: 'dopeul_cra',        weight: 6 },
-        { id: 'dopeul_ecaflip',    weight: 5 },
-        { id: 'dopeul_eliotrope',  weight: 5 },
-        { id: 'dopeul_eniripsa',   weight: 6 },
-        { id: 'dopeul_enutrof',    weight: 5 },
-        { id: 'dopeul_feca',       weight: 6 },
-        { id: 'dopeul_forgelance', weight: 5 },
-        { id: 'dopeul_huppermage', weight: 5 },
-        { id: 'dopeul_iop',        weight: 6 },
-        { id: 'dopeul_osamodas',   weight: 5 },
-        { id: 'dopeul_ouginak',    weight: 5 },
-        { id: 'dopeul_pandawa',    weight: 5 },
-        { id: 'dopeul_roublard',   weight: 5 },
-        { id: 'dopeul_sacrieur',   weight: 5 },
-        { id: 'dopeul_sadida',     weight: 5 },
-        { id: 'dopeul_sram',       weight: 5 },
-        { id: 'dopeul_steamer',    weight: 5 },
-        { id: 'dopeul_xelor',      weight: 5 },
-        { id: 'dopeul_zobal',      weight: 5 },
-        { id: 'dopeul_darkvlad',   weight: 1 }
-    ],
-    lootTable: [
-        { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'runeHpS',           dropRate: 0.01 },
-        { itemId: 'runeAtkS',          dropRate: 0.01 },
-        { itemId: 'runeSpdS',          dropRate: 0.01 },
-        { itemId: 'runeFlatDmgS',      dropRate: 0.01 },
-        { itemId: 'runeCritS',         dropRate: 0.01 }
-    ]
-}
+// areas.evenementDopeuls = {
+//     id: 'evenementDopeuls',
+//     type: 'event',
+//     name: 'Invasion Dopeuls',
+//     minLevel: 55, maxLevel: 80,
+//     mobMinLevel: 55, mobMaxLevel: 70,
+//     background: 'tainela',
+//     icon: 'img/monstres/Events/dopeul_iop.png',
+//     description: "Le Village des Dopeuls ! Des reflets des douze classes et... quelques autres... envahissent le Monde des Douze. Affronte ces copies miroir avant qu'elles ne sèment le chaos.",
+//     spawns: [
+//         { id: 'dopeul_cra',        weight: 6 },
+//         { id: 'dopeul_ecaflip',    weight: 5 },
+//         { id: 'dopeul_eliotrope',  weight: 5 },
+//         { id: 'dopeul_eniripsa',   weight: 6 },
+//         { id: 'dopeul_enutrof',    weight: 5 },
+//         { id: 'dopeul_feca',       weight: 6 },
+//         { id: 'dopeul_forgelance', weight: 5 },
+//         { id: 'dopeul_huppermage', weight: 5 },
+//         { id: 'dopeul_iop',        weight: 6 },
+//         { id: 'dopeul_osamodas',   weight: 5 },
+//         { id: 'dopeul_ouginak',    weight: 5 },
+//         { id: 'dopeul_pandawa',    weight: 5 },
+//         { id: 'dopeul_roublard',   weight: 5 },
+//         { id: 'dopeul_sacrieur',   weight: 5 },
+//         { id: 'dopeul_sadida',     weight: 5 },
+//         { id: 'dopeul_sram',       weight: 5 },
+//         { id: 'dopeul_steamer',    weight: 5 },
+//         { id: 'dopeul_xelor',      weight: 5 },
+//         { id: 'dopeul_zobal',      weight: 5 },
+//         { id: 'dopeul_darkvlad',   weight: 1 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',        dropRate: 0.45 },
+//         { itemId: 'runeHpS',           dropRate: 0.01 },
+//         { itemId: 'runeAtkS',          dropRate: 0.01 },
+//         { itemId: 'runeSpdS',          dropRate: 0.01 },
+//         { itemId: 'runeFlatDmgS',      dropRate: 0.01 },
+//         { itemId: 'runeCritS',         dropRate: 0.01 }
+//     ]
+// }
 areas.evenementBiblop = {
     id: 'evenementBiblop',
     type: 'event',

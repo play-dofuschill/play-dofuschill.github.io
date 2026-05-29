@@ -574,10 +574,11 @@ function _buildRaidActiveMemberCard(m, teamIdx, slotIdx, slots) {
     }).join('')
 
     const div = document.createElement('div')
-    div.className       = `raid-member-card raid-slot-order-${slotIdx}${isPending ? ' raid-swap-selected' : ''}`
-    div.dataset.teamIdx = teamIdx
-    div.dataset.moveKey = moveKey
-    div.onclick         = () => setActiveMember(teamIdx)
+    div.className            = `raid-member-card raid-slot-order-${slotIdx}${isPending ? ' raid-swap-selected' : ''}`
+    div.dataset.teamIdx      = teamIdx
+    div.dataset.moveKey      = moveKey
+    div.dataset.help         = m.classId
+    div.onclick              = () => setActiveMember(teamIdx)
     div.style.opacity   = m.currentHp > 0 ? '1' : '0.4'
     div.innerHTML = `
         <div class="raid-member-slot-label slot-${slotIdx}">${RAID_SLOT_LABELS[slotIdx]}</div>
@@ -608,6 +609,7 @@ function _buildRaidBenchMemberCard(m, teamIdx) {
     const div = document.createElement('div')
     div.className       = `raid-bench-card${isPending ? ' raid-swap-selected' : ''}`
     div.dataset.teamIdx = teamIdx
+    div.dataset.help    = m.classId
     div.onclick         = () => setActiveMember(teamIdx)
     div.style.opacity   = m.currentHp > 0 ? '0.65' : '0.35'
     div.innerHTML = `

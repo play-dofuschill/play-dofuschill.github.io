@@ -388,7 +388,7 @@ function renderEquipPickGrid() {
         const handler  = (taken || locked) ? '' : `onclick="_doEquipPick('${e.id}')"`
 
         if (isFamiliar) {
-            const FAM_BUBBLE_LABELS = { atk: 'Pui', dropRate: '% drop', xpGain: 'XP' }
+            const FAM_BUBBLE_LABELS = { atk: 'Pui', dropRate: '% drop', xpGain: 'XP', spd: 'Ini' }
             const statLabel = e.famBonus ? (FAM_BUBBLE_LABELS[e.famBonus.stat] ?? formatBonusStat(e.famBonus.stat)) : null
             const bonus = e.famBonus ? `+${e.famBonus.value} ${statLabel}` : '—'
             html += `<div class="equip-pick-item${disClass}" ${handler}

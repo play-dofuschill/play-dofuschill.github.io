@@ -5,7 +5,38 @@
 // À 100%, l'entité exécute son action et la barre se remet à 0.
 
 const TICK_MS    = 1000 / 60   // 60 fps
-const BASE_TIME  = 2000        // ms pour remplir la barre
+const BASE_TIME  = 2000        // cooldown par défaut (ms) si un sort n'en a pas
+
+// Retourne le cooldown (ms) du prochain sort qu'un membre va lancer.
+// Utilisé pour calibrer le taux de remplissage de la barre : barre = cooldownMs / (spd/100).
+function _peekNextCastCooldown(member, memberIndex) {
+    if (!member?.moves) return BASE_TIME
+    const effectiveLvl = combat?.syncedLevel ? Math.min(member.level, combat.syncedLevel) : member.level
+    const slots = ['slot1', 'slot2', 'slot3', 'slot4']
+    const nonNull = slots.filter(s => {
+        if (!member.moves[s]) return false
+        if (!combat?.syncedLevel) return true
+        const cls = classes[member.classId]
+        const moveId = member.moves[s]
+        if (moveId === cls?.startingMove) return true
+        const unlockLvl = Object.entries(cls?.learnset || {}).find(([, v]) => v === moveId)?.[0]
+        return !unlockLvl || parseInt(unlockLvl) <= combat.syncedLevel
+    })
+    if (!nonNull.length) return BASE_TIME
+    const XELOR_PATTERN = [0, 1, 2, 3, 2, 1, 0]
+    const isXelor = classes[member.classId]?.passive?.id === 'xelor' && nonNull.length === 4
+    const rawIdx = combat?.memberMoveIndex?.[memberIndex] ?? 0
+    const idx = isXelor ? XELOR_PATTERN[rawIdx % 7] : rawIdx % nonNull.length
+    const cd = move[member.moves[nonNull[idx]]]?.cooldownMs
+    return cd ?? BASE_TIME
+}
+
+// Retourne le cooldown (ms) du prochain sort d'un ennemi.
+function _peekEnemyCastCooldown(enemy) {
+    if (!enemy?.moves?.length) return BASE_TIME
+    const nextMoveId = enemy.moves[enemy.moveIndex % enemy.moves.length]
+    return (nextMoveId ? (move[nextMoveId]?.cooldownMs ?? BASE_TIME) : BASE_TIME)
+}
 
 
 let _rafId         = null
@@ -15,6 +46,7 @@ let combat         = null   // état du combat en cours
 let _autoPilot        = null   // { remaining: N, accumulated: sessionLoot } | null
 let _dungeonAutoRun   = null   // { accumulated: sessionLoot } | null — relance auto donjon
 let _afkSeconds       = 0      // secondes d'absence à rattraper en fast-forward
+let _combatSpeedMult  = 1.0    // 1=normal, 0=pause, 0.5=lent×2, 0.33=lent×3, 0.25=lent×4
 
 // ─── Boucle de jeu (requestAnimationFrame) ────────────────────────────────────
 
@@ -339,7 +371,12 @@ function startCombat(areaId) {
     }
 
     if (_isResume && state.savedCombatEnemy) {
-        combat.enemy = JSON.parse(JSON.stringify(state.savedCombatEnemy))
+        if ((state.savedCombatEnemy.currentHp ?? 1) <= 0) {
+            // Enemy was dead at save time (killed during 500 ms respawn window) — spawn fresh
+            combat.enemy = spawnEnemy(areaId)
+        } else {
+            combat.enemy = JSON.parse(JSON.stringify(state.savedCombatEnemy))
+        }
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         state.savedCombatEnemy = null
     } else if (areas[areaId]?.type === 'raid') {
@@ -361,6 +398,7 @@ function startCombat(areaId) {
     if (raidEnemyDisplay) raidEnemyDisplay.style.display = combat.isRaid ? 'flex' : 'none'
     const menuParent = document.getElementById('menu-button-parent')
     if (menuParent) menuParent.style.display = ''
+    setCombatSpeed('play')
     updateCombatUI()
 }
 
@@ -379,10 +417,22 @@ function stopCombat() {
     }
 }
 
+// ─── Contrôles de vitesse ─────────────────────────────────────────────────────
+
+const _SPEED_MODES = { play: 1, pause: 0, slow1: 0.5, slow2: 1 / 3, slow3: 0.25 }
+
+function setCombatSpeed(mode) {
+    _combatSpeedMult = _SPEED_MODES[mode] ?? 1
+    document.querySelectorAll('.combat-speed-btn').forEach(b => b.classList.remove('active'))
+    const btn = document.getElementById('btn-speed-' + mode)
+    if (btn) btn.classList.add('active')
+}
+
 function exitCombat() {
     state.savedCombatEnemy = null
     state.savedCombatState = null
     if (typeof musicExitZone === 'function') musicExitZone()
+    _afkSeconds = 0
     stopCombat()
     state.currentArea = null
     combat = null
@@ -415,6 +465,7 @@ function leaveCombat() {
         onPoutchEnd()
         return
     }
+    _afkSeconds = 0
     stopCombat()
     if (_autoPilot) {
         _mergeSessionLoot(_autoPilot.accumulated, combat?.sessionLoot)
@@ -612,12 +663,14 @@ function gameTick() {
     if (combat.enemy && isNaN(combat.enemy.currentHp)) combat.enemy.currentHp = 0
 
     // Avance le timer du membre actif uniquement
+    const _spdMult = _afkSeconds > 0 ? 1 : _combatSpeedMult
     _autoSwitchActive()
     const activeIdx = combat.activeMemberIndex
     const activeM   = state.team[activeIdx]
     if (activeM && activeM.currentHp > 0) {
         const stats = getEffectiveStats(activeM)
-        const rate  = (100 / (BASE_TIME / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100)
+        const _mCd  = _peekNextCastCooldown(activeM, activeIdx)
+        const rate  = (100 / (_mCd / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100) * _spdMult
         combat.memberTimers[activeIdx] = (combat.memberTimers[activeIdx] || 0) + rate
 
         if (combat.memberTimers[activeIdx] >= 100) {
@@ -633,7 +686,8 @@ function gameTick() {
             if (b.stat === 'spd') effectiveEnemySpd += b.value
         }
         effectiveEnemySpd = Math.max(1, effectiveEnemySpd)
-        const rate = (100 / (BASE_TIME / TICK_MS)) * (effectiveEnemySpd / 100)
+        const _eCd = _peekEnemyCastCooldown(combat.enemy)
+        const rate = (100 / (_eCd / TICK_MS)) * (effectiveEnemySpd / 100) * _spdMult
         combat.enemyTimer = (combat.enemyTimer || 0) + rate
         if (combat.enemyTimer >= 100) {
             combat.enemyTimer = 0
@@ -746,7 +800,7 @@ function executeMemberAction(memberIndex) {
     const cycleLength = isXelor ? 7 : nonNull.length
     _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength)
 
-    combat.memberTimers[memberIndex] = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
+    combat.memberTimers[memberIndex] = 0
 }
 
 // ─── Passifs déclenchés par tick / cycle ─────────────────────────────────────
@@ -1109,13 +1163,14 @@ function executeEffect(ctx) {
             // un buff 'erosionBonus' sur le lanceur, ou un debuff 'erosionBonus' sur la cible)
             if (dmg > 0) {
                 const baseRate = effect.erosionRate !== undefined ? effect.erosionRate : 0.05
+                // erosionBonus stocké en entiers (10 = +10%) — division par 100 pour la formule
                 const casterBonus = (caster.buffs || [])
                     .filter(b => b.stat === 'erosionBonus')
-                    .reduce((sum, b) => sum + b.value, 0)
+                    .reduce((sum, b) => sum + b.value, 0) / 100
                 // debuff stocké comme valeur négative — on l'inverse pour obtenir le bonus positif
                 const targetBonus = (targetEnemy.buffs || [])
                     .filter(b => b.stat === 'erosionBonus')
-                    .reduce((sum, b) => sum - b.value, 0)
+                    .reduce((sum, b) => sum - b.value, 0) / 100
                 const erosion = Math.floor(dmg * Math.max(0, baseRate + casterBonus + targetBonus))
                 if (erosion > 0) {
                     targetEnemy.maxHp = Math.max(1, (targetEnemy.maxHp || 1) - erosion)
@@ -1305,8 +1360,17 @@ function executeEffect(ctx) {
 
         case 'debuff': {
             const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp', 'all_allies'])
+            const debuffVal = _resolveEffectValue(effect.value)
+            if (effect.target === 'all_enemy') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    m.buffs = m.buffs || []
+                    m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+                }
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} équipe (${effect.duration} tours)`)
+                break
+            }
             const debuffEntity = _ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy
-            const debuffVal    = _resolveEffectValue(effect.value)
             debuffEntity.buffs = debuffEntity.buffs || []
             debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
@@ -1607,7 +1671,7 @@ function executeEnemyAction() {
         }
     }
 
-    combat.enemyTimer = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
+    combat.enemyTimer = 0
 }
 
 function pickNextEnemyMove(enemy) {
@@ -1705,7 +1769,7 @@ function spawnSummon(caster, effect) {
             state.seenMonsters[effect.summonId] = true
         }
         const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
-        const scale    = mob.ownerId ? 1 : 1 + ((level - 1) * 0.08)
+        const scale    = mob.ownerId ? 1 : 1.25
         const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
         combat.savedEnemy = combat.enemy
         combat.enemy = {
@@ -2189,7 +2253,8 @@ function raidGameTick() {
         if (targetSlot === -1) continue
 
         const stats = getEffectiveStats(member)
-        const rate  = (100 / (BASE_TIME / TICK_MS)) * ((stats.spd || 100) / 100)
+        const _rMCd = _peekNextCastCooldown(member, memberIdx)
+        const rate  = (100 / (_rMCd / TICK_MS)) * ((stats.spd || 100) / 100) * (_afkSeconds > 0 ? 1 : _combatSpeedMult)
         combat.memberTimers[memberIdx] = (combat.memberTimers[memberIdx] || 0) + rate
 
         if (combat.memberTimers[memberIdx] >= 100) {
@@ -2210,7 +2275,8 @@ function raidGameTick() {
             if (b.stat === 'spd') effectiveSpd += b.value
         }
         effectiveSpd = Math.max(1, effectiveSpd)
-        const rate = (100 / (BASE_TIME / TICK_MS)) * (effectiveSpd / 100)
+        const _rECd = _peekEnemyCastCooldown(enemy)
+        const rate = (100 / (_rECd / TICK_MS)) * (effectiveSpd / 100) * (_afkSeconds > 0 ? 1 : _combatSpeedMult)
         combat.enemyTimers[slotIdx] = (combat.enemyTimers[slotIdx] || 0) + rate
 
         if (combat.enemyTimers[slotIdx] >= 100) {
@@ -2340,7 +2406,7 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     const cycleLength = isXelor ? 7 : nonNull.length
     _applyPassiveTick(member, memberIdx, newRawIdx, cycleLength, targetEnemy)
 
-    combat.memberTimers[memberIdx] = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
+    combat.memberTimers[memberIdx] = 0
 }
 
 // ─── Action d'un ennemi (Raid) ────────────────────────────────
@@ -2399,7 +2465,7 @@ function executeEnemyActionRaid(slotIdx) {
         combat.enemyNextMoveIds[slotIdx] = pickNextEnemyMove(combat.enemies[slotIdx])
     }
 
-    combat.enemyTimers[slotIdx] = 100 - ((mv.cooldownMs ?? BASE_TIME) / BASE_TIME * 100)
+    combat.enemyTimers[slotIdx] = 0
 }
 
 // ─── Mort d'un ennemi Raid → loot + respawn ───────────────────

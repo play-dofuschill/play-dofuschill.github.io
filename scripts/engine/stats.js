@@ -109,7 +109,7 @@ function getEffectiveStats(member, syncedLevel = null) {
 
             if (buff.stat === 'res_all') {
                 for (const e in res) res[e] += buff.value
-            } else if (buff.stat.startsWith('res.')) {
+            } else if (buff.stat?.startsWith('res.')) {
                 const e = buff.stat.split('.')[1]
                 if (res[e] !== undefined) res[e] += buff.value
             }

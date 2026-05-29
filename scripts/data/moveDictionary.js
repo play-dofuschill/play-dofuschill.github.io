@@ -150,7 +150,7 @@ move.pression = {
     cooldownMs: 2000,
     effects: [
         {type: 'damage', element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'},
-        {type: 'buff', stat: 'erosionBonus', value: 0.10, duration: 4, target: 'self'}],
+        {type: 'buff', stat: 'erosionBonus', value: 10, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
@@ -326,7 +326,7 @@ move.tempete_de_puissance = {
     name: 'Tempête de Puissance',
     classId: 'iop',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 17, max: 19}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_cycle'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 17, max: 19}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_cycle'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
@@ -1059,13 +1059,13 @@ move.fleches_erosives = {
     name: 'Flèches Érosives',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'erosionBonus', value: 0.10, duration: 2, target: 'enemy'}],
+    effects: [{type: 'debuff', stat: 'erosionBonus', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {buff: { value: 0.15 }}},
+                        patch: {buff: { value: 15 }}},
                        {lvl: 189,
-                        patch: {buff: { value: 0.20, duration: 3 }}}],
+                        patch: {buff: { value: 20, duration: 3 }}}],
     description: "L'ennemi subit plus d'érosion sur les prochains coups qu'il prend."
 }
 move.tir_perforant = {

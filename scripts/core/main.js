@@ -764,7 +764,18 @@ function initGame() {
             let casterStats = null
             if (moveBar.dataset.casterEnemy) {
                 const en = typeof combat !== 'undefined' && combat?.enemy
-                if (en) casterStats = { atk: en.atk || 0, flatDamage: en.flatDamage || 0, finalDamagePct: en.finalDamagePct || 0, spellDamagePct: 0 }
+                if (en) {
+                    const _eb = en.buffs || []
+                    const _bv = stat => _eb.filter(b => b.stat === stat).reduce((s, b) => s + b.value, 0)
+                    casterStats = {
+                        atk:            (en.atk            || 0) + _bv('atk'),
+                        flatDamage:     (en.flatDamage     || 0) + _bv('flatDamage'),
+                        finalDamagePct: (en.finalDamagePct || 0) + _bv('finalDamagePct'),
+                        spellDamagePct: _bv('spellDamagePct'),
+                        critChance:     _bv('critChance'),
+                        critDamagePct:  50 + _bv('critDamagePct'),
+                    }
+                }
             } else if (moveBar.dataset.casterClass) {
                 const classId = moveBar.dataset.casterClass
                 const teamMember = state.team?.find(m => m?.classId === classId)
@@ -772,7 +783,10 @@ function initGame() {
                     const saved = state.classEquip?.[classId]
                     return createTeamMember(classId, saved?.level || 1)
                 })()
-                if (member) casterStats = getEffectiveStats({ ...member, buffs: [] })
+                // En combat : stats réelles avec buffs actifs ; hors combat : stats de base sans buffs
+                if (member) casterStats = getEffectiveStats(
+                    (typeof combat !== 'undefined' && combat && teamMember) ? member : { ...member, buffs: [] }
+                )
             }
             showMoveTooltip(moveId, casterStats)
             return

@@ -629,9 +629,9 @@
         <div id="raid-enemy-display" style="display:none">
             <div id="raid-kill-counter" style="display:none"></div>
             <div id="raid-enemy-cards-row">
-                <div class="raid-enemy-card" id="raid-enemy-0"></div>
-                <div class="raid-enemy-card" id="raid-enemy-1"></div>
-                <div class="raid-enemy-card" id="raid-enemy-2"></div>
+                <div class="raid-enemy-card" id="raid-enemy-0" oncontextmenu="event.preventDefault();_showRaidEnemySheet(0)"></div>
+                <div class="raid-enemy-card" id="raid-enemy-1" oncontextmenu="event.preventDefault();_showRaidEnemySheet(1)"></div>
+                <div class="raid-enemy-card" id="raid-enemy-2" oncontextmenu="event.preventDefault();_showRaidEnemySheet(2)"></div>
             </div>
         </div>
 
@@ -667,6 +667,15 @@
         <div id="explore-leave" onclick="leaveCombat()">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M5 5v14a1 1 0 0 0 1 1h3v-2H7V6h2V4H6a1 1 0 0 0-1 1m14.242-.97l-8-2A1 1 0 0 0 10 3v18a.998.998 0 0 0 1.242.97l8-2A1 1 0 0 0 20 19V5a1 1 0 0 0-.758-.97M15 12.188a1.001 1.001 0 0 1-2 0v-.377a1 1 0 1 1 2 .001z"/></svg>
             Leave Combat
+        </div>
+
+        <!-- ── Contrôles de vitesse ── -->
+        <div id="combat-speed-controls">
+            <button class="combat-speed-btn active" id="btn-speed-play"  onclick="setCombatSpeed('play')"  title="Vitesse normale">▶</button>
+            <button class="combat-speed-btn"        id="btn-speed-pause" onclick="setCombatSpeed('pause')" title="Pause">⏸</button>
+            <button class="combat-speed-btn"        id="btn-speed-slow1" onclick="setCombatSpeed('slow1')" title="Ralenti ×2">&lt;</button>
+            <button class="combat-speed-btn"        id="btn-speed-slow2" onclick="setCombatSpeed('slow2')" title="Ralenti ×3">&lt;&lt;</button>
+            <button class="combat-speed-btn"        id="btn-speed-slow3" onclick="setCombatSpeed('slow3')" title="Ralenti ×4">&lt;&lt;&lt;</button>
         </div>
 
     </div>
