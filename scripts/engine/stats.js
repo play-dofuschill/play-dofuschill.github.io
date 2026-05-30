@@ -255,7 +255,7 @@ function getEffectiveStats(member, syncedLevel = null) {
     damageReductionPct = Math.min(damageReductionPct,50)
 
     // critiques max 100%
-    critChance = Math.min(critChance, 100)
+    critChance = Math.max(0, Math.min(critChance, 100))
 
     // dégâts critiques minimum 0%
     critDamagePct = Math.max(0, critDamagePct)
@@ -265,7 +265,7 @@ function getEffectiveStats(member, syncedLevel = null) {
         hp: Math.max(1, hp),
 
         atk,
-        spd,
+        spd: Math.max(25, spd),
 
         res,
 
@@ -366,7 +366,7 @@ function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}) {
 
     if (isCrit) {damage *=(1 + critDamagePct / 100)}
 
-    return {damage: Math.max(1,Math.floor(damage)),isCrit
+    return {damage: Math.max(0,Math.floor(damage)),isCrit
     }
 }
 

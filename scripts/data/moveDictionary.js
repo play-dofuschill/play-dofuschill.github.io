@@ -1,4 +1,4 @@
-// moveDictionary.js — Sorts des classes DofusChill
+﻿// moveDictionary.js — Sorts des classes DofusChill
 
 const move = {}
 
@@ -1712,11 +1712,11 @@ move.mot_de_frayeur = {
     cooldownMs: 2000,
     effects: [{type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'},
               {type: 'recul', target: 'enemy'}],
-    spellProgression: [{lvl: 20,
+    spellProgression: [{lvl: 28,
                         patch: {}},
-                       {lvl: 72,
+                       {lvl: 82,
                         patch: {buff: { value: 30 }}},
-                       {lvl: 139,
+                       {lvl: 149,
                         patch: {buff: { value: 40 }}}],
     description: "Réduit la vitesse de l'ennemi pour 3 tours et pousse l'ennemi en raid."
 }
@@ -1758,11 +1758,11 @@ move.mot_vivifiant = {
     classId: 'eniripsa',
     cooldownMs: 2000,
     effects: [{type: 'summon', summonId: 'fee_vivifiante', duration: 2, target: 'self'}],
-    spellProgression: [{lvl: 20,
+    spellProgression: [{lvl: 41,
                         patch: {}},
-                       {lvl: 72,
+                       {lvl: 97,
                         patch: {summon: { summonId: 'fee_vivifiante_tier_2' }}},
-                       {lvl: 139,
+                       {lvl: 164,
                         patch: {summon: { summonId: 'fee_vivifiante_tier_3' }}}],
     description: "Invoque une fée qui temporise et lorsqu'elle meurt, buff la vitesse d'un allier aléatoire."
 }
@@ -2400,11 +2400,11 @@ move.boite_de_pandore = {
     classId: 'enutrof',
     cooldownMs: 5000,
     effects: [{ type: 'heal%maxHp', heal: 10, target: 'self' }],
-    spellProgression: [{lvl: 20,
+    spellProgression: [{lvl: 28,
                         patch: {}},
-                       {lvl: 72,
+                       {lvl: 82,
                         patch: { cooldownMs: 4500 }},
-                       {lvl: 139,
+                       {lvl: 149,
                         patch: { cooldownMs: 3500 }}],
     description: "Une boite que l'on ouvre que pour se soigner en urgence."
 }
@@ -2443,11 +2443,11 @@ move.abattement = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
               { type: 'debuff', stat: 'spd', value: 10, duration: 7, target: 'enemy' }],
-    spellProgression: [{lvl: 20,
+    spellProgression: [{lvl: 41,
                         patch: {}},
-                       {lvl: 72,
+                       {lvl: 97,
                         patch: {damage: { min: 18, max: 20 }}},
-                       {lvl: 139,
+                       {lvl: 164,
                         patch: {damage: { min: 23, max: 25 }}}],
     description: "Frappe dans l'élément air et retire 10% de vitesse à l'ennemi."
 }
@@ -2615,62 +2615,62 @@ move.pelle_des_anciens = {
 //                         patch: {}}],
 //     description: ""
 // }
-move.eboulement = {
-    id: 'eboulement',
-    name: 'Éboulement',
-    classId: 'enutrof',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
-              { type: 'enutrof_trap', id: 'eboulement', duration: 3,
-                trigger: { type: 'buff', stat: 'atk' }, element: 'terre', damage: { min: 10, max: 14 }, target: 'enemy' }],
-    spellProgression: [{lvl: 95,
-                        patch: {}},
-                       {lvl: 162,
-                        patch: {damage: { min: 18, max: 21 }}}],
-    description: "Frappe dans l'élément terre. Pose Éboulement (3 actions alliées) : tout buff de puissance sur un allié déclenche automatiquement des dégâts terre bonus."
-}
-move.monnaie_sonnante = {
-    id: 'monnaie_sonnante',
-    name: 'Monnaie Sonnante',
-    classId: 'enutrof',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
-              { type: 'enutrof_trap', id: 'monnaie_sonnante', duration: 3,
-                trigger: { type: 'debuff', stat: 'spd' }, element: 'air', damage: { min: 10, max: 15 }, target: 'enemy' }],
-    spellProgression: [{lvl: 100,
-                        patch: {}},
-                       {lvl: 167,
-                        patch: {damage: { min: 18, max: 21 }}}],
-    description: "Frappe dans l'élément air. Pose Monnaie Sonnante (3 actions alliées) : tout débuff de vitesse sur l'ennemi déclenche automatiquement des dégâts air bonus."
-}
-move.orpaillage = {
-    id: 'orpaillage',
-    name: 'Orpaillage',
-    classId: 'enutrof',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 16 }, target: 'enemy' },
-              { type: 'enutrof_trap', id: 'orpaillage', duration: 3,
-                trigger: { type: 'debuff', stat: 'atk' }, element: 'eau', damage: { min: 10, max: 14 }, target: 'enemy' }],
-    spellProgression: [{lvl: 105,
-                        patch: {}},
-                       {lvl: 177,
-                        patch: {damage: { min: 18, max: 21 }}}],
-    description: "Frappe dans l'élément eau. Pose Orpaillage (3 actions alliées) : tout débuff de puissance sur l'ennemi déclenche automatiquement des dégâts eau bonus."
-}
-move.coup_de_grisou = {
-    id: 'coup_de_grisou',
-    name: 'Coup de Grisou',
-    classId: 'enutrof',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'feu', damage: { min: 14, max: 16 }, target: 'enemy' },
-              { type: 'enutrof_trap', id: 'coup_de_grisou', duration: 3,
-                trigger: { type: 'heal' }, element: 'feu', damage: { min: 10, max: 14 }, target: 'enemy' }],
-    spellProgression: [{lvl: 110,
-                        patch: {}},
-                       {lvl: 172,
-                        patch: {damage: { min: 18, max: 21 }}}],
-    description: "Frappe dans l'élément feu. Pose Coup de Grisou (3 actions alliées) : tout soin reçu par un allié déclenche automatiquement des dégâts feu bonus."
-}
+// move.eboulement = {
+//     id: 'eboulement',
+//     name: 'Éboulement',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [{ type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
+//               { type: 'enutrof_trap', id: 'eboulement', duration: 3,
+//                 trigger: { type: 'buff', stat: 'atk' }, element: 'terre', damage: { min: 10, max: 14 }, target: 'enemy' }],
+//     spellProgression: [{lvl: 95,
+//                         patch: {}},
+//                        {lvl: 162,
+//                         patch: {damage: { min: 18, max: 21 }}}],
+//     description: "Frappe dans l'élément terre. Pose Éboulement (3 actions alliées) : tout buff de puissance sur un allié déclenche automatiquement des dégâts terre bonus."
+// }
+// move.monnaie_sonnante = {
+//     id: 'monnaie_sonnante',
+//     name: 'Monnaie Sonnante',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
+//               { type: 'enutrof_trap', id: 'monnaie_sonnante', duration: 3,
+//                 trigger: { type: 'debuff', stat: 'spd' }, element: 'air', damage: { min: 10, max: 15 }, target: 'enemy' }],
+//     spellProgression: [{lvl: 100,
+//                         patch: {}},
+//                        {lvl: 167,
+//                         patch: {damage: { min: 18, max: 21 }}}],
+//     description: "Frappe dans l'élément air. Pose Monnaie Sonnante (3 actions alliées) : tout débuff de vitesse sur l'ennemi déclenche automatiquement des dégâts air bonus."
+// }
+// move.orpaillage = {
+//     id: 'orpaillage',
+//     name: 'Orpaillage',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 16 }, target: 'enemy' },
+//               { type: 'enutrof_trap', id: 'orpaillage', duration: 3,
+//                 trigger: { type: 'debuff', stat: 'atk' }, element: 'eau', damage: { min: 10, max: 14 }, target: 'enemy' }],
+//     spellProgression: [{lvl: 105,
+//                         patch: {}},
+//                        {lvl: 177,
+//                         patch: {damage: { min: 18, max: 21 }}}],
+//     description: "Frappe dans l'élément eau. Pose Orpaillage (3 actions alliées) : tout débuff de puissance sur l'ennemi déclenche automatiquement des dégâts eau bonus."
+// }
+// move.coup_de_grisou = {
+//     id: 'coup_de_grisou',
+//     name: 'Coup de Grisou',
+//     classId: 'enutrof',
+//     cooldownMs: 2000,
+//     effects: [{ type: 'damage', element: 'feu', damage: { min: 14, max: 16 }, target: 'enemy' },
+//               { type: 'enutrof_trap', id: 'coup_de_grisou', duration: 3,
+//                 trigger: { type: 'heal' }, element: 'feu', damage: { min: 10, max: 14 }, target: 'enemy' }],
+//     spellProgression: [{lvl: 110,
+//                         patch: {}},
+//                        {lvl: 172,
+//                         patch: {damage: { min: 18, max: 21 }}}],
+//     description: "Frappe dans l'élément feu. Pose Coup de Grisou (3 actions alliées) : tout soin reçu par un allié déclenche automatiquement des dégâts feu bonus."
+// }
 // move.musette_animee = {
 //     id: 'musette_animee',
 //     name: 'Musette Animée',
@@ -2834,256 +2834,281 @@ move.coup_de_grisou = {
 // #endregion
 
 // #region HUPPERMAGE ─────────────────────────────────────────
-// move['lance-flamme'] = {
-//     id: 'lance-flamme',
-//     name: 'Lance-flamme',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 1,
-//                         patch: {}},
-//                        {lvl: 66,
-//                         patch: {}},
-//                        {lvl: 132,
-//                         patch: {}}],
-//     description: ""
-// }
-// move.stalagmite = {
-//     id: 'stalagmite',
-//     name: 'Stalagmite',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 8,
-//                         patch: {}},
-//                        {lvl: 67,
-//                         patch: {}},
-//                        {lvl: 133,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.onde_sismique = {
-//     id: 'onde_sismique',
-//     name: 'Onde Sismique',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{ lvl: 12,
-//                          patch: {} },
-//                        {lvl: 69,
-//                         patch: {}},
-//                        {lvl: 136,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.ether = {
-//     id: 'ether',
-//     name: 'Éther',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 16,
-//                         patch: {}},
-//                        {lvl: 68,
-//                         patch: {}},
-//                        {lvl: 134,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.runification = {
-//     id: 'runification',
-//     name: 'Runification',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.drain_elementaire = {
-//     id: 'drain_elementaire',
-//     name: 'Drain Élémentaire',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 24,
-//                         patch: {}},
-//                        {lvl: 77,
-//                         patch: {}},
-//                        {lvl: 144,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.meteore = {
-//     id: 'meteore',
-//     name: 'Météore',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.lame_astrale = {
-//     id: 'lame_astrale',
-//     name: 'Lame Astrale',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 33,
-//                         patch: {}},
-//                        {lvl: 87,
-//                         patch: {}},
-//                        {lvl: 154,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.cycle_elementaire = {
-//     id: 'cycle_elementaire',
-//     name: 'Cycle Élémentaire',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 37,
-//                         patch: {}},
-//                        {lvl: 92,
-//                         patch: {}},
-//                        {lvl: 159,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.lance_solaire = {
-//     id: 'lance_solaire',
-//     name: 'Lance Solaire',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.deluge = {
-//     id: 'deluge',
-//     name: 'Déluge',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 45,
-//                         patch: {}},
-//                        {lvl: 102,
-//                         patch: {}},
-//                        {lvl: 169,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.traversee = {
-//     id: 'traversee',
-//     name: 'Traversée',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 49,
-//                         patch: {}},
-//                        {lvl: 107,
-//                         patch: {}},
-//                        {lvl: 174,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.contribution = {
-//     id: 'contribution',
-//     name: 'Contribution',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 53,
-//                         patch: {}},
-//                        {lvl: 112,
-//                         patch: {}},
-//                        {lvl: 179,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.trait_ardent = {
-//     id: 'trait_ardent',
-//     name: 'Trait Ardent',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 57,
-//                         patch: {}},
-//                        {lvl: 117,
-//                         patch: {}},
-//                        {lvl: 184,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.glacier = {
-//     id: 'glacier',
-//     name: 'Glacier',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 61,
-//                         patch: {}},
-//                        {lvl: 122,
-//                         patch: {}},
-//                        {lvl: 189,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.rafale = {
-//     id: 'rafale',
-//     name: 'Rafale',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 65,
-//                         patch: {}},
-//                        {lvl: 127,
-//                         patch: {}},
-//                        {lvl: 194,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.orage = {
-//     id: 'orage',
-//     name: 'Orage',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 69,
-//                         patch: {}},
-//                        {lvl: 131,
-//                         patch: {}},
-//                        {lvl: 198,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.bouclier_elementaire = {
-//     id: 'bouclier_elementaire',
-//     name: 'Bouclier Élémentaire',
-//     classId: 'huppermage',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 73,
-//                         patch: {}},
-//                        {lvl: 137,
-//                         patch: {}}],
-//     description: ""
-// }
+move['lance-flamme'] = {
+    id: 'lance-flamme',
+    name: 'Lance-flamme',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 15, max: 17 }, target: 'enemy' }],
+    spellProgression: [{lvl: 1,
+                        patch: {}},
+                       {lvl: 66,
+                        patch: {damage: { min: 20, max: 23 }}},
+                       {lvl: 132,
+                        patch: {damage: { min: 26, max: 29 }}}],
+    description: "Frappe dans l'élément feu et pose l'élément feu."
+}
+move.stalagmite = {
+    id: 'stalagmite',
+    name: 'Stalagmite',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 17, max: 19 }, target: 'enemy' }],
+    spellProgression: [{lvl: 8,
+                        patch: {}},
+                       {lvl: 67,
+                        patch: {damage: { min: 23, max: 25 }}},
+                       {lvl: 133,
+                        patch: {damage: { min: 29, max: 32 }}}],
+    description: "Frappe dans l'élément eau et pose l'élément eau."
+}
+move.onde_sismique = {
+    id: 'onde_sismique',
+    name: 'Onde Sismique',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 15, max: 17 }, target: 'enemy' }],
+    spellProgression: [{ lvl: 12,
+                         patch: {} },
+                       {lvl: 69,
+                        patch: {damage: { min: 20, max: 22 }}},
+                       {lvl: 136,
+                        patch: {damage: { min: 25, max: 28 }}}],
+    description: "Frappe dans l'élément terre et pose l'élément terre."
+}
+move.ether = {
+    id: 'ether',
+    name: 'Éther',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 10, max: 20 }, target: 'enemy' }],
+    spellProgression: [{lvl: 16,
+                        patch: {}},
+                       {lvl: 68,
+                        patch: {damage: { min: 20, max: 22 }}},
+                       {lvl: 134,
+                        patch: {damage: { min: 25, max: 28 }}}],
+    description: "Frappe dans l'élément air et pose l'élément air."
+}
+move.runification = {
+    id: 'runification',
+    name: 'Runification',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'absorbElementDmg', damage: 9, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.2, target: 'self' }],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: {damage: 12}},
+                       {lvl: 139,
+                        patch: {damage: 15}}],
+    description: "Frappe dans l'élément posé sur l'ennemi et le consomme pour se régénérer."
+}
+move.drain_elementaire = {
+    id: 'drain_elementaire',
+    name: 'Drain Élémentaire',
+    classId: 'huppermage',
+    cooldownMs: 3000,
+    effects: [{ type: 'absorbElementDmg', damage: { min: 15, max: 17 }, target: 'enemy' },
+              { type: 'buff', stat: 'atk', value: 60, duration: 2, target: 'self' },
+              { type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy' }],
+    spellProgression: [{lvl: 24,
+                        patch: {}},
+                       {lvl: 77,
+                        patch: {damage: { min: 21, max: 23 }, buff: {value: 120 }, debuff: {value: 60 }}},
+                       {lvl: 144,
+                        patch: {damage: { min: 26, max: 29 }, buff: {value: 200 }, debuff: {value: 120 }}}],
+    description: "Frappe dans l'élément posé sur l'ennemi et le consomme. Vole de la puissance à l'ennemi pour se l'appliquer pour 1 tours."
+}
+move.meteore = {
+    id: 'meteore',
+    name: 'Météore',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 17, max: 19 }, target: 'enemy' },
+              {type: 'recul', target: 'enemy'}],
+    spellProgression: [{lvl: 28,
+                        patch: {}},
+                       {lvl: 82,
+                        patch: {damage: { min: 22, max: 24 }}},
+                       {lvl: 149,
+                        patch: {damage: { min: 27, max: 30 }}}],
+    description: "Frappe dans l'élément terre et recule de position l'ennemi."
+}
+move.lame_astrale = {
+    id: 'lame_astrale',
+    name: 'Lame Astrale',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 20 }, target: 'enemy' },
+        {type: 'avance', target: 'enemy'}],
+    spellProgression: [{lvl: 33,
+                        patch: {}},
+                       {lvl: 87,
+                        patch: {damage: { min: 23, max: 26 }}},
+                       {lvl: 154,
+                        patch: {damage: { min: 29, max: 32 }}}],
+    description: "Frappe dans l'élément air et avance de position l'ennemi."
+}
+move.cycle_elementaire = {
+    id: 'cycle_elementaire',
+    name: 'Cycle Élémentaire',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'cycleElement', target: 'enemy' }],
+    spellProgression: [{lvl: 37,
+                        patch: {}},
+                       {lvl: 92,
+                        patch: {cooldownMs: 1300}},
+                       {lvl: 159,
+                        patch: {cooldownMs: 800}}],
+    description: "Transforme l'élément posé sur l'ennemi : Terre → Eau → Feu → Air → Terre."
+}
+move.lance_solaire = {
+    id: 'lance_solaire',
+    name: 'Lance Solaire',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 20 }, target: 'enemy' },
+              { type: 'switch', value: 2, target: 'enemy' }],
+    spellProgression: [{lvl: 41,
+                        patch: {}},
+                       {lvl: 97,
+                        patch: {damage: { min: 23, max: 26 }}},
+                       {lvl: 164,
+                        patch: {damage: { min: 29, max: 32 }}}],
+    description: "Frappe dans l'élément feu et switch les ennemis de postion."
+}
+move.deluge = {
+    id: 'deluge',
+    name: 'Déluge',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 17, max: 19 }, target: 'enemy' },
+              { type: 'switch', value: 1, target: 'enemy' }],
+    spellProgression: [{lvl: 45,
+                        patch: {}},
+                       {lvl: 102,
+                        patch: {damage: { min: 22, max: 24 }}},
+                       {lvl: 169,
+                        patch: {damage: { min: 27, max: 30 }}}],
+    description: "Frappe dans l'élément eau et switch les ennemis de postion."
+}
+move.traversee = {
+    id: 'traversee',
+    name: 'Traversée',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'absorbElementDmg', damage: { min: 19, max: 21 }, fallbackElement: 'neutre', advanceCycle: 'A', target: 'enemy' }],
+    spellProgression: [{lvl: 49,
+                        patch: {}},
+                       {lvl: 107,
+                        patch: {damage: { min: 24, max: 27 }}},
+                       {lvl: 174,
+                        patch: {damage: { min: 30, max: 33 }}}],
+    description: "Frappe dans l'élément actif sur l'ennemi, puis pose l'élément suivant (Terre→Eau→Feu→Air→Terre)."
+}
+move.contribution = {
+    id: 'contribution',
+    name: 'Contribution',
+    classId: 'huppermage',
+    cooldownMs: 3000,
+    effects: [{
+        type: 'consumeElementBuff',
+        target: 'self',
+        onElement: {
+            terre: { stat: 'spd',        value: 10, duration: 3 },
+            feu:   { shield: true, levelPct: 2,      duration: 3 },
+            eau:   { stat: 'atk',        value: 100, duration: 3 },
+            air:   { stat: 'flatDamage', value: 30,  duration: 3 },
+        }
+    }],
+    spellProgression: [{lvl: 53,
+                        patch: {}},
+                       {lvl: 112,
+                        patch: {cooldownMs: 2800}},
+                       {lvl: 179,
+                        patch: {cooldownMs: 2500}}],
+    description: "Consomme l'élément posé et applique un buff en fonction de l'élément consommé."
+}
+move.trait_ardent = {
+    id: 'trait_ardent',
+    name: 'Trait Ardent',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 21, max: 23 }, target: 'enemy' }],
+    spellProgression: [{lvl: 57,
+                        patch: {}},
+                       {lvl: 117,
+                        patch: {damage: { min: 28, max: 31 }}},
+                       {lvl: 184,
+                        patch: {damage: { min: 33, max: 37 }}}],
+    description: "Frappe dans l'élément feu et pose l'élément feu."
+}
+move.glacier = {
+    id: 'glacier',
+    name: 'Glacier',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 21, max: 24 }, target: 'enemy' }],
+    spellProgression: [{lvl: 61,
+                        patch: {}},
+                       {lvl: 122,
+                        patch: {damage: { min: 28, max: 32 }}},
+                       {lvl: 189,
+                        patch: {damage: { min: 32, max: 36 }}}],
+    description: "Frappe dans l'élément eau et pose l'élément eau."
+}
+move.rafale = {
+    id: 'rafale',
+    name: 'Rafale',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 21, max: 24 }, target: 'enemy' }],
+    spellProgression: [{lvl: 65,
+                        patch: {}},
+                       {lvl: 127,
+                        patch: {damage: { min: 26, max: 30 }}},
+                       {lvl: 194,
+                        patch: {damage: { min: 29, max: 33 }}}],
+    description: "Frappe dans l'élément air et pose l'élément air."
+}
+move.orage = {
+    id: 'orage',
+    name: 'Orage',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 24, max: 27 }, target: 'enemy' }],
+    spellProgression: [{lvl: 69,
+                        patch: {}},
+                       {lvl: 131,
+                        patch: {damage: { min: 29, max: 32 }}},
+                       {lvl: 198,
+                        patch: {damage: { min: 32, max: 36 }}}],
+    description: "Frappe dans l'élément terre et pose l'élément terre."
+}
+move.bouclier_elementaire = {
+    id: 'bouclier_elementaire',
+    name: 'Bouclier Élémentaire',
+    classId: 'huppermage',
+    cooldownMs: 2000,
+    effects: [{
+        type: 'consumeElementBuff',
+        target: 'self',
+        onElement: {terre: { stat: 'res.terre', value: 20, duration: 3 },
+                    eau:   { stat: 'res.eau',   value: 20, duration: 3 },
+                    feu:   { stat: 'res.feu',   value: 20, duration: 3 },
+                    air:   { stat: 'res.air',   value: 20, duration: 3 }}}],
+    spellProgression: [{lvl: 73,
+                        patch: {}},
+                       {lvl: 137,
+                        patch: { consumeElementBuff: { onElement: {
+                            terre: { value: 30 }, eau: { value: 30 },
+                            feu:   { value: 30 }, air: { value: 30 }
+                        }}}}],
+    description: "Consomme l'élément actif et confère des résistances dans cet élément."
+}
 // move.polarite = {
 //     id: 'polarite',
 //     name: 'Polarité',
@@ -3433,11 +3458,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -3475,11 +3500,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -3942,11 +3967,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -3984,11 +4009,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -4451,11 +4476,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -4493,11 +4518,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -4960,11 +4985,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -5002,11 +5027,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -5469,11 +5494,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -5511,11 +5536,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -5978,11 +6003,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -6020,11 +6045,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -6487,11 +6512,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -6529,11 +6554,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -6996,11 +7021,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -7038,11 +7063,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -7505,11 +7530,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -7547,11 +7572,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -8014,11 +8039,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -8056,11 +8081,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -8523,11 +8548,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -8565,11 +8590,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -9032,11 +9057,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -9074,11 +9099,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -9541,11 +9566,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -9583,11 +9608,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -10050,11 +10075,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 28,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 82,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 149,
 //                         patch: {}}],
 //     description: " "
 // }
@@ -10092,11 +10117,11 @@ move.coup_de_grisou = {
 //     classId: '',
 //     cooldownMs: 2000,
 //     effects: [],
-//     spellProgression: [{lvl: 20,
+//     spellProgression: [{lvl: 41,
 //                         patch: {}},
-//                        {lvl: 72,
+//                        {lvl: 97,
 //                         patch: {}},
-//                        {lvl: 139,
+//                        {lvl: 164,
 //                         patch: {}}],
 //     description: " "
 // }

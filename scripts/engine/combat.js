@@ -702,7 +702,7 @@ function gameTick() {
             if ((b.delay ?? 0) > 0) continue
             if (b.stat === 'spd') effectiveEnemySpd += b.value
         }
-        effectiveEnemySpd = Math.max(1, effectiveEnemySpd)
+        effectiveEnemySpd = Math.max(25, effectiveEnemySpd)
         const _eCd = _peekEnemyCastCooldown(combat.enemy)
         const rate = (100 / (_eCd / TICK_MS)) * (effectiveEnemySpd / 100) * _spdMult
         combat.enemyTimer = (combat.enemyTimer || 0) + rate
@@ -1185,8 +1185,8 @@ function executeEffect(ctx) {
                 }
                 if (raidRatio !== 1.0 && effCopy.damage) {
                     effCopy.damage = {
-                        min: Math.max(1, Math.round(effCopy.damage.min * raidRatio)),
-                        max: Math.max(1, Math.round(effCopy.damage.max * raidRatio))
+                        min: Math.max(0, Math.round(effCopy.damage.min * raidRatio)),
+                        max: Math.max(0, Math.round(effCopy.damage.max * raidRatio))
                     }
                 }
                 // onTargetKill correct pour ce slot en raid
@@ -1285,7 +1285,7 @@ function executeEffect(ctx) {
 
             // RenvoiTotal : réfléchit ratio% des dégâts, le caster encaisse 0
             if (targetEnemy.renvoiTotal && dmg > 0) {
-                const reflectedDmg = Math.max(1, Math.floor(dmg * targetEnemy.renvoiTotal.ratio))
+                const reflectedDmg = Math.max(0, Math.floor(dmg * targetEnemy.renvoiTotal.ratio))
                 delete targetEnemy.renvoiTotal
                 if (result.isCrit) addLog(`💥 Coup critique !`)
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → renvoyé ! ${reflectedDmg} dégâts à l'attaquant`)
@@ -1303,7 +1303,7 @@ function executeEffect(ctx) {
 
             // Renvoi : réfléchit ratio% des dégâts, le caster encaisse le reste
             if (targetEnemy.renvoi && dmg > 0) {
-                const reflectedDmg = Math.max(1, Math.floor(dmg * targetEnemy.renvoi.ratio))
+                const reflectedDmg = Math.max(0, Math.floor(dmg * targetEnemy.renvoi.ratio))
                 const takenDmg     = dmg - reflectedDmg
                 delete targetEnemy.renvoi
                 if (result.isCrit) addLog(`💥 Coup critique !`)
@@ -1336,7 +1336,7 @@ function executeEffect(ctx) {
                     addLog(`${ctx.logPrefix || ''}${moveData.name} → esquivé !`)
                     return 0
                 }
-                dmg = Math.max(1, Math.floor(dmg * (1 - _reduction / 100)))
+                dmg = Math.max(0, Math.floor(dmg * (1 - _reduction / 100)))
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → esquive partielle ! ${dmg} dégâts`)
             }
 
@@ -1418,7 +1418,7 @@ function executeEffect(ctx) {
             // Suivi élémentaire Huppermage : mémorise l'élément ou déclenche un combo.
             // Les lignes d'un même sort se combinent entre elles normalement.
             // _elementConsumed : posé par absorbElementDmg → pas de nouvel état élémentaire
-            if (caster.classId === 'huppermage' && effect.element && memberHitIdx === -1 && !effect._elementConsumed) {
+            if (caster.classId === 'huppermage' && effect.element && effect.element !== 'neutre' && memberHitIdx === -1 && !effect._elementConsumed) {
                 const slotIdx = (combat?.isRaid && combat.enemies)
                     ? combat.enemies.indexOf(targetEnemy)
                     : 0
@@ -1440,7 +1440,7 @@ function executeEffect(ctx) {
                 const secondary = combat.enemies?.[1]
                 let e2Dmg = 0
                 if (secondary && secondary.currentHp > 0) {
-                    e2Dmg = Math.max(1, Math.floor(dmg * effect.splashPct / 100))
+                    e2Dmg = Math.max(0, Math.floor(dmg * effect.splashPct / 100))
                     secondary.currentHp = Math.max(0, secondary.currentHp - e2Dmg)
                     addLog(`${moveData.name} → ricochet : ${e2Dmg} dégâts (ennemi sec.)`)
                 }
@@ -1449,7 +1449,7 @@ function executeEffect(ctx) {
                     if (tertiary && tertiary.currentHp > 0) {
                         const base = effect.splashChain ? e2Dmg : dmg
                         if (base > 0) {
-                            const e3Dmg = Math.max(1, Math.floor(base * effect.splashPct2 / 100))
+                            const e3Dmg = Math.max(0, Math.floor(base * effect.splashPct2 / 100))
                             tertiary.currentHp = Math.max(0, tertiary.currentHp - e3Dmg)
                             addLog(`${moveData.name} → ricochet : ${e3Dmg} dégâts (ennemi ter.)`)
                         }
@@ -1469,7 +1469,7 @@ function executeEffect(ctx) {
                 return executeEffect({ ...ctx, targetEnemy: dotTarget, effect: { ...effect, target: 'enemy' } })
             }
             const dotBase    = _resolveEffectValue(effect.value)
-            const dotScaled  = Math.max(1, Math.floor(
+            const dotScaled  = Math.max(0, Math.floor(
                 dotBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
             ))
             if (effect.target === 'all_enemies' || effect.target === 'all_enemy') {
@@ -1809,6 +1809,7 @@ function executeEffect(ctx) {
         case 'absorbElementDmg': {
             // Lit l'élément stocké sur l'ennemi, le consomme, puis inflige des dégâts avec cet élément.
             // Ne laisse pas de nouvel élément et ne déclenche pas de combo.
+            // advanceCycle ('A'|'B') : après consommation, pose l'élément suivant du cycle indiqué.
             const _absSlot = (combat?.isRaid && combat.enemies)
                 ? combat.enemies.indexOf(targetEnemy) : 0
             const _absKey  = _absSlot >= 0 ? _absSlot : 0
@@ -1816,7 +1817,64 @@ function executeEffect(ctx) {
             if (_stored && combat.huppermageLastElement) delete combat.huppermageLastElement[_absKey]
             const _absElem = _stored || effect.fallbackElement || 'neutre'
             if (!_stored) addLog(`${moveData.name} → aucun élément à absorber (neutre)`)
+            if (_stored && effect.advanceCycle) {
+                const _advMaps = {
+                    A: { terre: 'eau', eau: 'feu', feu: 'air', air: 'terre' },
+                    B: { eau: 'terre', terre: 'air', air: 'feu', feu: 'eau' },
+                }
+                const _next = (_advMaps[effect.advanceCycle] || _advMaps.A)[_stored]
+                if (_next) {
+                    combat.huppermageLastElement[_absKey] = _next
+                    addLog(`${moveData.name} → pose ${_next}`)
+                }
+            }
             return executeEffect({ ...ctx, effect: { ...effect, type: 'damage', element: _absElem, _elementConsumed: true } })
+        }
+
+        case 'consumeElementBuff': {
+            // Consomme l'élément posé sur l'ennemi et applique un buff selon l'élément consommé.
+            // effect.onElement : { terre: {stat, value, duration}, eau: {...}, feu: {...}, air: {...} }
+            // effect.target : 'self' (défaut/caster) | 'ally_random' | 'ally_min_hp' | 'enemy'
+            const _cebSlot = (combat?.isRaid && combat.enemies) ? combat.enemies.indexOf(targetEnemy) : 0
+            const _cebKey  = _cebSlot >= 0 ? _cebSlot : 0
+            const _cebElem = combat.huppermageLastElement?.[_cebKey] || null
+            if (!_cebElem) { addLog(`${moveData.name} → aucun élément à consommer`); break }
+            delete combat.huppermageLastElement[_cebKey]
+            const _cebCfg = effect.onElement?.[_cebElem]
+            if (!_cebCfg) { addLog(`${moveData.name} → ${_cebElem} consommé (pas de buff configuré)`); break }
+            const _cebTgt = effect.target === 'enemy' ? targetEnemy : _resolveAllyTarget(effect, caster)
+            if (_cebCfg.shield) {
+                const _shieldVal = Math.floor((caster.level || 1) * (_cebCfg.levelPct || 1))
+                if (!_cebTgt.shield || _cebTgt.shield.value <= 0)
+                    _cebTgt.shield = { value: _shieldVal, duration: _cebCfg.duration }
+                else
+                    _cebTgt.shield.value += _shieldVal
+                addLog(`${moveData.name} → ${_cebElem} consommé → bouclier +${_shieldVal} PV (${_cebCfg.duration} tours)`)
+            } else {
+                _cebTgt.buffs = _cebTgt.buffs || []
+                _cebTgt.buffs.push({ stat: _cebCfg.stat, value: _cebCfg.value, duration: _cebCfg.duration })
+                const _cebSign = _cebCfg.value >= 0 ? '+' : ''
+                addLog(`${moveData.name} → ${_cebElem} consommé → ${_cebCfg.stat} ${_cebSign}${_cebCfg.value} (${_cebCfg.duration} tours)`)
+            }
+            break
+        }
+
+        case 'cycleElement': {
+            // variant 'A' (défaut) : terre→eau→feu→air→terre
+            // variant 'B'          : eau→terre→air→feu→eau
+            const _cycleMaps = {
+                A: { terre: 'eau',   eau: 'feu',  feu: 'air',  air: 'terre' },
+                B: { eau: 'terre', terre: 'air', air: 'feu',   feu: 'eau'   },
+            }
+            const _cycleMap = _cycleMaps[effect.variant || 'A']
+            const _cycSlot  = (combat?.isRaid && combat.enemies) ? combat.enemies.indexOf(targetEnemy) : 0
+            const _cycKey   = _cycSlot >= 0 ? _cycSlot : 0
+            const _curElem  = combat.huppermageLastElement?.[_cycKey]
+            if (!_curElem) { addLog(`${moveData.name} → aucun élément à cycler`); break }
+            const _nextElem = _cycleMap[_curElem] || _curElem
+            combat.huppermageLastElement[_cycKey] = _nextElem
+            addLog(`${moveData.name} → ${_curElem} → ${_nextElem}`)
+            break
         }
 
         case 'dmgIfDebuff': {
@@ -1955,7 +2013,7 @@ function executeEffect(ctx) {
         case 'turret': {
             // Steamer : tourelle — DoT élémentaire sur l'ennemi, label personnalisé
             const turretBase   = _resolveEffectValue(effect.value)
-            const turretScaled = Math.max(1, Math.floor(
+            const turretScaled = Math.max(0, Math.floor(
                 turretBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
             ))
             const turretEntry  = { label: 'Tourelle', element: effect.element || 'neutre', value: turretScaled, duration: effect.duration || 3 }
@@ -2801,7 +2859,7 @@ function raidGameTick() {
             if ((b.delay ?? 0) > 0) continue
             if (b.stat === 'spd') effectiveSpd += b.value
         }
-        effectiveSpd = Math.max(1, effectiveSpd)
+        effectiveSpd = Math.max(25, effectiveSpd)
         const _rECd = _peekEnemyCastCooldown(enemy)
         const rate = (100 / (_rECd / TICK_MS)) * (effectiveSpd / 100) * (_afkSeconds > 0 ? 1 : _combatSpeedMult)
         combat.enemyTimers[slotIdx] = (combat.enemyTimers[slotIdx] || 0) + rate

@@ -219,6 +219,15 @@ function applyProgression(spell, lvl) {
             if (patch.esquive.reductionPct !== undefined) effect.reductionPct = patch.esquive.reductionPct
             if (patch.esquive.duration     !== undefined) effect.duration     = patch.esquive.duration
         }
+        if (effect.type === 'consumeElementBuff' && patch.consumeElementBuff?.onElement) {
+            for (const [elem, overrides] of Object.entries(patch.consumeElementBuff.onElement)) {
+                if (!effect.onElement?.[elem]) continue
+                if (overrides.value    !== undefined) effect.onElement[elem].value    = overrides.value
+                if (overrides.duration !== undefined) effect.onElement[elem].duration = overrides.duration
+                if (overrides.stat     !== undefined) effect.onElement[elem].stat     = overrides.stat
+                if (overrides.levelPct !== undefined) effect.onElement[elem].levelPct = overrides.levelPct
+            }
+        }
     }
 
     if (active.patch.cooldownMs !== undefined) {
