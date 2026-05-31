@@ -171,6 +171,7 @@ function importData() {
         reader.onload = ev => {
             try {
                 const data = JSON.parse(ev.target.result)
+                _clearingData = true
                 localStorage.setItem(SAVE_KEY, JSON.stringify(data))
                 location.reload()
             } catch {
