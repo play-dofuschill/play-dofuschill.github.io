@@ -5078,6 +5078,8 @@ transform: translateY(-1rem);
 .alm-btn:hover:not(:disabled) { background: var(--light1); color: var(--dark1); }
 .alm-btn:active:not(:disabled) { transform: scale(0.97); }
 .alm-btn-import { background: rgba(45,122,79,0.3); border: 1px solid #2D7A4F; }
+.alm-btn-reset  { background: rgba(231,76,60,0.2); border: 1px solid #e74c3c; color: #e74c3c; }
+.alm-btn-reset:hover:not(:disabled) { background: #e74c3c; color: #fff; }
 .almanax-btn-ready {
     background: linear-gradient(135deg, #8B6914, #ffe15e);
     color: var(--dark1); font-weight: bold;

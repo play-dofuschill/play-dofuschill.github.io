@@ -829,6 +829,14 @@
             </div>
 
             <div class="alm-card">
+                <div class="alm-section-title" style="color:#e74c3c;">Zone de danger</div>
+                <p class="alm-desc">Supprime définitivement toute la progression et remet le jeu à zéro. Cette action est irréversible.</p>
+                <div class="alm-actions">
+                    <button class="alm-btn alm-btn-reset" onclick="if(confirm('Supprimer toute la progression ? Cette action est irréversible.')) clearData()">🗑 Remise à zéro</button>
+                </div>
+            </div>
+
+            <div class="alm-card">
                 <div id="archives-progression"></div>
             </div>
         </div>
