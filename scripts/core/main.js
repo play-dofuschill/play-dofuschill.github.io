@@ -146,13 +146,7 @@ const state = {
 
 // ─── Thème ────────────────────────────────────────────────────────────────────
 
-function changeTheme(theme) {
-    document.body.setAttribute('data-theme', theme)
-    state.theme = theme
-    const sel = document.getElementById('settings-theme')
-    if (sel) sel.value = theme
-    saveGame()
-}
+
 
 // ─── Navigation menus ─────────────────────────────────────────────────────────
 
@@ -165,7 +159,6 @@ const MENU_MAP = {
     zones:        'explore-menu',
     worldmap:     'explore-menu',
     shop:         'shop-menu',
-    settings:     'settings-menu',
     archives:     'archives-menu',
     poutch:       'poutch-menu',
     forge:        'forge-menu',
@@ -694,10 +687,6 @@ function initGame() {
     refreshDailyPools()
     simulateOfflineProgress()
     startGameLoop()
-    changeTheme(state.theme || 'dark')
-
-    const sel = document.getElementById('settings-theme')
-    if (sel) sel.value = state.theme || 'dark'
 
     // Sélecteur d'équipe préset
     const teamSel = document.getElementById('team-slot-selector')

@@ -12,18 +12,6 @@
 
     <div id="bg-pattern"></div>
 
-    <div id="debug-panel" style="display: none;">
-
-    <div onclick="changeTheme('dark')">Dark Theme</div>
-    <div onclick="changeTheme('light')">Light Theme</div>
-    <div onclick="changeTheme('verdant')">Verdant Theme</div>
-    <div onclick="changeTheme('lilac')">Lilac Theme</div>
-    <div onclick="changeTheme('cherry')">Cherry Theme</div>
-    <div onclick="changeTheme('coral')">Coral Theme</div>
-    <div onclick="changeTheme('onyx')">Onyx Theme</div>
-    <div onclick="changeTheme('oled')">Oled Theme</div>
-
-    </div>
 
     <div id="game-version">v0.3</div>
 
@@ -266,58 +254,6 @@
 
     </div>
 
-        <div id="settings-menu" style="display: none;" class="season-background">
-
-        <div id="settings-menu-header">
-
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg>
-                Settings </span>
-            
-        </div>
-
-        <div class="settings-list">
-            <div onclick="exportData()">Export Data</div>
-            <div onclick="importData()">Import Data</div>
-            <div onclick="textData()">Data to Text</div>
-
-            <div>Theme: <select id="settings-theme">
-                <option value="default">default</option>
-                <option value="dark">dark</option>
-                <option value="verdant">verdant</option>
-                <option value="lilac">lilac</option>
-                <option value="cherry">cherry</option>
-                <option value="onyx">onyx</option>
-                <option value="coral">coral</option>
-                <option value="oled">oled</option>
-            </select></div>
-
-            <div 
-            onclick='document.getElementById("tooltipTop").style.display = `none`
-        document.getElementById("tooltipTitle").innerHTML = `Game Modifiers`
-        document.getElementById("tooltipMid").style.display = `none`
-        document.getElementById("tooltipBottom").innerHTML = `Right Click/Long press to see the details<div id="tooltip-modifiers-list"><div style="pointer-events:none; background:#AD5957; color:white">Challenges</div> <div data-help="ModNuzloke"><span>Nuzloke Mode</span> <input type="checkbox" id="checkbox-mode-nuzloke" onclick="updateSettings(true)"></div>  <div data-help="ModHard"><span>Hard Mode</span> <input type="checkbox" id="checkbox-mode-hard" onclick="updateSettings(true)"></div> <div style="pointer-events:none; background:#57AD5D; color:white">Cheats</div>  <div data-help="ModNoIvs"><span>No IVs</span><input type="checkbox" id="checkbox-mode-ivs" onclick="updateSettings(true)"></div>  <div data-help="ModAfk"><span>Longer AFK</span><input type="checkbox" id="checkbox-mode-afk" onclick="updateSettings(true)"></div> </div>`
-        openTooltip(); updateSettings()'
-        
-        >Game modifiers</div>
-
-            <div onclick='document.getElementById("tooltipTop").style.display = `none`
-        document.getElementById("tooltipTitle").innerHTML = `Credits`
-        document.getElementById("tooltipMid").style.display = `none`
-        document.getElementById("tooltipBottom").innerHTML = `Made by <span onclick="secretFight(areas.missingArea.id)">Duck</span><br><br>Monstre and trainer sprites by Monstre Showdown (Including artists: Beliot419, kyledove, Gnomowladny, Brumirage and ZacWeavile. Go check their work. Now.)<br><br>Gen 9 sprites by KingOfThe-X-Roads<br><br>All characters and related assets featured in this game are the exclusive property of Nintendo, Creatures Inc., and The Pokémon Company, and are used here strictly for non-commercial purposes.`
-        openTooltip()' >Credits</div>
-            <div onclick="window.open('https://discord.gg/VnukKfSs3S', '_blank')">Discord</div>
-
-            <div style="margin-top: 3rem;background: rgb(206, 83, 83); color: white; " onclick='document.getElementById("tooltipTop").style.display = `none`
-        document.getElementById("tooltipTitle").innerHTML = `Are you sure you want to delete all data forever?`
-        document.getElementById("tooltipMid").style.display = `none`
-        document.getElementById("tooltipBottom").innerHTML = `<div onClick = "clearData()" style="cursor:pointer; font-size:2rem" id="prevent-tooltip-exit">Yeah!</div>`
-        openTooltip()'
-            
-            >Wipe Data</div>
-
-        </div>
-
-        </div>
 
        <div id="disclaimer-menu" style="display: none;">
         Ce projet est entièrement non officiel
