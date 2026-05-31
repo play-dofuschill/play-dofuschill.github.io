@@ -9,6 +9,18 @@ function saveGame() {
     // Sync de l'équipe active dans previewTeams avant la sauvegarde
     state.previewTeams[state.currentPreviewTeam] = state.team
 
+    // Sync classEquip.level/exp depuis tous les previewTeams
+    // (les membres qui sont dans une équipe et qui ont levélé up ne mettent pas à jour classEquip en temps réel)
+    if (!state.classEquip) state.classEquip = {}
+    for (const teamArr of Object.values(state.previewTeams)) {
+        for (const m of (teamArr || [])) {
+            if (!m?.classId) continue
+            if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
+            state.classEquip[m.classId].level = m.level
+            state.classEquip[m.classId].exp   = m.exp ?? 0
+        }
+    }
+
     const saveData = {
         team:               state.team,
         inventory:          state.inventory,
@@ -43,6 +55,7 @@ function saveGame() {
         skullLevel:                state.skullLevel || 0,
         skullUnequipped:           state.skullUnequipped || null,
         ownedSkins:                state.ownedSkins || [],
+        stasis:                    state.stasis    || null,
         version:                   '0.2'
     }
     try {
@@ -92,12 +105,24 @@ function loadGame() {
         if (data.skullLevel != null)                state.skullLevel                = data.skullLevel
         if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
+        if (data.stasis)                            state.stasis                    = data.stasis
 
         // Migration : forgedStat (ancien) → forgedStats (tableau)
         for (const entry of Object.values(state.inventory)) {
             if (entry.forgedStat && !entry.forgedStats) {
                 entry.forgedStats = [entry.forgedStat]
                 delete entry.forgedStat
+            }
+        }
+
+        // Migration : vider les familiers équipés qui ne sont plus des familiers de zone valides
+        const _allTeams = Object.values(state.previewTeams || {})
+        if (state.team) _allTeams.push(state.team)
+        for (const teamArr of _allTeams) {
+            for (const member of (teamArr || [])) {
+                if (!member?.equip) continue
+                const famId = member.equip.familier
+                if (famId && !familiarById[famId]) member.equip.familier = null
             }
         }
 

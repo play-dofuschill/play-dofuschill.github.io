@@ -140,7 +140,8 @@ const state = {
         killCount: 0,
         dropCount: 0,
         startTime: Date.now()
-    }
+    },
+    stasis: null
 }
 
 // ─── Thème ────────────────────────────────────────────────────────────────────
@@ -169,6 +170,7 @@ const MENU_MAP = {
     poutch:       'poutch-menu',
     forge:        'forge-menu',
     raid:         'raid-menu',
+    stasis:       'stasis-menu',
     guide:        'guide-menu',
     credits:      'credits-menu'
 }
@@ -193,6 +195,7 @@ const MENU_ITEM_MAP = {
     'menu-item-poutch':   'poutch',
     'menu-item-forge':    'forge',
     'menu-item-raid':     'raid',
+    'menu-item-stasis':   'stasis',
     'menu-item-guide':    'guide',
     'menu-item-credits':  'credits'
 }
@@ -273,7 +276,8 @@ function switchMenu(menuName) {
     if (menuName === 'archives') updateArchivesUI()
     if (menuName === 'poutch') updatePoutchUI()
     if (menuName === 'forge')  updateForgeUI()
-    if (menuName === 'raid')   updateRaidUI()
+    if (menuName === 'raid')    updateRaidUI()
+    if (menuName === 'stasis')  updateStasisUI()
     if (menuName === 'guide')   renderGuide()
     if (menuName === 'credits') renderCredits()
 }

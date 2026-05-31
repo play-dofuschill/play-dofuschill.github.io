@@ -39,8 +39,7 @@ function updateTeamIndicators() {
         if (!el) continue
         const member = state.team[i - 1]
         if (member) {
-            const cls = classes[member.classId]
-            el.src = cls?.image || 'img/icons/icon.png'
+            el.src = getMemberImage(member)
             el.style.opacity = member.currentHp > 0 ? '1' : '0.3'
         } else {
             el.src = 'img/icons/icon.png'

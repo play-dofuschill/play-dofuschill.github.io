@@ -33,14 +33,9 @@ const CLASS_UNLOCK_CONDITIONS = {
 
     osamodas: (s) => Object.values(s.collection).filter(c => (c.drops ?? 0) >= 1).length >= 200,
 
-    zobal: (s) => Object.entries(s.collection).some(([id, data]) => {
-        const mob = monsters[id]
-        if (!mob?.familiar) return false
-        return mob.familiar.some(fam => {
-            if (fam.bonusStat !== 'maxHp') return false
-            const effMax = fam.max * (data.isArchi ? 1.5 : 1)
-            return Math.floor(getFamiliarStatValue(data.level || 0, fam.min, effMax, mob.rarity)) >= 100
-        })
+    zobal: (_s) => familiars.some(fam => {
+        const bonuses = getFamiliarBonusesComputed(fam.id)
+        return bonuses.some(b => b.bonusStat === 'maxHp' && b.value >= 100)
     }),
 
     sram: (s) => {

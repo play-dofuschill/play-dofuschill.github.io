@@ -1,17 +1,26 @@
-// familiarDictionary.js — Système de familiers DofusChill
+// familiarDictionary.js — Familiers de zone DofusChill
 //
-// Les données familier sont dans monsterDictionary.js :
-//   familiar: { bonusType, bonusStat, min, max }
+// Chaque familier est lié à un ensemble de monstres (field monsters:[]).
+// Niveau du familier = floor(moyenne des niveaux de collection des monstres assignés).
+// Bonus archi     : chaque monstre capturé en version archimonstre ajoute +10% au bonus final.
 //
-// bonusType 'farming' → dropRate ou xpGain (%, appliqué dans loot.js et progression.js)
-// bonusType 'combat'  → atk, maxHp, spd, flatDamage, critChance… (valeur brute, appliqué dans stats.js)
-// bonusType 'defense' → res.feu, res.eau, res.air, res.terre, res.neutre, damageReductionPct (%, stats.js)
+// Format d'une entrée :
+// {
+//   id:       'familierNom',
+//   name:     'Nom affiché',
+//   image:    'img/familiars/nom.png',
+//   rarity:   'commun' | 'peu_commun' | 'rare' | 'legendaire',
+//   monsters: ['monsterId1', 'monsterId2', ...],
+//   bonuses: [
+//     { bonusType: 'farming' | 'combat' | 'defense', bonusStat: 'dropRate', min: 1, max: 10 }
+//   ]
+// }
 //
-// La valeur du bonus suit une courbe de puissance (lente au début, forte en late game) :
-//   valeur = min + (max - min) * (level / 200) ^ curvePower
-// Toutes les entrées équipées sur l'équipe s'additionnent.
+// bonusType 'farming' → dropRate ou xpGain (%, appliqué dans loot.js)
+// bonusType 'combat'  → atk, spd, flatDamage, critChance… (valeur brute, stats.js)
+// bonusType 'defense' → maxHp, res.*, damageReductionPct (stats.js)
 
-// ─── Courbe de progression ────────────────────────────────────────────────────
+// ─── Courbes de progression ───────────────────────────────────────────────────
 
 const familiarCurves = {
     commun:     'log',
@@ -20,91 +29,87 @@ const familiarCurves = {
     legendaire: 2.2
 }
 
-function getFamiliarStatValue(
-    level,
-    min,
-    max,
-    rarity = 'commun',
-    maxLevel = 200
-) {
+function getFamiliarStatValue(level, min, max, rarity = 'commun', maxLevel = 200) {
     const clampedLevel = Math.min(level, maxLevel)
-
-    // le niveau max donne TOUJOURS exactement la valeur max
-    if (clampedLevel >= maxLevel) {
-        return max
-    }
+    if (clampedLevel >= maxLevel) return max
 
     const t = clampedLevel / maxLevel
-
+    const curve = familiarCurves[rarity]
     let progression
 
-    const curve = familiarCurves[rarity]
+    if      (curve === 'log')    progression = Math.log10(1 + 9 * t)
+    else if (curve === 'linear') progression = t
+    else                         progression = Math.pow(t, curve)
 
-    // COMMUN : logarithmique
-    if (curve === 'log') {
-        progression = Math.log10(1 + 9 * t)
-    }
-
-    // PEU COMMUN : linéaire
-    else if (curve === 'linear') {
-        progression = t
-    }
-
-    // RARE / LEGENDAIRE : exponentiel
-    else {
-        progression = Math.pow(t, curve)
-    }
-
-    const value = min + (max - min) * progression
-
-    // IMPORTANT :
-    // on arrondit toujours à l'entier inférieur
-    // pour éviter d'atteindre max avant le niveau max
-    return Math.floor(value)
+    return Math.floor(min + (max - min) * progression)
 }
 
-// ─── Agrégat de tous les bonus familiers équipés ──────────────────────────────
-// Retourne { bonusStat: valeurTotale, ... } pour toutes les stats
+// ─── Niveau d'un familier de zone ────────────────────────────────────────────
+// Moyenne arrondie à l'inférieur des niveaux de collection des monstres assignés.
+// Un monstre jamais capturé compte pour 0.
+
+function getFamiliarLevel(familiar) {
+    if (!familiar?.monsters?.length) return 0
+    const total = familiar.monsters.reduce(
+        (sum, id) => sum + (state.collection[id]?.level ?? 0), 0
+    )
+    return Math.floor(total / familiar.monsters.length)
+}
+
+// ─── Multiplicateur archi d'un familier ──────────────────────────────────────
+
+function _getFamiliarArchiMult(familiar) {
+    const archiCount = familiar.monsters.filter(id => state.collection[id]?.isArchi).length
+    return 1 + archiCount * 0.10
+}
+
+// ─── Bonus calculés d'un familier (pour affichage et application) ─────────────
+// Retourne [{ bonusType, bonusStat, value }, ...]
+
+function getFamiliarBonusesComputed(familiarId) {
+    const fam = familiarById[familiarId]
+    if (!fam?.bonuses?.length) return []
+    const level     = getFamiliarLevel(fam)
+    const archiMult = _getFamiliarArchiMult(fam)
+    return fam.bonuses.map(b => ({
+        bonusType: b.bonusType,
+        bonusStat: b.bonusStat,
+        value: Math.floor(getFamiliarStatValue(level, b.min, b.max, fam.rarity) * archiMult)
+    }))
+}
+
+// ─── Agrégat de tous les bonus familiers équipés (farming + combat + defense) ─
 
 function getAllFamiliarBonuses() {
     if (!state.team) return {}
-
     const totals = {}
-
     for (const member of state.team) {
         const famId = member?.equip?.familier
         if (!famId) continue
-
-        const mob = monsters[famId]
-        const fam = mob?.familiar
-        if (!fam?.bonusStat || fam.min == null || fam.max == null) continue
-
-        const entry  = state.collection[famId]
-        const level  = entry?.level || 0
-        const effMax = fam.max * (entry?.isArchi ? 1.5 : 1)
-
-        const value = Math.floor(getFamiliarStatValue(level, fam.min, effMax, mob.rarity))
-        if (value === 0) continue
-
-        totals[fam.bonusStat] = (totals[fam.bonusStat] || 0) + value
+        for (const { bonusStat, value } of getFamiliarBonusesComputed(famId)) {
+            if (value > 0) totals[bonusStat] = (totals[bonusStat] || 0) + value
+        }
     }
-
     return totals
 }
 
-// ─── Bonus d'un seul familier (pour l'affichage UI) ──────────────────────────
+// ─── Définitions des familiers de zone ───────────────────────────────────────
 
-function getFamiliarBonusValue(monsterId) {
-    const mob = monsters[monsterId]
-    const fam = mob?.familiar
-    if (!fam?.bonusStat) return null
+const familiars = [
 
-    const entry  = state.collection[monsterId]
-    const level  = entry?.level || 0
-    const effMax = fam.max * (entry?.isArchi ? 1.5 : 1)
+    // ─── Tainela ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierBouftou',
+        name:     'Esprit Bouftou',
+        image:    'img/monstres/sprites/bouftou.png',
+        rarity:   'commun',
+        monsters: ['bouftou', 'bouftonBlanc', 'bouftonNoir', 'bouftouNoir', 'bouftouChefDeGuerre'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+        ]
+    },
 
-    return {
-        stat:  fam.bonusStat,
-        value: Math.floor(getFamiliarStatValue(level, fam.min, effMax, mob.rarity))
-    }
-}
+]
+
+// Index id → familier pour accès O(1)
+const familiarById = Object.fromEntries(familiars.map(f => [f.id, f]))

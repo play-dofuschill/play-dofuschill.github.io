@@ -120,8 +120,12 @@ function updateZoneUI() {
     if (zoneTab === 'event') {
         const info = document.createElement('div')
         info.className = 'zone-daily-info'
-        info.innerHTML = `<span>Événements &bull; <strong>${poolCount}</strong> disponible${poolCount > 1 ? 's' : ''}</span>
-            <span>Renouvellement dans&nbsp;${nextEventRefreshLabel()}</span>`
+        info.innerHTML = `
+            <div class="zone-daily-left">
+                <span>Événements &bull; <strong>${poolCount}</strong> disponible${poolCount > 1 ? 's' : ''}</span>
+                <span>Renouvellement dans&nbsp;${nextEventRefreshLabel()}</span>
+            </div>`
+        info.appendChild(_buildSkullSelector())
         listing.appendChild(info)
     }
 

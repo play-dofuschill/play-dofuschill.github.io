@@ -114,15 +114,15 @@ function renderEquipSlots(member, slotIndex) {
         const label  = EQUIP_SLOT_LABEL[slot] || slot
 
         if (slot === 'familier') {
-            const mob  = itemId ? monsters[itemId] : null
-            const flvl = itemId ? (state.collection[itemId]?.level || 0) : 0
+            const fam  = itemId ? familiarById[itemId] : null
+            const flvl = fam ? getFamiliarLevel(fam) : 0
             return `<div class="equip-bubble"
                          onclick="openEquipSelector(${slotIndex}, 'familier')"
-                         ${mob ? `oncontextmenu="event.preventDefault(); event.stopPropagation(); showMonsterTooltip('${itemId}')"` : ''}
+                         ${fam ? `oncontextmenu="event.preventDefault(); event.stopPropagation(); showFamiliarTooltip('${itemId}')"` : ''}
                          title="Familier">
-                        ${mob
+                        ${fam
                             ? `<span class="bubble-level">Niv.${flvl}</span>
-                               <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">`
+                               <img src="${fam.image}" onerror="this.src='img/icons/icon.png'">`
                             : `<img class="equip-bubble-placeholder" src="${MS_SLOT_ICONS['familier']}">`}
                     </div>`
         }
@@ -369,12 +369,15 @@ function renderEquipPickGrid() {
     filtered.sort((a, b) => {
         if (sort === 'bonus')  return (b.famBonus?.value || 0) - (a.famBonus?.value || 0)
         if (sort === 'req')    return (a.requiredLevel   || 0) - (b.requiredLevel   || 0)
-        if (isFamiliar) return (b.entry?.level || 0) - (a.entry?.level || 0)
+        if (isFamiliar) return getFamiliarLevel(familiarById[b.id]) - getFamiliarLevel(familiarById[a.id])
         return getItemLevel(b.id) - getItemLevel(a.id)
     })
 
+    const isFamLocked = e => isFamiliar && getFamiliarLevel(familiarById[e.id]) === 0
+
     const isDisabled = e =>
         takenByOther.has(e.id) ||
+        isFamLocked(e) ||
         (!isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel)
 
     const available = filtered.filter(e => !isDisabled(e))
@@ -383,7 +386,7 @@ function renderEquipPickGrid() {
     let html = ''
     for (const e of [...available, ...disabled]) {
         const taken    = takenByOther.has(e.id)
-        const locked   = !isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel
+        const locked   = isFamLocked(e) || (!isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel)
         const disClass = locked ? ' equip-pick-locked' : taken ? ' equip-pick-disabled' : ''
         const handler  = (taken || locked) ? '' : `onclick="_doEquipPick('${e.id}')"`
 
@@ -392,11 +395,11 @@ function renderEquipPickGrid() {
             const statLabel = e.famBonus ? (FAM_BUBBLE_LABELS[e.famBonus.stat] ?? formatBonusStat(e.famBonus.stat)) : null
             const bonus = e.famBonus ? `+${e.famBonus.value} ${statLabel}` : '—'
             html += `<div class="equip-pick-item${disClass}" ${handler}
-                         oncontextmenu="event.preventDefault(); showMonsterTooltip('${e.id}')"
-                         title="${e.mob?.name || e.id}">
+                         oncontextmenu="event.preventDefault(); showFamiliarTooltip('${e.id}')"
+                         title="${e.fam?.name || e.id}">
                 <div class="equip-pick-bubble">
                     <span class="bubble-level">${bonus}</span>
-                    <img src="${e.mob?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
+                    <img src="${e.fam?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
                 </div>
             </div>`
         } else {
@@ -461,16 +464,15 @@ function openFamiliarSelector(memberIndex, fromSheet = false) {
         if (other.equip?.familier) takenByOther.add(other.equip.familier)
     }
 
-    const famItems = Object.keys(state.collection).map(monsterId => {
-        const mob      = monsters[monsterId]
-        const entry    = state.collection[monsterId]
-        if (!mob || !entry) return null
-        const famBonus = mob.familiar ? getFamiliarBonusValue(monsterId) : null
-        return { id: monsterId, mob, entry, famBonus }
-    }).filter(Boolean)
+    const famItems = familiars.map(fam => {
+        const bonuses  = getFamiliarBonusesComputed(fam.id)
+        const main     = bonuses[0] || null
+        const famBonus = main ? { stat: main.bonusStat, value: main.value } : null
+        return { id: fam.id, fam, famBonus }
+    })
 
-    const bonusStats   = [...new Set(famItems.filter(e => e.famBonus).map(e => e.famBonus.stat))]
-    const filterStats  = bonusStats.map(s => [s, formatBonusStat(s)])
+    const bonusStats  = [...new Set(famItems.filter(e => e.famBonus).map(e => e.famBonus.stat))]
+    const filterStats = bonusStats.map(s => [s, formatBonusStat(s)])
 
     _equipPickState = {
         items: famItems,

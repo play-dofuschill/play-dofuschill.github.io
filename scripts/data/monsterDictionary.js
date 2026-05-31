@@ -1,4 +1,4 @@
-// monsterDictionary.js — Monstres DofusChill
+﻿// monsterDictionary.js — Monstres DofusChill
 //
 /*
 monsters. = {
@@ -12,11 +12,6 @@ monsters. = {
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
     },
     moves: ['', ''],
-    familiar: [
-        {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-        {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-        {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-    role: ['combat','farming','defense']
 }
 stats: [
         { bonusStat: 'atk', min: 1, max: 50 }, valeur brute
@@ -88,8 +83,6 @@ monsters.chaferDebutant = {
         res:{neutre: 14, terre: 0, feu: 0, eau: 0, air: 0 }
     },
     moves: ['petit_coup_du_Chafer'],
-    familiar: { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
-    role: ['farming']
 }
 
 monsters.chaferEclaireur = {
@@ -103,8 +96,6 @@ monsters.chaferEclaireur = {
         res:{neutre: 0, terre: 14, feu: 0, eau: 0, air: 0 }
     },
     moves: ['fleche_de_feu'],
-    familiar: { bonusType: 'farming', bonusStat: 'spd', min: 1, max: 10 },
-    role: ['farming']
 }
 
 monsters.chaferFurtif = {
@@ -118,8 +109,6 @@ monsters.chaferFurtif = {
         res:{neutre: 0, terre: 0, feu: 0, eau: 0, air: 14 }
     },
     moves: ['petit_coup_du_Chafer'],
-    familiar: { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 30 },
-    role: ['combat']
 }
 
 monsters.chaferPiquier = {
@@ -133,8 +122,6 @@ monsters.chaferPiquier = {
         res:{neutre: 0, terre: 0, feu: 0, eau: 14, air: 0 }
     },
     moves: ['empalement'],
-    familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 20 },
-    role: ['defense']
 }
 
 monsters.sergentChafer = {
@@ -148,8 +135,6 @@ monsters.sergentChafer = {
         res:{neutre: 0, terre: 0, feu: 14, eau: 0, air: 0 }
     },
     moves: ['petit_coup_du_Chafer'],
-    familiar: { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 20 },
-    role: ['farming']
 }
 
 // ═══════════════════════════════════════════════════════
@@ -179,8 +164,6 @@ monsters.kardorim = {
         res: {neutre: 10, terre: -15, feu: 20, eau: -10, air: 5 }
     },
     moves: ['cassecrane', 'appeldeKardorib'],
-    familiar: { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-    role: ['combat']
 }
 // #endregion
 
@@ -198,8 +181,6 @@ monsters.piouBleu = {
         res: {neutre: 0, terre: 0, feu: 0, eau: 33, air: 0 }
     },
     moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
 }
 monsters.piouRouge = {
     id: 'piouRouge',
@@ -212,8 +193,6 @@ monsters.piouRouge = {
         res: {neutre: 0, terre: 0, feu: 33, eau: 0, air: 0 }
     },
     moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
 }
 monsters.piouVert = {
     id: 'piouVert',
@@ -226,8 +205,6 @@ monsters.piouVert = {
         res: {neutre: 0, terre: 33, feu: 0, eau: 0, air: 0 }
     },
     moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
 }
 monsters.piouJaune = {
     id: 'piouJaune',
@@ -240,8 +217,6 @@ monsters.piouJaune = {
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 33 }
     },
     moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
 }
 monsters.piouRose = {
     id: 'piouRose',
@@ -254,8 +229,6 @@ monsters.piouRose = {
         res: {neutre: 0, terre: 17, feu: 0, eau: 0, air: 17 }
     },
     moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
 }
 monsters.piouViolet = {
     id: 'piouViolet',
@@ -268,8 +241,6 @@ monsters.piouViolet = {
         res: {neutre: 0, terre: 0, feu: 17, eau: 17, air: 0 }
     },
     moves: ['picore'],
-    familiar: { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['combat']
 }
 // #endregion
 
@@ -286,8 +257,6 @@ monsters.pissenliDiabolique = {
         res:{neutre: -10, terre: 20, feu: -10, eau: 0, air: 15 }
     },
     moves: ['zizou','herbeSauvage'],
-    familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 30 },
-    role: ['defense']
 }
 monsters.epouvanteur = {
     id: 'epouvanteur',
@@ -300,8 +269,6 @@ monsters.epouvanteur = {
         res:{neutre: 5, terre: 0, feu: -10, eau: 15, air: 10 }
     },
     moves: ['fuyezPauvresFous','desherbant'],
-    familiar: { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
-    role: ['farming']
 }
 monsters.gardienneChampetre = {
     id: 'gardienneChampetre',
@@ -314,8 +281,6 @@ monsters.gardienneChampetre = {
         res:{neutre: -10, terre: -10, feu: -15, eau: 20, air: 25 }
     },
     moves: ['protectiondesChamps','engrais'],
-    familiar: { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 20 },
-    role: ['farming']
 }
 monsters.roseDemoniaque = {
     id: 'roseDemoniaque',
@@ -328,8 +293,6 @@ monsters.roseDemoniaque = {
         res:{neutre: 0, terre: -10, feu: 35, eau: -10, air: 10 }
     },
     moves: ['roseEpineuse','petalesEmpoisonnes'],
-    familiar: { bonusType: 'farming', bonusStat: 'spd', min: 1, max: 10 },
-    role: ['farming']
 }
 monsters.tournesolSauvage = {
     id: 'tournesolSauvage',
@@ -342,13 +305,11 @@ monsters.tournesolSauvage = {
         res:{neutre: 15, terre: 10, feu: -10, eau: 15, air: -15 }
     },
     moves: ['poisonSauvage','racinePivotante'],
-    familiar: { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 40 },
-    role: ['combat']
 }
 
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 // DONJON TOURNESOL
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 monsters.tournesolAffame = {
     id: 'tournesolAffame',
     name: 'Tournesol Affamé',
@@ -360,15 +321,11 @@ monsters.tournesolAffame = {
         res: {neutre: 25, terre: 25, feu: 25, eau: -10, air: -15 }
     },
     moves: ['goinfrage','soinFeuillu','appeldesChamps'],
-    familiar: [
-        { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 40 },
-        {bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 10 }],
-    role: ['combat']
 }
 // #endregion
 
-// ═══════════════════════════════════════════════════════
-// #region PLAGE ASTRUB — Zone niveau 10–30
+// ===============================================================
+// #region PLAGE ASTRUB = Zone niveau 10 - 30
 monsters.pichonBlanc = {
     id: 'pichonBlanc',
     name: 'Pichon Blanc',
@@ -380,8 +337,6 @@ monsters.pichonBlanc = {
         res: {neutre: 18, terre: -1, feu: -1, eau: 18, air: 66 }
     },
     moves: ['bouffeedAir', 'onde_Enrageante'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.pichonVert = {
     id: 'pichonVert',
@@ -394,8 +349,6 @@ monsters.pichonVert = {
         res: {neutre: 18, terre: 66, feu: -1, eau: 18, air: -1 }
     },
     moves: ['reflux', 'onde_Enrageante'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.pichonBleu = {
     id: 'pichonBleu',
@@ -408,8 +361,6 @@ monsters.pichonBleu = {
         res: {neutre: 18, terre: -1, feu: -1, eau: 66, air: 18 }
     },
     moves: ['vaguelette', 'resistivite'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.pichonOrange = {
     id: 'pichonOrange',
@@ -422,8 +373,6 @@ monsters.pichonOrange = {
         res: {neutre: 18, terre: -1, feu: 66, eau: 18, air: -1 }
     },
     moves: ['Sable_Brulant', 'sel_Marin'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.pichonKloune = {
     id: 'pichonKloune',
@@ -436,14 +385,12 @@ monsters.pichonKloune = {
         res: {neutre: 20, terre: 20, feu: 20, eau: -1, air: 20 }
     },
     moves: ['blag', 'klounerie'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 15 },
-    role: ['defense']
 }
 
 
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 // DONJON MOUSSE
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 monsters.mobLeponge = {
     id: 'mobLeponge',
     name: "Mob l'éponge",
@@ -455,19 +402,12 @@ monsters.mobLeponge = {
         res: {neutre: 14, terre: 14, feu: 14, eau: 14, air: 14}
     },
     moves: ['degraissage','rincage','Regeneration_Spontanee'],
-    familiar: [
-        {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 7}],
-    role: ['defense']
 }
 // #endregion
 
-// ═══════════════════════════════════════════════════════
-// #region EVENT FORET ASTRUB 20-30
-// ═══════════════════════════════════════════════════════
+// ===============================================================
+// #region EVENT FORET ASTRUB 20 - 30
+// ===============================================================
 monsters.milimulou = {
     id: 'milimulou',
     name: 'Milimulou',
@@ -526,8 +466,8 @@ monsters.hommeOurs = {
 
 // #endregion
 
-// ═══════════════════════════════════════════════════════
-// #region TAINELA — Zone niveau 20–40
+// ===============================================================
+// #region TAINELA = Zone niveau 20 - 40
 
 monsters.bouftou = {
     id: 'bouftou',
@@ -540,8 +480,6 @@ monsters.bouftou = {
         res: {neutre: 5, terre: 15, feu: -10, eau: -5, air: 20 }
     },
     moves: ['morsure_du_bouftou'],
-    familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 35 },
-    role: ['defense']
 }
 
 monsters.bouftonBlanc = {
@@ -555,8 +493,6 @@ monsters.bouftonBlanc = {
         res: {neutre: 5, terre: 20, feu: -5, eau: -10, air: 15 }
     },
     moves: ['machouillage'],
-    familiar: { bonusType: 'farming', bonusStat: 'xpGain', min: 3, max: 10 },
-    role: ['farming']
 }
 
 monsters.bouftonNoir = {
@@ -570,8 +506,6 @@ monsters.bouftonNoir = {
         res: {neutre: 5, terre: -10, feu: 15, eau: 20, air: -5 }
     },
     moves: ['mordillement'],
-    familiar: { bonusType: 'farming', bonusStat: 'xpGain', min: 3, max: 10 },
-    role: ['farming']
 }
 
 monsters.bouftouNoir = {
@@ -585,8 +519,6 @@ monsters.bouftouNoir = {
         res: {neutre: 5, terre: -5, feu: 20, eau: 15, air: -10 }
     },
     moves: ['morsure_obscure', 'halaine_du_bouftou'],
-    familiar: { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 15 },
-    role: ['farming']
 }
 
 monsters.bouftouChefDeGuerre = {
@@ -600,13 +532,11 @@ monsters.bouftouChefDeGuerre = {
         res: {neutre: 15, terre: 0, feu: 0, eau: -5, air: 15 }
     },
     moves: ['fureur_du_bouftou', 'morsure_de_guerre'],
-    familiar: { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 15 },
-    role: ['combat']
 }
 
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 // DONJON BOUFTOU
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 monsters.bouftouRoyal = {
     id: 'bouftouRoyal',
     name: 'Bouftou Royal',
@@ -618,16 +548,13 @@ monsters.bouftouRoyal = {
         res: {neutre: 35, terre: 20, feu: 20, eau: 25, air: 5 }
     },
     moves: ['morsure_royale', 'guerison_bouftou', 'morsure_de_guerre', 'cuirasse_laineuse'],
-    familiar: [{ bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 },
-               { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }],
-    role: ['farming','defense']
 }
 // #endregion
 
 monsters.Rathrosk = {
     id: 'Rathrosk',
     name: 'Rathrosk',
-    image: 'img/monstres/sprites/Rathrosk.png',
+    image: 'img/monstres/Raids/Rathrosk.png',
     rarity: 'legendaire',
     tier: 'boss',
     bst: {
@@ -635,13 +562,11 @@ monsters.Rathrosk = {
         res: {neutre: 25, terre: 25, feu: 25, eau: 25, air: 25}
     },
     moves: ['souffle_de_rathrosk','queue_du_dragon','regain_de_vie'],
-    familiar: { bonusType: 'defense', bonusStat: 'maxHp', min: 50, max: 500 },
-    role: ['defense']
 }
 
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 // #region EVENT BIBLOPS 25-30
-// ═══════════════════════════════════════════════════════
+// ===============================================================
 monsters.biblop_coco = {
     id: 'biblop_coco',
     name: 'Biblop Coco',
@@ -701,8 +626,6 @@ monsters.scarafeuilleBlanc = {
         res: {neutre: 25, terre: -50, feu: 25, eau: 25, air: 100 }
     },
     moves: ['scaraforce', 'elemental_dispersion', 'spriti_element_blanc', 'flammeche_air'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.scarafeuilleVert = {
     id: 'scarafeuilleVert',
@@ -715,8 +638,6 @@ monsters.scarafeuilleVert = {
         res: {neutre: 25, terre: 100, feu: 25, eau: 25, air: -50 }
     },
     moves: ['scaraforce', 'elemental_dispersion', 'spriti_element_vert', 'flammeche_terre'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.scarafeuilleBleu = {
     id: 'scarafeuilleBleu',
@@ -729,8 +650,6 @@ monsters.scarafeuilleBleu = {
         res: {neutre: 25, terre: 25, feu: -50, eau: 100, air: 25 }
     },
     moves: ['scaraforce', 'elemental_dispersion', 'spriti_element_bleu', 'flammeche_eau'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.scarafeuilleRouge = {
     id: 'scarafeuilleRouge',
@@ -743,8 +662,6 @@ monsters.scarafeuilleRouge = {
         res: {neutre: 25, terre: 25, feu: 100, eau: -50, air: 25 }
     },
     moves: ['scaraforce', 'elemental_dispersion', 'spriti_element_rouge', 'flammeche_feu'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 15 },
-    role: ['defense']
 }
 monsters.scarafeuilleNoir = {
     id: 'scarafeuilleNoir',
@@ -757,8 +674,6 @@ monsters.scarafeuilleNoir = {
         res: {neutre: 100, terre: 25, feu: 25, eau: 25, air: 25 }
     },
     moves: ['scaraforce', 'elemental_dispersion', 'scarinvi'],
-    familiar: {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 15 },
-    role: ['defense']
 }
 
 // ═══════════════════════════════════════════════════════
@@ -788,13 +703,6 @@ monsters.scrarabossDoree = {
         res: {neutre: 25, terre: 25, feu: 25, eau: 25, air: 25}
     },
     moves: ['picoti', 'naissance', 'premier_soins', 'expulsion'],
-    familiar: [
-        {bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 7},
-        {bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 7}],
-    role: ['defense']
 }
 // #endregion
 
@@ -811,8 +719,6 @@ monsters.kwakereFlamme = {
         res: {neutre: 100, terre: 25, feu: 100, eau: -25, air: 25 }
     },
     moves: ['wakolanterne_flamme', 'wakzefeute_flamme', 'griffes_acerees'],
-    familiar: {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 65 },
-    role: ['combat']
 }
 monsters.kwakereGlace = {
     id: 'kwakereGlace',
@@ -825,8 +731,6 @@ monsters.kwakereGlace = {
         res: {neutre: 100, terre: 25, feu: -25, eau: 100, air: 25 }
     },
     moves: ['wakolanterne_glace', 'wakzefeute_glace', 'griffes_acerees'],
-    familiar: {bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 20 },
-    role: ['combat']
 }
 monsters.kwakereTerre = {
     id: 'kwakereTerre',
@@ -839,8 +743,6 @@ monsters.kwakereTerre = {
         res: {neutre: 100, terre: 100, feu: 25, eau: 25, air: -25 }
     },
     moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees'],
-    familiar: {bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 75 },
-    role: ['defense']
 }
 monsters.kwakereVent = {
     id: 'kwakereVent',
@@ -853,8 +755,6 @@ monsters.kwakereVent = {
         res: {neutre: 100, terre: -25, feu: 25, eau: 25, air: 100 }
     },
     moves: ['wakolanterne_vent', 'wakzefeute_vent', 'griffes_acerees'],
-    familiar: {bonusType: 'farming', bonusStat: 'spd', min: 1, max: 25 },
-    role: ['farming']
 }
 
 monsters.kwakFlamme = {
@@ -868,8 +768,6 @@ monsters.kwakFlamme = {
         res: {neutre: 75, terre: 10, feu: 75, eau: -50, air: 10 }
     },
     moves: ['kwakoukas_flamme', 'wakpot_flamme', 'eventrement'],
-    familiar: {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-    role: ['combat']
 }
 monsters.kwakGlace = {
     id: 'kwakGlace',
@@ -882,8 +780,6 @@ monsters.kwakGlace = {
         res: {neutre: 75, terre: 10, feu: -50, eau: 75, air: 10 }
     },
     moves: ['kwakoukas_glace', 'wakpot_glace', 'eventrement'],
-    familiar: {bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 10 },
-    role: ['combat']
 }
 monsters.kwakTerre = {
     id: 'kwakTerre',
@@ -896,8 +792,6 @@ monsters.kwakTerre = {
         res: {neutre: 75, terre: 75, feu: 10, eau: 10, air: -50 }
     },
     moves: ['kwakoukas_terre', 'wakpot_terre', 'eventrement'],
-    familiar: {bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 50 },
-    role: ['defense']
 }
 monsters.kwakVent = {
     id: 'kwakVent',
@@ -910,8 +804,6 @@ monsters.kwakVent = {
         res: {neutre: 75, terre: -50, feu: 10, eau: 10, air: 75 }
     },
     moves: ['kwakoukas_vent', 'wakpot_vent', 'eventrement'],
-    familiar: {bonusType: 'farming', bonusStat: 'spd', min: 1, max: 15 },
-    role: ['farming']
 }
 
 
@@ -929,12 +821,6 @@ monsters.kwakwa = {
         res: {neutre: 100, terre: 50, feu: 50, eau: 50, air: 50 }
     },
     moves: ['kwakoukas_kwayal', 'wakpot_kwayal', 'kwabolition', 'kwarmee_kwayal'],
-    familiar: [
-        {bonusType: 'farming', bonusStat: 'spd', min: 3, max: 25 },
-        {bonusType: 'defense', bonusStat: 'maxHp', min: 3, max: 75 },
-        {bonusType: 'combat', bonusStat: 'flatDamage', min: 2, max: 20 },
-        {bonusType: 'combat', bonusStat: 'atk', min: 3, max: 65 }],
-    role: ['combat','farming','defense']
 }
 // #endregion
 
@@ -1407,8 +1293,6 @@ monsters.dopeul_darkvlad = {
         hp: 1200, atk: 350, spd: 100,
         res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
     moves: ['lame_de_iop','lame_divine','tension'],
-    familiar: { bonusType: 'farming', bonusStat: 'dropRateElite', min: 5, max: 50 },
-    role: ['farming']
 }
 
 // #endregion
@@ -3558,11 +3442,6 @@ monsters.kralamoureGeant = {
         hp: 5300, atk: 2500, spd: 100,
         res: {neutre: 95, terre: 95, feu: 95, eau: 95, air: 95 }},
     moves: ['kracheau_immobilisant','vulnerabilite_de_la_tourbiere','kraken','tourbe_ecrasante'],
-    familiar: [
-        {bonusType: 'combat', bonusStat:  'atk', min: 100, max: 300 },
-        {bonusType: 'defense', bonusStat: 'maxHp', min: 200, max: 400 },
-        {bonusType: 'farming', bonusStat: 'xpGain', min: 50, max: 200 }],
-    role: ['combat','farming','defense']
 }
 // #endregion
 
@@ -3980,7 +3859,6 @@ monsters.poutch = {
         res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
     },
     moves: ['coupdepoutch'],
-    role: []
 }
 // #endregion
 

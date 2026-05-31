@@ -242,7 +242,7 @@ move.engrais = {
     id: 'engrais',
     name: 'Engrais',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'atk', value: { min: 50, max: 75 }, duration: 3, target: 'self'}]
+    effects: [{type: 'buff', stat: 'atk', value: { min: 50, max: 75 }, duration: 2, target: 'self'}]
 }
 move.goinfrage = {
     id: 'goinfrage',
@@ -289,7 +289,7 @@ move.resistivite = {
     name: "Résistivité",
     cooldownMs: 2000,
     effects: [{type: 'debuff', stat: 'atk', value: { min: -50, max: -50 }, duration: 3, target: 'enemy'},
-              {type: 'buff', stat: 'damageReductionPct', value: { min: 10, max: 10 }, duration: 2, target: 'self'}
+              {type: 'buff', stat: 'damageReductionPct', value: { min: 10, max: 10 }, duration: 1, target: 'self'}
     ]
 }
 move.vaguelette = {
@@ -414,7 +414,7 @@ move.cuirasse_laineuse = {
     id: 'cuirasse_laineuse',
     name: 'Cuirasse laineuse',
     cooldownMs: 3000,
-    effects: [{type: 'buff', stat: 'damageReductionPct', value: 30, duration: 3, target: 'self'}]
+    effects: [{type: 'buff', stat: 'damageReductionPct', value: 30, duration: 2, target: 'self'}]
 }
 // #endregion
 
@@ -441,7 +441,7 @@ move.elemental_dispersion = {
     id: 'elemental_dispersion',
     name: 'Élémental Dispersion',
     cooldownMs: 2500,
-    effects: [{type: 'buff', stat: 'flatDamage', value: 10, duration: 4, target: 'self'}]
+    effects: [{type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}]
 }
 // Scarafeuille Noir uniquement
 move.scarinvi = {
@@ -573,7 +573,7 @@ move.wakzefeute_vent = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
-        {type: 'buff',      stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 1,       target: 'self'},
         {type: 'damage',    element: 'air', damage: { min: 8, max: 11 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                  target: 'self'}
     ]
@@ -595,7 +595,7 @@ move.wakzefeute_glace = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
-        {type: 'buff',      stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 1,       target: 'self'},
         {type: 'damage',    element: 'eau', damage: { min: 8, max: 11 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                  target: 'self'}
     ]
@@ -617,7 +617,7 @@ move.wakzefeute_flamme = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
-        {type: 'buff',      stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 1,       target: 'self'},
         {type: 'damage',    element: 'feu', damage: { min: 8, max: 11 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                  target: 'self'}
     ]
@@ -639,7 +639,7 @@ move.wakzefeute_terre = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,         target: 'enemy'},
-        {type: 'buff',      stat: 'atk', value:  50, duration: 2,         target: 'self'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 1,         target: 'self'},
         {type: 'damage',    element: 'terre', damage: { min: 8, max: 11 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                    target: 'self'}
     ]
@@ -660,7 +660,7 @@ move.wakpot_vent = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',  stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
-        {type: 'buff',    stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 1,       target: 'self'},
         {type: 'damage',  element: 'air', damage: { min: 6, max: 7 }, target: 'enemy'}
     ]
 }
@@ -680,7 +680,7 @@ move.wakpot_flamme = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',  stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
-        {type: 'buff',    stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 1,       target: 'self'},
         {type: 'damage',  element: 'feu', damage: { min: 6, max: 7 }, target: 'enemy'}
     ]
 }
@@ -700,7 +700,7 @@ move.wakpot_glace = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',  stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
-        {type: 'buff',    stat: 'atk', value:  50, duration: 2,       target: 'self'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 1,       target: 'self'},
         {type: 'damage',  element: 'eau', damage: { min: 6, max: 7 }, target: 'enemy'}
     ]
 }
@@ -720,7 +720,7 @@ move.wakpot_terre = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',  stat: 'atk', value: -50, duration: 2,         target: 'enemy'},
-        {type: 'buff',    stat: 'atk', value:  50, duration: 2,         target: 'self'},
+        {type: 'buff',    stat: 'atk', value:  50, duration: 1,         target: 'self'},
         {type: 'damage',  element: 'terre', damage: { min: 6, max: 7 }, target: 'enemy'}
     ]
 }
@@ -740,7 +740,7 @@ move.wakpot_kwayal = {
     cooldownMs: 2000,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 4,                                    target: 'enemy'},
-        {type: 'buff',      stat: 'atk', value:  50, duration: 4,                                    target: 'self'},
+        {type: 'buff',      stat: 'atk', value:  50, duration: 3,                                    target: 'self'},
         {type: 'damage',    elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 8, max: 11 },   target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                                               target: 'self'}
     ]
@@ -770,7 +770,7 @@ move.flair = {
     id: 'flair',
     name: 'Flair',
     cooldownMs: 2000,
-    effects: [{ type: 'buff', stat: 'atk', value: 40, duration: 3, target: 'self' }],
+    effects: [{ type: 'buff', stat: 'atk', value: 40, duration: 2, target: 'self' }],
 }
 move.deboyautage = {
     id: 'deboyautage',
@@ -801,7 +801,7 @@ move.charge_forcee = {
     id: 'charge_forcee',
     name: 'Charge Forcée',
     cooldownMs: 2200,
-    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self' }],
+    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 1, target: 'self' }],
 }
 move.taie_de_gland = {
     id: 'taie_de_gland',
@@ -826,7 +826,7 @@ move.rage_de_Ours = {
     id: 'rage_de_Ours',
     name: "Rage de l'Ours",
     cooldownMs: 2200,
-    effects: [{ type: 'buff', stat: 'flatDamage', value: 20, duration: 3, target: 'self' }],
+    effects: [{ type: 'buff', stat: 'flatDamage', value: 20, duration: 2, target: 'self' }],
 }
 
 // #endregion
@@ -894,7 +894,7 @@ move.blast = {
     name: 'Blast',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 21,max: 30}, target: 'enemy'},
-              {type: 'buff', stat: 'atk', value:  50, duration: 4, target: 'self'}],
+              {type: 'buff', stat: 'atk', value:  50, duration: 3, target: 'self'}],
 }
 move.turbine = {
     id: 'turbine',
@@ -908,7 +908,7 @@ move.micro_onde = {
     name: 'Micro Onde',
     cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 21,max: 30}, target: 'enemy'},
-              { type: 'shield', value: 50, duration: 2, target: 'self' }],
+              { type: 'shield', value: 50, duration: 1, target: 'self' }],
 }
 move.macro_onde = {
     id: 'macro_onde',
@@ -1032,7 +1032,7 @@ move.vulnerabilite_de_la_tourbiere = {
     cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 250,max: 350}, target: 'random_enemy'},
               { type: 'debuff', stat: 'res_all', value: 25, duration: 3, target: 'all_enemies' },
-              { type: 'buff', stat: 'res_all', value: -70, duration: 4, target: 'self' }],
+              { type: 'buff', stat: 'res_all', value: -70, duration: 3, target: 'self' }],
 }
 move.kraken = {
     id: 'kraken',
@@ -1119,7 +1119,7 @@ move.retour_du_roi = {
     id: 'retour_du_roi',
     name: 'Retour du Roi',
     cooldownMs: 2000,
-    effects: [{ type: 'buff', stat: 'atk', value: 100, duration: 6, target: 'self'}],
+    effects: [{ type: 'buff', stat: 'atk', value: 100, duration: 5, target: 'self'}],
 }
 move.depouillage = {
     id: 'depouillage',
@@ -1161,7 +1161,7 @@ move.epee_divine_du_dopeul = {
     name: 'Épée Divine du Dopeul',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
-              {type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}],
+              {type: 'buff', stat: 'flatDamage', value: 10, duration: 2, target: 'self'}],
 }
 move.pression_du_dopeul = {
     id: 'pression_du_dopeul',
@@ -1237,7 +1237,7 @@ move.retour_du_baton_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
               { type: 'debuff', stat: 'atk', value: 20,  duration: 3, target: 'enemy'},
-              { type: 'buff', stat: 'atk', value: 20,  duration: 3, target: 'self'}],
+              { type: 'buff', stat: 'atk', value: 20,  duration: 2, target: 'self'}],
 }
 move.bulle_du_dopeul = {
     id: 'bulle_du_dopeul',
@@ -1295,7 +1295,7 @@ move.cubitus_du_dopeul = {
     name: 'Cubitus du Dopeul',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy' },
-              {type: 'buff', stat: 'spd', value: 20,  duration: 3, target: 'self'}],
+              {type: 'buff', stat: 'spd', value: 20,  duration: 2, target: 'self'}],
 }
 move.molosse_du_dopeul = {
     id: 'molosse_du_dopeul',
@@ -1405,7 +1405,7 @@ move.plastron_du_dopeul = {
     id: 'plastron_du_dopeul',
     name: 'Plastron du Dopeul',
     cooldownMs: 2000,
-    effects: [{ type: 'shield', value: 200, duration: 3, target: 'self' }],
+    effects: [{ type: 'shield', value: 200, duration: 2, target: 'self' }],
 }
 
 // — Dopeul Xelor —
@@ -1434,7 +1434,7 @@ move.lame_divine = {
     name: 'Lame divine',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 21, max: 24 }, target: 'enemy' },
-              {type: 'buff', stat: 'flatDamage', value: 20,  duration: 4, target: 'self'}],
+              {type: 'buff', stat: 'flatDamage', value: 20,  duration: 3, target: 'self'}],
 }
 move.tension = {
     id: 'tension',
@@ -1442,7 +1442,7 @@ move.tension = {
     cooldownMs: 2000,
     effects: [
         {type: 'damage', element: 'feu', damage: {min: 21, max: 26}, target: 'enemy'},
-        {type: 'buff', stat: 'erosionBonus', value: 15, duration: 4, target: 'self'}]
+        {type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self'}]
 }
 // #endregion
 

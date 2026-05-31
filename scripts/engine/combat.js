@@ -1605,12 +1605,13 @@ function executeEffect(ctx) {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
                     m.buffs = m.buffs || []
+                    const _newFlag = (!effect.delay && m === caster) ? { _new: true } : {}
                     if (effect.stat === 'maxHp') {
                         m.maxHp = (m.maxHp || 0) + buffVal
                         m.currentHp = (m.currentHp || 0) + buffVal
-                        m.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
+                        m.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true, ..._newFlag })
                     } else {
-                        m.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
+                        m.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}), ..._newFlag })
                     }
                 }
                 addLog(`${moveData.name} → +${buffVal} ${effect.stat} équipe (${effect.duration} tours)`)
@@ -1633,13 +1634,14 @@ function executeEffect(ctx) {
             }
             const buffTarget = _resolveAllyTarget(effect, caster)
             buffTarget.buffs = buffTarget.buffs || []
+            const _selfNewFlag = (!effect.delay && buffTarget === caster) ? { _new: true } : {}
             if (effect.stat === 'maxHp') {
                 buffTarget.maxHp = (buffTarget.maxHp || 0) + buffVal
                 buffTarget.currentHp = (buffTarget.currentHp || 0) + buffVal
-                buffTarget.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true })
+                buffTarget.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true, ..._selfNewFlag })
                 addLog(`${moveData.name} → +${buffVal} PV max et courants (${effect.duration} tours)`)
             } else {
-                buffTarget.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
+                buffTarget.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}), ..._selfNewFlag })
                 if (effect.stat === 'pendingLifesteal')
                     addLog(`${moveData.name} → vol de vie ×${buffVal} actif (prochain sort)`)
                 else if (effect.stat === 'healOnCast')
@@ -1667,7 +1669,8 @@ function executeEffect(ctx) {
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
                 m.buffs = m.buffs || []
-                m.buffs.push({ stat: effect.stat, value: buffTeamVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}) })
+                const _teamNewFlag = (!effect.delay && m === caster) ? { _new: true } : {}
+                m.buffs.push({ stat: effect.stat, value: buffTeamVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}), ..._teamNewFlag })
             }
             addLog(`${moveData.name} → +${buffTeamVal} ${effect.stat} équipe (${effect.duration} tours)`)
             break
@@ -1703,14 +1706,16 @@ function executeEffect(ctx) {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
                     m.buffs = m.buffs || []
-                    m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+                    const _debuffTeamNewFlag = (!effect.delay && m === caster) ? { _new: true } : {}
+                    m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, ..._debuffTeamNewFlag })
                 }
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} équipe (${effect.duration} tours)`)
                 break
             }
             const debuffEntity = _ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy
             debuffEntity.buffs = debuffEntity.buffs || []
-            debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+            const _debuffNewFlag = (!effect.delay && debuffEntity === caster) ? { _new: true } : {}
+            debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, ..._debuffNewFlag })
             if (!_ALLY_TARGETS.has(effect.target)) _fireEnutrofTraps('debuff', effect.stat, debuffEntity)
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
             break
@@ -1723,7 +1728,7 @@ function executeEffect(ctx) {
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0 || m.shield?.value > 0) continue
-                    m.shield = { value: shieldVal, duration: effect.duration }
+                    m.shield = { value: shieldVal, duration: effect.duration, ...(m === caster ? { _new: true } : {}) }
                 }
                 addLog(`${moveData.name} → bouclier ${shieldVal} PV équipe (${effect.duration} tours)`)
                 break
@@ -1732,7 +1737,7 @@ function executeEffect(ctx) {
                 ? _resolveAllyTarget(effect, caster)
                 : caster
             if (shieldTarget.shield?.value > 0) break
-            shieldTarget.shield = { value: shieldVal, duration: effect.duration }
+            shieldTarget.shield = { value: shieldVal, duration: effect.duration, ...(shieldTarget === caster ? { _new: true } : {}) }
             addLog(`${moveData.name} → bouclier ${shieldVal} PV (${effect.duration} tours)`)
             break
         }
@@ -2621,17 +2626,25 @@ function _applyHealOnCast(member, mv) {
 function tickBuffs(entity) {
     if (entity.buffs) {
         for (const b of entity.buffs) {
-            if (b.duration === 1 && b.directApplied && b.stat === 'maxHp') {
+            if (!b._new && b.duration === 1 && b.directApplied && b.stat === 'maxHp') {
                 entity.maxHp = Math.max(1, (entity.maxHp || 1) - b.value)
                 entity.currentHp = Math.min(entity.currentHp || 0, entity.maxHp)
             }
         }
         entity.buffs = entity.buffs
-            .map(b => b.delay > 0 ? { ...b, delay: b.delay - 1 } : { ...b, duration: b.duration - 1 })
+            .map(b => {
+                if (b._new) return { ...b, _new: false }
+                if ((b.delay ?? 0) > 0) return { ...b, delay: b.delay - 1 }
+                return { ...b, duration: b.duration - 1 }
+            })
             .filter(b => (b.delay ?? 0) > 0 || b.duration > 0)
     }
     if (entity.shield) {
-        entity.shield.duration--
+        if (entity.shield._new) {
+            delete entity.shield._new
+        } else {
+            entity.shield.duration--
+        }
         if (entity.shield.duration <= 0) entity.shield = null
     }
 }

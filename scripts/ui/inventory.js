@@ -253,17 +253,15 @@ function showItemTooltip(itemId) {
             </div>`
         }
 
-        // Familier associé
+        // Familier de zone associé
         if (pano.familiar) {
-            const mob = typeof monsters !== 'undefined' ? monsters[pano.familiar] : null
-            if (mob) {
-                const famInCollection = !!state.collection?.[pano.familiar]
+            const fam = typeof familiarById !== 'undefined' ? familiarById[pano.familiar] : null
+            if (fam) {
                 const equipDot = famEquipped ? '<span class="set-piece-dot"></span>' : ''
-                const missingCls = !famInCollection ? ' set-piece-missing' : ''
-                piecesHtml += `<div class="set-piece-bubble${missingCls}"
-                    title="${mob.name} (Familier)"
-                    onclick="closeTooltip(); showMobSheet('${pano.familiar}')">
-                    <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
+                piecesHtml += `<div class="set-piece-bubble"
+                    title="${fam.name} (Familier)"
+                    onclick="closeTooltip(); showFamiliarTooltip('${pano.familiar}')">
+                    <img src="${fam.image}" onerror="this.src='img/icons/icon.png'">
                     ${equipDot}
                 </div>`
             }

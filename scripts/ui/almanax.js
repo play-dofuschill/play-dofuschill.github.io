@@ -59,7 +59,7 @@ function updateArchivesUI() {
 
     const teamMembers = state.team.filter(Boolean)
     const famCount    = Object.keys(state.collection).length
-    const famTotal    = Object.keys(monsters).filter(id => monsters[id]?.familiar).length
+    const famTotal    = familiars.length
     const pilotes     = state.inventory['piloteAutomatique']?.count || 0
     const area        = state.currentArea ? (areas[state.currentArea]?.name || state.currentArea) : 'Aucune'
     const bossCount   = (state.defeatedBosses || []).length

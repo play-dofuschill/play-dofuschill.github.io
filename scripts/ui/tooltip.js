@@ -4,6 +4,7 @@
 // Remplace le suffixe _Male / _Female dans le chemin d'image selon member.gender
 
 function getMemberImage(member) {
+    if (member?.image && !member?.classId) return member.image
     const cls = classes[member?.classId]
     if (!cls?.image) return 'img/icons/icon.png'
     const suffix = (member?.gender === 'female') ? 'Female' : 'Male'
@@ -278,13 +279,13 @@ function showMemberSheet(member) {
         const click  = `onclick="openEquipFromSheet('${member.classId}', '${slotId}')"`
 
         if (slotId === 'familier') {
-            const mob  = itemId ? monsters[itemId] : null
-            const flvl = itemId ? (state.collection[itemId]?.level || 0) : 0
-            return mob
+            const fam  = itemId ? familiarById[itemId] : null
+            const flvl = fam ? getFamiliarLevel(fam) : 0
+            return fam
                 ? `<div class="ms-equip-slot ms-equip-filled" ${click}
-                       oncontextmenu="event.preventDefault(); showMonsterTooltip('${itemId}')"
-                       title="${mob.name}">
-                       <img src="${mob.image}" onerror="this.src='img/icons/icon.png'">
+                       oncontextmenu="event.preventDefault(); showFamiliarTooltip('${itemId}')"
+                       title="${fam.name}">
+                       <img src="${fam.image}" onerror="this.src='img/icons/icon.png'">
                        <span class="ms-equip-ilvl">Niv.${flvl}</span>
                    </div>`
                 : `<div class="ms-equip-slot ms-equip-empty" ${click} title="${label}">
@@ -672,19 +673,6 @@ function showEnemySheet(enemy) {
         </div>`
     }).join('')
 
-    // Familier (bonus)
-    let familiarHtml = ''
-    const fam = mob.familiar
-    if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
-        const entry = state.collection?.[enemy.id]
-        const famLvl = entry?.level || 0
-        const famVal = famLvl > 0 ? Math.floor(getFamiliarStatValue(famLvl, fam.min, fam.max, mob.rarity)) : null
-        const STAT_L = { atk: 'Puissance', maxHp: 'PV', spd: 'Initiative', flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
-        const statLbl = STAT_L[fam.bonusStat] || fam.bonusStat
-        const valText = famLvl > 0 ? `Niv. ${famLvl} — +${famVal} ${statLbl}` : `+${fam.min}–${fam.max} ${statLbl}`
-        familiarHtml = `<div class="ms-section-title">Familier</div>
-        <div style="font-size:0.8rem;opacity:0.75;padding:0.15rem 0;">${valText}</div>`
-    }
 
     const body = `<div class="member-sheet es-sheet">
         <div class="es-header">
@@ -718,7 +706,6 @@ function showEnemySheet(enemy) {
         ${_renderCombatStatus(enemy)}
         <div class="ms-section-title" style="margin-top:0.6rem;">Sorts</div>
         <div class="es-moves">${moveRows || '<span style="opacity:0.4;font-size:0.8rem">Aucun sort</span>'}</div>
-        ${familiarHtml}
     </div>`
 
     openTooltip(`${enemy.name} — Niveau ${enemy.level}`, body)
@@ -863,15 +850,6 @@ function showMobSheet(monsterId) {
         </div>`
     }).join('')
 
-    let familiarHtml = ''
-    const fam = mob.familiar
-    if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
-        const STAT_L = { atk: 'Puissance', maxHp: 'PV', spd: 'Initiative', flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %', spellDamagePct: 'Dég. sorts', damageReductionPct: 'Réd. dégâts', critChance: 'Crit' }
-        const statLbl = STAT_L[fam.bonusStat] || fam.bonusStat
-        familiarHtml = `<div class="ms-section-title">Familier</div>
-        <div style="font-size:0.8rem;opacity:0.75;padding:0.15rem 0;">+${fam.min}–${fam.max} ${statLbl}</div>`
-    }
-
     const body = `<div class="member-sheet es-sheet">
         <div class="es-header">
             <img class="es-sprite" src="${mob.image}" onerror="this.src='img/icons/icon.png'">
@@ -890,7 +868,6 @@ function showMobSheet(monsterId) {
         <div class="ms-stats">${resRows}</div>
         <div class="ms-section-title">Sorts</div>
         <div class="es-moves">${moveRows || '<span style="opacity:0.4;font-size:0.8rem">Aucun sort</span>'}</div>
-        ${familiarHtml}
     </div>`
 
     openTooltip(mob.name, body)
@@ -1072,11 +1049,11 @@ function showMoveTooltip(moveId, casterStats) {
     openTooltip(mv.name, body)
 }
 
-function equipFamiliarFromSheet(classId, monsterId) {
+function equipFamiliarFromSheet(classId, familiarId) {
     const member = state.team.find(m => m && m.classId === classId)
     if (!member) return
 
-    member.equip.familier = monsterId || null
+    member.equip.familier = familiarId || null
     const stats = getEffectiveStats(member)
     if (stats) member.maxHp = stats.hp
 

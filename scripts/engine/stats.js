@@ -152,33 +152,25 @@ function getEffectiveStats(member, syncedLevel = null) {
 
     const famId = member.equip?.familier
     if (famId) {
-        const mob = monsters[famId]
-        const fam = mob?.familiar
-        if (fam?.bonusStat && fam.min != null && fam.max != null && fam.bonusType !== 'farming') {
-            const entry  = state.collection[famId]
-            const level  = entry?.level || 0
-            const effMax = fam.max * (entry?.isArchi ? 1.5 : 1)
-            const value  = Math.floor(getFamiliarStatValue(level, fam.min, effMax, mob.rarity))
-            if (value > 0) {
-                const bs = fam.bonusStat
-                if      (bs === 'atk')               atk                += value
-                else if (bs === 'maxHp')             hp                 += value
-                else if (bs === 'spd')               spd                += value
-                else if (bs === 'flatDamage')        flatDamage         += value
-                else if (bs === 'finalDamagePct')    finalDamagePct     += value
-                else if (bs === 'spellDamagePct')    spellDamagePct     += value
-                else if (bs === 'damageReductionPct') damageReductionPct += value
-                else if (bs === 'critChance')        critChance         += value
-                else if (bs === 'critDamagePct')     critDamagePct      += value
-                else if (bs === 'healPct')           healPct            += value
-                else if (bs === 'healTeamPct')       healTeamPct        += value
-                else if (bs === 'healMaxHpPct')      healMaxHpPct       += value
-                else if (bs === 'healFlat')          healFlat           += value
-                else if (bs === 'lifestealPct')      lifestealPct       += value
-                else if (bs.startsWith('res.')) {
-                    const elem = bs.split('.')[1]
-                    if (res[elem] !== undefined) res[elem] += value
-                }
+        for (const { bonusType, bonusStat: bs, value } of getFamiliarBonusesComputed(famId)) {
+            if (bonusType === 'farming' || value <= 0) continue
+            if      (bs === 'atk')                atk                += value
+            else if (bs === 'maxHp')              hp                 += value
+            else if (bs === 'spd')                spd                += value
+            else if (bs === 'flatDamage')         flatDamage         += value
+            else if (bs === 'finalDamagePct')     finalDamagePct     += value
+            else if (bs === 'spellDamagePct')     spellDamagePct     += value
+            else if (bs === 'damageReductionPct') damageReductionPct += value
+            else if (bs === 'critChance')         critChance         += value
+            else if (bs === 'critDamagePct')      critDamagePct      += value
+            else if (bs === 'healPct')            healPct            += value
+            else if (bs === 'healTeamPct')        healTeamPct        += value
+            else if (bs === 'healMaxHpPct')       healMaxHpPct       += value
+            else if (bs === 'healFlat')           healFlat           += value
+            else if (bs === 'lifestealPct')       lifestealPct       += value
+            else if (bs.startsWith('res.')) {
+                const elem = bs.split('.')[1]
+                if (res[elem] !== undefined) res[elem] += value
             }
         }
     }
