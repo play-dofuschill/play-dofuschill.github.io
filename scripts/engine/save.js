@@ -2,7 +2,10 @@
 
 const SAVE_KEY = 'dofuschill_v01'
 
+let _clearingData = false
+
 function saveGame() {
+    if (_clearingData) return
     // Snapshote l'état du combat en cours avant de sérialiser
     if (typeof _syncCombatToState === 'function') _syncCombatToState()
 
@@ -177,6 +180,7 @@ function importData() {
 }
 
 function clearData() {
+    _clearingData = true
     localStorage.removeItem(SAVE_KEY)
     location.reload()
 }
