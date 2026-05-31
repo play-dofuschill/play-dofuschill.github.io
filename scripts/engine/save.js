@@ -159,10 +159,13 @@ function exportData() {
 
 function importData() {
     const input = document.createElement('input')
-    input.type  = 'file'
+    input.type   = 'file'
     input.accept = '.json'
+    input.style.display = 'none'
+    document.body.appendChild(input)
     input.onchange = e => {
         const file = e.target.files[0]
+        document.body.removeChild(input)
         if (!file) return
         const reader = new FileReader()
         reader.onload = ev => {
