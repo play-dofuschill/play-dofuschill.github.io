@@ -2584,18 +2584,15 @@ function spawnSummon(caster, effect) {
     if (slotIdx !== -1) {
         // ── Invocation alliée : remplace le membre dans son slot ─────────────
         let maxHp, atk
-        if (mob.fixedHp) {
-            maxHp = mob.bst?.hp  || 0
-            atk   = mob.bst?.atk || 0
-        } else if (effect.scale != null) {
+        if (effect.scale != null) {
             // % des stats effectives du lanceur au moment de l'invocation
             const _cs = getEffectiveStats(caster) || {}
             maxHp = Math.floor((_cs.hp  || caster.maxHp || 1) * effect.scale)
             atk   = Math.floor((_cs.atk || 0) * effect.scale)
         } else {
-            const _lvlScale = 1 + ((rawLevel - 1) * 0.08)
-            maxHp = Math.floor((mob.bst?.hp  || 0) * _lvlScale)
-            atk   = Math.floor((mob.bst?.atk || 0) * _lvlScale)
+            // valeurs fixes (fixedHp: true ou bst direct)
+            maxHp = mob.bst?.hp  || 0
+            atk   = mob.bst?.atk || 0
         }
         const mvSlots = { slot1: null, slot2: null, slot3: null, slot4: null }
         ;(mob.moves || []).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
