@@ -2613,7 +2613,7 @@ function spawnSummon(caster, effect) {
             isSummon:         true,
             ownerSlot:        slotIdx,
             actionsRemaining: effect.duration,
-            onDeath:          mob.onDeath || null
+            onDeath:          effect.onDeath || mob.onDeath || null
         }
         combat.memberMoveIndex[slotIdx] = 0
         addLog(`${caster.name || classes[caster.classId]?.name || '?'} invoque ${mob.name} !`)

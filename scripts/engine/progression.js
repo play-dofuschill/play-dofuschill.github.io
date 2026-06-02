@@ -211,6 +211,7 @@ function applyProgression(spell, lvl) {
             if (patch.summon.summonId !== undefined) effect.summonId = patch.summon.summonId
             if (patch.summon.duration !== undefined) effect.duration = patch.summon.duration
             if (patch.summon.scale    !== undefined) effect.scale    = patch.summon.scale
+            if (patch.summon.onDeath  !== undefined) effect.onDeath  = patch.summon.onDeath
         }
         if (effect.type === 'buffDrain' && patch.buffDrain) {
             if (patch.buffDrain.value !== undefined) effect.value = patch.buffDrain.value

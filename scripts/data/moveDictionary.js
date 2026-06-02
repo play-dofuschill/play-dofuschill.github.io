@@ -392,6 +392,67 @@ SCALING BASÉ SUR LES HP / BOUCLIER / ÉROSION DU LANCEUR
 
 */
 
+/*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GRILLE D'ÉQUILIBRAGE DES COOLDOWNS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Le tier est calculé sur le MAX des dégâts du sort.
+
+──────────────────────────────────────────────────────────────────────────────
+A — DÉGÂTS PURS (aucun effet secondaire)
+──────────────────────────────────────────────────────────────────────────────
+  max  1– 9 dmg  →  1500ms
+  max 10–19 dmg  →  1700ms
+  max 20–29 dmg  →  2000ms
+  max 30–39 dmg  →  2500ms
+  max 40+   dmg  →  3000ms
+
+──────────────────────────────────────────────────────────────────────────────
+B — EFFETS PURS (aucun dégât direct)
+──────────────────────────────────────────────────────────────────────────────
+  Base : 2000ms, puis ajouter le modificateur de l'effet :
+  Buff / debuff standard (atk, flatDamage…)  →  +0ms   (= 2000ms)
+  Buff / debuff vitesse (spd)                →  +500ms  (= 2500ms)
+  Buff / debuff AOE                          →  +1000ms (= 3000ms)
+  Heal direct (allié unique)                 →  +500ms  (= 2500ms)
+  Heal % maxHp                               →  +1000ms (= 3000ms)
+  Heal team                                  →  +2000ms (= 4000ms)
+  HOT (heal over time)                       →  +1500ms (= 3500ms)
+  Invocation                                 →  base fixe 3500ms (remplace le 2000ms)
+
+──────────────────────────────────────────────────────────────────────────────
+C — SORTS COMBINÉS (dégâts + au moins un effet)
+──────────────────────────────────────────────────────────────────────────────
+  Formule : tier dégâts + MAX des modificateurs d'effets ci-dessous
+  (on prend uniquement le modificateur le plus élevé parmi tous les effets)
+
+  Buff / debuff standard            →  +500ms
+  Buff / debuff vitesse             →  +500ms
+  Buff / debuff AOE                 →  +1000ms
+  Heal direct                       →  +500ms
+  Heal % maxHp                      →  +1000ms
+  Heal team                         →  +2000ms
+  HOT (heal over time)              →  +1500ms
+  Lifesteal ≤ 10% (inclus)         →  +500ms   (pas de restriction)
+  Lifesteal ≥ 11%                   →  +1000ms  + restriction (coeur/etoile…)
+  DOT < 15 dmg/tick                 →  +500ms
+  DOT ≥ 15 dmg/tick                 →  +1000ms
+  Splash                            →  +500ms
+  Érosion                           →  +500ms
+  AntiHeal                          →  +500ms
+  Switch / Renvoi / Esquive / Recul →  +0ms
+
+──────────────────────────────────────────────────────────────────────────────
+D — SPELLPROGRESSION
+──────────────────────────────────────────────────────────────────────────────
+  Si le MAX des dégâts franchit un tier en montant → ajouter cooldownMs: X
+  dans le patch concerné, avec X = CD du palier précédent + 200ms.
+  Si deux tiers sont franchis d'un coup → +200ms une seule fois.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+*/
+
 // #region IOP ─────────────────────────────────────────────
 move.pression = {
     id: 'pression',
@@ -1836,13 +1897,13 @@ move.mot_damitie = {
     name: "Mot d'amitié",
     classId: 'eniripsa',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'lapino', duration: 2, target: 'self'}],
+    effects: [{type: 'summon', summonId: 'lapino', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
-                        patch: {summon: { summonId: 'lapino2' }}},
+                        patch: {summon: { scale: 0.35 }}},
                        {lvl: 139,
-                        patch: {summon: { summonId: 'lapino3' }}}],
+                        patch: {summon: { scale: 0.40 }}}],
     description: "Invoque un lapino qui va soigner le membre ayant le moins de vie."
 }
 move.mot_stimulant = {
@@ -1915,9 +1976,9 @@ move.mot_vivifiant = {
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
-                        patch: {summon: { summonId: 'fee_vivifiante_tier_2' }}},
+                        patch: {summon: { onDeath: [{ type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'ally_random' }] }}},
                        {lvl: 164,
-                        patch: {summon: { summonId: 'fee_vivifiante_tier_3' }}}],
+                        patch: {summon: { onDeath: [{ type: 'buff', stat: 'spd', value: 30, duration: 3, target: 'ally_random' }] }}}],
     description: "Invoque une fée qui temporise et lorsqu'elle meurt, buff la vitesse d'un allier aléatoire."
 }
 move.mot_farceur = {
@@ -1960,9 +2021,9 @@ move.mot_de_jouvence = {
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
-                        patch: {summon: { summonId: 'fee_de_jouvence_tier_2' }}},
+                        patch: {summon: { onDeath: [{ type: 'heal%maxHp_team', heal: 5 }] }}},
                        {lvl: 179,
-                        patch: {summon: { summonId: 'fee_de_jouvence_tier_3' }}}],
+                        patch: {summon: { onDeath: [{ type: 'heal%maxHp_team', heal: 7 }] }}}],
     description: "Invoque une fée qui temporise et lorsqu'elle meurt, soigne l'ensemble des alliers encore en vie."
 }
 move.cri_de_guerre = {
@@ -2001,10 +2062,10 @@ move.mot_accablant = {
     effects: [{type: 'summon', summonId: 'fee_accablante', duration: 2, target: 'self'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
-                       {lvl: 127,  
-                        patch: {summonId: 'fee_accablante_tier_2'}},
+                       {lvl: 127,
+                        patch: {summon: { onDeath: [{ type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }] }}},
                        {lvl: 194,
-                        patch: {summonId: 'fee_accablante_tier_3'}}],
+                        patch: {summon: { onDeath: [{ type: 'debuff', stat: 'spd', value: 30, duration: 3, target: 'enemy' }] }}}],
     description: "Invoque une fée qui temporise et lorsqu'elle meurt, debuff la vitesse de l'ennemi."
 }
 move.chapardage = {
@@ -2524,13 +2585,13 @@ move.sac_anime = {
     name: 'Sac Animé',
     classId: 'enutrof',
     cooldownMs: 3500,
-    effects: [{ type: 'summon', summonId: 'sac_anime', duration: 8, target: 'self' }],
+    effects: [{ type: 'summon', summonId: 'sac_anime', scale: 0.40, duration: 8, target: 'self' }],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
-                        patch: { summon: { summonId: 'sac_anime2' } }},
+                        patch: { summon: { scale: 0.60 } }},
                        {lvl: 139,
-                        patch: { summon: { summonId: 'sac_anime3' } }}],
+                        patch: { summon: { scale: 0.90 } }}],
     description: "Invoque un sac animé qui permet de prendre les prochains dégats infligés à la place de l'équipe."
 }
 move.ruee_vers_l_or = {
@@ -2610,13 +2671,13 @@ move.pelle_animee = {
     name: 'Pelle Animée',
     classId: 'enutrof',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'pelle_animee', duration: 3, target: 'self'}],
+    effects: [{type: 'summon', summonId: 'pelle_animee', scale: 0.25, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
-                        patch: { summon: { summonId: 'pelle_animee2' } }},
+                        patch: { summon: { scale: 0.30 } }},
                        {lvl: 169,
-                        patch: { summon: { summonId: 'pelle_animee3' } }}],
+                        patch: { summon: { scale: 0.35 } }}],
     description: "Invoque une pelle animée qui pousse les ennemis et encaisse les dommages infligés à l'équipe."
 }
 move.avarice = {
