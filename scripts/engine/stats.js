@@ -238,6 +238,11 @@ function getEffectiveStats(member, syncedLevel = null) {
         }
     }
 
+    // spdInvert : inverse la vitesse autour de 100 (200 - spd_eff)
+    if ((member.buffs || []).some(b => b.stat === 'spdInvert' && !(b.delay ?? 0))) {
+        spd = 200 - spd
+    }
+
     // ─── Caps défensifs ───────────────────────────
 
     // résistances élémentaires max = 50%

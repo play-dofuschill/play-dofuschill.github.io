@@ -143,7 +143,7 @@ function updateInventoryUI() {
             : entry.count > 1 ? `<span class="bubble-level">×${entry.count}</span>` : ''
         card.innerHTML = `${badge}<img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
         card.addEventListener('click',       () => showItemTooltip(itemId))
-        card.addEventListener('contextmenu', e  => { e.preventDefault(); showItemTooltip(itemId) })
+        card.addEventListener('contextmenu', e  => { e.preventDefault(); e.stopPropagation(); showItemTooltip(itemId) })
         list.appendChild(card)
     }
 
@@ -283,17 +283,23 @@ function showItemTooltip(itemId) {
         <span class="item-sheet-level">Niv. ${lvl} / ${itm.levelMax}</span>
     </div>` : ''
 
+    const rarityHtml = itm.rarity ? `<span class="rarity-${itm.rarity}" style="font-size:0.72rem;">${itm.rarity.replace('_', ' ')}</span>` : ''
+    const descHtml   = itm.description ? `<p class="item-sheet-desc">${itm.description}</p>` : ''
+
     const body = `<div class="item-sheet">
         <div class="item-sheet-header">
             <img src="${itm.image || 'img/icons/icon.png'}" class="item-sheet-img" onerror="this.src='img/icons/icon.png'">
             <div class="item-sheet-meta">
-                ${slotLabel ? `<span class="item-sheet-slot">${slotLabel}</span>` : ''}
-                ${itm.description ? `<p class="item-sheet-desc">${itm.description}</p>` : ''}
+                <div class="es-badges">
+                    ${slotLabel ? `<span class="item-sheet-slot">${slotLabel}</span>` : ''}
+                    ${rarityHtml}
+                </div>
                 ${lvlBar}
             </div>
         </div>
         ${statsHtml ? `<div class="item-stats-block">${statsHtml}</div>` : ''}
         ${setHtml}
+        ${descHtml}
     </div>`
 
     openTooltip(itm.name, body)

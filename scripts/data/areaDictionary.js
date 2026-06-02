@@ -493,6 +493,7 @@ areas.evenementBiblop = {
         { id: 'biblop_indigo',   weight: 25 },
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'piloteAutomatique', dropRate: 0.05 }
     ]
 }
@@ -576,7 +577,7 @@ areas.raidDofusArgenté = {
         { id: 'bouftouRoyal',   weight: 10 },
         { id: 'mobLeponge',   weight: 10 },
         { id: 'tournesolAffame',    weight: 10 }],
-    miniBoss: {id: 'Rathrosk', everyKills: 10, statMult: 1},
+    miniBoss: {id: 'Rathrosk', everyKills: 6, statMult: 1},
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',   dropRate: 0.45 },
         { itemId: 'Dofus_Argente',       dropRate: 0.01 }

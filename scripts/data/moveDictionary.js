@@ -236,6 +236,160 @@ COMBOS ÉLÉMENTAIRES HUPPERMAGE
 // Avec fallback si aucun élément stocké (défaut : 'neutre')
 { type: 'absorbElementDmg', damage: { min: 10, max: 15 }, fallbackElement: 'feu', target: 'enemy' }
 
+──────────────────────────────────────────────────────────────────────────────
+ÉTAT PROIE (Ouginak)
+──────────────────────────────────────────────────────────────────────────────
+// Pose l'état Proie sur l'ennemi : les N prochains hits reçus par l'ennemi
+// gagnent +damageBonusPct% de dégâts ET lifesteal lifestealPct% pour l'attaquant.
+// Fonctionne pour TOUT allié qui frappe l'ennemi marqué (pas seulement le lanceur).
+// Re-cast : refresh la durée (pas de stack).
+// target: 'enemy' | 'all_enemies'
+{ type: 'mark_proie', duration: 3, damageBonusPct: 10, lifestealPct: 5, target: 'enemy' }
+
+──────────────────────────────────────────────────────────────────────────────
+BUFF SLOTS ADJACENTS (Chasse)
+──────────────────────────────────────────────────────────────────────────────
+// Applique un buff aux membres dans les slots N-1 et N+1 du lanceur.
+// Si le slot est vide ou mort → ignoré. Non-cumulable par sort (même moveId) :
+// si le voisin a déjà un buff de ce sort actif, le re-cast est ignoré pour ce voisin.
+{ type: 'buff_adjacent', stat: 'flatDamage', value: 50, duration: 2 }
+
+──────────────────────────────────────────────────────────────────────────────
+BUFF SLOT ABSOLU
+──────────────────────────────────────────────────────────────────────────────
+// Applique un buff au membre présent dans le slot ABSOLU indiqué (1-indexé : slots 1–6).
+// Si le slot est vide ou mort → effet perdu.
+{ type: 'buff_slot', slot: 5, stat: 'finalDamagePct', value: 20, duration: 3 }
+{ type: 'buff_slot', slot: 2, stat: 'flatDamage',     value: 40, duration: 2 }
+
+──────────────────────────────────────────────────────────────────────────────
+INVERSION DE VITESSE
+──────────────────────────────────────────────────────────────────────────────
+// Inverse la vitesse d'une entité autour de 100 : vitesse_effective → 200 - vitesse_effective.
+//   Exemple : 120 vit → 80 | 60 vit → 140 | 100 vit → 100 (inchangé)
+// Double application sur la MÊME entité = annulation (retour à la normale).
+// target : 'self' | 'enemy' | 'all_enemies' | 'all_allies'
+{ type: 'spd_invert', duration: 3, target: 'enemy'      }
+{ type: 'spd_invert', duration: 2, target: 'all_enemies' }
+{ type: 'spd_invert', duration: 4, target: 'self'        }
+
+──────────────────────────────────────────────────────────────────────────────
+PIÈGES CUMULATIFS (Sram / Roublard)
+──────────────────────────────────────────────────────────────────────────────
+// Les threshold premiers lancers posent des pièges silencieux (log "X/threshold").
+// Au (threshold+1)ème lancer : tous les pièges explosent — (threshold+1) × les dégâts.
+// Compteurs INDÉPENDANTS par moveId → plusieurs sorts de piège coexistent.
+// Reset automatique à chaque mort d'ennemi.
+//   threshold: 3  →  casts 1-2-3 = pose,  cast 4 = explosion × 4
+{ type: 'trap', threshold: 3, damage: { min: 20, max: 30 }, element: 'air',   target: 'enemy' }
+{ type: 'trap', threshold: 2, damage: { min: 35, max: 45 }, element: 'terre', target: 'enemy' }
+
+──────────────────────────────────────────────────────────────────────────────
+SCALING BASÉ SUR LES HP / BOUCLIER / ÉROSION DU LANCEUR
+──────────────────────────────────────────────────────────────────────────────
+// Ces champs s'ajoutent à un effet 'damage' ou 'buff'.
+// Chaque scale est un objet { stat?, ratio } — le calcul est toujours POURCENTAGE RELATIF :
+//
+//   shieldScale    : (bouclier / maxHp) × 100 × ratio
+//                     ex: 300 shield, 1000 maxHp → 30% × ratio
+//   currentHpScale : (PV actuels / maxHp) × 100 × ratio
+//                     ex: 200 PV, 1000 maxHp → 20% × ratio
+//   missingHpScale : ((maxHp − PV actuels) / maxHp) × 100 × ratio
+//                     ex: 200 PV, 1000 maxHp → 80% × ratio
+//   erodedHpScale  : ((_baseMaxHp − maxHp) / _baseMaxHp) × 100 × ratio
+//                     ex: parti à 1000 maxHp, maintenant 500 → 50% × ratio
+//                     (_baseMaxHp = maxHp au tout début du combat)
+//
+// ─ Pour un effet 'damage' ─────────────────────────────────────────────────────
+//   stat : la stat à booster temporairement pour CE calcul
+//           (finalDamagePct | flatDamage | atk | spellDamagePct | critChance | ...)
+//   ratio: multiplicateur du % calculé
+//
+{ type: 'damage', element: 'feu', damage: { min: 10, max: 20 },
+  shieldScale: { stat: 'finalDamagePct', ratio: 1 }, target: 'enemy' }
+// → bouclier=300 / maxHp=1000 → +30% finalDamagePct pour CE sort
+//
+{ type: 'damage', element: 'neutre', damage: { min: 0, max: 0 },
+  missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
+// → 800 PV manquants sur 1000 → 80% × 0.5 = +40 flatDamage
+//
+{ type: 'damage', element: 'terre', damage: { min: 5, max: 10 },
+  erodedHpScale: { stat: 'finalDamagePct', ratio: 1 }, target: 'enemy' }
+// → 500 HP érodés sur 1000 de base → +50% finalDamagePct
+//
+// ─ Pour un effet 'buff' ──────────────────────────────────────────────────────
+//   pas de 'stat' dans l'objet — la stat est déjà effect.stat
+//   le bonus calculé est ajouté à value
+//
+{ type: 'buff', stat: 'finalDamagePct', value: 0, shieldScale: { ratio: 1 }, duration: 3, target: 'self' }
+// → bouclier=300 / maxHp=1000 → +30 finalDamagePct (soit +30%)
+//
+{ type: 'buff', stat: 'atk', value: 10, missingHpScale: { ratio: 0.5 }, duration: 2, target: 'self' }
+// → 800 PV manquants / 1000 maxHp → 80% × 0.5 = +40, total buffVal = 10 + 40 = 50 ATK
+//
+{ type: 'buff', stat: 'critChance', value: 0, erodedHpScale: { ratio: 0.2 }, duration: 3, target: 'self' }
+// → 500 HP érodés / 1000 base → 50% × 0.2 = +10% critChance
+//
+// Combinaisons : plusieurs scales sur le même effet
+{ type: 'damage', element: 'feu', damage: { min: 5, max: 10 },
+  shieldScale:    { stat: 'finalDamagePct', ratio: 0.5 },
+  erodedHpScale:  { stat: 'flatDamage',     ratio: 1.0 }, target: 'enemy' }
+
+──────────────────────────────────────────────────────────────────────────────
+ÉTAT RÉACTIF (reactive)
+──────────────────────────────────────────────────────────────────────────────
+// Pose un état "en attente" sur une cible (self, team, slot absolu).
+// Quand la cible reçoit le type d'effet défini dans trigger, la réaction s'exécute.
+// NON-CUMULABLE : si un réactif du même sort est déjà actif, le nouveau lancer est silencieux.
+// duration : nombre d'actions de la cible avant expiration (Infinity = pas d'expiration)
+//
+// Champs :
+//   target    : 'self' | 'team' | 'all_allies'   (ou slot: N pour slot absolu)
+//   slot      : 1..5   (optionnel, cible le slot N même si ce n'est pas le lanceur)
+//   trigger   : { type, stat?, element? }
+//     type    : 'damage' | 'debuff' | 'buff' | 'heal' | 'dot' | 'shield'
+//     stat    : filtre sur la stat affectée (buff/debuff)
+//     element : filtre sur l'élément (damage/dot)
+//   reaction  : un effet complet — tout type supporté par executeEffect
+//   duration  : nombre d'actions de la cible avant expiration (défaut : Infinity)
+//
+// Exemple 1 — si le lanceur reçoit un debuff spd, pose un poison de 5 tours sur l'ennemi :
+{ type: 'reactive', target: 'self',
+  trigger: { type: 'debuff', stat: 'spd' },
+  reaction: { type: 'dot', element: 'poison', damage: { min: 20, max: 30 }, duration: 5, target: 'enemy' },
+  duration: 3 }
+//
+// Exemple 2 — si le membre du slot 3 reçoit des dégâts, les renvoie à l'ennemi :
+// (damage: '_reflect' → utilise le montant exact reçu)
+{ type: 'reactive', slot: 3,
+  trigger: { type: 'damage' },
+  reaction: { type: 'damage', element: 'neutre', damage: '_reflect', target: 'enemy' },
+  duration: 2 }
+//
+// Exemple 3 — si toute l'équipe reçoit un buff quelconque, boost le lanceur :
+{ type: 'reactive', target: 'team',
+  trigger: { type: 'buff' },
+  reaction: { type: 'buff', stat: 'atk', value: 15, duration: 2, target: 'self' },
+  duration: 4 }
+//
+// Exemple 4 — si le lanceur reçoit des dégâts feu, il gagne un bouclier :
+{ type: 'reactive', target: 'self',
+  trigger: { type: 'damage', element: 'feu' },
+  reaction: { type: 'shield', value: 200, duration: 3, target: 'self' },
+  duration: 2 }
+//
+// Exemple 5 — pose un réactif sur l'ENNEMI : s'il reçoit un soin (ex: boss se régénère), annuler avec un debuff :
+{ type: 'reactive', target: 'enemy',
+  trigger: { type: 'heal' },
+  reaction: { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
+  duration: 5 }
+//
+// Exemple 6 — tous les ennemis (raid) : si l'un reçoit un buff, lui infliger un dot :
+{ type: 'reactive', target: 'all_enemies',
+  trigger: { type: 'buff' },
+  reaction: { type: 'dot', element: 'air', damage: { min: 15, max: 25 }, duration: 3, target: 'enemy' },
+  duration: 3 }
+
 */
 
 // #region IOP ─────────────────────────────────────────────
@@ -3360,13 +3514,13 @@ move.bouclier_elementaire = {
 // }
 // #endregion
 
-// #region Xelor ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// #region Ecaflip ─────────────────────────────────────────
+// move.pile_ou_face = {
+//     id: 'pile_ou_face',
+//     name: 'Pile ou Face',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
-//     effects: [],
+//     effects: [{ type: 'best_element_damage', damage: { min: 18, max: 22 }, target: 'enemy' }],
 //     spellProgression: [{lvl: 1,
 //                         patch: {}},
 //                        {lvl: 66,
@@ -3375,12 +3529,13 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.reflexes = {
+//     id: 'reflexes',
+//     name: 'Réflexes',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
-//     effects: [],
+//     effects: [{type: 'random', choices: [{ chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' }] },
+//                                          { chance: 0.30, effects: [{ type: 'heal%maxHp', heal: 10, target: 'enemy' }]}]}],
 //     spellProgression: [{lvl: 8,
 //                         patch: {}},
 //                        {lvl: 67,
@@ -3389,10 +3544,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.yams = {
+//     id: 'yams',
+//     name: 'Yams',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -3403,10 +3558,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.topkaj = {
+//     id: 'topkaj',
+//     name: 'Topkaj',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -3417,10 +3572,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bonne_pioche = {
+//     id: 'bonne_pioche',
+//     name: 'Bonne Pioche',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -3431,10 +3586,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bond_du_felin = {
+//     id: 'bond_du_felin',
+//     name: 'Bond du Félin',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -3445,10 +3600,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.jass = {
+//     id: 'jass',
+//     name: 'Jass',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -3459,10 +3614,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.perception = {
+//     id: 'perception',
+//     name: 'Perception',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -3473,10 +3628,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.baraka = {
+//     id: 'baraka',
+//     name: 'Baraka',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -3487,10 +3642,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chateau_de_cartes = {
+//     id: 'chateau_de_cartes',
+//     name: 'Château de Cartes',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -3501,10 +3656,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.blakjak = {
+//     id: 'blakjak',
+//     name: 'Blakjak',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -3515,10 +3670,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.roulette = {
+//     id: 'roulette',
+//     name: 'Roulette',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -3529,10 +3684,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.belote = {
+//     id: 'belote',
+//     name: 'Belote',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -3543,10 +3698,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tromperie = {
+//     id: 'tromperie',
+//     name: 'Tromperie',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -3557,10 +3712,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pelotage = {
+//     id: 'pelotage',
+//     name: 'Pelotage',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -3571,10 +3726,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.griffe_invocatrice = {
+//     id: 'griffe_invocatrice',
+//     name: 'Griffe Invocatrice',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -3585,10 +3740,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.esprit_felin = {
+//     id: 'esprit_felin',
+//     name: 'Esprit Félin',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -3599,10 +3754,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.odorat = {
+//     id: 'odorat',
+//     name: 'Odorat',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -3611,10 +3766,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.coussinets = {
+//     id: 'coussinets',
+//     name: 'Coussinets',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -3623,10 +3778,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.seconde_chance = {
+//     id: 'seconde_chance',
+//     name: 'Seconde Chance',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -3635,10 +3790,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.felintion = {
+//     id: 'felintion',
+//     name: 'Félintion',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -3647,10 +3802,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bluff = {
+//     id: 'bluff',
+//     name: 'Bluff',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -3659,10 +3814,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lapement = {
+//     id: 'lapement',
+//     name: 'Lapement',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -3671,10 +3826,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.langue_rapeuse = {
+//     id: 'langue_rapeuse',
+//     name: 'Langue Râpeuse',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -3683,10 +3838,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.griffe_joueuse = {
+//     id: 'griffe_joueuse',
+//     name: 'Griffe Joueuse',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -3695,10 +3850,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fanfaronnade = {
+//     id: 'fanfaronnade',
+//     name: 'Fanfaronnade',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -3707,10 +3862,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.redistribution = {
+//     id: 'redistribution',
+//     name: 'Redistribution',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -3719,10 +3874,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.entrechat = {
+//     id: 'entrechat',
+//     name: 'Entrechat',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -3731,10 +3886,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.infortune = {
+//     id: 'infortune',
+//     name: 'Infortune',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -3743,10 +3898,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.predation = {
+//     id: 'predation',
+//     name: 'Prédation',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -3755,114 +3910,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.toupet = {
+//     id: 'toupet',
+//     name: 'Toupet',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bonne_etoile = {
+//     id: 'bonne_etoile',
+//     name: 'Bonne Étoile',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.destin_decaflip = {
+//     id: 'destin_decaflip',
+//     name: 'Destin d'Écaflip',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tarot_decaflip = {
+//     id: 'tarot_decaflip',
+//     name: 'Tarot d'Écaflip',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.peril = {
+//     id: 'peril',
+//     name: 'Péril',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tout_ou_rien = {
+//     id: 'tout_ou_rien',
+//     name: 'Tout ou Rien',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.griffe_de_ceangal = {
+//     id: 'griffe_de_ceangal',
+//     name: 'Griffe de Ceangal',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.caresse_invocatrice = {
+//     id: 'caresse_invocatrice',
+//     name: 'Caresse Invocatrice',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.kraps = {
+//     id: 'kraps',
+//     name: 'Kraps',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.roue_de_la_fortune = {
+//     id: 'roue_de_la_fortune',
+//     name: 'Roue de la Fortune',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.feulement = {
+//     id: 'feulement',
+//     name: 'Feulement',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.neuf_vies = {
+//     id: 'neuf_vies',
+//     name: 'Neuf Vies',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mesaventure = {
+//     id: 'mesaventure',
+//     name: 'Mésaventure',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rekop = {
+//     id: 'rekop',
+//     name: 'Rekop',
+//     classId: 'ecaflip',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -3870,10 +4025,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region osamodas ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cri_du_corbac = {
+//     id: 'cri_du_corbac',
+//     name: 'Cri du Corbac',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -3884,10 +4039,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pics_du_prespic = {
+//     id: 'pics_du_prespic',
+//     name: 'Pics du Prespic',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -3898,10 +4053,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dents_du_piranya = {
+//     id: 'dents_du_piranya',
+//     name: 'Dents du Piranya',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -3912,10 +4067,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cri_de_lours = {
+//     id: 'cri_de_lours',
+//     name: 'Cri de l'Ours',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -3926,10 +4081,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fouet = {
+//     id: 'fouet',
+//     name: 'Fouet',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -3940,10 +4095,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tofu = {
+//     id: 'tofu',
+//     name: 'Tofu',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -3954,10 +4109,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bouftou = {
+//     id: 'bouftou',
+//     name: 'Bouftou',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -3968,10 +4123,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.crapipou = {
+//     id: 'crapipou',
+//     name: 'Crapipou',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -3982,10 +4137,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dragoune = {
+//     id: 'dragoune',
+//     name: 'Dragoune',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -3996,10 +4151,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cortege_sauvage = {
+//     id: 'cortege_sauvage',
+//     name: 'Cortège Sauvage',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -4010,10 +4165,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piqure_motivante = {
+//     id: 'piqure_motivante',
+//     name: 'Piqûre Motivante',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -4024,10 +4179,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.saute_granouille = {
+//     id: 'saute_granouille',
+//     name: 'Saute-granouille',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -4038,10 +4193,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.souffle_draconique = {
+//     id: 'souffle_draconique',
+//     name: 'Souffle Draconique',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -4052,10 +4207,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.charge_bestiale = {
+//     id: 'charge_bestiale',
+//     name: 'Charge Bestiale',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -4066,10 +4221,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aeropique = {
+//     id: 'aeropique',
+//     name: 'Aéropique',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -4080,10 +4235,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.discipline = {
+//     id: 'discipline',
+//     name: 'Discipline',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -4094,10 +4249,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.laisse_spirituelle = {
+//     id: 'laisse_spirituelle',
+//     name: 'Laisse Spirituelle',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -4108,10 +4263,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ventritofu = {
+//     id: 'ventritofu',
+//     name: 'Ventritofu',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -4120,10 +4275,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bouflourd = {
+//     id: 'bouflourd',
+//     name: 'Bouflourd',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -4132,10 +4287,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.crapipaud = {
+//     id: 'crapipaud',
+//     name: 'Crapipaud',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -4144,10 +4299,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dragonnet = {
+//     id: 'dragonnet',
+//     name: 'Dragonnet',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -4156,10 +4311,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.esprit_glouton = {
+//     id: 'esprit_glouton',
+//     name: 'Esprit Glouton',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -4168,10 +4323,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.crocs_du_mulou = {
+//     id: 'crocs_du_mulou',
+//     name: 'Crocs du Mulou',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -4180,10 +4335,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.deplumage = {
+//     id: 'deplumage',
+//     name: 'Déplumage',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -4192,10 +4347,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.coeur_sauvage = {
+//     id: 'coeur_sauvage',
+//     name: 'Cœur Sauvage',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -4204,10 +4359,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bave_du_crapaud = {
+//     id: 'bave_du_crapaud',
+//     name: 'Bave du Crapaud',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -4216,10 +4371,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cravache = {
+//     id: 'cravache',
+//     name: 'Cravache',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -4228,10 +4383,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.griffes_du_chtigre = {
+//     id: 'griffes_du_chtigre',
+//     name: 'Griffes du Chtigre',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -4240,10 +4395,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.serres_du_vautour = {
+//     id: 'serres_du_vautour',
+//     name: 'Serres du Vautour',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -4252,10 +4407,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.toison_dor = {
+//     id: 'toison_dor',
+//     name: 'Toison d'Or',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -4264,114 +4419,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.morsure_du_serpent = {
+//     id: 'morsure_du_serpent',
+//     name: 'Morsure du Serpent',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pacte_bestial = {
+//     id: 'pacte_bestial',
+//     name: 'Pacte Bestial',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.communion_animale = {
+//     id: 'communion_animale',
+//     name: 'Communion Animale',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tornade_de_plumes = {
+//     id: 'tornade_de_plumes',
+//     name: 'Tornade de Plumes',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.frappe_du_craqueleur = {
+//     id: 'frappe_du_craqueleur',
+//     name: 'Frappe du Craqueleur',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chant_du_phenix = {
+//     id: 'chant_du_phenix',
+//     name: 'Chant du Phénix',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tourbillon = {
+//     id: 'tourbillon',
+//     name: 'Tourbillon',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.martinet = {
+//     id: 'martinet',
+//     name: 'Martinet',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.relais_spirituel = {
+//     id: 'relais_spirituel',
+//     name: 'Relais Spirituel',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.craquolosse = {
+//     id: 'craquolosse',
+//     name: 'Craquolosse',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.crocolereux = {
+//     id: 'crocolereux',
+//     name: 'Crocoléreux',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sulfenix = {
+//     id: 'sulfenix',
+//     name: 'Sulfénix',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.scarafoudre = {
+//     id: 'scarafoudre',
+//     name: 'Scarafoudre',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.esprit_facetieux = {
+//     id: 'esprit_facetieux',
+//     name: 'Esprit Facétieux',
+//     classId: 'osamodas',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -4379,10 +4534,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region feca ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.retour_du_baton = {
+//     id: 'retour_du_baton',
+//     name: 'Retour du Bâton',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -4393,10 +4548,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.langueur = {
+//     id: 'langueur',
+//     name: 'Langueur',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -4407,10 +4562,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.nimbus = {
+//     id: 'nimbus',
+//     name: 'Nimbus',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -4421,10 +4576,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.typhon = {
+//     id: 'typhon',
+//     name: 'Typhon',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -4435,10 +4590,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rempart = {
+//     id: 'rempart',
+//     name: 'Rempart',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -4449,10 +4604,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.barricade = {
+//     id: 'barricade',
+//     name: 'Barricade',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -4463,10 +4618,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.somnolence = {
+//     id: 'somnolence',
+//     name: 'Somnolence',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -4477,10 +4632,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lethargie = {
+//     id: 'lethargie',
+//     name: 'Léthargie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -4491,10 +4646,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bastion = {
+//     id: 'bastion',
+//     name: 'Bastion',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -4505,10 +4660,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.frisson = {
+//     id: 'frisson',
+//     name: 'Frisson',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -4519,10 +4674,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bulle = {
+//     id: 'bulle',
+//     name: 'Bulle',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -4533,10 +4688,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.transhumance = {
+//     id: 'transhumance',
+//     name: 'Transhumance',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -4547,10 +4702,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.prairie = {
+//     id: 'prairie',
+//     name: 'Prairie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -4561,10 +4716,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vallee = {
+//     id: 'vallee',
+//     name: 'Vallée',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -4575,10 +4730,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.terre_battue = {
+//     id: 'terre_battue',
+//     name: 'Terre Battue',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -4589,10 +4744,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.terre_brulee = {
+//     id: 'terre_brulee',
+//     name: 'Terre Brûlée',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -4603,10 +4758,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.renfort = {
+//     id: 'renfort',
+//     name: 'Renfort',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -4617,10 +4772,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.silbo = {
+//     id: 'silbo',
+//     name: 'Silbo',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -4629,10 +4784,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.torpeur = {
+//     id: 'torpeur',
+//     name: 'Torpeur',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -4641,10 +4796,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bergerie = {
+//     id: 'bergerie',
+//     name: 'Bergerie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -4653,10 +4808,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.defiance = {
+//     id: 'defiance',
+//     name: 'Défiance',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -4665,10 +4820,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bouclier_feca = {
+//     id: 'bouclier_feca',
+//     name: 'Bouclier Féca',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -4677,10 +4832,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tetanie = {
+//     id: 'tetanie',
+//     name: 'Tétanie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -4689,10 +4844,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.atonie = {
+//     id: 'atonie',
+//     name: 'Atonie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -4701,10 +4856,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.stratus = {
+//     id: 'stratus',
+//     name: 'Stratus',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -4713,10 +4868,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bourrasque = {
+//     id: 'bourrasque',
+//     name: 'Bourrasque',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -4725,10 +4880,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fortification = {
+//     id: 'fortification',
+//     name: 'Fortification',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -4737,10 +4892,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pavois = {
+//     id: 'pavois',
+//     name: 'Pavois',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -4749,10 +4904,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.manoeuvre = {
+//     id: 'manoeuvre',
+//     name: 'Manœuvre',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -4761,10 +4916,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.regroupement = {
+//     id: 'regroupement',
+//     name: 'Regroupement',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -4773,114 +4928,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.treve = {
+//     id: 'treve',
+//     name: 'Trêve',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.giboulee = {
+//     id: 'giboulee',
+//     name: 'Giboulée',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sonnailles = {
+//     id: 'sonnailles',
+//     name: 'Sonnailles',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.egide = {
+//     id: 'egide',
+//     name: 'Égide',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.paturage = {
+//     id: 'paturage',
+//     name: 'Pâturage',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.verglas = {
+//     id: 'verglas',
+//     name: 'Verglas',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.refuge = {
+//     id: 'refuge',
+//     name: 'Refuge',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vigie = {
+//     id: 'vigie',
+//     name: 'Vigie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ataraxie = {
+//     id: 'ataraxie',
+//     name: 'Ataraxie',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.houlette = {
+//     id: 'houlette',
+//     name: 'Houlette',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.escapade = {
+//     id: 'escapade',
+//     name: 'Escapade',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.excursion = {
+//     id: 'excursion',
+//     name: 'Excursion',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.barriere = {
+//     id: 'barriere',
+//     name: 'Barrière',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mise_en_garde = {
+//     id: 'mise_en_garde',
+//     name: 'Mise en Garde',
+//     classId: 'feca',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -4888,10 +5043,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region sram ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.truanderie = {
+//     id: 'truanderie',
+//     name: 'Truanderie',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -4902,10 +5057,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sournoiserie = {
+//     id: 'sournoiserie',
+//     name: 'Sournoiserie',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -4916,10 +5071,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arsenic = {
+//     id: 'arsenic',
+//     name: 'Arsenic',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -4930,10 +5085,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cruaute = {
+//     id: 'cruaute',
+//     name: 'Cruauté',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -4944,10 +5099,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.invisibilite = {
+//     id: 'invisibilite',
+//     name: 'Invisibilité',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -4958,10 +5113,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.double = {
+//     id: 'double',
+//     name: 'Double',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -4972,10 +5127,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_sournois = {
+//     id: 'piege_sournois',
+//     name: 'Piège Sournois',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -4986,10 +5141,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_fangeux = {
+//     id: 'piege_fangeux',
+//     name: 'Piège Fangeux',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -5000,10 +5155,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_funeste = {
+//     id: 'piege_funeste',
+//     name: 'Piège Funeste',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -5014,10 +5169,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_repulsif = {
+//     id: 'piege_repulsif',
+//     name: 'Piège Répulsif',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -5028,10 +5183,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_dimmobilisation = {
+//     id: 'piege_dimmobilisation',
+//     name: 'Piège d'Immobilisation',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -5042,10 +5197,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.extorsion = {
+//     id: 'extorsion',
+//     name: 'Extorsion',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -5056,10 +5211,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arnaque = {
+//     id: 'arnaque',
+//     name: 'Arnaque',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -5070,10 +5225,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pillage = {
+//     id: 'pillage',
+//     name: 'Pillage',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -5084,10 +5239,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fourberie = {
+//     id: 'fourberie',
+//     name: 'Fourberie',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -5098,10 +5253,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.peur = {
+//     id: 'peur',
+//     name: 'Peur',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -5112,10 +5267,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_de_derive = {
+//     id: 'piege_de_derive',
+//     name: 'Piège de Dérive',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -5126,10 +5281,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_scelerat = {
+//     id: 'piege_scelerat',
+//     name: 'Piège Scélérat',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -5138,10 +5293,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.concentration_de_chakra = {
+//     id: 'concentration_de_chakra',
+//     name: 'Concentration de Chakra',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -5150,10 +5305,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_mortel = {
+//     id: 'piege_mortel',
+//     name: 'Piège Mortel',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -5162,10 +5317,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fourvoiement = {
+//     id: 'fourvoiement',
+//     name: 'Fourvoiement',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -5174,10 +5329,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.derobade = {
+//     id: 'derobade',
+//     name: 'Dérobade',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -5186,10 +5341,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chausse_trappe = {
+//     id: 'chausse_trappe',
+//     name: 'Chausse-trappe',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -5198,10 +5353,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.coupe_gorge = {
+//     id: 'coupe_gorge',
+//     name: 'Coupe-gorge',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -5210,10 +5365,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.toxines = {
+//     id: 'toxines',
+//     name: 'Toxines',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -5222,10 +5377,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.poisse = {
+//     id: 'poisse',
+//     name: 'Poisse',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -5234,10 +5389,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.brume = {
+//     id: 'brume',
+//     name: 'Brume',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -5246,10 +5401,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.comploteur = {
+//     id: 'comploteur',
+//     name: 'Comploteur',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -5258,10 +5413,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.guet_apens = {
+//     id: 'guet_apens',
+//     name: 'Guet-apens',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -5270,10 +5425,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.epidemie = {
+//     id: 'epidemie',
+//     name: 'Épidémie',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -5282,114 +5437,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.effraction = {
+//     id: 'effraction',
+//     name: 'Effraction',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_effroyable = {
+//     id: 'piege_effroyable',
+//     name: 'Piège Effroyable',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fosse_commune = {
+//     id: 'fosse_commune',
+//     name: 'Fosse Commune',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.perquisition = {
+//     id: 'perquisition',
+//     name: 'Perquisition',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.larcin = {
+//     id: 'larcin',
+//     name: 'Larcin',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.attaque_mortelle = {
+//     id: 'attaque_mortelle',
+//     name: 'Attaque Mortelle',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.injection_toxique = {
+//     id: 'injection_toxique',
+//     name: 'Injection Toxique',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.meprise = {
+//     id: 'meprise',
+//     name: 'Méprise',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_insidieux = {
+//     id: 'piege_insidieux',
+//     name: 'Piège Insidieux',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_a_fragmentation = {
+//     id: 'piege_a_fragmentation',
+//     name: 'Piège à Fragmentation',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.manigance = {
+//     id: 'manigance',
+//     name: 'Manigance',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.calamite = {
+//     id: 'calamite',
+//     name: 'Calamité',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.perfidie = {
+//     id: 'perfidie',
+//     name: 'Perfidie',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.marque_mortuaire = {
+//     id: 'marque_mortuaire',
+//     name: 'Marque Mortuaire',
+//     classId: 'sram',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -5397,10 +5552,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region sacrieur ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.absorption = {
+//     id: 'absorption',
+//     name: 'Absorption',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -5411,10 +5566,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.hemorragie = {
+//     id: 'hemorragie',
+//     name: 'Hémorragie',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -5425,10 +5580,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.supplice = {
+//     id: 'supplice',
+//     name: 'Supplice',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -5439,10 +5594,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.stase = {
+//     id: 'stase',
+//     name: 'Stase',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -5453,10 +5608,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.attirance = {
+//     id: 'attirance',
+//     name: 'Attirance',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -5467,10 +5622,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mutilation = {
+//     id: 'mutilation',
+//     name: 'Mutilation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -5481,10 +5636,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.epee_vorace = {
+//     id: 'epee_vorace',
+//     name: 'Épée Vorace',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -5495,10 +5650,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ravage = {
+//     id: 'ravage',
+//     name: 'Ravage',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -5509,10 +5664,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.assaut = {
+//     id: 'assaut',
+//     name: 'Assaut',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -5523,10 +5678,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.transposition = {
+//     id: 'transposition',
+//     name: 'Transposition',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -5537,10 +5692,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.condensation = {
+//     id: 'condensation',
+//     name: 'Condensation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -5551,10 +5706,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.hostilite = {
+//     id: 'hostilite',
+//     name: 'Hostilité',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -5565,10 +5720,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.couronne_depines = {
+//     id: 'couronne_depines',
+//     name: 'Couronne d'Épines',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -5579,10 +5734,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.transfusion = {
+//     id: 'transfusion',
+//     name: 'Transfusion',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -5593,10 +5748,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dissolution = {
+//     id: 'dissolution',
+//     name: 'Dissolution',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -5607,10 +5762,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.desolation = {
+//     id: 'desolation',
+//     name: 'Désolation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -5621,10 +5776,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sacrifice = {
+//     id: 'sacrifice',
+//     name: 'Sacrifice',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -5635,10 +5790,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bain_de_sang = {
+//     id: 'bain_de_sang',
+//     name: 'Bain de Sang',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -5647,10 +5802,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.hecatombe = {
+//     id: 'hecatombe',
+//     name: 'Hécatombe',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -5659,10 +5814,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.libation = {
+//     id: 'libation',
+//     name: 'Libation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -5671,10 +5826,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.berserk = {
+//     id: 'berserk',
+//     name: 'Berserk',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -5683,10 +5838,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.punition = {
+//     id: 'punition',
+//     name: 'Punition',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -5695,10 +5850,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.furie = {
+//     id: 'furie',
+//     name: 'Furie',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -5707,10 +5862,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.decimation = {
+//     id: 'decimation',
+//     name: 'Décimation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -5719,10 +5874,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.nervosite = {
+//     id: 'nervosite',
+//     name: 'Nervosité',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -5731,10 +5886,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.douleur_cuisante = {
+//     id: 'douleur_cuisante',
+//     name: 'Douleur Cuisante',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -5743,10 +5898,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.perfusion = {
+//     id: 'perfusion',
+//     name: 'Perfusion',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -5755,10 +5910,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pacte_de_sang = {
+//     id: 'pacte_de_sang',
+//     name: 'Pacte de Sang',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -5767,10 +5922,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.epee_dansante = {
+//     id: 'epee_dansante',
+//     name: 'Épée Dansante',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -5779,10 +5934,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fulgurance = {
+//     id: 'fulgurance',
+//     name: 'Fulgurance',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -5791,114 +5946,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aversion = {
+//     id: 'aversion',
+//     name: 'Aversion',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fluctuation = {
+//     id: 'fluctuation',
+//     name: 'Fluctuation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.afflux = {
+//     id: 'afflux',
+//     name: 'Afflux',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.projection = {
+//     id: 'projection',
+//     name: 'Projection',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pilori = {
+//     id: 'pilori',
+//     name: 'Pilori',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.liens_du_sang = {
+//     id: 'liens_du_sang',
+//     name: 'Liens du Sang',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.carnage = {
+//     id: 'carnage',
+//     name: 'Carnage',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dechainement = {
+//     id: 'dechainement',
+//     name: 'Déchaînement',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.penitence = {
+//     id: 'penitence',
+//     name: 'Pénitence',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.immolation = {
+//     id: 'immolation',
+//     name: 'Immolation',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.entaille = {
+//     id: 'entaille',
+//     name: 'Entaille',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chatiment = {
+//     id: 'chatiment',
+//     name: 'Châtiment',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rituel_de_jashin = {
+//     id: 'rituel_de_jashin',
+//     name: 'Rituel de Jashin',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.folie_sanguinaire = {
+//     id: 'folie_sanguinaire',
+//     name: 'Folie Sanguinaire',
+//     classId: 'sacrieur',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -5906,10 +6061,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region zobal ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.brincadeira = {
+//     id: 'brincadeira',
+//     name: 'Brincadeira',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -5920,10 +6075,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.catalepsie = {
+//     id: 'catalepsie',
+//     name: 'Catalepsie',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -5934,10 +6089,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.parafuso = {
+//     id: 'parafuso',
+//     name: 'Parafuso',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -5948,10 +6103,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cavalcade = {
+//     id: 'cavalcade',
+//     name: 'Cavalcade',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -5962,10 +6117,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.masque_de_lintrepide = {
+//     id: 'masque_de_lintrepide',
+//     name: 'Masque de l'Intrépide',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -5976,10 +6131,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.plastron = {
+//     id: 'plastron',
+//     name: 'Plastron',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -5990,10 +6145,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.appui = {
+//     id: 'appui',
+//     name: 'Appui',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -6004,10 +6159,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.masque_du_pleutre = {
+//     id: 'masque_du_pleutre',
+//     name: 'Masque du Pleutre',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -6018,10 +6173,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ponteira = {
+//     id: 'ponteira',
+//     name: 'Ponteira',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -6032,10 +6187,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.masque_du_psychopathe = {
+//     id: 'masque_du_psychopathe',
+//     name: 'Masque du Psychopathe',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -6046,10 +6201,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.furia = {
+//     id: 'furia',
+//     name: 'Furia',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -6060,10 +6215,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tortoruga = {
+//     id: 'tortoruga',
+//     name: 'Tortoruga',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -6074,10 +6229,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cabriole = {
+//     id: 'cabriole',
+//     name: 'Cabriole',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -6088,10 +6243,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.debandade = {
+//     id: 'debandade',
+//     name: 'Débandade',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -6102,10 +6257,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.inferno = {
+//     id: 'inferno',
+//     name: 'Inferno',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -6116,10 +6271,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.reuche = {
+//     id: 'reuche',
+//     name: 'Reuche',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -6130,10 +6285,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.apathie = {
+//     id: 'apathie',
+//     name: 'Apathie',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -6144,10 +6299,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.boliche = {
+//     id: 'boliche',
+//     name: 'Boliche',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -6156,10 +6311,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fougue = {
+//     id: 'fougue',
+//     name: 'Fougue',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -6168,10 +6323,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.transe = {
+//     id: 'transe',
+//     name: 'Transe',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -6180,10 +6335,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.grimace = {
+//     id: 'grimace',
+//     name: 'Grimace',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -6192,10 +6347,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.carnavalo = {
+//     id: 'carnavalo',
+//     name: 'Carnavalo',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -6204,10 +6359,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.picada = {
+//     id: 'picada',
+//     name: 'Picada',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -6216,10 +6371,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.apostasie = {
+//     id: 'apostasie',
+//     name: 'Apostasie',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -6228,10 +6383,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.martelo = {
+//     id: 'martelo',
+//     name: 'Martelo',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -6240,10 +6395,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.appeau = {
+//     id: 'appeau',
+//     name: 'Appeau',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -6252,10 +6407,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.masque_de_linfatigable = {
+//     id: 'masque_de_linfatigable',
+//     name: 'Masque de l'Infatigable',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -6264,10 +6419,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ginga = {
+//     id: 'ginga',
+//     name: 'Ginga',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -6276,10 +6431,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pivot = {
+//     id: 'pivot',
+//     name: 'Pivot',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -6288,10 +6443,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.masque_du_couard = {
+//     id: 'masque_du_couard',
+//     name: 'Masque du Couard',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -6300,114 +6455,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.agular = {
+//     id: 'agular',
+//     name: 'Agular',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.masque_de_lhysterique = {
+//     id: 'masque_de_lhysterique',
+//     name: 'Masque de l'Hystérique',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bocciara = {
+//     id: 'bocciara',
+//     name: 'Bocciara',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.armadur = {
+//     id: 'armadur',
+//     name: 'Armadur',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.purgatorio = {
+//     id: 'purgatorio',
+//     name: 'Purgatorio',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.comedie = {
+//     id: 'comedie',
+//     name: 'Comédie',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.distance = {
+//     id: 'distance',
+//     name: 'Distance',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.scudo = {
+//     id: 'scudo',
+//     name: 'Scudo',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.retention = {
+//     id: 'retention',
+//     name: 'Rétention',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ronda = {
+//     id: 'ronda',
+//     name: 'Ronda',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mascarade = {
+//     id: 'mascarade',
+//     name: 'Mascarade',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.nevrose = {
+//     id: 'nevrose',
+//     name: 'Névrose',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.diffraction = {
+//     id: 'diffraction',
+//     name: 'Diffraction',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.transfiguration = {
+//     id: 'transfiguration',
+//     name: 'Transfiguration',
+//     classId: 'zobal',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -6415,10 +6570,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region sadida ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ronce = {
+//     id: 'ronce',
+//     name: 'Ronce',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -6429,10 +6584,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.larme_de_sadida = {
+//     id: 'larme_de_sadida',
+//     name: 'Larme de Sadida',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -6443,10 +6598,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.buisson_ardent = {
+//     id: 'buisson_ardent',
+//     name: 'Buisson Ardent',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -6457,10 +6612,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cigue = {
+//     id: 'cigue',
+//     name: 'Cigüe',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -6471,10 +6626,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arbre = {
+//     id: 'arbre',
+//     name: 'Arbre',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -6485,10 +6640,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_folle = {
+//     id: 'la_folle',
+//     name: 'La Folle',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -6499,10 +6654,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.seve_paralysante = {
+//     id: 'seve_paralysante',
+//     name: 'Sève Paralysante',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -6513,10 +6668,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.contagion = {
+//     id: 'contagion',
+//     name: 'Contagion',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -6527,10 +6682,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ronce_apaisante = {
+//     id: 'ronce_apaisante',
+//     name: 'Ronce Apaisante',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -6541,10 +6696,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_bloqueuse = {
+//     id: 'la_bloqueuse',
+//     name: 'La Bloqueuse',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -6555,10 +6710,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ronces_agressives = {
+//     id: 'ronces_agressives',
+//     name: 'Ronces Agressives',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -6569,10 +6724,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fleau = {
+//     id: 'fleau',
+//     name: 'Fléau',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -6583,10 +6738,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.puissance_sylvestre = {
+//     id: 'puissance_sylvestre',
+//     name: 'Puissance Sylvestre',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -6597,10 +6752,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_sacrifiee = {
+//     id: 'la_sacrifiee',
+//     name: 'La Sacrifiée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -6611,10 +6766,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.herbes_folles = {
+//     id: 'herbes_folles',
+//     name: 'Herbes Folles',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -6625,10 +6780,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sacrifice_vaudou = {
+//     id: 'sacrifice_vaudou',
+//     name: 'Sacrifice Vaudou',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -6639,10 +6794,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arbre_de_vie = {
+//     id: 'arbre_de_vie',
+//     name: 'Arbre de Vie',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -6653,10 +6808,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_gonflable = {
+//     id: 'la_gonflable',
+//     name: 'La Gonflable',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -6665,10 +6820,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tremblement = {
+//     id: 'tremblement',
+//     name: 'Tremblement',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -6677,10 +6832,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.inoculation = {
+//     id: 'inoculation',
+//     name: 'Inoculation',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -6689,10 +6844,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.don_naturel = {
+//     id: 'don_naturel',
+//     name: 'Don Naturel',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -6701,10 +6856,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_surpuissante = {
+//     id: 'la_surpuissante',
+//     name: 'La Surpuissante',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -6713,10 +6868,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ronce_insolente = {
+//     id: 'ronce_insolente',
+//     name: 'Ronce Insolente',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -6725,10 +6880,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.montee_de_seve = {
+//     id: 'montee_de_seve',
+//     name: 'Montée de Sève',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -6737,10 +6892,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.feu_de_brousse = {
+//     id: 'feu_de_brousse',
+//     name: 'Feu de Brousse',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -6749,10 +6904,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vent_empoisonne = {
+//     id: 'vent_empoisonne',
+//     name: 'Vent Empoisonné',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -6761,10 +6916,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arbre_feuillu = {
+//     id: 'arbre_feuillu',
+//     name: 'Arbre Feuillu',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -6773,10 +6928,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_folle_transmutee = {
+//     id: 'la_folle_transmutee',
+//     name: 'La Folle Transmutée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -6785,10 +6940,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.miasmes = {
+//     id: 'miasmes',
+//     name: 'Miasmes',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -6797,10 +6952,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mangrove = {
+//     id: 'mangrove',
+//     name: 'Mangrove',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -6809,114 +6964,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rempotage = {
+//     id: 'rempotage',
+//     name: 'Rempotage',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_bloqueuse_transmutee = {
+//     id: 'la_bloqueuse_transmutee',
+//     name: 'La Bloqueuse Transmutée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fetiches_calcines = {
+//     id: 'fetiches_calcines',
+//     name: 'Fétiches Calcinés',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.foret_hantee = {
+//     id: 'foret_hantee',
+//     name: 'Forêt Hantée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.influence_vegetale = {
+//     id: 'influence_vegetale',
+//     name: 'Influence Végétale',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_sacrifiee_transmutee = {
+//     id: 'la_sacrifiee_transmutee',
+//     name: 'La Sacrifiée Transmutée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.malediction_vaudou = {
+//     id: 'malediction_vaudou',
+//     name: 'Malédiction Vaudou',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chardons_ardents = {
+//     id: 'chardons_ardents',
+//     name: 'Chardons Ardents',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.altruisme_vegetal = {
+//     id: 'altruisme_vegetal',
+//     name: 'Altruisme Végétal',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_gonflable_transmutee = {
+//     id: 'la_gonflable_transmutee',
+//     name: 'La Gonflable Transmutée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mandragore = {
+//     id: 'mandragore',
+//     name: 'Mandragore',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.force_de_la_nature = {
+//     id: 'force_de_la_nature',
+//     name: 'Force de la Nature',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.harmonie = {
+//     id: 'harmonie',
+//     name: 'Harmonie',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.la_surpuissante_transmutee = {
+//     id: 'la_surpuissante_transmutee',
+//     name: 'La Surpuissante Transmutée',
+//     classId: 'sadida',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -6924,10 +7079,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region roublard ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.explobombe = {
+//     id: 'explobombe',
+//     name: 'Explobombe',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -6938,10 +7093,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tornabombe = {
+//     id: 'tornabombe',
+//     name: 'Tornabombe',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -6952,10 +7107,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bombe_a_eau = {
+//     id: 'bombe_a_eau',
+//     name: 'Bombe à Eau',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -6966,10 +7121,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sismobombe = {
+//     id: 'sismobombe',
+//     name: 'Sismobombe',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -6980,10 +7135,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.detonateur = {
+//     id: 'detonateur',
+//     name: 'Détonateur',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -6994,10 +7149,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pulsar = {
+//     id: 'pulsar',
+//     name: 'Pulsar',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -7008,10 +7163,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.espingole = {
+//     id: 'espingole',
+//     name: 'Espingole',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -7022,10 +7177,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.botte = {
+//     id: 'botte',
+//     name: 'Botte',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -7036,10 +7191,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.recel = {
+//     id: 'recel',
+//     name: 'Recel',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -7050,10 +7205,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bombarde = {
+//     id: 'bombarde',
+//     name: 'Bombarde',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -7064,10 +7219,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aimantation = {
+//     id: 'aimantation',
+//     name: 'Aimantation',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -7078,10 +7233,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.entourloupe = {
+//     id: 'entourloupe',
+//     name: 'Entourloupe',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -7092,10 +7247,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.roublabot = {
+//     id: 'roublabot',
+//     name: 'Roublabot',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -7106,10 +7261,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dagues_boomerang = {
+//     id: 'dagues_boomerang',
+//     name: 'Dagues Boomerang',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -7120,10 +7275,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.roublardise = {
+//     id: 'roublardise',
+//     name: 'Roublardise',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -7134,10 +7289,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.extraction = {
+//     id: 'extraction',
+//     name: 'Extraction',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -7148,10 +7303,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.remission = {
+//     id: 'remission',
+//     name: 'Rémission',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -7162,10 +7317,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mousquet = {
+//     id: 'mousquet',
+//     name: 'Mousquet',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -7174,10 +7329,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.poudre = {
+//     id: 'poudre',
+//     name: 'Poudre',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -7186,10 +7341,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.resquille = {
+//     id: 'resquille',
+//     name: 'Resquille',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -7198,10 +7353,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dernier_souffle = {
+//     id: 'dernier_souffle',
+//     name: 'Dernier Souffle',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -7210,10 +7365,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.kaboom = {
+//     id: 'kaboom',
+//     name: 'Kaboom',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -7222,10 +7377,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.explobombe_resiliente = {
+//     id: 'explobombe_resiliente',
+//     name: 'Explobombe Résiliente',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -7234,10 +7389,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tornabombe_resiliente = {
+//     id: 'tornabombe_resiliente',
+//     name: 'Tornabombe Résiliente',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -7246,10 +7401,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bombe_a_eau_resiliente = {
+//     id: 'bombe_a_eau_resiliente',
+//     name: 'Bombe à Eau Résiliente',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -7258,10 +7413,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sismobombe_resiliente = {
+//     id: 'sismobombe_resiliente',
+//     name: 'Sismobombe Résiliente',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -7270,10 +7425,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.etoupille = {
+//     id: 'etoupille',
+//     name: 'Étoupille',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -7282,10 +7437,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.shrapnel = {
+//     id: 'shrapnel',
+//     name: 'Shrapnel',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -7294,10 +7449,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.obliteration = {
+//     id: 'obliteration',
+//     name: 'Oblitération',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -7306,10 +7461,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ruse = {
+//     id: 'ruse',
+//     name: 'Ruse',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -7318,125 +7473,125 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.plombage = {
+//     id: 'plombage',
+//     name: 'Plombage',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mitraille = {
+//     id: 'mitraille',
+//     name: 'Mitraille',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.croisement = {
+//     id: 'croisement',
+//     name: 'Croisement',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bombe_ambulante = {
+//     id: 'bombe_ambulante',
+//     name: 'Bombe Ambulante',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.megabombe = {
+//     id: 'megabombe',
+//     name: 'Mégabombe',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tromblon = {
+//     id: 'tromblon',
+//     name: 'Tromblon',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.stratageme = {
+//     id: 'stratageme',
+//     name: 'Stratagème',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cadence = {
+//     id: 'cadence',
+//     name: 'Cadence',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.casemate = {
+//     id: 'casemate',
+//     name: 'Casemate',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.grenaille = {
+//     id: 'grenaille',
+//     name: 'Grenaille',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bombe_collante = {
+//     id: 'bombe_collante',
+//     name: 'Bombe Collante',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arquebuse = {
+//     id: 'arquebuse',
+//     name: 'Arquebuse',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piege_magnetique = {
+//     id: 'piege_magnetique',
+//     name: 'Piège Magnétique',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.imposture = {
+//     id: 'imposture',
+//     name: 'Imposture',
+//     classId: 'roublard',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
 // #endregion
 
-// #region ecaflip ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// #region Xelor ─────────────────────────────────────────
+// move.perturbation = {
+//     id: 'perturbation',
+//     name: 'Perturbation',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -7447,10 +7602,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gelure = {
+//     id: 'gelure',
+//     name: 'Gelure',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -7461,10 +7616,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.souvenir = {
+//     id: 'souvenir',
+//     name: 'Souvenir',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -7475,10 +7630,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.frappe_de_xelor = {
+//     id: 'frappe_de_xelor',
+//     name: 'Frappe de Xélor',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -7489,10 +7644,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.complice = {
+//     id: 'complice',
+//     name: 'Complice',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -7503,10 +7658,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.teleportation = {
+//     id: 'teleportation',
+//     name: 'Téléportation',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -7517,10 +7672,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fletrissement = {
+//     id: 'fletrissement',
+//     name: 'Flétrissement',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -7531,10 +7686,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.engrenage = {
+//     id: 'engrenage',
+//     name: 'Engrenage',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -7545,10 +7700,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fuite_du_temps = {
+//     id: 'fuite_du_temps',
+//     name: 'Fuite du Temps',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -7559,10 +7714,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rayon_obscur = {
+//     id: 'rayon_obscur',
+//     name: 'Rayon Obscur',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -7573,10 +7728,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ralentissement = {
+//     id: 'ralentissement',
+//     name: 'Ralentissement',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -7587,10 +7742,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.flou_temporel = {
+//     id: 'flou_temporel',
+//     name: 'Flou Temporel',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -7601,10 +7756,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.raulebaque = {
+//     id: 'raulebaque',
+//     name: 'Raulebaque',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -7615,10 +7770,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.horloge = {
+//     id: 'horloge',
+//     name: 'Horloge',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -7629,10 +7784,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.refraction = {
+//     id: 'refraction',
+//     name: 'Réfraction',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -7643,10 +7798,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rembobinage = {
+//     id: 'rembobinage',
+//     name: 'Rembobinage',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -7657,10 +7812,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.paradoxe = {
+//     id: 'paradoxe',
+//     name: 'Paradoxe',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -7671,10 +7826,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.petrification = {
+//     id: 'petrification',
+//     name: 'Pétrification',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -7683,10 +7838,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.distorsion = {
+//     id: 'distorsion',
+//     name: 'Distorsion',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -7695,10 +7850,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.desynchronisation = {
+//     id: 'desynchronisation',
+//     name: 'Désynchronisation',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -7707,10 +7862,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.momification = {
+//     id: 'momification',
+//     name: 'Momification',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -7719,10 +7874,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.synchro = {
+//     id: 'synchro',
+//     name: 'Synchro',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -7731,10 +7886,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rouage = {
+//     id: 'rouage',
+//     name: 'Rouage',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -7743,10 +7898,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.poussiere = {
+//     id: 'poussiere',
+//     name: 'Poussière',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -7755,10 +7910,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.permutation = {
+//     id: 'permutation',
+//     name: 'Permutation',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -7767,10 +7922,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pendule = {
+//     id: 'pendule',
+//     name: 'Pendule',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -7779,10 +7934,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cadran_de_xelor = {
+//     id: 'cadran_de_xelor',
+//     name: 'Cadran de Xélor',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -7791,10 +7946,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.astrolabe = {
+//     id: 'astrolabe',
+//     name: 'Astrolabe',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -7803,10 +7958,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aiguille = {
+//     id: 'aiguille',
+//     name: 'Aiguille',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -7815,10 +7970,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.compte_goutte = {
+//     id: 'compte_goutte',
+//     name: 'Compte-goutte',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -7827,114 +7982,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.premonition = {
+//     id: 'premonition',
+//     name: 'Prémonition',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dessechement = {
+//     id: 'dessechement',
+//     name: 'Dessèchement',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sablier_de_xelor = {
+//     id: 'sablier_de_xelor',
+//     name: 'Sablier de Xélor',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.conservation = {
+//     id: 'conservation',
+//     name: 'Conservation',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.instabilite = {
+//     id: 'instabilite',
+//     name: 'Instabilité',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.clepsydre = {
+//     id: 'clepsydre',
+//     name: 'Clepsydre',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.regulateur = {
+//     id: 'regulateur',
+//     name: 'Régulateur',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.remanence = {
+//     id: 'remanence',
+//     name: 'Rémanence',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.faille = {
+//     id: 'faille',
+//     name: 'Faille',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gousset = {
+//     id: 'gousset',
+//     name: 'Gousset',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sables_du_temps = {
+//     id: 'sables_du_temps',
+//     name: 'Sables du Temps',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.espace_temps = {
+//     id: 'espace_temps',
+//     name: 'Espace-temps',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vingt_cinquieme_heure = {
+//     id: 'vingt_cinquieme_heure',
+//     name: 'Vingt-cinquième Heure',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.glas = {
+//     id: 'glas',
+//     name: 'Glas',
+//     classId: 'xelor',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -7942,10 +8097,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region steamer ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move['longue-vue'] = {
+//     id: 'longue-vue',
+//     name: 'Longue-vue',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -7956,10 +8111,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.amarrage = {
+//     id: 'amarrage',
+//     name: 'Amarrage',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -7970,10 +8125,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.torpille = {
+//     id: 'torpille',
+//     name: 'Torpille',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -7984,10 +8139,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sabotage = {
+//     id: 'sabotage',
+//     name: 'Sabotage',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -7998,10 +8153,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.harponneuse = {
+//     id: 'harponneuse',
+//     name: 'Harponneuse',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -8012,10 +8167,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.evolution = {
+//     id: 'evolution',
+//     name: 'Évolution',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -8026,10 +8181,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gardienne = {
+//     id: 'gardienne',
+//     name: 'Gardienne',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -8040,10 +8195,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aspiration = {
+//     id: 'aspiration',
+//     name: 'Aspiration',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -8054,10 +8209,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.maree = {
+//     id: 'maree',
+//     name: 'Marée',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -8068,10 +8223,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.turbine = {
+//     id: 'turbine',
+//     name: 'Turbine',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -8082,10 +8237,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tactirelle = {
+//     id: 'tactirelle',
+//     name: 'Tactirelle',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -8096,10 +8251,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.scaphandre = {
+//     id: 'scaphandre',
+//     name: 'Scaphandre',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -8110,10 +8265,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.foene = {
+//     id: 'foene',
+//     name: 'Foène',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -8124,10 +8279,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ressac = {
+//     id: 'ressac',
+//     name: 'Ressac',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -8138,10 +8293,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sonar = {
+//     id: 'sonar',
+//     name: 'Sonar',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -8152,10 +8307,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.courant = {
+//     id: 'courant',
+//     name: 'Courant',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -8166,10 +8321,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.secourisme = {
+//     id: 'secourisme',
+//     name: 'Secourisme',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -8180,10 +8335,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ancrage = {
+//     id: 'ancrage',
+//     name: 'Ancrage',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -8192,10 +8347,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.plongee = {
+//     id: 'plongee',
+//     name: 'Plongée',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -8204,10 +8359,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.compas = {
+//     id: 'compas',
+//     name: 'Compas',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -8216,10 +8371,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.assistance = {
+//     id: 'assistance',
+//     name: 'Assistance',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -8228,10 +8383,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.brise_lame = {
+//     id: 'brise_lame',
+//     name: 'Brise l'Âme',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -8240,10 +8395,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.corrosion = {
+//     id: 'corrosion',
+//     name: 'Corrosion',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -8252,10 +8407,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.soupape = {
+//     id: 'soupape',
+//     name: 'Soupape',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -8264,10 +8419,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gouvernail = {
+//     id: 'gouvernail',
+//     name: 'Gouvernail',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -8276,10 +8431,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.periscope = {
+//     id: 'periscope',
+//     name: 'Périscope',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -8288,10 +8443,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chalutier = {
+//     id: 'chalutier',
+//     name: 'Chalutier',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -8300,10 +8455,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.surtension = {
+//     id: 'surtension',
+//     name: 'Surtension',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -8312,10 +8467,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.foreuse = {
+//     id: 'foreuse',
+//     name: 'Foreuse',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -8324,10 +8479,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.piston = {
+//     id: 'piston',
+//     name: 'Piston',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -8336,114 +8491,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vapor = {
+//     id: 'vapor',
+//     name: 'Vapor',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.flibuste = {
+//     id: 'flibuste',
+//     name: 'Flibuste',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bathyscaphe = {
+//     id: 'bathyscaphe',
+//     name: 'Bathyscaphe',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.blindage = {
+//     id: 'blindage',
+//     name: 'Blindage',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cabestan = {
+//     id: 'cabestan',
+//     name: 'Cabestan',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ecume = {
+//     id: 'ecume',
+//     name: 'Écume',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.embuscade = {
+//     id: 'embuscade',
+//     name: 'Embuscade',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.harmattan = {
+//     id: 'harmattan',
+//     name: 'Harmattan',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sauvetage = {
+//     id: 'sauvetage',
+//     name: 'Sauvetage',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.court_circuit = {
+//     id: 'court_circuit',
+//     name: 'Court-circuit',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.submersion = {
+//     id: 'submersion',
+//     name: 'Submersion',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.boussole = {
+//     id: 'boussole',
+//     name: 'Boussole',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aiguillage = {
+//     id: 'aiguillage',
+//     name: 'Aiguillage',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.recursivite = {
+//     id: 'recursivite',
+//     name: 'Récursivité',
+//     classId: 'steamer',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -8451,10 +8606,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region ouginak ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.molosse = {
+//     id: 'molosse',
+//     name: 'Molosse',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -8465,10 +8620,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.os_a_moelle = {
+//     id: 'os_a_moelle',
+//     name: 'Os à Moelle',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -8479,10 +8634,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.charogne = {
+//     id: 'charogne',
+//     name: 'Charogne',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -8493,10 +8648,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.traque = {
+//     id: 'traque',
+//     name: 'Traque',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -8507,10 +8662,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.proie = {
+//     id: 'proie',
+//     name: 'Proie',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -8521,10 +8676,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.convergence = {
+//     id: 'convergence',
+//     name: 'Convergence',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -8535,10 +8690,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lance_roquet = {
+//     id: 'lance_roquet',
+//     name: 'Lance-roquet',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -8549,10 +8704,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.amarok = {
+//     id: 'amarok',
+//     name: 'Amarok',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -8563,10 +8718,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cubitus = {
+//     id: 'cubitus',
+//     name: 'Cubitus',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -8577,10 +8732,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.arcanin = {
+//     id: 'arcanin',
+//     name: 'Arcanin',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -8591,10 +8746,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rabattage = {
+//     id: 'rabattage',
+//     name: 'Rabattage',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -8605,10 +8760,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.carcasse = {
+//     id: 'carcasse',
+//     name: 'Carcasse',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -8619,10 +8774,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pelage_protecteur = {
+//     id: 'pelage_protecteur',
+//     name: 'Pelage Protecteur',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -8633,10 +8788,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chasse = {
+//     id: 'chasse',
+//     name: 'Chasse',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -8647,10 +8802,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tibia = {
+//     id: 'tibia',
+//     name: 'Tibia',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -8661,10 +8816,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.apaisement = {
+//     id: 'apaisement',
+//     name: 'Apaisement',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -8675,10 +8830,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.dogue = {
+//     id: 'dogue',
+//     name: 'Dogue',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -8689,10 +8844,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.panique = {
+//     id: 'panique',
+//     name: 'Panique',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -8701,10 +8856,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aboiement = {
+//     id: 'aboiement',
+//     name: 'Aboiement',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -8713,10 +8868,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.limier = {
+//     id: 'limier',
+//     name: 'Limier',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -8725,10 +8880,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.flair = {
+//     id: 'flair',
+//     name: 'Flair',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -8737,10 +8892,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.appel_de_la_meute = {
+//     id: 'appel_de_la_meute',
+//     name: 'Appel de la Meute',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -8749,10 +8904,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.machoire = {
+//     id: 'machoire',
+//     name: 'Mâchoire',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -8761,10 +8916,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.museliere = {
+//     id: 'museliere',
+//     name: 'Muselière',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -8773,10 +8928,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.radius = {
+//     id: 'radius',
+//     name: 'Radius',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -8785,10 +8940,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.depecage = {
+//     id: 'depecage',
+//     name: 'Dépeçage',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -8797,10 +8952,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gibier = {
+//     id: 'gibier',
+//     name: 'Gibier',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -8809,10 +8964,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pistage = {
+//     id: 'pistage',
+//     name: 'Pistage',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -8821,10 +8976,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gangrene = {
+//     id: 'gangrene',
+//     name: 'Gangrène',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -8833,10 +8988,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cerbere = {
+//     id: 'cerbere',
+//     name: 'Cerbère',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -8845,114 +9000,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.calcaneus = {
+//     id: 'calcaneus',
+//     name: 'Calcanéus',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.caninos = {
+//     id: 'caninos',
+//     name: 'Caninos',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aboi = {
+//     id: 'aboi',
+//     name: 'Aboi',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.battue = {
+//     id: 'battue',
+//     name: 'Battue',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ferocite = {
+//     id: 'ferocite',
+//     name: 'Férocité',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vertebre = {
+//     id: 'vertebre',
+//     name: 'Vertèbre',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.humerus = {
+//     id: 'humerus',
+//     name: 'Humérus',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.affection = {
+//     id: 'affection',
+//     name: 'Affection',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.depouille = {
+//     id: 'depouille',
+//     name: 'Dépouille',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.poursuite = {
+//     id: 'poursuite',
+//     name: 'Poursuite',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rogne = {
+//     id: 'rogne',
+//     name: 'Rogne',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tetanisation = {
+//     id: 'tetanisation',
+//     name: 'Tétanisation',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.acharnement = {
+//     id: 'acharnement',
+//     name: 'Acharnement',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.nouvelle_lune = {
+//     id: 'nouvelle_lune',
+//     name: 'Nouvelle Lune',
+//     classId: 'ouginak',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -8960,10 +9115,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region forgelance ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.trident_de_la_mer = {
+//     id: 'trident_de_la_mer',
+//     name: 'Trident de la Mer',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -8974,10 +9129,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.effondrement = {
+//     id: 'effondrement',
+//     name: 'Effondrement',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -8988,10 +9143,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.estoc_brulant = {
+//     id: 'estoc_brulant',
+//     name: 'Estoc Brûlant',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -9002,10 +9157,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.volee_dairain = {
+//     id: 'volee_dairain',
+//     name: 'Volée d'Airain',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -9016,10 +9171,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.epilogue = {
+//     id: 'epilogue',
+//     name: 'Épilogue',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -9030,10 +9185,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.charge_heroique = {
+//     id: 'charge_heroique',
+//     name: 'Charge Héroïque',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -9044,10 +9199,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lance_du_lac = {
+//     id: 'lance_du_lac',
+//     name: 'Lance du Lac',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -9058,10 +9213,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lance_pierre = {
+//     id: 'lance_pierre',
+//     name: 'Lance-pierre',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -9072,10 +9227,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.phalange = {
+//     id: 'phalange',
+//     name: 'Phalange',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -9086,10 +9241,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lance_a_incendie = {
+//     id: 'lance_a_incendie',
+//     name: 'Lance à Incendie',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -9100,10 +9255,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.javeline_de_myr = {
+//     id: 'javeline_de_myr',
+//     name: 'Javeline de Myr',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -9114,10 +9269,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.balestra = {
+//     id: 'balestra',
+//     name: 'Balestra',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -9128,10 +9283,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.talon_dargile = {
+//     id: 'talon_dargile',
+//     name: 'Talon d'Argile',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -9142,10 +9297,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.kyrja = {
+//     id: 'kyrja',
+//     name: 'Kyrja',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -9156,10 +9311,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.muspel = {
+//     id: 'muspel',
+//     name: 'Muspel',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -9170,10 +9325,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.prelude_au_fer = {
+//     id: 'prelude_au_fer',
+//     name: 'Prélude au Fer',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -9184,10 +9339,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.terre_du_milieu = {
+//     id: 'terre_du_milieu',
+//     name: 'Terre du Milieu',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -9198,10 +9353,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chevalerie = {
+//     id: 'chevalerie',
+//     name: 'Chevalerie',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -9210,10 +9365,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.jormun = {
+//     id: 'jormun',
+//     name: 'Jormun',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -9222,10 +9377,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.poincon = {
+//     id: 'poincon',
+//     name: 'Poinçon',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -9234,10 +9389,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.noa = {
+//     id: 'noa',
+//     name: 'Noa',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -9246,10 +9401,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.eclipse = {
+//     id: 'eclipse',
+//     name: 'Éclipse',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -9258,10 +9413,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.maelstrom = {
+//     id: 'maelstrom',
+//     name: 'Maelstrom',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -9270,10 +9425,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lance_cyclone = {
+//     id: 'lance_cyclone',
+//     name: 'Lance-cyclone',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -9282,10 +9437,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.octave = {
+//     id: 'octave',
+//     name: 'Octave',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -9294,10 +9449,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.soulevement = {
+//     id: 'soulevement',
+//     name: 'Soulèvement',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -9306,10 +9461,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.parade = {
+//     id: 'parade',
+//     name: 'Parade',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -9318,10 +9473,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.galanterie = {
+//     id: 'galanterie',
+//     name: 'Galanterie',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -9330,10 +9485,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.epieu_sismique = {
+//     id: 'epieu_sismique',
+//     name: 'Épieu Sismique',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -9342,10 +9497,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.javelot_foudre = {
+//     id: 'javelot_foudre',
+//     name: 'Javelot-foudre',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -9354,114 +9509,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.oriflamme = {
+//     id: 'oriflamme',
+//     name: 'Oriflamme',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pluie_dairain = {
+//     id: 'pluie_dairain',
+//     name: 'Pluie d'Airain',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.moulin_rouge = {
+//     id: 'moulin_rouge',
+//     name: 'Moulin Rouge',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.moulin_a_vent = {
+//     id: 'moulin_a_vent',
+//     name: 'Moulin à Vent',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fente = {
+//     id: 'fente',
+//     name: 'Fente',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vajra = {
+//     id: 'vajra',
+//     name: 'Vajra',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ydra = {
+//     id: 'ydra',
+//     name: 'Ydra',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.crepuscule = {
+//     id: 'crepuscule',
+//     name: 'Crépuscule',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.degagement = {
+//     id: 'degagement',
+//     name: 'Dégagement',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.renommee = {
+//     id: 'renommee',
+//     name: 'Renommée',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fer_rouge = {
+//     id: 'fer_rouge',
+//     name: 'Fer Rouge',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.etreinte_de_valkyr = {
+//     id: 'etreinte_de_valkyr',
+//     name: 'Étreinte de Valkyr',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.elding = {
+//     id: 'elding',
+//     name: 'Elding',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.holmgang = {
+//     id: 'holmgang',
+//     name: 'Holmgang',
+//     classId: 'forgelance',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -9469,10 +9624,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region pandawa ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.gueule_de_bois = {
+//     id: 'gueule_de_bois',
+//     name: 'Gueule de Bois',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -9483,10 +9638,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.paume_explosive = {
+//     id: 'paume_explosive',
+//     name: 'Paume Explosive',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -9497,10 +9652,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.schnaps = {
+//     id: 'schnaps',
+//     name: 'Schnaps',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -9511,10 +9666,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ethylo = {
+//     id: 'ethylo',
+//     name: 'Ethylo',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -9525,10 +9680,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bombance = {
+//     id: 'bombance',
+//     name: 'Bombance',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -9539,10 +9694,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.karcham = {
+//     id: 'karcham',
+//     name: 'Karcham',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -9553,10 +9708,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.epouvante = {
+//     id: 'epouvante',
+//     name: 'Épouvante',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -9567,10 +9722,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.brancard = {
+//     id: 'brancard',
+//     name: 'Brancard',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -9581,10 +9736,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pandikulation = {
+//     id: 'pandikulation',
+//     name: 'Pandikulation',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -9595,10 +9750,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ebriete = {
+//     id: 'ebriete',
+//     name: 'Ébriété',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -9609,10 +9764,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.stabilisation = {
+//     id: 'stabilisation',
+//     name: 'Stabilisation',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -9623,10 +9778,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.propulsion = {
+//     id: 'propulsion',
+//     name: 'Propulsion',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -9637,10 +9792,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.eau_de_vie = {
+//     id: 'eau_de_vie',
+//     name: 'Eau-de-vie',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -9651,10 +9806,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.souillure = {
+//     id: 'souillure',
+//     name: 'Souillure',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -9665,10 +9820,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.fermentation = {
+//     id: 'fermentation',
+//     name: 'Fermentation',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -9679,10 +9834,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.eviction = {
+//     id: 'eviction',
+//     name: 'Éviction',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -9693,10 +9848,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.flasque_explosive = {
+//     id: 'flasque_explosive',
+//     name: 'Flasque Explosive',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -9707,10 +9862,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lait_de_bambou = {
+//     id: 'lait_de_bambou',
+//     name: 'Lait de Bambou',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -9719,10 +9874,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.nausee = {
+//     id: 'nausee',
+//     name: 'Nausée',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -9731,10 +9886,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vague_a_lame = {
+//     id: 'vague_a_lame',
+//     name: 'Vague à Lame',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -9743,10 +9898,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.lien_spiritueux = {
+//     id: 'lien_spiritueux',
+//     name: 'Lien Spiritueux',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -9755,10 +9910,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pandanlku = {
+//     id: 'pandanlku',
+//     name: 'Pandanlku',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -9767,10 +9922,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.souffle_enflamme = {
+//     id: 'souffle_enflamme',
+//     name: 'Souffle Enflammé',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -9779,10 +9934,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.distillation = {
+//     id: 'distillation',
+//     name: 'Distillation',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -9791,10 +9946,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ribote = {
+//     id: 'ribote',
+//     name: 'Ribote',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -9803,10 +9958,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.engourdissement = {
+//     id: 'engourdissement',
+//     name: 'Engourdissement',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -9815,10 +9970,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.picole = {
+//     id: 'picole',
+//     name: 'Picole',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -9827,10 +9982,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.chamrak = {
+//     id: 'chamrak',
+//     name: 'Chamrak',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -9839,10 +9994,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.consolation = {
+//     id: 'consolation',
+//     name: 'Consolation',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -9851,10 +10006,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.alcoshu = {
+//     id: 'alcoshu',
+//     name: 'Alcoshu',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -9863,114 +10018,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.liqueur = {
+//     id: 'liqueur',
+//     name: 'Liqueur',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.ivresse = {
+//     id: 'ivresse',
+//     name: 'Ivresse',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.varappe = {
+//     id: 'varappe',
+//     name: 'Varappe',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.absinthe = {
+//     id: 'absinthe',
+//     name: 'Absinthe',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bistouille = {
+//     id: 'bistouille',
+//     name: 'Bistouille',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.brassage = {
+//     id: 'brassage',
+//     name: 'Brassage',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bambouseraie = {
+//     id: 'bambouseraie',
+//     name: 'Bambouseraie',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.souffle_alcoolise = {
+//     id: 'souffle_alcoolise',
+//     name: 'Souffle Alcoolisé',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pandatak = {
+//     id: 'pandatak',
+//     name: 'Pandatak',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.prohibition = {
+//     id: 'prohibition',
+//     name: 'Prohibition',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cascade = {
+//     id: 'cascade',
+//     name: 'Cascade',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.pandjiu = {
+//     id: 'pandjiu',
+//     name: 'Pandjiu',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.bambou = {
+//     id: 'bambou',
+//     name: 'Bambou',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.main_de_pandawa = {
+//     id: 'main_de_pandawa',
+//     name: 'Main de Pandawa',
+//     classId: 'pandawa',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
@@ -9978,10 +10133,10 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region eliotrope ─────────────────────────────────────────
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.affront = {
+//     id: 'affront',
+//     name: 'Affront',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 1,
@@ -9992,10 +10147,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.audace = {
+//     id: 'audace',
+//     name: 'Audace',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 8,
@@ -10006,10 +10161,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.commotion = {
+//     id: 'commotion',
+//     name: 'Commotion',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{ lvl: 12, 
@@ -10020,10 +10175,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.rayon_de_wakfu = {
+//     id: 'rayon_de_wakfu',
+//     name: 'Rayon de Wakfu',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 16,
@@ -10034,10 +10189,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.portail = {
+//     id: 'portail',
+//     name: 'Portail',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 20,
@@ -10048,10 +10203,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.neutral = {
+//     id: 'neutral',
+//     name: 'Neutral',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 24,
@@ -10062,10 +10217,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.persiflage = {
+//     id: 'persiflage',
+//     name: 'Persiflage',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 28,
@@ -10076,10 +10231,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cicatrisation = {
+//     id: 'cicatrisation',
+//     name: 'Cicatrisation',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 33,
@@ -10090,10 +10245,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.outrage = {
+//     id: 'outrage',
+//     name: 'Outrage',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 37,
@@ -10104,10 +10259,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.odyssee = {
+//     id: 'odyssee',
+//     name: 'Odyssée',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 41,
@@ -10118,10 +10273,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.insolence = {
+//     id: 'insolence',
+//     name: 'Insolence',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 45,
@@ -10132,10 +10287,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cabale = {
+//     id: 'cabale',
+//     name: 'Cabale',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 49,
@@ -10146,10 +10301,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.brimade = {
+//     id: 'brimade',
+//     name: 'Brimade',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 53,
@@ -10160,10 +10315,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sillage = {
+//     id: 'sillage',
+//     name: 'Sillage',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 57,
@@ -10174,10 +10329,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.therapie = {
+//     id: 'therapie',
+//     name: 'Thérapie',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 61,
@@ -10188,10 +10343,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.distribution = {
+//     id: 'distribution',
+//     name: 'Distribution',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 65,
@@ -10202,10 +10357,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.affliction = {
+//     id: 'affliction',
+//     name: 'Affliction',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 69,
@@ -10216,10 +10371,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: " "
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.transcendance = {
+//     id: 'transcendance',
+//     name: 'Transcendance',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 73,
@@ -10228,10 +10383,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.raillerie = {
+//     id: 'raillerie',
+//     name: 'Raillerie',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 77,
@@ -10240,10 +10395,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.resonance = {
+//     id: 'resonance',
+//     name: 'Résonance',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 81,
@@ -10252,10 +10407,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.extinction = {
+//     id: 'extinction',
+//     name: 'Extinction',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 85,
@@ -10264,10 +10419,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.entraide = {
+//     id: 'entraide',
+//     name: 'Entraide',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 90,
@@ -10276,10 +10431,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.mepris = {
+//     id: 'mepris',
+//     name: 'Mépris',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 95,
@@ -10288,10 +10443,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.tribulation = {
+//     id: 'tribulation',
+//     name: 'Tribulation',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 100,
@@ -10300,10 +10455,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.convulsion = {
+//     id: 'convulsion',
+//     name: 'Convulsion',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 105,
@@ -10312,10 +10467,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.faisceau = {
+//     id: 'faisceau',
+//     name: 'Faisceau',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 110,
@@ -10324,10 +10479,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.errance = {
+//     id: 'errance',
+//     name: 'Errance',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 115,
@@ -10336,10 +10491,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.interruption = {
+//     id: 'interruption',
+//     name: 'Interruption',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 120,
@@ -10348,10 +10503,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sinecure = {
+//     id: 'sinecure',
+//     name: 'Sinécure',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 125,
@@ -10360,10 +10515,10 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.conjuration = {
+//     id: 'conjuration',
+//     name: 'Conjuration',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     spellProgression: [{lvl: 130,
@@ -10372,114 +10527,114 @@ move.bouclier_elementaire = {
 //                         patch: {}}],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.aplomb = {
+//     id: 'aplomb',
+//     name: 'Aplomb',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.exode = {
+//     id: 'exode',
+//     name: 'Exode',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.camouflet = {
+//     id: 'camouflet',
+//     name: 'Camouflet',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.resilience = {
+//     id: 'resilience',
+//     name: 'Résilience',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.cataclysme = {
+//     id: 'cataclysme',
+//     name: 'Cataclysme',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.stupeur = {
+//     id: 'stupeur',
+//     name: 'Stupeur',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.poing_fulgurant = {
+//     id: 'poing_fulgurant',
+//     name: 'Poing Fulgurant',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.orgueil = {
+//     id: 'orgueil',
+//     name: 'Orgueil',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.offense = {
+//     id: 'offense',
+//     name: 'Offense',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.exil = {
+//     id: 'exil',
+//     name: 'Exil',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sarcasme = {
+//     id: 'sarcasme',
+//     name: 'Sarcasme',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.vestige = {
+//     id: 'vestige',
+//     name: 'Vestige',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.sermon = {
+//     id: 'sermon',
+//     name: 'Sermon',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""
 // }
-// move. = {
-//     id: '',
-//     name: '',
-//     classId: '',
+// move.coalition = {
+//     id: 'coalition',
+//     name: 'Coalition',
+//     classId: 'eliotrope',
 //     cooldownMs: 2000,
 //     effects: [],
 //     description: ""

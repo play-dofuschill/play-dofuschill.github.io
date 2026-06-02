@@ -14,6 +14,13 @@ function updateTeamUI() {
 
     const isTutoPrepEmpty = state.tutorial === 'team_prep' && !_tutoTeamPicked
 
+    const _skullCap = (() => {
+        if (_pendingAreaId && state.skullLevel > 0) return areas[_pendingAreaId]?.maxLevel || null
+        if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
+        return null
+    })()
+    let totalOverleveled = 0
+
     for (let i = 0; i < MAX_TEAM; i++) {
         const member = isTutoPrepEmpty ? null : state.team[i]
         const card   = document.createElement('div')
@@ -43,6 +50,14 @@ function updateTeamUI() {
             }).join('')
 
             card.className   = 'explore-team-member team-menu-card'
+            if (_skullCap !== null) {
+                let memberOverleveled = 0
+                for (const slot of EQUIP_SLOT_ORDER) {
+                    const itm = item[member.equip?.[slot]]
+                    if (itm?.requiredLevel && itm.requiredLevel > _skullCap) memberOverleveled++
+                }
+                if (memberOverleveled > 0) { card.classList.add('skull-equip-warning'); totalOverleveled += memberOverleveled }
+            }
             card.dataset.help = member.classId
             card.dataset.slotIndex = i
             if (!state.isRunning) card.draggable = true
@@ -95,6 +110,13 @@ function updateTeamUI() {
                 </div>`
         }
         preview.appendChild(card)
+    }
+
+    if (totalOverleveled > 0) {
+        const banner = document.createElement('div')
+        banner.className = 'skull-equip-banner'
+        banner.textContent = `${totalOverleveled} équipement${totalOverleveled > 1 ? 's' : ''} ser${totalOverleveled > 1 ? 'ont' : 'a'} retiré${totalOverleveled > 1 ? 's' : ''} — niveau requis trop élevé pour cette zone modulée`
+        preview.insertBefore(banner, preview.firstChild)
     }
 }
 

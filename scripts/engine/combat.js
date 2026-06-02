@@ -88,8 +88,8 @@ function startGameLoop() {
 
 // Snapshote l'état du combat vers state avant chaque sauvegarde.
 function _syncCombatToState() {
-    state.autoPilotAccumulated = _autoPilot
-        ? JSON.parse(JSON.stringify(_autoPilot.accumulated)) : null
+    state.autoPilotAccumulated      = _autoPilot ? JSON.parse(JSON.stringify(_autoPilot.accumulated)) : null
+    state.offlineAutoPilotRemaining = _autoPilot ? _autoPilot.remaining : 0
     if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch) {
         state.savedCombatEnemy = null
         state.savedCombatState = null
@@ -256,6 +256,7 @@ function spawnEnemy(areaId) {
         enemy.atk       = Math.floor(enemy.atk   * skullMult)
     }
 
+    enemy._baseMaxHp = enemy.maxHp
     return enemy
 }
 
@@ -316,10 +317,11 @@ function startCombat(areaId) {
             if (!m) continue
             const stats = getEffectiveStats(m, _syncedLevel)
             if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
-            m.buffs  = []
-            m.dots   = []
-            m.hots   = []
-            m.shield = null
+            m.buffs      = []
+            m.dots       = []
+            m.hots       = []
+            m.shield     = null
+            m._baseMaxHp = m.maxHp
         }
     }
 
@@ -342,6 +344,7 @@ function startCombat(areaId) {
         enutrof_terre_active:  0,
         enutrof_eau_active:    0,
         enutrof_traps:         [],
+        trapStacks:            {},
         sessionLoot:           _emptySessionLoot()
     }
 
@@ -560,10 +563,11 @@ function startPoutchCombat(mode) {
         if (!m) continue
         const stats = getEffectiveStats(m)
         if (stats) { m.maxHp = stats.hp; m.currentHp = stats.hp }
-        m.buffs  = []
-        m.dots   = []
-        m.hots   = []
-        m.shield = null
+        m.buffs      = []
+        m.dots       = []
+        m.hots       = []
+        m.shield     = null
+        m._baseMaxHp = m.maxHp
     }
 
     combat = {
@@ -702,6 +706,8 @@ function gameTick() {
             if ((b.delay ?? 0) > 0) continue
             if (b.stat === 'spd') effectiveEnemySpd += b.value
         }
+        if ((combat.enemy.buffs || []).some(b => b.stat === 'spdInvert' && !(b.delay ?? 0)))
+            effectiveEnemySpd = 200 - effectiveEnemySpd
         effectiveEnemySpd = Math.max(25, effectiveEnemySpd)
         const _eCd = _peekEnemyCastCooldown(combat.enemy)
         const rate = (100 / (_eCd / TICK_MS)) * (effectiveEnemySpd / 100) * _spdMult
@@ -1018,6 +1024,25 @@ function _resolveAllyTarget(effect, caster) {
     return caster
 }
 
+// Résout les cibles pour un effet réactif.
+// Alliés : 'self'/défaut → [caster], 'team'/'all_allies' → équipe vivante, slot: N → slot absolu
+// Ennemis : 'enemy' → targetEnemy, 'all_enemies'/'all_enemy' → tous les ennemis vivants (raid ou solo)
+function _resolveReactiveTargets(effect, caster, targetEnemy) {
+    const t = effect.target
+    if (t === 'team' || t === 'all_allies') return state.team.filter(m => m && m.currentHp > 0)
+    if (t === 'enemy') return (targetEnemy && targetEnemy.currentHp > 0) ? [targetEnemy] : []
+    if (t === 'all_enemies' || t === 'all_enemy') {
+        return (combat?.isRaid && combat.enemies)
+            ? combat.enemies.filter(e => e && e.currentHp > 0)
+            : (targetEnemy && targetEnemy.currentHp > 0 ? [targetEnemy] : [])
+    }
+    if (effect.slot != null) {
+        const m = state.team[(effect.slot || 1) - 1]
+        return (m && m.currentHp > 0) ? [m] : []
+    }
+    return [caster]
+}
+
 // ─── Combos élémentaires Huppermage ──────────────────────────────────────────
 // Déclenché quand 2 sorts élémentaires différents frappent le même ennemi en séquence.
 // Effets one-shot stockés avec duration:Infinity → jamais tickés, consommés manuellement.
@@ -1042,6 +1067,39 @@ function _fireEnutrofTraps(triggerType, triggerStat, reactionTarget) {
             moveData:    { name: trap.id },
             moveId:      trap.id,
             memberHitIdx: -1
+        })
+    }
+}
+
+// Vérifie les états réactifs d'une entité et déclenche ceux qui correspondent.
+// triggerType : 'damage' | 'debuff' | 'buff' | 'heal' | 'dot' | 'shield'
+// opts : { stat?, element?, value? }  (value = montant du trigger, utilisé pour '_reflect')
+function _checkWatchStates(entity, triggerType, opts) {
+    if (!entity?.reactiveStates?.length) return
+    const { stat, element, value } = opts || {}
+    const toFire = []
+    const remaining = []
+    for (const r of entity.reactiveStates) {
+        const t = r.trigger
+        let matches = t.type === triggerType
+        if (matches && t.stat    && t.stat    !== stat)    matches = false
+        if (matches && t.element && t.element !== element) matches = false
+        if (matches) toFire.push(r)
+        else         remaining.push(r)
+    }
+    entity.reactiveStates = remaining
+    for (const r of toFire) {
+        addLog(`[${r.moveId}] réactif déclenché !`)
+        const reactionEff = { ...r.reaction }
+        if (reactionEff.damage === '_reflect' && value !== undefined)
+            reactionEff.damage = { min: value, max: value }
+        const stats = getEffectiveStats(r.caster) ?? r.caster._stats
+        executeEffect({
+            caster: r.caster, casterStats: stats,
+            targetEnemy: combat?.enemy,
+            effect: reactionEff,
+            moveData: { name: r.moveId }, moveId: r.moveId,
+            fromItemPassive: true
         })
     }
 }
@@ -1248,6 +1306,32 @@ function executeEffect(ctx) {
                 statsForCalc = { ...casterStats, finalDamagePct: (casterStats.finalDamagePct || 0) + effect.slot1BonusPct }
             }
 
+            // Scaling HP : boost temporaire d'une stat choisie, calculé en % relatif au lanceur.
+            // Chaque scale = { stat: 'finalDamagePct'|'flatDamage'|'atk'|..., ratio: 1.0 }
+            //   shieldScale    : (bouclier / maxHp) × 100 × ratio  → ex: 300/1000 × ratio = 30 × ratio
+            //   currentHpScale : (PV actuels / maxHp) × 100 × ratio
+            //   missingHpScale : ((maxHp − PV actuels) / maxHp) × 100 × ratio
+            //   erodedHpScale  : ((_baseMaxHp − maxHp) / _baseMaxHp) × 100 × ratio
+            {
+                const _maxHp  = caster.maxHp || 1
+                const _base   = caster._baseMaxHp || _maxHp
+                const _shield = caster.shield?.value || 0
+                const _curHp  = caster.currentHp || 0
+                const _scaleDefs = [
+                    [effect.shieldScale,    (_shield / _maxHp) * 100],
+                    [effect.currentHpScale, (_curHp  / _maxHp) * 100],
+                    [effect.missingHpScale, ((_maxHp - _curHp) / _maxHp) * 100],
+                    [effect.erodedHpScale,  ((_base  - _maxHp) / _base)  * 100],
+                ]
+                for (const [cfg, pct] of _scaleDefs) {
+                    if (!cfg) continue
+                    const _stat  = cfg.stat  || 'finalDamagePct'
+                    const _bonus = Math.floor(pct * (cfg.ratio || 1))
+                    if (_bonus !== 0)
+                        statsForCalc = { ...statsForCalc, [_stat]: (statsForCalc[_stat] || 0) + _bonus }
+                }
+            }
+
             const hpCtx = {
                 casterMaxHp:     caster.maxHp         || 0,
                 casterCurrentHp: caster.currentHp     || 0,
@@ -1361,6 +1445,17 @@ function executeEffect(ctx) {
                 }
             }
 
+            // Proie : boost dégâts pour tous les attaquants + lifesteal à l'attaquant
+            // duration = nombre de sorts restants à recevoir (décrémenté à chaque hit)
+            let _proieLifestealPct = 0
+            if (targetEnemy.proie && dmg > 0) {
+                const _pr = targetEnemy.proie
+                _proieLifestealPct = _pr.lifestealPct || 0
+                dmg = Math.floor(dmg * (1 + (_pr.damageBonusPct || 0) / 100))
+                _pr.duration--
+                if (_pr.duration <= 0) delete targetEnemy.proie
+            }
+
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
 
             // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate,
@@ -1393,6 +1488,15 @@ function executeEffect(ctx) {
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
+            if (dmg > 0) _checkWatchStates(targetEnemy, 'damage', { element: effect.element, value: dmg })
+            // Proie lifesteal — calculé sur les dégâts réels post-shield
+            if (_proieLifestealPct > 0 && dmg > 0 && state.team.includes(caster)) {
+                const _proieLsHeal = Math.floor(dmg * _proieLifestealPct / 100 * _getAntiHealFactor(caster))
+                if (_proieLsHeal > 0) {
+                    caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + _proieLsHeal)
+                    addLog(`Proie → vol de vie ${_proieLsHeal} PV`)
+                }
+            }
             // pendingLifesteal : vol de vie sur le prochain sort de dégâts
             if (dmg > 0 && caster.buffs) {
                 const pendingLS = caster.buffs.find(b => b.stat === 'pendingLifesteal')
@@ -1496,6 +1600,7 @@ function executeEffect(ctx) {
             targetEnemy.dots = targetEnemy.dots || []
             targetEnemy.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
             addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour (${effect.duration} tours)`)
+            _checkWatchStates(targetEnemy, 'dot', { element: resolveElement(effect) })
             break
         }
 
@@ -1519,6 +1624,7 @@ function executeEffect(ctx) {
             const tName = healTarget.name || classes[healTarget.classId]?.name || '?'
             addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV`)
             _fireEnutrofTraps('heal', null, targetEnemy)
+            if (healAmt > 0) _checkWatchStates(healTarget, 'heal', { value: healAmt })
             break
         }
 
@@ -1600,7 +1706,24 @@ function executeEffect(ctx) {
         }
 
         case 'buff': {
-            const buffVal = _resolveEffectValue(effect.value)
+            let buffVal = (_resolveEffectValue(effect.value) || 0)
+            // Scaling HP : (stat implicite = effect.stat) — { ratio: 1.0 }
+            {
+                const _bMaxHp = caster.maxHp || 1
+                const _bBase  = caster._baseMaxHp || _bMaxHp
+                const _bShld  = caster.shield?.value || 0
+                const _bCurHp = caster.currentHp || 0
+                const _bDefs  = [
+                    [effect.shieldScale,    (_bShld / _bMaxHp) * 100],
+                    [effect.currentHpScale, (_bCurHp  / _bMaxHp) * 100],
+                    [effect.missingHpScale, ((_bMaxHp - _bCurHp) / _bMaxHp) * 100],
+                    [effect.erodedHpScale,  ((_bBase  - _bMaxHp) / _bBase)  * 100],
+                ]
+                for (const [cfg, pct] of _bDefs) {
+                    if (!cfg) continue
+                    buffVal += Math.floor(pct * (cfg.ratio || 1))
+                }
+            }
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
@@ -1616,6 +1739,7 @@ function executeEffect(ctx) {
                 }
                 addLog(`${moveData.name} → +${buffVal} ${effect.stat} équipe (${effect.duration} tours)`)
                 _fireEnutrofTraps('buff', effect.stat, targetEnemy)
+                for (const m of state.team) { if (m && m.currentHp > 0) _checkWatchStates(m, 'buff', { stat: effect.stat }) }
                 break
             }
             if (effect.target === 'enemy' || effect.target === 'all_enemies' || effect.target === 'all_enemy') {
@@ -1650,6 +1774,7 @@ function executeEffect(ctx) {
                     addLog(`${moveData.name} → +${buffVal} ${effect.stat} (${effect.duration} tours)`)
             }
             _fireEnutrofTraps('buff', effect.stat, targetEnemy)
+            _checkWatchStates(buffTarget, 'buff', { stat: effect.stat })
             // OeilPourOeil : si le caster est un ennemi, les membres actifs qui ont l'effet en miroir gagnent un buff équivalent
             if (state.team.indexOf(caster) === -1) {
                 for (const m of state.team) {
@@ -1686,6 +1811,7 @@ function executeEffect(ctx) {
                         if (!m || m.currentHp <= 0) continue
                         m.buffs = m.buffs || []
                         m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration })
+                        _checkWatchStates(m, 'debuff', { stat: effect.stat })
                     }
                 } else if (combat?.isRaid && combat.enemies) {
                     for (const e of combat.enemies) {
@@ -1708,6 +1834,7 @@ function executeEffect(ctx) {
                     m.buffs = m.buffs || []
                     const _debuffTeamNewFlag = (!effect.delay && m === caster) ? { _new: true } : {}
                     m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, ..._debuffTeamNewFlag })
+                    _checkWatchStates(m, 'debuff', { stat: effect.stat })
                 }
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} équipe (${effect.duration} tours)`)
                 break
@@ -1718,6 +1845,7 @@ function executeEffect(ctx) {
             debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, ..._debuffNewFlag })
             if (!_ALLY_TARGETS.has(effect.target)) _fireEnutrofTraps('debuff', effect.stat, debuffEntity)
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
+            _checkWatchStates(debuffEntity, 'debuff', { stat: effect.stat })
             break
         }
 
@@ -2141,6 +2269,137 @@ function executeEffect(ctx) {
             }
             return executeEffect({ ...ctx, effect: { ...effect, type: 'damage', element: bestEl } })
         }
+
+        case 'mark_proie': {
+            // Pose l'état Proie sur l'ennemi : les N prochains hits reçus gagnent +damageBonusPct%
+            // et lifesteal lifestealPct% pour l'attaquant. Refresh la durée si déjà actif.
+            const _proieTargets = (effect.target === 'all_enemies' && combat?.isRaid && combat.enemies)
+                ? combat.enemies.filter(e => e && e.currentHp > 0)
+                : [targetEnemy]
+            for (const _pt of _proieTargets) {
+                if (!_pt || _pt.currentHp <= 0) continue
+                _pt.proie = {
+                    duration:       effect.duration      || 3,
+                    damageBonusPct: effect.damageBonusPct || 10,
+                    lifestealPct:   effect.lifestealPct  || 5
+                }
+            }
+            addLog(`${moveData.name} → Proie ! (+${effect.damageBonusPct || 10}% dmg, vol de vie ${effect.lifestealPct || 5}% × ${effect.duration || 3} hits)`)
+            break
+        }
+
+        case 'buff_adjacent': {
+            // Applique un buff aux membres dans les slots N-1 et N+1 du lanceur.
+            // Non-cumulable par sort : un membre qui a déjà un buff avec _source === moveId est ignoré.
+            const _adjCasterIdx = state.team.indexOf(caster)
+            if (_adjCasterIdx === -1) break
+            const _adjVal = _resolveEffectValue(effect.value)
+            let _adjCount = 0
+            for (const _offset of [-1, 1]) {
+                const _adjTarget = state.team[_adjCasterIdx + _offset]
+                if (!_adjTarget || _adjTarget.currentHp <= 0) continue
+                _adjTarget.buffs = _adjTarget.buffs || []
+                if (moveId && _adjTarget.buffs.some(b => b._source === moveId)) continue
+                _adjTarget.buffs.push({ stat: effect.stat, value: _adjVal, duration: effect.duration, _source: moveId })
+                _adjCount++
+            }
+            if (_adjCount > 0)
+                addLog(`${moveData.name} → +${_adjVal} ${effect.stat} slots adjacents (${effect.duration} tours)`)
+            else
+                addLog(`${moveData.name} → aucun allié adjacent à booster`)
+            break
+        }
+
+        case 'buff_slot': {
+            // Applique un buff au membre présent dans le slot absolu effect.slot (1-indexé).
+            // Si le slot est vide ou mort, l'effet est perdu.
+            const _slotIdx = (effect.slot || 1) - 1
+            const _slotTarget = state.team[_slotIdx]
+            if (!_slotTarget || _slotTarget.currentHp <= 0) {
+                addLog(`${moveData.name} → slot ${effect.slot} vide (effet perdu)`)
+                break
+            }
+            const _slotVal = _resolveEffectValue(effect.value)
+            _slotTarget.buffs = _slotTarget.buffs || []
+            _slotTarget.buffs.push({ stat: effect.stat, value: _slotVal, duration: effect.duration })
+            addLog(`${moveData.name} → +${_slotVal} ${effect.stat} slot ${effect.slot} (${effect.duration} tours)`)
+            break
+        }
+
+        case 'spd_invert': {
+            // Inverse la vitesse d'une entité autour de 100 : spd_eff → 200 - spd_eff.
+            // Double application sur la même entité = annulation (retour à la normale).
+            const _invertTargets = []
+            if (effect.target === 'enemy') {
+                if (targetEnemy && targetEnemy.currentHp > 0) _invertTargets.push(targetEnemy)
+            } else if (effect.target === 'all_enemies') {
+                if (combat?.isRaid && combat.enemies) {
+                    for (const _ie of combat.enemies) { if (_ie && _ie.currentHp > 0) _invertTargets.push(_ie) }
+                } else if (targetEnemy && targetEnemy.currentHp > 0) {
+                    _invertTargets.push(targetEnemy)
+                }
+            } else if (effect.target === 'all_allies') {
+                for (const _im of state.team) { if (_im && _im.currentHp > 0) _invertTargets.push(_im) }
+            } else {
+                _invertTargets.push(caster)
+            }
+            for (const _it of _invertTargets) {
+                _it.buffs = _it.buffs || []
+                const _existingIdx = _it.buffs.findIndex(b => b.stat === 'spdInvert')
+                if (_existingIdx !== -1) {
+                    _it.buffs.splice(_existingIdx, 1)
+                    addLog(`${moveData.name} → vitesse rétablie (double inversion)`)
+                } else {
+                    _it.buffs.push({ stat: 'spdInvert', duration: effect.duration || 3, _new: true })
+                    addLog(`${moveData.name} → vitesse inversée (${effect.duration || 3} tours)`)
+                }
+            }
+            break
+        }
+
+        case 'trap': {
+            // Piège cumulatif : les effect.threshold premiers lancers posent des pièges silencieux.
+            // Au (threshold+1)ème lancer : déclenche les dégâts de TOUS les pièges accumulés.
+            // Les stacks sont réinitialisés à chaque mort d'ennemi (voir onVictory).
+            if (!combat) break
+            combat.trapStacks = combat.trapStacks || {}
+            const _trapKey  = moveId || effect.id || 'trap'
+            const _newCount = (combat.trapStacks[_trapKey] || 0) + 1
+            if (_newCount > (effect.threshold || 3)) {
+                addLog(`${moveData.name} → EXPLOSION ! ${_newCount} pièges déclenchés !`)
+                for (let _ti = 0; _ti < _newCount; _ti++) {
+                    executeEffect({ ...ctx, effect: { ...effect, type: 'damage' }, moveId: _trapKey + '_blast' })
+                }
+                combat.trapStacks[_trapKey] = 0
+            } else {
+                combat.trapStacks[_trapKey] = _newCount
+                addLog(`${moveData.name} → piège posé (${_newCount}/${effect.threshold || 3})`)
+            }
+            break
+        }
+
+        case 'reactive': {
+            // État réactif : pose un listener sur une ou plusieurs cibles.
+            // Non-cumulable par moveId : si déjà actif sur la cible, le nouveau lancer est silencieux.
+            // trigger : { type, stat?, element? } — reaction : effect complet à exécuter au déclenchement
+            const _rTargets = _resolveReactiveTargets(effect, caster, targetEnemy)
+            for (const t of _rTargets) {
+                t.reactiveStates = t.reactiveStates || []
+                if (t.reactiveStates.some(r => r.moveId === moveId)) continue
+                t.reactiveStates.push({
+                    moveId,
+                    caster,
+                    trigger: effect.trigger,
+                    reaction: effect.reaction,
+                    duration: effect.duration !== undefined ? effect.duration : Infinity,
+                    _new: true,
+                })
+                const tName = t.name || classes[t.classId]?.name || '?'
+                addLog(`${moveData.name} → état réactif posé sur ${tName}`)
+            }
+            break
+        }
+
     }
 }
 
@@ -2423,6 +2682,7 @@ function onVictory() {
     // Double-appel possible si un sort a plusieurs effets de dégâts — on ignore les suivants
     if (combat.respawnPending) return
     combat.respawnPending = true
+    combat.trapStacks = {}
 
     // Capture l'ennemi — on le garde en place pour que le UI reste stable pendant
     // les 500ms de respawn ; gameTick ignore les actions quand respawnPending est vrai
@@ -2647,6 +2907,11 @@ function tickBuffs(entity) {
         }
         if (entity.shield.duration <= 0) entity.shield = null
     }
+    if (entity.reactiveStates?.length) {
+        entity.reactiveStates = entity.reactiveStates
+            .map(r => r._new ? { ...r, _new: false } : { ...r, duration: r.duration - 1 })
+            .filter(r => r.duration > 0)
+    }
 }
 
 function addLog(msg) {
@@ -2788,6 +3053,7 @@ function _spawnEnemyById(monsterId, statMult = 1) {
         enemy.atk       = Math.floor(enemy.atk   * skullMult)
     }
 
+    enemy._baseMaxHp = enemy.maxHp
     return enemy
 }
 
@@ -2872,6 +3138,8 @@ function raidGameTick() {
             if ((b.delay ?? 0) > 0) continue
             if (b.stat === 'spd') effectiveSpd += b.value
         }
+        if ((enemy.buffs || []).some(b => b.stat === 'spdInvert' && !(b.delay ?? 0)))
+            effectiveSpd = 200 - effectiveSpd
         effectiveSpd = Math.max(25, effectiveSpd)
         const _rECd = _peekEnemyCastCooldown(enemy)
         const rate = (100 / (_rECd / TICK_MS)) * (effectiveSpd / 100) * (_afkSeconds > 0 ? 1 : _combatSpeedMult)

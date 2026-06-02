@@ -540,7 +540,7 @@ monsters.Rathrosk = {
     rarity: 'legendaire',
     tier: 'boss',
     bst: {
-        hp: 2400, atk: 280, spd: 105,
+        hp: 4000, atk: 280, spd: 105,
         res: {neutre: 25, terre: 25, feu: 25, eau: 25, air: 25}
     },
     moves: ['souffle_de_rathrosk','queue_du_dragon','regain_de_vie'],
@@ -3417,7 +3417,7 @@ monsters.tentaculeQuartenaire = {
 monsters.kralamoureGeant = {
     id: 'kralamoureGeant',
     name: 'Kralamoure Geant',
-    image: 'img/monstres/Raids/kralamourGeant.png',
+    image: 'img/monstres/Raids/KralamourGeant.png',
     rarity: 'rare',
     tier: 'boss',
     bst: {

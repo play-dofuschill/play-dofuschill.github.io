@@ -163,6 +163,93 @@ function showMonsterTooltip(monsterId) {
         : ''
 
     const imgStyle = seen ? '' : 'filter:brightness(0);'
+
+    let statsHtml = ''
+    let movesHtml = ''
+
+    if (seen) {
+        const mobArea  = Object.values(areas).find(a => a.spawns?.some(s => s.id === monsterId))
+        const maxScale = (mobArea && mob.fixedLevel == null)
+            ? 1 + (mobArea.mobMaxLevel - mobArea.mobMinLevel) * 0.05
+            : 1
+        const hasScale = maxScale > 1
+
+        const baseAtk = mob.bst.atk
+        const maxAtk  = Math.floor(baseAtk * maxScale)
+
+        function bstRow(iconSrc, label, baseVal, maxVal = null) {
+            const valHtml = (maxVal !== null && hasScale)
+                ? `${baseVal} <span class="mob-stat-scaled">(→ ${maxVal})</span>`
+                : `${baseVal}`
+            return `<div class="ms-stat-row">
+                <img src="${iconSrc}" class="ms-stat-icon" onerror="this.src='img/icons/icon.png'">
+                <span class="ms-stat-label">${label}</span>
+                <span class="ms-stat-val">${valHtml}</span>
+            </div>`
+        }
+
+        const elems   = ['neutre', 'terre', 'feu', 'eau', 'air']
+        const resRows = elems.map(el => {
+            const val   = mob.bst.res?.[el] ?? 0
+            const color = val > 0 ? '#2D7A2D' : val < 0 ? '#d45a43' : ''
+            return `<div class="ms-stat-row">
+                <img src="${ELEM_ICONS[el] || ELEM_ICONS.neutre}" class="ms-stat-icon">
+                <span class="ms-stat-label">${el.charAt(0).toUpperCase() + el.slice(1)}</span>
+                <span class="ms-stat-val"${color ? ` style="color:${color}"` : ''}>${val}%</span>
+            </div>`
+        }).join('')
+
+        statsHtml = `
+        <div class="ms-section-title" style="margin-top:0.3rem;">Stats de base</div>
+        <div class="ms-stats">
+            ${bstRow(STAT_ICONS.hp,  'PV',         mob.bst.hp,  Math.floor(mob.bst.hp  * maxScale))}
+            ${bstRow(STAT_ICONS.atk, 'Puissance',  baseAtk,     maxAtk)}
+            ${bstRow(STAT_ICONS.spd, 'Initiative', mob.bst.spd)}
+        </div>
+        <div class="ms-section-title">Résistances</div>
+        <div class="ms-stats">${resRows}</div>`
+
+        if (mob.moves?.length > 0) {
+            const TYPE_LABELS = { damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', heal: 'Soin', heal_team: 'Soin (éq.)', buff: 'Buff', buff_team: 'Buff (éq.)', debuff: 'Débuff', shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation' }
+
+            const moveRows = mob.moves.map(moveId => {
+                const mv = move[moveId]
+                if (!mv) return ''
+                const eff0    = mv.effects?.[0]
+                const elem    = eff0?.element || 'neutre'
+                const mvType  = eff0?.type    || ''
+                const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
+                const typeLabel = TYPE_LABELS[mvType] || mvType || '—'
+                const cdSec   = mv.cooldownMs ? (mv.cooldownMs / 1000).toFixed(1) + 's' : ''
+
+                let detail = ''
+                if (eff0?.damage) {
+                    const lo = Math.round(eff0.damage.min * (1 + baseAtk / 100))
+                    const hi = Math.round(eff0.damage.max * (1 + baseAtk / 100))
+                    if (hasScale) {
+                        const loM = Math.round(eff0.damage.min * (1 + maxAtk / 100))
+                        const hiM = Math.round(eff0.damage.max * (1 + maxAtk / 100))
+                        detail = `${lo}–${hi} <span class="mob-stat-scaled">(→ ${loM}–${hiM})</span>`
+                    } else {
+                        detail = `${lo}–${hi}`
+                    }
+                }
+
+                return `<div class="es-move-row elem-bar-${barElem}" data-move-id="${moveId}">
+                    ${elemIcon(moveIconKey(mv), 'es-move-elem-icon')}
+                    <span class="es-move-name">${mv.name}</span>
+                    <span class="es-move-type">${typeLabel}</span>
+                    <span class="es-move-detail">${detail}</span>
+                    ${cdSec ? `<span class="es-move-cd">${cdSec}</span>` : ''}
+                </div>`
+            }).filter(Boolean).join('')
+
+            movesHtml = `
+            <div class="ms-section-title">Sorts</div>
+            <div class="es-moves mob-moves">${moveRows || '<span style="opacity:0.4;font-size:0.8rem">Aucun sort</span>'}</div>`
+        }
+    }
+
     const body = `<div class="member-sheet es-sheet">
         <div class="es-header">
             <img class="es-sprite" src="${mob.image}" style="${imgStyle}" onerror="this.src='img/icons/icon.png'">
@@ -176,6 +263,8 @@ function showMonsterTooltip(monsterId) {
                 </div>
             </div>
         </div>
+        ${statsHtml}
+        ${movesHtml}
     </div>`
 
     openTooltip(seen ? mob.name : '???', body)
