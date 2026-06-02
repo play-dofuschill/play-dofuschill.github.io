@@ -222,6 +222,8 @@ function renderTeamSlots(container) {
 
         const isActive = combat?.activeMemberIndex === teamIdx
         const summonOwner = m.isSummon ? (combat?.savedMembers?.[teamIdx] || null) : null
+        const summonScale = summonOwner ? ((summons[m.id] || monsters[m.id])?.scale || 1) : 1
+        const summonHeight = `${summonScale * 50}%`
         const div = document.createElement('div')
         div.className = `explore-team-member team-menu-card${isActive ? ' combat-active' : ''}`
         div.dataset.teamIdx = teamIdx
@@ -233,7 +235,7 @@ function renderTeamSlots(container) {
             <div class="explore-team-member-flair"></div>
             <div class="member-sprite-wrap">
                 <img class="member-sprite${summonOwner ? ' member-sprite-has-summon' : ''}" src="${summonOwner ? getMemberImage(summonOwner) : getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">
-                ${summonOwner ? `<img class="member-summon-sprite" src="${getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">` : ''}
+                ${summonOwner ? `<img class="member-summon-sprite" src="${getMemberImage(m)}" style="height:${summonHeight}" onerror="this.src='img/icons/icon.png'">` : ''}
             </div>
             <div class="member-info">
                 <div class="member-title-row">

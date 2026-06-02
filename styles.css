@@ -4150,6 +4150,7 @@ transform: translateY(-1rem);
 /* Membre actif — sprite ×2 + animation flottante */
 #explore-team .explore-team-member.combat-active .member-sprite-wrap { width: 8rem; height: 8rem; }
 #explore-team .explore-team-member.combat-active .member-sprite { height: 4rem; animation: mstr-active 0.5s infinite; }
+#explore-team .explore-team-member.combat-active .member-summon-sprite { animation: mstr-active 0.65s infinite 0.2s; }
 
 /* Membres non actifs — vue réduite (HP + XP + sprite seulement) */
 #explore-team .explore-team-member:not(.combat-active) {
