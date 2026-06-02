@@ -10,6 +10,24 @@ const OFFLINE_CAP_MS          = 8 * 60 * 60 * 1000  // plafond 8 h
 const OFFLINE_MIN_MS          = 10 * 1000            // ignore si < 10 secondes
 const OFFLINE_FRAME_BUDGET_MS = 8                    // budget CPU max par frame (ms)
 
+// ─── Gestion onglet en arrière-plan ──────────────────────────────────────────
+
+let _tabHiddenAt = null
+
+function onTabHidden() {
+    if (state.isRunning) _tabHiddenAt = Date.now()
+}
+
+// Injecte le temps passé en arrière-plan comme fast-forward (même logique que simulateOfflineProgress).
+function onTabVisible() {
+    if (_tabHiddenAt === null) return
+    const elapsed = Math.min(OFFLINE_CAP_MS, Date.now() - _tabHiddenAt)
+    _tabHiddenAt = null
+    if (elapsed < OFFLINE_MIN_MS) return
+    if (!state.isRunning || !combat || combat.isRaid || combat.isPoutch) return
+    _afkSeconds += elapsed / 1000
+}
+
 // Point d'entrée appelé depuis initGame() au chargement de la page.
 function simulateOfflineProgress() {
     if (!state.isRunning || !state.currentArea) {

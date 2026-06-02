@@ -141,7 +141,7 @@ const state = {
         dropCount: 0,
         startTime: Date.now()
     },
-    stasis: null
+    Boss_Ultime: null
 }
 
 // ─── Thème ────────────────────────────────────────────────────────────────────
@@ -163,7 +163,7 @@ const MENU_MAP = {
     poutch:       'poutch-menu',
     forge:        'forge-menu',
     raid:         'raid-menu',
-    stasis:       'stasis-menu',
+    Boss_Ultime:       'Boss_Ultime-menu',
     guide:        'guide-menu',
     credits:      'credits-menu'
 }
@@ -188,7 +188,7 @@ const MENU_ITEM_MAP = {
     'menu-item-poutch':   'poutch',
     'menu-item-forge':    'forge',
     'menu-item-raid':     'raid',
-    'menu-item-stasis':   'stasis',
+    'menu-item-Boss_Ultime':   'Boss_Ultime',
     'menu-item-guide':    'guide',
     'menu-item-credits':  'credits'
 }
@@ -270,7 +270,7 @@ function switchMenu(menuName) {
     if (menuName === 'poutch') updatePoutchUI()
     if (menuName === 'forge')  updateForgeUI()
     if (menuName === 'raid')    updateRaidUI()
-    if (menuName === 'stasis')  updateStasisUI()
+    if (menuName === 'Boss_Ultime')  updateBoss_UltimeUI()
     if (menuName === 'guide')   renderGuide()
     if (menuName === 'credits') renderCredits()
 }
@@ -278,8 +278,13 @@ function switchMenu(menuName) {
 // ─── Tooltip / modal ──────────────────────────────────────────────────────────
 
 const tooltipStack = []
+let _suppressNextClick = false   // module-level so closeTooltip() can reset it
+let _tooltipLastCloseTime = 0    // guards against iOS ghost-click re-opening the tooltip
 
 function openTooltip(title, body) {
+    // Ignore opens within 350 ms of a close — absorbs iOS ghost clicks that fire
+    // after ontouchend+preventDefault() and would reopen the just-closed tooltip.
+    if (tooltipStack.length === 0 && Date.now() - _tooltipLastCloseTime < 350) return
     const bg  = document.getElementById('tooltipBackground')
     const ttl = document.getElementById('tooltipTitle')
     const bot = document.getElementById('tooltipBottom')
@@ -309,6 +314,8 @@ function closeTooltip() {
         if (ttl) ttl.innerHTML = prev.title || ''
         if (bot) bot.innerHTML = prev.body  || ''
     } else {
+        _tooltipLastCloseTime = Date.now()
+        _suppressNextClick = false  // clear any stuck long-press flag so the next tap (e.g. Leave Combat) isn't silently eaten
         const bg = document.getElementById('tooltipBackground')
         if (bg) {
             bg.style.display = 'none'
@@ -801,7 +808,6 @@ function initGame() {
 
     // Long-press mobile → déclenche contextmenu synthétique sur tous les éléments
     let longPressTimer = null
-    let _suppressNextClick = false
     // Listener persistant : avale uniquement le click synthétique généré juste après un long-press
     document.addEventListener('click', e => {
         if (_suppressNextClick) { _suppressNextClick = false; e.stopPropagation(); e.preventDefault() }
@@ -878,4 +884,11 @@ setInterval(saveGame, 5000)
 
 // Sauvegarde immédiate à la fermeture (beforeunload desktop, visibilitychange mobile)
 window.addEventListener('beforeunload', saveGame)
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveGame() })
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+        saveGame()
+        if (typeof onTabHidden === 'function') onTabHidden()
+    } else {
+        if (typeof onTabVisible === 'function') onTabVisible()
+    }
+})
