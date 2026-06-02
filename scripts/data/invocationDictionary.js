@@ -77,14 +77,14 @@ summons.lapino2 = {
     id:    'lapino2',
     name:  'Lapino',
     image: 'img/classes/invocations/lapino.png',
-    bst:   { hp: 220, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst:   { hp: 300, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['soin_lapino_tier_2']
 }
 summons.lapino3 = {
     id:    'lapino3',
     name:  'Lapino',
     image: 'img/classes/invocations/lapino.png',
-    bst:   { hp: 300, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst:   { hp: 450, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['soin_lapino_tier_3']
 }
 summons.lapino_mutant = {
@@ -205,7 +205,6 @@ summons.pelle_animee = {
     id:      'pelle_animee',
     name:    'Pelle Animée',
     image:   'img/classes/invocations/pelle_animee.png',
-    fixedHp: true,
     bst:     { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['frappe_de_pelle']
 }
@@ -213,7 +212,6 @@ summons.pelle_animee2 = {
     id:      'pelle_animee2',
     name:    'Pelle Animée',
     image:   'img/classes/invocations/pelle_animee.png',
-    fixedHp: true,
     bst:     { hp: 300, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['frappe_de_pelle']
 }
@@ -221,7 +219,6 @@ summons.pelle_animee3 = {
     id:      'pelle_animee3',
     name:    'Pelle Animée',
     image:   'img/classes/invocations/pelle_animee.png',
-    fixedHp: true,
     bst:     { hp: 600, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['frappe_de_pelle']
 }
@@ -229,7 +226,6 @@ summons.sac_anime = {
     id:      'sac_anime',
     name:    'Sac Animé',
     image:   'img/classes/invocations/sac_anime.png',
-    fixedHp: true,
     bst:     { hp: 300, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['interception']
 }
@@ -237,7 +233,6 @@ summons.sac_anime2 = {
     id:      'sac_anime2',
     name:    'Sac Animé',
     image:   'img/classes/invocations/sac_anime.png',
-    fixedHp: true,
     bst:     { hp: 1000, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['interception']
 }
@@ -245,7 +240,6 @@ summons.sac_anime3 = {
     id:      'sac_anime3',
     name:    'Sac Animé',
     image:   'img/classes/invocations/sac_anime.png',
-    fixedHp: true,
     bst:     { hp: 2500, atk: 0, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['interception']
 }
@@ -270,7 +264,7 @@ summons.gardien_Elementaire = {
     id:      'gardien_Elementaire',
     name:    'Gardien Élémentaire',
     image:   'img/classes/invocations/gardien_Elementaire.png',
-    fixedHp: true,
+    scale: 2,
     bst:     { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves:   ['frappe_de_pelle']
 }

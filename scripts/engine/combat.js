@@ -2585,12 +2585,10 @@ function spawnSummon(caster, effect) {
         // ── Invocation alliée : remplace le membre dans son slot ─────────────
         let maxHp, atk
         if (effect.scale != null) {
-            // % des stats effectives du lanceur au moment de l'invocation
             const _cs = getEffectiveStats(caster) || {}
             maxHp = Math.floor((_cs.hp  || caster.maxHp || 1) * effect.scale)
             atk   = Math.floor((_cs.atk || 0) * effect.scale)
         } else {
-            // valeurs fixes (fixedHp: true ou bst direct)
             maxHp = mob.bst?.hp  || 0
             atk   = mob.bst?.atk || 0
         }
