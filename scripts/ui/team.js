@@ -399,9 +399,11 @@ function renderEquipPickGrid() {
 
     const isFamLocked = e => isFamiliar && getFamiliarLevel(familiarById[e.id]) === 0
 
+    // Familiers verrouillés : masqués entièrement (pas de bonus visible avant déblocage)
+    if (isFamiliar) filtered = filtered.filter(e => !isFamLocked(e))
+
     const isDisabled = e =>
         takenByOther.has(e.id) ||
-        isFamLocked(e) ||
         (!isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel)
 
     const available = filtered.filter(e => !isDisabled(e))

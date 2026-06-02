@@ -49,6 +49,8 @@ function _updateSortButtons() {
     const nameBtn  = document.getElementById('sort-name')
     if (levelBtn) levelBtn.textContent = `Niv. ${equipFilters.sort === 'level' ? arrow : '↕'}`
     if (nameBtn)  nameBtn.textContent  = `Nom ${equipFilters.sort === 'name'  ? arrow : '↕'}`
+    const panoBtn = document.getElementById('sort-pano')
+    if (panoBtn)  panoBtn.textContent  = `Panoplie`
     document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.id === `sort-${equipFilters.sort}`))
 }
 
@@ -128,6 +130,16 @@ function updateInventoryUI() {
         const mul = sortDir === 'asc' ? 1 : -1
         entries.sort((a, b) => {
             if (sort === 'level') return ((a.entry.level || 0) - (b.entry.level || 0)) * mul
+            if (sort === 'pano') {
+                const aSet = a.itm.set || ''
+                const bSet = b.itm.set || ''
+                if (aSet !== bSet) {
+                    if (!aSet) return 1
+                    if (!bSet) return -1
+                    return aSet.localeCompare(bSet, 'fr')
+                }
+                return (a.entry.level || 0) - (b.entry.level || 0)
+            }
             return a.itm.name.localeCompare(b.itm.name, 'fr') * mul
         })
     }

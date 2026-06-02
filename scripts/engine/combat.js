@@ -417,6 +417,13 @@ function startCombat(areaId) {
 
 function stopCombat() {
     state.isRunning = false
+    // Restaurer les membres remplacés par des invocations alliées actives
+    if (combat?.savedMembers) {
+        for (const [slotIdx, original] of Object.entries(combat.savedMembers)) {
+            state.team[Number(slotIdx)] = original
+        }
+        combat.savedMembers = {}
+    }
     // Restauration des équipements retirés pour modulation skull
     if (state.skullUnequipped) {
         for (const m of state.team) {

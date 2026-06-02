@@ -17,8 +17,6 @@
 
     <div id="main-content">
 
-    <button id="music-toggle-btn" onclick="toggleMusic()" title="Musique on/off"></button>
-
     <div id="item-menu" style="display: none;" class="season-background">
 
         <div id="item-menu-header">
@@ -67,6 +65,7 @@
                     </select>
                     <button class="sort-btn active" id="sort-level" onclick="toggleEquipSort('level')">Niv. ↓</button>
                     <button class="sort-btn" id="sort-name" onclick="toggleEquipSort('name')">Nom ↕</button>
+                    <button class="sort-btn" id="sort-pano" onclick="toggleEquipSort('pano')">Panoplie</button>
                     <button class="clear-filters" onclick="resetEquipFilters()">Effacer</button>
                     <input id="equip-search" type="text" placeholder="Rechercher…" oninput="onEquipSearch(this.value)">
                 </div>
@@ -384,15 +383,15 @@
         <div id="raid-zone-list"></div>
     </div>
 
-    <div id="stasis-menu" style="display: none;" class="season-background">
-        <div id="stasis-menu-header">
+    <!-- <div id="Boss_Ultime-menu" style="display: none;" class="season-background">
+        <div id="Boss_Ultime-menu-header">
             <span>Boss Ultime</span>
         </div>
-        <div id="stasis-content"></div>
-    </div>
+        <div id="Boss_Ultime-content"></div>
+    </div> -->
 
-    <!-- Écran de combat Stasis (overlay plein écran, affiché pendant un combat actif) -->
-    <div id="stasis-screen" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:150;overflow-y:auto;background:var(--dark1,#1a1a1a);flex-direction:column;"></div>
+    <!-- Écran de combat Boss Ultime (overlay plein écran, affiché pendant un combat actif) -->
+    <div id="Boss_Ultime-screen" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:150;overflow-y:auto;background:var(--dark1,#1a1a1a);flex-direction:column;"></div>
 
     <div id="explore-menu" style="display: none;" class="season-background">
 
@@ -596,8 +595,8 @@
         <!-- ── Ressources de session ── -->
         <div id="explore-resources"></div>
 
-        <!-- ── Interface de tour Stasis (turn-based) ── -->
-        <div id="stasis-turn-panel" style="display:none"></div>
+        <!-- ── Interface de tour Boss_Ultime (turn-based) ── -->
+        <div id="Boss_Ultime-turn-panel" style="display:none"></div>
 
         <!-- ── Bouton quitter ── -->
         <div id="explore-leave" onclick="leaveCombat()">
@@ -621,8 +620,8 @@
     <!-- ── Résumé de session (contenu généré par showSessionSummary) ── -->
     <div id="area-end" style="display:none"></div>
 
-    <!-- ── Overlay transition de tour Stasis ── -->
-    <div id="stasis-turn-overlay" style="display:none"></div>
+    <!-- ── Overlay transition de tour Boss_Ultime ── -->
+    <div id="Boss_Ultime-turn-overlay" style="display:none"></div>
 
     <div id="tooltipBackground"
          ontouchend="if(event.target===this){event.preventDefault();closeTooltip()}"
@@ -656,7 +655,7 @@
             <span>Raid</span>
         </div>
 
-        <div class="menu-item" id="menu-item-stasis" onClick="switchMenu('stasis')">
+        <div class="menu-item" id="menu-item-Boss_Ultime" onClick="switchMenu('Boss_Ultime')">
             <img src="img/icons/menu_team.png" onerror="this.src='img/icons/icon.png'">
             <span>Boss Ultime</span>
         </div>
@@ -725,6 +724,7 @@
         <div id="archives-menu-header">
             <img src="img/icons/archives.png" onerror="this.src='img/icons/icon.png'">
             <span>Archives</span>
+            <button id="music-toggle-btn" onclick="toggleMusic()" title="Musique on/off"></button>
         </div>
 
         <div class="archives-cards">
