@@ -1,4 +1,4 @@
-// save.js — Sauvegarde / chargement DofusChill (localStorage)
+﻿// save.js — Sauvegarde / chargement DofusChill (localStorage)
 
 const SAVE_KEY = 'dofuschill_v01'
 
@@ -59,7 +59,7 @@ function saveGame() {
         skullLevel:                state.skullLevel || 0,
         skullUnequipped:           state.skullUnequipped || null,
         ownedSkins:                state.ownedSkins || [],
-        stasis:                    state.stasis    || null,
+        Boss_Ultime:                    state.Boss_Ultime    || null,
         version:                   '0.2'
     }
     try {
@@ -97,6 +97,11 @@ function loadGame() {
         if (data.lastFrameRecorded != null)         state.lastFrameRecorded         = data.lastFrameRecorded
         if (data.offlineAutoPilotRemaining != null) state.offlineAutoPilotRemaining = data.offlineAutoPilotRemaining
         if (data.autoPilotAccumulated)              state.autoPilotAccumulated      = data.autoPilotAccumulated
+        // Migration : offlineAutoPilotRemaining peut être stale (tickets restants mais autopilote non actif).
+        // Si autoPilotAccumulated est null, l'autopilote n'était pas en cours → on remet à 0.
+        if (state.offlineAutoPilotRemaining > 0 && !state.autoPilotAccumulated) {
+            state.offlineAutoPilotRemaining = 0
+        }
         if (data.savedCombatEnemy)                  state.savedCombatEnemy          = data.savedCombatEnemy
         if (data.savedCombatState)                  state.savedCombatState          = data.savedCombatState
         if (data.dungeonAutoRestart != null)        state.dungeonAutoRestart        = data.dungeonAutoRestart
@@ -109,7 +114,7 @@ function loadGame() {
         if (data.skullLevel != null)                state.skullLevel                = data.skullLevel
         if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
-        if (data.stasis)                            state.stasis                    = data.stasis
+        if (data.Boss_Ultime)                            state.Boss_Ultime                    = data.Boss_Ultime
 
         // Migration : forgedStat (ancien) → forgedStats (tableau)
         for (const entry of Object.values(state.inventory)) {
