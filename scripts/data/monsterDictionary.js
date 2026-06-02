@@ -13,24 +13,6 @@ monsters. = {
     },
     moves: ['', ''],
 }
-stats: [
-        { bonusStat: 'atk', min: 1, max: 50 }, valeur brute
-        { bonusStat: 'spd', min: 1, max: 50 }, valeur brute
-        { bonusStat: 'flatDamage', min: 1, max: 50 }, valeur brute
-        { bonusStat: 'finalDamagePct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'spellDamagePct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'damageReductionPct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'critChance', min: 1, max: 50 }, valeur brute
-        { bonusStat: 'critDamagePct', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'maxHp', min: 1, max: 50 }, valeur brutes
-        { bonusStat: 'res.feu', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'res.eau', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'res.terre', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'res.air', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'res.neutre', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'dropRate', min: 1, max: 50 }, valeur en %
-        { bonusStat: 'xpGain', min: 1, max: 50 }, valeur en %
-    ],
 */
 
 // ═══════════════════════════════════════════════════════

@@ -478,7 +478,7 @@ item.cape_du_prespic = {
     name: 'Cape du Prespic',
     image: 'img/items/panoplies/cape_du_prespic.png',
     type: 'equipment', slot: 'cape', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 10 }, { stat: 'flaDamage', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 10 }, { stat: 'flatDamage', value: 4 }],
     description: "Cette petite cape rousse peut également faire office de descente de lit, ou de paillasson, de quoi remettre au goût du jour l'intérieur de votre habitation, de manière économique."
 }
 item.coiffe_du_prespic = {
@@ -486,7 +486,7 @@ item.coiffe_du_prespic = {
     name: 'Coiffe du Prespic',
     image: 'img/items/panoplies/coiffe_du_prespic.png',
     type: 'equipment', slot: 'coiffe', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'flaDamage', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'flatDamage', value: 4 }],
     description: "Avec cette coiffe de Prespic sur la tête, vous ressemblez presque à Dévie Cloquette, célèbre chasseuse des temps modernes, prête à tout pour cacher sa calvitie naissante. Pas de chance pour vous si vous vouliez faire de même, vous devrez vous contenter d'une coiffe de couleur rousse, qui de toute évidence, dégagera une horrible odeur dès qu'il se mettra à pleuvoir."
 }
 item.anneau_du_prespic = {
@@ -502,7 +502,7 @@ item.ceinture_du_prespic = {
     name: 'Ceinture du Prespic',
     image: 'img/items/panoplies/ceinture_du_prespic.png',
     type: 'equipment', slot: 'ceinture', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'flaDamage', value: 4 }],
+    stats: [{ stat: 'flatDamage', value: 4 }],
     description: "Idéale pour garder ses hanches au chaud, cette ceinture a tout de même l'inconvénient d'irriter et de démanger les peaux douces. À réserver aux durs à cuir."
 }
 item.bouclier_du_prespic = {
@@ -510,7 +510,7 @@ item.bouclier_du_prespic = {
     name: 'Bouclier hérissé du Prespic',
     image: 'img/items/panoplies/bouclier_du_prespic.png',
     type: 'equipment', slot: 'bouclier', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 10 }, { stat: 'flaDamage', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 10 }, { stat: 'flatDamage', value: 4 }],
     description: "Ce bouclier en véritables poils de prespic se hérisse en présence d'ennemis. C'est bien pratique pour dissuader les plus hardis : qui s'approche trop près s'y pique !"
 }
 // #endregion

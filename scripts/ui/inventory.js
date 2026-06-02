@@ -176,7 +176,7 @@ function showItemTooltip(itemId) {
         flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %',
         spellDamagePct: 'Dégâts sorts %', damageReductionPct: 'Réd. dégâts %',
         critChance: 'Chance crit %', critDamagePct: 'Dégâts crit %',
-        healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
+        heal: 'Soins', healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
         'res.feu': 'Rés. Feu', 'res.eau': 'Rés. Eau',
         'res.terre': 'Rés. Terre', 'res.air': 'Rés. Air', 'res.neutre': 'Rés. Neutre',
     }

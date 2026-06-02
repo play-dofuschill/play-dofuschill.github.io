@@ -191,7 +191,7 @@ function spawnEnemy(areaId) {
     if (!area) return null
 
     // Sélection pondérée — dropRateElite booste le poids des mobs elite/rare/légendaire
-    const _eliteBonus = (getAllFamiliarBonuses().dropRateElite || 0) / 100
+    const _eliteBonus = (getAllTeamFarmingBonuses().dropRateElite || 0) / 100
     const _spawns = _eliteBonus > 0
         ? area.spawns.map(sp => {
             const m = monsters[sp.id]
@@ -1260,7 +1260,7 @@ function executeEffect(ctx) {
             if (combat && state.team.includes(ctx.caster) && !state.doubleCritAchieved) {
                 if (result.isCrit) {
                     combat.critStreak = (combat.critStreak || 0) + 1
-                    if (combat.critStreak >= 2) {
+                    if (combat.critStreak >= 3) {
                         state.doubleCritAchieved = true
                         checkClassUnlocks()
                     }
@@ -1501,9 +1501,8 @@ function executeEffect(ctx) {
 
         case 'heal': {
             const healRoll = _resolveEffectValue(effect.heal) || 0
-            const baseHeal = healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
             const healBase = Math.max(1, Math.floor(
-                (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
+                (healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
             ))
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
@@ -1565,7 +1564,9 @@ function executeEffect(ctx) {
         }
 
         case 'heal_team': {
-            const healBase = Math.floor((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.healTeamPct || 0) / 100))
+            const healBase = Math.max(1, Math.floor(
+                ((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healTeamPct || 0) / 100)
+            ))
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
                 const healAmt = Math.floor(healBase * _getAntiHealFactor(m))
@@ -1578,9 +1579,8 @@ function executeEffect(ctx) {
 
         case 'hot': {
             const hotRoll  = _resolveEffectValue(effect.heal) || 0
-            const baseHeal = hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100)
             const hotVal   = Math.max(1, Math.floor(
-                (baseHeal + (casterStats?.healFlat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
+                (hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
             ))
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {

@@ -21,6 +21,7 @@ function saveGame() {
             if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
             state.classEquip[m.classId].level = m.level
             state.classEquip[m.classId].exp   = m.exp ?? 0
+            state.classEquip[m.classId].equip = { ...m.equip }
         }
     }
 

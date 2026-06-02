@@ -81,7 +81,7 @@ function learnMoveAtLevel(classId, lvl) {
 function giveXP(member, xpAmount) {
     if (member.level >= LEVEL_CAP) return { leveledUp: false, newLevel: member.level, newMoves: [] }
 
-    const famBonuses = getAllFamiliarBonuses()
+    const famBonuses = getAllTeamFarmingBonuses()
     const xpBonus    = 1 + (famBonuses.xpGain || 0) / 100
     const actualXp   = Math.floor(xpAmount * xpBonus)
 

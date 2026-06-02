@@ -176,7 +176,7 @@ const CLASS_OBTAIN = {
         osamodas:   "Maître du monde animal, il ne fait confiance qu'aux aventuriers dont la collection de créatures rivalise avec la sienne.", // avoir obtenu au moins 200 familiers différents (drops >= 1)
         sadida:     "Esprit de la forêt qui communique avec les plantes, il est trop occupé à essayer d'apaiser les arbres corrompus. Attendez que quelqu'un parvienne à trouver comment soigner ce mal avant de vous accorder sa bénédiction.", // vaincre le boss cheneMou (TODO: pas encore implémenté)
         roublard:   "Artificier kamikaze au sens du danger... inexistant, vous ne le recruterez pas, car il n'accepte dans ses rangs que les téméraires ayant survécu aux pires affrontements... (Enfin, c'est son amour-propre qui parle ; il saura vous prêter main-forte contre quelques kamas).", // non implémenté
-        ecaflip:    "Joueur invétéré dont la fortune ne tient qu'à un fil, de nature très chanceuse, il ne s'allit qua ceux ayant prouvé la leur au combat.", // réussir 2 coups critiques consécutifs (nécessite des items qui donnent du % crit)
+        ecaflip:    "Joueur invétéré dont la fortune ne tient qu'à un fil, de nature très chanceuse, il ne s'allit qua ceux ayant prouvé la leur au combat.", // réussir 3 coups critiques consécutifs (nécessite des items qui donnent du % crit)
         steamer:    "Ingénieur de guerre implacable, cet homme de fer ne vous prêtera main-forte que si vous capturez un certain pirate des hauts-fonds en possession d'un important arsenal technomagique.", // vaincre hyperscampe (TODO: pas encore implémenté)
         ouginak:    "Chasseur bestial dont l'instinct prédateur ne s'éveille qu'au contact de vrais guerriers — ceux capables de traquer et d'abattre les proies les plus redoutables.", // vaincre le boss meulou (TODO: pas encore implémenté)
         forgelance: "Lancier dont la puissance n'a d'égal que sa précision, il ne jure que par sa lance et ne ploie le genou que devant les aventuriers ayant mis à genoux les plus grands boss du monde.", // vaincre au moins 4 boss niv 170+ (TODO: boss pas encore implémentés)
@@ -282,6 +282,7 @@ function addToTeam(classId, slotIndex) {
     member.exp    = saved?.exp    || 0
     member.gender = saved?.gender || 'male'
     member.name   = saved?.name   || null
+    if (saved?.equip) Object.assign(member.equip, saved.equip)
 
     const stats = getEffectiveStats(member)
     if (stats) member.maxHp = stats.hp
@@ -306,7 +307,8 @@ function removeFromTeam(slotIndex) {
             level:  member.level,
             exp:    member.exp,
             gender: member.gender || 'male',
-            name:   member.name   || null
+            name:   member.name   || null,
+            equip:  { ...member.equip }
         }
     }
     state.team[slotIndex] = null

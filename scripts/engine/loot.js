@@ -55,7 +55,7 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const lootTable = lootTableOverride || area?.lootTable
     if (!lootTable) return []
 
-    const famBonuses  = getAllFamiliarBonuses()
+    const famBonuses  = getAllTeamFarmingBonuses()
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
     const skullBonus   = [0, 0.10, 0.15, 0.20][state.skullLevel] || 0
     const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
@@ -156,7 +156,7 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
     const soulStoneEntry = activeLootTable?.find(e => e.itemId === 'pierreDame' || e.itemId === 'pierreDameGardien')
     const isGardienZone  = soulStoneEntry?.itemId === 'pierreDameGardien'
 
-    const famBonuses = getAllFamiliarBonuses()
+    const famBonuses = getAllTeamFarmingBonuses()
     const dropBonus  = (famBonuses.dropRate || 0) / 100
 
     if (enemy.isArchi) {

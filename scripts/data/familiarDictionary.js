@@ -13,14 +13,33 @@
 //   monsters: ['monsterId1', 'monsterId2', ...],
 //   bonuses: [
 //     { bonusType: 'farming' | 'combat' | 'defense', bonusStat: 'dropRate', min: 1, max: 10 }
-//   ]
+//   ],
 // }
 //
 // bonusType 'farming' → dropRate ou xpGain (%, appliqué dans loot.js)
 // bonusType 'combat'  → atk, spd, flatDamage, critChance… (valeur brute, stats.js)
 // bonusType 'defense' → maxHp, res.*, damageReductionPct (stats.js)
+//   stats: [
+//     { bonusStat: 'atk', min: 1, max: 50 }, valeur brute
+//     { bonusStat: 'spd', min: 1, max: 50 }, valeur brute
+//     { bonusStat: 'flatDamage', min: 1, max: 50 }, valeur brute
+//     { bonusStat: 'finalDamagePct', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'spellDamagePct', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'damageReductionPct', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'critChance', min: 1, max: 50 }, valeur brute
+//     { bonusStat: 'critDamagePct', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'maxHp', min: 1, max: 50 }, valeur brutes
+//     { bonusStat: 'res.feu', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'res.eau', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'res.terre', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'res.air', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'res.neutre', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'dropRate', min: 1, max: 50 }, valeur en %
+//     { bonusStat: 'xpGain', min: 1, max: 50 }, valeur en %
+// ]
 
-// ─── Courbes de progression ───────────────────────────────────────────────────
+
+// #region ─── Courbes de progression ───────────────────────────────────────────────────
 
 const familiarCurves = {
     commun:     'log',
@@ -92,24 +111,317 @@ function getAllFamiliarBonuses() {
     }
     return totals
 }
+// #endregion
 
-// ─── Définitions des familiers de zone ───────────────────────────────────────
+
+// #region ─── Définitions des familiers de zone ───────────────────────────────────────
 
 const familiars = [
-
+    // ─── ZONE ─────────────────────────────────────────────────────────────
+    // {
+    //     id:       'familierNom',
+    //     name:     'Nom affiché',
+    //     image:    'img/familiars/nom.png',
+    //     rarity:   'commun' | 'peu_commun' | 'rare' | 'legendaire',
+    //     monsters: [mobs de l'area ],
+    //     bonuses: [
+    //         { bonusType: 'farming' | 'combat' | 'defense', bonusStat: 'dropRate', min: 1, max: 10 }
+    //     ],
+    //     stats: [
+    //         { bonusStat: 'atk', min: 1, max: 50 }
+    //     ]
+    // },
+    // ─── INCARNAM ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierchacha',
+        name:     'Chacha',
+        image:    'img/familiers/chacha.png',
+        rarity:   'commun',
+        monsters: ['chaferDebutant', 'chaferEclaireur', 'chaferFurtif', 'chaferPiquier', 'sergentChafer'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 }
+        ]
+    },
+    // ─── PIOU ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierpiouteviolette',
+        name:     'Pioute violette',
+        image:    'img/familiers/piouteviolette.png',
+        rarity:   'commun',
+        monsters: ['piouViolet'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 }
+        ]
+    },
+    {
+        id:       'familierpiouterose',
+        name:     'Pioute rose',
+        image:    'img/familiers/piouterose.png',
+        rarity:   'commun',
+        monsters: ['piouRose'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'heal', min: 1, max: 30 }
+        ]
+    },
+    {
+        id:       'familierpiouteverte',
+        name:     'Pioute verte',
+        image:    'img/familiers/piouteverte.png',
+        rarity:   'commun',
+        monsters: ['piouVert'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 5 }
+        ]
+    },
+    {
+        id:       'familierpioutejaune',
+        name:     'Pioute jaune',
+        image:    'img/familiers/pioutejaune.png',
+        rarity:   'commun',
+        monsters: ['piouJaune'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 5 }
+        ]
+    },
+    {
+        id:       'familierpioutebleue',
+        name:     'Pioute bleue',
+        image:    'img/familiers/pioutebleue.png',
+        rarity:   'commun',
+        monsters: ['piouBleu'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 5 }
+        ]
+    },
+    {
+        id:       'familierpiouterouge',
+        name:     'Pioute rouge',
+        image:    'img/familiers/piouterouge.png',
+        rarity:   'commun',
+        monsters: ['piouRouge'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 5 }
+        ]
+    },
+    // ─── CHAMPS ASTRUB ─────────────────────────────────────────────────────────────
+    {
+        id:       'familiermosk',
+        name:     'Mosk',
+        image:    'img/familiers/mosk.png',
+        rarity:   'commun',
+        monsters: ['tournesolSauvage', 'roseDemoniaque', 'pissenliDiabolique', 'epouvanteur', 'gardienneChampetre'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
+        ]
+    },
+    {
+        id:       'familiertournesolAffame',
+        name:     'Tournesol Affamé Apprivoisé',
+        image:    'img/monstres/sprites/tournesolAffame.png',
+        rarity:   'rare',
+        monsters: ['tournesolAffame'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 2, max: 15 }
+        ]
+    },
+    // ─── PLAGE ASTRUB ─────────────────────────────────────────────────────────────
+    {
+        id:       'familiersurime',
+        name:     'Surime',
+        image:    'img/familiers/surime.png',
+        rarity:   'commun',
+        monsters: ['pichonOrange', 'pichonBleu', 'pichonBlanc', 'pichonVert', 'pichonKloune'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 50 }
+        ]
+    },
+    {
+        id:       'familiermobLeponge',
+        name:     "Mob L'éponge Apprivoisé",
+        image:    'img/monstres/sprites/mobLeponge.png',
+        rarity:   'rare',
+        monsters: ['mobLeponge'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 2, max: 75 }
+        ]
+    },
+    // ─── FORET ASTRUB ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierpykur',
+        name:     'Pykur',
+        image:    'img/familiers/pykur.png',
+        rarity:   'commun',
+        monsters: ['milimulou', 'prespic', 'sanglier', 'ecurouille', 'hommeOurs'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 15 }
+        ]
+    },
     // ─── Tainela ─────────────────────────────────────────────────────────────
     {
-        id:       'familierBouftou',
-        name:     'Esprit Bouftou',
-        image:    'img/monstres/sprites/bouftou.png',
+        id:       'familierbouloute',
+        name:     'Bouloute',
+        image:    'img/familiers/bouloute.png',
         rarity:   'commun',
         monsters: ['bouftou', 'bouftonBlanc', 'bouftonNoir', 'bouftouNoir', 'bouftouChefDeGuerre'],
         bonuses: [
             { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
         ]
     },
-
+    {
+        id:       'familierboulouteduparrain',
+        name:     'Bouloute du Parrain',
+        image:    'img/familiers/boulouteduparrain.png',
+        rarity:   'peu_commun',
+        monsters: ['bouftou', 'bouftonBlanc', 'bouftonNoir', 'bouftouNoir', 'bouftouChefDeGuerre'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+        ]
+    },
+    {
+        id:       'familierbouftouRoyal',
+        name:     'Bouftou Royal Apprivoisé',
+        image:    'img/monstres/sprites/bouftouRoyal.png',
+        rarity:   'rare',
+        monsters: ['bouftouRoyal'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 2, max: 15 }
+        ]
+    },
+    // ─── ROBOTS ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierrobotPoussePousse',
+        name:     'Robot ménager',
+        image:    'img/monstres/Events/robotPoussePousse.png',
+        rarity:   'commun',
+        monsters: ['robionicle', 'robotFleau', 'robotPoussePousse', 'malleOutillee'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'critChance', min: 1, max: 5 }
+        ]
+    },
+    // ─── BLOP ─────────────────────────────────────────────────────────────
+    {
+        id:       'familiergelutin',
+        name:     'Gelutin',
+        image:    'img/familiers/gelutin.png',
+        rarity:   'commun',
+        monsters: ['biblop_coco', 'biblop_reinette', 'biblop_griotte', 'biblop_indigo'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'critDamagePct', min: 1, max: 10 }
+        ]
+    },
+    // ─── DOPEULS ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierDarkvlad',
+        name:     'Esprit du dopeul Darkvlad',
+        image:    'img/monstres/Events/dopeul_darkvlad.png',
+        rarity:   'rare',
+        monsters: ['dopeul_cra', 'dopeul_ecaflip', 'dopeul_eliotrope', 'dopeul_eniripsa', 'dopeul_enutrof',
+                   'dopeul_feca', 'dopeul_forgelance', 'dopeul_huppermage', 'dopeul_iop', 'dopeul_osamodas',
+                   'dopeul_ouginak', 'dopeul_pandawa', 'dopeul_roublard', 'dopeul_sacrieur', 'dopeul_sadida',
+                   'dopeul_sram', 'dopeul_steamer', 'dopeul_xelor', 'dopeul_zobal'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRateElite', min: 5, max: 50 }
+        ]
+    },
+    // ─── SCARAFEUILLE ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierscarador',
+        name:     'Scarador',
+        image:    'img/familiers/scarador.png',
+        rarity:   'commun',
+        monsters: ['scarafeuilleBleu', 'scarafeuilleVert', 'scarafeuilleBlanc', 'scarafeuilleRouge', 'scarafeuilleNoir'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.feu', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 5 }
+        ]
+    },
+    {
+        id:       'familierscrarabossDoree',
+        name:     'Scraraboss Dorée Apprivoisé',
+        image:    'img/monstres/sprites/scrarabossDoree.png',
+        rarity:   'rare',
+        monsters: ['scrarabossDoree'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'res.terre', min: 2, max: 7 },
+            { bonusType: 'defense', bonusStat: 'res.feu', min: 2, max: 7 },
+            { bonusType: 'defense', bonusStat: 'res.eau', min: 2, max: 7 },
+            { bonusType: 'defense', bonusStat: 'res.air', min: 2, max: 7 },
+            { bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 4 }
+        ]
+    },
+    // ─── KWAK ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierphenix',
+        name:     'Phénix',
+        image:    'img/familiers/phenix.png',
+        rarity:   'commun',
+        monsters: ['kwakVent', 'kwakFlamme', 'kwakGlace', 'kwakTerre', 'kwakereVent', 'kwakereFlamme', 'kwakereGlace', 'kwakereTerre'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 10 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 50 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 10 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 30 }
+        ]
+    },
+    {
+        id:       'familierkwakwa',
+        name:     'Kwakwa Apprivoisé',
+        image:    'img/monstres/sprites/kwakwa.png',
+        rarity:   'rare',
+        monsters: ['kwakwa'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 3, max: 20 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 75 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 3, max: 20 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 5, max: 60 }
+        ]
+    },
+    // ─── RAID DOFUS ARGENTE ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierRathrosk',
+        name:     'Rathrosk Apprivoisé',
+        image:    'img/monstres/Raids/Rathrosk.png',
+        rarity:   'rare',
+        monsters: ['Rathrosk'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 5, max: 50 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }
+        ]
+    },
+    // // ─── KRALAMOUR ─────────────────────────────────────────────────────────────
+    // {
+    //     id:       'familierNom',
+    //     name:     'Nom affiché',
+    //     image:    'img/familiers/nom.png',
+    //     rarity:   'rare',
+    //     monsters: [mobs de l'area raidKralamoureGeant],
+    //     bonuses: [
+    //         { bonusType: 'farming' | 'combat' | 'defense', bonusStat: 'dropRate', min: 1, max: 10 }
+    //     ]
+    // },
+    // // ─── TOURBIERE ─────────────────────────────────────────────────────────────
+    // {
+    //     id:       'familierNom',
+    //     name:     'Nom affiché',
+    //     image:    'img/familiers/nom.png',
+    //     rarity:   'rare',
+    //     monsters: [mobs de l'area raidTourbeduRoissingue],
+    //     bonuses: [
+    //         { bonusType: 'farming', bonusStat: 'dropRate', min: 5, max: 25 }
+    //     ]
+    // },
 ]
+
+// #endregion
+
 
 // Index id → familier pour accès O(1)
 const familiarById = Object.fromEntries(familiars.map(f => [f.id, f]))

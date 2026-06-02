@@ -377,11 +377,11 @@ const panoplies = {
         bonuses: {
             2: {stats: [{ stat: 'atk', value: 60 },
                         { stat: 'dropRate', value: 5 },
-                        { stat: 'healFlat', value: 10 }]
+                        { stat: 'heal', value: 10 }]
         },
             4: {stats: [{ stat: 'atk', value: 80 },
                         { stat: 'dropRate', value: 10 },
-                        { stat: 'healFlat', value: 30 }]
+                        { stat: 'heal', value: 30 }]
         }}
     },
     roissingue: {
@@ -401,7 +401,7 @@ const panoplies = {
         name: "Panoplie Ventouse",
         pieces: ['annolamour','kralano','kralamansion'],
         bonuses: {
-            2: {stats: [{ stat: 'healFlat', value: 50 },
+            2: {stats: [{ stat: 'heal', value: 50 },
                         { stat: 'atk', value: 50 },
                         { stat: 'res.terre', value: 5 },
                         { stat: 'res.feu', value: 5 },
@@ -409,7 +409,7 @@ const panoplies = {
                         { stat: 'res.air', value: 5 },
                         { stat: 'dropRate', value: 5 }]
         },
-            3: {stats: [{ stat: 'healFlat', value: 70 },
+            3: {stats: [{ stat: 'heal', value: 70 },
                         { stat: 'atk', value: 60 },
                         { stat: 'res.terre', value: 10 },
                         { stat: 'res.feu', value: 10 },

@@ -12,7 +12,7 @@
 //   s.inventory                           — { [itemId]: { count, level } }
 //   s.team                                — membres actifs
 //   s.unlockedClasses                     — classes déjà débloquées
-//   s.doubleCritAchieved                  — vrai si 2 crits consécutifs ont été infligés
+//   s.doubleCritAchieved                  — vrai si 3 crits consécutifs ont été infligés
 
 const CLASS_UNLOCK_CONDITIONS = {
     enutrof: (s) => s.kamas >= 100,

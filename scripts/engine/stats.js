@@ -31,7 +31,7 @@ function getEffectiveStats(member, syncedLevel = null) {
     let healPct            = 0
     let healTeamPct        = 0
     let healMaxHpPct       = 0
-    let healFlat           = 0
+    let healStat           = 0
     let lifestealPct       = 0
 
     // scaling résistances
@@ -65,7 +65,7 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (stat === 'healPct')            healPct            += value
                 else if (stat === 'healTeamPct')        healTeamPct        += value
                 else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
-                else if (stat === 'healFlat')           healFlat           += value
+                else if (stat === 'heal')               healStat           += value
                 else if (stat === 'lifestealPct')       lifestealPct       += value
                 else if (stat.startsWith('res.'))        { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
@@ -105,7 +105,7 @@ function getEffectiveStats(member, syncedLevel = null) {
             if (buff.stat === 'healPct')        healPct        += buff.value
             if (buff.stat === 'healTeamPct')    healTeamPct    += buff.value
             if (buff.stat === 'healMaxHpPct')   healMaxHpPct   += buff.value
-            if (buff.stat === 'healFlat')       healFlat       += buff.value
+            if (buff.stat === 'heal')           healStat       += buff.value
             if (buff.stat === 'lifestealPct')   lifestealPct   += buff.value
 
             if (buff.stat === 'res_all') {
@@ -141,7 +141,7 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (stat === 'healPct')            healPct            += value
                 else if (stat === 'healTeamPct')        healTeamPct        += value
                 else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
-                else if (stat === 'healFlat')           healFlat           += value
+                else if (stat === 'heal')               healStat           += value
                 else if (stat === 'lifestealPct')       lifestealPct       += value
                 else if (stat.startsWith('res.'))       { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
@@ -166,7 +166,7 @@ function getEffectiveStats(member, syncedLevel = null) {
             else if (bs === 'healPct')            healPct            += value
             else if (bs === 'healTeamPct')        healTeamPct        += value
             else if (bs === 'healMaxHpPct')       healMaxHpPct       += value
-            else if (bs === 'healFlat')           healFlat           += value
+            else if (bs === 'heal')               healStat           += value
             else if (bs === 'lifestealPct')       lifestealPct       += value
             else if (bs.startsWith('res.')) {
                 const elem = bs.split('.')[1]
@@ -271,7 +271,7 @@ function getEffectiveStats(member, syncedLevel = null) {
         healPct,
         healTeamPct,
         healMaxHpPct,
-        healFlat,
+        healStat,
         lifestealPct
     }
 }
@@ -390,4 +390,30 @@ function countSetPieces(equip) {
         counts[itm.set] = (counts[itm.set] || 0) + 1
     }
     return counts
+}
+
+// ─── Bonus farming de toute l'équipe (familiers + panoplies) ─────────────────
+// Agrège dropRate, xpGain, dropRateElite depuis les familiers équipés ET les
+// bonus de panoplie actifs de chaque membre.
+
+function getAllTeamFarmingBonuses() {
+    const totals = getAllFamiliarBonuses()
+    if (typeof panoplies === 'undefined' || !state.team) return totals
+    const FARMING_STATS = new Set(['dropRate', 'xpGain', 'dropRateElite'])
+    for (const member of state.team) {
+        if (!member?.equip) continue
+        const setCounts = countSetPieces(member.equip)
+        for (const [setId, count] of Object.entries(setCounts)) {
+            const pano = panoplies[setId]
+            if (!pano?.bonuses) continue
+            const thresholds = Object.keys(pano.bonuses).map(Number).sort((a, b) => a - b)
+            let activeT = null
+            for (const t of thresholds) { if (count >= t) activeT = t }
+            if (activeT === null) continue
+            for (const { stat, value } of (pano.bonuses[activeT].stats || [])) {
+                if (FARMING_STATS.has(stat)) totals[stat] = (totals[stat] || 0) + value
+            }
+        }
+    }
+    return totals
 }
