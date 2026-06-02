@@ -1021,7 +1021,8 @@ function _resolveAllyTarget(effect, caster) {
     }
     if (effect.target === 'ally_min_hp') {
         let best = caster, bestRatio = Infinity
-        for (const m of state.team) {
+        const saved = Object.values(combat?.savedMembers || {})
+        for (const m of [...state.team, ...saved]) {
             if (!m || m.currentHp <= 0) continue
             const r = m.currentHp / (m.maxHp || 1)
             if (r < bestRatio) { bestRatio = r; best = m }
@@ -2582,9 +2583,20 @@ function spawnSummon(caster, effect) {
 
     if (slotIdx !== -1) {
         // ── Invocation alliée : remplace le membre dans son slot ─────────────
-        const scale  = mob.fixedHp ? 1 : 1 + ((rawLevel - 1) * 0.08)
-        const maxHp  = Math.floor(mob.bst.hp  * scale)
-        const atk    = Math.floor(mob.bst.atk * scale)
+        let maxHp, atk
+        if (mob.fixedHp) {
+            maxHp = mob.bst?.hp  || 0
+            atk   = mob.bst?.atk || 0
+        } else if (effect.scale != null) {
+            // % des stats effectives du lanceur au moment de l'invocation
+            const _cs = getEffectiveStats(caster) || {}
+            maxHp = Math.floor((_cs.hp  || caster.maxHp || 1) * effect.scale)
+            atk   = Math.floor((_cs.atk || 0) * effect.scale)
+        } else {
+            const _lvlScale = 1 + ((rawLevel - 1) * 0.08)
+            maxHp = Math.floor((mob.bst?.hp  || 0) * _lvlScale)
+            atk   = Math.floor((mob.bst?.atk || 0) * _lvlScale)
+        }
         const mvSlots = { slot1: null, slot2: null, slot3: null, slot4: null }
         ;(mob.moves || []).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
         combat.savedMembers          = combat.savedMembers || {}
@@ -2594,7 +2606,7 @@ function spawnSummon(caster, effect) {
             name:             mob.name,
             image:            mob.image,
             classId:          null,
-            _stats:           { atk, spd: mob.bst.spd, hp: maxHp, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst.res || {}) }, healPct: 0 },
+            _stats:           { atk, spd: mob.bst?.spd ?? 100, hp: maxHp, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 },
             level:            rawLevel,
             currentHp:        maxHp,
             maxHp,
