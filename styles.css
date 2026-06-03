@@ -5936,7 +5936,7 @@ transform: translateY(-1rem);
 .raid-member-card:hover { background: rgba(255,255,255,0.13); }
 .raid-member-card.raid-swap-selected { box-shadow: 0 0 0 2px #ffd84d; }
 .raid-member-card .raid-member-sprite-wrap {
-    display: flex; align-items: center; justify-content: center; height: 2.8rem;
+    display: flex; align-items: center; justify-content: center; height: 2.8rem; position: relative;
 }
 .raid-member-card .member-sprite { height: 2.4rem; width: auto; image-rendering: pixelated; animation: mstr-active 0.5s infinite; }
 .raid-member-card .raid-member-name { font-size: 0.72rem; font-weight: bold; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

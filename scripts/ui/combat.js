@@ -583,10 +583,13 @@ function _buildRaidActiveMemberCard(m, teamIdx, slotIdx, slots) {
     div.dataset.help         = m.classId
     div.onclick              = () => setActiveMember(teamIdx)
     div.style.opacity   = m.currentHp > 0 ? '1' : '0.4'
+    const _raidSummonOwner = m.isSummon ? (combat?.savedMembers?.[teamIdx] || null) : null
+    const _raidSummonScale = _raidSummonOwner ? ((summons[m.id] || monsters[m.id])?.scale || 1) : 1
     div.innerHTML = `
         <div class="raid-member-slot-label slot-${slotIdx}">${RAID_SLOT_LABELS[slotIdx]}</div>
         <div class="raid-member-sprite-wrap">
-            <img class="member-sprite" src="${getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">
+            <img class="member-sprite${_raidSummonOwner ? ' member-sprite-has-summon' : ''}" src="${_raidSummonOwner ? getMemberImage(_raidSummonOwner) : getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">
+            ${_raidSummonOwner ? `<img class="member-summon-sprite" src="${getMemberImage(m)}" style="height:${_raidSummonScale * 50}%" onerror="this.src='img/icons/icon.png'">` : ''}
         </div>
         <div class="raid-member-name">${m.name || cls?.name || '?'}</div>
         <div class="hp-container">
@@ -615,8 +618,13 @@ function _buildRaidBenchMemberCard(m, teamIdx) {
     div.dataset.help    = m.classId
     div.onclick         = () => setActiveMember(teamIdx)
     div.style.opacity   = m.currentHp > 0 ? '0.65' : '0.35'
+    const _benchSummonOwner = m.isSummon ? (combat?.savedMembers?.[teamIdx] || null) : null
+    const _benchSummonScale = _benchSummonOwner ? ((summons[m.id] || monsters[m.id])?.scale || 1) : 1
     div.innerHTML = `
-        <img class="member-sprite" src="${getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">
+        <div style="position:relative;flex-shrink:0;">
+            <img class="member-sprite${_benchSummonOwner ? ' member-sprite-has-summon' : ''}" src="${_benchSummonOwner ? getMemberImage(_benchSummonOwner) : getMemberImage(m)}" onerror="this.src='img/icons/icon.png'">
+            ${_benchSummonOwner ? `<img class="member-summon-sprite" src="${getMemberImage(m)}" style="height:${_benchSummonScale * 50}%" onerror="this.src='img/icons/icon.png'">` : ''}
+        </div>
         <div class="raid-bench-info">
             <span class="raid-bench-name">${m.name || cls?.name || '?'}</span>
             <div class="raid-bench-hp-bar">
