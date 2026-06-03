@@ -4,7 +4,10 @@ const move = {}
 
 /*
 
-restriction: 'star',   // ★  — ou 'arrow' (→) ou 'shield' (🛡) ou 'coeur' (❤)
+restriction: 'star',    // ★
+restriction: 'arrow',   //  →
+restriction: 'shield',  // 🛡
+restriction: 'coeur',   // ❤
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RÉFÉRENCE EFFETS DE SORTS — copier-coller prêt à l'emploi
@@ -434,7 +437,7 @@ C — SORTS COMBINÉS (dégâts + au moins un effet)
   Heal % maxHp                      →  +1000ms
   Heal team                         →  +2000ms
   HOT (heal over time)              →  +1500ms
-  Lifesteal ≤ 10% (inclus)         →  +500ms   (pas de restriction)
+  Lifesteal ≤ 10% (inclus)          →  +500ms   (pas de restriction)
   Lifesteal ≥ 11%                   →  +1000ms  + restriction (coeur/etoile…)
   DOT < 15 dmg/tick                 →  +500ms
   DOT ≥ 15 dmg/tick                 →  +1000ms
@@ -636,6 +639,7 @@ move.tempete_de_puissance = {
     id: 'tempete_de_puissance',
     name: 'Tempête de Puissance',
     classId: 'iop',
+    restriction: 'star',
     cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 17, max: 19}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_cycle'}],
     spellProgression: [{lvl: 53,
@@ -666,6 +670,7 @@ move.vertu = {
     id: 'vertu',
     name: 'Vertu',
     classId: 'iop',
+    restriction: 'shield', 
     cooldownMs: 2500,
     effects: [{type: 'shield', levelPct: 3, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 37,
@@ -1023,6 +1028,7 @@ move.epee_celeste = {
 //     id: 'pugilat',
 //     name: 'Pugilat',
 //     classId: 'iop',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [
 //         {type: 'damage', element: 'terre', damage: {min: 24, max: 28}, scalingMultipliers: [1.0, 1.2, 1.5], target: 'enemy_1'},
@@ -1080,6 +1086,7 @@ move.epee_celeste = {
 //     id: 'zenith',
 //     name: 'Zénith',
 //     classId: 'iop',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 16}, slot1BonusPct: 300, target: 'enemy'}],
 //     description: "Frappe l'ennemi dans l'élément air. Si le sort est en première position, inflige 300% de dommages supplémentaires."
@@ -1133,6 +1140,7 @@ move.epee_celeste = {
 //     id: 'colere_de_iop',
 //     name: '',
 //     classId: 'cra',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -2585,13 +2593,13 @@ move.sac_anime = {
     name: 'Sac Animé',
     classId: 'enutrof',
     cooldownMs: 3500,
-    effects: [{ type: 'summon', summonId: 'sac_anime', scale: 0.40, duration: 8, target: 'self' }],
+    effects: [{ type: 'summon', summonId: 'sac_anime', scale: 0.30, duration: 8, target: 'self' }],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
-                        patch: { summon: { scale: 0.60 } }},
+                        patch: { summon: { scale: 0.40 } }},
                        {lvl: 139,
-                        patch: { summon: { scale: 0.90 } }}],
+                        patch: { summon: { scale: 0.50 } }}],
     description: "Invoque un sac animé qui permet de prendre les prochains dégats infligés à la place de l'équipe."
 }
 move.ruee_vers_l_or = {
@@ -2671,11 +2679,11 @@ move.pelle_animee = {
     name: 'Pelle Animée',
     classId: 'enutrof',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'pelle_animee', scale: 0.25, duration: 3, target: 'self'}],
+    effects: [{type: 'summon', summonId: 'pelle_animee', scale: 0.15, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
-                        patch: { summon: { scale: 0.30 } }},
+                        patch: { summon: { scale: 0.25 } }},
                        {lvl: 169,
                         patch: { summon: { scale: 0.35 } }}],
     description: "Invoque une pelle animée qui pousse les ennemis et encaisse les dommages infligés à l'équipe."
@@ -2714,6 +2722,7 @@ move.maladresse = {
     id: 'maladresse',
     name: 'Maladresse',
     classId: 'enutrof',
+    restriction: 'arrow',   // →
     cooldownMs: 2500,
     effects: [{ type: 'debuff', stat: 'spd', value: 50, duration: 3, target: 'enemy' }],
     spellProgression: [{lvl: 57,
@@ -2834,6 +2843,7 @@ move.pelle_des_anciens = {
 //     id: 'eboulement',
 //     name: 'Éboulement',
 //     classId: 'enutrof',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{ type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
 //               { type: 'enutrof_trap', id: 'eboulement', duration: 3,
@@ -2848,6 +2858,7 @@ move.pelle_des_anciens = {
 //     id: 'monnaie_sonnante',
 //     name: 'Monnaie Sonnante',
 //     classId: 'enutrof',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
 //               { type: 'enutrof_trap', id: 'monnaie_sonnante', duration: 3,
@@ -2862,6 +2873,7 @@ move.pelle_des_anciens = {
 //     id: 'orpaillage',
 //     name: 'Orpaillage',
 //     classId: 'enutrof',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 16 }, target: 'enemy' },
 //               { type: 'enutrof_trap', id: 'orpaillage', duration: 3,
@@ -2876,6 +2888,7 @@ move.pelle_des_anciens = {
 //     id: 'coup_de_grisou',
 //     name: 'Coup de Grisou',
 //     classId: 'enutrof',
+//     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{ type: 'damage', element: 'feu', damage: { min: 14, max: 16 }, target: 'enemy' },
 //               { type: 'enutrof_trap', id: 'coup_de_grisou', duration: 3,

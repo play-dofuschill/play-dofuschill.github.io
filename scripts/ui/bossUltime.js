@@ -178,15 +178,10 @@ function _renderBoss_UltimeTeamSlots(persist) {
                 ? deck.map(spellId => {
                     const mv = move[spellId]
                     if (!mv) return ''
-                    const elem    = mv.effects?.[0]?.element || 'neutre'
-                    const mvType  = mv.effects?.[0]?.type || ''
-                    const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-                    return `<div class="combat-move-bar elem-bar-${barElem}"
-                                oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')">
-                        <div class="combat-move-fill elem-bar-${barElem}" style="width:100%;opacity:0.35"></div>
-                        <span class="combat-move-name">${mv.name}</span>
-                        <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-                    </div>`
+                    return buildMoveBarHTML(mv, {
+                        fillStyle: 'width:100%;opacity:0.35',
+                        attrs: `oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')"`
+                    })
                 }).join('')
                 : emptyMoveBars
 
@@ -322,15 +317,16 @@ function _renderDeckPool(member, persist) {
     if (deckCounter) deckCounter.textContent = `${deck.length}/10`
 
     deckPool.innerHTML = unlocked.map(spellId => {
-        const mv      = move[spellId]
+        const mv = move[spellId]
         if (!mv) return ''
-        const inDeck  = deck.includes(spellId)
-        const elem    = mv.effects?.[0]?.element || 'neutre'
-        const restrict = typeof moveRestrictionSigle === 'function' ? moveRestrictionSigle(mv, elem) : ''
-        return `<div class="Boss_Ultime-deck-spell elem-bar-${elem}${inDeck ? ' Boss_Ultime-spell-selected' : ''}"
+        const inDeck = deck.includes(spellId)
+        const { bgClass, bgStyle } = getMoveElemBg(mv)
+        const bgSty    = bgStyle ? ` style="${bgStyle}"` : ''
+        const restrict = typeof moveRestrictionSigle === 'function' ? moveRestrictionSigle(mv, getMoveBarElems(mv).elems[0]) : ''
+        return `<div class="Boss_Ultime-deck-spell ${bgClass}${inDeck ? ' Boss_Ultime-spell-selected' : ''}"${bgSty}
                     onclick="_Boss_UltimeToggleSpell('${member.classId}', '${spellId}')"
                     oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')">
-            ${typeof elemIcon === 'function' ? elemIcon(elem, 'ae-move-icon') : ''}
+            ${elemIcon(moveIconKey(mv), 'ae-move-icon')}
             <span>${mv.name}</span>
             ${restrict}
         </div>`
@@ -418,22 +414,20 @@ function _buildDeckTooltipBody(slotIdx) {
         html += `<div class="Boss_Ultime-deck-group-label">${icon}${g.label}</div>`
         html += `<div class="Boss_Ultime-deck-tip-grid">`
         for (const spellId of spells) {
-            const mv       = move[spellId]
-            const inDeck   = deck.includes(spellId)
-            const count    = deck.filter(id => id === spellId).length
-            const elem     = mv.effects?.[0]?.element || 'neutre'
-            const mvType   = mv.effects?.[0]?.type    || ''
-            const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-            const maxed    = !inDeck && deck.length >= 10
-            const restrict = typeof moveRestrictionSigle === 'function' ? moveRestrictionSigle(mv, elem) : ''
-            html += `<div class="combat-move-bar elem-bar-${barElem}${inDeck ? ' Boss_Ultime-spell-selected' : ''}${maxed ? ' Boss_Ultime-spell-blocked' : ''}"
-                        onclick="${maxed ? '' : `_Boss_UltimeToggleSpellInTooltip(${slotIdx}, '${spellId}')`}"
-                        oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')"
-                        style="cursor:${maxed ? 'not-allowed' : 'pointer'}">
-                <div class="combat-move-fill elem-bar-${barElem}" style="width:${inDeck ? 100 : 0}%;opacity:0.45"></div>
-                <span class="combat-move-name">${mv.name}${count > 1 ? ` ×${count}` : ''}${restrict}</span>
-                <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-            </div>`
+            const mv      = move[spellId]
+            const inDeck  = deck.includes(spellId)
+            const count   = deck.filter(id => id === spellId).length
+            const maxed   = !inDeck && deck.length >= 10
+            const extraCls = `${inDeck ? ' Boss_Ultime-spell-selected' : ''}${maxed ? ' Boss_Ultime-spell-blocked' : ''}`
+            const onclick  = maxed ? '' : `_Boss_UltimeToggleSpellInTooltip(${slotIdx}, '${spellId}')`
+            const restrict = typeof moveRestrictionSigle === 'function' ? moveRestrictionSigle(mv, getMoveBarElems(mv).elems[0]) : ''
+            html += buildMoveBarHTML(mv, {
+                fillStyle:   `width:${inDeck ? 100 : 0}%;opacity:0.45`,
+                attrs:       `${onclick ? `onclick="${onclick}"` : ''} oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')"`,
+                extraClass:  extraCls,
+                extraStyle:  `cursor:${maxed ? 'not-allowed' : 'pointer'}`,
+                nameContent: `${mv.name}${count > 1 ? ` ×${count}` : ''}${restrict}`
+            })
         }
         html += `</div>`
     }
@@ -532,10 +526,11 @@ function showBoss_UltimeDragonSheet(dragonId) {
         return moveIds.map((moveId, i) => {
             const mv = Boss_UltimeMoves[moveId]
             if (!mv) return ''
-            const firstDmg = mv.effects?.find(e => e.type === 'damage')
-            const barElem  = firstDmg?.element || mv.effects?.[0]?.element || 'neutre'
-            const lines    = (mv.effects || []).map(_effectLine).join('')
-            return `<div class="es-move-row elem-bar-${barElem}" style="flex-direction:column;align-items:flex-start;gap:0.2rem;padding:0.4rem 0.5rem;margin-bottom:0.2rem;">
+            const { bgClass, bgStyle } = getMoveElemBg(mv)
+            const baseStyle = 'flex-direction:column;align-items:flex-start;gap:0.2rem;padding:0.4rem 0.5rem;margin-bottom:0.2rem'
+            const rowStyle  = bgStyle ? `${bgStyle};${baseStyle}` : baseStyle
+            const lines     = (mv.effects || []).map(_effectLine).join('')
+            return `<div class="es-move-row ${bgClass}" style="${rowStyle}">
                 <div style="display:flex;align-items:center;gap:0.4rem;width:100%;">
                     <span style="font-size:0.6rem;opacity:0.4;flex-shrink:0;">${i + 1}/4</span>
                     <span style="font-weight:bold;font-size:0.85rem;color:var(--dark1,#eee);flex:1;">${mv.name}</span>
@@ -739,20 +734,13 @@ function _Boss_UltimeUpdateBossDisplay(s) {
         movesContainer.innerHTML = phase.moves.map((moveId, idx) => {
             const mv = Boss_UltimeMoves[moveId]
             if (!mv) return ''
-            const eff0    = mv.effects?.[0]
-            const elem    = eff0?.element || 'neutre'
-            const mvType  = eff0?.type || ''
-            const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-            const isNext     = idx === nextIdx
-            const isCasting  = isBossCasting && idx === s.bossCastingIdx
-            const fillStyle  = isCasting
-                ? `width:0%;animation:Boss_UltimeBarFill ${castDur}ms linear forwards`
-                : 'width:0%'
-            return `<div class="combat-move-bar elem-bar-${barElem}${isNext ? ' Boss_Ultime-boss-next' : ''}">
-                <div class="combat-move-fill elem-bar-${barElem}" style="${fillStyle}"></div>
-                <span class="combat-move-name">${mv.name}</span>
-                <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(elem, 'combat-move-icon')}</div>
-            </div>`
+            const isNext    = idx === nextIdx
+            const isCasting = isBossCasting && idx === s.bossCastingIdx
+            const fStyle    = isCasting ? `width:0%;animation:Boss_UltimeBarFill ${castDur}ms linear forwards` : 'width:0%'
+            return buildMoveBarHTML(mv, {
+                fillStyle:  fStyle,
+                extraClass: isNext ? 'Boss_Ultime-boss-next' : ''
+            })
         }).join('')
     }
 }
@@ -832,23 +820,22 @@ function _Boss_UltimeRenderTurnPanel(s) {
         const castDur     = s.currentCastDuration || 2000
 
         const progressSlots = (s.currentTurnSpells || []).map((spellId, i) => {
-            const mv       = move[spellId]
+            const mv = move[spellId]
             if (!mv) return ''
-            const elem     = mv.effects?.[0]?.element || 'neutre'
-            const mvType   = mv.effects?.[0]?.type || ''
-            const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
             const isCurrent = i === s.currentCastIdx
             const isDone    = s.currentCastIdx >= 0 && i < s.currentCastIdx
-            const fillStyle = isDone
+            const fStyle    = isDone
                 ? 'width:100%;opacity:0.5'
                 : isCurrent
                     ? `width:0%;opacity:0.6;animation:Boss_UltimeBarFill ${castDur}ms linear forwards`
                     : 'width:0%;opacity:0'
-            return `<div class="combat-move-bar elem-bar-${barElem}${isCurrent ? ' Boss_Ultime-casting-active' : isDone ? ' Boss_Ultime-cast-done' : ''}">
-                <div class="combat-move-fill elem-bar-${barElem}" style="${fillStyle}"></div>
-                <span class="combat-move-name">${isDone ? '✓ ' : isCurrent ? '▶ ' : `<small style="opacity:0.4">${i+1}.</small> `}${mv.name}</span>
-                <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-            </div>`
+            const extraCls  = isCurrent ? 'Boss_Ultime-casting-active' : isDone ? 'Boss_Ultime-cast-done' : ''
+            const prefix    = isDone ? '✓ ' : isCurrent ? '▶ ' : `<small style="opacity:0.4">${i+1}.</small> `
+            return buildMoveBarHTML(mv, {
+                fillStyle:   fStyle,
+                extraClass:  extraCls,
+                nameContent: `${prefix}${mv.name}`
+            })
         }).join('')
 
         panel.innerHTML = `
@@ -886,44 +873,36 @@ function _Boss_UltimeRenderTurnPanel(s) {
             ? Object.values(selectedMember.moves || {}).filter(Boolean)
             : (persist.memberDecks?.[selectedMember.classId] || [])
         const deckSpells = deckIds.map(spellId => {
-            const mv   = move[spellId]
+            const mv = move[spellId]
             if (!mv) return ''
-            const elem     = mv.effects?.[0]?.element || 'neutre'
-            const mvType   = mv.effects?.[0]?.type    || ''
-            const barElem  = mvType === 'buff' || mvType === 'hot' ? 'buff'
-                           : mvType === 'debuff'                    ? 'debuff'
-                           : elem
             const cooldown = s.spellCooldowns?.[spellId] || 0
             const canAdd   = cooldown === 0
                 && _Boss_UltimeSelectedSlots.length < 5
                 && _Boss_UltimeSelectedSlots.filter(id => id === spellId).length < 2
                 && Boss_UltimeCanAddToSlot(spellId, _Boss_UltimeSelectedSlots)
-            const count    = _Boss_UltimeSelectedSlots.filter(id => id === spellId).length
-            const cdLabel  = cooldown > 0 ? ` <span style="font-size:0.7rem;opacity:0.8;color:#f88;">(${cooldown}t)</span>` : ''
-            return `<div class="combat-move-bar elem-bar-${barElem}${canAdd ? '' : ' Boss_Ultime-spell-blocked'}"
-                        onclick="${canAdd ? `_Boss_UltimeAddToSlot('${spellId}')` : ''}"
-                        oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')"
-                        style="cursor:${canAdd ? 'pointer' : 'not-allowed'};">
-                <div class="combat-move-fill elem-bar-${barElem}" style="width:${count > 0 ? 100 : 0}%;opacity:0.45"></div>
-                <span class="combat-move-name">${mv.name}${count > 0 ? ` ×${count}` : ''}${cdLabel}</span>
-                <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-            </div>`
+            const count   = _Boss_UltimeSelectedSlots.filter(id => id === spellId).length
+            const cdLabel = cooldown > 0 ? ` <span style="font-size:0.7rem;opacity:0.8;color:#f88;">(${cooldown}t)</span>` : ''
+            return buildMoveBarHTML(mv, {
+                fillStyle:   `width:${count > 0 ? 100 : 0}%;opacity:0.45`,
+                attrs:       `${canAdd ? `onclick="_Boss_UltimeAddToSlot('${spellId}')"` : ''} oncontextmenu="event.preventDefault();showMoveTooltip('${spellId}')"`,
+                extraClass:  canAdd ? '' : 'Boss_Ultime-spell-blocked',
+                extraStyle:  `cursor:${canAdd ? 'pointer' : 'not-allowed'}`,
+                nameContent: `${mv.name}${count > 0 ? ` ×${count}` : ''}${cdLabel}`
+            })
         }).join('')
 
         const slotBars = Array(5).fill(0).map((_, i) => {
             const spellId = _Boss_UltimeSelectedSlots[i]
             const mv      = spellId ? move[spellId] : null
-            const elem    = mv?.effects?.[0]?.element || 'neutre'
-            const barElem = mv ? (mv.effects?.[0]?.type === 'buff' ? 'buff' : mv.effects?.[0]?.type === 'debuff' ? 'debuff' : elem) : 'neutre'
-            return spellId
-                ? `<div class="combat-move-bar elem-bar-${barElem} Boss_Ultime-slot-filled" onclick="_Boss_UltimeRemoveFromSlot(${i})" title="Cliquez pour retirer">
-                    <div class="combat-move-fill elem-bar-${barElem}" style="width:100%;opacity:0.5"></div>
-                    <span class="combat-move-name"><small style="opacity:0.5">${i + 1}.</small> ${mv?.name || '?'}</span>
-                    <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-                   </div>`
-                : `<div class="combat-move-bar combat-move-empty Boss_Ultime-slot-empty">
+            if (!mv) return `<div class="combat-move-bar combat-move-empty Boss_Ultime-slot-empty">
                     <span class="combat-move-name" style="opacity:0.3">${i + 1}. —</span>
                    </div>`
+            return buildMoveBarHTML(mv, {
+                fillStyle:   'width:100%;opacity:0.5',
+                attrs:       `onclick="_Boss_UltimeRemoveFromSlot(${i})" title="Cliquez pour retirer"`,
+                extraClass:  'Boss_Ultime-slot-filled',
+                nameContent: `<small style="opacity:0.5">${i + 1}.</small> ${mv.name}`
+            })
         }).join('')
 
         spellSection = `

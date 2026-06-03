@@ -816,14 +816,8 @@ monsters.kwakwa = {
 //     tier: 'normal'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 }},
+//     moves: ['', '']
 // }
 // monsters.blopGriotte = {
 //     id: 'blopGriotte',
@@ -833,14 +827,8 @@ monsters.kwakwa = {
 //     tier: 'normal'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 }},
+//     moves: ['', '']
 // }
 // monsters.blopIndigo = {
 //     id: 'blopIndigo',
@@ -850,14 +838,8 @@ monsters.kwakwa = {
 //     tier: 'normal'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 }},
+//     moves: ['', '']
 // }
 // monsters.blopReinette = {
 //     id: 'blopReinette',
@@ -867,14 +849,8 @@ monsters.kwakwa = {
 //     tier: 'normal'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 }},
+//     moves: ['', '']
 // }
 // monsters.blopignon = {
 //     id: 'blopignon',
@@ -884,14 +860,8 @@ monsters.kwakwa = {
 //     tier: 'normal'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+//     moves: ['', '']
 // }
 // monsters.tronkoBlop = {
 //     id: 'tronkoBlop',
@@ -901,14 +871,8 @@ monsters.kwakwa = {
 //     tier: 'normal'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+//     moves: ['', '']
 // }
 // monsters.gloutoBlop = {
 //     id: 'gloutoBlop',
@@ -918,14 +882,8 @@ monsters.kwakwa = {
 //     tier: 'elite'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+//     moves: ['', '']
 // }
 
 
@@ -1291,12 +1249,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.scordionBleu = {
 //     id: 'scordionBleu',
@@ -1308,12 +1261,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.fennex = {
 //     id: 'fennex',
@@ -1325,12 +1273,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.leolhyene = {
 //     id: 'leolhyene',
@@ -1342,12 +1285,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.boulepique = {
 //     id: 'boulepique',
@@ -1359,15 +1297,8 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
-
-
 // ═══════════════════════════════════════════════════════
 // DONJON MANTISCORE
 // ═══════════════════════════════════════════════════════
@@ -1381,12 +1312,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1402,12 +1328,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.dragoeufArgile = {
 //     id: 'dragoeufArgile',
@@ -1419,12 +1340,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.dragoeufCalcaire = {
 //     id: 'dragoeufCalcaire',
@@ -1436,12 +1352,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.dragoeufCharbon = {
 //     id: 'dragoeufCharbon',
@@ -1453,12 +1364,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.dragoeufAlbatre = {
 //     id: 'dragoeufAlbatre',
@@ -1470,15 +1376,8 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
-
-
 // ═══════════════════════════════════════════════════════
 // DONJON DRAEGNERYS
 // ═══════════════════════════════════════════════════════
@@ -1492,12 +1391,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1513,12 +1407,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.abraknydeSombre = {
 //     id: 'abraknydeSombre',
@@ -1530,12 +1419,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.araknotron = {
 //     id: 'araknotron',
@@ -1547,12 +1431,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.abraknydeVenerable = {
 //     id: 'abraknydeVenerable',
@@ -1564,16 +1443,11 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 // ═══════════════════════════════════════════════════════
-// DONJON CHENE MOU
+// DONJON abraknydeAncestral
 // ═══════════════════════════════════════════════════════
 // monsters.abraknydeAncestral = {
 //     id: 'abraknydeAncestral',
@@ -1585,12 +1459,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 

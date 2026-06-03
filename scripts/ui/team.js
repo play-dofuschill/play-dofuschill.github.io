@@ -35,18 +35,9 @@ function updateTeamUI() {
 
             const moveSlots = ['slot1', 'slot2', 'slot3', 'slot4']
             const moveBars  = moveSlots.map(s => {
-                if (!member.moves[s]) {
-                    return `<div class="combat-move-bar combat-move-empty"><span class="combat-move-name">—</span></div>`
-                }
-                const mv      = move[member.moves[s]]
-                const elem    = mv?.effects?.[0]?.element || 'neutre'
-                const mvType  = mv?.effects?.[0]?.type || ''
-                const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-                return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${member.moves[s]}" data-caster-class="${member.classId}">
-                    <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
-                    <span class="combat-move-name">${mv?.name || '—'}${moveRestrictionSigle(mv, elem)}</span>
-                    <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-                </div>`
+                const moveId = member.moves[s]
+                const mv     = moveId ? move[moveId] : null
+                return buildMoveBarHTML(mv, { attrs: mv ? `data-move-id="${moveId}" data-caster-class="${member.classId}"` : '' })
             }).join('')
 
             card.className   = 'explore-team-member team-menu-card'

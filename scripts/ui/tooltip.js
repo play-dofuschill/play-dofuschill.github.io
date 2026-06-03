@@ -332,16 +332,9 @@ function showMemberSheet(member) {
         const mv         = move[moveId]
         const isSelected = _selectedMoveSlot?.classId === member.classId && _selectedMoveSlot?.slot === s
         const selStyle   = isSelected ? 'outline:2px solid #f44336;outline-offset:2px;' : ''
-        if (!mv) return `<div class="combat-move-bar combat-move-empty" onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}"><span class="combat-move-name">—</span></div>`
-        const elem    = mv.effects?.[0]?.element || 'neutre'
-        const mvType  = mv.effects?.[0]?.type || ''
-        const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-        return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${member.classId}"
-                     onclick="selectMoveSlot('${member.classId}','${s}')" style="cursor:pointer;${selStyle}">
-            <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
-            <span class="combat-move-name">${mv.name}${moveRestrictionSigle(mv, elem)}</span>
-            <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-        </div>`
+        const onclick    = `onclick="selectMoveSlot('${member.classId}','${s}')"`
+        const dataAttrs  = mv ? `data-move-id="${moveId}" data-caster-class="${member.classId}" ${onclick}` : onclick
+        return buildMoveBarHTML(mv, { attrs: dataAttrs, extraStyle: `cursor:pointer;${selStyle}` })
     }).join('')
 
     // Niveaux de débloquage des sorts (learnset est un objet {lvl: moveId})
@@ -652,19 +645,18 @@ function showEnemySheet(enemy) {
     const moveRows = (enemy.moves || []).map(moveId => {
         const mv   = move[moveId]
         if (!mv) return ''
-        const eff0     = mv.effects?.[0]
-        const elem     = eff0?.element || 'neutre'
-        const mvType   = eff0?.type || ''
-        const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
+        const eff0      = mv.effects?.[0]
+        const mvType    = eff0?.type || ''
         const typeLabel = TYPE_LABELS[mvType] || mvType || '—'
         let detail = ''
         if (eff0?.damage) detail = `${eff0.damage.min}–${eff0.damage.max}`
         else if (mvType === 'heal' || mvType === 'heal_team') detail = 'soin'
         else if (mvType === 'buff' || mvType === 'buff_team') detail = eff0?.stat ? `+${eff0.value} ${eff0.stat}` : 'buff'
         else if (mvType === 'debuff') detail = eff0?.stat ? `${eff0.value} ${eff0.stat}` : 'débuff'
-
+        const { bgClass, bgStyle } = getMoveElemBg(mv)
+        const bgSty = bgStyle ? ` style="${bgStyle}"` : ''
         const cdSec = mv.cooldownMs ? (mv.cooldownMs / 1000).toFixed(1) + 's' : ''
-        return `<div class="es-move-row elem-bar-${barElem}" data-move-id="${moveId}" data-caster-enemy="1">
+        return `<div class="es-move-row ${bgClass}"${bgSty} data-move-id="${moveId}" data-caster-enemy="1">
             ${elemIcon(moveIconKey(mv), 'es-move-elem-icon')}
             <span class="es-move-name">${mv.name}</span>
             <span class="es-move-type">${typeLabel}</span>
@@ -833,15 +825,15 @@ function showMobSheet(monsterId) {
     const moveRows = (mob.moves || []).map(moveId => {
         const mv   = move[moveId]
         if (!mv) return ''
-        const eff0     = mv.effects?.[0]
-        const elem     = eff0?.element || 'neutre'
-        const mvType   = eff0?.type || ''
-        const barElem  = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
+        const eff0      = mv.effects?.[0]
+        const mvType    = eff0?.type || ''
         const typeLabel = TYPE_LABELS[mvType] || mvType || '—'
         let detail = ''
         if (eff0?.damage) detail = `${eff0.damage.min}–${eff0.damage.max}`
+        const { bgClass, bgStyle } = getMoveElemBg(mv)
+        const bgSty = bgStyle ? ` style="${bgStyle}"` : ''
         const cdSec = mv.cooldownMs ? (mv.cooldownMs / 1000).toFixed(1) + 's' : ''
-        return `<div class="es-move-row elem-bar-${barElem}" data-move-id="${moveId}">
+        return `<div class="es-move-row ${bgClass}"${bgSty} data-move-id="${moveId}">
             ${elemIcon(moveIconKey(mv), 'es-move-elem-icon')}
             <span class="es-move-name">${mv.name}</span>
             <span class="es-move-type">${typeLabel}</span>
@@ -902,6 +894,8 @@ function showMoveTooltip(moveId, casterStats) {
 
     const TYPE_LABELS = {
         damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', best_element_damage: 'Attaque (meilleur élément)',
+        absorbElementDmg: 'Attaque (élément actif)', cycleElement: 'Cycle élémentaire',
+        esquive: 'Esquive', consumeElementBuff: 'Consomme élément',
         heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)', 'heal%maxHp_team': 'Soin (% PV max équipe)', hot: 'Soin continu',
         buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff', debuff_team: 'Débuff (équipe)',
         shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
@@ -910,6 +904,7 @@ function showMoveTooltip(moveId, casterStats) {
         switch: 'Déplacement', repeat: 'Répétition', random: 'Aléatoire',
         portal: 'Portail', turret: 'Tourelle', recul: 'Recul', avance: 'Avance'
     }
+    const _dmgStr = d => d == null ? null : typeof d === 'number' ? `${d}` : `${d.min}–${d.max}`
     const STAT_LABELS = {
         atk: 'Puissance', spd: 'Initiative', flatDamage: 'Dégâts fixes',
         finalDamagePct: 'Dég. finaux %', spellDamagePct: 'Dég. sorts %',
@@ -946,9 +941,38 @@ function showMoveTooltip(moveId, casterStats) {
 
         let rows = `<div class="mt-row"><span class="mt-label">Type</span><span class="mt-val">${typeLabel} ${elemBadge}</span></div>`
 
-        if (eff.type === 'best_element_damage' && eff.damage) {
-            rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${eff.damage.min}–${eff.damage.max}</span></div>`
+        // Dégâts directs (damage, damage_zone, absorbElementDmg, best_element_damage)
+        if (eff.type === 'best_element_damage' && eff.damage != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${_dmgStr(eff.damage)}</span></div>`
             rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Adaptatif (résistance la plus faible)</span></div>`
+        } else if ((eff.type === 'damage' || eff.type === 'damage_zone' || eff.type === 'absorbElementDmg') && eff.damage != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${_dmgStr(eff.damage)}</span></div>`
+            if (casterStats && typeof eff.damage === 'object') {
+                const minF = _mvDmg(casterStats, eff.damage.min)
+                const maxF = _mvDmg(casterStats, eff.damage.max)
+                rows += `<div class="mt-row"><span class="mt-label">Final (0% rés.)</span><span class="mt-val mt-accent">${minF}–${maxF}</span></div>`
+            }
+            if (eff.type === 'absorbElementDmg' && eff.fallbackElement) {
+                rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Actif sur l'ennemi (sinon ${eff.fallbackElement})</span></div>`
+            }
+        }
+
+        // Multiplicateurs cycliques (ex: Tempête de Puissance — ×1 → ×1.2 → ×1.5)
+        if (eff.scalingMultipliers?.length > 1) {
+            rows += `<div class="mt-row"><span class="mt-label">Multiplicateurs</span><span class="mt-val">${eff.scalingMultipliers.map(m => `×${m}`).join(' → ')}</span></div>`
+        }
+
+        // DOT : value directe (ex: Flèche Empoisonnée) ou damage objet
+        if (eff.type === 'dot') {
+            const dotVal = eff.value != null ? `${eff.value}` : eff.damage != null ? _dmgStr(eff.damage) : null
+            if (dotVal) rows += `<div class="mt-row"><span class="mt-label">Dégâts/tour</span><span class="mt-val">${dotVal}</span></div>`
+            if (eff.duration) rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
+        }
+
+        // HOT (soin continu)
+        if (eff.type === 'hot' && eff.heal != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Soin/tour</span><span class="mt-val">${_dmgStr(eff.heal)}</span></div>`
+            if (eff.duration) rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
         }
 
         if (eff.type === 'random' && eff.choices?.length) {
@@ -959,38 +983,44 @@ function showMoveTooltip(moveId, casterStats) {
             }
         }
 
-        if (eff.damage && eff.type !== 'best_element_damage') {
-            rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${eff.damage.min}–${eff.damage.max}</span></div>`
-            if (casterStats) {
-                const minF = _mvDmg(casterStats, eff.damage.min)
-                const maxF = _mvDmg(casterStats, eff.damage.max)
-                rows += `<div class="mt-row"><span class="mt-label">Final (0% rés.)</span><span class="mt-val mt-accent">${minF}–${maxF}</span></div>`
-            }
-            if (eff.type === 'dot' && eff.duration) {
-                rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
-            }
-        }
-
         if (eff.type === 'heal' || eff.type === 'heal_team') {
-            if (eff.heal != null) rows += `<div class="mt-row"><span class="mt-label">Soin</span><span class="mt-val">${eff.heal}</span></div>`
+            if (eff.heal != null) rows += `<div class="mt-row"><span class="mt-label">Soin</span><span class="mt-val">${_dmgStr(eff.heal)}</span></div>`
         }
-        if (eff.type === 'heal%maxHp') {
+        if (eff.type === 'heal%maxHp' || eff.type === 'heal%maxHp_team') {
             if (eff.heal != null) rows += `<div class="mt-row"><span class="mt-label">Soin</span><span class="mt-val">${eff.heal}% des PV max</span></div>`
         }
 
-        if (eff.ratio != null) {
-            rows += `<div class="mt-row"><span class="mt-label">Vol de vie</span><span class="mt-val">${Math.round(eff.ratio * 100)}% des dégâts</span></div>`
+        // Renvoi ou Vol de vie (pas pour les ratios de dégâts multi-cibles)
+        if ((eff.type === 'lifesteal' || eff.type === 'renvoi' || eff.type === 'renvoiTotal' || eff.type === 'oeilPourOeil') && eff.ratio != null) {
+            const isRenvoi = eff.type !== 'lifesteal'
+            rows += `<div class="mt-row"><span class="mt-label">${isRenvoi ? 'Renvoi' : 'Vol de vie'}</span><span class="mt-val">${Math.round(eff.ratio * 100)}% des dégâts</span></div>`
         }
 
-        if ((eff.type === 'buff' || eff.type === 'buff_team' || eff.type === 'debuff') && eff.stat) {
+        if ((eff.type === 'buff' || eff.type === 'buff_team' || eff.type === 'debuff' || eff.type === 'debuff_team') && eff.stat) {
             const statLbl = STAT_LABELS[eff.stat] || eff.stat
             const sign = eff.value >= 0 ? '+' : ''
             rows += `<div class="mt-row"><span class="mt-label">Effet</span><span class="mt-val">${sign}${eff.value} ${statLbl}</span></div>`
             if (eff.duration) rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
         }
 
-        if (eff.type === 'shield' && eff.value) {
-            rows += `<div class="mt-row"><span class="mt-label">Absorption</span><span class="mt-val">${eff.value}</span></div>`
+        if (eff.type === 'shield') {
+            if (eff.value != null)    rows += `<div class="mt-row"><span class="mt-label">Absorption</span><span class="mt-val">${eff.value}</span></div>`
+            if (eff.levelPct != null) rows += `<div class="mt-row"><span class="mt-label">Absorption</span><span class="mt-val">Niveau × ${eff.levelPct} PV</span></div>`
+            if (eff.duration)         rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
+        }
+
+        if (eff.type === 'esquive') {
+            if (eff.chancePct != null)    rows += `<div class="mt-row"><span class="mt-label">Chance</span><span class="mt-val">${eff.chancePct}%</span></div>`
+            if (eff.reductionPct != null) rows += `<div class="mt-row"><span class="mt-label">Réduction</span><span class="mt-val">${eff.reductionPct}%</span></div>`
+            if (eff.duration)             rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
+        }
+
+        if (eff.type === 'antiHeal' && eff.duration) {
+            rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
+        }
+
+        if (eff.type === 'consumeElementBuff' && eff.onElement) {
+            rows += `<div class="mt-row"><span class="mt-label">Effets</span><span class="mt-val">Terre / Eau / Feu / Air</span></div>`
         }
 
         if (eff.type === 'summon' && eff.summonId) {
@@ -1007,25 +1037,49 @@ function showMoveTooltip(moveId, casterStats) {
         const progRows = mv.spellProgression.map(entry => {
             const patch = entry.patch || {}
             const changes = []
-            if (patch.damage)    changes.push(`dégâts ${patch.damage.min}–${patch.damage.max}`)
-            if (patch.lifesteal) changes.push(`vol de vie ${Math.round(patch.lifesteal.ratio * 100)}%`)
-            if (patch.heal != null)    changes.push(`soin ${patch.heal}`)
-            if (patch.healPct != null) changes.push(`soin ${patch.healPct}% PV max`)
-            if (patch.shield)    changes.push(`bouclier ${patch.shield.value ?? '?'}`)
-            if (patch.buff) {
-                const _s   = PATCH_STAT_LABELS[patch.buff.stat] || patch.buff.stat || ''
-                const _dur = patch.buff.duration ? ` (${patch.buff.duration} tours)` : ''
-                if (patch.buff.value != null) {
-                    const _sgn = patch.buff.value >= 0 ? '+' : ''
-                    changes.push(`${_sgn}${patch.buff.value} ${_s}${_dur}`)
-                } else if (_dur) {
-                    changes.push(`${_s ? _s + ' ' : ''}durée${_dur}`.trim())
+            if (patch.damage != null)    changes.push(`dégâts ${_dmgStr(patch.damage)}`)
+            if (patch.lifesteal != null) changes.push(`vol de vie ${Math.round(patch.lifesteal.ratio * 100)}%`)
+            if (patch.heal != null)      changes.push(`soin ${_dmgStr(patch.heal)}`)
+            if (patch.healPct != null)   changes.push(`soin ${patch.healPct}% PV max`)
+            if (patch.renvoi != null)    changes.push(`renvoi ${Math.round(patch.renvoi.ratio * 100)}%`)
+            if (patch.shield != null) {
+                if (patch.shield.value != null)    changes.push(`bouclier ${patch.shield.value}`)
+                if (patch.shield.levelPct != null) changes.push(`bouclier Niv × ${patch.shield.levelPct}`)
+                if (patch.shield.duration != null) changes.push(`durée ${patch.shield.duration} t.`)
+            }
+            if (patch.esquive != null && patch.esquive.chancePct != null) {
+                changes.push(`esquive ${patch.esquive.chancePct}%`)
+            }
+            if (patch.buff != null) {
+                const buffs = Array.isArray(patch.buff) ? patch.buff : [patch.buff]
+                for (const b of buffs) {
+                    const _s   = PATCH_STAT_LABELS[b.stat] || b.stat || ''
+                    const _dur = b.duration ? ` (${b.duration} t.)` : ''
+                    if (b.value != null) {
+                        const _sgn = b.value >= 0 ? '+' : ''
+                        changes.push(`${_sgn}${b.value} ${_s}${_dur}`)
+                    } else if (_dur) {
+                        changes.push(`${_s ? _s + ' ' : ''}durée${_dur}`.trim())
+                    }
                 }
             }
-            if (patch.dot) {
-                const _dur = patch.dot.duration ? ` ×${patch.dot.duration} tours` : ''
-                changes.push(`Brûlure ${patch.dot.value ?? '?'}${_dur}`)
+            if (patch.debuff != null) {
+                const debuffs = Array.isArray(patch.debuff) ? patch.debuff : [patch.debuff]
+                for (const d of debuffs) {
+                    const _s   = PATCH_STAT_LABELS[d.stat] || d.stat || ''
+                    if (d.value != null) changes.push(`−${d.value} ${_s}`.trim())
+                }
             }
+            if (patch.dot != null) {
+                const _dur = patch.dot.duration ? ` ×${patch.dot.duration} tours` : ''
+                if (patch.dot.value != null) changes.push(`DOT ${patch.dot.value}${_dur}`)
+                else if (patch.dot.duration != null) changes.push(`durée ${patch.dot.duration} t.`)
+            }
+            if (patch.hot != null) {
+                if (patch.hot.heal != null) changes.push(`soin ${_dmgStr(patch.hot.heal)}/tour`)
+                if (patch.hot.duration != null) changes.push(`durée ${patch.hot.duration} t.`)
+            }
+            if (patch.consumeElementBuff != null) changes.push('effets améliorés')
             return `<div class="mt-prog-row">
                 <span class="mt-prog-lvl">Niv. ${entry.lvl}</span>
                 <span class="mt-prog-val">${changes.length ? changes.join(', ') : 'base'}</span>

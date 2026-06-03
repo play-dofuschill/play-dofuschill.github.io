@@ -4036,6 +4036,7 @@ transform: translateY(-1rem);
     position: relative; height: 2rem; border-radius: 0.35rem;
     overflow: hidden; background: var(--dark1);
     display: flex; align-items: center;
+    box-sizing: border-box;
 }
 /* Bordure permanente de la couleur de l'élément */
 .combat-move-bar.elem-bar-feu    { box-shadow: inset 0 0 0 2px #ffa23f; background: var(--dark1); }
@@ -4046,6 +4047,43 @@ transform: translateY(-1rem);
 .combat-move-bar.elem-bar-buff   { box-shadow: inset 0 0 0 2px #ffe15e; background: var(--dark1); }
 .combat-move-bar.elem-bar-debuff { box-shadow: inset 0 0 0 2px #9b50dc; background: var(--dark1); }
 .combat-move-bar.combat-move-empty { box-shadow: none; opacity: 0.2; }
+/* Sorts multi-élément : gradient sur le fond et la bordure via padding-box/border-box (inline style) */
+/* Sorts avec restriction : fond de symboles de restriction voyageant en diagonal */
+@keyframes restrictionTraveling {
+    from { mask-position: 0 0; -webkit-mask-position: 0 0; }
+    to   { mask-position: 42px 48px; -webkit-mask-position: 42px 48px; }
+}
+.move-bar-restriction-coeur::before,
+.move-bar-restriction-star::before,
+.move-bar-restriction-arrow::before,
+.move-bar-restriction-shield::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0.2;
+    background: var(--heart-bg, #fff);
+    -webkit-mask-size: 42px 16px;
+            mask-size: 42px 16px;
+    -webkit-mask-repeat: repeat;
+            mask-repeat: repeat;
+    animation: restrictionTraveling 6s linear infinite;
+    z-index: 1; pointer-events: none;
+}
+.move-bar-restriction-coeur::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/g%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.move-bar-restriction-star::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M21.951 9.67a1 1 0 0 0-.807-.68l-5.699-.828l-2.548-5.164A.98.98 0 0 0 12 2.486v16.28l5.097 2.679a1 1 0 0 0 1.451-1.054l-.973-5.676l4.123-4.02a1 1 0 0 0 .253-1.025'/%3E%3Cpath fill='black' d='M11.103 2.998L8.555 8.162l-5.699.828a1 1 0 0 0-.554 1.706l4.123 4.019l-.973 5.676a1 1 0 0 0 1.45 1.054L12 18.765V2.503a1.03 1.03 0 0 0-.897.495'/%3E%3C/g%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M21.951 9.67a1 1 0 0 0-.807-.68l-5.699-.828l-2.548-5.164A.98.98 0 0 0 12 2.486v16.28l5.097 2.679a1 1 0 0 0 1.451-1.054l-.973-5.676l4.123-4.02a1 1 0 0 0 .253-1.025'/%3E%3Cpath fill='black' d='M11.103 2.998L8.555 8.162l-5.699.828a1 1 0 0 0-.554 1.706l4.123 4.019l-.973 5.676a1 1 0 0 0 1.45 1.054L12 18.765V2.503a1.03 1.03 0 0 0-.897.495'/%3E%3C/g%3E%3C/svg%3E");
+}
+.move-bar-restriction-arrow::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M8 4l8 8-8 8z'/%3E%3C/g%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M8 4l8 8-8 8z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.move-bar-restriction-shield::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M12 2L4 6v6c0 5.5 3.5 10.2 8 12 4.5-1.8 8-6.5 8-12V6z'/%3E%3C/g%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 27' preserveAspectRatio='none'%3E%3Cg transform='translate(24,2)'%3E%3Cpath fill='black' d='M12 2L4 6v6c0 5.5 3.5 10.2 8 12 4.5-1.8 8-6.5 8-12V6z'/%3E%3C/g%3E%3C/svg%3E");
+}
 
 .combat-move-fill {
     position: absolute; left: 0; top: 0; bottom: 0;

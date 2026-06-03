@@ -3,18 +3,20 @@
 // ─── Icônes globales ─────────────────────────────────────────────────────────
 
 const ELEM_ICONS = {
-    neutre:    'img/icons/Neutre.png',
-    feu:       'img/icons/Feu.png',
-    eau:       'img/icons/Eau.png',
-    air:       'img/icons/Air.png',
-    terre:     'img/icons/Terre.png',
-    soigneur:  'img/icons/soigneur.png',
-    boost:     'img/icons/boost.png',
-    entrave:   'img/icons/entrave.png',
-    protection:'img/icons/protection.png',
-    tank:      'img/icons/tank.png',
-    placement: 'img/icons/placement.png',
-    invocation:'img/icons/invocation.png',
+    neutre:       'img/icons/Neutre.png',
+    feu:          'img/icons/Feu.png',
+    eau:          'img/icons/Eau.png',
+    air:          'img/icons/Air.png',
+    terre:        'img/icons/Terre.png',
+    all_elements: 'img/icons/terre-feu-eau-air.png',
+    sagesse:      'img/icons/Sagesse.png',
+    soigneur:     'img/icons/soigneur.png',
+    boost:        'img/icons/boost.png',
+    entrave:      'img/icons/entrave.png',
+    protection:   'img/icons/protection.png',
+    tank:         'img/icons/tank.png',
+    placement:    'img/icons/placement.png',
+    invocation:   'img/icons/invocation.png',
 }
 const STAT_ICONS = {
     hp:         'img/icons/Hp.png',
@@ -56,26 +58,29 @@ function elemIcon(elem, cssClass = 'elem-icon') {
     return `<img src="${src}" class="${cssClass}" onerror="this.src='img/icons/Neutre.png'">`
 }
 const _MOVE_TYPE_ICON = {
-    damage:       null, // utilise l'élément
-    dot:          null,
-    heal:         'soigneur',
-    heal_team:    'soigneur',
-    'heal%maxHp': 'soigneur',
-    lifesteal:    'soigneur',
-    buff:         'boost',
-    buff_team:    'boost',
-    debuff:       'entrave',
-    shield:       'protection',
-    renvoi:       'tank',
-    switch:       'placement',
-    summon:       'invocation',
-    summon_random:'invocation',
+    damage:            null, // utilise l'élément
+    dot:               null,
+    absorbElementDmg:  'all_elements',
+    best_element_damage: 'all_elements',
+    heal:              'soigneur',
+    heal_team:         'soigneur',
+    'heal%maxHp':      'soigneur',
+    lifesteal:         'soigneur',
+    buff:              'boost',
+    buff_team:         'boost',
+    debuff:            'entrave',
+    shield:            'protection',
+    renvoi:            'tank',
+    switch:            'placement',
+    summon:            'invocation',
+    summon_random:     'invocation',
 }
 function moveIconKey(mv) {
     const type = mv?.effects?.[0]?.type || ''
-    const elem = mv?.effects?.[0]?.element || 'neutre'
+    const elem = mv?.effects?.[0]?.element || ''
     const mapped = _MOVE_TYPE_ICON[type]
-    return mapped !== undefined ? (mapped ?? elem) : 'neutre'
+    if (mapped !== undefined) return mapped ?? (elem || 'neutre')
+    return elem || 'sagesse'
 }
 
 const ELEM_COLORS = {
@@ -87,6 +92,85 @@ const ELEM_COLORS = {
     buff:   '#ffe262',
     debuff: '#cf95ff'
 }
+
+// ─── Helpers de barre de sort multi-élément ───────────────────────────────────
+
+function getMoveBarElems(mv) {
+    const effects = mv?.effects || []
+    if (!effects.length) return { elems: ['neutre'] }
+    const firstType = effects[0].type || ''
+    if (firstType === 'buff' || firstType === 'buff_team' || firstType === 'hot')
+        return { elems: ['buff'] }
+    if (firstType === 'debuff' || firstType === 'debuff_team' || firstType === 'antiHeal')
+        return { elems: ['debuff'] }
+    if (effects.some(e => e.type === 'absorbElementDmg' || e.type === 'best_element_damage'))
+        return { elems: ['terre', 'feu', 'eau', 'air'] }
+    const seen = new Set(), elems = []
+    for (const e of effects) {
+        if ((e.type === 'damage' || e.type === 'dot' || e.type === 'damage_zone') && e.element && !seen.has(e.element)) {
+            elems.push(e.element); seen.add(e.element)
+        }
+    }
+    if (!elems.length) return { elems: [effects[0].element || 'neutre'] }
+    return { elems }
+}
+
+function _moveBarGradient(colors) {
+    if (colors.length === 1) return colors[0]
+    const pct = 100 / colors.length
+    return `linear-gradient(to right,${colors.map((c, i) => `${c} ${i * pct}% ${(i + 1) * pct}%`).join(',')})`
+}
+
+// Retourne { bgClass, bgStyle } pour les éléments fond-uniquement (es-move-row, ae-learned-move…)
+function getMoveElemBg(mv) {
+    const { elems } = getMoveBarElems(mv)
+    if (elems.length === 1) return { bgClass: `elem-bar-${elems[0]}`, bgStyle: '' }
+    const grad = _moveBarGradient(elems.map(e => ELEM_COLORS[e] || ELEM_COLORS.neutre))
+    return { bgClass: '', bgStyle: `background:${grad}` }
+}
+
+// Construit le HTML complet d'une combat-move-bar
+function buildMoveBarHTML(mv, { fillStyle = 'width:0%', attrs = '', extraClass = '', extraStyle = '', nameContent = null } = {}) {
+    if (!mv) {
+        const sty = extraStyle ? ` style="${extraStyle}"` : ''
+        const cls = extraClass ? ` ${extraClass}` : ''
+        return `<div class="combat-move-bar combat-move-empty${cls}"${sty} ${attrs}><span class="combat-move-name">—</span></div>`
+    }
+    const { elems } = getMoveBarElems(mv)
+    const colors   = elems.map(e => ELEM_COLORS[e] || ELEM_COLORS.neutre)
+    const isMulti  = elems.length > 1
+    const primaryElem  = elems[0]
+    const primaryColor = ELEM_COLORS[primaryElem] || ELEM_COLORS.neutre
+    let barClass = 'combat-move-bar', barStyleParts = []
+    let fillClass = 'combat-move-fill', fillBg = ''
+    let iconBgClass = 'combat-move-icon-bg', iconBgStyle = ''
+    if (isMulti) {
+        const grad = _moveBarGradient(colors)
+        barStyleParts.push(`border:2px solid transparent`, `background:linear-gradient(var(--dark1),var(--dark1)) padding-box,${grad} border-box`)
+        fillBg     = `background:${grad};`
+        iconBgStyle = `background:${primaryColor}`
+    } else {
+        barClass    += ` elem-bar-${primaryElem}`
+        fillClass   += ` elem-bar-${primaryElem}`
+        iconBgClass += ` elem-bar-${primaryElem}`
+    }
+    const restriction = mv.restriction
+    if (restriction) {
+        barClass += ` move-bar-restriction-${restriction}`
+        barStyleParts.push(`--heart-bg:${isMulti ? _moveBarGradient(colors) : primaryColor}`)
+    }
+    if (extraClass)   barClass += ` ${extraClass}`
+    if (extraStyle)   barStyleParts.push(extraStyle)
+    const barSty   = barStyleParts.length ? ` style="${barStyleParts.join(';')}"` : ''
+    const iconSty  = iconBgStyle ? ` style="${iconBgStyle}"` : ''
+    const name     = nameContent !== null ? nameContent : `${mv.name || '—'}${moveRestrictionSigle(mv, primaryElem)}`
+    return `<div class="${barClass}"${barSty} ${attrs}>
+        <div class="${fillClass}" style="${fillBg}${fillStyle}"></div>
+        <span class="combat-move-name">${name}</span>
+        <div class="${iconBgClass}"${iconSty}>${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
+    </div>`
+}
+
 const _RESTRICTION_SVG = {
     star:   c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M21.951 9.67a1 1 0 0 0-.807-.68l-5.699-.828l-2.548-5.164A.98.98 0 0 0 12 2.486v16.28l5.097 2.679a1 1 0 0 0 1.451-1.054l-.973-5.676l4.123-4.02a1 1 0 0 0 .253-1.025" opacity="0.5"/><path fill="currentColor" d="M11.103 2.998L8.555 8.162l-5.699.828a1 1 0 0 0-.554 1.706l4.123 4.019l-.973 5.676a1 1 0 0 0 1.45 1.054L12 18.765V2.503a1.03 1.03 0 0 0-.897.495"/></svg>`,
     arrow:  c => `<svg style="color:${c};vertical-align:middle;margin-left:3px;flex-shrink:0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>`,
@@ -427,13 +511,14 @@ function showSessionSummary(type) {
         ? learnedMoves.map(({ member, moveId }) => {
             const cls  = classes[member.classId]
             const mv   = move[moveId]
-            const elem = mv?.effects?.[0]?.element || 'neutre'
+            const { bgClass, bgStyle } = getMoveElemBg(mv)
+            const bgSty = bgStyle ? ` style="${bgStyle}"` : ''
             return `<div class="ae-learned-row">
                 <img class="ae-learned-sprite" src="${cls?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
                 <span class="ae-learned-member">${cls?.name || '?'}</span>
                 <span class="ae-learned-arrow">›</span>
-                <div class="ae-learned-move elem-bar-${elem}">
-                    ${elemIcon(elem, 'ae-move-icon')}
+                <div class="ae-learned-move ${bgClass}"${bgSty}>
+                    ${elemIcon(moveIconKey(mv), 'ae-move-icon')}
                     <span>${mv?.name || '?'}</span>
                 </div>
             </div>`

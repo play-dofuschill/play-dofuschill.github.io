@@ -105,19 +105,12 @@ function renderEnemyMoves(container, enemy, timer) {
     const nextIdx = slots.indexOf(combat.enemyNextMoveId)
 
     container.innerHTML = slots.map((moveId, idx) => {
-        if (!moveId) {
-            return `<div class="combat-move-bar combat-move-empty"><span class="combat-move-name">—</span></div>`
-        }
-        const mv      = move[moveId]
-        const elem    = mv?.effects?.[0]?.element || 'neutre'
-        const mvType  = mv?.effects?.[0]?.type || ''
-        const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-        const fillW   = idx === nextIdx ? timer : 0
-        return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${moveId}" data-caster-enemy="1">
-            <div class="combat-move-fill elem-bar-${barElem}" style="width:${fillW}%"></div>
-            <span class="combat-move-name">${mv?.name || '—'}${moveRestrictionSigle(mv, elem)}</span>
-            <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-        </div>`
+        const mv    = moveId ? move[moveId] : null
+        const fillW = moveId && idx === nextIdx ? timer : 0
+        return buildMoveBarHTML(mv, {
+            fillStyle: `width:${fillW}%`,
+            attrs: mv ? `data-move-id="${moveId}" data-caster-enemy="1"` : ''
+        })
     }).join('')
 }
 
@@ -203,21 +196,9 @@ function renderTeamSlots(container) {
         let fillCount = 0
         const moveBars = slots.map(s => {
             const moveId = m.moves[s]
-            if (!moveId) {
-                return `<div class="combat-move-bar combat-move-empty">
-                    <span class="combat-move-name">—</span>
-                </div>`
-            }
-            const mv      = move[moveId]
-            const elem    = mv?.effects?.[0]?.element || 'neutre'
-            const mvType  = mv?.effects?.[0]?.type || ''
-            const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-            fillCount++
-            return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${m.classId}">
-                <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
-                <span class="combat-move-name">${mv?.name || '—'}${moveRestrictionSigle(mv, elem)}</span>
-                <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-            </div>`
+            const mv     = moveId ? move[moveId] : null
+            if (mv) fillCount++
+            return buildMoveBarHTML(mv, { attrs: mv ? `data-move-id="${moveId}" data-caster-class="${m.classId}"` : '' })
         }).join('')
 
         const isActive = combat?.activeMemberIndex === teamIdx
@@ -468,18 +449,8 @@ function _buildRaidEnemySlotHTML(enemy, slotIdx) {
     const moveIds  = (enemy.moves || []).slice(0, 4)
     const moveBars = [0, 1, 2, 3].map(idx => {
         const moveId = moveIds[idx]
-        if (!moveId) {
-            return `<div class="combat-move-bar combat-move-empty"><span class="combat-move-name">—</span></div>`
-        }
-        const mv      = move[moveId]
-        const elem    = mv?.effects?.[0]?.element || 'neutre'
-        const mvType  = mv?.effects?.[0]?.type    || ''
-        const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-        return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${moveId}" data-caster-enemy="1">
-            <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
-            <span class="combat-move-name">${mv?.name || '—'}${moveRestrictionSigle(mv, elem)}</span>
-            <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-        </div>`
+        const mv     = moveId ? move[moveId] : null
+        return buildMoveBarHTML(mv, { attrs: mv ? `data-move-id="${moveId}" data-caster-enemy="1"` : '' })
     }).join('')
 
     const hpPct = Math.max(0, Math.floor((enemy.currentHp / enemy.maxHp) * 100))
@@ -564,16 +535,8 @@ function _buildRaidActiveMemberCard(m, teamIdx, slotIdx, slots) {
 
     const moveBars = slots.map(s => {
         const moveId = m.moves[s]
-        if (!moveId) return `<div class="combat-move-bar combat-move-empty"><span class="combat-move-name">—</span></div>`
-        const mv      = move[moveId]
-        const elem    = mv?.effects?.[0]?.element || 'neutre'
-        const mvType  = mv?.effects?.[0]?.type    || ''
-        const barElem = mvType === 'buff' ? 'buff' : mvType === 'debuff' ? 'debuff' : elem
-        return `<div class="combat-move-bar elem-bar-${barElem}" data-move-id="${moveId}" data-caster-class="${m.classId}">
-            <div class="combat-move-fill elem-bar-${barElem}" style="width:0%"></div>
-            <span class="combat-move-name">${mv?.name || '—'}${moveRestrictionSigle(mv, elem)}</span>
-            <div class="combat-move-icon-bg elem-bar-${barElem}">${elemIcon(moveIconKey(mv), 'combat-move-icon')}</div>
-        </div>`
+        const mv     = moveId ? move[moveId] : null
+        return buildMoveBarHTML(mv, { attrs: mv ? `data-move-id="${moveId}" data-caster-class="${m.classId}"` : '' })
     }).join('')
 
     const div = document.createElement('div')
