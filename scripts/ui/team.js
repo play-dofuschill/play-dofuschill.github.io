@@ -678,7 +678,6 @@ function initTeamDragDrop() {
         _touchDragTimer = setTimeout(() => {
             _touchDragTimer = null
             _canStartDrag   = true
-            window.cancelLongPress?.()   // empêche l'ouverture du tooltip de classe
             navigator.vibrate?.(50)
             card.style.transform  = 'scale(1.02)'
             card.style.transition = 'transform 0.1s'
