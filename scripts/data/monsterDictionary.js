@@ -11,7 +11,16 @@ monsters. = {
         hp: 1, atk: 1, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
     },
-    moves: ['', ''],
+    // Format simple : tableau de sorts → ordre aléatoire au spawn (max 4 tirés si + de 4)
+    moves: ['sort_A', 'sort_B', 'sort_C'],
+
+    // Format avancé : pool (tirés aléatoirement) + fixed (toujours en dernier, dans l'ordre)
+    // Le nb de slots aléatoires = 4 - fixed.length
+    // Exemples :
+    //   { pool: ['C','D','E'], fixed: ['A','B'] }  → [random, random, A, B]
+    //   { pool: ['D','E'],     fixed: ['A','B','C'] } → [random, A, B, C]
+    //   { fixed: ['A','B','C','D'] }               → [A, B, C, D]  (aucun aléa)
+    moves: { pool: ['sort_C', 'sort_D'], fixed: ['sort_A', 'sort_B'] },
 }
 */
 
@@ -676,7 +685,7 @@ monsters.scrarabossDoree = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2400, atk: 280, spd: 105,
+        hp: 2000, atk: 280, spd: 105,
         res: {neutre: 25, terre: 25, feu: 25, eau: 25, air: 25}
     },
     moves: ['picoti', 'naissance', 'premier_soins', 'expulsion'],
@@ -810,9 +819,9 @@ monsters.kwakwa = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
+//         hp: 600, atk: 170, spd: 100,
 //         res: {neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 }},
-//     moves: ['', '']
+//     moves: ['bloperie_air','blopiment_air']
 // }
 // monsters.blopGriotte = {
 //     id: 'blopGriotte',
@@ -821,9 +830,9 @@ monsters.kwakwa = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
+//         hp: 600, atk: 170, spd: 100,
 //         res: {neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 }},
-//     moves: ['', '']
+//     moves: ['bloperie_feu','blopiment_feu']
 // }
 // monsters.blopIndigo = {
 //     id: 'blopIndigo',
@@ -832,9 +841,9 @@ monsters.kwakwa = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
+//         hp: 600, atk: 170, spd: 100,
 //         res: {neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 }},
-//     moves: ['', '']
+//     moves: ['bloperie_eau','blopiment_eau']
 // }
 // monsters.blopReinette = {
 //     id: 'blopReinette',
@@ -843,9 +852,9 @@ monsters.kwakwa = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
+//         hp: 600, atk: 170, spd: 100,
 //         res: {neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 }},
-//     moves: ['', '']
+//     moves: ['bloperie_terre','blopiment_terre']
 // }
 // monsters.blopignon = {
 //     id: 'blopignon',
@@ -854,9 +863,9 @@ monsters.kwakwa = {
 //     rarity: 'peu_commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
-//     moves: ['', '']
+//         hp: 500, atk: 170, spd: 100,
+//         res: {neutre: 21, terre: -19, feu: -14, eau: 0, air: 26 }},
+//     moves: ['bloblo', 'blopiction', 'bloprojection']
 // }
 // monsters.tronkoBlop = {
 //     id: 'tronkoBlop',
@@ -865,9 +874,9 @@ monsters.kwakwa = {
 //     rarity: 'peu_commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
-//     moves: ['', '']
+//         hp: 600, atk: 170, spd: 100,
+//         res: {neutre: 0, terre: 41, feu: 31, eau: -9, air: -24 }},
+//     moves: ['blopsoin', 'blopzone']
 // }
 // monsters.gloutoBlop = {
 //     id: 'gloutoBlop',
@@ -877,8 +886,8 @@ monsters.kwakwa = {
 //     tier: 'elite'
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
-//     moves: ['', '']
+//         res: {neutre: 21, terre: -9, feu: -24, eau: 26, air: 11 }},
+//     moves: ['gloutage']
 // }
 
 
@@ -889,49 +898,49 @@ monsters.kwakwa = {
 //     id: 'blopCocoRoyal',
 //     name: 'Blop Coco Royal',
 //     image: 'img/monstres/sprites/blopCocoRoyal.png',
-//     rarity: 'peu_commun',
+//     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 2800, atk: 250, spd: 100,
+//         res: {neutre: -15, terre: -15, feu: -15, eau: -15, air: 95 }
 //     },
-//     moves: ['', '']
+//     moves: ['blotravail_Royal', 'blopunition_Royale_air', 'blotection_air']
 // }
 // monsters.blopGriotteRoyal = {
 //     id: 'blopGriotteRoyal',
 //     name: 'Blop Griotte Royal',
 //     image: 'img/monstres/sprites/blopGriotteRoyal.png',
-//     rarity: 'peu_commun',
+//     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 2800, atk: 250, spd: 100,
+//         res: {neutre: -15, terre: -15, feu: 95, eau: -15, air: -15 }
 //     },
-//     moves: ['', '']
+//     moves: ['blotravail_Royal', 'blopunition_Royale_feu', 'blotection_feu']
 // }
 // monsters.blopIndigoRoyal = {
 //     id: 'blopIndigoRoyal',
 //     name: 'Blop Indigo Royal',
 //     image: 'img/monstres/sprites/blopIndigoRoyal.png',
-//     rarity: 'peu_commun',
+//     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 2800, atk: 250, spd: 100,
+//         res: {neutre: -15, terre: -15, feu: -15, eau: 95, air: -15 }
 //     },
-//     moves: ['', '']
+//     moves: ['blotravail_Royal', 'blopunition_Royale_eau', 'blotection_eau']
 // }
 // monsters.blopReinetteRoyal = {
 //     id: 'blopReinetteRoyal',
 //     name: 'Blop Reinette Royal',
 //     image: 'img/monstres/sprites/blopReinetteRoyal.png',
-//     rarity: 'peu_commun',
+//     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 2800, atk: 250, spd: 100,
+//         res: {neutre: -15, terre: 95, feu: -15, eau: -15, air: -15 }
 //     },
-//     moves: ['', '']
+//     moves: ['blotravail_Royal', 'blopunition_Royale_terre', 'blotection_terre']
 // }
 // #endregion
 
@@ -1221,10 +1230,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 110, spd: 100,
+//         res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
 //     },
-//     moves: ['', '']
+//     moves: ['Sablacane', 'Roulo-Boulos', 'Carapassable']
 // }
 // monsters.scordionBleu = {
 //     id: 'scordionBleu',
@@ -1233,10 +1242,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 110, spd: 100,
+//         res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
 //     },
-//     moves: ['', '']
+//     moves: ['Pince_pattes', 'Dard_Empoisonne', Creuse_sable']
 // }
 // monsters.fennex = {
 //     id: 'fennex',
@@ -1245,10 +1254,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 110, spd: 100,
+//         res: {neutre: 6, terre: 16, feu: -24, eau: -19, air: 11 }
 //     },
-//     moves: ['', '']
+//     moves: ['Reconnaissance', 'Entrave_Sableuse', 'Enragement_Motivant']
 // }
 // monsters.leolhyene = {
 //     id: 'leolhyene',
@@ -1257,10 +1266,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 110, spd: 100,
+//         res: {neutre: 24, terre: -21, feu: 9, eau: -9, air: 34 }
 //     },
-//     moves: ['', '']
+//     moves: ['Sirocco', 'Mort_sure', 'Hyaignement']
 // }
 // monsters.boulepique = {
 //     id: 'boulepique',
@@ -1269,10 +1278,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'peu_commun',
 //     tier: 'elite'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 150, spd: 100,
+//         res: {neutre: 11, terre: 1, feu: 21, eau: 16, air: 6 }
 //     },
-//     moves: ['', '']
+//     moves: ['Lance-boulettes', 'Pique_rate', 'Durcissement']
 // }
 // ═══════════════════════════════════════════════════════
 // DONJON MANTISCORE
@@ -1284,10 +1293,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun','peu_commun','rare','legendaire',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 3500, atk: 290, spd: 100,
+//         res: {neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 }
 //     },
-//     moves: ['', '']
+//     moves: ['darmocles', 'force_Poigne', 'tombeau_du_desert', 'garde_bouclier']
 // }
 // #endregion
 
@@ -1300,10 +1309,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 150, spd: 100,
+//         res: {neutre: 17, terre: 12, feu: -10, eau: 22, air: 9 }
 //     },
-//     moves: ['', '']
+//     moves: ['Feuilletage', 'Fendage']
 // }
 // monsters.dragoeufArgile = {
 //     id: 'dragoeufArgile',
@@ -1312,10 +1321,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 150, spd: 100,
+//         res: {neutre: 17, terre: -10, feu: 9, eau: 12, air: 22 }
 //     },
-//     moves: ['', '']
+//     moves: ['Cataplasme', 'Engobage']
 // }
 // monsters.dragoeufCalcaire = {
 //     id: 'dragoeufCalcaire',
@@ -1324,10 +1333,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 150, spd: 100,
+//         res: {neutre: 17, terre: 22, feu: 12, eau: 9, air: -10 }
 //     },
-//     moves: ['', '']
+//     moves: ['Entartrage', 'Calcination']
 // }
 // monsters.dragoeufCharbon = {
 //     id: 'dragoeufCharbon',
@@ -1336,10 +1345,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 800, atk: 150, spd: 100,
+//         res: {neutre: 17, terre: 9, feu: 22, eau: -10, air: 12 }
 //     },
-//     moves: ['', '']
+//     moves: ['Crassier', 'Silicose']
 // }
 // monsters.dragoeufAlbatre = {
 //     id: 'dragoeufAlbatre',
@@ -1348,10 +1357,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'peu_commun',
 //     tier: 'elite'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 900, atk: 170, spd: 100,
+//         res: {neutre: 12, terre: 12, feu: 12, eau: 12, air: 12 }
 //     },
-//     moves: ['', '']
+//     moves: ['Dralbatre', 'Dragloméra']
 // }
 // ═══════════════════════════════════════════════════════
 // DONJON DRAEGNERYS
@@ -1363,10 +1372,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'peu_commun',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 2500, atk: 200, spd: 120,
+//         res: {neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 }
 //     },
-//     moves: ['', '']
+//     moves: ['Pepiniere', 'Knout', 'Drakaaris']
 // }
 // #endregion
 
@@ -1379,10 +1388,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1000, atk: 170, spd: 100,
+//         res: {neutre: 15, terre: -25, feu: 25, eau: -15, air: 15 }
 //     },
-//     moves: ['', '']
+//     moves: ['Bond_affaiblissant', 'Abraknettoyage', 'Motivation_Sylvestre']
 // }
 // monsters.abraknydeSombre = {
 //     id: 'abraknydeSombre',
@@ -1391,10 +1400,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1000, atk: 170, spd: 100,
+//         res: {neutre: 20, terre: -5, feu: 25, eau: -5, air: 25 }
 //     },
-//     moves: ['', '']
+//     moves: ['Abrabranche', 'Branche_Paralysante', 'Ecrasement_Abraknydien']
 // }
 // monsters.araknotron = {
 //     id: 'araknotron',
@@ -1403,10 +1412,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1000, atk: 170, spd: 100,
+//         res: {neutre: 10, terre: -25, feu: 5, eau: -25, air: 5 }
 //     },
-//     moves: ['', '']
+//     moves: ['Lancer_d_Arakne_Morte', 'Complicite']
 // }
 // monsters.abraknydeVenerable = {
 //     id: 'abraknydeVenerable',
@@ -1415,15 +1424,27 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1000, atk: 170, spd: 100,
+//         res: {neutre: 20, terre: 25, feu: -5, eau: 25, air: -5 }
 //     },
-//     moves: ['', '']
+//     moves: ['Ecrasement_Abraknydien', 'Abrakage', 'Ecorce_agressive', 'Reconstitution_Abraknydienne']
 // }
-
 // ═══════════════════════════════════════════════════════
 // DONJON abraknydeAncestral
 // ═══════════════════════════════════════════════════════
+// monsters.arakne_majeure = {
+//     id: 'arakne_majeure',
+//     name: 'Arakne Majeure',
+//     image: 'img/monstres/sprites/arakne_majeure.png',
+//     rarity: 'peu_commun',
+//     tier: 'elite',
+//     bst: {
+//         hp: 600, atk: 100, spd: 100,
+//         res: {neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 }
+//     },
+//     moves: ['Ralentissement_Arakneen', 'Absorption_Sanguine'],
+//     ownerId: 'abraknydeAncestral'
+// }
 // monsters.abraknydeAncestral = {
 //     id: 'abraknydeAncestral',
 //     name: 'Abraknyde Ancestral',
@@ -1431,10 +1452,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 4500, atk: 500, spd: 90,
+//         res: {neutre: 50, terre: 50, feu: -5, eau: 50, air: -5 }
 //     },
-//     moves: ['', '']
+//     moves: ['Branche_Paralysante', 'Morsure_Sylvestre', 'Reconstitution_Abraknydienne', Invocation_d_Arakne_Majeure]
 // }
 // #endregion
 
@@ -1447,10 +1468,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1200, atk: 170, spd: 100,
+//         res: {neutre: 50, terre: 50, feu: 12, eau: 12, air: -20 }
 //     },
-//     moves: ['', '']
+//     moves: ['Sucotement_Porcin']
 // }
 // monsters.donDorgan = {
 //     id: 'donDorgan',
@@ -1459,10 +1480,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1300, atk: 170, spd: 100,
+//         res: {neutre: 10, terre: -20, feu: 50, eau: -20, air: -20 }
 //     },
-//     moves: ['', '']
+//     moves: ['Menotage', 'Charge Sanguinaire']
 // }
 // monsters.donDussAng = {
 //     id: 'donDussAng',
@@ -1471,10 +1492,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1300, atk: 170, spd: 100,
+//         res: {neutre: 20, terre: -20, feu: -20, eau: 20, air: 20 }
 //     },
-//     moves: ['', '']
+//     moves: ['Vampirisation_Cochonne', 'Tire-Bouffon', 'Perfusion']
 // }
 // monsters.porsalu = {
 //     id: 'porsalu',
@@ -1483,10 +1504,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'commun',
 //     tier: 'normal'
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 1200, atk: 170, spd: 100,
+//         res: {neutre: 25, terre: 15, feu: -25, eau: -20, air: 60 }
 //     },
-//     moves: ['', '']
+//     moves: ['Fleche_Renifleuse', 'Fleche_Douloureuse', 'Exhalation_Porcine']
 // }
 // monsters.gorgouille = {
 //     id: 'gorgouille',
@@ -1494,11 +1515,12 @@ monsters.dopeul_darkvlad = {
 //     image: 'img/monstres/sprites/gorgouille.png',
 //     rarity: 'rare',
 //     tier: 'elite'
+//     fixedLevel: 100,
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 5000, atk: 500, spd: 100,
+//         res: {neutre: -5, terre: -5, feu: -5, eau: 35, air: 35 }
 //     },
-//     moves: ['', '']
+//     moves: ['Oshi-Zumo', 'Yotsu-Zumo']
 // }
 
 
@@ -1512,10 +1534,10 @@ monsters.dopeul_darkvlad = {
 //     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+//         hp: 2500, atk: 1000, spd: 100,
+//         res: {neutre: 35, terre: 35, feu: 35, eau: -5, air: -5 }
 //     },
-//     moves: ['', '']
+//     moves: { pool: ['Ecrasement_Handicapant', 'Croutage', 'Immobilisation'], fixed: ['Étourderie Mortelle'] },
 // }
 // #endregion
 

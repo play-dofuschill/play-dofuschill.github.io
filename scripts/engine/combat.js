@@ -7,6 +7,32 @@
 const TICK_MS    = 1000 / 60   // 60 fps
 const BASE_TIME  = 2000        // cooldown par défaut (ms) si un sort n'en a pas
 
+// Résout la définition de moves d'un monstre en tableau plat de 0-4 IDs.
+// Format simple  : ['A','B','C']          → shufflé, max 4 pris
+// Format avancé  : { pool:[], fixed:[] }  → N slots tirés du pool + fixed toujours en dernier
+function _scaleStep(mobMinLevel) {
+    if (mobMinLevel >= 181) return 0.02
+    if (mobMinLevel >= 131) return 0.03
+    if (mobMinLevel >= 81)  return 0.04
+    return 0.05
+}
+
+function resolveMonsterMoves(movesDef) {
+    if (!movesDef) return []
+    const _shuffle = arr => {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]]
+        }
+        return arr
+    }
+    if (Array.isArray(movesDef)) return _shuffle([...movesDef]).slice(0, 4)
+    const pool        = _shuffle([...(movesDef.pool  || [])])
+    const fixed       = (movesDef.fixed || []).slice(0, 4)
+    const randomCount = Math.max(0, 4 - fixed.length)
+    return [...pool.slice(0, randomCount), ...fixed]
+}
+
 // Retourne le cooldown (ms) du prochain sort qu'un membre va lancer.
 // Utilisé pour calibrer le taux de remplissage de la barre : barre = cooldownMs / (spd/100).
 function _peekNextCastCooldown(member, memberIndex) {
@@ -210,7 +236,7 @@ function spawnEnemy(areaId) {
     const mob      = monsters[spawnId]
     if (!mob) { console.error(`[spawnEnemy] Unknown monster: ${spawnId}`); return null }
     const mobLevel = mob.fixedLevel ?? randomInt(area.mobMinLevel, area.mobMaxLevel)
-    const scale    = mob.fixedLevel != null ? 1 : 1 + (mobLevel - area.mobMinLevel) * 0.05
+    const scale    = mob.fixedLevel != null ? 1 : 1 + (mobLevel - area.mobMinLevel) * _scaleStep(area.mobMinLevel)
 
 
     if (!state.seenMonsters) state.seenMonsters = {}
@@ -229,7 +255,7 @@ function spawnEnemy(areaId) {
         res:      { ...mob.bst.res },
         finalDamagePct: 0,
         flatDamage:     0,
-        moves:     mob.moves || [],
+        moves:     resolveMonsterMoves(mob.moves),
         moveIndex: 0,
         rarity:    mob.rarity   || 'commun',
         tier:      mob.tier     || 'normal',
@@ -649,7 +675,7 @@ function startPoutchCombat(mode) {
         res:         { ...mob.bst.res },
         finalDamagePct: 0,
         flatDamage:     0,
-        moves:       mob.moves || [],
+        moves:       resolveMonsterMoves(mob.moves),
         moveIndex:   0,
         rarity:      'commun',
         tier:        'normal',
@@ -2617,7 +2643,7 @@ function spawnSummon(caster, effect) {
             atk   = mob.bst?.atk || 0
         }
         const mvSlots = { slot1: null, slot2: null, slot3: null, slot4: null }
-        ;(mob.moves || []).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
+        resolveMonsterMoves(mob.moves).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
         combat.savedMembers          = combat.savedMembers || {}
         combat.savedMembers[slotIdx] = caster
         state.team[slotIdx] = {
@@ -2663,7 +2689,7 @@ function spawnSummon(caster, effect) {
             res:              { ...(mob.bst.res || {}) },
             finalDamagePct:   0,
             flatDamage:       0,
-            moves:            mob.moves || [],
+            moves:            resolveMonsterMoves(mob.moves),
             rarity:           mob.rarity  || 'commun',
             tier:             mob.tier    || 'normal',
             dropRate:         0,
@@ -3072,7 +3098,7 @@ function _spawnEnemyById(monsterId, statMult = 1) {
     const minLvl   = area.mobMinLevel || area.minLevel
     const maxLvl   = area.mobMaxLevel || area.maxLevel
     const mobLevel = randomInt(minLvl, maxLvl)
-    const scale    = 1 + (mobLevel - minLvl) * 0.05
+    const scale    = 1 + (mobLevel - minLvl) * _scaleStep(minLvl)
 
     if (!state.seenMonsters) state.seenMonsters = {}
     state.seenMonsters[monsterId] = true
@@ -3090,7 +3116,7 @@ function _spawnEnemyById(monsterId, statMult = 1) {
         res:            { ...mob.bst.res },
         finalDamagePct: 0,
         flatDamage:     0,
-        moves:          mob.moves || [],
+        moves:          resolveMonsterMoves(mob.moves),
         moveIndex:      0,
         rarity:         mob.rarity   || 'commun',
         tier:           mob.tier     || 'normal',
