@@ -779,6 +779,7 @@ function initGame() {
     refreshDailyPools()
     simulateOfflineProgress()
     startGameLoop()
+    updateGuildeUnlockBadge()
 
     // Sélecteur d'équipe préset
     const teamSel = document.getElementById('team-slot-selector')

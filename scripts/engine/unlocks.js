@@ -69,6 +69,7 @@ const CLASS_UNLOCK_CONDITIONS = {
 
 function checkClassUnlocks() {
     if (!state.unlockedClasses) state.unlockedClasses = []
+    if (!state.newlyUnlockedClasses) state.newlyUnlockedClasses = []
     let anyNew = false
     for (const [classId, condition] of Object.entries(CLASS_UNLOCK_CONDITIONS)) {
         if (state.unlockedClasses.includes(classId)) continue
@@ -76,6 +77,7 @@ function checkClassUnlocks() {
         try {
             if (condition(state)) {
                 state.unlockedClasses.push(classId)
+                state.newlyUnlockedClasses.push(classId)
                 showNotification(`Nouvelle classe débloquée : ${classes[classId].name} !`, 'info')
                 anyNew = true
             }
@@ -83,5 +85,8 @@ function checkClassUnlocks() {
             console.warn(`[unlocks] erreur condition ${classId}:`, e)
         }
     }
-    if (anyNew) saveGame()
+    if (anyNew) {
+        saveGame()
+        updateGuildeUnlockBadge()
+    }
 }

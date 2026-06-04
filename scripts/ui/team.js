@@ -218,7 +218,19 @@ function closeGuildePicker() {
     _guildeTargetSlot = -1
 }
 
+function updateGuildeUnlockBadge() {
+    const el = document.getElementById('menu-item-guilde')
+    if (!el) return
+    el.classList.toggle('menu-item-new-unlock', (state.newlyUnlockedClasses?.length ?? 0) > 0)
+}
+
 function showClassPreview(classId) {
+    if (state.newlyUnlockedClasses?.includes(classId)) {
+        state.newlyUnlockedClasses = state.newlyUnlockedClasses.filter(id => id !== classId)
+        saveGame()
+        updateGuildeUnlockBadge()
+        updateGuildeUI()
+    }
     const saved  = state.classEquip?.[classId]
     const level  = saved?.level || 1
     const member = state.team.find(m => m?.classId === classId)
@@ -241,7 +253,10 @@ function _fillGuildeList(list, onClickFn, showAll = false) {
 
         const cls  = classes[classId]
         const card = document.createElement('div')
-        card.className = 'guilde-class-card' + (!isUnlocked ? ' guilde-class-locked' : '')
+        const isNew = isUnlocked && state.newlyUnlockedClasses?.includes(classId)
+        card.className = 'guilde-class-card'
+            + (!isUnlocked ? ' guilde-class-locked' : '')
+            + (isNew ? ' guilde-class-new' : '')
 
         if (showAll) {
             // Guilde menu : clic → fiche ou page d'obtention

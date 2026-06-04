@@ -41,6 +41,7 @@ function saveGame() {
         classEquip:         state.classEquip,
         teamNames:          state.teamNames,
         unlockedClasses:    state.unlockedClasses || [],
+        newlyUnlockedClasses: state.newlyUnlockedClasses || [],
         totalKills:                state.totalKills || 0,
         defeatedBosses:            state.defeatedBosses || [],
         doubleCritAchieved:        state.doubleCritAchieved || false,
@@ -90,6 +91,7 @@ function loadGame() {
         if (data.classEquip)         state.classEquip         = data.classEquip
         if (data.teamNames)          state.teamNames          = data.teamNames
         if (data.unlockedClasses)    state.unlockedClasses    = data.unlockedClasses
+        if (data.newlyUnlockedClasses) state.newlyUnlockedClasses = data.newlyUnlockedClasses
         if (data.totalKills != null)                state.totalKills                = data.totalKills
         if (data.defeatedBosses)                    state.defeatedBosses            = data.defeatedBosses
         if (data.doubleCritAchieved)                state.doubleCritAchieved        = data.doubleCritAchieved

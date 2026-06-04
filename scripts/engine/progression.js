@@ -110,12 +110,20 @@ function giveXP(member, xpAmount) {
     // Déblocage progressif des classes de départ
     if (leveledUp && STARTER_CLASSES.includes(member.classId)) {
         if (!state.unlockedClasses) state.unlockedClasses = []
+        if (!state.newlyUnlockedClasses) state.newlyUnlockedClasses = []
         const before = state.unlockedClasses.length
-        if (member.level >= 10 && !state.unlockedClasses.includes('iop'))      state.unlockedClasses.push('iop')
-        if (member.level >= 15 && !state.unlockedClasses.includes('cra'))      state.unlockedClasses.push('cra')
-        if (member.level >= 25 && !state.unlockedClasses.includes('eniripsa')) state.unlockedClasses.push('eniripsa')
+        const _tryUnlock = id => {
+            if (!state.unlockedClasses.includes(id)) {
+                state.unlockedClasses.push(id)
+                state.newlyUnlockedClasses.push(id)
+            }
+        }
+        if (member.level >= 10) _tryUnlock('iop')
+        if (member.level >= 15) _tryUnlock('cra')
+        if (member.level >= 20) _tryUnlock('eniripsa')
         if (state.unlockedClasses.length > before) {
             showNotification('Nouvelles classes débloquées dans la Guilde !', 'info')
+            updateGuildeUnlockBadge()
         }
     }
 
