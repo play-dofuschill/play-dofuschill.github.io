@@ -737,6 +737,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     gap: 0.5rem;
     max-height: 75%;
     overflow-y: scroll;
+    touch-action: manipulation;
 }
 
 #tooltipTop {

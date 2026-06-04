@@ -389,6 +389,23 @@ function openTooltip(title, body) {
     bg.style.zIndex  = '300'
 }
 
+// Fermeture du tooltip via touch sur le fond — vérifie les coordonnées physiques
+// (event.target est peu fiable sur iOS avec overflow:scroll qui étend sa zone de capture)
+function _tooltipBgTouchEnd(e) {
+    const touch = e.changedTouches?.[0]
+    if (!touch) return
+    const inside = id => {
+        const el = document.getElementById(id)
+        if (!el) return false
+        const r = el.getBoundingClientRect()
+        return touch.clientX >= r.left && touch.clientX <= r.right &&
+               touch.clientY >= r.top  && touch.clientY <= r.bottom
+    }
+    if (inside('tooltipBox') || inside('tooltipClose')) return
+    e.preventDefault()
+    closeTooltip()
+}
+
 function closeTooltip() {
     tooltipStack.pop()
     if (tooltipStack.length > 0) {
