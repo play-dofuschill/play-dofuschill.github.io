@@ -142,6 +142,16 @@ const familiars = [
             { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 }
         ]
     },
+    {
+        id:       'familierkardorim',
+        name:     "Kardorib Apprivoisé",
+        image:    'img/monstres/sprites/kardorib.png',
+        rarity:   'peu_commun',
+        monsters: ['kardorim'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 2, max: 15 }
+        ]
+    },
     // ─── PIOU ─────────────────────────────────────────────────────────────
     {
         id:       'familierpiouteviolette',
@@ -278,7 +288,7 @@ const familiars = [
         rarity:   'peu_commun',
         monsters: ['bouftou', 'bouftonBlanc', 'bouftonNoir', 'bouftouNoir', 'bouftouChefDeGuerre'],
         bonuses: [
-            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 15 }
         ]
     },
     {

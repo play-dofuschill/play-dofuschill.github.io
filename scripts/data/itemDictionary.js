@@ -1214,16 +1214,25 @@ item.Dofus_Argente = {
     type: 'equipment', slot: 'accessoire', rarity: 'legendaire', levelMax: 20,
     stats:  [{ stat: 'atk', value: 20 }, { stat: 'maxHp', value: 50 }],
     effects: [{ every: 4, after: 8, type:'heal%maxHp', heal:5, target:'self' }],
-    description: "Créé par Rathrosk le dragon gris, cet œuf est une énigme. Bien que son pouvoir n'égale pas celui d'un Dofus Primordial, il semble plus ancien que le temps... Vous feriez bien de le garder précieusement. Après tout, seules les Nordes et le dieu Xélor savent de quoi l'avenir sera fait."
+    description: "Pondu par Rathrosk le dragon gris, cet œuf est une énigme. Bien que son pouvoir n'égale pas celui d'un Dofus Primordial, il semble plus ancien que le temps... Vous feriez bien de le garder précieusement. Après tout, seules les Nordes et le dieu Xélor savent de quoi l'avenir sera fait."
 }
 item.Dofus_Ocre = {
     id: 'Dofus_Ocre',
     name: 'Dofus Ocre',
     image: 'img/items/objets_bonus/Dofus_Ocre.png',
     type: 'equipment', slot: 'accessoire', rarity: 'legendaire', levelMax: 20,
-    stats: [{ stat: 'spd', value: 50 }, { stat: 'finalDamagePct', value: 10 }],
+    stats: [{ stat: 'spd', value: 20 }, { stat: 'finalDamagePct', value: 10 }],
     effects: [{ on_effect:{ source:'enemy', type:'dot' }, reaction:'cancel' }],
-    description: "Créé par Terrakourial, le Dragon de la Terre, puis avalé par le Kralamour Géant, ce Dofus concentre de grands pouvoirs à ne pas mettre entre toutes les mains... Ni entre tous les pieds d'ailleurs."
+    description: "Pondu par Terrakourial, le Dragon de la Terre, puis avalé par le Kralamour Géant, ce Dofus concentre de grands pouvoirs à ne pas mettre entre toutes les mains... Ni entre tous les pieds d'ailleurs."
+}
+item.Dofus_Pourpre = {
+    id: 'Dofus_Pourpre',
+    name: 'Dofus Pourpre',
+    image: 'img/items/objets_bonus/Dofus_Pourpre.png',
+    type: 'equipment', slot: 'accessoire', rarity: 'legendaire', levelMax: 20,
+    stats: [{ stat: 'atk', value: 50 }, { stat: 'critDamagePct', value: 20 }],
+    effects: [{ on_effect: { source: 'enemy', type: ['heal', 'heal%maxHp'] }, reaction: 'heal_to_damage', element: 'feu', rawDamage: { min: 5, max: 15 } }],
+    description: "Pondu par Ignemikhal, Dragon Élémentaire du Feu, par amour pour la poupée divine Ladysally. Cet œuf incandescent renferme une puissance ardente sans égale... seuls les plus courageux méritent de le porter."
 }
 
 

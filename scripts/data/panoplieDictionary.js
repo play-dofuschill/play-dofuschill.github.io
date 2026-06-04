@@ -23,6 +23,7 @@ const panoplies = {
     aventurier: {
         name: 'Panoplie Aventurier',
         pieces: ['bottesAventurier','capeAventurier','chapeauAventurier','anneauAventurier','ceintureAventurier','amuletteAventurier'],
+        familiar: 'familierchacha',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 }]
         },
@@ -33,6 +34,7 @@ const panoplies = {
     kardorim: {
         name: 'Panoplie de Kardorim',
         pieces: ['capeKardorim','coiffeKardorim','anneauKardorim'],
+        familiar: 'familierkardorim',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 50 }]}
         }
@@ -40,6 +42,7 @@ const panoplies = {
     bouftou: {
         name: 'Panoplie Bouftou',
         pieces: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou'],
+        familiar: 'familierbouloute',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 30 }]
         },
@@ -59,6 +62,7 @@ const panoplies = {
     bouftouRoyal: {
         name: 'Panoplie du Bouftou Royal',
         pieces: ['cape_bouftou_royal','coiffe_bouftou_royal','bottes_bouftou_royal','anneau_bouftou_royal','amulette_bouftou_royal','ceinture_bouftou_royal','epee_bouftou_royal','bouclier_bouftou_royal'],
+        familiar: 'familierbouftouRoyal',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 40 },
                         { stat: 'atk', value: 20 }]
@@ -79,6 +83,7 @@ const panoplies = {
     paysan: {
         name: 'Panoplie du paysan',
         pieces: ['sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
+        familiar: 'familiermosk',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 10 }]
@@ -98,6 +103,7 @@ const panoplies = {
     mousse: {
         name: "Panoplie de Mob l'Eponge",
         pieces: ['cape_mousse','coiffe_mousse','bottes_mousse','anneau_mousse','amulette_mousse','ceinture_mousse','pelle_mousse','bouclier_mousse'],
+        familiar: 'familiersurime',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 }]
         },
@@ -119,7 +125,7 @@ const panoplies = {
     scarafeuille_blanc: {
         name: "Panoplie du scarafeuille blanc",
         pieces: ['cape_scarafeuille_blanc','coiffe_scarafeuille_blanc','anneau_scarafeuille_blanc','ceinture_scarafeuille_blanc'],
-        familiar: 'scarafeuilleBlanc',
+        familiar: 'familierscarador',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -133,7 +139,7 @@ const panoplies = {
     scarafeuille_vert: {
         name: "Panoplie du scarafeuille vert",
         pieces: ['cape_scarafeuille_vert','coiffe_scarafeuille_vert','anneau_scarafeuille_vert','ceinture_scarafeuille_vert'],
-        familiar: 'scarafeuilleVert',
+        familiar: 'familierscarador',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -147,7 +153,7 @@ const panoplies = {
     scarafeuille_bleu: {
         name: "Panoplie du scarafeuille bleu",
         pieces: ['cape_scarafeuille_bleu','coiffe_scarafeuille_bleu','anneau_scarafeuille_bleu','ceinture_scarafeuille_bleu'],
-        familiar: 'scarafeuilleBleu',
+        familiar: 'familierscarador',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -161,7 +167,7 @@ const panoplies = {
     scarafeuille_rouge: {
         name: "Panoplie du scarafeuille rouge",
         pieces: ['cape_scarafeuille_rouge','coiffe_scarafeuille_rouge','anneau_scarafeuille_rouge','ceinture_scarafeuille_rouge'],
-        familiar: 'scarafeuilleRouge',
+        familiar: 'familierscarador',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -175,7 +181,7 @@ const panoplies = {
     scarafeuille_noir: {
         name: "Panoplie du scarafeuille noir",
         pieces: ['cape_scarafeuille_noir','coiffe_scarafeuille_noir','anneau_scarafeuille_noir','ceinture_scarafeuille_noir'],
-        familiar: 'scarafeuilleNoir',
+        familiar: 'familierscarador',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 20 },
@@ -189,7 +195,7 @@ const panoplies = {
     scraraboss_doree: {
         name: "Panoplie du Scraraboss Dorée",
         pieces: ['cape_scaraboss_doree','coiffe_scaraboss_doree','bottes_scaraboss_doree','anneau_scaraboss_doree','amulette_scaraboss_doree','ceinture_scaraboss_doree','baguette_scaraboss_doree'],
-        familiar: 'scrarabossDoree',
+        familiar: 'familierscrarabossDoree',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -214,7 +220,7 @@ const panoplies = {
     kwak_vent: {
         name: "Panoplie du kwak de vent",
         pieces: ['cape_kwak_vent','coiffe_kwak_vent','anneau_kwak_vent','ceinture_kwak_vent','bottes_kwak_vent','amulette_kwak_vent','epee_kwak_vent'],
-        familiar: 'kwakVent',
+        familiar: 'familierphenix',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -234,7 +240,7 @@ const panoplies = {
     kwak_glace: {
         name: "Panoplie du kwak de glace",
         pieces: ['cape_kwak_glace','coiffe_kwak_glace','anneau_kwak_glace','ceinture_kwak_glace','bottes_kwak_glace','amulette_kwak_glace','epee_kwak_glace'],
-        familiar: 'kwakGlace',
+        familiar: 'familierphenix',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -254,7 +260,7 @@ const panoplies = {
     kwak_flamme: {
         name: "Panoplie du kwak de flamme",
         pieces: ['cape_kwak_flamme','coiffe_kwak_flamme','anneau_kwak_flamme','ceinture_kwak_flamme','bottes_kwak_flamme','amulette_kwak_flamme','epee_kwak_flamme'],
-        familiar: 'kwakFlamme',
+        familiar: 'familierphenix',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -274,7 +280,7 @@ const panoplies = {
     kwak_terre: {
         name: "Panoplie du kwak de terre",
         pieces: ['cape_kwak_terre','coiffe_kwak_terre','anneau_kwak_terre','ceinture_kwak_terre','bottes_kwak_terre','amulette_kwak_terre','epee_kwak_terre'],
-        familiar: 'kwakTerre',
+        familiar: 'familierphenix',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -294,7 +300,7 @@ const panoplies = {
     kwakwa: {
         name: "Panoplie du Kwakwa",
         pieces: ['kwakwanneau','kwakwalliance','kwakwaffe','kwakwalame'],
-        familiar: 'kwakwa',
+        familiar: 'familierkwakwa',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 40 },
                         { stat: 'atk', value: 50 },
@@ -316,6 +322,7 @@ const panoplies = {
     Homme_Ours: {
         name: "Panoplie de l'Homme Ours",
         pieces: ['cape_de_lHomme_Ours','coiffe_de_lHomme_Ours','bottes_de_lHomme_Ours','anneau_de_lHomme_Ours','amulette_de_lHomme_Ours','ceinture_de_lHomme_Ours','baton_de_lHomme_Ours'],
+        familiar: 'familierpykur',
         bonuses: {
             3: {stats: [{ stat: 'atk', value: 10 },
                         { stat: 'res.terre', value: 2 }, 
@@ -346,6 +353,7 @@ const panoplies = {
     Sanglier: {
         name: "Panoplie du Sanglier",
         pieces: ['bottes_du_sanglier','anneau_du_sanglier','ceinture_du_sanglier'],
+        familiar: 'familierpykur',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 30 }, 
                         { stat: 'critChance', value: 3 }, 
@@ -359,6 +367,7 @@ const panoplies = {
     Prespic: {
         name: "Panoplie du Prespic",
         pieces: ['cape_du_prespic','coiffe_du_prespic','anneau_du_prespic','ceinture_du_prespic','bouclier_du_prespic'],
+        familiar: 'familierpykur',
         bonuses: {
             2: {stats: [{ stat: 'flatDamage', value: 2 }, 
                         { stat: 'atk', value: 20 }]

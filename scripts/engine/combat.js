@@ -979,6 +979,7 @@ function _applyItemOnEffectTriggers(ctx) {
 
     for (const member of state.team) {
         if (!member || member.currentHp <= 0 || !member.equip) continue
+        if (combat && state.team.indexOf(member) !== combat.activeMemberIndex) continue
         for (const slotId in member.equip) {
             const itemId = member.equip[slotId]
             if (!itemId) continue
@@ -990,7 +991,10 @@ function _applyItemOnEffectTriggers(ctx) {
                 const trigger = eff.on_effect
                 if (trigger.source === 'enemy' && !isCasterEnemy) continue
                 if (trigger.source === 'ally'  &&  isCasterEnemy) continue
-                if (trigger.type && trigger.type !== effect.type)  continue
+                if (trigger.type) {
+                    const types = Array.isArray(trigger.type) ? trigger.type : [trigger.type]
+                    if (!types.includes(effect.type)) continue
+                }
 
                 const mName = member.name || classes[member.classId]?.name || '?'
                 if (eff.reaction === 'cancel') {
@@ -1003,6 +1007,17 @@ function _applyItemOnEffectTriggers(ctx) {
                         effect: eff, moveData: { name: itm.name }, moveId: itm.id,
                         fromItemPassive: true
                     })
+                } else if (eff.reaction === 'heal_to_damage') {
+                    const target = isCasterEnemy ? caster : (ctx.targetEnemy || combat?.enemy)
+                    if (!target || target.currentHp <= 0) continue
+                    const stats = getEffectiveStats(member) ?? member._stats
+                    executeEffect({
+                        caster: member, casterStats: stats, targetEnemy: target,
+                        effect: { type: 'damage', element: eff.element || 'neutre', damage: eff.rawDamage || { min: 1, max: 5 }, target: 'enemy' },
+                        moveData: { name: itm.name }, moveId: itm.id,
+                        fromItemPassive: true
+                    })
+                    cancelled = true
                 }
             }
         }

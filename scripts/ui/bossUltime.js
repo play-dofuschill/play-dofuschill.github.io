@@ -568,6 +568,10 @@ function showBoss_UltimeDragonSheet(dragonId) {
                 <span class="ms-stat-label">Kamas</span>
                 <span class="ms-stat-val" style="color:#ffd84d">+${dragon.reward.kamas.toLocaleString('fr-FR')}</span>
             </div>` : ''}
+            ${dragon.reward.item ? `<div class="ms-stat-row">
+                <span class="ms-stat-label">Item</span>
+                <span class="ms-stat-val">${item[dragon.reward.item]?.name || dragon.reward.item}</span>
+            </div>` : ''}
         </div>` : ''
 
     const body = `<div class="member-sheet es-sheet">
@@ -1034,7 +1038,12 @@ function renderBoss_UltimeVictory() {
     const turnPanel = document.getElementById('Boss_Ultime-turn-panel')
     if (turnPanel) { turnPanel.style.display = 'none'; turnPanel.innerHTML = '' }
 
-    const kamasBubble = dragon?.reward?.kamas
+    const kamasBubble = dragon?.reward?.item
+        ? `<div class="game-bubble" title="${item[dragon.reward.item]?.name || dragon.reward.item}">
+               <span class="bubble-level">+1</span>
+               <img src="${item[dragon.reward.item]?.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
+           </div>`
+        : dragon?.reward?.kamas
         ? `<div class="game-bubble kamas-bubble" title="${dragon.reward.kamas.toLocaleString('fr-FR')} kamas">
                <span class="bubble-level">+${dragon.reward.kamas.toLocaleString('fr-FR')}</span>
                <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'">
