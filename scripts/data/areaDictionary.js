@@ -19,11 +19,11 @@ areas.cimetiereincarnam = {
     icon: 'img/monstres/sprites/chaferDebutant.png',
     description: "Cimetière où reposent les âmes de nombreux aventuriers tombés au combat.",
     spawns: [
-        { id: 'chaferDebutant',  weight: 20 },
-        { id: 'chaferEclaireur', weight: 20 },
-        { id: 'chaferFurtif',    weight: 20 },
-        { id: 'chaferPiquier',   weight: 20 },
-        { id: 'sergentChafer',   weight: 20 }
+        { id: 'chaferDebutant',  weight: 22 },
+        { id: 'chaferEclaireur', weight: 22 },
+        { id: 'chaferFurtif',    weight: 22 },
+        { id: 'chaferPiquier',   weight: 22 },
+        { id: 'sergentChafer',   weight: 12 }
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
@@ -45,11 +45,11 @@ areas.champsAstrub = {
     icon: 'img/monstres/sprites/tournesolSauvage.png',
     description: "\"Mais d'où peuvent bien venir toutes ces mauvaises herbes !? On ne peut plus marcher nulle part ! Attendez… Cet épouvantail vient de bouger ?\"",
     spawns: [
-        { id: 'tournesolSauvage',     weight: 23 },
-        { id: 'roseDemoniaque',       weight: 23 },
-        { id: 'pissenliDiabolique',   weight: 23 },
-        { id: 'epouvanteur',          weight: 21 },
-        { id: 'gardienneChampetre',   weight: 10 }
+        { id: 'tournesolSauvage',     weight: 22 },
+        { id: 'roseDemoniaque',       weight: 22 },
+        { id: 'pissenliDiabolique',   weight: 22 },
+        { id: 'epouvanteur',          weight: 22 },
+        { id: 'gardienneChampetre',   weight: 12 }
     ],
     lootTable: [
         { itemId: 'pierreDame',       dropRate: 0.45 },
@@ -72,11 +72,11 @@ areas.plageAstrub = {
     icon: 'img/monstres/sprites/pichonBleu.png',
     description: "Besoin de vacances ? Cet endroit paradisiaque n’est peut-être pas la destination rêvée… Certains racontent que leurs enfants y auraient mystérieusement disparu.",
     spawns: [
-        { id: 'pichonOrange',        weight: 23 },
-        { id: 'pichonBleu',          weight: 23 },
-        { id: 'pichonBlanc',         weight: 23 },
-        { id: 'pichonVert',          weight: 21 },
-        { id: 'pichonKloune',        weight: 10 }
+        { id: 'pichonOrange',        weight: 22 },
+        { id: 'pichonBleu',          weight: 22 },
+        { id: 'pichonBlanc',         weight: 22 },
+        { id: 'pichonVert',          weight: 22 },
+        { id: 'pichonKloune',        weight: 12 }
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
@@ -100,11 +100,11 @@ areas.tainela = {
     icon: 'img/monstres/sprites/bouftou.png',
     description: "Respirez cet air pur, imprégné de l'odeur du cuir et de la laine… Aucun doute, vous voici à Tainela.",
     spawns: [
-        { id: 'bouftou',             weight: 23 },
-        { id: 'bouftonBlanc',        weight: 23 },
-        { id: 'bouftonNoir',         weight: 23 },
-        { id: 'bouftouNoir',         weight: 21 },
-        { id: 'bouftouChefDeGuerre', weight: 10 }
+        { id: 'bouftou',             weight: 22 },
+        { id: 'bouftonBlanc',        weight: 22 },
+        { id: 'bouftonNoir',         weight: 22 },
+        { id: 'bouftouNoir',         weight: 22 },
+        { id: 'bouftouChefDeGuerre', weight: 12 }
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
@@ -210,6 +210,478 @@ areas.Kwaks = {
         { itemId: 'cleDonjonKwakwa',       dropRate: 0.15, isKey: true }
     ]
 }
+// areas.blops = {
+//     id: 'blops',
+//     name: 'Lac des Blops',
+//     minLevel: 50, maxLevel: 70,
+//     mobMinLevel: 50, mobMaxLevel: 60,
+//     background: 'blop',
+//     icon: 'img/monstres/sprites/blopignon.png',
+//     description: "",
+//     spawns: [
+//         { id: 'blopCoco',     weight: 10 },
+//         { id: 'blopGriotte',  weight: 10 },
+//         { id: 'blopIndigo',   weight: 10 },
+//         { id: 'blopReinette', weight: 10 },
+//         { id: 'blopignon',    weight: 8 },
+//         { id: 'tronkoBlop',   weight: 8 },
+//         { id: 'gloutoBlop',   weight: 4 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',    dropRate: 0.45 },
+//         { itemId: 'cleDonjonBlop', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.plateauMantiscore = {
+//     id: 'plateauMantiscore',
+//     name: 'Plateau de la Mantiscore',
+//     minLevel: 60, maxLevel: 80,
+//     mobMinLevel: 60, mobMaxLevel: 70,
+//     background: 'desertMantiscore',
+//     icon: 'img/monstres/sprites/leolhyene.png',
+//     description: "",
+//     spawns: [
+//         { id: 'ouroboulos',   weight: 22 },
+//         { id: 'scordionBleu', weight: 22 },
+//         { id: 'fennex',       weight: 22 },
+//         { id: 'leolhyene',    weight: 22 },
+//         { id: 'boulepique',   weight: 12 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',          dropRate: 0.45 },
+//         { itemId: 'cleDonjonMantiscore', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.nidsDragaeufs = {
+//     id: 'nidsDragaeufs',
+//     name: 'Nids des Dragaeufs',
+//     minLevel: 70, maxLevel: 90,
+//     mobMinLevel: 70, mobMaxLevel: 80,
+//     background: 'montagneDragoeuf',
+//     icon: 'img/monstres/sprites/dragoeufArdoise.png',
+//     description: "",
+//     spawns: [
+//         { id: 'dragoeufArdoise',  weight: 22 },
+//         { id: 'dragoeufArgile',   weight: 22 },
+//         { id: 'dragoeufCalcaire', weight: 22 },
+//         { id: 'dragoeufCharbon',  weight: 22 },
+//         { id: 'dragoeufAlbatre',  weight: 12 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',          dropRate: 0.45 },
+//         { itemId: 'cleDonjonDraegnerys', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.foretAbraknydes = {
+//     id: 'foretAbraknydes',
+//     name: 'Forêt des Abraknydes',
+//     minLevel: 80, maxLevel: 100,
+//     mobMinLevel: 80, mobMaxLevel: 90,
+//     background: 'foretAbraknyde',
+//     icon: 'img/monstres/sprites/abrakneSombre.png',
+//     description: "",
+//     spawns: [
+//         { id: 'abrakneSombre',      weight: 20 },
+//         { id: 'abraknydeSombre',    weight: 20 },
+//         { id: 'araknotron',         weight: 20 },
+//         { id: 'abraknydeVenerable', weight: 20 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',                  dropRate: 0.45 },
+//         { itemId: 'cleDonjonAbraknydeAncestral', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.fermeDragonCochon = {
+//     id: 'fermeDragonCochon',
+//     name: 'Domaine du Dragon Cochon',
+//     minLevel: 90, maxLevel: 110,
+//     mobMinLevel: 90, mobMaxLevel: 100,
+//     background: 'fermeDragonCochon',
+//     icon: 'img/monstres/sprites/cochonDeFarle.png',
+//     description: "",
+//     spawns: [
+//         { id: 'cochonDeFarle', weight: 20 },
+//         { id: 'donDorgan',     weight: 20 },
+//         { id: 'donDussAng',    weight: 20 },
+//         { id: 'porsalu',       weight: 20 },
+//         { id: 'gorgouille',    weight: 4 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',            dropRate: 0.45 },
+//         { itemId: 'cleDonjonDragonCochon', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.landesMeulou = {
+//     id: 'landesMeulou',
+//     name: 'Landes du Meulou',
+//     minLevel: 100, maxLevel: 120,
+//     mobMinLevel: 100, mobMaxLevel: 110,
+//     background: 'landesMeulou',
+//     icon: 'img/monstres/sprites/mulou.png',
+//     description: "",
+//     spawns: [
+//         { id: 'mulou',      weight: 22 },
+//         { id: 'cocholou',   weight: 22 },
+//         { id: 'mulounoke',  weight: 22 },
+//         { id: 'mergranlou', weight: 22 },
+//         { id: 'muloubard',  weight: 12 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',      dropRate: 0.45 },
+//         { itemId: 'cleDonjonMeulou', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.canyonsRatNoir = {
+//     id: 'canyonsRatNoir',
+//     name: 'Canyons du Rat Noir',
+//     minLevel: 100, maxLevel: 120,
+//     mobMinLevel: 100, mobMaxLevel: 110,
+//     background: 'canyonsRatNoir',
+//     icon: 'img/monstres/sprites/ratLi.png',
+//     description: "",
+//     spawns: [
+//         { id: 'rateAtinee',  weight: 22 },
+//         { id: 'rateIboisee', weight: 22 },
+//         { id: 'ratLi',       weight: 22 },
+//         { id: 'ratPlapla',   weight: 22 },
+//         { id: 'ratSio',      weight: 12 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',       dropRate: 0.45 },
+//         { itemId: 'cleDonjonRatNoir', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// areas.canyonsRatBlanc = {
+//     id: 'canyonsRatBlanc',
+//     name: 'Canyons du Rat Blanc',
+//     minLevel: 100, maxLevel: 120,
+//     mobMinLevel: 100, mobMaxLevel: 110,
+//     background: 'canyonsRatBlanc',
+//     icon: 'img/monstres/sprites/chikaRat.png',
+//     description: "",
+//     spawns: [
+//         { id: 'sceleeRate', weight: 22 },
+//         { id: 'chikaRat',   weight: 22 },
+//         { id: 'chakRat',    weight: 22 },
+//         { id: 'aloeveRat',  weight: 22 },
+//         { id: 'capoeiRat',  weight: 12 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',        dropRate: 0.45 },
+//         { itemId: 'cleDonjonRatBlanc', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// BOUFMOUTH — Zone niveau 110–130
+// areas.plainesBoufmouth = {
+//     id: 'plainesBoufmouth',
+//     name: 'Plaines des Boufmouths',
+//     minLevel: 110, maxLevel: 130,
+//     mobMinLevel: 110, mobMaxLevel: 120,
+//     background: 'plainesBoufmouth',
+//     icon: 'img/monstres/sprites/boufmouth.png',
+//     description: "",
+//     spawns: [
+//         { id: 'boufmouth',           weight: 32 },
+//         { id: 'boufmouthLegendaire', weight: 32 },
+//         { id: 'bouftonMouth',        weight: 28 },
+//         { id: 'boufmouthDeGuerre',   weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',              dropRate: 0.45 },
+//         { itemId: 'cleDonjonBoufmouthRoyal', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// MANSOT — Zone niveau 110–130
+// areas.galleriesMansot = {
+//     id: 'galleriesMansot',
+//     name: 'Galeries des Mansots',
+//     minLevel: 110, maxLevel: 130,
+//     mobMinLevel: 110, mobMaxLevel: 120,
+//     background: 'galleriesMansot',
+//     icon: 'img/monstres/sprites/fuMansot.png',
+//     description: "",
+//     spawns: [
+//         { id: 'fuMansot',  weight: 24 },
+//         { id: 'timansot',  weight: 24 },
+//         { id: 'shamansot', weight: 24 },
+//         { id: 'mamansot',  weight: 20 },
+//         { id: 'mansobese', weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',           dropRate: 0.45 },
+//         { itemId: 'cleDonjonMansotRoyal', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// TOFU ROYAL — Zone niveau 120–140
+// areas.foretTofuRoyal = {
+//     id: 'foretTofuRoyal',
+//     name: 'Forêt des Tofus',
+//     minLevel: 120, maxLevel: 140,
+//     mobMinLevel: 120, mobMaxLevel: 130,
+//     background: 'foretTofuRoyal',
+//     icon: 'img/monstres/sprites/tofubine.png',
+//     description: "",
+//     spawns: [
+//         { id: 'tofubine',        weight: 24 },
+//         { id: 'tofuDodu',        weight: 24 },
+//         { id: 'tofutoflamme',    weight: 24 },
+//         { id: 'tofuzmo',         weight: 20 },
+//         { id: 'vilainPetitTofu', weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',         dropRate: 0.45 },
+//         { itemId: 'cleDonjonTofuRoyal', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// HELL MINA — Zone niveau 130–150
+// areas.foretHellMina = {
+//     id: 'foretHellMina',
+//     name: 'Forêt de Hell Mina',
+//     minLevel: 130, maxLevel: 150,
+//     mobMinLevel: 130, mobMaxLevel: 140,
+//     background: 'foretHellMina',
+//     icon: 'img/monstres/sprites/malalfa.png',
+//     description: "",
+//     spawns: [
+//         { id: 'malalfa', weight: 24 },
+//         { id: 'malzerb', weight: 24 },
+//         { id: 'maltrio', weight: 24 },
+//         { id: 'malepik', weight: 20 },
+//         { id: 'malbois', weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',        dropRate: 0.45 },
+//         { itemId: 'cleDonjonHellMina', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// TRUCHE — Zone niveau 130–150
+// areas.montagneTruche = {
+//     id: 'montagneTruche',
+//     name: 'Monts des Truches',
+//     minLevel: 130, maxLevel: 150,
+//     mobMinLevel: 130, mobMaxLevel: 140,
+//     background: 'montagneTruche',
+//     icon: 'img/monstres/sprites/gruche.png',
+//     description: "",
+//     spawns: [
+//         { id: 'gruche',      weight: 24 },
+//         { id: 'truchtine',   weight: 24 },
+//         { id: 'truchon',     weight: 24 },
+//         { id: 'truchideur',  weight: 20 },
+//         { id: 'truchemuche', weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',           dropRate: 0.45 },
+//         { itemId: 'cleDonjonHauteTruche', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// PHOSSILE — Zone niveau 140–160
+// areas.grottesPhossiles = {
+//     id: 'grottesPhossiles',
+//     name: 'Grottes des Phossiles',
+//     minLevel: 140, maxLevel: 160,
+//     mobMinLevel: 140, mobMaxLevel: 150,
+//     background: 'grottesPhossiles',
+//     icon: 'img/monstres/sprites/perePhorreur.png',
+//     description: "",
+//     spawns: [
+//         { id: 'perePhorreur',  weight: 24 },
+//         { id: 'phorreveur',    weight: 24 },
+//         { id: 'phozami',       weight: 24 },
+//         { id: 'metaphorreur',  weight: 20 },
+//         { id: 'mereVeilleuse', weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',        dropRate: 0.45 },
+//         { itemId: 'cleDonjonPhossile', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// CHENE MOU — Zone niveau 140–160
+// areas.foretCheneMou = {
+//     id: 'foretCheneMou',
+//     name: 'Forêt du Chêne Mou',
+//     minLevel: 140, maxLevel: 160,
+//     mobMinLevel: 140, mobMaxLevel: 150,
+//     background: 'foretCheneMou',
+//     icon: 'img/monstres/sprites/abrakneSombreIrascible.png',
+//     description: "",
+//     spawns: [
+//         { id: 'abrakneSombreIrascible',   weight: 25 },
+//         { id: 'abraknydeSombreIrascible', weight: 25 },
+//         { id: 'araknotronIrascible',      weight: 25 },
+//         { id: 'brancheInvocatrice',       weight: 13 },
+//         { id: 'brancheSoignante',         weight: 12 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',         dropRate: 0.45 },
+//         { itemId: 'cleDonjonCheneMou',  dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// MINOTOT — Zone niveau 150–170
+// areas.labyrintheMinotots = {
+//     id: 'labyrintheMinotots',
+//     name: 'Labyrinthe des Minotots',
+//     minLevel: 150, maxLevel: 170,
+//     mobMinLevel: 150, mobMaxLevel: 160,
+//     background: 'labyrintheMinotots',
+//     icon: 'img/monstres/sprites/minoskito.png',
+//     description: "",
+//     spawns: [
+//         { id: 'gamino',      weight: 23 },
+//         { id: 'scaratos',    weight: 23 },
+//         { id: 'serpiplume',  weight: 23 },
+//         { id: 'minoskito',   weight: 21 },
+//         { id: 'deminoboule', weight: 5 },
+//         { id: 'mominotor',   weight: 5 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',        dropRate: 0.45 },
+//         { itemId: 'cleDonjonMinotot',  dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// OBSIDIANTRE — Zone niveau 150–170
+// areas.volcansObsidiantre = {
+//     id: 'volcansObsidiantre',
+//     name: "Volcans de l'Obsidiantre",
+//     minLevel: 150, maxLevel: 170,
+//     mobMinLevel: 150, mobMaxLevel: 160,
+//     background: 'volcansObsidiantre',
+//     icon: 'img/monstres/sprites/solfatare.png',
+//     description: "",
+//     spawns: [
+//         { id: 'solfatare',   weight: 24 },
+//         { id: 'atomystique', weight: 24 },
+//         { id: 'crapeur',     weight: 24 },
+//         { id: 'fumrirolle',  weight: 24 },
+//         { id: 'mofette',     weight: 4 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',           dropRate: 0.45 },
+//         { itemId: 'cleDonjonObsidiantre', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// TENGU GIVREFOUX — Zone niveau 160–180
+// areas.sommetsTenguGivrefoux = {
+//     id: 'sommetsTenguGivrefoux',
+//     name: 'Sommets des Tengus Givrefoux',
+//     minLevel: 160, maxLevel: 180,
+//     mobMinLevel: 160, mobMaxLevel: 170,
+//     background: 'sommetsTenguGivrefoux',
+//     icon: 'img/monstres/sprites/yokaiGivrefoux.png',
+//     description: "",
+//     spawns: [
+//         { id: 'yokaiGivrefoux', weight: 24 },
+//         { id: 'yomiGivrefoux',  weight: 24 },
+//         { id: 'soryoGivrefoux', weight: 24 },
+//         { id: 'mahoGivrefoux',  weight: 20 },
+//         { id: 'kamiGivrefoux',  weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',               dropRate: 0.45 },
+//         { itemId: 'cleDonjonTenguGivrefoux',  dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// OUGAH — Zone niveau 170–190
+// areas.jungleOugah = {
+//     id: 'jungleOugah',
+//     name: "Jungle de l'Ougah",
+//     minLevel: 170, maxLevel: 190,
+//     mobMinLevel: 170, mobMaxLevel: 180,
+//     background: 'jungleOugah',
+//     icon: 'img/monstres/sprites/champaknyde.png',
+//     description: "",
+//     spawns: [
+//         { id: 'tromperelle', weight: 18 },
+//         { id: 'champaknyde', weight: 17 },
+//         { id: 'champbis',    weight: 17 },
+//         { id: 'champodonte', weight: 17 },
+//         { id: 'champAGnon',  weight: 16 },
+//         { id: 'champmane',   weight: 15 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',       dropRate: 0.45 },
+//         { itemId: 'cleDonjonOugah',   dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// KOLOSSO — Zone niveau 170–190
+// areas.plainesKolosso = {
+//     id: 'plainesKolosso',
+//     name: 'Plaines du Kolosso',
+//     minLevel: 170, maxLevel: 190,
+//     mobMinLevel: 170, mobMaxLevel: 180,
+//     background: 'plainesKolosso',
+//     icon: 'img/monstres/sprites/croleur.png',
+//     description: "",
+//     spawns: [
+//         { id: 'croleur',  weight: 23 },
+//         { id: 'blerauve', weight: 22 },
+//         { id: 'blerom',   weight: 22 },
+//         { id: 'wolvero',  weight: 22 },
+//         { id: 'fleuro',   weight: 6 },
+//         { id: 'blerice',  weight: 5 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',        dropRate: 0.45 },
+//         { itemId: 'cleDonjonKolosso',  dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// GLOURCELESTE — Zone niveau 180–200
+// areas.cotesGlourceleste = {
+//     id: 'cotesGlourceleste',
+//     name: 'Côtes du Gloucéleste',
+//     minLevel: 180, maxLevel: 200,
+//     mobMinLevel: 180, mobMaxLevel: 190,
+//     background: 'cotesGlourceleste',
+//     icon: 'img/monstres/sprites/glouragan.png',
+//     description: "",
+//     spawns: [
+//         { id: 'glouragan',   weight: 20 },
+//         { id: 'aperiglours', weight: 20 },
+//         { id: 'boulglours',  weight: 20 },
+//         { id: 'gloursaya',   weight: 20 },
+//         { id: 'meliglours',  weight: 15 },
+//         { id: 'glourmand',   weight: 5 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',            dropRate: 0.45 },
+//         { itemId: 'cleDonjonGlourceleste', dropRate: 0.15, isKey: true }
+//     ]
+// }
+// ─────────────────────────────────────────────────────────────────
+// HAREBOURG — Zone niveau 200+
+// areas.domaineHarebourg = {
+//     id: 'domaineHarebourg',
+//     name: 'Domaine de Harebourg',
+//     minLevel: 200, maxLevel: 230,
+//     mobMinLevel: 200, mobMaxLevel: 215,
+//     background: 'chateauHarebourg',
+//     icon: 'img/monstres/sprites/sinistrofu.png',
+//     description: "",
+//     spawns: [
+//         { id: 'sinistrofu',  weight: 24 },
+//         { id: 'cycloide',    weight: 24 },
+//         { id: 'granduk',     weight: 24 },
+//         { id: 'nocturlable', weight: 20 },
+//         { id: 'strigide',    weight: 8 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDame',         dropRate: 0.45 },
+//         { itemId: 'cleDonjonHarebourg', dropRate: 0.15, isKey: true }
+//     ]
+// }
 // #endregion
 
 // #region DONJONS ────────────────────────────────────────────────────────────────
@@ -293,7 +765,7 @@ areas.donjonBouftou = {
         { itemId: 'cape_bouftou_royal',     dropRate: 0.01 },
         { itemId: 'coiffe_bouftou_royal',   dropRate: 0.01 },
         { itemId: 'bottes_bouftou_royal',   dropRate: 0.02 },
-        { itemId: 'marteau_bouftou_royal',  dropRate: 0.02 },
+        { itemId: 'epee_bouftou_royal',     dropRate: 0.02 },
         { itemId: 'anneau_bouftou_royal',   dropRate: 0.02 },
         { itemId: 'amulette_bouftou_royal', dropRate: 0.02 },
         { itemId: 'ceinture_bouftou_royal', dropRate: 0.02 },
@@ -341,6 +813,399 @@ areas.donjonKwakwa = {
         { itemId: 'kwakwalame',        dropRate: 0.02 }
     ]
 }
+
+// ═══════════════════════════════════════════════════════
+// DONJON BLOP
+// areas.donjonBlop = {
+//     id: 'donjonBlop',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonBlop',
+//     name: 'Le Royaume des Blops Royaux',
+//     minLevel: 65, maxLevel: 65,
+//     mobMinLevel: 65, mobMaxLevel: 65,
+//     background: 'blop',
+//     icon: 'img/monstres/sprites/blopCocoRoyal.png',
+//     description: "",
+//     bossMode: 'any',   // 1 boss aléatoire parmi 4, battre l'un valide le donjon
+//     spawns: [
+//         { id: 'blopCocoRoyal',     weight: 25 },
+//         { id: 'blopGriotteRoyal',  weight: 25 },
+//         { id: 'blopIndigoRoyal',   weight: 25 },
+//         { id: 'blopReinetteRoyal', weight: 25 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON MANTISCORE
+// areas.donjonMantiscore = {
+//     id: 'donjonMantiscore',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonMantiscore',
+//     name: "L'Antre de la Mantiscore",
+//     minLevel: 75, maxLevel: 75,
+//     mobMinLevel: 75, mobMaxLevel: 75,
+//     background: 'desertMantiscore',
+//     icon: 'img/monstres/sprites/mantiscore.png',
+//     description: "",
+//     spawns: [{ id: 'mantiscore', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON DRAEGNERYS
+// areas.donjonDraegnerys = {
+//     id: 'donjonDraegnerys',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonDraegnerys',
+//     name: 'Le Repaire du Draegnerys',
+//     minLevel: 85, maxLevel: 85,
+//     mobMinLevel: 85, mobMaxLevel: 85,
+//     background: 'montagneDragoeuf',
+//     icon: 'img/monstres/sprites/draegnerys.png',
+//     description: "",
+//     spawns: [{ id: 'draegnerys', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON ABRAKNYDE ANCESTRAL
+// areas.donjonAbraknydeAncestral = {
+//     id: 'donjonAbraknydeAncestral',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonAbraknydeAncestral',
+//     name: "Le Temple de l'Abraknyde Ancestral",
+//     minLevel: 95, maxLevel: 95,
+//     mobMinLevel: 95, mobMaxLevel: 95,
+//     background: 'foretAbraknyde',
+//     icon: 'img/monstres/sprites/abraknydeAncestral.png',
+//     description: "",
+//     spawns: [{ id: 'abraknydeAncestral', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON DRAGON COCHON
+// areas.donjonDragonCochon = {
+//     id: 'donjonDragonCochon',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonDragonCochon',
+//     name: 'La Ferme du Dragon Cochon',
+//     minLevel: 105, maxLevel: 105,
+//     mobMinLevel: 105, mobMaxLevel: 105,
+//     background: 'fermeDragonCochon',
+//     icon: 'img/monstres/sprites/dragonCochon.png',
+//     description: "",
+//     spawns: [{ id: 'dragonCochon', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON MEULOU
+// areas.donjonMeulou = {
+//     id: 'donjonMeulou',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonMeulou',
+//     name: 'Le Moulin du Meulou',
+//     minLevel: 115, maxLevel: 115,
+//     mobMinLevel: 115, mobMaxLevel: 115,
+//     background: 'landesMeulou',
+//     icon: 'img/monstres/sprites/meulou.png',
+//     description: "",
+//     spawns: [{ id: 'meulou', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON RAT NOIR
+// areas.donjonRatNoir = {
+//     id: 'donjonRatNoir',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonRatNoir',
+//     name: 'Le Terrier du Rat Noir',
+//     minLevel: 115, maxLevel: 115,
+//     mobMinLevel: 115, mobMaxLevel: 115,
+//     background: 'canyonsRatNoir',
+//     icon: 'img/monstres/sprites/ratNoir.png',
+//     description: "",
+//     spawns: [{ id: 'ratNoir', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON RAT BLANC
+// areas.donjonRatBlanc = {
+//     id: 'donjonRatBlanc',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonRatBlanc',
+//     name: 'Le Sanctuaire du Rat Blanc',
+//     minLevel: 115, maxLevel: 115,
+//     mobMinLevel: 115, mobMaxLevel: 115,
+//     background: 'canyonsRatBlanc',
+//     icon: 'img/monstres/sprites/ratBlanc.png',
+//     description: "",
+//     spawns: [{ id: 'ratBlanc', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON BOUFMOUTH ROYAL
+// areas.donjonBoufmouthRoyal = {
+//     id: 'donjonBoufmouthRoyal',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonBoufmouthRoyal',
+//     name: 'La Fosse du Boufmouth Royal',
+//     minLevel: 125, maxLevel: 125,
+//     mobMinLevel: 125, mobMaxLevel: 125,
+//     background: 'plainesBoufmouth',
+//     icon: 'img/monstres/sprites/boufmouthRoyal.png',
+//     description: "",
+//     spawns: [{ id: 'boufmouthRoyal', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON MANSOT ROYAL
+// areas.donjonMansotRoyal = {
+//     id: 'donjonMansotRoyal',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonMansotRoyal',
+//     name: 'La Mine du Mansot Royal',
+//     minLevel: 125, maxLevel: 125,
+//     mobMinLevel: 125, mobMaxLevel: 125,
+//     background: 'galleriesMansot',
+//     icon: 'img/monstres/sprites/mansotRoyal.png',
+//     description: "",
+//     spawns: [{ id: 'mansotRoyal', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON TOFU ROYAL
+// areas.donjonTofuRoyal = {
+//     id: 'donjonTofuRoyal',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonTofuRoyal',
+//     name: "L'Arbre du Tofu Royal",
+//     minLevel: 135, maxLevel: 135,
+//     mobMinLevel: 135, mobMaxLevel: 135,
+//     background: 'foretTofuRoyal',
+//     icon: 'img/monstres/sprites/tofuRoyal.png',
+//     description: "",
+//     spawns: [{ id: 'tofuRoyal', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON HELL MINA
+// areas.donjonHellMina = {
+//     id: 'donjonHellMina',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonHellMina',
+//     name: 'Les Fourrés de Hell Mina',
+//     minLevel: 145, maxLevel: 145,
+//     mobMinLevel: 145, mobMaxLevel: 145,
+//     background: 'foretHellMina',
+//     icon: 'img/monstres/sprites/hellMina.png',
+//     description: "",
+//     spawns: [{ id: 'hellMina', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON TRUCHE
+// areas.donjonHauteTruche = {
+//     id: 'donjonHauteTruche',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonHauteTruche',
+//     name: 'Le Sommet de la Haute Truche',
+//     minLevel: 145, maxLevel: 145,
+//     mobMinLevel: 145, mobMaxLevel: 145,
+//     background: 'montagneTruche',
+//     icon: 'img/monstres/sprites/hauteTruche.png',
+//     description: "",
+//     spawns: [{ id: 'hauteTruche', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON PHOSSILE
+// areas.donjonPhossile = {
+//     id: 'donjonPhossile',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonPhossile',
+//     name: 'La Crypte du Phossile',
+//     minLevel: 155, maxLevel: 155,
+//     mobMinLevel: 155, mobMaxLevel: 155,
+//     background: 'grottesPhossiles',
+//     icon: 'img/monstres/sprites/phossile.png',
+//     description: "",
+//     spawns: [{ id: 'phossile', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON CHENE MOU
+// areas.donjonCheneMou = {
+//     id: 'donjonCheneMou',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonCheneMou',
+//     name: 'Le Cœur du Chêne Mou',
+//     minLevel: 155, maxLevel: 155,
+//     mobMinLevel: 155, mobMaxLevel: 155,
+//     background: 'foretCheneMou',
+//     icon: 'img/monstres/sprites/cheneMou.png',
+//     description: "",
+//     spawns: [{ id: 'cheneMou', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON MINOTOT / MINOTOROR
+// areas.donjonMinotot = {
+//     id: 'donjonMinotot',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonMinotot',
+//     name: 'Le Dédale des Minotors',
+//     minLevel: 165, maxLevel: 165,
+//     mobMinLevel: 165, mobMaxLevel: 165,
+//     background: 'labyrintheMinotots',
+//     icon: 'img/monstres/sprites/minotot.png',
+//     description: "",
+//     bossMode: 'sequential',   // les 2 boss apparaissent l'un après l'autre (ordre aléatoire), tous deux requis
+//     spawns: [
+//         { id: 'minotot',   weight: 50 },
+//         { id: 'minotoror', weight: 50 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON OBSIDIANTRE
+// areas.donjonObsidiantre = {
+//     id: 'donjonObsidiantre',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonObsidiantre',
+//     name: "Le Creuset de l'Obsidiantre",
+//     minLevel: 165, maxLevel: 165,
+//     mobMinLevel: 165, mobMaxLevel: 165,
+//     background: 'volcansObsidiantre',
+//     icon: 'img/monstres/sprites/obsidiantre.png',
+//     description: "",
+//     spawns: [{ id: 'obsidiantre', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON TENGU GIVREFOUX
+// areas.donjonTenguGivrefoux = {
+//     id: 'donjonTenguGivrefoux',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonTenguGivrefoux',
+//     name: 'Le Palais du Tengu Givrefoux',
+//     minLevel: 175, maxLevel: 175,
+//     mobMinLevel: 175, mobMaxLevel: 175,
+//     background: 'sommetsTenguGivrefoux',
+//     icon: 'img/monstres/sprites/tenguGivrefoux.png',
+//     description: "",
+//     bossMode: 'sequential',   // Fuji puis Tengu (ou l'inverse), tous deux requis
+//     spawns: [
+//         { id: 'fujiGivrefoux',  weight: 50 },
+//         { id: 'tenguGivrefoux', weight: 50 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON OUGAH
+// areas.donjonOugah = {
+//     id: 'donjonOugah',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonOugah',
+//     name: "La Caverne de l'Ougah",
+//     minLevel: 185, maxLevel: 185,
+//     mobMinLevel: 185, mobMaxLevel: 185,
+//     background: 'jungleOugah',
+//     icon: 'img/monstres/sprites/ougah.png',
+//     description: "",
+//     spawns: [{ id: 'ougah', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON KOLOSSO / PROFESSEUR XA
+// areas.donjonKolosso = {
+//     id: 'donjonKolosso',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonKolosso',
+//     name: 'La Salle du Kolosso',
+//     minLevel: 185, maxLevel: 185,
+//     mobMinLevel: 185, mobMaxLevel: 185,
+//     background: 'plainesKolosso',
+//     icon: 'img/monstres/sprites/kolosso.png',
+//     description: "",
+//     bossMode: 'sequential',   // Kolosso puis Prof. Xa (ou l'inverse), tous deux requis
+//     spawns: [
+//         { id: 'professeurXa', weight: 50 },
+//         { id: 'kolosso',      weight: 50 }
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON GLOURCELESTE
+// areas.donjonGlourceleste = {
+//     id: 'donjonGlourceleste',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonGlourceleste',
+//     name: "L'Abri du Gloucéleste",
+//     minLevel: 195, maxLevel: 195,
+//     mobMinLevel: 195, mobMaxLevel: 195,
+//     background: 'cotesGlourceleste',
+//     icon: 'img/monstres/sprites/glouceleste.png',
+//     description: "",
+//     spawns: [{ id: 'glourceleste', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
+// ═══════════════════════════════════════════════════════
+// DONJON HAREBOURG
+// areas.donjonHarebourg = {
+//     id: 'donjonHarebourg',
+//     type: 'dungeon',
+//     keyId: 'cleDonjonHarebourg',
+//     name: 'Le Château Harebourg',
+//     minLevel: 210, maxLevel: 210,
+//     mobMinLevel: 210, mobMaxLevel: 210,
+//     background: 'chateauHarebourg',
+//     icon: 'img/monstres/sprites/comteHarebourg.png',
+//     description: "",
+//     spawns: [{ id: 'comteHarebourg', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
+//     ]
+// }
 // #endregion
 
 // #region EVENTS ─────────────────────────────────────────────────────────────

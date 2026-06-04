@@ -81,22 +81,36 @@ function updateZoneUI() {
     if (zoneTab === 'wild') {
         const pool      = state.dailyPool?.zones || []
         const poolZones = pool.map(id => [id, areas[id]]).filter(([, a]) => a).sort(byLevel)
-        const locked    = Object.entries(areas)
-            .filter(([id, a]) => (a.type || 'wild') === 'wild' && !isZoneAccessible(a))
-            .sort(byLevel)
         poolCount = poolZones.length
+
+        // Une seule zone représentante par palier de déblocage (évite les doublons "Champs" + "Plage" verrouillés)
+        const seenTier = new Set()
+        const locked   = Object.entries(areas)
+            .filter(([, a]) => (a.type || 'wild') === 'wild' && !isZoneAccessible(a))
+            .sort(byLevel)
+            .filter(([, a]) => {
+                for (const tier of UNLOCK_TIERS) {
+                    if (a.maxLevel <= tier.unlocksMaxLevel) {
+                        if (seenTier.has(tier.unlocksMaxLevel)) return false
+                        seenTier.add(tier.unlocksMaxLevel)
+                        return true
+                    }
+                }
+                return true
+            })
+
         matching  = [...poolZones, ...locked]
     } else if (zoneTab === 'event') {
-        const pool = state.eventPool?.zones || []
-        matching   = pool.map(id => [id, areas[id]]).filter(([, a]) => a).sort(byLevel)
-        poolCount  = matching.length
+        const pool    = state.eventPool?.zones || []
+        const byMaxLv = ([, a], [, b]) => (a.maxLevel || 0) - (b.maxLevel || 0)
+        matching      = pool.map(id => [id, areas[id]]).filter(([, a]) => a).sort(byMaxLv)
+        poolCount     = matching.length
     } else {
-        // Donjons : accessibles en premier, verrouillés ensuite, triés par niveau dans chaque groupe
-        const all = Object.entries(areas).filter(([, a]) => a.type === 'dungeon')
-        matching  = [
-            ...all.filter(([, a]) =>  isZoneAccessible(a)).sort(byLevel),
-            ...all.filter(([, a]) => !isZoneAccessible(a)).sort(byLevel)
-        ]
+        // Donjons : uniquement ceux liés aux zones du pool journalier, triés par niveau
+        matching = getDailyDungeons()
+            .map(id => [id, areas[id]])
+            .filter(([, a]) => a)
+            .sort(byLevel)
     }
 
     // En-tête avec compteur et timer pour wild / events
@@ -114,6 +128,11 @@ function updateZoneUI() {
     if (zoneTab === 'dungeon') {
         const info = document.createElement('div')
         info.className = 'zone-daily-info'
+        info.innerHTML = `
+            <div class="zone-daily-left">
+                <span>Donjons du jour &bull; <strong>${matching.length}</strong> disponible${matching.length > 1 ? 's' : ''}</span>
+                <span>Renouvellement dans&nbsp;${nextWildRefreshLabel()}</span>
+            </div>`
         info.appendChild(_buildSkullSelector())
         listing.appendChild(info)
     }

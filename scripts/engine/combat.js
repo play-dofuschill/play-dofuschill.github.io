@@ -345,7 +345,8 @@ function startCombat(areaId) {
         enutrof_eau_active:    0,
         enutrof_traps:         [],
         trapStacks:            {},
-        sessionLoot:           _emptySessionLoot()
+        sessionLoot:           _emptySessionLoot(),
+        dungeonBossQueue:      null
     }
 
     if (_isResume && state.savedCombatState) {
@@ -395,7 +396,15 @@ function startCombat(areaId) {
     } else if (areas[areaId]?.type === 'raid') {
         _initRaidCombat(areaId)
     } else {
-        combat.enemy = spawnEnemy(areaId)
+        const _areaSeq = areas[areaId]
+        if (_areaSeq?.bossMode === 'sequential' && _areaSeq.spawns?.length > 1) {
+            const _order = [..._areaSeq.spawns].sort(() => Math.random() - 0.5).map(s => s.id)
+            combat.dungeonBossQueue = _order.slice(1)
+            combat.enemy = _spawnEnemyById(_order[0])
+            if (combat.enemy) combat.enemy.isRaidMiniBoss = false
+        } else {
+            combat.enemy = spawnEnemy(areaId)
+        }
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
     }
 
@@ -2760,6 +2769,29 @@ function onVictory() {
     }
     // Persiste immédiatement les niveaux gagnés pour ne pas les perdre en cas de changement de team
     if (anyLevelUp) saveGame()
+
+    // Donjon séquentiel : il reste des boss à vaincre avant de valider
+    if (areas[state.currentArea]?.type === 'dungeon' && combat.dungeonBossQueue?.length > 0) {
+        const _nextBossId = combat.dungeonBossQueue.shift()
+        const _respawnNext = () => {
+            combat.respawnPending = false
+            if (!state.isRunning || !state.currentArea) return
+            for (const m of state.team) {
+                if (!m) continue
+                m.buffs = []; m.dots = []; m.hots = []; m.shield = null
+            }
+            const _nb = _spawnEnemyById(_nextBossId)
+            if (_nb) _nb.isRaidMiniBoss = false
+            combat.enemy           = _nb
+            combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
+            combat.savedEnemy      = null
+            combat.enemyTimer      = 0
+            updateCombatUI()
+        }
+        if (_afkSeconds > 0) { _respawnNext(); return }
+        setTimeout(_respawnNext, 500)
+        return
+    }
 
     // Donjon : victoire finale — consomme la clé, relance si option active
     if (areas[state.currentArea]?.type === 'dungeon') {

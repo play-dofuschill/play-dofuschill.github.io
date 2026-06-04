@@ -94,6 +94,182 @@ item.cleDonjonKwakwa = {
     isKey: true,
     description: "Cette clef permet de rentrer dans le Nid du Kwakwa."
 }
+item.cleDonjonBlop = {
+    id: 'cleDonjonBlop',
+    name: "Clef du Royaume des Blops Royaux",
+    image: 'img/items/divers/donjonBlop.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Royaume des Blops Royaux."
+}
+item.cleDonjonMantiscore = {
+    id: 'cleDonjonMantiscore',
+    name: "Clef de l'Antre de la Mantiscore",
+    image: 'img/items/divers/donjonMantiscore.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Antre de la Mantiscore."
+}
+item.cleDonjonDraegnerys = {
+    id: 'cleDonjonDraegnerys',
+    name: "Clef du Repaire du Draegnerys",
+    image: 'img/items/divers/donjonDraegnerys.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Repaire du Draegnerys."
+}
+item.cleDonjonAbraknydeAncestral = {
+    id: 'cleDonjonAbraknydeAncestral',
+    name: "Clef du Temple de l'Abraknyde Ancestral",
+    image: 'img/items/divers/donjonAbraknydeAncestral.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Temple de l'Abraknyde Ancestral."
+}
+item.cleDonjonDragonCochon = {
+    id: 'cleDonjonDragonCochon',
+    name: "Clef de la Ferme du Dragon Cochon",
+    image: 'img/items/divers/donjonDragonCochon.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Ferme du Dragon Cochon."
+}
+item.cleDonjonMeulou = {
+    id: 'cleDonjonMeulou',
+    name: "Clef du Moulin du Meulou",
+    image: 'img/items/divers/donjonMeulou.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Moulin du Meulou."
+}
+item.cleDonjonRatNoir = {
+    id: 'cleDonjonRatNoir',
+    name: "Clef du Terrier du Rat Noir",
+    image: 'img/items/divers/donjonRatNoir.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Terrier du Rat Noir."
+}
+item.cleDonjonRatBlanc = {
+    id: 'cleDonjonRatBlanc',
+    name: "Clef du Sanctuaire du Rat Blanc",
+    image: 'img/items/divers/donjonRatBlanc.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Sanctuaire du Rat Blanc."
+}
+item.cleDonjonBoufmouthRoyal = {
+    id: 'cleDonjonBoufmouthRoyal',
+    name: "Clef de la Fosse du Boufmouth Royal",
+    image: 'img/items/divers/donjonBoufmouthRoyal.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Fosse du Boufmouth Royal."
+}
+item.cleDonjonMansotRoyal = {
+    id: 'cleDonjonMansotRoyal',
+    name: "Clef de la Mine du Mansot Royal",
+    image: 'img/items/divers/donjonMansotRoyal.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Mine du Mansot Royal."
+}
+item.cleDonjonTofuRoyal = {
+    id: 'cleDonjonTofuRoyal',
+    name: "Clef de l'Arbre du Tofu Royal",
+    image: 'img/items/divers/donjonTofuRoyal.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Arbre du Tofu Royal."
+}
+item.cleDonjonHellMina = {
+    id: 'cleDonjonHellMina',
+    name: "Clef des Fourrés de Hell Mina",
+    image: 'img/items/divers/donjonHellMina.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans les Fourrés de Hell Mina."
+}
+item.cleDonjonHauteTruche = {
+    id: 'cleDonjonHauteTruche',
+    name: "Clef du Sommet de la Haute Truche",
+    image: 'img/items/divers/donjonHauteTruche.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Sommet de la Haute Truche."
+}
+item.cleDonjonPhossile = {
+    id: 'cleDonjonPhossile',
+    name: "Clef de la Crypte du Phossile",
+    image: 'img/items/divers/donjonPhossile.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Crypte du Phossile."
+}
+item.cleDonjonCheneMou = {
+    id: 'cleDonjonCheneMou',
+    name: "Clef du Cœur du Chêne Mou",
+    image: 'img/items/divers/donjonCheneMou.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Cœur du Chêne Mou."
+}
+item.cleDonjonMinotot = {
+    id: 'cleDonjonMinotot',
+    name: "Clef du Dédale des Minotors",
+    image: 'img/items/divers/donjonMinotot.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Dédale des Minotors."
+}
+item.cleDonjonObsidiantre = {
+    id: 'cleDonjonObsidiantre',
+    name: "Clef du Creuset de l'Obsidiantre",
+    image: 'img/items/divers/donjonObsidiantre.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Creuset de l'Obsidiantre."
+}
+item.cleDonjonTenguGivrefoux = {
+    id: 'cleDonjonTenguGivrefoux',
+    name: "Clef du Palais du Tengu Givrefoux",
+    image: 'img/items/divers/donjonTenguGivrefoux.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Palais du Tengu Givrefoux."
+}
+item.cleDonjonOugah = {
+    id: 'cleDonjonOugah',
+    name: "Clef de la Caverne de l'Ougah",
+    image: 'img/items/divers/donjonOugah.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Caverne de l'Ougah."
+}
+item.cleDonjonKolosso = {
+    id: 'cleDonjonKolosso',
+    name: "Clef de la Salle du Kolosso",
+    image: 'img/items/divers/donjonKolosso.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Salle du Kolosso."
+}
+item.cleDonjonGlourceleste = {
+    id: 'cleDonjonGlourceleste',
+    name: "Clef de l'Abri du Gloucéleste",
+    image: 'img/items/divers/donjonGlourceleste.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Abri du Gloucéleste."
+}
+item.cleDonjonHarebourg = {
+    id: 'cleDonjonHarebourg',
+    name: "Clef du Château Harebourg",
+    image: 'img/items/divers/donjonHarebourg.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Château Harebourg."
+}
 // #endregion
 
 // ────────────────────────────────────────────────────────────────────────

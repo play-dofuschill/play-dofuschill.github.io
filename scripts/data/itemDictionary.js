@@ -373,7 +373,7 @@ item.ceinture_bouftou_royal = {
 }
 item.epee_bouftou_royal = {
     id: 'epee_bouftou_royal',
-    name: 'Marteau Bouftou Royal',
+    name: 'Épée du Bouftou Royal',
     image: 'img/items/panoplies/epee_bouftou_royal.png',
     type: 'equipment', slot: 'arme', set: 'bouftouRoyal', rarity: 'uncommon', levelMax: 20,
     stats: [{ stat: 'flatDamage', value: 5 }],

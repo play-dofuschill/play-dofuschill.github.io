@@ -1,4 +1,4 @@
-﻿// monsterDictionary.js — Monstres DofusChill
+// monsterDictionary.js — Monstres DofusChill
 //
 /*
 monsters. = {
@@ -33,12 +33,7 @@ monsters. = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -900,12 +895,7 @@ monsters.kwakwa = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.blopGriotteRoyal = {
 //     id: 'blopGriotteRoyal',
@@ -917,12 +907,7 @@ monsters.kwakwa = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.blopIndigoRoyal = {
 //     id: 'blopIndigoRoyal',
@@ -934,12 +919,7 @@ monsters.kwakwa = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.blopReinetteRoyal = {
 //     id: 'blopReinetteRoyal',
@@ -951,12 +931,7 @@ monsters.kwakwa = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1475,12 +1450,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.donDorgan = {
 //     id: 'donDorgan',
@@ -1492,12 +1462,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.donDussAng = {
 //     id: 'donDussAng',
@@ -1509,12 +1474,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.porsalu = {
 //     id: 'porsalu',
@@ -1526,12 +1486,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.gorgouille = {
 //     id: 'gorgouille',
@@ -1543,12 +1498,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -1565,12 +1515,7 @@ monsters.dopeul_darkvlad = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1645,12 +1590,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.cocholou = {
 //     id: 'cocholou',
@@ -1662,12 +1602,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mulounoke = {
 //     id: 'mulounoke',
@@ -1679,12 +1614,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mergranlou = {
 //     id: 'mergranlou',
@@ -1696,12 +1626,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.muloubard = {
 //     id: 'muloubard',
@@ -1713,12 +1638,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -1735,12 +1655,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1756,12 +1671,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.rateIboisee = {
 //     id: 'rateIboisee',
@@ -1773,12 +1683,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.ratLi = {
 //     id: 'ratLi',
@@ -1790,12 +1695,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.ratPlapla = {
 //     id: 'ratPlapla',
@@ -1807,12 +1707,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.ratSio = {
 //     id: 'ratSio',
@@ -1824,12 +1719,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -1846,12 +1736,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1867,12 +1752,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.chikaRat = {
 //     id: 'chikaRat',
@@ -1884,12 +1764,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.chakRat = {
 //     id: 'chakRat',
@@ -1901,12 +1776,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.aloeveRat = {
 //     id: 'aloeveRat',
@@ -1918,12 +1788,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.capoeiRat = {
 //     id: 'capoeiRat',
@@ -1935,12 +1800,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -1957,12 +1817,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -1978,12 +1833,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.boufmouthLegendaire = {
 //     id: 'boufmouthLegendaire',
@@ -1995,12 +1845,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.bouftonMouth = {
 //     id: 'bouftonMouth',
@@ -2012,12 +1857,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.boufmouthDeGuerre = {
 //     id: 'boufmouthDeGuerre',
@@ -2029,12 +1869,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2051,12 +1886,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2072,12 +1902,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.timansot = {
 //     id: 'timansot',
@@ -2089,12 +1914,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.shamansot = {
 //     id: 'shamansot',
@@ -2106,12 +1926,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mamansot = {
 //     id: 'mamansot',
@@ -2123,12 +1938,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mansobese = {
 //     id: 'mansobese',
@@ -2140,12 +1950,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 // ═══════════════════════════════════════════════════════
@@ -2161,12 +1966,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2182,12 +1982,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.tofuDodu = {
 //     id: 'tofuDodu',
@@ -2199,12 +1994,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.tofutoflamme = {
 //     id: 'tofutoflamme',
@@ -2216,12 +2006,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.tofuzmo = {
 //     id: 'tofuzmo',
@@ -2233,12 +2018,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.vilainPetitTofu = {
 //     id: 'vilainPetitTofu',
@@ -2250,12 +2030,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2272,12 +2047,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2293,12 +2063,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.malzerb = {
 //     id: 'malzerb',
@@ -2310,12 +2075,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.maltrio = {
 //     id: 'maltrio',
@@ -2327,12 +2087,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.malepik = {
 //     id: 'malepik',
@@ -2344,12 +2099,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.malbois = {
 //     id: 'malbois',
@@ -2361,12 +2111,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2383,12 +2128,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2404,12 +2144,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.truchtine = {
 //     id: 'truchtine',
@@ -2421,12 +2156,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.truchon = {
 //     id: 'truchon',
@@ -2438,12 +2168,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.truchideur = {
 //     id: 'truchideur',
@@ -2455,12 +2180,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.truchemuche = {
 //     id: 'truchemuche',
@@ -2472,12 +2192,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2494,12 +2209,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2515,12 +2225,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.phorreveur = {
 //     id: 'phorreveur',
@@ -2532,12 +2237,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.phozami = {
 //     id: 'phozami',
@@ -2549,12 +2249,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.metaphorreur = {
 //     id: 'metaphorreur',
@@ -2566,12 +2261,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mereVeilleuse = {
 //     id: 'mereVeilleuse',
@@ -2583,12 +2273,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2605,12 +2290,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2626,12 +2306,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.abraknydeSombreIrascible = {
 //     id: 'abraknydeSombreIrascible',
@@ -2643,12 +2318,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.araknotronIrascible = {
 //     id: 'araknotronIrascible',
@@ -2660,12 +2330,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.brancheInvocatrice = {
 //     id: 'brancheInvocatrice',
@@ -2677,12 +2342,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.brancheSoignante = {
 //     id: 'brancheSoignante',
@@ -2694,12 +2354,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2716,12 +2371,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2737,12 +2387,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.scaratos = {
 //     id: 'scaratos',
@@ -2754,12 +2399,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.serpiplume = {
 //     id: 'serpiplume',
@@ -2771,12 +2411,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.minoskito = {
 //     id: 'minoskito',
@@ -2788,12 +2423,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.deminoboule = {
 //     id: 'deminoboule',
@@ -2805,12 +2435,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mominotor = {
 //     id: 'mominotor',
@@ -2822,12 +2447,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2844,12 +2464,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.minotoror = {
 //     id: 'minotoror',
@@ -2861,12 +2476,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2882,12 +2492,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.atomystique = {
 //     id: 'atomystique',
@@ -2899,12 +2504,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.crapeur = {
 //     id: 'crapeur',
@@ -2916,12 +2516,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.fumrirolle = {
 //     id: 'fumrirolle',
@@ -2933,12 +2528,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mofette = {
 //     id: 'mofette',
@@ -2950,12 +2540,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -2972,12 +2557,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -2993,12 +2573,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.yomiGivrefoux = {
 //     id: 'yomiGivrefoux',
@@ -3010,12 +2585,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.soryoGivrefoux = {
 //     id: 'soryoGivrefoux',
@@ -3027,12 +2597,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.mahoGivrefoux = {
 //     id: 'mahoGivrefoux',
@@ -3044,12 +2609,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.kamiGivrefoux = {
 //     id: 'kamiGivrefoux',
@@ -3061,12 +2621,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -3083,12 +2638,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.tenguGivrefoux = {
 //     id: 'tenguGivrefoux',
@@ -3100,12 +2650,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -3121,12 +2666,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.champaknyde = {
 //     id: 'champaknyde',
@@ -3138,12 +2678,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.champbis = {
 //     id: 'champbis',
@@ -3155,12 +2690,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.champodonte = {
 //     id: 'champodonte',
@@ -3172,12 +2702,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.champAGnon = {
 //     id: 'champAGnon',
@@ -3189,12 +2714,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.champmane = {
 //     id: 'champmane',
@@ -3206,12 +2726,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -3228,12 +2743,7 @@ monsters.roissingue = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -3308,12 +2818,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.blerauve = {
 //     id: 'blerauve',
@@ -3325,12 +2830,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.blerom = {
 //     id: 'blerom',
@@ -3342,12 +2842,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.wolvero = {
 //     id: 'wolvero',
@@ -3359,12 +2854,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.fleuro = {
 //     id: 'fleuro',
@@ -3376,12 +2866,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }blerice
 // monsters.blerice = {
 //     id: 'blerice',
@@ -3393,12 +2878,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -3415,12 +2895,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.kolosso = {
 //     id: 'kolosso',
@@ -3432,12 +2907,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -3453,12 +2923,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.aperiglours = {
 //     id: 'aperiglours',
@@ -3470,12 +2935,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.boulglours = {
 //     id: 'boulglours',
@@ -3487,12 +2947,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.gloursaya = {
 //     id: 'gloursaya',
@@ -3504,12 +2959,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.meliglours = {
 //     id: 'meliglours',
@@ -3521,12 +2971,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.glourmand = {
 //     id: 'glourmand',
@@ -3538,34 +2983,24 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
 // ═══════════════════════════════════════════════════════
 // DONJON GLOURCELESTE
 // ═══════════════════════════════════════════════════════
-// monsters.glouceleste = {
-//     id: 'glouceleste',
-//     name: 'Gloucéleste',
-//     image: 'img/monstres/sprites/glouceleste.png',
+// monsters.glourceleste = {
+//     id: 'glourceleste',
+//     name: 'Glourcéleste',
+//     image: 'img/monstres/sprites/glourceleste.png',
 //     rarity: 'rare',
 //     tier: 'boss',
 //     bst: {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
@@ -3581,12 +3016,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.cycloide = {
 //     id: 'cycloide',
@@ -3598,12 +3028,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.granduk = {
 //     id: 'granduk',
@@ -3615,12 +3040,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.nocturlable = {
 //     id: 'nocturlable',
@@ -3632,12 +3052,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // monsters.strigide = {
 //     id: 'strigide',
@@ -3649,12 +3064,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 
 
@@ -3671,12 +3081,7 @@ monsters.kralamoureGeant = {
 //         hp: 1, atk: 1, spd: 100,
 //         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
 //     },
-//     moves: ['', ''],
-//     familiar: [
-//         {bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 },
-//         {bonusType: 'defense', bonusStat: 'xpGain', min: 1, max: 10 },
-//         {bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }],
-//     role: ['combat','farming','defense']
+//     moves: ['', '']
 // }
 // #endregion
 
