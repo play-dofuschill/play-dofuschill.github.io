@@ -624,11 +624,13 @@
     <div id="Boss_Ultime-turn-overlay" style="display:none"></div>
 
     <div id="tooltipBackground"
-         ontouchend="if(event.target===this){event.preventDefault();closeTooltip()}"
+         ontouchend="event.preventDefault();closeTooltip()"
          onclick="if(event.target===this) closeTooltip()">
         <div id="tooltipClose"
+             ontouchend="event.stopPropagation();event.preventDefault();closeTooltip()"
              onclick="closeTooltip()">✕</div>
-        <div id="tooltipBox">
+        <div id="tooltipBox"
+             ontouchend="event.stopPropagation();if(window.cancelLongPress)cancelLongPress()">
             <div id="tooltipTop"></div>
             <div id="tooltipTitle"></div>
             <div id="tooltipMid"></div>
