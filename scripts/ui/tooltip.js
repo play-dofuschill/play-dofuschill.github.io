@@ -522,8 +522,7 @@ function equipItemFromSheet(classId, slotId, itemId) {
 
     // Pop silencieux (sans passer par closeTooltip) pour ne pas déclencher le guard
     // iOS anti-ghost-click (_tooltipLastCloseTime) qui bloquerait le showMemberSheet immédiat.
-    tooltipStack.pop()  // retire le sélecteur d'équipement
-    tooltipStack.pop()  // retire la fiche du membre
+    tooltipStack.length = 0
     showMemberSheet(member)
 }
 
@@ -1116,8 +1115,7 @@ function equipFamiliarFromSheet(classId, familiarId) {
     saveGame()
     updateTeamUI()
 
-    tooltipStack.pop()  // retire le sélecteur de familier
-    tooltipStack.pop()  // retire la fiche du membre
+    tooltipStack.length = 0
     showMemberSheet(member)
 }
 
