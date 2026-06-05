@@ -328,7 +328,7 @@ function updateKamasDisplay() {
 
 // ─── Popup dégâts sur l'ennemi ────────────────────────────────────────────────
 
-function showDamageNumber(damage) {
+function showDamageNumber(damage, isCrit = false) {
     let spriteEl
     if (combat?.isRaid) {
         const slot   = combat.raidCurrentTargetSlot ?? 0
@@ -344,13 +344,23 @@ function showDamageNumber(damage) {
     const y = rect.top  + rect.height / 2
 
     const el = document.createElement('div')
-    el.className    = 'damage-popup'
+    el.className    = isCrit ? 'damage-popup damage-popup--crit' : 'damage-popup'
     el.textContent  = `-${damage}`
     el.style.left   = `${x}px`
     el.style.top    = `${y}px`
     document.body.appendChild(el)
 
     el.addEventListener('animationend', () => el.remove(), { once: true })
+}
+
+function showCritShimmer(memberIdx) {
+    const slotEl = document.querySelector(`.explore-team-member[data-team-idx="${memberIdx}"]`)
+    const wrap   = slotEl?.querySelector('.member-sprite-wrap')
+    if (!wrap) return
+    wrap.classList.remove('member-sprite-wrap--crit')
+    void wrap.offsetWidth  // force reflow pour relancer l'animation si déjà active
+    wrap.classList.add('member-sprite-wrap--crit')
+    setTimeout(() => wrap.classList.remove('member-sprite-wrap--crit'), 1000)
 }
 
 // ═══════════════════════════════════════════════════════════════

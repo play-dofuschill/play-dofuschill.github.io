@@ -1085,7 +1085,6 @@ move.interversion = {
     cooldownMs: 2000,
     effects: [{type: 'recul', target: 'enemy'}],
 }
-
 // — Tourbassingue —
 move.tourbe_reparatrice = {
     id: 'tourbe_reparatrice',
@@ -1136,11 +1135,9 @@ move.dechaussage = {
 
 // #endregion
 
-
 // ═══════════════════════════════════════════════════════
 // #region EVENT DOPEULS 55-70
 // ═══════════════════════════════════════════════════════
-
 // — Dopeul Cra —
 move.fleche_optique_du_dopeul = {
     id: 'fleche_optique_du_dopeul',
@@ -1154,7 +1151,6 @@ move.fleche_glacee_du_dopeul = {
     cooldownMs: 1600,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy' }],
 }
-
 // — Dopeul Iop —
 move.epee_divine_du_dopeul = {
     id: 'epee_divine_du_dopeul',
@@ -1169,7 +1165,6 @@ move.pression_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Eniripsa —
 move.mot_espiegle_du_dopeul = {
     id: 'mot_espiegle_du_dopeul',
@@ -1183,7 +1178,6 @@ move.mot_tapageur_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Ecaflip —
 move.pile_ou_face_du_dopeul = {
     id: 'pile_ou_face_du_dopeul',
@@ -1201,7 +1195,6 @@ move.bonne_pioche_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'best_element_damage', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Eliotrope —
 move.affront_du_dopeul = {
     id: 'affront_du_dopeul',
@@ -1215,7 +1208,6 @@ move.rayon_de_wakfu_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Enutrof —
 move.roulage_de_pelle_du_dopeul = {
     id: 'roulage_de_pelle_du_dopeul',
@@ -1229,7 +1221,6 @@ move.lancer_de_pieces_du_dopeul = {
     cooldownMs: 1000,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 8, max: 12 }, target: 'enemy' }],
 }
-
 // — Dopeul Feca —
 move.retour_du_baton_du_dopeul = {
     id: 'retour_du_baton_du_dopeul',
@@ -1245,7 +1236,6 @@ move.bulle_du_dopeul = {
     cooldownMs: 1000,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 8, max: 12 }, target: 'enemy' }],
 }
-
 // — Dopeul Forgelance —
 move.trident_de_la_mer_du_dopeul = {
     id: 'trident_de_la_mer_du_dopeul',
@@ -1259,7 +1249,6 @@ move.volee_d_airain_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Huppermage —
 move.onde_sismique_du_dopeul = {
     id: 'onde_sismique_du_dopeul',
@@ -1274,7 +1263,6 @@ move.stalagmite_du_dopeul = {
     effects: [{ type: 'damage', element: 'eau', damage: { min: 12, max: 18 }, target: 'enemy' },
               { type: 'lifesteal', ratio: 0.2, target: 'self' }],
 }
-
 // — Dopeul Osamodas —
 move.pics_du_prespic_du_dopeul = {
     id: 'pics_du_prespic_du_dopeul',
@@ -1288,7 +1276,6 @@ move.crocs_du_mulou_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Ouginak —
 move.cubitus_du_dopeul = {
     id: 'cubitus_du_dopeul',
@@ -1303,7 +1290,6 @@ move.molosse_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Pandawa —
 move.paume_explosive_du_dopeul = {
     id: 'paume_explosive_du_dopeul',
@@ -1318,14 +1304,13 @@ move.ethylo_du_dopeul = {
     effects: [{ type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' },
               {type: 'debuff', stat: 'spd', value: 20,  duration: 3, target: 'enemy'}],
 }
-
 // — Dopeul Roublard —
 move.espingole_du_dopeul = {
     id: 'espingole_du_dopeul',
     name: 'Espingole du Dopeul',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 18 }, target: 'enemy' },
-              {type: 'recul', target: 'enemy'}],
+              {type: 'switch', value: 1, target: 'enemy'}],
 }
 move.pulsar_du_dopeul = {
     id: 'pulsar_du_dopeul',
@@ -1333,7 +1318,6 @@ move.pulsar_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Sacrieur —
 move.supplice_du_dopeul = {
     id: 'supplice_du_dopeul',
@@ -1349,7 +1333,6 @@ move.absorption_du_dopeul = {
     effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' },
               { type: 'lifesteal', ratio: 0.1, target: 'self' }],
 }
-
 // — Dopeul Sadida —
 move.ronce_du_dopeul = {
     id: 'ronce_du_dopeul',
@@ -1364,7 +1347,6 @@ move.buisson_ardent_du_dopeul = {
     effects: [{ type: 'damage', element: 'feu', damage: { min: 8, max: 12 }, target: 'enemy' },
               { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }],
 }
-
 // — Dopeul Sram —
 move.truanderie_du_dopeul = {
     id: 'truanderie_du_dopeul',
@@ -1379,7 +1361,6 @@ move.arsenic_du_dopeul = {
     effects: [{ type: 'damage', element: 'air', damage: { min: 8, max: 12 }, target: 'enemy' },
               { type: 'dot', element: 'air', value: 10, duration: 3, target: 'enemy' }],
 }
-
 // — Dopeul Steamer —
 move.longue_vue_du_dopeul = {
     id: 'longue_vue_du_dopeul',
@@ -1393,7 +1374,6 @@ move.amarrage_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' }],
 }
-
 // — Dopeul Zobal —
 move.parafuso_du_dopeul = {
     id: 'parafuso_du_dopeul',
@@ -1407,21 +1387,20 @@ move.plastron_du_dopeul = {
     cooldownMs: 2000,
     effects: [{ type: 'shield', value: 200, duration: 2, target: 'self' }],
 }
-
 // — Dopeul Xelor —
 move.gelure_du_dopeul = {
     id: 'gelure_du_dopeul',
     name: 'Gelure du Dopeul',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
-              {type: 'recul', target: 'enemy'}],
+              {type: 'switch', value: 1, target: 'enemy'}],
 }
 move.frappe_de_xelor_du_dopeul = {
     id: 'frappe_de_xelor_du_dopeul',
     name: 'Frappe de Xélor du Dopeul',
     cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
-              {type: 'avance', target: 'enemy'}],
+              {type: 'switch', value: 1, target: 'enemy'}],
 }
 move.lame_de_iop = {
     id: 'lame_de_iop',
@@ -1445,534 +1424,442 @@ move.tension = {
         {type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self'}]
 }
 // #endregion
-
-
 // ═══════════════════════════════════════════════════════
 // #region BLOP — Zone niveau 50-70
 // ═══════════════════════════════════════════════════════
-
-// — Blop Coco (air) —
-move.bloperie_air = {
-    id: 'bloperie_air',
-    name: 'Bloperie',
-    cooldownMs: 1650,
-    effects: [{ type: 'damage', element: 'air', damage: {min: 35, max: 45}, target: 'enemy'}],
-}
-move.blopiment_air = {
-    id: 'blopiment_air',
-    name: 'Blopiment',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'air',   damage: {min: 25, max: 35}, target: 'enemy'},
-              { type: 'heal',                      heal:   {min: 22, max: 32}, target: 'self' }],
-}
-
-// — Blop Griotte (feu) —
-move.bloperie_feu = {
-    id: 'bloperie_feu',
-    name: 'Bloperie',
-    cooldownMs: 1650,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 35, max: 45}, target: 'enemy'}],
-}
-move.blopiment_feu = {
-    id: 'blopiment_feu',
-    name: 'Blopiment',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'feu',   damage: {min: 25, max: 35}, target: 'enemy'},
-              { type: 'heal',                      heal:   {min: 22, max: 32}, target: 'self' }],
-}
-
-// — Blop Indigo (eau) —
-move.bloperie_eau = {
-    id: 'bloperie_eau',
-    name: 'Bloperie',
-    cooldownMs: 1650,
-    effects: [{ type: 'damage', element: 'eau', damage: {min: 35, max: 45}, target: 'enemy'}],
-}
-move.blopiment_eau = {
-    id: 'blopiment_eau',
-    name: 'Blopiment',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'eau',   damage: {min: 25, max: 35}, target: 'enemy'},
-              { type: 'heal',                      heal:   {min: 22, max: 32}, target: 'self' }],
-}
-
-// — Blop Reinette (terre) —
-move.bloperie_terre = {
-    id: 'bloperie_terre',
-    name: 'Bloperie',
-    cooldownMs: 1650,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 35, max: 45}, target: 'enemy'}],
-}
-move.blopiment_terre = {
-    id: 'blopiment_terre',
-    name: 'Blopiment',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 25, max: 35}, target: 'enemy'},
-              { type: 'heal',                      heal:   {min: 22, max: 32}, target: 'self' }],
-}
-
 // — Blopignon —
 move.bloblo = {
     id: 'bloblo',
     name: 'Bloblo',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 30, max: 40}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'air', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
 move.blopiction = {
     id: 'blopiction',
     name: 'Blopiction',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 15, max: 20}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -40, duration: 2, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 40}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 40, duration: 2, target: 'enemy'}],
 }
 move.bloprojection = {
     id: 'bloprojection',
     name: 'Bloprojection',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 30, max: 40}, target: 'enemy'},
-              { type: 'switch', value: 1, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 7, max: 10}, target: 'enemy'},
+              { type: 'dot', element: 'terre', value: 10, duration: 3, target: 'enemy' }],
 }
-
 // — Tronko Blop —
 move.blopsoin = {
     id: 'blopsoin',
     name: 'Blopsoin',
     cooldownMs: 3000,
-    effects: [{ type: 'heal%maxHp', heal: 20, target: 'self'}],
+    effects: [{ type: 'heal', heal: { min: 21, max: 30 }, target: 'self' }],
 }
 move.blopzone = {
     id: 'blopzone',
     name: 'Blopzone',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 25, max: 35}, target: 'all_enemies'}],
+    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 21, max: 30 }, target: 'enemy'}],
 }
-
 // — Glouto Blop —
 move.gloutage = {
     id: 'gloutage',
     name: 'Gloutage',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 35, max: 50}, target: 'enemy'},
-              { type: 'lifesteal', ratio: 0.5, target: 'self'}],
+    cooldownMs: 9000,
+    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 350, max: 500}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.33, target: 'self'}],
 }
-
 // ═══════════════════════════════════════════════════════
 // DONJON BLOP — Royaume des Blops Royaux
 // ═══════════════════════════════════════════════════════
-
 // Partagé par les 4 Royaux
 move.blotravail_Royal = {
     id: 'blotravail_Royal',
     name: 'Blotravail Royal',
-    cooldownMs: 2500,
-    effects: [{ type: 'buff', stat: 'flatDamage', value: 30, duration: 3, target: 'self'}],
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self'}],
 }
-
 // Blop Coco Royal (air)
 move.blopunition_Royale_air = {
     id: 'blopunition_Royale_air',
     name: 'Blopunition Royale',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'air', damage: {min: 60, max: 80}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 21, max: 30}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_air = {
     id: 'blotection_air',
     name: 'Blotection',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
-              { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}],
+              { type: 'buff', stat: 'res.terre', value: 40, duration: 2, target: 'self'}],
 }
-
 // Blop Griotte Royal (feu)
 move.blopunition_Royale_feu = {
     id: 'blopunition_Royale_feu',
     name: 'Blopunition Royale',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 60, max: 80}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 21, max: 30}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_feu = {
     id: 'blotection_feu',
     name: 'Blotection',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
-              { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}],
+              { type: 'buff', stat: 'res.eau', value: 40, duration: 2, target: 'self'}],
 }
-
 // Blop Indigo Royal (eau)
 move.blopunition_Royale_eau = {
     id: 'blopunition_Royale_eau',
     name: 'Blopunition Royale',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'eau', damage: {min: 60, max: 80}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 30}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_eau = {
     id: 'blotection_eau',
     name: 'Blotection',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
-              { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}],
+              { type: 'buff', stat: 'res.feu', value: 40, duration: 2, target: 'self'}],
 }
-
 // Blop Reinette Royal (terre)
 move.blopunition_Royale_terre = {
     id: 'blopunition_Royale_terre',
     name: 'Blopunition Royale',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 60, max: 80}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 21, max: 30}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_terre = {
     id: 'blotection_terre',
     name: 'Blotection',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
-              { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}],
+              { type: 'buff', stat: 'res.air', value: 40, duration: 2, target: 'self'}],
 }
-
 // #endregion
-
-
 // ═══════════════════════════════════════════════════════
 // #region MANTISCORE — Zone niveau 60-80
 // ═══════════════════════════════════════════════════════
-
 // — Ouroboulos —
 move.Sablacane = {
     id: 'Sablacane',
     name: 'Sablacane',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 35, max: 45}, target: 'enemy'},
-              { type: 'dot',    element: 'terre', value: 12, duration: 2,      target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 25}, target: 'enemy'},
+              { type: 'damage', element: 'air', damage: {min: 15, max: 20}, target: 'enemy'}],
 }
 move['Roulo-Boulos'] = {
     id: 'Roulo-Boulos',
     name: 'Roulo-Boulos',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 40, max: 55}, target: 'enemy'},
-              { type: 'switch', value: 1,                                       target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 21, max: 24}, target: 'enemy'},
+              {type: 'switch', value: 1, target: 'enemy'}],
 }
 move.Carapassable = {
     id: 'Carapassable',
     name: 'Carapassable',
     cooldownMs: 3000,
-    effects: [{ type: 'buff', stat: 'damageReductionPct', value: 25, duration: 2, target: 'self'}],
+    effects: [{ type: 'buff', stat: 'res_all', value: 10, duration: 2, target: 'self'}],
 }
-
 // — Scordion Bleu —
 move.Pince_pattes = {
     id: 'Pince_pattes',
     name: 'Pince-pattes',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 40, max: 55}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 31, max: 35}, target: 'enemy'}],
 }
 move.Dard_Empoisonne = {
     id: 'Dard_Empoisonne',
     name: 'Dard Empoisonné',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 20, max: 25}, target: 'enemy'},
-              { type: 'dot',    element: 'terre', value: 18, duration: 3,      target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 11, max: 15}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3,           target: 'enemy'}],
 }
 move.Creuse_sable = {
     id: 'Creuse_sable',
     name: 'Creuse Sable',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 30, max: 40}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -40, duration: 2,          target: 'enemy'}],
+    effects: [{ type: 'esquive', chancePct: 50, reductionPct: 100, duration: 3, target: 'self' }],
 }
-
 // — Fennex —
 move.Reconnaissance = {
     id: 'Reconnaissance',
     name: 'Reconnaissance',
     cooldownMs: 2500,
-    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self'}],
+    effects: [{ type: 'buff', stat: 'atk', value: 150, duration: 2, target: 'self'}],
 }
 move.Entrave_Sableuse = {
     id: 'Entrave_Sableuse',
     name: 'Entrave Sableuse',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 30, max: 40}, target: 'enemy'},
-              { type: 'debuff', stat: 'spd', value: -20, duration: 2,          target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 20, duration: 2,           target: 'enemy'}],
 }
 move.Enragement_Motivant = {
     id: 'Enragement_Motivant',
     name: 'Enragement Motivant',
     cooldownMs: 2500,
-    effects: [{ type: 'buff', stat: 'atk', value: 50, duration: 2, target: 'self'},
-              { type: 'buff', stat: 'atk', value: 30, duration: 2, target: 'ally_random'}],
+    effects: [{type: 'buff', stat: 'maxHp', value: 300, duration: 2, target: 'self'},
+              { type: 'buff', stat: 'atk', value: 100, duration: 2, target: 'self'}],
 }
-
 // — Léolhyène —
 move.Sirocco = {
     id: 'Sirocco',
     name: 'Sirocco',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'air', damage: {min: 40, max: 55}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'air', damage: {min: 36, max: 39}, target: 'enemy'},
+              { type: 'buff', stat: 'atk', value: 50, duration: 2, target: 'self'}],
 }
 move.Mort_sure = {
     id: 'Mort_sure',
     name: 'Mort Sûre',
-    cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 50, max: 65}, target: 'enemy'}],
+    cooldownMs: 3500,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 51, max: 55}, target: 'enemy'}],
 }
 move.Hyaignement = {
     id: 'Hyaignement',
     name: 'Hyaignement',
     cooldownMs: 2000,
-    effects: [{ type: 'debuff', stat: 'atk', value: -50, duration: 3, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 26, max: 30}, target: 'enemy'},
+              { type: 'dot',    element: 'feu', value: 6, duration: 3,      target: 'all_enemies'}],
 }
-
 // — Boulepique (élite) —
 move['Lance-boulettes'] = {
     id: 'Lance-boulettes',
     name: 'Lance-boulettes',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 20, max: 28}, target: 'enemy'},
-              { type: 'damage', element: 'neutre', damage: {min: 20, max: 28}, target: 'enemy'}],
+    cooldownMs: 4000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 71, max: 75}, target: 'enemy'}],
 }
 move.Pique_rate = {
     id: 'Pique_rate',
     name: 'Pique Raté',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage',   element: 'neutre', damage: {min: 45, max: 60}, target: 'enemy'},
-              { type: 'lifesteal', ratio: 0.3,                                    target: 'self' }],
+    cooldownMs: 2500,
+    effects: [{ type: 'damage',   element: 'terre', damage: {min: 17, max: 21}, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 10, duration: 3,            target: 'enemy'}],
 }
 move.Durcissement = {
     id: 'Durcissement',
     name: 'Durcissement',
-    cooldownMs: 3000,
-    effects: [{ type: 'shield', value: 600, duration: 2, target: 'self'}],
+    cooldownMs: 2000,
+    effects: [{ type: 'shield', value: 200, duration: 2, target: 'self'}],
 }
-
 // — Mantiscore (boss, donjon, hp 3500 atk 290) —
 move.darmocles = {
     id: 'darmocles',
     name: "Dar'Mocles",
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 60, max: 80}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -50, duration: 3,           target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 31, max: 40}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3,      target: 'enemy'}],
 }
 move.force_Poigne = {
     id: 'force_Poigne',
     name: 'Force Poigne',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 70, max: 90}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 36, max: 45}, target: 'enemy'},
+              { type: 'buff', stat: 'spd', value: 50, duration: 2,           target: 'self'}],
 }
 move.tombeau_du_desert = {
     id: 'tombeau_du_desert',
     name: 'Tombeau du Désert',
     cooldownMs: 3000,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 40, max: 55}, target: 'all_enemies'},
-              { type: 'dot',    element: 'terre', value: 20, duration: 3,      target: 'all_enemies'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 31, max: 40}, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 50, duration: 2,           target: 'enemy'}],
 }
 move.garde_bouclier = {
     id: 'garde_bouclier',
     name: 'Garde Bouclier',
     cooldownMs: 3500,
-    effects: [{ type: 'shield', value: 800, duration: 2,                             target: 'self'},
-              { type: 'buff',   stat: 'damageReductionPct', value: 25, duration: 2,  target: 'self'}],
+    effects: [{ type: 'repulsion_guard', duration: 3, target: 'self' },
+              { type: 'renvoi', ratio: 0.5, target: 'self' }],
 }
 // #endregion
-
-
 // ═══════════════════════════════════════════════════════
 // #region DRAGOEUF — Zone niveau 70-90
 // ═══════════════════════════════════════════════════════
-
 // — Dragoeuf Ardoise (eau rés) —
 move.Feuilletage = {
     id: 'Feuilletage',
     name: 'Feuilletage',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'eau', damage: {min: 45, max: 60}, target: 'enemy'},
-              { type: 'dot',    element: 'eau', value: 15, duration: 2,      target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 26, max: 35}, target: 'enemy'},
+              { type: 'debuff', stat: 'chance', value: 200, duration: 3,   target: 'enemy'}],
 }
 move.Fendage = {
     id: 'Fendage',
     name: 'Fendage',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 50, max: 65}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
-
 // — Dragoeuf Argile (air rés) —
 move.Cataplasme = {
     id: 'Cataplasme',
     name: 'Cataplasme',
     cooldownMs: 2500,
-    effects: [{ type: 'heal',   heal: {min: 40, max: 60},             target: 'self' },
-              { type: 'debuff', stat: 'atk', value: -30, duration: 2, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'air', damage: {min: 28, max: 37}, target: 'enemy'}],
 }
 move.Engobage = {
     id: 'Engobage',
     name: 'Engobage',
     cooldownMs: 3000,
-    effects: [{ type: 'shield', value: 500, duration: 2,                              target: 'self'},
-              { type: 'buff',   stat: 'damageReductionPct', value: 15, duration: 2,   target: 'self'}],
+    effects: [{ type: 'damage', element: 'air', damage: {min: 41, max: 50}, target: 'enemy'}],
 }
-
 // — Dragoeuf Calcaire (terre+feu rés) —
 move.Entartrage = {
     id: 'Entartrage',
     name: 'Entartrage',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 35, max: 45}, target: 'enemy'},
-              { type: 'debuff', stat: 'flatDamage', value: -20, duration: 3,   target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 15, max: 25}, target: 'enemy'}],
 }
 move.Calcination = {
     id: 'Calcination',
     name: 'Calcination',
-    cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 25, max: 35}, target: 'enemy'},
-              { type: 'dot',    element: 'feu', value: 20, duration: 3,      target: 'enemy'}],
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', stat: 'spd', value: 30, duration: 2,  target: 'enemy'}],
 }
-
 // — Dragoeuf Charbon (feu rés) —
 move.Crassier = {
     id: 'Crassier',
     name: 'Crassier',
-    cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 40, max: 55}, target: 'enemy'},
-              { type: 'dot',    element: 'feu',   value: 15, duration: 2,     target: 'enemy'}],
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 11, max: 20}, target: 'enemy'}],
 }
 move.Silicose = {
     id: 'Silicose',
     name: 'Silicose',
     cooldownMs: 2500,
-    effects: [{ type: 'dot',    element: 'neutre', value: 20, duration: 4,    target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -30, duration: 3,         target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 11, max: 15}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 30, duration: 3,        target: 'enemy'}],
 }
-
 // — Dragoeuf Albâtre (élite, all rés 12%) —
 move.Dralbatre = {
     id: 'Dralbatre',
     name: 'Dralbatre',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 45, max: 60}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'air', damage: {min: 11, max: 15}, target: 'enemy'}],
 }
 move['Dragloméra'] = {
     id: 'Dragloméra',
     name: 'Dragloméra',
     cooldownMs: 3000,
-    effects: [{ type: 'damage', element: 'feu',   damage: {min: 15, max: 20}, target: 'enemy'},
-              { type: 'damage', element: 'eau',   damage: {min: 15, max: 20}, target: 'enemy'},
-              { type: 'damage', element: 'terre', damage: {min: 15, max: 20}, target: 'enemy'},
-              { type: 'damage', element: 'air',   damage: {min: 15, max: 20}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'feu',   damage: {min: 5, max: 10}, target: 'enemy'},
+              { type: 'damage', element: 'eau',   damage: {min: 5, max: 10}, target: 'enemy'},
+              { type: 'damage', element: 'terre', damage: {min: 5, max: 10}, target: 'enemy'},
+              { type: 'damage', element: 'air',   damage: {min: 5, max: 10}, target: 'enemy'}],
 }
-
 // — Draegnerys (boss, donjon, hp 2500 atk 200) —
 move.Pepiniere = {
     id: 'Pepiniere',
     name: 'Pépinière',
     cooldownMs: 3500,
-    effects: [{ type: 'summon', summonPool: ['dragoeufArdoise', 'dragoeufArgile', 'dragoeufCalcaire', 'dragoeufCharbon'], duration: 3, target: 'self'}],
+    effects: [{ type: 'summon', summonPool: ['dragoeufArdoise', 'dragoeufArgile', 'dragoeufCalcaire', 'dragoeufCharbon'], duration: 12, target: 'self'}],
 }
 move.Knout = {
     id: 'Knout',
     name: 'Knout',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 55, max: 70}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -50, duration: 2,           target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 31, max: 40}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 2,        target: 'enemy'}],
 }
 move.Drakaaris = {
     id: 'Drakaaris',
     name: 'Drakaaris',
     cooldownMs: 3500,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 45, max: 60}, target: 'all_enemies'},
-              { type: 'dot',    element: 'feu', value: 25, duration: 3,      target: 'all_enemies'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 16, max: 25}, target: 'enemy'},
+              { type: 'dot',    element: 'feu', value: 15, duration: 3,      target: 'enemy'}],
 }
 // #endregion
-
-
 // ═══════════════════════════════════════════════════════
 // #region ABRAKNYDE ANCESTRAL — Zone niveau 80-100
 // ═══════════════════════════════════════════════════════
-
 // — Abrakne Sombre —
 move.Bond_affaiblissant = {
     id: 'Bond_affaiblissant',
     name: 'Bond Affaiblissant',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 45, max: 60}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -50, duration: 3,           target: 'enemy'}],
+    effects: [{ type: 'debuff', stat: 'res_all', value: 25, duration: 3,           target: 'enemy'}],
 }
 move.Abraknettoyage = {
     id: 'Abraknettoyage',
     name: 'Abraknettoyage',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 40, max: 55}, target: 'enemy'},
-              { type: 'debuff', stat: 'flatDamage', value: -25, duration: 3,  target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 37, max: 43}, target: 'enemy'}],
 }
 move.Motivation_Sylvestre = {
     id: 'Motivation_Sylvestre',
     name: 'Motivation Sylvestre',
-    cooldownMs: 2500,
-    effects: [{ type: 'buff_team', stat: 'atk', value: 40, duration: 2}],
+    cooldownMs: 1500,
+    effects: [{ type: 'buff', stat: 'critChance', value: 20, duration: 3}],
 }
-
 // — Abraknyde Sombre —
 move.Abrabranche = {
     id: 'Abrabranche',
     name: 'Abrabranche',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 50, max: 65}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 41, max: 50}, target: 'enemy'}],
 }
 move.Branche_Paralysante = {
     id: 'Branche_Paralysante',
     name: 'Branche Paralysante',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 35, max: 45}, target: 'enemy'},
-              { type: 'debuff', stat: 'spd', value: -30, duration: 2,        target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 3, max: 4}, target: 'enemy'},
+              { type: 'dot', element: 'neutre', value: 5, duration: 6, target: 'enemy' },
+              { type: 'debuff', stat: 'spd', value: 20, duration: 6,  target: 'enemy'}],
 }
 move.Ecrasement_Abraknydien = {
     id: 'Ecrasement_Abraknydien',
     name: 'Écrasement Abraknydien',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 55, max: 70}, target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 13, max: 18}, target: 'enemy'}],
 }
-
 // — Araknotron —
 move.Lancer_d_Arakne_Morte = {
     id: 'Lancer_d_Arakne_Morte',
     name: "Lancer d'Arakne Morte",
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 40, max: 55}, target: 'enemy'},
-              { type: 'dot',    element: 'neutre', value: 18, duration: 3,      target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'air', damage: {min: 31, max: 40}, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 20, duration: 2,  target: 'enemy'}],
 }
 move.Complicite = {
     id: 'Complicite',
     name: 'Complicité',
-    cooldownMs: 3000,
-    effects: [{ type: 'buff_team', stat: 'atk', value: 30, duration: 3}],
+    cooldownMs: 1500,
+    effects: [{type: 'random', choices: [{ chance: 0.34, effects: [{ type: 'buff', stat: 'spd',       value: 20,  duration: 2, target: 'self'}]},
+                                         { chance: 0.33, effects: [{ type: 'buff', stat: 'atk',       value: 200, duration: 2, target: 'self'}]},
+                                         { chance: 0.33, effects: [{ type: 'buff', stat: 'critChance', value: 50, duration: 2, target: 'self'}]}]}],
 }
-
 // — Abraknyde Vénérable —
 // (partage Ecrasement_Abraknydien et Branche_Paralysante avec Abraknyde Sombre)
 move.Abrakage = {
     id: 'Abrakage',
     name: 'Abrakage',
     cooldownMs: 3000,
-    effects: [{ type: 'renvoi', ratio: 0.5, target: 'self'}],
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 25, max: 30}, target: 'enemy'},
+              { type: 'buff', stat: 'atk', value: 100, duration: 2,  target: 'self'}
+    ],
 }
 move.Ecorce_agressive = {
     id: 'Ecorce_agressive',
     name: 'Écorce Agressive',
     cooldownMs: 2500,
-    effects: [{ type: 'shield', value: 700, duration: 2, target: 'self'},
-              { type: 'renvoi', ratio: 0.3,               target: 'self'}],
+    effects: [{ type: 'renvoi', ratio: 0.3,               target: 'self'},
+              { type: 'shield', value: 300, duration: 4, target: 'self'}],
 }
 move.Reconstitution_Abraknydienne = {
     id: 'Reconstitution_Abraknydienne',
     name: 'Reconstitution Abraknydienne',
     cooldownMs: 3500,
-    effects: [{ type: 'heal%maxHp', heal: 20, target: 'self'}],
+    effects: [{ type: 'heal', heal: {min: 150, max: 250}, target: 'self'}],
 }
-
 // — Arakne Majeure (élite du donjon) —
 move.Ralentissement_Arakneen = {
     id: 'Ralentissement_Arakneen',
     name: 'Ralentissement Araknéen',
     cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 30, max: 40}, target: 'enemy'},
-              { type: 'debuff', stat: 'spd', value: -30, duration: 3,           target: 'enemy'}],
+              { type: 'debuff', stat: 'spd', value: 30, duration: 3,            target: 'enemy'}],
 }
 move.Absorption_Sanguine = {
     id: 'Absorption_Sanguine',
@@ -1981,145 +1868,220 @@ move.Absorption_Sanguine = {
     effects: [{ type: 'damage',   element: 'neutre', damage: {min: 35, max: 50}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.5,                                    target: 'self' }],
 }
-
 // — Abraknyde Ancestral (boss, donjon, hp 4500 atk 500) —
 // (partage Branche_Paralysante et Reconstitution_Abraknydienne)
 move.Morsure_Sylvestre = {
     id: 'Morsure_Sylvestre',
     name: 'Morsure Sylvestre',
     cooldownMs: 2500,
-    effects: [{ type: 'damage',   element: 'feu', damage: {min: 80, max: 110}, target: 'enemy'},
-              { type: 'lifesteal', ratio: 0.2,                                  target: 'self' }],
+    effects: [{ type: 'damage',   element: 'neutre', damage: {min: 21, max: 30}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 100, duration: 3,            target: 'enemy'}],
 }
 move.Invocation_d_Arakne_Majeure = {
     id: 'Invocation_d_Arakne_Majeure',
     name: "Invocation d'Arakne Majeure",
-    cooldownMs: 4000,
+    cooldownMs: 3500,
     effects: [{ type: 'summon', summonId: 'arakne_majeure', duration: 4, target: 'self'}],
 }
 // #endregion
-
-
 // ═══════════════════════════════════════════════════════
 // #region DRAGON COCHON — Zone niveau 90-110
 // ═══════════════════════════════════════════════════════
-
 // — Cochon de Farle —
 move.Sucotement_Porcin = {
     id: 'Sucotement_Porcin',
     name: 'Sucotement Porcin',
     cooldownMs: 2200,
-    effects: [{ type: 'damage',   element: 'neutre', damage: {min: 55, max: 70}, target: 'enemy'},
-              { type: 'lifesteal', ratio: 0.4,                                    target: 'self' }],
+    effects: [{ type: 'damage',   element: 'feu', damage: {min: 3, max: 5}, target: 'enemy'},
+              { type: 'dot', element: 'feu', value: 5, duration: 12, target: 'enemy' }],
 }
-
 // — Don Dorgan —
 move.Menotage = {
     id: 'Menotage',
     name: 'Menotage',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 35, max: 50}, target: 'enemy'},
-              { type: 'debuff', stat: 'spd', value: -30, duration: 3,           target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 31, max: 45}, target: 'enemy'}],
 }
 move['Charge Sanguinaire'] = {
     id: 'Charge Sanguinaire',
     name: 'Charge Sanguinaire',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'feu', damage: {min: 55, max: 75}, target: 'enemy'},
-              { type: 'buff',   stat: 'atk', value: 50, duration: 2,         target: 'self' }],
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 30, max: 50}, target: 'enemy'},
+              { type: 'debuff',   stat: 'atk', value: 150, duration: 2,     target: 'enemy' }],
 }
-
 // — Don Duss'Ang —
 move.Vampirisation_Cochonne = {
     id: 'Vampirisation_Cochonne',
     name: 'Vampirisation Cochonne',
     cooldownMs: 2500,
-    effects: [{ type: 'damage',   element: 'eau', damage: {min: 45, max: 65}, target: 'enemy'},
-              { type: 'lifesteal', ratio: 0.6,                                  target: 'self' }],
+    effects: [{ type: 'damage',   element: 'eau', damage: {min: 71, max: 100}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.2,                                  target: 'self' }],
 }
 move['Tire-Bouffon'] = {
     id: 'Tire-Bouffon',
     name: 'Tire-Bouffon',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 45, max: 60}, target: 'enemy'},
-              { type: 'debuff', stat: 'flatDamage', value: -25, duration: 3,    target: 'enemy'}],
+    cooldownMs: 1500,
+    effects: [{type: 'switch', value: 1, target: 'enemy'}],
 }
 move.Perfusion = {
     id: 'Perfusion',
     name: 'Perfusion',
-    cooldownMs: 3000,
-    effects: [{ type: 'heal%maxHp', heal: 15, target: 'self'}],
+    cooldownMs: 5000,
+    effects: [{ type: 'heal', heal: {min: 70, max: 100}, target: 'self'},
+              { type: 'damage', element: 'neutre', damage: {min: 30, max: 60}, target: 'enemy'}],
 }
-
 // — Porsalu —
 move.Fleche_Renifleuse = {
     id: 'Fleche_Renifleuse',
     name: 'Flèche Renifleuse',
-    cooldownMs: 1800,
-    effects: [{ type: 'damage', element: 'air', damage: {min: 45, max: 60}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 16,max: 20}, target: 'enemy'}],
 }
 move.Fleche_Douloureuse = {
     id: 'Fleche_Douloureuse',
     name: 'Flèche Douloureuse',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'air', damage: {min: 55, max: 75}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -40, duration: 2,        target: 'enemy'}],
+    effects: [{type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 6,max: 10}, target: 'enemy'},
+              { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 5,        target: 'enemy'}],
 }
 move.Exhalation_Porcine = {
     id: 'Exhalation_Porcine',
     name: 'Exhalation Porcine',
     cooldownMs: 2500,
-    effects: [{ type: 'dot',    element: 'air', value: 25, duration: 3,  target: 'enemy'},
-              { type: 'debuff', stat: 'spd', value: -20, duration: 2,     target: 'enemy'}],
+    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 3,     target: 'self'}],
 }
-
 // — Gorgouille (élite, hp 5000 atk 500) —
 move['Oshi-Zumo'] = {
     id: 'Oshi-Zumo',
     name: 'Oshi-Zumo',
     cooldownMs: 2200,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 70, max: 90}, target: 'enemy'},
-              { type: 'switch', value: 2,                                        target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 41, max: 50}, target: 'enemy'},
+              {type: 'switch', value: 1, target: 'enemy'}],
 }
 move['Yotsu-Zumo'] = {
     id: 'Yotsu-Zumo',
     name: 'Yotsu-Zumo',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 60, max: 80}, target: 'enemy'},
-              { type: 'debuff', stat: 'spd', value: -40, duration: 3,           target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 21, max: 25}, target: 'enemy'},
+              {type: 'switch', value: 3, target: 'enemy'}],
 }
-
 // — Dragon Cochon (boss, donjon, hp 2500 atk 1000) —
 move.Ecrasement_Handicapant = {
     id: 'Ecrasement_Handicapant',
     name: 'Écrasement Handicapant',
     cooldownMs: 2500,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 50, max: 70}, target: 'enemy'},
-              { type: 'debuff', stat: 'atk', value: -80, duration: 3,           target: 'enemy'}],
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 13, max: 18}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 200, duration: 3,         target: 'enemy'}],
 }
 move.Croutage = {
     id: 'Croutage',
     name: 'Croutage',
     cooldownMs: 3500,
-    effects: [{ type: 'shield', value: 1200, duration: 2,                             target: 'self'},
-              { type: 'buff',   stat: 'damageReductionPct', value: 30, duration: 2,   target: 'self'}],
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 31, max: 45}, target: 'enemy'},
+              { type: 'buff',   stat: 'damageReductionPct', value: 20, duration: 2,   target: 'self'}],
 }
 move.Immobilisation = {
     id: 'Immobilisation',
     name: 'Immobilisation',
-    cooldownMs: 3000,
-    effects: [{ type: 'debuff', stat: 'spd', value: -60, duration: 3, target: 'enemy'}],
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', stat: 'spd', value: 70, duration: 2,  target: 'enemy'}],
 }
-move['Étourderie Mortelle'] = {
-    id: 'Étourderie Mortelle',
+move.etourderie_Mortelle = {
+    id: 'etourderie_Mortelle',
     name: 'Étourderie Mortelle',
-    cooldownMs: 4000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 70, max: 100}, target: 'all_enemies'},
-              { type: 'debuff', stat: 'spd', value: -40, duration: 2,            target: 'all_enemies'}],
+    cooldownMs: 6000,
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 200, max: 250}, target: 'enemy'},
+              { type: 'debuff', stat: 'spd', value: 20, duration: 3,             target: 'enemy'}],
 }
 // #endregion
 
+// ═══════════════════════════════════════════════════════
+// #region RAID GELAX
+// ═══════════════════════════════════════════════════════
 
+// — Gelées normales —
+move.Tartinade = {
+    id: 'Tartinade', name: 'Tartinade',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+}
+move.Gelpikes = {
+    id: 'Gelpikes', name: 'Gelpikes',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 14, max: 22}, target: 'enemy'}],
+}
+move.Fraise_Os = {
+    id: 'Fraise_Os', name: 'Fraise Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 18, max: 22}, target: 'enemy'}],
+}
+move.Bleuet_Os = {
+    id: 'Bleuet_Os', name: 'Bleuet Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 18, max: 22}, target: 'enemy'}],
+}
+move.Menthe_Os = {
+    id: 'Menthe_Os', name: 'Menthe Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 18, max: 22}, target: 'enemy'}],
+}
+move.Citron_Os = {
+    id: 'Citron_Os', name: 'Citron Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 18, max: 22}, target: 'enemy'}],
+}
+// — Gelées Royales —
+move.Gelpikes = {
+    id: 'Gelpikes', name: 'Gelpikes',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'neutre', damage: {min: 14, max: 22}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
+}
+move.Royale_Fraise_Os = {
+    id: 'Royale_Fraise_Os', name: 'Royale Fraise Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: {min: 18, max: 22}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
+}
+move.Gelifiant = {
+    id: 'Gelifiant', name: 'Gélifiant',
+    cooldownMs: 2000,
+    effects: [{type: 'heal', heal: 60, target: 'self'}],
+}
+move.Royale_Bleuet_Os = {
+    id: 'Royale_Bleuet_Os', name: 'Royale Bleuet Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'eau', damage: {min: 18, max: 22}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
+}
+move.Isometrie = {
+    id: 'Isometrie', name: 'Isométrie',
+    cooldownMs: 2000,
+    effects: [{ type: 'debuff', stat: 'spd', value: 30, duration: 2, target: 'enemy'}],
+}
+move.Royale_Menthe_Os = {
+    id: 'Royale_Menthe_Os', name: 'Royale Menthe Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 18, max: 22}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
+}
+move.Pik_assaut = {
+    id: 'Pik_assaut', name: 'Pik-assaut',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'spd', value: 30, duration: 2, target: 'self'}],
+}
+move.Royale_Citron_Os = {
+    id: 'Royale_Citron_Os', name: 'Royale Citron Os',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: {min: 18, max: 22}, target: 'enemy'},
+              { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
+}
+move.Fixation_Beton = {
+    id: 'Fixation_Beton', name: 'Fixation Béton',
+    cooldownMs: 3000,
+    effects: [{ type: 'buff', stat: 'damageReductionPct', value: 10, duration: 2, target: 'self'}],
+}
+// #endregion
 
 
 

@@ -149,7 +149,7 @@ const familiars = [
         rarity:   'peu_commun',
         monsters: ['kardorim'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'flatDamage', min: 2, max: 15 }
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 2, max: 10 }
         ]
     },
     // ─── PIOU ─────────────────────────────────────────────────────────────
@@ -160,7 +160,7 @@ const familiars = [
         rarity:   'commun',
         monsters: ['piouViolet'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 }
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 10 }
         ]
     },
     {
@@ -225,7 +225,7 @@ const familiars = [
         rarity:   'commun',
         monsters: ['tournesolSauvage', 'roseDemoniaque', 'pissenliDiabolique', 'epouvanteur', 'gardienneChampetre'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 30 }
         ]
     },
     {
@@ -235,7 +235,7 @@ const familiars = [
         rarity:   'rare',
         monsters: ['tournesolAffame'],
         bonuses: [
-            { bonusType: 'farming', bonusStat: 'dropRate', min: 2, max: 15 }
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
         ]
     },
     // ─── PLAGE ASTRUB ─────────────────────────────────────────────────────────────
@@ -246,7 +246,7 @@ const familiars = [
         rarity:   'commun',
         monsters: ['pichonOrange', 'pichonBleu', 'pichonBlanc', 'pichonVert', 'pichonKloune'],
         bonuses: [
-            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 50 }
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 30 }
         ]
     },
     {
@@ -256,7 +256,7 @@ const familiars = [
         rarity:   'rare',
         monsters: ['mobLeponge'],
         bonuses: [
-            { bonusType: 'defense', bonusStat: 'maxHp', min: 2, max: 75 }
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 2, max: 50 }
         ]
     },
     // ─── FORET ASTRUB ─────────────────────────────────────────────────────────────
@@ -267,7 +267,7 @@ const familiars = [
         rarity:   'commun',
         monsters: ['milimulou', 'prespic', 'sanglier', 'ecurouille', 'hommeOurs'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 15 }
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 10 }
         ]
     },
     // ─── Tainela ─────────────────────────────────────────────────────────────
@@ -278,7 +278,7 @@ const familiars = [
         rarity:   'commun',
         monsters: ['bouftou', 'bouftonBlanc', 'bouftonNoir', 'bouftouNoir', 'bouftouChefDeGuerre'],
         bonuses: [
-            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 5 }
         ]
     },
     {
@@ -288,7 +288,7 @@ const familiars = [
         rarity:   'peu_commun',
         monsters: ['bouftou', 'bouftonBlanc', 'bouftonNoir', 'bouftouNoir', 'bouftouChefDeGuerre'],
         bonuses: [
-            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 15 }
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 7 }
         ]
     },
     {
@@ -298,7 +298,7 @@ const familiars = [
         rarity:   'rare',
         monsters: ['bouftouRoyal'],
         bonuses: [
-            { bonusType: 'farming', bonusStat: 'dropRate', min: 2, max: 15 }
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 2, max: 10 }
         ]
     },
     // ─── ROBOTS ─────────────────────────────────────────────────────────────
@@ -320,8 +320,61 @@ const familiars = [
         rarity:   'commun',
         monsters: ['biblop_coco', 'biblop_reinette', 'biblop_griotte', 'biblop_indigo'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'critDamagePct', min: 1, max: 10 }
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
         ]
+    },
+    {
+        id:       'familierblopignon',
+        name:     'Blopmignon',
+        image:    'img/monstres/sprites/blopignon.png',
+        rarity:   'commun',
+        monsters: ['blopCoco', 'blopReinette', 'blopGriotte', 'blopIndigo', 'blopignon', 'tronkoBlop', 'gloutoBlop'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'maxHp', min: 1, max: 50 }
+        ]
+    },
+    {
+        id:       'familierblopReinetteRoyal',
+        name:     'Blop Reinette Royal Apprivoisé',
+        image:    'img/monstres/sprites/blopReinetteRoyal.png',
+        rarity:   'rare',
+        monsters: ['blopReinetteRoyal'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'maxHp', min: 1, max: 50 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
+        ]
+    },
+    {
+        id:       'familierblopCocoRoyal',
+        name:     'Blop Coco Royal Apprivoisé',
+        image:    'img/monstres/sprites/blopCocoRoyal.png',
+        rarity:   'rare',
+        monsters: ['blopCocoRoyal'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 10 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
+        ]
+    },
+    {
+        id:       'familierblopGriotteRoyal',
+        name:     'Blop Griotte Royal Apprivoisé',
+        image:    'img/monstres/sprites/blopGriotteRoyal.png',
+        rarity:   'rare',
+        monsters: ['blopGriotteRoyal'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'heal', min: 1, max: 30 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 50 }
+        ]
+    },
+    {
+        id:       'familierblopIndigoRoyal',
+        name:     'Blop Indigo Royal Apprivoisé',
+        image:    'img/monstres/sprites/blopIndigoRoyal.png',
+        rarity:   'rare',
+        monsters: ['blopIndigoRoyal'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 15 },
+            { bonusType: 'combat', bonusStat: 'maxHp', min: 1, max: 50 },        ]
     },
     // ─── DOPEULS ─────────────────────────────────────────────────────────────
     {
@@ -352,17 +405,28 @@ const familiars = [
         ]
     },
     {
-        id:       'familierscrarabossDoree',
-        name:     'Scraraboss Dorée Apprivoisé',
-        image:    'img/monstres/sprites/scrarabossDoree.png',
+        id:       'familierscarabossDoree',
+        name:     'Scaraboss Dorée Apprivoisé',
+        image:    'img/monstres/sprites/scarabossDoree.png',
         rarity:   'rare',
-        monsters: ['scrarabossDoree'],
+        monsters: ['scarabossDoree'],
         bonuses: [
             { bonusType: 'defense', bonusStat: 'res.terre', min: 2, max: 7 },
             { bonusType: 'defense', bonusStat: 'res.feu', min: 2, max: 7 },
             { bonusType: 'defense', bonusStat: 'res.eau', min: 2, max: 7 },
             { bonusType: 'defense', bonusStat: 'res.air', min: 2, max: 7 },
             { bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 4 }
+        ]
+    },
+    // ─── BILBY ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierbilby',
+        name:     'Bilby',
+        image:    'img/familiers/bilby.png',
+        rarity:   'peu_commun',
+        monsters: ['gelee_fraise','gelee_menthe','gelee_bleuet','gelee_citron'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 2, max: 20 }
         ]
     },
     // ─── KWAK ─────────────────────────────────────────────────────────────
@@ -373,8 +437,8 @@ const familiars = [
         rarity:   'commun',
         monsters: ['kwakVent', 'kwakFlamme', 'kwakGlace', 'kwakTerre', 'kwakereVent', 'kwakereFlamme', 'kwakereGlace', 'kwakereTerre'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 10 },
-            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 50 },
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 5 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 30 },
             { bonusType: 'combat', bonusStat: 'flatDamage', min: 1, max: 10 },
             { bonusType: 'combat', bonusStat: 'atk', min: 1, max: 30 }
         ]
@@ -386,10 +450,10 @@ const familiars = [
         rarity:   'rare',
         monsters: ['kwakwa'],
         bonuses: [
-            { bonusType: 'combat', bonusStat: 'spd', min: 3, max: 20 },
-            { bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 75 },
-            { bonusType: 'combat', bonusStat: 'flatDamage', min: 3, max: 20 },
-            { bonusType: 'combat', bonusStat: 'atk', min: 5, max: 60 }
+            { bonusType: 'combat', bonusStat: 'spd', min: 3, max: 10 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 40 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 3, max: 15 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 5, max: 40 }
         ]
     },
     // ─── RAID DOFUS ARGENTE ─────────────────────────────────────────────────────────────
@@ -404,6 +468,52 @@ const familiars = [
             { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 },
             { bonusType: 'combat', bonusStat: 'atk', min: 5, max: 50 },
             { bonusType: 'defense', bonusStat: 'maxHp', min: 5, max: 50 }
+        ]
+    },
+    // ─── ABRAKNYDE ANCESTRAL ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierabraKadabra',
+        name:     'AbraKadabra',
+        image:    'img/familiers/abraKadabra.png',
+        rarity:   'rare',
+        monsters: ['abrakneSombre','abraknydeSombre','araknotron','abraknydeVenerable'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'critResPct', min: 1, max: 20 }
+        ]
+    },
+    // ─── MANTISCORE ─────────────────────────────────────────────────────────────
+    {
+        id:       'familiermantiscore',
+        name:     'Mantiscore Apprivoisé',
+        image:    'img/monstres/sprites/mantiscore.png',
+        rarity:   'rare',
+        monsters: ['mantiscore'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'damageReductionPct', min: 1, max: 5 }
+        ]
+    },
+    // ─── DRAGON COCHON ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierPorcaile',
+        name:     'Porçailé',
+        image:    'img/familiers/Porcaile.png',
+        rarity:   'peu_commun',
+        monsters: ['cochonDeFarle', 'donDorgan', 'donDussAng', 'porsalu', 'gorgouille'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 50 },
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 }
+        ]
+    },
+    {
+        id:       'familierdragonCochon',
+        name:     'Dragon Cochon Apprivoisé',
+        image:    'img/monstres/sprites/dragonCochon.png',
+        rarity:   'rare',
+        monsters: ['dragonCochon'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 1, max: 75 },
+            { bonusType: 'combat', bonusStat: 'spd', min: 1, max: 15 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 3, max: 20 }
         ]
     },
     // // ─── KRALAMOUR ─────────────────────────────────────────────────────────────

@@ -210,107 +210,145 @@ areas.Kwaks = {
         { itemId: 'cleDonjonKwakwa',       dropRate: 0.15, isKey: true }
     ]
 }
-// areas.blops = {
-//     id: 'blops',
-//     name: 'Lac des Blops',
-//     minLevel: 50, maxLevel: 70,
-//     mobMinLevel: 50, mobMaxLevel: 60,
-//     background: 'blop',
-//     icon: 'img/monstres/sprites/blopignon.png',
-//     description: "",
-//     spawns: [
-//         { id: 'blopCoco',     weight: 10 },
-//         { id: 'blopGriotte',  weight: 10 },
-//         { id: 'blopIndigo',   weight: 10 },
-//         { id: 'blopReinette', weight: 10 },
-//         { id: 'blopignon',    weight: 8 },
-//         { id: 'tronkoBlop',   weight: 8 },
-//         { id: 'gloutoBlop',   weight: 4 }
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDame',    dropRate: 0.45 },
-//         { itemId: 'cleDonjonBlop', dropRate: 0.15, isKey: true }
-//     ]
-// }
-// areas.plateauMantiscore = {
-//     id: 'plateauMantiscore',
-//     name: 'Plateau de la Mantiscore',
-//     minLevel: 60, maxLevel: 80,
-//     mobMinLevel: 60, mobMaxLevel: 70,
-//     background: 'desertMantiscore',
-//     icon: 'img/monstres/sprites/leolhyene.png',
-//     description: "",
-//     spawns: [
-//         { id: 'ouroboulos',   weight: 22 },
-//         { id: 'scordionBleu', weight: 22 },
-//         { id: 'fennex',       weight: 22 },
-//         { id: 'leolhyene',    weight: 22 },
-//         { id: 'boulepique',   weight: 12 }
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDame',          dropRate: 0.45 },
-//         { itemId: 'cleDonjonMantiscore', dropRate: 0.15, isKey: true }
-//     ]
-// }
-// areas.nidsDragaeufs = {
-//     id: 'nidsDragaeufs',
-//     name: 'Nids des Dragaeufs',
-//     minLevel: 70, maxLevel: 90,
-//     mobMinLevel: 70, mobMaxLevel: 80,
-//     background: 'montagneDragoeuf',
-//     icon: 'img/monstres/sprites/dragoeufArdoise.png',
-//     description: "",
-//     spawns: [
-//         { id: 'dragoeufArdoise',  weight: 22 },
-//         { id: 'dragoeufArgile',   weight: 22 },
-//         { id: 'dragoeufCalcaire', weight: 22 },
-//         { id: 'dragoeufCharbon',  weight: 22 },
-//         { id: 'dragoeufAlbatre',  weight: 12 }
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDame',          dropRate: 0.45 },
-//         { itemId: 'cleDonjonDraegnerys', dropRate: 0.15, isKey: true }
-//     ]
-// }
-// areas.foretAbraknydes = {
-//     id: 'foretAbraknydes',
-//     name: 'Forêt des Abraknydes',
-//     minLevel: 80, maxLevel: 100,
-//     mobMinLevel: 80, mobMaxLevel: 90,
-//     background: 'foretAbraknyde',
-//     icon: 'img/monstres/sprites/abrakneSombre.png',
-//     description: "",
-//     spawns: [
-//         { id: 'abrakneSombre',      weight: 20 },
-//         { id: 'abraknydeSombre',    weight: 20 },
-//         { id: 'araknotron',         weight: 20 },
-//         { id: 'abraknydeVenerable', weight: 20 }
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDame',                  dropRate: 0.45 },
-//         { itemId: 'cleDonjonAbraknydeAncestral', dropRate: 0.15, isKey: true }
-//     ]
-// }
-// areas.fermeDragonCochon = {
-//     id: 'fermeDragonCochon',
-//     name: 'Domaine du Dragon Cochon',
-//     minLevel: 90, maxLevel: 110,
-//     mobMinLevel: 90, mobMaxLevel: 100,
-//     background: 'fermeDragonCochon',
-//     icon: 'img/monstres/sprites/cochonDeFarle.png',
-//     description: "",
-//     spawns: [
-//         { id: 'cochonDeFarle', weight: 20 },
-//         { id: 'donDorgan',     weight: 20 },
-//         { id: 'donDussAng',    weight: 20 },
-//         { id: 'porsalu',       weight: 20 },
-//         { id: 'gorgouille',    weight: 4 }
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDame',            dropRate: 0.45 },
-//         { itemId: 'cleDonjonDragonCochon', dropRate: 0.15, isKey: true }
-//     ]
-// }
+areas.blops = {
+    id: 'blops',
+    name: 'Lac de Cania',
+    minLevel: 50, maxLevel: 70,
+    mobMinLevel: 50, mobMaxLevel: 60,
+    background: 'blop',
+    icon: 'img/monstres/sprites/blopignon.png',
+    description: "Au cœur des vastes plaines de Cania s'étend un immense lac aux eaux calmes et cristallines. À première vue, l'endroit semble paisible, bercé par le chant du vent et le clapotis des vagues contre les berges. Pourtant, les apparences sont trompeuses.",
+    spawns: [
+        { id: 'blopCoco',     weight: 10 },
+        { id: 'blopGriotte',  weight: 10 },
+        { id: 'blopIndigo',   weight: 10 },
+        { id: 'blopReinette', weight: 10 },
+        { id: 'blopignon',    weight: 8 },
+        { id: 'tronkoBlop',   weight: 8 },
+        { id: 'gloutoBlop',   weight: 4 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',    dropRate: 0.45 },
+        { itemId: 'bottes_blop_reinette',   dropRate: 0.01 },
+        { itemId: 'anneau_blop_reinette',   dropRate: 0.01 },
+        { itemId: 'amulette_blop_reinette', dropRate: 0.01 },
+        { itemId: 'ceinture_blop_reinette', dropRate: 0.01 },
+        { itemId: 'bottes_blop_coco',       dropRate: 0.01 },
+        { itemId: 'anneau_blop_coco',       dropRate: 0.01 },
+        { itemId: 'amulette_blop_coco',     dropRate: 0.01 },
+        { itemId: 'ceinture_blop_coco',     dropRate: 0.01 },
+        { itemId: 'bottes_blop_griotte',    dropRate: 0.01 },
+        { itemId: 'anneau_blop_griotte',    dropRate: 0.01 },
+        { itemId: 'amulette_blop_griotte',  dropRate: 0.01 },
+        { itemId: 'ceinture_blop_griotte',  dropRate: 0.01 },
+        { itemId: 'bottes_blop_indigo',     dropRate: 0.01 },
+        { itemId: 'anneau_blop_indigo',     dropRate: 0.01 },
+        { itemId: 'amulette_blop_indigo',   dropRate: 0.01 },
+        { itemId: 'ceinture_blop_indigo',   dropRate: 0.01 },
+        { itemId: 'cleDonjonBlop', dropRate: 0.15, isKey: true }
+    ]
+}
+areas.plateauMantiscore = {
+    id: 'plateauMantiscore',
+    name: 'Désert de Saharash',
+    minLevel: 60, maxLevel: 80,
+    mobMinLevel: 60, mobMaxLevel: 70,
+    background: 'desertMantiscore',
+    icon: 'img/monstres/sprites/leolhyene.png',
+    description: "Le vent du désert s’engouffre dans les ossements à demi ensevelis, produisant des sons étranges semblables à des lamentations anciennes. Entre les dunes, les créatures du désert ont pris possession des lieux : Fennex, Scordion Bleu, Léolhyènes et autres prédateurs rôdent parmi les restes de ces géants disparus, comme si la nature elle-même refusait d’abandonner ce cimetière.",
+    spawns: [
+        { id: 'ouroboulos',   weight: 22 },
+        { id: 'scordionBleu', weight: 22 },
+        { id: 'fennex',       weight: 22 },
+        { id: 'leolhyene',    weight: 22 },
+        { id: 'boulepique',   weight: 12 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',          dropRate: 0.45 },
+        { itemId: 'cape_Ouroboulos',   dropRate: 0.01 },
+        { itemId: 'cape_du_desert',   dropRate: 0.01 },
+        { itemId: 'coiffe_du_desert',   dropRate: 0.01 },
+        { itemId: 'bottes_Ouroboulos',   dropRate: 0.01 },
+        { itemId: 'anneau_Ouroboulos',   dropRate: 0.01 },
+        { itemId: 'ceinture_du_desert',   dropRate: 0.01 },
+        { itemId: 'cleDonjonMantiscore', dropRate: 0.15, isKey: true }
+    ]
+}
+areas.nidsDragaeufs = {
+    id: 'nidsDragaeufs',
+    name: 'Nids des Dragaeufs',
+    minLevel: 70, maxLevel: 90,
+    mobMinLevel: 70, mobMaxLevel: 80,
+    background: 'montagneDragoeuf',
+    icon: 'img/monstres/sprites/dragoeufArdoise.png',
+    description: "À l'abri des regards, au Sud de la foret maléfique, se trouve le Nid des Dragoeufs. Ces terres brûlées par le souffle des dragons était jadis une forêt luxuriante. A présent elles sont le refuge de leurs descendants, de puissantes créatures veillant farouchement sur leurs œufs et leur territoire.",
+    spawns: [
+        { id: 'dragoeufArdoise',  weight: 22 },
+        { id: 'dragoeufArgile',   weight: 22 },
+        { id: 'dragoeufCalcaire', weight: 22 },
+        { id: 'dragoeufCharbon',  weight: 22 },
+        { id: 'dragoeufAlbatre',  weight: 12 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',          dropRate: 0.45 },
+        { itemId: 'bottes_de_shika',     dropRate: 0.01},
+        { itemId: 'anneau_de_shika',     dropRate: 0.01},
+        { itemId: 'amulette_de_shika',   dropRate: 0.01},
+        { itemId: 'ceinture_de_shika',   dropRate: 0.01},
+        { itemId: 'cleDonjonDraegnerys', dropRate: 0.15, isKey: true }
+    ]
+}
+areas.foretAbraknydes = {
+    id: 'foretAbraknydes',
+    name: 'Forêt des Abraknydes',
+    minLevel: 80, maxLevel: 100,
+    mobMinLevel: 80, mobMaxLevel: 90,
+    background: 'foretAbraknyde',
+    icon: 'img/monstres/sprites/abrakneSombre.png',
+    description: "À l'ouest d'Astrub s'étend l'un des derniers vestiges de la forêt originelle qui recouvrait autrefois Amakna : la Forêt des Abraknydes. Épargnée par les flammes et les haches des hommes, cette étendue sauvage demeure un lieu de mystères où la nature n'a jamais accepté la présence des civilisations.",
+    spawns: [
+        { id: 'abrakneSombre',      weight: 20 },
+        { id: 'abraknydeSombre',    weight: 20 },
+        { id: 'araknotron',         weight: 20 },
+        { id: 'abraknydeVenerable', weight: 20 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',                  dropRate: 0.45 },
+        { itemId: 'cape_abraknyde', dropRate: 0.01 },
+        { itemId: 'coiffe_abraknyde', dropRate: 0.01 },
+        { itemId: 'bottes_abraknyde', dropRate: 0.01 },
+        { itemId: 'anneau_abraknyde', dropRate: 0.01 },
+        { itemId: 'amulette_abraknyde', dropRate: 0.01 },
+        { itemId: 'ceinture_abraknyde', dropRate: 0.01 },
+        { itemId: 'arme_abraknyde', dropRate: 0.01 },
+        { itemId: 'bouclier_abraknyde', dropRate: 0.01 },
+        { itemId: 'cleDonjonAbraknydeAncestral', dropRate: 0.15, isKey: true }
+    ]
+}
+areas.fermeDragonCochon = {
+    id: 'fermeDragonCochon',
+    name: 'Territoire des porcos',
+    minLevel: 90, maxLevel: 110,
+    mobMinLevel: 90, mobMaxLevel: 100,
+    background: 'fermeDragonCochon',
+    icon: 'img/monstres/sprites/cochonDeFarle.png',
+    description: "Entre les enclos délabrés, les fortifications de fortune et les sentiers creusés dans la terre grasse, des hordes de porcos patrouillent sans relâche pour protéger leur domaine. Gare à l'aventurier qui s'y aventure sans préparation : les habitants de ces terres n'apprécient guère les intrus et règlent généralement les différends à grands coups de groin.",
+    spawns: [
+        { id: 'cochonDeFarle', weight: 20 },
+        { id: 'donDorgan',     weight: 20 },
+        { id: 'donDussAng',    weight: 20 },
+        { id: 'porsalu',       weight: 20 },
+        { id: 'gorgouille',    weight: 4 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',            dropRate: 0.45 },
+        { itemId: 'cleDonjonDragonCochon', dropRate: 0.15, isKey: true },
+        { itemId: 'bottes_dragon_cochon',   dropRate: 0.01 },
+        { itemId: 'anneau_dragon_cochon',   dropRate: 0.01 },
+        { itemId: 'amulette_dragon_cochon', dropRate: 0.01 },
+        { itemId: 'ceinture_dragon_cochon', dropRate: 0.01 }
+    ]
+}
 // areas.landesMeulou = {
 //     id: 'landesMeulou',
 //     name: 'Landes du Meulou',
@@ -740,13 +778,14 @@ areas.donjonChamps = {
     spawns: [{ id: 'tournesolAffame',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'sac_paysan',       dropRate: 0.02 },
-        { itemId: 'chapeau_paysan',   dropRate: 0.02 },
-        { itemId: 'bottes_paysan',    dropRate: 0.02 },
-        { itemId: 'anneau_paysan',    dropRate: 0.02 },
-        { itemId: 'amulette_paysan',  dropRate: 0.02 },
-        { itemId: 'ceinture_paysan',  dropRate: 0.02 },
-        { itemId: 'faux_paysan',      dropRate: 0.01 }
+        { itemId: 'sac_paysan',       dropRate: 0.01 },
+        { itemId: 'chapeau_paysan',   dropRate: 0.01 },
+        { itemId: 'bottes_paysan',    dropRate: 0.01 },
+        { itemId: 'anneau_paysan',    dropRate: 0.01 },
+        { itemId: 'amulette_paysan',  dropRate: 0.01 },
+        { itemId: 'ceinture_paysan',  dropRate: 0.01 },
+        { itemId: 'faux_paysan',      dropRate: 0.01 },
+        { itemId: 'bouclier_tournesol',dropRate: 0.06 }
     ]
 }
 areas.donjonBouftou = {
@@ -780,9 +819,9 @@ areas.donjonScarafeuille = {
     minLevel: 45, maxLevel: 45,
     mobMinLevel: 45, mobMaxLevel: 45,
     background: 'scarafeuilles',
-    icon: 'img/monstres/sprites/scrarabossDoree.png',
-    description: "Sous la plaine des Scarafeuilles se cache une immense ruche souterraine gardée par la plus imposante et la plus dorée de toutes les créatures de son espèce : le Scraraboss Dorée. Il est dit que quiconque parviendrait à s'emparer de ses trésors dorés vivrait dans l'opulence pour le reste de sa vie. Aucun aventurier n'est revenu pour le confirmer.",
-    spawns: [{ id: 'scrarabossDoree', weight: 100 }],
+    icon: 'img/monstres/sprites/scarabossDoree.png',
+    description: "Sous la plaine des Scarafeuilles se cache une immense ruche souterraine gardée par la plus imposante et la plus dorée de toutes les créatures de son espèce : le Scaraboss Dorée. Il est dit que quiconque parviendrait à s'emparer de ses trésors dorés vivrait dans l'opulence pour le reste de sa vie. Aucun aventurier n'est revenu pour le confirmer.",
+    spawns: [{ id: 'scarabossDoree', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',          dropRate: 0.45 },
         { itemId: 'cape_scaraboss_doree',        dropRate: 0.02 },
@@ -813,98 +852,117 @@ areas.donjonKwakwa = {
         { itemId: 'kwakwalame',        dropRate: 0.02 }
     ]
 }
-
-// ═══════════════════════════════════════════════════════
-// DONJON BLOP
-// areas.donjonBlop = {
-//     id: 'donjonBlop',
-//     type: 'dungeon',
-//     keyId: 'cleDonjonBlop',
-//     name: 'Le Royaume des Blops Royaux',
-//     minLevel: 65, maxLevel: 65,
-//     mobMinLevel: 65, mobMaxLevel: 65,
-//     background: 'blop',
-//     icon: 'img/monstres/sprites/blopCocoRoyal.png',
-//     description: "",
-//     bossMode: 'any',   // 1 boss aléatoire parmi 4, battre l'un valide le donjon
-//     spawns: [
-//         { id: 'blopCocoRoyal',     weight: 25 },
-//         { id: 'blopGriotteRoyal',  weight: 25 },
-//         { id: 'blopIndigoRoyal',   weight: 25 },
-//         { id: 'blopReinetteRoyal', weight: 25 }
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
-//     ]
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON MANTISCORE
-// areas.donjonMantiscore = {
-//     id: 'donjonMantiscore',
-//     type: 'dungeon',
-//     keyId: 'cleDonjonMantiscore',
-//     name: "L'Antre de la Mantiscore",
-//     minLevel: 75, maxLevel: 75,
-//     mobMinLevel: 75, mobMaxLevel: 75,
-//     background: 'desertMantiscore',
-//     icon: 'img/monstres/sprites/mantiscore.png',
-//     description: "",
-//     spawns: [{ id: 'mantiscore', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
-//     ]
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON DRAEGNERYS
-// areas.donjonDraegnerys = {
-//     id: 'donjonDraegnerys',
-//     type: 'dungeon',
-//     keyId: 'cleDonjonDraegnerys',
-//     name: 'Le Repaire du Draegnerys',
-//     minLevel: 85, maxLevel: 85,
-//     mobMinLevel: 85, mobMaxLevel: 85,
-//     background: 'montagneDragoeuf',
-//     icon: 'img/monstres/sprites/draegnerys.png',
-//     description: "",
-//     spawns: [{ id: 'draegnerys', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
-//     ]
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON ABRAKNYDE ANCESTRAL
-// areas.donjonAbraknydeAncestral = {
-//     id: 'donjonAbraknydeAncestral',
-//     type: 'dungeon',
-//     keyId: 'cleDonjonAbraknydeAncestral',
-//     name: "Le Temple de l'Abraknyde Ancestral",
-//     minLevel: 95, maxLevel: 95,
-//     mobMinLevel: 95, mobMaxLevel: 95,
-//     background: 'foretAbraknyde',
-//     icon: 'img/monstres/sprites/abraknydeAncestral.png',
-//     description: "",
-//     spawns: [{ id: 'abraknydeAncestral', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
-//     ]
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON DRAGON COCHON
-// areas.donjonDragonCochon = {
-//     id: 'donjonDragonCochon',
-//     type: 'dungeon',
-//     keyId: 'cleDonjonDragonCochon',
-//     name: 'La Ferme du Dragon Cochon',
-//     minLevel: 105, maxLevel: 105,
-//     mobMinLevel: 105, mobMaxLevel: 105,
-//     background: 'fermeDragonCochon',
-//     icon: 'img/monstres/sprites/dragonCochon.png',
-//     description: "",
-//     spawns: [{ id: 'dragonCochon', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien', dropRate: 0.45 }
-//     ]
-// }
+areas.donjonBlop = {
+    id: 'donjonBlop',
+    type: 'dungeon',
+    keyId: 'cleDonjonBlop',
+    name: 'Le Clos des Blops',
+    minLevel: 65, maxLevel: 65,
+    mobMinLevel: 65, mobMaxLevel: 65,
+    background: 'blop',
+    icon: 'img/monstres/sprites/blopCocoRoyal.png',
+    description: "Entre flaques de gelée, végétation déformée et créatures rebondissantes, le Clos des Blops offre un spectacle aussi fascinant que dangereux. Un lieu où la couleur et la bonne humeur dissimulent une menace bien réelle.",
+    bossMode: 'any',   // 1 boss aléatoire parmi 4, battre l'un valide le donjon
+    spawns: [
+        { id: 'blopCocoRoyal',     weight: 25 },
+        { id: 'blopGriotteRoyal',  weight: 25 },
+        { id: 'blopIndigoRoyal',   weight: 25 },
+        { id: 'blopReinetteRoyal', weight: 25 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',          dropRate: 0.45 },
+        { itemId: 'bottes_blop_reinette_royal',   dropRate: 0.01 },
+        { itemId: 'anneau_blop_reinette_royal',   dropRate: 0.01 },
+        { itemId: 'amulette_blop_reinette_royal', dropRate: 0.01 },
+        { itemId: 'ceinture_blop_reinette_royal', dropRate: 0.01 },
+        { itemId: 'bottes_blop_coco_royal',       dropRate: 0.01 },
+        { itemId: 'anneau_blop_coco_royal',       dropRate: 0.01 },
+        { itemId: 'amulette_blop_coco_royal',     dropRate: 0.01 },
+        { itemId: 'ceinture_blop_coco_royal',     dropRate: 0.01 },
+        { itemId: 'bottes_blop_griotte_royal',    dropRate: 0.01 },
+        { itemId: 'anneau_blop_griotte_royal',    dropRate: 0.01 },
+        { itemId: 'amulette_blop_griotte_royal',  dropRate: 0.01 },
+        { itemId: 'ceinture_blop_griotte_royal',  dropRate: 0.01 },
+        { itemId: 'bottes_blop_indigo_royal',     dropRate: 0.01 },
+        { itemId: 'anneau_blop_indigo_royal',     dropRate: 0.01 },
+        { itemId: 'amulette_blop_indigo_royal',   dropRate: 0.01 },
+        { itemId: 'ceinture_blop_indigo_royal',   dropRate: 0.01 }
+    ]
+}
+areas.donjonMantiscore = {
+    id: 'donjonMantiscore',
+    type: 'dungeon',
+    keyId: 'cleDonjonMantiscore',
+    name: "Cimetière des Mastodontes",
+    minLevel: 75, maxLevel: 75,
+    mobMinLevel: 75, mobMaxLevel: 75,
+    background: 'desertMantiscore',
+    icon: 'img/monstres/sprites/mantiscore.png',
+    description: "Au cœur du désert brûlant de Saharach, là où les Dunes des Ossements s'étendent à perte de vue, repose un lieu oublié du monde des vivants : le Cimetière des Mastodontes. Ces terres portent le souvenir d’une époque révolue, lorsque d’immenses créatures arpentant l’île s’effondraient ici, laissant derrière elles des squelettes titanesques enfouis sous le sable.",
+    spawns: [{ id: 'mantiscore', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'arme_du_mantiscore', dropRate: 0.03 }
+    ]
+}
+areas.donjonDraegnerys = {
+    id: 'donjonDraegnerys',
+    type: 'dungeon',
+    keyId: 'cleDonjonDraegnerys',
+    name: "L'épreuve' de Draegnerys",
+    minLevel: 85, maxLevel: 85,
+    mobMinLevel: 85, mobMaxLevel: 85,
+    background: 'montagneDragoeuf',
+    icon: 'img/monstres/sprites/draegnerys.png',
+    description: "Sur la presqu'île des Dragoeufs, au cœur des terres fumantes où la roche semble encore porter l'empreinte des anciens dragons, s'élève l'Épreuve de Draegnerys. Ici, chaque pas est une mise à l'épreuve, chaque couloir un test imposé par la gardienne des lieux.",
+    spawns: [{ id: 'draegnerys', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cape_de_shika',     dropRate: 0.02},
+        { itemId: 'coiffe_de_shika',     dropRate: 0.02},
+        { itemId: 'arme_de_shika',     dropRate: 0.02}
+    ]
+}
+areas.donjonAbraknydeAncestral = {
+    id: 'donjonAbraknydeAncestral',
+    type: 'dungeon',
+    keyId: 'cleDonjonAbraknydeAncestral',
+    name: "Domaine Ancestral",
+    minLevel: 95, maxLevel: 95,
+    mobMinLevel: 95, mobMaxLevel: 95,
+    background: 'foretAbraknyde',
+    icon: 'img/monstres/sprites/abraknydeAncestral.png',
+    description: "Dans le Domaine Ancestral, la forêt n'est pas un décor. Elle est vivante... et elle vous observe.",
+    spawns: [{ id: 'abraknydeAncestral', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cape_abraknydeAncestral',     dropRate: 0.01},
+        { itemId: 'coiffe_abraknydeAncestral',     dropRate: 0.01},
+        { itemId: 'bottes_abraknydeAncestral',     dropRate: 0.01},
+        { itemId: 'anneau_abraknydeAncestral',     dropRate: 0.01},
+        { itemId: 'amulette_abraknydeAncestral',   dropRate: 0.01},
+        { itemId: 'ceinture_abraknydeAncestral',   dropRate: 0.01}
+    ]
+}
+areas.donjonDragonCochon = {
+    id: 'donjonDragonCochon',
+    type: 'dungeon',
+    keyId: 'cleDonjonDragonCochon',
+    name: 'Antre du Dragon Cochon',
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: 'fermeDragonCochon',
+    icon: 'img/monstres/sprites/dragonCochon.png',
+    description: "Au cœur du Territoire des Porcos se cache un dédale de galeries nauséabondes où résonnent grognements et rugissements. C'est ici que siège le Dragon Cochon, une créature contre-nature née de la fusion improbable entre la férocité d'un dragon et la brutalité d'un porc géant.",
+    spawns: [{ id: 'dragonCochon', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'cape_dragon_cochon',   dropRate: 0.02 },
+        { itemId: 'coiffe_dragon_cochon', dropRate: 0.02 },
+        { itemId: 'arme_dragon_cochon',   dropRate: 0.02 },
+        { itemId: 'Dofus_Turquoise',      dropRate: 0.001 }
+    ]
+}
 // ═══════════════════════════════════════════════════════
 // DONJON MEULOU
 // areas.donjonMeulou = {
@@ -1350,7 +1408,7 @@ areas.evenementBiblop = {
     mobMinLevel: 25, mobMaxLevel: 30,
     background: 'Blop',
     icon: 'img/monstres/Events/biblop_griotte.png',
-    description: "Des habitants ont rapportés qu'aux alentours du lac des blops se multiplient vitesse grand V... Essayez de stoper cette invasion tant qu'ils ne sont pas pleinement développés.",
+    description: "Des habitants ont rapportés qu'aux alentours du lac de Cania, des blops se multiplient vitesse grand V... Essayez de stoper cette invasion tant qu'ils ne sont pas pleinement développés.",
     spawns: [
         { id: 'biblop_coco',     weight: 25 },
         { id: 'biblop_reinette', weight: 25 },
@@ -1426,6 +1484,7 @@ areas.evenementForetAstrub = {
 
 
 
+
 // #endregion
 
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
@@ -1446,6 +1505,35 @@ areas.raidDofusArgenté = {
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',   dropRate: 0.45 },
         { itemId: 'Dofus_Argente',       dropRate: 0.01 }
+    ]
+}
+areas.raidGelees = {
+    id: 'raidGelees',
+    name: 'Attention aux caries !',
+    type: 'raid',
+    minLevel: 55, maxLevel: 65,
+    mobMinLevel: 55, mobMaxLevel: 65,
+    background: 'gelees',
+    icon: 'img/monstres/Events/gelee_fraise.png',
+    description: "Nombreux sont ceux qui viennent chercher fortune parmi ces créatures gélatineuses, attirés par les trésors et les mystères de la Gelaxième Dimension. Mais dans ce royaume sucré, il ne faut jamais se fier aux apparences : ce qui ressemble à une simple gourmandise pourrait bien être votre dernier repas.",
+    spawns: [
+        { id: 'gelee_fraise',         weight: 20 },
+        { id: 'gelee_menthe',         weight: 20 },
+        { id: 'gelee_bleuet',         weight: 20 },
+        { id: 'gelee_citron',         weight: 20 },
+    ],
+    miniBoss: {ids: ['gelee_fraise_royale', 'gelee_menthe_royale', 'gelee_bleuet_royale', 'gelee_citron_royale'], everyKills: 4, statMult: 1},
+    lootTable: [
+        { itemId: 'pierreDame',     dropRate: 0.35 },
+        { itemId: 'cape_gelax',     dropRate: 0.02 },
+        { itemId: 'coiffe_gelax',   dropRate: 0.02 },
+        { itemId: 'bottes_gelax',   dropRate: 0.02 },
+        { itemId: 'amulette_gelax', dropRate: 0.02 },
+        { itemId: 'ceinture_gelax', dropRate: 0.02 }
+    ],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'anneau_gelano',      dropRate: 0.01 }
     ]
 }
 areas.raidTourbeduRoissingue = {

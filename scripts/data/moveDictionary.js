@@ -582,13 +582,13 @@ move.vitalite = {
     name: 'Vitalité',
     classId: 'iop',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'maxHp', value: 100, duration: 2, target: 'self'}],
+    effects: [{type: 'buff', stat: 'maxHp', value: 200, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,  
-                        patch: {buff: { value: 200 }}},
+                        patch: {buff: { value: 400 }}},
                        {lvl: 159,
-                        patch: {buff: { value: 400 }}}],
+                        patch: {buff: { value: 700 }}}],
     description: "Augmente temporairement les points de vie et points de vie max du lanceur."
 }
 move.souffle = {

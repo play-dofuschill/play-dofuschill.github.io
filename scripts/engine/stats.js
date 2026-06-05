@@ -26,13 +26,18 @@ function getEffectiveStats(member, syncedLevel = null) {
     let finalDamagePct     = 0
     let spellDamagePct     = 0
     let damageReductionPct = 0
-    let critChance         = 0
-    let critDamagePct      = 50
+    let critChance         = cls.bst.critChance    ?? 0
+    let critDamagePct      = cls.bst.critDamagePct ?? 50
     let healPct            = 0
     let healTeamPct        = 0
     let healMaxHpPct       = 0
     let healStat           = 0
     let lifestealPct       = 0
+    let force              = 0
+    let intelligence       = 0
+    let chance             = 0
+    let agilite            = 0
+    let critResPct         = cls.bst.res?.crit     ?? 0
 
     // scaling résistances
     for (const elem in res) {
@@ -67,6 +72,11 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
                 else if (stat === 'heal')               healStat           += value
                 else if (stat === 'lifestealPct')       lifestealPct       += value
+                else if (stat === 'force')              force              += value
+                else if (stat === 'intelligence')       intelligence       += value
+                else if (stat === 'chance')             chance             += value
+                else if (stat === 'agilite')            agilite            += value
+                else if (stat === 'critResPct')         critResPct         += value
                 else if (stat.startsWith('res.'))        { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
         }
@@ -107,6 +117,11 @@ function getEffectiveStats(member, syncedLevel = null) {
             if (buff.stat === 'healMaxHpPct')   healMaxHpPct   += buff.value
             if (buff.stat === 'heal')           healStat       += buff.value
             if (buff.stat === 'lifestealPct')   lifestealPct   += buff.value
+            if (buff.stat === 'force')          force          += buff.value
+            if (buff.stat === 'intelligence')   intelligence   += buff.value
+            if (buff.stat === 'chance')         chance         += buff.value
+            if (buff.stat === 'agilite')        agilite        += buff.value
+            if (buff.stat === 'critResPct')     critResPct     += buff.value
 
             if (buff.stat === 'res_all') {
                 for (const e in res) res[e] += buff.value
@@ -143,6 +158,11 @@ function getEffectiveStats(member, syncedLevel = null) {
                 else if (stat === 'healMaxHpPct')       healMaxHpPct       += value
                 else if (stat === 'heal')               healStat           += value
                 else if (stat === 'lifestealPct')       lifestealPct       += value
+                else if (stat === 'force')              force              += value
+                else if (stat === 'intelligence')       intelligence       += value
+                else if (stat === 'chance')             chance             += value
+                else if (stat === 'agilite')            agilite            += value
+                else if (stat === 'critResPct')         critResPct         += value
                 else if (stat.startsWith('res.'))       { const e = stat.split('.')[1]; if (res[e] !== undefined) res[e] += value }
             }
         }
@@ -168,6 +188,11 @@ function getEffectiveStats(member, syncedLevel = null) {
             else if (bs === 'healMaxHpPct')       healMaxHpPct       += value
             else if (bs === 'heal')               healStat           += value
             else if (bs === 'lifestealPct')       lifestealPct       += value
+            else if (bs === 'force')              force              += value
+            else if (bs === 'intelligence')       intelligence       += value
+            else if (bs === 'chance')             chance             += value
+            else if (bs === 'agilite')            agilite            += value
+            else if (bs === 'critResPct')         critResPct         += value
             else if (bs.startsWith('res.')) {
                 const elem = bs.split('.')[1]
                 if (res[elem] !== undefined) res[elem] += value
@@ -277,7 +302,13 @@ function getEffectiveStats(member, syncedLevel = null) {
         healTeamPct,
         healMaxHpPct,
         healStat,
-        lifestealPct
+        lifestealPct,
+
+        force,
+        intelligence,
+        chance,
+        agilite,
+        critResPct
     }
 }
 
@@ -291,8 +322,9 @@ function resolveElement(effect) {
 
 // ─── Calcul des dégâts ────────────────────────────────────────────────────────
 
-// hpCtx : { casterMaxHp, casterCurrentHp, targetMaxHp, targetCurrentHp }
-function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}) {
+// hpCtx      : { casterMaxHp, casterCurrentHp, targetMaxHp, targetCurrentHp }
+// forcedCrit : true/false pré-rollé par l'appelant (null = rouler ici)
+function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}, forcedCrit = null) {
 
     const elem = resolveElement(effect)
 
@@ -315,7 +347,12 @@ function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}) {
 
     // ─── Stats offensives ─────────────────────
 
-    const atkPower = attackerStats.atk || 0
+    // Bonus élémentaire : force/intelligence/chance/agilite selon l'élément du sort
+    const _elemStatMap = { terre: 'force', feu: 'intelligence', eau: 'chance', air: 'agilite' }
+    const _elemStatKey = _elemStatMap[elem]
+    const elemBonus    = _elemStatKey ? (attackerStats[_elemStatKey] || 0) : 0
+
+    const atkPower = (attackerStats.atk || 0) + elemBonus
 
     const flatDamage = attackerStats.flatDamage || 0
 
@@ -331,40 +368,43 @@ function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}) {
 
     // ─── Critiques ────────────────────────────
 
-    const critChance = attackerStats.critChance || 0
-
+    const critChance    = attackerStats.critChance    || 0
     const critDamagePct = attackerStats.critDamagePct || 50
+    // Résistance critique du défenseur : réduit le bonus de dégâts critiques reçus
+    const critResPct    = defenderStats.critResPct    || 0
 
     // ─── Calcul dégâts ────────────────────────
-    // Les dégâts basés sur les HP ignorent l'ATK et le flatDamage (comme dans Dofus)
 
+    const isCrit = forcedCrit !== null ? forcedCrit : (Math.random() * 100 < critChance)
+
+    // Le critique s'applique sur le roll de base (avant ATK et multiplicateurs finaux)
+    let effectiveBase = baseRoll
+    if (isCrit) {
+        const critBonus = Math.max(0, critDamagePct - critResPct)
+        effectiveBase = Math.floor(baseRoll * (1 + critBonus / 100))
+    }
+
+    // Les dégâts basés sur les HP ignorent l'ATK et le flatDamage (comme dans Dofus)
     let damage = hpBased
-        ? baseRoll
-        : baseRoll * (1 + atkPower / 100)
+        ? effectiveBase
+        : effectiveBase * (1 + atkPower / 100)
 
     // dégâts fixes (ignorés pour les sorts HP%)
     if (!hpBased) damage += flatDamage
 
     // dégâts finaux
-    damage *=(1 + finalDamagePct / 100)
+    damage *= (1 + finalDamagePct / 100)
 
     // bonus dégâts sorts
-    damage *=(1 + spellDamagePct / 100)
+    damage *= (1 + spellDamagePct / 100)
 
     // résistances
-    damage *=(1 - resistance / 100)
+    damage *= (1 - resistance / 100)
 
     // réduction dégâts
-    damage *=(1 - damageReductionPct / 100)
+    damage *= (1 - damageReductionPct / 100)
 
-    // ─── Critique ─────────────────────────────
-
-    const isCrit =Math.random() * 100 < critChance
-
-    if (isCrit) {damage *=(1 + critDamagePct / 100)}
-
-    return {damage: Math.max(0,Math.floor(damage)),isCrit
-    }
+    return { damage: Math.max(0, Math.floor(damage)), isCrit }
 }
 
 // ─── Niveau d'item ────────────────────────────────────────────────────────────
@@ -392,21 +432,34 @@ function countSetPieces(equip) {
         }
         const itm = item[itemId]
         if (!itm || !itm.set) continue
-        counts[itm.set] = (counts[itm.set] || 0) + 1
+        const _sets = Array.isArray(itm.set) ? itm.set : [itm.set]
+        for (const _setId of _sets) counts[_setId] = (counts[_setId] || 0) + 1
     }
     return counts
 }
 
-// ─── Bonus farming de toute l'équipe (familiers + panoplies) ─────────────────
-// Agrège dropRate, xpGain, dropRateElite depuis les familiers équipés ET les
-// bonus de panoplie actifs de chaque membre.
+// ─── Bonus farming de toute l'équipe (familiers uniquement) ──────────────────
+// Agrège dropRate, xpGain, dropRateElite depuis les familiers de TOUS les membres.
+// Les bonus panoplie et items ne sont PAS inclus ici — ils dépendent du membre actif.
 
 function getAllTeamFarmingBonuses() {
-    const totals = getAllFamiliarBonuses()
-    if (typeof panoplies === 'undefined' || !state.team) return totals
+    return getAllFamiliarBonuses()
+}
+
+// ─── Bonus farming du membre actif (panoplies + items) ───────────────────────
+// Lit uniquement le membre en cours d'action (combat.activeMemberIndex).
+// Appelé au moment du kill/drop pour appliquer les bonus de façon conditionnelle.
+
+function getActiveMemberEquipFarmingBonuses() {
+    if (typeof combat === 'undefined' || !combat || !state.team) return {}
+    const member = state.team[combat.activeMemberIndex]
+    if (!member?.equip) return {}
+
+    const totals = {}
     const FARMING_STATS = new Set(['dropRate', 'xpGain', 'dropRateElite'])
-    for (const member of state.team) {
-        if (!member?.equip) continue
+
+    // Panoplies du membre actif
+    if (typeof panoplies !== 'undefined') {
         const setCounts = countSetPieces(member.equip)
         for (const [setId, count] of Object.entries(setCounts)) {
             const pano = panoplies[setId]
@@ -420,5 +473,20 @@ function getAllTeamFarmingBonuses() {
             }
         }
     }
+
+    // Items du membre actif (hors familier)
+    if (typeof item !== 'undefined') {
+        for (const slotId in member.equip) {
+            if (slotId === 'familier') continue
+            const itemId = member.equip[slotId]
+            if (!itemId) continue
+            const itm = item[itemId]
+            if (!itm?.stats) continue
+            for (const s of itm.stats) {
+                if (s.stat && FARMING_STATS.has(s.stat)) totals[s.stat] = (totals[s.stat] || 0) + (s.value || 0)
+            }
+        }
+    }
+
     return totals
 }

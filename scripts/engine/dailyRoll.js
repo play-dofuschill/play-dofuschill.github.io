@@ -12,7 +12,7 @@ const UNLOCK_TIERS = [
     // Boss lvl 35 → zones maxLevel 41-50 (scaraboss dorée)
     { anyBossOf: ['bouftouRoyal'],                                                                unlocksMaxLevel: 50,  hint: 'un boss de niveau 35' },
     // Boss lvl 45 → zones maxLevel 51-60 (nid du kwakwa)
-    { anyBossOf: ['scrarabossDoree'],                                                             unlocksMaxLevel: 60,  hint: 'un boss de niveau 45' },
+    { anyBossOf: ['scarabossDoree'],                                                              unlocksMaxLevel: 60,  hint: 'un boss de niveau 45' },
     // Boss lvl 55 → zones maxLevel 61-70  (Blops 50-70)
     { anyBossOf: ['kwakwa'],                                                                      unlocksMaxLevel: 70,  hint: 'un boss de niveau 55' },
     // Boss lvl 65 → zones maxLevel 71-80  (Plateau Mantiscore 60-80)
@@ -122,8 +122,9 @@ function refreshDailyPools() {
         const accessible = Object.values(areas).filter(a =>
             (a.type || 'wild') === 'wild' && isZoneAccessible(a)
         )
-        const picked = new Set()
-        const zones  = []
+        const picked       = new Set()
+        const pickedRanges = new Set()  // évite deux zones avec le même minLevel-maxLevel
+        const zones        = []
 
         // Garantir au moins une zone Incarnam/départ (maxLevel ≤ 20) dans le pool
         const starters = accessible.filter(a => a.maxLevel <= 20)
@@ -132,13 +133,16 @@ function refreshDailyPools() {
             s = (Math.imul(s, 1664525) + 1013904223) >>> 0
             const starter = starters[s % starters.length]
             picked.add(starter.id)
+            pickedRanges.add(`${starter.minLevel}-${starter.maxLevel}`)
             zones.push(starter.id)
         }
 
         for (let i = 0; i < WILD_SLOTS.length; i++) {
             const { min, max } = WILD_SLOTS[i]
             const candidates = accessible.filter(a =>
-                !picked.has(a.id) && a.minLevel <= max && a.maxLevel >= min
+                !picked.has(a.id) &&
+                !pickedRanges.has(`${a.minLevel}-${a.maxLevel}`) &&
+                a.minLevel <= max && a.maxLevel >= min
             )
             if (candidates.length === 0) continue
             // Seed différente par slot pour éviter de toujours choisir le même index
@@ -146,6 +150,7 @@ function refreshDailyPools() {
             s = (Math.imul(s, 1664525) + 1013904223) >>> 0
             const choice = candidates[s % candidates.length]
             picked.add(choice.id)
+            pickedRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             zones.push(choice.id)
         }
         state.dailyPool = { date: today, bossCount, zones }

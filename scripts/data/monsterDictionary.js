@@ -9,7 +9,10 @@ monsters. = {
     tier: 'boss','elite', 'normal'
     bst: {
         hp: 1, atk: 1, spd: 100,
-        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
+        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 },
+        // Stats critiques (defaults si absent : critChance=5, critDamagePct=50, res.crit=0)
+        critChance: 5, critDamagePct: 50,
+        // res.crit : résistance critique — réduit le bonus de dégâts critiques reçus
     },
     // Format simple : tableau de sorts → ordre aléatoire au spawn (max 4 tirés si + de 4)
     moves: ['sort_A', 'sort_B', 'sort_C'],
@@ -676,12 +679,12 @@ monsters.scarafeuilleImmature = {
         res: {neutre: -10, terre: -10, feu: -10, eau: -10, air: -10}
     },
     moves: ['scarapoison'],
-    ownerId: 'scrarabossDoree'
+    ownerId: 'scarabossDoree'
 }
-monsters.scrarabossDoree = {
-    id: 'scrarabossDoree',
-    name: 'Scraraboss Doree',
-    image: 'img/monstres/sprites/scrarabossDoree.png',
+monsters.scarabossDoree = {
+    id: 'scarabossDoree',
+    name: 'Scaraboss Doree',
+    image: 'img/monstres/sprites/scarabossDoree.png',
     rarity: 'rare',
     tier: 'boss',
     bst: {
@@ -812,136 +815,131 @@ monsters.kwakwa = {
 
 // ═══════════════════════════════════════════════════════
 // #region BLOP — Zone niveau 50-70
-// monsters.blopCoco = {
-//     id: 'blopCoco',
-//     name: 'Blop Coco',
-//     image: 'img/monstres/sprites/blopCoco.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 600, atk: 170, spd: 100,
-//         res: {neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 }},
-//     moves: ['bloperie_air','blopiment_air']
-// }
-// monsters.blopGriotte = {
-//     id: 'blopGriotte',
-//     name: 'Blop Griotte',
-//     image: 'img/monstres/sprites/blopGriotte.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 600, atk: 170, spd: 100,
-//         res: {neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 }},
-//     moves: ['bloperie_feu','blopiment_feu']
-// }
-// monsters.blopIndigo = {
-//     id: 'blopIndigo',
-//     name: 'Blop Indigo',
-//     image: 'img/monstres/sprites/blopIndigo.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 600, atk: 170, spd: 100,
-//         res: {neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 }},
-//     moves: ['bloperie_eau','blopiment_eau']
-// }
-// monsters.blopReinette = {
-//     id: 'blopReinette',
-//     name: 'Blop Reinette',
-//     image: 'img/monstres/sprites/blopReinette.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 600, atk: 170, spd: 100,
-//         res: {neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 }},
-//     moves: ['bloperie_terre','blopiment_terre']
-// }
-// monsters.blopignon = {
-//     id: 'blopignon',
-//     name: 'Blopignon',
-//     image: 'img/monstres/sprites/blopignon.png',
-//     rarity: 'peu_commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 500, atk: 170, spd: 100,
-//         res: {neutre: 21, terre: -19, feu: -14, eau: 0, air: 26 }},
-//     moves: ['bloblo', 'blopiction', 'bloprojection']
-// }
-// monsters.tronkoBlop = {
-//     id: 'tronkoBlop',
-//     name: 'Tronko Blop',
-//     image: 'img/monstres/sprites/tronkoBlop.png',
-//     rarity: 'peu_commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 600, atk: 170, spd: 100,
-//         res: {neutre: 0, terre: 41, feu: 31, eau: -9, air: -24 }},
-//     moves: ['blopsoin', 'blopzone']
-// }
-// monsters.gloutoBlop = {
-//     id: 'gloutoBlop',
-//     name: 'Glouto Blop',
-//     image: 'img/monstres/sprites/gloutoBlop.png',
-//     rarity: 'peu_commun',
-//     tier: 'elite'
-//     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 21, terre: -9, feu: -24, eau: 26, air: 11 }},
-//     moves: ['gloutage']
-// }
-
-
-// ═══════════════════════════════════════════════════════
-// DONJON BLOP
-// ═══════════════════════════════════════════════════════
-// monsters.blopCocoRoyal = {
-//     id: 'blopCocoRoyal',
-//     name: 'Blop Coco Royal',
-//     image: 'img/monstres/sprites/blopCocoRoyal.png',
-//     rarity: 'rare',
-//     tier: 'boss',
-//     bst: {
-//         hp: 2800, atk: 250, spd: 100,
-//         res: {neutre: -15, terre: -15, feu: -15, eau: -15, air: 95 }
-//     },
-//     moves: ['blotravail_Royal', 'blopunition_Royale_air', 'blotection_air']
-// }
-// monsters.blopGriotteRoyal = {
-//     id: 'blopGriotteRoyal',
-//     name: 'Blop Griotte Royal',
-//     image: 'img/monstres/sprites/blopGriotteRoyal.png',
-//     rarity: 'rare',
-//     tier: 'boss',
-//     bst: {
-//         hp: 2800, atk: 250, spd: 100,
-//         res: {neutre: -15, terre: -15, feu: 95, eau: -15, air: -15 }
-//     },
-//     moves: ['blotravail_Royal', 'blopunition_Royale_feu', 'blotection_feu']
-// }
-// monsters.blopIndigoRoyal = {
-//     id: 'blopIndigoRoyal',
-//     name: 'Blop Indigo Royal',
-//     image: 'img/monstres/sprites/blopIndigoRoyal.png',
-//     rarity: 'rare',
-//     tier: 'boss',
-//     bst: {
-//         hp: 2800, atk: 250, spd: 100,
-//         res: {neutre: -15, terre: -15, feu: -15, eau: 95, air: -15 }
-//     },
-//     moves: ['blotravail_Royal', 'blopunition_Royale_eau', 'blotection_eau']
-// }
-// monsters.blopReinetteRoyal = {
-//     id: 'blopReinetteRoyal',
-//     name: 'Blop Reinette Royal',
-//     image: 'img/monstres/sprites/blopReinetteRoyal.png',
-//     rarity: 'rare',
-//     tier: 'boss',
-//     bst: {
-//         hp: 2800, atk: 250, spd: 100,
-//         res: {neutre: -15, terre: 95, feu: -15, eau: -15, air: -15 }
-//     },
-//     moves: ['blotravail_Royal', 'blopunition_Royale_terre', 'blotection_terre']
-// }
+monsters.blopCoco = {
+    id: 'blopCoco',
+    name: 'Blop Coco',
+    image: 'img/monstres/sprites/blopCoco.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 600, atk: 170, spd: 100,
+        res: {neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 }},
+    moves: ['bibloperie_air','biblopiment_air']
+}
+monsters.blopGriotte = {
+    id: 'blopGriotte',
+    name: 'Blop Griotte',
+    image: 'img/monstres/sprites/blopGriotte.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 600, atk: 170, spd: 100,
+        res: {neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 }},
+    moves: ['bibloperie_feu','biblopiment_feu']
+}
+monsters.blopIndigo = {
+    id: 'blopIndigo',
+    name: 'Blop Indigo',
+    image: 'img/monstres/sprites/blopIndigo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 600, atk: 170, spd: 100,
+        res: {neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 }},
+    moves: ['bibloperie_eau','biblopiment_eau']
+}
+monsters.blopReinette = {
+    id: 'blopReinette',
+    name: 'Blop Reinette',
+    image: 'img/monstres/sprites/blopReinette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 600, atk: 170, spd: 100,
+        res: {neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 }},
+    moves: ['bibloperie_terre','biblopiment_terre']
+}
+monsters.blopignon = {
+    id: 'blopignon',
+    name: 'Blopignon',
+    image: 'img/monstres/sprites/blopignon.png',
+    rarity: 'peu_commun',
+    tier: 'normal',
+    bst: {
+        hp: 500, atk: 170, spd: 100,
+        res: {neutre: 21, terre: -19, feu: -14, eau: 0, air: 26 }},
+    moves: ['bloblo', 'blopiction', 'bloprojection']
+}
+monsters.tronkoBlop = {
+    id: 'tronkoBlop',
+    name: 'Tronko Blop',
+    image: 'img/monstres/sprites/tronkoBlop.png',
+    rarity: 'peu_commun',
+    tier: 'normal',
+    bst: {
+        hp: 600, atk: 170, spd: 100,
+        res: {neutre: 0, terre: 41, feu: 31, eau: -9, air: -24 }},
+    moves: ['blopsoin', 'blopzone']
+}
+monsters.gloutoBlop = {
+    id: 'gloutoBlop',
+    name: 'Glouto Blop',
+    image: 'img/monstres/sprites/gloutoBlop.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: {
+        hp: 1, atk: 1, spd: 100,
+        res: {neutre: 21, terre: -9, feu: -24, eau: 26, air: 11 }},
+    moves: ['gloutage']
+}
+monsters.blopCocoRoyal = {
+    id: 'blopCocoRoyal',
+    name: 'Blop Coco Royal',
+    image: 'img/monstres/sprites/blopCocoRoyal.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2800, atk: 250, spd: 100,
+        res: {neutre: -15, terre: -15, feu: -15, eau: -15, air: 95 }
+    },
+    moves: ['blotravail_Royal', 'blopunition_Royale_air', 'blotection_air']
+}
+monsters.blopGriotteRoyal = {
+    id: 'blopGriotteRoyal',
+    name: 'Blop Griotte Royal',
+    image: 'img/monstres/sprites/blopGriotteRoyal.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2800, atk: 250, spd: 100,
+        res: {neutre: -15, terre: -15, feu: 95, eau: -15, air: -15 }
+    },
+    moves: ['blotravail_Royal', 'blopunition_Royale_feu', 'blotection_feu']
+}
+monsters.blopIndigoRoyal = {
+    id: 'blopIndigoRoyal',
+    name: 'Blop Indigo Royal',
+    image: 'img/monstres/sprites/blopIndigoRoyal.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2800, atk: 250, spd: 100,
+        res: {neutre: -15, terre: -15, feu: -15, eau: 95, air: -15 }
+    },
+    moves: ['blotravail_Royal', 'blopunition_Royale_eau', 'blotection_eau']
+}
+monsters.blopReinetteRoyal = {
+    id: 'blopReinetteRoyal',
+    name: 'Blop Reinette Royal',
+    image: 'img/monstres/sprites/blopReinetteRoyal.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2800, atk: 250, spd: 100,
+        res: {neutre: -15, terre: 95, feu: -15, eau: -15, air: -15 }
+    },
+    moves: ['blotravail_Royal', 'blopunition_Royale_terre', 'blotection_terre']
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════
@@ -1218,327 +1216,405 @@ monsters.dopeul_darkvlad = {
         res: {neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 }},
     moves: ['lame_de_iop','lame_divine','tension'],
 }
+// #endregion
 
+// ═══════════════════════════════════════════════════════
+// #region RAID GELAX — Zone niveau 55–65
+// ═══════════════════════════════════════════════════════
+monsters.gelee_fraise = {
+    id: 'gelee_fraise',
+    name: 'Gelée Fraise',
+    image: 'img/monstres/Raids/gelee_fraise.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 600, atk: 150, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+    moves: ['Gelpikes', 'Fraise_Os','Tartinade']
+}
+monsters.gelee_bleuet = {
+    id: 'gelee_bleuet',
+    name: 'Gelée Bleuet',
+    image: 'img/monstres/Raids/gelee_bleuet.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 500, atk: 150, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+    moves: ['Gelpikes', 'Bleuet_Os','Tartinade']
+}
+monsters.gelee_menthe = {
+    id: 'gelee_menthe',
+    name: 'Gelée Menthe',
+    image: 'img/monstres/Raids/gelee_menthe.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 500, atk: 150, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+    moves: ['Gelpikes', 'Menthe_Os','Tartinade']
+}
+monsters.gelee_citron = {
+    id: 'gelee_citron',
+    name: 'Gelée Citron',
+    image: 'img/monstres/Raids/gelee_citron.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 500, atk: 150, spd: 100,
+        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
+    moves: ['Gelpikes', 'Citron_Os','Tartinade']
+}
+monsters.gelee_fraise_royale = {
+    id: 'gelee_fraise_royale',
+    name: 'Gelée Fraise Royale',
+    image: 'img/monstres/Raids/gelee_fraise_royale.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2000, atk: 200, spd: 100,
+        res: {neutre: 70, terre: 70, feu: -10, eau: 70, air: 70 }},
+    moves: ['Gelifiant', 'Royale_Fraise_Os','Tartinade']
+}
+monsters.gelee_bleuet_royale = {
+    id: 'gelee_bleuet_royale',
+    name: 'Gelée Bleuet Royale',
+    image: 'img/monstres/Raids/gelee_bleuet_royale.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2000, atk: 200, spd: 100,
+        res: {neutre: 70, terre: 70, feu: 70, eau: -10, air: 70 }},
+    moves: ['Isometrie', 'Royale_Bleuet_Os','Tartinade']
+}
+monsters.gelee_menthe_royale = {
+    id: 'gelee_menthe_royale',
+    name: 'Gelée Menthe Royale',
+    image: 'img/monstres/Raids/gelee_menthe_royale.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2000, atk: 200, spd: 100,
+        res: {neutre: 70, terre: -10, feu: 70, eau: 70, air: 70 }},
+    moves: ['Pik_assaut', 'Royale_Menthe_Os','Tartinade']
+}
+monsters.gelee_citron_royale = {
+    id: 'gelee_citron_royale',
+    name: 'Gelée Citron Royale',
+    image: 'img/monstres/Raids/gelee_citron_royale.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2000, atk: 200, spd: 100,
+        res: {neutre: 70, terre: 70, feu: 70, eau: 70, air: -10 }},
+    moves: ['Fixation_Beton', 'Royale_Citron_Os','Tartinade']
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════
 // #region MANTISCORE — Zone niveau 60-80
-// monsters.ouroboulos = {
-//     id: 'ouroboulos',
-//     name: 'Ouroboulos',
-//     image: 'img/monstres/sprites/ouroboulos.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 110, spd: 100,
-//         res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
-//     },
-//     moves: ['Sablacane', 'Roulo-Boulos', 'Carapassable']
-// }
-// monsters.scordionBleu = {
-//     id: 'scordionBleu',
-//     name: 'Scordion Bleu',
-//     image: 'img/monstres/sprites/scordionBleu.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 110, spd: 100,
-//         res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
-//     },
-//     moves: ['Pince_pattes', 'Dard_Empoisonne', Creuse_sable']
-// }
-// monsters.fennex = {
-//     id: 'fennex',
-//     name: 'Fennex',
-//     image: 'img/monstres/sprites/fennex.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 110, spd: 100,
-//         res: {neutre: 6, terre: 16, feu: -24, eau: -19, air: 11 }
-//     },
-//     moves: ['Reconnaissance', 'Entrave_Sableuse', 'Enragement_Motivant']
-// }
-// monsters.leolhyene = {
-//     id: 'leolhyene',
-//     name: 'Léolhyène',
-//     image: 'img/monstres/sprites/leolhyene.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 110, spd: 100,
-//         res: {neutre: 24, terre: -21, feu: 9, eau: -9, air: 34 }
-//     },
-//     moves: ['Sirocco', 'Mort_sure', 'Hyaignement']
-// }
-// monsters.boulepique = {
-//     id: 'boulepique',
-//     name: 'Boulepique',
-//     image: 'img/monstres/sprites/boulepique.png',
-//     rarity: 'peu_commun',
-//     tier: 'elite'
-//     bst: {
-//         hp: 800, atk: 150, spd: 100,
-//         res: {neutre: 11, terre: 1, feu: 21, eau: 16, air: 6 }
-//     },
-//     moves: ['Lance-boulettes', 'Pique_rate', 'Durcissement']
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON MANTISCORE
-// ═══════════════════════════════════════════════════════
-// monsters.mantiscore = {
-//     id: 'mantiscore',
-//     name: 'Mantiscore',
-//     image: 'img/monstres/sprites/mantiscore.png',
-//     rarity: 'commun','peu_commun','rare','legendaire',
-//     tier: 'boss',
-//     bst: {
-//         hp: 3500, atk: 290, spd: 100,
-//         res: {neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 }
-//     },
-//     moves: ['darmocles', 'force_Poigne', 'tombeau_du_desert', 'garde_bouclier']
-// }
+monsters.ouroboulos = {
+    id: 'ouroboulos',
+    name: 'Ouroboulos',
+    image: 'img/monstres/sprites/ouroboulos.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 110, spd: 100,
+        res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
+    },
+    moves: ['Sablacane', 'Roulo-Boulos', 'Carapassable']
+}
+monsters.scordionBleu = {
+    id: 'scordionBleu',
+    name: 'Scordion Bleu',
+    image: 'img/monstres/sprites/scordionBleu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 110, spd: 100,
+        res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
+    },
+    moves: ['Pince_pattes', 'Dard_Empoisonne', 'Creuse_sable']
+}
+monsters.fennex = {
+    id: 'fennex',
+    name: 'Fennex',
+    image: 'img/monstres/sprites/fennex.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 110, spd: 100,
+        res: {neutre: 6, terre: 16, feu: -24, eau: -19, air: 11 }
+    },
+    moves: ['Reconnaissance', 'Entrave_Sableuse', 'Enragement_Motivant']
+}
+monsters.leolhyene = {
+    id: 'leolhyene',
+    name: 'Léolhyène',
+    image: 'img/monstres/sprites/leolhyene.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 110, spd: 100,
+        res: {neutre: 24, terre: -21, feu: 9, eau: -9, air: 34 }
+    },
+    moves: ['Sirocco', 'Mort_sure', 'Hyaignement']
+}
+monsters.boulepique = {
+    id: 'boulepique',
+    name: 'Boulepique',
+    image: 'img/monstres/sprites/boulepique.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: {
+        hp: 800, atk: 150, spd: 100,
+        res: {neutre: 11, terre: 1, feu: 21, eau: 16, air: 6 }
+    },
+    moves: ['Lance-boulettes', 'Pique_rate', 'Durcissement']
+}
+monsters.mantiscore = {
+    id: 'mantiscore',
+    name: 'Mantiscore',
+    image: 'img/monstres/sprites/mantiscore.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 3500, atk: 290, spd: 100,
+        res: {neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 }
+    },
+    moves: ['darmocles', 'force_Poigne', 'tombeau_du_desert', 'garde_bouclier']
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════
 // #region DRAGOEUF — Zone niveau 70-90
-// monsters.dragoeufArdoise = {
-//     id: 'dragoeufArdoise',
-//     name: 'Dragoeuf Ardoise',
-//     image: 'img/monstres/sprites/dragoeufArdoise.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 150, spd: 100,
-//         res: {neutre: 17, terre: 12, feu: -10, eau: 22, air: 9 }
-//     },
-//     moves: ['Feuilletage', 'Fendage']
-// }
-// monsters.dragoeufArgile = {
-//     id: 'dragoeufArgile',
-//     name: 'Dragoeuf Argile',
-//     image: 'img/monstres/sprites/dragoeufArgile.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 150, spd: 100,
-//         res: {neutre: 17, terre: -10, feu: 9, eau: 12, air: 22 }
-//     },
-//     moves: ['Cataplasme', 'Engobage']
-// }
-// monsters.dragoeufCalcaire = {
-//     id: 'dragoeufCalcaire',
-//     name: 'Dragoeuf Calcaire',
-//     image: 'img/monstres/sprites/dragoeufCalcaire.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 150, spd: 100,
-//         res: {neutre: 17, terre: 22, feu: 12, eau: 9, air: -10 }
-//     },
-//     moves: ['Entartrage', 'Calcination']
-// }
-// monsters.dragoeufCharbon = {
-//     id: 'dragoeufCharbon',
-//     name: 'Dragoeuf Charbon',
-//     image: 'img/monstres/sprites/dragoeufCharbon.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 800, atk: 150, spd: 100,
-//         res: {neutre: 17, terre: 9, feu: 22, eau: -10, air: 12 }
-//     },
-//     moves: ['Crassier', 'Silicose']
-// }
-// monsters.dragoeufAlbatre = {
-//     id: 'dragoeufAlbatre',
-//     name: 'Dragoeuf Albâtre',
-//     image: 'img/monstres/sprites/dragoeufAlbatre.png',
-//     rarity: 'peu_commun',
-//     tier: 'elite'
-//     bst: {
-//         hp: 900, atk: 170, spd: 100,
-//         res: {neutre: 12, terre: 12, feu: 12, eau: 12, air: 12 }
-//     },
-//     moves: ['Dralbatre', 'Dragloméra']
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON DRAEGNERYS
-// ═══════════════════════════════════════════════════════
-// monsters.draegnerys = {
-//     id: 'draegnerys',
-//     name: 'Draegnerys',
-//     image: 'img/monstres/sprites/draegnerys.png',
-//     rarity: 'peu_commun',
-//     tier: 'boss',
-//     bst: {
-//         hp: 2500, atk: 200, spd: 120,
-//         res: {neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 }
-//     },
-//     moves: ['Pepiniere', 'Knout', 'Drakaaris']
-// }
+monsters.dragoeufArdoise = {
+    id: 'dragoeufArdoise',
+    name: 'Dragoeuf Ardoise',
+    image: 'img/monstres/sprites/dragoeufArdoise.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 150, spd: 100,
+        res: {neutre: 17, terre: 12, feu: -10, eau: 22, air: 9 }
+    },
+    moves: ['Feuilletage', 'Fendage']
+}
+monsters.dragoeufArgile = {
+    id: 'dragoeufArgile',
+    name: 'Dragoeuf Argile',
+    image: 'img/monstres/sprites/dragoeufArgile.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 150, spd: 100,
+        res: {neutre: 17, terre: -10, feu: 9, eau: 12, air: 22 }
+    },
+    moves: ['Cataplasme', 'Engobage']
+}
+monsters.dragoeufCalcaire = {
+    id: 'dragoeufCalcaire',
+    name: 'Dragoeuf Calcaire',
+    image: 'img/monstres/sprites/dragoeufCalcaire.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 150, spd: 100,
+        res: {neutre: 17, terre: 22, feu: 12, eau: 9, air: -10 }
+    },
+    moves: ['Entartrage', 'Calcination']
+}
+monsters.dragoeufCharbon = {
+    id: 'dragoeufCharbon',
+    name: 'Dragoeuf Charbon',
+    image: 'img/monstres/sprites/dragoeufCharbon.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 800, atk: 150, spd: 100,
+        res: {neutre: 17, terre: 9, feu: 22, eau: -10, air: 12 }
+    },
+    moves: ['Crassier', 'Silicose']
+}
+monsters.dragoeufAlbatre = {
+    id: 'dragoeufAlbatre',
+    name: 'Dragoeuf Albâtre',
+    image: 'img/monstres/sprites/dragoeufAlbatre.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: {
+        hp: 900, atk: 170, spd: 100,
+        res: {neutre: 12, terre: 12, feu: 12, eau: 12, air: 12 }
+    },
+    moves: ['Dralbatre', 'Dragloméra']
+}
+monsters.draegnerys = {
+    id: 'draegnerys',
+    name: 'Draegnerys',
+    image: 'img/monstres/sprites/draegnerys.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2500, atk: 200, spd: 120,
+        res: {neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 }
+    },
+    moves: ['Pepiniere', 'Knout', 'Drakaaris']
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════
 // #region ABRAKNYDE ANCESTRAL — Zone niveau 80-100
-// monsters.abrakneSombre = {
-//     id: 'abrakneSombre',
-//     name: 'Abrakne Sombre',
-//     image: 'img/monstres/sprites/abrakneSombre.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1000, atk: 170, spd: 100,
-//         res: {neutre: 15, terre: -25, feu: 25, eau: -15, air: 15 }
-//     },
-//     moves: ['Bond_affaiblissant', 'Abraknettoyage', 'Motivation_Sylvestre']
-// }
-// monsters.abraknydeSombre = {
-//     id: 'abraknydeSombre',
-//     name: 'Abraknyde Sombre',
-//     image: 'img/monstres/sprites/abraknydeSombre.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1000, atk: 170, spd: 100,
-//         res: {neutre: 20, terre: -5, feu: 25, eau: -5, air: 25 }
-//     },
-//     moves: ['Abrabranche', 'Branche_Paralysante', 'Ecrasement_Abraknydien']
-// }
-// monsters.araknotron = {
-//     id: 'araknotron',
-//     name: 'Araknotron',
-//     image: 'img/monstres/sprites/araknotron.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1000, atk: 170, spd: 100,
-//         res: {neutre: 10, terre: -25, feu: 5, eau: -25, air: 5 }
-//     },
-//     moves: ['Lancer_d_Arakne_Morte', 'Complicite']
-// }
-// monsters.abraknydeVenerable = {
-//     id: 'abraknydeVenerable',
-//     name: 'Abraknyde Vénérable',
-//     image: 'img/monstres/sprites/abraknydeVenerable.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1000, atk: 170, spd: 100,
-//         res: {neutre: 20, terre: 25, feu: -5, eau: 25, air: -5 }
-//     },
-//     moves: ['Ecrasement_Abraknydien', 'Abrakage', 'Ecorce_agressive', 'Reconstitution_Abraknydienne']
-// }
-// ═══════════════════════════════════════════════════════
-// DONJON abraknydeAncestral
-// ═══════════════════════════════════════════════════════
-// monsters.arakne_majeure = {
-//     id: 'arakne_majeure',
-//     name: 'Arakne Majeure',
-//     image: 'img/monstres/sprites/arakne_majeure.png',
-//     rarity: 'peu_commun',
-//     tier: 'elite',
-//     bst: {
-//         hp: 600, atk: 100, spd: 100,
-//         res: {neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 }
-//     },
-//     moves: ['Ralentissement_Arakneen', 'Absorption_Sanguine'],
-//     ownerId: 'abraknydeAncestral'
-// }
-// monsters.abraknydeAncestral = {
-//     id: 'abraknydeAncestral',
-//     name: 'Abraknyde Ancestral',
-//     image: 'img/monstres/sprites/abraknydeAncestral.png',
-//     rarity: 'rare',
-//     tier: 'boss',
-//     bst: {
-//         hp: 4500, atk: 500, spd: 90,
-//         res: {neutre: 50, terre: 50, feu: -5, eau: 50, air: -5 }
-//     },
-//     moves: ['Branche_Paralysante', 'Morsure_Sylvestre', 'Reconstitution_Abraknydienne', Invocation_d_Arakne_Majeure]
-// }
+monsters.abrakneSombre = {
+    id: 'abrakneSombre',
+    name: 'Abrakne Sombre',
+    image: 'img/monstres/sprites/abrakneSombre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1000, atk: 170, spd: 100,
+        res: {neutre: 15, terre: -25, feu: 25, eau: -15, air: 15 }
+    },
+    moves: ['Bond_affaiblissant', 'Abraknettoyage', 'Motivation_Sylvestre']
+}
+monsters.abraknydeSombre = {
+    id: 'abraknydeSombre',
+    name: 'Abraknyde Sombre',
+    image: 'img/monstres/sprites/abraknydeSombre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1000, atk: 170, spd: 100,
+        res: {neutre: 20, terre: -5, feu: 25, eau: -5, air: 25 }
+    },
+    moves: ['Abrabranche', 'Branche_Paralysante', 'Ecrasement_Abraknydien']
+}
+monsters.araknotron = {
+    id: 'araknotron',
+    name: 'Araknotron',
+    image: 'img/monstres/sprites/araknotron.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1000, atk: 170, spd: 100,
+        res: {neutre: 10, terre: -25, feu: 5, eau: -25, air: 5 }
+    },
+    moves: ['Lancer_d_Arakne_Morte', 'Complicite']
+}
+monsters.abraknydeVenerable = {
+    id: 'abraknydeVenerable',
+    name: 'Abraknyde Vénérable',
+    image: 'img/monstres/sprites/abraknydeVenerable.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1000, atk: 170, spd: 100,
+        res: {neutre: 20, terre: 25, feu: -5, eau: 25, air: -5 }
+    },
+    moves: ['Ecrasement_Abraknydien', 'Abrakage', 'Ecorce_agressive', 'Reconstitution_Abraknydienne']
+}
+monsters.arakne_majeure = {
+    id: 'arakne_majeure',
+    name: 'Arakne Majeure',
+    image: 'img/monstres/sprites/arakne_majeure.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: {
+        hp: 600, atk: 100, spd: 100,
+        res: {neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 }
+    },
+    moves: ['Ralentissement_Arakneen', 'Absorption_Sanguine'],
+    ownerId: 'abraknydeAncestral'
+}
+monsters.abraknydeAncestral = {
+    id: 'abraknydeAncestral',
+    name: 'Abraknyde Ancestral',
+    image: 'img/monstres/sprites/abraknydeAncestral.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 4500, atk: 500, spd: 90,
+        res: {neutre: 50, terre: 50, feu: -5, eau: 50, air: -5 }
+    },
+    moves: ['Branche_Paralysante', 'Morsure_Sylvestre', 'Reconstitution_Abraknydienne', Invocation_d_Arakne_Majeure]
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════
 // #region DRAGON COCHON — Zone niveau 90-110
-// monsters.cochonDeFarle = {
-//     id: 'cochonDeFarle',
-//     name: 'Cochon de Farle',
-//     image: 'img/monstres/sprites/cochonDeFarle.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1200, atk: 170, spd: 100,
-//         res: {neutre: 50, terre: 50, feu: 12, eau: 12, air: -20 }
-//     },
-//     moves: ['Sucotement_Porcin']
-// }
-// monsters.donDorgan = {
-//     id: 'donDorgan',
-//     name: 'Don Dorgan',
-//     image: 'img/monstres/sprites/donDorgan.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1300, atk: 170, spd: 100,
-//         res: {neutre: 10, terre: -20, feu: 50, eau: -20, air: -20 }
-//     },
-//     moves: ['Menotage', 'Charge Sanguinaire']
-// }
-// monsters.donDussAng = {
-//     id: 'donDussAng',
-//     name: "Don Duss'Ang",
-//     image: 'img/monstres/sprites/donDussAng.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1300, atk: 170, spd: 100,
-//         res: {neutre: 20, terre: -20, feu: -20, eau: 20, air: 20 }
-//     },
-//     moves: ['Vampirisation_Cochonne', 'Tire-Bouffon', 'Perfusion']
-// }
-// monsters.porsalu = {
-//     id: 'porsalu',
-//     name: 'Porsalu',
-//     image: 'img/monstres/sprites/porsalu.png',
-//     rarity: 'commun',
-//     tier: 'normal'
-//     bst: {
-//         hp: 1200, atk: 170, spd: 100,
-//         res: {neutre: 25, terre: 15, feu: -25, eau: -20, air: 60 }
-//     },
-//     moves: ['Fleche_Renifleuse', 'Fleche_Douloureuse', 'Exhalation_Porcine']
-// }
-// monsters.gorgouille = {
-//     id: 'gorgouille',
-//     name: 'Gorgouille',
-//     image: 'img/monstres/sprites/gorgouille.png',
-//     rarity: 'rare',
-//     tier: 'elite'
-//     fixedLevel: 100,
-//     bst: {
-//         hp: 5000, atk: 500, spd: 100,
-//         res: {neutre: -5, terre: -5, feu: -5, eau: 35, air: 35 }
-//     },
-//     moves: ['Oshi-Zumo', 'Yotsu-Zumo']
-// }
-
-
-// ═══════════════════════════════════════════════════════
-// DONJON DRAGON COCHON
-// ═══════════════════════════════════════════════════════
-// monsters.dragonCochon = {
-//     id: 'dragonCochon',
-//     name: 'Dragon Cochon',
-//     image: 'img/monstres/sprites/dragonCochon.png',
-//     rarity: 'rare',
-//     tier: 'boss',
-//     bst: {
-//         hp: 2500, atk: 1000, spd: 100,
-//         res: {neutre: 35, terre: 35, feu: 35, eau: -5, air: -5 }
-//     },
-//     moves: { pool: ['Ecrasement_Handicapant', 'Croutage', 'Immobilisation'], fixed: ['Étourderie Mortelle'] },
-// }
+monsters.cochonDeFarle = {
+    id: 'cochonDeFarle',
+    name: 'Cochon de Farle',
+    image: 'img/monstres/sprites/cochonDeFarle.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1200, atk: 170, spd: 100,
+        res: {neutre: 50, terre: 50, feu: 12, eau: 12, air: -20 }
+    },
+    moves: ['Sucotement_Porcin']
+}
+monsters.donDorgan = {
+    id: 'donDorgan',
+    name: 'Don Dorgan',
+    image: 'img/monstres/sprites/donDorgan.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1300, atk: 170, spd: 100,
+        res: {neutre: 10, terre: -20, feu: 50, eau: -20, air: -20 }
+    },
+    moves: ['Menotage', 'Charge Sanguinaire']
+}
+monsters.donDussAng = {
+    id: 'donDussAng',
+    name: "Don Duss'Ang",
+    image: 'img/monstres/sprites/donDussAng.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1300, atk: 170, spd: 100,
+        res: {neutre: 20, terre: -20, feu: -20, eau: 20, air: 20 }
+    },
+    moves: ['Vampirisation_Cochonne', 'Tire-Bouffon', 'Perfusion']
+}
+monsters.porsalu = {
+    id: 'porsalu',
+    name: 'Porsalu',
+    image: 'img/monstres/sprites/porsalu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: {
+        hp: 1200, atk: 170, spd: 100,
+        res: {neutre: 25, terre: 15, feu: -25, eau: -20, air: 60 }
+    },
+    moves: ['Fleche_Renifleuse', 'Fleche_Douloureuse', 'Exhalation_Porcine']
+}
+monsters.gorgouille = {
+    id: 'gorgouille',
+    name: 'Gorgouille',
+    image: 'img/monstres/sprites/gorgouille.png',
+    rarity: 'rare',
+    tier: 'elite',
+    fixedLevel: 100,
+    bst: {
+        hp: 5000, atk: 500, spd: 100,
+        res: {neutre: -5, terre: -5, feu: -5, eau: 35, air: 35 }
+    },
+    moves: ['Oshi-Zumo', 'Yotsu-Zumo']
+}
+monsters.dragonCochon = {
+    id: 'dragonCochon',
+    name: 'Dragon Cochon',
+    image: 'img/monstres/sprites/dragonCochon.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: {
+        hp: 2500, atk: 1000, spd: 100,
+        res: {neutre: 35, terre: 35, feu: 35, eau: -5, air: -5 }
+    },
+    moves: { pool: ['Ecrasement_Handicapant', 'Croutage', 'Immobilisation'], fixed: ['etourderie_Mortelle'] },
+}
 // #endregion
 
 // ═══════════════════════════════════════════════════════

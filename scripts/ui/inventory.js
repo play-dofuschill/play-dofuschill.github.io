@@ -131,8 +131,8 @@ function updateInventoryUI() {
         entries.sort((a, b) => {
             if (sort === 'level') return ((a.entry.level || 0) - (b.entry.level || 0)) * mul
             if (sort === 'pano') {
-                const aSet = a.itm.set || ''
-                const bSet = b.itm.set || ''
+                const aSet = (Array.isArray(a.itm.set) ? a.itm.set[0] : a.itm.set) || ''
+                const bSet = (Array.isArray(b.itm.set) ? b.itm.set[0] : b.itm.set) || ''
                 if (aSet !== bSet) {
                     if (!aSet) return 1
                     if (!bSet) return -1
@@ -218,10 +218,12 @@ function showItemTooltip(itemId) {
         }
     }
 
-    // Panoplie
+    // Panoplie(s) — un item peut appartenir à plusieurs sets (set: string ou set: [str, str])
     let setHtml = ''
-    if (itm.set && panoplies[itm.set]) {
-        const pano    = panoplies[itm.set]
+    const _setIds = itm.set ? (Array.isArray(itm.set) ? itm.set : [itm.set]) : []
+    for (const _setId of _setIds) {
+        const pano = panoplies[_setId]
+        if (!pano) continue
         const owned   = new Set(Object.keys(state.inventory))
         const equippedByTeam = new Set(
             state.team.flatMap(m => m ? Object.values(m.equip) : []).filter(Boolean)
@@ -279,7 +281,7 @@ function showItemTooltip(itemId) {
             }
         }
 
-        setHtml = `<div class="item-set-section">
+        setHtml += `<div class="item-set-section">
             <div class="item-set-title">
                 ${pano.name}
                 <span class="set-count-badge">${equippedCount}/${totalPieces} équipées</span>

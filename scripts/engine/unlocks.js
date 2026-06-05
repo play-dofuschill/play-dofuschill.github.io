@@ -24,7 +24,7 @@ const CLASS_UNLOCK_CONDITIONS = {
             'kwakereFlamme', 'kwakereGlace', 'kwakereTerre', 'kwakereVent',
             'kwakFlamme', 'kwakGlace', 'kwakTerre', 'kwakVent',
             'scarafeuilleBlanc', 'scarafeuilleVert', 'scarafeuilleBleu', 'scarafeuilleRouge', 'scarafeuilleNoir',
-            'scrarabossDoree', 'kwakwa',
+            'scarabossDoree', 'kwakwa',
         ]
         return required.every(id => (s.collection[id]?.drops ?? 0) >= 1)
     },
@@ -44,7 +44,7 @@ const CLASS_UNLOCK_CONDITIONS = {
     },
 
     feca: (s) => {
-        const bouftouRoyalItems = Object.values(item).filter(i => i.set === 'bouftouRoyal')
+        const bouftouRoyalItems = Object.values(item).filter(i => Array.isArray(i.set) ? i.set.includes('bouftouRoyal') : i.set === 'bouftouRoyal')
         return bouftouRoyalItems.length > 0 && bouftouRoyalItems.every(i => (s.inventory[i.id]?.level ?? 0) >= i.levelMax)
     },
 

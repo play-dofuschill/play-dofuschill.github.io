@@ -134,6 +134,9 @@ function _syncCombatToState() {
         res:            { ...combat.enemy.res },
         finalDamagePct: combat.enemy.finalDamagePct,
         flatDamage:     combat.enemy.flatDamage,
+        critChance:     combat.enemy.critChance    || 0,
+        critDamagePct:  combat.enemy.critDamagePct ?? 50,
+        critResPct:     combat.enemy.critResPct    || 0,
         moves:          [...(combat.enemy.moves || [])],
         moveIndex:      combat.enemy.moveIndex || 0,
         rarity:         combat.enemy.rarity,
@@ -255,6 +258,9 @@ function spawnEnemy(areaId) {
         res:      { ...mob.bst.res },
         finalDamagePct: 0,
         flatDamage:     0,
+        critChance:     mob.bst.critChance    ?? 5,
+        critDamagePct:  mob.bst.critDamagePct ?? 50,
+        critResPct:     mob.bst.res?.crit     ?? 0,
         moves:     resolveMonsterMoves(mob.moves),
         moveIndex: 0,
         rarity:    mob.rarity   || 'commun',
@@ -829,12 +835,14 @@ function executeMemberAction(memberIndex) {
     }
 
     // exécution des effets
+    const isCritRoll = Math.random() * 100 < (stats?.critChance || 0)
     let lastDamageDealt = 0
     let sessionDmg = 0
     for (const effect of mv.effects) {
         const dmg = executeEffect({
             caster: member, casterStats: stats, targetEnemy: combat.enemy,
             effect, moveData: mv, prevMv, lastDamageDealt, moveId,
+            isCrit: isCritRoll,
             onTargetKill: () => {
                 if (combat.enemy?.isSummon) returnToOwner()
                 else onVictory()
@@ -847,6 +855,11 @@ function executeMemberAction(memberIndex) {
         if (combat.isPoutch && sessionDmg > (combat.poutchBiggestHit || 0)) {
             combat.poutchBiggestHit = sessionDmg
         }
+    }
+
+    const _SHIMMER_TYPES = new Set(['buff','buff_team','buff_adjacent','buff_slot','debuff','heal','heal_team','heal%maxHp','heal%maxHp_team'])
+    if (isCritRoll && typeof showCritShimmer === 'function' && mv.effects.some(e => _SHIMMER_TYPES.has(e.type))) {
+        showCritShimmer(memberIndex)
     }
 
     // Décrément des états Énutrof — pas de décrément si l'état a été (re)posé ce tour
@@ -1017,6 +1030,7 @@ function _applyItemOnEffectTriggers(ctx) {
                 const trigger = eff.on_effect
                 if (trigger.source === 'enemy' && !isCasterEnemy) continue
                 if (trigger.source === 'ally'  &&  isCasterEnemy) continue
+                if (trigger.crit_only && !ctx.isCrit) continue
                 if (trigger.type) {
                     const types = Array.isArray(trigger.type) ? trigger.type : [trigger.type]
                     if (!types.includes(effect.type)) continue
@@ -1319,7 +1333,8 @@ function executeEffect(ctx) {
                 res: targetEnemy.res || {},
                 damageReductionPct: (targetEnemy.buffs || [])
                     .filter(b => b.stat === 'damageReductionPct')
-                    .reduce((sum, b) => sum + b.value, 0)
+                    .reduce((sum, b) => sum + b.value, 0),
+                critResPct: targetEnemy.critResPct || 0
             }
             // stackedDamage : remplace effect.damage par le palier courant
             // _noStackIncrement : lit le palier du hit précédent sans incrémenter (hits secondaires d'un même sort)
@@ -1396,7 +1411,7 @@ function executeEffect(ctx) {
                 targetMaxHp:     targetEnemy.maxHp     || targetEnemy.bst?.hp || 0,
                 targetCurrentHp: targetEnemy.currentHp || 0
             }
-            const result = calcDamage(statsForCalc, defStats, effectForCalc, hpCtx)
+            const result = calcDamage(statsForCalc, defStats, effectForCalc, hpCtx, ctx.isCrit ?? null)
             let dmg = result.damage
 
             if (combat && state.team.includes(ctx.caster) && !state.doubleCritAchieved) {
@@ -1514,6 +1529,28 @@ function executeEffect(ctx) {
                 if (_pr.duration <= 0) delete targetEnemy.proie
             }
 
+            // Absorption de coup critique : annule les dégâts et soigne le porteur
+            if (result.isCrit && dmg > 0 && !state.team.includes(caster)) {
+                const _critTarget = state.team.find(m => m === targetEnemy)
+                if (_critTarget) {
+                    for (const _slotId in _critTarget.equip) {
+                        const _itmId = _critTarget.equip[_slotId]
+                        if (!_itmId) continue
+                        const _itm = item[_itmId]
+                        if (!_itm?.effects?.length) continue
+                        for (const _eff of _itm.effects) {
+                            if (_eff.reaction !== 'crit_absorb_heal') continue
+                            if (_eff.on_effect?.source !== 'enemy') continue
+                            const _healAmt = Math.floor(dmg * (_eff.heal_pct || 20) / 100 * _getAntiHealFactor(_critTarget))
+                            const _mName = _critTarget.name || classes[_critTarget.classId]?.name || '?'
+                            addLog(`${ctx.logPrefix || ''}${moveData.name} → 💥 Coup critique absorbé ! [${_itm.name}] soigne ${_mName} de ${_healAmt} PV`)
+                            if (_healAmt > 0) _critTarget.currentHp = Math.min(_critTarget.maxHp, (_critTarget.currentHp || 0) + _healAmt)
+                            return 0
+                        }
+                    }
+                }
+            }
+
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
 
             // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate,
@@ -1541,12 +1578,28 @@ function executeEffect(ctx) {
             }
             // Popup dégâts uniquement quand c'est l'ennemi qui encaisse (pas un membre)
             if (dmg > 0 && memberHitIdx === -1 && typeof showDamageNumber === 'function') {
-                showDamageNumber(dmg)
+                showDamageNumber(dmg, result.isCrit)
             }
             const absNote = dmg < result.damage ? ` (${result.damage - dmg} absorbés)` : ''
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
             if (dmg > 0) _checkWatchStates(targetEnemy, 'damage', { element: effect.element, value: dmg })
+            // Repulsion Guard : si le membre touché a le buff actif, recule l'ennemi attaquant (raid uniquement)
+            if (dmg > 0 && !state.team.includes(caster) && state.team.includes(targetEnemy)) {
+                const _repGuard = (targetEnemy.buffs || []).find(b => b.stat === 'repulsion_guard')
+                if (_repGuard && combat?.isRaid && combat.enemies) {
+                    const _enemySlot = combat.enemies.indexOf(caster)
+                    if (_enemySlot !== -1) {
+                        executeEffect({
+                            caster: targetEnemy, casterStats: getEffectiveStats(targetEnemy) ?? targetEnemy._stats,
+                            targetEnemy: caster,
+                            effect: { type: 'recul', target: 'enemy' },
+                            moveData: { name: 'Garde Bouclier' }, moveId: 'garde_bouclier',
+                            fromItemPassive: true, enemySlotIdx: _enemySlot
+                        })
+                    }
+                }
+            }
             // Proie lifesteal — calculé sur les dégâts réels post-shield
             if (_proieLifestealPct > 0 && dmg > 0 && state.team.includes(caster)) {
                 const _proieLsHeal = Math.floor(dmg * _proieLifestealPct / 100 * _getAntiHealFactor(caster))
@@ -1664,8 +1717,9 @@ function executeEffect(ctx) {
 
         case 'heal': {
             const healRoll = _resolveEffectValue(effect.heal) || 0
+            const _healCritMult = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
             const healBase = Math.max(1, Math.floor(
-                (healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
+                (healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100) * _healCritMult
             ))
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
@@ -1688,7 +1742,8 @@ function executeEffect(ctx) {
 
         case 'heal%maxHp': {
             const healPct      = _resolveEffectValue(effect.heal) || 0
-            const healPctBonus = 1 + (casterStats?.healMaxHpPct || 0) / 100
+            const _hpCritMult  = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
+            const healPctBonus = (1 + (casterStats?.healMaxHpPct || 0) / 100) * _hpCritMult
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
@@ -1715,7 +1770,8 @@ function executeEffect(ctx) {
         }
 
         case 'heal%maxHp_team': {
-            const healPctBonus = 1 + (casterStats?.healMaxHpPct || 0) / 100
+            const _hpTeamCritMult = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
+            const healPctBonus = (1 + (casterStats?.healMaxHpPct || 0) / 100) * _hpTeamCritMult
             const healPct      = _resolveEffectValue(effect.heal) || 0
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
@@ -1728,8 +1784,9 @@ function executeEffect(ctx) {
         }
 
         case 'heal_team': {
+            const _healTeamCritMult = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
             const healBase = Math.max(1, Math.floor(
-                ((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healTeamPct || 0) / 100)
+                ((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healTeamPct || 0) / 100) * _healTeamCritMult
             ))
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
@@ -1765,6 +1822,10 @@ function executeEffect(ctx) {
 
         case 'buff': {
             let buffVal = (_resolveEffectValue(effect.value) || 0)
+            if (ctx.isCrit && buffVal > 0) {
+                const _critBonus = Math.max(0, (casterStats?.critDamagePct ?? 50))
+                buffVal = Math.floor(buffVal * (1 + _critBonus / 100))
+            }
             // Scaling HP : (stat implicite = effect.stat) — { ratio: 1.0 }
             {
                 const _bMaxHp = caster.maxHp || 1
@@ -1848,7 +1909,11 @@ function executeEffect(ctx) {
         }
 
         case 'buff_team': {
-            const buffTeamVal = _resolveEffectValue(effect.value)
+            let buffTeamVal = _resolveEffectValue(effect.value)
+            if (ctx.isCrit && buffTeamVal > 0) {
+                const _critBonus = Math.max(0, (casterStats?.critDamagePct ?? 50))
+                buffTeamVal = Math.floor(buffTeamVal * (1 + _critBonus / 100))
+            }
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
                 m.buffs = m.buffs || []
@@ -1861,7 +1926,11 @@ function executeEffect(ctx) {
 
         case 'debuff': {
             const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp'])
-            const debuffVal = _resolveEffectValue(effect.value)
+            let debuffVal = _resolveEffectValue(effect.value)
+            if (ctx.isCrit && debuffVal > 0) {
+                const _critBonus = Math.max(0, (casterStats?.critDamagePct ?? 50))
+                debuffVal = Math.floor(debuffVal * (1 + _critBonus / 100))
+            }
             const isEnemyCasterDebuff = !state.team.includes(caster)
             if (effect.target === 'all_enemy' || effect.target === 'all_enemies') {
                 if (isEnemyCasterDebuff) {
@@ -2264,6 +2333,15 @@ function executeEffect(ctx) {
             break
         }
 
+        case 'repulsion_guard': {
+            const _guardTarget = _resolveAllyTarget(effect, caster)
+            _guardTarget.buffs = _guardTarget.buffs || []
+            _guardTarget.buffs.push({ stat: 'repulsion_guard', value: 1, duration: effect.duration || 3 })
+            const _guardName = _guardTarget.name || classes[_guardTarget.classId]?.name || '?'
+            addLog(`${moveData.name} → Garde active ${effect.duration || 3} tours → ${_guardName} (recul ennemi si attaqué)`)
+            break
+        }
+
         case 'swap_enemies': {
             if (!combat?.isRaid || !combat.enemies || combat.enemies.length < 3) break
             const se1 = combat.enemies[1], st1 = combat.enemyTimers?.[1] ?? 0, sm1 = combat.enemyNextMoveIds?.[1] ?? null
@@ -2351,7 +2429,11 @@ function executeEffect(ctx) {
             // Non-cumulable par sort : un membre qui a déjà un buff avec _source === moveId est ignoré.
             const _adjCasterIdx = state.team.indexOf(caster)
             if (_adjCasterIdx === -1) break
-            const _adjVal = _resolveEffectValue(effect.value)
+            let _adjVal = _resolveEffectValue(effect.value)
+            if (ctx.isCrit && _adjVal > 0) {
+                const _critBonus = Math.max(0, (casterStats?.critDamagePct ?? 50))
+                _adjVal = Math.floor(_adjVal * (1 + _critBonus / 100))
+            }
             let _adjCount = 0
             for (const _offset of [-1, 1]) {
                 const _adjTarget = state.team[_adjCasterIdx + _offset]
@@ -2377,7 +2459,11 @@ function executeEffect(ctx) {
                 addLog(`${moveData.name} → slot ${effect.slot} vide (effet perdu)`)
                 break
             }
-            const _slotVal = _resolveEffectValue(effect.value)
+            let _slotVal = _resolveEffectValue(effect.value)
+            if (ctx.isCrit && _slotVal > 0) {
+                const _critBonus = Math.max(0, (casterStats?.critDamagePct ?? 50))
+                _slotVal = Math.floor(_slotVal * (1 + _critBonus / 100))
+            }
             _slotTarget.buffs = _slotTarget.buffs || []
             _slotTarget.buffs.push({ stat: effect.stat, value: _slotVal, duration: effect.duration })
             addLog(`${moveData.name} → +${_slotVal} ${effect.stat} slot ${effect.slot} (${effect.duration} tours)`)
@@ -2498,8 +2584,8 @@ function executeEnemyAction() {
         finalDamagePct:    0,
         spellDamagePct:    0,
         damageReductionPct: 0,
-        critChance:        0,
-        critDamagePct:     50,
+        critChance:        combat.enemy.critChance    ?? 5,
+        critDamagePct:     combat.enemy.critDamagePct ?? 50,
         res:               combat.enemy.res || {}
     }
     for (const b of (combat.enemy.buffs || [])) {
@@ -2528,6 +2614,8 @@ function executeEnemyAction() {
     const targetStats = getEffectiveStats(target) ?? target._stats ?? null
     const logPrefix   = `${combat.enemy.name} utilise `
 
+    const isCritRoll = Math.random() * 100 < (enemyStats.critChance || 0)
+
     let lastDamageDealt = 0
     for (const effect of mv.effects) {
         const dmg = executeEffect({
@@ -2540,6 +2628,7 @@ function executeEnemyAction() {
             prevMv,
             lastDamageDealt,
             logPrefix,
+            isCrit:      isCritRoll,
             onTargetKill: () => {
                 const interceptorSlot = combat.interceptor
                 if (interceptorSlot !== undefined && target === state.team[interceptorSlot]) {
@@ -3116,6 +3205,9 @@ function _spawnEnemyById(monsterId, statMult = 1) {
         res:            { ...mob.bst.res },
         finalDamagePct: 0,
         flatDamage:     0,
+        critChance:     mob.bst.critChance    ?? 5,
+        critDamagePct:  mob.bst.critDamagePct ?? 50,
+        critResPct:     mob.bst.res?.crit     ?? 0,
         moves:          resolveMonsterMoves(mob.moves),
         moveIndex:      0,
         rarity:         mob.rarity   || 'commun',
@@ -3149,7 +3241,9 @@ function _spawnEnemyById(monsterId, statMult = 1) {
 function _spawnRaidMiniBoss() {
     const area = areas[state.currentArea]
     if (!area?.miniBoss) return
-    const boss = _spawnEnemyById(area.miniBoss.id, area.miniBoss.statMult || 1)
+    const bossIds = area.miniBoss.ids || [area.miniBoss.id]
+    const bossId  = bossIds[Math.floor(Math.random() * bossIds.length)]
+    const boss = _spawnEnemyById(bossId, area.miniBoss.statMult || 1)
     if (!boss) return
 
     // Sauvegarde des ennemis/timers existants
@@ -3415,7 +3509,7 @@ function executeEnemyActionRaid(slotIdx) {
     const enemyStats = {
         atk: e.atk || 0, flatDamage: 0, finalDamagePct: 0,
         spellDamagePct: 0, damageReductionPct: 0,
-        critChance: 0, critDamagePct: 50, res: e.res || {}
+        critChance: e.critChance ?? 5, critDamagePct: e.critDamagePct ?? 50, res: e.res || {}
     }
     for (const b of (e.buffs || [])) {
         if (b.stat in enemyStats) enemyStats[b.stat] += b.value
@@ -3442,6 +3536,8 @@ function executeEnemyActionRaid(slotIdx) {
     const targetStats = getEffectiveStats(target) ?? target._stats ?? null
     const logPrefix   = `${e.name} utilise `
 
+    const isCritRoll = Math.random() * 100 < (enemyStats.critChance || 0)
+
     let lastDamageDealt = 0
     for (const effect of mv.effects) {
         const dmg = executeEffect({
@@ -3449,6 +3545,7 @@ function executeEnemyActionRaid(slotIdx) {
             targetEnemy: target, targetStats,
             effect, moveData: mv, prevMv, lastDamageDealt,
             logPrefix,
+            isCrit: isCritRoll,
             onTargetKill: () => {
                 const interceptorSlot = combat.interceptor
                 if (interceptorSlot !== undefined && target === state.team[interceptorSlot]) {

@@ -374,6 +374,11 @@ function openTooltip(title, body) {
     const bot = document.getElementById('tooltipBottom')
     const mid = document.getElementById('tooltipMid')
     if (!bg) return
+    // Save scroll position of the current layer before stacking a new one
+    if (tooltipStack.length > 0) {
+        const box = document.getElementById('tooltipBox')
+        if (box) tooltipStack[tooltipStack.length - 1].scrollTop = box.scrollTop
+    }
     tooltipStack.push({ title, body })
     if (ttl) ttl.innerHTML = title || ''
     if (bot) bot.innerHTML = body  || ''
@@ -414,6 +419,10 @@ function closeTooltip() {
         const bot  = document.getElementById('tooltipBottom')
         if (ttl) ttl.innerHTML = prev.title || ''
         if (bot) bot.innerHTML = prev.body  || ''
+        if (prev.scrollTop != null) {
+            const box = document.getElementById('tooltipBox')
+            if (box) requestAnimationFrame(() => { box.scrollTop = prev.scrollTop })
+        }
     } else {
         _tooltipLastCloseTime = Date.now()
         _suppressNextClick = false  // clear any stuck long-press flag so the next tap (e.g. Leave Combat) isn't silently eaten

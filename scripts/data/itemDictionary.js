@@ -452,7 +452,7 @@ item.bottes_du_sanglier = {
     name: "Pied du Sanglier",
     image: 'img/items/panoplies/bottes_de_lHomme_Ours.png',
     type: 'equipment', slot: 'bottes', set: 'Sanglier', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 10 }, { stat: 'atk', value: -10 }, { stat: 'critChance', value: 5 }],
+    stats: [{ stat: 'maxHp', value: 10 }, { stat: 'atk', value: -10 }, { stat: 'critChance', value: 3 }],
     description: "Ces bottes sont parfaites pour marcher dans la boue et rayer les parquets. Elles sont généralement interdites sur toutes les pistes de danse."
 }
 item.anneau_du_sanglier = {
@@ -478,7 +478,7 @@ item.cape_du_prespic = {
     name: 'Cape du Prespic',
     image: 'img/items/panoplies/cape_du_prespic.png',
     type: 'equipment', slot: 'cape', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 10 }, { stat: 'flatDamage', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 10 }, { stat: 'flatDamage', value: 3 }],
     description: "Cette petite cape rousse peut également faire office de descente de lit, ou de paillasson, de quoi remettre au goût du jour l'intérieur de votre habitation, de manière économique."
 }
 item.coiffe_du_prespic = {
@@ -486,7 +486,7 @@ item.coiffe_du_prespic = {
     name: 'Coiffe du Prespic',
     image: 'img/items/panoplies/coiffe_du_prespic.png',
     type: 'equipment', slot: 'coiffe', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'flatDamage', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'flatDamage', value: 3 }],
     description: "Avec cette coiffe de Prespic sur la tête, vous ressemblez presque à Dévie Cloquette, célèbre chasseuse des temps modernes, prête à tout pour cacher sa calvitie naissante. Pas de chance pour vous si vous vouliez faire de même, vous devrez vous contenter d'une coiffe de couleur rousse, qui de toute évidence, dégagera une horrible odeur dès qu'il se mettra à pleuvoir."
 }
 item.anneau_du_prespic = {
@@ -510,7 +510,7 @@ item.bouclier_du_prespic = {
     name: 'Bouclier hérissé du Prespic',
     image: 'img/items/panoplies/bouclier_du_prespic.png',
     type: 'equipment', slot: 'bouclier', set: 'Prespic', rarity: 'common', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 10 }, { stat: 'flatDamage', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 10 }, { stat: 'flatDamage', value: 3 }],
     description: "Ce bouclier en véritables poils de prespic se hérisse en présence d'ennemis. C'est bien pratique pour dissuader les plus hardis : qui s'approche trop près s'y pique !"
 }
 // #endregion
@@ -636,6 +636,14 @@ item.faux_paysan = {
     type: 'equipment', slot: 'arme', set: 'paysan', rarity: 'commun', levelMax: 20,
     stats: [{ stat: 'maxHp', value: 14 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 1 }],
     description: "Cette faux robuste mais abîmée a déjà beaucoup servi et coupe assez mal. En revanche, elle est très utile pour lutter contre les varices de vos adversaires."
+}
+item.bouclier_tournesol = {
+    id: 'bouclier_tournesol',
+    name: 'Bouclier du Tournesol',
+    image: 'img/items/panoplies/bouclier_tournesol.png',
+    type: 'equipment', slot: 'bouclier', set: 'paysan', rarity: 'uncommun', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 14 }, { stat: 'critChance', value: 2 }],
+    description: "L'artisan à l'origine de ce bouclier voulait l'appeler \"La fleur du mâle\", mais la censure locale l'en a empêché."
 }
 // #endregion
 // #region Panoplie scarafeuille — Scarafeuilles ────────────────────────
@@ -1110,7 +1118,7 @@ item.kwakwalame = {
     name: 'Kwakwalame',
     image: 'img/items/panoplies/kwakwalame.png',
     type: 'equipment', slot: 'arme', set: 'kwakwa', rarity: 'commun', levelMax: 20,
-    stats: [{ stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 14 }],
+    stats: [{ stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 10 }],
     description: "À l'instar de ses sujets les Kwaks, le Kwakwa a une lame à son nom. Même si on ne sait toujours pas pourquoi ni en quel honneur un oiseau aurait une épée, celle-ci semble plus légère et plus maniable que les Kwaklames. Vous allez peut-être enfin pouvoir déplumer vos ennemis avec."
 }
 // #endregion
@@ -1146,7 +1154,7 @@ item.cape_ouassingue = {
     name: 'Cape de la Ouassingue',
     image: 'img/items/panoplies/cape_ouassingue.png',
     type: 'equipment', slot: 'cape', set: 'ouassingue', rarity: 'commun', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 60 },{ stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 4 },{ stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'spd', value: -4 }],
+    stats: [{ stat: 'maxHp', value: 75 }, { stat: 'atk', value: 55 },{ stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 4 },{ stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'spd', value: -4 }],
     description: "Moins performante que la Cape du Roissingue, cette cape présente néanmoins les mêmes avantages quant à l'évacuation de la sueur. Avec elle, vous allez pouvoir faire face à toutes les situations... Si vous arrivez à combattre en apnée, car vu l'odeur, il est vraiment impossible de ne pas défaillir."
 }
 item.coiffe_ouassingue = {
@@ -1154,7 +1162,7 @@ item.coiffe_ouassingue = {
     name: 'Capuche de la Ouassingue',
     image: 'img/items/panoplies/coiffe_ouassingue.png',
     type: 'equipment', slot: 'coiffe', set: 'ouassingue', rarity: 'commun', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 60 },{ stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 4 },{ stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 75 }, { stat: 'atk', value: 55 },{ stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 4 },{ stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: "Moins efficace que la Coiffe royale, cette capuche permet toutefois une très bonne évacuation de la sueur. Un peu trop bonne, en fait. Du coup, que l'on porte la capuche ou qu'on ne la porte pas ne fait aucune différence."
 }
 item.bottes_ouassingue = {
@@ -1162,7 +1170,7 @@ item.bottes_ouassingue = {
     name: 'Bottes Horchons',
     image: 'img/items/panoplies/bottes_ouassingue.png',
     type: 'equipment', slot: 'bottes', set: 'ouassingue', rarity: 'commun', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 40 }, { stat: 'flatDamage', value: 6 }, { stat: 'res.terre', value: 4 }, { stat: 'dropRate', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 75 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 6 }, { stat: 'res.terre', value: 4 }, { stat: 'dropRate', value: 4 }],
     description: "Ces Bottes émettent un immonde bruit de succion à chaque pas, ce qui n'est pas sans vous rappeler le chant d'amour des Trools en rut. Un souvenir douloureux dont vous vous seriez bien passé."
 }
 item.amulette_ouassingue = {
@@ -1170,7 +1178,7 @@ item.amulette_ouassingue = {
     name: 'Ouassulette',
     image: 'img/items/panoplies/amulette_ouassingue.png',
     type: 'equipment', slot: 'amulette', set: 'ouassingue', rarity: 'commun', levelMax: 20,
-    stats: [{ stat: 'maxHp', value: 90 }, { stat: 'atk', value: 50 }, { stat: 'res.terre', value: 4 }, { stat: 'dropRate', value: 4 }, { stat: 'healPct', value: 4 }],
+    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 45 }, { stat: 'res.terre', value: 4 }, { stat: 'dropRate', value: 4 }, { stat: 'healPct', value: 4 }],
     description: "Ce bijou essaye parfois de vous voler des aliments au passage pendant votre repas, ne le laissez pas pendre trop bas."
 }
 // #endregion
@@ -1198,6 +1206,611 @@ item.anneau_roissingue = {
     type: 'equipment', slot: 'anneau', set: 'roissingue', rarity: 'rare', levelMax: 20,
     stats: [{ stat: 'maxHp', value: 100 }, { stat: 'atk', value: 50 }, { stat: 'flatDamage', value: 7 }, { stat: 'res.terre', value: 5 }, { stat: 'dropRate', value: 6 }],
     description: "Ce sceau désigne son possesseur comme étant le souverain incontesté de la Tourbière sans fond de l'île d'Otomaï. Difficile d'imaginer un royaume plus bucolique."
+}
+// #endregion
+// #region Panoplie blop reinette / reinette royal — BLOP ────────────────────────
+item.bottes_blop_reinette = {
+    id: 'bottes_blop_reinette',
+    name: 'Bloptes Reinette',
+    image: 'img/items/panoplies/bottes_blop_reinette.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_reinette', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'spd', value: 2 }],
+    description: "Inutile de râler parce que le nom de ces bottes est imprononçable, cette particularité vous sauvera la vie, quand un brigand de grand chemin vous demandera : \"Donne-moi tes Blopetes, non tes Blotpes, non tes Plobtes, non...\". Vous aurez alors tout le temps nécessaire pour vous enfuir en courant."
+}
+item.anneau_blop_reinette = {
+    id: 'anneau_blop_reinette',
+    name: 'Blopanneau Reinette',
+    image: 'img/items/panoplies/anneau_blop_reinette.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_reinette', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 30 }, { stat: 'flatDamage', value: 3 }],
+    description: "Une fois enfilé au bout d'un doigt, il n'est plus possible de se débarrasser de cet anneau. Plus vous y pensez, et plus il vous rappelle quelqu'un."
+}
+item.amulette_blop_reinette = {
+    id: 'amulette_blop_reinette',
+    name: 'Amublop Reinette',
+    image: 'img/items/panoplies/amulette_blop_reinette.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_reinette', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 23 }, { stat: 'critChance', value: 2 }],
+    description: "Quand Lorkos voulut pénétrer dans le Labyrinthe du Minotoror, il n'hésita pas une seconde à équiper son Amublop. Personne n'a jamais su pourquoi."
+}
+item.ceinture_blop_reinette = {
+    id: 'ceinture_blop_reinette',
+    name: 'Blopture Reinette',
+    image: 'img/items/panoplies/ceinture_blop_reinette.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_reinette', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 2 }],
+    description: "Derrière ce nom stupide, se cache en réalité une ceinture originale, dont on ne connaît pas vraiment les défauts, ni les qualités. On sait tout de même qu'elle est reconnue d'utilité publique grâce à la protection exceptionnelle qu'elle confère aux poignées d'amour."
+}
+item.bottes_blop_reinette_royal = {
+    id: 'bottes_blop_reinette_royal',
+    name: 'Bloptes Reinette Royales',
+    image: 'img/items/panoplies/bottes_blop_reinette_royal.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_reinette_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }],
+    description: "Prononcez dix-huit fois le mot \"Bloptes\" le plus rapidement possible. Voilà, vous avez l'air d'un Iop."
+}
+item.anneau_blop_reinette_royal = {
+    id: 'anneau_blop_reinette_royal',
+    name: 'Blopanneau Reinette Royal',
+    image: 'img/items/panoplies/anneau_blop_reinette_royal.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_reinette_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 3 }, { stat: 'spd', value: 3 }, { stat: 'dropRate', value: 1 } ],
+    description: "Kroula avait jadis tenté d'enfiler cet anneau autour de son gros orteil. Il espérait ainsi que ses ennemis daigneraient lui lécher les pieds dans l'espoir de récupérer quelques gouttes de jus de Blop Royal."
+}
+item.amulette_blop_reinette_royal = {
+    id: 'amulette_blop_reinette_royal',
+    name: 'Amublop Reinette Royale',
+    image: 'img/items/panoplies/amulette_blop_reinette_royal.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_reinette_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 30 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }, { stat: 'flatDamage', value: 3 }, { stat: 'healPct', value: 3 }],
+    description: "Cette amulette est beaucoup plus dure à obtenir qu'une Amublop classique. Mais il faut voir le bon côté des choses, elle est aussi plus puissante qu'une amublop normale, avec elle vous aurez une allure royale !"
+}
+item.ceinture_blop_reinette_royal = {
+    id: 'ceinture_blop_reinette_royal',
+    name: 'Blopture Reinette Royale',
+    image: 'img/items/panoplies/ceinture_blop_reinette_royal.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_reinette_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Dépourvue de boucle, cette ceinture peut tout de même faire très mal si vous vous en servez comme fouet sur un postérieur à la peau fragile. Les pointes en fer rouillées sont à commander séparément."
+}
+
+// #endregion
+// #region Panoplie blop coco / coco royal — BLOP ────────────────────────
+item.bottes_blop_coco = {
+    id: 'bottes_blop_coco',
+    name: 'Bloptes Coco',
+    image: 'img/items/panoplies/bottes_blop_coco.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_coco', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'spd', value: 2 }],
+    description: "Inutile de râler parce que le nom de ces bottes est imprononçable, cette particularité vous sauvera la vie, quand un brigand de grand chemin vous demandera : \"Donne-moi tes Blopetes, non tes Blotpes, non tes Plobtes, non...\". Vous aurez alors tout le temps nécessaire pour vous enfuir en courant."
+}
+item.anneau_blop_coco = {
+    id: 'anneau_blop_coco',
+    name: 'Blopanneau Coco',
+    image: 'img/items/panoplies/anneau_blop_coco.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_coco', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 30 }, { stat: 'flatDamage', value: 3 }],
+    description: "Une fois enfilé au bout d'un doigt, il n'est plus possible de se débarrasser de cet anneau. Plus vous y pensez, et plus il vous rappelle quelqu'un."
+}
+item.amulette_blop_coco = {
+    id: 'amulette_blop_coco',
+    name: 'Amublop Coco',
+    image: 'img/items/panoplies/amulette_blop_coco.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_coco', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 23 }, { stat: 'critChance', value: 2 }],
+    description: "Quand Lorkos voulut pénétrer dans le Labyrinthe du Minotoror, il n'hésita pas une seconde à équiper son Amublop. Personne n'a jamais su pourquoi."
+}
+item.ceinture_blop_coco = {
+    id: 'ceinture_blop_coco',
+    name: 'Blopture Coco',
+    image: 'img/items/panoplies/ceinture_blop_coco.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_coco', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 2 }],
+    description: "Derrière ce nom stupide, se cache en réalité une ceinture originale, dont on ne connaît pas vraiment les défauts, ni les qualités. On sait tout de même qu'elle est reconnue d'utilité publique grâce à la protection exceptionnelle qu'elle confère aux poignées d'amour."
+}
+item.bottes_blop_coco_royal = {
+    id: 'bottes_blop_coco_royal',
+    name: 'Bloptes Coco Royales',
+    image: 'img/items/panoplies/bottes_blop_coco_royal.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_coco_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }],
+    description: "Prononcez dix-huit fois le mot \"Bloptes\" le plus rapidement possible. Voilà, vous avez l'air d'un Iop."
+}
+item.anneau_blop_coco_royal = {
+    id: 'anneau_blop_coco_royal',
+    name: 'Blopanneau Coco Royal',
+    image: 'img/items/panoplies/anneau_blop_coco_royal.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_coco_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 3 }, { stat: 'spd', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Kroula avait jadis tenté d'enfiler cet anneau autour de son gros orteil. Il espérait ainsi que ses ennemis daigneraient lui lécher les pieds dans l'espoir de récupérer quelques gouttes de jus de Blop Royal."
+}
+item.amulette_blop_coco_royal = {
+    id: 'amulette_blop_coco_royal',
+    name: 'Amublop Coco Royale',
+    image: 'img/items/panoplies/amulette_blop_coco_royal.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_coco_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 30 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }, { stat: 'flatDamage', value: 3 }, { stat: 'healPct', value: 3 }],
+    description: "Cette amulette est beaucoup plus dure à obtenir qu'une Amublop classique. Mais il faut voir le bon côté des choses, elle est aussi plus puissante qu'une amublop normale, avec elle vous aurez une allure royale !"
+}
+item.ceinture_blop_coco_royal = {
+    id: 'ceinture_blop_coco_royal',
+    name: 'Blopture Coco Royale',
+    image: 'img/items/panoplies/ceinture_blop_coco_royal.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_coco_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Dépourvue de boucle, cette ceinture peut tout de même faire très mal si vous vous en servez comme fouet sur un postérieur à la peau fragile. Les pointes en fer rouillées sont à commander séparément."
+}
+// #endregion
+// #region Panoplie blop griotte / griotte royal — BLOP ────────────────────────
+item.bottes_blop_griotte = {
+    id: 'bottes_blop_griotte',
+    name: 'Bloptes Griotte',
+    image: 'img/items/panoplies/bottes_blop_griotte.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_griotte', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'spd', value: 2 }],
+    description: "Inutile de râler parce que le nom de ces bottes est imprononçable, cette particularité vous sauvera la vie, quand un brigand de grand chemin vous demandera : \"Donne-moi tes Blopetes, non tes Blotpes, non tes Plobtes, non...\". Vous aurez alors tout le temps nécessaire pour vous enfuir en courant."
+}
+item.anneau_blop_griotte = {
+    id: 'anneau_blop_griotte',
+    name: 'Blopanneau Griotte',
+    image: 'img/items/panoplies/anneau_blop_griotte.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_griotte', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 30 }, { stat: 'flatDamage', value: 3 }],
+    description: "Une fois enfilé au bout d'un doigt, il n'est plus possible de se débarrasser de cet anneau. Plus vous y pensez, et plus il vous rappelle quelqu'un."
+}
+item.amulette_blop_griotte = {
+    id: 'amulette_blop_griotte',
+    name: 'Amublop Griotte',
+    image: 'img/items/panoplies/amulette_blop_griotte.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_griotte', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 23 }, { stat: 'critChance', value: 2 }],
+    description: "Quand Lorkos voulut pénétrer dans le Labyrinthe du Minotoror, il n'hésita pas une seconde à équiper son Amublop. Personne n'a jamais su pourquoi."
+}
+item.ceinture_blop_griotte = {
+    id: 'ceinture_blop_griotte',
+    name: 'Blopture Griotte',
+    image: 'img/items/panoplies/ceinture_blop_griotte.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_griotte', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 2 }],
+    description: "Derrière ce nom stupide, se cache en réalité une ceinture originale, dont on ne connaît pas vraiment les défauts, ni les qualités. On sait tout de même qu'elle est reconnue d'utilité publique grâce à la protection exceptionnelle qu'elle confère aux poignées d'amour."
+}
+item.bottes_blop_griotte_royal = {
+    id: 'bottes_blop_griotte_royal',
+    name: 'Bloptes Griotte Royales',
+    image: 'img/items/panoplies/bottes_blop_griotte_royal.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_griotte_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }],
+    description: "Prononcez dix-huit fois le mot \"Bloptes\" le plus rapidement possible. Voilà, vous avez l'air d'un Iop."
+}
+item.anneau_blop_griotte_royal = {
+    id: 'anneau_blop_griotte_royal',
+    name: 'Blopanneau Griotte Royal',
+    image: 'img/items/panoplies/anneau_blop_griotte_royal.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_griotte_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 3 }, { stat: 'spd', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Kroula avait jadis tenté d'enfiler cet anneau autour de son gros orteil. Il espérait ainsi que ses ennemis daigneraient lui lécher les pieds dans l'espoir de récupérer quelques gouttes de jus de Blop Royal."
+}
+item.amulette_blop_griotte_royal = {
+    id: 'amulette_blop_griotte_royal',
+    name: 'Amublop Griotte Royale',
+    image: 'img/items/panoplies/amulette_blop_griotte_royal.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_griotte_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 30 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }, { stat: 'flatDamage', value: 3 }, { stat: 'healPct', value: 3 }],
+    description: "Cette amulette est beaucoup plus dure à obtenir qu'une Amublop classique. Mais il faut voir le bon côté des choses, elle est aussi plus puissante qu'une amublop normale, avec elle vous aurez une allure royale !"
+}
+item.ceinture_blop_griotte_royal = {
+    id: 'ceinture_blop_griotte_royal',
+    name: 'Blopture Griotte Royale',
+    image: 'img/items/panoplies/ceinture_blop_griotte_royal.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_griotte_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Dépourvue de boucle, cette ceinture peut tout de même faire très mal si vous vous en servez comme fouet sur un postérieur à la peau fragile. Les pointes en fer rouillées sont à commander séparément."
+}
+// #endregion
+// #region Panoplie blop indigo / indigo royal — BLOP ────────────────────────
+item.bottes_blop_indigo = {
+    id: 'bottes_blop_indigo',
+    name: 'Bloptes Indigo',
+    image: 'img/items/panoplies/bottes_blop_indigo.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_indigo', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'spd', value: 2 }],
+    description: "Inutile de râler parce que le nom de ces bottes est imprononçable, cette particularité vous sauvera la vie, quand un brigand de grand chemin vous demandera : \"Donne-moi tes Blopetes, non tes Blotpes, non tes Plobtes, non...\". Vous aurez alors tout le temps nécessaire pour vous enfuir en courant."
+}
+item.anneau_blop_indigo = {
+    id: 'anneau_blop_indigo',
+    name: 'Blopanneau Indigo',
+    image: 'img/items/panoplies/anneau_blop_indigo.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_indigo', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 30 }, { stat: 'flatDamage', value: 3 }],
+    description: "Une fois enfilé au bout d'un doigt, il n'est plus possible de se débarrasser de cet anneau. Plus vous y pensez, et plus il vous rappelle quelqu'un."
+}
+item.amulette_blop_indigo = {
+    id: 'amulette_blop_indigo',
+    name: 'Amublop Indigo',
+    image: 'img/items/panoplies/amulette_blop_indigo.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_indigo', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 23 }, { stat: 'critChance', value: 2 }],
+    description: "Quand Lorkos voulut pénétrer dans le Labyrinthe du Minotoror, il n'hésita pas une seconde à équiper son Amublop. Personne n'a jamais su pourquoi."
+}
+item.ceinture_blop_indigo = {
+    id: 'ceinture_blop_indigo',
+    name: 'Blopture Indigo',
+    image: 'img/items/panoplies/ceinture_blop_indigo.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_indigo', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 2 }],
+    description: "Derrière ce nom stupide, se cache en réalité une ceinture originale, dont on ne connaît pas vraiment les défauts, ni les qualités. On sait tout de même qu'elle est reconnue d'utilité publique grâce à la protection exceptionnelle qu'elle confère aux poignées d'amour."
+}
+item.bottes_blop_indigo_royal = {
+    id: 'bottes_blop_indigo_royal',
+    name: 'Bloptes Indigo Royales',
+    image: 'img/items/panoplies/bottes_blop_indigo_royal.png',
+    type: 'equipment', slot: 'bottes', set: 'blop_indigo_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }],
+    description: "Prononcez dix-huit fois le mot \"Bloptes\" le plus rapidement possible. Voilà, vous avez l'air d'un Iop."
+}
+item.anneau_blop_indigo_royal = {
+    id: 'anneau_blop_indigo_royal',
+    name: 'Blopanneau Indigo Royal',
+    image: 'img/items/panoplies/anneau_blop_indigo_royal.png',
+    type: 'equipment', slot: 'anneau', set: 'blop_indigo_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 3 }, { stat: 'spd', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Kroula avait jadis tenté d'enfiler cet anneau autour de son gros orteil. Il espérait ainsi que ses ennemis daigneraient lui lécher les pieds dans l'espoir de récupérer quelques gouttes de jus de Blop Royal."
+}
+item.amulette_blop_indigo_royal = {
+    id: 'amulette_blop_indigo_royal',
+    name: 'Amublop Indigo Royale',
+    image: 'img/items/panoplies/amulette_blop_indigo_royal.png',
+    type: 'equipment', slot: 'amulette', set: 'blop_indigo_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 30 }, { stat: 'atk', value: 20 }, { stat: 'spd', value: 3 }, { stat: 'flatDamage', value: 3 }, { stat: 'healPct', value: 3 }],
+    description: "Cette amulette est beaucoup plus dure à obtenir qu'une Amublop classique. Mais il faut voir le bon côté des choses, elle est aussi plus puissante qu'une amublop normale, avec elle vous aurez une allure royale !"
+}
+item.ceinture_blop_indigo_royal = {
+    id: 'ceinture_blop_indigo_royal',
+    name: 'Blopture Indigo Royale',
+    image: 'img/items/panoplies/ceinture_blop_indigo_royal.png',
+    type: 'equipment', slot: 'ceinture', set: 'blop_indigo_royal', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 25 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'dropRate', value: 1 }],
+    description: "Dépourvue de boucle, cette ceinture peut tout de même faire très mal si vous vous en servez comme fouet sur un postérieur à la peau fragile. Les pointes en fer rouillées sont à commander séparément."
+}
+// #endregion
+// #region Panoplie gelax ────────────────────────
+item.cape_gelax = {
+    id: 'cape_gelax',
+    name: 'Gelocape',
+    image: 'img/items/panoplies/cape_gelax.png',
+    type: 'equipment', slot: 'cape', set: 'gelax', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'dropRate', value: 20 }],
+    description: "Dépourvue de fils et de poils, cette Cape reste un mystère pour les têtes pensantes d'Amakna, ce qui ne doit pas représenter plus d'une dizaine de personnes."
+}
+item.coiffe_gelax = {
+    id: 'coiffe_gelax',
+    name: 'Gelocoiffe',
+    image: 'img/items/panoplies/coiffe_gelax.png',
+    type: 'equipment', slot: 'coiffe', set: 'gelax', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 40 }, { stat: 'atk', value: 40 }, { stat: 'heal', value: 40 }, { stat: 'dropRate', value: 7 }],
+    description: "Avec cette coiffe sur la tête, vous pouvez être certain que vos amis rêveront enfin de vous lécher. Voilà un chapeau qui aurait comblé le Captain Chafer à la grande époque."
+}
+item.bottes_gelax = {
+    id: 'bottes_gelax',
+    name: 'Gelobottes',
+    image: 'img/items/panoplies/bottes_gelax.png',
+    type: 'equipment', slot: 'bottes', set: 'gelax', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'spd', value: 10 }, { stat: 'dropRate', value: 14 }],
+    description: "Ces bottes sont très confortables en été, car elles libèrent une odeur de fraise des bois, couvrant facilement l'odeur de transpiration qui pourrait se dégager des orteils d'un vieux Sadida aux pieds poilus."
+}
+item.anneau_gelano = {
+    id: 'anneau_gelano',
+    name: 'Gelano',
+    image: 'img/items/panoplies/anneau_gelano.png',
+    type: 'equipment', slot: 'anneau', set: 'gelax', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'spd', value: 35 }],
+    description: 'Inutile de vous ronger les ongles avec cet anneau, léchez-vous les doigts !'
+}
+item.amulette_gelax = {
+    id: 'amulette_gelax',
+    name: 'Gelamu',
+    image: 'img/items/panoplies/amulette_gelax.png',
+    type: 'equipment', slot: 'amulette', set: 'gelax', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 60 }, { stat: 'spd', value: 10 }, { stat: 'flatDamage', value: 4 }],
+    description: "Voilà une amulette, qui trahira votre goût prononcé pour les orgies de Gelée. On peut trouver mieux pour se mettre en valeur ou briller en société, mais il faut assumer jusqu'au bout votre faible pour la gelée."
+}
+item.ceinture_gelax = {
+    id: 'ceinture_gelax',
+    name: 'Geloture',
+    image: 'img/items/panoplies/ceinture_gelax.png',
+    type: 'equipment', slot: 'ceinture', set: 'gelax', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 40 }, { stat: 'atk', value: 40 }, { stat: 'critChance', value: 4 }],
+    description: "Le plus dur avec cette Geloture, c'est qu'en cas de fringale, on est vite tenté de croquer dedans."
+}
+// #endregion
+// #region Panoplie dragon_cochon ────────────────────────
+item.cape_dragon_cochon = {
+    id: 'cape_dragon_cochon',
+    name: 'Cape du Dragon Cochon',
+    image: 'img/items/panoplies/cape_dragon_cochon.png',
+    type: 'equipment', slot: 'cape', set: 'dragon_cochon', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 20 }, { stat: 'agilite', value: 20 }, { stat: 'force', value: 20 }, { stat: 'chance', value: 20 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.feu', value: 2 }, { stat: 'res.neutre', value: 2 }],
+    description: "Cette cape ne fera pas de vous un petit Cochon de Lait, mais elle vous permettra peut-être de vous travestir l'espace d'une soirée, afin de séduire une belle Cochonne."
+}
+item.coiffe_dragon_cochon = {
+    id: 'coiffe_dragon_cochon',
+    name: 'Coiffe du Dragon Cochon',
+    image: 'img/items/panoplies/coiffe_dragon_cochon.png',
+    type: 'equipment', slot: 'coiffe', set: 'dragon_cochon', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 70 }, { stat: 'atk', value: 20 }, { stat: 'agilite', value: 20 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 2 }],
+    description: "Affublé de cet énorme crâne, vous aurez l'air d'un Grizboule à poils durs, mais sans poils. De quoi laisser sans voix vos admiratrices."
+}
+item.bottes_dragon_cochon = {
+    id: 'bottes_dragon_cochon',
+    name: 'Mules du Dragon Cochon',
+    image: 'img/items/panoplies/bottes_dragon_cochon.png',
+    type: 'equipment', slot: 'bottes', set: 'dragon_cochon', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 54 }, { stat: 'atk', value: 20 }, { stat: 'dropRate', value: 2 }, { stat: 'spd', value: 4 }],
+    description: "Une bonne paire de mules et vous vous sentez de suite plus fort, plus puissant, plus performant. Alors que ce ne sont que des mules."
+}
+item.anneau_dragon_cochon = {
+    id: 'anneau_dragon_cochon',
+    name: 'Anneau du Dragon Cochon',
+    image: 'img/items/panoplies/anneau_dragon_cochon.png',
+    type: 'equipment', slot: 'anneau', set: 'dragon_cochon', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 54 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 3 }, { stat: 'spd', value: 4 }],
+    description: 'Cet anneau en cuir et en ivoire permet de stimuler plus facilement vos partenaires.'
+}
+item.amulette_dragon_cochon = {
+    id: 'amulette_dragon_cochon',
+    name: 'Collier du Dragon Cochon',
+    image: 'img/items/panoplies/amulette_dragon_cochon.png',
+    type: 'equipment', slot: 'amulette', set: 'dragon_cochon', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'healPct', value: 2 }],
+    description: "Ce collier dispose d'une petite boucle, qui permettait d'accrocher une laisse au cou du Dragon Cochon, lorsque son propriétaire voulait l'emmener faire une petite promenade nocturne."
+}
+item.ceinture_dragon_cochon = {
+    id: 'ceinture_dragon_cochon',
+    name: 'Ceinture Dracochoune',
+    image: 'img/items/panoplies/ceinture_dragon_cochon.png',
+    type: 'equipment', slot: 'ceinture', set: 'dragon_cochon', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 54 }, { stat: 'atk', value: 20 }, { stat: 'chance', value: 20 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.eau', value: 2 }],
+    description: "Cette ceinture fera de vous une personne irrésistible. Bowisse recommande cependant de ne pas s'approcher du Dragon Cochon avec cette ceinture, cela pourrait réveiller certaines de ses pulsions les plus tourmentées."
+}
+item.arme_dragon_cochon = {
+    id: 'arme_dragon_cochon',
+    name: 'Kaiser',
+    image: 'img/items/panoplies/arme_dragon_cochon.png',
+    type: 'equipment', slot: 'arme', set: 'dragon_cochon', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 100 }, { stat: 'atk', value: 30 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 3 }],
+    description: "Kaiser est le nom d'un Dragon Cochon qui jadis dévasta le village de Bounkaïda. Lorsque la milice eut enfin raison du monstre, les forgerons créèrent de nombreuses armes à partir des restes de la bête. Ce marteau en fait partie."
+}
+// #endregion
+// #region Panoplie draegnerys ────────────────────────
+item.cape_de_shika = {
+    id: 'cape_de_shika',
+    name: 'Cape de Shika',
+    image: 'img/items/panoplies/cape_de_shika.png',
+    type: 'equipment', slot: 'cape', set: 'shika', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 20 }, { stat: 'res.terre', value: 3 }, { stat: 'res.feu', value: 3 }],
+    description: "Des fleurs des moissons ont été cousues sur cette cape confectionnée à partir de céréales magiques tissées entre elles. Elle est animée d'une magie si puissante, que Shika s'en servait de protection contre la foudre, les soirs d'orage."
+}
+item.coiffe_de_shika = {
+    id: 'coiffe_de_shika',
+    name: 'Shikacoiffe',
+    image: 'img/items/panoplies/coiffe_de_shika.png',
+    type: 'equipment', slot: 'coiffe', set: 'shika', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 54 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 4 }, { stat: 'res.air', value: 3 }],
+    description: "Recouverte d'une multitude de fleurs des moissons, cette coiffe donnait une allure guillerette à Shika, lorsqu'elle partait au petit matin, labourer les collines Koln."
+}
+item.bottes_de_shika = {
+    id: 'bottes_de_shika',
+    name: 'Sabots de Shika',
+    image: 'img/items/panoplies/bottes_de_shika.png',
+    type: 'equipment', slot: 'bottes', set: 'shika', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 35 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 2 }, { stat: 'spd', value: 2 }, { stat: 'res.air', value: 2 }],
+    description: "Ces sabots ont été conçus pour permettre à Shika de ne jamais écraser les semis, lorsqu'elle ensemençait les plaines de Snossios. Elle y fit rajouter des talons hauts, pour qu'elle puisse courir librement le matin dans les éteules, sans remplir ses sabots de rosée, ou sans abîmer ses chevilles fragiles."
+}
+item.anneau_de_shika = {
+    id: 'anneau_de_shika',
+    name: 'Bracelet Magique de Shika',
+    image: 'img/items/panoplies/anneau_de_shika.png',
+    type: 'equipment', slot: 'anneau', set: 'shika', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 35 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }],
+    description: 'Ce bracelet couvrait les bras de Shika, la protégeant des coups de soleil, et des coups de bec des Corbacs attirés par sa beauté rayonnante. Ils sont encore imprégnés de sa sueur suave.'
+}
+item.amulette_de_shika = {
+    id: 'amulette_de_shika',
+    name: 'Epis de Shika',
+    image: 'img/items/panoplies/amulette_de_shika.png',
+    type: 'equipment', slot: 'amulette', set: 'shika', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 20 }, { stat: 'dropRate', value: 2 }, { stat: 'spd', value: 4 }],
+    description: "Shika assistait Farle lors des moissons, en récupérant les épis magiques qui tombaient sous sa faux. Elle prit l'habitude au fil des moissons, de les accrocher autour de son cou. Privés de leurs racines et du reste de leur tige, ces épis magiques continuent tout de même de mûrir chaque année à la même période."
+}
+item.ceinture_de_shika = {
+    id: 'ceinture_de_shika',
+    name: 'Shikature',
+    image: 'img/items/panoplies/ceinture_de_shika.png',
+    type: 'equipment', slot: 'ceinture', set: 'shika', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 30 }, { stat: 'res.terre', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.neutre', value: 2 }, { stat: 'dropRate', value: 2 }],
+    description: "Cette ceinture en cuir protégeait les cuisses de Shika, lorsqu'elle traversait des champs de blé en courant pour rattraper les Bouftous égarés de son troupeau. Recouverte de pollen de céréales magiques, on raconte qu'elle brillait au clair de lune, et permettait à Farle de ne pas sectionner les jambes de sa propre femme lorsqu'il fauchait des champs entiers de céréales une fois la nuit tombée."
+}
+item.arme_de_shika = {
+    id: 'arme_de_shika',
+    name: 'Binette de Shika',
+    image: 'img/items/panoplies/arme_de_shika.png',
+    type: 'equipment', slot: 'arme', set: 'shika', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 50 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 3 }, { stat: 'spd', value: 2 }],
+    description: "Cette binette taillée sur mesure permettait à Shika de créer les meules de foin les plus hautes de tout le royaume. La légende raconte qu'elles étaient si grandes que les marins s'en servaient de points de repère pour savoir s'ils approchaient ou non des côtes d'Amakna."
+}
+// #endregion
+// #region Panoplie mantiscore ────────────────────────
+item.cape_Ouroboulos = {
+    id: 'cape_Ouroboulos',
+    name: 'Cape Ouroboulos',
+    image: 'img/items/panoplies/cape_Ouroboulos.png',
+    type: 'equipment', slot: 'cape', set: 'Ouroboulos', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 55 }, { stat: 'atk', value: 47 }, { stat: 'res.air', value: 3 }],
+    description: "Si vous recherchez un moyen de vous camoufler dans le désert, cette cape peut se révéler utile."
+}
+item.cape_du_desert = {
+    id: 'cape_du_desert',
+    name: 'Cape du Désert',
+    image: 'img/items/panoplies/cape_du_desert.png',
+    type: 'equipment', slot: 'cape', set: 'du_desert', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 47 }, { stat: 'atk', value: 40 }, { stat: 'res.terre', value: 3 }],
+    description: "Si de la fourrure n'est pas forcément la tenue recommandée en milieu aride, celle de Fennex protège en réalité de la chaleur, extérieure."
+}
+item.coiffe_du_desert = {
+    id: 'coiffe_du_desert',
+    name: 'Coiffennex',
+    image: 'img/items/panoplies/coiffe_du_desert.png',
+    type: 'equipment', slot: 'coiffe', set: 'du_desert', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 34 }, { stat: 'atk', value: 34 }, { stat: 'critChance', value: 2 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 2 }],
+    description: "Utiliser des queues de Fennex pour faire des couettes, voilà."
+}
+item.bottes_Ouroboulos = {
+    id: 'bottes_Ouroboulos',
+    name: 'Bottes Ouroboulos',
+    image: 'img/items/panoplies/bottes_Ouroboulos.png',
+    type: 'equipment', slot: 'bottes', set: 'Ouroboulos', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 55 }, { stat: 'atk', value: 20 }, { stat: 'flatDamage', value: 4 }],
+    description: "Essentielles pour marcher sur le sable chaud sans s'abîmer la voûte plantaire, ces bottes vous empêcheront également de vous enfoncer dans les sables mouvants."
+}
+item.anneau_Ouroboulos = {
+    id: 'anneau_Ouroboulos',
+    name: 'Anneau Ouroboulos',
+    image: 'img/items/panoplies/anneau_Ouroboulos.png',
+    type: 'equipment', slot: 'anneau', set: 'Ouroboulos', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 20 }, { stat: 'atk', value: 40 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'spd', value: -4 }],
+    description: "Cet anneau se met soudainement à briller en cas de forte chaleur, pouvant prévenir d'incident dramatique si jamais vous ne vous en étiez pas rendu compte par vous-même."
+}
+item.ceinture_du_desert = {
+    id: 'ceinture_du_desert',
+    name: 'String Léolhyène',
+    image: 'img/items/panoplies/ceinture_du_desert.png',
+    type: 'equipment', slot: 'ceinture', set: 'du_desert', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 34 }, { stat: 'atk', value: 27 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.neutre', value: 2 }, { stat: 'dropRate', value: 2 }],
+    description: "\"Mais il fait chaud !\", vous avez au moins cette excuse."
+}
+item.arme_du_mantiscore = {
+    id: 'arme_du_mantiscore',
+    name: 'Hache du Mantiscore',
+    image: 'img/items/panoplies/arme_du_mantiscore.png',
+    type: 'equipment', slot: 'arme', set: ['du_desert','Ouroboulos'], rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'atk', value: 40 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 3 }, { stat: 'res.air', value: 2 }, { stat: 'heal', value: 10 }],
+    description: "L'objectif ici n'est pas de trancher, une simple piqûre est déjà suffisamment dangereuse."
+}
+// #endregion
+// #region Panoplie abraknyde  ────────────────────────
+// ------ Panoplie Abraknyde ---- lvl 90
+item.cape_abraknyde = {
+    id: 'cape_abraknyde',
+    name: 'Abracapa',
+    image: 'img/items/panoplies/cape_abraknyde.png',
+    type: 'equipment', slot: 'cape', set: 'abraknyde', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 60 }, { stat: 'atk', value: 40 }, { stat: 'flatDamage', value: 3 }],
+    description: "Vêtu de Feuilles d'Abraknydes, vous pourrez vous pavaner au beau milieu de la forêt sans que l'on vous reconnaisse vraiment. Attention toutefois aux Abraknydes en quête de bourgeonnements printaniers."
+}
+item.coiffe_abraknyde = {
+    id: 'coiffe_abraknyde',
+    name: 'Abracaska',
+    image: 'img/items/panoplies/coiffe_abraknyde.png',
+    type: 'equipment', slot: 'coiffe', set: 'abraknyde', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 50 }, { stat: 'heal', value: 30 }, { stat: 'spd', value: 2 }],
+    description: "L'Abracaska permet d'éviter les gueules de bois."
+}
+item.bottes_abraknyde = {
+    id: 'bottes_abraknyde',
+    name: 'Abrabottes',
+    image: 'img/items/panoplies/bottes_abraknyde.png',
+    type: 'equipment', slot: 'bottes', set: 'abraknyde', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 60 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 3 }, { stat: 'spd', value: 3 }, { stat: 'heal', value: 15 }],
+    description: "Les effets de cette paire de Bottes peuvent aussi parfaitement être retrouvés en se rendant dans une taverne. Il faut ensuite consommer un peu, voire beaucoup pour un effet optimum. Le lendemain vous aurez des jambes aussi lourdes que ces bottes."
+}
+item.anneau_abraknyde = {
+    id: 'anneau_abraknyde',
+    name: 'Anobra',
+    image: 'img/items/panoplies/anneau_abraknyde.png',
+    type: 'equipment', slot: 'anneau', set: 'abraknyde', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 55 }, { stat: 'critChance', value: 3 }, { stat: 'flatDamage', value: 3 }],
+    description: "Travailler la Branche d'Abraknyde n'est pas chose aisée. Mais avec de la persévérance, on peut finir par obtenir un anneau à la fois sobre, élégant et raffiné. Tout le contraire d'un Sadida dans une taverne."
+}
+item.amulette_abraknyde = {
+    id: 'amulette_abraknyde',
+    name: 'Araknamu',
+    image: 'img/items/panoplies/amulette_abraknyde.png',
+    type: 'equipment', slot: 'amulette', set: 'abraknyde', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 55 }, { stat: 'heal', value: 35 }],
+    description: "Cette petite Arakne est la preuve vivante que l'on est pas obligé d'empailler un animal pour en faire une Amulette. Elle vous chatouillera le cou, et tissera peut-être une toile devant votre bouche, si vous baillez trop souvent, ou si vous avez trop mauvaise haleine."
+}
+item.ceinture_abraknyde = {
+    id: 'ceinture_abraknyde',
+    name: 'Abrature',
+    image: 'img/items/panoplies/ceinture_abraknyde.png',
+    type: 'equipment', slot: 'ceinture', set: 'abraknyde', rarity: 'common', levelMax: 20,
+    stats: [{ stat: 'atk', value: 60 }, { stat: 'res.neutre', value: 5 }],
+    description: "Cette ceinture vous apportera assurance et abdominaux en bois. Un traitement anti-Arakne est néanmoins recommandé tous les ans. Un peu comme la coiffure d'un Sadida, avec heureusement trois fois moins d'anti-parasites."
+}
+item.arme_abraknyde = {
+    id: 'arme_abraknyde',
+    name: 'Abraton',
+    image: 'img/items/panoplies/arme_abraknyde.png',
+    type: 'equipment', slot: 'arme', set: 'abraknyde', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 50 }, { stat: 'flatDamage', value: 5 }, { stat: 'spd', value: 5 }],
+    description: "Ce bâton a été sculpté à partir d'un Abraknyde d'un certain âge : on le reconnaît à sa forme agressive, mais il n'a pas conservé l'odeur de bois moisi qui caractérise souvent les vieilles branches."
+}
+item.bouclier_abraknyde = {
+    id: 'bouclier_abraknyde',
+    name: 'Bouclier Abraknyde',
+    image: 'img/items/panoplies/bouclier_abraknyde.png',
+    type: 'equipment', slot: 'bouclier', set: 'abraknyde', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 55 }, { stat: 'atk', value: 20 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
+    description: "Caché derrière ce bouclier, les aventuriers les plus naïfs pourront vous prendre pour un Abraknyde et se sauver en courant. Les autres vous agresseront en pensant récupérer quelques ambres."
+}
+// ------ Panoplie Abraknyde Ancestral ---- lvl 110
+item.cape_abraknydeAncestral = {
+    id: 'cape_abraknydeAncestral',
+    name: 'Abracapa Ancestrale',
+    image: 'img/items/panoplies/cape_abraknydeAncestral.png',
+    type: 'equipment', slot: 'cape', set: 'abraknydeAncestral', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 75 }, { stat: 'atk', value: 50 }, { stat: 'flatDamage', value: 3 }, { stat: 'spd', value: 3 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'dropRate', value: 4 }],
+    description: "En été, l'Abraknyde Ancestral aime se dorer au soleil, mais son bois habitué aux forêts sombres le supporte mal. Cette cape est confectionnée avec les pelures de son écorce."
+}
+item.coiffe_abraknydeAncestral = {
+    id: 'coiffe_abraknydeAncestral',
+    name: 'Abracaska Ancestral',
+    image: 'img/items/panoplies/coiffe_abraknydeAncestral.png',
+    type: 'equipment', slot: 'coiffe', set: 'abraknydeAncestral', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 130 }, { stat: 'atk', value: 50 }, { stat: 'flatDamage', value: 5 }, { stat: 'res.feu', value: 5 }, { stat: 'dropRate', value: 4 }],
+    description: "Cette Coiffe fut créée pour Jicé Aouaire car il a la tête plate, aucun soucis d'équilibre pour l'arborer donc. Il l'a faite faire après avoir vaincu l'Abraknyde Ancestral en brisant ses noisettes entre ses fesses, mais il s'en vante moins."
+}
+item.bottes_abraknydeAncestral = {
+    id: 'bottes_abraknydeAncestral',
+    name: 'Protège-Tibias Ancestraux',
+    image: 'img/items/panoplies/bottes_abraknydeAncestral.png',
+    type: 'equipment', slot: 'bottes', set: 'abraknydeAncestral', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 50 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'dropRate', value: 4 }],
+    description: "Avec ces protège-tibias en bois massif, vos jambes ne craignent plus rien. Ils sont en revanche incompatibles avec le port de bottes. Vous pourrez les utiliser pour vous protéger lors des compétitions de Boufball, mais vous ne pourrez plus faire de pointu avec vos bottes coquées."
+}
+item.anneau_abraknydeAncestral = {
+    id: 'anneau_abraknydeAncestral',
+    name: 'Anneau Ancestral',
+    image: 'img/items/panoplies/anneau_abraknydeAncestral.png',
+    type: 'equipment', slot: 'anneau', set: 'abraknydeAncestral', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 80 }, { stat: 'atk', value: 40 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.terre', value: 5 }, { stat: 'res.eau', value: 5 }, { stat: 'dropRate', value: 4 }],
+    description: "Les soirs où vous aurez trop bu, vous verrez peut-être le Moskito pris dans cet anneau vous faire un clin d'œil. Mais évitez d'en parler à vos amis, il fait seulement semblant."
+}
+item.amulette_abraknydeAncestral = {
+    id: 'amulette_abraknydeAncestral',
+    name: 'Torque Ancestral',
+    image: 'img/items/panoplies/amulette_abraknydeAncestral.png',
+    type: 'equipment', slot: 'amulette', set: 'abraknydeAncestral', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 70 }, { stat: 'atk', value: 45 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.feu', value: 6 }, { stat: 'dropRate', value: 4 }],
+    description: "Autour du cou, ce torque met en valeur votre barbe. Si vous n'avez pas de barbe, vous ne pouvez vous en prendre qu'à vous-même."
+}
+item.ceinture_abraknydeAncestral = {
+    id: 'ceinture_abraknydeAncestral',
+    name: 'Abrature Ancestrale',
+    image: 'img/items/panoplies/ceinture_abraknydeAncestral.png',
+    type: 'equipment', slot: 'ceinture', set: 'abraknydeAncestral', rarity: 'uncommon', levelMax: 20,
+    stats: [{ stat: 'maxHp', value: 100 }, { stat: 'atk', value: 55 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 },{ stat: 'res.terre', value: 1 }, { stat: 'res.feu', value: 1 }, { stat: 'res.eau', value: 1 }, { stat: 'res.air', value: 1 }, { stat: 'res.neutre', value: 1 }, { stat: 'dropRate', value: 3 }],
+    description: "Cette ceinture est censée vous donner la virilité ancestrale. Que ce soit vrai ou pas, l'effet est périmé."
 }
 // #endregion
 
@@ -1234,6 +1847,15 @@ item.Dofus_Pourpre = {
     effects: [{ on_effect: { source: 'enemy', type: ['heal', 'heal%maxHp'] }, reaction: 'heal_to_damage', element: 'feu', rawDamage: { min: 5, max: 15 } }],
     description: "Pondu par Ignemikhal, Dragon Élémentaire du Feu, par amour pour la poupée divine Ladysally. Cet œuf incandescent renferme une puissance ardente sans égale... seuls les plus courageux méritent de le porter."
 }
+item.Dofus_Turquoise = {
+    id: 'Dofus_Turquoise',
+    name: 'Dofus Turquoise',
+    image: 'img/items/objets_bonus/Dofus_Turquoise.png',
+    type: 'equipment', slot: 'accessoire', rarity: 'legendaire', levelMax: 20,
+    stats: [{ stat: 'atk', value: 50 }, { stat: 'critChance', value: 13 }],
+    effects: [{ on_effect: { source: 'enemy', crit_only: true, type: ['damage'] }, reaction: 'crit_absorb_heal', heal_pct: 20 }],
+    description: "Pondu par Aguabrial, Dragon Élémentaire de l'Eau, par amour pour la poupée Dathura. Cet œuf limpide renferme une puissance d'une profondeur sans égale... seuls les plus courageux méritent de le porter."
+}
 
 
 
@@ -1242,7 +1864,7 @@ item.Dofus_Pourpre = {
     const REQ = {
         1:  ['bottesAventurier','capeAventurier','chapeauAventurier','anneauAventurier','ceintureAventurier','amuletteAventurier'],
         10: ['cape_mousse','coiffe_mousse','bottes_mousse','anneau_mousse','amulette_mousse','ceinture_mousse','pelle_mousse','bouclier_mousse',
-             'sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
+             'sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan','bouclier_tournesol'],
         15: ['anneauKardorim','capeKardorim','coiffeKardorim'],
         20: ['cape_bouftou','coiffe_bouftou','bottes_bouftou','anneau_bouftou','amulette_bouftou','ceinture_bouftou','marteau_bouftou','bouclier_bouftou',
              'cape_de_lHomme_Ours','coiffe_de_lHomme_Ours','bottes_de_lHomme_Ours','anneau_de_lHomme_Ours','amulette_de_lHomme_Ours','ceinture_de_lHomme_Ours','baton_de_lHomme_Ours',
@@ -1260,19 +1882,23 @@ item.Dofus_Pourpre = {
              'cape_kwak_flamme','coiffe_kwak_flamme','bottes_kwak_flamme','anneau_kwak_flamme','amulette_kwak_flamme','ceinture_kwak_flamme','epee_kwak_flamme',
              'cape_kwak_terre','coiffe_kwak_terre','bottes_kwak_terre','anneau_kwak_terre','amulette_kwak_terre','ceinture_kwak_terre','epee_kwak_terre'],
         45: ['cape_scaraboss_doree','coiffe_scaraboss_doree','bottes_scaraboss_doree','anneau_scaraboss_doree','amulette_scaraboss_doree','ceinture_scaraboss_doree','baguette_scaraboss_doree'],
-        50: [],
+        50: ['bottes_blop_indigo','anneau_blop_indigo','amulette_blop_indigo','ceinture_blop_indigo','bottes_blop_griotte','anneau_blop_griotte','amulette_blop_griotte','ceinture_blop_griotte','bottes_blop_coco','anneau_blop_coco','amulette_blop_coco','ceinture_blop_coco',
+             'bottes_blop_reinette','anneau_blop_reinette','amulette_blop_reinette','ceinture_blop_reinette'],
         55: ['kwakwaffe','kwakwalliance','kwakwanneau','kwakwalame'],
-        60: [],
+        60: ['cape_gelax', 'coiffe_gelax', 'bottes_gelax', 'amulette_gelax', 'ceinture_gelax', 'anneau_gelano'],
         65: [],
-        70: [],
-        75: [],
-        80: [],
+        70: ['cape_Ouroboulos', 'bottes_Ouroboulos','anneau_Ouroboulos','arme_du_mantiscore','cape_du_desert', 'coiffe_du_desert','ceinture_du_desert'],
+        75: ['arme_du_mantiscore'],
+        80: ['cape_de_shika', 'coiffe_de_shika','bottes_de_shika','anneau_de_shika','amulette_de_shika','ceinture_de_shika','arme_de_shika',
+             'bottes_blop_indigo_royal','anneau_blop_indigo_royal','amulette_blop_indigo_royal','ceinture_blop_indigo_royal','bottes_blop_griotte_royal','anneau_blop_griotte_royal','amulette_blop_griotte_royal','ceinture_blop_griotte_royal',
+             'bottes_blop_reinette_royal','anneau_blop_reinette_royal','amulette_blop_reinette_royal','ceinture_blop_reinette_royal','bottes_blop_coco_royal','anneau_blop_coco_royal','amulette_blop_coco_royal','ceinture_blop_coco_royal'],
         85: [],
-        90: [],
+        90: ['cape_abraknyde', 'coiffe_abraknyde', 'bottes_abraknyde', 'anneau_abraknyde', 'amulette_abraknyde', 'ceinture_abraknyde', 'arme_abraknyde', 'bouclier_abraknyde'],
         95: [],
-        100: ['cape_ouassingue','coiffe_ouassingue','bottes_ouassingue','amulette_ouassingue'],
+        100: ['cape_dragon_cochon', 'coiffe_dragon_cochon','bottes_dragon_cochon','anneau_dragon_cochon','amulette_dragon_cochon','ceinture_dragon_cochon','arme_dragon_cochon',
+              'cape_ouassingue','coiffe_ouassingue','bottes_ouassingue','amulette_ouassingue'],
         105: [],
-        110: [],
+        110: ['cape_abraknydeAncestral', 'coiffe_abraknydeAncestral', 'bottes_abraknydeAncestral', 'anneau_abraknydeAncestral', 'amulette_abraknydeAncestral', 'ceinture_abraknydeAncestral'],
         115: [],
         120: [],
         125: [],

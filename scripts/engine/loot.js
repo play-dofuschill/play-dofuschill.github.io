@@ -55,10 +55,11 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const lootTable = lootTableOverride || area?.lootTable
     if (!lootTable) return []
 
-    const famBonuses  = getAllTeamFarmingBonuses()
+    const famBonuses   = getAllTeamFarmingBonuses()
+    const equipBonuses = getActiveMemberEquipFarmingBonuses()
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
     const skullBonus   = [0, 0.10, 0.15, 0.20][state.skullLevel] || 0
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
 
     // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
     const itemEntries = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
@@ -156,8 +157,9 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
     const soulStoneEntry = activeLootTable?.find(e => e.itemId === 'pierreDame' || e.itemId === 'pierreDameGardien')
     const isGardienZone  = soulStoneEntry?.itemId === 'pierreDameGardien'
 
-    const famBonuses = getAllTeamFarmingBonuses()
-    const dropBonus  = (famBonuses.dropRate || 0) / 100
+    const famBonuses   = getAllTeamFarmingBonuses()
+    const equipBonuses = getActiveMemberEquipFarmingBonuses()
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100
 
     if (enemy.isArchi) {
         // Archimonstre / Archiboss : capture garantie à 100%

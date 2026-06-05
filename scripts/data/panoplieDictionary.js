@@ -82,7 +82,7 @@ const panoplies = {
     },
     paysan: {
         name: 'Panoplie du paysan',
-        pieces: ['sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan'],
+        pieces: ['sac_paysan','chapeau_paysan','bottes_paysan','anneau_paysan','amulette_paysan','ceinture_paysan','faux_paysan','bouclier_tournesol'],
         familiar: 'familiermosk',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
@@ -192,10 +192,10 @@ const panoplies = {
                         { stat: 'res.neutre', value: 20 }]
         }}
     },
-    scraraboss_doree: {
-        name: "Panoplie du Scraraboss Dorée",
+    scaraboss_doree: {
+        name: "Panoplie du Scaraboss Dorée",
         pieces: ['cape_scaraboss_doree','coiffe_scaraboss_doree','bottes_scaraboss_doree','anneau_scaraboss_doree','amulette_scaraboss_doree','ceinture_scaraboss_doree','baguette_scaraboss_doree'],
-        familiar: 'familierscrarabossDoree',
+        familiar: 'familierscarabossDoree',
         bonuses: {
             3: {stats: [{ stat: 'maxHp', value: 20 },
                         { stat: 'atk', value: 30 },
@@ -317,8 +317,6 @@ const panoplies = {
                         { stat: 'res.air', value: 10 }]
         }}
     },
-    
-
     Homme_Ours: {
         name: "Panoplie de l'Homme Ours",
         pieces: ['cape_de_lHomme_Ours','coiffe_de_lHomme_Ours','bottes_de_lHomme_Ours','anneau_de_lHomme_Ours','amulette_de_lHomme_Ours','ceinture_de_lHomme_Ours','baton_de_lHomme_Ours'],
@@ -356,11 +354,11 @@ const panoplies = {
         familiar: 'familierpykur',
         bonuses: {
             2: {stats: [{ stat: 'maxHp', value: 30 }, 
-                        { stat: 'critChance', value: 3 }, 
+                        { stat: 'critChance', value: 2 }, 
                         { stat: 'spd', value: 10 }]
         },
             3: {stats: [{ stat: 'maxHp', value: 60 }, 
-                        { stat: 'critChance', value: 6 }, 
+                        { stat: 'critChance', value: 4 }, 
                         { stat: 'spd', value: 15 }]
         }}
     },
@@ -379,7 +377,270 @@ const panoplies = {
                         { stat: 'atk', value: 80 }]
         }}
     },
-
+    blop_reinette: {
+        name: "Panoplie Blop Reinette",
+        pieces: ['bottes_blop_reinette','anneau_blop_reinette','amulette_blop_reinette','ceinture_blop_reinette'],
+        familiar: ['familiergelutin','familierblopignon'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'res.feu', value: 5 },
+                        { stat: 'res.eau', value: 5 },
+                        { stat: 'res.air', value: -60 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.terre', value: 30 },
+                        { stat: 'res.feu', value: 15 },
+                        { stat: 'res.eau', value: 15 },
+                        { stat: 'res.air', value: -50 },
+                        { stat: 'res.neutre', value: 15 }]
+        }}
+    },
+    blop_reinette_royal: {
+        name: "Panoplie Blop Reinette Royale",
+        pieces: ['bottes_blop_reinette_royal','anneau_blop_reinette_royal','amulette_blop_reinette_royal','ceinture_blop_reinette_royal'],
+        familiar: 'familierblopReinetteRoyal',
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 15 },
+                        { stat: 'force', value: 15 },
+                        { stat: 'critChance', value: 2 },
+                        { stat: 'res.terre', value: 5 },
+                        { stat: 'res.feu', value: 5 },
+                        { stat: 'res.eau', value: 5 },
+                        { stat: 'res.air', value: 10 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'force', value: 30 },
+                        { stat: 'critChance', value: 5 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'res.air', value: 15 },
+                        { stat: 'res.neutre', value: 10 }]
+        }}
+    },
+    blop_coco: {
+        name: "Panoplie Blop Coco",
+        pieces: ['bottes_blop_coco','anneau_blop_coco','amulette_blop_coco','ceinture_blop_coco'],
+        familiar: ['familiergelutin','familierblopignon'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.air', value: 10 },
+                        { stat: 'res.feu', value: 5 },
+                        { stat: 'res.eau', value: 5 },
+                        { stat: 'res.terre', value: -60 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.air', value: 30 },
+                        { stat: 'res.feu', value: 15 },
+                        { stat: 'res.eau', value: 15 },
+                        { stat: 'res.terre', value: -50 },
+                        { stat: 'res.neutre', value: 15 }]
+        }}
+    },
+    blop_coco_royal: {
+        name: "Panoplie Blop Coco Royale",
+        pieces: ['bottes_blop_coco_royal','anneau_blop_coco_royal','amulette_blop_coco_royal','ceinture_blop_coco_royal'],
+        familiar: 'familierblopCocoRoyal',
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 15 },
+                        { stat: 'agilite', value: 15 },
+                        { stat: 'critChance', value: 2 },
+                        { stat: 'res.air', value: 5 },
+                        { stat: 'res.feu', value: 5 },
+                        { stat: 'res.eau', value: 5 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'agilite', value: 30 },
+                        { stat: 'critChance', value: 5 },
+                        { stat: 'res.air', value: 10 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'res.terre', value: 15 },
+                        { stat: 'res.neutre', value: 10 }]
+        }}
+    },
+    blop_griotte: {
+        name: "Panoplie Blop Griotte",
+        pieces: ['bottes_blop_griotte','anneau_blop_griotte','amulette_blop_griotte','ceinture_blop_griotte'],
+        familiar: ['familiergelutin','familierblopignon'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'res.terre', value: 5 },
+                        { stat: 'res.air', value: 5 },
+                        { stat: 'res.eau', value: -60 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.feu', value: 30 },
+                        { stat: 'res.terre', value: 15 },
+                        { stat: 'res.air', value: 15 },
+                        { stat: 'res.eau', value: -50 },
+                        { stat: 'res.neutre', value: 15 }]
+        }}
+    },
+    blop_griotte_royal: {
+        name: "Panoplie Blop Griotte Royale",
+        pieces: ['bottes_blop_griotte_royal','anneau_blop_griotte_royal','amulette_blop_griotte_royal','ceinture_blop_griotte_royal'],
+        familiar: 'familierblopGriotteRoyal',
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 15 },
+                        { stat: 'intelligence', value: 15 },
+                        { stat: 'critChance', value: 2 },
+                        { stat: 'res.feu', value: 5 },
+                        { stat: 'res.terre', value: 5 },
+                        { stat: 'res.air', value: 5 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'intelligence', value: 30 },
+                        { stat: 'critChance', value: 5 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'res.air', value: 10 },
+                        { stat: 'res.eau', value: 15 },
+                        { stat: 'res.neutre', value: 10 }]
+        }}
+    },
+    blop_indigo: {
+        name: "Panoplie Blop Indigo",
+        pieces: ['bottes_blop_indigo','anneau_blop_indigo','amulette_blop_indigo','ceinture_blop_indigo'],
+        familiar: ['familiergelutin','familierblopignon'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'res.terre', value: 5 },
+                        { stat: 'res.air', value: 5 },
+                        { stat: 'res.feu', value: -60 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.eau', value: 30 },
+                        { stat: 'res.terre', value: 15 },
+                        { stat: 'res.air', value: 15 },
+                        { stat: 'res.feu', value: -50 },
+                        { stat: 'res.neutre', value: 15 }]
+        }}
+    },
+    blop_indigo_royal: {
+        name: "Panoplie Blop Indigo Royale",
+        pieces: ['bottes_blop_indigo_royal','anneau_blop_indigo_royal','amulette_blop_indigo_royal','ceinture_blop_indigo_royal'],
+        familiar: 'familierblopIndigoRoyal',
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 15 },
+                        { stat: 'chance', value: 15 },
+                        { stat: 'critChance', value: 2 },
+                        { stat: 'res.eau', value: 5 },
+                        { stat: 'res.terre', value: 5 },
+                        { stat: 'res.air', value: 5 },
+                        { stat: 'res.feu', value: 10 },
+                        { stat: 'res.neutre', value: 5 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'chance', value: 30 },
+                        { stat: 'critChance', value: 5 },
+                        { stat: 'res.eau', value: 10 },
+                        { stat: 'res.terre', value: 10 },
+                        { stat: 'res.air', value: 10 },
+                        { stat: 'res.feu', value: 15 },
+                        { stat: 'res.neutre', value: 10 }]
+        }}
+    },
+    gelax: {
+        name: "Panoplie Gelax",
+        pieces: ['cape_gelax', 'coiffe_gelax', 'bottes_gelax', 'amulette_gelax', 'ceinture_gelax', 'anneau_gelano'],
+        familiar: 'familierbilby',
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 40 },
+                        { stat: 'dropRate', value: 5 }]
+        },
+            6: {stats: [{ stat: 'maxHp', value: 60 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'dropRate', value: 10 }]
+        }}
+    },
+    Ouroboulos: {
+        name: "Panoplie de l'Ouroboulos",
+        pieces: ['cape_Ouroboulos', 'bottes_Ouroboulos','anneau_Ouroboulos','arme_du_mantiscore'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 }]
+        },
+            3: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 40 }]
+        }}
+    },
+    du_desert: {
+        name: "Panoplie du Désert",
+        pieces: ['cape_du_desert', 'coiffe_du_desert','ceinture_du_desert','arme_du_mantiscore'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 }]
+        },
+            3: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 40 }]
+        }}
+    },
+    shika: {
+        name: "Panoplie de Shika Ingalsse",
+        pieces: ['cape_de_shika', 'coiffe_de_shika','bottes_de_shika','anneau_de_shika','amulette_de_shika','ceinture_de_shika','arme_de_shika'],
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'res.feu', value: 5 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.feu', value: 10 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 80 },
+                        { stat: 'atk', value: 80 },
+                        { stat: 'res.feu', value: 20 }]
+        }}
+    },
+    dragon_cochon: {
+        name: "Panoplie du Dragon Cochon",
+        pieces: ['cape_dragon_cochon', 'coiffe_dragon_cochon','bottes_dragon_cochon','anneau_dragon_cochon','amulette_dragon_cochon','ceinture_dragon_cochon','arme_dragon_cochon'],
+        familiar: 'familierdragonCochon',
+        bonuses: {
+            3: {stats: [{ stat: 'maxHp', value: 10 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'spd', value: 5 }]
+        },
+            5: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 30 },
+                        { stat: 'force', value: 20 },
+                        { stat: 'chance', value: 20 },
+                        { stat: 'agilite', value: 20 },
+                        { stat: 'spd', value: 10 }]
+        },
+            7: {stats: [{ stat: 'maxHp', value: 30 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'force', value: 30 },
+                        { stat: 'chance', value: 30 },
+                        { stat: 'agilite', value: 30 },
+                        { stat: 'spd', value: 15 }]
+        }}
+    },
     ouassingue: {
         name: "Panoplie Vassale",
         pieces: ['cape_ouassingue','coiffe_ouassingue','bottes_ouassingue','amulette_ouassingue'],
@@ -404,6 +665,50 @@ const panoplies = {
             3: {stats: [{ stat: 'maxHp', value: 50 },
                         { stat: 'atk', value: 80 },
                         { stat: 'dropRate', value: 10 }]
+        }}
+    },
+    abraknyde: {
+        name: "Panoplie d'Abraknyde",
+        pieces: ['cape_abraknyde', 'coiffe_abraknyde', 'bottes_abraknyde', 'anneau_abraknyde', 'amulette_abraknyde', 'ceinture_abraknyde', 'arme_abraknyde', 'bouclier_abraknyde'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 20 },
+                        { stat: 'atk', value: 20 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 40 },
+                        { stat: 'atk', value: 40 },
+                        { stat: 'res.neutre', value: 10 }]
+        },
+            6: {stats: [{ stat: 'maxHp', value: 50 },
+                        { stat: 'atk', value: 50 },
+                        { stat: 'res.terre', value: 20 },
+                        { stat: 'res.feu', value: -20 },
+                        { stat: 'res.air', value: -20 },
+                        { stat: 'res.neutre', value: 20 }]
+        },
+            8: {stats: [{ stat: 'maxHp', value: 60 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'flatDamage', value: 10 },
+                        { stat: 'res.terre', value: 20 },
+                        { stat: 'res.feu', value: -20 },
+                        { stat: 'res.air', value: -20 },
+                        { stat: 'res.neutre', value: 20 }]
+        }}
+    },
+    abraknydeAncestral: {
+        name: "Panoplie d'Abraknyde Ancestral",
+        pieces: ['cape_abraknydeAncestral', 'coiffe_abraknydeAncestral', 'bottes_abraknydeAncestral', 'anneau_abraknydeAncestral', 'amulette_abraknydeAncestral', 'ceinture_abraknydeAncestral'],
+        bonuses: {
+            2: {stats: [{ stat: 'maxHp', value: 100 },
+                        { stat: 'atk', value: 20 },
+                        { stat: 'res.terre', value: 4 }]
+        },
+            4: {stats: [{ stat: 'maxHp', value: 100 },
+                        { stat: 'atk', value: 40 },
+                        { stat: 'res.terre', value: 4 }]
+        },
+            6: {stats: [{ stat: 'maxHp', value: 150 },
+                        { stat: 'atk', value: 60 },
+                        { stat: 'res.terre', value: 6 }]
         }}
     },
     kralamoure: {
