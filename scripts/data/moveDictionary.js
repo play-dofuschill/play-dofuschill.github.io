@@ -1,8 +1,8 @@
 ﻿// moveDictionary.js — Sorts des classes DofusChill
 
 const move = {}
-
-/*
+//#region dico move
+/* 
 
 restriction: 'star',    // ★
 restriction: 'arrow',   //  →
@@ -454,8 +454,8 @@ D — SPELLPROGRESSION
   Si deux tiers sont franchis d'un coup → +200ms une seule fois.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-*/
-
+*/ 
+//#endregion 
 // #region IOP ─────────────────────────────────────────────
 move.pression = {
     id: 'pression',
@@ -723,8 +723,8 @@ move.epee_celeste = {
 }
 // move.precipitation = {
 //     id: 'precipitation',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Précipitation',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -742,8 +742,8 @@ move.epee_celeste = {
 // }
 // move.epee_du_destin = {
 //     id: 'epee_du_destin',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Épée du Destin',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -761,8 +761,8 @@ move.epee_celeste = {
 // }
 // move.emprise = {
 //     id: 'emprise',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Emprise',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -780,8 +780,8 @@ move.epee_celeste = {
 // }
 // move.fureur = {
 //     id: 'fureur',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Fureur',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -799,8 +799,8 @@ move.epee_celeste = {
 // }
 // move.fracture = {
 //     id: 'fracture',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Fracture',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -818,8 +818,8 @@ move.epee_celeste = {
 // }
 // move.menace = {
 //     id: 'menace',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Menace',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -837,8 +837,8 @@ move.epee_celeste = {
 // }
 // move.accumulation = {
 //     id: 'accumulation',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Accumulation',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -856,8 +856,8 @@ move.epee_celeste = {
 // }
 // move.epee_du_jugement = {
 //     id: 'epee_du_jugement',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Épée du Jugement',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -875,8 +875,8 @@ move.epee_celeste = {
 // }
 // move.conquete = {
 //     id: 'conquete',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Conquête',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -894,8 +894,8 @@ move.epee_celeste = {
 // }
 // move.agitation = {
 //     id: 'agitation',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Agitation',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -913,8 +913,8 @@ move.epee_celeste = {
 // }
 // move.sentence = {
 //     id: 'sentence',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Sentence',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -932,8 +932,8 @@ move.epee_celeste = {
 // }
 // move.anneau_destructeur = {
 //     id: 'anneau_destructeur',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Anneau Destructeur',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -951,8 +951,8 @@ move.epee_celeste = {
 // }
 // move.violence = {
 //     id: 'violence',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Violence',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -966,8 +966,8 @@ move.epee_celeste = {
 // }
 // move.rassemblement = {
 //     id: 'rassemblement',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Rassemblement',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -981,8 +981,8 @@ move.epee_celeste = {
 // }
 // move.fustigation = {
 //     id: 'fustigation',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Fustigation',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -996,8 +996,8 @@ move.epee_celeste = {
 // }
 // move.vindicte = {
 //     id: 'vindicte',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Vindicte',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1011,8 +1011,8 @@ move.epee_celeste = {
 // }
 // move.tannee = {
 //     id: 'tannee',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Tannée',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1039,8 +1039,8 @@ move.epee_celeste = {
 // }
 // move.massacre = {
 //     id: 'massacre',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Massacre',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1054,8 +1054,8 @@ move.epee_celeste = {
 // }
 // move.fendoir = {
 //     id: 'fendoir',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Fendoir',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1069,8 +1069,8 @@ move.epee_celeste = {
 // }
 // move.coup_pour_coup = {
 //     id: 'coup_pour_coup',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Coup pour Coup',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1093,8 +1093,8 @@ move.epee_celeste = {
 // }
 // move.determination = {
 //     id: 'determination',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Détermination',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1108,8 +1108,8 @@ move.epee_celeste = {
 // }
 // move.tumulte = {
 //     id: 'tumulte',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Tumulte',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1123,8 +1123,8 @@ move.epee_celeste = {
 // }
 // move.duel = {
 //     id: 'duel',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Duel',
+//     classId: 'iop',
 //     cooldownMs: 2000,
 //     effects: [{
 //         type: '',
@@ -1138,8 +1138,8 @@ move.epee_celeste = {
 // }
 // move.colere_de_iop = {
 //     id: 'colere_de_iop',
-//     name: '',
-//     classId: 'cra',
+//     name: 'Colère de Iop',
+//     classId: 'iop',
 //     restriction: 'star',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1430,7 +1430,7 @@ move.oeil_pour_oeil = {
 }
 // move.fleche_dexpiation = {
 //     id: 'fleche_dexpiation',
-//     name: '',
+//     name: "Flèche d'Expiation",
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1461,7 +1461,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_persecutrice = {
 //     id: 'fleche_persecutrice',
-//     name: '',
+//     name: 'Flèche Persécutrice',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1480,7 +1480,7 @@ move.oeil_pour_oeil = {
 // }
 // move.vendetta = {
 //     id: 'vendetta',
-//     name: '',
+//     name: 'Vendetta',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1499,7 +1499,7 @@ move.oeil_pour_oeil = {
 // }
 // move.pluie_de_fleches = {
 //     id: 'pluie_de_fleches',
-//     name: '',
+//     name: 'Pluie de Flèches',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1518,7 +1518,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_ralentissante = {
 //     id: 'fleche_ralentissante',
-//     name: '',
+//     name: 'Flèche Ralentissante',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1537,7 +1537,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleches_enflammees = {
 //     id: 'fleches_enflammees',
-//     name: '',
+//     name: 'Flèches Enflammées',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1556,7 +1556,7 @@ move.oeil_pour_oeil = {
 // }
 // move.tir_de_couverture = {
 //     id: 'tir_de_couverture',
-//     name: '',
+//     name: 'Tir de Couverture',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1575,7 +1575,7 @@ move.oeil_pour_oeil = {
 // }
 // move.represailles = {
 //     id: 'represailles',
-//     name: '',
+//     name: 'Représailles',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1594,7 +1594,7 @@ move.oeil_pour_oeil = {
 // }
 // move.acuite_absolue = {
 //     id: 'acuite_absolue',
-//     name: '',
+//     name: 'Acuité Absolue',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1613,7 +1613,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_assaillante = {
 //     id: 'fleche_assaillante',
-//     name: '',
+//     name: 'Flèche Assaillante',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1632,7 +1632,7 @@ move.oeil_pour_oeil = {
 // }
 // move.tir_de_barrage = {
 //     id: 'tir_de_barrage',
-//     name: '',
+//     name: 'Tir de Barrage',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1659,7 +1659,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_de_tourment = {
 //     id: 'fleche_de_tourment',
-//     name: '',
+//     name: 'Flèche de Tourment',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1674,7 +1674,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_paralysante = {
 //     id: 'fleche_paralysante',
-//     name: '',
+//     name: 'Flèche Paralysante',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1689,7 +1689,7 @@ move.oeil_pour_oeil = {
 // }
 // move.tirs_percants = {
 //     id: 'tirs_percants',
-//     name: '',
+//     name: 'Tirs Perçants',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1704,7 +1704,7 @@ move.oeil_pour_oeil = {
 // }
 // move.carreaux_destructeurs = {
 //     id: 'carreaux_destructeurs',
-//     name: '',
+//     name: 'Carreaux Destructeurs',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1719,7 +1719,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_ecrasante = {
 //     id: 'fleche_ecrasante',
-//     name: '',
+//     name: 'Flèche Écrasante',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1734,7 +1734,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleches_de_repli = {
 //     id: 'fleches_de_repli',
-//     name: '',
+//     name: 'Flèches de Repli',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1757,7 +1757,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_du_jugement = {
 //     id: 'fleche_du_jugement',
-//     name: '',
+//     name: 'Flèche du Jugement',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1780,7 +1780,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_de_redemption = {
 //     id: 'fleche_de_redemption',
-//     name: '',
+//     name: 'Flèche de Rédemption',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1795,7 +1795,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_fulminante = {
 //     id: 'fleche_fulminante',
-//     name: '',
+//     name: 'Flèche Fulminante',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1810,7 +1810,7 @@ move.oeil_pour_oeil = {
 // }
 // move.fleche_tyrannique = {
 //     id: 'fleche_tyrannique',
-//     name: '',
+//     name: 'Flèche Tyrannique',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -1825,7 +1825,7 @@ move.oeil_pour_oeil = {
 // }
 // move.sentinelle = {
 //     id: 'sentinelle',
-//     name: '',
+//     name: 'Sentinelle',
 //     classId: 'cra',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2109,7 +2109,7 @@ move.mot_fleuri = {
 }
 // move.mot_denvol = {
 //     id: 'mot_denvol',
-//     name: '',
+//     name: "Mot d'Envol",
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2128,7 +2128,7 @@ move.mot_fleuri = {
 // }
 // move.pinceau_tribal = {
 //     id: 'pinceau_tribal',
-//     name: '',
+//     name: 'Pinceau Tribal',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2147,7 +2147,7 @@ move.mot_fleuri = {
 // }
 // move.cryothérapie = {
 //     id: 'cryothérapie',
-//     name: '',
+//     name: 'Cryothérapie',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2166,7 +2166,7 @@ move.mot_fleuri = {
 // }
 // move.mot_de_reconstitution = {
 //     id: 'mot_de_reconstitution',
-//     name: '',
+//     name: 'Mot de Reconstitution',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2185,7 +2185,7 @@ move.mot_fleuri = {
 // }
 // move.mot_malicieux = {
 //     id: 'mot_malicieux',
-//     name: '',
+//     name: 'Mot Malicieux',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2204,7 +2204,7 @@ move.mot_fleuri = {
 // }
 // move.cri_assourdissant = {
 //     id: 'cri_assourdissant',
-//     name: '',
+//     name: 'Cri Assourdissant',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2223,7 +2223,7 @@ move.mot_fleuri = {
 // }
 // move.sanglots = {
 //     id: 'sanglots',
-//     name: '',
+//     name: 'Sanglots',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2242,7 +2242,7 @@ move.mot_fleuri = {
 // }
 // move.onguent_ancestral = {
 //     id: 'onguent_ancestral',
-//     name: '',
+//     name: 'Onguent Ancestral',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2261,7 +2261,7 @@ move.mot_fleuri = {
 // }
 // move.mot_alchimique = {
 //     id: 'mot_alchimique',
-//     name: '',
+//     name: 'Mot Alchimique',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2280,7 +2280,7 @@ move.mot_fleuri = {
 // }
 // move.mot_de_déclin = {
 //     id: 'mot_de_déclin',
-//     name: '',
+//     name: 'Mot de Déclin',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2299,7 +2299,7 @@ move.mot_fleuri = {
 // }
 // move.scalpel = {
 //     id: 'scalpel',
-//     name: '',
+//     name: 'Scalpel',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2318,7 +2318,7 @@ move.mot_fleuri = {
 // }
 // move.vacarme = {
 //     id: 'vacarme',
-//     name: '',
+//     name: 'Vacarme',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2337,7 +2337,7 @@ move.mot_fleuri = {
 // }
 // move.mot_furieux = {
 //     id: 'mot_furieux',
-//     name: '',
+//     name: 'Mot Furieux',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2352,7 +2352,7 @@ move.mot_fleuri = {
 // }
 // move.mot_galvanisant = {
 //     id: 'mot_galvanisant',
-//     name: '',
+//     name: 'Mot Galvanisant',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2367,7 +2367,7 @@ move.mot_fleuri = {
 // }
 // move.mot_défendu = {
 //     id: 'mot_défendu',
-//     name: '',
+//     name: 'Mot Défendu',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2382,7 +2382,7 @@ move.mot_fleuri = {
 // }
 // move.mot_secret = {
 //     id: 'mot_secret',
-//     name: '',
+//     name: 'Mot Secret',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2397,7 +2397,7 @@ move.mot_fleuri = {
 // }
 // move.mot_déprimant = {
 //     id: 'mot_déprimant',
-//     name: '',
+//     name: 'Mot Déprimant',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2412,7 +2412,7 @@ move.mot_fleuri = {
 // }
 // move.mot_rituel = {
 //     id: 'mot_rituel',
-//     name: '',
+//     name: 'Mot Rituel',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2427,7 +2427,7 @@ move.mot_fleuri = {
 // }
 // move.mot_exsangue = {
 //     id: 'mot_exsangue',
-//     name: '',
+//     name: 'Mot Exsangue',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2442,7 +2442,7 @@ move.mot_fleuri = {
 // }
 // move.mot_décourageant = {
 //     id: 'mot_décourageant',
-//     name: '',
+//     name: 'Mot Décourageant',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2468,7 +2468,7 @@ move.mot_fleuri = {
 // }
 // move.bosquet_enchante = {
 //     id: 'bosquet_enchante',
-//     name: '',
+//     name: 'Bosquet Enchanté',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2491,7 +2491,7 @@ move.mot_fleuri = {
 // }
 // move.choeur_strident = {
 //     id: 'choeur_strident',
-//     name: '',
+//     name: 'Chœur Strident',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{
@@ -2506,7 +2506,7 @@ move.mot_fleuri = {
 // }
 // move.murmure = {
 //     id: 'murmure',
-//     name: '',
+//     name: 'Murmure',
 //     classId: 'eniripsa',
 //     cooldownMs: 2000,
 //     effects: [{

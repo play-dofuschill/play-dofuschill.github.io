@@ -526,6 +526,7 @@ function leaveCombat() {
         onPoutchEnd()
         return
     }
+    const _wasRaid = !!combat?.isRaid
     _afkSeconds = 0
     stopCombat()
     if (_autoPilot) {
@@ -538,7 +539,7 @@ function leaveCombat() {
         if (combat) combat.sessionLoot = _dungeonAutoRun.accumulated
         _dungeonAutoRun = null
     }
-    showSessionSummary('leave')
+    showSessionSummary(_wasRaid ? 'raid' : 'leave')
 }
 
 function rejoinArea() {
@@ -2806,7 +2807,9 @@ function returnAllyToOwner(slotIdx) {
             executeEffect({
                 caster:      summon,
                 casterStats: summonStats,
-                targetEnemy: combat.enemy,
+                targetEnemy: (combat.isRaid && combat.enemies)
+                    ? (combat.enemies.find(e => e && e.currentHp > 0) || null)
+                    : (combat.enemy || null),
                 effect:      eff,
                 moveData:    { name: summonName },
                 moveId:      null
@@ -3474,6 +3477,12 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     _applyPassiveTick(member, memberIdx, newRawIdx, cycleLength, targetEnemy)
     _applyItemPassives(member, memberIdx, newRawIdx, targetEnemy)
 
+    // Décompte des actions de l'invocation alliée
+    if (member.isSummon && member.ownerSlot !== undefined) {
+        member.actionsRemaining--
+        if (member.actionsRemaining <= 0) returnAllyToOwner(member.ownerSlot)
+    }
+
     combat.memberTimers[memberIdx] = 0
 }
 
@@ -3698,6 +3707,12 @@ function _autoSwitchRaidSlot(slotIdx) {
     if (memberIdx === -1) return
     const member = state.team[memberIdx]
     if (member && member.currentHp > 0) return
+
+    // Invocation alliée morte : restaurer le propriétaire
+    if (member?.isSummon && member.ownerSlot !== undefined) {
+        returnAllyToOwner(member.ownerSlot)
+        if (state.team[memberIdx]?.currentHp > 0) return
+    }
 
     // Passif Roublard
     if (member && !combat.memberDeathHandled?.[memberIdx]) {
