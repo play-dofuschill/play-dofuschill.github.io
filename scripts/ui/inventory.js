@@ -226,9 +226,18 @@ function showItemTooltip(itemId) {
         if (!pano) continue
         const owned   = new Set(Object.keys(state.inventory))
         const equippedByTeam = new Set(
-            state.team.flatMap(m => m ? Object.values(m.equip) : []).filter(Boolean)
+            state.team.flatMap(m => {
+                if (!m?.equip) return []
+                return Object.entries(m.equip)
+                    .filter(([slot]) => slot !== 'familier')
+                    .map(([, id]) => id)
+            }).filter(Boolean)
         )
-        const famEquipped = pano.familiar && equippedByTeam.has(pano.familiar)
+        const famEquipped = pano.familiar && state.team.some(m => {
+            if (!m?.equip || m.equip.familier !== pano.familiar) return false
+            const memberEquip = new Set(Object.values(m.equip).filter(Boolean))
+            return pano.pieces.some(p => memberEquip.has(p))
+        })
         let equippedCount = pano.pieces.filter(p => equippedByTeam.has(p)).length
         if (famEquipped) equippedCount++
         const totalPieces = pano.pieces.length + (pano.familiar ? 1 : 0)
