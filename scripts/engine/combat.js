@@ -378,7 +378,8 @@ function startCombat(areaId) {
         enutrof_traps:         [],
         trapStacks:            {},
         sessionLoot:           _emptySessionLoot(),
-        dungeonBossQueue:      null
+        dungeonBossQueue:      null,
+        playerAttackCount:     0
     }
 
     if (_isResume && state.savedCombatState) {
@@ -784,6 +785,9 @@ function executeMemberAction(memberIndex) {
         if (state.team.every(m => !m || m.currentHp <= 0)) onDefeat()
     })
     if (member.currentHp <= 0) return
+    if (state.skullLevel > 0 && areas[state.currentArea]?.type === 'dungeon') {
+        combat.playerAttackCount = (combat.playerAttackCount || 0) + 1
+    }
     tickHots(member)
 
     const stats = getEffectiveStats(member) ?? member._stats
@@ -913,12 +917,12 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength, slotEnem
 
     // ─── Périodiques (toutes les N actions) ──────────────────────────────────
 
-    // Eniripsa : tous les 6 sorts, soigne un membre vivant aléatoire de 20% PV max
+    // Eniripsa : tous les 6 sorts, soigne un allié vivant aléatoire de 10% PV max (pas soi-même)
     if (passive.id === 'eniripsa' && newRawIdx % 6 === 0) {
-        const living = state.team.filter(m => m && m.currentHp > 0)
-        if (living.length) {
-            const target  = living[Math.floor(Math.random() * living.length)]
-            const healAmt = Math.floor((target.maxHp || 0) * 0.20 * _getAntiHealFactor(target))
+        const allies = state.team.filter(m => m && m.currentHp > 0 && m !== member)
+        if (allies.length) {
+            const target  = allies[Math.floor(Math.random() * allies.length)]
+            const healAmt = Math.floor((target.maxHp || 0) * 0.10 * _getAntiHealFactor(target))
             target.currentHp = Math.min(target.maxHp, target.currentHp + healAmt)
             addLog(`Eniripsa [Passif] → soigne ${target.name || classes[target.classId]?.name || '?'} de ${healAmt} PV`)
         }
@@ -2925,6 +2929,29 @@ function returnToOwner() {
 
 // ─── Victoire / Défaite ───────────────────────────────────────────────────────
 
+function _checkWildSkullRecord(areaId, killCount) {
+    if (!state.skullRecords) state.skullRecords = {}
+    if (!state.skullRecords[areaId]) state.skullRecords[areaId] = {}
+    const prev = state.skullRecords[areaId][state.skullLevel]
+    if (prev === undefined || killCount > prev) {
+        state.skullRecords[areaId][state.skullLevel] = killCount
+        if (prev !== undefined) showNotification(`Nouveau record skull ${state.skullLevel} ! ${killCount} kills`, 'info')
+        saveGame()
+    }
+}
+
+function _checkDungeonSkullRecord(areaId, attackCount) {
+    if (!attackCount) return
+    if (!state.skullRecords) state.skullRecords = {}
+    if (!state.skullRecords[areaId]) state.skullRecords[areaId] = {}
+    const prev = state.skullRecords[areaId][state.skullLevel]
+    if (prev === undefined || attackCount < prev) {
+        state.skullRecords[areaId][state.skullLevel] = attackCount
+        if (prev !== undefined) showNotification(`Nouveau record skull ${state.skullLevel} ! ${attackCount} attaques`, 'info')
+        saveGame()
+    }
+}
+
 function onVictory() {
     // Double-appel possible si un sort a plusieurs effets de dégâts — on ignore les suivants
     if (combat.respawnPending) return
@@ -2956,6 +2983,12 @@ function onVictory() {
 
     combat.pendingLoot = loot
     combat.sessionLoot.killCount++
+
+    // Skull record — zones sauvages / events
+    if (state.skullLevel > 0 && !combat.isPoutch && !combat.isRaid) {
+        const _aType = areas[state.currentArea]?.type
+        if (_aType !== 'dungeon') _checkWildSkullRecord(state.currentArea, combat.sessionLoot.killCount)
+    }
 
     // Kill credit pour passifs Sram / Féca
     const killerIdx = combat.activeMemberIndex
@@ -3021,7 +3054,9 @@ function onVictory() {
     if (areas[state.currentArea]?.type === 'dungeon') {
         combat.respawnPending = false
         const doneArea = state.currentArea
+        const _dungeonAttacks = combat.playerAttackCount || 0
         stopCombat()
+        if (state.skullLevel > 0) _checkDungeonSkullRecord(doneArea, _dungeonAttacks)
         consumeDungeonKey(doneArea)
 
         if (_dungeonAutoRun) {
