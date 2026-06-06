@@ -163,6 +163,13 @@ function applyProgression(spell, lvl) {
 
     if (!active.patch) return result
 
+    // Remplacement complet du tableau effects (pour les sorts avec random/choices imbriqués)
+    if (active.patch.effects) {
+        result.effects = structuredClone(active.patch.effects)
+        if (active.patch.cooldownMs !== undefined) result.cooldownMs = active.patch.cooldownMs
+        return result
+    }
+
     for (const effect of result.effects) {
         const patch = active.patch
         if (effect.type === 'damage' && patch.damage) {

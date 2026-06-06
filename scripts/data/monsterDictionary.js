@@ -1536,7 +1536,7 @@ monsters.abraknydeAncestral = {
         hp: 4500, atk: 500, spd: 90,
         res: {neutre: 50, terre: 50, feu: -5, eau: 50, air: -5 }
     },
-    moves: ['Branche_Paralysante', 'Morsure_Sylvestre', 'Reconstitution_Abraknydienne', Invocation_d_Arakne_Majeure]
+    moves: ['Branche_Paralysante', 'Morsure_Sylvestre', 'Reconstitution_Abraknydienne', 'Invocation_d_Arakne_Majeure']
 }
 // #endregion
 

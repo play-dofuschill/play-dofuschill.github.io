@@ -226,7 +226,7 @@ const PASSIVE_TEXTS = {
     cra:        'Augmente son Initiative de 0.2 / niveau au lieu de 0',
     eniripsa:   'Tous les 6 sorts, soigne un allié vivant aléatoire de 20% de ses PV max.',
     zobal:      'Tous les 6 sorts utilisés, gagne un bouclier = Niveau × 2 PV.',
-    sacrieur:   '≤ 50% PV : +5% dégâts finaux. ≤ 15% PV : +10% dégâts finaux.',
+    sacrieur:   '≤ 50% PV : +5% dégâts finaux. ≤ 15% PV : +10% dégâts finaux. Subit 2× l\'érosion.',
     sram:       '+1% dégâts finaux par ennemi éliminé dans le combat (max +5%).',
     feca:       '+2% résistances à tous les éléments par ennemi éliminé (max +10%).',
     osamodas:   'Les invocations ont 2× plus de PV et d\'ATK.',

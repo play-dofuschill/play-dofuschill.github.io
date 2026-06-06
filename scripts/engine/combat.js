@@ -1463,10 +1463,11 @@ function executeEffect(ctx) {
             }
 
             // Renvoi : réfléchit ratio% des dégâts, le caster encaisse le reste
+            // Si duration défini → persistant (géré par tickBuffs), sinon one-shot
             if (targetEnemy.renvoi && dmg > 0) {
                 const reflectedDmg = Math.max(0, Math.floor(dmg * targetEnemy.renvoi.ratio))
                 const takenDmg     = dmg - reflectedDmg
-                delete targetEnemy.renvoi
+                if (targetEnemy.renvoi.duration === undefined) delete targetEnemy.renvoi
                 if (result.isCrit) addLog(`💥 Coup critique !`)
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → ${reflectedDmg} renvoyés, ${takenDmg} absorbés`)
                 ctx.caster.currentHp = Math.max(0, (ctx.caster.currentHp || 0) - reflectedDmg)
@@ -1555,16 +1556,17 @@ function executeEffect(ctx) {
                 }
             }
 
-            // Transposition : si coup fatal ennemi sur un allié, le Sacrieur transposé intercepte à 30% et devient actif
+            // fatal_intercept : si coup fatal ennemi sur un allié, l'intercepteur subit ratio% des dégâts et devient actif
             if (dmg > 0 && dmg >= (targetEnemy.currentHp || 0) && state.team.includes(targetEnemy) && !state.team.includes(caster) && combat?.transposerSlot !== undefined) {
                 const _tpSlot = combat.transposerSlot
                 const _tp = state.team[_tpSlot]
                 if (_tp && _tp !== targetEnemy && _tp.currentHp > 0) {
+                    const _tpRatio = _tp.transposition?.ratio ?? 1.30
                     delete combat.transposerSlot
                     if (_tp.transposition) delete _tp.transposition
-                    const _tpDmg = Math.floor(dmg * 0.30)
+                    const _tpDmg = Math.floor(dmg * _tpRatio)
                     _tp.currentHp = Math.max(0, (_tp.currentHp || 0) - _tpDmg)
-                    addLog(`Transposition → ${_tp.name || classes[_tp.classId]?.name || '?'} intercepte ! ${_tpDmg} dégâts (30%)`)
+                    addLog(`Transposition → ${_tp.name || classes[_tp.classId]?.name || '?'} intercepte ! ${_tpDmg} dégâts (${Math.round(_tpRatio * 100)}%)`)
                     setActiveMember(_tpSlot)
                     if (_tp.currentHp <= 0) {
                         _autoSwitchActive()
@@ -1588,7 +1590,8 @@ function executeEffect(ctx) {
                 const targetBonus = (targetEnemy.buffs || [])
                     .filter(b => b.stat === 'erosionBonus')
                     .reduce((sum, b) => sum - b.value, 0) / 100
-                const erosion = Math.floor(dmg * Math.max(0, baseRate + casterBonus + targetBonus))
+                const passiveErosionMult = targetEnemy.passive?.erosionMultiplier ?? 1
+                const erosion = Math.floor(dmg * Math.max(0, baseRate + casterBonus + targetBonus) * passiveErosionMult)
                 if (erosion > 0) {
                     targetEnemy.maxHp = Math.max(1, (targetEnemy.maxHp || 1) - erosion)
                     if (targetEnemy.currentHp > targetEnemy.maxHp) targetEnemy.currentHp = targetEnemy.maxHp
@@ -1623,24 +1626,22 @@ function executeEffect(ctx) {
                     }
                 }
             }
-            // Couronne d'Épines : gain PV + renvoi sur chaque coup ennemi reçu
-            if (dmg > 0 && state.team.includes(targetEnemy) && !state.team.includes(caster) && targetEnemy.couronneDEpines && !targetEnemy.couronneDEpines._new) {
-                const _ce = targetEnemy.couronneDEpines
-                const _ceHeal = Math.floor((targetEnemy.maxHp || 0) * _ce.healPct)
-                if (_ceHeal > 0) targetEnemy.currentHp = Math.min(targetEnemy.maxHp, (targetEnemy.currentHp || 0) + _ceHeal)
-                const _ceReflect = Math.floor(dmg * _ce.ratio)
-                if (_ceReflect > 0) {
-                    caster.currentHp = Math.max(0, (caster.currentHp || 0) - _ceReflect)
-                    addLog(`Couronne d'Épines → +${_ceHeal} PV, ${_ceReflect} renvoyés`)
-                    const _ceIdx = state.team.indexOf(caster)
-                    if (!state.team.includes(caster) && caster.currentHp <= 0) {
-                        if (caster.isSummon) returnToOwner()
-                        else onVictory()
-                        return dmg
-                    }
-                    if (state.team.includes(caster) && caster.currentHp <= 0) {
-                        _autoSwitchActive()
-                        if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return dmg }
+            // renvoiAdditif : défenseur subit 100% des dégâts ET attaquant subit ratio% en retour
+            if (dmg > 0 && state.team.includes(targetEnemy) && !state.team.includes(caster) && targetEnemy.renvoiAdditif && !targetEnemy.renvoiAdditif._new) {
+                const _raReflect = Math.floor(dmg * targetEnemy.renvoiAdditif.ratio)
+                if (_raReflect > 0) {
+                    caster.currentHp = Math.max(0, (caster.currentHp || 0) - _raReflect)
+                    addLog(`Couronne d'Épines → ${_raReflect} dégâts renvoyés`)
+                    if (caster.currentHp <= 0) {
+                        if (combat?.isRaid && combat.enemies) {
+                            const _raEnemyIdx = combat.enemies.indexOf(caster)
+                            if (_raEnemyIdx !== -1) {
+                                combat.enemies[_raEnemyIdx] = null
+                                if (combat.enemies.every(e => !e || e.currentHp <= 0)) onVictory()
+                            }
+                        } else {
+                            onVictory()
+                        }
                     }
                 }
             }
@@ -2086,7 +2087,7 @@ function executeEffect(ctx) {
             const interceptorSlot = state.team.indexOf(caster)
             if (interceptorSlot !== -1) {
                 combat.interceptor = interceptorSlot
-                addLog(`${moveData.name} → ${caster.name} intercepte tous les dégâts !`)
+                addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} intercepte tous les dégâts !`)
             }
             break
         }
@@ -2107,21 +2108,19 @@ function executeEffect(ctx) {
             break
         }
 
-        case 'transposition': {
-            // Pose l'état Transposition : intercepte un coup fatal sur un allié (30% redirigés, devient actif)
+        case 'fatal_intercept': {
+            // Pose l'état d'interception fatale : si un allié reçoit un coup fatal, subit ratio% des dégâts à sa place et devient actif
+            // Non-stackable : si déjà actif sur ce membre, relancer le sort est sans effet
             const _tpSlot = state.team.indexOf(caster)
             if (_tpSlot !== -1) {
+                if (combat.transposerSlot === _tpSlot) {
+                    addLog(`${moveData.name} → déjà en attente d'interception`)
+                    break
+                }
                 combat.transposerSlot = _tpSlot
-                caster.transposition = { duration: effect.duration ?? 3, _new: true }
-                addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} en Transposition (${effect.duration ?? 3} tours)`)
+                caster.transposition = { ratio: effect.ratio ?? 1.30 }
+                addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} prêt à intercepter`)
             }
-            break
-        }
-
-        case 'couronne_depines': {
-            // Pose l'état Couronne d'Épines : à chaque coup reçu, gain PV + renvoi ratio% des dégâts
-            caster.couronneDEpines = { ratio: effect.ratio ?? 0.5, healPct: effect.healPct ?? 0.1, duration: effect.duration ?? 3, _new: true }
-            addLog(`${moveData.name} → Couronne d'Épines actif (${effect.duration ?? 3} tours)`)
             break
         }
 
@@ -2276,14 +2275,25 @@ function executeEffect(ctx) {
         }
 
         case 'renvoi': {
-            caster.renvoi = { ratio: effect.ratio }
-            addLog(`${moveData.name} → renvoi ${Math.round(effect.ratio * 100)}% actif`)
+            const _rvDur = effect.duration
+            caster.renvoi = _rvDur !== undefined ? { ratio: effect.ratio, duration: _rvDur, _new: true } : { ratio: effect.ratio }
+            const _rvLog = _rvDur !== undefined ? `renvoi ${Math.round(effect.ratio * 100)}% (${_rvDur} tours)` : `renvoi ${Math.round(effect.ratio * 100)}% actif`
+            addLog(`${moveData.name} → ${_rvLog}`)
             break
         }
 
         case 'renvoiTotal': {
             caster.renvoiTotal = { ratio: effect.ratio }
             addLog(`${moveData.name} → renvoi total ${Math.round(effect.ratio * 100)}% actif`)
+            break
+        }
+
+        case 'renvoiAdditif': {
+            // Défenseur subit 100% des dégâts ET inflige ratio% à l'attaquant en plus
+            const _raDur = effect.duration
+            caster.renvoiAdditif = _raDur !== undefined ? { ratio: effect.ratio, duration: _raDur, _new: true } : { ratio: effect.ratio }
+            const _raLog = _raDur !== undefined ? `contre-coup ${Math.round(effect.ratio * 100)}% (${_raDur} tours)` : `contre-coup ${Math.round(effect.ratio * 100)}% actif`
+            addLog(`${moveData.name} → ${_raLog}`)
             break
         }
 
@@ -3185,26 +3195,22 @@ function tickBuffs(entity) {
             .map(r => r._new ? { ...r, _new: false } : { ...r, duration: r.duration - 1 })
             .filter(r => r.duration > 0)
     }
-    // Couronne d'Épines : tick durée
-    if (entity.couronneDEpines) {
-        if (entity.couronneDEpines._new) {
-            delete entity.couronneDEpines._new
+    // Renvoi persistant : tick durée (one-shot = pas de duration, géré dans le path dégâts)
+    if (entity.renvoi?.duration !== undefined) {
+        if (entity.renvoi._new) {
+            delete entity.renvoi._new
         } else {
-            entity.couronneDEpines.duration--
-            if (entity.couronneDEpines.duration <= 0) delete entity.couronneDEpines
+            entity.renvoi.duration--
+            if (entity.renvoi.duration <= 0) delete entity.renvoi
         }
     }
-    // Transposition : tick durée
-    if (entity.transposition) {
-        if (entity.transposition._new) {
-            delete entity.transposition._new
+    // renvoiAdditif persistant : tick durée
+    if (entity.renvoiAdditif?.duration !== undefined) {
+        if (entity.renvoiAdditif._new) {
+            delete entity.renvoiAdditif._new
         } else {
-            entity.transposition.duration--
-            if (entity.transposition.duration <= 0) {
-                delete entity.transposition
-                const _tpIdx = state.team.indexOf(entity)
-                if (combat?.transposerSlot === _tpIdx) delete combat.transposerSlot
-            }
+            entity.renvoiAdditif.duration--
+            if (entity.renvoiAdditif.duration <= 0) delete entity.renvoiAdditif
         }
     }
 }
@@ -3240,6 +3246,12 @@ function _autoSwitchActive() {
     if (cur?.isSummon && cur.ownerSlot !== undefined) {
         returnAllyToOwner(cur.ownerSlot)
         if (state.team[curIdx]?.currentHp > 0) return
+    }
+
+    // Nettoyage fatal_intercept : si le membre mort était le transposeur, on retire l'état
+    if (cur && combat.transposerSlot === curIdx) {
+        delete combat.transposerSlot
+        if (cur.transposition) delete cur.transposition
     }
 
     // Passif Roublard : explosion à la mort (une seule fois par membre)

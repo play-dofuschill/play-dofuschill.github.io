@@ -254,8 +254,8 @@ classes.sacrieur = {
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
     growthPerLevel: { hp: 10, atk: 5, spd: 0 },
-    // Passif : ≤50% PV → +5% dégâts finaux ; ≤15% PV → +10% dégâts finaux
-    passive: { id: 'sacrieur' },
+    // Passif : ≤50% PV → +5% dégâts finaux ; ≤15% PV → +10% dégâts finaux ; subit 2× l'érosion
+    passive: { id: 'sacrieur', erosionMultiplier: 2 },
     startingMove: 'absorption',
     learnset: {
             8: "hemorragie",

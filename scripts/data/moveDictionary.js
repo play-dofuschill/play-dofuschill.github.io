@@ -121,7 +121,8 @@ SPÉCIAUX
 { type: 'repeat', target: 'self' }
 
 // Invocation alliée — remplace le caster dans son slot pour N actions, onDeath déclenche à la fin
-{ type: 'summon', summonId: 'lapino', duration: 2, target: 'self' }
+// scale : multiplie les stats effectives du caster par ce coefficient (0.30 = 30% des stats de la classe qui invoque)
+{ type: 'summon', summonId: 'lapino', scale: 0.30, duration: 2, target: 'self' }
 
 // Invocation ennemie — remplace l'ennemi actif pour N actions
 { type: 'summon', summonId: 'kardorib', duration: 4, target: 'enemy' }
@@ -3589,217 +3590,260 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region Ecaflip ─────────────────────────────────────────
-// move.pile_ou_face = {
-//     id: 'pile_ou_face',
-//     name: 'Pile ou Face',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [{ type: 'best_element_damage', damage: { min: 18, max: 22 }, target: 'enemy' }],
-//     spellProgression: [{lvl: 1,
-//                         patch: {}},
-//                        {lvl: 66,
-//                         patch: {}},
-//                        {lvl: 132,
-//                         patch: {}}],
-//     description: ""
-// }
-// move.reflexes = {
-//     id: 'reflexes',
-//     name: 'Réflexes',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [{type: 'random', choices: [{ chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' }] },
-//                                          { chance: 0.30, effects: [{ type: 'heal%maxHp', heal: 10, target: 'enemy' }]}]}],
-//     spellProgression: [{lvl: 8,
-//                         patch: {}},
-//                        {lvl: 67,
-//                         patch: {}},
-//                        {lvl: 133,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.yams = {
-//     id: 'yams',
-//     name: 'Yams',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{ lvl: 12, 
-//                          patch: {} },
-//                        {lvl: 69,
-//                         patch: {}},
-//                        {lvl: 136,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.topkaj = {
-//     id: 'topkaj',
-//     name: 'Topkaj',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 16,
-//                         patch: {}},
-//                        {lvl: 68,
-//                         patch: {}},
-//                        {lvl: 134,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.bonne_pioche = {
-//     id: 'bonne_pioche',
-//     name: 'Bonne Pioche',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.bond_du_felin = {
-//     id: 'bond_du_felin',
-//     name: 'Bond du Félin',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 24,
-//                         patch: {}},
-//                        {lvl: 77,  
-//                         patch: {}},
-//                        {lvl: 144,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.jass = {
-//     id: 'jass',
-//     name: 'Jass',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 28,
-//                         patch: {}},
-//                        {lvl: 82,
-//                         patch: {}},
-//                        {lvl: 149,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.perception = {
-//     id: 'perception',
-//     name: 'Perception',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 33,
-//                         patch: {}},
-//                        {lvl: 87,  
-//                         patch: {}},
-//                        {lvl: 154,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.baraka = {
-//     id: 'baraka',
-//     name: 'Baraka',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 37,
-//                         patch: {}},
-//                        {lvl: 92,  
-//                         patch: {}},
-//                        {lvl: 159,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.chateau_de_cartes = {
-//     id: 'chateau_de_cartes',
-//     name: 'Château de Cartes',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 41,
-//                         patch: {}},
-//                        {lvl: 97,
-//                         patch: {}},
-//                        {lvl: 164,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.blakjak = {
-//     id: 'blakjak',
-//     name: 'Blakjak',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 45,
-//                         patch: {}},
-//                        {lvl: 102,
-//                         patch: {}},
-//                        {lvl: 169,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.roulette = {
-//     id: 'roulette',
-//     name: 'Roulette',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 49,
-//                         patch: {}},
-//                        {lvl: 107,  
-//                         patch: {}},
-//                        {lvl: 174,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.belote = {
-//     id: 'belote',
-//     name: 'Belote',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 53,
-//                         patch: {}},
-//                        {lvl: 112,
-//                         patch: {}},
-//                        {lvl: 179,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.tromperie = {
-//     id: 'tromperie',
-//     name: 'Tromperie',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 57,
-//                         patch: {}},
-//                        {lvl: 117,  
-//                         patch: {}},
-//                        {lvl: 184,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.pelotage = {
-//     id: 'pelotage',
-//     name: 'Pelotage',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 61,
-//                         patch: {}},
-//                        {lvl: 122,  
-//                         patch: {}},
-//                        {lvl: 189,
-//                         patch: {}}],
-//     description: " "
-// }
+move.pile_ou_face = {
+    id: 'pile_ou_face',
+    name: 'Pile ou Face',
+    classId: 'ecaflip',
+    cooldownMs: 2000,
+    effects: [{type: 'random', choices: [{ chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 20, max: 23 }, target: 'enemy' }] },
+                                         { chance: 0.30, effects: [{ type: 'heal', heal: { min: 20, max: 23 }, target: 'enemy' }]}]}],
+    spellProgression: [
+        { lvl: 1,   patch: {} },
+        { lvl: 66,  patch: { effects: [{ type: 'random', choices: [
+            { chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 26, max: 29 }, target: 'enemy' }] },
+            { chance: 0.30, effects: [{ type: 'heal',   heal:   { min: 26, max: 29 }, target: 'enemy' }] }
+        ]}] } },
+        { lvl: 132, patch: { cooldownMs: 2200, effects: [{ type: 'random', choices: [
+            { chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 31, max: 34 }, target: 'enemy' }] },
+            { chance: 0.30, effects: [{ type: 'heal',   heal:   { min: 31, max: 34 }, target: 'enemy' }] }
+        ]}] } }
+    ],
+    description: "70% de chances d'infliger des dégâts Terre, 30% de chances de soigner l'ennemi."
+}
+move.reflexes = {
+    id: 'reflexes',
+    name: 'Réflexes',
+    classId: 'ecaflip',
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'air', damage: {min: 8, max: 10}, target: 'enemy'},
+              {type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self'}],
+    spellProgression: [
+        { lvl: 8,   patch: {} },
+        { lvl: 67,  patch: { damage: { min: 11, max: 13 }, buff: { value: 30, duration: 2 } } },
+        { lvl: 133, patch: { damage: { min: 14, max: 17 }, buff: { value: 30, duration: 3 } } }
+    ],
+    description: "Inflige des dégâts Air et augmente la vitesse du lanceur pendant 2 tours."
+}
+move.yams = {
+    id: 'yams',
+    name: 'Yams',
+    classId: 'ecaflip',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 6}, target: 'enemy'},
+              {type: 'buff', stat: 'critChance', value: {min: 3, max: 18}, duration: 2, target: 'self'}],
+    spellProgression: [{ lvl: 12, 
+                         patch: {} },
+                       {lvl: 69,
+                        patch: {cooldownMs: 2200, damage: {min: 2, max: 12}}},
+                       {lvl: 136,
+                        patch: {cooldownMs: 2200, damage: {min: 3, max: 18}}}],
+    description: "Frappe dans l'élément Eau et augmente aléatoirement sa chance de critique pendant 2 tours."
+}
+move.topkaj = {
+    id: 'topkaj',
+    name: 'Topkaj',
+    classId: 'ecaflip',
+    cooldownMs: 2200,
+    effects: [{type: 'random', choices: [{ chance: 0.60, effects: [{ type: 'damage', element: 'feu', damage: { min: 7, max: 13 }, target: 'enemy' }] },
+                                         { chance: 0.40, effects: [{ type: 'heal', heal: { min: 7, max: 13 }, target: 'self' }]}]}],
+    spellProgression: [
+        { lvl: 16,  patch: {} },
+        { lvl: 68,  patch: { effects: [{ type: 'random', choices: [
+            { chance: 0.60, effects: [{ type: 'damage', element: 'feu', damage: { min: 13, max: 19 }, target: 'enemy' }] },
+            { chance: 0.40, effects: [{ type: 'heal',   heal:   { min: 13, max: 19 }, target: 'self' }] }
+        ]}] } },
+        { lvl: 134, patch: { cooldownMs: 2400, effects: [{ type: 'random', choices: [
+            { chance: 0.60, effects: [{ type: 'damage', element: 'feu', damage: { min: 16, max: 22 }, target: 'enemy' }] },
+            { chance: 0.40, effects: [{ type: 'heal',   heal:   { min: 16, max: 22 }, target: 'self' }] }
+        ]}] } }
+    ],
+    description: "60% de chances d'infliger des dégâts Feu, 40% de chances de se soigner."
+}
+move.bonne_pioche = {
+    id: 'bonne_pioche',
+    name: 'Bonne Pioche',
+    classId: 'ecaflip',
+    cooldownMs: 2200,
+    effects: [{ type: 'random', choices: [
+        { chance: 0.25, effects: [{ type: 'best_element_damage', damage: { min: 16, max: 19 }, target: 'enemy' }] },
+        { chance: 0.25, effects: [{ type: 'buff', stat: 'atk',        value: 80, duration: 3, target: 'self' }] },
+        { chance: 0.25, effects: [{ type: 'buff', stat: 'critChance',  value: 10, duration: 3, target: 'self' }] },
+        { chance: 0.25, effects: [{ type: 'buff', stat: 'spd',         value: 15, duration: 3, target: 'self' }] }
+    ]}],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: {}},
+                       {lvl: 139,
+                        patch: {}}],
+    description: "Tire une carte au hasard : dégâts dans le meilleur élément, ou bonus d'Attaque, de Chance critique ou de Vitesse pendant 3 tours."
+}
+move.bond_du_felin = {
+    id: 'bond_du_felin',
+    name: 'Bond du Félin',
+    classId: 'ecaflip',
+    cooldownMs: 2500,
+    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 2, target: 'self'}],
+    spellProgression: [{lvl: 24,
+                        patch: {}},
+                       {lvl: 77,
+                        patch: {buff: { value: 20 }}},
+                       {lvl: 144,
+                        patch: {buff: { value: 30 }}}],
+    description: "Augmente la vitesse du lanceur pour 2 tours."
+}
+move.jass = {
+    id: 'jass',
+    name: 'Jass',
+    classId: 'ecaflip',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 16, max: 18 }, target: 'enemy' },
+        { type: 'debuff', stat: 'critResPct', value: 20, duration: 2, target: 'enemy' }
+    ],
+    spellProgression: [
+        { lvl: 28,  patch: {} },
+        { lvl: 82,  patch: { cooldownMs: 2400, damage: { min: 21, max: 23 } } },
+        { lvl: 149, patch: { cooldownMs: 2400, damage: { min: 26, max: 29 } } }
+    ],
+    description: "Occasionne des dommages Air et réduit les résistances critiques de l'ennemi pendant 2 tours."
+}
+move.perception = {
+    id: 'perception',
+    name: 'Perception',
+    classId: 'ecaflip',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'heal%maxHp', value: 5, target: 'all_allies' },
+        { type: 'buff', stat: 'damageReductionPct', value: 30, duration: 1, target: 'self' }
+    ],
+    spellProgression: [
+        { lvl: 33,  patch: {} },
+        { lvl: 87,  patch: { healPct: 7, buff: { stat: 'damageReductionPct', value: 35, duration: 1 } } },
+        { lvl: 154, patch: { healPct: 10, buff: { stat: 'damageReductionPct', value: 40, duration: 1 } } }
+    ],
+    description: "Soigne tous les alliés de 5% de leurs PV max et réduit les dégâts reçus de 30% pendant 1 tour."
+}
+move.baraka = {
+    id: 'baraka',
+    name: 'Baraka',
+    classId: 'ecaflip',
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 18}, target: 'enemy'},
+              {type: 'debuff', stat: 'critChance', value: {min: 4, max: 10}, duration: 3, target: 'self'}],
+    spellProgression: [{lvl: 37,
+                        patch: {}},
+                       {lvl: 92,
+                        patch: {cooldownMs: 2400, damage: {min: 20, max: 23}}},
+                       {lvl: 159,
+                        patch: {cooldownMs: 2600, damage: {min: 27, max: 30}}}],
+    description: "Frappe dans l'élément Eau au risque de perdre aléatoirement de la Chance critique pendant 3 tours."
+}
+move.chateau_de_cartes = {
+    id: 'chateau_de_cartes',
+    name: 'Château de Cartes',
+    classId: 'ecaflip',
+    cooldownMs: 2000,
+    effects: [{ type: 'random', choices: [
+        { chance: 0.10, effects: [{ type: 'shield', levelPct: 3,    duration: 2, target: 'self' }] },
+        { chance: 0.20, effects: [{ type: 'shield', levelPct: 2,    duration: 2, target: 'self' }] },
+        { chance: 0.30, effects: [{ type: 'shield', levelPct: 1,    duration: 2, target: 'self' }] },
+        { chance: 0.40, effects: [{ type: 'shield', levelPct: 0.50, duration: 2, target: 'self' }] }
+    ]}],
+    spellProgression: [{lvl: 41,
+                        patch: {}},
+                       {lvl: 97,
+                        patch: {}},
+                       {lvl: 164,
+                        patch: {}}],
+    description: "Érige un bouclier aléatoire pendant 2 tours. Plus le tirage est favorable, plus le bouclier est puissant."
+}
+move.blakjak = {
+    id: 'blakjak',
+    name: 'Blakjak',
+    classId: 'ecaflip',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 20}, target: 'enemy'}],
+    spellProgression: [{lvl: 45,
+                        patch: {}},
+                       {lvl: 102,
+                        patch: {damage: {min: 22, max: 25}}},
+                       {lvl: 169,
+                        patch: {cooldownMs: 2200, damage: {min: 27, max: 30}}}],
+    description: "Frappe dans l'élément Feu."
+}
+move.roulette = {
+    id: 'roulette',
+    name: 'Roulette',
+    classId: 'ecaflip',
+    cooldownMs: 3000,
+    effects: [{ type: 'random', choices: [
+        { chance: 0.25, effects: [
+            { type: 'buff', stat: 'finalDamagePct',     value: 20, duration: 2, target: 'all_allies' },
+            { type: 'buff', stat: 'finalDamagePct',     value: 20, duration: 2, target: 'all_enemies' }
+        ]},
+        { chance: 0.25, effects: [
+            { type: 'buff', stat: 'spd',                value: 20, duration: 2, target: 'all_allies' },
+            { type: 'buff', stat: 'spd',                value: 20, duration: 2, target: 'all_enemies' }
+        ]},
+        { chance: 0.25, effects: [
+            { type: 'buff', stat: 'critChance',         value: 20, duration: 2, target: 'all_allies' },
+            { type: 'buff', stat: 'critChance',         value: 20, duration: 2, target: 'all_enemies' }
+        ]},
+        { chance: 0.25, effects: [
+            { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'all_allies' },
+            { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'all_enemies' }
+        ]}
+    ]}],
+    description: "Applique aléatoirement un buff à tous les combattants (alliés ET ennemi) pendant 2 tours."
+}
+move.belote = {
+    id: 'belote',
+    name: 'Belote',
+    classId: 'ecaflip',
+    cooldownMs: 2000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 17, max: 20}, target: 'enemy'}],
+    spellProgression: [{lvl: 53,
+                        patch: {}},
+                       {lvl: 112,
+                        patch: {damage: {min: 22, max: 25}}},
+                       {lvl: 179,
+                        patch: {cooldownMs: 2200, damage: {min: 27, max: 30}}}],
+    description: "Frappe dans l'élément Terre."
+}
+move.tromperie = {
+    id: 'tromperie',
+    name: 'Tromperie',
+    classId: 'ecaflip',
+    restriction: 'coeur',
+    cooldownMs: 2700,
+    effects: [
+        { type: 'damage', elements: ['terre', 'feu', 'eau', 'air'], damage: { min: 11, max: 12 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.3, target: 'self' }
+    ],
+    spellProgression: [{lvl: 57,
+                        patch: {}},
+                       {lvl: 117,  
+                        patch: {}},
+                       {lvl: 184,
+                        patch: {}}],
+    description: "Frappe dans un élément aléatoire et vole une partie des dégâts infligés."
+}
+move.pelotage = {
+    id: 'pelotage',
+    name: 'Pelotage',
+    classId: 'ecaflip',
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'},
+              { type: 'switch', value: 1, target: 'enemy' }],
+    spellProgression: [{lvl: 61,
+                        patch: {}},
+                       {lvl: 122,
+                        patch: {cooldownMs: 1900, damage: {min: 23, max: 25}}},
+                       {lvl: 189,
+                        patch: {cooldownMs: 2100, damage: {min: 29, max: 32}}}],
+    description: "Frappe dans l'élément Feu et force le changement de membre actif."
+}
 // move.griffe_invocatrice = {
 //     id: 'griffe_invocatrice',
 //     name: 'Griffe Invocatrice',
@@ -5626,304 +5670,343 @@ move.bouclier_elementaire = {
 // #endregion
 
 // #region sacrieur ─────────────────────────────────────────
-// move.absorption = {
-//     id: 'absorption',
-//     name: 'Absorption',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 1,
-//                         patch: {}},
-//                        {lvl: 66,
-//                         patch: {}},
-//                        {lvl: 132,
-//                         patch: {}}],
-//     description: ""
-// }
-// move.hemorragie = {
-//     id: 'hemorragie',
-//     name: 'Hémorragie',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 8,
-//                         patch: {}},
-//                        {lvl: 67,
-//                         patch: {}},
-//                        {lvl: 133,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.supplice = {
-//     id: 'supplice',
-//     name: 'Supplice',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{ lvl: 12, 
-//                          patch: {} },
-//                        {lvl: 69,
-//                         patch: {}},
-//                        {lvl: 136,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.stase = {
-//     id: 'stase',
-//     name: 'Stase',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 16,
-//                         patch: {}},
-//                        {lvl: 68,
-//                         patch: {}},
-//                        {lvl: 134,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.attirance = {
-//     id: 'attirance',
-//     name: 'Attirance',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.mutilation = {
-//     id: 'mutilation',
-//     name: 'Mutilation',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 24,
-//                         patch: {}},
-//                        {lvl: 77,  
-//                         patch: {}},
-//                        {lvl: 144,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.epee_vorace = {
-//     id: 'epee_vorace',
-//     name: 'Épée Vorace',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 28,
-//                         patch: {}},
-//                        {lvl: 82,
-//                         patch: {}},
-//                        {lvl: 149,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.ravage = {
-//     id: 'ravage',
-//     name: 'Ravage',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 33,
-//                         patch: {}},
-//                        {lvl: 87,  
-//                         patch: {}},
-//                        {lvl: 154,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.assaut = {
-//     id: 'assaut',
-//     name: 'Assaut',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 37,
-//                         patch: {}},
-//                        {lvl: 92,  
-//                         patch: {}},
-//                        {lvl: 159,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.transposition = {
-//     id: 'transposition',
-//     name: 'Transposition',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 41,
-//                         patch: {}},
-//                        {lvl: 97,
-//                         patch: {}},
-//                        {lvl: 164,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.condensation = {
-//     id: 'condensation',
-//     name: 'Condensation',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 45,
-//                         patch: {}},
-//                        {lvl: 102,
-//                         patch: {}},
-//                        {lvl: 169,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.hostilite = {
-//     id: 'hostilite',
-//     name: 'Hostilité',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 49,
-//                         patch: {}},
-//                        {lvl: 107,  
-//                         patch: {}},
-//                        {lvl: 174,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.couronne_depines = {
-//     id: 'couronne_depines',
-//     name: 'Couronne d'Épines',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 53,
-//                         patch: {}},
-//                        {lvl: 112,
-//                         patch: {}},
-//                        {lvl: 179,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.transfusion = {
-//     id: 'transfusion',
-//     name: 'Transfusion',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 57,
-//                         patch: {}},
-//                        {lvl: 117,  
-//                         patch: {}},
-//                        {lvl: 184,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.dissolution = {
-//     id: 'dissolution',
-//     name: 'Dissolution',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 61,
-//                         patch: {}},
-//                        {lvl: 122,  
-//                         patch: {}},
-//                        {lvl: 189,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.desolation = {
-//     id: 'desolation',
-//     name: 'Désolation',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 65,
-//                         patch: {}},
-//                        {lvl: 127,  
-//                         patch: {}},
-//                        {lvl: 194,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.sacrifice = {
-//     id: 'sacrifice',
-//     name: 'Sacrifice',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 69,
-//                         patch: {}},
-//                        {lvl: 131,  
-//                         patch: {}},
-//                        {lvl: 198,
-//                         patch: {}}],
-//     description: " "
-// }
-// move.bain_de_sang = {
-//     id: 'bain_de_sang',
-//     name: 'Bain de Sang',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 73,
-//                         patch: {}},
-//                        {lvl: 137,  
-//                         patch: {}}],
-//     description: ""
-// }
-// move.hecatombe = {
-//     id: 'hecatombe',
-//     name: 'Hécatombe',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 77,
-//                         patch: {}},
-//                        {lvl: 142,  
-//                         patch: {}}],
-//     description: ""
-// }
-// move.libation = {
-//     id: 'libation',
-//     name: 'Libation',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 81,
-//                         patch: {}},
-//                        {lvl: 147,  
-//                         patch: {}}],
-//     description: ""
-// }
-// move.berserk = {
-//     id: 'berserk',
-//     name: 'Berserk',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 85,
-//                         patch: {}},
-//                        {lvl: 152,  
-//                         patch: {}}],
-//     description: ""
-// }
-// move.punition = {
-//     id: 'punition',
-//     name: 'Punition',
-//     classId: 'sacrieur',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 90,
-//                         patch: {}},
-//                        {lvl: 157,  
-//                         patch: {}}],
-//     description: ""
-// }
+move.absorption = {
+    id: 'absorption',
+    name: 'Absorption',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 12, max: 14 }, target: 'enemy' },
+              { type: 'debuff', stat: 'atk', value: 50, duration: 1, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
+    spellProgression: [{lvl: 1,
+                        patch: {}},
+                       {lvl: 66,
+                        patch: {damage: { min: 17, max: 20 },lifesteal: { ratio: 0.05 },buff: { value: 90 }}},
+                       {lvl: 132,
+                        patch: {damage: { min: 22, max: 26 },lifesteal: { ratio: 0.07 },buff: { value: 150 }}}],
+    description: "Vole de la vie dans l'élément Feu et retire de la Puissance aux ennemis."
+}
+move.hemorragie = {
+    id: 'hemorragie',
+    name: 'Hémorragie',
+    classId: 'sacrieur',
+    restriction: 'coeur',
+    cooldownMs: 2700,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 13, max: 16 }, target: 'enemy' },
+        { type: 'antiHeal', value: 70, duration: 2, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.15, target: 'self' }
+    ],
+    spellProgression: [
+        { lvl: 8,   patch: {} },
+        { lvl: 67,  patch: { cooldownMs: 2900, effects: [
+            { type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
+            { type: 'antiHeal', value: 70, duration: 2, target: 'enemy' },
+            { type: 'lifesteal', ratio: 0.15, target: 'self' }
+        ]}},
+        { lvl: 133, patch: { cooldownMs: 2900, effects: [
+            { type: 'damage', element: 'air', damage: { min: 22, max: 27 }, target: 'enemy' },
+            { type: 'antiHeal', value: 70, duration: 2, target: 'enemy' },
+            { type: 'lifesteal', ratio: 0.20, target: 'self' }
+        ]}}
+    ],
+    description: "Réduit les soins reçus par la cible de 70% et vole de la vie dans l'élément Air."
+}
+move.supplice = {
+    id: 'supplice',
+    name: 'Supplice',
+    classId: 'sacrieur',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 13, max: 16 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.06, target: 'self' }],
+    spellProgression: [{ lvl: 12,
+                         patch: {} },
+                       {lvl: 69,
+                        patch: {cooldownMs: 2400, damage: { min: 17, max: 20 },lifesteal: { ratio: 0.08 }}},
+                       {lvl: 136,
+                        patch: {damage: { min: 22, max: 26 },lifesteal: { ratio: 0.10 }}}],
+    description: "Vole de la vie dans l'élément Terre."
+}
+move.stase = {
+    id: 'stase',
+    name: 'Stase',
+    classId: 'sacrieur',
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 12, max: 14 }, target: 'enemy' },
+              { type: 'debuff', stat: 'critChance', value: 10, duration: 1, target: 'enemy' }],
+    spellProgression: [{lvl: 16,
+                        patch: {}},
+                       {lvl: 68,
+                        patch: {damage: { min: 16, max: 19 }, buff: { value: 15 }}},
+                       {lvl: 134,
+                        patch: {cooldownMs: 2400, damage: { min: 20, max: 24 }, buff: { value: 20 }}}],
+    description: "Frappe dans l'élément Eau et réduit les chances de Critique de la cible."
+}
+move.attirance = {
+    id: 'attirance',
+    name: 'Attirance',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [{ type: 'avance', value: 2, target: 'enemy' }],
+    description: "Attire la cible."
+}
+move.mutilation = {
+    id: 'mutilation',
+    name: 'Mutilation',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [{ type: 'self_dmg_pct_current', ratio: 0.10 },
+              { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 4, target: 'self' },
+              { type: 'buff', stat: 'hpCostPerTurnPct', value: 3, duration: 3, target: 'self' }],
+    spellProgression: [
+        { lvl: 24,  patch: {} },
+        { lvl: 77,  patch: { effects: [
+            { type: 'self_dmg_pct_current', ratio: 0.10 },
+            { type: 'buff', stat: 'finalDamagePct', value: 15, duration: 4, target: 'self' },
+            { type: 'buff', stat: 'hpCostPerTurnPct', value: 5, duration: 3, target: 'self' }]}},
+        { lvl: 144, patch: { effects: [
+            { type: 'self_dmg_pct_current', ratio: 0.10 },
+            { type: 'buff', stat: 'finalDamagePct', value: 20, duration: 4, target: 'self' },
+            { type: 'buff', stat: 'hpCostPerTurnPct', value: 7, duration: 3, target: 'self' }]}}
+    ],
+    description: "Sacrifie une partie de ses PV pour gagner des dommages finaux. Sacrifie à nouveau une partie de ses PV à chaque tour tant que l'effet reste actif."
+}
+move.epee_vorace = {
+    id: 'epee_vorace',
+    name: 'Épée Vorace',
+    classId: 'sacrieur',
+    cooldownMs: 3500,
+    effects: [{ type: 'summon', summonId: 'epee_vorace', scale: 0.30, duration: 2, target: 'self' }],
+    spellProgression: [{lvl: 28,
+                        patch: {}},
+                       {lvl: 82,
+                        patch: {summon: { scale: 0.35 }}},
+                       {lvl: 149,
+                        patch: {summon: { scale: 0.40 }}}],
+    description: "Invoque une Épée Vorace maîtrisable qui peut voler de la vie dans l'élément Neutre."
+}
+move.ravage = {
+    id: 'ravage',
+    name: 'Ravage',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 17, max: 20 }, target: 'enemy' }],
+    spellProgression: [{lvl: 33,
+                        patch: {}},
+                       {lvl: 87,
+                        patch: {damage: { min: 22, max: 26 }}},
+                       {lvl: 154,
+                        patch: {cooldownMs: 2200, damage: { min: 28, max: 32 }}}],
+    description: "Frappe dans l'élément Terre."
+}
+move.assaut = {
+    id: 'assaut',
+    name: 'Assaut',
+    classId: 'sacrieur',
+    cooldownMs: 1700,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 16, max: 19 }, target: 'enemy' }],
+    spellProgression: [{lvl: 37,
+                        patch: {}},
+                       {lvl: 92,
+                        patch: {cooldownMs: 1900, damage: { min: 21, max: 24 }}},
+                       {lvl: 159,
+                        patch: {cooldownMs: 2100, damage: { min: 26, max: 30 }}}],
+    description: "Frappe dans l'élément Air."
+}
+move.transposition = {
+    id: 'transposition',
+    name: 'Transposition',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [{ type: 'fatal_intercept', ratio: 1.30, target: 'self' }],
+    description: "Si un allié reçoit un coup fatal, intercepte et subit 130% des dégâts à sa place, puis devient le membre actif."
+}
+move.condensation = {
+    id: 'condensation',
+    name: 'Condensation',
+    classId: 'sacrieur',
+    cooldownMs: 1700,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'all_enemies' },
+              { type: 'switch', value: 1, target: 'enemy' }],
+    spellProgression: [{lvl: 45,
+                        patch: {}},
+                       {lvl: 102,
+                        patch: {cooldownMs: 1900, damage: { min: 21, max: 24 }}},
+                       {lvl: 169,
+                        patch: {cooldownMs: 2100, damage: { min: 26, max: 30 }}}],
+    description: "Occasionne des dommages Eau aux ennemis et attire les cibles en zone."
+}
+move.hostilite = {
+    id: 'hostilite',
+    name: 'Hostilité',
+    classId: 'sacrieur',
+    cooldownMs: 1700,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 16, max: 19 }, target: 'enemy' }],
+    spellProgression: [{lvl: 49,
+                        patch: {}},
+                       {lvl: 107,
+                        patch: {cooldownMs: 1900, damage: { min: 21, max: 24 }}},
+                       {lvl: 174,
+                        patch: {cooldownMs: 2100, damage: { min: 26, max: 30 }}}],
+    description: "Frappe dans l'élément Feu."
+}
+move.couronne_depines = {
+    id: 'couronne_depines',
+    name: "Couronne d'Épines",
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'renvoiAdditif', ratio: 0.5, duration: 2, target: 'self' }
+    ],
+    spellProgression: [
+        { lvl: 53,  patch: {} },
+        { lvl: 112, patch: { effects: [{ type: 'renvoiAdditif', ratio: 0.5, duration: 3, target: 'self' }] } },
+        { lvl: 179, patch: { effects: [{ type: 'renvoiAdditif', ratio: 0.5, duration: 4, target: 'self' }] } }
+    ],
+    description: "À chaque coup reçu, subit 100% des dégâts et renvoie 50% en plus à l'attaquant pendant 2 tours."
+}
+move.transfusion = {
+    id: 'transfusion',
+    name: 'Transfusion',
+    classId: 'sacrieur',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'self_dmg_pct_current', ratio: 0.20 },
+        { type: 'heal%maxHp', value: 15, target: 'ally_min_hp' }
+    ],
+    spellProgression: [
+        { lvl: 57,  patch: {} },
+        { lvl: 117, patch: { effects: [
+            { type: 'self_dmg_pct_current', ratio: 0.25 },
+            { type: 'heal%maxHp', value: 20, target: 'ally_min_hp' }
+        ]}},
+        { lvl: 184, patch: { effects: [
+            { type: 'self_dmg_pct_current', ratio: 0.30 },
+            { type: 'heal%maxHp', value: 25, target: 'ally_min_hp' }
+        ]}}
+    ],
+    description: "Sacrifie 20% de ses PV courants pour soigner l'allié avec le moins de points de vie."
+}
+move.dissolution = {
+    id: 'dissolution',
+    name: 'Dissolution',
+    classId: 'sacrieur',
+    restriction: 'coeur',
+    cooldownMs: 2700,
+    effects: [{ type: 'damage', element: 'eau', damage: { min: 16, max: 19 }, target: 'all_enemies' },
+              { type: 'lifesteal', ratio: 0.11, target: 'self' }],
+    spellProgression: [{lvl: 61,
+                        patch: {}},
+                       {lvl: 122,
+                        patch: {cooldownMs: 2900, damage: { min: 21, max: 25 }}},
+                       {lvl: 189,
+                        patch: {damage: { min: 25, max: 29 }}}],
+    description: "Vole de la vie dans l'élément Eau en zone."
+}
+move.desolation = {
+    id: 'desolation',
+    name: 'Désolation',
+    classId: 'sacrieur',
+    restriction: 'coeur',
+    cooldownMs: 2700,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 16, max: 19 }, target: 'all_enemies' },
+              { type: 'lifesteal', ratio: 0.11, target: 'self' }],
+    spellProgression: [{lvl: 65,
+                        patch: {}},
+                       {lvl: 127,
+                        patch: {damage: { min: 23, max: 27 }}},
+                       {lvl: 194,
+                        patch: {cooldownMs: 2900, damage: { min: 26, max: 30 }}}],
+    description: "Vole de la vie dans l'élément Air en zone."
+}
+move.sacrifice = {
+    id: 'sacrifice',
+    name: 'Sacrifice',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [{ type: 'interception', target: 'self' }],
+    description: "Intercepte tous les dégâts subis par les alliés."
+}
+move.bain_de_sang = {
+    id: 'bain_de_sang',
+    name: 'Bain de Sang',
+    classId: 'sacrieur',
+    restriction: 'coeur',
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 21, max: 24 }, target: 'all_enemies' },
+              { type: 'lifesteal', ratio: 0.3, target: 'self' }],
+    spellProgression: [{lvl: 73,
+                        patch: {}},
+                       {lvl: 137,
+                        patch: {cooldownMs: 3200, damage: { min: 27, max: 31 }}}],
+    description: "Vole de la vie dans l'élément Terre en zone."
+}
+move.hecatombe = {
+    id: 'hecatombe',
+    name: 'Hécatombe',
+    classId: 'sacrieur',
+    restriction: 'coeur',
+    cooldownMs: 3000,
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 21, max: 24 }, target: 'all_enemies' },
+              { type: 'lifesteal', ratio: 0.3, target: 'self' }],
+    spellProgression: [{lvl: 77,
+                        patch: {}},
+                       {lvl: 142,
+                        patch: {cooldownMs: 3200, damage: { min: 26, max: 30 }}}],
+    description: "Vole de la vie dans l'élément Feu en zone."
+}
+move.libation = {
+    id: 'libation',
+    name: 'Libation',
+    classId: 'sacrieur',
+    cooldownMs: 3500,
+    effects: [
+        { type: 'self_dmg_pct_current', ratio: 0.30 },
+        { type: 'hot', pctMaxHp: 10, duration: 4, target: 'self' }
+    ],
+    spellProgression: [
+        { lvl: 81,  patch: {} },
+        { lvl: 147, patch: { effects: [
+            { type: 'self_dmg_pct_current', ratio: 0.30 },
+            { type: 'hot', pctMaxHp: 10, duration: 5, target: 'self' }
+        ]}}
+    ],
+    description: "Sacrifie 30% de ses PV courants pour se soigner pendant 4 tours."
+}
+move.berserk = {
+    id: 'berserk',
+    name: 'Berserk',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'self_dmg_pct_current', ratio: 0.70 },
+        { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' }
+    ],
+    spellProgression: [
+        { lvl: 85,  patch: {} },
+        { lvl: 152, patch: { effects: [
+            { type: 'self_dmg_pct_current', ratio: 0.70 },
+            { type: 'buff', stat: 'finalDamagePct', value: 20, duration: 3, target: 'self' }
+        ]}}
+    ],
+    description: "Sacrifie 70% de ses PV courants pour gagner en dommages finaux pendant 3 tours."
+}
+move.punition = {
+    id: 'punition',
+    name: 'Punition',
+    classId: 'sacrieur',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'best_element_damage', damage: { min: 25, max: 28 }, target: 'enemy', erodedHpScaleTarget: { stat: 'finalDamagePct', ratio: 1.0 } }
+    ],
+    spellProgression: [
+        { lvl: 90,  patch: {} },
+        { lvl: 157, patch: { cooldownMs: 2200, effects: [
+            { type: 'best_element_damage', damage: { min: 31, max: 35 }, target: 'enemy', erodedHpScaleTarget: { stat: 'finalDamagePct', ratio: 1.0 } }
+        ]}}
+    ],
+    description: "Frappe dans le meilleur élément. Inflige des dégâts supplémentaires en fonction des PV érodés de la cible."
+}
 // move.furie = {
 //     id: 'furie',
 //     name: 'Furie',
