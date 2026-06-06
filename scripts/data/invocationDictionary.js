@@ -165,6 +165,48 @@ summons.sac_anime = {
 }
 
 // #endregion
+// #region SACRIEUR ────────────────────────────────────────────────
+
+move.tranchee_sanglante = {
+    id: 'tranchee_sanglante',
+    name: 'Tranchée Sanglante',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage',    element: 'neutre', damage: { min: 10, max: 14 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.10, target: 'ally_min_hp' }
+    ]
+}
+
+summons.epee_vorace = {
+    id:    'epee_vorace',
+    name:  'Épée Vorace',
+    image: 'img/classes/invocations/epee_vorace.png',
+    bst:   { spd: 100 },
+    moves: ['tranchee_sanglante']
+}
+
+// #endregion
+// #region ECAFLIP ─────────────────────────────────────────────────
+
+move.griffade = {
+    id: 'griffade',
+    name: 'Griffade',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 6, max: 9 }, target: 'enemy' },
+        { type: 'buff', stat: 'critChance', value: 5, duration: 2, target: 'ally_random' }
+    ]
+}
+
+summons.chaton_enrage = {
+    id:    'chaton_enrage',
+    name:  'Chaton Enragé',
+    image: 'img/classes/invocations/chaton_enrage.png',
+    bst:   { spd: 120 },
+    moves: ['griffade']
+}
+
+// #endregion
 // #region HUPPERMAGE ──────────────────────────────────────────────
 
 move.rayon_quadramental = {

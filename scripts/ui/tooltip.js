@@ -1025,7 +1025,7 @@ function showMoveTooltip(moveId, casterStats) {
         }
 
         if (eff.type === 'summon' && eff.summonId) {
-            const summonMob = monsters[eff.summonId]
+            const summonMob = monsters[eff.summonId] || summons[eff.summonId]
             if (summonMob) rows += `<div class="mt-row"><span class="mt-label">Invocation</span><span class="mt-val">${summonMob.name}</span></div>`
         }
 

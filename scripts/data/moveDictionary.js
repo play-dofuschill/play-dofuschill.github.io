@@ -3844,20 +3844,19 @@ move.pelotage = {
                         patch: {cooldownMs: 2100, damage: {min: 29, max: 32}}}],
     description: "Frappe dans l'élément Feu et force le changement de membre actif."
 }
-// move.griffe_invocatrice = {
-//     id: 'griffe_invocatrice',
-//     name: 'Griffe Invocatrice',
-//     classId: 'ecaflip',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 65,
-//                         patch: {}},
-//                        {lvl: 127,  
-//                         patch: {}},
-//                        {lvl: 194,
-//                         patch: {}}],
-//     description: " "
-// }
+move.griffe_invocatrice = {
+    id: 'griffe_invocatrice',
+    name: 'Griffe Invocatrice',
+    classId: 'ecaflip',
+    cooldownMs: 3500,
+    effects: [{ type: 'summon', summonId: 'chaton_enrage', scale: 0.25, duration: 2, target: 'self' }],
+    spellProgression: [
+        { lvl: 65,  patch: {} },
+        { lvl: 127, patch: { summon: { scale: 0.30 } } },
+        { lvl: 194, patch: { summon: { scale: 0.35 } } }
+    ],
+    description: "Invoque un Chaton Enragé qui frappe dans l'élément Air et augmente les chances de Critique d'un allié aléatoire."
+}
 // move.esprit_felin = {
 //     id: 'esprit_felin',
 //     name: 'Esprit Félin',
