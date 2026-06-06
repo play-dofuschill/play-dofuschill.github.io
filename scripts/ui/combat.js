@@ -392,8 +392,10 @@ function updateEnemyDisplayRaid() {
             counterEl.classList.add('raid-boss-active')
             counterEl.style.display = ''
         } else {
-            const remaining = everyKills - ((combat.raidKillCount || 0) % everyKills)
-            counterEl.textContent = `Mini-boss dans ${remaining} kill${remaining > 1 ? 's' : ''}`
+            const remaining = Math.max(0, everyKills - (combat.raidKillCount || 0))
+            counterEl.textContent = remaining === 0
+                ? '⚔ Mini-boss imminent !'
+                : `Mini-boss dans ${remaining} kill${remaining > 1 ? 's' : ''}`
             counterEl.classList.remove('raid-boss-active')
             counterEl.style.display = ''
         }

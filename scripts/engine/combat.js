@@ -1072,9 +1072,11 @@ function _resolveEffectValue(v) {
     return v
 }
 
-// Retourne 0 si l'entité a un debuff antiHeal actif (tous les soins bloqués), 1 sinon
+// Retourne 0 si antiHeal full, ou (1 - value/100) si antiHeal partiel (ex: value:70 → facteur 0.3)
 function _getAntiHealFactor(entity) {
-    return (entity?.buffs || []).some(b => b.stat === 'antiHeal') ? 0 : 1
+    const buff = (entity?.buffs || []).find(b => b.stat === 'antiHeal')
+    if (!buff) return 1
+    return buff.value !== undefined ? Math.max(0, 1 - buff.value / 100) : 0
 }
 
 // Résout la cible alliée en fonction de effect.target
@@ -1392,10 +1394,11 @@ function executeEffect(ctx) {
                 const _shield = caster.shield?.value || 0
                 const _curHp  = caster.currentHp || 0
                 const _scaleDefs = [
-                    [effect.shieldScale,    (_shield / _maxHp) * 100],
-                    [effect.currentHpScale, (_curHp  / _maxHp) * 100],
-                    [effect.missingHpScale, ((_maxHp - _curHp) / _maxHp) * 100],
-                    [effect.erodedHpScale,  ((_base  - _maxHp) / _base)  * 100],
+                    [effect.shieldScale,          (_shield / _maxHp) * 100],
+                    [effect.currentHpScale,        (_curHp  / _maxHp) * 100],
+                    [effect.missingHpScale,        ((_maxHp - _curHp) / _maxHp) * 100],
+                    [effect.erodedHpScale,         ((_base  - _maxHp) / _base)  * 100],
+                    [effect.erodedHpScaleTarget,   (() => { const _tb = targetEnemy._baseMaxHp || targetEnemy.maxHp || 1; const _tm = targetEnemy.maxHp || 1; return Math.max(0, (_tb - _tm) / _tb * 100) })()],
                 ]
                 for (const [cfg, pct] of _scaleDefs) {
                     if (!cfg) continue
@@ -1552,6 +1555,25 @@ function executeEffect(ctx) {
                 }
             }
 
+            // Transposition : si coup fatal ennemi sur un allié, le Sacrieur transposé intercepte à 30% et devient actif
+            if (dmg > 0 && dmg >= (targetEnemy.currentHp || 0) && state.team.includes(targetEnemy) && !state.team.includes(caster) && combat?.transposerSlot !== undefined) {
+                const _tpSlot = combat.transposerSlot
+                const _tp = state.team[_tpSlot]
+                if (_tp && _tp !== targetEnemy && _tp.currentHp > 0) {
+                    delete combat.transposerSlot
+                    if (_tp.transposition) delete _tp.transposition
+                    const _tpDmg = Math.floor(dmg * 0.30)
+                    _tp.currentHp = Math.max(0, (_tp.currentHp || 0) - _tpDmg)
+                    addLog(`Transposition → ${_tp.name || classes[_tp.classId]?.name || '?'} intercepte ! ${_tpDmg} dégâts (30%)`)
+                    setActiveMember(_tpSlot)
+                    if (_tp.currentHp <= 0) {
+                        _autoSwitchActive()
+                        if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return 0 }
+                    }
+                    return 0
+                }
+            }
+
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
 
             // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate,
@@ -1598,6 +1620,27 @@ function executeEffect(ctx) {
                             moveData: { name: 'Garde Bouclier' }, moveId: 'garde_bouclier',
                             fromItemPassive: true, enemySlotIdx: _enemySlot
                         })
+                    }
+                }
+            }
+            // Couronne d'Épines : gain PV + renvoi sur chaque coup ennemi reçu
+            if (dmg > 0 && state.team.includes(targetEnemy) && !state.team.includes(caster) && targetEnemy.couronneDEpines && !targetEnemy.couronneDEpines._new) {
+                const _ce = targetEnemy.couronneDEpines
+                const _ceHeal = Math.floor((targetEnemy.maxHp || 0) * _ce.healPct)
+                if (_ceHeal > 0) targetEnemy.currentHp = Math.min(targetEnemy.maxHp, (targetEnemy.currentHp || 0) + _ceHeal)
+                const _ceReflect = Math.floor(dmg * _ce.ratio)
+                if (_ceReflect > 0) {
+                    caster.currentHp = Math.max(0, (caster.currentHp || 0) - _ceReflect)
+                    addLog(`Couronne d'Épines → +${_ceHeal} PV, ${_ceReflect} renvoyés`)
+                    const _ceIdx = state.team.indexOf(caster)
+                    if (!state.team.includes(caster) && caster.currentHp <= 0) {
+                        if (caster.isSummon) returnToOwner()
+                        else onVictory()
+                        return dmg
+                    }
+                    if (state.team.includes(caster) && caster.currentHp <= 0) {
+                        _autoSwitchActive()
+                        if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return dmg }
                     }
                 }
             }
@@ -1800,7 +1843,9 @@ function executeEffect(ctx) {
         }
 
         case 'hot': {
-            const hotRoll  = _resolveEffectValue(effect.heal) || 0
+            const hotRoll  = effect.pctMaxHp !== undefined
+                ? Math.floor((caster.maxHp || 0) * effect.pctMaxHp / 100)
+                : _resolveEffectValue(effect.heal) || 0
             const hotVal   = Math.max(1, Math.floor(
                 (hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
             ))
@@ -2008,29 +2053,31 @@ function executeEffect(ctx) {
         }
 
         case 'antiHeal': {
+            const _ahVal = effect.value  // undefined = full block, number = % réduction
+            const _ahLog = _ahVal !== undefined ? `anti-soin ${_ahVal}%` : 'anti-soin'
             if (effect.target === 'all_enemies' || effect.target === 'all_enemy') {
                 const isEnemyCasterAH = !state.team.includes(caster)
                 if (isEnemyCasterAH) {
                     for (const m of state.team) {
                         if (!m || m.currentHp <= 0) continue
                         m.buffs = m.buffs || []
-                        m.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                        m.buffs.push({ stat: 'antiHeal', value: _ahVal, duration: effect.duration })
                     }
                 } else if (combat?.isRaid && combat.enemies) {
                     for (const e of combat.enemies) {
                         if (!e || e.currentHp <= 0) continue
                         e.buffs = e.buffs || []
-                        e.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                        e.buffs.push({ stat: 'antiHeal', value: _ahVal, duration: effect.duration })
                     }
                 } else {
                     targetEnemy.buffs = targetEnemy.buffs || []
-                    targetEnemy.buffs.push({ stat: 'antiHeal', duration: effect.duration })
+                    targetEnemy.buffs.push({ stat: 'antiHeal', value: _ahVal, duration: effect.duration })
                 }
-                addLog(`${ctx.logPrefix || ''}${moveData.name} → anti-soin (tous) (${effect.duration} tours)`)
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → ${_ahLog} (tous) (${effect.duration} tours)`)
             } else {
                 targetEnemy.buffs = targetEnemy.buffs || []
-                targetEnemy.buffs.push({ stat: 'antiHeal', duration: effect.duration })
-                addLog(`${ctx.logPrefix || ''}${moveData.name} → anti-soin (${effect.duration} tours)`)
+                targetEnemy.buffs.push({ stat: 'antiHeal', value: _ahVal, duration: effect.duration })
+                addLog(`${ctx.logPrefix || ''}${moveData.name} → ${_ahLog} (${effect.duration} tours)`)
             }
             break
         }
@@ -2041,6 +2088,40 @@ function executeEffect(ctx) {
                 combat.interceptor = interceptorSlot
                 addLog(`${moveData.name} → ${caster.name} intercepte tous les dégâts !`)
             }
+            break
+        }
+
+        case 'self_dmg_pct_current': {
+            // Coût en PV courants du lanceur (jamais fatal : minimum 1 PV)
+            const _selfCost = Math.min(
+                Math.floor((caster.currentHp || 0) * (effect.ratio || 0)),
+                Math.max(0, (caster.currentHp || 1) - 1)
+            )
+            if (_selfCost > 0) {
+                caster.currentHp -= _selfCost
+                addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} sacrifie ${_selfCost} PV`)
+                const _selfIdx = state.team.indexOf(caster)
+                if (combat && _selfIdx !== -1)
+                    combat.sessionLoot.memberDamageReceived[_selfIdx] = (combat.sessionLoot.memberDamageReceived[_selfIdx] || 0) + _selfCost
+            }
+            break
+        }
+
+        case 'transposition': {
+            // Pose l'état Transposition : intercepte un coup fatal sur un allié (30% redirigés, devient actif)
+            const _tpSlot = state.team.indexOf(caster)
+            if (_tpSlot !== -1) {
+                combat.transposerSlot = _tpSlot
+                caster.transposition = { duration: effect.duration ?? 3, _new: true }
+                addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} en Transposition (${effect.duration ?? 3} tours)`)
+            }
+            break
+        }
+
+        case 'couronne_depines': {
+            // Pose l'état Couronne d'Épines : à chaque coup reçu, gain PV + renvoi ratio% des dégâts
+            caster.couronneDEpines = { ratio: effect.ratio ?? 0.5, healPct: effect.healPct ?? 0.1, duration: effect.duration ?? 3, _new: true }
+            addLog(`${moveData.name} → Couronne d'Épines actif (${effect.duration ?? 3} tours)`)
             break
         }
 
@@ -3064,6 +3145,19 @@ function _applyHealOnCast(member, mv) {
 
 function tickBuffs(entity) {
     if (entity.buffs) {
+        // hpCostPerTurnPct : coût en PV courants par tour (ex: Mutilation)
+        for (const b of entity.buffs) {
+            if (b.stat === 'hpCostPerTurnPct' && (b.delay ?? 0) <= 0 && !b._new) {
+                const _hpCost = Math.min(
+                    Math.floor((entity.currentHp || 0) * b.value / 100),
+                    Math.max(0, (entity.currentHp || 1) - 1)
+                )
+                if (_hpCost > 0) {
+                    entity.currentHp -= _hpCost
+                    addLog(`Mutilation → ${entity.name || classes[entity.classId]?.name || '?'} sacrifie ${_hpCost} PV`)
+                }
+            }
+        }
         for (const b of entity.buffs) {
             if (!b._new && b.duration === 1 && b.directApplied && b.stat === 'maxHp') {
                 entity.maxHp = Math.max(1, (entity.maxHp || 1) - b.value)
@@ -3090,6 +3184,28 @@ function tickBuffs(entity) {
         entity.reactiveStates = entity.reactiveStates
             .map(r => r._new ? { ...r, _new: false } : { ...r, duration: r.duration - 1 })
             .filter(r => r.duration > 0)
+    }
+    // Couronne d'Épines : tick durée
+    if (entity.couronneDEpines) {
+        if (entity.couronneDEpines._new) {
+            delete entity.couronneDEpines._new
+        } else {
+            entity.couronneDEpines.duration--
+            if (entity.couronneDEpines.duration <= 0) delete entity.couronneDEpines
+        }
+    }
+    // Transposition : tick durée
+    if (entity.transposition) {
+        if (entity.transposition._new) {
+            delete entity.transposition._new
+        } else {
+            entity.transposition.duration--
+            if (entity.transposition.duration <= 0) {
+                delete entity.transposition
+                const _tpIdx = state.team.indexOf(entity)
+                if (combat?.transposerSlot === _tpIdx) delete combat.transposerSlot
+            }
+        }
     }
 }
 
@@ -3166,6 +3282,7 @@ function _initRaidCombat(areaId) {
     combat.enutrof_traps         = []
     combat.pendingRaidSwap    = null
     combat.raidKillCount      = 0
+    combat.raidTotalSpawned   = 3
     combat.raidMiniBossActive = false
 
     // Les 3 premiers membres vivants deviennent les slots actifs
@@ -3249,29 +3366,20 @@ function _spawnRaidMiniBoss() {
     const boss = _spawnEnemyById(bossId, area.miniBoss.statMult || 1)
     if (!boss) return
 
-    // Sauvegarde des ennemis/timers existants
-    const e0 = combat.enemies[0], t0 = combat.enemyTimers[0], m0 = combat.enemyNextMoveIds[0]
-    const e1 = combat.enemies[1], t1 = combat.enemyTimers[1], m1 = combat.enemyNextMoveIds[1]
-
-    // Push : slot1 → slot2, slot0 → slot1, boss → slot0
-    // Si l'ennemi poussé est mort (ex: c'est lui qui a déclenché le seuil), on en spawn un frais
-    // plutôt que de pousser un cadavre avec raidRespawnPending=false → slot bloqué indéfiniment
-    const e1Live = e1 && e1.currentHp > 0
-    combat.enemies[2]          = e1Live ? e1 : spawnEnemy(state.currentArea)
-    combat.enemyTimers[2]      = e1Live ? t1 : 0
-    combat.enemyNextMoveIds[2] = e1Live ? m1 : pickNextEnemyMove(combat.enemies[2])
-
-    const e0Live = e0 && e0.currentHp > 0
-    combat.enemies[1]          = e0Live ? e0 : spawnEnemy(state.currentArea)
-    combat.enemyTimers[1]      = e0Live ? t0 : 0
-    combat.enemyNextMoveIds[1] = e0Live ? m0 : pickNextEnemyMove(combat.enemies[1])
-
+    // Boss seul au slot 0 — slots 1 et 2 vidés pour qu'aucun mob normal ne combat en même temps
     combat.enemies[0]          = boss
     combat.enemyTimers[0]      = 0
     combat.enemyNextMoveIds[0] = pickNextEnemyMove(boss)
+    combat.enemies[1]          = null
+    combat.enemyTimers[1]      = 0
+    combat.enemyNextMoveIds[1] = null
+    combat.enemies[2]          = null
+    combat.enemyTimers[2]      = 0
+    combat.enemyNextMoveIds[2] = null
 
     combat.raidRespawnPending  = [false, false, false]
     combat.raidMiniBossActive  = true
+    addLog(`${boss.name} apparaît !`)
     updateCombatUI()
 }
 
@@ -3649,18 +3757,16 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     const isMiniBoss = !!defeatedEnemy?.isRaidMiniBoss
 
     if (isMiniBoss) {
-        // Mini-boss vaincu → reset compteur + respawn de tous les slots vides
+        // Mini-boss vaincu → reset complet + 3 nouveaux ennemis
         combat.raidMiniBossActive = false
         combat.raidKillCount      = 0
+        combat.raidTotalSpawned   = 3
         setTimeout(() => {
             if (!state.isRunning || !state.currentArea) return
             for (let i = 0; i < 3; i++) {
-                const e = combat.enemies[i]
-                if (!e || e.currentHp <= 0) {
-                    combat.enemies[i]           = spawnEnemy(state.currentArea)
-                    combat.enemyTimers[i]        = 0
-                    combat.enemyNextMoveIds[i]   = pickNextEnemyMove(combat.enemies[i])
-                }
+                combat.enemies[i]         = spawnEnemy(state.currentArea)
+                combat.enemyTimers[i]     = 0
+                combat.enemyNextMoveIds[i] = pickNextEnemyMove(combat.enemies[i])
                 combat.raidRespawnPending[i] = false
             }
             updateCombatUI()
@@ -3677,23 +3783,32 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
         return
     }
 
-    // Mob lambda normal → incrément compteur + éventuel déclenchement mini-boss
+    // Mob lambda normal : incrément du compteur de kills
     combat.raidKillCount = (combat.raidKillCount || 0) + 1
     const everyKills = area?.miniBoss?.everyKills
 
-    if (everyKills && combat.raidKillCount % everyKills === 0) {
+    if (everyKills && combat.raidKillCount >= everyKills) {
+        // Seuil atteint → mini-boss (seul, slots 1-2 vides)
         setTimeout(() => {
             if (!state.isRunning || !state.currentArea) return
             _spawnRaidMiniBoss()
         }, 500)
-    } else {
+    } else if (!everyKills || combat.raidTotalSpawned < everyKills) {
+        // Phase de remplacement : on spawn un nouvel ennemi dans ce slot
+        combat.raidTotalSpawned = (combat.raidTotalSpawned || 3) + 1
         setTimeout(() => {
             combat.raidRespawnPending[slotIdx] = false
             if (!state.isRunning || !state.currentArea) return
-            combat.enemies[slotIdx]          = spawnEnemy(state.currentArea)
-            combat.enemyTimers[slotIdx]      = 0
+            combat.enemies[slotIdx]         = spawnEnemy(state.currentArea)
+            combat.enemyTimers[slotIdx]     = 0
             combat.enemyNextMoveIds[slotIdx] = pickNextEnemyMove(combat.enemies[slotIdx])
-            combat.raidSavedEnemies[slotIdx] = null
+            updateCombatUI()
+        }, 500)
+    } else {
+        // Phase de drain : tous les ennemis ont été introduits, le slot reste vide
+        setTimeout(() => {
+            combat.raidRespawnPending[slotIdx] = false
+            if (!state.isRunning || !state.currentArea) return
             updateCombatUI()
         }, 500)
     }
