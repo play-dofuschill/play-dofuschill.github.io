@@ -114,16 +114,28 @@ function updateShopUI() {
 }
 
 function showShopBuyPicker(entry, itm) {
-    if (state.kamas < entry.price) {
+    const isProgressive = itm.type === 'equipment'
+
+    let maxAffordable
+    if (isProgressive) {
+        maxAffordable = 0
+        while (_progressiveTotalCost(entry.itemId, maxAffordable + 1) <= state.kamas) {
+            maxAffordable++
+            if (maxAffordable >= 100) break
+        }
+    } else {
+        maxAffordable = Math.floor(state.kamas / entry.price)
+    }
+
+    if (maxAffordable === 0) {
         showNotification('Pas assez de kamas !', 'error')
         return
     }
 
-    const currentLevel  = state.inventory[entry.itemId]?.level || 0
-    const maxAffordable = Math.floor(state.kamas / entry.price)
-    const maxUseful     = itm.levelMax ? Math.max(0, itm.levelMax - currentLevel) : maxAffordable
-    const remaining     = shopRemaining(entry.itemId)
-    const maxQty        = Math.min(
+    const currentLevel = state.inventory[entry.itemId]?.level || 0
+    const maxUseful    = itm.levelMax ? Math.max(0, itm.levelMax - currentLevel) : maxAffordable
+    const remaining    = shopRemaining(entry.itemId)
+    const maxQty       = Math.min(
         maxAffordable,
         maxUseful,
         remaining === Infinity ? maxAffordable : remaining
@@ -136,20 +148,29 @@ function showShopBuyPicker(entry, itm) {
 
     const fixedQtys = [1, 2, 5, 10].filter(q => q < maxQty)
 
+    const btnLabel = q => isProgressive
+        ? `${q}<br><small>${_progressiveTotalCost(entry.itemId, q)}k</small>`
+        : `${q}`
+
+    const maxTotal   = isProgressive ? _progressiveTotalCost(entry.itemId, maxQty) : maxQty * entry.price
+    const priceNote  = isProgressive
+        ? `${entry.price} kamas (prix actuel, +20% par achat)`
+        : `${entry.price} kamas / unité`
+
     const body = `<div class="shop-buy-picker">
         <div class="shop-buy-picker-item">
             <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
             <span>${itm.name}</span>
         </div>
         <div class="shop-buy-qty-row">
-            ${fixedQtys.map(q => `<button class="shop-buy-qty-btn" onclick="closeTooltip(); buyShopItem('${entry.itemId}', ${entry.price}, ${q})">${q}</button>`).join('')}
+            ${fixedQtys.map(q => `<button class="shop-buy-qty-btn" onclick="closeTooltip(); buyShopItem('${entry.itemId}', ${entry.price}, ${q})">${btnLabel(q)}</button>`).join('')}
             <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="closeTooltip(); buyShopItem('${entry.itemId}', ${entry.price}, ${maxQty})">
-                Max<br><small>${maxQty}</small>
+                Max<br><small>${maxQty}×&nbsp;(${maxTotal}k)</small>
             </button>
         </div>
         <div class="shop-buy-picker-price">
             <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'">
-            ${entry.price} kamas / unité &nbsp;·&nbsp; ${state.kamas} disponibles
+            ${priceNote} &nbsp;·&nbsp; ${state.kamas} disponibles
         </div>
     </div>`
 

@@ -80,6 +80,10 @@ function moveIconKey(mv) {
     const elem = mv?.effects?.[0]?.element || ''
     const mapped = _MOVE_TYPE_ICON[type]
     if (mapped !== undefined) return mapped ?? (elem || 'neutre')
+    const dmgElems = new Set((mv?.effects || [])
+        .filter(e => e.type === 'damage' || e.type === 'dot')
+        .map(e => e.element).filter(Boolean))
+    if (dmgElems.size > 1) return 'all_elements'
     return elem || 'sagesse'
 }
 
@@ -220,6 +224,7 @@ const state = {
     raidPool:  null,
     skullLevel: 0,
     skullUnequipped: null,
+    skullRecords: {},
     session: {
         killCount: 0,
         dropCount: 0,

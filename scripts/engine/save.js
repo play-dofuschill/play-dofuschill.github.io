@@ -59,6 +59,7 @@ function saveGame() {
         shopPurchases:             state.shopPurchases || null,
         skullLevel:                state.skullLevel || 0,
         skullUnequipped:           state.skullUnequipped || null,
+        skullRecords:              state.skullRecords || {},
         ownedSkins:                state.ownedSkins || [],
         Boss_Ultime:                    state.Boss_Ultime    || null,
         version:                   '0.2'
@@ -115,6 +116,7 @@ function loadGame() {
         if (data.shopPurchases)                     state.shopPurchases              = data.shopPurchases
         if (data.skullLevel != null)                state.skullLevel                = data.skullLevel
         if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
+        if (data.skullRecords)                      state.skullRecords              = data.skullRecords
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
         if (data.Boss_Ultime)                            state.Boss_Ultime                    = data.Boss_Ultime
 

@@ -806,7 +806,7 @@ monsters.kwakwa = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 1600, atk: 300, spd: 110,
+        hp: 1600, atk: 500, spd: 110,
         res: {neutre: 100, terre: 50, feu: 50, eau: 50, air: 50 }
     },
     moves: ['kwakoukas_kwayal', 'wakpot_kwayal', 'kwabolition', 'kwarmee_kwayal'],
@@ -822,7 +822,7 @@ monsters.blopCoco = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 600, atk: 170, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 }},
     moves: ['bibloperie_air','biblopiment_air']
 }
@@ -833,7 +833,7 @@ monsters.blopGriotte = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 600, atk: 170, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 }},
     moves: ['bibloperie_feu','biblopiment_feu']
 }
@@ -844,7 +844,7 @@ monsters.blopIndigo = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 600, atk: 170, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 }},
     moves: ['bibloperie_eau','biblopiment_eau']
 }
@@ -855,7 +855,7 @@ monsters.blopReinette = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 600, atk: 170, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 }},
     moves: ['bibloperie_terre','biblopiment_terre']
 }
@@ -866,7 +866,7 @@ monsters.blopignon = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 500, atk: 170, spd: 100,
+        hp: 500, atk: 250, spd: 100,
         res: {neutre: 21, terre: -19, feu: -14, eau: 0, air: 26 }},
     moves: ['bloblo', 'blopiction', 'bloprojection']
 }
@@ -877,7 +877,7 @@ monsters.tronkoBlop = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 600, atk: 170, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 0, terre: 41, feu: 31, eau: -9, air: -24 }},
     moves: ['blopsoin', 'blopzone']
 }
@@ -888,7 +888,7 @@ monsters.gloutoBlop = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: {
-        hp: 1, atk: 1, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 21, terre: -9, feu: -24, eau: 26, air: 11 }},
     moves: ['gloutage']
 }
@@ -899,7 +899,7 @@ monsters.blopCocoRoyal = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2800, atk: 250, spd: 100,
+        hp: 2800, atk: 400, spd: 100,
         res: {neutre: -15, terre: -15, feu: -15, eau: -15, air: 95 }
     },
     moves: ['blotravail_Royal', 'blopunition_Royale_air', 'blotection_air']
@@ -911,7 +911,7 @@ monsters.blopGriotteRoyal = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2800, atk: 250, spd: 100,
+        hp: 2800, atk: 400, spd: 100,
         res: {neutre: -15, terre: -15, feu: 95, eau: -15, air: -15 }
     },
     moves: ['blotravail_Royal', 'blopunition_Royale_feu', 'blotection_feu']
@@ -923,7 +923,7 @@ monsters.blopIndigoRoyal = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2800, atk: 250, spd: 100,
+        hp: 2800, atk: 400, spd: 100,
         res: {neutre: -15, terre: -15, feu: -15, eau: 95, air: -15 }
     },
     moves: ['blotravail_Royal', 'blopunition_Royale_eau', 'blotection_eau']
@@ -935,7 +935,7 @@ monsters.blopReinetteRoyal = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2800, atk: 250, spd: 100,
+        hp: 2800, atk: 400, spd: 100,
         res: {neutre: -15, terre: 95, feu: -15, eau: -15, air: -15 }
     },
     moves: ['blotravail_Royal', 'blopunition_Royale_terre', 'blotection_terre']
@@ -1228,7 +1228,7 @@ monsters.gelee_fraise = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 600, atk: 150, spd: 100,
+        hp: 600, atk: 250, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
     moves: ['Gelpikes', 'Fraise_Os','Tartinade']
 }
@@ -1239,7 +1239,7 @@ monsters.gelee_bleuet = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 500, atk: 150, spd: 100,
+        hp: 500, atk: 250, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
     moves: ['Gelpikes', 'Bleuet_Os','Tartinade']
 }
@@ -1250,7 +1250,7 @@ monsters.gelee_menthe = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 500, atk: 150, spd: 100,
+        hp: 500, atk: 250, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
     moves: ['Gelpikes', 'Menthe_Os','Tartinade']
 }
@@ -1261,7 +1261,7 @@ monsters.gelee_citron = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 500, atk: 150, spd: 100,
+        hp: 500, atk: 250, spd: 100,
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }},
     moves: ['Gelpikes', 'Citron_Os','Tartinade']
 }
@@ -1272,7 +1272,7 @@ monsters.gelee_fraise_royale = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2000, atk: 200, spd: 100,
+        hp: 2000, atk: 400, spd: 100,
         res: {neutre: 70, terre: 70, feu: -10, eau: 70, air: 70 }},
     moves: ['Gelifiant', 'Royale_Fraise_Os','Tartinade']
 }
@@ -1283,7 +1283,7 @@ monsters.gelee_bleuet_royale = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2000, atk: 200, spd: 100,
+        hp: 2000, atk: 400, spd: 100,
         res: {neutre: 70, terre: 70, feu: 70, eau: -10, air: 70 }},
     moves: ['Isometrie', 'Royale_Bleuet_Os','Tartinade']
 }
@@ -1294,7 +1294,7 @@ monsters.gelee_menthe_royale = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2000, atk: 200, spd: 100,
+        hp: 2000, atk: 400, spd: 100,
         res: {neutre: 70, terre: -10, feu: 70, eau: 70, air: 70 }},
     moves: ['Pik_assaut', 'Royale_Menthe_Os','Tartinade']
 }
@@ -1305,7 +1305,7 @@ monsters.gelee_citron_royale = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2000, atk: 200, spd: 100,
+        hp: 2000, atk: 400, spd: 100,
         res: {neutre: 70, terre: 70, feu: 70, eau: 70, air: -10 }},
     moves: ['Fixation_Beton', 'Royale_Citron_Os','Tartinade']
 }
@@ -1320,7 +1320,7 @@ monsters.ouroboulos = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 110, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
     },
     moves: ['Sablacane', 'Roulo-Boulos', 'Carapassable']
@@ -1332,7 +1332,7 @@ monsters.scordionBleu = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 110, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 }
     },
     moves: ['Pince_pattes', 'Dard_Empoisonne', 'Creuse_sable']
@@ -1344,7 +1344,7 @@ monsters.fennex = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 110, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 6, terre: 16, feu: -24, eau: -19, air: 11 }
     },
     moves: ['Reconnaissance', 'Entrave_Sableuse', 'Enragement_Motivant']
@@ -1356,7 +1356,7 @@ monsters.leolhyene = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 110, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 24, terre: -21, feu: 9, eau: -9, air: 34 }
     },
     moves: ['Sirocco', 'Mort_sure', 'Hyaignement']
@@ -1368,7 +1368,7 @@ monsters.boulepique = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: {
-        hp: 800, atk: 150, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 11, terre: 1, feu: 21, eau: 16, air: 6 }
     },
     moves: ['Lance-boulettes', 'Pique_rate', 'Durcissement']
@@ -1380,7 +1380,7 @@ monsters.mantiscore = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 3500, atk: 290, spd: 100,
+        hp: 3500, atk: 450, spd: 100,
         res: {neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 }
     },
     moves: ['darmocles', 'force_Poigne', 'tombeau_du_desert', 'garde_bouclier']
@@ -1396,7 +1396,7 @@ monsters.dragoeufArdoise = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 150, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 17, terre: 12, feu: -10, eau: 22, air: 9 }
     },
     moves: ['Feuilletage', 'Fendage']
@@ -1408,7 +1408,7 @@ monsters.dragoeufArgile = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 150, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 17, terre: -10, feu: 9, eau: 12, air: 22 }
     },
     moves: ['Cataplasme', 'Engobage']
@@ -1420,7 +1420,7 @@ monsters.dragoeufCalcaire = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 150, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 17, terre: 22, feu: 12, eau: 9, air: -10 }
     },
     moves: ['Entartrage', 'Calcination']
@@ -1432,7 +1432,7 @@ monsters.dragoeufCharbon = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 800, atk: 150, spd: 100,
+        hp: 800, atk: 250, spd: 100,
         res: {neutre: 17, terre: 9, feu: 22, eau: -10, air: 12 }
     },
     moves: ['Crassier', 'Silicose']
@@ -1444,7 +1444,7 @@ monsters.dragoeufAlbatre = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: {
-        hp: 900, atk: 170, spd: 100,
+        hp: 900, atk: 270, spd: 100,
         res: {neutre: 12, terre: 12, feu: 12, eau: 12, air: 12 }
     },
     moves: ['Dralbatre', 'Dragloméra']
@@ -1456,7 +1456,7 @@ monsters.draegnerys = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 2500, atk: 200, spd: 120,
+        hp: 2500, atk: 400, spd: 120,
         res: {neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 }
     },
     moves: ['Pepiniere', 'Knout', 'Drakaaris']
@@ -1472,7 +1472,7 @@ monsters.abrakneSombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1000, atk: 170, spd: 100,
+        hp: 1000, atk: 270, spd: 100,
         res: {neutre: 15, terre: -25, feu: 25, eau: -15, air: 15 }
     },
     moves: ['Bond_affaiblissant', 'Abraknettoyage', 'Motivation_Sylvestre']
@@ -1484,7 +1484,7 @@ monsters.abraknydeSombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1000, atk: 170, spd: 100,
+        hp: 1000, atk: 270, spd: 100,
         res: {neutre: 20, terre: -5, feu: 25, eau: -5, air: 25 }
     },
     moves: ['Abrabranche', 'Branche_Paralysante', 'Ecrasement_Abraknydien']
@@ -1496,7 +1496,7 @@ monsters.araknotron = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1000, atk: 170, spd: 100,
+        hp: 1000, atk: 270, spd: 100,
         res: {neutre: 10, terre: -25, feu: 5, eau: -25, air: 5 }
     },
     moves: ['Lancer_d_Arakne_Morte', 'Complicite']
@@ -1508,7 +1508,7 @@ monsters.abraknydeVenerable = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1000, atk: 170, spd: 100,
+        hp: 1000, atk: 270, spd: 100,
         res: {neutre: 20, terre: 25, feu: -5, eau: 25, air: -5 }
     },
     moves: ['Ecrasement_Abraknydien', 'Abrakage', 'Ecorce_agressive', 'Reconstitution_Abraknydienne']
@@ -1520,7 +1520,7 @@ monsters.arakne_majeure = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: {
-        hp: 600, atk: 100, spd: 100,
+        hp: 600, atk: 270, spd: 100,
         res: {neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 }
     },
     moves: ['Ralentissement_Arakneen', 'Absorption_Sanguine'],
@@ -1549,7 +1549,7 @@ monsters.cochonDeFarle = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1200, atk: 170, spd: 100,
+        hp: 1200, atk: 270, spd: 100,
         res: {neutre: 50, terre: 50, feu: 12, eau: 12, air: -20 }
     },
     moves: ['Sucotement_Porcin']
@@ -1561,7 +1561,7 @@ monsters.donDorgan = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1300, atk: 170, spd: 100,
+        hp: 1300, atk: 270, spd: 100,
         res: {neutre: 10, terre: -20, feu: 50, eau: -20, air: -20 }
     },
     moves: ['Menotage', 'Charge Sanguinaire']
@@ -1573,7 +1573,7 @@ monsters.donDussAng = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1300, atk: 170, spd: 100,
+        hp: 1300, atk: 270, spd: 100,
         res: {neutre: 20, terre: -20, feu: -20, eau: 20, air: 20 }
     },
     moves: ['Vampirisation_Cochonne', 'Tire-Bouffon', 'Perfusion']
@@ -1585,7 +1585,7 @@ monsters.porsalu = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 1200, atk: 170, spd: 100,
+        hp: 1200, atk: 270, spd: 100,
         res: {neutre: 25, terre: 15, feu: -25, eau: -20, air: 60 }
     },
     moves: ['Fleche_Renifleuse', 'Fleche_Douloureuse', 'Exhalation_Porcine']
@@ -1598,7 +1598,7 @@ monsters.gorgouille = {
     tier: 'elite',
     fixedLevel: 100,
     bst: {
-        hp: 5000, atk: 500, spd: 100,
+        hp: 5000, atk: 600, spd: 100,
         res: {neutre: -5, terre: -5, feu: -5, eau: 35, air: 35 }
     },
     moves: ['Oshi-Zumo', 'Yotsu-Zumo']
@@ -1626,7 +1626,7 @@ monsters.LAouassingue = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 250, atk: 120, spd: 100,
+        hp: 800, atk: 120, spd: 100,
         res: {neutre: 20, terre: 20, feu: 10, eau: -5, air: -15 }},
     moves: ['oblativite','serpilliere','reconstitution_cellulaire']
 }
@@ -1637,7 +1637,7 @@ monsters.LEouassingue = {
     rarity: 'commun',
     tier: 'normal',
     bst: {
-        hp: 250, atk: 120, spd: 100,
+        hp: 800, atk: 120, spd: 100,
         res: {neutre: -5, terre: -5, feu: 20, eau: -15, air: 10 }},
     moves: ['equarrissage','interversion','reconstitution_cellulaire']
 }
@@ -1648,7 +1648,7 @@ monsters.tourbassingue = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 1500, atk: 200, spd: 100,
+        hp: 1500, atk: 250, spd: 100,
         res: {neutre: 20, terre: 15, feu: 33, eau: -27, air: -11 }},
     moves: ['tourbe_reparatrice','tourbe_malveillante']
 }
@@ -1659,7 +1659,7 @@ monsters.bourbassingue = {
     rarity: 'peu_commun',
     tier: 'normal',
     bst: {
-        hp: 1300, atk: 180, spd: 100,
+        hp: 1300, atk: 280, spd: 100,
         res: {neutre: 13, terre: 35, feu: -31, eau: 15, air: 9 }},
     moves: ['boue_sirupeuse','bourbier']
 }
@@ -1670,7 +1670,7 @@ monsters.roissingue = {
     rarity: 'rare',
     tier: 'boss',
     bst: {
-        hp: 5300, atk: 500, spd: 100,
+        hp: 5300, atk: 750, spd: 100,
         res: {neutre: 22, terre: 12, feu: -30, eau: 41, air: 5 }},
     moves: ['retour_du_roi','depouillage','dechaussage']
 }

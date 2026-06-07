@@ -1,10 +1,44 @@
 // engine/shop.js
 
-const SHOP_ITEM_PRICE    = 5
 const SHOP_KEY_PRICE     = 1
 const SHOP_ROTATION_DAYS = 2
 
 const SHOP_RUNE_BASE_PRICES = { S: 10, M: 15, L: 25 }
+
+const SHOP_ITEM_LEVEL_PRICES = [
+    { maxLevel: 50,  price: 5   },
+    { maxLevel: 100, price: 15  },
+    { maxLevel: 150, price: 50  },
+    { maxLevel: 200, price: 100 },
+]
+
+function _itemBasePrice(itemId) {
+    const itm = item[itemId]
+    if (!itm) return 5
+    const lvl = itm.requiredLevel || 1
+    for (const tier of SHOP_ITEM_LEVEL_PRICES) {
+        if (lvl <= tier.maxLevel) return tier.price
+    }
+    return 100
+}
+
+function shopCurrentPrice(itemId) {
+    const base = _itemBasePrice(itemId)
+    if (item[itemId]?.type !== 'equipment') return base
+    const purchased = state.shopPurchases?.counts?.[itemId] || 0
+    return purchased === 0 ? base : Math.round(base * Math.pow(1.2, purchased))
+}
+
+function _progressiveTotalCost(itemId, qty) {
+    const base = _itemBasePrice(itemId)
+    if (item[itemId]?.type !== 'equipment') return base * qty
+    const purchased = state.shopPurchases?.counts?.[itemId] || 0
+    let total = 0
+    for (let i = 0; i < qty; i++) {
+        total += Math.round(base * Math.pow(1.2, purchased + i))
+    }
+    return total
+}
 
 function _runePrice(runeId) {
     const itm  = item[runeId]
@@ -29,7 +63,7 @@ function refreshShopPool() {
 
     const seed = (period * 2654435761) >>> 0
 
-    const allItems = Object.values(item).filter(i => i.type === 'equipment')
+    const allItems = Object.values(item).filter(i => i.type === 'equipment' && i.slot !== 'accessoire')
     const allKeys  = Object.values(item).filter(i => i.isKey === true)
     const allRunes = Object.values(item).filter(i => i.type === 'rune')
     const allSkins = Object.values(item).filter(i => i.type === 'cosmetic_skin')
@@ -51,7 +85,7 @@ function getShopEntries(cat) {
 
     switch (cat) {
         case 'items':
-            return pool.items.map(id => ({ itemId: id, price: SHOP_ITEM_PRICE }))
+            return pool.items.map(id => ({ itemId: id, price: shopCurrentPrice(id) }))
 
         case 'consumables': {
             const keys = pool.keys.map(id => ({ itemId: id, price: SHOP_KEY_PRICE }))
@@ -140,7 +174,9 @@ function buyShopItem(itemId, price, qty = 1) {
     }
     if (remaining !== Infinity) qty = Math.min(qty, remaining)
 
-    const total = price * qty
+    const total = itm?.type === 'equipment'
+        ? _progressiveTotalCost(itemId, qty)
+        : price * qty
     if (state.kamas < total) {
         showNotification('Pas assez de kamas !', 'error')
         return

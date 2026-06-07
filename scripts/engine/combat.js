@@ -2994,6 +2994,17 @@ function onVictory() {
     const killerIdx = combat.activeMemberIndex
     combat.memberKillCount[killerIdx] = (combat.memberKillCount[killerIdx] || 0) + 1
 
+    // Limite 200 kills/personnage : KO forcé, le suivant prend le relais
+    if (combat.memberKillCount[killerIdx] >= 200) {
+        const _km = state.team[killerIdx]
+        if (_km && _km.currentHp > 0) {
+            _km.currentHp = 0
+            addLog(`${_km.name || classes[_km.classId]?.name || '?'} a vaincu 200 ennemis — relève !`)
+            _autoSwitchActive()
+            if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return }
+        }
+    }
+
     // Accumule le loot de session
     if (loot.itemDrops?.length > 0) {
         for (const d of loot.itemDrops) {
@@ -3767,6 +3778,18 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     combat.sessionLoot.killCount++
     if (killerMemberIdx >= 0) {
         combat.memberKillCount[killerMemberIdx] = (combat.memberKillCount[killerMemberIdx] || 0) + 1
+
+        // Limite 200 kills/personnage en Raid
+        if (combat.memberKillCount[killerMemberIdx] >= 200) {
+            const _km = state.team[killerMemberIdx]
+            if (_km && _km.currentHp > 0) {
+                _km.currentHp = 0
+                addLog(`${_km.name || classes[_km.classId]?.name || '?'} a vaincu 200 ennemis — relève !`)
+                const _rs = combat.raidSlots.indexOf(killerMemberIdx)
+                if (_rs !== -1) _autoSwitchRaidSlot(_rs)
+                if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return }
+            }
+        }
     }
 
     if (loot.itemDrops?.length > 0) {

@@ -540,15 +540,15 @@ move.bond = {
     id: 'bond',
     name: 'Bond',
     classId: 'iop',
-    cooldownMs: 2500,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self'}],
+    cooldownMs: 1700,
+    effects: [{type: 'buff', stat: 'spd', value: 25, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,
-                        patch: {buff: { value: 30 }}},
+                        patch: {buff: { value: 40 }}},
                        {lvl: 144,
-                        patch: {buff: { value: 40 }}}],
-    description: "Augmente la vitesse du lanceur pour 2 tours."
+                        patch: {buff: { value: 55 }}}],
+    description: "Augmente la vitesse du lanceur pour 3 tours."
 }
 move.concentration = {
     id: 'concentration',
@@ -1224,29 +1224,29 @@ move.fleche_de_dispersion = {
     classId: 'cra',
     cooldownMs: 2500,
     effects: [
-        {type: 'debuff', stat: 'spd', value: 20, duration: 4, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 25, duration: 4, target: 'enemy'},
         {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
-                       {lvl: 72,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 72,
+                        patch: {buff: { value: 35 }}},
                        {lvl: 139,
-                        patch: {buff: { value: 40 }}}],
-    description: "Réduit la vitesse de l'ennemi pour 3 tours et le fais reculer."
+                        patch: {buff: { value: 45 }}}],
+    description: "Réduit la vitesse de l'ennemi pour 4 tours et le fais reculer."
 }
 move.tirs_eloignes = {
     id: 'tirs_eloignes',
     name: 'Tirs Éloignés',
     classId: 'cra',
-    cooldownMs: 2500,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+    cooldownMs: 2000,
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
-                       {lvl: 77,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 77,
+                        patch: {buff: { value: 35 }}},
                        {lvl: 144,
-                        patch: {buff: { value: 40 }}}],
-    description: "Augmente la vitesse du lanceur pour 3 tours."
+                        patch: {buff: { value: 50 }}}],
+    description: "Augmente la vitesse du lanceur pour 4 tours."
 }
 move.fleche_dimmobilisation = {
     id: 'fleche_dimmobilisation',
@@ -1919,29 +1919,29 @@ move.mot_stimulant = {
     id: 'mot_stimulant',
     name: 'Mot Stimulant',
     classId: 'eniripsa',
-    cooldownMs: 2500,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
+    cooldownMs: 2000,
+    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
-                       {lvl: 77,  
-                        patch: {buff: { value: 30 }}},
+                       {lvl: 77,
+                        patch: {buff: { value: 35 }}},
                        {lvl: 144,
-                        patch: {buff: { value: 40 }}}],
-    description: "Augmente la vitesse du lanceur pour les 3 prochains tours."
+                        patch: {buff: { value: 50 }}}],
+    description: "Augmente la vitesse du lanceur pour les 4 prochains tours."
 }
 move.mot_de_frayeur = {
     id: 'mot_de_frayeur',
     name: 'Mot de Frayeur',
     classId: 'eniripsa',
     cooldownMs: 2500,
-    effects: [{type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy'},
+    effects: [{type: 'debuff', stat: 'spd', value: 35, duration: 3, target: 'enemy'},
               {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
-                        patch: {buff: { value: 30 }}},
+                        patch: {buff: { value: 50 }}},
                        {lvl: 149,
-                        patch: {buff: { value: 40 }}}],
+                        patch: {buff: { value: 65 }}}],
     description: "Réduit la vitesse de l'ennemi pour 3 tours et pousse l'ennemi en raid."
 }
 move.lamentations = {
@@ -3682,15 +3682,15 @@ move.bond_du_felin = {
     id: 'bond_du_felin',
     name: 'Bond du Félin',
     classId: 'ecaflip',
-    cooldownMs: 2500,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 2, target: 'self'}],
+    cooldownMs: 2000,
+    effects: [{type: 'buff', stat: 'spd', value: 15, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,
-                        patch: {buff: { value: 20 }}},
+                        patch: {buff: { value: 25 }}},
                        {lvl: 144,
-                        patch: {buff: { value: 30 }}}],
-    description: "Augmente la vitesse du lanceur pour 2 tours."
+                        patch: {buff: { value: 40 }}}],
+    description: "Augmente la vitesse du lanceur pour 4 tours."
 }
 move.jass = {
     id: 'jass',

@@ -191,6 +191,15 @@ function updateZoneUI() {
                        ${keyCount > 0 ? `🗝 ${keyCount} clé${keyCount > 1 ? 's' : ''}` : 'Aucune clé disponible'}
                    </span>`
                 : ''
+
+            const _skullRec  = state.skullLevel > 0 ? state.skullRecords?.[areaId]?.[state.skullLevel] : undefined
+            const _isDungeon = area.type === 'dungeon'
+            const recordInfo = state.skullLevel > 0
+                ? _skullRec !== undefined
+                    ? `<span style="font-size:0.75em; margin-top:4px; color:#c8a400;">&#9876; Record skull ${state.skullLevel} : ${_skullRec} ${_isDungeon ? 'attaques' : 'kills'}</span>`
+                    : `<span style="font-size:0.75em; margin-top:4px; opacity:0.4;">Aucun record skull ${state.skullLevel}</span>`
+                : ''
+
             card.innerHTML = `
                 <div>
                     <div class="explore-ticket-left">
@@ -198,6 +207,7 @@ function updateZoneUI() {
                         <strong>Niv. ${lvlStr}</strong>
                         <span class="explore-ticket-desc">${area.description}</span>
                         ${keyInfo}
+                        ${recordInfo}
                     </div>
                     <div class="explore-ticket-right">
                         <img class="explore-ticket-sprite" src="${area.icon}" onerror="this.src='img/icons/icon.png'">
