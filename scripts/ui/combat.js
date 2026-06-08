@@ -122,6 +122,11 @@ function _renderMemberBuffChips(member) {
 
     const PCT  = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
                           'critChance','critDamagePct','res_all','erosionBonus'])
+    const SILENT_STATS = new Set([
+        'dropRate','healOnCast','hpCostPerTurnPct','spdInvert',
+        'amplifie_incoming','huppermage_amplify','pendingLifesteal',
+        'repulsion_guard','feu_eau_debuff','eau_air_debuff',
+    ])
     const ICON = {
         atk:               STAT_ICONS.atk,
         spd:               STAT_ICONS.spd,
@@ -132,19 +137,29 @@ function _renderMemberBuffChips(member) {
         damageReductionPct:'img/icons/protection.png',
         critChance:        'img/icons/critique.png',
         critDamagePct:     'img/icons/critique.png',
+        critResPct:        'img/icons/protection.png',
         healPct:           STAT_ICONS.soin,
         healTeamPct:       STAT_ICONS.soin,
         lifestealPct:      STAT_ICONS.volVie,
         res_all:           ELEM_ICONS.all_elements,
         antiHeal:          STAT_ICONS.soin,
+        erosionBonus:      ELEM_ICONS.sagesse,
+        esquive:           ELEM_ICONS.sagesse,
+        force:             ELEM_ICONS.terre,
+        chance:            ELEM_ICONS.eau,
+        agilite:           ELEM_ICONS.air,
+        heal:              STAT_ICONS.soin,
     }
     const LABEL = {
         atk: 'Puissance', spd: 'Initiative', maxHp: 'PV max',
         flatDamage: 'Do', finalDamagePct: '%Do',
         spellDamagePct: '%DoSort', damageReductionPct: '%Res Do',
-        critChance: '%Crit', critDamagePct: '%doCrit',
+        critChance: '%Crit', critDamagePct: '%doCrit', critResPct: '%Res Crit',
         healPct: 'Soins', healTeamPct: 'Soins éq.',
         lifestealPct: 'Vol vie', res_all: 'Res.',
+        erosionBonus: '%Érosion', esquive: 'Esquive',
+        force: 'Force', chance: 'Chance', agilite: 'Agilité',
+        heal: 'Buff',
     }
     const iconFor  = s => s?.startsWith('res.') ? (ELEM_ICONS[s.split('.')[1]] || ELEM_ICONS.neutre) : (ICON[s] || STAT_ICONS.buff)
     // % only appended for res stats — other PCT stats already carry % in their label
@@ -160,6 +175,7 @@ function _renderMemberBuffChips(member) {
         buffsByStat[b.stat].duration  = Math.max(buffsByStat[b.stat].duration, b.duration)
     }
     for (const [stat, { value, duration }] of Object.entries(buffsByStat)) {
+        if (SILENT_STATS.has(stat)) continue
         if (stat === 'antiHeal') {
             chips.push(`<span class="cbc cbc-debuff">Anti-soin ${img(STAT_ICONS.soin)} ${duration}t</span>`)
             continue
