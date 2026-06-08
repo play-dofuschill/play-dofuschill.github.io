@@ -297,7 +297,7 @@ function showMemberSheet(member) {
         const ilvl = itemId ? getItemLevel(itemId) : 0
         return itm
             ? `<div class="ms-equip-slot ms-equip-filled" ${click}
-                   oncontextmenu="event.preventDefault(); showItemTooltip('${itemId}')"
+                   oncontextmenu="event.preventDefault(); showItemTooltip('${itemId}', '${member.classId}')"
                    title="${itm.name}">
                    <img src="${itm.image}" onerror="this.src='img/icons/icon.png'">
                    <span class="ms-equip-ilvl">Niv.${ilvl}</span>
@@ -500,6 +500,7 @@ function openEquipFromSheet(classId, slotId) {
         takenByOther,
         skullMaxLevel: null,
         isFamiliar: false,
+        fromClassId: classId,
         onEquip:  (id) => equipItemFromSheet(classId, slotId, id),
         onRemove: () => equipItemFromSheet(classId, slotId, null),
     }

@@ -139,6 +139,27 @@ function loadGame() {
             }
         }
 
+        // Migration : nettoyer les clés fantômes 'anneau1' créées par le bug equipFullPanoplie
+        // (le bon slot s'appelle 'anneau', pas 'anneau1')
+        const _allTeamsAnneau = [...Object.values(state.previewTeams || {})]
+        if (state.team) _allTeamsAnneau.push(state.team)
+        for (const teamArr of _allTeamsAnneau) {
+            for (const member of (teamArr || [])) {
+                if (!member?.equip?.anneau1) continue
+                const ghostId = member.equip.anneau1
+                if (!member.equip.anneau)       member.equip.anneau  = ghostId
+                else if (!member.equip.anneau2) member.equip.anneau2 = ghostId
+                delete member.equip.anneau1
+            }
+        }
+        for (const ce of Object.values(state.classEquip || {})) {
+            if (!ce?.equip?.anneau1) continue
+            const ghostId = ce.equip.anneau1
+            if (!ce.equip.anneau)       ce.equip.anneau  = ghostId
+            else if (!ce.equip.anneau2) ce.equip.anneau2 = ghostId
+            delete ce.equip.anneau1
+        }
+
         // Migration : si previewTeams[clé active] est vide mais state.team ne l'est pas, sync
         const curKey = state.currentPreviewTeam || 'preview1'
         if (state.team.length > 0 &&

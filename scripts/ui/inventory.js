@@ -177,7 +177,7 @@ function setInventoryFilter(filter) {
 
 // ─── Fiche item détaillée ─────────────────────────────────────────────────────
 
-function showItemTooltip(itemId) {
+function showItemTooltip(itemId, fromClassId) {
     const itm   = item[itemId]
     if (!itm) return
     const entry = state.inventory[itemId]
@@ -290,6 +290,14 @@ function showItemTooltip(itemId) {
             }
         }
 
+        const equipBarHtml = fromClassId ? `
+            <div class="pano-equip-bar">
+                <button class="btn-pano-equip"
+                        onclick="equipFullPanoplie('${_setId}', '${fromClassId}')">
+                    ⚡ Équiper la panoplie
+                </button>
+            </div>` : ''
+
         setHtml += `<div class="item-set-section">
             <div class="item-set-title">
                 ${pano.name}
@@ -297,6 +305,7 @@ function showItemTooltip(itemId) {
             </div>
             <div class="item-set-bonuses">${bonusRows}</div>
             <div class="item-set-pieces">${piecesHtml}</div>
+            ${equipBarHtml}
         </div>`
     }
 
@@ -326,6 +335,47 @@ function showItemTooltip(itemId) {
     </div>`
 
     openTooltip(itm.name, body)
+}
+
+function equipFullPanoplie(setId, classId) {
+    const pano   = panoplies[setId]
+    if (!pano) return
+    const member = state.team.find(m => m && m.classId === classId)
+    if (!member) return
+
+    const RING_SLOTS = ['anneau', 'anneau2']
+    let ringUsed = 0
+
+    for (const pieceId of (pano.pieces || [])) {
+        if (!state.inventory[pieceId]) continue   // seulement les items possédés
+        const itm = item[pieceId]
+        if (!itm) continue
+        let slot = itm.slot
+        if (slot === 'anneau') {
+            slot = RING_SLOTS[ringUsed] || 'anneau2'
+            ringUsed = Math.min(ringUsed + 1, 1)
+        }
+        if (!member.equip) member.equip = {}
+        member.equip[slot] = pieceId
+    }
+
+    if (pano.familiar) {
+        const famObj = typeof familiarById !== 'undefined' ? familiarById[pano.familiar] : null
+        if (famObj && getFamiliarLevel(famObj) > 0) {
+            if (!member.equip) member.equip = {}
+            member.equip.familier = pano.familiar
+        }
+    }
+
+    const stats = getEffectiveStats(member)
+    if (stats) member.maxHp = stats.hp
+
+    saveGame()
+    updateTeamUI()
+
+    // Même pattern que equipItemFromSheet : vide la pile et réouvre la fiche
+    tooltipStack.length = 0
+    showMemberSheet(member)
 }
 
 function formatStatName(stat) {

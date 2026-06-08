@@ -280,7 +280,7 @@ move.sel_Marin = {
     id: 'sel_Marin',
     name: "Sel Marin",
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'atk', value: { min: -50, max: -50 }, duration: 3, target: 'enemy'},
+    effects: [{type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'},
               {type: 'heal', heal: 50, target: 'self'}
     ]
 }
@@ -288,7 +288,7 @@ move.resistivite = {
     id: 'resistivite',
     name: "Résistivité",
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'atk', value: { min: -50, max: -50 }, duration: 3, target: 'enemy'},
+    effects: [{type: 'debuff', stat: 'atk', value: 50 , duration: 3, target: 'enemy'},
               {type: 'buff', stat: 'damageReductionPct', value: { min: 10, max: 10 }, duration: 1, target: 'self'}
     ]
 }
@@ -308,7 +308,7 @@ move.onde_Enrageante = {
     id: 'onde_Enrageante',
     name: 'Onde Enrageante',
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'atk', value: { min: -50, max: -50 }, duration: 3, target: 'enemy'}]
+    effects: [{type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}]
 }
 move.reflux = {
     id: 'reflux',

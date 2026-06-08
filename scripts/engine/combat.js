@@ -402,6 +402,19 @@ function startCombat(areaId) {
             const passive = classes[m.classId]?.passive
             combat.memberPassiveState[i] = {}
             if (passive?.id === 'pandawa')     combat.memberPassiveState[i].state = 'normal'
+            if (passive?.id === 'ecaflip') {
+                const ROULETTE = [
+                    { stat: 'finalDamagePct', value:  15, label: '+15% dégâts' },
+                    { stat: 'finalDamagePct', value:  -5, label: '-5% dégâts'  },
+                    { stat: 'critChance',     value:  15, label: '+15% crit'    },
+                    { stat: 'critChance',     value:  -5, label: '-5% crit'     },
+                    { stat: 'res_all',        value:  10, label: '+10% rés all' },
+                    { stat: 'res_all',        value:  -5, label: '-5% rés all'  },
+                ]
+                const rolled = ROULETTE[Math.floor(Math.random() * ROULETTE.length)]
+                combat.memberPassiveState[i].ecaflipEffect = rolled
+                addLog(`${m.name || classes[m.classId]?.name || '?'} [Roulette] → ${rolled.label} pour ce cycle !`)
+            }
             if (passive?.id === 'huppermage') {
                 const slots    = ['slot1', 'slot2', 'slot3', 'slot4']
                 const elements = slots.map(s => {
@@ -949,6 +962,22 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength, slotEnem
         }
     }
 
+    // Ecaflip : roulette tous les 4 sorts joués par l'Écaflip — tire 1 effet parmi 6, remplace le précédent
+    if (passive.id === 'ecaflip' && newRawIdx % 4 === 0) {
+        const ROULETTE = [
+            { stat: 'finalDamagePct', value:  15, label: '+15% dégâts' },
+            { stat: 'finalDamagePct', value:  -5, label: '-5% dégâts'  },
+            { stat: 'critChance',     value:  15, label: '+15% crit'    },
+            { stat: 'critChance',     value:  -5, label: '-5% crit'     },
+            { stat: 'res_all',        value:  10, label: '+10% rés all' },
+            { stat: 'res_all',        value:  -5, label: '-5% rés all'  },
+        ]
+        const rolled = ROULETTE[Math.floor(Math.random() * ROULETTE.length)]
+        if (!combat.memberPassiveState[memberIndex]) combat.memberPassiveState[memberIndex] = {}
+        combat.memberPassiveState[memberIndex].ecaflipEffect = rolled
+        addLog(`${member.name || classes[member.classId]?.name || '?'} [Roulette] → ${rolled.label} jusqu'au prochain cycle !`)
+    }
+
     // ─── Fin de cycle ─────────────────────────────────────────────────────────
 
     if (newRawIdx % cycleLength !== 0) return
@@ -969,21 +998,6 @@ function _applyPassiveTick(member, memberIndex, newRawIdx, cycleLength, slotEnem
         combat.memberPassiveState[memberIndex] = pst
     }
 
-    // Ecaflip : roulette à chaque cycle — tire 1 effet parmi 6, remplace le précédent
-    if (passive.id === 'ecaflip') {
-        const ROULETTE = [
-            { stat: 'finalDamagePct', value:  15, label: '+15% dégâts' },
-            { stat: 'finalDamagePct', value:  -5, label: '-5% dégâts'  },
-            { stat: 'critChance',     value:  15, label: '+15% crit'    },
-            { stat: 'critChance',     value:  -5, label: '-5% crit'     },
-            { stat: 'res_all',        value:  10, label: '+10% rés all' },
-            { stat: 'res_all',        value:  -5, label: '-5% rés all'  },
-        ]
-        const rolled = ROULETTE[Math.floor(Math.random() * ROULETTE.length)]
-        if (!combat.memberPassiveState[memberIndex]) combat.memberPassiveState[memberIndex] = {}
-        combat.memberPassiveState[memberIndex].ecaflipEffect = rolled
-        addLog(`${member.name || classes[member.classId]?.name || '?'} [Roulette] → ${rolled.label} jusqu'au prochain cycle !`)
-    }
 }
 
 // ─── Effets passifs des items équipés ─────────────────────────────────────────
@@ -1779,6 +1793,13 @@ function executeEffect(ctx) {
                 _fireEnutrofTraps('heal', null, targetEnemy)
                 break
             }
+            if (effect.target === 'enemy') {
+                const healAmt = Math.floor(healBase * _getAntiHealFactor(targetEnemy))
+                targetEnemy.currentHp = Math.min(targetEnemy.maxHp, (targetEnemy.currentHp || 0) + healAmt)
+                addLog(`${moveData.name} → soigne l'ennemi de ${healAmt} PV`)
+                _fireEnutrofTraps('heal', null, targetEnemy)
+                break
+            }
             const healTarget = _resolveAllyTarget(effect, caster)
             const healAmt    = Math.floor(healBase * _getAntiHealFactor(healTarget))
             healTarget.currentHp = Math.min(healTarget.maxHp, (healTarget.currentHp || 0) + healAmt)
@@ -2045,6 +2066,61 @@ function executeEffect(ctx) {
             if (shieldTarget.shield?.value > 0) break
             shieldTarget.shield = { value: shieldVal, duration: effect.duration, ...(shieldTarget === caster ? { _new: true } : {}) }
             addLog(`${moveData.name} → bouclier ${shieldVal} PV (${effect.duration} tours)`)
+            break
+        }
+
+        case 'purify':
+        case 'purify_offensive':
+        case 'purify_defensive':
+        case 'purify_status': {
+            const _pTurns = effect.value || 1
+            const _pType  = effect.type
+            // Offensif : stats qui affectent la puissance d'attaque/soin du personnage
+            const _OFF = new Set(['atk','flatDamage','finalDamagePct','spellDamagePct',
+                                   'critChance','critDamagePct','healPct','healTeamPct',
+                                   'lifestealPct','erosionBonus'])
+            // Défensif : stats qui affectent la survie / réduction de dégâts
+            const _DEF = new Set(['res_all','damageReductionPct','maxHp'])
+            // Statuts : effets intrinsèquement négatifs (indépendamment de la valeur)
+            const _STA = new Set(['antiHeal','spdInvert','feu_eau_debuff','eau_air_debuff'])
+            const _isTarget = b => {
+                if (b.directApplied) return false   // maxHp directApplied a une logique de reversal dans tickBuffs
+                if (_pType === 'purify')           return (b.value < 0 || _STA.has(b.stat))
+                if (_pType === 'purify_offensive') return b.value < 0 && _OFF.has(b.stat)
+                if (_pType === 'purify_defensive') return b.value < 0 && _DEF.has(b.stat)
+                if (_pType === 'purify_status')    return _STA.has(b.stat) || (b.stat === 'spd' && b.value < 0)
+                return false
+            }
+            const _purgeDots = _pType === 'purify' || _pType === 'purify_status'
+            const _LABELS = { purify: 'purification', purify_offensive: 'purif. offensive',
+                              purify_defensive: 'purif. défensive', purify_status: 'purif. statuts' }
+            const _pLabel = _LABELS[_pType] || 'purification'
+            const _purifyOne = m => {
+                if (!m || m.currentHp <= 0) return
+                if (m.buffs) m.buffs = m.buffs
+                    .map(b => _isTarget(b) ? { ...b, duration: b.duration - _pTurns } : b)
+                    .filter(b => b.duration > 0)
+                if (_purgeDots && m.dots) m.dots = m.dots
+                    .map(d => ({ ...d, duration: d.duration - _pTurns }))
+                    .filter(d => d.duration > 0)
+            }
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) _purifyOne(m)
+                addLog(`${moveData.name} → ${_pLabel} équipe (${_pTurns} tour${_pTurns > 1 ? 's' : ''})`)
+                break
+            }
+            const _slotM = effect.target?.match(/^ally_(\d)$/)
+            if (_slotM) {
+                const t = state.team[parseInt(_slotM[1], 10) - 1]
+                _purifyOne(t)
+                addLog(`${moveData.name} → ${_pLabel} ${t?.name || classes[t?.classId]?.name || '?'} (${_pTurns} tour${_pTurns > 1 ? 's' : ''})`)
+                break
+            }
+            const _pt = ['ally_random','ally_min_hp'].includes(effect.target)
+                ? _resolveAllyTarget(effect, caster)
+                : caster
+            _purifyOne(_pt)
+            addLog(`${moveData.name} → ${_pLabel} ${_pt?.name || classes[_pt?.classId]?.name || '?'} (${_pTurns} tour${_pTurns > 1 ? 's' : ''})`)
             break
         }
 
@@ -3044,10 +3120,6 @@ function onVictory() {
         const _respawnNext = () => {
             combat.respawnPending = false
             if (!state.isRunning || !state.currentArea) return
-            for (const m of state.team) {
-                if (!m) continue
-                m.buffs = []; m.dots = []; m.hots = []; m.shield = null
-            }
             const _nb = _spawnEnemyById(_nextBossId)
             if (_nb) _nb.isRaidMiniBoss = false
             combat.enemy           = _nb
@@ -3089,10 +3161,6 @@ function onVictory() {
     // Respawn ennemi (zone normale) — synchrone en fast-forward, async sinon
     if (_afkSeconds > 0) {
         combat.respawnPending = false
-        for (const m of state.team) {
-            if (!m) continue
-            m.buffs = []; m.dots = []; m.hots = []; m.shield = null
-        }
         combat.enemy           = spawnEnemy(state.currentArea)
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         combat.savedEnemy      = null
@@ -3102,13 +3170,6 @@ function onVictory() {
     setTimeout(() => {
         combat.respawnPending = false
         if (!state.isRunning || !state.currentArea) return
-        for (const m of state.team) {
-            if (!m) continue
-            m.buffs  = []
-            m.dots   = []
-            m.hots   = []
-            m.shield = null
-        }
         combat.enemy          = spawnEnemy(state.currentArea)
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         combat.savedEnemy     = null

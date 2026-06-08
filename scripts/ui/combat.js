@@ -116,6 +116,44 @@ function renderEnemyMoves(container, enemy, timer) {
 
 // ─── Cartes des membres ───────────────────────────────────────────────────────
 
+function _renderMemberBuffChips(member) {
+    if (!member) return ''
+    const chips = []
+
+    const PCT  = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
+                          'critChance','critDamagePct','res_all','erosionBonus'])
+    const ICON = {
+        atk: STAT_ICONS.atk, spd: STAT_ICONS.spd, maxHp: STAT_ICONS.hp,
+        flatDamage: STAT_ICONS.flatDamage, finalDamagePct: STAT_ICONS.atk,
+        spellDamagePct: STAT_ICONS.atk, damageReductionPct: STAT_ICONS.buff,
+        critChance: STAT_ICONS.atk, critDamagePct: STAT_ICONS.atk,
+        healPct: STAT_ICONS.soin, healTeamPct: STAT_ICONS.soin,
+        lifestealPct: STAT_ICONS.volVie, res_all: ELEM_ICONS.all_elements,
+        antiHeal: STAT_ICONS.soin,
+    }
+    const iconFor = s => s?.startsWith('res.') ? (ELEM_ICONS[s.split('.')[1]] || ELEM_ICONS.neutre) : (ICON[s] || STAT_ICONS.buff)
+    const unitFor = s => (PCT.has(s) || s?.startsWith('res.')) ? '%' : ''
+    const img     = src => `<img src="${src}" class="cbc-icon" onerror="this.src='img/icons/icon.png'">`
+
+    if (member.shield?.value > 0)
+        chips.push(`<span class="cbc cbc-shield">+${member.shield.value}${img(STAT_ICONS.hp)}:${member.shield.duration}t</span>`)
+
+    for (const b of (member.buffs || [])) {
+        if (b.stat === 'antiHeal') {
+            chips.push(`<span class="cbc cbc-debuff">anti${img(STAT_ICONS.soin)}:${b.duration}t</span>`)
+            continue
+        }
+        const sign = b.value > 0 ? '+' : ''
+        chips.push(`<span class="cbc ${b.value >= 0 ? 'cbc-buff' : 'cbc-debuff'}">${sign}${Math.round(b.value)}${unitFor(b.stat)}${img(iconFor(b.stat))}:${b.duration}t</span>`)
+    }
+    for (const d of (member.dots || []))
+        chips.push(`<span class="cbc cbc-dot">-${d.value}${img(ELEM_ICONS[d.element] || ELEM_ICONS.neutre)}:${d.duration}t</span>`)
+    for (const h of (member.hots || []))
+        chips.push(`<span class="cbc cbc-hot">+${h.value}${img(STAT_ICONS.soin)}:${h.duration}t</span>`)
+
+    return chips.join('')
+}
+
 function updateMemberBars() {
     const container = document.getElementById('explore-team')
     if (!container) return
@@ -177,6 +215,9 @@ function updateMemberBars() {
 
         card.style.opacity = m.currentHp > 0 ? '1' : '0.4'
         card.classList.toggle('combat-active', isActive)
+
+        const cbcRow = card.querySelector('.cbc-row')
+        if (cbcRow) cbcRow.innerHTML = _renderMemberBuffChips(m)
     })
 }
 
@@ -222,6 +263,7 @@ function renderTeamSlots(container) {
                 <div class="member-title-row">
                     <span class="member-name">${m.name || cls?.name || '?'}</span>
                     <span class="member-level level-badge${combat?.syncedLevel && m.level > combat.syncedLevel ? ' level-synced' : ''}">lvl ${combat?.syncedLevel && m.level > combat.syncedLevel ? combat.syncedLevel : m.level}</span>
+                    <div class="cbc-row">${_renderMemberBuffChips(m)}</div>
                 </div>
                 <div class="member-hp-bar">
                     <div class="member-hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${m.shield?.value > 0 ? 'hp-shield' : ''}" style="width:${hpPct}%"></div>

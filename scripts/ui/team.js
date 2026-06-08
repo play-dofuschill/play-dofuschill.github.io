@@ -438,7 +438,7 @@ function renderEquipPickGrid() {
             const lvl = getItemLevel(e.id)
             const req = e.requiredLevel ? `lvl req. ${e.requiredLevel}` : '—'
             html += `<div class="equip-pick-item${disClass}" ${handler}
-                         oncontextmenu="event.preventDefault(); showItemTooltip('${e.id}')"
+                         oncontextmenu="event.preventDefault(); showItemTooltip('${e.id}', '${_equipPickState.fromClassId || ''}')"
                          title="${e.name}">
                 <div class="equip-pick-bubble">
                     <span class="bubble-level">Niv.${lvl}</span>
@@ -572,6 +572,7 @@ function openEquipSelector(memberIndex, equipSlot) {
         takenByOther,
         skullMaxLevel: _skullMaxLevel,
         isFamiliar: false,
+        fromClassId: member.classId || null,
         onEquip:  (id) => { equipItem(memberIndex, equipSlot, id); closeTooltip() },
         onRemove: () => { equipItem(memberIndex, equipSlot, null); closeTooltip() },
     }
