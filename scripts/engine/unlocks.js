@@ -20,23 +20,22 @@ const CLASS_UNLOCK_CONDITIONS = {
     xelor: (s) => s.defeatedBosses?.includes('comteHarebourg'),
 
     huppermage: (s) => {
-        const required = [
-            'kwakereFlamme', 'kwakereGlace', 'kwakereTerre', 'kwakereVent',
-            'kwakFlamme', 'kwakGlace', 'kwakTerre', 'kwakVent',
-            'scarafeuilleBlanc', 'scarafeuilleVert', 'scarafeuilleBleu', 'scarafeuilleRouge', 'scarafeuilleNoir',
-            'scarabossDoree', 'kwakwa',
+        const byElement = [
+            ['kwakFlamme', 'kwakereFlamme', 'scarafeuilleRouge'],
+            ['kwakGlace',  'kwakereGlace',  'scarafeuilleBleu'],
+            ['kwakTerre',  'kwakereTerre',  'scarafeuilleVert'],
+            ['kwakVent',   'kwakereVent',   'scarafeuilleBlanc'],
         ]
-        return required.every(id => (s.collection[id]?.drops ?? 0) >= 1)
+        const elementsCovered = byElement.every(group => group.some(id => (s.collection[id]?.drops ?? 0) >= 1))
+        const bossesLeveled   = ['scarabossDoree', 'kwakwa'].every(id => (s.collection[id]?.level ?? 0) >= 30)
+        return elementsCovered && bossesLeveled
     },
 
     sacrieur: (s) => s.totalKills >= 10000,
 
     osamodas: (s) => Object.values(s.collection).filter(c => (c.drops ?? 0) >= 1).length >= 200,
 
-    zobal: (_s) => familiars.some(fam => {
-        const bonuses = getFamiliarBonusesComputed(fam.id)
-        return bonuses.some(b => b.bonusStat === 'maxHp' && b.value >= 100)
-    }),
+    zobal: (s) => (s.collection['dragonCochon']?.drops ?? 0) >= 1,
 
     sram: (s) => {
         const ratNoirItems = [] // TODO: remplir avec les IDs des items de la panoplie rat_noir

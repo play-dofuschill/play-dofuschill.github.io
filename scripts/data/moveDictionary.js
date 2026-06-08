@@ -1847,13 +1847,13 @@ move.mot_tapageur = {
     name: 'Mot Tapageur',
     classId: 'eniripsa',
     cooldownMs: 1700,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 12,max: 14}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 10,max: 12}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {cooldownMs: 1900, damage: { min: 18, max: 21 }}},
+                        patch: {cooldownMs: 1900, damage: { min: 14, max: 18 }}},
                        {lvl: 132,
-                        patch: {damage: { min: 23, max: 27 }}}],
+                        patch: {damage: { min: 20, max: 23 }}}],
     description: "Tape rapidement l'ennemi dans l'élément feu."
 }
 move.juron = {
@@ -1861,13 +1861,13 @@ move.juron = {
     name: 'Juron',
     classId: 'eniripsa',
     cooldownMs: 1700,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 14,max: 16}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 13,max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {cooldownMs: 1900, damage: { min: 19, max: 22 }}},
+                        patch: {cooldownMs: 1900, damage: { min: 17, max: 20 }}},
                        {lvl: 133,
-                        patch: {damage: { min: 24, max: 28 }}}],
+                        patch: {damage: { min: 21, max: 24 }}}],
     description: "Tape l'ennemi dans l'élément terre."
 }
 move.mot_vampirique = {
@@ -1877,14 +1877,14 @@ move.mot_vampirique = {
     restriction: 'coeur',
     cooldownMs: 2700,
     effects: [
-        {type: 'damage', element: 'eau', damage: { min: 16, max: 18 }, target: 'enemy'},
-        {type: 'lifesteal', ratio: 0.2, target: 'self'}],
+        {type: 'damage', element: 'eau', damage: { min: 14, max: 17 }, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.20, target: 'self'}],
     spellProgression: [{ lvl: 12,
                          patch: {} },
                        {lvl: 69,
-                        patch: {cooldownMs: 2900, damage: { min: 22, max: 26 }, lifesteal: { ratio: 0.40 }}},
+                        patch: {cooldownMs: 2900, damage: { min: 18, max: 22 }, lifesteal: { ratio: 0.25 }}},
                        {lvl: 136,
-                        patch: {cooldownMs: 3100, damage: { min: 30, max: 38 },lifesteal: { ratio: 0.50 }}}],
+                        patch: {cooldownMs: 3100, damage: { min: 24, max: 28 },lifesteal: { ratio: 0.30 }}}],
     description: "Tape l'ennemi et soigne un pourcentage des dégâts infligés."
 }
 move.mot_espiegle = {
@@ -1892,13 +1892,13 @@ move.mot_espiegle = {
     name: 'Mot Espiègle',
     classId: 'eniripsa',
     cooldownMs: 1700,
-    effects: [{type: 'damage', element: 'air', damage: {min: 12,max: 14}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 11,max: 13}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {cooldownMs: 1900, damage: { min: 22, max: 25 }}},
+                        patch: {cooldownMs: 1900, damage: { min: 15, max: 19 }}},
                        {lvl: 134,
-                        patch: {cooldownMs: 2100, damage: { min: 28, max: 32 }}}],
+                        patch: {cooldownMs: 2100, damage: { min: 21, max: 25 }}}],
     description: "Tape l'ennemi dans l'élément air."
 }
 move.mot_damitie = {
@@ -1920,7 +1920,7 @@ move.mot_stimulant = {
     name: 'Mot Stimulant',
     classId: 'eniripsa',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 20, duration: 4, target: 'self'}],
+    effects: [{type: 'buff', stat: 'spd', value: 25, duration: 4, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,
@@ -1951,29 +1951,29 @@ move.lamentations = {
     restriction: 'coeur',
     cooldownMs: 3000,
     effects: [
-        {type: 'damage', element: 'eau', damage: { min: 18, max: 20 }, target: 'enemy'},
+        {type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.5, target: 'self'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
-                        patch: {damage: { min: 23, max: 26 }}},
+                        patch: {damage: { min: 19, max: 22 }}},
                        {lvl: 154,
-                        patch: {cooldownMs: 3200, damage: { min: 29, max: 32 }}}],
+                        patch: {cooldownMs: 3200, damage: { min: 23, max: 27 }}}],
     description: "Frappe l'ennemi dans l'élément eau et se soigne de la moitié des dommages infligés."
 }
 move.mot_turbulent = {
     id: 'mot_turbulent',
     name: 'Mot Turbulent',
     classId: 'eniripsa',
-    cooldownMs: 2500,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 23,max: 26}, target: 'enemy'},
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13,max: 16}, target: 'enemy'},
               { type: 'heal', heal: {min: 23,max: 26}, target: 'ally_min_hp' }],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
-                        patch: {cooldownMs: 2700, damage: {min: 29,max: 33}, heal: {min: 29,max: 33}}},
+                        patch: {cooldownMs: 2700, damage: {min: 19,max: 23}, heal: {min: 29,max: 33}}},
                        {lvl: 159,
-                        patch: {cooldownMs: 2900, damage: {min: 36,max: 41}, heal: {min: 36,max: 41}}}],
+                        patch: {cooldownMs: 2900, damage: {min: 26,max: 31}, heal: {min: 36,max: 41}}}],
     description: "Frappe l'ennemi dans l'élément feu et soigne l'allier ayant le moins de PV."
 }
 move.mot_vivifiant = {
@@ -1994,16 +1994,16 @@ move.mot_farceur = {
     id: 'mot_farceur',
     name: 'Mot Farceur',
     classId: 'eniripsa',
-    cooldownMs: 2200,
-    effects: [{type: 'damage', element: 'air', damage: {min: 15,max: 17}, target: 'enemy'},
-              { type: 'heal', heal: {min: 15,max: 17}, target: 'ally_random' },
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 10,max: 13}, target: 'enemy'},
+              { type: 'heal', heal: {min: 10,max: 13}, target: 'ally_random' },
               {type: 'avance', target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
-                        patch: {cooldownMs: 2400, damage: {min: 18,max: 20}, heal: {min: 18,max: 20}}},
+                        patch: {cooldownMs: 2400, damage: {min: 14,max: 18}, heal: {min: 14,max: 18}}},
                        {lvl: 169,
-                        patch: {damage: {min: 22,max: 24}, heal: {min: 22,max: 24}}}],
+                        patch: {damage: {min: 19,max: 22}, heal: {min: 19,max: 22}}}],
     description: "Frappe l'enemis dans l'élément air, soigne un allier aléatoire et attire l'ennemi en raid."
 }
 move.peinture_de_guerre = {
@@ -2025,7 +2025,7 @@ move.mot_de_jouvence = {
     id: 'mot_de_jouvence',
     name: 'Mot de Jouvence',
     classId: 'eniripsa',
-    cooldownMs: 3500,
+    cooldownMs: 4000,
     effects: [{type: 'summon', summonId: 'fee_de_jouvence', duration: 2, target: 'self'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
@@ -2039,28 +2039,28 @@ move.cri_de_guerre = {
     id: 'cri_de_guerre',
     name: 'Cri de Guerre',
     classId: 'eniripsa',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: {min: 23,max: 26}, target: 'enemy'}],
+    cooldownMs: 2200,
+    effects: [{ type: 'damage', element: 'terre', damage: {min: 18,max: 21}, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {cooldownMs: 2200, damage: {min: 31,max: 35}}},
+                        patch: {cooldownMs: 2200, damage: {min: 21,max: 25}}},
                        {lvl: 184,
-                        patch: {cooldownMs: 2400, damage: {min: 37,max: 41}}}],
+                        patch: {cooldownMs: 2400, damage: {min: 26,max: 30}}}],
     description: "Frappe dans l'élément terre."
 }
 move.mot_interdit = {
     id: 'mot_interdit',
     name: 'Mot Interdit',
     classId: 'eniripsa',
-    cooldownMs: 2500,
+    cooldownMs: 3200,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 30,max: 33}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {cooldownMs: 2700, damage: {min: 40,max: 44}}},
+                        patch: {cooldownMs: 3700, damage: {min: 40,max: 44}}},
                        {lvl: 189,
-                        patch: {damage: {min: 46,max: 50}}}],
+                        patch: {cooldownMs: 4200, damage: {min: 46,max: 50}}}],
     description: "Frappe dans l'élément eau."
 }
 move.mot_accablant = {
@@ -2082,30 +2082,30 @@ move.chapardage = {
     name: 'Chapardage',
     classId: 'eniripsa',
     restriction: 'coeur',
-    cooldownMs: 2700,
+    cooldownMs: 3000,
     effects: [
-        {type: 'damage', element: 'feu', damage: { min: 15, max: 17 }, target: 'enemy'},
+        {type: 'damage', element: 'feu', damage: { min: 12, max: 14 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.5, target: 'self'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
-                        patch: {cooldownMs: 2900, damage: { min: 18, max: 20 }}},
+                        patch: {cooldownMs: 2900, damage: { min: 14, max: 17 }}},
                        {lvl: 198,
-                        patch: {damage: { min: 20, max: 22 }}}],
+                        patch: {damage: { min: 17, max: 21 }}}],
     description: "Frappe l'ennemi dans l'élément feu et se soigne de la moitié des dommages infligés."
 }
 move.mot_fleuri = {
     id: 'mot_fleuri',
     name: 'Mot Fleuri',
     classId: 'eniripsa',
-    cooldownMs: 3500,
+    cooldownMs: 4500,
     effects: [
-        {type: 'damage', element: 'air', damage: { min: 26, max: 29 }, target: 'enemy'},
-        { type: 'hot', heal: { min: 26, max: 29 }, duration : 2, target: 'ally_random' }],
+        {type: 'damage', element: 'air', damage: { min: 16, max: 19 }, target: 'enemy'},
+        { type: 'hot', heal: { min: 16, max: 19 }, duration : 3, target: 'ally_random' }],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
-                        patch: {cooldownMs: 3700, damage: { min: 33, max: 37 }, heal: { min: 33, max: 37 }}}],
+                        patch: {cooldownMs: 4700, damage: { min: 23, max: 27 }, heal: { min: 23, max: 27 }}}],
     description: "Frappe l'ennemi dans l'élément air et soigne un allier aléatoire pendant 2 tours."
 }
 // move.mot_denvol = {
