@@ -123,33 +123,69 @@ function _renderMemberBuffChips(member) {
     const PCT  = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
                           'critChance','critDamagePct','res_all','erosionBonus'])
     const ICON = {
-        atk: STAT_ICONS.atk, spd: STAT_ICONS.spd, maxHp: STAT_ICONS.hp,
-        flatDamage: STAT_ICONS.flatDamage, finalDamagePct: STAT_ICONS.atk,
-        spellDamagePct: STAT_ICONS.atk, damageReductionPct: STAT_ICONS.buff,
-        critChance: STAT_ICONS.atk, critDamagePct: STAT_ICONS.atk,
-        healPct: STAT_ICONS.soin, healTeamPct: STAT_ICONS.soin,
-        lifestealPct: STAT_ICONS.volVie, res_all: ELEM_ICONS.all_elements,
-        antiHeal: STAT_ICONS.soin,
+        atk:               STAT_ICONS.atk,
+        spd:               STAT_ICONS.spd,
+        maxHp:             STAT_ICONS.soin,
+        flatDamage:        STAT_ICONS.flatDamage,
+        finalDamagePct:    STAT_ICONS.flatDamage,
+        spellDamagePct:    STAT_ICONS.flatDamage,
+        damageReductionPct:'img/icons/protection.png',
+        critChance:        'img/icons/critique.png',
+        critDamagePct:     'img/icons/critique.png',
+        healPct:           STAT_ICONS.soin,
+        healTeamPct:       STAT_ICONS.soin,
+        lifestealPct:      STAT_ICONS.volVie,
+        res_all:           ELEM_ICONS.all_elements,
+        antiHeal:          STAT_ICONS.soin,
     }
-    const iconFor = s => s?.startsWith('res.') ? (ELEM_ICONS[s.split('.')[1]] || ELEM_ICONS.neutre) : (ICON[s] || STAT_ICONS.buff)
-    const unitFor = s => (PCT.has(s) || s?.startsWith('res.')) ? '%' : ''
-    const img     = src => `<img src="${src}" class="cbc-icon" onerror="this.src='img/icons/icon.png'">`
+    const LABEL = {
+        atk: 'Puissance', spd: 'Initiative', maxHp: 'PV max',
+        flatDamage: 'Do', finalDamagePct: '%Do',
+        spellDamagePct: '%DoSort', damageReductionPct: '%Res Do',
+        critChance: '%Crit', critDamagePct: '%doCrit',
+        healPct: 'Soins', healTeamPct: 'Soins éq.',
+        lifestealPct: 'Vol vie', res_all: 'Res.',
+    }
+    const iconFor  = s => s?.startsWith('res.') ? (ELEM_ICONS[s.split('.')[1]] || ELEM_ICONS.neutre) : (ICON[s] || STAT_ICONS.buff)
+    // % only appended for res stats — other PCT stats already carry % in their label
+    const unitFor  = s => (s?.startsWith('res.') || s === 'res_all') ? '%' : ''
+    const labelFor = (s, val) => s?.startsWith('res.') ? 'Res.' : (LABEL[s] || (val >= 0 ? 'Buff' : 'Debuff'))
+    const img      = src => `<img src="${src}" class="cbc-icon" onerror="this.src='img/icons/icon.png'">`
 
-    if (member.shield?.value > 0)
-        chips.push(`<span class="cbc cbc-shield">+${member.shield.value}${img(STAT_ICONS.hp)}:${member.shield.duration}t</span>`)
-
+    // Merge buffs/debuffs by stat (sum values, max duration)
+    const buffsByStat = {}
     for (const b of (member.buffs || [])) {
-        if (b.stat === 'antiHeal') {
-            chips.push(`<span class="cbc cbc-debuff">anti${img(STAT_ICONS.soin)}:${b.duration}t</span>`)
+        if (!buffsByStat[b.stat]) buffsByStat[b.stat] = { value: 0, duration: 0 }
+        buffsByStat[b.stat].value    += b.value
+        buffsByStat[b.stat].duration  = Math.max(buffsByStat[b.stat].duration, b.duration)
+    }
+    for (const [stat, { value, duration }] of Object.entries(buffsByStat)) {
+        if (stat === 'antiHeal') {
+            chips.push(`<span class="cbc cbc-debuff">Anti-soin ${img(STAT_ICONS.soin)} ${duration}t</span>`)
             continue
         }
-        const sign = b.value > 0 ? '+' : ''
-        chips.push(`<span class="cbc ${b.value >= 0 ? 'cbc-buff' : 'cbc-debuff'}">${sign}${Math.round(b.value)}${unitFor(b.stat)}${img(iconFor(b.stat))}:${b.duration}t</span>`)
+        const sign  = value > 0 ? '+' : ''
+        const label = labelFor(stat, value)
+        const cls   = value >= 0 ? 'cbc-buff' : 'cbc-debuff'
+        chips.push(`<span class="cbc ${cls}">${sign}${Math.round(value)}${unitFor(stat)} ${label} ${img(iconFor(stat))} ${duration}t</span>`)
     }
-    for (const d of (member.dots || []))
-        chips.push(`<span class="cbc cbc-dot">-${d.value}${img(ELEM_ICONS[d.element] || ELEM_ICONS.neutre)}:${d.duration}t</span>`)
+
+    // Merge DOTs by element (sum values, max duration)
+    const DOT_LABELS = { feu: 'Brûlure', eau: 'Noyade', air: 'Saignement', terre: 'Poison', neutre: 'Blessure' }
+    const dotsByElem = {}
+    for (const d of (member.dots || [])) {
+        const elem = d.element || 'neutre'
+        if (!dotsByElem[elem]) dotsByElem[elem] = { value: 0, duration: 0 }
+        dotsByElem[elem].value    += d.value
+        dotsByElem[elem].duration  = Math.max(dotsByElem[elem].duration, d.duration)
+    }
+    for (const [elem, { value, duration }] of Object.entries(dotsByElem)) {
+        const dotLabel = DOT_LABELS[elem] || 'Brûlure'
+        chips.push(`<span class="cbc cbc-dot">-${value} ${dotLabel} ${img(ELEM_ICONS[elem] || ELEM_ICONS.neutre)} ${duration}t</span>`)
+    }
+
     for (const h of (member.hots || []))
-        chips.push(`<span class="cbc cbc-hot">+${h.value}${img(STAT_ICONS.soin)}:${h.duration}t</span>`)
+        chips.push(`<span class="cbc cbc-hot">+${h.value} PV ${img(STAT_ICONS.volVie)} ${h.duration}t</span>`)
 
     return chips.join('')
 }
