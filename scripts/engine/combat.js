@@ -1594,7 +1594,9 @@ function executeEffect(ctx) {
                 }
             }
 
+            const _hpBeforeHit = targetEnemy.currentHp || 0
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
+            const _effectiveDmg = _hpBeforeHit - targetEnemy.currentHp   // dégâts réels (sans overkill)
 
             // Érosion : réduit le maxHp de la cible (taux de base 5%, modifiable par effect.erosionRate,
             // un buff 'erosionBonus' sur le lanceur, ou un debuff 'erosionBonus' sur la cible)
@@ -1663,19 +1665,19 @@ function executeEffect(ctx) {
                     }
                 }
             }
-            // Proie lifesteal — calculé sur les dégâts réels post-shield
-            if (_proieLifestealPct > 0 && dmg > 0 && state.team.includes(caster)) {
-                const _proieLsHeal = Math.floor(dmg * _proieLifestealPct / 100 * _getAntiHealFactor(caster))
+            // Proie lifesteal — calculé sur les dégâts réels post-shield et post-overkill
+            if (_proieLifestealPct > 0 && _effectiveDmg > 0 && state.team.includes(caster)) {
+                const _proieLsHeal = Math.floor(_effectiveDmg * _proieLifestealPct / 100 * _getAntiHealFactor(caster))
                 if (_proieLsHeal > 0) {
                     caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + _proieLsHeal)
                     addLog(`Proie → vol de vie ${_proieLsHeal} PV`)
                 }
             }
             // pendingLifesteal : vol de vie sur le prochain sort de dégâts
-            if (dmg > 0 && caster.buffs) {
+            if (_effectiveDmg > 0 && caster.buffs) {
                 const pendingLS = caster.buffs.find(b => b.stat === 'pendingLifesteal')
                 if (pendingLS) {
-                    const healAmt = Math.floor(dmg * pendingLS.value * _getAntiHealFactor(caster))
+                    const healAmt = Math.floor(_effectiveDmg * pendingLS.value * _getAntiHealFactor(caster))
                     if (healAmt > 0) {
                         caster.currentHp = Math.min(caster.maxHp, (caster.currentHp || 0) + healAmt)
                         addLog(`${moveData.name} → vol de vie ${healAmt} PV`)
@@ -1734,7 +1736,7 @@ function executeEffect(ctx) {
                     }
                 }
             }
-            return dmg
+            return _effectiveDmg
         }
 
         case 'dot': {
@@ -1782,7 +1784,7 @@ function executeEffect(ctx) {
             const healRoll = _resolveEffectValue(effect.heal) || 0
             const _healCritMult = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
             const healBase = Math.max(1, Math.floor(
-                (healRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100) * _healCritMult
+                (healRoll * (1 + (casterStats?.atk || 0) * 0.10 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100) * _healCritMult
             ))
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
@@ -1856,7 +1858,7 @@ function executeEffect(ctx) {
         case 'heal_team': {
             const _healTeamCritMult = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
             const healBase = Math.max(1, Math.floor(
-                ((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healTeamPct || 0) / 100) * _healTeamCritMult
+                ((_resolveEffectValue(effect.heal) || 0) * (1 + (casterStats?.atk || 0) * 0.10 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healTeamPct || 0) / 100) * _healTeamCritMult
             ))
             for (const m of state.team) {
                 if (!m || m.currentHp <= 0) continue
@@ -2907,6 +2909,8 @@ function spawnSummon(caster, effect) {
         resolveMonsterMoves(mob.moves).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
         combat.savedMembers          = combat.savedMembers || {}
         combat.savedMembers[slotIdx] = caster
+        combat.savedMemberMoveIndex              = combat.savedMemberMoveIndex || {}
+        combat.savedMemberMoveIndex[slotIdx]     = combat.memberMoveIndex[slotIdx]
         state.team[slotIdx] = {
             id:               effect.summonId,
             name:             mob.name,
@@ -2990,6 +2994,10 @@ function returnAllyToOwner(slotIdx) {
 
     state.team[slotIdx] = original
     delete combat.savedMembers[slotIdx]
+    if (combat.savedMemberMoveIndex?.[slotIdx] != null) {
+        combat.memberMoveIndex[slotIdx] = combat.savedMemberMoveIndex[slotIdx]
+        delete combat.savedMemberMoveIndex[slotIdx]
+    }
     if (combat.interceptor === slotIdx) delete combat.interceptor
     addLog(`${original.name || classes[original.classId]?.name || '?'} reprend le combat !`)
 }
