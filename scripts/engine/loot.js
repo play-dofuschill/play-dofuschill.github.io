@@ -47,6 +47,24 @@ function _isEnutrofActive() {
     return classes[m?.classId]?.passive?.id === 'enutrof'
 }
 
+// ─── Pénalité de drop par delta de niveau ────────────────────────────────────
+// Aucune pénalité si le niveau max de l'équipe <= niveau max de la zone,
+// ou si la modulation de difficulté (skull) est active.
+// Sinon : pénalité = delta / 1.5 %, plafonnée à 95 %.
+
+function _getLevelDropPenaltyMult(areaId) {
+    if (typeof combat !== 'undefined' && combat?.syncedLevel) return 1
+    const area = areas[areaId]
+    if (!area?.maxLevel) return 1
+    const alive = state.team.filter(m => m && m.currentHp > 0)
+    if (!alive.length) return 1
+    const teamMaxLevel = Math.max(...alive.map(m => m.level || 1))
+    const delta = Math.max(0, teamMaxLevel - area.maxLevel)
+    if (delta === 0) return 1
+    const penaltyPct = Math.min(95, delta / 1.5)
+    return (100 - penaltyPct) / 100
+}
+
 // ─── Drop d'items depuis la loot table d'une zone ────────────────────────────
 // La pierreDame est exclue ici — elle est traitée dans processVictoryLoot.
 
@@ -63,7 +81,8 @@ function rollItemDrops(areaId, lootTableOverride = null) {
 
     // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
     const itemEntries = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
-    const totalChance = Math.min(0.95, itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus)
+    const levelMult   = _getLevelDropPenaltyMult(areaId)
+    const totalChance = Math.min(0.95, (itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus) * levelMult)
 
     if (Math.random() >= totalChance) return []
 
@@ -86,7 +105,7 @@ function addToInventory(itemId) {
     if (!itm) return null
 
     // Items sans levelMax (ressources, clés) : empilement par count uniquement
-    if (!itm.levelMax) {
+    if (!itm.itemLevelMax) {
         if (!state.inventory[itemId]) state.inventory[itemId] = { count: 0 }
         state.inventory[itemId].count = (state.inventory[itemId].count || 0) + 1
         return { itemId, level: 0, leveledUp: false, convertedToKamas: false }
@@ -98,7 +117,7 @@ function addToInventory(itemId) {
     }
 
     const current = state.inventory[itemId]
-    const maxLvl  = itm.levelMax
+    const maxLvl  = itm.itemLevelMax
 
     if (current.level < maxLvl) {
         current.level++
@@ -159,7 +178,8 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
 
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100
+    const skullBonusPV = [0, 0.10, 0.15, 0.20][state.skullLevel] || 0
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + (combat?.dropBonusCombat || 0) / 100 + skullBonusPV
 
     if (enemy.isArchi) {
         // Archimonstre / Archiboss : capture garantie à 100%
@@ -169,7 +189,8 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
         const baseChance = soulStoneEntry
             ? soulStoneEntry.dropRate
             : (monsters[enemy.id]?.dropRate ?? 0)
-        const dropChance = Math.min(0.95, baseChance + dropBonus)
+        const levelMult  = _getLevelDropPenaltyMult(state.currentArea)
+        const dropChance = Math.min(0.95, (baseChance + dropBonus) * levelMult)
 
         if (Math.random() < dropChance) {
             familiarDrop = _captureFamiliar(enemy.id)

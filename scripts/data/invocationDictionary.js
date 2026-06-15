@@ -133,77 +133,197 @@ summons.fee_accablante = {
 // #endregion
 // #region ENUTROF ──────────────────────────────────────────────
 
-move.interception = {
-    id: 'interception',
-    name: 'Interception',
+move.Sac_Rifice = {
+    id: 'Sac_Rifice',
+    name: 'Sac Rifice',
     cooldownMs: 2000,
     effects: [{ type: 'interception', target: 'self' }]
 }
-move.frappe_de_pelle = {
-    id: 'frappe_de_pelle',
-    name: 'Frappe de Pelle',
-    cooldownMs: 2000,
-    effects: [
-        { type: 'recul',        target: 'enemy' },
-        { type: 'interception', target: 'self' }
-    ]
+move.Deblayage = {
+    id: 'Deblayage',
+    name: 'Déblayage',
+    cooldownMs: 1500,
+    effects: [{ type: 'recul', target: 'enemy' }]
 }
-
+move.Butin_Partage = {
+    id: 'Butin_Partage',
+    name: 'Butin Partagé',
+    cooldownMs: 2000,
+    effects: [{ type: 'damageShare', redirectPct: 50, duration: 3, splitToTeam: true, target: 'owner' }]
+}
+move.Bechattaque = {
+    id: 'Bechattaque',
+    name: 'Bêchattaque',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage',    element: 'terre', damage: { min: 24, max: 30 }, target: 'enemy' }]
+}
+move.Prospection = {
+    id: 'Prospection',
+    name: 'Prospection',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage',    element: 'eau', damage: { min: 24, max: 30 }, target: 'enemy' }]
+}
+move.Malle_aux_Tresors = {
+    id: 'Malle_aux_Tresors',
+    name: 'Malle aux Trésors',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage',    element: 'feu', damage: { min: 24, max: 30 }, target: 'enemy' },{type: 'drop_bonus', value: 10}]
+}
+move.Pelle_de_Fortune = {
+    id: 'Pelle_de_Fortune',
+    name: 'Pelle de Fortune',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage',    element: 'air', damage: { min: 24, max: 30 }, target: 'enemy' },{type: 'drop_bonus', value: 10}]
+}
 summons.pelle_animee = {
     id:    'pelle_animee',
     name:  'Pelle Animée',
     image: 'img/classes/invocations/pelle_animee.png',
     bst:   { spd: 100 },
-    moves: ['frappe_de_pelle']
+    moves: ['Deblayage']
 }
 summons.sac_anime = {
     id:    'sac_anime',
     name:  'Sac Animé',
     image: 'img/classes/invocations/sac_anime.png',
     bst:   { spd: 110 },
-    moves: ['interception']
+    moves: ['Sac_Rifice']
+}
+summons.musette_anime = {
+    id:    'musette_anime',
+    name:  'Musette Animée',
+    image: 'img/classes/invocations/musette_anime.png',
+    bst:   { spd: 110 },
+    moves: ['Butin_Partage']
+}
+summons.beche_anime = {
+    id:    'beche_anime',
+    name:  'Bêche Animée',
+    image: 'img/classes/invocations/beche_anime.png',
+    bst:   { spd: 110 },
+    moves: ['Bechattaque']
+}
+summons.coffre_anime = {
+    id:    'coffre_anime',
+    name:  'Coffre Animé',
+    image: 'img/classes/invocations/coffre_anime.png',
+    bst:   { spd: 110 },
+    moves: ['Prospection']
+}
+summons.malle_anime = {
+    id:    'malle_anime',
+    name:  'Malle Animée',
+    image: 'img/classes/invocations/malle_anime.png',
+    bst:   { spd: 110 },
+    moves: ['Malle_aux_Tresors']
+}
+summons.Pelle_Fortunee = {
+    id:    'Pelle_Fortunee',
+    name:  'Pelle Fortunée',
+    image: 'img/classes/invocations/pelle_de_fortune.png',
+    bst:   { spd: 110 },
+    moves: ['Pelle_de_Fortune']
 }
 
 // #endregion
 // #region SACRIEUR ────────────────────────────────────────────────
 
-move.tranchee_sanglante = {
-    id: 'tranchee_sanglante',
-    name: 'Tranchée Sanglante',
+move.tourbillon_Sanglant = {
+    id: 'tourbillon_Sanglant',
+    name: 'Tourbillon Sanglant',
     cooldownMs: 2200,
     effects: [
-        { type: 'damage',    element: 'neutre', damage: { min: 10, max: 14 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 0.10, target: 'ally_min_hp' }
-    ]
+        { type: 'damage',    element: 'neutre', damage: { min: 24, max: 30 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.10, target: 'ally_min_hp' }]
 }
-
+move.Soif_de_Sang = {
+    id: 'Soif_de_Sang',
+    name: 'Soif de Sang',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage',    element: 'neutre', damage: { min: 24, max: 30 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.10, target: 'self' }]
+}
 summons.epee_vorace = {
     id:    'epee_vorace',
     name:  'Épée Vorace',
     image: 'img/classes/invocations/epee_vorace.png',
     bst:   { spd: 100 },
-    moves: ['tranchee_sanglante']
+    moves: ['tourbillon_Sanglant','Soif_de_Sang']
 }
 
+move.tourbillon_Sanglant = {
+    id: 'tourbillon_Sanglant',
+    name: 'Tourbillon Sanglant',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage',    element: 'neutre', damage: { min: 24, max: 30 }, target: 'enemy' },
+        { type: 'avance', target: 'enemy' }]
+}
+move.Danse_Mortelle = {
+    id: 'Danse_Mortelle',
+    name: 'Danse Mortelle',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage',    element: 'neutre', damage: { min: 24, max: 30 }, target: 'enemy' },
+        { type: 'recul', target: 'enemy' }]
+}
+summons.Danse_lames = {
+    id:    'Danse_lames',
+    name:  'Danse-lames',
+    image: 'img/classes/invocations/epee_dansante.png',
+    bst:   { spd: 100 },
+    moves: ['Danse_lames','Danse Mortelle']
+}
 // #endregion
 // #region ECAFLIP ─────────────────────────────────────────────────
 
-move.griffade = {
-    id: 'griffade',
-    name: 'Griffade',
+move.ame_Feline = {
+    id: 'ame_Feline',
+    name: 'Âme Féline',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 6, max: 9 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 50, max: 65 }, target: 'enemy' },
         { type: 'buff', stat: 'critChance', value: 5, duration: 2, target: 'ally_random' }
     ]
 }
-
+move.Deplacement_Felin = {
+    id: 'Deplacement_Felin',
+    name: 'Déplacement Félin',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self' }]
+}
+move.Rugissement = {
+    id: 'Rugissement',
+    name: 'Rugissement',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'atk', value: 50, duration: 2, target: 'self' }]
+}
 summons.chaton_enrage = {
     id:    'chaton_enrage',
     name:  'Chaton Enragé',
     image: 'img/classes/invocations/chaton_enrage.png',
     bst:   { spd: 120 },
-    moves: ['griffade']
+    moves: ['ame_Feline','Rugissement','Deplacement_Felin']
+}
+move.Pattes_de_lExpert = {
+    id: 'Pattes_de_lExpert',
+    name: "Pattes de l'Expert",
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'ally_random' }]
+}
+move.Mistigri = {
+    id: 'Mistigri',
+    name: 'Mistigri',
+    cooldownMs: 2000,
+    effects: [{ type: 'heal', heal: { min: 120, max: 130 }, target: 'ally_min_hp' }]
+}
+summons.chaton_affectueux = {
+    id:    'chaton_affectueux',
+    name:  'Chaton Affectueux',
+    image: 'img/classes/invocations/chaton_affectueux.png',
+    bst:   { spd: 100 },
+    moves: ['Mistigri','Pattes_de_lExpert']
 }
 
 // #endregion
@@ -222,6 +342,36 @@ summons.gardien_Elementaire = {
     scale: 2,
     bst:   { spd: 100 },
     moves: ['rayon_quadramental']
+}
+
+// #endregion
+// #region IOP ──────────────────────────────────────────────────────────────────
+
+summons.stratege_iop = {
+    id:    'stratege_iop',
+    name:  'Stratège Iop',
+    image: 'img/classes/invocations/stratege_iop.png',
+    bst:   { spd: 100 },
+    moves: [],
+    ownerPassive: { stat: 'finalDamagePct', value: 50, damageCostPct: 50 }
+}
+
+// #endregion
+// #region ZOBAL ────────────────────────────────────────────────────────────────
+
+move.partage_douleur = {
+    id: 'partage_douleur',
+    name: 'Partage de Douleur',
+    cooldownMs: 3000,
+    effects: [{ type: 'damageShare', redirectPct: 50, duration: 3, target: 'owner' }]
+}
+
+summons.grimace_zobal = {
+    id:    'grimace_zobal',
+    name:  'Grimace',
+    image: 'img/classes/invocations/grimace_zobal.png',
+    bst:   { spd: 110 },
+    moves: ['partage_douleur']
 }
 
 // #endregion

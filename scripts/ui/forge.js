@@ -52,7 +52,7 @@ function _getForgeFuse() {
 
 function _isItemForgeable(itm, entry) {
     if (!itm || itm.type !== 'equipment' || !itm.stats?.length) return false
-    const minLevel = itm.levelMax || 20
+    const minLevel = itm.itemLevelMax || 20
     return !!(entry && entry.level >= minLevel)
 }
 
@@ -171,7 +171,7 @@ function _renderForgeList(content) {
 
     let html = `<div class="forge-bubble-list">`
     for (const { itemId, entry, itm, forgeable, forgedCount, maxSlots } of entries) {
-        const levelBadge = itm.levelMax ? `<span class="bubble-level">Niv.${entry.level}</span>` : ''
+        const levelBadge = itm.itemLevelMax ? `<span class="bubble-level">Niv.${entry.level}</span>` : ''
         const forgeBadge = forgedCount > 0
             ? `<span class="forge-bubble-badge">${forgedCount}/${maxSlots}✦</span>`
             : (forgeable ? `<span class="forge-bubble-ready">⚒</span>` : '')

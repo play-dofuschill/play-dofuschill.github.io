@@ -493,12 +493,14 @@ function openEquipFromSheet(classId, slotId) {
     compatible.forEach(itm => itm.stats?.forEach(s => statSet.add(s.stat)))
     const filterStats = [...statSet].map(s => [s, EQUIP_STAT_LABELS[s] || s])
 
+    const _sheetSkullLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) ? combat.syncedLevel : null
     _equipPickState = {
         items: compatible,
         filter: null,
         sort: 'level',
         takenByOther,
-        skullMaxLevel: null,
+        skullMaxLevel: _sheetSkullLvl,
+        memberLevel: member.level || null,
         isFamiliar: false,
         fromClassId: classId,
         onEquip:  (id) => equipItemFromSheet(classId, slotId, id),
@@ -513,6 +515,12 @@ function openEquipFromSheet(classId, slotId) {
 function equipItemFromSheet(classId, slotId, itemId) {
     const member = state.team.find(m => m && m.classId === classId)
     if (!member) return
+    if (itemId) {
+        const itm = item[itemId]
+        const _syncedLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) || null
+        const _lvlCap = _syncedLvl ?? (member.level || 0)
+        if (itm?.requiredLevel && itm.requiredLevel > _lvlCap) return
+    }
 
     member.equip[slotId] = itemId
     const stats = getEffectiveStats(member)
@@ -1091,11 +1099,15 @@ function showMoveTooltip(moveId, casterStats) {
     }
 
     const cooldownSec = mv.cooldownMs ? (mv.cooldownMs / 1000).toFixed(1) + 's' : '—'
+    const _spd = casterStats?.spd
+    const _realSec = (mv.cooldownMs && _spd && _spd !== 100)
+        ? (mv.cooldownMs / (_spd / 100) / 1000).toFixed(1) + 's'
+        : null
     const unlockHtml  = unlockLvl !== null ? `<div class="mt-unlock">Débloqué au niveau ${unlockLvl}</div>` : ''
     const descHtml    = mv.description ? `<div class="mt-desc">${mv.description}</div>` : ''
 
     const body = `<div class="move-tooltip">
-        <div class="mt-cooldown">Recharge : ${cooldownSec}</div>
+        <div class="mt-cooldown">Recharge : ${cooldownSec}${_realSec ? ` <span style="color:#4ecb71">(${_realSec})</span>` : ''}</div>
         ${unlockHtml}
         ${descHtml}
         ${effectsHtml}

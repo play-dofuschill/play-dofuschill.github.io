@@ -27,7 +27,7 @@ const CLASS_UNLOCK_CONDITIONS = {
             ['kwakVent',   'kwakereVent',   'scarafeuilleBlanc'],
         ]
         const elementsCovered = byElement.every(group => group.some(id => (s.collection[id]?.drops ?? 0) >= 1))
-        const bossesLeveled   = ['scarabossDoree', 'kwakwa'].every(id => (s.collection[id]?.level ?? 0) >= 30)
+        const bossesLeveled   = ['scarabossDoree', 'kwakwa'].every(id => (s.collection[id]?.level ?? 0) >= 10)
         return elementsCovered && bossesLeveled
     },
 
@@ -35,7 +35,7 @@ const CLASS_UNLOCK_CONDITIONS = {
 
     osamodas: (s) => Object.values(s.collection).filter(c => (c.drops ?? 0) >= 1).length >= 200,
 
-    zobal: (s) => (s.collection['dragonCochon']?.drops ?? 0) >= 1,
+    zobal: (s) => s.defeatedBosses?.includes('dragonCochon'),
 
     sram: (s) => {
         const ratNoirItems = [] // TODO: remplir avec les IDs des items de la panoplie rat_noir
@@ -44,7 +44,7 @@ const CLASS_UNLOCK_CONDITIONS = {
 
     feca: (s) => {
         const bouftouRoyalItems = Object.values(item).filter(i => Array.isArray(i.set) ? i.set.includes('bouftouRoyal') : i.set === 'bouftouRoyal')
-        return bouftouRoyalItems.length > 0 && bouftouRoyalItems.every(i => (s.inventory[i.id]?.level ?? 0) >= i.levelMax)
+        return bouftouRoyalItems.length > 0 && bouftouRoyalItems.every(i => (s.inventory[i.id]?.level ?? 0) >= i.itemLevelMax)
     },
 
     ouginak: (s) => s.defeatedBosses?.includes('meulou'),

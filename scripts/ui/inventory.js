@@ -150,7 +150,7 @@ function updateInventoryUI() {
         card.className    = 'game-bubble'
         card.dataset.help = itemId
         card.title        = itm.name
-        const badge = itm.levelMax
+        const badge = itm.itemLevelMax
             ? `<span class="bubble-level">Niv.${entry.level}</span>`
             : entry.count > 1 ? `<span class="bubble-level">×${entry.count}</span>` : ''
         card.innerHTML = `${badge}<img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
@@ -310,13 +310,54 @@ function showItemTooltip(itemId, fromClassId) {
     }
 
     const slotLabel = (typeof MS_SLOT_LABELS !== 'undefined' && MS_SLOT_LABELS[itm.slot]) || itm.slot || ''
-    const lvlBar = itm.levelMax ? `<div class="item-sheet-level-row">
-        <div class="item-level-bar"><div class="item-level-fill" style="width:${lvl && itm.levelMax ? (lvl/itm.levelMax)*100 : 0}%"></div></div>
-        <span class="item-sheet-level">Niv. ${lvl} / ${itm.levelMax}</span>
+    const lvlBar = itm.itemLevelMax ? `<div class="item-sheet-level-row">
+        <div class="item-level-bar"><div class="item-level-fill" style="width:${lvl && itm.itemLevelMax ? (lvl/itm.itemLevelMax)*100 : 0}%"></div></div>
+        <span class="item-sheet-level">Niv. ${lvl} / ${itm.itemLevelMax}</span>
     </div>` : ''
 
-    const rarityHtml = itm.rarity ? `<span class="rarity-${itm.rarity}" style="font-size:0.72rem;">${itm.rarity.replace('_', ' ')}</span>` : ''
-    const descHtml   = itm.description ? `<p class="item-sheet-desc">${itm.description}</p>` : ''
+    const rarityHtml  = itm.rarity ? `<span class="rarity-${itm.rarity}" style="font-size:0.72rem;">${itm.rarity.replace('_', ' ')}</span>` : ''
+    const reqLvlHtml  = itm.requiredLevel ? `<div class="item-req-level" style="font-size:0.75rem;opacity:0.75;margin-top:0.2rem;">Niveau requis : ${itm.requiredLevel}</div>` : ''
+    const descHtml    = itm.description ? `<p class="item-sheet-desc">${itm.description}</p>` : ''
+
+    // Passifs de l'item (effects)
+    const _passifLines = (itm.effects || []).filter(e => !e.every).map(e => {
+        const chance = e.on_effect?.chancePct != null ? `${e.on_effect.chancePct}% : ` : ''
+        const src    = e.on_effect?.source === 'enemy' ? 'ennemi' : e.on_effect?.source === 'ally' ? 'allié' : null
+        const critOnly = e.on_effect?.crit_only ? ' critique' : ''
+        const types  = e.on_effect?.type ? (Array.isArray(e.on_effect.type) ? e.on_effect.type : [e.on_effect.type]) : []
+        const typeStr = types.map(t => ({ damage:'dégâts', dot:'DoT', heal:'soin', 'heal%maxHp':'soin', buff:'buff', debuff:'débuff' }[t] || t)).filter((v,i,a)=>a.indexOf(v)===i).join('/')
+
+        if (e.reaction === 'cancel')
+            return `${chance}Annule les ${src ? src + ' ' : ''}${critOnly}${typeStr}`
+        if (e.reaction === 'heal_to_damage') {
+            const el  = e.element || 'neutre'
+            const raw = e.rawDamage ? `${e.rawDamage.min}–${e.rawDamage.max}` : ''
+            return `${chance}Convertit les soins${src ? ' ' + src + 's' : ''} en dégâts ${el}${raw ? ` (${raw})` : ''}`
+        }
+        if (e.reaction === 'crit_absorb_heal')
+            return `${chance}Absorbe un coup${critOnly} ${src || ''} et soigne ${e.heal_pct ?? 20}% des dégâts`
+        if (e.reaction === 'trigger') {
+            const tgt = e.target === 'self' ? '(soi)' : e.target || ''
+            return `${chance}Au ${typeStr} ${src || ''} : ${e.value > 0 ? '+' : ''}${e.value} ${e.stat} × ${e.duration} tours ${tgt}`
+        }
+        return null
+    }).filter(Boolean)
+
+    const _passifPeriodic = (itm.effects || []).filter(e => e.every).map(e => {
+        const after  = e.after ? ` (après le ${e.after}e)` : ''
+        if (e.type === 'heal%maxHp') return `Tous les ${e.every} sorts${after} : soin de ${e.heal}% des PV max`
+        if (e.type === 'heal')       return `Tous les ${e.every} sorts${after} : soin de ${e.heal} PV`
+        if (e.type === 'buff')       return `Tous les ${e.every} sorts${after} : +${e.value} ${e.stat} × ${e.duration} tours`
+        return null
+    }).filter(Boolean)
+
+    const allPassifs = [..._passifPeriodic, ..._passifLines]
+    const passifHtml = allPassifs.length
+        ? `<div class="item-passif-block" style="margin:0.4rem 0;padding:0.4rem 0.5rem;border-left:3px solid #7c5cfc;font-size:0.78rem;line-height:1.5;opacity:0.9;">
+            <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;opacity:0.6;margin-bottom:0.2rem;">Passif</div>
+            ${allPassifs.map(l => `<div>⚡ ${l}</div>`).join('')}
+           </div>`
+        : ''
 
     const body = `<div class="item-sheet">
         <div class="item-sheet-header">
@@ -327,10 +368,12 @@ function showItemTooltip(itemId, fromClassId) {
                     ${rarityHtml}
                 </div>
                 ${lvlBar}
+                ${reqLvlHtml}
             </div>
         </div>
         ${statsHtml ? `<div class="item-stats-block">${statsHtml}</div>` : ''}
         ${setHtml}
+        ${passifHtml}
         ${descHtml}
     </div>`
 
@@ -346,10 +389,14 @@ function equipFullPanoplie(setId, classId) {
     const RING_SLOTS = ['anneau', 'anneau2']
     let ringUsed = 0
 
+    const _panoSyncedLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) || null
+    const _panoLvlCap    = _panoSyncedLvl ?? (member.level || 0)
+
     for (const pieceId of (pano.pieces || [])) {
         if (!state.inventory[pieceId]) continue   // seulement les items possédés
         const itm = item[pieceId]
         if (!itm) continue
+        if (itm.requiredLevel && itm.requiredLevel > _panoLvlCap) continue
         let slot = itm.slot
         if (slot === 'anneau') {
             slot = RING_SLOTS[ringUsed] || 'anneau2'

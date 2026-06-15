@@ -175,6 +175,13 @@ function applyProgression(spell, lvl) {
         if (effect.type === 'damage' && patch.damage) {
             effect.damage = patch.damage
         }
+        if (effect.type === 'damage' && patch.stackedDamageDelta && effect.stackedDamage) {
+            const d = patch.stackedDamageDelta
+            effect.stackedDamage = effect.stackedDamage.map(tier => ({
+                min: tier.min + (d.min || 0),
+                max: tier.max + (d.max || 0)
+            }))
+        }
         if (effect.type === 'damage' && patch.erosionRate !== undefined) {
             effect.erosionRate = patch.erosionRate
         }

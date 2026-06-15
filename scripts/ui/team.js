@@ -147,7 +147,8 @@ function renderEquipSlots(member, slotIndex) {
             if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
             return null
         })()
-        const isLocked = itm && _skullCap !== null && itm.requiredLevel && itm.requiredLevel > _skullCap
+        const _lvlCap = _skullCap !== null ? _skullCap : (member.level || null)
+        const isLocked = itm && _lvlCap !== null && itm.requiredLevel && itm.requiredLevel > _lvlCap
         return `<div class="equip-bubble${isLocked ? ' equip-bubble-locked' : ''}"
                      onclick="openEquipSelector(${slotIndex}, '${slot}')"
                      ${itemId ? `data-help="${itemId}"` : ''}
@@ -388,7 +389,7 @@ function setEquipPickSort(sortKey) {
 function renderEquipPickGrid() {
     const grid = document.querySelector('.equip-pick-grid')
     if (!grid || !_equipPickState) return
-    const { items, filter, sort, takenByOther, skullMaxLevel, isFamiliar } = _equipPickState
+    const { items, filter, sort, takenByOther, skullMaxLevel, memberLevel, isFamiliar } = _equipPickState
 
     let filtered = filter
         ? items.filter(e => isFamiliar
@@ -408,9 +409,12 @@ function renderEquipPickGrid() {
     // Familiers verrouillés : masqués entièrement (pas de bonus visible avant déblocage)
     if (isFamiliar) filtered = filtered.filter(e => !isFamLocked(e))
 
-    const isDisabled = e =>
-        takenByOther.has(e.id) ||
-        (!isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel)
+    const _effectiveLvlCap = !isFamiliar
+        ? (skullMaxLevel !== null ? skullMaxLevel : (memberLevel || null))
+        : null
+    const isLevelLocked = e => _effectiveLvlCap !== null && e.requiredLevel && e.requiredLevel > _effectiveLvlCap
+
+    const isDisabled = e => takenByOther.has(e.id) || isLevelLocked(e)
 
     const available = filtered.filter(e => !isDisabled(e))
     const disabled  = filtered.filter(e =>  isDisabled(e))
@@ -418,7 +422,7 @@ function renderEquipPickGrid() {
     let html = ''
     for (const e of [...available, ...disabled]) {
         const taken    = takenByOther.has(e.id)
-        const locked   = isFamLocked(e) || (!isFamiliar && skullMaxLevel !== null && e.requiredLevel && e.requiredLevel > skullMaxLevel)
+        const locked   = isFamLocked(e) || isLevelLocked(e)
         const disClass = locked ? ' equip-pick-locked' : taken ? ' equip-pick-disabled' : ''
         const handler  = (taken || locked) ? '' : `onclick="_doEquipPick('${e.id}')"`
 
@@ -571,6 +575,7 @@ function openEquipSelector(memberIndex, equipSlot) {
         sort: 'level',
         takenByOther,
         skullMaxLevel: _skullMaxLevel,
+        memberLevel: member.level || null,
         isFamiliar: false,
         fromClassId: member.classId || null,
         onEquip:  (id) => { equipItem(memberIndex, equipSlot, id); closeTooltip() },
@@ -585,6 +590,12 @@ function openEquipSelector(memberIndex, equipSlot) {
 function equipItem(memberIndex, equipSlot, itemId) {
     const member = state.team[memberIndex]
     if (!member) return
+    if (itemId) {
+        const itm = item[itemId]
+        const _syncedLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) || null
+        const _lvlCap = _syncedLvl ?? (member.level || 0)
+        if (itm?.requiredLevel && itm.requiredLevel > _lvlCap) return
+    }
     member.equip[equipSlot] = itemId
 
     const stats = getEffectiveStats(member)

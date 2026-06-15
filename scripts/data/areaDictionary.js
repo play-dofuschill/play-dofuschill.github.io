@@ -15,24 +15,24 @@ areas.cimetiereincarnam = {
     name: "Cimetiere d'Incarnam",
     minLevel: 1, maxLevel: 20,
     mobMinLevel: 1, mobMaxLevel: 10,
-    background: 'cimetiere_incarnam',
-    icon: 'img/monstres/sprites/chaferDebutant.png',
+    background: "cimetiere_incarnam",
+    icon: "img/monstres/sprites/chaferDebutant.png",
     description: "Cimetière où reposent les âmes de nombreux aventuriers tombés au combat.",
     spawns: [
-        { id: 'chaferDebutant',  weight: 22 },
+        { id: 'chaferDebutant', weight: 22 },
         { id: 'chaferEclaireur', weight: 22 },
-        { id: 'chaferFurtif',    weight: 22 },
-        { id: 'chaferPiquier',   weight: 22 },
-        { id: 'sergentChafer',   weight: 12 }
+        { id: 'chaferFurtif', weight: 22 },
+        { id: 'chaferPiquier', weight: 22 },
+        { id: 'sergentChafer', weight: 12 }
     ],
     lootTable: [
-        { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'bottesAventurier',  dropRate: 0.01 },
-        { itemId: 'capeAventurier',    dropRate: 0.01 },
-        { itemId: 'chapeauAventurier', dropRate: 0.01 },
-        { itemId: 'anneauAventurier',  dropRate: 0.01 },
-        { itemId: 'ceintureAventurier',dropRate: 0.01 },
-        { itemId: 'amuletteAventurier',dropRate: 0.01 },
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'bottes_de_l_aventurier', dropRate: 0.01 },
+        { itemId: 'cape_de_l_aventurier', dropRate: 0.01 },
+        { itemId: 'chapeau_de_l_aventurier', dropRate: 0.01 },
+        { itemId: 'anneau_de_l_aventurier', dropRate: 0.01 },
+        { itemId: 'ceinture_de_l_aventurier', dropRate: 0.01 },
+        { itemId: 'amulette_de_l_aventurier', dropRate: 0.01 },
         { itemId: 'cleDonjonKardorim', dropRate: 0.15, isKey: true }
     ]
 }
@@ -53,13 +53,13 @@ areas.champsAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',       dropRate: 0.45 },
-        { itemId: 'sac_paysan',       dropRate: 0.01 },
-        { itemId: 'chapeau_paysan',   dropRate: 0.01 },
-        { itemId: 'bottes_paysan',    dropRate: 0.01 },
-        { itemId: 'anneau_paysan',    dropRate: 0.01 },
-        { itemId: 'amulette_paysan',  dropRate: 0.01 },
-        { itemId: 'ceinture_paysan',  dropRate: 0.01 },
-        { itemId: 'faux_paysan',      dropRate: 0.01 },
+        { itemId: 'sac_du_paysan',       dropRate: 0.01 },
+        { itemId: 'bob_du_paysan',   dropRate: 0.01 },
+        { itemId: 'bottes_paysannes',    dropRate: 0.01 },
+        { itemId: 'mitaines_mitees_du_paysan',    dropRate: 0.01 },
+        { itemId: 'amulette_paysanne',  dropRate: 0.01 },
+        { itemId: 'ceinturemuda_du_paysan',  dropRate: 0.01 },
+        { itemId: 'faux_usee_du_paysan',      dropRate: 0.01 },
         { itemId: 'cleDonjonChamps',  dropRate: 0.15, isKey: true }
     ]
 }
@@ -80,14 +80,14 @@ areas.plageAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'cape_mousse',       dropRate: 0.01 },
-        { itemId: 'coiffe_mousse',     dropRate: 0.01 },
-        { itemId: 'bottes_mousse',     dropRate: 0.01 },
-        { itemId: 'anneau_mousse',     dropRate: 0.01 },
-        { itemId: 'amulette_mousse',   dropRate: 0.01 },
-        { itemId: 'ceinture_mousse',   dropRate: 0.01 },
-        { itemId: 'pelle_mousse',      dropRate: 0.01 },
-        { itemId: 'bouclier_mousse',   dropRate: 0.01 },
+        { itemId: 'cape_en_mousse',       dropRate: 0.01 },
+        { itemId: 'coiffe_en_mousse',     dropRate: 0.01 },
+        { itemId: 'bottes_en_mousse',     dropRate: 0.01 },
+        { itemId: 'anneau_en_mousse',     dropRate: 0.01 },
+        { itemId: 'amulette_en_mousse',   dropRate: 0.01 },
+        { itemId: 'ceinture_en_mousse',   dropRate: 0.01 },
+        { itemId: 'pelle_en_mousse',      dropRate: 0.01 },
+        { itemId: 'bouclier_en_mousse',   dropRate: 0.01 },
         { itemId: 'cleDonjonSable',    dropRate: 0.15, isKey: true }
     ]
 }
@@ -104,18 +104,18 @@ areas.tainela = {
         { id: 'bouftonBlanc',        weight: 22 },
         { id: 'bouftonNoir',         weight: 22 },
         { id: 'bouftouNoir',         weight: 22 },
-        { id: 'bouftouChefDeGuerre', weight: 12 }
+        { id: 'Chef_de_Guerre_Bouftou', weight: 12 }
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
-        { itemId: 'cape_bouftou',     dropRate: 0.01 },
-        { itemId: 'coiffe_bouftou',   dropRate: 0.01 },
-        { itemId: 'bottes_bouftou',   dropRate: 0.01 },
-        { itemId: 'marteau_bouftou',  dropRate: 0.01 },
-        { itemId: 'anneau_bouftou',   dropRate: 0.01 },
-        { itemId: 'amulette_bouftou', dropRate: 0.01 },
-        { itemId: 'ceinture_bouftou', dropRate: 0.01 },
-        { itemId: 'bouclier_bouftou', dropRate: 0.01 },
+        { itemId: 'cape_bouffante',     dropRate: 0.01 },
+        { itemId: 'coiffe_du_bouftou',   dropRate: 0.01 },
+        { itemId: 'boufbottes',   dropRate: 0.01 },
+        { itemId: 'marteau_du_bouftou',  dropRate: 0.01 },
+        { itemId: 'anneau_de_bouze_le_clerc',   dropRate: 0.01 },
+        { itemId: 'amulette_du_bouftou', dropRate: 0.01 },
+        { itemId: 'ceinture_du_bouftou', dropRate: 0.01 },
+        { itemId: 'bouclier_du_bouftou', dropRate: 0.01 },
         { itemId: 'cleDonjonBouftou', dropRate: 0.15, isKey: true }
     ]
 }
@@ -136,26 +136,26 @@ areas.scarafeuilles = {
     ],
     lootTable: [
         { itemId: 'pierreDame',      dropRate: 0.45 },
-        { itemId: 'cape_scarafeuille_blanc',    dropRate: 0.01 },
-        { itemId: 'coiffe_scarafeuille_blanc',  dropRate: 0.01 },
-        { itemId: 'anneau_scarafeuille_blanc',  dropRate: 0.01 },
-        { itemId: 'ceinture_scarafeuille_blanc',dropRate: 0.01 },
-        { itemId: 'cape_scarafeuille_bleu',     dropRate: 0.01 },
-        { itemId: 'coiffe_scarafeuille_bleu',   dropRate: 0.01 },
-        { itemId: 'anneau_scarafeuille_bleu',   dropRate: 0.01 },
-        { itemId: 'ceinture_scarafeuille_bleu', dropRate: 0.01 },
-        { itemId: 'cape_scarafeuille_rouge',    dropRate: 0.01 },
-        { itemId: 'coiffe_scarafeuille_rouge',  dropRate: 0.01 },
-        { itemId: 'anneau_scarafeuille_rouge',  dropRate: 0.01 },
-        { itemId: 'ceinture_scarafeuille_rouge',dropRate: 0.01 },
-        { itemId: 'cape_scarafeuille_vert',     dropRate: 0.01 },
-        { itemId: 'coiffe_scarafeuille_vert',   dropRate: 0.01 },
-        { itemId: 'anneau_scarafeuille_vert',   dropRate: 0.01 },
-        { itemId: 'ceinture_scarafeuille_vert', dropRate: 0.01 },
-        { itemId: 'cape_scarafeuille_noir',     dropRate: 0.005 },
-        { itemId: 'coiffe_scarafeuille_noir',   dropRate: 0.005 },
-        { itemId: 'anneau_scarafeuille_noir',   dropRate: 0.005 },
-        { itemId: 'ceinture_scarafeuille_noir', dropRate: 0.005 },
+        { itemId: 'scaracape_blanche',   dropRate: 0.01 },
+        { itemId: 'scaracoiffe_blanche', dropRate: 0.01 },
+        { itemId: 'scaranneau_blanc',    dropRate: 0.01 },
+        { itemId: 'scarature_blanche',   dropRate: 0.01 },
+        { itemId: 'scaracape_bleue',     dropRate: 0.01 },
+        { itemId: 'scaracoiffe_bleue',   dropRate: 0.01 },
+        { itemId: 'scaranneau_bleu',     dropRate: 0.01 },
+        { itemId: 'scarature_bleue',     dropRate: 0.01 },
+        { itemId: 'scaracape_rouge',     dropRate: 0.01 },
+        { itemId: 'scaracoiffe_rouge',   dropRate: 0.01 },
+        { itemId: 'scaranneau_rouge',    dropRate: 0.01 },
+        { itemId: 'scarature_rouge',     dropRate: 0.01 },
+        { itemId: 'scaracape_verte',     dropRate: 0.01 },
+        { itemId: 'scaracoiffe_verte',   dropRate: 0.01 },
+        { itemId: 'scaranneau_vert',     dropRate: 0.01 },
+        { itemId: 'scarature_verte',     dropRate: 0.01 },
+        { itemId: 'scaracape_noire',     dropRate: 0.005 },
+        { itemId: 'scaracoiffe_noire',   dropRate: 0.005 },
+        { itemId: 'scaranneau_noir',     dropRate: 0.005 },
+        { itemId: 'scarature_noire',     dropRate: 0.005 },
         { itemId: 'cleDonjonScarafeuille',      dropRate: 0.15, isKey: true }
     ]
 }
@@ -179,34 +179,34 @@ areas.Kwaks = {
     ],
     lootTable: [
         { itemId: 'pierreDame',            dropRate: 0.45 },
-        { itemId: 'cape_kwak_vent',        dropRate: 0.005 },
-        { itemId: 'coiffe_kwak_vent',      dropRate: 0.005 },
-        { itemId: 'bottes_kwak_vent',      dropRate: 0.005 },
-        { itemId: 'anneau_kwak_vent',      dropRate: 0.005 },
-        { itemId: 'amulette_kwak_vent',    dropRate: 0.005 },
-        { itemId: 'ceinture_kwak_vent',    dropRate: 0.005 },
-        { itemId: 'epee_kwak_vent',        dropRate: 0.005 },
-        { itemId: 'cape_kwak_glace',       dropRate: 0.005 },
-        { itemId: 'coiffe_kwak_glace',     dropRate: 0.005 },
-        { itemId: 'bottes_kwak_glace',     dropRate: 0.005 },
-        { itemId: 'anneau_kwak_glace',     dropRate: 0.005 },
-        { itemId: 'amulette_kwak_glace',   dropRate: 0.005 },
-        { itemId: 'ceinture_kwak_glace',   dropRate: 0.005 },
-        { itemId: 'epee_kwak_glace',       dropRate: 0.005 },
-        { itemId: 'cape_kwak_flamme',      dropRate: 0.005 },
-        { itemId: 'coiffe_kwak_flamme',    dropRate: 0.005 },
-        { itemId: 'bottes_kwak_flamme',    dropRate: 0.005 },
-        { itemId: 'anneau_kwak_flamme',    dropRate: 0.005 },
-        { itemId: 'amulette_kwak_flamme',  dropRate: 0.005 },
-        { itemId: 'ceinture_kwak_flamme',  dropRate: 0.005 },
-        { itemId: 'epee_kwak_flamme',      dropRate: 0.005 },
-        { itemId: 'cape_kwak_terre',       dropRate: 0.005 },
-        { itemId: 'coiffe_kwak_terre',     dropRate: 0.005 },
-        { itemId: 'bottes_kwak_terre',     dropRate: 0.005 },
-        { itemId: 'anneau_kwak_terre',     dropRate: 0.005 },
-        { itemId: 'amulette_kwak_terre',   dropRate: 0.005 },
-        { itemId: 'ceinture_kwak_terre',   dropRate: 0.005 },
-        { itemId: 'epee_kwak_terre',       dropRate: 0.005 },
+        { itemId: 'kwape_de_vent',          dropRate: 0.005 },
+        { itemId: 'kwakoiffe_de_vent',      dropRate: 0.005 },
+        { itemId: 'kwakobottes_de_vent',    dropRate: 0.005 },
+        { itemId: 'kwakanneau_de_vent',     dropRate: 0.005 },
+        { itemId: 'amukwak_de_vent',        dropRate: 0.005 },
+        { itemId: 'kwakture_de_vent',       dropRate: 0.005 },
+        { itemId: 'kwaklame_de_vent',       dropRate: 0.005 },
+        { itemId: 'kwape_de_glace',         dropRate: 0.005 },
+        { itemId: 'kwakoiffe_de_glace',     dropRate: 0.005 },
+        { itemId: 'kwakobottes_de_glace',   dropRate: 0.005 },
+        { itemId: 'kwakanneau_de_glace',    dropRate: 0.005 },
+        { itemId: 'amukwak_de_glace',       dropRate: 0.005 },
+        { itemId: 'kwakture_de_glace',      dropRate: 0.005 },
+        { itemId: 'kwaklame_de_glace',      dropRate: 0.005 },
+        { itemId: 'kwape_de_flammes',       dropRate: 0.005 },
+        { itemId: 'kwakoiffe_de_flammes',   dropRate: 0.005 },
+        { itemId: 'kwakobottes_de_flammes', dropRate: 0.005 },
+        { itemId: 'kwakanneau_de_flammes',  dropRate: 0.005 },
+        { itemId: 'amukwak_de_flammes',     dropRate: 0.005 },
+        { itemId: 'kwakture_de_flammes',    dropRate: 0.005 },
+        { itemId: 'kwaklame_de_flammes',    dropRate: 0.005 },
+        { itemId: 'kwape_de_terre',         dropRate: 0.005 },
+        { itemId: 'kwakoiffe_de_terre',     dropRate: 0.005 },
+        { itemId: 'kwakobottes_de_terre',   dropRate: 0.005 },
+        { itemId: 'kwakanneau_de_terre',    dropRate: 0.005 },
+        { itemId: 'amukwak_de_terre',       dropRate: 0.005 },
+        { itemId: 'kwakture_de_terre',      dropRate: 0.005 },
+        { itemId: 'kwaklame_de_terre',      dropRate: 0.005 },
         { itemId: 'cleDonjonKwakwa',       dropRate: 0.15, isKey: true }
     ]
 }
@@ -229,22 +229,22 @@ areas.blops = {
     ],
     lootTable: [
         { itemId: 'pierreDame',    dropRate: 0.45 },
-        { itemId: 'bottes_blop_reinette',   dropRate: 0.01 },
-        { itemId: 'anneau_blop_reinette',   dropRate: 0.01 },
-        { itemId: 'amulette_blop_reinette', dropRate: 0.01 },
-        { itemId: 'ceinture_blop_reinette', dropRate: 0.01 },
-        { itemId: 'bottes_blop_coco',       dropRate: 0.01 },
-        { itemId: 'anneau_blop_coco',       dropRate: 0.01 },
-        { itemId: 'amulette_blop_coco',     dropRate: 0.01 },
-        { itemId: 'ceinture_blop_coco',     dropRate: 0.01 },
-        { itemId: 'bottes_blop_griotte',    dropRate: 0.01 },
-        { itemId: 'anneau_blop_griotte',    dropRate: 0.01 },
-        { itemId: 'amulette_blop_griotte',  dropRate: 0.01 },
-        { itemId: 'ceinture_blop_griotte',  dropRate: 0.01 },
-        { itemId: 'bottes_blop_indigo',     dropRate: 0.01 },
-        { itemId: 'anneau_blop_indigo',     dropRate: 0.01 },
-        { itemId: 'amulette_blop_indigo',   dropRate: 0.01 },
-        { itemId: 'ceinture_blop_indigo',   dropRate: 0.01 },
+        { itemId: 'bloptes_reinette',    dropRate: 0.01 },
+        { itemId: 'blopanneau_reinette', dropRate: 0.01 },
+        { itemId: 'amublop_reinette',    dropRate: 0.01 },
+        { itemId: 'blopture_reinette',   dropRate: 0.01 },
+        { itemId: 'bloptes_coco',        dropRate: 0.01 },
+        { itemId: 'blopanneau_coco',     dropRate: 0.01 },
+        { itemId: 'amublop_coco',        dropRate: 0.01 },
+        { itemId: 'blopture_coco',       dropRate: 0.01 },
+        { itemId: 'bloptes_griottes',    dropRate: 0.01 },
+        { itemId: 'blopanneau_griotte',  dropRate: 0.01 },
+        { itemId: 'amublop_griotte',     dropRate: 0.01 },
+        { itemId: 'blopture_griotte',    dropRate: 0.01 },
+        { itemId: 'bloptes_indigo',      dropRate: 0.01 },
+        { itemId: 'blopanneau_indigo',   dropRate: 0.01 },
+        { itemId: 'amublop_indigo',      dropRate: 0.01 },
+        { itemId: 'blopture_indigo',     dropRate: 0.01 },
         { itemId: 'cleDonjonBlop', dropRate: 0.15, isKey: true }
     ]
 }
@@ -265,12 +265,12 @@ areas.plateauMantiscore = {
     ],
     lootTable: [
         { itemId: 'pierreDame',          dropRate: 0.45 },
-        { itemId: 'cape_Ouroboulos',   dropRate: 0.01 },
+        { itemId: 'cape_ouroboulos',   dropRate: 0.01 },
         { itemId: 'cape_du_desert',   dropRate: 0.01 },
-        { itemId: 'coiffe_du_desert',   dropRate: 0.01 },
-        { itemId: 'bottes_Ouroboulos',   dropRate: 0.01 },
-        { itemId: 'anneau_Ouroboulos',   dropRate: 0.01 },
-        { itemId: 'ceinture_du_desert',   dropRate: 0.01 },
+        { itemId: 'coiffennex',   dropRate: 0.01 },
+        { itemId: 'bottes_ouroboulos',   dropRate: 0.01 },
+        { itemId: 'anneau_ouroboulos',   dropRate: 0.01 },
+        { itemId: 'string_leolhyene',   dropRate: 0.01 },
         { itemId: 'cleDonjonMantiscore', dropRate: 0.15, isKey: true }
     ]
 }
@@ -291,10 +291,10 @@ areas.nidsDragaeufs = {
     ],
     lootTable: [
         { itemId: 'pierreDame',          dropRate: 0.45 },
-        { itemId: 'bottes_de_shika',     dropRate: 0.01},
-        { itemId: 'anneau_de_shika',     dropRate: 0.01},
-        { itemId: 'amulette_de_shika',   dropRate: 0.01},
-        { itemId: 'ceinture_de_shika',   dropRate: 0.01},
+        { itemId: 'sabots_de_shika',     dropRate: 0.01},
+        { itemId: 'bracelet_magique_de_shika',     dropRate: 0.01},
+        { itemId: 'epis_de_shika',   dropRate: 0.01},
+        { itemId: 'shikature',   dropRate: 0.01},
         { itemId: 'cleDonjonDraegnerys', dropRate: 0.15, isKey: true }
     ]
 }
@@ -310,18 +310,18 @@ areas.foretAbraknydes = {
         { id: 'abrakneSombre',      weight: 20 },
         { id: 'abraknydeSombre',    weight: 20 },
         { id: 'araknotron',         weight: 20 },
-        { id: 'abraknydeVenerable', weight: 20 }
+        { id: 'abraknyde', weight: 20 }
     ],
     lootTable: [
         { itemId: 'pierreDame',                  dropRate: 0.45 },
-        { itemId: 'cape_abraknyde', dropRate: 0.01 },
-        { itemId: 'coiffe_abraknyde', dropRate: 0.01 },
-        { itemId: 'bottes_abraknyde', dropRate: 0.01 },
-        { itemId: 'anneau_abraknyde', dropRate: 0.01 },
-        { itemId: 'amulette_abraknyde', dropRate: 0.01 },
-        { itemId: 'ceinture_abraknyde', dropRate: 0.01 },
-        { itemId: 'arme_abraknyde', dropRate: 0.01 },
-        { itemId: 'bouclier_abraknyde', dropRate: 0.01 },
+        { itemId: 'araknoture', dropRate: 0.01 },
+        { itemId: 'l_araknacoiffe', dropRate: 0.01 },
+        { itemId: 'araknoton', dropRate: 0.01 },
+        { itemId: 'araknoton', dropRate: 0.01 },
+        { itemId: 'araknoton', dropRate: 0.01 },
+        { itemId: 'araknoture', dropRate: 0.01 },
+        { itemId: 'la_trancheuse_d_arakne', dropRate: 0.01 },
+        { itemId: 'l_araknacoiffe', dropRate: 0.01 },
         { itemId: 'cleDonjonAbraknydeAncestral', dropRate: 0.15, isKey: true }
     ]
 }
@@ -343,10 +343,10 @@ areas.fermeDragonCochon = {
     lootTable: [
         { itemId: 'pierreDame',            dropRate: 0.45 },
         { itemId: 'cleDonjonDragonCochon', dropRate: 0.15, isKey: true },
-        { itemId: 'bottes_dragon_cochon',   dropRate: 0.01 },
-        { itemId: 'anneau_dragon_cochon',   dropRate: 0.01 },
-        { itemId: 'amulette_dragon_cochon', dropRate: 0.01 },
-        { itemId: 'ceinture_dragon_cochon', dropRate: 0.01 }
+        { itemId: 'mules_du_dragon_cochon',   dropRate: 0.01 },
+        { itemId: 'anneau_du_dragon_cochon',   dropRate: 0.01 },
+        { itemId: 'collier_du_dragon_cochon', dropRate: 0.01 },
+        { itemId: 'ceinture_dracochoune', dropRate: 0.01 }
     ]
 }
 // areas.landesMeulou = {
@@ -378,11 +378,11 @@ areas.fermeDragonCochon = {
 //     icon: 'img/monstres/sprites/ratLi.png',
 //     description: "",
 //     spawns: [
-//         { id: 'rateAtinee',  weight: 22 },
-//         { id: 'rateIboisee', weight: 22 },
-//         { id: 'ratLi',       weight: 22 },
-//         { id: 'ratPlapla',   weight: 22 },
-//         { id: 'ratSio',      weight: 12 }
+//         { id: 'rate_atinee',  weight: 22 },
+//         { id: 'rate_iboisee', weight: 22 },
+//         { id: 'rat_li',       weight: 22 },
+//         { id: 'rat_plapla',   weight: 22 },
+//         { id: 'rat_sio',      weight: 12 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',       dropRate: 0.45 },
@@ -398,11 +398,11 @@ areas.fermeDragonCochon = {
 //     icon: 'img/monstres/sprites/chikaRat.png',
 //     description: "",
 //     spawns: [
-//         { id: 'sceleeRate', weight: 22 },
-//         { id: 'chikaRat',   weight: 22 },
-//         { id: 'chakRat',    weight: 22 },
-//         { id: 'aloeveRat',  weight: 22 },
-//         { id: 'capoeiRat',  weight: 12 }
+//         { id: 'scelee_rate', weight: 22 },
+//         { id: 'chika_rat',   weight: 22 },
+//         { id: 'chak_rat',    weight: 22 },
+//         { id: 'aloevee_rate',  weight: 22 },
+//         { id: 'capoei_rat',  weight: 12 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',        dropRate: 0.45 },
@@ -421,9 +421,9 @@ areas.fermeDragonCochon = {
 //     description: "",
 //     spawns: [
 //         { id: 'boufmouth',           weight: 32 },
-//         { id: 'boufmouthLegendaire', weight: 32 },
-//         { id: 'bouftonMouth',        weight: 28 },
-//         { id: 'boufmouthDeGuerre',   weight: 8 }
+//         { id: 'boufmouth_legendaire', weight: 32 },
+//         { id: 'bouftonmouth',        weight: 28 },
+//         { id: 'boufmouth_de_guerre',   weight: 8 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',              dropRate: 0.45 },
@@ -441,7 +441,7 @@ areas.fermeDragonCochon = {
 //     icon: 'img/monstres/sprites/fuMansot.png',
 //     description: "",
 //     spawns: [
-//         { id: 'fuMansot',  weight: 24 },
+//         { id: 'fu_mansot',  weight: 24 },
 //         { id: 'timansot',  weight: 24 },
 //         { id: 'shamansot', weight: 24 },
 //         { id: 'mamansot',  weight: 20 },
@@ -464,10 +464,10 @@ areas.fermeDragonCochon = {
 //     description: "",
 //     spawns: [
 //         { id: 'tofubine',        weight: 24 },
-//         { id: 'tofuDodu',        weight: 24 },
+//         { id: 'tofu_dodu',        weight: 24 },
 //         { id: 'tofutoflamme',    weight: 24 },
 //         { id: 'tofuzmo',         weight: 20 },
-//         { id: 'vilainPetitTofu', weight: 8 }
+//         { id: 'vilain_petit_tofu', weight: 8 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',         dropRate: 0.45 },
@@ -511,7 +511,7 @@ areas.fermeDragonCochon = {
 //         { id: 'truchtine',   weight: 24 },
 //         { id: 'truchon',     weight: 24 },
 //         { id: 'truchideur',  weight: 20 },
-//         { id: 'truchemuche', weight: 8 }
+//         { id: 'truchmuche', weight: 8 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',           dropRate: 0.45 },
@@ -529,11 +529,11 @@ areas.fermeDragonCochon = {
 //     icon: 'img/monstres/sprites/perePhorreur.png',
 //     description: "",
 //     spawns: [
-//         { id: 'perePhorreur',  weight: 24 },
+//         { id: 'pere_phorreur',  weight: 24 },
 //         { id: 'phorreveur',    weight: 24 },
 //         { id: 'phozami',       weight: 24 },
 //         { id: 'metaphorreur',  weight: 20 },
-//         { id: 'mereVeilleuse', weight: 8 }
+//         { id: 'mere_veilleuse', weight: 8 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',        dropRate: 0.45 },
@@ -551,11 +551,11 @@ areas.fermeDragonCochon = {
 //     icon: 'img/monstres/sprites/abrakneSombreIrascible.png',
 //     description: "",
 //     spawns: [
-//         { id: 'abrakneSombreIrascible',   weight: 25 },
-//         { id: 'abraknydeSombreIrascible', weight: 25 },
-//         { id: 'araknotronIrascible',      weight: 25 },
-//         { id: 'brancheInvocatrice',       weight: 13 },
-//         { id: 'brancheSoignante',         weight: 12 }
+//         { id: 'abrakne_sombre_irascible',   weight: 25 },
+//         { id: 'abraknyde_sombre_irascible', weight: 25 },
+//         { id: 'araknotron_irascible',      weight: 25 },
+//         { id: 'branche_invocatrice',       weight: 13 },
+//         { id: 'branche_soignante',         weight: 12 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',         dropRate: 0.45 },
@@ -618,11 +618,11 @@ areas.fermeDragonCochon = {
 //     icon: 'img/monstres/sprites/yokaiGivrefoux.png',
 //     description: "",
 //     spawns: [
-//         { id: 'yokaiGivrefoux', weight: 24 },
-//         { id: 'yomiGivrefoux',  weight: 24 },
-//         { id: 'soryoGivrefoux', weight: 24 },
-//         { id: 'mahoGivrefoux',  weight: 20 },
-//         { id: 'kamiGivrefoux',  weight: 8 }
+//         { id: 'yokai_givrefoux', weight: 24 },
+//         { id: 'yomi_givrefoux',  weight: 24 },
+//         { id: 'soryo_givrefoux', weight: 24 },
+//         { id: 'maho_givrefoux',  weight: 20 },
+//         { id: 'kami_givrefoux',  weight: 8 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDame',               dropRate: 0.45 },
@@ -644,7 +644,7 @@ areas.fermeDragonCochon = {
 //         { id: 'champaknyde', weight: 17 },
 //         { id: 'champbis',    weight: 17 },
 //         { id: 'champodonte', weight: 17 },
-//         { id: 'champAGnon',  weight: 16 },
+//         { id: 'champ_a_gnons',  weight: 16 },
 //         { id: 'champmane',   weight: 15 }
 //     ],
 //     lootTable: [
@@ -712,7 +712,7 @@ areas.fermeDragonCochon = {
 //         { id: 'sinistrofu',  weight: 24 },
 //         { id: 'cycloide',    weight: 24 },
 //         { id: 'granduk',     weight: 24 },
-//         { id: 'nocturlable', weight: 20 },
+//         { id: 'nocturlabe', weight: 20 },
 //         { id: 'strigide',    weight: 8 }
 //     ],
 //     lootTable: [
@@ -737,9 +737,9 @@ areas.donjonIncarnam = {
     spawns: [{ id: 'kardorim',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'coiffeKardorim',            dropRate: 0.03 },
-        { itemId: 'anneauKardorim',            dropRate: 0.03 },
-        { itemId: 'capeKardorim',              dropRate: 0.03 }
+        { itemId: 'casque_de_kardorim',            dropRate: 0.03 },
+        { itemId: 'bracelet_de_kardorim',            dropRate: 0.03 },
+        { itemId: 'cape_de_kardorim',              dropRate: 0.03 }
     ]
 }
 areas.donjonMousse = {
@@ -755,14 +755,14 @@ areas.donjonMousse = {
     spawns: [{ id: 'mobLeponge',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'cape_mousse',       dropRate: 0.01 },
-        { itemId: 'coiffe_mousse',     dropRate: 0.01 },
-        { itemId: 'bottes_mousse',     dropRate: 0.02 },
-        { itemId: 'anneau_mousse',     dropRate: 0.02 },
-        { itemId: 'amulette_mousse',   dropRate: 0.02 },
-        { itemId: 'ceinture_mousse',   dropRate: 0.02 },
-        { itemId: 'pelle_mousse',      dropRate: 0.02 },
-        { itemId: 'bouclier_mousse',   dropRate: 0.02 }
+        { itemId: 'cape_en_mousse',       dropRate: 0.01 },
+        { itemId: 'coiffe_en_mousse',     dropRate: 0.01 },
+        { itemId: 'bottes_en_mousse',     dropRate: 0.02 },
+        { itemId: 'anneau_en_mousse',     dropRate: 0.02 },
+        { itemId: 'amulette_en_mousse',   dropRate: 0.02 },
+        { itemId: 'ceinture_en_mousse',   dropRate: 0.02 },
+        { itemId: 'pelle_en_mousse',      dropRate: 0.02 },
+        { itemId: 'bouclier_en_mousse',   dropRate: 0.02 }
     ]
 }
 areas.donjonChamps = {
@@ -778,14 +778,14 @@ areas.donjonChamps = {
     spawns: [{ id: 'tournesolAffame',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'sac_paysan',       dropRate: 0.01 },
-        { itemId: 'chapeau_paysan',   dropRate: 0.01 },
-        { itemId: 'bottes_paysan',    dropRate: 0.01 },
-        { itemId: 'anneau_paysan',    dropRate: 0.01 },
-        { itemId: 'amulette_paysan',  dropRate: 0.01 },
-        { itemId: 'ceinture_paysan',  dropRate: 0.01 },
-        { itemId: 'faux_paysan',      dropRate: 0.01 },
-        { itemId: 'bouclier_tournesol',dropRate: 0.06 }
+        { itemId: 'sac_du_paysan',       dropRate: 0.01 },
+        { itemId: 'bob_du_paysan',   dropRate: 0.01 },
+        { itemId: 'bottes_paysannes',    dropRate: 0.01 },
+        { itemId: 'mitaines_mitees_du_paysan',    dropRate: 0.01 },
+        { itemId: 'amulette_paysanne',  dropRate: 0.01 },
+        { itemId: 'ceinturemuda_du_paysan',  dropRate: 0.01 },
+        { itemId: 'faux_usee_du_paysan',      dropRate: 0.01 },
+        { itemId: 'la_plantouze_des_champs', dropRate: 0.06 }
     ]
 }
 areas.donjonBouftou = {
@@ -801,14 +801,14 @@ areas.donjonBouftou = {
     spawns: [{ id: 'bouftouRoyal',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'cape_bouftou_royal',     dropRate: 0.01 },
-        { itemId: 'coiffe_bouftou_royal',   dropRate: 0.01 },
-        { itemId: 'bottes_bouftou_royal',   dropRate: 0.02 },
-        { itemId: 'epee_bouftou_royal',     dropRate: 0.02 },
-        { itemId: 'anneau_bouftou_royal',   dropRate: 0.02 },
-        { itemId: 'amulette_bouftou_royal', dropRate: 0.02 },
-        { itemId: 'ceinture_bouftou_royal', dropRate: 0.02 },
-        { itemId: 'bouclier_bouftou_royal', dropRate: 0.02 }
+        { itemId: 'cape_bouffante_royale',     dropRate: 0.01 },
+        { itemId: 'boufcoiffe_royale',   dropRate: 0.01 },
+        { itemId: 'boufbottes_royales',   dropRate: 0.02 },
+        { itemId: 'epee_royale_du_bouftou',     dropRate: 0.02 },
+        { itemId: 'anneau_royal_du_bouftou',   dropRate: 0.02 },
+        { itemId: 'amulette_royale_du_bouftou', dropRate: 0.02 },
+        { itemId: 'ceinture_royale_du_bouftou', dropRate: 0.02 },
+        { itemId: 'cuirasse_royale_du_bouftou', dropRate: 0.02 }
     ]
 }
 areas.donjonScarafeuille = {
@@ -821,16 +821,16 @@ areas.donjonScarafeuille = {
     background: 'scarafeuilles',
     icon: 'img/monstres/sprites/scarabossDoree.png',
     description: "Sous la plaine des Scarafeuilles se cache une immense ruche souterraine gardée par la plus imposante et la plus dorée de toutes les créatures de son espèce : le Scaraboss Dorée. Il est dit que quiconque parviendrait à s'emparer de ses trésors dorés vivrait dans l'opulence pour le reste de sa vie. Aucun aventurier n'est revenu pour le confirmer.",
-    spawns: [{ id: 'scarabossDoree', weight: 100 }],
+    spawns: [{ id: 'scarabosse_dore', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',          dropRate: 0.45 },
-        { itemId: 'cape_scaraboss_doree',        dropRate: 0.02 },
-        { itemId: 'coiffe_scaraboss_doree',      dropRate: 0.02 },
-        { itemId: 'bottes_scaraboss_doree',      dropRate: 0.02 },
-        { itemId: 'anneau_scaraboss_doree',      dropRate: 0.02 },
-        { itemId: 'amulette_scaraboss_doree',    dropRate: 0.02 },
-        { itemId: 'ceinture_scaraboss_doree',    dropRate: 0.02 },
-        { itemId: 'baguette_scaraboss_doree',    dropRate: 0.01 }
+        { itemId: 'scaracape_doree',        dropRate: 0.02 },
+        { itemId: 'scaracoiffe_doree',      dropRate: 0.02 },
+        { itemId: 'scarabottes_dorees',      dropRate: 0.02 },
+        { itemId: 'anneau_du_scarabosse_dore',      dropRate: 0.02 },
+        { itemId: 'amulette_du_scarabosse_dore',    dropRate: 0.02 },
+        { itemId: 'scarature_doree',    dropRate: 0.02 },
+        { itemId: 'baguette_du_scarabosse_dore',    dropRate: 0.01 }
     ]
 }
 areas.donjonKwakwa = {
@@ -871,22 +871,22 @@ areas.donjonBlop = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',          dropRate: 0.45 },
-        { itemId: 'bottes_blop_reinette_royal',   dropRate: 0.01 },
-        { itemId: 'anneau_blop_reinette_royal',   dropRate: 0.01 },
-        { itemId: 'amulette_blop_reinette_royal', dropRate: 0.01 },
-        { itemId: 'ceinture_blop_reinette_royal', dropRate: 0.01 },
-        { itemId: 'bottes_blop_coco_royal',       dropRate: 0.01 },
-        { itemId: 'anneau_blop_coco_royal',       dropRate: 0.01 },
-        { itemId: 'amulette_blop_coco_royal',     dropRate: 0.01 },
-        { itemId: 'ceinture_blop_coco_royal',     dropRate: 0.01 },
-        { itemId: 'bottes_blop_griotte_royal',    dropRate: 0.01 },
-        { itemId: 'anneau_blop_griotte_royal',    dropRate: 0.01 },
-        { itemId: 'amulette_blop_griotte_royal',  dropRate: 0.01 },
-        { itemId: 'ceinture_blop_griotte_royal',  dropRate: 0.01 },
-        { itemId: 'bottes_blop_indigo_royal',     dropRate: 0.01 },
-        { itemId: 'anneau_blop_indigo_royal',     dropRate: 0.01 },
-        { itemId: 'amulette_blop_indigo_royal',   dropRate: 0.01 },
-        { itemId: 'ceinture_blop_indigo_royal',   dropRate: 0.01 }
+        { itemId: 'bloptes_reinette_royales',    dropRate: 0.01 },
+        { itemId: 'blopanneau_reinette_royal',   dropRate: 0.01 },
+        { itemId: 'amublop_reinette_royale',     dropRate: 0.01 },
+        { itemId: 'blopture_reinette_royale',    dropRate: 0.01 },
+        { itemId: 'bloptes_coco_royales',        dropRate: 0.01 },
+        { itemId: 'blopanneau_coco_royal',       dropRate: 0.01 },
+        { itemId: 'amublop_coco_royale',         dropRate: 0.01 },
+        { itemId: 'blopture_coco_royale',        dropRate: 0.01 },
+        { itemId: 'bloptes_griotte_royales',     dropRate: 0.01 },
+        { itemId: 'blopanneau_griotte_royal',    dropRate: 0.01 },
+        { itemId: 'amublop_griotte_royale',      dropRate: 0.01 },
+        { itemId: 'blopture_griotte_royale',     dropRate: 0.01 },
+        { itemId: 'bloptes_indigo_royales',      dropRate: 0.01 },
+        { itemId: 'blopanneau_indigo_royal',     dropRate: 0.01 },
+        { itemId: 'amublop_indigo_royale',       dropRate: 0.01 },
+        { itemId: 'blopture_indigo_royale',      dropRate: 0.01 }
     ]
 }
 areas.donjonMantiscore = {
@@ -902,7 +902,7 @@ areas.donjonMantiscore = {
     spawns: [{ id: 'mantiscore', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'arme_du_mantiscore', dropRate: 0.03 }
+        { itemId: 'gelano', dropRate: 0.03 }
     ]
 }
 areas.donjonDraegnerys = {
@@ -919,8 +919,8 @@ areas.donjonDraegnerys = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_de_shika',     dropRate: 0.02},
-        { itemId: 'coiffe_de_shika',     dropRate: 0.02},
-        { itemId: 'arme_de_shika',     dropRate: 0.02}
+        { itemId: 'shikacoiffe',     dropRate: 0.02},
+        { itemId: 'epis_de_shika',     dropRate: 0.02}
     ]
 }
 areas.donjonAbraknydeAncestral = {
@@ -936,12 +936,12 @@ areas.donjonAbraknydeAncestral = {
     spawns: [{ id: 'abraknydeAncestral', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_abraknydeAncestral',     dropRate: 0.01},
-        { itemId: 'coiffe_abraknydeAncestral',     dropRate: 0.01},
-        { itemId: 'bottes_abraknydeAncestral',     dropRate: 0.01},
-        { itemId: 'anneau_abraknydeAncestral',     dropRate: 0.01},
-        { itemId: 'amulette_abraknydeAncestral',   dropRate: 0.01},
-        { itemId: 'ceinture_abraknydeAncestral',   dropRate: 0.01}
+        { itemId: 'abracapa_ancestrale',     dropRate: 0.01},
+        { itemId: 'abracaska_ancestral',     dropRate: 0.01},
+        { itemId: 'protege_tibias_ancestraux',     dropRate: 0.01},
+        { itemId: 'anneau_ancestral',     dropRate: 0.01},
+        { itemId: 'torque_ancestral',   dropRate: 0.01},
+        { itemId: 'abrature_ancestrale',   dropRate: 0.01}
     ]
 }
 areas.donjonDragonCochon = {
@@ -957,10 +957,10 @@ areas.donjonDragonCochon = {
     spawns: [{ id: 'dragonCochon', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'cape_dragon_cochon',   dropRate: 0.02 },
-        { itemId: 'coiffe_dragon_cochon', dropRate: 0.02 },
-        { itemId: 'arme_dragon_cochon',   dropRate: 0.02 },
-        { itemId: 'Dofus_Turquoise',      dropRate: 0.001 }
+        { itemId: 'cape_du_dragon_cochon',   dropRate: 0.02 },
+        { itemId: 'coiffe_du_dragon_cochon', dropRate: 0.02 },
+        { itemId: 'kaiser',   dropRate: 0.02 },
+        { itemId: 'Dofus_Turquoise',      dropRate: 0.0005}
     ]
 }
 // ═══════════════════════════════════════════════════════
@@ -992,7 +992,7 @@ areas.donjonDragonCochon = {
 //     background: 'canyonsRatNoir',
 //     icon: 'img/monstres/sprites/ratNoir.png',
 //     description: "",
-//     spawns: [{ id: 'ratNoir', weight: 100 }],
+//     spawns: [{ id: 'rat_noir', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1009,7 +1009,7 @@ areas.donjonDragonCochon = {
 //     background: 'canyonsRatBlanc',
 //     icon: 'img/monstres/sprites/ratBlanc.png',
 //     description: "",
-//     spawns: [{ id: 'ratBlanc', weight: 100 }],
+//     spawns: [{ id: 'rat_blanc', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1026,7 +1026,7 @@ areas.donjonDragonCochon = {
 //     background: 'plainesBoufmouth',
 //     icon: 'img/monstres/sprites/boufmouthRoyal.png',
 //     description: "",
-//     spawns: [{ id: 'boufmouthRoyal', weight: 100 }],
+//     spawns: [{ id: 'royalmouth', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1043,7 +1043,7 @@ areas.donjonDragonCochon = {
 //     background: 'galleriesMansot',
 //     icon: 'img/monstres/sprites/mansotRoyal.png',
 //     description: "",
-//     spawns: [{ id: 'mansotRoyal', weight: 100 }],
+//     spawns: [{ id: 'mansot_royal', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1060,7 +1060,7 @@ areas.donjonDragonCochon = {
 //     background: 'foretTofuRoyal',
 //     icon: 'img/monstres/sprites/tofuRoyal.png',
 //     description: "",
-//     spawns: [{ id: 'tofuRoyal', weight: 100 }],
+//     spawns: [{ id: 'tofu_royal', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1077,7 +1077,7 @@ areas.donjonDragonCochon = {
 //     background: 'foretHellMina',
 //     icon: 'img/monstres/sprites/hellMina.png',
 //     description: "",
-//     spawns: [{ id: 'hellMina', weight: 100 }],
+//     spawns: [{ id: 'hell_mina', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1094,7 +1094,7 @@ areas.donjonDragonCochon = {
 //     background: 'montagneTruche',
 //     icon: 'img/monstres/sprites/hauteTruche.png',
 //     description: "",
-//     spawns: [{ id: 'hauteTruche', weight: 100 }],
+//     spawns: [{ id: 'haute_truche', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1128,7 +1128,7 @@ areas.donjonDragonCochon = {
 //     background: 'foretCheneMou',
 //     icon: 'img/monstres/sprites/cheneMou.png',
 //     description: "",
-//     spawns: [{ id: 'cheneMou', weight: 100 }],
+//     spawns: [{ id: 'chene_mou', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1185,8 +1185,8 @@ areas.donjonDragonCochon = {
 //     description: "",
 //     bossMode: 'sequential',   // Fuji puis Tengu (ou l'inverse), tous deux requis
 //     spawns: [
-//         { id: 'fujiGivrefoux',  weight: 50 },
-//         { id: 'tenguGivrefoux', weight: 50 }
+//         { id: 'fuji_givrefoux_nourriciere',  weight: 50 },
+//         { id: 'tengu_givrefoux', weight: 50 }
 //     ],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
@@ -1223,7 +1223,7 @@ areas.donjonDragonCochon = {
 //     description: "",
 //     bossMode: 'sequential',   // Kolosso puis Prof. Xa (ou l'inverse), tous deux requis
 //     spawns: [
-//         { id: 'professeurXa', weight: 50 },
+//         { id: 'professeur_xa', weight: 50 },
 //         { id: 'kolosso',      weight: 50 }
 //     ],
 //     lootTable: [
@@ -1242,7 +1242,7 @@ areas.donjonDragonCochon = {
 //     background: 'cotesGlourceleste',
 //     icon: 'img/monstres/sprites/glouceleste.png',
 //     description: "",
-//     spawns: [{ id: 'glourceleste', weight: 100 }],
+//     spawns: [{ id: 'glourseleste', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1259,7 +1259,7 @@ areas.donjonDragonCochon = {
 //     background: 'chateauHarebourg',
 //     icon: 'img/monstres/sprites/comteHarebourg.png',
 //     description: "",
-//     spawns: [{ id: 'comteHarebourg', weight: 100 }],
+//     spawns: [{ id: 'comte_harebourg', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien', dropRate: 0.45 }
 //     ]
@@ -1466,17 +1466,17 @@ areas.evenementForetAstrub = {
         { itemId: 'coiffe_du_prespic',          dropRate: 0.005 },
         { itemId: 'anneau_du_prespic',          dropRate: 0.005 },
         { itemId: 'ceinture_du_prespic',        dropRate: 0.005 },
-        { itemId: 'bouclier_du_prespic',        dropRate: 0.005 },
-        { itemId: 'bottes_du_sanglier',         dropRate: 0.005 },
+        { itemId: 'bouclier_herisse_du_prespic',        dropRate: 0.005 },
+        { itemId: 'pieds_du_sanglier',         dropRate: 0.005 },
         { itemId: 'anneau_du_sanglier',         dropRate: 0.005 },
-        { itemId: 'ceinture_du_sanglier',       dropRate: 0.005 },
-        { itemId: 'cape_de_lHomme_Ours',        dropRate: 0.005 },
-        { itemId: 'coiffe_de_lHomme_Ours',      dropRate: 0.005 },
-        { itemId: 'bottes_de_lHomme_Ours',      dropRate: 0.005 },
-        { itemId: 'anneau_de_lHomme_Ours',      dropRate: 0.005 },
-        { itemId: 'amulette_de_lHomme_Ours',    dropRate: 0.005 },
-        { itemId: 'ceinture_de_lHomme_Ours',    dropRate: 0.005 },
-        { itemId: 'baton_de_lHomme_Ours',       dropRate: 0.005 },
+        { itemId: 'pieds_du_sanglier',       dropRate: 0.005 },
+        { itemId: 'cape_de_l_homme_ours',        dropRate: 0.005 },
+        { itemId: 'coiffe_de_l_homme_ours',      dropRate: 0.005 },
+        { itemId: 'bottes_de_l_homme_ours',      dropRate: 0.005 },
+        { itemId: 'alliance_de_l_homme_ours',      dropRate: 0.005 },
+        { itemId: 'amulette_de_l_homme_ours',    dropRate: 0.005 },
+        { itemId: 'ceinture_de_l_homme_ours',    dropRate: 0.005 },
+        { itemId: 'baton_de_l_homme_ours',       dropRate: 0.005 },
     ]
 }
 
@@ -1490,22 +1490,24 @@ areas.evenementForetAstrub = {
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
 areas.raidDofusArgenté = {
     id: 'raidDofusArgenté',
-    name: 'Les débuts sont rudes',
+    name: "Les débuts sont rudes",
     type: 'raid',
     minLevel: 15, maxLevel: 35,
     mobMinLevel: 35, mobMaxLevel: 35,
-    background: 'astrub',
-    icon: 'img/monstres/Raids/Rathrosk.png',
+    background: "astrub",
+    icon: "img/monstres/Raids/Rathrosk.png",
     description: "Rathrosk, surnommé la Main Grise, est bien plus qu'un simple dragon. Ancien bourreau des Dieux et protecteur d'Astrub, cette créature légendaire porte en elle les flammes d'Externam et les murmures des âmes disparues.Sous sa forme juvénille, il veille encore sur des reliques anciennes ainsi que sur le mystérieux Dofus Argenté",
     spawns: [
-        { id: 'bouftouRoyal',   weight: 10 },
-        { id: 'mobLeponge',   weight: 10 },
-        { id: 'tournesolAffame',    weight: 10 }],
-    miniBoss: {id: 'Rathrosk', everyKills: 6, statMult: 1},
+        { id: 'bouftouRoyal', weight: 10 },
+        { id: 'mobLeponge', weight: 10 },
+        { id: 'tournesolAffame', weight: 10 }
+    ],
+    miniBoss: { id: 'Rathrosk', everyKills: 6, statMult: 1 },
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',   dropRate: 0.45 },
-        { itemId: 'Dofus_Argente',       dropRate: 0.01 }
-    ]
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'Dofus_Argente', dropRate: 0.001 }
+    ],
+    lootTable: []
 }
 areas.raidGelees = {
     id: 'raidGelees',
@@ -1525,15 +1527,15 @@ areas.raidGelees = {
     miniBoss: {ids: ['gelee_fraise_royale', 'gelee_menthe_royale', 'gelee_bleuet_royale', 'gelee_citron_royale'], everyKills: 4, statMult: 1},
     lootTable: [
         { itemId: 'pierreDame',     dropRate: 0.35 },
-        { itemId: 'cape_gelax',     dropRate: 0.02 },
-        { itemId: 'coiffe_gelax',   dropRate: 0.02 },
-        { itemId: 'bottes_gelax',   dropRate: 0.02 },
-        { itemId: 'amulette_gelax', dropRate: 0.02 },
-        { itemId: 'ceinture_gelax', dropRate: 0.02 }
+        { itemId: 'gelocape',     dropRate: 0.02 },
+        { itemId: 'gelocoiffe',   dropRate: 0.02 },
+        { itemId: 'gelobottes',   dropRate: 0.02 },
+        { itemId: 'gelamu', dropRate: 0.02 },
+        { itemId: 'geloture', dropRate: 0.02 }
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'anneau_gelano',      dropRate: 0.01 }
+        { itemId: 'gelano',      dropRate: 0.01 }
     ]
 }
 areas.raidTourbeduRoissingue = {
@@ -1546,23 +1548,23 @@ areas.raidTourbeduRoissingue = {
     icon: 'img/monstres/Raids/roissingue.png',
     description: "Au cœur de la Tourbière sans fond d'Otomaï s'étend le domaine du Roissingue, souverain grotesque d'un royaume noyé dans la boue et les eaux stagnantes. L'air y est lourd, chargé d'une odeur de moisissure et de tourbe humide, tandis que d'étranges créatures rôdent entre les marécages. Les aventuriers qui s'y aventurent racontent avoir aperçu des silhouettes simiesques vêtues de haillons trempés, riant dans l’obscurité avant de disparaître dans les brumes épaisses. Ici, chaque pas peut être le dernier… car la tourbière semble elle-même vouloir engloutir ceux qui osent troubler le règne du Roissingue.",
     spawns: [
-        { id: 'LAouassingue',   weight: 35 },
-        { id: 'LEouassingue',   weight: 35 },
-        { id: 'tourbassingue',    weight: 15 },
-        { id: 'bourbassingue',    weight: 15 }],
+        { id: 'LAouassingue',   weight: 15 },
+        { id: 'LEouassingue',   weight: 15 },
+        { id: 'tourbassingue',    weight: 35 },
+        { id: 'bourbassingue',    weight: 35 }],
     miniBoss: {id: 'roissingue', everyKills: 10, statMult: 1},
     lootTable: [
         { itemId: 'pierreDame',          dropRate: 0.35 },
-        { itemId: 'cape_ouassingue',     dropRate: 0.005 },
-        { itemId: 'coiffe_ouassingue',   dropRate: 0.005 },
-        { itemId: 'bottes_ouassingue',   dropRate: 0.005 },
-        { itemId: 'amulette_ouassingue', dropRate: 0.005 }
+        { itemId: 'cape_de_la_ouassingue',     dropRate: 0.005 },
+        { itemId: 'capuche_de_la_ouassingue',   dropRate: 0.005 },
+        { itemId: 'gelobottes',   dropRate: 0.005 },
+        { itemId: 'gelamu', dropRate: 0.005 }
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'cape_roissingue',      dropRate: 0.01 },
-        { itemId: 'coiffe_roissingue',    dropRate: 0.01 },
-        { itemId: 'anneau_roissingue',    dropRate: 0.01 }
+        { itemId: 'cape_souveraine_du_roissingue',      dropRate: 0.01 },
+        { itemId: 'capuche_souveraine_du_roissingue',    dropRate: 0.01 },
+        { itemId: 'sceau_souverain_du_roissingue',    dropRate: 0.01 }
     ]
 }
 areas.raidKralamoureGeant = {

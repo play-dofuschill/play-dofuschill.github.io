@@ -268,6 +268,17 @@ function getEffectiveStats(member, syncedLevel = null) {
         spd = 200 - spd
     }
 
+    // ─── Passif companion (ownerPassive) ──────────────────────────────────────
+    const _cp = member.companion?.ownerPassive
+    if (_cp && member.companion.currentHp > 0) {
+        if      (_cp.stat === 'finalDamagePct') finalDamagePct += _cp.value
+        else if (_cp.stat === 'spellDamagePct') spellDamagePct += _cp.value
+        else if (_cp.stat === 'flatDamage')     flatDamage     += _cp.value
+        else if (_cp.stat === 'atk')            atk            += _cp.value
+        else if (_cp.stat === 'critChance')     critChance     += _cp.value
+        else if (_cp.stat === 'critDamagePct')  critDamagePct  += _cp.value
+    }
+
     // ─── Caps défensifs ───────────────────────────
 
     // résistances élémentaires max = 50%
@@ -412,7 +423,7 @@ function calcDamage(attackerStats, defenderStats, effect, hpCtx = {}, forcedCrit
 function getItemLevel(itemId) {
     const entry = state.inventory[itemId]
     if (!entry) return 0
-    return Math.min(entry.level || 0, item[itemId]?.levelMax || 20)
+    return Math.min(entry.level || 0, item[itemId]?.itemLevelMax || 20)
 }
 
 // ─── Comptage des pièces de panoplie équipées ─────────────────────────────────

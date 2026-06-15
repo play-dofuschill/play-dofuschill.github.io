@@ -71,6 +71,9 @@ function simulateOfflineProgress() {
     }
 
     // Injecte le temps à rattraper — la boucle RAF (_gameLoop) s'en charge
+    // Les raids utilisent des setTimeout de 500ms pour les respawns → incompatible avec le fast-forward
+    // (onTabVisible fait déjà ça correctement ; on aligne simulateOfflineProgress sur ce comportement)
+    if (combat?.isRaid || combat?.isPoutch) return
     _afkSeconds = elapsed / 1000
 }
 

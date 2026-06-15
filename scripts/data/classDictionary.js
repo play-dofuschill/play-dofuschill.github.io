@@ -159,7 +159,7 @@ classes.eniripsa = {
             73: "mot_fleuri",
             77: "mot_denvol",
             81: "pinceau_tribal",
-            85: "cryothérapie",
+            85: "cryotherapie",
             90: "mot_de_reconstitution",
             95: "mot_malicieux",
             100: "cri_assourdissant",

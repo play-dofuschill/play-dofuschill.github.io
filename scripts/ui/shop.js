@@ -78,7 +78,7 @@ function updateShopUI() {
         const soldOut   = hasLimit && remaining === 0
 
         const currentLevel = state.inventory[entry.itemId]?.level || 0
-        const isMaxed      = itm.levelMax && currentLevel >= itm.levelMax
+        const isMaxed      = itm.itemLevelMax && currentLevel >= itm.itemLevelMax
         const canAfford    = state.kamas >= entry.price
         const isDisabled   = soldOut || isMaxed || !canAfford
 
@@ -133,7 +133,7 @@ function showShopBuyPicker(entry, itm) {
     }
 
     const currentLevel = state.inventory[entry.itemId]?.level || 0
-    const maxUseful    = itm.levelMax ? Math.max(0, itm.levelMax - currentLevel) : maxAffordable
+    const maxUseful    = itm.itemLevelMax ? Math.max(0, itm.itemLevelMax - currentLevel) : maxAffordable
     const remaining    = shopRemaining(entry.itemId)
     const maxQty       = Math.min(
         maxAffordable,
