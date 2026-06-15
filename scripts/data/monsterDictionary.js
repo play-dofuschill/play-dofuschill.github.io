@@ -118,8 +118,6 @@ monsters. = {
 //     { type: 'stat', stat: 'atk', value: 1 }
 // ]
 
-const monsters = {}
-
 monsters.poulpor = {
     id: 'poulpor',
     name: 'Poulpor',
