@@ -171,7 +171,7 @@ classes.eniripsa = {
             130: "vacarme",
             135: "mot_furieux",
             140: "mot_galvanisant",
-            145: "mot_défendu",
+            145: "mot_defendu",
             150: "mot_secret",
             155: "mot_déprimant",
             160: "mot_rituel",

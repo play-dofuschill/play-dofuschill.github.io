@@ -252,6 +252,18 @@ function applyProgression(spell, lvl) {
                 if (overrides.levelPct !== undefined) effect.onElement[elem].levelPct = overrides.levelPct
             }
         }
+        // reactive : patch ciblé par stat sur chaque réaction
+        // patch.reactive = [{stat, value?, duration?}]
+        if (effect.type === 'reactive' && patch.reactive && effect.reactions) {
+            const rxPatches = Array.isArray(patch.reactive) ? patch.reactive : [patch.reactive]
+            for (const rxp of rxPatches) {
+                for (const rxn of effect.reactions) {
+                    if (rxp.stat && rxp.stat !== rxn.stat) continue
+                    if (rxp.value    !== undefined) rxn.value    = rxp.value
+                    if (rxp.duration !== undefined) rxn.duration = rxp.duration
+                }
+            }
+        }
     }
 
     if (active.patch.cooldownMs !== undefined) {

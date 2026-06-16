@@ -1702,11 +1702,29 @@ function executeEffect(ctx) {
                     const _tpDmg = Math.floor(dmg * _tpRatio)
                     _tp.currentHp = Math.max(0, (_tp.currentHp || 0) - _tpDmg)
                     addLog(`Transposition → ${_tp.name || classes[_tp.classId]?.name || '?'} intercepte ! ${_tpDmg} dégâts (${Math.round(_tpRatio * 100)}%)`)
-                    setActiveMember(_tpSlot)
+                    if (!combat?.isBossUltime) setActiveMember(_tpSlot)
                     if (_tp.currentHp <= 0) {
-                        _autoSwitchActive()
-                        if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return 0 }
+                        if (combat?.isBossUltime) {
+                            if (typeof _Boss_UltimeHandleMemberDeath === 'function') _Boss_UltimeHandleMemberDeath(_tp)
+                        } else {
+                            _autoSwitchActive()
+                            if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return 0 }
+                        }
                     }
+                    return 0
+                }
+            }
+
+            // deathSave (Mot de Reconstitution) : coup fatal sur un allié avec sauvegarde → soigné 100%, insoignable
+            if (dmg > 0 && dmg >= (targetEnemy.currentHp || 0) && state.team.includes(targetEnemy) && !state.team.includes(caster) && targetEnemy.deathSave) {
+                delete targetEnemy.deathSave
+                const _dsInsoignable = (targetEnemy.buffs || []).some(b => b.stat === 'antiHeal' && b.value >= 100)
+                if (!_dsInsoignable) {
+                    targetEnemy.currentHp = targetEnemy.maxHp
+                    targetEnemy.buffs = targetEnemy.buffs || []
+                    targetEnemy.buffs.push({ stat: 'antiHeal', value: 100, duration: Infinity })
+                    const _dsName = targetEnemy.name || classes[targetEnemy.classId]?.name || '?'
+                    addLog(`Mot de Reconstitution → ${_dsName} survit au coup fatal ! Soigné à 100% PV, insoignable.`)
                     return 0
                 }
             }
@@ -2443,6 +2461,19 @@ function executeEffect(ctx) {
             break
         }
 
+        case 'deathSave': {
+            // Pose une sauvegarde mortelle sur tous les alliés vivants.
+            // Au prochain coup fatal reçu : soigné à 100% PV mais insoignable pour le reste du combat.
+            let _dsCount = 0
+            for (const _dsM of state.team) {
+                if (!_dsM || _dsM.currentHp <= 0 || _dsM.deathSave) continue
+                _dsM.deathSave = true
+                _dsCount++
+            }
+            addLog(`${moveData.name} → sauvegarde mortelle active (${_dsCount} allié${_dsCount > 1 ? 's' : ''})`)
+            break
+        }
+
         case 'fatal_intercept': {
             // Pose l'état d'interception fatale : si un allié reçoit un coup fatal, subit ratio% des dégâts à sa place et devient actif
             // Non-stackable : si déjà actif sur ce membre, relancer le sort est sans effet
@@ -2775,6 +2806,7 @@ function executeEffect(ctx) {
         }
 
         case 'switch': {
+            if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
             if (combat?.isRaid) {
                 const _isTeamCaster = state.team.includes(caster)
                 if (_isTeamCaster && effect.target !== 'self') {
@@ -2888,6 +2920,7 @@ function executeEffect(ctx) {
         }
 
         case 'recul': {
+            if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
             // Sur self (membre de l'équipe) : active le prochain membre vivant N+1 (solo et raid)
             if (effect.target === 'self' && state.team.includes(caster)) {
                 {
@@ -2926,6 +2959,7 @@ function executeEffect(ctx) {
         }
 
         case 'avance': {
+            if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
             // Sur self (membre de l'équipe) : active le membre vivant précédent N-1 (solo et raid)
             if (effect.target === 'self' && state.team.includes(caster)) {
                 {
