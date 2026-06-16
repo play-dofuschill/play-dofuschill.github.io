@@ -60,8 +60,11 @@ function elemIcon(elem, cssClass = 'elem-icon') {
 const _MOVE_TYPE_ICON = {
     damage:            null, // utilise l'élément
     dot:               null,
-    absorbElementDmg:  'all_elements',
+    absorbElementDmg:    'all_elements',
     best_element_damage: 'all_elements',
+    worst_element_damage:'all_elements',
+    elementDmgPeek:      'all_elements',
+    nextElementDmg:      'all_elements',
     heal:              'soigneur',
     heal_team:         'soigneur',
     'heal%maxHp':      'soigneur',
@@ -79,11 +82,28 @@ function moveIconKey(mv) {
     const type = mv?.effects?.[0]?.type || ''
     const elem = mv?.effects?.[0]?.element || ''
     const mapped = _MOVE_TYPE_ICON[type]
-    if (mapped !== undefined) return mapped ?? (elem || 'neutre')
-    const dmgElems = new Set((mv?.effects || [])
-        .filter(e => e.type === 'damage' || e.type === 'dot')
+    if (mapped != null) return mapped  // valeur explicite (non-null) → retour direct
+    // Aplatit les effets imbriqués dans les choices (type random)
+    const flat = []
+    for (const e of (mv?.effects || [])) {
+        if (e.type === 'random' && e.choices) {
+            for (const c of e.choices) for (const se of (c.effects || [])) flat.push(se)
+        } else {
+            flat.push(e)
+        }
+    }
+    // Priorité 1 : éléments de dégâts (damage, dot, damage_zone)
+    const dmgElems = new Set(flat
+        .filter(e => e.type === 'damage' || e.type === 'dot' || e.type === 'damage_zone')
         .map(e => e.element).filter(Boolean))
     if (dmgElems.size > 1) return 'all_elements'
+    if (dmgElems.size === 1) return [...dmgElems][0]
+    // Priorité 2 : types avec icône explicite (best_element_damage, shield, buff…)
+    for (const e of flat) {
+        const m = _MOVE_TYPE_ICON[e.type]
+        if (m != null) return m
+    }
+    if (mapped === null) return elem || 'neutre'  // null = "utilise l'élément"
     return elem || 'sagesse'
 }
 
@@ -107,10 +127,20 @@ function getMoveBarElems(mv) {
         return { elems: ['buff'] }
     if (firstType === 'debuff' || firstType === 'debuff_team' || firstType === 'antiHeal')
         return { elems: ['debuff'] }
-    if (effects.some(e => e.type === 'absorbElementDmg' || e.type === 'best_element_damage'))
+    // Aplatit les effets imbriqués dans les choices (type random)
+    const flat = []
+    for (const e of effects) {
+        if (e.type === 'random' && e.choices) {
+            for (const c of e.choices) for (const se of (c.effects || [])) flat.push(se)
+        } else {
+            flat.push(e)
+        }
+    }
+    if (flat.some(e => e.type === 'absorbElementDmg' || e.type === 'best_element_damage'
+                    || e.type === 'worst_element_damage' || e.type === 'elementDmgPeek' || e.type === 'nextElementDmg'))
         return { elems: ['terre', 'feu', 'eau', 'air'] }
     const seen = new Set(), elems = []
-    for (const e of effects) {
+    for (const e of flat) {
         if ((e.type === 'damage' || e.type === 'dot' || e.type === 'damage_zone') && e.element && !seen.has(e.element)) {
             elems.push(e.element); seen.add(e.element)
         }

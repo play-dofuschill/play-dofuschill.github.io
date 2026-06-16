@@ -930,7 +930,7 @@ move.accumulation = {
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 3, max: 5}}}],
+                        patch: {stackedDamageDelta: {min: 3, max: 5}}}],
     description: "Frappe dans l'élément terre en augmentant légèrement les dommages à chaque lancé, cumulable 5 fois."
 }
 move.epee_du_jugement = {
@@ -3423,9 +3423,9 @@ move.bond_du_felin = {
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,
-                        patch: {buff: { value: 25 }}},
+                        patch: {buff: { value: 20 }}},
                        {lvl: 144,
-                        patch: {buff: { value: 40 }}}],
+                        patch: {buff: { value: 30 }}}],
     description: "Augmente la vitesse du lanceur pour 4 tours."
 }
 move.jass = {

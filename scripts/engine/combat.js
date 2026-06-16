@@ -147,15 +147,16 @@ function _syncCombatToState() {
         dots:           JSON.parse(JSON.stringify(combat.enemy.dots  || [])),
     } : null
     state.savedCombatState = {
-        memberTimers:       [...combat.memberTimers],
-        memberMoveIndex:    [...combat.memberMoveIndex],
-        activeMemberIndex:  combat.activeMemberIndex,
-        enemyTimer:         combat.enemyTimer,
-        memberKillCount:    { ...combat.memberKillCount },
-        memberPassiveState: JSON.parse(JSON.stringify(combat.memberPassiveState || {})),
-        spellStacks:        JSON.parse(JSON.stringify(combat.spellStacks        || {})),
-        sessionLoot:        JSON.parse(JSON.stringify(combat.sessionLoot)),
-        syncedLevel:        combat.syncedLevel || null,
+        memberTimers:         [...combat.memberTimers],
+        memberMoveIndex:      [...combat.memberMoveIndex],
+        activeMemberIndex:    combat.activeMemberIndex,
+        enemyTimer:           combat.enemyTimer,
+        memberKillCount:      { ...combat.memberKillCount },
+        memberPassiveState:   JSON.parse(JSON.stringify(combat.memberPassiveState   || {})),
+        spellStacks:          JSON.parse(JSON.stringify(combat.spellStacks          || {})),
+        memberTrophyCounters: JSON.parse(JSON.stringify(combat.memberTrophyCounters || {})),
+        sessionLoot:          JSON.parse(JSON.stringify(combat.sessionLoot)),
+        syncedLevel:          combat.syncedLevel || null,
     }
 }
 
@@ -379,7 +380,8 @@ function startCombat(areaId) {
         trapStacks:            {},
         sessionLoot:           _emptySessionLoot(),
         dungeonBossQueue:      null,
-        playerAttackCount:     0
+        playerAttackCount:     0,
+        memberTrophyCounters:  {}
     }
 
     if (_isResume && state.savedCombatState) {
@@ -390,9 +392,10 @@ function startCombat(areaId) {
         if (sc.activeMemberIndex != null) combat.activeMemberIndex  = sc.activeMemberIndex
         if (sc.enemyTimer        != null) combat.enemyTimer         = sc.enemyTimer
         if (sc.memberKillCount)           combat.memberKillCount    = { ...sc.memberKillCount }
-        if (sc.memberPassiveState)        combat.memberPassiveState = JSON.parse(JSON.stringify(sc.memberPassiveState))
-        if (sc.spellStacks)               combat.spellStacks        = JSON.parse(JSON.stringify(sc.spellStacks))
-        if (sc.sessionLoot)               combat.sessionLoot        = JSON.parse(JSON.stringify(sc.sessionLoot))
+        if (sc.memberPassiveState)        combat.memberPassiveState   = JSON.parse(JSON.stringify(sc.memberPassiveState))
+        if (sc.spellStacks)               combat.spellStacks          = JSON.parse(JSON.stringify(sc.spellStacks))
+        if (sc.memberTrophyCounters)      combat.memberTrophyCounters = JSON.parse(JSON.stringify(sc.memberTrophyCounters))
+        if (sc.sessionLoot)               combat.sessionLoot          = JSON.parse(JSON.stringify(sc.sessionLoot))
         state.savedCombatState = null
     } else {
         // Pré-calcul des états passifs initiaux
@@ -416,13 +419,23 @@ function startCombat(areaId) {
                 addLog(`${m.name || classes[m.classId]?.name || '?'} [Roulette] → ${rolled.label} pour ce cycle !`)
             }
             if (passive?.id === 'huppermage') {
-                const slots    = ['slot1', 'slot2', 'slot3', 'slot4']
+                const slots = ['slot1', 'slot2', 'slot3', 'slot4']
+                const _DYNAMIC = new Set(['best_element_damage', 'worst_element_damage',
+                    'absorbElementDmg', 'elementDmgPeek', 'nextElementDmg'])
                 const elements = slots.map(s => {
                     const mid = m.moves?.[s]
                     if (!mid) return null
-                    const mv  = move[mid]
-                    const eff = mv?.effects?.find(e => e.type === 'damage' || e.type === 'dot')
-                    return eff?.element || null
+                    const mv = move[mid]
+                    if (!mv) return null
+                    // Sort à élément dynamique → ne compte pas
+                    if (mv.effects?.some(e => _DYNAMIC.has(e.type))) return null
+                    const dmgElems = new Set(
+                        (mv.effects || [])
+                            .filter(e => e.type === 'damage' || e.type === 'dot' || e.type === 'damage_zone')
+                            .map(e => e.element).filter(e => e && e !== 'neutre')
+                    )
+                    // Doit avoir exactement 1 élément fixe
+                    return dmgElems.size === 1 ? [...dmgElems][0] : null
                 }).filter(Boolean)
                 combat.memberPassiveState[i].huppermageBonus =
                     elements.length === 4 && new Set(elements).size === 4
@@ -655,6 +668,7 @@ function startPoutchCombat(mode) {
         poutchMode:         mode,
         poutchTurns:        0,
         poutchBiggestHit:   0,
+        memberTrophyCounters:  {},
         sessionLoot: {
             itemDrops: [], familiarDrops: [], killCount: 0,
             memberDamage: {}, memberDamageReceived: {},
@@ -962,6 +976,8 @@ function executeMemberAction(memberIndex) {
         member.damageShare.duration--
         if (member.damageShare.duration <= 0) delete member.damageShare
     }
+
+    _checkTrophyTrigger(memberIndex)
 
     combat.memberTimers[memberIndex] = 0
 }
@@ -2759,17 +2775,33 @@ function executeEffect(ctx) {
         }
 
         case 'switch': {
-            if (combat?.isRaid) break  // non implémenté en raid (pas de sorts de zone encore)
-            // Liste des indices d'équipe encore en vie
+            if (combat?.isRaid) {
+                const _isTeamCaster = state.team.includes(caster)
+                if (_isTeamCaster && effect.target !== 'self') {
+                    // Membre de l'équipe sur ennemi : effet aléatoire recul ou avance
+                    const _rndType = Math.random() < 0.5 ? 'recul' : 'avance'
+                    executeEffect({ ...ctx, effect: { ...effect, type: _rndType, target: 'enemy' } })
+                } else {
+                    // Monstre sur équipe, ou membre sur self : remapping fixe 1→5, 2→4, 3→6 (0-indexed: 0→4, 1→3, 2→5, 3→1, 4→0, 5→2)
+                    const _switchRaidMap = [4, 3, 5, 1, 0, 2]
+                    const _curIdx = combat.activeMemberIndex
+                    const _dstIdx = _switchRaidMap[_curIdx] ?? -1
+                    if (_dstIdx === -1) break
+                    const _dstMember = state.team[_dstIdx]
+                    if (!_dstMember || _dstMember.currentHp <= 0) break
+                    addLog(`${moveData.name} → switch ! Passage au membre en position ${_dstIdx + 1}`)
+                    setActiveMember(_dstIdx)
+                }
+                break
+            }
+            // Solo : force le changement de membre actif sur l'équipe du joueur
             const living = []
             for (let i = 0; i < state.team.length; i++) {
                 const m = state.team[i]
                 if (m && m.currentHp > 0) living.push(i)
             }
-            // Besoin d'au moins 2 membres vivants
             if (living.length <= 1) break
             const curPos = living.indexOf(combat.activeMemberIndex)
-            // Avance de value positions en bouclant sur les membres vivants
             const targetPos = (curPos + (effect.value || 1)) % living.length
             if (targetPos === curPos) break
             addLog(`${moveData.name} → changement de membre forcé !`)
@@ -2856,7 +2888,26 @@ function executeEffect(ctx) {
         }
 
         case 'recul': {
+            // Sur self (membre de l'équipe) : active le prochain membre vivant N+1 (solo et raid)
+            if (effect.target === 'self' && state.team.includes(caster)) {
+                {
+                    const _cur   = combat.activeMemberIndex
+                    const _total = state.team.length
+                    for (let _i = 1; _i < _total; _i++) {
+                        const _nextIdx = (_cur + _i) % _total
+                        const _m = state.team[_nextIdx]
+                        if (_m && _m.currentHp > 0) {
+                            addLog(`${moveData.name} → recul ! Passage au membre en position ${_nextIdx + 1}`)
+                            setActiveMember(_nextIdx)
+                            break
+                        }
+                    }
+                }
+                break
+            }
+            // Sur ennemi en solo : ignoré
             if (!combat?.isRaid || !combat.enemies) break
+            // Sur ennemi en raid : swap vers le rang suivant
             const enemySlot = ctx.enemySlotIdx ?? combat.enemies.indexOf(targetEnemy)
             if (enemySlot === -1) break
             const total    = combat.enemies.length
@@ -2875,7 +2926,26 @@ function executeEffect(ctx) {
         }
 
         case 'avance': {
+            // Sur self (membre de l'équipe) : active le membre vivant précédent N-1 (solo et raid)
+            if (effect.target === 'self' && state.team.includes(caster)) {
+                {
+                    const _cur   = combat.activeMemberIndex
+                    const _total = state.team.length
+                    for (let _i = 1; _i < _total; _i++) {
+                        const _prevIdx = (_cur - _i + _total) % _total
+                        const _m = state.team[_prevIdx]
+                        if (_m && _m.currentHp > 0) {
+                            addLog(`${moveData.name} → avance ! Passage au membre en position ${_prevIdx + 1}`)
+                            setActiveMember(_prevIdx)
+                            break
+                        }
+                    }
+                }
+                break
+            }
+            // Sur ennemi en solo : ignoré
             if (!combat?.isRaid || !combat.enemies) break
+            // Sur ennemi en raid : swap vers le rang précédent
             const enemySlot = ctx.enemySlotIdx ?? combat.enemies.indexOf(targetEnemy)
             if (enemySlot === -1) break
             const total    = combat.enemies.length
@@ -3876,6 +3946,56 @@ function setActiveMember(index) {
     }
     combat.activeMemberIndex = index
     updateCombatUI()
+}
+
+function _checkTrophyTrigger(memberIndex) {
+    const member = state.team[memberIndex]
+    if (!member?.equip) return
+    const trophyId = member.equip.accessoire
+    if (!trophyId) return
+    const itm = item[trophyId]
+    if (!itm?.trophy) return
+
+    const { trigger, switchTo } = itm.trophy
+    if (trigger.type === 'spells_cast') {
+        combat.memberTrophyCounters[memberIndex] = (combat.memberTrophyCounters[memberIndex] || 0) + 1
+        if (combat.memberTrophyCounters[memberIndex] >= trigger.count) {
+            if (trigger.resetOnTrigger) combat.memberTrophyCounters[memberIndex] = 0
+            _switchByTrophy(memberIndex, switchTo, itm.name)
+        }
+    }
+}
+
+function _switchByTrophy(fromIndex, switchTo, trophyName) {
+    const living = []
+    for (let i = 0; i < state.team.length; i++) {
+        const m = state.team[i]
+        if (m && m.currentHp > 0) living.push(i)
+    }
+    if (living.length <= 1) return
+
+    const curPos = living.indexOf(fromIndex)
+    let targetIndex
+
+    if (switchTo.type === 'next') {
+        targetIndex = living[(curPos + 1) % living.length]
+    } else if (switchTo.type === 'prev') {
+        targetIndex = living[(curPos - 1 + living.length) % living.length]
+    } else if (switchTo.type === 'slot') {
+        const desired = switchTo.index
+        const m = state.team[desired]
+        if (m && m.currentHp > 0) {
+            targetIndex = desired
+        } else {
+            targetIndex = living[(curPos + 1) % living.length]
+        }
+    }
+
+    if (targetIndex !== undefined && targetIndex !== fromIndex) {
+        const memberName = state.team[targetIndex]?.name || classes[state.team[targetIndex]?.classId]?.name || `Slot ${targetIndex + 1}`
+        addLog(`${trophyName} → ${memberName}`)
+        setActiveMember(targetIndex)
+    }
 }
 
 function _triggerReuche(depletedAlly) {

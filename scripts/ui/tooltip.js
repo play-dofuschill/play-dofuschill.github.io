@@ -232,7 +232,15 @@ const PASSIVE_TEXTS = {
     osamodas:   'Les invocations ont 2× plus de PV et d\'ATK.',
     enutrof:   '+15% taux de drop d\'items. Kamas × 2 quand un item est au niveau maximum.',
     xelor:      'Cycle de 7 sorts (1→2→3→4→3→2→1) au lieu du cycle standard 1→2→3→4.',
-    huppermage: '+10% dégâts finaux si les 4 sorts équipés couvrent 4 éléments différents.',
+    huppermage: `+10% dégâts finaux si les 4 sorts équipés couvrent chacun un élément différent (sorts mono-élément uniquement — un sort multi-éléments comme Torrent Arcanique ne valide pas la condition).
+<br><br><strong>Combos élémentaires</strong> — frapper deux éléments différents de suite déclenche un effet :
+<br><img src="img/icons/Feu.png" style="width:1em;height:1em;vertical-align:middle;"> <img src="img/icons/Terre.png" style="width:1em;height:1em;vertical-align:middle;"> Feu + Terre → <em>Amplification</em> : prochain sort +15% sur l'ennemi
+<br><img src="img/icons/Air.png" style="width:1em;height:1em;vertical-align:middle;"> <img src="img/icons/Terre.png" style="width:1em;height:1em;vertical-align:middle;"> Air + Terre → <em>Instabilité</em> : 7% de chance que le prochain sort fasse +50%
+<br><img src="img/icons/Eau.png" style="width:1em;height:1em;vertical-align:middle;"> <img src="img/icons/Terre.png" style="width:1em;height:1em;vertical-align:middle;"> Eau + Terre → <em>Affaiblissement</em> : ATK ennemi −50 (2 tours)
+<br><img src="img/icons/Eau.png" style="width:1em;height:1em;vertical-align:middle;"> <img src="img/icons/Feu.png" style="width:1em;height:1em;vertical-align:middle;"> Eau + Feu → <em>Perturbation</em> : 7% de chance que le prochain sort fasse −50%
+<br><img src="img/icons/Air.png" style="width:1em;height:1em;vertical-align:middle;"> <img src="img/icons/Feu.png" style="width:1em;height:1em;vertical-align:middle;"> Air + Feu → <em>Ralentissement</em> : Initiative ennemi −15 (2 tours)
+<br><img src="img/icons/Air.png" style="width:1em;height:1em;vertical-align:middle;"> <img src="img/icons/Eau.png" style="width:1em;height:1em;vertical-align:middle;"> Air + Eau → <em>Bouclier</em> : prochain sort ennemi −15%
+<br><br>Un sort à éléments multiples (ex : Torrent Arcanique) peut déclencher plusieurs combos en un seul lancer.`,
     sadida:     'Tous les 4 sorts, inflige −20 Initiative à l\'ennemi pendant 2 tours.',
     roublard:   'À la mort, inflige 30% de ses PV max en dégâts neutres à l\'ennemi.',
     ecaflip:    'À chaque cycle de 4 sorts, gagne un bonus ou malus aléatoire.',
@@ -903,13 +911,17 @@ function showMoveTooltip(moveId, casterStats) {
     if (!mv) return
 
     const TYPE_LABELS = {
-        damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', best_element_damage: 'Attaque (meilleur élément)',
-        absorbElementDmg: 'Attaque (élément actif)', cycleElement: 'Cycle élémentaire',
+        damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', best_element_damage: 'Attaque (meilleur élément)', worst_element_damage: 'Attaque (pire élément)',
+        absorbElementDmg: 'Attaque (absorbe l\'élément actif)', cycleElement: 'Cycle élémentaire',
+        elementDmgPeek: 'Attaque (lit l\'élément actif)', nextElementDmg: 'Attaque (élément suivant)',
         esquive: 'Esquive', consumeElementBuff: 'Consomme élément',
+        drop_bonus: 'Bonus de drop', enutrof_trap: 'Piège',
         heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)', 'heal%maxHp_team': 'Soin (% PV max équipe)', hot: 'Soin continu',
         buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff', debuff_team: 'Débuff (équipe)',
         shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
-        summon: 'Invocation', summon_random: 'Invocation',
+        self_dmg_pct_current: 'Sacrifice (PV courants)',
+        burnMark: 'Brûlure différée',
+        summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
         renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
         switch: 'Déplacement', repeat: 'Répétition', random: 'Aléatoire',
         portal: 'Portail', turret: 'Tourelle', recul: 'Recul', avance: 'Avance'
@@ -951,25 +963,90 @@ function showMoveTooltip(moveId, casterStats) {
 
         let rows = `<div class="mt-row"><span class="mt-label">Type</span><span class="mt-val">${typeLabel} ${elemBadge}</span></div>`
 
-        // Dégâts directs (damage, damage_zone, absorbElementDmg, best_element_damage)
-        if (eff.type === 'best_element_damage' && eff.damage != null) {
+        // Dégâts directs (damage, damage_zone, absorbElementDmg, best_element_damage, elementDmgPeek, nextElementDmg)
+        if ((eff.type === 'best_element_damage' || eff.type === 'worst_element_damage') && eff.damage != null) {
             rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${_dmgStr(eff.damage)}</span></div>`
-            rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Adaptatif (résistance la plus faible)</span></div>`
-        } else if ((eff.type === 'damage' || eff.type === 'damage_zone' || eff.type === 'absorbElementDmg') && eff.damage != null) {
+            if (casterStats && typeof eff.damage === 'object') {
+                const minF = _mvDmg(casterStats, eff.damage.min)
+                const maxF = _mvDmg(casterStats, eff.damage.max)
+                rows += `<div class="mt-row"><span class="mt-label">Final (0% rés. neutre)</span><span class="mt-val mt-accent">${minF}–${maxF}</span></div>`
+            }
+            const _elemLabel = eff.type === 'best_element_damage'
+                ? 'Adaptatif (résistance la plus faible)'
+                : 'Adaptatif (résistance la plus haute)'
+            rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">${_elemLabel}</span></div>`
+        } else if ((eff.type === 'damage' || eff.type === 'damage_zone' || eff.type === 'absorbElementDmg'
+                 || eff.type === 'elementDmgPeek' || eff.type === 'nextElementDmg') && eff.damage != null) {
             rows += `<div class="mt-row"><span class="mt-label">Base</span><span class="mt-val">${_dmgStr(eff.damage)}</span></div>`
             if (casterStats && typeof eff.damage === 'object') {
                 const minF = _mvDmg(casterStats, eff.damage.min)
                 const maxF = _mvDmg(casterStats, eff.damage.max)
                 rows += `<div class="mt-row"><span class="mt-label">Final (0% rés.)</span><span class="mt-val mt-accent">${minF}–${maxF}</span></div>`
             }
+            if (eff.slot1BonusPct != null) {
+                rows += `<div class="mt-row"><span class="mt-label">Bonus slot 1</span><span class="mt-val">+${eff.slot1BonusPct}% dégâts finaux</span></div>`
+                if (casterStats && typeof eff.damage === 'object') {
+                    const _s1 = { ...casterStats, finalDamagePct: (casterStats.finalDamagePct || 0) + eff.slot1BonusPct }
+                    rows += `<div class="mt-row"><span class="mt-label">Final slot 1 (0% rés.)</span><span class="mt-val mt-accent">${_mvDmg(_s1, eff.damage.min)}–${_mvDmg(_s1, eff.damage.max)}</span></div>`
+                }
+            }
+            if (eff.selfDebuffScale) {
+                const _sds = eff.selfDebuffScale
+                const _statN   = STAT_LABELS[_sds.stat]      || _sds.stat      || 'dégâts'
+                const _debuffN = STAT_LABELS[_sds.debuffStat] || _sds.debuffStat || 'stat'
+                const _ratioStr = (_sds.ratio != null && _sds.ratio !== 1) ? `×${_sds.ratio} ` : ''
+                rows += `<div class="mt-row"><span class="mt-label">Scaling</span><span class="mt-val">+${_ratioStr}${_statN} par débuff ${_debuffN} actif sur le lanceur</span></div>`
+            }
+            if (eff.summonMultiplier != null) {
+                rows += `<div class="mt-row"><span class="mt-label">Sur invocation</span><span class="mt-val">×${eff.summonMultiplier}</span></div>`
+                if (casterStats && typeof eff.damage === 'object') {
+                    const _bMin = _mvDmg(casterStats, eff.damage.min)
+                    const _bMax = _mvDmg(casterStats, eff.damage.max)
+                    rows += `<div class="mt-row"><span class="mt-label">Final invocation (0% rés.)</span><span class="mt-val mt-accent">${Math.max(1, Math.floor(_bMin * eff.summonMultiplier))}–${Math.max(1, Math.floor(_bMax * eff.summonMultiplier))}</span></div>`
+                }
+            }
             if (eff.type === 'absorbElementDmg' && eff.fallbackElement) {
                 rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Actif sur l'ennemi (sinon ${eff.fallbackElement})</span></div>`
+            }
+            if (eff.type === 'elementDmgPeek') {
+                rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Actif (sans consommer)${eff.fallbackElement ? ` — sinon ${eff.fallbackElement}` : ''}</span></div>`
+                if (casterStats) rows += `<div class="mt-row" style="opacity:0.6;font-size:0.75rem;"><span class="mt-label"></span><span class="mt-val">Final calculé avec 0% rés. neutre</span></div>`
+            }
+            if (eff.type === 'nextElementDmg') {
+                const _cycleStr = { A: 'Terre → Eau → Feu → Air', B: 'Eau → Terre → Air → Feu' }[eff.cycle] || eff.cycle || ''
+                rows += `<div class="mt-row"><span class="mt-label">Élément</span><span class="mt-val">Suivant du cycle${_cycleStr ? ` (${_cycleStr})` : ''} — sans modifier l'état</span></div>`
+                if (casterStats) rows += `<div class="mt-row" style="opacity:0.6;font-size:0.75rem;"><span class="mt-label"></span><span class="mt-val">Final calculé avec 0% rés. neutre</span></div>`
+            }
+        } else if ((eff.type === 'damage' || eff.type === 'damage_zone' || eff.type === 'best_element_damage' || eff.type === 'worst_element_damage') && eff.stackedDamage?.length) {
+            const _sd    = eff.stackedDamage
+            const _first = _sd[0], _last = _sd[_sd.length - 1]
+            rows += `<div class="mt-row"><span class="mt-label">Base (palier 1/${_sd.length})</span><span class="mt-val">${_dmgStr(_first)}</span></div>`
+            if (_sd.length > 1)
+                rows += `<div class="mt-row"><span class="mt-label">Base (palier ${_sd.length}/${_sd.length})</span><span class="mt-val">${_dmgStr(_last)}</span></div>`
+            if (casterStats) {
+                rows += `<div class="mt-row"><span class="mt-label">Final palier 1 (0% rés.)</span><span class="mt-val mt-accent">${_mvDmg(casterStats, _first.min)}–${_mvDmg(casterStats, _first.max)}</span></div>`
+                if (_sd.length > 1)
+                    rows += `<div class="mt-row"><span class="mt-label">Final palier ${_sd.length} (0% rés.)</span><span class="mt-val mt-accent">${_mvDmg(casterStats, _last.min)}–${_mvDmg(casterStats, _last.max)}</span></div>`
             }
         }
 
         // Multiplicateurs cycliques (ex: Tempête de Puissance — ×1 → ×1.2 → ×1.5)
         if (eff.scalingMultipliers?.length > 1) {
             rows += `<div class="mt-row"><span class="mt-label">Multiplicateurs</span><span class="mt-val">${eff.scalingMultipliers.map(m => `×${m}`).join(' → ')}</span></div>`
+        }
+
+        // Ratio de dégâts pour cibles secondaires
+        if (eff.ratio != null && (eff.type === 'damage' || eff.type === 'damage_zone')) {
+            rows += `<div class="mt-row"><span class="mt-label">Ratio</span><span class="mt-val">×${eff.ratio} des dégâts</span></div>`
+        }
+
+        // Cible multi ou raid uniquement
+        if (Array.isArray(eff.target) && eff.target.some(t => /^enemy_\d$/.test(t))) {
+            const tStr = eff.target.map(t => t.replace(/^enemy_(\d)$/, (_, n) => `ennemi ${n}`)).join(', ')
+            rows += `<div class="mt-row"><span class="mt-label">Cibles</span><span class="mt-val">${tStr}</span></div>`
+        }
+        if (eff.noFallback) {
+            rows += `<div class="mt-row"><span class="mt-label">Mode</span><span class="mt-val">Raid uniquement</span></div>`
         }
 
         // DOT : value directe (ex: Flèche Empoisonnée) ou damage objet
@@ -980,16 +1057,41 @@ function showMoveTooltip(moveId, casterStats) {
         }
 
         // HOT (soin continu)
-        if (eff.type === 'hot' && eff.heal != null) {
-            rows += `<div class="mt-row"><span class="mt-label">Soin/tour</span><span class="mt-val">${_dmgStr(eff.heal)}</span></div>`
-            if (eff.duration) rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
+        if (eff.type === 'hot') {
+            if (eff.heal     != null) rows += `<div class="mt-row"><span class="mt-label">Soin/tour</span><span class="mt-val">${_dmgStr(eff.heal)}</span></div>`
+            if (eff.pctMaxHp != null) rows += `<div class="mt-row"><span class="mt-label">Soin/tour</span><span class="mt-val">${eff.pctMaxHp}% des PV max</span></div>`
+            if (eff.duration)         rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
         }
 
         if (eff.type === 'random' && eff.choices?.length) {
             for (const choice of eff.choices) {
                 const pct = Math.round((choice.chance || 0) * 100)
-                const subLabels = (choice.effects || []).map(se => TYPE_LABELS[se.type] || se.type).join(', ')
-                rows += `<div class="mt-row"><span class="mt-label">${pct}%</span><span class="mt-val">${subLabels}</span></div>`
+                const parts = (choice.effects || []).map(se => {
+                    const lbl = TYPE_LABELS[se.type] || se.type
+                    if ((se.type === 'damage' || se.type === 'damage_zone' || se.type === 'best_element_damage' || se.type === 'worst_element_damage') && se.damage != null)
+                        return `${lbl}${se.element ? ` (${se.element})` : ''} ${_dmgStr(se.damage)}`
+                    if ((se.type === 'heal' || se.type === 'heal_team' || se.type === 'heal%maxHp') && se.heal != null)
+                        return `${lbl} ${_dmgStr(se.heal)}`
+                    if ((se.type === 'buff' || se.type === 'buff_team' || se.type === 'debuff' || se.type === 'debuff_team') && se.stat != null)
+                        return `${lbl} ${se.value >= 0 ? '+' : ''}${se.value} ${STAT_LABELS[se.stat] || se.stat}`
+                    if (se.type === 'shield') {
+                        if (se.levelPct != null) return `${lbl} Niv × ${se.levelPct}`
+                        if (se.value    != null) return `${lbl} ${se.value}`
+                    }
+                    return lbl
+                })
+                rows += `<div class="mt-row"><span class="mt-label">${pct}%</span><span class="mt-val">${parts.join(', ')}</span></div>`
+            }
+            if (casterStats) {
+                for (const choice of eff.choices) {
+                    for (const se of (choice.effects || [])) {
+                        if ((se.type === 'damage' || se.type === 'damage_zone' || se.type === 'best_element_damage' || se.type === 'worst_element_damage') && se.damage != null && typeof se.damage === 'object') {
+                            const pct     = Math.round((choice.chance || 0) * 100)
+                            const elemStr = se.element ? ` ${se.element}` : (se.type === 'best_element_damage' ? ' meilleur élément' : '')
+                            rows += `<div class="mt-row"><span class="mt-label">Final ${pct}%${elemStr} (0% rés.)</span><span class="mt-val mt-accent">${_mvDmg(casterStats, se.damage.min)}–${_mvDmg(casterStats, se.damage.max)}</span></div>`
+                        }
+                    }
+                }
             }
         }
 
@@ -1029,13 +1131,58 @@ function showMoveTooltip(moveId, casterStats) {
             rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
         }
 
+        if (eff.type === 'self_dmg_pct_current' && eff.ratio != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Coût</span><span class="mt-val">${Math.round(eff.ratio * 100)}% des PV courants</span></div>`
+        }
+
         if (eff.type === 'consumeElementBuff' && eff.onElement) {
             rows += `<div class="mt-row"><span class="mt-label">Effets</span><span class="mt-val">Terre / Eau / Feu / Air</span></div>`
+        }
+
+        if (eff.type === 'drop_bonus' && eff.value != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Bonus drop</span><span class="mt-val">+${eff.value}%</span></div>`
+            rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">Combat en cours (non cumulable)</span></div>`
+        }
+
+        if (eff.type === 'enutrof_trap') {
+            if (eff.damage != null) {
+                rows += `<div class="mt-row"><span class="mt-label">Dégâts</span><span class="mt-val">${_dmgStr(eff.damage)}</span></div>`
+                if (casterStats && typeof eff.damage === 'object') {
+                    rows += `<div class="mt-row"><span class="mt-label">Final (0% rés.)</span><span class="mt-val mt-accent">${_mvDmg(casterStats, eff.damage.min)}–${_mvDmg(casterStats, eff.damage.max)}</span></div>`
+                }
+            }
+            if (eff.trigger) {
+                const _tType = eff.trigger.type
+                const _TRIG  = { buff: 'Buff', debuff: 'Débuff', heal: 'Soin', damage: 'Attaque' }
+                let _trigLabel = _TRIG[_tType] || _tType
+                if (eff.trigger.stat) _trigLabel += ` (${STAT_LABELS[eff.trigger.stat] || eff.trigger.stat})`
+                rows += `<div class="mt-row"><span class="mt-label">Déclencheur</span><span class="mt-val">${_trigLabel} sur l'ennemi</span></div>`
+            }
+            if (eff.duration != null) rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
         }
 
         if (eff.type === 'summon' && eff.summonId) {
             const summonMob = monsters[eff.summonId] || summons[eff.summonId]
             if (summonMob) rows += `<div class="mt-row"><span class="mt-label">Invocation</span><span class="mt-val">${summonMob.name}</span></div>`
+            if (eff.scale != null)
+                rows += `<div class="mt-row"><span class="mt-label">Stats</span><span class="mt-val">${Math.round(eff.scale * 100)}% PV + ATK du lanceur</span></div>`
+            if (eff.duration != null)
+                rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
+        }
+
+        if (eff.type === 'burnMark' && eff.damage != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Dégâts</span><span class="mt-val">${_dmgStr(eff.damage)}</span></div>`
+            if (casterStats) {
+                rows += `<div class="mt-row"><span class="mt-label">Final (0% rés.)</span><span class="mt-val mt-accent">${_mvDmg(casterStats, eff.damage.min)}–${_mvDmg(casterStats, eff.damage.max)}</span></div>`
+            }
+            rows += `<div class="mt-row"><span class="mt-label">Cibles</span><span class="mt-val">Ennemis 2 et 3 (raid uniquement)</span></div>`
+        }
+
+        if (eff.type === 'summon_companion' && eff.summonId) {
+            const compMob = summons[eff.summonId] || monsters[eff.summonId]
+            if (compMob) rows += `<div class="mt-row"><span class="mt-label">Compagnon</span><span class="mt-val">${compMob.name}</span></div>`
+            if (eff.scale != null)
+                rows += `<div class="mt-row"><span class="mt-label">Stats</span><span class="mt-val">${Math.round(eff.scale * 100)}% PV + ATK du lanceur</span></div>`
         }
 
         effectsHtml += `<div class="mt-effect ${effectClass}">${rows}</div>`
@@ -1047,7 +1194,8 @@ function showMoveTooltip(moveId, casterStats) {
         const progRows = mv.spellProgression.map(entry => {
             const patch = entry.patch || {}
             const changes = []
-            if (patch.damage != null)    changes.push(`dégâts ${_dmgStr(patch.damage)}`)
+            if (patch.damage != null)             changes.push(`dégâts ${_dmgStr(patch.damage)}`)
+            if (patch.stackedDamageDelta != null) changes.push(`+${_dmgStr(patch.stackedDamageDelta)} par palier`)
             if (patch.lifesteal != null) changes.push(`vol de vie ${Math.round(patch.lifesteal.ratio * 100)}%`)
             if (patch.heal != null)      changes.push(`soin ${_dmgStr(patch.heal)}`)
             if (patch.healPct != null)   changes.push(`soin ${patch.healPct}% PV max`)
@@ -1089,7 +1237,32 @@ function showMoveTooltip(moveId, casterStats) {
                 if (patch.hot.heal != null) changes.push(`soin ${_dmgStr(patch.hot.heal)}/tour`)
                 if (patch.hot.duration != null) changes.push(`durée ${patch.hot.duration} t.`)
             }
-            if (patch.consumeElementBuff != null) changes.push('effets améliorés')
+            if (patch.summon?.scale != null)       changes.push(`compagnon ${Math.round(patch.summon.scale * 100)}% stats`)
+            if (patch.summonMultiplier != null)    changes.push(`×${patch.summonMultiplier} sur invocation`)
+            if (patch.consumeElementBuff != null)  changes.push('effets améliorés')
+            if (patch.effects?.length) {
+                for (const e of patch.effects) {
+                    if (e.type === 'random' && e.choices?.length) {
+                        for (const c of e.choices) {
+                            const _pct = Math.round((c.chance || 0) * 100)
+                            for (const se of (c.effects || [])) {
+                                if ((se.type === 'damage' || se.type === 'damage_zone' || se.type === 'best_element_damage' || se.type === 'worst_element_damage') && se.damage != null)
+                                    changes.push(`${_pct}% dégâts ${_dmgStr(se.damage)}`)
+                                else if ((se.type === 'heal' || se.type === 'heal_team' || se.type === 'heal%maxHp') && se.heal != null)
+                                    changes.push(`${_pct}% soin ${_dmgStr(se.heal)}`)
+                                else if ((se.type === 'buff' || se.type === 'debuff') && se.stat != null)
+                                    changes.push(`${_pct}% ${se.value >= 0 ? '+' : ''}${se.value} ${STAT_LABELS[se.stat] || se.stat}`)
+                                else if (se.type === 'self_dmg_pct_current' && se.ratio != null)
+                                    changes.push(`${_pct}% sacrifice ${Math.round(se.ratio * 100)}% PV`)
+                            }
+                        }
+                    } else if (e.type !== 'random') {
+                        // Effets non-random patchant tout le tableau (ex: sacrieur)
+                        if (e.type === 'self_dmg_pct_current' && e.ratio != null)
+                            changes.push(`sacrifice ${Math.round(e.ratio * 100)}% PV`)
+                    }
+                }
+            }
             return `<div class="mt-prog-row">
                 <span class="mt-prog-lvl">Niv. ${entry.lvl}</span>
                 <span class="mt-prog-val">${changes.length ? changes.join(', ') : 'base'}</span>

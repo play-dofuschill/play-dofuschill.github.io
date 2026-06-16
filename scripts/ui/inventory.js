@@ -129,7 +129,12 @@ function updateInventoryUI() {
         const { sort, sortDir } = equipFilters
         const mul = sortDir === 'asc' ? 1 : -1
         entries.sort((a, b) => {
-            if (sort === 'level') return ((a.entry.level || 0) - (b.entry.level || 0)) * mul
+            if (sort === 'level') {
+                const reqA = a.itm.requiredLevel ?? 0
+                const reqB = b.itm.requiredLevel ?? 0
+                if (reqA !== reqB) return (reqA - reqB) * mul
+                return ((a.entry.level || 0) - (b.entry.level || 0)) * mul
+            }
             if (sort === 'pano') {
                 const aSet = (Array.isArray(a.itm.set) ? a.itm.set[0] : a.itm.set) || ''
                 const bSet = (Array.isArray(b.itm.set) ? b.itm.set[0] : b.itm.set) || ''

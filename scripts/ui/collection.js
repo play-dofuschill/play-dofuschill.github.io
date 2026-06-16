@@ -100,7 +100,12 @@ function updateCollectionUI() {
     list.innerHTML = ''
     const total = Object.keys(monsters).length
 
-    for (const monsterId in monsters) {
+    const allIds = Object.keys(monsters)
+    const seenIds   = allIds.filter(id => !!state.seenMonsters?.[id])
+    const unseenIds = allIds.filter(id => !state.seenMonsters?.[id])
+    const sortedIds = [...seenIds, ...unseenIds]
+
+    for (const monsterId of sortedIds) {
         const mob = monsters[monsterId]
 
         if (levelFilter !== 'all') {
