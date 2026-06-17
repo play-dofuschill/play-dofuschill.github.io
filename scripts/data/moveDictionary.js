@@ -1690,9 +1690,9 @@ move.fleche_fulminante = {
     name: 'Flèche Fulminante',
     classId: 'cra',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 28},, target: 'enemy_1'},
-        {type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: {'enemy_2'}, ratio: 1.25, noFallback: true},
-        {type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: {'enemy_3'}, ratio: 1.5, noFallback: true}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: 'enemy_1'},
+        {type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: 'enemy_2', ratio: 1.25, noFallback: true},
+        {type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: 'enemy_3', ratio: 1.5, noFallback: true}],
     description: "Inflige 100% des dommages sur l'ennemi principal, puis 125% sur l'ennemi secondaire, puis 150% sur l'ennemi tertiaire."
 }
 move.fleche_tyrannique = {
