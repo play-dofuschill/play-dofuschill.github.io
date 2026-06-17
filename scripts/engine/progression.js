@@ -307,8 +307,8 @@ function selectStarterClass(classId) {
     document.getElementById('starter-menu').style.display = 'none'
     const menuParent = document.getElementById('menu-button-parent')
     if (menuParent) menuParent.style.display = ''
+    advanceTutorial('intro')
     saveGame()
     updateTeamUI()
     showNotification(`Bienvenue, ${classes[classId].name} !`, 'info')
-    advanceTutorial('intro')
 }
