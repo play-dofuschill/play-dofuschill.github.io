@@ -148,15 +148,15 @@ const MS_SLOT_LABELS = {
     anneau2: 'Anneau', familier: 'Familier', accessoire: 'Accessoire'
 }
 const MS_SLOT_ICONS = {
-    coiffe:     'img/items/panoplies/coiffe_du_bouftou.png',
-    bouclier:   'img/items/panoplies/bouclier_du_bouftou.png',
-    anneau:     'img/items/panoplies/anneau_de_bouze_le_clerc.png',
-    anneau2:    'img/items/panoplies/anneau_de_bouze_le_clerc.png',
-    ceinture:   'img/items/panoplies/ceinture_du_bouftou.png',
-    bottes:     'img/items/panoplies/boufbottes.png',
-    amulette:   'img/items/panoplies/amulette_du_bouftou.png',
-    arme:       'img/items/panoplies/marteau_du_bouftou.png',
-    cape:       'img/items/panoplies/cape_bouffante.png',
+    coiffe:     'images/items/coiffe_du_bouftou.png',
+    bouclier:   'images/items/bouclier_du_bouftou.png',
+    anneau:     'images/items/anneau_de_bouze_le_clerc.png',
+    anneau2:    'images/items/anneau_de_bouze_le_clerc.png',
+    ceinture:   'images/items/ceinture_du_bouftou.png',
+    bottes:     'images/items/boufbottes.png',
+    amulette:   'images/items/amulette_du_bouftou.png',
+    arme:       'images/items/marteau_du_bouftou.png',
+    cape:       'images/items/cape_bouffante.png',
     familier:   'images/monsters/Bouftou.png',
     accessoire: 'img/items/objets_bonus/Dofus_Emeraude.png',
 }
