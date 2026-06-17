@@ -288,11 +288,11 @@ const MENU_MAP = {
 }
 
 // Menus verrouillés selon l'étape du tutoriel
+// Seule la phase 'intro' verrouille des menus (worldmap inaccessible avant le choix de classe).
+// Les phases suivantes guident le joueur via les messages du tutoriel sans hard-lock.
 function isTutorialLocked(menuName) {
     if (state.tutorial === 'intro')
         return menuName === 'worldmap' || menuName === 'zones'
-    if (state.tutorial === 'zones' || state.tutorial === 'team_prep' || state.tutorial === 'combat')
-        return menuName !== 'worldmap' && menuName !== 'zones'
     return false
 }
 
@@ -373,10 +373,12 @@ function switchMenu(menuName) {
     if (mainContent) mainContent.style.zIndex = '25'
 
     if (menuName === 'team') {
-        // Opening team via hamburger = no zone pending
-        const bar = document.getElementById('zone-confirm-bar')
-        if (bar) bar.style.display = 'none'
-        if (typeof _pendingAreaId !== 'undefined') _pendingAreaId = null
+        // Cache la barre de confirmation seulement s'il n'y a pas de zone en attente.
+        // Si _pendingAreaId est défini (ex : tutorial team_prep), on garde la barre visible.
+        if (!_pendingAreaId) {
+            const bar = document.getElementById('zone-confirm-bar')
+            if (bar) bar.style.display = 'none'
+        }
         updateTeamUI()
     }
     if (menuName === 'guilde')                       updateGuildeUI()

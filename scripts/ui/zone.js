@@ -158,7 +158,7 @@ function updateZoneUI() {
 
     for (const [areaId, area] of matching) {
         const isActive     = state.currentArea === areaId && state.isRunning
-        const isTutoLocked = state.tutorial === 'zones' && areaId !== 'cimetiereincarnam'
+        const isTutoLocked = (state.tutorial === 'zones' || state.tutorial === 'team_prep') && areaId !== 'cimetiereincarnam'
         const isTierLocked = !isZoneAccessible(area)
         const isLocked     = isTierLocked || isTutoLocked
         const keyCount     = area.keyId ? (state.inventory[area.keyId]?.count || 0) : null
