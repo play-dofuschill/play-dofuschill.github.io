@@ -1190,7 +1190,7 @@ monsters.ecurouille = {
 monsters.dopeul_roublard = {
     id: 'dopeul_roublard',
     name: 'Dopeul Roublard',
-    image: 'images/monsters/dopeul_roublard.png',
+    image: 'images/monsters/Dopeul_roublard.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 140, atk: 90, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1270,7 +1270,7 @@ monsters.bambou = {
 monsters.milimulou = {
     id: 'milimulou',
     name: 'Milimulou',
-    image: 'images/monsters/milimulou.png',
+    image: 'images/monsters/Milimulou.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 26, terre: 0, feu: 16, eau: -9, air: -19 } },
@@ -1280,7 +1280,7 @@ monsters.milimulou = {
 monsters.prespic = {
     id: 'prespic',
     name: 'Prespic',
-    image: 'images/monsters/prespic.png',
+    image: 'images/monsters/Prespic.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: -9, terre: -14, feu: -19, eau: -9, air: -14 } },
@@ -1349,7 +1349,7 @@ monsters.pikdoa = {
 monsters.bouftou = {
     id: 'bouftou',
     name: 'Bouftou',
-    image: 'images/monsters/bouftou.png',
+    image: 'images/monsters/Bouftou.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 170, atk: 88, spd: 100, res: { neutre: 1, terre: 11, feu: -14, eau: -9, air: 16 } },
@@ -1479,7 +1479,7 @@ monsters.pepite_croquante = {
 monsters.dopeul_iop = {
     id: 'dopeul_iop',
     name: 'Dopeul Iop',
-    image: 'images/monsters/dopeul_iop.png',
+    image: 'images/monsters/Dopeul_iop.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1489,7 +1489,7 @@ monsters.dopeul_iop = {
 monsters.dopeul_eniripsa = {
     id: 'dopeul_eniripsa',
     name: 'Dopeul Eniripsa',
-    image: 'images/monsters/dopeul_eniripsa.png',
+    image: 'images/monsters/Dopeul_eniripsa.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1499,7 +1499,7 @@ monsters.dopeul_eniripsa = {
 monsters.dopeul_ecaflip = {
     id: 'dopeul_ecaflip',
     name: 'Dopeul Ecaflip',
-    image: 'images/monsters/dopeul_ecaflip.png',
+    image: 'images/monsters/Dopeul_ecaflip.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1509,7 +1509,7 @@ monsters.dopeul_ecaflip = {
 monsters.dopeul_enutrof = {
     id: 'dopeul_enutrof',
     name: 'Dopeul Enutrof',
-    image: 'images/monsters/dopeul_enutrof.png',
+    image: 'images/monsters/Dopeul_enutrof.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 100, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1529,7 +1529,7 @@ monsters.dopeul_feca = {
 monsters.dopeul_forgelance = {
     id: 'dopeul_forgelance',
     name: 'Dopeul Forgelance',
-    image: 'images/monsters/dopeul_forgelance.png',
+    image: 'images/monsters/Dopeul_forgelance.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 90, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1539,7 +1539,7 @@ monsters.dopeul_forgelance = {
 monsters.dopeul_osamodas = {
     id: 'dopeul_osamodas',
     name: 'Dopeul Osamodas',
-    image: 'images/monsters/dopeul_osamodas.png',
+    image: 'images/monsters/Dopeul_osamodas.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 60, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1549,7 +1549,7 @@ monsters.dopeul_osamodas = {
 monsters.dopeul_pandawa = {
     id: 'dopeul_pandawa',
     name: 'Dopeul Pandawa',
-    image: 'images/monsters/dopeul_pandawa.png',
+    image: 'images/monsters/Dopeul_pandawa.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 70, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1559,7 +1559,7 @@ monsters.dopeul_pandawa = {
 monsters.dopeul_sacrieur = {
     id: 'dopeul_sacrieur',
     name: 'Dopeul Sacrieur',
-    image: 'images/monsters/dopeul_sacrieur.png',
+    image: 'images/monsters/Dopeul_sacrieur.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1569,7 +1569,7 @@ monsters.dopeul_sacrieur = {
 monsters.dopeul_sadida = {
     id: 'dopeul_sadida',
     name: 'Dopeul Sadida',
-    image: 'images/monsters/dopeul_sadida.png',
+    image: 'images/monsters/Dopeul_sadida.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 90, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1579,17 +1579,17 @@ monsters.dopeul_sadida = {
 monsters.dopeul_sram = {
     id: 'dopeul_sram',
     name: 'Dopeul Sram',
-    image: 'images/monsters/dopeul_sram.png',
+    image: 'images/monsters/Dopeul_sram.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
-    moves: ['truanderie_du_dopeul', 'arsenic_du_dopeul']
+    moves: ['truanderie_du_Dopeul', 'arsenic_du_dopeul']
 }
 
 monsters.dopeul_steamer = {
     id: 'dopeul_steamer',
     name: 'Dopeul Steamer',
-    image: 'images/monsters/dopeul_steamer.png',
+    image: 'images/monsters/Dopeul_steamer.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -1609,7 +1609,7 @@ monsters.dopeul_xelor = {
 monsters.dopeul_zobal = {
     id: 'dopeul_zobal',
     name: 'Dopeul Zobal',
-    image: 'images/monsters/dopeul_zobal.png',
+    image: 'images/monsters/Dopeul_zobal.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 200, atk: 80, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
@@ -2326,7 +2326,7 @@ monsters.sakarien = {
 monsters.dopeul_cra = {
     id: 'dopeul_cra',
     name: 'Dopeul Cra',
-    image: 'images/monsters/dopeul_cra.png',
+    image: 'images/monsters/Dopeul_cra.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 370, atk: 270, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -2336,7 +2336,7 @@ monsters.dopeul_cra = {
 monsters.dopeul_eliotrope = {
     id: 'dopeul_eliotrope',
     name: 'Dopeul Eliotrope',
-    image: 'images/monsters/dopeul_eliotrope.png',
+    image: 'images/monsters/Dopeul_eliotrope.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 370, atk: 270, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -2346,7 +2346,7 @@ monsters.dopeul_eliotrope = {
 monsters.dopeul_huppermage = {
     id: 'dopeul_huppermage',
     name: 'Dopeul Huppermage',
-    image: 'images/monsters/dopeul_huppermage.png',
+    image: 'images/monsters/Dopeul_huppermage.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 370, atk: 270, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -2356,7 +2356,7 @@ monsters.dopeul_huppermage = {
 monsters.dopeul_ouginak = {
     id: 'dopeul_ouginak',
     name: 'Dopeul Ouginak',
-    image: 'images/monsters/dopeul_ouginak.png',
+    image: 'images/monsters/Dopeul_ouginak.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 370, atk: 270, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -8460,16 +8460,6 @@ monsters.bwork_elemental_de_terre = {
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 21, terre: 100, feu: 11, eau: 6, air: -19 } },
     moves: []
-}
-
-monsters.marionnette_du_bouftou_royal = {
-    id: 'marionnette_du_bouftou_royal',
-    name: 'Marionnette du Bouftou Royal',
-    image: 'images/monsters/Marionnette_du_Bouftou_Royal.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4300, atk: 400, spd: 100, res: { neutre: 34, terre: 18, feu: 18, eau: 23, air: 6 } },
-    moves: ['guerison_bouftou']
 }
 
 monsters.mama_bwork = {

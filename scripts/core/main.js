@@ -288,11 +288,16 @@ const MENU_MAP = {
 }
 
 // Menus verrouillés selon l'étape du tutoriel
-// Seule la phase 'intro' verrouille des menus (worldmap inaccessible avant le choix de classe).
-// Les phases suivantes guident le joueur via les messages du tutoriel sans hard-lock.
 function isTutorialLocked(menuName) {
+    // intro : hamburger caché, verrou de sécurité
     if (state.tutorial === 'intro')
         return menuName === 'worldmap' || menuName === 'zones'
+    // zones : seule la World Map est accessible (guide vers le premier combat)
+    if (state.tutorial === 'zones')
+        return menuName !== 'worldmap' && menuName !== 'zones'
+    // team_prep : World Map + équipe accessibles (ajout du personnage requis)
+    if (state.tutorial === 'team_prep')
+        return menuName !== 'worldmap' && menuName !== 'zones' && menuName !== 'team'
     return false
 }
 

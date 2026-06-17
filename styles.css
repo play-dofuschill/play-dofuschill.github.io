@@ -5082,8 +5082,9 @@ transform: translateY(-1rem);
     #enemy-display .hp-container { width: 100%; }
     #enemy-moves-container { width: 100%; }
 
-    /* Bulles d'équipement masquées */
+    /* Bulles d'équipement masquées (sauf boutons Boss Ultime) */
     .member-equip-row { display: none !important; }
+    #Boss_Ultime-menu .member-equip-row { display: flex !important; }
 
     /* Tabs inventaire : passage en flex-wrap sur 2 lignes */
     .bag-category-tabs { flex-wrap: wrap; }

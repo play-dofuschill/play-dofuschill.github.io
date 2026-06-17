@@ -291,4 +291,44 @@ const guideSections = [
         `
     },
 
+    ,{
+        id: 'boss-ultime',
+        title: '🐉 Boss Ultime — Dragons Élémentaires',
+        content: `
+            <p>Les <b>Boss Ultimes</b> sont des dragons élémentaires aux PV colossaux (5 000 000 PV) qui persistent entre vos sessions. Leur progression est sauvegardée : si vous ne les tuez pas en un combat, vous retrouvez le dragon au même état d'HP lors de votre prochaine tentative.</p>
+
+            <p><b>📋 Préparation</b></p>
+            <ul>
+                <li>Composez une <b>équipe de 3 membres</b> dédiée aux Boss Ultimes (indépendante de votre équipe principale).</li>
+                <li>Pour chaque membre, sélectionnez un <b>deck de 10 sorts</b> parmi ses sorts débloqués.</li>
+                <li>À chaque tour de combat, vous choisirez <b>5 sorts parmi vos 10</b> à lancer dans l'ordre de votre choix.</li>
+            </ul>
+
+            <p><b>⚔️ Déroulement d'un tour</b></p>
+            <ol>
+                <li>Choisissez quel membre joue ce tour.</li>
+                <li>Sélectionnez <b>5 sorts</b> dans l'ordre souhaité.</li>
+                <li>Les 5 sorts se résolvent automatiquement, avec un tick de DoTs/buffs après chaque sort.</li>
+                <li>Le boss attaque ensuite <b>tous les membres</b> : le membre actif reçoit <b>100 % des dégâts</b>, les deux autres <b>50 %</b>.</li>
+                <li>Un nouveau tour commence — choisissez un autre membre (ou le même).</li>
+            </ol>
+
+            <p><b>🌋 Phases du dragon</b><br>
+            Chaque dragon possède <b>2 phases</b>. La transition vers la Phase 2 se déclenche quand le boss tombe en dessous de <b>30 % de ses PV</b>, à la fin des 5 sorts du membre en cours.<br>
+            En Phase 2, le boss gagne en Puissance, de meilleures résistances, et change son répertoire de sorts.</p>
+
+            <p><b>💾 Persistance des PV</b></p>
+            <ul>
+                <li><b>Défaite</b> : les PV actuels du dragon sont sauvegardés. La tentative du jour est consommée.</li>
+                <li><b>Victoire</b> : le dragon revient à ses PV max en Phase 1, prêt pour la prochaine tentative.</li>
+                <li>⚠️ Si vous quittez le combat sans mourir, aucune sauvegarde n'est effectuée — les PV du boss ne sont pas modifiés.</li>
+            </ul>
+
+            <p><b>🃏 Invocations en combat</b><br>
+            Si un de vos membres invoque un allié, celui-ci enchaîne automatiquement <b>tous ses sorts</b> (visibles un par un) dès son apparition, puis disparaît. Les invocations ne peuvent pas déclencher d'autres invocations.</p>
+
+            <p>💡 <b>Conseil</b> : exploitez les faiblesses élémentaires du dragon (Eau contre Ignemikhal, Feu contre Aguabrial) et gardez un membre orienté soin ou buff défensif pour absorber les attaques de zone du boss.</p>
+        `
+    },
+
 ]
