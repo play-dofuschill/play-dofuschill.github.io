@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DofusChill — Éditeur de contenu</title>
+<style>
+  :root{
+    --bg:#15171c; --bg2:#1d2027; --bg3:#262a33; --line:#333845;
+    --fg:#e6e8ee; --mut:#9aa1b1; --acc:#d98a1e; --acc2:#4a9bdb;
+    --commun:#9aa1b1; --peu_commun:#2fae2f; --rare:#4a9bdb; --legendaire:#d98a1e;
+    --ok:#2fae2f; --err:#e2554e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:14px/1.4 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+  header{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg2);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  header h1{font-size:15px;margin:0;font-weight:600}
+  header .grow{flex:1}
+  button{background:var(--bg3);color:var(--fg);border:1px solid var(--line);border-radius:7px;padding:7px 12px;cursor:pointer;font-size:13px}
+  button:hover{border-color:var(--acc)}
+  button.primary{background:var(--acc);color:#1a1a1a;border-color:var(--acc);font-weight:600}
+  button.primary:disabled{opacity:.4;cursor:not-allowed}
+  .pill{font-size:12px;color:var(--mut)}
+  .tabs{display:flex;gap:4px;padding:8px 14px 0;background:var(--bg2)}
+  .tabs button{border-bottom:none;border-radius:7px 7px 0 0;opacity:.6}
+  .tabs button.active{opacity:1;background:var(--bg);border-color:var(--line);border-bottom:1px solid var(--bg)}
+  main{display:grid;grid-template-columns:360px 1fr;height:calc(100vh - 96px)}
+  .list{border-right:1px solid var(--line);overflow:auto;background:var(--bg)}
+  .filters{position:sticky;top:0;background:var(--bg);padding:10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;z-index:5}
+  .filters .row{display:flex;gap:6px}
+  input,select,textarea{background:var(--bg3);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:13px;width:100%}
+  textarea{font-family:ui-monospace,Menlo,monospace;min-height:70px;resize:vertical}
+  .list-item{display:flex;gap:8px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--bg2);cursor:pointer}
+  .list-item:hover{background:var(--bg2)}
+  .list-item.sel{background:var(--bg3)}
+  .list-item img{width:30px;height:30px;object-fit:contain;image-rendering:pixelated;background:#0003;border-radius:5px;flex:none}
+  .list-item .nm{flex:1;min-width:0}
+  .list-item .nm b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .list-item .nm small{color:var(--mut)}
+  .badge{font-size:11px;padding:1px 6px;border-radius:10px;background:var(--bg);border:1px solid var(--line)}
+  .detail{overflow:auto;padding:18px 22px}
+  .detail .empty{color:var(--mut);margin-top:40px;text-align:center}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  label{font-size:12px;color:var(--mut);display:block;margin:8px 0 3px}
+  .preview{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+  .preview img{width:72px;height:72px;object-fit:contain;image-rendering:pixelated;background:#0003;border-radius:8px}
+  h2{font-size:16px;margin:0}
+  .statrow,.checkrow{display:flex;gap:6px;align-items:center;margin-bottom:6px}
+  .statrow select{flex:2}.statrow input{flex:1}
+  .statrow button,.throw button{padding:5px 9px}
+  .section{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:14px;background:var(--bg2)}
+  .section h3{margin:0 0 8px;font-size:13px;color:var(--acc)}
+  .muted{color:var(--mut);font-size:12px}
+  .checks{columns:2;gap:8px}
+  .checkrow{break-inside:avoid}
+  .checkrow label{margin:0;color:var(--fg);font-size:13px}
+  .toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--line);padding:10px 16px;border-radius:8px;opacity:0;transition:opacity .25s;pointer-events:none}
+  .toast.show{opacity:1}
+  .toast.ok{border-color:var(--ok)} .toast.err{border-color:var(--err)}
+  .rarity-commun{color:var(--commun)}.rarity-peu_commun{color:var(--peu_commun)}.rarity-rare{color:var(--rare)}.rarity-legendaire{color:var(--legendaire)}
+  .loot-row{display:flex;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid var(--bg3)}
+  .loot-type{font-size:11px;padding:2px 7px;border-radius:8px;background:var(--bg);border:1px solid var(--line);white-space:nowrap;flex:none;min-width:60px;text-align:center}
+  .loot-type.pano{border-color:var(--acc);color:var(--acc)}.loot-type.item{border-color:var(--acc2);color:var(--acc2)}
+  .loot-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+  .intro{padding:40px;max-width:760px;margin:0 auto;color:var(--mut)}
+  .intro code{background:var(--bg3);padding:2px 6px;border-radius:5px;color:var(--fg)}
+  .dirty{color:var(--acc)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🛠️ DofusChill — Éditeur de contenu</h1>
+  <button id="openBtn" class="primary">📂 Ouvrir le dossier du jeu</button>
+  <span id="status" class="pill">Aucun dossier ouvert</span>
+  <span class="grow"></span>
+  <span id="dirtyState" class="pill"></span>
+  <button id="saveBtn" class="primary" disabled>💾 Enregistrer</button>
+</header>
+<div class="tabs" id="tabs" style="display:none">
+  <button data-tab="items" class="active">Items</button>
+  <button data-tab="panoplies">Panoplies</button>
+  <button data-tab="loot">Loot (zones)</button>
+  <button data-tab="monstres">Monstres</button>
+  <button data-tab="sauvage">Sauvages</button>
+  <button data-tab="donjon">Donjons</button>
+  <button data-tab="raid">Raids</button>
+  <button data-tab="event">Events</button>
+</div>
+
+<div id="intro" class="intro">
+  <h2 style="color:var(--fg)">Mode d'emploi</h2>
+  <p>Cet outil lit et réécrit <code>scripts/data/itemDictionary.js</code>, <code>panoplieDictionary.js</code>
+  et le bloc <code>ZONE_SETS</code> de <code>areaDictionary.js</code>.</p>
+  <ol>
+    <li>Sers le dossier du jeu en local (contexte sécurisé requis par l'API d'écriture) :<br>
+        <code>cd play-dofuschill.github.io-main &amp;&amp; python3 -m http.server 8000</code></li>
+    <li>Ouvre <code>http://localhost:8000/tools/content-editor.html</code> dans <b>Chrome ou Edge</b>.</li>
+    <li>Clique « Ouvrir le dossier du jeu » et sélectionne la racine du jeu
+        (<code>play-dofuschill.github.io-main</code>). Autorise lecture + écriture.</li>
+    <li>Édite, puis « Enregistrer » réécrit les fichiers en place.</li>
+  </ol>
+  <p class="muted">Astuce : garde Git pour pouvoir annuler. Les images s'affichent via <code>../images/…</code>.</p>
+</div>
+
+<main id="app" style="display:none">
+  <div class="list">
+    <div class="filters" id="filters"></div>
+    <div id="listBody"></div>
+  </div>
+  <div class="detail" id="detail"><div class="empty">Sélectionne un élément à gauche.</div></div>
+</main>
+<div id="toast" class="toast"></div>
+
+<script>
+// ───────────────────────── état global ─────────────────────────
+const SLOTS = ['cape','coiffe','bottes','ceinture','amulette','anneau','bouclier','arme','accessoire']
+const RARITIES = ['commun','peu_commun','rare','legendaire']
+const STATS = ['maxHp','atk','spd','flatDamage','finalDamagePct','spellDamagePct','damageReductionPct',
+  'critChance','critDamagePct','critResPct','healPct','heal','lifestealPct','dropRate',
+  'res.feu','res.eau','res.terre','res.air','res.neutre']
+
+let dirHandle = null
+let H = { item:null, pano:null, area:null, monster:null }   // file handles
+let ITEM = {}, PANO = {}, ZONESETS = {}, AREAS = {}, MONSTERS = {}
+let DIVERS_IDS = new Set()  // IDs des items chargés depuis diversDictionary.js
+let MOVELIST = []                                  // [{id,name}] pour les pickers de sorts
+let itemHeader = '', panoHeader = '', monsterHeader = '', areaText = ''
+let dirty = false
+let dirtyZones = new Set()                          // zones dont nom/niveaux/spawns ont changé
+let newZones = new Set()                            // zones créées dans l'éditeur (à insérer)
+let tab = 'items'
+let selId = null
+
+// ───────────────────────── utilitaires JS-literal ─────────────────────────
+const isIdent = k => /^[A-Za-z_$][\w$]*$/.test(k)
+const key = k => isIdent(k) ? k : "'" + String(k).replace(/'/g,"\\'") + "'"
+const q = s => "'" + String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'") + "'"
+function lit(v){
+  if (v === null || v === undefined) return 'null'
+  if (typeof v === 'number' || typeof v === 'boolean') return String(v)
+  if (typeof v === 'string') return q(v)
+  if (Array.isArray(v)) return '[' + v.map(lit).join(', ') + ']'
+  return '{ ' + Object.entries(v).map(([k,val]) => key(k) + ': ' + lit(val)).join(', ') + ' }'
+}
+// <ns>.<id> = { multi-ligne }
+function objBlock(ns, id, o){
+  const head = isIdent(id) ? ns + '.' + id : ns + '[' + q(id) + ']'
+  const lines = Object.entries(o).map(([k,v]) => '    ' + key(k) + ': ' + lit(v))
+  return head + ' = {\n' + lines.join(',\n') + '\n}'
+}
+const itemBlock = (id, o) => objBlock('item', id, o)
+
+// localise le bloc "<marker> ... { ... }" et renvoie [start, end] (comptage d'accolades)
+function blockRange(src, marker){
+  const start = src.indexOf(marker)
+  if (start < 0) return null
+  let i = src.indexOf('{', start), d = 0
+  for (; i < src.length; i++){ if(src[i]==='{')d++; else if(src[i]==='}'){d--; if(d===0)return [start, i+1]} }
+  return null
+}
+
+// ───────────────────────── parsing ─────────────────────────
+function evalReturn(src, returns){
+  return new Function(src + '\nreturn {' + returns + '};')()
+}
+
+async function getFile(dir, ...path){
+  let h = dir
+  for (let i=0;i<path.length-1;i++) h = await h.getDirectoryHandle(path[i])
+  return h.getFileHandle(path[path.length-1])
+}
+
+async function openFolder(){
+  dirHandle = await window.showDirectoryPicker({ mode:'readwrite' })
+  H.item    = await getFile(dirHandle, 'scripts','data','itemDictionary.js')
+  H.pano    = await getFile(dirHandle, 'scripts','data','panoplieDictionary.js')
+  H.area    = await getFile(dirHandle, 'scripts','data','areaDictionary.js')
+  H.monster = await getFile(dirHandle, 'scripts','data','monsterDictionary.js')
+
+  const itemTxt = await (await H.item.getFile()).text()
+  const panoTxt = await (await H.pano.getFile()).text()
+  areaText      = await (await H.area.getFile()).text()
+  const monTxt  = await (await H.monster.getFile()).text()
+
+  // headers à préserver
+  const ai = itemTxt.indexOf('const item = {}')
+  itemHeader = itemTxt.slice(0, ai + 'const item = {}'.length)
+  panoHeader = panoTxt.slice(0, panoTxt.indexOf('const panoplies'))
+  const mi = monTxt.indexOf('const monsters = {}')
+  monsterHeader = monTxt.slice(0, mi + 'const monsters = {}'.length)
+
+  ITEM = evalReturn(itemTxt, 'item').item
+  DIVERS_IDS = new Set()
+  try {
+    const diversTxt = await (await getFile(dirHandle,'scripts','data','diversDictionary.js')).getFile().then(f=>f.text())
+    const diversFull = evalReturn(itemTxt+'\n'+diversTxt, 'item').item
+    for (const k of Object.keys(diversFull)) if(!ITEM[k]){ DIVERS_IDS.add(k); ITEM[k]=diversFull[k] }
+  } catch(e){ console.warn('diversDictionary non chargé',e) }
+  PANO = evalReturn(panoTxt, 'panoplies').panoplies
+  MONSTERS = evalReturn(monTxt, 'monsters').monsters
+  const a = evalReturn(areaText, 'areas, ZONE_SETS:(typeof ZONE_SETS!=="undefined"?ZONE_SETS:{})')
+  AREAS = a.areas; ZONESETS = a['ZONE_SETS'] || {}
+
+  // dico des sorts (lecture seule) pour les pickers de moves — fichiers volumineux
+  try {
+    const mv = await (await getFile(dirHandle,'scripts','data','moveDictionary.js')).getFile().then(f=>f.text())
+    const mvm = await (await getFile(dirHandle,'scripts','data','mstrMoveDictionary.js')).getFile().then(f=>f.text())
+    let inv = ''
+    try { inv = await (await getFile(dirHandle,'scripts','data','invocationDictionary.js')).getFile().then(f=>f.text()) } catch(e){}
+    const move = evalReturn(mv + '\n' + mvm + '\n' + inv, 'move').move
+    MOVELIST = Object.keys(move).filter(id=>move[id]).map(id=>({ id, name: move[id].name || id })).sort((a,b)=>a.name.localeCompare(b.name))
+  } catch(e){ console.warn('dico sorts non chargé', e); MOVELIST = [] }
+
+  dirtyZones = new Set(); newZones = new Set()
+  document.getElementById('status').textContent =
+    `${Object.keys(ITEM).length} items · ${Object.keys(PANO).length} panoplies · ${Object.keys(MONSTERS).length} monstres · ${Object.keys(AREAS).length} zones`
+  document.getElementById('intro').style.display='none'
+  document.getElementById('tabs').style.display='flex'
+  document.getElementById('app').style.display='grid'
+  setDirty(false)
+  render()
+}
+
+// ───────────────────────── sérialisation + sauvegarde ─────────────────────────
+function buildItemFile(){
+  const blocks = Object.keys(ITEM).map(id => itemBlock(id, ITEM[id]))
+  return itemHeader + '\n\n' + blocks.join('\n') + '\n'
+}
+function buildPanoFile(){
+  let s = 'const panoplies = {\n'
+  for (const k of Object.keys(PANO)) s += '    ' + key(k) + ': ' + lit(PANO[k]) + ',\n'
+  s += '}\n'
+  return panoHeader + s
+}
+function buildMonsterFile(){
+  const blocks = Object.keys(MONSTERS).map(id => objBlock('monsters', id, MONSTERS[id]))
+  return monsterHeader + '\n\n' + blocks.join('\n\n') + '\n'
+}
+function spawnsLiteral(spawns){
+  return '[\n' + (spawns||[]).map(s => `        { id: ${q(s.id)}, weight: ${Number(s.weight)||1} }`).join(',\n') + '\n    ]'
+}
+function buildAreaText(){
+  let txt = areaText
+  const strPatch = (blk, field, val) =>
+    new RegExp('(\\b'+field+':\\s*)([\'"])(?:\\\\.|[^\\\\])*?\\2').test(blk)
+      ? blk.replace(new RegExp('(\\b'+field+':\\s*)([\'"])(?:\\\\.|[^\\\\])*?\\2'), '$1' + JSON.stringify(val))
+      : blk
+  // 1) patch des zones existantes modifiées (les nouvelles sont insérées en bloc complet ensuite)
+  for (const z of dirtyZones){
+    if (newZones.has(z)) continue
+    const a = AREAS[z]; if (!a) continue
+    const r = blockRange(txt, 'areas.' + z + ' ')
+    if (!r) continue
+    let blk = txt.slice(r[0], r[1])
+    if (a.name != null)         blk = strPatch(blk, 'name', a.name)
+    if (a.background != null)   blk = strPatch(blk, 'background', a.background)
+    if (a.icon != null)         blk = strPatch(blk, 'icon', a.icon)
+    if (a.description != null)  blk = strPatch(blk, 'description', a.description)
+    if (a.mobMinLevel != null)  blk = blk.replace(/(\bmobMinLevel:\s*)-?\d+/, '$1' + a.mobMinLevel)
+    if (a.mobMaxLevel != null)  blk = blk.replace(/(\bmobMaxLevel:\s*)-?\d+/, '$1' + a.mobMaxLevel)
+    if (a.minLevel != null)     blk = blk.replace(/(\bminLevel:\s*)-?\d+/, '$1' + a.minLevel)
+    if (a.maxLevel != null)     blk = blk.replace(/(\bmaxLevel:\s*)-?\d+/, '$1' + a.maxLevel)
+    if (Array.isArray(a.spawns)){
+      if (/\bspawns\s*:\s*\[/.test(blk)) blk = blk.replace(/\bspawns\s*:\s*\[[\s\S]*?\]/, 'spawns: ' + spawnsLiteral(a.spawns))
+    }
+    if (Array.isArray(a.lootTable)){
+      const lt=lootLiteral(a.lootTable)
+      if (/\blootTable\s*:\s*\[/.test(blk)) blk=blk.replace(/\blootTable\s*:\s*\[[\s\S]*?\]/, 'lootTable: '+lt)
+      else { const lb=blk.lastIndexOf('}'); blk=blk.slice(0,lb)+'    lootTable: '+lt+'\n'+blk.slice(lb) }
+    }
+    if (Array.isArray(a.miniBossLootTable)){
+      const lt=lootLiteral(a.miniBossLootTable)
+      if (/\bminiBossLootTable\s*:\s*\[/.test(blk)) blk=blk.replace(/\bminiBossLootTable\s*:\s*\[[\s\S]*?\]/, 'miniBossLootTable: '+lt)
+      else { const lb=blk.lastIndexOf('}'); blk=blk.slice(0,lb)+'    miniBossLootTable: '+lt+'\n'+blk.slice(lb) }
+    }
+    if (a.miniBoss){
+      const mb=a.miniBoss; const mbIds=mb.ids||(mb.id?[mb.id]:[])
+      let mbW=mbIds.length===1 ? {id:mbIds[0],everyKills:mb.everyKills,statMult:mb.statMult}
+             : mbIds.length>1  ? {ids:mbIds,everyKills:mb.everyKills,statMult:mb.statMult}
+             : {everyKills:mb.everyKills,statMult:mb.statMult}
+      const fm=/\bminiBoss\s*:\s*/.exec(blk)
+      if(fm){
+        let si=fm.index+fm[0].length, depth=0, ei=si
+        const open=blk[si]
+        if(open==='{'||open==='['){
+          const cl=open==='{'?'}':']'
+          for(let j=si;j<blk.length;j++){ if(blk[j]===open)depth++; else if(blk[j]===cl){depth--;if(depth===0){ei=j+1;break}} }
+        }
+        blk=blk.slice(0,fm.index)+'miniBoss: '+lit(mbW)+blk.slice(ei)
+      }
+    }
+    txt = txt.slice(0, r[0]) + blk + txt.slice(r[1])
+  }
+  // 1bis) insertion des zones créées, avant la section de recâblage du loot
+  const fresh = [...newZones].filter(z => AREAS[z])
+  if (fresh.length){
+    let at = txt.indexOf('// ─── Recâblage du loot')
+    if (at < 0) at = txt.indexOf('const ZONE_SETS = {')
+    if (at < 0) at = txt.length
+    const ins = '\n// ─── Zones créées via l\'éditeur ───\n' +
+      fresh.map(z => objBlock('areas', z, AREAS[z])).join('\n\n') + '\n\n'
+    txt = txt.slice(0, at) + ins + txt.slice(at)
+  }
+  // 2) remplace le bloc const ZONE_SETS = { ... }
+  const start = txt.indexOf('const ZONE_SETS = {')
+  if (start >= 0){
+    let i = txt.indexOf('{', start), depth = 0, end = i
+    for (; i < txt.length; i++){ if(txt[i]==='{')depth++; else if(txt[i]==='}'){depth--; if(depth===0){end=i+1;break}} }
+    let lit2 = 'const ZONE_SETS = {\n'
+    for (const z of Object.keys(AREAS)) {
+      const sets = ZONESETS[z] || []
+      if (!sets.length && !(z in ZONESETS)) continue
+      lit2 += '    ' + key(z) + ': [' + sets.map(q).join(', ') + '],\n'
+    }
+    lit2 += '}'
+    txt = txt.slice(0, start) + lit2 + txt.slice(end)
+  }
+  return txt
+}
+async function writeFile(handle, text){
+  const w = await handle.createWritable(); await w.write(text); await w.close()
+}
+async function saveAll(){
+  try{
+    await writeFile(H.item, buildItemFile())
+    await writeFile(H.pano, buildPanoFile())
+    await writeFile(H.monster, buildMonsterFile())
+    areaText = buildAreaText()
+    await writeFile(H.area, areaText)
+    dirtyZones = new Set(); newZones = new Set()
+    setDirty(false)
+    toast('Fichiers enregistrés ✓','ok')
+  }catch(e){ toast('Erreur : '+e.message,'err'); console.error(e) }
+}
+
+function setDirty(v){
+  dirty = v
+  document.getElementById('saveBtn').disabled = !v
+  document.getElementById('dirtyState').textContent = v ? '● modifications non enregistrées' : ''
+  document.getElementById('dirtyState').className = 'pill dirty'
+}
+function toast(msg, kind){
+  const t = document.getElementById('toast'); t.textContent = msg
+  t.className = 'toast show ' + (kind||''); setTimeout(()=>t.className='toast',2200)
+}
+const imgSrc = it => it && it.image ? '../' + it.image : ''
+
+// ───────────────────────── rendu ─────────────────────────
+function render(){
+  if (tab==='items') renderItems()
+  else if (tab==='panoplies') renderPanoplies()
+  else if (tab==='loot') renderLoot()
+  else if (tab==='monstres') renderMonsters()
+  else if (tab==='donjon') renderZoneFull('donjon')
+  else if (tab==='raid') renderZoneFull('raid')
+  else if (tab==='event') renderZoneFull('event')
+  else if (tab==='sauvage') renderZoneFull('wild')
+}
+
+// —— filtres réutilisables ——
+let f = { q:'', slot:'', rarity:'' }
+function renderItems(){
+  const F = document.getElementById('filters')
+  F.innerHTML = `
+    <input id="fq" placeholder="Rechercher (nom / id / set)…" value="${f.q}">
+    <div class="row">
+      <select id="fslot"><option value="">tous slots</option>${SLOTS.map(s=>`<option ${f.slot===s?'selected':''}>${s}</option>`).join('')}</select>
+      <select id="frar"><option value="">toutes raretés</option>${RARITIES.map(s=>`<option ${f.rarity===s?'selected':''}>${s}</option>`).join('')}</select>
+    </div>`
+  F.querySelector('#fq').oninput = e=>{f.q=e.target.value;renderItemList()}
+  F.querySelector('#fslot').onchange = e=>{f.slot=e.target.value;renderItemList()}
+  F.querySelector('#frar').onchange = e=>{f.rarity=e.target.value;renderItemList()}
+  renderItemList()
+  if (selId && ITEM[selId]) renderItemDetail(selId); else detailEmpty()
+}
+function matchItem(id){
+  const it = ITEM[id]
+  if (f.slot && it.slot!==f.slot) return false
+  if (f.rarity && it.rarity!==f.rarity) return false
+  if (f.q){ const s=(id+' '+(it.name||'')+' '+(it.set||'')).toLowerCase(); if(!s.includes(f.q.toLowerCase())) return false }
+  return true
+}
+function renderItemList(){
+  const ids = Object.keys(ITEM).filter(matchItem)
+  const body = document.getElementById('listBody')
+  const shown = ids.slice(0, 400)
+  body.innerHTML = shown.map(id=>{
+    const it = ITEM[id]
+    return `<div class="list-item ${id===selId?'sel':''}" data-id="${id}">
+      <img loading="lazy" src="${imgSrc(it)}" onerror="this.style.opacity=.15">
+      <div class="nm"><b class="rarity-${it.rarity||'commun'}">${it.name||id}</b>
+        <small>${it.slot||'?'} · niv ${it.requiredLevel??'?'} · ${it.set||'—'}</small></div>
+    </div>`
+  }).join('') + (ids.length>shown.length?`<div class="muted" style="padding:10px">… ${ids.length-shown.length} de plus (affine la recherche)</div>`:'')
+    + (!ids.length?`<div class="muted" style="padding:10px">Aucun résultat.</div>`:'')
+  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;renderItems()})
+}
+function detailEmpty(){ document.getElementById('detail').innerHTML='<div class="empty">Sélectionne un élément à gauche.</div>' }
+
+function renderItemDetail(id){
+  const it = ITEM[id]
+  const setOpts = ['',...Object.keys(PANO)].map(s=>`<option ${it.set===s?'selected':''} value="${s}">${s||'— aucune —'}</option>`).join('')
+  const D = document.getElementById('detail')
+  D.innerHTML = `
+    <div class="preview"><img src="${imgSrc(it)}" onerror="this.style.opacity=.15">
+      <div><h2>${it.name||id}</h2><div class="muted">id: ${id}</div></div></div>
+    <div class="grid2">
+      <div><label>Nom</label><input id="e_name" value="${(it.name||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>Image (chemin)</label><input id="e_image" value="${(it.image||'').replace(/"/g,'&quot;')}"></div>
+    </div>
+    <div class="grid3">
+      <div><label>Slot</label><select id="e_slot">${SLOTS.map(s=>`<option ${it.slot===s?'selected':''}>${s}</option>`).join('')}</select></div>
+      <div><label>Rareté</label><select id="e_rarity">${RARITIES.map(s=>`<option ${it.rarity===s?'selected':''}>${s}</option>`).join('')}</select></div>
+      <div><label>Set (panoplie)</label><select id="e_set">${setOpts}</select></div>
+    </div>
+    <div class="grid3">
+      <div><label>requiredLevel</label><input type="number" id="e_req" value="${it.requiredLevel??1}"></div>
+      <div><label>itemLevelMax</label><input type="number" id="e_ilm" value="${it.itemLevelMax??20}"></div>
+      <div><label>type</label><input id="e_type" value="${it.type||'equipment'}"></div>
+    </div>
+    <div class="section"><h3>Stats</h3><div id="stats"></div>
+      <button id="addStat">+ stat</button></div>
+    ${it.effects?`<div class="section"><h3>Effects (JSON avancé)</h3>
+      <textarea id="e_eff">${JSON.stringify(it.effects,null,2)}</textarea>
+      <div class="muted">Édite avec précaution — doit rester un JSON valide.</div></div>`:''}
+    <div class="section"><label>Description</label><textarea id="e_desc">${(it.description||'').replace(/</g,'&lt;')}</textarea></div>
+  `
+  const bind=(elId,fn)=>{const el=D.querySelector('#'+elId); if(el) el.oninput=el.onchange=()=>{fn(el.value);setDirty(true)}}
+  bind('e_name',v=>{it.name=v;renderItemList()})
+  bind('e_image',v=>it.image=v)
+  bind('e_slot',v=>{it.slot=v;renderItemList()})
+  bind('e_rarity',v=>{it.rarity=v;renderItemList()})
+  bind('e_set',v=>{if(v)it.set=v;else delete it.set;renderItemList()})
+  bind('e_req',v=>{it.requiredLevel=+v||1;renderItemList()})
+  bind('e_ilm',v=>it.itemLevelMax=+v||20)
+  bind('e_type',v=>it.type=v)
+  bind('e_desc',v=>it.description=v)
+  if (it.effects){ const ta=D.querySelector('#e_eff'); ta.onchange=()=>{ try{ it.effects=JSON.parse(ta.value); ta.style.borderColor=''; setDirty(true)}catch(e){ ta.style.borderColor='var(--err)'} } }
+  renderStats(it)
+  D.querySelector('#addStat').onclick=()=>{ (it.stats=it.stats||[]).push({stat:'atk',value:0}); renderStats(it); setDirty(true) }
+}
+function renderStats(it){
+  const wrap = document.getElementById('detail').querySelector('#stats')
+  it.stats = it.stats || []
+  wrap.innerHTML = it.stats.map((s,i)=>`
+    <div class="statrow">
+      <select data-i="${i}" class="ss">${STATS.map(o=>`<option ${s.stat===o?'selected':''}>${o}</option>`).join('')}</select>
+      <input data-i="${i}" class="sv" type="number" value="${s.value}">
+      <button data-i="${i}" class="sx">✕</button>
+    </div>`).join('')
+  wrap.querySelectorAll('.ss').forEach(el=>el.onchange=()=>{it.stats[+el.dataset.i].stat=el.value;setDirty(true)})
+  wrap.querySelectorAll('.sv').forEach(el=>el.oninput=()=>{it.stats[+el.dataset.i].value=+el.value||0;setDirty(true)})
+  wrap.querySelectorAll('.sx').forEach(el=>el.onclick=()=>{it.stats.splice(+el.dataset.i,1);renderStats(it);setDirty(true)})
+}
+
+// ───────────────────────── Panoplies ─────────────────────────
+let pq=''
+function renderPanoplies(){
+  const F=document.getElementById('filters')
+  F.innerHTML=`<input id="pq" placeholder="Rechercher une panoplie…" value="${pq}">`
+  F.querySelector('#pq').oninput=e=>{pq=e.target.value;renderPanoList()}
+  renderPanoList()
+  if (selId && PANO[selId]) renderPanoDetail(selId); else detailEmpty()
+}
+function renderPanoList(){
+  const ids=Object.keys(PANO).filter(k=>(k+' '+(PANO[k].name||'')).toLowerCase().includes(pq.toLowerCase()))
+  const body=document.getElementById('listBody')
+  body.innerHTML=ids.slice(0,500).map(k=>`<div class="list-item ${k===selId?'sel':''}" data-id="${k}">
+    <div class="nm"><b>${PANO[k].name||k}</b><small>${(PANO[k].pieces||[]).length} pièces · ${Object.keys(PANO[k].bonuses||{}).length} paliers</small></div></div>`).join('')
+  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;renderPanoplies()})
+}
+function renderPanoDetail(k){
+  const p=PANO[k]; p.bonuses=p.bonuses||{}
+  const D=document.getElementById('detail')
+  D.innerHTML=`<h2>${p.name||k}</h2><div class="muted">id: ${k}</div>
+    <label>Nom</label><input id="p_name" value="${(p.name||'').replace(/"/g,'&quot;')}">
+    <div class="section"><h3>Pièces (ids d'items, séparés par des virgules)</h3>
+      <textarea id="p_pieces">${(p.pieces||[]).join(', ')}</textarea></div>
+    <div class="section"><h3>Bonus par palier</h3><div id="bonuses"></div>
+      <div class="throw"><input id="newThr" type="number" placeholder="palier (2,3,4…)" style="width:140px;display:inline-block">
+      <button id="addThr">+ palier</button></div></div>`
+  D.querySelector('#p_name').oninput=e=>{p.name=e.target.value;renderPanoList();setDirty(true)}
+  D.querySelector('#p_pieces').onchange=e=>{p.pieces=e.target.value.split(',').map(s=>s.trim()).filter(Boolean);setDirty(true)}
+  D.querySelector('#addThr').onclick=()=>{const t=+D.querySelector('#newThr').value;if(t){p.bonuses[t]=p.bonuses[t]||{stats:[]};renderBonuses(p);setDirty(true)}}
+  renderBonuses(p)
+}
+function renderBonuses(p){
+  const wrap=document.getElementById('detail').querySelector('#bonuses')
+  const thrs=Object.keys(p.bonuses).map(Number).sort((a,b)=>a-b)
+  wrap.innerHTML=thrs.map(t=>{
+    const stats=(p.bonuses[t].stats||[])
+    return `<div class="section" style="background:var(--bg3)">
+      <div style="display:flex;justify-content:space-between"><b>${t} pièces</b><button data-t="${t}" class="delThr">supprimer le palier</button></div>
+      <div data-t="${t}" class="bstats">${stats.map((s,i)=>`
+        <div class="statrow"><select data-t="${t}" data-i="${i}" class="bss">${STATS.map(o=>`<option ${s.stat===o?'selected':''}>${o}</option>`).join('')}</select>
+        <input data-t="${t}" data-i="${i}" class="bsv" type="number" value="${s.value}">
+        <button data-t="${t}" data-i="${i}" class="bsx">✕</button></div>`).join('')}</div>
+      <button data-t="${t}" class="bAdd">+ stat</button></div>`
+  }).join('') || '<div class="muted">Aucun palier.</div>'
+  wrap.querySelectorAll('.delThr').forEach(el=>el.onclick=()=>{delete p.bonuses[el.dataset.t];renderBonuses(p);setDirty(true)})
+  wrap.querySelectorAll('.bAdd').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.push({stat:'atk',value:0});renderBonuses(p);setDirty(true)})
+  wrap.querySelectorAll('.bss').forEach(el=>el.onchange=()=>{p.bonuses[el.dataset.t].stats[+el.dataset.i].stat=el.value;setDirty(true)})
+  wrap.querySelectorAll('.bsv').forEach(el=>el.oninput=()=>{p.bonuses[el.dataset.t].stats[+el.dataset.i].value=+el.value||0;setDirty(true)})
+  wrap.querySelectorAll('.bsx').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.splice(+el.dataset.i,1);renderBonuses(p);setDirty(true)})
+}
+
+// ───────────────────────── Loot (ZONE_SETS) ─────────────────────────
+let lq='', lzq=''
+function renderLoot(){
+  const F=document.getElementById('filters')
+  F.innerHTML=`<input id="lzq" placeholder="Rechercher une zone (nom / id)…" value="${lzq}">`
+  F.querySelector('#lzq').oninput=e=>{lzq=e.target.value;renderLootList()}
+  renderLootList()
+  if (selId && AREAS[selId]) renderZoneDetail(selId); else detailEmpty()
+}
+function renderLootList(){
+  const body=document.getElementById('listBody')
+  const ids=Object.keys(AREAS).filter(z=>(z+' '+(AREAS[z].name||'')).toLowerCase().includes(lzq.toLowerCase()))
+  body.innerHTML=ids.map(z=>{
+    const n=(ZONESETS[z]||[]).length
+    return `<div class="list-item ${z===selId?'sel':''}" data-id="${z}">
+      <div class="nm"><b>${AREAS[z].name||z}</b><small>${z} · ${n} panoplie(s)</small></div></div>`
+  }).join('')||'<div class="muted" style="padding:10px">Aucune zone.</div>'
+  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;lq='';renderLoot()})
+}
+function renderZoneDetail(z){
+  const a=AREAS[z]; const assigned=new Set(ZONESETS[z]||[])
+  const D=document.getElementById('detail')
+  D.innerHTML=`<h2>${a.name||z}</h2>
+    <div class="muted">niveau monstres ${a.mobMinLevel??'?'}-${a.mobMaxLevel??'?'} · <span id="assignedCount">${assigned.size}</span> panoplie(s) assignée(s)</div>
+    <div class="section"><h3>Panoplies assignées</h3>
+      <div id="assignedTags">${[...assigned].map(k=>`<span class="badge" style="margin:2px">${k}</span>`).join('')||'<span class="muted">aucune</span>'}</div></div>
+    <input id="lq" placeholder="Filtrer les panoplies…" value="${lq}" style="margin-bottom:10px">
+    <div class="checks" id="lootChecks"></div>`
+  const refreshTags=()=>{
+    const cur=ZONESETS[z]||[]
+    D.querySelector('#assignedTags').innerHTML=cur.map(k=>`<span class="badge" style="margin:2px">${k}</span>`).join('')||'<span class="muted">aucune</span>'
+    D.querySelector('#assignedCount').textContent=cur.length
+    renderLootListCount(z)
+  }
+  const renderChecks=()=>{
+    const all=Object.keys(PANO).filter(k=>(k+' '+(PANO[k].name||'')).toLowerCase().includes(lq.toLowerCase()))
+    D.querySelector('#lootChecks').innerHTML=all.slice(0,300).map(k=>{
+      const lv=(PANO[k].pieces||[]).map(id=>ITEM[id]?.requiredLevel||0); const mn=lv.length?Math.min(...lv):0
+      return `<div class="checkrow"><label><input type="checkbox" class="zc" value="${k}" ${assigned.has(k)?'checked':''} style="width:auto"> ${PANO[k].name||k} <span class="muted">[${mn}]</span></label></div>`
+    }).join('')
+    D.querySelectorAll('.zc').forEach(el=>el.onchange=()=>{
+      let arr=ZONESETS[z]||(ZONESETS[z]=[])
+      if(el.checked){ if(!arr.includes(el.value)) arr.push(el.value); assigned.add(el.value) }
+      else { ZONESETS[z]=arr.filter(x=>x!==el.value); assigned.delete(el.value) }
+      setDirty(true); refreshTags()
+    })
+  }
+  D.querySelector('#lq').oninput=e=>{lq=e.target.value;renderChecks()}   // ne re-rend que la liste -> garde le focus
+  renderChecks()
+}
+function renderLootListCount(z){
+  const el=document.querySelector(`.list-item[data-id="${z}"] small`)
+  if(el) el.textContent=`${z} · ${(ZONESETS[z]||[]).length} panoplie(s)`
+}
+
+// ───────────────────────── Monstres ─────────────────────────
+let mf = { q:'', tier:'', rarity:'' }
+const TIERS = ['normal','elite','boss']
+function renderMonsters(){
+  const F=document.getElementById('filters')
+  F.innerHTML=`<input id="mq" placeholder="Rechercher (nom / id)…" value="${mf.q}">
+    <div class="row">
+      <select id="mtier"><option value="">tous tiers</option>${TIERS.map(s=>`<option ${mf.tier===s?'selected':''}>${s}</option>`).join('')}</select>
+      <select id="mrar"><option value="">toutes raretés</option>${RARITIES.map(s=>`<option ${mf.rarity===s?'selected':''}>${s}</option>`).join('')}</select>
+    </div>`
+  F.querySelector('#mq').oninput=e=>{mf.q=e.target.value;renderMonsterList()}
+  F.querySelector('#mtier').onchange=e=>{mf.tier=e.target.value;renderMonsterList()}
+  F.querySelector('#mrar').onchange=e=>{mf.rarity=e.target.value;renderMonsterList()}
+  renderMonsterList()
+  if (selId && MONSTERS[selId]) renderMonsterDetail(selId); else detailEmpty()
+}
+function matchMon(id){
+  const m=MONSTERS[id]
+  if (mf.tier && m.tier!==mf.tier) return false
+  if (mf.rarity && m.rarity!==mf.rarity) return false
+  if (mf.q){ const s=(id+' '+(m.name||'')).toLowerCase(); if(!s.includes(mf.q.toLowerCase())) return false }
+  return true
+}
+const monImg = m => !m||!m.image ? '' : (/^https?:|^\//.test(m.image) ? m.image : '../'+m.image)
+function renderMonsterList(){
+  const ids=Object.keys(MONSTERS).filter(matchMon)
+  const body=document.getElementById('listBody')
+  const shown=ids.slice(0,400)
+  body.innerHTML=shown.map(id=>{const m=MONSTERS[id]
+    return `<div class="list-item ${id===selId?'sel':''}" data-id="${id}">
+      <img loading="lazy" src="${monImg(m)}" onerror="this.style.opacity=.15">
+      <div class="nm"><b class="rarity-${m.rarity||'commun'}">${m.name||id}</b>
+        <small>${m.tier} · hp ${m.bst?.hp} · atk ${m.bst?.atk} · ${(m.moves?.length||0)} sort(s)</small></div></div>`
+  }).join('') + (ids.length>shown.length?`<div class="muted" style="padding:10px">… ${ids.length-shown.length} de plus (affine)</div>`:'')
+    + (!ids.length?`<div class="muted" style="padding:10px">Aucun résultat.</div>`:'')
+  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;renderMonsters()})
+}
+function renderMonsterDetail(id){
+  const m=MONSTERS[id]; m.bst=m.bst||{}; m.bst.res=m.bst.res||{}
+  const movesArr = Array.isArray(m.moves) ? m.moves : null   // l'éditeur gère le format tableau
+  const D=document.getElementById('detail')
+  D.innerHTML=`
+    <div class="preview"><img src="${monImg(m)}" onerror="this.style.opacity=.15">
+      <div><h2>${m.name||id}</h2><div class="muted">id: ${id} · tier ${m.tier}</div></div></div>
+    <div class="grid2">
+      <div><label>Nom</label><input id="m_name" value="${(m.name||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>Image</label><input id="m_image" value="${(m.image||'').replace(/"/g,'&quot;')}"></div>
+    </div>
+    <div class="grid2">
+      <div><label>Tier</label><select id="m_tier">${TIERS.map(s=>`<option ${m.tier===s?'selected':''}>${s}</option>`).join('')}</select></div>
+      <div><label>Rareté</label><select id="m_rar">${RARITIES.map(s=>`<option ${m.rarity===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    </div>
+    <div class="section"><h3>Stats</h3>
+      <div class="grid3">
+        <div><label>hp</label><input type="number" id="m_hp" value="${m.bst.hp??0}"></div>
+        <div><label>atk</label><input type="number" id="m_atk" value="${m.bst.atk??0}"></div>
+        <div><label>spd</label><input type="number" id="m_spd" value="${m.bst.spd??100}"></div>
+      </div>
+      <label>Résistances %</label>
+      <div class="grid3" style="grid-template-columns:repeat(5,1fr)">
+        ${['neutre','terre','feu','eau','air'].map(e=>`<div><label>${e}</label><input type="number" class="m_res" data-e="${e}" value="${m.bst.res[e]??0}"></div>`).join('')}
+      </div>
+      <div class="grid2" style="margin-top:8px">
+        <div><label>critChance</label><input type="number" id="m_cc" value="${m.bst.critChance??''}" placeholder="déf. 5"></div>
+        <div><label>critDamagePct</label><input type="number" id="m_cd" value="${m.bst.critDamagePct??''}" placeholder="déf. 50"></div>
+      </div>
+    </div>
+    <div class="section"><h3>Sorts (max 4)</h3>
+      ${movesArr===null?`<div class="muted">Format avancé {pool,fixed} — éditer dans le fichier.</div>`:`<div id="m_moves"></div>
+      <input id="m_moveSearch" placeholder="Ajouter un sort (recherche par nom)…" list="m_movedl">
+      <datalist id="m_movedl">${MOVELIST.slice(0,4000).map(o=>`<option value="${o.name.replace(/"/g,'&quot;')}" data-id="${o.id}">`).join('')}</datalist>`}
+    </div>`
+  const bind=(elId,fn)=>{const el=D.querySelector('#'+elId);if(el)el.oninput=el.onchange=()=>{fn(el.value);setDirty(true)}}
+  bind('m_name',v=>{m.name=v;renderMonsterList()})
+  bind('m_image',v=>m.image=v)
+  bind('m_tier',v=>{m.tier=v;renderMonsterList()})
+  bind('m_rar',v=>{m.rarity=v;renderMonsterList()})
+  bind('m_hp',v=>{m.bst.hp=+v||0;renderMonsterList()})
+  bind('m_atk',v=>{m.bst.atk=+v||0;renderMonsterList()})
+  bind('m_spd',v=>m.bst.spd=+v||0)
+  bind('m_cc',v=>{ if(v==='')delete m.bst.critChance; else m.bst.critChance=+v })
+  bind('m_cd',v=>{ if(v==='')delete m.bst.critDamagePct; else m.bst.critDamagePct=+v })
+  D.querySelectorAll('.m_res').forEach(el=>el.oninput=()=>{m.bst.res[el.dataset.e]=+el.value||0;setDirty(true)})
+  if (movesArr!==null){
+    renderMonsterMoves(m)
+    const inp=D.querySelector('#m_moveSearch')
+    inp.onchange=()=>{
+      const opt=[...D.querySelectorAll('#m_movedl option')].find(o=>o.value===inp.value)
+      const mid=opt?opt.dataset.id:inp.value.trim()
+      if(mid){ m.moves=m.moves||[]; if(m.moves.length<4 && !m.moves.includes(mid)){m.moves.push(mid);renderMonsterMoves(m);renderMonsterList();setDirty(true)} }
+      inp.value=''
+    }
+  }
+}
+function renderMonsterMoves(m){
+  const wrap=document.getElementById('detail').querySelector('#m_moves'); if(!wrap)return
+  const nameOf=id=>{const o=MOVELIST.find(x=>x.id===id);return o?o.name:id}
+  wrap.innerHTML=(m.moves||[]).map((id,i)=>`<div class="statrow">
+    <span class="badge" style="flex:1;text-align:left">${nameOf(id)} <span class="muted">(${id})</span></span>
+    <button data-i="${i}" class="mvx">✕</button></div>`).join('')||'<div class="muted">aucun sort</div>'
+  wrap.querySelectorAll('.mvx').forEach(el=>el.onclick=()=>{m.moves.splice(+el.dataset.i,1);renderMonsterMoves(m);renderMonsterList();setDirty(true)})
+}
+
+// ───────────────────── Zone complète (Donjon / Event / Sauvage) ─────────────────────
+let zq=''
+function zoneCat(z){
+  if (z.startsWith('donjon')) return 'donjon'
+  if (z.startsWith('evenement')) return 'event'
+  if (z.startsWith('raid')) return 'raid'
+  return 'wild'
+}
+const CAT_LABEL = { wild:'sauvage', donjon:'donjon', raid:'raid', event:'event' }
+function camelName(name){
+  const w=(name||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^A-Za-z0-9]+/g,' ').trim().split(' ').filter(Boolean)
+  return w.map((x,i)=> i===0 ? x.toLowerCase() : x.charAt(0).toUpperCase()+x.slice(1).toLowerCase()).join('') || 'zone'
+}
+function makeZoneId(cat, name){
+  const c=camelName(name)
+  const pref = cat==='wild' ? '' : (cat==='event'?'evenement':cat)
+  let base = pref ? pref + c.charAt(0).toUpperCase()+c.slice(1) : c
+  let id=base,i=2; while(AREAS[id]) id=base+(i++)
+  return id
+}
+function createZone(cat){
+  const name = prompt('Nom de la nouvelle zone ('+CAT_LABEL[cat]+') :')
+  if (!name) return
+  const id = makeZoneId(cat, name)
+  AREAS[id] = {
+    id, name,
+    minLevel:1, maxLevel:20, mobMinLevel:1, mobMaxLevel:10,
+    background:'', icon:'', description:'',
+    spawns:[], lootTable:[]
+  }
+  newZones.add(id); dirtyZones.add(id); selId=id; setDirty(true)
+  zq=''
+  renderZoneFull(cat)
+  toast('Zone créée : '+id+' — complète-la puis Enregistre','ok')
+}
+function renderZoneFull(cat){
+  const F=document.getElementById('filters')
+  F.innerHTML=`<input id="zq" placeholder="Filtrer les zones…" value="${zq}">
+    <button id="zNew" class="primary">➕ Nouvelle zone (${CAT_LABEL[cat]})</button>`
+  F.querySelector('#zq').oninput=e=>{zq=e.target.value;renderZoneFullList(cat)}
+  F.querySelector('#zNew').onclick=()=>createZone(cat)
+  renderZoneFullList(cat)
+  if (selId && AREAS[selId] && zoneCat(selId)===cat) renderZoneFullDetail(selId,cat); else detailEmpty()
+}
+function renderZoneFullList(cat){
+  const ids=Object.keys(AREAS).filter(z=>zoneCat(z)===cat&&(z+' '+(AREAS[z].name||'')).toLowerCase().includes(zq.toLowerCase()))
+  const body=document.getElementById('listBody')
+  body.innerHTML=ids.map(z=>{const a=AREAS[z]
+    return `<div class="list-item ${z===selId?'sel':''}" data-id="${z}">
+      <div class="nm"><b>${a.name||z}</b><small>niv ${a.mobMinLevel}-${a.mobMaxLevel} · ${(a.spawns||[]).length} spawns · ${(ZONESETS[z]||[]).length} pano</small></div></div>`
+  }).join('')||'<div class="muted" style="padding:10px">Aucune zone.</div>'
+  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;renderZoneFull(cat)})
+}
+function renderZoneFullDetail(z,cat){
+  cat=cat||zoneCat(z)
+  const a=AREAS[z]; a.spawns=a.spawns||[]
+  const isRaid=cat==='raid'; const isEvent=cat==='event'
+  const keyItemIds=Object.keys(ITEM).filter(k=>ITEM[k]?.isKey)
+  const D=document.getElementById('detail')
+  D.innerHTML=`<h2>${a.name||z}</h2><div class="muted">id: ${z}${newZones.has(z)?' · <span class="dirty">nouvelle</span>':''}</div>
+    <div class="grid3">
+      <div><label>Nom</label><input id="z_name" value="${(a.name||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>mobMinLevel</label><input type="number" id="z_min" value="${a.mobMinLevel??1}"></div>
+      <div><label>mobMaxLevel</label><input type="number" id="z_max" value="${a.mobMaxLevel??1}"></div>
+    </div>
+    <div class="grid3">
+      <div><label>background</label><input id="z_bg" value="${(a.background||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>icon</label><input id="z_icon" value="${(a.icon||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>minLevel/maxLevel (affichage)</label><div class="row"><input type="number" id="z_dmin" value="${a.minLevel??1}"><input type="number" id="z_dmax" value="${a.maxLevel??20}"></div></div>
+    </div>
+    <div><label>description</label><textarea id="z_desc">${(a.description||'').replace(/</g,'&lt;')}</textarea></div>
+    <div class="section"><h3>Spawns (monstres + poids)</h3><div id="z_spawns"></div>
+      <input id="z_monSearch" placeholder="Ajouter un monstre (nom / id)…" list="z_mondl">
+      <datalist id="z_mondl">${Object.values(MONSTERS).slice(0,4000).map(m=>`<option value="${(m.name||m.id).replace(/"/g,'&quot;')}" data-id="${m.id}">`).join('')}</datalist></div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px">
+        <span style="font-size:13px;color:var(--acc);font-weight:600;flex:1">Loot — <span id="z_loot_count">0</span> item(s)</span>
+        <button id="z_qame" style="font-size:11px;padding:2px 8px">💎 +Âme</button>
+        <button id="z_qgardien" style="font-size:11px;padding:2px 8px">💀 +Gardien</button>
+        <button id="z_qkey" style="font-size:11px;padding:2px 8px">🔑 +Clé</button>
+      </div>
+      <div id="z_key_panel" style="display:none;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+        <select id="z_key_sel" style="flex:1">${keyItemIds.map(k=>`<option value="${k}">${(ITEM[k]?.name||k).replace(/</g,'&lt;')}</option>`).join('')}</select>
+        <input id="z_key_rate" type="number" value="15" min="0" max="100" step="0.5" style="width:60px">
+        <span class="muted" style="flex:none">%</span><button id="z_key_confirm">Ajouter</button>
+      </div>
+      <div id="z_loot_table"></div>
+      <div class="${isEvent?'grid3':'grid2'}" style="margin-top:10px">
+        <div><label>+ Item seul</label>
+          <input id="z_item_search" placeholder="Nom ou id d'item…" list="z_itemdl" autocomplete="off">
+          <datalist id="z_itemdl">${Object.keys(ITEM).slice(0,3000).map(k=>`<option value="${(ITEM[k].name||k).replace(/"/g,'&quot;')}" data-id="${k}">`).join('')}</datalist></div>
+        <div><label>+ Panoplie complète</label>
+          <input id="z_pano_fill" placeholder="Nom ou id de panoplie…" list="z_panodl_fill" autocomplete="off">
+          <datalist id="z_panodl_fill">${Object.keys(PANO).map(k=>`<option value="${(PANO[k].name||k).replace(/"/g,'&quot;')}" data-id="${k}">`).join('')}</datalist></div>
+        ${isEvent?`<div><label>+ Divers</label>
+          <input id="z_divers_search" placeholder="Nom ou id (divers)…" list="z_diversdl" autocomplete="off">
+          <datalist id="z_diversdl">${[...DIVERS_IDS].map(k=>`<option value="${(ITEM[k]?.name||k).replace(/"/g,'&quot;')}" data-id="${k}">`).join('')}</datalist></div>`:''}
+      </div></div>
+    ${isRaid?`<div class="section">
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px">
+        <span style="font-size:13px;color:var(--acc);font-weight:600;flex:1">Mini-Boss</span>
+      </div>
+      <div class="grid2">
+        <div><label>everyKills (tous les N kills)</label><input type="number" id="z_mb_kills" value="${a.miniBoss?.everyKills??6}"></div>
+        <div><label>statMult (multiplicateur stats)</label><input type="number" id="z_mb_mult" step="0.1" value="${a.miniBoss?.statMult??1}"></div>
+      </div>
+      <div id="z_mb_monsters"></div>
+      <input id="z_mb_search" placeholder="Ajouter monstre boss (nom/id)…" list="z_mbdl" autocomplete="off" style="margin-top:6px">
+      <datalist id="z_mbdl">${Object.values(MONSTERS).slice(0,4000).map(m=>`<option value="${(m.name||m.id).replace(/"/g,'&quot;')}" data-id="${m.id}">`).join('')}</datalist>
+    </div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px">
+        <span style="font-size:13px;color:var(--acc);font-weight:600;flex:1">Loot Mini-Boss — <span id="z_mbloot_count">0</span> item(s)</span>
+        <button id="z_qgardien_mb" style="font-size:11px;padding:2px 8px">💀 +Gardien</button>
+      </div>
+      <div id="z_mbloot_table"></div>
+      <div><label>+ Item mini-boss</label>
+        <input id="z_mbloot_search" placeholder="Nom ou id d'item…" list="z_mblootdl" autocomplete="off">
+        <datalist id="z_mblootdl">${Object.keys(ITEM).slice(0,3000).map(k=>`<option value="${(ITEM[k].name||k).replace(/"/g,'&quot;')}" data-id="${k}">`).join('')}</datalist></div>
+    </div>`:''}
+    <div class="section"><h3>Panoplies assignées (<span id="z_pano_count">${(ZONESETS[z]||[]).length}</span>)</h3>
+      <div id="z_pano_tags">${(ZONESETS[z]||[]).map(k=>`<span class="badge" style="margin:2px">${PANO[k]?.name||k}</span>`).join('')||'<span class="muted">aucune</span>'}</div>
+      <input id="z_pq" placeholder="Filtrer les panoplies…" style="margin:8px 0">
+      <div class="checks" id="z_pano_checks"></div></div>`
+  const md=v=>{dirtyZones.add(z);setDirty(true);v&&v()}
+  D.querySelector('#z_name').oninput=e=>{a.name=e.target.value;md(()=>renderZoneFullList(cat))}
+  D.querySelector('#z_min').oninput=e=>{a.mobMinLevel=+e.target.value||0;md()}
+  D.querySelector('#z_max').oninput=e=>{a.mobMaxLevel=+e.target.value||0;md()}
+  D.querySelector('#z_bg').oninput=e=>{a.background=e.target.value;md()}
+  D.querySelector('#z_icon').oninput=e=>{a.icon=e.target.value;md()}
+  D.querySelector('#z_dmin').oninput=e=>{a.minLevel=+e.target.value||0;md()}
+  D.querySelector('#z_dmax').oninput=e=>{a.maxLevel=+e.target.value||0;md()}
+  D.querySelector('#z_desc').oninput=e=>{a.description=e.target.value;md()}
+  renderZoneSpawns(a,z)
+  const ms=D.querySelector('#z_monSearch')
+  ms.onchange=()=>{
+    const opt=[...D.querySelectorAll('#z_mondl option')].find(o=>o.value===ms.value)
+    const mid=opt?opt.dataset.id:ms.value.trim()
+    if(mid && MONSTERS[mid] && !a.spawns.some(s=>s.id===mid)){ a.spawns.push({id:mid,weight:10}); renderZoneSpawns(a,z); md() }
+    ms.value=''
+  }
+  ensureZoneLoot(z)
+  renderZoneLoot(z)
+  // quick-add âme / gardien / clé
+  const addToLoot=(itemId,dropRate,extra={})=>{ if(!a.lootTable.some(e=>e.itemId===itemId)){a.lootTable.push({itemId,dropRate,...extra});renderZoneLoot(z);md()} }
+  D.querySelector('#z_qame').onclick=()=>addToLoot('pierreDame',0.45)
+  D.querySelector('#z_qgardien').onclick=()=>addToLoot('pierreDameGardien',0.45)
+  const kp=D.querySelector('#z_key_panel')
+  D.querySelector('#z_qkey').onclick=()=>{ kp.style.display=kp.style.display==='flex'?'none':'flex' }
+  D.querySelector('#z_key_confirm').onclick=()=>{
+    const sel=D.querySelector('#z_key_sel'); const rate=+D.querySelector('#z_key_rate').value/100||0.15
+    if(sel.value) addToLoot(sel.value,rate,{isKey:true})
+    kp.style.display='none'
+  }
+  // + item seul
+  const is_=D.querySelector('#z_item_search')
+  is_.onchange=()=>{
+    const opt=[...D.querySelectorAll('#z_itemdl option')].find(o=>o.value===is_.value)
+    const iid=opt?opt.dataset.id:is_.value.trim()
+    if(iid&&ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){ a.lootTable.push({itemId:iid,dropRate:0.01}); renderZoneLoot(z); md() }
+    is_.value=''
+  }
+  // + panoplie complète
+  const pf=D.querySelector('#z_pano_fill')
+  pf.onchange=()=>{
+    const opt=[...D.querySelectorAll('#z_panodl_fill option')].find(o=>o.value===pf.value)
+    const pid=opt?opt.dataset.id:pf.value.trim()
+    if(pid&&PANO[pid]){
+      let added=0
+      ;(PANO[pid].pieces||[]).forEach(iid=>{ if(ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){a.lootTable.push({itemId:iid,dropRate:0.01});added++} })
+      if(added){ renderZoneLoot(z); md() }
+    }
+    pf.value=''
+  }
+  // + divers (events uniquement)
+  if(isEvent){
+    const ds=D.querySelector('#z_divers_search')
+    if(ds) ds.onchange=()=>{
+      const opt=[...D.querySelectorAll('#z_diversdl option')].find(o=>o.value===ds.value)
+      const iid=opt?opt.dataset.id:ds.value.trim()
+      if(iid&&ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){ a.lootTable.push({itemId:iid,dropRate:0.05}); renderZoneLoot(z); md() }
+      ds.value=''
+    }
+  }
+  // raid : mini-boss + miniBossLootTable
+  if(isRaid){
+    if(!a.miniBoss) a.miniBoss={everyKills:6,statMult:1}
+    if(!a.miniBossLootTable) a.miniBossLootTable=[]
+    renderZoneMiniBossMonsters(a,z)
+    D.querySelector('#z_mb_kills').oninput=e=>{a.miniBoss.everyKills=+e.target.value||1;md()}
+    D.querySelector('#z_mb_mult').oninput=e=>{a.miniBoss.statMult=+e.target.value||1;md()}
+    const mbs=D.querySelector('#z_mb_search')
+    mbs.onchange=()=>{
+      const opt=[...D.querySelectorAll('#z_mbdl option')].find(o=>o.value===mbs.value)
+      const mid=opt?opt.dataset.id:mbs.value.trim()
+      if(mid&&MONSTERS[mid]){
+        const mb=a.miniBoss; const ids=[...(mb.ids||(mb.id?[mb.id]:[]))]
+        if(!ids.includes(mid)){ ids.push(mid); delete mb.id; mb.ids=ids; renderZoneMiniBossMonsters(a,z); md() }
+      }
+      mbs.value=''
+    }
+    renderZoneMiniBossLoot(z)
+    D.querySelector('#z_qgardien_mb').onclick=()=>{
+      if(!a.miniBossLootTable.some(e=>e.itemId==='pierreDameGardien'))
+        a.miniBossLootTable.push({itemId:'pierreDameGardien',dropRate:0.45})
+      renderZoneMiniBossLoot(z); md()
+    }
+    const mbl=D.querySelector('#z_mbloot_search')
+    mbl.onchange=()=>{
+      const opt=[...D.querySelectorAll('#z_mblootdl option')].find(o=>o.value===mbl.value)
+      const iid=opt?opt.dataset.id:mbl.value.trim()
+      if(iid&&ITEM[iid]&&!a.miniBossLootTable.some(e=>e.itemId===iid)){ a.miniBossLootTable.push({itemId:iid,dropRate:0.01}); renderZoneMiniBossLoot(z); md() }
+      mbl.value=''
+    }
+  }
+  // panoplies (ZONE_SETS)
+  renderZonePanoChecks(z)
+  D.querySelector('#z_pq').oninput=e=>renderZonePanoChecks(z,e.target.value)
+}
+function renderZoneSpawns(a,z){
+  const wrap=document.getElementById('detail').querySelector('#z_spawns')
+  wrap.innerHTML=(a.spawns||[]).map((s,i)=>{const m=MONSTERS[s.id]
+    return `<div class="statrow">
+      <span class="badge" style="flex:2;text-align:left">${m?m.name:s.id} <span class="muted">(${s.id})</span></span>
+      <input class="spw" data-i="${i}" type="number" value="${s.weight??1}" style="flex:1" title="poids">
+      <button class="spx" data-i="${i}">✕</button></div>`
+  }).join('')||'<div class="muted">aucun spawn</div>'
+  wrap.querySelectorAll('.spw').forEach(el=>el.oninput=()=>{a.spawns[+el.dataset.i].weight=+el.value||1;dirtyZones.add(z);setDirty(true)})
+  wrap.querySelectorAll('.spx').forEach(el=>el.onclick=()=>{a.spawns.splice(+el.dataset.i,1);renderZoneSpawns(a,z);dirtyZones.add(z);setDirty(true)})
+}
+
+// ───────────────────────── Loot zones helpers ─────────────────────────
+function lootLiteral(loot){
+  if(!loot||!loot.length) return '[]'
+  return '[\n' + loot.map(e=>{
+    let s=`        { itemId: ${q(e.itemId)}, dropRate: ${+(e.dropRate)||0}`
+    if(e.isKey) s+=', isKey: true'
+    return s+' }'
+  }).join(',\n') + '\n    ]'
+}
+function ensureZoneLoot(z){
+  const a=AREAS[z]; if(!a.lootTable) a.lootTable=[]
+}
+function renderZoneLoot(z){
+  const a=AREAS[z]; const loot=a.lootTable||[]
+  const D=document.getElementById('detail')
+  const countEl=D.querySelector('#z_loot_count'); if(countEl) countEl.textContent=loot.length
+  const wrap=D.querySelector('#z_loot_table'); if(!wrap) return
+  wrap.innerHTML=loot.length ? loot.map((e,i)=>{
+    const nm=ITEM[e.itemId]?.name||e.itemId
+    const pct=Math.round((+(e.dropRate)||0)*10000)/100  // 0.01 → 1.00
+    const badge=e.isKey
+      ? `<span class="loot-type" style="border-color:#c084fc;color:#c084fc;min-width:auto">🔑 Clé</span>`
+      : e.itemId==='pierreDame'
+        ? `<span class="loot-type" style="border-color:#60a5fa;color:#60a5fa;min-width:auto">💎 Âme</span>`
+        : ''
+    return `<div class="loot-row">
+      ${badge}
+      <span class="loot-name" title="${e.itemId}">${nm} <span class="muted">(${e.itemId})</span></span>
+      <input class="ldr" data-i="${i}" type="number" min="0" max="100" step="0.5" value="${pct}" style="width:72px" title="taux de drop %">
+      <span class="muted" style="font-size:11px;flex:none">%</span>
+      <button class="ldx" data-i="${i}" style="flex:none">✕</button></div>`
+  }).join('') : '<div class="muted" style="padding:6px 0">Aucun item de loot configuré.</div>'
+  wrap.querySelectorAll('.ldr').forEach(el=>el.oninput=()=>{
+    a.lootTable[+el.dataset.i].dropRate=Math.round(+el.value*100)/10000  // % → decimal
+    dirtyZones.add(z);setDirty(true)
+  })
+  wrap.querySelectorAll('.ldx').forEach(el=>el.onclick=()=>{
+    a.lootTable.splice(+el.dataset.i,1)
+    renderZoneLoot(z); dirtyZones.add(z); setDirty(true)
+  })
+}
+function renderZoneMiniBossMonsters(a,z){
+  const wrap=document.getElementById('detail').querySelector('#z_mb_monsters'); if(!wrap) return
+  const mb=a.miniBoss||{}; const ids=mb.ids||(mb.id?[mb.id]:[])
+  wrap.innerHTML=ids.length ? ids.map((id,i)=>{const m=MONSTERS[id]
+    return `<div class="statrow"><span class="badge" style="flex:1;text-align:left">${m?m.name:id} <span class="muted">(${id})</span></span>
+      <button class="mbx" data-i="${i}">✕</button></div>`
+  }).join('') : '<div class="muted">aucun boss assigné</div>'
+  wrap.querySelectorAll('.mbx').forEach(el=>el.onclick=()=>{
+    const mb=a.miniBoss; const ids=[...(mb.ids||(mb.id?[mb.id]:[]))]
+    ids.splice(+el.dataset.i,1)
+    if(ids.length===1){mb.id=ids[0];delete mb.ids} else if(ids.length>1){mb.ids=ids;delete mb.id} else {delete mb.id;delete mb.ids}
+    renderZoneMiniBossMonsters(a,z); dirtyZones.add(z); setDirty(true)
+  })
+}
+function renderZoneMiniBossLoot(z){
+  const a=AREAS[z]; const loot=a.miniBossLootTable||[]
+  const D=document.getElementById('detail')
+  const countEl=D.querySelector('#z_mbloot_count'); if(countEl) countEl.textContent=loot.length
+  const wrap=D.querySelector('#z_mbloot_table'); if(!wrap) return
+  wrap.innerHTML=loot.length ? loot.map((e,i)=>{
+    const nm=ITEM[e.itemId]?.name||e.itemId
+    const pct=Math.round((+(e.dropRate)||0)*10000)/100
+    const badge=e.itemId==='pierreDameGardien'?`<span class="loot-type" style="border-color:#e879f9;color:#e879f9;min-width:auto">💀 Boss</span>`:''
+    return `<div class="loot-row">${badge}
+      <span class="loot-name" title="${e.itemId}">${nm} <span class="muted">(${e.itemId})</span></span>
+      <input class="mbldr" data-i="${i}" type="number" min="0" max="100" step="0.5" value="${pct}" style="width:72px">
+      <span class="muted" style="font-size:11px;flex:none">%</span>
+      <button class="mbldx" data-i="${i}" style="flex:none">✕</button></div>`
+  }).join('') : '<div class="muted" style="padding:6px 0">Aucun loot mini-boss.</div>'
+  wrap.querySelectorAll('.mbldr').forEach(el=>el.oninput=()=>{a.miniBossLootTable[+el.dataset.i].dropRate=Math.round(+el.value*100)/10000;dirtyZones.add(z);setDirty(true)})
+  wrap.querySelectorAll('.mbldx').forEach(el=>el.onclick=()=>{a.miniBossLootTable.splice(+el.dataset.i,1);renderZoneMiniBossLoot(z);dirtyZones.add(z);setDirty(true)})
+}
+function renderZonePanoChecks(z, flt=''){
+  const D=document.getElementById('detail'); if(!D) return
+  const assigned=ZONESETS[z]||[]
+  const wrap=D.querySelector('#z_pano_checks'); if(!wrap) return
+  const all=Object.keys(PANO).filter(k=>(k+' '+(PANO[k].name||'')).toLowerCase().includes(flt.toLowerCase()))
+  wrap.innerHTML=all.slice(0,300).map(k=>`<div class="checkrow"><label><input type="checkbox" class="zpc" value="${k}" ${assigned.includes(k)?'checked':''} style="width:auto"> ${PANO[k].name||k}</label></div>`).join('')
+  const tagsEl=D.querySelector('#z_pano_tags'); const cntEl=D.querySelector('#z_pano_count')
+  wrap.querySelectorAll('.zpc').forEach(el=>el.onchange=()=>{
+    let arr=ZONESETS[z]||(ZONESETS[z]=[])
+    if(el.checked){if(!arr.includes(el.value))arr.push(el.value)}
+    else ZONESETS[z]=arr.filter(x=>x!==el.value)
+    if(tagsEl) tagsEl.innerHTML=(ZONESETS[z]||[]).map(k=>`<span class="badge" style="margin:2px">${PANO[k]?.name||k}</span>`).join('')||'<span class="muted">aucune</span>'
+    if(cntEl) cntEl.textContent=(ZONESETS[z]||[]).length
+    setDirty(true)
+  })
+}
+
+// ───────────────────────── événements ─────────────────────────
+document.getElementById('openBtn').onclick=()=>openFolder().catch(e=>{toast('Ouverture annulée/échouée','err');console.error(e)})
+document.getElementById('saveBtn').onclick=saveAll
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('active'))
+  b.classList.add('active'); tab=b.dataset.tab; selId=null; render()
+})
+window.addEventListener('beforeunload', e=>{ if(dirty){e.preventDefault();e.returnValue=''} })
+if(!window.showDirectoryPicker){
+  document.getElementById('openBtn').disabled=true
+  document.getElementById('status').textContent='Navigateur non compatible (utilise Chrome/Edge)'
+}
+</script>
+</body>
+</html>

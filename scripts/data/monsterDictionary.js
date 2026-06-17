@@ -4285,7 +4285,7 @@ monsters.etoile_swagante = {
 monsters.ouroboulos = {
     id: 'ouroboulos',
     name: 'Ouroboulos',
-    image: 'images/monsters/ouroboulos.png',
+    image: 'images/monsters/Ouroboulos.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 133, spd: 110, res: { neutre: 26, terre: 16, feu: 21, eau: -14, air: -24 } },
@@ -12107,7 +12107,7 @@ monsters.blopReinetteRoyal = {
 monsters.mantiscore = {
     id: 'mantiscore',
     name: 'Mantiscore',
-    image: 'images/monsters/mantiscore.png',
+    image: 'images/monsters/Mantiscore.png',
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 2600, atk: 200, spd: 120, res: { neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 } },
