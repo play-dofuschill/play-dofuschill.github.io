@@ -344,7 +344,7 @@ function toast(msg, kind){
   const t = document.getElementById('toast'); t.textContent = msg
   t.className = 'toast show ' + (kind||''); setTimeout(()=>t.className='toast',2200)
 }
-const imgSrc = it => it && it.image ? '../' + it.image : ''
+const imgSrc = it => it && it.image ? it.image : ''
 
 // ───────────────────────── rendu ─────────────────────────
 function render(){
@@ -583,7 +583,7 @@ function matchMon(id){
   if (mf.q){ const s=(id+' '+(m.name||'')).toLowerCase(); if(!s.includes(mf.q.toLowerCase())) return false }
   return true
 }
-const monImg = m => !m||!m.image ? '' : (/^https?:|^\//.test(m.image) ? m.image : '../'+m.image)
+const monImg = m => !m||!m.image ? '' : m.image
 function renderMonsterList(){
   const ids=Object.keys(MONSTERS).filter(matchMon)
   const body=document.getElementById('listBody')

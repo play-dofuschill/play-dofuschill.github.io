@@ -8,6 +8,100 @@ function _canClaimAlmanax() {
     return state.lastAlmanaxDate !== _todayStr()
 }
 
+// ─── Tableaux de récompenses par palier ──────────────────────────────────────
+// Cascade rarest→commun : r < 0.01 → très rare, [0.01, 0.25[ → rare, [0.25, 1[ → commun.
+
+const ALMANAX_REWARDS = {
+    tresRare: {
+        label: 'Très Rare',
+        color: '#ff2626',
+        chance: 0.01,
+        pool: [
+            { itemId: 'piloteAutomatique',       qty: 25 },
+            { itemId: 'runeTransHpS',            qty: 1 },
+            { itemId: 'runeTransAtkS',           qty: 1 },
+            { itemId: 'runeTransSpdS',           qty: 1 },
+            { itemId: 'runeTransFlatDmgS',       qty: 1 },
+            { itemId: 'runeTransCritS',          qty: 1 },
+            { itemId: 'runeTransCritDmgS',       qty: 1 },
+            { itemId: 'runeTransFinalDmgS',      qty: 1 },
+            { itemId: 'runeTransSpellDmgS',      qty: 1 },
+            { itemId: 'runeTransDamRedS',        qty: 1 },
+            { itemId: 'runeTransFireResS',       qty: 1 },
+            { itemId: 'runeTransWaterResS',      qty: 1 },
+            { itemId: 'runeTransEarthResS',      qty: 1 },
+            { itemId: 'runeTransAirResS',        qty: 1 },
+            { itemId: 'runeTransNeutralResS',    qty: 1 },
+        ]
+    },
+    rare: {
+        label: 'Rare',
+        color: '#1f9108',
+        chance: 0.25,
+        pool: [
+            { itemId: 'piloteAutomatique',    qty: 10 },
+            // Runes M
+            { itemId: 'runeHpM',             qty: 2 },
+            { itemId: 'runeAtkM',            qty: 2 },
+            { itemId: 'runeSpdM',            qty: 2 },
+            { itemId: 'runeFlatDmgM',        qty: 2 },
+            { itemId: 'runeCritM',           qty: 2 },
+            { itemId: 'runeCritDmgM',        qty: 2 },
+            { itemId: 'runeFinalDmgM',       qty: 2 },
+            { itemId: 'runeSpellDmgM',       qty: 2 },
+            { itemId: 'runeDamRedM',         qty: 2 },
+            { itemId: 'runeFireResM',        qty: 2 },
+            { itemId: 'runeWaterResM',       qty: 2 },
+            { itemId: 'runeEarthResM',       qty: 2 },
+            { itemId: 'runeAirResM',         qty: 2 },
+            { itemId: 'runeNeutralResM',     qty: 2 },
+            // Runes L
+            { itemId: 'runeHpL',             qty: 1 },
+            { itemId: 'runeAtkL',            qty: 1 },
+            { itemId: 'runeSpdL',            qty: 1 },
+            { itemId: 'runeFlatDmgL',        qty: 1 },
+            { itemId: 'runeCritL',           qty: 1 },
+            { itemId: 'runeCritDmgL',        qty: 1 },
+            { itemId: 'runeFinalDmgL',       qty: 1 },
+            { itemId: 'runeSpellDmgL',       qty: 1 },
+            { itemId: 'runeDamRedL',         qty: 1 },
+            { itemId: 'runeFireResL',        qty: 1 },
+            { itemId: 'runeWaterResL',       qty: 1 },
+            { itemId: 'runeEarthResL',       qty: 1 },
+            { itemId: 'runeAirResL',         qty: 1 },
+            { itemId: 'runeNeutralResL',     qty: 1 },
+        ]
+    },
+    commun: {
+        label: 'Commun',
+        color: '#383838',
+        chance: 1,
+        pool: [
+            { itemId: 'piloteAutomatique',      qty: 1 },
+            // Runes S (pour les types qui l'ont)
+            { itemId: 'runeHpS',               qty: 1 },
+            { itemId: 'runeAtkS',              qty: 1 },
+            { itemId: 'runeSpdS',              qty: 1 },
+            { itemId: 'runeFlatDmgS',          qty: 1 },
+            { itemId: 'runeCritS',             qty: 1 }
+        ]
+    },
+}
+
+function _rollAlmanaxReward() {
+    const r = Math.random()
+    let tier = null
+    if      (r < ALMANAX_REWARDS.tresRare.chance) tier = ALMANAX_REWARDS.tresRare
+    else if (r < ALMANAX_REWARDS.rare.chance)     tier = ALMANAX_REWARDS.rare
+    else if (r < ALMANAX_REWARDS.commun.chance)   tier = ALMANAX_REWARDS.commun
+
+    if (tier) {
+        const entry = tier.pool[Math.floor(Math.random() * tier.pool.length)]
+        return { ...entry, tier }
+    }
+    return { kamas: 50, tier: null }
+}
+
 // ─── Visibilité du bouton Almanax dans la nav ─────────────────────────────────
 
 function updateAlmanaxNavItem() {
@@ -21,31 +115,43 @@ function updateAlmanaxNavItem() {
 function claimAlmanax() {
     if (!_canClaimAlmanax()) return
 
-    // Ferme le menu si ouvert
     document.getElementById('menu-button').classList.remove('menu-button-open')
     activeMenu = null
 
-    // Récompense : 1 pilote automatique
-    if (!state.inventory['piloteAutomatique']) state.inventory['piloteAutomatique'] = { count: 0 }
-    state.inventory['piloteAutomatique'].count += 1
+    const reward = _rollAlmanaxReward()
+    const tier   = reward.tier
+    const color  = tier ? tier.color : '#aaaaaa'
+
+    let imgSrc, rewardLine
+
+    if (reward.itemId) {
+        const itm = item[reward.itemId]
+        const qty = reward.qty || 1
+        for (let i = 0; i < qty; i++) addToInventory(reward.itemId)
+        imgSrc     = itm?.image || 'img/icons/icon.png'
+        const name = itm?.name || reward.itemId
+        rewardLine = qty > 1 ? `<strong>${qty}× ${name}</strong>` : `<strong>${name}</strong>`
+    } else {
+        state.kamas += reward.kamas
+        imgSrc     = 'img/icons/kamas.png'
+        rewardLine = `<strong>${reward.kamas} Kamas</strong>`
+    }
 
     state.lastAlmanaxDate = _todayStr()
     saveGame()
-    exportData()
-
-    // Cache le bouton jusqu'à demain
     updateAlmanaxNavItem()
 
-    // Popup de récompense
+    const tierBadge = tier
+        ? `<div style="font-size:0.75rem;font-weight:bold;color:${color};background:var(--dark2);padding:0.2rem 0.8rem;border-radius:1rem;border:1px solid ${color};letter-spacing:0.05em;margin-bottom:0.2rem;">${tier.label}</div>`
+        : ''
+
     const body = `
-        <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;padding:0.5rem 0;">
-            <img src="img/items/divers/piloteAutomatique.png" onerror="this.src='img/icons/icon.png'"
-                 style="width:5rem;height:5rem;object-fit:contain;filter:drop-shadow(0 0 12px #ffe15e);">
-            <div style="font-size:1.1rem;font-weight:bold;color:#ffe15e;background:var(--dark2);padding:0.3rem 1rem;border-radius:0.5rem;">Almanax du jour réclamé !</div>
-            <div style="font-size:0.9rem;opacity:0.8;text-align:center;">
-                Vous recevez <strong>1 Pilote Automatique</strong>.<br>
-                Votre sauvegarde a été exportée automatiquement.
-            </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;padding:0.5rem 0;">
+            ${tierBadge}
+            <img src="${imgSrc}" onerror="this.src='img/icons/icon.png'"
+                 style="width:5rem;height:5rem;object-fit:contain;filter:drop-shadow(0 0 14px ${color});">
+            <div style="font-size:1.1rem;font-weight:bold;color:${color};background:var(--dark2);padding:0.3rem 1rem;border-radius:0.5rem;">Almanax du jour réclamé !</div>
+            <div style="font-size:0.9rem;opacity:0.8;text-align:center;">Vous recevez ${rewardLine}.</div>
             <div style="font-size:0.75rem;opacity:0.5;">Revenez demain pour une nouvelle récompense.</div>
         </div>`
     openTooltip('Almanax', body)

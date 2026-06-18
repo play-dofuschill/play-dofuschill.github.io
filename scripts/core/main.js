@@ -25,7 +25,7 @@ const STAT_ICONS = {
     spd:        'img/icons/Vitesse.png',
     soin:    'img/icons/Soin.png',
     volVie:  'img/icons/Vol_Vie.png',
-    buff:    'img/icons/Boost.png'
+    buff:    'img/icons/boost.png'
 }
 function voidAnimation(id, animation) {
     const el = document.getElementById(id)

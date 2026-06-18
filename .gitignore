@@ -1,3 +1,6 @@
+# Outils externes (binaires lourds)
+tools/
+
 # Outils de debug (jamais en prod)
 debug/
 
