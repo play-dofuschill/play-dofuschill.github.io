@@ -119,6 +119,10 @@
 
 const item = {}
 
+// ─────────────────────────────────────────────────────────────────────────────
+// DOFUS
+// ─────────────────────────────────────────────────────────────────────────────
+
 item.Dofus_Argente = {
     id: 'Dofus_Argente',
     name: 'Dofus Argenté',
@@ -127,11 +131,9 @@ item.Dofus_Argente = {
     slot: 'accessoire',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    stats: [{ stat: 'atk', value: 20 }, { stat: 'maxHp', value: 50 }],
-    effects: [{ every: 4, after: 8, type: 'heal%maxHp', heal: 5, target: 'self' }],
+    stats: [{ stat: 'atk', value: 20 }, { stat: 'maxHp', value: 33 }],
     description: 'Pondu par Rathrosk le dragon gris, cet œuf est une énigme. Bien que son pouvoir n\'égale pas celui d\'un Dofus Primordial, il semble plus ancien que le temps... Vous feriez bien de le garder précieusement. Après tout, seules les Nordes et le dieu Xélor savent de quoi l\'avenir sera fait.'
 }
-
 item.Dofus_Ocre = {
     id: 'Dofus_Ocre',
     name: 'Dofus Ocre',
@@ -140,11 +142,10 @@ item.Dofus_Ocre = {
     slot: 'accessoire',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    stats: [{ stat: 'spd', value: 20 }, { stat: 'finalDamagePct', value: 10 }],
+    stats: [{ stat: 'finalDamagePct', value: 13 }],
     effects: [{ on_effect: { source: 'enemy', type: 'dot' }, reaction: 'cancel' }],
     description: 'Pondu par Terrakourial, le Dragon de la Terre, puis avalé par le Kralamour Géant, ce Dofus concentre de grands pouvoirs à ne pas mettre entre toutes les mains... Ni entre tous les pieds d\'ailleurs.'
 }
-
 item.Dofus_Pourpre = {
     id: 'Dofus_Pourpre',
     name: 'Dofus Pourpre',
@@ -153,11 +154,10 @@ item.Dofus_Pourpre = {
     slot: 'accessoire',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    stats: [{ stat: 'atk', value: 50 }, { stat: 'critDamagePct', value: 20 }],
+    stats: [{ stat: 'critDamagePct', value: 20 }],
     effects: [{ on_effect: { source: 'enemy', type: ['heal', 'heal%maxHp'] }, reaction: 'heal_to_damage', element: 'feu', rawDamage: { min: 5, max: 15 } }],
     description: 'Pondu par Ignemikhal, Dragon Élémentaire du Feu, par amour pour la poupée divine Ladysally. Cet œuf incandescent renferme une puissance ardente sans égale... seuls les plus courageux méritent de le porter.'
 }
-
 item.Dofus_Turquoise = {
     id: 'Dofus_Turquoise',
     name: 'Dofus Turquoise',
@@ -166,70 +166,234 @@ item.Dofus_Turquoise = {
     slot: 'accessoire',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    stats: [{ stat: 'atk', value: 50 }, { stat: 'critChance', value: 13 }],
+    stats: [{ stat: 'critChance', value: 13 }],
     effects: [{ on_effect: { source: 'enemy', crit_only: true, type: ['damage'] }, reaction: 'crit_absorb_heal', heal_pct: 20 }],
-    description: 'Pondu par Aguabrial, Dragon Élémentaire de l\'Eau, par amour pour la poupée Dathura. Cet œuf limpide renferme une puissance d\'une profondeur sans égale... seuls les plus courageux méritent de le porter.'
+    description: 'Pondu par Aguabrial, Dragon Élémentaire de l\'Eau, par amour pour la poupée Dathura. Cet œuf limpide renferme une puissance d\'une profondeur sans égale... seuls les plus courageux méritent de le porter.',
+}
+item.Dofus_Ebene = {
+    id: 'Dofus_Ebene',
+    name: 'Dofus Ébène',
+    image: 'img/items/objets_bonus/Dofus_Ebene.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [],
+    effects: [{ every: 4, after: 4, type: 'dot', element: 'neutre', value: { min: 10, max: 15 }, duration: 2 }],
+    description: "",
+}
+item.Dofus_Ivoire = {
+    id: 'Dofus_Ivoire',
+    name: 'Dofus Ivoire',
+    image: 'img/items/objets_bonus/Dofus_Ivoire.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'res.terre', value: 6 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
+    effects: [{ on_damage_received: { every: 4 }, reaction: 'cancel_next_damage' }],
+    description: "",
+}
+item.Dofus_Emeraude = {
+    id: 'Dofus_Emeraude',
+    name: 'Dofus Émeraude',
+    image: 'img/items/objets_bonus/Dofus_Emeraude.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'maxHp', value: 133 }],
+    effects: [{ on_active: true, type: 'shield', value_level_mult: 2, duration: 8 }],
+    description: "",
+}
+item.Dofus_Vulbis = {
+    id: 'Dofus_Vulbis',
+    name: 'Dofus Vulbis',
+    image: 'img/items/objets_bonus/Dofus_Vulbis.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'spellDamagePct', value: 13 }],
+    effects: [{ on_effect: { source: 'enemy', type: 'debuff', stat: 'spd' }, reaction: 'invert' }],
+    description: "pour chaque debuff de spd reçu, transforme le malus en bonus.",
+}
+item.Dofus_des_Glaces = {
+    id: 'Dofus_des_Glaces',
+    name: 'Dofus des Glaces',
+    image: 'img/items/objets_bonus/Dofus_des_Glaces.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'flatDamage', value: 33 }],
+    description: "",
+}
+item.Dofus_Nebuleux = {
+    id: 'Dofus_Nebuleux',
+    name: 'Dofus Nébuleux',
+    image: 'img/items/objets_bonus/Dofus_Nebuleux.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    effects: [{ every: 4, type: 'alternating_buff_debuff', stat: 'finalDamagePct', buff_value: 20, debuff_value: 15, duration: 4 }],
+    description: "",
+}
+item.Dofus_Sylvestre = {
+    id: 'Dofus_Sylvestre',
+    name: 'Dofus Sylvestre',
+    image: 'img/items/objets_bonus/Dofus_Sylvestre.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    effects: [{ on_kill: { stat: 'atk', per_kill: 15, max_value: 90, swap_reset: true, on_inactive_at_max: { type: 'heal%maxHp', heal: 5 } } }],
+    description: "",
+}
+item.Dofus_Abyssal = {
+    id: 'Dofus_Abyssal',
+    name: 'Dofus Abyssal',
+    image: 'img/items/objets_bonus/Dofus_Abyssal.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    effects: [{ on_kill: { stat: 'spd', per_kill: 5, max_value: 30, swap_reset: true } }],
+    description: "",
+}
+item.Dofus_Forgelave = {
+    id: 'Dofus_Forgelave',
+    name: 'Dofus Forgelave',
+    image: 'img/items/objets_bonus/Dofus_Forgelave.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    effects: [{ on_effect: { source: 'enemy', type: ['avance', 'recul', 'switch'] }, reaction: 'trigger', type: 'shield', value_from_level: true, duration: 4 }],
+    description: "",
+}
+item.Dofus_Tachete = {
+    id: 'Dofus_Tachete',
+    name: 'Dofus Tacheté',
+    image: 'img/items/objets_bonus/Dofus_Tachete.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    effects: [
+        { condition: 'no_direct_dmg', type: 'stat_bonus', stat: 'flatDamage', value: 30 },
+        { condition: 'no_buff_debuff', every: 8, after: 4, type: 'random_buff_debuff', stat: 'atk', value: 100, duration: 4 },
+    ],
+    description: "",
+}
+item.Dofus_Domakuro = {
+    id: 'Dofus_Domakuro',
+    name: 'Dofus Domakuro',
+    image: 'img/items/objets_bonus/Dofus_Domakuro.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [],
+    effects: [{ condition: 'no_direct_dmg', type: 'stat_bonus', stat: 'flatDamage', value: 30 }],
+    description: "",
+}
+item.Dofus_Dorigami = {
+    id: 'Dofus_Dorigami',
+    name: 'Dofus Dorigami',
+    image: 'img/items/objets_bonus/Dofus_Dorigami.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'atk', value: 50 }, { stat: 'critChance', value: 13 }],
+    effects: [{ condition: 'no_buff_debuff', every: 8, after: 4, type: 'random_buff_debuff', stat: 'atk', value: 100, duration: 4 }],
+    description: "",
+}
+item.Dofus_Dokoko = {
+    id: 'Dofus_Dokoko',
+    name: 'Dofus Dokoko',
+    image: 'img/items/objets_bonus/Dofus_Dokoko.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'maxHp', value: 50 }],
+    effects: [{ every: 8, after: 8, type: 'heal%maxHp', heal: 2, target: 'self' }],
+    description: "",
 }
 
-item.trophee_de_la_cadence = {
-    id:    'trophee_de_la_cadence',
-    name:  'Trophée de la Cadence',
-    image: 'img/items/objets_bonus/trophee_de_la_cadence.png',
-    type:  'equipment',
-    slot:  'accessoire',
-    rarity: 'rare',
-    stats: [{ stat: 'maxHp', value: 150 }],
-    trophy: {
-        trigger:  { type: 'spells_cast', count: 1, resetOnTrigger: true },
-        switchTo: { type: 'next' }
-    },
-    description: 'Après chaque sort lancé, passe automatiquement au membre suivant. Idéal pour faire tourner toute l\'équipe à vitesse maximale.'
-}
+// ─────────────────────────────────────────────────────────────────────────────
+// TROPHÉES
+// ─────────────────────────────────────────────────────────────────────────────
 
-item.trophee_du_maestro = {
-    id:    'trophee_du_maestro',
-    name:  'Trophée du Maestro',
-    image: 'img/items/objets_bonus/trophee_du_maestro.png',
-    type:  'equipment',
-    slot:  'accessoire',
-    rarity: 'rare',
-    stats: [{ stat: 'maxHp', value: 150 }, { stat: 'atk', value: 20 }],
-    trophy: {
-        trigger:  { type: 'spells_cast', count: 2, resetOnTrigger: true },
-        switchTo: { type: 'next' }
-    },
-    description: 'Après 2 sorts lancés, passe automatiquement au membre suivant. L\'équilibre entre durée de tour et rotation fluide.'
-}
+item.trophee_de_la_cadence = { id: 'trophee_de_la_cadence', name: 'Trophée de la Cadence', image: 'img/items/objets_bonus/trophee_de_la_cadence.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 1 sort lancé, passe automatiquement au membre suivant.'}
+item.trophee_du_maestro = { id: 'trophee_du_maestro', name: 'Trophée du Maestro', image: 'img/items/objets_bonus/trophee_du_maestro.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 2 sorts lancés, passe automatiquement au membre suivant.'}
+item.trophee_du_trio = { id: 'trophee_du_trio', name: 'Trophée du Trio', image: 'img/items/objets_bonus/trophee_du_trio.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 3 sorts lancés, passe automatiquement au membre suivant.'}
+item.trophee_du_veteran = { id: 'trophee_du_veteran', name: 'Trophée du Vétéran', image: 'img/items/objets_bonus/trophee_du_veteran.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 4 sorts lancés, passe automatiquement au membre suivant.'}
+item.trophee_du_quintette = { id: 'trophee_du_quintette', name: 'Trophée du Quintette', image: 'img/items/objets_bonus/trophee_du_quintette.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 5 sorts lancés, passe automatiquement au membre suivant.'}
+item.trophee_de_l_accord = { id: 'trophee_de_l_accord', name: 'Trophée de l\'Accord', image: 'img/items/objets_bonus/trophee_de_l_accord.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 6 sorts lancés, passe automatiquement au membre suivant.'}
+item.trophee_du_virtuose = { id: 'trophee_du_virtuose', name: 'Trophée du Virtuose', image: 'img/items/objets_bonus/trophee_du_virtuose.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 7 sorts lancés, passe automatiquement au membre suivant.'}
+item.trophee_de_l_octave = { id: 'trophee_de_l_octave', name: 'Trophée de l\'Octave', image: 'img/items/objets_bonus/trophee_de_l_octave.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'next' } }, description: 'Après 8 sorts lancés, passe automatiquement au membre suivant.'}
+// ── Impressionnisme (slot index 0) × 1–8
+item.trophee_slot1_x1 = { id: 'trophee_slot1_x1', name: 'Trophée de l\'Impressionnisme 1 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x1.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 1 sort lancé, revient au membre en slot 1.' }
+item.trophee_slot1_x2 = { id: 'trophee_slot1_x2', name: 'Trophée de l\'Impressionnisme 2 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x2.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 2 sorts lancés, revient au membre en slot 1.' }
+item.trophee_slot1_x3 = { id: 'trophee_slot1_x3', name: 'Trophée de l\'Impressionnisme 3 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x3.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 3 sorts lancés, revient au membre en slot 1.' }
+item.trophee_slot1_x4 = { id: 'trophee_slot1_x4', name: 'Trophée de l\'Impressionnisme 4 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x4.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 4 sorts lancés, revient au membre en slot 1.' }
+item.trophee_slot1_x5 = { id: 'trophee_slot1_x5', name: 'Trophée de l\'Impressionnisme 5 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x5.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 5 sorts lancés, revient au membre en slot 1.' }
+item.trophee_slot1_x6 = { id: 'trophee_slot1_x6', name: 'Trophée de l\'Impressionnisme 6 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x6.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 6 sorts lancés, revient au membre en slot 1.' }
+item.trophee_slot1_x7 = { id: 'trophee_slot1_x7', name: 'Trophée de l\'Impressionnisme 7 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x7.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 7 sorts lancés, revient au membre en slot 1.' }
+item.trophee_slot1_x8 = { id: 'trophee_slot1_x8', name: 'Trophée de l\'Impressionnisme 8 pour 1', image: 'img/items/objets_bonus/trophee_slot1_x8.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'slot', index: 0 } }, description: 'Après 8 sorts lancés, revient au membre en slot 1.' }
+// ── Réalisme (slot index 1) × 1–8
+item.trophee_slot2_x1 = { id: 'trophee_slot2_x1', name: 'Trophée du Réalisme 1 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x1.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 1 sort lancé, revient au membre en slot 2.' }
+item.trophee_slot2_x2 = { id: 'trophee_slot2_x2', name: 'Trophée du Réalisme 2 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x2.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 2 sorts lancés, revient au membre en slot 2.' }
+item.trophee_slot2_x3 = { id: 'trophee_slot2_x3', name: 'Trophée du Réalisme 3 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x3.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 3 sorts lancés, revient au membre en slot 2.' }
+item.trophee_slot2_x4 = { id: 'trophee_slot2_x4', name: 'Trophée du Réalisme 4 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x4.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 4 sorts lancés, revient au membre en slot 2.' }
+item.trophee_slot2_x5 = { id: 'trophee_slot2_x5', name: 'Trophée du Réalisme 5 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x5.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 5 sorts lancés, revient au membre en slot 2.' }
+item.trophee_slot2_x6 = { id: 'trophee_slot2_x6', name: 'Trophée du Réalisme 6 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x6.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 6 sorts lancés, revient au membre en slot 2.' }
+item.trophee_slot2_x7 = { id: 'trophee_slot2_x7', name: 'Trophée du Réalisme 7 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x7.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 7 sorts lancés, revient au membre en slot 2.' }
+item.trophee_slot2_x8 = { id: 'trophee_slot2_x8', name: 'Trophée du Réalisme 8 pour 2', image: 'img/items/objets_bonus/trophee_slot2_x8.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'slot', index: 1 } }, description: 'Après 8 sorts lancés, revient au membre en slot 2.' }
+// ── Pointillisme (slot index 2) × 1–8
+item.trophee_slot3_x1 = { id: 'trophee_slot3_x1', name: 'Trophée du Pointillisme 1 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x1.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 1 sort lancé, revient au membre en slot 3.' }
+item.trophee_slot3_x2 = { id: 'trophee_slot3_x2', name: 'Trophée du Pointillisme 2 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x2.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 2 sorts lancés, revient au membre en slot 3.' }
+item.trophee_slot3_x3 = { id: 'trophee_slot3_x3', name: 'Trophée du Pointillisme 3 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x3.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 3 sorts lancés, revient au membre en slot 3.' }
+item.trophee_slot3_x4 = { id: 'trophee_slot3_x4', name: 'Trophée du Pointillisme 4 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x4.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 4 sorts lancés, revient au membre en slot 3.' }
+item.trophee_slot3_x5 = { id: 'trophee_slot3_x5', name: 'Trophée du Pointillisme 5 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x5.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 5 sorts lancés, revient au membre en slot 3.' }
+item.trophee_slot3_x6 = { id: 'trophee_slot3_x6', name: 'Trophée du Pointillisme 6 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x6.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 6 sorts lancés, revient au membre en slot 3.' }
+item.trophee_slot3_x7 = { id: 'trophee_slot3_x7', name: 'Trophée du Pointillisme 7 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x7.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 7 sorts lancés, revient au membre en slot 3.' }
+item.trophee_slot3_x8 = { id: 'trophee_slot3_x8', name: 'Trophée du Pointillisme 8 pour 3', image: 'img/items/objets_bonus/trophee_slot3_x8.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'slot', index: 2 } }, description: 'Après 8 sorts lancés, revient au membre en slot 3.' }
+// ── Cubisme (slot index 3) × 1–8
+item.trophee_slot4_x1 = { id: 'trophee_slot4_x1', name: 'Trophée du Cubisme 1 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x1.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 1 sort lancé, revient au membre en slot 4.' }
+item.trophee_slot4_x2 = { id: 'trophee_slot4_x2', name: 'Trophée du Cubisme 2 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x2.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 2 sorts lancés, revient au membre en slot 4.' }
+item.trophee_slot4_x3 = { id: 'trophee_slot4_x3', name: 'Trophée du Cubisme 3 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x3.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 3 sorts lancés, revient au membre en slot 4.' }
+item.trophee_slot4_x4 = { id: 'trophee_slot4_x4', name: 'Trophée du Cubisme 4 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x4.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 4 sorts lancés, revient au membre en slot 4.' }
+item.trophee_slot4_x5 = { id: 'trophee_slot4_x5', name: 'Trophée du Cubisme 5 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x5.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 5 sorts lancés, revient au membre en slot 4.' }
+item.trophee_slot4_x6 = { id: 'trophee_slot4_x6', name: 'Trophée du Cubisme 6 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x6.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 6 sorts lancés, revient au membre en slot 4.' }
+item.trophee_slot4_x7 = { id: 'trophee_slot4_x7', name: 'Trophée du Cubisme 7 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x7.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 7 sorts lancés, revient au membre en slot 4.' }
+item.trophee_slot4_x8 = { id: 'trophee_slot4_x8', name: 'Trophée du Cubisme 8 pour 4', image: 'img/items/objets_bonus/trophee_slot4_x8.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'slot', index: 3 } }, description: 'Après 8 sorts lancés, revient au membre en slot 4.' }
+// ── Surréalisme (slot index 4) × 1–8
+item.trophee_slot5_x1 = { id: 'trophee_slot5_x1', name: 'Trophée du Surréalisme 1 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x1.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 1 sort lancé, revient au membre en slot 5.' }
+item.trophee_slot5_x2 = { id: 'trophee_slot5_x2', name: 'Trophée du Surréalisme 2 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x2.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 2 sorts lancés, revient au membre en slot 5.' }
+item.trophee_slot5_x3 = { id: 'trophee_slot5_x3', name: 'Trophée du Surréalisme 3 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x3.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 3 sorts lancés, revient au membre en slot 5.' }
+item.trophee_slot5_x4 = { id: 'trophee_slot5_x4', name: 'Trophée du Surréalisme 4 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x4.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 4 sorts lancés, revient au membre en slot 5.' }
+item.trophee_slot5_x5 = { id: 'trophee_slot5_x5', name: 'Trophée du Surréalisme 5 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x5.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 5 sorts lancés, revient au membre en slot 5.' }
+item.trophee_slot5_x6 = { id: 'trophee_slot5_x6', name: 'Trophée du Surréalisme 6 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x6.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 6 sorts lancés, revient au membre en slot 5.' }
+item.trophee_slot5_x7 = { id: 'trophee_slot5_x7', name: 'Trophée du Surréalisme 7 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x7.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 7 sorts lancés, revient au membre en slot 5.' }
+item.trophee_slot5_x8 = { id: 'trophee_slot5_x8', name: 'Trophée du Surréalisme 8 pour 5', image: 'img/items/objets_bonus/trophee_slot5_x8.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'slot', index: 4 } }, description: 'Après 8 sorts lancés, revient au membre en slot 5.' }
+// ── Expressionnisme (slot index 5) × 1–8
+item.trophee_slot6_x1 = { id: 'trophee_slot6_x1', name: 'Trophée de l\'Expressionnisme 1 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x1.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 1, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 1 sort lancé, revient au membre en slot 6.' }
+item.trophee_slot6_x2 = { id: 'trophee_slot6_x2', name: 'Trophée de l\'Expressionnisme 2 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x2.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 2, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 2 sorts lancés, revient au membre en slot 6.' }
+item.trophee_slot6_x3 = { id: 'trophee_slot6_x3', name: 'Trophée de l\'Expressionnisme 3 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x3.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 3, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 3 sorts lancés, revient au membre en slot 6.' }
+item.trophee_slot6_x4 = { id: 'trophee_slot6_x4', name: 'Trophée de l\'Expressionnisme 4 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x4.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 4, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 4 sorts lancés, revient au membre en slot 6.' }
+item.trophee_slot6_x5 = { id: 'trophee_slot6_x5', name: 'Trophée de l\'Expressionnisme 5 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x5.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 5, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 5 sorts lancés, revient au membre en slot 6.' }
+item.trophee_slot6_x6 = { id: 'trophee_slot6_x6', name: 'Trophée de l\'Expressionnisme 6 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x6.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 6, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 6 sorts lancés, revient au membre en slot 6.' }
+item.trophee_slot6_x7 = { id: 'trophee_slot6_x7', name: 'Trophée de l\'Expressionnisme 7 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x7.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 7, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 7 sorts lancés, revient au membre en slot 6.' }
+item.trophee_slot6_x8 = { id: 'trophee_slot6_x8', name: 'Trophée de l\'Expressionnisme 8 pour 6', image: 'img/items/objets_bonus/trophee_slot6_x8.png', type: 'equipment', slot: 'accessoire', rarity: 'rare', trophy: { trigger: { type: 'spells_cast', count: 8, resetOnTrigger: true }, switchTo: { type: 'slot', index: 5 } }, description: 'Après 8 sorts lancés, revient au membre en slot 6.' }
 
-item.trophee_du_veteran = {
-    id:    'trophee_du_veteran',
-    name:  'Trophée du Vétéran',
-    image: 'img/items/objets_bonus/trophee_du_veteran.png',
-    type:  'equipment',
-    slot:  'accessoire',
-    rarity: 'epique',
-    stats: [{ stat: 'maxHp', value: 200 }, { stat: 'atk', value: 30 }],
-    trophy: {
-        trigger:  { type: 'spells_cast', count: 4, resetOnTrigger: true },
-        switchTo: { type: 'next' }
-    },
-    description: 'Après 4 sorts lancés, passe automatiquement au membre suivant. Permet à chaque membre de dérouler une rotation complète avant de céder la place.'
-}
-
-item.trophee_de_l_architecte = {
-    id:    'trophee_de_l_architecte',
-    name:  'Trophée de l\'Architecte',
-    image: 'img/items/objets_bonus/trophee_de_l_architecte.png',
-    type:  'equipment',
-    slot:  'accessoire',
-    rarity: 'epique',
-    stats: [{ stat: 'maxHp', value: 100 }],
-    trophy: {
-        trigger:  { type: 'spells_cast', count: 1, resetOnTrigger: true },
-        switchTo: { type: 'slot', index: 0 }
-    },
-    description: 'Après chaque sort lancé, revient toujours au membre du slot 1. Pensé pour des stratégies où un membre principal doit agir entre chaque action des autres.'
-}
+// ─────────────────────────────────────────────────────────────────────────────
+// ITEMS
+// ─────────────────────────────────────────────────────────────────────────────
 
 item.amulette_de_l_intrepide = {
     id: 'amulette_de_l_intrepide',
@@ -244,7 +408,6 @@ item.amulette_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }],
     description: ''
 }
-
 item.anneau_de_l_intrepide = {
     id: 'anneau_de_l_intrepide',
     name: 'Anneau de l\'intrépide',
@@ -258,7 +421,6 @@ item.anneau_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }],
     description: ''
 }
-
 item.bottes_de_l_intrepide = {
     id: 'bottes_de_l_intrepide',
     name: 'Bottes de l\'intrépide',
@@ -272,7 +434,6 @@ item.bottes_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }],
     description: ''
 }
-
 item.bouclier_de_l_intrepide = {
     id: 'bouclier_de_l_intrepide',
     name: 'Bouclier de l\'intrépide',
@@ -286,7 +447,6 @@ item.bouclier_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 3 }],
     description: ''
 }
-
 item.cape_de_l_intrepide = {
     id: 'cape_de_l_intrepide',
     name: 'Cape de l\'intrépide',
@@ -300,7 +460,6 @@ item.cape_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }],
     description: ''
 }
-
 item.ceinture_de_l_intrepide = {
     id: 'ceinture_de_l_intrepide',
     name: 'Ceinture de l\'intrépide',
@@ -314,7 +473,6 @@ item.ceinture_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }],
     description: ''
 }
-
 item.chapeau_de_l_intrepide = {
     id: 'chapeau_de_l_intrepide',
     name: 'Chapeau de l\'intrépide',
@@ -328,7 +486,6 @@ item.chapeau_de_l_intrepide = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }],
     description: ''
 }
-
 item.epee_tulante = {
     id: 'epee_tulante',
     name: 'Épée Tulante',
@@ -342,7 +499,6 @@ item.epee_tulante = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'spd', value: 1 }, { stat: 'lifestealPct', value: 5 }],
     description: ''
 }
-
 item.bounihimee = {
     id: 'bounihimee',
     name: 'Bounihimée',
@@ -356,7 +512,6 @@ item.bounihimee = {
     stats: [{ stat: 'flatDamage', value: 15 }],
     description: ''
 }
-
 item.la_cape_s_loque = {
     id: 'la_cape_s_loque',
     name: 'La Cape S\'loque',
@@ -370,7 +525,6 @@ item.la_cape_s_loque = {
     stats: [{ stat: 'atk', value: 4 }],
     description: ''
 }
-
 item.la_halte_efkat = {
     id: 'la_halte_efkat',
     name: 'La Halte Efkat',
@@ -384,7 +538,6 @@ item.la_halte_efkat = {
     stats: [{ stat: 'res.feu', value: 1 }, { stat: 'res.eau', value: 1 }, { stat: 'res.terre', value: 1 }, { stat: 'res.air', value: 1 }, { stat: 'res.neutre', value: 1 }],
     description: ''
 }
-
 item.la_spamette = {
     id: 'la_spamette',
     name: 'La Spamette',
@@ -398,7 +551,6 @@ item.la_spamette = {
     stats: [{ stat: 'maxHp', value: 7 }, { stat: 'atk', value: 4 }],
     description: ''
 }
-
 item.le_floude = {
     id: 'le_floude',
     name: 'Le Floude',
@@ -412,7 +564,6 @@ item.le_floude = {
     stats: [{ stat: 'atk', value: 4 }],
     description: ''
 }
-
 item.le_plussain = {
     id: 'le_plussain',
     name: 'Le Plussain',
@@ -426,7 +577,6 @@ item.le_plussain = {
     stats: [{ stat: 'atk', value: 4 }],
     description: ''
 }
-
 item.le_s_mesme = {
     id: 'le_s_mesme',
     name: 'Le S\'Mesme',
@@ -440,7 +590,6 @@ item.le_s_mesme = {
     stats: [{ stat: 'maxHp', value: 7 }, { stat: 'atk', value: 4 }],
     description: ''
 }
-
 item.les_incrustes = {
     id: 'les_incrustes',
     name: 'Les Incrustes',
@@ -454,7 +603,6 @@ item.les_incrustes = {
     stats: [{ stat: 'atk', value: 4 }],
     description: ''
 }
-
 item.anneau_de_l_aventurier = {
     id: 'anneau_de_l_aventurier',
     name: 'Anneau de l\'Aventurier',
@@ -464,11 +612,10 @@ item.anneau_de_l_aventurier = {
     set: 'panoplie_du_jeune_aventurier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 4,
+    requiredLevel: 1,
     stats: [{ stat: 'atk', value: 2 }],
     description: ''
 }
-
 item.amulette_de_l_aventurier = {
     id: 'amulette_de_l_aventurier',
     name: 'Amulette de l\'Aventurier',
@@ -478,11 +625,10 @@ item.amulette_de_l_aventurier = {
     set: 'panoplie_du_jeune_aventurier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 5,
+    requiredLevel: 1,
     stats: [{ stat: 'atk', value: 5 }],
     description: ''
 }
-
 item.ceinture_de_l_aventurier = {
     id: 'ceinture_de_l_aventurier',
     name: 'Ceinture de l\'aventurier',
@@ -492,11 +638,10 @@ item.ceinture_de_l_aventurier = {
     set: 'panoplie_du_jeune_aventurier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 6,
+    requiredLevel: 1,
     stats: [{ stat: 'atk', value: 5 }],
     description: ''
 }
-
 item.animulette = {
     id: 'animulette',
     name: 'Animulette',
@@ -510,7 +655,6 @@ item.animulette = {
     stats: [{ stat: 'critChance', value: -5 }],
     description: ''
 }
-
 item.bottes_de_l_aventurier = {
     id: 'bottes_de_l_aventurier',
     name: 'Bottes de l\'Aventurier',
@@ -520,11 +664,10 @@ item.bottes_de_l_aventurier = {
     set: 'panoplie_du_jeune_aventurier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 7,
+    requiredLevel: 1,
     stats: [{ stat: 'atk', value: 5 }],
     description: ''
 }
-
 item.cape_du_piou_bleu = {
     id: 'cape_du_piou_bleu',
     name: 'Cape du Piou Bleu',
@@ -538,7 +681,6 @@ item.cape_du_piou_bleu = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.amulette_du_piou_jaune = {
     id: 'amulette_du_piou_jaune',
     name: 'Amulette du Piou Jaune',
@@ -552,7 +694,6 @@ item.amulette_du_piou_jaune = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.anneau_du_piou_rose = {
     id: 'anneau_du_piou_rose',
     name: 'Anneau du Piou Rose',
@@ -566,7 +707,6 @@ item.anneau_du_piou_rose = {
     stats: [{ stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.ceinture_du_piou_rouge = {
     id: 'ceinture_du_piou_rouge',
     name: 'Ceinture du Piou Rouge',
@@ -580,7 +720,6 @@ item.ceinture_du_piou_rouge = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.chapeau_du_piou_vert = {
     id: 'chapeau_du_piou_vert',
     name: 'Chapeau du Piou Vert',
@@ -594,7 +733,6 @@ item.chapeau_du_piou_vert = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.sandales_du_piou_violet = {
     id: 'sandales_du_piou_violet',
     name: 'Sandales du Piou Violet',
@@ -608,7 +746,6 @@ item.sandales_du_piou_violet = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.cape_syche = {
     id: 'cape_syche',
     name: 'Cape Syché',
@@ -622,7 +759,6 @@ item.cape_syche = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.coiffe_antome = {
     id: 'coiffe_antome',
     name: 'Coiffe Antôme',
@@ -636,7 +772,6 @@ item.coiffe_antome = {
     stats: [{ stat: 'maxHp', value: 11 }],
     description: ''
 }
-
 item.cape_de_l_aventurier = {
     id: 'cape_de_l_aventurier',
     name: 'Cape de l\'Aventurier',
@@ -646,11 +781,10 @@ item.cape_de_l_aventurier = {
     set: 'panoplie_du_jeune_aventurier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 8,
+    requiredLevel: 1,
     stats: [{ stat: 'atk', value: 5 }],
     description: ''
 }
-
 item.sandales_du_piou_bleu = {
     id: 'sandales_du_piou_bleu',
     name: 'Sandales du Piou Bleu',
@@ -664,7 +798,6 @@ item.sandales_du_piou_bleu = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.chapeau_du_piou_jaune = {
     id: 'chapeau_du_piou_jaune',
     name: 'Chapeau du Piou Jaune',
@@ -678,7 +811,6 @@ item.chapeau_du_piou_jaune = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.amulette_du_piou_rose = {
     id: 'amulette_du_piou_rose',
     name: 'Amulette du Piou Rose',
@@ -692,7 +824,6 @@ item.amulette_du_piou_rose = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.cape_du_piou_rouge = {
     id: 'cape_du_piou_rouge',
     name: 'Cape du Piou Rouge',
@@ -706,7 +837,6 @@ item.cape_du_piou_rouge = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.ceinture_du_piou_vert = {
     id: 'ceinture_du_piou_vert',
     name: 'Ceinture du Piou Vert',
@@ -720,7 +850,6 @@ item.ceinture_du_piou_vert = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.anneau_du_piou_violet = {
     id: 'anneau_du_piou_violet',
     name: 'Anneau du Piou Violet',
@@ -734,7 +863,6 @@ item.anneau_du_piou_violet = {
     stats: [{ stat: 'atk', value: 7 }, { stat: 'spd', value: 4 }],
     description: ''
 }
-
 item.araknoton = {
     id: 'araknoton',
     name: 'Araknoton',
@@ -744,11 +872,10 @@ item.araknoton = {
     set: 'panoplie_arakne',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 9,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', value: 11 }],
     description: ''
 }
-
 item.chapeau_de_l_aventurier = {
     id: 'chapeau_de_l_aventurier',
     name: 'Chapeau de l\'Aventurier',
@@ -758,11 +885,10 @@ item.chapeau_de_l_aventurier = {
     set: 'panoplie_du_jeune_aventurier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 9,
+    requiredLevel: 1,
     stats: [{ stat: 'atk', value: 5 }],
     description: ''
 }
-
 item.anneau_du_piou_bleu = {
     id: 'anneau_du_piou_bleu',
     name: 'Anneau du Piou Bleu',
@@ -776,7 +902,6 @@ item.anneau_du_piou_bleu = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.ceinture_du_piou_jaune = {
     id: 'ceinture_du_piou_jaune',
     name: 'Ceinture du Piou Jaune',
@@ -790,7 +915,6 @@ item.ceinture_du_piou_jaune = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.chapeau_du_piou_rose = {
     id: 'chapeau_du_piou_rose',
     name: 'Chapeau du Piou Rose',
@@ -804,7 +928,6 @@ item.chapeau_du_piou_rose = {
     stats: [{ stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.sandales_du_piou_rouge = {
     id: 'sandales_du_piou_rouge',
     name: 'Sandales du Piou Rouge',
@@ -818,7 +941,6 @@ item.sandales_du_piou_rouge = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.cape_du_piou_vert = {
     id: 'cape_du_piou_vert',
     name: 'Cape du Piou Vert',
@@ -832,7 +954,6 @@ item.cape_du_piou_vert = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.amulette_du_piou_violet = {
     id: 'amulette_du_piou_violet',
     name: 'Amulette du Piou Violet',
@@ -846,7 +967,6 @@ item.amulette_du_piou_violet = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.pacmabottes = {
     id: 'pacmabottes',
     name: 'Pacmabottes',
@@ -860,7 +980,6 @@ item.pacmabottes = {
     stats: [{ stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.pacmamulette = {
     id: 'pacmamulette',
     name: 'Pacmamulette',
@@ -874,7 +993,6 @@ item.pacmamulette = {
     stats: [{ stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.l_araknacoiffe = {
     id: 'l_araknacoiffe',
     name: 'L\'Araknacoiffe',
@@ -884,11 +1002,10 @@ item.l_araknacoiffe = {
     set: 'panoplie_arakne',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 10,
+    requiredLevel: 80,
     stats: [{ stat: 'atk', value: 7 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulette_de_fouduglen = {
     id: 'amulette_de_fouduglen',
     name: 'Amulette de Fouduglen',
@@ -902,7 +1019,6 @@ item.amulette_de_fouduglen = {
     stats: [{ stat: 'atk', value: 15 }],
     description: ''
 }
-
 item.bottes_de_fouduglen = {
     id: 'bottes_de_fouduglen',
     name: 'Bottes de Fouduglen',
@@ -916,7 +1032,6 @@ item.bottes_de_fouduglen = {
     stats: [{ stat: 'atk', value: 8 }],
     description: ''
 }
-
 item.coiffe_de_fouduglen = {
     id: 'coiffe_de_fouduglen',
     name: 'Coiffe de Fouduglen',
@@ -930,7 +1045,6 @@ item.coiffe_de_fouduglen = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 10 }],
     description: ''
 }
-
 item.amulette_tetriste = {
     id: 'amulette_tetriste',
     name: 'Amulette Tétriste',
@@ -944,7 +1058,6 @@ item.amulette_tetriste = {
     stats: [],
     description: ''
 }
-
 item.anneau_tetriste = {
     id: 'anneau_tetriste',
     name: 'Anneau Tétriste',
@@ -958,7 +1071,6 @@ item.anneau_tetriste = {
     stats: [{ stat: 'res.feu', value: -1 }, { stat: 'res.eau', value: -1 }, { stat: 'res.terre', value: -1 }, { stat: 'res.air', value: -1 }],
     description: ''
 }
-
 item.collier_de_khan_karkass = {
     id: 'collier_de_khan_karkass',
     name: 'Collier de Khan Karkass',
@@ -972,7 +1084,6 @@ item.collier_de_khan_karkass = {
     stats: [{ stat: 'maxHp', value: 6 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.slip_de_khan_karkass = {
     id: 'slip_de_khan_karkass',
     name: 'Slip de Khan Karkass',
@@ -986,7 +1097,6 @@ item.slip_de_khan_karkass = {
     stats: [{ stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.anneau_de_l_envahisseur = {
     id: 'anneau_de_l_envahisseur',
     name: 'Anneau de l\'Envahisseur',
@@ -1000,7 +1110,6 @@ item.anneau_de_l_envahisseur = {
     stats: [{ stat: 'atk', value: 6 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_l_envahisseur = {
     id: 'ceinture_de_l_envahisseur',
     name: 'Ceinture de l\'Envahisseur',
@@ -1014,7 +1123,6 @@ item.ceinture_de_l_envahisseur = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.amulette_du_piou_bleu = {
     id: 'amulette_du_piou_bleu',
     name: 'Amulette du Piou Bleu',
@@ -1028,7 +1136,6 @@ item.amulette_du_piou_bleu = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.cape_du_piou_jaune = {
     id: 'cape_du_piou_jaune',
     name: 'Cape du Piou Jaune',
@@ -1042,7 +1149,6 @@ item.cape_du_piou_jaune = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.ceinture_du_piou_rose = {
     id: 'ceinture_du_piou_rose',
     name: 'Ceinture du Piou Rose',
@@ -1056,7 +1162,6 @@ item.ceinture_du_piou_rose = {
     stats: [{ stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.anneau_du_piou_rouge = {
     id: 'anneau_du_piou_rouge',
     name: 'Anneau du Piou Rouge',
@@ -1070,7 +1175,6 @@ item.anneau_du_piou_rouge = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.sandales_du_piou_vert = {
     id: 'sandales_du_piou_vert',
     name: 'Sandales du Piou Vert',
@@ -1084,7 +1188,6 @@ item.sandales_du_piou_vert = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.chapeau_du_piou_violet = {
     id: 'chapeau_du_piou_violet',
     name: 'Chapeau du Piou Violet',
@@ -1098,7 +1201,6 @@ item.chapeau_du_piou_violet = {
     stats: [{ stat: 'atk', value: 7 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulettong = {
     id: 'amulettong',
     name: 'Amulettong',
@@ -1112,7 +1214,6 @@ item.amulettong = {
     stats: [],
     description: ''
 }
-
 item.ceinturong = {
     id: 'ceinturong',
     name: 'Ceinturong',
@@ -1126,7 +1227,6 @@ item.ceinturong = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.araknoture = {
     id: 'araknoture',
     name: 'Araknoture',
@@ -1136,11 +1236,10 @@ item.araknoture = {
     set: 'panoplie_arakne',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 11,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.la_trancheuse_d_arakne = {
     id: 'la_trancheuse_d_arakne',
     name: 'La Trancheuse d\'Arakne',
@@ -1150,11 +1249,10 @@ item.la_trancheuse_d_arakne = {
     set: 'panoplie_arakne',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 11,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 9 }, { stat: 'flatDamage', value: 7 }],
     description: ''
 }
-
 item.alliance_du_champ_champ = {
     id: 'alliance_du_champ_champ',
     name: 'Alliance Du Champ Champ',
@@ -1168,7 +1266,6 @@ item.alliance_du_champ_champ = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.cape_du_champ_champ = {
     id: 'cape_du_champ_champ',
     name: 'Cape du Champ Champ',
@@ -1182,7 +1279,6 @@ item.cape_du_champ_champ = {
     stats: [{ stat: 'maxHp', value: 21 }],
     description: ''
 }
-
 item.chapeau_du_piou_bleu = {
     id: 'chapeau_du_piou_bleu',
     name: 'Chapeau du Piou Bleu',
@@ -1196,7 +1292,6 @@ item.chapeau_du_piou_bleu = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.sandales_du_piou_jaune = {
     id: 'sandales_du_piou_jaune',
     name: 'Sandales du Piou Jaune',
@@ -1210,7 +1305,6 @@ item.sandales_du_piou_jaune = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cape_du_piou_rose = {
     id: 'cape_du_piou_rose',
     name: 'Cape du Piou Rose',
@@ -1224,7 +1318,6 @@ item.cape_du_piou_rose = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.amulette_du_piou_rouge = {
     id: 'amulette_du_piou_rouge',
     name: 'Amulette du Piou Rouge',
@@ -1238,7 +1331,6 @@ item.amulette_du_piou_rouge = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.anneau_du_piou_vert = {
     id: 'anneau_du_piou_vert',
     name: 'Anneau du Piou Vert',
@@ -1252,7 +1344,6 @@ item.anneau_du_piou_vert = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_piou_violet = {
     id: 'ceinture_du_piou_violet',
     name: 'Ceinture du Piou Violet',
@@ -1266,7 +1357,6 @@ item.ceinture_du_piou_violet = {
     stats: [{ stat: 'spd', value: 4 }],
     description: ''
 }
-
 item.champcoiffe = {
     id: 'champcoiffe',
     name: 'Champcoiffe',
@@ -1280,7 +1370,6 @@ item.champcoiffe = {
     stats: [{ stat: 'maxHp', value: 21 }],
     description: ''
 }
-
 item.bracelet_de_kardorim = {
     id: 'bracelet_de_kardorim',
     name: 'Bracelet de Kardorim',
@@ -1290,11 +1379,10 @@ item.bracelet_de_kardorim = {
     set: 'panoplie_de_kardorim',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 12,
+    requiredLevel: 15,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.cape_de_kardorim = {
     id: 'cape_de_kardorim',
     name: 'Cape de Kardorim',
@@ -1304,11 +1392,10 @@ item.cape_de_kardorim = {
     set: 'panoplie_de_kardorim',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 12,
+    requiredLevel: 15,
     stats: [{ stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.casque_de_kardorim = {
     id: 'casque_de_kardorim',
     name: 'Casque de Kardorim',
@@ -1318,11 +1405,10 @@ item.casque_de_kardorim = {
     set: 'panoplie_de_kardorim',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 12,
+    requiredLevel: 15,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.dagues_du_bandit = {
     id: 'dagues_du_bandit',
     name: 'Dagues du Bandit',
@@ -1336,7 +1422,6 @@ item.dagues_du_bandit = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.mitaines_mitees_du_paysan = {
     id: 'mitaines_mitees_du_paysan',
     name: 'Mitaines Mitées du Paysan',
@@ -1346,11 +1431,10 @@ item.mitaines_mitees_du_paysan = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 12,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: -40 }],
     description: ''
 }
-
 item.ceinture_du_piou_bleu = {
     id: 'ceinture_du_piou_bleu',
     name: 'Ceinture du Piou Bleu',
@@ -1364,7 +1448,6 @@ item.ceinture_du_piou_bleu = {
     stats: [{ stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.anneau_du_piou_jaune = {
     id: 'anneau_du_piou_jaune',
     name: 'Anneau du Piou Jaune',
@@ -1378,7 +1461,6 @@ item.anneau_du_piou_jaune = {
     stats: [{ stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.sandales_du_piou_rose = {
     id: 'sandales_du_piou_rose',
     name: 'Sandales du Piou Rose',
@@ -1392,7 +1474,6 @@ item.sandales_du_piou_rose = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.chapeau_du_piou_rouge = {
     id: 'chapeau_du_piou_rouge',
     name: 'Chapeau du Piou Rouge',
@@ -1406,7 +1487,6 @@ item.chapeau_du_piou_rouge = {
     stats: [{ stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.amulette_du_piou_vert = {
     id: 'amulette_du_piou_vert',
     name: 'Amulette du Piou Vert',
@@ -1420,7 +1500,6 @@ item.amulette_du_piou_vert = {
     stats: [{ stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.cape_du_piou_violet = {
     id: 'cape_du_piou_violet',
     name: 'Cape du Piou Violet',
@@ -1434,7 +1513,6 @@ item.cape_du_piou_violet = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'spd', value: 4 }],
     description: ''
 }
-
 item.anneau_du_champ_champ = {
     id: 'anneau_du_champ_champ',
     name: 'Anneau du Champ Champ',
@@ -1448,7 +1526,6 @@ item.anneau_du_champ_champ = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.capouze_des_champs = {
     id: 'capouze_des_champs',
     name: 'Capouze des Champs',
@@ -1462,7 +1539,6 @@ item.capouze_des_champs = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.ceinture_fleurie = {
     id: 'ceinture_fleurie',
     name: 'Ceinture Fleurie',
@@ -1476,7 +1552,6 @@ item.ceinture_fleurie = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.bottes_champetres = {
     id: 'bottes_champetres',
     name: 'Bottes Champêtres',
@@ -1490,7 +1565,6 @@ item.bottes_champetres = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 9 }],
     description: ''
 }
-
 item.coiffe_champetre = {
     id: 'coiffe_champetre',
     name: 'Coiffe Champêtre',
@@ -1504,7 +1578,6 @@ item.coiffe_champetre = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.amulette_des_champs = {
     id: 'amulette_des_champs',
     name: 'Amulette des Champs',
@@ -1518,7 +1591,6 @@ item.amulette_des_champs = {
     stats: [{ stat: 'spd', value: 8 }],
     description: ''
 }
-
 item.anneau_champetre = {
     id: 'anneau_champetre',
     name: 'Anneau Champêtre',
@@ -1532,7 +1604,6 @@ item.anneau_champetre = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.la_plantouze_des_champs = {
     id: 'la_plantouze_des_champs',
     name: 'La Plantouze des Champs',
@@ -1542,11 +1613,10 @@ item.la_plantouze_des_champs = {
     set: 'panoplie_champetre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 15,
+    requiredLevel: 25,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.amulette_du_moskito = {
     id: 'amulette_du_moskito',
     name: 'Amulette du Moskito',
@@ -1560,7 +1630,6 @@ item.amulette_du_moskito = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.moskitogalurette = {
     id: 'moskitogalurette',
     name: 'Moskitogalurette',
@@ -1574,7 +1643,6 @@ item.moskitogalurette = {
     stats: [{ stat: 'atk', value: 21 }],
     description: ''
 }
-
 item.ceinture_du_bandit = {
     id: 'ceinture_du_bandit',
     name: 'Ceinture du Bandit',
@@ -1588,7 +1656,6 @@ item.ceinture_du_bandit = {
     stats: [{ stat: 'maxHp', value: 7 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.sac_du_petit_moskito = {
     id: 'sac_du_petit_moskito',
     name: 'Sac du Petit Moskito',
@@ -1602,7 +1669,6 @@ item.sac_du_petit_moskito = {
     stats: [{ stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.amulette_du_bandit = {
     id: 'amulette_du_bandit',
     name: 'Amulette du Bandit',
@@ -1616,7 +1682,6 @@ item.amulette_du_bandit = {
     stats: [{ stat: 'maxHp', value: 7 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.anneau_du_bandit = {
     id: 'anneau_du_bandit',
     name: 'Anneau du Bandit',
@@ -1630,7 +1695,6 @@ item.anneau_du_bandit = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.faux_usee_du_paysan = {
     id: 'faux_usee_du_paysan',
     name: 'Faux usée du Paysan',
@@ -1640,11 +1704,10 @@ item.faux_usee_du_paysan = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 17,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'lifestealPct', value: 4 }],
     description: ''
 }
-
 item.sac_du_paysan = {
     id: 'sac_du_paysan',
     name: 'Sac du Paysan',
@@ -1654,11 +1717,10 @@ item.sac_du_paysan = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 18,
+    requiredLevel: 10,
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.sanglature = {
     id: 'sanglature',
     name: 'Sanglature',
@@ -1672,7 +1734,6 @@ item.sanglature = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 5 }],
     description: ''
 }
-
 item.cape_du_papa_nowel = {
     id: 'cape_du_papa_nowel',
     name: 'Cape du Papa Nowel',
@@ -1686,7 +1747,6 @@ item.cape_du_papa_nowel = {
     stats: [{ stat: 'maxHp', value: 16 }],
     description: ''
 }
-
 item.bob_du_paysan = {
     id: 'bob_du_paysan',
     name: 'Bob du Paysan',
@@ -1696,11 +1756,10 @@ item.bob_du_paysan = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 19,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.bottes_paysannes = {
     id: 'bottes_paysannes',
     name: 'Bottes Paysannes',
@@ -1710,11 +1769,10 @@ item.bottes_paysannes = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 19,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.anneau_du_sanglier = {
     id: 'anneau_du_sanglier',
     name: 'Anneau du Sanglier',
@@ -1724,11 +1782,10 @@ item.anneau_du_sanglier = {
     set: 'panoplie_du_sanglier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 19,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.bouclier_invisible = {
     id: 'bouclier_invisible',
     name: 'Bouclier Invisible',
@@ -1742,7 +1799,6 @@ item.bouclier_invisible = {
     stats: [{ stat: 'maxHp', value: 31 }],
     description: ''
 }
-
 item.cape_invisible = {
     id: 'cape_invisible',
     name: 'Cape Invisible',
@@ -1756,7 +1812,6 @@ item.cape_invisible = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.coiffe_invisible = {
     id: 'coiffe_invisible',
     name: 'Coiffe Invisible',
@@ -1770,7 +1825,6 @@ item.coiffe_invisible = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.bottes_karnaval = {
     id: 'bottes_karnaval',
     name: 'Bottes Karnaval',
@@ -1784,7 +1838,6 @@ item.bottes_karnaval = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 10 }],
     description: ''
 }
-
 item.ceinture_karnaval = {
     id: 'ceinture_karnaval',
     name: 'Ceinture Karnaval',
@@ -1798,7 +1851,6 @@ item.ceinture_karnaval = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'critDamagePct', value: -20 }],
     description: ''
 }
-
 item.cape_de_bowisse = {
     id: 'cape_de_bowisse',
     name: 'Cape de Bowisse',
@@ -1812,7 +1864,6 @@ item.cape_de_bowisse = {
     stats: [{ stat: 'atk', value: 21 }],
     description: ''
 }
-
 item.alliance_de_l_homme_ours = {
     id: 'alliance_de_l_homme_ours',
     name: 'Alliance de l\'Homme Ours',
@@ -1826,7 +1877,6 @@ item.alliance_de_l_homme_ours = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'spd', value: 8 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amulette_de_l_homme_ours = {
     id: 'amulette_de_l_homme_ours',
     name: 'Amulette de l\'Homme Ours',
@@ -1840,7 +1890,6 @@ item.amulette_de_l_homme_ours = {
     stats: [{ stat: 'atk', value: 15 }, { stat: 'res.feu', value: -7 }],
     description: ''
 }
-
 item.bottes_de_l_homme_ours = {
     id: 'bottes_de_l_homme_ours',
     name: 'Bottes de l\'Homme Ours',
@@ -1854,7 +1903,6 @@ item.bottes_de_l_homme_ours = {
     stats: [{ stat: 'atk', value: 7 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.baton_de_l_homme_ours = {
     id: 'baton_de_l_homme_ours',
     name: 'Bâton de l\'Homme Ours',
@@ -1868,7 +1916,6 @@ item.baton_de_l_homme_ours = {
     stats: [{ stat: 'atk', value: 5 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.cape_de_l_homme_ours = {
     id: 'cape_de_l_homme_ours',
     name: 'Cape de l\'Homme Ours',
@@ -1882,7 +1929,6 @@ item.cape_de_l_homme_ours = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.ceinture_de_l_homme_ours = {
     id: 'ceinture_de_l_homme_ours',
     name: 'Ceinture de l\'Homme Ours',
@@ -1896,7 +1942,6 @@ item.ceinture_de_l_homme_ours = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 16 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.coiffe_de_l_homme_ours = {
     id: 'coiffe_de_l_homme_ours',
     name: 'Coiffe de l\'Homme Ours',
@@ -1910,7 +1955,6 @@ item.coiffe_de_l_homme_ours = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 26 }],
     description: ''
 }
-
 item.amulette_du_bouftou = {
     id: 'amulette_du_bouftou',
     name: 'Amulette du Bouftou',
@@ -1924,7 +1968,6 @@ item.amulette_du_bouftou = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.anneau_de_bouze_le_clerc = {
     id: 'anneau_de_bouze_le_clerc',
     name: 'Anneau de Bouze le Clerc',
@@ -1938,7 +1981,6 @@ item.anneau_de_bouze_le_clerc = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'spd', value: 8 }],
     description: ''
 }
-
 item.bouclier_du_bouftou = {
     id: 'bouclier_du_bouftou',
     name: 'Bouclier du Bouftou',
@@ -1952,7 +1994,6 @@ item.bouclier_du_bouftou = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 6 }],
     description: ''
 }
-
 item.boufbottes = {
     id: 'boufbottes',
     name: 'Boufbottes',
@@ -1966,7 +2007,6 @@ item.boufbottes = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.cape_bouffante = {
     id: 'cape_bouffante',
     name: 'Cape Bouffante',
@@ -1980,7 +2020,6 @@ item.cape_bouffante = {
     stats: [{ stat: 'maxHp', value: 36 }, { stat: 'spd', value: 16 }],
     description: ''
 }
-
 item.ceinture_du_bouftou = {
     id: 'ceinture_du_bouftou',
     name: 'Ceinture du Bouftou',
@@ -1994,7 +2033,6 @@ item.ceinture_du_bouftou = {
     stats: [{ stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.coiffe_du_bouftou = {
     id: 'coiffe_du_bouftou',
     name: 'Coiffe du Bouftou',
@@ -2008,7 +2046,6 @@ item.coiffe_du_bouftou = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.marteau_du_bouftou = {
     id: 'marteau_du_bouftou',
     name: 'Marteau du Bouftou',
@@ -2022,7 +2059,6 @@ item.marteau_du_bouftou = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.amulette_paysanne = {
     id: 'amulette_paysanne',
     name: 'Amulette Paysanne',
@@ -2032,11 +2068,10 @@ item.amulette_paysanne = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.ceinturemuda_du_paysan = {
     id: 'ceinturemuda_du_paysan',
     name: 'Ceinturemuda du Paysan',
@@ -2046,11 +2081,10 @@ item.ceinturemuda_du_paysan = {
     set: 'panoplie_du_paysan',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.amulette_en_mousse = {
     id: 'amulette_en_mousse',
     name: 'Amulette en Mousse',
@@ -2060,11 +2094,10 @@ item.amulette_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.anneau_en_mousse = {
     id: 'anneau_en_mousse',
     name: 'Anneau en Mousse',
@@ -2074,11 +2107,10 @@ item.anneau_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_en_mousse = {
     id: 'bottes_en_mousse',
     name: 'Bottes en Mousse',
@@ -2088,11 +2120,10 @@ item.bottes_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.cape_en_mousse = {
     id: 'cape_en_mousse',
     name: 'Cape en Mousse',
@@ -2102,11 +2133,10 @@ item.cape_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.ceinture_en_mousse = {
     id: 'ceinture_en_mousse',
     name: 'Ceinture en Mousse',
@@ -2116,11 +2146,10 @@ item.ceinture_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'atk', value: 21 }],
     description: ''
 }
-
 item.coiffe_en_mousse = {
     id: 'coiffe_en_mousse',
     name: 'Coiffe en Mousse',
@@ -2130,11 +2159,10 @@ item.coiffe_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.pelle_en_mousse = {
     id: 'pelle_en_mousse',
     name: 'Pelle en Mousse',
@@ -2144,11 +2172,10 @@ item.pelle_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 20,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 7 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ailes_en_bois = {
     id: 'ailes_en_bois',
     name: 'Ailes en bois',
@@ -2162,7 +2189,6 @@ item.ailes_en_bois = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'spd', value: 6 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.casque = {
     id: 'casque',
     name: 'Casque',
@@ -2176,7 +2202,6 @@ item.casque = {
     stats: [{ stat: 'maxHp', value: 26 }],
     description: ''
 }
-
 item.mos_kitano = {
     id: 'mos_kitano',
     name: 'Mos Kitano',
@@ -2190,7 +2215,6 @@ item.mos_kitano = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.anneau_du_tofu = {
     id: 'anneau_du_tofu',
     name: 'Anneau du Tofu',
@@ -2204,7 +2228,6 @@ item.anneau_du_tofu = {
     stats: [{ stat: 'atk', value: 6 }],
     description: ''
 }
-
 item.chapeau_du_papa_nowel = {
     id: 'chapeau_du_papa_nowel',
     name: 'Chapeau du Papa Nowel',
@@ -2218,7 +2241,6 @@ item.chapeau_du_papa_nowel = {
     stats: [{ stat: 'maxHp', value: 26 }],
     description: ''
 }
-
 item.pieds_du_sanglier = {
     id: 'pieds_du_sanglier',
     name: 'Pieds du Sanglier',
@@ -2228,11 +2250,10 @@ item.pieds_du_sanglier = {
     set: 'panoplie_du_sanglier',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 22,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: -10 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.amulette_du_tofu = {
     id: 'amulette_du_tofu',
     name: 'Amulette du Tofu',
@@ -2246,7 +2267,6 @@ item.amulette_du_tofu = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.ceinture_du_tofu = {
     id: 'ceinture_du_tofu',
     name: 'Ceinture du Tofu',
@@ -2260,7 +2280,6 @@ item.ceinture_du_tofu = {
     stats: [{ stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.kaskofu = {
     id: 'kaskofu',
     name: 'Kaskofu',
@@ -2274,7 +2293,6 @@ item.kaskofu = {
     stats: [{ stat: 'maxHp', value: 31 }],
     description: ''
 }
-
 item.pantoufles_du_tofu = {
     id: 'pantoufles_du_tofu',
     name: 'Pantoufles du Tofu',
@@ -2288,7 +2306,6 @@ item.pantoufles_du_tofu = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.bonnet_du_glutin = {
     id: 'bonnet_du_glutin',
     name: 'Bonnet du Glutin',
@@ -2302,7 +2319,6 @@ item.bonnet_du_glutin = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.bracelet_du_glutin = {
     id: 'bracelet_du_glutin',
     name: 'Bracelet du Glutin',
@@ -2316,7 +2332,6 @@ item.bracelet_du_glutin = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 7 }],
     description: ''
 }
-
 item.calecon_fourre_du_glutin = {
     id: 'calecon_fourre_du_glutin',
     name: 'Caleçon Fourré du Glutin',
@@ -2330,7 +2345,6 @@ item.calecon_fourre_du_glutin = {
     stats: [{ stat: 'atk', value: 15 }],
     description: ''
 }
-
 item.manteau_du_glutin = {
     id: 'manteau_du_glutin',
     name: 'Manteau du Glutin',
@@ -2344,7 +2358,6 @@ item.manteau_du_glutin = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.baguette_du_tofu = {
     id: 'baguette_du_tofu',
     name: 'Baguette du Tofu',
@@ -2358,7 +2371,6 @@ item.baguette_du_tofu = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'lifestealPct', value: 6 }],
     description: ''
 }
-
 item.bouclier_en_mousse = {
     id: 'bouclier_en_mousse',
     name: 'Bouclier en Mousse',
@@ -2368,11 +2380,10 @@ item.bouclier_en_mousse = {
     set: 'panoplie_en_mousse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 25,
+    requiredLevel: 10,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 11 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.larvamulette = {
     id: 'larvamulette',
     name: 'Larvamulette',
@@ -2386,7 +2397,6 @@ item.larvamulette = {
     stats: [{ stat: 'maxHp', value: 6 }, { stat: 'atk', value: 6 }],
     description: ''
 }
-
 item.cape_du_tofu = {
     id: 'cape_du_tofu',
     name: 'Cape du Tofu',
@@ -2400,7 +2410,6 @@ item.cape_du_tofu = {
     stats: [{ stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.larvasac = {
     id: 'larvasac',
     name: 'Larvasac',
@@ -2414,7 +2423,6 @@ item.larvasac = {
     stats: [{ stat: 'maxHp', value: 6 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.pompamulette = {
     id: 'pompamulette',
     name: 'Pompamulette',
@@ -2428,7 +2436,6 @@ item.pompamulette = {
     stats: [{ stat: 'maxHp', value: 4 }, { stat: 'atk', value: 15 }],
     description: ''
 }
-
 item.bottes_de_boufbowl = {
     id: 'bottes_de_boufbowl',
     name: 'Bottes de Boufbowl',
@@ -2442,7 +2449,6 @@ item.bottes_de_boufbowl = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.masque_de_frakacia = {
     id: 'masque_de_frakacia',
     name: 'Masque de Frakacia',
@@ -2456,7 +2462,6 @@ item.masque_de_frakacia = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amulette_royale_du_bouftou = {
     id: 'amulette_royale_du_bouftou',
     name: 'Amulette Royale du Bouftou',
@@ -2466,11 +2471,10 @@ item.amulette_royale_du_bouftou = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 28,
+    requiredLevel: 35,
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.casque_de_boufbowl = {
     id: 'casque_de_boufbowl',
     name: 'Casque de Boufbowl',
@@ -2484,7 +2488,6 @@ item.casque_de_boufbowl = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.cape_bouffante_royale = {
     id: 'cape_bouffante_royale',
     name: 'Cape Bouffante Royale',
@@ -2494,11 +2497,10 @@ item.cape_bouffante_royale = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 29,
+    requiredLevel: 35,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.amulette_verrehor = {
     id: 'amulette_verrehor',
     name: 'Amulette Verréhor',
@@ -2512,7 +2514,6 @@ item.amulette_verrehor = {
     stats: [{ stat: 'atk', value: 26 }, { stat: 'res.eau', value: -4 }],
     description: ''
 }
-
 item.ceinture_verrehor = {
     id: 'ceinture_verrehor',
     name: 'Ceinture Verréhor',
@@ -2526,7 +2527,6 @@ item.ceinture_verrehor = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.ailes_en_bois_ameliorees = {
     id: 'ailes_en_bois_ameliorees',
     name: 'Ailes en bois améliorées',
@@ -2540,7 +2540,6 @@ item.ailes_en_bois_ameliorees = {
     stats: [{ stat: 'maxHp', value: 36 }, { stat: 'spd', value: 16 }],
     description: ''
 }
-
 item.casque_ameliore = {
     id: 'casque_ameliore',
     name: 'Casque amélioré',
@@ -2554,7 +2553,6 @@ item.casque_ameliore = {
     stats: [{ stat: 'maxHp', value: 36 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.bouclier_de_bowisse = {
     id: 'bouclier_de_bowisse',
     name: 'Bouclier de Bowisse',
@@ -2568,7 +2566,6 @@ item.bouclier_de_bowisse = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.bottes_de_frakacia = {
     id: 'bottes_de_frakacia',
     name: 'Bottes de Frakacia',
@@ -2582,7 +2579,6 @@ item.bottes_de_frakacia = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 5 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_phong_huss = {
     id: 'ceinture_de_phong_huss',
     name: 'Ceinture de Phong Huss',
@@ -2596,7 +2592,6 @@ item.ceinture_de_phong_huss = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.baton_carnivore = {
     id: 'baton_carnivore',
     name: 'Bâton Carnivore',
@@ -2610,7 +2605,6 @@ item.baton_carnivore = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 4 }],
     description: ''
 }
-
 item.toady = {
     id: 'toady',
     name: 'Toady',
@@ -2624,7 +2618,6 @@ item.toady = {
     stats: [{ stat: 'atk', value: 41 }],
     description: ''
 }
-
 item.bottes_des_grocoricos = {
     id: 'bottes_des_grocoricos',
     name: 'Bottes des Grocoricos',
@@ -2638,7 +2631,6 @@ item.bottes_des_grocoricos = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'critResPct', value: -10 }],
     description: ''
 }
-
 item.ceinture_des_grocoricos = {
     id: 'ceinture_des_grocoricos',
     name: 'Ceinture des Grocoricos',
@@ -2652,7 +2644,6 @@ item.ceinture_des_grocoricos = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.bottes_des_pamous = {
     id: 'bottes_des_pamous',
     name: 'Bottes des Pamous',
@@ -2666,7 +2657,6 @@ item.bottes_des_pamous = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.ceinture_des_pamous = {
     id: 'ceinture_des_pamous',
     name: 'Ceinture des Pamous',
@@ -2680,7 +2670,6 @@ item.ceinture_des_pamous = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.bottes_des_redroz = {
     id: 'bottes_des_redroz',
     name: 'Bottes des Redroz',
@@ -2694,7 +2683,6 @@ item.bottes_des_redroz = {
     stats: [{ stat: 'maxHp', value: -100 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: -5 }],
     description: ''
 }
-
 item.bottes_des_zoblaks = {
     id: 'bottes_des_zoblaks',
     name: 'Bottes des Zoblaks',
@@ -2708,7 +2696,6 @@ item.bottes_des_zoblaks = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'res.feu', value: -2 }, { stat: 'res.terre', value: -2 }],
     description: ''
 }
-
 item.ceinture_des_zoblaks = {
     id: 'ceinture_des_zoblaks',
     name: 'Ceinture des Zoblaks',
@@ -2722,7 +2709,6 @@ item.ceinture_des_zoblaks = {
     stats: [{ stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.boufbottes_royales = {
     id: 'boufbottes_royales',
     name: 'Boufbottes Royales',
@@ -2732,11 +2718,10 @@ item.boufbottes_royales = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 30,
+    requiredLevel: 35,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.ceinture_royale_du_bouftou = {
     id: 'ceinture_royale_du_bouftou',
     name: 'Ceinture Royale du Bouftou',
@@ -2746,11 +2731,10 @@ item.ceinture_royale_du_bouftou = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 30,
+    requiredLevel: 35,
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cuirasse_royale_du_bouftou = {
     id: 'cuirasse_royale_du_bouftou',
     name: 'Cuirasse Royale du Bouftou',
@@ -2760,11 +2744,10 @@ item.cuirasse_royale_du_bouftou = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 30,
+    requiredLevel: 35,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.epee_royale_du_bouftou = {
     id: 'epee_royale_du_bouftou',
     name: 'Épée Royale du Bouftou',
@@ -2774,11 +2757,10 @@ item.epee_royale_du_bouftou = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 30,
+    requiredLevel: 35,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }],
     description: ''
 }
-
 item.pompanneau = {
     id: 'pompanneau',
     name: 'Pompanneau',
@@ -2792,7 +2774,6 @@ item.pompanneau = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.bague_de_boufbowl = {
     id: 'bague_de_boufbowl',
     name: 'Bague de Boufbowl',
@@ -2806,7 +2787,6 @@ item.bague_de_boufbowl = {
     stats: [{ stat: 'maxHp', value: 21 }],
     description: ''
 }
-
 item.amulette_de_rapine = {
     id: 'amulette_de_rapine',
     name: 'Amulette de Rapine',
@@ -2820,7 +2800,6 @@ item.amulette_de_rapine = {
     stats: [{ stat: 'maxHp', value: 36 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_rapine = {
     id: 'ceinture_de_rapine',
     name: 'Ceinture de Rapine',
@@ -2834,7 +2813,6 @@ item.ceinture_de_rapine = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.anneau_royal_du_bouftou = {
     id: 'anneau_royal_du_bouftou',
     name: 'Anneau Royal du Bouftou',
@@ -2844,11 +2822,10 @@ item.anneau_royal_du_bouftou = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 31,
+    requiredLevel: 35,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amulette_du_molosse = {
     id: 'amulette_du_molosse',
     name: 'Amulette du Molosse',
@@ -2862,7 +2839,6 @@ item.amulette_du_molosse = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.ceinture_du_molosse = {
     id: 'ceinture_du_molosse',
     name: 'Ceinture du Molosse',
@@ -2876,7 +2852,6 @@ item.ceinture_du_molosse = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.clementamulette = {
     id: 'clementamulette',
     name: 'Clémentamulette',
@@ -2890,7 +2865,6 @@ item.clementamulette = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulette_d_hectaupe = {
     id: 'amulette_d_hectaupe',
     name: 'Amulette d\'Hectaupe',
@@ -2904,7 +2878,6 @@ item.amulette_d_hectaupe = {
     stats: [{ stat: 'atk', value: 26 }],
     description: ''
 }
-
 item.anneau_d_hectaupe = {
     id: 'anneau_d_hectaupe',
     name: 'Anneau d\'Hectaupe',
@@ -2918,7 +2891,6 @@ item.anneau_d_hectaupe = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 6 }],
     description: ''
 }
-
 item.ceinture_d_hectaupe = {
     id: 'ceinture_d_hectaupe',
     name: 'Ceinture d\'Hectaupe',
@@ -2932,7 +2904,6 @@ item.ceinture_d_hectaupe = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.gant_de_frakacia = {
     id: 'gant_de_frakacia',
     name: 'Gant de Frakacia',
@@ -2946,7 +2917,6 @@ item.gant_de_frakacia = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bottes_de_phong_huss = {
     id: 'bottes_de_phong_huss',
     name: 'Bottes de Phong Huss',
@@ -2960,7 +2930,6 @@ item.bottes_de_phong_huss = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.bottes_de_rapine = {
     id: 'bottes_de_rapine',
     name: 'Bottes de Rapine',
@@ -2974,7 +2943,6 @@ item.bottes_de_rapine = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.boufcoiffe_royale = {
     id: 'boufcoiffe_royale',
     name: 'Boufcoiffe Royale',
@@ -2984,11 +2952,10 @@ item.boufcoiffe_royale = {
     set: 'panoplie_du_bouftou_royal',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 32,
+    requiredLevel: 35,
     stats: [{ stat: 'atk', value: 21 }],
     description: ''
 }
-
 item.bottes_du_corbeau_noir = {
     id: 'bottes_du_corbeau_noir',
     name: 'Bottes du Corbeau Noir',
@@ -3002,7 +2969,6 @@ item.bottes_du_corbeau_noir = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 27 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.givrabottes = {
     id: 'givrabottes',
     name: 'Givrabottes',
@@ -3016,7 +2982,6 @@ item.givrabottes = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.larvabottes = {
     id: 'larvabottes',
     name: 'Larvabottes',
@@ -3030,7 +2995,6 @@ item.larvabottes = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 19 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.anneau_de_phong_huss = {
     id: 'anneau_de_phong_huss',
     name: 'Anneau de Phong Huss',
@@ -3044,7 +3008,6 @@ item.anneau_de_phong_huss = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.anneau_du_corbeau_noir = {
     id: 'anneau_du_corbeau_noir',
     name: 'Anneau du Corbeau Noir',
@@ -3058,7 +3021,6 @@ item.anneau_du_corbeau_noir = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_prespic = {
     id: 'ceinture_du_prespic',
     name: 'Ceinture du Prespic',
@@ -3068,11 +3030,10 @@ item.ceinture_du_prespic = {
     set: 'panoplie_du_prespic',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 33,
+    requiredLevel: 20,
     stats: [{ stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.clementobottes = {
     id: 'clementobottes',
     name: 'Clémentobottes',
@@ -3086,7 +3047,6 @@ item.clementobottes = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.larvacoiffe = {
     id: 'larvacoiffe',
     name: 'Larvacoiffe',
@@ -3100,7 +3060,6 @@ item.larvacoiffe = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.puissance_de_crocoburio = {
     id: 'puissance_de_crocoburio',
     name: 'Puissance de Crocoburio',
@@ -3114,7 +3073,6 @@ item.puissance_de_crocoburio = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 11 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.givrature = {
     id: 'givrature',
     name: 'Givrature',
@@ -3128,7 +3086,6 @@ item.givrature = {
     stats: [{ stat: 'atk', value: 26 }],
     description: ''
 }
-
 item.geta_akwadala = {
     id: 'geta_akwadala',
     name: 'Geta Akwadala',
@@ -3142,7 +3099,6 @@ item.geta_akwadala = {
     stats: [{ stat: 'atk', value: 28 }],
     description: ''
 }
-
 item.bouclier_herisse_du_prespic = {
     id: 'bouclier_herisse_du_prespic',
     name: 'Bouclier hérissé du Prespic',
@@ -3152,11 +3108,10 @@ item.bouclier_herisse_du_prespic = {
     set: 'panoplie_du_prespic',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 35,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.anneau_bille = {
     id: 'anneau_bille',
     name: 'Anneau Bille',
@@ -3170,7 +3125,6 @@ item.anneau_bille = {
     stats: [{ stat: 'atk', value: 28 }],
     description: ''
 }
-
 item.ceinture_du_directeur_grunob = {
     id: 'ceinture_du_directeur_grunob',
     name: 'Ceinture du Directeur Grunob',
@@ -3184,7 +3138,6 @@ item.ceinture_du_directeur_grunob = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_prespic = {
     id: 'coiffe_du_prespic',
     name: 'Coiffe du Prespic',
@@ -3194,11 +3147,10 @@ item.coiffe_du_prespic = {
     set: 'panoplie_du_prespic',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 36,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amulette_perle = {
     id: 'amulette_perle',
     name: 'Amulette Perle',
@@ -3212,7 +3164,6 @@ item.amulette_perle = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 28 }],
     description: ''
 }
-
 item.alliance_akwadala = {
     id: 'alliance_akwadala',
     name: 'Alliance Akwadala',
@@ -3226,7 +3177,6 @@ item.alliance_akwadala = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 7 }, { stat: 'spd', value: 11 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.bague_cristalline = {
     id: 'bague_cristalline',
     name: 'Bague Cristalline',
@@ -3240,7 +3190,6 @@ item.bague_cristalline = {
     stats: [{ stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.l_oxolature = {
     id: 'l_oxolature',
     name: 'L\'oxolature',
@@ -3254,7 +3203,6 @@ item.l_oxolature = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'spd', value: 16 }],
     description: ''
 }
-
 item.oxano = {
     id: 'oxano',
     name: 'Oxano',
@@ -3268,7 +3216,6 @@ item.oxano = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.cape_du_prespic = {
     id: 'cape_du_prespic',
     name: 'Cape du Prespic',
@@ -3278,11 +3225,10 @@ item.cape_du_prespic = {
     set: 'panoplie_du_prespic',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 37,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.cape_lumette = {
     id: 'cape_lumette',
     name: 'Cape Lumette',
@@ -3296,7 +3242,6 @@ item.cape_lumette = {
     stats: [{ stat: 'atk', value: 57 }, { stat: 'critChance', value: -3 }],
     description: ''
 }
-
 item.bottines_de_la_denree = {
     id: 'bottines_de_la_denree',
     name: 'Bottines de la Denrée',
@@ -3310,7 +3255,6 @@ item.bottines_de_la_denree = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.faux_du_directeur_grunob = {
     id: 'faux_du_directeur_grunob',
     name: 'Faux du Directeur Grunob',
@@ -3324,7 +3268,6 @@ item.faux_du_directeur_grunob = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 40 }, { stat: 'spd', value: 6 }, { stat: 'lifestealPct', value: 10 }],
     description: ''
 }
-
 item.bottes_du_garde_royal = {
     id: 'bottes_du_garde_royal',
     name: 'Bottes du Garde Royal',
@@ -3338,7 +3281,6 @@ item.bottes_du_garde_royal = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.ceinture_du_garde_royal = {
     id: 'ceinture_du_garde_royal',
     name: 'Ceinture du Garde Royal',
@@ -3352,7 +3294,6 @@ item.ceinture_du_garde_royal = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.anneau_du_prespic = {
     id: 'anneau_du_prespic',
     name: 'Anneau du Prespic',
@@ -3362,11 +3303,10 @@ item.anneau_du_prespic = {
     set: 'panoplie_du_prespic',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 38,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_tetounik = {
     id: 'ceinture_du_tetounik',
     name: 'Ceinture du Tétounik',
@@ -3380,7 +3320,6 @@ item.ceinture_du_tetounik = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.abrarc = {
     id: 'abrarc',
     name: 'Abrarc',
@@ -3394,7 +3333,6 @@ item.abrarc = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 11 }],
     description: ''
 }
-
 item.libottes = {
     id: 'libottes',
     name: 'Libottes',
@@ -3408,7 +3346,6 @@ item.libottes = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.botte_de_kalkaneus = {
     id: 'botte_de_kalkaneus',
     name: 'Botte de Kalkanéus',
@@ -3422,7 +3359,6 @@ item.botte_de_kalkaneus = {
     stats: [{ stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.ceinture_lardiere = {
     id: 'ceinture_lardiere',
     name: 'Ceinture Lardière',
@@ -3436,7 +3372,6 @@ item.ceinture_lardiere = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.ceinture_de_rapiat = {
     id: 'ceinture_de_rapiat',
     name: 'Ceinture de Rapiat',
@@ -3450,7 +3385,6 @@ item.ceinture_de_rapiat = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.abracape = {
     id: 'abracape',
     name: 'Abracape',
@@ -3464,7 +3398,6 @@ item.abracape = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: -15 }],
     description: ''
 }
-
 item.abranneau = {
     id: 'abranneau',
     name: 'Abranneau',
@@ -3478,7 +3411,6 @@ item.abranneau = {
     stats: [{ stat: 'atk', value: -50 }],
     description: ''
 }
-
 item.casque_noix = {
     id: 'casque_noix',
     name: 'Casque Noix',
@@ -3492,7 +3424,6 @@ item.casque_noix = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 37 }],
     description: ''
 }
-
 item.bouclier_akwadala = {
     id: 'bouclier_akwadala',
     name: 'Bouclier Akwadala',
@@ -3506,7 +3437,6 @@ item.bouclier_akwadala = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 1 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.coiffe_fere = {
     id: 'coiffe_fere',
     name: 'Coiffe Fère',
@@ -3520,7 +3450,6 @@ item.coiffe_fere = {
     stats: [],
     description: ''
 }
-
 item.chapeau_grave = {
     id: 'chapeau_grave',
     name: 'Chapeau Grave',
@@ -3534,7 +3463,6 @@ item.chapeau_grave = {
     stats: [],
     description: ''
 }
-
 item.bottes_dragocourse = {
     id: 'bottes_dragocourse',
     name: 'Bottes Dragocourse',
@@ -3548,7 +3476,6 @@ item.bottes_dragocourse = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.ceinture_dragocourse = {
     id: 'ceinture_dragocourse',
     name: 'Ceinture Dragocourse',
@@ -3562,7 +3489,6 @@ item.ceinture_dragocourse = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 11 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.chapeau_devin = {
     id: 'chapeau_devin',
     name: 'Chapeau Devin',
@@ -3576,7 +3502,6 @@ item.chapeau_devin = {
     stats: [],
     description: ''
 }
-
 item.chapeau_lithique = {
     id: 'chapeau_lithique',
     name: 'Chapeau Lithique',
@@ -3590,7 +3515,6 @@ item.chapeau_lithique = {
     stats: [],
     description: ''
 }
-
 item.coiffe_ainte = {
     id: 'coiffe_ainte',
     name: 'Coiffe Ainte',
@@ -3604,7 +3528,6 @@ item.coiffe_ainte = {
     stats: [],
     description: ''
 }
-
 item.bonnet_spairance = {
     id: 'bonnet_spairance',
     name: 'Bonnet Spairance',
@@ -3618,7 +3541,6 @@ item.bonnet_spairance = {
     stats: [],
     description: ''
 }
-
 item.bonnet_toual = {
     id: 'bonnet_toual',
     name: 'Bonnet Toual',
@@ -3632,7 +3554,6 @@ item.bonnet_toual = {
     stats: [],
     description: ''
 }
-
 item.bonnet_nufar = {
     id: 'bonnet_nufar',
     name: 'Bonnet Nufar',
@@ -3646,7 +3567,6 @@ item.bonnet_nufar = {
     stats: [],
     description: ''
 }
-
 item.baguette_larvesque = {
     id: 'baguette_larvesque',
     name: 'Baguette Larvesque',
@@ -3660,7 +3580,6 @@ item.baguette_larvesque = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: -19 }, { stat: 'heal', value: 15 }],
     description: ''
 }
-
 item.masque_arpone = {
     id: 'masque_arpone',
     name: 'Masque Arpone',
@@ -3674,7 +3593,6 @@ item.masque_arpone = {
     stats: [],
     description: ''
 }
-
 item.ceinture_pomdeupin = {
     id: 'ceinture_pomdeupin',
     name: 'Ceinture Pomdeupin',
@@ -3688,7 +3606,6 @@ item.ceinture_pomdeupin = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 16 }],
     description: ''
 }
-
 item.coiffe_ondamentale = {
     id: 'coiffe_ondamentale',
     name: 'Coiffe Ondamentale',
@@ -3702,7 +3619,6 @@ item.coiffe_ondamentale = {
     stats: [],
     description: ''
 }
-
 item.chapeau_tyron = {
     id: 'chapeau_tyron',
     name: 'Chapeau Tyron',
@@ -3716,7 +3632,6 @@ item.chapeau_tyron = {
     stats: [],
     description: ''
 }
-
 item.scaphandre_ojine = {
     id: 'scaphandre_ojine',
     name: 'Scaphandre Ojine',
@@ -3730,7 +3645,6 @@ item.scaphandre_ojine = {
     stats: [],
     description: ''
 }
-
 item.masque_rosmique = {
     id: 'masque_rosmique',
     name: 'Masque Rosmique',
@@ -3744,7 +3658,6 @@ item.masque_rosmique = {
     stats: [],
     description: ''
 }
-
 item.casque_keutumedi = {
     id: 'casque_keutumedi',
     name: 'Casque Keutumedi',
@@ -3758,7 +3671,6 @@ item.casque_keutumedi = {
     stats: [],
     description: ''
 }
-
 item.vegamu = {
     id: 'vegamu',
     name: 'Vegamu',
@@ -3772,7 +3684,6 @@ item.vegamu = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: -10 }],
     description: ''
 }
-
 item.vegacoiffe = {
     id: 'vegacoiffe',
     name: 'Végacoiffe',
@@ -3786,7 +3697,6 @@ item.vegacoiffe = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.chapeau_taufeu = {
     id: 'chapeau_taufeu',
     name: 'Chapeau Taufeu',
@@ -3800,7 +3710,6 @@ item.chapeau_taufeu = {
     stats: [],
     description: ''
 }
-
 item.caponion = {
     id: 'caponion',
     name: 'Caponion',
@@ -3814,7 +3723,6 @@ item.caponion = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.chapeau_leufere = {
     id: 'chapeau_leufere',
     name: 'Chapeau Leufère',
@@ -3828,7 +3736,6 @@ item.chapeau_leufere = {
     stats: [],
     description: ''
 }
-
 item.ceinture_de_grut = {
     id: 'ceinture_de_grut',
     name: 'Ceinture de Grüt',
@@ -3842,7 +3749,6 @@ item.ceinture_de_grut = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.slip_de_kalkaneus = {
     id: 'slip_de_kalkaneus',
     name: 'Slip de Kalkanéus',
@@ -3856,7 +3762,6 @@ item.slip_de_kalkaneus = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.jambanneau = {
     id: 'jambanneau',
     name: 'Jambanneau',
@@ -3870,7 +3775,6 @@ item.jambanneau = {
     stats: [{ stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.ceinture_de_rekto_topi = {
     id: 'ceinture_de_rekto_topi',
     name: 'Ceinture de Rekto Topi',
@@ -3884,7 +3788,6 @@ item.ceinture_de_rekto_topi = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.anobra = {
     id: 'anobra',
     name: 'Anobra',
@@ -3898,7 +3801,6 @@ item.anobra = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.araknamu = {
     id: 'araknamu',
     name: 'Araknamu',
@@ -3912,7 +3814,6 @@ item.araknamu = {
     stats: [{ stat: 'atk', value: 41 }],
     description: ''
 }
-
 item.heaume_erik = {
     id: 'heaume_erik',
     name: 'Heaume Erik',
@@ -3926,7 +3827,6 @@ item.heaume_erik = {
     stats: [],
     description: ''
 }
-
 item.capuche_apin = {
     id: 'capuche_apin',
     name: 'Capuche Apin',
@@ -3940,7 +3840,6 @@ item.capuche_apin = {
     stats: [],
     description: ''
 }
-
 item.ceinture_des_redroz = {
     id: 'ceinture_des_redroz',
     name: 'Ceinture des Redroz',
@@ -3954,7 +3853,6 @@ item.ceinture_des_redroz = {
     stats: [{ stat: 'atk', value: 21 }],
     description: ''
 }
-
 item.chapeau_du_directeur_grunob = {
     id: 'chapeau_du_directeur_grunob',
     name: 'Chapeau du Directeur Grunob',
@@ -3968,7 +3866,6 @@ item.chapeau_du_directeur_grunob = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 43 }, { stat: 'critChance', value: -3 }],
     description: ''
 }
-
 item.kwakobottes_de_flammes = {
     id: 'kwakobottes_de_flammes',
     name: 'Kwakobottes de Flammes',
@@ -3982,7 +3879,6 @@ item.kwakobottes_de_flammes = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 1 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.kwakobottes_de_glace = {
     id: 'kwakobottes_de_glace',
     name: 'Kwakobottes de Glace',
@@ -3996,7 +3892,6 @@ item.kwakobottes_de_glace = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 1 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.kwakobottes_de_terre = {
     id: 'kwakobottes_de_terre',
     name: 'Kwakobottes de Terre',
@@ -4010,7 +3905,6 @@ item.kwakobottes_de_terre = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 1 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.kwakobottes_de_vent = {
     id: 'kwakobottes_de_vent',
     name: 'Kwakobottes de Vent',
@@ -4024,7 +3918,6 @@ item.kwakobottes_de_vent = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 1 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.bottes_du_monarque = {
     id: 'bottes_du_monarque',
     name: 'Bottes du Monarque',
@@ -4038,7 +3931,6 @@ item.bottes_du_monarque = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.ceinture_du_monarque = {
     id: 'ceinture_du_monarque',
     name: 'Ceinture du Monarque',
@@ -4052,7 +3944,6 @@ item.ceinture_du_monarque = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.torque_du_monarque = {
     id: 'torque_du_monarque',
     name: 'Torque du Monarque',
@@ -4066,7 +3957,6 @@ item.torque_du_monarque = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.grosse_bagouze_du_parrain = {
     id: 'grosse_bagouze_du_parrain',
     name: 'Grosse Bagouze du Parrain',
@@ -4080,7 +3970,6 @@ item.grosse_bagouze_du_parrain = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.souliers_laques_du_parrain = {
     id: 'souliers_laques_du_parrain',
     name: 'Souliers laqués du Parrain',
@@ -4094,7 +3983,6 @@ item.souliers_laques_du_parrain = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.coiffe_de_robbie_capuche = {
     id: 'coiffe_de_robbie_capuche',
     name: 'Coiffe de Robbie Capuche',
@@ -4108,7 +3996,6 @@ item.coiffe_de_robbie_capuche = {
     stats: [],
     description: ''
 }
-
 item.chaussures_du_tetounik = {
     id: 'chaussures_du_tetounik',
     name: 'Chaussures du Tétounik',
@@ -4122,7 +4009,6 @@ item.chaussures_du_tetounik = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.force_de_crocoburio = {
     id: 'force_de_crocoburio',
     name: 'Force de Crocoburio',
@@ -4136,7 +4022,6 @@ item.force_de_crocoburio = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.mes_petits_sabots = {
     id: 'mes_petits_sabots',
     name: 'Mes Petits Sabots',
@@ -4150,7 +4035,6 @@ item.mes_petits_sabots = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.amulette_akwadala = {
     id: 'amulette_akwadala',
     name: 'Amulette Akwadala',
@@ -4164,7 +4048,6 @@ item.amulette_akwadala = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 1 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cape_akwadala = {
     id: 'cape_akwadala',
     name: 'Cape Akwadala',
@@ -4178,7 +4061,6 @@ item.cape_akwadala = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 26 }],
     description: ''
 }
-
 item.ceinture_akwadala = {
     id: 'ceinture_akwadala',
     name: 'Ceinture Akwadala',
@@ -4192,7 +4074,6 @@ item.ceinture_akwadala = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.ceinture_cristalline = {
     id: 'ceinture_cristalline',
     name: 'Ceinture Cristalline',
@@ -4206,7 +4087,6 @@ item.ceinture_cristalline = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.feu', value: -5 }],
     description: ''
 }
-
 item.ceinture_siks_won_naine = {
     id: 'ceinture_siks_won_naine',
     name: 'Ceinture Siks Won Naïne',
@@ -4220,7 +4100,6 @@ item.ceinture_siks_won_naine = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.bottes_donion = {
     id: 'bottes_donion',
     name: 'Bottes Donion',
@@ -4234,7 +4113,6 @@ item.bottes_donion = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.bottes_de_grizou = {
     id: 'bottes_de_grizou',
     name: 'Bottes de Grizou',
@@ -4248,7 +4126,6 @@ item.bottes_de_grizou = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.anneau_de_kocksis = {
     id: 'anneau_de_kocksis',
     name: 'Anneau de Kocksis',
@@ -4262,7 +4139,6 @@ item.anneau_de_kocksis = {
     stats: [{ stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.amulette_de_kubitus = {
     id: 'amulette_de_kubitus',
     name: 'Amulette de Kubitus',
@@ -4276,7 +4152,6 @@ item.amulette_de_kubitus = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.amulette_de_laikteur = {
     id: 'amulette_de_laikteur',
     name: 'Amulette de Laikteur',
@@ -4290,7 +4165,6 @@ item.amulette_de_laikteur = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.bottes_de_rapiat = {
     id: 'bottes_de_rapiat',
     name: 'Bottes de Rapiat',
@@ -4304,7 +4178,6 @@ item.bottes_de_rapiat = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.amulette_de_rekto_topi = {
     id: 'amulette_de_rekto_topi',
     name: 'Amulette de Rekto Topi',
@@ -4318,7 +4191,6 @@ item.amulette_de_rekto_topi = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.bottes_de_rekto_topi = {
     id: 'bottes_de_rekto_topi',
     name: 'Bottes de Rekto Topi',
@@ -4332,7 +4204,6 @@ item.bottes_de_rekto_topi = {
     stats: [{ stat: 'atk', value: 23 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_stroud = {
     id: 'ceinture_de_stroud',
     name: 'Ceinture de Stroud',
@@ -4346,7 +4217,6 @@ item.ceinture_de_stroud = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.bottes_du_chafer_primitif = {
     id: 'bottes_du_chafer_primitif',
     name: 'Bottes du Chafer Primitif',
@@ -4360,7 +4230,6 @@ item.bottes_du_chafer_primitif = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.cape_du_boostache = {
     id: 'cape_du_boostache',
     name: 'Cape du Boostache',
@@ -4374,7 +4243,6 @@ item.cape_du_boostache = {
     stats: [{ stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 5 }],
     description: ''
 }
-
 item.kwaklame_de_flammes = {
     id: 'kwaklame_de_flammes',
     name: 'Kwaklame de Flammes',
@@ -4384,11 +4252,10 @@ item.kwaklame_de_flammes = {
     set: 'panoplie_du_kwak_de_flammes',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.kwakoiffe_de_flammes = {
     id: 'kwakoiffe_de_flammes',
     name: 'Kwakoiffe de Flammes',
@@ -4398,11 +4265,10 @@ item.kwakoiffe_de_flammes = {
     set: 'panoplie_du_kwak_de_flammes',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.kwakture_de_flammes = {
     id: 'kwakture_de_flammes',
     name: 'Kwakture de Flammes',
@@ -4412,11 +4278,10 @@ item.kwakture_de_flammes = {
     set: 'panoplie_du_kwak_de_flammes',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.kwape_de_flammes = {
     id: 'kwape_de_flammes',
     name: 'Kwape de Flammes',
@@ -4426,11 +4291,10 @@ item.kwape_de_flammes = {
     set: 'panoplie_du_kwak_de_flammes',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 3 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.kwaklame_de_glace = {
     id: 'kwaklame_de_glace',
     name: 'Kwaklame de Glace',
@@ -4440,11 +4304,10 @@ item.kwaklame_de_glace = {
     set: 'panoplie_du_kwak_de_glace',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.kwakoiffe_de_glace = {
     id: 'kwakoiffe_de_glace',
     name: 'Kwakoiffe de Glace',
@@ -4454,11 +4317,10 @@ item.kwakoiffe_de_glace = {
     set: 'panoplie_du_kwak_de_glace',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.kwakture_de_glace = {
     id: 'kwakture_de_glace',
     name: 'Kwakture de Glace',
@@ -4468,11 +4330,10 @@ item.kwakture_de_glace = {
     set: 'panoplie_du_kwak_de_glace',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.kwape_de_glace = {
     id: 'kwape_de_glace',
     name: 'Kwape de Glace',
@@ -4482,11 +4343,10 @@ item.kwape_de_glace = {
     set: 'panoplie_du_kwak_de_glace',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 3 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.kwaklame_de_terre = {
     id: 'kwaklame_de_terre',
     name: 'Kwaklame de Terre',
@@ -4496,11 +4356,10 @@ item.kwaklame_de_terre = {
     set: 'panoplie_du_kwak_de_terre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.kwakoiffe_de_terre = {
     id: 'kwakoiffe_de_terre',
     name: 'Kwakoiffe de Terre',
@@ -4510,11 +4369,10 @@ item.kwakoiffe_de_terre = {
     set: 'panoplie_du_kwak_de_terre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.kwakture_de_terre = {
     id: 'kwakture_de_terre',
     name: 'Kwakture de Terre',
@@ -4524,11 +4382,10 @@ item.kwakture_de_terre = {
     set: 'panoplie_du_kwak_de_terre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.kwape_de_terre = {
     id: 'kwape_de_terre',
     name: 'Kwape de Terre',
@@ -4538,11 +4395,10 @@ item.kwape_de_terre = {
     set: 'panoplie_du_kwak_de_terre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.kwaklame_de_vent = {
     id: 'kwaklame_de_vent',
     name: 'Kwaklame de Vent',
@@ -4552,11 +4408,10 @@ item.kwaklame_de_vent = {
     set: 'panoplie_du_kwak_de_vent',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.kwakoiffe_de_vent = {
     id: 'kwakoiffe_de_vent',
     name: 'Kwakoiffe de Vent',
@@ -4566,11 +4421,10 @@ item.kwakoiffe_de_vent = {
     set: 'panoplie_du_kwak_de_vent',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.kwakture_de_vent = {
     id: 'kwakture_de_vent',
     name: 'Kwakture de Vent',
@@ -4580,11 +4434,10 @@ item.kwakture_de_vent = {
     set: 'panoplie_du_kwak_de_vent',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.kwape_de_vent = {
     id: 'kwape_de_vent',
     name: 'Kwape de Vent',
@@ -4594,11 +4447,10 @@ item.kwape_de_vent = {
     set: 'panoplie_du_kwak_de_vent',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 41,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.bottes_du_vampyre = {
     id: 'bottes_du_vampyre',
     name: 'Bottes du Vampyre',
@@ -4612,7 +4464,6 @@ item.bottes_du_vampyre = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cape_du_vampyre = {
     id: 'cape_du_vampyre',
     name: 'Cape du Vampyre',
@@ -4626,7 +4477,6 @@ item.cape_du_vampyre = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 36 }],
     description: ''
 }
-
 item.yugoufle = {
     id: 'yugoufle',
     name: 'Yugoufle',
@@ -4640,7 +4490,6 @@ item.yugoufle = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.chispottes = {
     id: 'chispottes',
     name: 'Chispottes',
@@ -4654,7 +4503,6 @@ item.chispottes = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.golbottes = {
     id: 'golbottes',
     name: 'Golbottes',
@@ -4668,7 +4516,6 @@ item.golbottes = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 11 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.peignentif = {
     id: 'peignentif',
     name: 'Peignentif',
@@ -4682,7 +4529,6 @@ item.peignentif = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.collertue = {
     id: 'collertue',
     name: 'Collertue',
@@ -4696,7 +4542,6 @@ item.collertue = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 3 }, { stat: 'critDamagePct', value: 4 }],
     description: ''
 }
-
 item.bottes_siks_won_naine = {
     id: 'bottes_siks_won_naine',
     name: 'Bottes Siks Won Naïne',
@@ -4710,7 +4555,6 @@ item.bottes_siks_won_naine = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.chaponion = {
     id: 'chaponion',
     name: 'Chaponion',
@@ -4724,7 +4568,6 @@ item.chaponion = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.amulette_de_gobeuf = {
     id: 'amulette_de_gobeuf',
     name: 'Amulette de Gobeuf',
@@ -4738,7 +4581,6 @@ item.amulette_de_gobeuf = {
     stats: [{ stat: 'atk', value: 22 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_gobeuf = {
     id: 'ceinture_de_gobeuf',
     name: 'Ceinture de Gobeuf',
@@ -4752,7 +4594,6 @@ item.ceinture_de_gobeuf = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amulette_de_grut = {
     id: 'amulette_de_grut',
     name: 'Amulette de Grüt',
@@ -4766,7 +4607,6 @@ item.amulette_de_grut = {
     stats: [{ stat: 'atk', value: 27 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.bottes_de_kocksis = {
     id: 'bottes_de_kocksis',
     name: 'Bottes de Kocksis',
@@ -4780,7 +4620,6 @@ item.bottes_de_kocksis = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_kocksis = {
     id: 'ceinture_de_kocksis',
     name: 'Ceinture de Kocksis',
@@ -4794,7 +4633,6 @@ item.ceinture_de_kocksis = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.ceinture_de_kubitus = {
     id: 'ceinture_de_kubitus',
     name: 'Ceinture de Kubitus',
@@ -4808,7 +4646,6 @@ item.ceinture_de_kubitus = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.anneau_de_laikteur = {
     id: 'anneau_de_laikteur',
     name: 'Anneau de Laikteur',
@@ -4822,7 +4659,6 @@ item.anneau_de_laikteur = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulette_de_rapiat = {
     id: 'amulette_de_rapiat',
     name: 'Amulette de Rapiat',
@@ -4836,7 +4672,6 @@ item.amulette_de_rapiat = {
     stats: [{ stat: 'atk', value: 33 }, { stat: 'critChance', value: -4 }],
     description: ''
 }
-
 item.bottes_des_bouftons_rouges = {
     id: 'bottes_des_bouftons_rouges',
     name: 'Bottes des Bouftons Rouges',
@@ -4850,7 +4685,6 @@ item.bottes_des_bouftons_rouges = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_du_directeur_grunob = {
     id: 'bottes_du_directeur_grunob',
     name: 'Bottes du Directeur Grunob',
@@ -4864,7 +4698,6 @@ item.bottes_du_directeur_grunob = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 17 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_du_kanniboul_ebil = {
     id: 'bottes_du_kanniboul_ebil',
     name: 'Bottes du Kanniboul Ebil',
@@ -4878,7 +4711,6 @@ item.bottes_du_kanniboul_ebil = {
     stats: [{ stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.amukwak_de_flammes = {
     id: 'amukwak_de_flammes',
     name: 'Amukwak de Flammes',
@@ -4888,11 +4720,10 @@ item.amukwak_de_flammes = {
     set: 'panoplie_du_kwak_de_flammes',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.kwakanneau_de_flammes = {
     id: 'kwakanneau_de_flammes',
     name: 'Kwakanneau de Flammes',
@@ -4902,11 +4733,10 @@ item.kwakanneau_de_flammes = {
     set: 'panoplie_du_kwak_de_flammes',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 16 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.amukwak_de_glace = {
     id: 'amukwak_de_glace',
     name: 'Amukwak de Glace',
@@ -4916,11 +4746,10 @@ item.amukwak_de_glace = {
     set: 'panoplie_du_kwak_de_glace',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.kwakanneau_de_glace = {
     id: 'kwakanneau_de_glace',
     name: 'Kwakanneau de Glace',
@@ -4930,11 +4759,10 @@ item.kwakanneau_de_glace = {
     set: 'panoplie_du_kwak_de_glace',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 16 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.amukwak_de_terre = {
     id: 'amukwak_de_terre',
     name: 'Amukwak de Terre',
@@ -4944,11 +4772,10 @@ item.amukwak_de_terre = {
     set: 'panoplie_du_kwak_de_terre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.kwakanneau_de_terre = {
     id: 'kwakanneau_de_terre',
     name: 'Kwakanneau de Terre',
@@ -4958,11 +4785,10 @@ item.kwakanneau_de_terre = {
     set: 'panoplie_du_kwak_de_terre',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 16 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.amukwak_de_vent = {
     id: 'amukwak_de_vent',
     name: 'Amukwak de Vent',
@@ -4972,11 +4798,10 @@ item.amukwak_de_vent = {
     set: 'panoplie_du_kwak_de_vent',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.kwakanneau_de_vent = {
     id: 'kwakanneau_de_vent',
     name: 'Kwakanneau de Vent',
@@ -4986,11 +4811,10 @@ item.kwakanneau_de_vent = {
     set: 'panoplie_du_kwak_de_vent',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'atk', value: 16 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bottes_du_real_boitar = {
     id: 'bottes_du_real_boitar',
     name: 'Bottes du Real Boitar',
@@ -5004,7 +4828,6 @@ item.bottes_du_real_boitar = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.anneau_du_vampyre = {
     id: 'anneau_du_vampyre',
     name: 'Anneau du Vampyre',
@@ -5018,7 +4841,6 @@ item.anneau_du_vampyre = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.ceinture_du_vampyre = {
     id: 'ceinture_du_vampyre',
     name: 'Ceinture du Vampyre',
@@ -5032,7 +4854,6 @@ item.ceinture_du_vampyre = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.masque_du_vampyre = {
     id: 'masque_du_vampyre',
     name: 'Masque du Vampyre',
@@ -5046,7 +4867,6 @@ item.masque_du_vampyre = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.esprit_de_crocoburio = {
     id: 'esprit_de_crocoburio',
     name: 'Esprit de Crocoburio',
@@ -5060,7 +4880,6 @@ item.esprit_de_crocoburio = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 31 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.la_chaplivate = {
     id: 'la_chaplivate',
     name: 'La Chaplivate',
@@ -5074,7 +4893,6 @@ item.la_chaplivate = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.les_chaplures = {
     id: 'les_chaplures',
     name: 'Les Chaplures',
@@ -5088,7 +4906,6 @@ item.les_chaplures = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.megabottes = {
     id: 'megabottes',
     name: 'Mégabottes',
@@ -5102,7 +4919,6 @@ item.megabottes = {
     stats: [{ stat: 'atk', value: 32 }, { stat: 'spd', value: 6 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.baton_akwadala = {
     id: 'baton_akwadala',
     name: 'Bâton Akwadala',
@@ -5116,7 +4932,6 @@ item.baton_akwadala = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.chapeau_akwadala = {
     id: 'chapeau_akwadala',
     name: 'Chapeau Akwadala',
@@ -5130,7 +4945,6 @@ item.chapeau_akwadala = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_o_feu = {
     id: 'bottes_o_feu',
     name: 'Bottes O\'Feu',
@@ -5144,7 +4958,6 @@ item.bottes_o_feu = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 23 }, { stat: 'critResPct', value: 3 }],
     description: ''
 }
-
 item.bottes_paupayahn = {
     id: 'bottes_paupayahn',
     name: 'Bottes Paupayahn',
@@ -5158,7 +4971,6 @@ item.bottes_paupayahn = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 7 }, { stat: 'spd', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.anneau_pomdeupin = {
     id: 'anneau_pomdeupin',
     name: 'Anneau Pomdeupin',
@@ -5172,7 +4984,6 @@ item.anneau_pomdeupin = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.collier_sleump = {
     id: 'collier_sleump',
     name: 'Collier Sleump',
@@ -5186,7 +4997,6 @@ item.collier_sleump = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 11 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.les_sleumpettes = {
     id: 'les_sleumpettes',
     name: 'Les Sleumpettes',
@@ -5200,7 +5010,6 @@ item.les_sleumpettes = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'flatDamage', value: 1 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.bottes_vioutifoule = {
     id: 'bottes_vioutifoule',
     name: 'Bottes Vioutifoule',
@@ -5214,7 +5023,6 @@ item.bottes_vioutifoule = {
     stats: [{ stat: 'atk', value: 23 }, { stat: 'spd', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.anneau_de_grizou = {
     id: 'anneau_de_grizou',
     name: 'Anneau de Grizou',
@@ -5228,7 +5036,6 @@ item.anneau_de_grizou = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 6 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.ceinture_de_grizou = {
     id: 'ceinture_de_grizou',
     name: 'Ceinture de Grizou',
@@ -5242,7 +5049,6 @@ item.ceinture_de_grizou = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.ceinture_de_grouillot = {
     id: 'ceinture_de_grouillot',
     name: 'Ceinture de Grouillot',
@@ -5256,7 +5062,6 @@ item.ceinture_de_grouillot = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.amulette_de_kalkaneus = {
     id: 'amulette_de_kalkaneus',
     name: 'Amulette de Kalkanéus',
@@ -5270,7 +5075,6 @@ item.amulette_de_kalkaneus = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.bottes_de_laikteur = {
     id: 'bottes_de_laikteur',
     name: 'Bottes de Laikteur',
@@ -5284,7 +5088,6 @@ item.bottes_de_laikteur = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.anneau_de_slait = {
     id: 'anneau_de_slait',
     name: 'Anneau de Slait',
@@ -5298,7 +5101,6 @@ item.anneau_de_slait = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.bottes_de_slait = {
     id: 'bottes_de_slait',
     name: 'Bottes de Slait',
@@ -5312,7 +5114,6 @@ item.bottes_de_slait = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 4 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_tracon = {
     id: 'ceinture_de_tracon',
     name: 'Ceinture de Traçon',
@@ -5326,7 +5127,6 @@ item.ceinture_de_tracon = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.marteau_du_chafer_draugr = {
     id: 'marteau_du_chafer_draugr',
     name: 'Marteau du Chafer Draugr',
@@ -5340,7 +5140,6 @@ item.marteau_du_chafer_draugr = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'lifestealPct', value: 3 }],
     description: ''
 }
-
 item.gantelet_des_bouftons_rouges = {
     id: 'gantelet_des_bouftons_rouges',
     name: 'Gantelet des Bouftons Rouges',
@@ -5354,7 +5153,6 @@ item.gantelet_des_bouftons_rouges = {
     stats: [{ stat: 'atk', value: 26 }, { stat: 'res.eau', value: -2 }, { stat: 'res.terre', value: -2 }],
     description: ''
 }
-
 item.alliance_du_kanniboul_ebil = {
     id: 'alliance_du_kanniboul_ebil',
     name: 'Alliance du Kanniboul Ebil',
@@ -5368,7 +5166,6 @@ item.alliance_du_kanniboul_ebil = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.gantelet_du_real_boitar = {
     id: 'gantelet_du_real_boitar',
     name: 'Gantelet du Real Boitar',
@@ -5382,7 +5179,6 @@ item.gantelet_du_real_boitar = {
     stats: [{ stat: 'atk', value: 26 }, { stat: 'res.feu', value: -2 }, { stat: 'res.air', value: -2 }],
     description: ''
 }
-
 item.anneau_du_scarabosse_dore = {
     id: 'anneau_du_scarabosse_dore',
     name: 'Anneau du Scarabosse Doré',
@@ -5392,11 +5188,10 @@ item.anneau_du_scarabosse_dore = {
     set: 'panoplie_du_scarabosse_dore',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 43,
+    requiredLevel: 45,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 1 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.scaranneau_blanc = {
     id: 'scaranneau_blanc',
     name: 'Scaranneau Blanc',
@@ -5406,11 +5201,10 @@ item.scaranneau_blanc = {
     set: 'panoplie_du_scarafeuille_blanc',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 43,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.scaranneau_bleu = {
     id: 'scaranneau_bleu',
     name: 'Scaranneau Bleu',
@@ -5420,11 +5214,10 @@ item.scaranneau_bleu = {
     set: 'panoplie_du_scarafeuille_bleu',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 43,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.scarature_noire = {
     id: 'scarature_noire',
     name: 'Scarature Noire',
@@ -5434,11 +5227,10 @@ item.scarature_noire = {
     set: 'panoplie_du_scarafeuille_noir',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 43,
+    requiredLevel: 30,
     stats: [{ stat: 'spd', value: 1 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.scaranneau_rouge = {
     id: 'scaranneau_rouge',
     name: 'Scaranneau Rouge',
@@ -5448,11 +5240,10 @@ item.scaranneau_rouge = {
     set: 'panoplie_du_scarafeuille_rouge',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 43,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.scaranneau_vert = {
     id: 'scaranneau_vert',
     name: 'Scaranneau Vert',
@@ -5462,11 +5253,10 @@ item.scaranneau_vert = {
     set: 'panoplie_du_scarafeuille_vert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 43,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.yugolette = {
     id: 'yugolette',
     name: 'Yugolette',
@@ -5480,7 +5270,6 @@ item.yugolette = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.yugure = {
     id: 'yugure',
     name: 'Yugure',
@@ -5494,7 +5283,6 @@ item.yugure = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.mitaines_de_chisp = {
     id: 'mitaines_de_chisp',
     name: 'Mitaines de Chisp',
@@ -5508,7 +5296,6 @@ item.mitaines_de_chisp = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.fulgu_au_poing = {
     id: 'fulgu_au_poing',
     name: 'Fulgu au poing',
@@ -5522,7 +5309,6 @@ item.fulgu_au_poing = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.anneau_de_gobeuf = {
     id: 'anneau_de_gobeuf',
     name: 'Anneau de Gobeuf',
@@ -5536,7 +5322,6 @@ item.anneau_de_gobeuf = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }],
     description: ''
 }
-
 item.bottes_de_grouillot = {
     id: 'bottes_de_grouillot',
     name: 'Bottes de Grouillot',
@@ -5550,7 +5335,6 @@ item.bottes_de_grouillot = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_de_grut = {
     id: 'bottes_de_grut',
     name: 'Bottes de Grüt',
@@ -5564,7 +5348,6 @@ item.bottes_de_grut = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.kabuto_du_chafer_ronin = {
     id: 'kabuto_du_chafer_ronin',
     name: 'Kabuto du Chafer Rōnin',
@@ -5578,7 +5361,6 @@ item.kabuto_du_chafer_ronin = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'critResPct', value: 4 }],
     description: ''
 }
-
 item.anneau_du_boostache = {
     id: 'anneau_du_boostache',
     name: 'Anneau du Boostache',
@@ -5592,7 +5374,6 @@ item.anneau_du_boostache = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.scaracoiffe_blanche = {
     id: 'scaracoiffe_blanche',
     name: 'Scaracoiffe Blanche',
@@ -5602,11 +5383,10 @@ item.scaracoiffe_blanche = {
     set: 'panoplie_du_scarafeuille_blanc',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 44,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 1 }, { stat: 'res.air', value: 1 }],
     description: ''
 }
-
 item.scaracoiffe_bleue = {
     id: 'scaracoiffe_bleue',
     name: 'Scaracoiffe Bleue',
@@ -5616,11 +5396,10 @@ item.scaracoiffe_bleue = {
     set: 'panoplie_du_scarafeuille_bleu',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 44,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 1 }, { stat: 'res.eau', value: 1 }],
     description: ''
 }
-
 item.scaracoiffe_rouge = {
     id: 'scaracoiffe_rouge',
     name: 'Scaracoiffe Rouge',
@@ -5630,11 +5409,10 @@ item.scaracoiffe_rouge = {
     set: 'panoplie_du_scarafeuille_rouge',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 44,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 1 }, { stat: 'res.feu', value: 1 }],
     description: ''
 }
-
 item.scaracoiffe_verte = {
     id: 'scaracoiffe_verte',
     name: 'Scaracoiffe Verte',
@@ -5644,11 +5422,10 @@ item.scaracoiffe_verte = {
     set: 'panoplie_du_scarafeuille_vert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 44,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 1 }, { stat: 'res.terre', value: 1 }],
     description: ''
 }
-
 item.gladiabottes = {
     id: 'gladiabottes',
     name: 'Gladiabottes',
@@ -5662,7 +5439,6 @@ item.gladiabottes = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 7 }],
     description: ''
 }
-
 item.megature = {
     id: 'megature',
     name: 'Mégature',
@@ -5676,7 +5452,6 @@ item.megature = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.anneau_paupayahn = {
     id: 'anneau_paupayahn',
     name: 'Anneau Paupayahn',
@@ -5690,7 +5465,6 @@ item.anneau_paupayahn = {
     stats: [{ stat: 'maxHp', value: 6 }, { stat: 'atk', value: 11 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.amulette_de_grilliane = {
     id: 'amulette_de_grilliane',
     name: 'Amulette de Grilliane',
@@ -5704,7 +5478,6 @@ item.amulette_de_grilliane = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.bottes_de_kubitus = {
     id: 'bottes_de_kubitus',
     name: 'Bottes de Kubitus',
@@ -5718,7 +5491,6 @@ item.bottes_de_kubitus = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_de_stroud = {
     id: 'bottes_de_stroud',
     name: 'Bottes de Stroud',
@@ -5732,7 +5504,6 @@ item.bottes_de_stroud = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulette_de_tracon = {
     id: 'amulette_de_tracon',
     name: 'Amulette de Traçon',
@@ -5746,7 +5517,6 @@ item.amulette_de_tracon = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.abrabottes = {
     id: 'abrabottes',
     name: 'Abrabottes',
@@ -5760,7 +5530,6 @@ item.abrabottes = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.abracapa = {
     id: 'abracapa',
     name: 'Abracapa',
@@ -5774,7 +5543,6 @@ item.abracapa = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 1 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.abracaska = {
     id: 'abracaska',
     name: 'Abracaska',
@@ -5788,7 +5556,6 @@ item.abracaska = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 35 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.abraton = {
     id: 'abraton',
     name: 'Abraton',
@@ -5802,7 +5569,6 @@ item.abraton = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: -35 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 15 }],
     description: ''
 }
-
 item.abrature = {
     id: 'abrature',
     name: 'Abrature',
@@ -5816,7 +5582,6 @@ item.abrature = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.pagne_du_chafer_ronin = {
     id: 'pagne_du_chafer_ronin',
     name: 'Pagne du Chafer Rōnin',
@@ -5830,7 +5595,6 @@ item.pagne_du_chafer_ronin = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 6 }, { stat: 'critResPct', value: 4 }],
     description: ''
 }
-
 item.ceinture_du_boostache = {
     id: 'ceinture_du_boostache',
     name: 'Ceinture du Boostache',
@@ -5844,7 +5608,6 @@ item.ceinture_du_boostache = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.amulette_du_scarabosse_dore = {
     id: 'amulette_du_scarabosse_dore',
     name: 'Amulette du Scarabosse Doré',
@@ -5858,7 +5621,6 @@ item.amulette_du_scarabosse_dore = {
     stats: [{ stat: 'atk', value: 36 }],
     description: ''
 }
-
 item.scaracape_blanche = {
     id: 'scaracape_blanche',
     name: 'Scaracape Blanche',
@@ -5868,11 +5630,10 @@ item.scaracape_blanche = {
     set: 'panoplie_du_scarafeuille_blanc',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 45,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.scaracape_bleue = {
     id: 'scaracape_bleue',
     name: 'Scaracape Bleue',
@@ -5882,11 +5643,10 @@ item.scaracape_bleue = {
     set: 'panoplie_du_scarafeuille_bleu',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 45,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.scaracape_rouge = {
     id: 'scaracape_rouge',
     name: 'Scaracape Rouge',
@@ -5896,11 +5656,10 @@ item.scaracape_rouge = {
     set: 'panoplie_du_scarafeuille_rouge',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 45,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.scaracape_verte = {
     id: 'scaracape_verte',
     name: 'Scaracape Verte',
@@ -5910,11 +5669,10 @@ item.scaracape_verte = {
     set: 'panoplie_du_scarafeuille_vert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 45,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.bracelet_du_tetounik = {
     id: 'bracelet_du_tetounik',
     name: 'Bracelet du Tétounik',
@@ -5928,7 +5686,6 @@ item.bracelet_du_tetounik = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 15 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.amulette_du_vampyre = {
     id: 'amulette_du_vampyre',
     name: 'Amulette du Vampyre',
@@ -5942,7 +5699,6 @@ item.amulette_du_vampyre = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.printanneau = {
     id: 'printanneau',
     name: 'Printanneau',
@@ -5956,7 +5712,6 @@ item.printanneau = {
     stats: [{ stat: 'maxHp', value: 11 }, { stat: 'atk', value: 22 }],
     description: ''
 }
-
 item.abramu = {
     id: 'abramu',
     name: 'Abramu',
@@ -5970,7 +5725,6 @@ item.abramu = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: -15 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.abranneau_mou = {
     id: 'abranneau_mou',
     name: 'Abranneau Mou',
@@ -5984,7 +5738,6 @@ item.abranneau_mou = {
     stats: [{ stat: 'maxHp', value: 31 }],
     description: ''
 }
-
 item.gladialecon = {
     id: 'gladialecon',
     name: 'Gladialeçon',
@@ -5998,7 +5751,6 @@ item.gladialecon = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.ceinture_vioutifoule = {
     id: 'ceinture_vioutifoule',
     name: 'Ceinture Vioutifoule',
@@ -6012,7 +5764,6 @@ item.ceinture_vioutifoule = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.amulette_d_haku = {
     id: 'amulette_d_haku',
     name: 'Amulette d\'Haku',
@@ -6026,7 +5777,6 @@ item.amulette_d_haku = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.anneau_d_haku = {
     id: 'anneau_d_haku',
     name: 'Anneau d\'Haku',
@@ -6040,7 +5790,6 @@ item.anneau_d_haku = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 3 }, { stat: 'critResPct', value: 3 }],
     description: ''
 }
-
 item.bottes_de_grilliane = {
     id: 'bottes_de_grilliane',
     name: 'Bottes de Grilliane',
@@ -6054,7 +5803,6 @@ item.bottes_de_grilliane = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.anneau_de_grouillot = {
     id: 'anneau_de_grouillot',
     name: 'Anneau de Grouillot',
@@ -6068,7 +5816,6 @@ item.anneau_de_grouillot = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.bottes_de_tracon = {
     id: 'bottes_de_tracon',
     name: 'Bottes de Traçon',
@@ -6082,7 +5829,6 @@ item.bottes_de_tracon = {
     stats: [{ stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.ceinture_du_black_wab = {
     id: 'ceinture_du_black_wab',
     name: 'Ceinture du Black Wab',
@@ -6096,7 +5842,6 @@ item.ceinture_du_black_wab = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'critDamagePct', value: 7 }],
     description: ''
 }
-
 item.masque_du_kanniboul_ebil = {
     id: 'masque_du_kanniboul_ebil',
     name: 'Masque du Kanniboul Ebil',
@@ -6110,7 +5855,6 @@ item.masque_du_kanniboul_ebil = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 6 }, { stat: 'critResPct', value: 7 }],
     description: ''
 }
-
 item.scarature_blanche = {
     id: 'scarature_blanche',
     name: 'Scarature Blanche',
@@ -6120,11 +5864,10 @@ item.scarature_blanche = {
     set: 'panoplie_du_scarafeuille_blanc',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 46,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'res.feu', value: 1 }, { stat: 'res.eau', value: 1 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.scarature_bleue = {
     id: 'scarature_bleue',
     name: 'Scarature Bleue',
@@ -6134,11 +5877,10 @@ item.scarature_bleue = {
     set: 'panoplie_du_scarafeuille_bleu',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 46,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'res.feu', value: 1 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 1 }],
     description: ''
 }
-
 item.scarature_rouge = {
     id: 'scarature_rouge',
     name: 'Scarature Rouge',
@@ -6148,11 +5890,10 @@ item.scarature_rouge = {
     set: 'panoplie_du_scarafeuille_rouge',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 46,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 1 }, { stat: 'res.air', value: 1 }],
     description: ''
 }
-
 item.scarature_verte = {
     id: 'scarature_verte',
     name: 'Scarature Verte',
@@ -6162,11 +5903,10 @@ item.scarature_verte = {
     set: 'panoplie_du_scarafeuille_vert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 46,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'res.feu', value: 1 }, { stat: 'res.eau', value: 1 }, { stat: 'res.terre', value: 1 }, { stat: 'res.air', value: 1 }],
     description: ''
 }
-
 item.amulette_papayou = {
     id: 'amulette_papayou',
     name: 'Amulette Papayou',
@@ -6180,7 +5920,6 @@ item.amulette_papayou = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.bottines_du_black_wab = {
     id: 'bottines_du_black_wab',
     name: 'Bottines du Black Wab',
@@ -6194,7 +5933,6 @@ item.bottines_du_black_wab = {
     stats: [{ stat: 'atk', value: 26 }, { stat: 'critChance', value: 1 }],
     description: ''
 }
-
 item.sceptre_du_kanniboul_ebil = {
     id: 'sceptre_du_kanniboul_ebil',
     name: 'Sceptre du Kanniboul Ebil',
@@ -6208,7 +5946,6 @@ item.sceptre_du_kanniboul_ebil = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 22 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.lainture = {
     id: 'lainture',
     name: 'Lainture',
@@ -6222,7 +5959,6 @@ item.lainture = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 5 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.printatanes = {
     id: 'printatanes',
     name: 'Printatanes',
@@ -6236,7 +5972,6 @@ item.printatanes = {
     stats: [{ stat: 'atk', value: -4 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bracelet_gume = {
     id: 'bracelet_gume',
     name: 'Bracelet Gume',
@@ -6250,7 +5985,6 @@ item.bracelet_gume = {
     stats: [{ stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_d_haku = {
     id: 'bottes_d_haku',
     name: 'Bottes d\'Haku',
@@ -6264,7 +5998,6 @@ item.bottes_d_haku = {
     stats: [{ stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.eau', value: -2 }],
     description: ''
 }
-
 item.anneau_de_karotz = {
     id: 'anneau_de_karotz',
     name: 'Anneau de Karotz',
@@ -6278,7 +6011,6 @@ item.anneau_de_karotz = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.casquette_de_rakoopeur = {
     id: 'casquette_de_rakoopeur',
     name: 'Casquette de Rakoopeur',
@@ -6292,7 +6024,6 @@ item.casquette_de_rakoopeur = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 6 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.alliance_des_rebelles = {
     id: 'alliance_des_rebelles',
     name: 'Alliance des Rebelles',
@@ -6306,7 +6037,6 @@ item.alliance_des_rebelles = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: -11 }],
     description: ''
 }
-
 item.amulette_du_boostache = {
     id: 'amulette_du_boostache',
     name: 'Amulette du Boostache',
@@ -6320,7 +6050,6 @@ item.amulette_du_boostache = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.calecon_a_bretelles_du_parrain = {
     id: 'calecon_a_bretelles_du_parrain',
     name: 'Caleçon à bretelles du Parrain',
@@ -6334,7 +6063,6 @@ item.calecon_a_bretelles_du_parrain = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.scaranneau_noir = {
     id: 'scaranneau_noir',
     name: 'Scaranneau Noir',
@@ -6344,11 +6072,10 @@ item.scaranneau_noir = {
     set: 'panoplie_du_scarafeuille_noir',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 48,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.sandales_papayou = {
     id: 'sandales_papayou',
     name: 'Sandales Papayou',
@@ -6362,7 +6089,6 @@ item.sandales_papayou = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.tutu_rose = {
     id: 'tutu_rose',
     name: 'Tutu Rose',
@@ -6376,7 +6102,6 @@ item.tutu_rose = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.anneau_de_gadjete = {
     id: 'anneau_de_gadjete',
     name: 'Anneau de Gadjète',
@@ -6390,7 +6115,6 @@ item.anneau_de_gadjete = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_gadjete = {
     id: 'ceinture_de_gadjete',
     name: 'Ceinture de Gadjète',
@@ -6404,7 +6128,6 @@ item.ceinture_de_gadjete = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 37 }, { stat: 'spd', value: 16 }],
     description: ''
 }
-
 item.amulette_de_karotz = {
     id: 'amulette_de_karotz',
     name: 'Amulette de Karotz',
@@ -6418,7 +6141,6 @@ item.amulette_de_karotz = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 6 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.amulette_de_logram = {
     id: 'amulette_de_logram',
     name: 'Amulette de Logram',
@@ -6432,7 +6154,6 @@ item.amulette_de_logram = {
     stats: [{ stat: 'maxHp', value: 36 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.string_du_mulou = {
     id: 'string_du_mulou',
     name: 'String du Mulou',
@@ -6446,7 +6167,6 @@ item.string_du_mulou = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.anodindo = {
     id: 'anodindo',
     name: 'Anodindo',
@@ -6460,7 +6180,6 @@ item.anodindo = {
     stats: [{ stat: 'atk', value: 11 }],
     description: ''
 }
-
 item.botodindo = {
     id: 'botodindo',
     name: 'Botodindo',
@@ -6474,7 +6193,6 @@ item.botodindo = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.capodindo = {
     id: 'capodindo',
     name: 'Capodindo',
@@ -6488,7 +6206,6 @@ item.capodindo = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.chapodindo = {
     id: 'chapodindo',
     name: 'Chapodindo',
@@ -6502,7 +6219,6 @@ item.chapodindo = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 3 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_bouftou_ankarton = {
     id: 'coiffe_du_bouftou_ankarton',
     name: 'Coiffe du Bouftou Ankarton',
@@ -6516,7 +6232,6 @@ item.coiffe_du_bouftou_ankarton = {
     stats: [],
     description: ''
 }
-
 item.goultard_ankarton = {
     id: 'goultard_ankarton',
     name: 'Goultard Ankarton',
@@ -6530,7 +6245,6 @@ item.goultard_ankarton = {
     stats: [{ stat: 'flatDamage', value: 12 }],
     description: ''
 }
-
 item.amublop_coco = {
     id: 'amublop_coco',
     name: 'Amublop Coco',
@@ -6544,7 +6258,6 @@ item.amublop_coco = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.blopanneau_coco = {
     id: 'blopanneau_coco',
     name: 'Blopanneau Coco',
@@ -6558,7 +6271,6 @@ item.blopanneau_coco = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.bloptes_coco = {
     id: 'bloptes_coco',
     name: 'Bloptes Coco',
@@ -6572,7 +6284,6 @@ item.bloptes_coco = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }, { stat: 'spd', value: 11 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.blopture_coco = {
     id: 'blopture_coco',
     name: 'Blopture Coco',
@@ -6586,7 +6297,6 @@ item.blopture_coco = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amublop_griotte = {
     id: 'amublop_griotte',
     name: 'Amublop Griotte',
@@ -6600,7 +6310,6 @@ item.amublop_griotte = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.blopanneau_griotte = {
     id: 'blopanneau_griotte',
     name: 'Blopanneau Griotte',
@@ -6614,7 +6323,6 @@ item.blopanneau_griotte = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.bloptes_griottes = {
     id: 'bloptes_griottes',
     name: 'Bloptes Griottes',
@@ -6628,7 +6336,6 @@ item.bloptes_griottes = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }, { stat: 'spd', value: 11 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.blopture_griotte = {
     id: 'blopture_griotte',
     name: 'Blopture Griotte',
@@ -6642,7 +6349,6 @@ item.blopture_griotte = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amublop_indigo = {
     id: 'amublop_indigo',
     name: 'Amublop Indigo',
@@ -6656,7 +6362,6 @@ item.amublop_indigo = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.blopanneau_indigo = {
     id: 'blopanneau_indigo',
     name: 'Blopanneau Indigo',
@@ -6670,7 +6375,6 @@ item.blopanneau_indigo = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.bloptes_indigo = {
     id: 'bloptes_indigo',
     name: 'Bloptes Indigo',
@@ -6684,7 +6388,6 @@ item.bloptes_indigo = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }, { stat: 'spd', value: 11 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.blopture_indigo = {
     id: 'blopture_indigo',
     name: 'Blopture Indigo',
@@ -6698,7 +6401,6 @@ item.blopture_indigo = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.amublop_reinette = {
     id: 'amublop_reinette',
     name: 'Amublop Reinette',
@@ -6712,7 +6414,6 @@ item.amublop_reinette = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.blopanneau_reinette = {
     id: 'blopanneau_reinette',
     name: 'Blopanneau Reinette',
@@ -6726,7 +6427,6 @@ item.blopanneau_reinette = {
     stats: [{ stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.bloptes_reinette = {
     id: 'bloptes_reinette',
     name: 'Bloptes Reinette',
@@ -6740,7 +6440,6 @@ item.bloptes_reinette = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }, { stat: 'spd', value: 11 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.blopture_reinette = {
     id: 'blopture_reinette',
     name: 'Blopture Reinette',
@@ -6754,7 +6453,6 @@ item.blopture_reinette = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.ceinture_fulgurante = {
     id: 'ceinture_fulgurante',
     name: 'Ceinture Fulgurante',
@@ -6768,7 +6466,6 @@ item.ceinture_fulgurante = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.cape_ouginak = {
     id: 'cape_ouginak',
     name: 'Cape Ouginak',
@@ -6782,7 +6479,6 @@ item.cape_ouginak = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.bottes_de_bowisse = {
     id: 'bottes_de_bowisse',
     name: 'Bottes de Bowisse',
@@ -6796,7 +6492,6 @@ item.bottes_de_bowisse = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.sabots_aiguilles_de_feline = {
     id: 'sabots_aiguilles_de_feline',
     name: 'Sabots Aiguilles de Féline',
@@ -6810,7 +6505,6 @@ item.sabots_aiguilles_de_feline = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.anneau_de_logram = {
     id: 'anneau_de_logram',
     name: 'Anneau de Logram',
@@ -6824,7 +6518,6 @@ item.anneau_de_logram = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 3 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.queue_de_rakoopeur = {
     id: 'queue_de_rakoopeur',
     name: 'Queue de Rakoopeur',
@@ -6838,7 +6531,6 @@ item.queue_de_rakoopeur = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.lance_de_guerrier_albueran = {
     id: 'lance_de_guerrier_albueran',
     name: 'Lance de guerrier albueran',
@@ -6852,7 +6544,6 @@ item.lance_de_guerrier_albueran = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'lifestealPct', value: 3 }],
     description: ''
 }
-
 item.amuronce = {
     id: 'amuronce',
     name: 'Amuronce',
@@ -6866,7 +6557,6 @@ item.amuronce = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 46 }, { stat: 'critChance', value: -4 }],
     description: ''
 }
-
 item.ceinturonce = {
     id: 'ceinturonce',
     name: 'Ceinturonce',
@@ -6880,7 +6570,6 @@ item.ceinturonce = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.lance_de_trappeur_albueran = {
     id: 'lance_de_trappeur_albueran',
     name: 'Lance de trappeur albueran',
@@ -6894,7 +6583,6 @@ item.lance_de_trappeur_albueran = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 31 }, { stat: 'heal', value: 20 }],
     description: ''
 }
-
 item.cape_des_rebelles = {
     id: 'cape_des_rebelles',
     name: 'Cape des Rebelles',
@@ -6908,7 +6596,6 @@ item.cape_des_rebelles = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: -9 }],
     description: ''
 }
-
 item.sac_de_voyage_du_parfait_petit_vulkain = {
     id: 'sac_de_voyage_du_parfait_petit_vulkain',
     name: 'Sac de Voyage du Parfait Petit Vulkain',
@@ -6922,7 +6609,6 @@ item.sac_de_voyage_du_parfait_petit_vulkain = {
     stats: [{ stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.chaussettenlaine = {
     id: 'chaussettenlaine',
     name: 'Chaussettenlaine',
@@ -6936,7 +6622,6 @@ item.chaussettenlaine = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'res.eau', value: 1 }],
     description: ''
 }
-
 item.ceinture_de_coffrete = {
     id: 'ceinture_de_coffrete',
     name: 'Ceinture de Coffreté',
@@ -6950,7 +6635,6 @@ item.ceinture_de_coffrete = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ballerines_roses = {
     id: 'ballerines_roses',
     name: 'Ballerines Roses',
@@ -6964,7 +6648,6 @@ item.ballerines_roses = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 5 }],
     description: ''
 }
-
 item.ceinture_d_hulkrap = {
     id: 'ceinture_d_hulkrap',
     name: 'Ceinture d\'Hulkrap',
@@ -6978,7 +6661,6 @@ item.ceinture_d_hulkrap = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.bottes_de_karotz = {
     id: 'bottes_de_karotz',
     name: 'Bottes de Karotz',
@@ -6992,7 +6674,6 @@ item.bottes_de_karotz = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.anneau_de_kloug = {
     id: 'anneau_de_kloug',
     name: 'Anneau de Kloug',
@@ -7006,7 +6687,6 @@ item.anneau_de_kloug = {
     stats: [{ stat: 'atk', value: 22 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ceinture_de_kloug = {
     id: 'ceinture_de_kloug',
     name: 'Ceinture de Kloug',
@@ -7020,7 +6700,6 @@ item.ceinture_de_kloug = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 36 }],
     description: ''
 }
-
 item.mitaine_des_scalarcin = {
     id: 'mitaine_des_scalarcin',
     name: 'Mitaine des Scalarcin',
@@ -7034,7 +6713,6 @@ item.mitaine_des_scalarcin = {
     stats: [{ stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.anneau_du_mulou = {
     id: 'anneau_du_mulou',
     name: 'Anneau du Mulou',
@@ -7048,7 +6726,6 @@ item.anneau_du_mulou = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.anneau_du_roks_or = {
     id: 'anneau_du_roks_or',
     name: 'Anneau du Roks Or',
@@ -7062,7 +6739,6 @@ item.anneau_du_roks_or = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 11 }, { stat: 'heal', value: 1 }],
     description: ''
 }
-
 item.scarature_doree = {
     id: 'scarature_doree',
     name: 'Scarature Dorée',
@@ -7072,11 +6748,10 @@ item.scarature_doree = {
     set: 'panoplie_du_scarabosse_dore',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 51,
+    requiredLevel: 45,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.scaracape_noire = {
     id: 'scaracape_noire',
     name: 'Scaracape Noire',
@@ -7086,11 +6761,10 @@ item.scaracape_noire = {
     set: 'panoplie_du_scarafeuille_noir',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 51,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'flatDamage', value: 18 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.bottes_de_klume = {
     id: 'bottes_de_klume',
     name: 'Bottes de Klüme',
@@ -7104,7 +6778,6 @@ item.bottes_de_klume = {
     stats: [{ stat: 'maxHp', value: -30 }, { stat: 'atk', value: -15 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_klume = {
     id: 'ceinture_de_klume',
     name: 'Ceinture de Klüme',
@@ -7118,7 +6791,6 @@ item.ceinture_de_klume = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 52 }],
     description: ''
 }
-
 item.serpe_de_rakoopeur = {
     id: 'serpe_de_rakoopeur',
     name: 'Serpe de Rakoopeur',
@@ -7132,7 +6804,6 @@ item.serpe_de_rakoopeur = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: -4 }, { stat: 'flatDamage', value: 16 }],
     description: ''
 }
-
 item.anneau_de_guerrier_albueran = {
     id: 'anneau_de_guerrier_albueran',
     name: 'Anneau de guerrier albueran',
@@ -7146,7 +6817,6 @@ item.anneau_de_guerrier_albueran = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.ceinture_de_trappeur_albueran = {
     id: 'ceinture_de_trappeur_albueran',
     name: 'Ceinture de trappeur albueran',
@@ -7160,7 +6830,6 @@ item.ceinture_de_trappeur_albueran = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 31 }, { stat: 'heal', value: 6 }],
     description: ''
 }
-
 item.bottes_des_rebelles = {
     id: 'bottes_des_rebelles',
     name: 'Bottes des Rebelles',
@@ -7174,7 +6843,6 @@ item.bottes_des_rebelles = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: -10 }],
     description: ''
 }
-
 item.kwakwalliance = {
     id: 'kwakwalliance',
     name: 'Kwakwalliance',
@@ -7184,11 +6852,10 @@ item.kwakwalliance = {
     set: 'panoplie_du_kwakwa',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 52,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.kwakwanneau = {
     id: 'kwakwanneau',
     name: 'Kwakwanneau',
@@ -7198,11 +6865,10 @@ item.kwakwanneau = {
     set: 'panoplie_du_kwakwa',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 52,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.casque_du_roks_or = {
     id: 'casque_du_roks_or',
     name: 'Casque du Roks Or',
@@ -7216,7 +6882,6 @@ item.casque_du_roks_or = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.chapeau_du_vulkain = {
     id: 'chapeau_du_vulkain',
     name: 'Chapeau du Vulkain',
@@ -7230,7 +6895,6 @@ item.chapeau_du_vulkain = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 5 }],
     description: ''
 }
-
 item.boffes_cottre = {
     id: 'boffes_cottre',
     name: 'Boffes Cottre',
@@ -7244,7 +6908,6 @@ item.boffes_cottre = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: -10 }],
     description: ''
 }
-
 item.alliance_d_hichete = {
     id: 'alliance_d_hichete',
     name: 'Alliance d\'Hichète',
@@ -7258,7 +6921,6 @@ item.alliance_d_hichete = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulette_d_hulkrap = {
     id: 'amulette_d_hulkrap',
     name: 'Amulette d\'Hulkrap',
@@ -7272,7 +6934,6 @@ item.amulette_d_hulkrap = {
     stats: [{ stat: 'atk', value: 46 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.bottes_d_hulkrap = {
     id: 'bottes_d_hulkrap',
     name: 'Bottes d\'Hulkrap',
@@ -7286,7 +6947,6 @@ item.bottes_d_hulkrap = {
     stats: [{ stat: 'maxHp', value: -30 }, { stat: 'atk', value: -15 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.collier_de_feline = {
     id: 'collier_de_feline',
     name: 'Collier de Féline',
@@ -7300,7 +6960,6 @@ item.collier_de_feline = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 11 }, { stat: 'critChance', value: 1 }, { stat: 'critResPct', value: 4 }],
     description: ''
 }
-
 item.amulette_de_kloug = {
     id: 'amulette_de_kloug',
     name: 'Amulette de Kloug',
@@ -7314,7 +6973,6 @@ item.amulette_de_kloug = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.geta_de_logram = {
     id: 'geta_de_logram',
     name: 'Geta de Logram',
@@ -7328,7 +6986,6 @@ item.geta_de_logram = {
     stats: [{ stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 4 }, { stat: 'res.neutre', value: -3 }],
     description: ''
 }
-
 item.amulette_de_mirh = {
     id: 'amulette_de_mirh',
     name: 'Amulette de Mirh',
@@ -7342,7 +6999,6 @@ item.amulette_de_mirh = {
     stats: [{ stat: 'atk', value: 41 }, { stat: 'spd', value: 6 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.chaussettes_des_scalarcin = {
     id: 'chaussettes_des_scalarcin',
     name: 'Chaussettes des Scalarcin',
@@ -7356,7 +7012,6 @@ item.chaussettes_des_scalarcin = {
     stats: [{ stat: 'atk', value: 32 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.anneau_du_koalak = {
     id: 'anneau_du_koalak',
     name: 'Anneau du Koalak',
@@ -7370,7 +7025,6 @@ item.anneau_du_koalak = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.ceinture_amincissante = {
     id: 'ceinture_amincissante',
     name: 'Ceinture Amincissante',
@@ -7384,7 +7038,6 @@ item.ceinture_amincissante = {
     stats: [{ stat: 'maxHp', value: 42 }, { stat: 'atk', value: 24 }, { stat: 'spd', value: 3 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_roks_or = {
     id: 'ceinture_du_roks_or',
     name: 'Ceinture du Roks Or',
@@ -7398,7 +7051,6 @@ item.ceinture_du_roks_or = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }],
     description: ''
 }
-
 item.scaracoiffe_noire = {
     id: 'scaracoiffe_noire',
     name: 'Scaracoiffe Noire',
@@ -7408,11 +7060,10 @@ item.scaracoiffe_noire = {
     set: 'panoplie_du_scarafeuille_noir',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 53,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', value: 6 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 1 }],
     description: ''
 }
-
 item.annokami = {
     id: 'annokami',
     name: 'Annokami',
@@ -7426,7 +7077,6 @@ item.annokami = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.amulette_d_ougicle = {
     id: 'amulette_d_ougicle',
     name: 'Amulette d\'Ougicle',
@@ -7440,7 +7090,6 @@ item.amulette_d_ougicle = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 51 }],
     description: ''
 }
-
 item.ceinture_de_danioule = {
     id: 'ceinture_de_danioule',
     name: 'Ceinture de Danioule',
@@ -7454,7 +7103,6 @@ item.ceinture_de_danioule = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 7 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.anneau_de_klume = {
     id: 'anneau_de_klume',
     name: 'Anneau de Klüme',
@@ -7468,7 +7116,6 @@ item.anneau_de_klume = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.amulette_de_guerrier_albueran = {
     id: 'amulette_de_guerrier_albueran',
     name: 'Amulette de guerrier albueran',
@@ -7482,7 +7129,6 @@ item.amulette_de_guerrier_albueran = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 46 }],
     description: ''
 }
-
 item.bottes_de_trappeur_albueran = {
     id: 'bottes_de_trappeur_albueran',
     name: 'Bottes de trappeur albueran',
@@ -7496,7 +7142,6 @@ item.bottes_de_trappeur_albueran = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.kwakwaffe = {
     id: 'kwakwaffe',
     name: 'Kwakwaffe',
@@ -7506,11 +7151,10 @@ item.kwakwaffe = {
     set: 'panoplie_du_kwakwa',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 54,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 16 }],
     description: ''
 }
-
 item.cape_du_roks_or = {
     id: 'cape_du_roks_or',
     name: 'Cape du Roks Or',
@@ -7524,7 +7168,6 @@ item.cape_du_roks_or = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.scarabottes_dorees = {
     id: 'scarabottes_dorees',
     name: 'Scarabottes Dorées',
@@ -7534,11 +7177,10 @@ item.scarabottes_dorees = {
     set: 'panoplie_du_scarabosse_dore',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 54,
+    requiredLevel: 45,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.anneau_du_vulkain = {
     id: 'anneau_du_vulkain',
     name: 'Anneau du Vulkain',
@@ -7552,7 +7194,6 @@ item.anneau_du_vulkain = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.bracilozite = {
     id: 'bracilozite',
     name: 'Bracilozité',
@@ -7566,7 +7207,6 @@ item.bracilozite = {
     stats: [{ stat: 'atk', value: 6 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.amusonnier = {
     id: 'amusonnier',
     name: 'Amusonnier',
@@ -7580,7 +7220,6 @@ item.amusonnier = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.diplamu = {
     id: 'diplamu',
     name: 'Diplamu',
@@ -7594,7 +7233,6 @@ item.diplamu = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 29 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.glaglano = {
     id: 'glaglano',
     name: 'Glaglano',
@@ -7608,7 +7246,6 @@ item.glaglano = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.botomuldo = {
     id: 'botomuldo',
     name: 'Botomuldo',
@@ -7622,7 +7259,6 @@ item.botomuldo = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'res.feu', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.capomuldo = {
     id: 'capomuldo',
     name: 'Capomuldo',
@@ -7636,7 +7272,6 @@ item.capomuldo = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.chapomuldo = {
     id: 'chapomuldo',
     name: 'Chapomuldo',
@@ -7650,7 +7285,6 @@ item.chapomuldo = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.caskoffre = {
     id: 'caskoffre',
     name: 'Caskoffre',
@@ -7664,7 +7298,6 @@ item.caskoffre = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cape_fulgurante = {
     id: 'cape_fulgurante',
     name: 'Cape Fulgurante',
@@ -7678,7 +7311,6 @@ item.cape_fulgurante = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 35 }],
     description: ''
 }
-
 item.ceinture_de_mirh = {
     id: 'ceinture_de_mirh',
     name: 'Ceinture de Mirh',
@@ -7692,7 +7324,6 @@ item.ceinture_de_mirh = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.dagu_os_des_scalarcin = {
     id: 'dagu_os_des_scalarcin',
     name: 'Dagu\'os des Scalarcin',
@@ -7706,7 +7337,6 @@ item.dagu_os_des_scalarcin = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 5 }],
     description: ''
 }
-
 item.anneau_du_kitsou = {
     id: 'anneau_du_kitsou',
     name: 'Anneau du Kitsou',
@@ -7720,7 +7350,6 @@ item.anneau_du_kitsou = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.hache_du_mulou = {
     id: 'hache_du_mulou',
     name: 'Hache du Mulou',
@@ -7734,7 +7363,6 @@ item.hache_du_mulou = {
     stats: [{ stat: 'maxHp', value: 46 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.bottokami = {
     id: 'bottokami',
     name: 'Bottokami',
@@ -7748,7 +7376,6 @@ item.bottokami = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.pendentiffre = {
     id: 'pendentiffre',
     name: 'Pendentiffre',
@@ -7762,7 +7389,6 @@ item.pendentiffre = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.vegacape = {
     id: 'vegacape',
     name: 'Vegacape',
@@ -7776,7 +7402,6 @@ item.vegacape = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.ceinture_d_hichete = {
     id: 'ceinture_d_hichete',
     name: 'Ceinture d\'Hichète',
@@ -7790,7 +7415,6 @@ item.ceinture_d_hichete = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 50 }],
     description: ''
 }
-
 item.anneau_d_ougicle = {
     id: 'anneau_d_ougicle',
     name: 'Anneau d\'Ougicle',
@@ -7804,7 +7428,6 @@ item.anneau_d_ougicle = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.sabottes_de_danioule = {
     id: 'sabottes_de_danioule',
     name: 'Sabottes de Danioule',
@@ -7818,7 +7441,6 @@ item.sabottes_de_danioule = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.anneau_de_mirh = {
     id: 'anneau_de_mirh',
     name: 'Anneau de Mirh',
@@ -7832,7 +7454,6 @@ item.anneau_de_mirh = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 14 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_piggy_paupe = {
     id: 'ceinture_de_piggy_paupe',
     name: 'Ceinture de Piggy Paupe',
@@ -7846,7 +7467,6 @@ item.ceinture_de_piggy_paupe = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 3 }],
     description: ''
 }
-
 item.kwakwalame = {
     id: 'kwakwalame',
     name: 'Kwakwalame',
@@ -7856,11 +7476,10 @@ item.kwakwalame = {
     set: 'panoplie_du_kwakwa',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 56,
+    requiredLevel: 55,
     stats: [{ stat: 'atk', value: -21 }, { stat: 'flatDamage', value: 32 }],
     description: ''
 }
-
 item.rondelle_de_waddict = {
     id: 'rondelle_de_waddict',
     name: 'Rondelle de Waddict',
@@ -7874,7 +7493,6 @@ item.rondelle_de_waddict = {
     stats: [{ stat: 'maxHp', value: 18 }, { stat: 'atk', value: 27 }],
     description: ''
 }
-
 item.bottes_du_vulkain = {
     id: 'bottes_du_vulkain',
     name: 'Bottes du Vulkain',
@@ -7888,7 +7506,6 @@ item.bottes_du_vulkain = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 11 }, { stat: 'spd', value: 15 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.bottilozite = {
     id: 'bottilozite',
     name: 'Bottilozité',
@@ -7902,7 +7519,6 @@ item.bottilozite = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 6 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.plumodales = {
     id: 'plumodales',
     name: 'Plumodales',
@@ -7916,7 +7532,6 @@ item.plumodales = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.diplanneau = {
     id: 'diplanneau',
     name: 'Diplanneau',
@@ -7930,7 +7545,6 @@ item.diplanneau = {
     stats: [{ stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.glaglamu = {
     id: 'glaglamu',
     name: 'Glaglamu',
@@ -7944,7 +7558,6 @@ item.glaglamu = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.alliance_aerdala = {
     id: 'alliance_aerdala',
     name: 'Alliance Aerdala',
@@ -7958,7 +7571,6 @@ item.alliance_aerdala = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.geta_aerdala = {
     id: 'geta_aerdala',
     name: 'Geta Aerdala',
@@ -7972,7 +7584,6 @@ item.geta_aerdala = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottauffe_souris = {
     id: 'bottauffe_souris',
     name: 'Bottauffe-souris',
@@ -7986,7 +7597,6 @@ item.bottauffe_souris = {
     stats: [{ stat: 'atk', value: 19 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 3 }],
     description: ''
 }
-
 item.amulette_d_hichete = {
     id: 'amulette_d_hichete',
     name: 'Amulette d\'Hichète',
@@ -8000,7 +7610,6 @@ item.amulette_d_hichete = {
     stats: [{ stat: 'atk', value: 46 }],
     description: ''
 }
-
 item.ceinture_d_ougicle = {
     id: 'ceinture_d_ougicle',
     name: 'Ceinture d\'Ougicle',
@@ -8014,7 +7623,6 @@ item.ceinture_d_ougicle = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.mawabottes = {
     id: 'mawabottes',
     name: 'Mawabottes',
@@ -8028,7 +7636,6 @@ item.mawabottes = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 11 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.amuloumulette = {
     id: 'amuloumulette',
     name: 'Amuloumulette',
@@ -8042,7 +7649,6 @@ item.amuloumulette = {
     stats: [{ stat: 'atk', value: 6 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.amulette_stroplante = {
     id: 'amulette_stroplante',
     name: 'Amulette Stroplante',
@@ -8056,7 +7662,6 @@ item.amulette_stroplante = {
     stats: [{ stat: 'atk', value: 51 }],
     description: ''
 }
-
 item.amulette_de_piggy_paupe = {
     id: 'amulette_de_piggy_paupe',
     name: 'Amulette de Piggy Paupe',
@@ -8070,7 +7675,6 @@ item.amulette_de_piggy_paupe = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 46 }],
     description: ''
 }
-
 item.craquamulette = {
     id: 'craquamulette',
     name: 'Craquamulette',
@@ -8084,7 +7688,6 @@ item.craquamulette = {
     stats: [{ stat: 'atk', value: 46 }, { stat: 'res.terre', value: 1 }],
     description: ''
 }
-
 item.amulette_du_kitsou = {
     id: 'amulette_du_kitsou',
     name: 'Amulette du Kitsou',
@@ -8098,7 +7701,6 @@ item.amulette_du_kitsou = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 15 }, { stat: 'spd', value: 21 }],
     description: ''
 }
-
 item.scaracape_doree = {
     id: 'scaracape_doree',
     name: 'Scaracape Dorée',
@@ -8108,11 +7710,10 @@ item.scaracape_doree = {
     set: 'panoplie_du_scarabosse_dore',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 58,
+    requiredLevel: 45,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 15 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.scaracoiffe_doree = {
     id: 'scaracoiffe_doree',
     name: 'Scaracoiffe Dorée',
@@ -8122,11 +7723,10 @@ item.scaracoiffe_doree = {
     set: 'panoplie_du_scarabosse_dore',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 58,
+    requiredLevel: 45,
     stats: [{ stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.bracelet_du_vulkain = {
     id: 'bracelet_du_vulkain',
     name: 'Bracelet du Vulkain',
@@ -8140,7 +7740,6 @@ item.bracelet_du_vulkain = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 11 }],
     description: ''
 }
-
 item.bottinokio = {
     id: 'bottinokio',
     name: 'Bottinokio',
@@ -8154,7 +7753,6 @@ item.bottinokio = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.ceintusonnier = {
     id: 'ceintusonnier',
     name: 'Ceintusonnier',
@@ -8168,7 +7766,6 @@ item.ceintusonnier = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.anoppinz = {
     id: 'anoppinz',
     name: 'Anoppinz',
@@ -8182,7 +7779,6 @@ item.anoppinz = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 14 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.anauffe_souris = {
     id: 'anauffe_souris',
     name: 'Anauffe-souris',
@@ -8196,7 +7792,6 @@ item.anauffe_souris = {
     stats: [{ stat: 'atk', value: 14 }, { stat: 'flatDamage', value: 3 }],
     description: ''
 }
-
 item.alliance_apaisante = {
     id: 'alliance_apaisante',
     name: 'Alliance Apaisante',
@@ -8210,7 +7805,6 @@ item.alliance_apaisante = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.anneau_stroplante = {
     id: 'anneau_stroplante',
     name: 'Anneau Stroplante',
@@ -8224,7 +7818,6 @@ item.anneau_stroplante = {
     stats: [{ stat: 'atk', value: 29 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.anneau_de_piggy_paupe = {
     id: 'anneau_de_piggy_paupe',
     name: 'Anneau de Piggy Paupe',
@@ -8238,7 +7831,6 @@ item.anneau_de_piggy_paupe = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 26 }],
     description: ''
 }
-
 item.oreilles_de_wabbits = {
     id: 'oreilles_de_wabbits',
     name: 'Oreilles de Wabbits',
@@ -8252,7 +7844,6 @@ item.oreilles_de_wabbits = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.bottes_du_craqueleur = {
     id: 'bottes_du_craqueleur',
     name: 'Bottes du Craqueleur',
@@ -8266,7 +7857,6 @@ item.bottes_du_craqueleur = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 7 }, { stat: 'spd', value: 15 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.baguette_du_scarabosse_dore = {
     id: 'baguette_du_scarabosse_dore',
     name: 'Baguette du Scarabosse Doré',
@@ -8276,11 +7866,10 @@ item.baguette_du_scarabosse_dore = {
     set: 'panoplie_du_scarabosse_dore',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 59,
+    requiredLevel: 45,
     stats: [{ stat: 'atk', value: 32 }, { stat: 'heal', value: 22 }],
     description: ''
 }
-
 item.slip_kangouwou_du_wabbit_gm = {
     id: 'slip_kangouwou_du_wabbit_gm',
     name: 'Slip Kangouwou du Wabbit GM',
@@ -8294,7 +7883,6 @@ item.slip_kangouwou_du_wabbit_gm = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'critChance', value: 6 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bottoppinz = {
     id: 'bottoppinz',
     name: 'Bottoppinz',
@@ -8308,7 +7896,6 @@ item.bottoppinz = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.plumamulette = {
     id: 'plumamulette',
     name: 'Plumamulette',
@@ -8322,7 +7909,6 @@ item.plumamulette = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'heal', value: 3 }],
     description: ''
 }
-
 item.gelamu = {
     id: 'gelamu',
     name: 'Gelamu',
@@ -8332,11 +7918,10 @@ item.gelamu = {
     set: 'panoplie_gelax',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 60,
+    requiredLevel: 55,
     stats: [{ stat: 'atk', value: 15 }, { stat: 'spd', value: 21 }],
     description: ''
 }
-
 item.gelano = {
     id: 'gelano',
     name: 'Gelano',
@@ -8346,11 +7931,10 @@ item.gelano = {
     set: 'panoplie_gelax',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 60,
+    requiredLevel: 75,
     stats: [{ stat: 'atk', value: 35 }],
     description: ''
 }
-
 item.gelobottes = {
     id: 'gelobottes',
     name: 'Gelobottes',
@@ -8360,11 +7944,10 @@ item.gelobottes = {
     set: 'panoplie_gelax',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 60,
+    requiredLevel: 55,
     stats: [{ stat: 'spd', value: 15 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.gelocape = {
     id: 'gelocape',
     name: 'Gelocape',
@@ -8374,11 +7957,10 @@ item.gelocape = {
     set: 'panoplie_gelax',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 60,
+    requiredLevel: 55,
     stats: [{ stat: 'atk', value: 30 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.gelocoiffe = {
     id: 'gelocoiffe',
     name: 'Gelocoiffe',
@@ -8388,11 +7970,10 @@ item.gelocoiffe = {
     set: 'panoplie_gelax',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 60,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.geloture = {
     id: 'geloture',
     name: 'Geloture',
@@ -8402,11 +7983,10 @@ item.geloture = {
     set: 'panoplie_gelax',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 60,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 41 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.pendentif_curatif = {
     id: 'pendentif_curatif',
     name: 'Pendentif Curatif',
@@ -8420,7 +8000,6 @@ item.pendentif_curatif = {
     stats: [{ stat: 'atk', value: 61 }, { stat: 'heal', value: 4 }, { stat: 'res.feu', value: -5 }, { stat: 'res.terre', value: -5 }],
     description: ''
 }
-
 item.carabottes = {
     id: 'carabottes',
     name: 'Carabottes',
@@ -8434,7 +8013,6 @@ item.carabottes = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 41 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.caracape = {
     id: 'caracape',
     name: 'Caracape',
@@ -8448,7 +8026,6 @@ item.caracape = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.caracoiffe = {
     id: 'caracoiffe',
     name: 'Caracoiffe',
@@ -8462,7 +8039,6 @@ item.caracoiffe = {
     stats: [{ stat: 'maxHp', value: 1 }, { stat: 'atk', value: 35 }],
     description: ''
 }
-
 item.sac_cawotte = {
     id: 'sac_cawotte',
     name: 'Sac-Cawotte',
@@ -8476,7 +8052,6 @@ item.sac_cawotte = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.tongues_wabbits = {
     id: 'tongues_wabbits',
     name: 'Tongues Wabbits',
@@ -8490,7 +8065,6 @@ item.tongues_wabbits = {
     stats: [{ stat: 'atk', value: 36 }, { stat: 'spd', value: 9 }, { stat: 'flatDamage', value: 6 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bottes_des_1001_griffes = {
     id: 'bottes_des_1001_griffes',
     name: 'Bottes des 1001 Griffes',
@@ -8504,7 +8078,6 @@ item.bottes_des_1001_griffes = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.culotte_des_1001_griffes = {
     id: 'culotte_des_1001_griffes',
     name: 'Culotte des 1001 Griffes',
@@ -8518,7 +8091,6 @@ item.culotte_des_1001_griffes = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 64 }],
     description: ''
 }
-
 item.torque_des_1001_griffes = {
     id: 'torque_des_1001_griffes',
     name: 'Torque des 1001 Griffes',
@@ -8532,7 +8104,6 @@ item.torque_des_1001_griffes = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 14 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_craqueleur = {
     id: 'ceinture_du_craqueleur',
     name: 'Ceinture du Craqueleur',
@@ -8546,7 +8117,6 @@ item.ceinture_du_craqueleur = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 16 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.amulette_du_koalak = {
     id: 'amulette_du_koalak',
     name: 'Amulette du Koalak',
@@ -8560,7 +8130,6 @@ item.amulette_du_koalak = {
     stats: [{ stat: 'atk', value: 15 }, { stat: 'spd', value: -30 }, { stat: 'critDamagePct', value: 4 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bottes_du_koalak = {
     id: 'bottes_du_koalak',
     name: 'Bottes du Koalak',
@@ -8574,7 +8143,6 @@ item.bottes_du_koalak = {
     stats: [{ stat: 'spd', value: 15 }, { stat: 'heal', value: 1 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.ceinture_du_koalak = {
     id: 'ceinture_du_koalak',
     name: 'Ceinture du Koalak',
@@ -8588,7 +8156,6 @@ item.ceinture_du_koalak = {
     stats: [{ stat: 'spd', value: 21 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_koalak = {
     id: 'coiffe_du_koalak',
     name: 'Coiffe du Koalak',
@@ -8602,7 +8169,6 @@ item.coiffe_du_koalak = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.baton_du_wa_wabbit = {
     id: 'baton_du_wa_wabbit',
     name: 'Bâton du Wa Wabbit',
@@ -8616,7 +8182,6 @@ item.baton_du_wa_wabbit = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 7 }, { stat: 'flatDamage', value: 25 }],
     description: ''
 }
-
 item.cape_du_wa_wabbit = {
     id: 'cape_du_wa_wabbit',
     name: 'Cape du Wa Wabbit',
@@ -8630,7 +8195,6 @@ item.cape_du_wa_wabbit = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 36 }],
     description: ''
 }
-
 item.couronne_du_wa_wabbit = {
     id: 'couronne_du_wa_wabbit',
     name: 'Couronne du Wa Wabbit',
@@ -8644,7 +8208,6 @@ item.couronne_du_wa_wabbit = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: -15 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.amulette_dents_de_wabbits = {
     id: 'amulette_dents_de_wabbits',
     name: 'Amulette "Dents de Wabbits"',
@@ -8658,7 +8221,6 @@ item.amulette_dents_de_wabbits = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'spd', value: 6 }],
     description: ''
 }
-
 item.taille_haie_primitif_du_wobot = {
     id: 'taille_haie_primitif_du_wobot',
     name: 'Taille-haie primitif du Wobot',
@@ -8672,7 +8234,6 @@ item.taille_haie_primitif_du_wobot = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 35 }],
     description: ''
 }
-
 item.bottoduvet = {
     id: 'bottoduvet',
     name: 'Bottoduvet',
@@ -8686,7 +8247,6 @@ item.bottoduvet = {
     stats: [{ stat: 'atk', value: 11 }, { stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.ceinturoduvet = {
     id: 'ceinturoduvet',
     name: 'Ceinturoduvet',
@@ -8700,7 +8260,6 @@ item.ceinturoduvet = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 16 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.botovolko = {
     id: 'botovolko',
     name: 'Botovolko',
@@ -8714,7 +8273,6 @@ item.botovolko = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 35 }, { stat: 'spd', value: -15 }],
     description: ''
 }
-
 item.bouclovolko = {
     id: 'bouclovolko',
     name: 'Bouclovolko',
@@ -8728,7 +8286,6 @@ item.bouclovolko = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 16 }],
     description: ''
 }
-
 item.capovolko = {
     id: 'capovolko',
     name: 'Capovolko',
@@ -8742,7 +8299,6 @@ item.capovolko = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 26 }],
     description: ''
 }
-
 item.slipapier = {
     id: 'slipapier',
     name: 'Slipapier',
@@ -8756,7 +8312,6 @@ item.slipapier = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.craquelocape = {
     id: 'craquelocape',
     name: 'Craquelocape',
@@ -8770,7 +8325,6 @@ item.craquelocape = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.coiffe_du_kitsou = {
     id: 'coiffe_du_kitsou',
     name: 'Coiffe du Kitsou',
@@ -8784,7 +8338,6 @@ item.coiffe_du_kitsou = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 16 }, { stat: 'res.eau', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.arc_du_koalak = {
     id: 'arc_du_koalak',
     name: 'Arc du Koalak',
@@ -8798,7 +8351,6 @@ item.arc_du_koalak = {
     stats: [{ stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 5 }, { stat: 'lifestealPct', value: 4 }],
     description: ''
 }
-
 item.cape_du_koalak = {
     id: 'cape_du_koalak',
     name: 'Cape du Koalak',
@@ -8812,7 +8364,6 @@ item.cape_du_koalak = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.bottines_du_mulou = {
     id: 'bottines_du_mulou',
     name: 'Bottines du Mulou',
@@ -8826,7 +8377,6 @@ item.bottines_du_mulou = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_mulou = {
     id: 'coiffe_du_mulou',
     name: 'Coiffe du Mulou',
@@ -8840,7 +8390,6 @@ item.coiffe_du_mulou = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.anokio = {
     id: 'anokio',
     name: 'Anokio',
@@ -8854,7 +8403,6 @@ item.anokio = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 22 }],
     description: ''
 }
-
 item.amupapier = {
     id: 'amupapier',
     name: 'Amupapier',
@@ -8868,7 +8416,6 @@ item.amupapier = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.amulette_aerdala = {
     id: 'amulette_aerdala',
     name: 'Amulette Aerdala',
@@ -8882,7 +8429,6 @@ item.amulette_aerdala = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 2 }],
     description: ''
 }
-
 item.dagues_aerdala = {
     id: 'dagues_aerdala',
     name: 'Dagues Aerdala',
@@ -8896,7 +8442,6 @@ item.dagues_aerdala = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.ceinture_anesthesiante = {
     id: 'ceinture_anesthesiante',
     name: 'Ceinture Anesthésiante',
@@ -8910,7 +8455,6 @@ item.ceinture_anesthesiante = {
     stats: [{ stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.oreilles_de_marzwel = {
     id: 'oreilles_de_marzwel',
     name: 'Oreilles de Marzwel',
@@ -8924,7 +8468,6 @@ item.oreilles_de_marzwel = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.casque_du_craqueleur = {
     id: 'casque_du_craqueleur',
     name: 'Casque du Craqueleur',
@@ -8938,7 +8481,6 @@ item.casque_du_craqueleur = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.cape_du_kitsou = {
     id: 'cape_du_kitsou',
     name: 'Cape du Kitsou',
@@ -8952,7 +8494,6 @@ item.cape_du_kitsou = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'heal', value: 5 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.cape_terrdala = {
     id: 'cape_terrdala',
     name: 'Cape Terrdala',
@@ -8966,7 +8507,6 @@ item.cape_terrdala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.bouclier_du_craqueleur = {
     id: 'bouclier_du_craqueleur',
     name: 'Bouclier du Craqueleur',
@@ -8980,7 +8520,6 @@ item.bouclier_du_craqueleur = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 16 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.chapeau_aerdala = {
     id: 'chapeau_aerdala',
     name: 'Chapeau Aerdala',
@@ -8994,7 +8533,6 @@ item.chapeau_aerdala = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.bracelet_de_marzwel = {
     id: 'bracelet_de_marzwel',
     name: 'Bracelet de Marzwel',
@@ -9008,7 +8546,6 @@ item.bracelet_de_marzwel = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.lame_du_craqueleur = {
     id: 'lame_du_craqueleur',
     name: 'Lame du Craqueleur',
@@ -9022,7 +8559,6 @@ item.lame_du_craqueleur = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 28 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 30 }, { stat: 'critChance', value: 2 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.cape_du_mulou = {
     id: 'cape_du_mulou',
     name: 'Cape du Mulou',
@@ -9036,7 +8572,6 @@ item.cape_du_mulou = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 36 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bouclier_aerdala = {
     id: 'bouclier_aerdala',
     name: 'Bouclier Aerdala',
@@ -9050,7 +8585,6 @@ item.bouclier_aerdala = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.cape_aerdala = {
     id: 'cape_aerdala',
     name: 'Cape Aerdala',
@@ -9064,7 +8598,6 @@ item.cape_aerdala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.ceinture_ouginakale = {
     id: 'ceinture_ouginakale',
     name: 'Ceinture Ouginakale',
@@ -9078,7 +8611,6 @@ item.ceinture_ouginakale = {
     stats: [{ stat: 'atk', value: 32 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.javeline_de_marzwel = {
     id: 'javeline_de_marzwel',
     name: 'Javeline de Marzwel',
@@ -9092,7 +8624,6 @@ item.javeline_de_marzwel = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 42 }],
     description: ''
 }
-
 item.anneau_poli = {
     id: 'anneau_poli',
     name: 'Anneau Poli',
@@ -9106,7 +8637,6 @@ item.anneau_poli = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 37 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.feu', value: -5 }, { stat: 'res.eau', value: -5 }, { stat: 'res.terre', value: -5 }, { stat: 'res.air', value: -5 }, { stat: 'res.neutre', value: -5 }],
     description: ''
 }
-
 item.ceinture_du_chef_crocodaille = {
     id: 'ceinture_du_chef_crocodaille',
     name: 'Ceinture du Chef Crocodaille',
@@ -9120,7 +8650,6 @@ item.ceinture_du_chef_crocodaille = {
     stats: [{ stat: 'atk', value: 32 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.cape_du_desir_o_boul = {
     id: 'cape_du_desir_o_boul',
     name: 'Cape du Désir O\'Boul',
@@ -9134,7 +8663,6 @@ item.cape_du_desir_o_boul = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.geta_feudala = {
     id: 'geta_feudala',
     name: 'Geta Feudala',
@@ -9148,7 +8676,6 @@ item.geta_feudala = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.kryst_o_boul = {
     id: 'kryst_o_boul',
     name: 'Kryst O\'Boul',
@@ -9162,7 +8689,6 @@ item.kryst_o_boul = {
     stats: [{ stat: 'maxHp', value: -11 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.casque_du_scorbute = {
     id: 'casque_du_scorbute',
     name: 'Casque du Scorbute',
@@ -9176,7 +8702,6 @@ item.casque_du_scorbute = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.pantoufles_crochues_du_chef_crocodaille = {
     id: 'pantoufles_crochues_du_chef_crocodaille',
     name: 'Pantoufles Crochues du Chef Crocodaille',
@@ -9190,7 +8715,6 @@ item.pantoufles_crochues_du_chef_crocodaille = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.sac_du_koulosse = {
     id: 'sac_du_koulosse',
     name: 'Sac du Koulosse',
@@ -9204,7 +8728,6 @@ item.sac_du_koulosse = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: -100 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.ceinture_aerdala = {
     id: 'ceinture_aerdala',
     name: 'Ceinture Aerdala',
@@ -9218,7 +8741,6 @@ item.ceinture_aerdala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.amulette_du_chef_crocodaille = {
     id: 'amulette_du_chef_crocodaille',
     name: 'Amulette du Chef Crocodaille',
@@ -9232,7 +8754,6 @@ item.amulette_du_chef_crocodaille = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 35 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.bouclier_du_chef_crocodaille = {
     id: 'bouclier_du_chef_crocodaille',
     name: 'Bouclier du Chef Crocodaille',
@@ -9246,7 +8767,6 @@ item.bouclier_du_chef_crocodaille = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 16 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.bracelet_du_chef_crocodaille = {
     id: 'bracelet_du_chef_crocodaille',
     name: 'Bracelet du Chef Crocodaille',
@@ -9260,7 +8780,6 @@ item.bracelet_du_chef_crocodaille = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_chef_crocodaille = {
     id: 'coiffe_du_chef_crocodaille',
     name: 'Coiffe du Chef Crocodaille',
@@ -9274,7 +8793,6 @@ item.coiffe_du_chef_crocodaille = {
     stats: [{ stat: 'maxHp', value: 16 }, { stat: 'atk', value: 36 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.lame_du_chef_crocodaille = {
     id: 'lame_du_chef_crocodaille',
     name: 'Lame du Chef Crocodaille',
@@ -9288,7 +8806,6 @@ item.lame_du_chef_crocodaille = {
     stats: [{ stat: 'maxHp', value: 46 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 23 }, { stat: 'lifestealPct', value: 1 }],
     description: ''
 }
-
 item.petit_sac_d_ecolier_du_chef_crocodaille = {
     id: 'petit_sac_d_ecolier_du_chef_crocodaille',
     name: 'Petit sac d\'écolier du Chef Crocodaille',
@@ -9302,7 +8819,6 @@ item.petit_sac_d_ecolier_du_chef_crocodaille = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.cape_du_scorbute = {
     id: 'cape_du_scorbute',
     name: 'Cape du Scorbute',
@@ -9316,7 +8832,6 @@ item.cape_du_scorbute = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 8 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.cape_de_nelween = {
     id: 'cape_de_nelween',
     name: 'Cape de Nelween',
@@ -9330,7 +8845,6 @@ item.cape_de_nelween = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'critResPct', value: 7 }],
     description: ''
 }
-
 item.crystal_o_boul = {
     id: 'crystal_o_boul',
     name: 'Crystal O\'Boul',
@@ -9344,7 +8858,6 @@ item.crystal_o_boul = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.craquanneau_legendaire = {
     id: 'craquanneau_legendaire',
     name: 'Craquanneau Légendaire',
@@ -9358,7 +8871,6 @@ item.craquanneau_legendaire = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.amulette_du_scorbute = {
     id: 'amulette_du_scorbute',
     name: 'Amulette du Scorbute',
@@ -9372,7 +8884,6 @@ item.amulette_du_scorbute = {
     stats: [{ stat: 'atk', value: 61 }, { stat: 'spd', value: -30 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.casque_de_qil_bil = {
     id: 'casque_de_qil_bil',
     name: 'Casque de Qil Bil',
@@ -9386,7 +8897,6 @@ item.casque_de_qil_bil = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 53 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.bracelet_magique_de_shika = {
     id: 'bracelet_magique_de_shika',
     name: 'Bracelet Magique de Shika',
@@ -9396,11 +8906,10 @@ item.bracelet_magique_de_shika = {
     set: 'panoplie_de_shika_ingalsse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 73,
+    requiredLevel: 70,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.bottes_du_koulosse = {
     id: 'bottes_du_koulosse',
     name: 'Bottes du Koulosse',
@@ -9414,7 +8923,6 @@ item.bottes_du_koulosse = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: -100 }, { stat: 'spd', value: 15 }, { stat: 'heal', value: 16 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.baton_du_koulosse = {
     id: 'baton_du_koulosse',
     name: 'Bâton du Koulosse',
@@ -9428,7 +8936,6 @@ item.baton_du_koulosse = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: -135 }, { stat: 'flatDamage', value: 7 }, { stat: 'heal', value: 16 }, { stat: 'lifestealPct', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.amulette_de_nelween = {
     id: 'amulette_de_nelween',
     name: 'Amulette de Nelween',
@@ -9442,7 +8949,6 @@ item.amulette_de_nelween = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'flatDamage', value: 5 }, { stat: 'critDamagePct', value: 7 }, { stat: 'critResPct', value: 7 }],
     description: ''
 }
-
 item.bottes_de_nelween = {
     id: 'bottes_de_nelween',
     name: 'Bottes de Nelween',
@@ -9456,7 +8962,6 @@ item.bottes_de_nelween = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 14 }, { stat: 'flatDamage', value: 7 }],
     description: ''
 }
-
 item.cape_fulgurante_ankarton = {
     id: 'cape_fulgurante_ankarton',
     name: 'Cape Fulgurante Ankarton',
@@ -9470,7 +8975,6 @@ item.cape_fulgurante_ankarton = {
     stats: [],
     description: ''
 }
-
 item.bouclier_terrdala = {
     id: 'bouclier_terrdala',
     name: 'Bouclier Terrdala',
@@ -9484,7 +8988,6 @@ item.bouclier_terrdala = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.chapeau_terrdala = {
     id: 'chapeau_terrdala',
     name: 'Chapeau Terrdala',
@@ -9498,7 +9001,6 @@ item.chapeau_terrdala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 46 }, { stat: 'res.feu', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.epis_de_farle = {
     id: 'epis_de_farle',
     name: 'Epis de Farle',
@@ -9512,7 +9014,6 @@ item.epis_de_farle = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 56 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.anneau_de_qil_bil = {
     id: 'anneau_de_qil_bil',
     name: 'Anneau de Qil Bil',
@@ -9526,7 +9027,6 @@ item.anneau_de_qil_bil = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 30 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.sabre_feudala = {
     id: 'sabre_feudala',
     name: 'Sabre Feudala',
@@ -9540,7 +9040,6 @@ item.sabre_feudala = {
     stats: [{ stat: 'maxHp', value: 56 }, { stat: 'atk', value: 6 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.geta_terrdala = {
     id: 'geta_terrdala',
     name: 'Geta Terrdala',
@@ -9554,7 +9053,6 @@ item.geta_terrdala = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'res.feu', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_de_farle = {
     id: 'cape_de_farle',
     name: 'Cape de Farle',
@@ -9568,7 +9066,6 @@ item.cape_de_farle = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 26 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.fourche_de_farle = {
     id: 'fourche_de_farle',
     name: 'Fourche de Farle',
@@ -9582,7 +9079,6 @@ item.fourche_de_farle = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 72 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 17 }, { stat: 'critChance', value: 2 }, { stat: 'lifestealPct', value: 2 }],
     description: ''
 }
-
 item.epis_de_shika = {
     id: 'epis_de_shika',
     name: 'Epis de Shika',
@@ -9592,11 +9088,10 @@ item.epis_de_shika = {
     set: 'panoplie_de_shika_ingalsse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 76,
+    requiredLevel: 70,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 56 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.la_doubitch_o_boul = {
     id: 'la_doubitch_o_boul',
     name: 'La Doubitch O\'Boul',
@@ -9610,7 +9105,6 @@ item.la_doubitch_o_boul = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 66 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.alliance_terrdala = {
     id: 'alliance_terrdala',
     name: 'Alliance Terrdala',
@@ -9624,7 +9118,6 @@ item.alliance_terrdala = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.tonfas_de_qil_bil = {
     id: 'tonfas_de_qil_bil',
     name: 'Tonfas de Qil Bil',
@@ -9638,7 +9131,6 @@ item.tonfas_de_qil_bil = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 43 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 5 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.kidorteau = {
     id: 'kidorteau',
     name: 'Kidorteau',
@@ -9652,7 +9144,6 @@ item.kidorteau = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 23 }],
     description: ''
 }
-
 item.cape_ouroboulos = {
     id: 'cape_ouroboulos',
     name: 'Cape Ouroboulos',
@@ -9662,11 +9153,10 @@ item.cape_ouroboulos = {
     set: 'panoplie_ouroboulos',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 78,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 26 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.amulette_terrdala = {
     id: 'amulette_terrdala',
     name: 'Amulette Terrdala',
@@ -9680,7 +9170,6 @@ item.amulette_terrdala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 35 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.farlacoiffe = {
     id: 'farlacoiffe',
     name: 'Farlacoiffe',
@@ -9694,7 +9183,6 @@ item.farlacoiffe = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.ceinture_de_nelween = {
     id: 'ceinture_de_nelween',
     name: 'Ceinture de Nelween',
@@ -9708,7 +9196,6 @@ item.ceinture_de_nelween = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 14 }, { stat: 'flatDamage', value: 7 }],
     description: ''
 }
-
 item.bracelet_magique_de_farle = {
     id: 'bracelet_magique_de_farle',
     name: 'Bracelet Magique de Farle',
@@ -9722,7 +9209,6 @@ item.bracelet_magique_de_farle = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 22 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_craqueleur_legendaire = {
     id: 'ceinture_du_craqueleur_legendaire',
     name: 'Ceinture du Craqueleur Légendaire',
@@ -9736,7 +9222,6 @@ item.ceinture_du_craqueleur_legendaire = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.cape_du_desert = {
     id: 'cape_du_desert',
     name: 'Cape du Désert',
@@ -9746,11 +9231,10 @@ item.cape_du_desert = {
     set: 'panoplie_du_desert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 79,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 56 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.cape_sulhit = {
     id: 'cape_sulhit',
     name: 'Cape Sulhit',
@@ -9764,7 +9248,6 @@ item.cape_sulhit = {
     stats: [],
     description: ''
 }
-
 item.amublop_coco_royale = {
     id: 'amublop_coco_royale',
     name: 'Amublop Coco Royale',
@@ -9774,11 +9257,10 @@ item.amublop_coco_royale = {
     set: 'panoplie_blop_coco_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.blopanneau_coco_royal = {
     id: 'blopanneau_coco_royal',
     name: 'Blopanneau Coco Royal',
@@ -9788,11 +9270,10 @@ item.blopanneau_coco_royal = {
     set: 'panoplie_blop_coco_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bloptes_coco_royales = {
     id: 'bloptes_coco_royales',
     name: 'Bloptes Coco Royales',
@@ -9802,11 +9283,10 @@ item.bloptes_coco_royales = {
     set: 'panoplie_blop_coco_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.blopture_coco_royale = {
     id: 'blopture_coco_royale',
     name: 'Blopture Coco Royale',
@@ -9816,11 +9296,10 @@ item.blopture_coco_royale = {
     set: 'panoplie_blop_coco_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.amublop_griotte_royale = {
     id: 'amublop_griotte_royale',
     name: 'Amublop Griotte Royale',
@@ -9830,11 +9309,10 @@ item.amublop_griotte_royale = {
     set: 'panoplie_blop_griotte_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.blopanneau_griotte_royal = {
     id: 'blopanneau_griotte_royal',
     name: 'Blopanneau Griotte Royal',
@@ -9844,11 +9322,10 @@ item.blopanneau_griotte_royal = {
     set: 'panoplie_blop_griotte_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bloptes_griotte_royales = {
     id: 'bloptes_griotte_royales',
     name: 'Bloptes Griotte Royales',
@@ -9858,11 +9335,10 @@ item.bloptes_griotte_royales = {
     set: 'panoplie_blop_griotte_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.blopture_griotte_royale = {
     id: 'blopture_griotte_royale',
     name: 'Blopture Griotte Royale',
@@ -9872,11 +9348,10 @@ item.blopture_griotte_royale = {
     set: 'panoplie_blop_griotte_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.amublop_indigo_royale = {
     id: 'amublop_indigo_royale',
     name: 'Amublop Indigo Royale',
@@ -9886,11 +9361,10 @@ item.amublop_indigo_royale = {
     set: 'panoplie_blop_indigo_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.blopanneau_indigo_royal = {
     id: 'blopanneau_indigo_royal',
     name: 'Blopanneau Indigo Royal',
@@ -9900,11 +9374,10 @@ item.blopanneau_indigo_royal = {
     set: 'panoplie_blop_indigo_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bloptes_indigo_royales = {
     id: 'bloptes_indigo_royales',
     name: 'Bloptes Indigo Royales',
@@ -9914,11 +9387,10 @@ item.bloptes_indigo_royales = {
     set: 'panoplie_blop_indigo_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.blopture_indigo_royale = {
     id: 'blopture_indigo_royale',
     name: 'Blopture Indigo Royale',
@@ -9928,11 +9400,10 @@ item.blopture_indigo_royale = {
     set: 'panoplie_blop_indigo_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.amublop_reinette_royale = {
     id: 'amublop_reinette_royale',
     name: 'Amublop Reinette Royale',
@@ -9942,11 +9413,10 @@ item.amublop_reinette_royale = {
     set: 'panoplie_blop_reinette_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.blopanneau_reinette_royal = {
     id: 'blopanneau_reinette_royal',
     name: 'Blopanneau Reinette Royal',
@@ -9956,11 +9426,10 @@ item.blopanneau_reinette_royal = {
     set: 'panoplie_blop_reinette_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bloptes_reinette_royales = {
     id: 'bloptes_reinette_royales',
     name: 'Bloptes Reinette Royales',
@@ -9970,11 +9439,10 @@ item.bloptes_reinette_royales = {
     set: 'panoplie_blop_reinette_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.blopture_reinette_royale = {
     id: 'blopture_reinette_royale',
     name: 'Blopture Reinette Royale',
@@ -9984,11 +9452,10 @@ item.blopture_reinette_royale = {
     set: 'panoplie_blop_reinette_royale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 65,
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.cape_routh = {
     id: 'cape_routh',
     name: 'Cape Routh',
@@ -10002,7 +9469,6 @@ item.cape_routh = {
     stats: [],
     description: ''
 }
-
 item.cape_hoile = {
     id: 'cape_hoile',
     name: 'Cape Hoile',
@@ -10016,7 +9482,6 @@ item.cape_hoile = {
     stats: [],
     description: ''
 }
-
 item.cape_wera = {
     id: 'cape_wera',
     name: 'Cape Wéra',
@@ -10030,7 +9495,6 @@ item.cape_wera = {
     stats: [],
     description: ''
 }
-
 item.cape_endaison = {
     id: 'cape_endaison',
     name: 'Cape Endaison',
@@ -10044,7 +9508,6 @@ item.cape_endaison = {
     stats: [],
     description: ''
 }
-
 item.cape_ytale = {
     id: 'cape_ytale',
     name: 'Cape Ytale',
@@ -10058,7 +9521,6 @@ item.cape_ytale = {
     stats: [],
     description: ''
 }
-
 item.cape_hadosse = {
     id: 'cape_hadosse',
     name: 'Cape Hadosse',
@@ -10072,7 +9534,6 @@ item.cape_hadosse = {
     stats: [],
     description: ''
 }
-
 item.cape_huchon = {
     id: 'cape_huchon',
     name: 'Cape Huchon',
@@ -10086,7 +9547,6 @@ item.cape_huchon = {
     stats: [],
     description: ''
 }
-
 item.cape_aircussion = {
     id: 'cape_aircussion',
     name: 'Cape Aircussion',
@@ -10100,7 +9560,6 @@ item.cape_aircussion = {
     stats: [],
     description: ''
 }
-
 item.anneau_ouroboulos = {
     id: 'anneau_ouroboulos',
     name: 'Anneau Ouroboulos',
@@ -10110,11 +9569,10 @@ item.anneau_ouroboulos = {
     set: 'panoplie_ouroboulos',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: -40 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.cape_rimordiale = {
     id: 'cape_rimordiale',
     name: 'Cape Rimordiale',
@@ -10128,7 +9586,6 @@ item.cape_rimordiale = {
     stats: [],
     description: ''
 }
-
 item.cape_hitton = {
     id: 'cape_hitton',
     name: 'Cape Hitton',
@@ -10142,7 +9599,6 @@ item.cape_hitton = {
     stats: [],
     description: ''
 }
-
 item.sac_rebleux = {
     id: 'sac_rebleux',
     name: 'Sac Rebleux',
@@ -10156,7 +9612,6 @@ item.sac_rebleux = {
     stats: [],
     description: ''
 }
-
 item.ceinture_terrdala = {
     id: 'ceinture_terrdala',
     name: 'Ceinture Terrdala',
@@ -10170,7 +9625,6 @@ item.ceinture_terrdala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_ortail = {
     id: 'cape_ortail',
     name: 'Cape Ortail',
@@ -10184,7 +9638,6 @@ item.cape_ortail = {
     stats: [],
     description: ''
 }
-
 item.cape_aurale = {
     id: 'cape_aurale',
     name: 'Cape Aurale',
@@ -10198,7 +9651,6 @@ item.cape_aurale = {
     stats: [],
     description: ''
 }
-
 item.cape_haharnum = {
     id: 'cape_haharnum',
     name: 'Cape Haharnum',
@@ -10212,7 +9664,6 @@ item.cape_haharnum = {
     stats: [],
     description: ''
 }
-
 item.cape_d_elya_wood = {
     id: 'cape_d_elya_wood',
     name: 'Cape d\'Elya Wood',
@@ -10226,7 +9677,6 @@ item.cape_d_elya_wood = {
     stats: [{ stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.farlature = {
     id: 'farlature',
     name: 'Farlature',
@@ -10240,7 +9690,6 @@ item.farlature = {
     stats: [{ stat: 'atk', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.sabots_de_farle = {
     id: 'sabots_de_farle',
     name: 'Sabots de Farle',
@@ -10254,7 +9703,6 @@ item.sabots_de_farle = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.cape_aille = {
     id: 'cape_aille',
     name: 'Cape Aillé',
@@ -10268,7 +9716,6 @@ item.cape_aille = {
     stats: [],
     description: ''
 }
-
 item.binette_de_shika = {
     id: 'binette_de_shika',
     name: 'Binette de Shika',
@@ -10282,7 +9729,6 @@ item.binette_de_shika = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 40 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 17 }, { stat: 'critChance', value: 4 }, { stat: 'lifestealPct', value: 2 }],
     description: ''
 }
-
 item.cape_de_shika = {
     id: 'cape_de_shika',
     name: 'Cape de Shika',
@@ -10292,11 +9738,10 @@ item.cape_de_shika = {
     set: 'panoplie_de_shika_ingalsse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 85,
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 21 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.sabots_de_shika = {
     id: 'sabots_de_shika',
     name: 'Sabots de Shika',
@@ -10306,11 +9751,10 @@ item.sabots_de_shika = {
     set: 'panoplie_de_shika_ingalsse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 70,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.shikacoiffe = {
     id: 'shikacoiffe',
     name: 'Shikacoiffe',
@@ -10320,11 +9764,10 @@ item.shikacoiffe = {
     set: 'panoplie_de_shika_ingalsse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 85,
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.shikature = {
     id: 'shikature',
     name: 'Shikature',
@@ -10334,11 +9777,10 @@ item.shikature = {
     set: 'panoplie_de_shika_ingalsse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 70,
     stats: [{ stat: 'atk', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.cape_antheon = {
     id: 'cape_antheon',
     name: 'Cape Anthéon',
@@ -10352,7 +9794,6 @@ item.cape_antheon = {
     stats: [],
     description: ''
 }
-
 item.cape_lyne = {
     id: 'cape_lyne',
     name: 'Cape Lyne',
@@ -10366,7 +9807,6 @@ item.cape_lyne = {
     stats: [],
     description: ''
 }
-
 item.casque_du_craqueleur_legendaire = {
     id: 'casque_du_craqueleur_legendaire',
     name: 'Casque du Craqueleur Légendaire',
@@ -10380,7 +9820,6 @@ item.casque_du_craqueleur_legendaire = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 57 }, { stat: 'spd', value: 16 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.string_leolhyene = {
     id: 'string_leolhyene',
     name: 'String Léolhyène',
@@ -10390,11 +9829,10 @@ item.string_leolhyene = {
     set: 'panoplie_du_desert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 80,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.cape_hulco = {
     id: 'cape_hulco',
     name: 'Cape Hulco',
@@ -10408,7 +9846,6 @@ item.cape_hulco = {
     stats: [],
     description: ''
 }
-
 item.couronne_du_wa_wobot = {
     id: 'couronne_du_wa_wobot',
     name: 'Couronne du Wa Wobot',
@@ -10422,7 +9859,6 @@ item.couronne_du_wa_wobot = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.puissante_ceinture_fulgurante = {
     id: 'puissante_ceinture_fulgurante',
     name: 'Puissante Ceinture Fulgurante',
@@ -10436,7 +9872,6 @@ item.puissante_ceinture_fulgurante = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.alliance_feudala = {
     id: 'alliance_feudala',
     name: 'Alliance Feudala',
@@ -10450,7 +9885,6 @@ item.alliance_feudala = {
     stats: [{ stat: 'maxHp', value: 26 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.ceinture_feudala = {
     id: 'ceinture_feudala',
     name: 'Ceinture Feudala',
@@ -10464,7 +9898,6 @@ item.ceinture_feudala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 16 }],
     description: ''
 }
-
 item.capuche_de_tyranne = {
     id: 'capuche_de_tyranne',
     name: 'Capuche de Tyranne',
@@ -10478,7 +9911,6 @@ item.capuche_de_tyranne = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 63 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.marteau_du_craqueleur_legendaire = {
     id: 'marteau_du_craqueleur_legendaire',
     name: 'Marteau du Craqueleur Légendaire',
@@ -10492,7 +9924,6 @@ item.marteau_du_craqueleur_legendaire = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 27 }],
     description: ''
 }
-
 item.cape_du_wa_wobot = {
     id: 'cape_du_wa_wobot',
     name: 'Cape du Wa Wobot',
@@ -10506,7 +9937,6 @@ item.cape_du_wa_wobot = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.pagne_de_daigoro = {
     id: 'pagne_de_daigoro',
     name: 'Pagne de Daïgoro',
@@ -10520,7 +9950,6 @@ item.pagne_de_daigoro = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bague_des_scalptaras = {
     id: 'bague_des_scalptaras',
     name: 'Bague des Scalptaras',
@@ -10534,7 +9963,6 @@ item.bague_des_scalptaras = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.casque_du_blanc_pa_wabbit = {
     id: 'casque_du_blanc_pa_wabbit',
     name: 'Casque du Blanc Pa Wabbit',
@@ -10548,7 +9976,6 @@ item.casque_du_blanc_pa_wabbit = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 6 }],
     description: ''
 }
-
 item.coiffennex = {
     id: 'coiffennex',
     name: 'Coiffennex',
@@ -10558,11 +9985,10 @@ item.coiffennex = {
     set: 'panoplie_du_desert',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 82,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_koulosse = {
     id: 'coiffe_du_koulosse',
     name: 'Coiffe du Koulosse',
@@ -10576,7 +10002,6 @@ item.coiffe_du_koulosse = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: -85 }, { stat: 'flatDamage', value: 2 }, { stat: 'heal', value: 16 }, { stat: 'res.feu', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.bottes_ouroboulos = {
     id: 'bottes_ouroboulos',
     name: 'Bottes Ouroboulos',
@@ -10586,11 +10011,10 @@ item.bottes_ouroboulos = {
     set: 'panoplie_ouroboulos',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 83,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.hache_terrdala = {
     id: 'hache_terrdala',
     name: 'Hache Terrdala',
@@ -10604,7 +10028,6 @@ item.hache_terrdala = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 3 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.coiffe_de_daigoro = {
     id: 'coiffe_de_daigoro',
     name: 'Coiffe de Daïgoro',
@@ -10618,7 +10041,6 @@ item.coiffe_de_daigoro = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.capuche_de_musha = {
     id: 'capuche_de_musha',
     name: 'Capuche de Musha',
@@ -10632,7 +10054,6 @@ item.capuche_de_musha = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_tyranne = {
     id: 'ceinture_de_tyranne',
     name: 'Ceinture de Tyranne',
@@ -10646,7 +10067,6 @@ item.ceinture_de_tyranne = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 29 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.amufafah = {
     id: 'amufafah',
     name: 'Amufafah',
@@ -10660,7 +10080,6 @@ item.amufafah = {
     stats: [{ stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'critDamagePct', value: 4 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_blanc_pa_wabbit = {
     id: 'ceinture_du_blanc_pa_wabbit',
     name: 'Ceinture du Blanc Pa Wabbit',
@@ -10674,7 +10093,6 @@ item.ceinture_du_blanc_pa_wabbit = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 36 }, { stat: 'heal', value: 5 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.ceinture_du_wa_wobot = {
     id: 'ceinture_du_wa_wobot',
     name: 'Ceinture du Wa Wobot',
@@ -10688,7 +10106,6 @@ item.ceinture_du_wa_wobot = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 5 }],
     description: ''
 }
-
 item.tablier_des_scalptaras = {
     id: 'tablier_des_scalptaras',
     name: 'Tablier des Scalptaras',
@@ -10702,7 +10119,6 @@ item.tablier_des_scalptaras = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 11 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.bracelet_du_blanc_pa_wabbit = {
     id: 'bracelet_du_blanc_pa_wabbit',
     name: 'Bracelet du Blanc Pa Wabbit',
@@ -10716,7 +10132,6 @@ item.bracelet_du_blanc_pa_wabbit = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 5 }],
     description: ''
 }
-
 item.amulette_du_boufcoul = {
     id: 'amulette_du_boufcoul',
     name: 'Amulette du Boufcoul',
@@ -10730,7 +10145,6 @@ item.amulette_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 3 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.amulette_du_craqueleur_legendaire = {
     id: 'amulette_du_craqueleur_legendaire',
     name: 'Amulette du Craqueleur Légendaire',
@@ -10744,7 +10158,6 @@ item.amulette_du_craqueleur_legendaire = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 51 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.craquelocape_legendaire = {
     id: 'craquelocape_legendaire',
     name: 'Craquelocape Légendaire',
@@ -10758,7 +10171,6 @@ item.craquelocape_legendaire = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 47 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.voile_de_musha = {
     id: 'voile_de_musha',
     name: 'Voile de Musha',
@@ -10772,7 +10184,6 @@ item.voile_de_musha = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.coiffe_de_redolphe = {
     id: 'coiffe_de_redolphe',
     name: 'Coiffe de Redolphe',
@@ -10786,7 +10197,6 @@ item.coiffe_de_redolphe = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.licol_de_redolphe = {
     id: 'licol_de_redolphe',
     name: 'Licol de Redolphe',
@@ -10800,7 +10210,6 @@ item.licol_de_redolphe = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 4 }, { stat: 'heal', value: 2 }],
     description: ''
 }
-
 item.sabots_de_redolphe = {
     id: 'sabots_de_redolphe',
     name: 'Sabots de Redolphe',
@@ -10814,7 +10223,6 @@ item.sabots_de_redolphe = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 4 }],
     description: ''
 }
-
 item.sacoche_de_redolphe = {
     id: 'sacoche_de_redolphe',
     name: 'Sacoche de Redolphe',
@@ -10828,7 +10236,6 @@ item.sacoche_de_redolphe = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 46 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.gant_de_tyranne = {
     id: 'gant_de_tyranne',
     name: 'Gant de Tyranne',
@@ -10842,7 +10249,6 @@ item.gant_de_tyranne = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 45 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.ceinture_du_boufcoul = {
     id: 'ceinture_du_boufcoul',
     name: 'Ceinture du Boufcoul',
@@ -10856,7 +10262,6 @@ item.ceinture_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 6 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.bouclier_du_chouque = {
     id: 'bouclier_du_chouque',
     name: 'Bouclier du Chouque',
@@ -10870,7 +10275,6 @@ item.bouclier_du_chouque = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 35 }],
     description: ''
 }
-
 item.collier_rouge_de_daigoro = {
     id: 'collier_rouge_de_daigoro',
     name: 'Collier Rouge de Daïgoro',
@@ -10884,7 +10288,6 @@ item.collier_rouge_de_daigoro = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 5 }],
     description: ''
 }
-
 item.bottines_des_scalptaras = {
     id: 'bottines_des_scalptaras',
     name: 'Bottines des Scalptaras',
@@ -10898,7 +10301,6 @@ item.bottines_des_scalptaras = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 31 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.anneau_du_boufcoul = {
     id: 'anneau_du_boufcoul',
     name: 'Anneau du Boufcoul',
@@ -10912,7 +10314,6 @@ item.anneau_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: -5 }, { stat: 'heal', value: 4 }, { stat: 'res.feu', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.bottes_du_craqueleur_legendaire = {
     id: 'bottes_du_craqueleur_legendaire',
     name: 'Bottes du Craqueleur Légendaire',
@@ -10926,7 +10327,6 @@ item.bottes_du_craqueleur_legendaire = {
     stats: [{ stat: 'atk', value: 16 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.boucli_il_de_musha = {
     id: 'boucli_il_de_musha',
     name: 'Boucliœil de Musha',
@@ -10940,7 +10340,6 @@ item.boucli_il_de_musha = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 30 }, { stat: 'critChance', value: -10 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.bottes_du_boufcoul = {
     id: 'bottes_du_boufcoul',
     name: 'Bottes du Boufcoul',
@@ -10954,7 +10353,6 @@ item.bottes_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 10 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.blopture_multicolore_royale = {
     id: 'blopture_multicolore_royale',
     name: 'Blopture Multicolore Royale',
@@ -10968,7 +10366,6 @@ item.blopture_multicolore_royale = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 5 }, { stat: 'heal', value: 7 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.anneau_riktus = {
     id: 'anneau_riktus',
     name: 'Anneau Riktus',
@@ -10982,7 +10379,6 @@ item.anneau_riktus = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 5 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.masque_de_choudini = {
     id: 'masque_de_choudini',
     name: 'Masque de Choudini',
@@ -10996,7 +10392,6 @@ item.masque_de_choudini = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.baton_de_daigoro = {
     id: 'baton_de_daigoro',
     name: 'Bâton de Daïgoro',
@@ -11010,7 +10405,6 @@ item.baton_de_daigoro = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 28 }, { stat: 'res.air', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.marteau_du_boufcoul = {
     id: 'marteau_du_boufcoul',
     name: 'Marteau du Boufcoul',
@@ -11024,7 +10418,6 @@ item.marteau_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 2 }, { stat: 'lifestealPct', value: 6 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_boufcoul = {
     id: 'coiffe_du_boufcoul',
     name: 'Coiffe du Boufcoul',
@@ -11038,7 +10431,6 @@ item.coiffe_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 4 }, { stat: 'res.feu', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.amublop_multicolore_royale = {
     id: 'amublop_multicolore_royale',
     name: 'Amublop Multicolore Royale',
@@ -11052,7 +10444,6 @@ item.amublop_multicolore_royale = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.feu', value: 2 }],
     description: ''
 }
-
 item.blopanneau_multicolore_royal = {
     id: 'blopanneau_multicolore_royal',
     name: 'Blopanneau Multicolore Royal',
@@ -11066,7 +10457,6 @@ item.blopanneau_multicolore_royal = {
     stats: [{ stat: 'maxHp', value: 21 }, { stat: 'atk', value: 16 }, { stat: 'heal', value: 3 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.bloptes_multicolores_royales = {
     id: 'bloptes_multicolores_royales',
     name: 'Bloptes Multicolores Royales',
@@ -11080,7 +10470,6 @@ item.bloptes_multicolores_royales = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.cape_riktus = {
     id: 'cape_riktus',
     name: 'Cape Riktus',
@@ -11094,7 +10483,6 @@ item.cape_riktus = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 7 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.bouclier_de_choudini = {
     id: 'bouclier_de_choudini',
     name: 'Bouclier de Choudini',
@@ -11108,7 +10496,6 @@ item.bouclier_de_choudini = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.gaine_nyee = {
     id: 'gaine_nyee',
     name: 'Gaine Nyée',
@@ -11122,7 +10509,6 @@ item.gaine_nyee = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.coiffe_de_la_nefileuse = {
     id: 'coiffe_de_la_nefileuse',
     name: 'Coiffe de la Néfileuse',
@@ -11136,7 +10522,6 @@ item.coiffe_de_la_nefileuse = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_du_boufcoul = {
     id: 'cape_du_boufcoul',
     name: 'Cape du Boufcoul',
@@ -11150,7 +10535,6 @@ item.cape_du_boufcoul = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 4 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.amulette_feudala = {
     id: 'amulette_feudala',
     name: 'Amulette Feudala',
@@ -11164,7 +10548,6 @@ item.amulette_feudala = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 66 }, { stat: 'heal', value: 7 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_feudala = {
     id: 'cape_feudala',
     name: 'Cape Feudala',
@@ -11178,7 +10561,6 @@ item.cape_feudala = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 41 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.masque_riktus = {
     id: 'masque_riktus',
     name: 'Masque Riktus',
@@ -11192,7 +10574,6 @@ item.masque_riktus = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 5 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.bottes_de_choudini = {
     id: 'bottes_de_choudini',
     name: 'Bottes de Choudini',
@@ -11206,7 +10587,6 @@ item.bottes_de_choudini = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 5 }],
     description: ''
 }
-
 item.cage_de_simbadas = {
     id: 'cage_de_simbadas',
     name: 'Cage de Simbadas',
@@ -11220,7 +10600,6 @@ item.cage_de_simbadas = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 35 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.amulette_des_huit_yeux = {
     id: 'amulette_des_huit_yeux',
     name: 'Amulette des Huit Yeux',
@@ -11234,7 +10613,6 @@ item.amulette_des_huit_yeux = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_du_capitaine_pirate = {
     id: 'cape_du_capitaine_pirate',
     name: 'Cape du Capitaine Pirate',
@@ -11248,7 +10626,6 @@ item.cape_du_capitaine_pirate = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.anneau_tisse = {
     id: 'anneau_tisse',
     name: 'Anneau Tissé',
@@ -11262,7 +10639,6 @@ item.anneau_tisse = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.bottes_soyeuses = {
     id: 'bottes_soyeuses',
     name: 'Bottes Soyeuses',
@@ -11276,7 +10652,6 @@ item.bottes_soyeuses = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.chapeau_du_capitaine_pirate = {
     id: 'chapeau_du_capitaine_pirate',
     name: 'Chapeau du Capitaine Pirate',
@@ -11290,7 +10665,6 @@ item.chapeau_du_capitaine_pirate = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 39 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.porte_bonheur_de_rok_gnorok = {
     id: 'porte_bonheur_de_rok_gnorok',
     name: 'Porte-bonheur de Rok Gnorok',
@@ -11304,7 +10678,6 @@ item.porte_bonheur_de_rok_gnorok = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 66 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.barriere_de_simbadas = {
     id: 'barriere_de_simbadas',
     name: 'Barrière de Simbadas',
@@ -11318,7 +10691,6 @@ item.barriere_de_simbadas = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 15 }, { stat: 'critChance', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.caparak = {
     id: 'caparak',
     name: 'Caparak',
@@ -11332,7 +10704,6 @@ item.caparak = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.alliance_du_capitaine_pirate = {
     id: 'alliance_du_capitaine_pirate',
     name: 'Alliance du Capitaine Pirate',
@@ -11346,7 +10717,6 @@ item.alliance_du_capitaine_pirate = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 28 }, { stat: 'flatDamage', value: 5 }],
     description: ''
 }
-
 item.mules_du_dragon_cochon = {
     id: 'mules_du_dragon_cochon',
     name: 'Mules du Dragon Cochon',
@@ -11356,11 +10726,10 @@ item.mules_du_dragon_cochon = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 94,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bouclier_feudala = {
     id: 'bouclier_feudala',
     name: 'Bouclier Feudala',
@@ -11374,7 +10743,6 @@ item.bouclier_feudala = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 7 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.le_rok_gnorok = {
     id: 'le_rok_gnorok',
     name: 'Le Rok Gnorok',
@@ -11388,7 +10756,6 @@ item.le_rok_gnorok = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: -14 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 1 }, { stat: 'res.eau', value: 1 }, { stat: 'res.terre', value: 1 }, { stat: 'res.air', value: 1 }],
     description: ''
 }
-
 item.patte_de_simbadas = {
     id: 'patte_de_simbadas',
     name: 'Patte de Simbadas',
@@ -11402,7 +10769,6 @@ item.patte_de_simbadas = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.ceinture_dracochoune = {
     id: 'ceinture_dracochoune',
     name: 'Ceinture Dracochoune',
@@ -11412,11 +10778,10 @@ item.ceinture_dracochoune = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 96,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.coiffe_du_dragon_cochon = {
     id: 'coiffe_du_dragon_cochon',
     name: 'Coiffe du Dragon Cochon',
@@ -11426,11 +10791,10 @@ item.coiffe_du_dragon_cochon = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 96,
+    requiredLevel: 105,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.amulette_du_gorgouille = {
     id: 'amulette_du_gorgouille',
     name: 'Amulette du Gorgouille',
@@ -11444,7 +10808,6 @@ item.amulette_du_gorgouille = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 6 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.brighellaniere = {
     id: 'brighellaniere',
     name: 'Brighellanière',
@@ -11458,7 +10821,6 @@ item.brighellaniere = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.casque_de_maitre_nabur = {
     id: 'casque_de_maitre_nabur',
     name: 'Casque de Maître Nabur',
@@ -11472,7 +10834,6 @@ item.casque_de_maitre_nabur = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 36 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.gantelet_du_gorgouille = {
     id: 'gantelet_du_gorgouille',
     name: 'Gantelet du Gorgouille',
@@ -11486,7 +10847,6 @@ item.gantelet_du_gorgouille = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 25 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.pagne_du_muloubar = {
     id: 'pagne_du_muloubar',
     name: 'Pagne du Muloubar',
@@ -11500,7 +10860,6 @@ item.pagne_du_muloubar = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 40 }, { stat: 'flatDamage', value: 6 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.chapeau_feudala = {
     id: 'chapeau_feudala',
     name: 'Chapeau Feudala',
@@ -11514,7 +10873,6 @@ item.chapeau_feudala = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 41 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bottes_precieuses = {
     id: 'bottes_precieuses',
     name: 'Bottes Précieuses',
@@ -11528,7 +10886,6 @@ item.bottes_precieuses = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }],
     description: ''
 }
-
 item.rempierre_de_rok_gnorok = {
     id: 'rempierre_de_rok_gnorok',
     name: 'Rempierre de Rok Gnorok',
@@ -11542,7 +10899,6 @@ item.rempierre_de_rok_gnorok = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.gant_du_rat_noir = {
     id: 'gant_du_rat_noir',
     name: 'Gant du Rat Noir',
@@ -11556,7 +10912,6 @@ item.gant_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cape_du_gorgouille = {
     id: 'cape_du_gorgouille',
     name: 'Cape du Gorgouille',
@@ -11570,7 +10925,6 @@ item.cape_du_gorgouille = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.bottes_du_rat_blanc = {
     id: 'bottes_du_rat_blanc',
     name: 'Bottes du Rat Blanc',
@@ -11584,7 +10938,6 @@ item.bottes_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.krosmangle = {
     id: 'krosmangle',
     name: 'Krosmangle',
@@ -11598,7 +10951,6 @@ item.krosmangle = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 12 }, { stat: 'critResPct', value: 7 }],
     description: ''
 }
-
 item.krosmaussures = {
     id: 'krosmaussures',
     name: 'Krosmaussures',
@@ -11612,7 +10964,6 @@ item.krosmaussures = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 6 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bottes_ulisme = {
     id: 'bottes_ulisme',
     name: 'Bottes Ulisme',
@@ -11626,7 +10977,6 @@ item.bottes_ulisme = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bouclier_de_bowisse_ankarton = {
     id: 'bouclier_de_bowisse_ankarton',
     name: 'Bouclier de Bowisse Ankarton',
@@ -11640,7 +10990,6 @@ item.bouclier_de_bowisse_ankarton = {
     stats: [],
     description: ''
 }
-
 item.bottes_hox = {
     id: 'bottes_hox',
     name: 'Bottes Hox',
@@ -11654,7 +11003,6 @@ item.bottes_hox = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_harcie = {
     id: 'bottes_harcie',
     name: 'Bottes Harcie',
@@ -11668,7 +11016,6 @@ item.bottes_harcie = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.geta_bernacle = {
     id: 'geta_bernacle',
     name: 'Geta Bernacle',
@@ -11682,7 +11029,6 @@ item.geta_bernacle = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_opsy = {
     id: 'bottes_opsy',
     name: 'Bottes Opsy',
@@ -11696,7 +11042,6 @@ item.bottes_opsy = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.tong_aclou = {
     id: 'tong_aclou',
     name: 'Tong Aclou',
@@ -11710,7 +11055,6 @@ item.tong_aclou = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_antouche = {
     id: 'bottes_antouche',
     name: 'Bottes Antouche',
@@ -11724,7 +11068,6 @@ item.bottes_antouche = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_hairo = {
     id: 'bottes_hairo',
     name: 'Bottes Hairo',
@@ -11738,7 +11081,6 @@ item.bottes_hairo = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.sabots_taj = {
     id: 'sabots_taj',
     name: 'Sabots Taj',
@@ -11752,7 +11094,6 @@ item.sabots_taj = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_initiales = {
     id: 'bottes_initiales',
     name: 'Bottes Initiales',
@@ -11766,7 +11107,6 @@ item.bottes_initiales = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_hanik = {
     id: 'bottes_hanik',
     name: 'Bottes Hanik',
@@ -11780,7 +11120,6 @@ item.bottes_hanik = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_omates = {
     id: 'bottes_omates',
     name: 'Bottes Omates',
@@ -11794,7 +11133,6 @@ item.bottes_omates = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_ransitoires = {
     id: 'bottes_ransitoires',
     name: 'Bottes Ransitoires',
@@ -11808,7 +11146,6 @@ item.bottes_ransitoires = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_antrin = {
     id: 'bottes_antrin',
     name: 'Bottes Antrin',
@@ -11822,7 +11159,6 @@ item.bottes_antrin = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.chaussures_lepon_davignon = {
     id: 'chaussures_lepon_davignon',
     name: 'Chaussures Lepon-Davignon',
@@ -11836,7 +11172,6 @@ item.chaussures_lepon_davignon = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.charentaises_a_poils = {
     id: 'charentaises_a_poils',
     name: 'Charentaises à poils',
@@ -11850,7 +11185,6 @@ item.charentaises_a_poils = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.ceinture_ding_dong = {
     id: 'ceinture_ding_dong',
     name: 'Ceinture Ding Dong',
@@ -11864,7 +11198,6 @@ item.ceinture_ding_dong = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.jambieres_hitaj = {
     id: 'jambieres_hitaj',
     name: 'Jambières Hitaj',
@@ -11878,7 +11211,6 @@ item.jambieres_hitaj = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.bottes_swana = {
     id: 'bottes_swana',
     name: 'Bottes Swana',
@@ -11892,7 +11224,6 @@ item.bottes_swana = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.ceinture_du_berserkoffre = {
     id: 'ceinture_du_berserkoffre',
     name: 'Ceinture du Berserkoffre',
@@ -11906,7 +11237,6 @@ item.ceinture_du_berserkoffre = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.fourbacoiffe = {
     id: 'fourbacoiffe',
     name: 'Fourbacoiffe',
@@ -11920,7 +11250,6 @@ item.fourbacoiffe = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.amulette_du_chef_bwork = {
     id: 'amulette_du_chef_bwork',
     name: 'Amulette du Chef Bwork',
@@ -11934,7 +11263,6 @@ item.amulette_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 54 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.bottes_du_chef_bwork = {
     id: 'bottes_du_chef_bwork',
     name: 'Bottes du Chef Bwork',
@@ -11948,7 +11276,6 @@ item.bottes_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.bracelet_du_chef_bwork = {
     id: 'bracelet_du_chef_bwork',
     name: 'Bracelet du Chef Bwork',
@@ -11962,7 +11289,6 @@ item.bracelet_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 30 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_du_chef_bwork = {
     id: 'cape_du_chef_bwork',
     name: 'Cape du Chef Bwork',
@@ -11976,7 +11302,6 @@ item.cape_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.casque_du_chef_bwork = {
     id: 'casque_du_chef_bwork',
     name: 'Casque du Chef Bwork',
@@ -11990,7 +11315,6 @@ item.casque_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 43 }, { stat: 'flatDamage', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.lame_du_chef_bwork = {
     id: 'lame_du_chef_bwork',
     name: 'Lame du Chef Bwork',
@@ -12004,7 +11328,6 @@ item.lame_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 52 }, { stat: 'flatDamage', value: 27 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.slip_du_chef_bwork = {
     id: 'slip_du_chef_bwork',
     name: 'Slip du Chef Bwork',
@@ -12018,7 +11341,6 @@ item.slip_du_chef_bwork = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: -4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.collier_du_dragon_cochon = {
     id: 'collier_du_dragon_cochon',
     name: 'Collier du Dragon Cochon',
@@ -12028,11 +11350,10 @@ item.collier_du_dragon_cochon = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 100,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.cape_du_muloubar = {
     id: 'cape_du_muloubar',
     name: 'Cape du Muloubar',
@@ -12046,7 +11367,6 @@ item.cape_du_muloubar = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 53 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.bottes_deuradi = {
     id: 'bottes_deuradi',
     name: 'Bottes Deuradi',
@@ -12060,7 +11380,6 @@ item.bottes_deuradi = {
     stats: [{ stat: 'spd', value: 15 }],
     description: ''
 }
-
 item.ceinture_hetorique = {
     id: 'ceinture_hetorique',
     name: 'Ceinture Hétorique',
@@ -12074,7 +11393,6 @@ item.ceinture_hetorique = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.ceinture_precieuse = {
     id: 'ceinture_precieuse',
     name: 'Ceinture Précieuse',
@@ -12088,7 +11406,6 @@ item.ceinture_precieuse = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 12 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.fourbacapa = {
     id: 'fourbacapa',
     name: 'Fourbacapa',
@@ -12102,7 +11419,6 @@ item.fourbacapa = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.cape_du_krokilleur = {
     id: 'cape_du_krokilleur',
     name: 'Cape du Krokilleur',
@@ -12116,7 +11432,6 @@ item.cape_du_krokilleur = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.gant_du_rat_blanc = {
     id: 'gant_du_rat_blanc',
     name: 'Gant du Rat Blanc',
@@ -12130,7 +11445,6 @@ item.gant_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 3 }],
     description: ''
 }
-
 item.bottes_du_rat_noir = {
     id: 'bottes_du_rat_noir',
     name: 'Bottes du Rat Noir',
@@ -12144,7 +11458,6 @@ item.bottes_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 12 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.ceinture_du_rat_noir = {
     id: 'ceinture_du_rat_noir',
     name: 'Ceinture du Rat Noir',
@@ -12158,7 +11471,6 @@ item.ceinture_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 9 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.capitrouille = {
     id: 'capitrouille',
     name: 'Capitrouille',
@@ -12172,7 +11484,6 @@ item.capitrouille = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 6 }, { stat: 'critResPct', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.chapokipik = {
     id: 'chapokipik',
     name: 'Chapokipik',
@@ -12186,7 +11497,6 @@ item.chapokipik = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 4 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.masque_iproquo = {
     id: 'masque_iproquo',
     name: 'Masque Iproquo',
@@ -12200,7 +11510,6 @@ item.masque_iproquo = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.fourbasse_ton = {
     id: 'fourbasse_ton',
     name: 'Fourbasse-Ton',
@@ -12214,7 +11523,6 @@ item.fourbasse_ton = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 31 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.scaramouchapeau = {
     id: 'scaramouchapeau',
     name: 'Scaramouchapeau',
@@ -12228,7 +11536,6 @@ item.scaramouchapeau = {
     stats: [{ stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 5 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.bottes_horchons = {
     id: 'bottes_horchons',
     name: 'Bottes Horchons',
@@ -12242,7 +11549,6 @@ item.bottes_horchons = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.amulette_de_moon = {
     id: 'amulette_de_moon',
     name: 'Amulette de Moon',
@@ -12256,7 +11562,6 @@ item.amulette_de_moon = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 5 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.eau', value: 10 }],
     description: ''
 }
-
 item.bandeau_de_carlita = {
     id: 'bandeau_de_carlita',
     name: 'Bandeau de Carlita',
@@ -12270,7 +11575,6 @@ item.bandeau_de_carlita = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bottes_du_berserkoffre = {
     id: 'bottes_du_berserkoffre',
     name: 'Bottes du Berserkoffre',
@@ -12284,7 +11588,6 @@ item.bottes_du_berserkoffre = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.cape_du_rat_blanc = {
     id: 'cape_du_rat_blanc',
     name: 'Cape du Rat Blanc',
@@ -12298,7 +11601,6 @@ item.cape_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_rat_blanc = {
     id: 'ceinture_du_rat_blanc',
     name: 'Ceinture du Rat Blanc',
@@ -12312,7 +11614,6 @@ item.ceinture_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.collier_du_rat_blanc = {
     id: 'collier_du_rat_blanc',
     name: 'Collier du Rat Blanc',
@@ -12326,7 +11627,6 @@ item.collier_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 3 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.masque_du_rat_noir = {
     id: 'masque_du_rat_noir',
     name: 'Masque du Rat Noir',
@@ -12340,7 +11640,6 @@ item.masque_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.ratrouille = {
     id: 'ratrouille',
     name: 'Râtrouille',
@@ -12354,7 +11653,6 @@ item.ratrouille = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 24 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.ceinture_fourbissante = {
     id: 'ceinture_fourbissante',
     name: 'Ceinture Fourbissante',
@@ -12368,7 +11666,6 @@ item.ceinture_fourbissante = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 3 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.fourbamulette = {
     id: 'fourbamulette',
     name: 'Fourbamulette',
@@ -12382,7 +11679,6 @@ item.fourbamulette = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 3 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_de_la_ouassingue = {
     id: 'cape_de_la_ouassingue',
     name: 'Cape de la Ouassingue',
@@ -12392,11 +11688,10 @@ item.cape_de_la_ouassingue = {
     set: 'panoplie_vassale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 103,
+    requiredLevel: 100,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: -20 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 4 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.cape_de_moon = {
     id: 'cape_de_moon',
     name: 'Cape de Moon',
@@ -12410,7 +11705,6 @@ item.cape_de_moon = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 12 }],
     description: ''
 }
-
 item.marteau_de_moon = {
     id: 'marteau_de_moon',
     name: 'Marteau de Moon',
@@ -12424,7 +11718,6 @@ item.marteau_de_moon = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 26 }, { stat: 'critChance', value: 7 }, { stat: 'res.eau', value: 12 }],
     description: ''
 }
-
 item.cape_du_dragon_cochon = {
     id: 'cape_du_dragon_cochon',
     name: 'Cape du Dragon Cochon',
@@ -12434,11 +11727,10 @@ item.cape_du_dragon_cochon = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 103,
+    requiredLevel: 105,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 28 }, { stat: 'flatDamage', value: 4 }, { stat: 'res.feu', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.bottes_du_gorgouille = {
     id: 'bottes_du_gorgouille',
     name: 'Bottes du Gorgouille',
@@ -12452,7 +11744,6 @@ item.bottes_du_gorgouille = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 38 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.coiffe_du_muloubar = {
     id: 'coiffe_du_muloubar',
     name: 'Coiffe du Muloubar',
@@ -12466,7 +11757,6 @@ item.coiffe_du_muloubar = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 53 }, { stat: 'flatDamage', value: 12 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.collier_du_rat_noir = {
     id: 'collier_du_rat_noir',
     name: 'Collier du Rat Noir',
@@ -12480,7 +11770,6 @@ item.collier_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.martokipik = {
     id: 'martokipik',
     name: 'Martokipik',
@@ -12494,7 +11783,6 @@ item.martokipik = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 33 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.bracelet_tmotiv = {
     id: 'bracelet_tmotiv',
     name: 'Bracelet Tmotiv',
@@ -12508,7 +11796,6 @@ item.bracelet_tmotiv = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.fourballiance = {
     id: 'fourballiance',
     name: 'Fourballiance',
@@ -12522,7 +11809,6 @@ item.fourballiance = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 9 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_precieuse = {
     id: 'cape_precieuse',
     name: 'Cape Précieuse',
@@ -12536,7 +11822,6 @@ item.cape_precieuse = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.arc_lequin = {
     id: 'arc_lequin',
     name: 'Arc Lequin',
@@ -12550,7 +11835,6 @@ item.arc_lequin = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.capuche_de_la_ouassingue = {
     id: 'capuche_de_la_ouassingue',
     name: 'Capuche de la Ouassingue',
@@ -12560,11 +11844,10 @@ item.capuche_de_la_ouassingue = {
     set: 'panoplie_vassale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 104,
+    requiredLevel: 100,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 9 }, { stat: 'critResPct', value: -10 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.sangle_de_carlita = {
     id: 'sangle_de_carlita',
     name: 'Sangle de Carlita',
@@ -12578,7 +11861,6 @@ item.sangle_de_carlita = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 1 }, { stat: 'critDamagePct', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 3 }],
     description: ''
 }
-
 item.fourbabottes = {
     id: 'fourbabottes',
     name: 'Fourbabottes',
@@ -12592,7 +11874,6 @@ item.fourbabottes = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.corbottes = {
     id: 'corbottes',
     name: 'Corbottes',
@@ -12606,7 +11887,6 @@ item.corbottes = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 8 }],
     description: ''
 }
-
 item.kaiser = {
     id: 'kaiser',
     name: 'Kaiser',
@@ -12616,11 +11896,10 @@ item.kaiser = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 104,
+    requiredLevel: 105,
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: -3 }, { stat: 'flatDamage', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 5 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_krokilleur = {
     id: 'ceinture_du_krokilleur',
     name: 'Ceinture du Krokilleur',
@@ -12634,7 +11913,6 @@ item.ceinture_du_krokilleur = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.chapitrouille = {
     id: 'chapitrouille',
     name: 'Chapitrouille',
@@ -12648,7 +11926,6 @@ item.chapitrouille = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.cape_houte = {
     id: 'cape_houte',
     name: 'Cape Houte',
@@ -12662,7 +11939,6 @@ item.cape_houte = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 26 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.ouassulette = {
     id: 'ouassulette',
     name: 'Ouassulette',
@@ -12676,7 +11952,6 @@ item.ouassulette = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 61 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 2 }],
     description: ''
 }
-
 item.cape_de_naganita = {
     id: 'cape_de_naganita',
     name: 'Cape de Naganita',
@@ -12690,7 +11965,6 @@ item.cape_de_naganita = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.casque_du_berserkoffre = {
     id: 'casque_du_berserkoffre',
     name: 'Casque du Berserkoffre',
@@ -12704,7 +11978,6 @@ item.casque_du_berserkoffre = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.couvre_chef_du_rat_blanc = {
     id: 'couvre_chef_du_rat_blanc',
     name: 'Couvre-chef du Rat Blanc',
@@ -12718,7 +11991,6 @@ item.couvre_chef_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.cape_du_rat_noir = {
     id: 'cape_du_rat_noir',
     name: 'Cape du Rat Noir',
@@ -12732,7 +12004,6 @@ item.cape_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 12 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }],
     description: ''
 }
-
 item.ekukipik = {
     id: 'ekukipik',
     name: 'Ékukipik',
@@ -12746,7 +12017,6 @@ item.ekukipik = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.boutures = {
     id: 'boutures',
     name: 'Boutures',
@@ -12760,7 +12030,6 @@ item.boutures = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.tromblon_de_carlita = {
     id: 'tromblon_de_carlita',
     name: 'Tromblon de Carlita',
@@ -12774,7 +12043,6 @@ item.tromblon_de_carlita = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 42 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.corbacoiffe = {
     id: 'corbacoiffe',
     name: 'Corbacoiffe',
@@ -12788,7 +12056,6 @@ item.corbacoiffe = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 55 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.ceintrouille = {
     id: 'ceintrouille',
     name: 'Ceintrouille',
@@ -12802,7 +12069,6 @@ item.ceintrouille = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 40 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.arc_de_fleche_mauve = {
     id: 'arc_de_fleche_mauve',
     name: 'Arc de Flèche Mauve',
@@ -12816,7 +12082,6 @@ item.arc_de_fleche_mauve = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'spd', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 31 }, { stat: 'lifestealPct', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.collier_de_naganita = {
     id: 'collier_de_naganita',
     name: 'Collier de Naganita',
@@ -12830,7 +12095,6 @@ item.collier_de_naganita = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 5 }, { stat: 'heal', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.amulette_du_krokilleur = {
     id: 'amulette_du_krokilleur',
     name: 'Amulette du Krokilleur',
@@ -12844,7 +12108,6 @@ item.amulette_du_krokilleur = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 91 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 1 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.cape_du_minotoror = {
     id: 'cape_du_minotoror',
     name: 'Cape du Minotoror',
@@ -12858,7 +12121,6 @@ item.cape_du_minotoror = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.plantamulette = {
     id: 'plantamulette',
     name: 'Plantamulette',
@@ -12872,7 +12134,6 @@ item.plantamulette = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 56 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 1 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.corbacape = {
     id: 'corbacape',
     name: 'Corbacape',
@@ -12886,7 +12147,6 @@ item.corbacape = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 49 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.anneau_du_dragon_cochon = {
     id: 'anneau_du_dragon_cochon',
     name: 'Anneau du Dragon Cochon',
@@ -12896,11 +12156,10 @@ item.anneau_du_dragon_cochon = {
     set: 'panoplie_du_dragon_cochon',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 108,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.dagues_du_rat_noir = {
     id: 'dagues_du_rat_noir',
     name: 'Dagues du Rat Noir',
@@ -12914,7 +12173,6 @@ item.dagues_du_rat_noir = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 25 }, { stat: 'critChance', value: 1 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.cape_de_fleche_mauve = {
     id: 'cape_de_fleche_mauve',
     name: 'Cape de Flèche Mauve',
@@ -12928,7 +12186,6 @@ item.cape_de_fleche_mauve = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.naginata_de_naganita = {
     id: 'naginata_de_naganita',
     name: 'Naginata de Naganita',
@@ -12942,7 +12199,6 @@ item.naginata_de_naganita = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 39 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 3 }, { stat: 'lifestealPct', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceinture_du_minotoror = {
     id: 'ceinture_du_minotoror',
     name: 'Ceinture du Minotoror',
@@ -12956,7 +12212,6 @@ item.ceinture_du_minotoror = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.hache_du_minotoror = {
     id: 'hache_du_minotoror',
     name: 'Hache du Minotoror',
@@ -12970,7 +12225,6 @@ item.hache_du_minotoror = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 14 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'lifestealPct', value: 3 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.rapiere_du_rat_blanc = {
     id: 'rapiere_du_rat_blanc',
     name: 'Rapière du Rat Blanc',
@@ -12984,7 +12238,6 @@ item.rapiere_du_rat_blanc = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: -4 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 40 }, { stat: 'heal', value: 2 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.protege_tibias_ancestraux = {
     id: 'protege_tibias_ancestraux',
     name: 'Protège-Tibias Ancestraux',
@@ -12994,11 +12247,10 @@ item.protege_tibias_ancestraux = {
     set: 'panoplie_ancestrale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 110,
+    requiredLevel: 95,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.torque_ancestral = {
     id: 'torque_ancestral',
     name: 'Torque Ancestral',
@@ -13008,11 +12260,10 @@ item.torque_ancestral = {
     set: 'panoplie_ancestrale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 110,
+    requiredLevel: 95,
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 59 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 11 }],
     description: ''
 }
-
 item.bulbouclier = {
     id: 'bulbouclier',
     name: 'Bulbouclier',
@@ -13026,7 +12277,6 @@ item.bulbouclier = {
     stats: [{ stat: 'maxHp', value: 86 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.casque_de_fleche_mauve = {
     id: 'casque_de_fleche_mauve',
     name: 'Casque de Flèche Mauve',
@@ -13040,7 +12290,6 @@ item.casque_de_fleche_mauve = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 11 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.corbalame = {
     id: 'corbalame',
     name: 'Corbalame',
@@ -13054,7 +12303,6 @@ item.corbalame = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 59 }, { stat: 'flatDamage', value: 44 }, { stat: 'critChance', value: 1 }, { stat: 'res.air', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.minotokorno = {
     id: 'minotokorno',
     name: 'Minotokorno',
@@ -13068,7 +12316,6 @@ item.minotokorno = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bottes_du_mominotor = {
     id: 'bottes_du_mominotor',
     name: 'Bottes du Mominotor',
@@ -13082,7 +12329,6 @@ item.bottes_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.coiffe_du_mominotor = {
     id: 'coiffe_du_mominotor',
     name: 'Coiffe du Mominotor',
@@ -13096,7 +12342,6 @@ item.coiffe_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.puissante_cape_fulgurante = {
     id: 'puissante_cape_fulgurante',
     name: 'Puissante Cape Fulgurante',
@@ -13110,7 +12355,6 @@ item.puissante_cape_fulgurante = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 4 }],
     description: ''
 }
-
 item.abrature_ancestrale = {
     id: 'abrature_ancestrale',
     name: 'Abrature Ancestrale',
@@ -13120,11 +12364,10 @@ item.abrature_ancestrale = {
     set: 'panoplie_ancestrale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 111,
+    requiredLevel: 95,
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.collier_du_minotoror = {
     id: 'collier_du_minotoror',
     name: 'Collier du Minotoror',
@@ -13138,7 +12381,6 @@ item.collier_du_minotoror = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 49 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.alliance_du_mominotor = {
     id: 'alliance_du_mominotor',
     name: 'Alliance du Mominotor',
@@ -13152,7 +12394,6 @@ item.alliance_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_du_mominotor = {
     id: 'cape_du_mominotor',
     name: 'Cape du Mominotor',
@@ -13166,7 +12407,6 @@ item.cape_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.pendentif_du_mominotor = {
     id: 'pendentif_du_mominotor',
     name: 'Pendentif du Mominotor',
@@ -13180,7 +12420,6 @@ item.pendentif_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 35 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.abracapa_ancestrale = {
     id: 'abracapa_ancestrale',
     name: 'Abracapa Ancestrale',
@@ -13190,11 +12429,10 @@ item.abracapa_ancestrale = {
     set: 'panoplie_ancestrale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 112,
+    requiredLevel: 95,
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 30 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.capistil = {
     id: 'capistil',
     name: 'Capistil',
@@ -13208,7 +12446,6 @@ item.capistil = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.cape_des_ecaflipuces = {
     id: 'cape_des_ecaflipuces',
     name: 'Cape des Ecaflipuces',
@@ -13222,7 +12459,6 @@ item.cape_des_ecaflipuces = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 10 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.anneau_du_minotoror = {
     id: 'anneau_du_minotoror',
     name: 'Anneau du Minotoror',
@@ -13236,7 +12472,6 @@ item.anneau_du_minotoror = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 6 }, { stat: 'critChance', value: 1 }, { stat: 'critDamagePct', value: 3 }, { stat: 'heal', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.ceinture_du_mominotor = {
     id: 'ceinture_du_mominotor',
     name: 'Ceinture du Mominotor',
@@ -13250,7 +12485,6 @@ item.ceinture_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.marteau_du_mominotor = {
     id: 'marteau_du_mominotor',
     name: 'Marteau du Mominotor',
@@ -13264,7 +12498,6 @@ item.marteau_du_mominotor = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: -35 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 27 }, { stat: 'lifestealPct', value: 3 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.anneau_ancestral = {
     id: 'anneau_ancestral',
     name: 'Anneau Ancestral',
@@ -13274,11 +12507,10 @@ item.anneau_ancestral = {
     set: 'panoplie_ancestrale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 113,
+    requiredLevel: 95,
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 24 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.bottes_du_minotoror = {
     id: 'bottes_du_minotoror',
     name: 'Bottes du Minotoror',
@@ -13292,7 +12524,6 @@ item.bottes_du_minotoror = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 14 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.abracaska_ancestral = {
     id: 'abracaska_ancestral',
     name: 'Abracaska Ancestral',
@@ -13302,11 +12533,10 @@ item.abracaska_ancestral = {
     set: 'panoplie_ancestrale',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 114,
+    requiredLevel: 95,
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.bague_des_ecaflipuces = {
     id: 'bague_des_ecaflipuces',
     name: 'Bague des Ecaflipuces',
@@ -13320,7 +12550,6 @@ item.bague_des_ecaflipuces = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.collier_des_ecaflipuces = {
     id: 'collier_des_ecaflipuces',
     name: 'Collier des Ecaflipuces',
@@ -13334,7 +12563,6 @@ item.collier_des_ecaflipuces = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 10 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.ceinture_du_pounicheur = {
     id: 'ceinture_du_pounicheur',
     name: 'Ceinture du Pounicheur',
@@ -13348,7 +12576,6 @@ item.ceinture_du_pounicheur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 14 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.anneau_skargo = {
     id: 'anneau_skargo',
     name: 'Anneau Skargo',
@@ -13362,7 +12589,6 @@ item.anneau_skargo = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 10 }],
     description: ''
 }
-
 item.amulette_du_wabbit_cephale = {
     id: 'amulette_du_wabbit_cephale',
     name: 'Amulette du Wabbit Céphale',
@@ -13376,7 +12602,6 @@ item.amulette_du_wabbit_cephale = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }],
     description: ''
 }
-
 item.anneau_xelomorphe = {
     id: 'anneau_xelomorphe',
     name: 'Anneau Xélomorphe',
@@ -13390,7 +12615,6 @@ item.anneau_xelomorphe = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 8 }, { stat: 'heal', value: 5 }],
     description: ''
 }
-
 item.baguette_d_elya_wood = {
     id: 'baguette_d_elya_wood',
     name: 'Baguette d\'Elya Wood',
@@ -13404,7 +12628,6 @@ item.baguette_d_elya_wood = {
     stats: [{ stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 20 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.scalp_du_pounicheur = {
     id: 'scalp_du_pounicheur',
     name: 'Scalp du Pounicheur',
@@ -13418,7 +12641,6 @@ item.scalp_du_pounicheur = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 12 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.arc_du_dragoeuf = {
     id: 'arc_du_dragoeuf',
     name: 'Arc du Dragoeuf',
@@ -13432,7 +12654,6 @@ item.arc_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 37 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.bottes_du_pounicheur = {
     id: 'bottes_du_pounicheur',
     name: 'Bottes du Pounicheur',
@@ -13446,7 +12667,6 @@ item.bottes_du_pounicheur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 67 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 7 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.bottes_du_royalmouth = {
     id: 'bottes_du_royalmouth',
     name: 'Bottes du Royalmouth',
@@ -13460,7 +12680,6 @@ item.bottes_du_royalmouth = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 45 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 12 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.alliance_d_elya_wood = {
     id: 'alliance_d_elya_wood',
     name: 'Alliance d\'Elya Wood',
@@ -13474,7 +12693,6 @@ item.alliance_d_elya_wood = {
     stats: [{ stat: 'maxHp', value: 61 }, { stat: 'atk', value: 21 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 14 }, { stat: 'res.terre', value: 14 }],
     description: ''
 }
-
 item.bottes_du_wabbit_cephale = {
     id: 'bottes_du_wabbit_cephale',
     name: 'Bottes du Wabbit Céphale',
@@ -13488,7 +12706,6 @@ item.bottes_du_wabbit_cephale = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.cape_du_wabbit_garou = {
     id: 'cape_du_wabbit_garou',
     name: 'Cape du Wabbit Garou',
@@ -13502,7 +12719,6 @@ item.cape_du_wabbit_garou = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 10 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 9 }],
     description: ''
 }
-
 item.bottes_de_mandrin = {
     id: 'bottes_de_mandrin',
     name: 'Bottes de Mandrin',
@@ -13516,7 +12732,6 @@ item.bottes_de_mandrin = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 18 }, { stat: 'res.air', value: -7 }],
     description: ''
 }
-
 item.bottes_de_styx = {
     id: 'bottes_de_styx',
     name: 'Bottes de Styx',
@@ -13530,7 +12745,6 @@ item.bottes_de_styx = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: -7 }, { stat: 'res.eau', value: 18 }],
     description: ''
 }
-
 item.bottes_d_inferno = {
     id: 'bottes_d_inferno',
     name: 'Bottes d\'Inferno',
@@ -13544,7 +12758,6 @@ item.bottes_d_inferno = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 18 }, { stat: 'res.eau', value: -7 }],
     description: ''
 }
-
 item.bottes_de_will_killson = {
     id: 'bottes_de_will_killson',
     name: 'Bottes de Will Killson',
@@ -13558,7 +12771,6 @@ item.bottes_de_will_killson = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: -7 }, { stat: 'res.air', value: 18 }],
     description: ''
 }
-
 item.anneau_de_fraktale = {
     id: 'anneau_de_fraktale',
     name: 'Anneau de Fraktale',
@@ -13572,7 +12784,6 @@ item.anneau_de_fraktale = {
     stats: [{ stat: 'maxHp', value: 51 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.bague_moutheuze = {
     id: 'bague_moutheuze',
     name: 'Bague Moutheuze',
@@ -13586,7 +12797,6 @@ item.bague_moutheuze = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 4 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.bottes_du_wabbit_garou = {
     id: 'bottes_du_wabbit_garou',
     name: 'Bottes du Wabbit Garou',
@@ -13600,7 +12810,6 @@ item.bottes_du_wabbit_garou = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 12 }, { stat: 'critDamagePct', value: 9 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.holoune = {
     id: 'holoune',
     name: 'Holoune',
@@ -13614,7 +12823,6 @@ item.holoune = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 6 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.kask_arc_go = {
     id: 'kask_arc_go',
     name: 'Kask\'Arc Go',
@@ -13628,7 +12836,6 @@ item.kask_arc_go = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 14 }, { stat: 'lifestealPct', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 12 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.mourtheau = {
     id: 'mourtheau',
     name: 'Mourtheau',
@@ -13642,7 +12849,6 @@ item.mourtheau = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 18 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 11 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.ceinture_de_fraktale = {
     id: 'ceinture_de_fraktale',
     name: 'Ceinture de Fraktale',
@@ -13656,7 +12862,6 @@ item.ceinture_de_fraktale = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.anneau_du_wabbit_cephale = {
     id: 'anneau_du_wabbit_cephale',
     name: 'Anneau du Wabbit Céphale',
@@ -13670,7 +12875,6 @@ item.anneau_du_wabbit_cephale = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 14 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.kaskargo = {
     id: 'kaskargo',
     name: 'Kaskargo',
@@ -13684,7 +12888,6 @@ item.kaskargo = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 3 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.bottes_xelomorphes = {
     id: 'bottes_xelomorphes',
     name: 'Bottes Xélomorphes',
@@ -13698,7 +12901,6 @@ item.bottes_xelomorphes = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 32 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 8 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.marteau_du_dragoeuf = {
     id: 'marteau_du_dragoeuf',
     name: 'Marteau du Dragoeuf',
@@ -13712,7 +12914,6 @@ item.marteau_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'lifestealPct', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.ceinture_du_wabbit_garou = {
     id: 'ceinture_du_wabbit_garou',
     name: 'Ceinture du Wabbit Garou',
@@ -13726,7 +12927,6 @@ item.ceinture_du_wabbit_garou = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 8 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.couteau_de_mer = {
     id: 'couteau_de_mer',
     name: 'Couteau de Mer',
@@ -13740,7 +12940,6 @@ item.couteau_de_mer = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 17 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 5 }, { stat: 'lifestealPct', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 11 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.cape_mouthante = {
     id: 'cape_mouthante',
     name: 'Cape Mouthante',
@@ -13754,7 +12953,6 @@ item.cape_mouthante = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.coiffe_de_fraktale = {
     id: 'coiffe_de_fraktale',
     name: 'Coiffe de Fraktale',
@@ -13768,7 +12966,6 @@ item.coiffe_de_fraktale = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 21 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_du_dragoeuf = {
     id: 'amulette_du_dragoeuf',
     name: 'Amulette du Dragoeuf',
@@ -13782,7 +12979,6 @@ item.amulette_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 87 }, { stat: 'spd', value: 16 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.baguette_du_dragoeuf = {
     id: 'baguette_du_dragoeuf',
     name: 'Baguette du Dragoeuf',
@@ -13796,7 +12992,6 @@ item.baguette_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 6 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.baton_du_dragoeuf = {
     id: 'baton_du_dragoeuf',
     name: 'Bâton du Dragoeuf',
@@ -13810,7 +13005,6 @@ item.baton_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.geta_ankarton = {
     id: 'geta_ankarton',
     name: 'Geta Ankarton',
@@ -13824,7 +13018,6 @@ item.geta_ankarton = {
     stats: [],
     description: ''
 }
-
 item.cape_xelomorphe = {
     id: 'cape_xelomorphe',
     name: 'Cape Xélomorphe',
@@ -13838,7 +13031,6 @@ item.cape_xelomorphe = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 52 }, { stat: 'flatDamage', value: 10 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.nenuphar_de_nenufor = {
     id: 'nenuphar_de_nenufor',
     name: 'Nénuphar de Nenufor',
@@ -13852,7 +13044,6 @@ item.nenuphar_de_nenufor = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 15 }, { stat: 'heal', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.cape_dragoeuf = {
     id: 'cape_dragoeuf',
     name: 'Cape Dragoeuf',
@@ -13866,7 +13057,6 @@ item.cape_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 11 }],
     description: ''
 }
-
 item.ceinture_du_meulou = {
     id: 'ceinture_du_meulou',
     name: 'Ceinture du Meulou',
@@ -13880,7 +13070,6 @@ item.ceinture_du_meulou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: -4 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.coiffe_du_royalmouth = {
     id: 'coiffe_du_royalmouth',
     name: 'Coiffe du Royalmouth',
@@ -13894,7 +13083,6 @@ item.coiffe_du_royalmouth = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 45 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ceinture_claire_en_abrakleur = {
     id: 'ceinture_claire_en_abrakleur',
     name: 'Ceinture Claire en Abrakleur',
@@ -13908,7 +13096,6 @@ item.ceinture_claire_en_abrakleur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 37 }, { stat: 'spd', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.bottes_croquantes = {
     id: 'bottes_croquantes',
     name: 'Bottes Croquantes',
@@ -13922,7 +13109,6 @@ item.bottes_croquantes = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 73 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.nun_charang = {
     id: 'nun_charang',
     name: 'Nun-Charang',
@@ -13936,7 +13122,6 @@ item.nun_charang = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 12 }, { stat: 'critDamagePct', value: 4 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.kwarapace = {
     id: 'kwarapace',
     name: 'Kwarapace',
@@ -13950,7 +13135,6 @@ item.kwarapace = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.masque_de_l_abrakleur_sombre = {
     id: 'masque_de_l_abrakleur_sombre',
     name: 'Masque de l\'Abrakleur sombre',
@@ -13964,7 +13148,6 @@ item.masque_de_l_abrakleur_sombre = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.les_casse_noisettes = {
     id: 'les_casse_noisettes',
     name: 'Les Casse-noisettes',
@@ -13978,7 +13161,6 @@ item.les_casse_noisettes = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_d_ali_grothor = {
     id: 'cape_d_ali_grothor',
     name: 'Cape d\'Ali Grothor',
@@ -13992,7 +13174,6 @@ item.cape_d_ali_grothor = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.hache_du_dragoeuf = {
     id: 'hache_du_dragoeuf',
     name: 'Hache du Dragoeuf',
@@ -14006,7 +13187,6 @@ item.hache_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 37 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 6 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.ceinture_du_dragoeuf = {
     id: 'ceinture_du_dragoeuf',
     name: 'Ceinture du Dragoeuf',
@@ -14020,7 +13200,6 @@ item.ceinture_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 33 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.feu', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.anneau_du_meulou = {
     id: 'anneau_du_meulou',
     name: 'Anneau du Meulou',
@@ -14034,7 +13213,6 @@ item.anneau_du_meulou = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 39 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.gruchaussures = {
     id: 'gruchaussures',
     name: 'Gruchaussures',
@@ -14048,7 +13226,6 @@ item.gruchaussures = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.anneau_moutheur = {
     id: 'anneau_moutheur',
     name: 'Anneau Moutheur',
@@ -14062,7 +13239,6 @@ item.anneau_moutheur = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 7 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }],
     description: ''
 }
-
 item.lotus_de_nenufor = {
     id: 'lotus_de_nenufor',
     name: 'Lotus de Nenufor',
@@ -14076,7 +13252,6 @@ item.lotus_de_nenufor = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 11 }, { stat: 'heal', value: 7 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.casque_de_l_ecumouth = {
     id: 'casque_de_l_ecumouth',
     name: 'Casque de l\'Écumouth',
@@ -14090,7 +13265,6 @@ item.casque_de_l_ecumouth = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.anneau_du_dragoeuf = {
     id: 'anneau_du_dragoeuf',
     name: 'Anneau du Dragoeuf',
@@ -14104,7 +13278,6 @@ item.anneau_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 16 }, { stat: 'heal', value: 6 }],
     description: ''
 }
-
 item.pelle_dragoeuf = {
     id: 'pelle_dragoeuf',
     name: 'Pelle Dragoeuf',
@@ -14118,7 +13291,6 @@ item.pelle_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 21 }, { stat: 'critDamagePct', value: 11 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.epee_du_dragoeuf = {
     id: 'epee_du_dragoeuf',
     name: 'Épée du Dragoeuf',
@@ -14132,7 +13304,6 @@ item.epee_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 37 }, { stat: 'flatDamage', value: 32 }, { stat: 'critDamagePct', value: 6 }, { stat: 'critResPct', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.croquasque = {
     id: 'croquasque',
     name: 'Croquasque',
@@ -14146,7 +13317,6 @@ item.croquasque = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.feu', value: 9 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.caparavent = {
     id: 'caparavent',
     name: 'Caparavent',
@@ -14160,7 +13330,6 @@ item.caparavent = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.kwaflaque = {
     id: 'kwaflaque',
     name: 'Kwaflaque',
@@ -14174,7 +13343,6 @@ item.kwaflaque = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceinture_sombre_en_abrakleur = {
     id: 'ceinture_sombre_en_abrakleur',
     name: 'Ceinture sombre en Abrakleur',
@@ -14188,7 +13356,6 @@ item.ceinture_sombre_en_abrakleur = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.chapeau_kasse = {
     id: 'chapeau_kasse',
     name: 'Chapeau Kassé',
@@ -14202,7 +13369,6 @@ item.chapeau_kasse = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ceintruche = {
     id: 'ceintruche',
     name: 'Ceintruche',
@@ -14216,7 +13382,6 @@ item.ceintruche = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 5 }, { stat: 'res.eau', value: 9 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.sombrero_d_el_piko = {
     id: 'sombrero_d_el_piko',
     name: 'Sombrero d\'El Piko',
@@ -14230,7 +13395,6 @@ item.sombrero_d_el_piko = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.amulette_de_bouflouth = {
     id: 'amulette_de_bouflouth',
     name: 'Amulette de Bouflouth',
@@ -14244,7 +13408,6 @@ item.amulette_de_bouflouth = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.string_fouetteur = {
     id: 'string_fouetteur',
     name: 'String Fouetteur',
@@ -14258,7 +13421,6 @@ item.string_fouetteur = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: 55 }],
     description: ''
 }
-
 item.ceinture_du_capitaine_ekarlatte = {
     id: 'ceinture_du_capitaine_ekarlatte',
     name: 'Ceinture du Capitaine Ekarlatte',
@@ -14272,7 +13434,6 @@ item.ceinture_du_capitaine_ekarlatte = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 25 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.bottes_du_dragoeuf = {
     id: 'bottes_du_dragoeuf',
     name: 'Bottes du Dragoeuf',
@@ -14286,7 +13447,6 @@ item.bottes_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 6 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.dagues_du_dragoeuf = {
     id: 'dagues_du_dragoeuf',
     name: 'Dagues du Dragoeuf',
@@ -14300,7 +13460,6 @@ item.dagues_du_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.amulette_du_royalmouth = {
     id: 'amulette_du_royalmouth',
     name: 'Amulette du Royalmouth',
@@ -14314,7 +13473,6 @@ item.amulette_du_royalmouth = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 80 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.chapeau_de_la_gamine_zoth = {
     id: 'chapeau_de_la_gamine_zoth',
     name: 'Chapeau de la Gamine Zoth',
@@ -14328,7 +13486,6 @@ item.chapeau_de_la_gamine_zoth = {
     stats: [{ stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 12 }, { stat: 'res.neutre', value: 12 }],
     description: ''
 }
-
 item.capterre = {
     id: 'capterre',
     name: 'Capterre',
@@ -14342,7 +13499,6 @@ item.capterre = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 15 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.nenufaur = {
     id: 'nenufaur',
     name: 'Nenufaur',
@@ -14356,7 +13512,6 @@ item.nenufaur = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 63 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.anneau_tranchant = {
     id: 'anneau_tranchant',
     name: 'Anneau Tranchant',
@@ -14370,7 +13525,6 @@ item.anneau_tranchant = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 35 }],
     description: ''
 }
-
 item.casque_dragoeuf = {
     id: 'casque_dragoeuf',
     name: 'Casque Dragoeuf',
@@ -14384,7 +13538,6 @@ item.casque_dragoeuf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.gruchape = {
     id: 'gruchape',
     name: 'Gruchape',
@@ -14398,7 +13551,6 @@ item.gruchape = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.sangle_holon = {
     id: 'sangle_holon',
     name: 'Sangle Holon',
@@ -14412,7 +13564,6 @@ item.sangle_holon = {
     stats: [],
     description: ''
 }
-
 item.sangle_glinglin = {
     id: 'sangle_glinglin',
     name: 'Sangle Glinglin',
@@ -14426,7 +13577,6 @@ item.sangle_glinglin = {
     stats: [],
     description: ''
 }
-
 item.sac_a_croquer = {
     id: 'sac_a_croquer',
     name: 'Sac à Croquer',
@@ -14440,7 +13590,6 @@ item.sac_a_croquer = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 73 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.cape_ceremoniale_du_seigneur_des_rats = {
     id: 'cape_ceremoniale_du_seigneur_des_rats',
     name: 'Cape Cérémoniale du Seigneur des Rats',
@@ -14454,7 +13603,6 @@ item.cape_ceremoniale_du_seigneur_des_rats = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 39 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 9 }, { stat: 'res.air', value: 9 }],
     description: ''
 }
-
 item.ceinture_leumant = {
     id: 'ceinture_leumant',
     name: 'Ceinture Leumant',
@@ -14468,7 +13616,6 @@ item.ceinture_leumant = {
     stats: [],
     description: ''
 }
-
 item.sangle_huee = {
     id: 'sangle_huee',
     name: 'Sangle Huée',
@@ -14482,7 +13629,6 @@ item.sangle_huee = {
     stats: [],
     description: ''
 }
-
 item.sangle_hysserine = {
     id: 'sangle_hysserine',
     name: 'Sangle Hyssérine',
@@ -14496,7 +13642,6 @@ item.sangle_hysserine = {
     stats: [],
     description: ''
 }
-
 item.sangle_hans = {
     id: 'sangle_hans',
     name: 'Sangle Hans',
@@ -14510,7 +13655,6 @@ item.sangle_hans = {
     stats: [],
     description: ''
 }
-
 item.gaine_hage = {
     id: 'gaine_hage',
     name: 'Gaine Hage',
@@ -14524,7 +13668,6 @@ item.gaine_hage = {
     stats: [],
     description: ''
 }
-
 item.ceinture_lupine = {
     id: 'ceinture_lupine',
     name: 'Ceinture Lupine',
@@ -14538,7 +13681,6 @@ item.ceinture_lupine = {
     stats: [],
     description: ''
 }
-
 item.collier_de_perlouzes = {
     id: 'collier_de_perlouzes',
     name: 'Collier de perlouzes',
@@ -14552,7 +13694,6 @@ item.collier_de_perlouzes = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 76 }, { stat: 'critDamagePct', value: 5 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.kwache = {
     id: 'kwache',
     name: 'Kwache',
@@ -14566,7 +13707,6 @@ item.kwache = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 29 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.corde_ure = {
     id: 'corde_ure',
     name: 'Corde Ure',
@@ -14580,7 +13720,6 @@ item.corde_ure = {
     stats: [],
     description: ''
 }
-
 item.l_elementure = {
     id: 'l_elementure',
     name: 'L\'Élémenture',
@@ -14594,7 +13733,6 @@ item.l_elementure = {
     stats: [],
     description: ''
 }
-
 item.ceinture_luthe = {
     id: 'ceinture_luthe',
     name: 'Ceinture Luthe',
@@ -14608,7 +13746,6 @@ item.ceinture_luthe = {
     stats: [],
     description: ''
 }
-
 item.branche_de_l_abrakleur_sombre = {
     id: 'branche_de_l_abrakleur_sombre',
     name: 'Branche de l\'Abrakleur sombre',
@@ -14622,7 +13759,6 @@ item.branche_de_l_abrakleur_sombre = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 20 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.ceinture_blot = {
     id: 'ceinture_blot',
     name: 'Ceinture Blot',
@@ -14636,7 +13772,6 @@ item.ceinture_blot = {
     stats: [],
     description: ''
 }
-
 item.ceinture_pitude = {
     id: 'ceinture_pitude',
     name: 'Ceinture Pitude',
@@ -14650,7 +13785,6 @@ item.ceinture_pitude = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 56 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ceinture_billonnante = {
     id: 'ceinture_billonnante',
     name: 'Ceinture Billonnante',
@@ -14664,7 +13798,6 @@ item.ceinture_billonnante = {
     stats: [],
     description: ''
 }
-
 item.anneau_truche = {
     id: 'anneau_truche',
     name: 'Anneau Truche',
@@ -14678,7 +13811,6 @@ item.anneau_truche = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 9 }, { stat: 'res.air', value: 9 }],
     description: ''
 }
-
 item.sangle_hynere = {
     id: 'sangle_hynere',
     name: 'Sangle Hynère',
@@ -14692,7 +13824,6 @@ item.sangle_hynere = {
     stats: [],
     description: ''
 }
-
 item.ceinture_gessant = {
     id: 'ceinture_gessant',
     name: 'Ceinture Gessant',
@@ -14706,7 +13837,6 @@ item.ceinture_gessant = {
     stats: [],
     description: ''
 }
-
 item.anneau_d_el_piko = {
     id: 'anneau_d_el_piko',
     name: 'Anneau d\'El Piko',
@@ -14720,7 +13850,6 @@ item.anneau_d_el_piko = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 12 }],
     description: ''
 }
-
 item.ceinture_de_bouflouth = {
     id: 'ceinture_de_bouflouth',
     name: 'Ceinture de Bouflouth',
@@ -14734,7 +13863,6 @@ item.ceinture_de_bouflouth = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.ceinture_buhlent = {
     id: 'ceinture_buhlent',
     name: 'Ceinture Buhlent',
@@ -14748,7 +13876,6 @@ item.ceinture_buhlent = {
     stats: [],
     description: ''
 }
-
 item.baudrier_popee = {
     id: 'baudrier_popee',
     name: 'Baudrier Popée',
@@ -14762,7 +13889,6 @@ item.baudrier_popee = {
     stats: [],
     description: ''
 }
-
 item.ceinture_bodiezele = {
     id: 'ceinture_bodiezele',
     name: 'Ceinture Bodiézèle',
@@ -14776,7 +13902,6 @@ item.ceinture_bodiezele = {
     stats: [],
     description: ''
 }
-
 item.coiffe_du_fricochere = {
     id: 'coiffe_du_fricochere',
     name: 'Coiffe du Fricochère',
@@ -14790,7 +13915,6 @@ item.coiffe_du_fricochere = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 13 }, { stat: 'heal', value: 5 }, { stat: 'res.feu', value: 8 }, { stat: 'res.terre', value: 8 }],
     description: ''
 }
-
 item.bottes_du_capitaine_ekarlatte = {
     id: 'bottes_du_capitaine_ekarlatte',
     name: 'Bottes du Capitaine Ekarlatte',
@@ -14804,7 +13928,6 @@ item.bottes_du_capitaine_ekarlatte = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 32 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 25 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.sangle_cible = {
     id: 'sangle_cible',
     name: 'Sangle Cible',
@@ -14818,7 +13941,6 @@ item.sangle_cible = {
     stats: [],
     description: ''
 }
-
 item.ceinture_du_royalmouth = {
     id: 'ceinture_du_royalmouth',
     name: 'Ceinture du Royalmouth',
@@ -14832,7 +13954,6 @@ item.ceinture_du_royalmouth = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 60 }, { stat: 'flatDamage', value: 12 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.gruchette = {
     id: 'gruchette',
     name: 'Gruchette',
@@ -14846,7 +13967,6 @@ item.gruchette = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cascterre = {
     id: 'cascterre',
     name: 'Cascterre',
@@ -14860,7 +13980,6 @@ item.cascterre = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.anneau_ceremonial_du_seigneur_des_rats = {
     id: 'anneau_ceremonial_du_seigneur_des_rats',
     name: 'Anneau Cérémonial du Seigneur des Rats',
@@ -14874,7 +13993,6 @@ item.anneau_ceremonial_du_seigneur_des_rats = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bottes_du_meulou = {
     id: 'bottes_du_meulou',
     name: 'Bottes du Meulou',
@@ -14888,7 +14006,6 @@ item.bottes_du_meulou = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 35 }, { stat: 'spd', value: 26 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 10 }, { stat: 'res.air', value: 10 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.branche_de_l_abrakleur_clair = {
     id: 'branche_de_l_abrakleur_clair',
     name: 'Branche de l\'Abrakleur clair',
@@ -14902,7 +14019,6 @@ item.branche_de_l_abrakleur_clair = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 14 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.casque_d_ali_grothor = {
     id: 'casque_d_ali_grothor',
     name: 'Casque d\'Ali Grothor',
@@ -14916,7 +14032,6 @@ item.casque_d_ali_grothor = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.amulette_d_el_piko = {
     id: 'amulette_d_el_piko',
     name: 'Amulette d\'El Piko',
@@ -14930,7 +14045,6 @@ item.amulette_d_el_piko = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 46 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.coiffe_de_bouflouth = {
     id: 'coiffe_de_bouflouth',
     name: 'Coiffe de Bouflouth',
@@ -14944,7 +14058,6 @@ item.coiffe_de_bouflouth = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.gant_du_capitaine_ekarlatte = {
     id: 'gant_du_capitaine_ekarlatte',
     name: 'Gant du Capitaine Ekarlatte',
@@ -14958,7 +14071,6 @@ item.gant_du_capitaine_ekarlatte = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 54 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 11 }],
     description: ''
 }
-
 item.marteau_de_la_gamine_zoth = {
     id: 'marteau_de_la_gamine_zoth',
     name: 'Marteau de la Gamine Zoth',
@@ -14972,7 +14084,6 @@ item.marteau_de_la_gamine_zoth = {
     stats: [{ stat: 'maxHp', value: 91 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.cacture = {
     id: 'cacture',
     name: 'Cacture',
@@ -14986,7 +14097,6 @@ item.cacture = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_ceremoniale_du_seigneur_des_rats = {
     id: 'ceinture_ceremoniale_du_seigneur_des_rats',
     name: 'Ceinture Cérémoniale du Seigneur des Rats',
@@ -15000,7 +14110,6 @@ item.ceinture_ceremoniale_du_seigneur_des_rats = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 30 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.coiffe_ceremoniale_du_seigneur_des_rats = {
     id: 'coiffe_ceremoniale_du_seigneur_des_rats',
     name: 'Coiffe Cérémoniale du Seigneur des Rats',
@@ -15014,7 +14123,6 @@ item.coiffe_ceremoniale_du_seigneur_des_rats = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 37 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 9 }, { stat: 'res.terre', value: 9 }],
     description: ''
 }
-
 item.chapeau_truche = {
     id: 'chapeau_truche',
     name: 'Chapeau Truche',
@@ -15028,7 +14136,6 @@ item.chapeau_truche = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_d_ali_grothor = {
     id: 'amulette_d_ali_grothor',
     name: 'Amulette d\'Ali Grothor',
@@ -15042,7 +14149,6 @@ item.amulette_d_ali_grothor = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 35 }, { stat: 'spd', value: 31 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.masque_de_panteroz = {
     id: 'masque_de_panteroz',
     name: 'Masque de Pantèroz',
@@ -15056,7 +14162,6 @@ item.masque_de_panteroz = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'flatDamage', value: 55 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.masque_de_l_abrakleur_clair = {
     id: 'masque_de_l_abrakleur_clair',
     name: 'Masque de l\'Abrakleur clair',
@@ -15070,7 +14175,6 @@ item.masque_de_l_abrakleur_clair = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 37 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.bottes_ceremoniales_du_seigneur_des_rats = {
     id: 'bottes_ceremoniales_du_seigneur_des_rats',
     name: 'Bottes Cérémoniales du Seigneur des Rats',
@@ -15084,7 +14188,6 @@ item.bottes_ceremoniales_du_seigneur_des_rats = {
     stats: [{ stat: 'maxHp', value: 121 }, { stat: 'atk', value: 24 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 5 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.collier_ceremonial_du_seigneur_des_rats = {
     id: 'collier_ceremonial_du_seigneur_des_rats',
     name: 'Collier Cérémonial du Seigneur des Rats',
@@ -15098,7 +14201,6 @@ item.collier_ceremonial_du_seigneur_des_rats = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.casque_du_guerrier_zoth = {
     id: 'casque_du_guerrier_zoth',
     name: 'Casque du Guerrier Zoth',
@@ -15112,7 +14214,6 @@ item.casque_du_guerrier_zoth = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 12 }, { stat: 'res.neutre', value: -6 }],
     description: ''
 }
-
 item.bottines_en_bois_d_abrakleur = {
     id: 'bottines_en_bois_d_abrakleur',
     name: 'Bottines en bois d\'abrakleur',
@@ -15126,7 +14227,6 @@ item.bottines_en_bois_d_abrakleur = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'res.eau', value: 12 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.talisman_d_elya_wood = {
     id: 'talisman_d_elya_wood',
     name: 'Talisman d\'Elya Wood',
@@ -15140,7 +14240,6 @@ item.talisman_d_elya_wood = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'heal', value: 6 }, { stat: 'res.feu', value: 9 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 9 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.ceinture_des_demoel = {
     id: 'ceinture_des_demoel',
     name: 'Ceinture des Demoël',
@@ -15154,7 +14253,6 @@ item.ceinture_des_demoel = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.nageanneau = {
     id: 'nageanneau',
     name: 'Nageanneau',
@@ -15168,7 +14266,6 @@ item.nageanneau = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 10 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 10 }],
     description: ''
 }
-
 item.alliance_des_firefoux = {
     id: 'alliance_des_firefoux',
     name: 'Alliance des Firefoux',
@@ -15182,7 +14279,6 @@ item.alliance_des_firefoux = {
     stats: [{ stat: 'maxHp', value: 81 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 3 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.tongues_du_dimanche_du_chene_mou = {
     id: 'tongues_du_dimanche_du_chene_mou',
     name: 'Tongues du dimanche du Chêne Mou',
@@ -15196,7 +14292,6 @@ item.tongues_du_dimanche_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 37 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.couronne_du_mansot_royal = {
     id: 'couronne_du_mansot_royal',
     name: 'Couronne du Mansot Royal',
@@ -15210,7 +14305,6 @@ item.couronne_du_mansot_royal = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bouclier_des_demoel = {
     id: 'bouclier_des_demoel',
     name: 'Bouclier des Demoël',
@@ -15224,7 +14318,6 @@ item.bouclier_des_demoel = {
     stats: [{ stat: 'maxHp', value: 31 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 11 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.pagniglou = {
     id: 'pagniglou',
     name: 'Pagniglou',
@@ -15238,7 +14331,6 @@ item.pagniglou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 43 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.poolache = {
     id: 'poolache',
     name: 'Poolache',
@@ -15252,7 +14344,6 @@ item.poolache = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 28 }, { stat: 'lifestealPct', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.bottes_hoktone = {
     id: 'bottes_hoktone',
     name: 'Bottes Hoktone',
@@ -15266,7 +14357,6 @@ item.bottes_hoktone = {
     stats: [{ stat: 'maxHp', value: 111 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.coiffe_medusoide = {
     id: 'coiffe_medusoide',
     name: 'Coiffe Médusoïde',
@@ -15280,7 +14370,6 @@ item.coiffe_medusoide = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.ceinture_d_artifices = {
     id: 'ceinture_d_artifices',
     name: 'Ceinture d\'artifices',
@@ -15294,7 +14383,6 @@ item.ceinture_d_artifices = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 5 }, { stat: 'heal', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 10 }],
     description: ''
 }
-
 item.palmes_de_monsieur_pingouin = {
     id: 'palmes_de_monsieur_pingouin',
     name: 'Palmes de Monsieur Pingouin',
@@ -15308,7 +14396,6 @@ item.palmes_de_monsieur_pingouin = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 28 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.talisman_du_chene_mou = {
     id: 'talisman_du_chene_mou',
     name: 'Talisman du Chêne Mou',
@@ -15322,7 +14409,6 @@ item.talisman_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.kalypsoton = {
     id: 'kalypsoton',
     name: 'Kalypsoton',
@@ -15336,7 +14422,6 @@ item.kalypsoton = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 26 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 4 }, { stat: 'res.feu', value: 11 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.epee_des_demoel = {
     id: 'epee_des_demoel',
     name: 'Épée des Demoël',
@@ -15350,7 +14435,6 @@ item.epee_des_demoel = {
     stats: [{ stat: 'maxHp', value: 41 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 45 }, { stat: 'critChance', value: 5 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.anneau_du_chene_mou = {
     id: 'anneau_du_chene_mou',
     name: 'Anneau du Chêne Mou',
@@ -15364,7 +14448,6 @@ item.anneau_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.cape_du_meulou = {
     id: 'cape_du_meulou',
     name: 'Cape du Meulou',
@@ -15378,7 +14461,6 @@ item.cape_du_meulou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.hache_du_guerrier_zoth = {
     id: 'hache_du_guerrier_zoth',
     name: 'Hache du Guerrier Zoth',
@@ -15392,7 +14474,6 @@ item.hache_du_guerrier_zoth = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 35 }, { stat: 'flatDamage', value: 31 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.sac_des_firefoux = {
     id: 'sac_des_firefoux',
     name: 'Sac des Firefoux',
@@ -15406,7 +14487,6 @@ item.sac_des_firefoux = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 12 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.ceinture_de_frigostine = {
     id: 'ceinture_de_frigostine',
     name: 'Ceinture de Frigostine',
@@ -15420,7 +14500,6 @@ item.ceinture_de_frigostine = {
     stats: [{ stat: 'maxHp', value: 176 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.sangle_de_monsieur_pingouin = {
     id: 'sangle_de_monsieur_pingouin',
     name: 'Sangle de Monsieur Pingouin',
@@ -15434,7 +14513,6 @@ item.sangle_de_monsieur_pingouin = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 28 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.vieille_branche_du_chene_mou = {
     id: 'vieille_branche_du_chene_mou',
     name: 'Vieille Branche du Chêne Mou',
@@ -15448,7 +14526,6 @@ item.vieille_branche_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 59 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_du_mansot_royal = {
     id: 'anneau_du_mansot_royal',
     name: 'Anneau du Mansot Royal',
@@ -15462,7 +14539,6 @@ item.anneau_du_mansot_royal = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 37 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.string_automnal_du_chene_mou = {
     id: 'string_automnal_du_chene_mou',
     name: 'String Automnal du Chêne Mou',
@@ -15476,7 +14552,6 @@ item.string_automnal_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.coiffe_du_meulou = {
     id: 'coiffe_du_meulou',
     name: 'Coiffe du Meulou',
@@ -15490,7 +14565,6 @@ item.coiffe_du_meulou = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.masque_de_fojumo = {
     id: 'masque_de_fojumo',
     name: 'Masque de Fojumo',
@@ -15504,7 +14578,6 @@ item.masque_de_fojumo = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 9 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bottes_de_frigostine = {
     id: 'bottes_de_frigostine',
     name: 'Bottes de Frigostine',
@@ -15518,7 +14591,6 @@ item.bottes_de_frigostine = {
     stats: [{ stat: 'maxHp', value: 126 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.mitaine_de_katigrou = {
     id: 'mitaine_de_katigrou',
     name: 'Mitaine de Katigrou',
@@ -15532,7 +14604,6 @@ item.mitaine_de_katigrou = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.chaine_de_monsieur_pingouin = {
     id: 'chaine_de_monsieur_pingouin',
     name: 'Chaîne de Monsieur Pingouin',
@@ -15546,7 +14617,6 @@ item.chaine_de_monsieur_pingouin = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.cape_usee_du_chene_mou = {
     id: 'cape_usee_du_chene_mou',
     name: 'Cape Usée du Chêne Mou',
@@ -15560,7 +14630,6 @@ item.cape_usee_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.perruque_du_poolay = {
     id: 'perruque_du_poolay',
     name: 'Perruque du Poolay',
@@ -15574,7 +14643,6 @@ item.perruque_du_poolay = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 36 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.la_meulette = {
     id: 'la_meulette',
     name: 'La Meulette',
@@ -15588,7 +14656,6 @@ item.la_meulette = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 72 }, { stat: 'flatDamage', value: 2 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.nageoiture = {
     id: 'nageoiture',
     name: 'Nageoiture',
@@ -15602,7 +14669,6 @@ item.nageoiture = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 9 }],
     description: ''
 }
-
 item.geta_de_fojumo = {
     id: 'geta_de_fojumo',
     name: 'Geta de Fojumo',
@@ -15616,7 +14682,6 @@ item.geta_de_fojumo = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.anneau_de_frigostine = {
     id: 'anneau_de_frigostine',
     name: 'Anneau de Frigostine',
@@ -15630,7 +14695,6 @@ item.anneau_de_frigostine = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.cape_de_katigrou = {
     id: 'cape_de_katigrou',
     name: 'Cape de Katigrou',
@@ -15644,7 +14708,6 @@ item.cape_de_katigrou = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'critChance', value: 7 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.cape_du_mansot_royal = {
     id: 'cape_du_mansot_royal',
     name: 'Cape du Mansot Royal',
@@ -15658,7 +14721,6 @@ item.cape_du_mansot_royal = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.coiffe_du_chene_mou = {
     id: 'coiffe_du_chene_mou',
     name: 'Coiffe du Chêne Mou',
@@ -15672,7 +14734,6 @@ item.coiffe_du_chene_mou = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.alliance_d_hell_mina = {
     id: 'alliance_d_hell_mina',
     name: 'Alliance d\'Hell Mina',
@@ -15686,7 +14747,6 @@ item.alliance_d_hell_mina = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 53 }, { stat: 'flatDamage', value: 7 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.epee_de_fojumo = {
     id: 'epee_de_fojumo',
     name: 'Épée de Fojumo',
@@ -15700,7 +14760,6 @@ item.epee_de_fojumo = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 45 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.pattes_de_katigrou = {
     id: 'pattes_de_katigrou',
     name: 'Pattes de Katigrou',
@@ -15714,7 +14773,6 @@ item.pattes_de_katigrou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.anneau_poli_de_malter = {
     id: 'anneau_poli_de_malter',
     name: 'Anneau poli de Malter',
@@ -15728,7 +14786,6 @@ item.anneau_poli_de_malter = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 15 }, { stat: 'heal', value: 7 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_du_pere_phorreur = {
     id: 'cape_du_pere_phorreur',
     name: 'Cape du Père Phorreur',
@@ -15742,7 +14799,6 @@ item.cape_du_pere_phorreur = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ceinture_phossile = {
     id: 'ceinture_phossile',
     name: 'Ceinture Phossile',
@@ -15756,7 +14812,6 @@ item.ceinture_phossile = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 30 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.amulette_de_frigostine = {
     id: 'amulette_de_frigostine',
     name: 'Amulette de Frigostine',
@@ -15770,7 +14825,6 @@ item.amulette_de_frigostine = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 82 }, { stat: 'flatDamage', value: 29 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 8 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_bitoufale_de_prosper_youpla = {
     id: 'ceinture_bitoufale_de_prosper_youpla',
     name: 'Ceinture Bitoufale de Prosper Youpla',
@@ -15784,7 +14838,6 @@ item.ceinture_bitoufale_de_prosper_youpla = {
     stats: [{ stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.cape_d_hell_mina = {
     id: 'cape_d_hell_mina',
     name: 'Cape d\'Hell Mina',
@@ -15798,7 +14851,6 @@ item.cape_d_hell_mina = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 78 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 8 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.bottes_crepitantes_de_malter = {
     id: 'bottes_crepitantes_de_malter',
     name: 'Bottes Crépitantes de Malter',
@@ -15812,7 +14864,6 @@ item.bottes_crepitantes_de_malter = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'spd', value: 15 }, { stat: 'heal', value: 16 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.cape_phossile = {
     id: 'cape_phossile',
     name: 'Cape Phossile',
@@ -15826,7 +14877,6 @@ item.cape_phossile = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 9 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.baguette_de_frigostine = {
     id: 'baguette_de_frigostine',
     name: 'Baguette de Frigostine',
@@ -15840,7 +14890,6 @@ item.baguette_de_frigostine = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 35 }, { stat: 'critResPct', value: 7 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bracelet_du_minotot = {
     id: 'bracelet_du_minotot',
     name: 'Bracelet du Minotot',
@@ -15854,7 +14903,6 @@ item.bracelet_du_minotot = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 32 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.ceinture_du_minotot = {
     id: 'ceinture_du_minotot',
     name: 'Ceinture du Minotot',
@@ -15868,7 +14916,6 @@ item.ceinture_du_minotot = {
     stats: [{ stat: 'maxHp', value: 181 }, { stat: 'atk', value: 42 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.anneau_zamour = {
     id: 'anneau_zamour',
     name: 'Anneau Zamour',
@@ -15882,7 +14929,6 @@ item.anneau_zamour = {
     stats: [],
     description: ''
 }
-
 item.ceinture_du_meulou_ankarton = {
     id: 'ceinture_du_meulou_ankarton',
     name: 'Ceinture du Meulou Ankarton',
@@ -15896,7 +14942,6 @@ item.ceinture_du_meulou_ankarton = {
     stats: [],
     description: ''
 }
-
 item.mandrano = {
     id: 'mandrano',
     name: 'Mandrano',
@@ -15910,7 +14955,6 @@ item.mandrano = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 18 }, { stat: 'res.air', value: -7 }],
     description: ''
 }
-
 item.anneau_hell = {
     id: 'anneau_hell',
     name: 'Anneau Hell',
@@ -15924,7 +14968,6 @@ item.anneau_hell = {
     stats: [],
     description: ''
 }
-
 item.anneau_nos = {
     id: 'anneau_nos',
     name: 'Anneau Nos',
@@ -15938,7 +14981,6 @@ item.anneau_nos = {
     stats: [],
     description: ''
 }
-
 item.anneau_raille = {
     id: 'anneau_raille',
     name: 'Anneau Raille',
@@ -15952,7 +14994,6 @@ item.anneau_raille = {
     stats: [],
     description: ''
 }
-
 item.mitaine_aibre = {
     id: 'mitaine_aibre',
     name: 'Mitaine Aibre',
@@ -15966,7 +15007,6 @@ item.mitaine_aibre = {
     stats: [],
     description: ''
 }
-
 item.anneau_pitale = {
     id: 'anneau_pitale',
     name: 'Anneau Pitale',
@@ -15980,7 +15020,6 @@ item.anneau_pitale = {
     stats: [],
     description: ''
 }
-
 item.styxano = {
     id: 'styxano',
     name: 'Styxano',
@@ -15994,7 +15033,6 @@ item.styxano = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: -7 }, { stat: 'res.eau', value: 18 }],
     description: ''
 }
-
 item.anneau_tassion = {
     id: 'anneau_tassion',
     name: 'Anneau Tassion',
@@ -16008,7 +15046,6 @@ item.anneau_tassion = {
     stats: [],
     description: ''
 }
-
 item.infernano = {
     id: 'infernano',
     name: 'Infernano',
@@ -16022,7 +15059,6 @@ item.infernano = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 18 }, { stat: 'res.eau', value: -7 }],
     description: ''
 }
-
 item.anneau_tilus = {
     id: 'anneau_tilus',
     name: 'Anneau Tilus',
@@ -16036,7 +15072,6 @@ item.anneau_tilus = {
     stats: [],
     description: ''
 }
-
 item.bracelet_jande = {
     id: 'bracelet_jande',
     name: 'Bracelet Jande',
@@ -16050,7 +15085,6 @@ item.bracelet_jande = {
     stats: [],
     description: ''
 }
-
 item.willkillsano = {
     id: 'willkillsano',
     name: 'Willkillsano',
@@ -16064,7 +15098,6 @@ item.willkillsano = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: -7 }, { stat: 'res.air', value: 18 }],
     description: ''
 }
-
 item.anneau_riginel = {
     id: 'anneau_riginel',
     name: 'Anneau Riginel',
@@ -16078,7 +15111,6 @@ item.anneau_riginel = {
     stats: [],
     description: ''
 }
-
 item.anneau_pwal = {
     id: 'anneau_pwal',
     name: 'Anneau Pwal',
@@ -16092,7 +15124,6 @@ item.anneau_pwal = {
     stats: [],
     description: ''
 }
-
 item.steamanneau_maitre = {
     id: 'steamanneau_maitre',
     name: 'Steamanneau Maître',
@@ -16106,7 +15137,6 @@ item.steamanneau_maitre = {
     stats: [],
     description: ''
 }
-
 item.anneau_vae = {
     id: 'anneau_vae',
     name: 'Anneau Vae',
@@ -16120,7 +15150,6 @@ item.anneau_vae = {
     stats: [],
     description: ''
 }
-
 item.bague_harre = {
     id: 'bague_harre',
     name: 'Bague Harre',
@@ -16134,7 +15163,6 @@ item.bague_harre = {
     stats: [],
     description: ''
 }
-
 item.anneau_stalgik = {
     id: 'anneau_stalgik',
     name: 'Anneau Stalgik',
@@ -16148,7 +15176,6 @@ item.anneau_stalgik = {
     stats: [],
     description: ''
 }
-
 item.pertuisane_d_hell_mina = {
     id: 'pertuisane_d_hell_mina',
     name: 'Pertuisane d\'Hell Mina',
@@ -16162,7 +15189,6 @@ item.pertuisane_d_hell_mina = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 83 }, { stat: 'flatDamage', value: 23 }, { stat: 'lifestealPct', value: 4 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bague_houx = {
     id: 'bague_houx',
     name: 'Bague Houx',
@@ -16176,7 +15202,6 @@ item.bague_houx = {
     stats: [],
     description: ''
 }
-
 item.baton_de_zatoishwan = {
     id: 'baton_de_zatoishwan',
     name: 'Bâton de Zatoïshwan',
@@ -16190,7 +15215,6 @@ item.baton_de_zatoishwan = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 47 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.feu', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.gants_tologie = {
     id: 'gants_tologie',
     name: 'Gants Tologie',
@@ -16204,7 +15228,6 @@ item.gants_tologie = {
     stats: [],
     description: ''
 }
-
 item.bague_hera = {
     id: 'bague_hera',
     name: 'Bague Héra',
@@ -16218,7 +15241,6 @@ item.bague_hera = {
     stats: [],
     description: ''
 }
-
 item.faux_enracinee_de_malter = {
     id: 'faux_enracinee_de_malter',
     name: 'Faux Enracinée de Malter',
@@ -16232,7 +15254,6 @@ item.faux_enracinee_de_malter = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'spd', value: 26 }, { stat: 'heal', value: 49 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.bottes_du_nowel_cauchemardesque = {
     id: 'bottes_du_nowel_cauchemardesque',
     name: 'Bottes du Nowel Cauchemardesque',
@@ -16246,7 +15267,6 @@ item.bottes_du_nowel_cauchemardesque = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 14 }],
     description: ''
 }
-
 item.cape_du_nowel_cauchemardesque = {
     id: 'cape_du_nowel_cauchemardesque',
     name: 'Cape du Nowel Cauchemardesque',
@@ -16260,7 +15280,6 @@ item.cape_du_nowel_cauchemardesque = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 11 }, { stat: 'critResPct', value: 7 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 14 }],
     description: ''
 }
-
 item.masque_du_nowel_cauchemardesque = {
     id: 'masque_du_nowel_cauchemardesque',
     name: 'Masque du Nowel Cauchemardesque',
@@ -16274,7 +15293,6 @@ item.masque_du_nowel_cauchemardesque = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 14 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.porte_malheur_du_nowel_cauchemardesque = {
     id: 'porte_malheur_du_nowel_cauchemardesque',
     name: 'Porte-Malheur du Nowel Cauchemardesque',
@@ -16288,7 +15306,6 @@ item.porte_malheur_du_nowel_cauchemardesque = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 80 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 14 }],
     description: ''
 }
-
 item.anneau_bhli = {
     id: 'anneau_bhli',
     name: 'Anneau Bhli',
@@ -16302,7 +15319,6 @@ item.anneau_bhli = {
     stats: [],
     description: ''
 }
-
 item.bottes_phossiles = {
     id: 'bottes_phossiles',
     name: 'Bottes Phossiles',
@@ -16316,7 +15332,6 @@ item.bottes_phossiles = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 9 }],
     description: ''
 }
-
 item.amulette_de_grozilla = {
     id: 'amulette_de_grozilla',
     name: 'Amulette de Grozilla',
@@ -16330,7 +15345,6 @@ item.amulette_de_grozilla = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 11 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.sceptre_du_minotot = {
     id: 'sceptre_du_minotot',
     name: 'Sceptre du Minotot',
@@ -16344,7 +15358,6 @@ item.sceptre_du_minotot = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 13 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 6 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 8 }],
     description: ''
 }
-
 item.cape_souveraine_du_roissingue = {
     id: 'cape_souveraine_du_roissingue',
     name: 'Cape Souveraine du Roissingue',
@@ -16358,7 +15371,6 @@ item.cape_souveraine_du_roissingue = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.slip_hie = {
     id: 'slip_hie',
     name: 'Slip Hie',
@@ -16372,7 +15384,6 @@ item.slip_hie = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.sabre_de_ben_le_ripate = {
     id: 'sabre_de_ben_le_ripate',
     name: 'Sabre de Ben le Ripate',
@@ -16386,7 +15397,6 @@ item.sabre_de_ben_le_ripate = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 35 }, { stat: 'critResPct', value: 7 }, { stat: 'lifestealPct', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.amulette_du_pere_phorreur = {
     id: 'amulette_du_pere_phorreur',
     name: 'Amulette du Père Phorreur',
@@ -16400,7 +15410,6 @@ item.amulette_du_pere_phorreur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.anneau_de_cantile = {
     id: 'anneau_de_cantile',
     name: 'Anneau de Cantile',
@@ -16414,7 +15423,6 @@ item.anneau_de_cantile = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 8 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.cape_de_cantile = {
     id: 'cape_de_cantile',
     name: 'Cape de Cantile',
@@ -16428,7 +15436,6 @@ item.cape_de_cantile = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.bracelet_de_fantomayte = {
     id: 'bracelet_de_fantomayte',
     name: 'Bracelet de Fantômayte',
@@ -16442,7 +15449,6 @@ item.bracelet_de_fantomayte = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 25 }],
     description: ''
 }
-
 item.ceinture_de_zatoishwan = {
     id: 'ceinture_de_zatoishwan',
     name: 'Ceinture de Zatoïshwan',
@@ -16456,7 +15462,6 @@ item.ceinture_de_zatoishwan = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 19 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 12 }],
     description: ''
 }
-
 item.ceinture_du_frelon_noir = {
     id: 'ceinture_du_frelon_noir',
     name: 'Ceinture du Frelon Noir',
@@ -16470,7 +15475,6 @@ item.ceinture_du_frelon_noir = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.hache_du_fancrome = {
     id: 'hache_du_fancrome',
     name: 'Hache du Fancrôme',
@@ -16484,7 +15488,6 @@ item.hache_du_fancrome = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 7 }, { stat: 'lifestealPct', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.casque_du_bitouf_aerien = {
     id: 'casque_du_bitouf_aerien',
     name: 'Casque du Bitouf Aérien',
@@ -16498,7 +15501,6 @@ item.casque_du_bitouf_aerien = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 5 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.chapeau_de_ben_le_ripate = {
     id: 'chapeau_de_ben_le_ripate',
     name: 'Chapeau de Ben le Ripate',
@@ -16512,7 +15514,6 @@ item.chapeau_de_ben_le_ripate = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 7 }, { stat: 'heal', value: 5 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.sac_mortuaire_de_jiangshi_nobi = {
     id: 'sac_mortuaire_de_jiangshi_nobi',
     name: 'Sac mortuaire de Jiangshi-Nobi',
@@ -16526,7 +15527,6 @@ item.sac_mortuaire_de_jiangshi_nobi = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 38 }, { stat: 'flatDamage', value: 25 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.coiffe_de_grozilla = {
     id: 'coiffe_de_grozilla',
     name: 'Coiffe de Grozilla',
@@ -16540,7 +15540,6 @@ item.coiffe_de_grozilla = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 68 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 11 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.barbe_de_zatoishwan = {
     id: 'barbe_de_zatoishwan',
     name: 'Barbe de Zatoïshwan',
@@ -16554,7 +15553,6 @@ item.barbe_de_zatoishwan = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.lance_du_harpirate = {
     id: 'lance_du_harpirate',
     name: 'Lance du Harpirate',
@@ -16568,7 +15566,6 @@ item.lance_du_harpirate = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 45 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 44 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.ceinture_du_pere_phorreur = {
     id: 'ceinture_du_pere_phorreur',
     name: 'Ceinture du Père Phorreur',
@@ -16582,7 +15579,6 @@ item.ceinture_du_pere_phorreur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.crochet_de_ben_le_ripate = {
     id: 'crochet_de_ben_le_ripate',
     name: 'Crochet de Ben le Ripate',
@@ -16596,7 +15592,6 @@ item.crochet_de_ben_le_ripate = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bouclier_du_yokomainu = {
     id: 'bouclier_du_yokomainu',
     name: 'Bouclier du Yokomaïnu',
@@ -16610,7 +15605,6 @@ item.bouclier_du_yokomainu = {
     stats: [{ stat: 'maxHp', value: 111 }, { stat: 'atk', value: 26 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.voile_de_fantomayte = {
     id: 'voile_de_fantomayte',
     name: 'Voile de Fantômayte',
@@ -16624,7 +15618,6 @@ item.voile_de_fantomayte = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 71 }, { stat: 'flatDamage', value: 20 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bottes_de_grozilla = {
     id: 'bottes_de_grozilla',
     name: 'Bottes de Grozilla',
@@ -16638,7 +15631,6 @@ item.bottes_de_grozilla = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bandeau_de_spiritueur = {
     id: 'bandeau_de_spiritueur',
     name: 'Bandeau de Spiritueur',
@@ -16652,7 +15644,6 @@ item.bandeau_de_spiritueur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: -20 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.masque_du_harpirate = {
     id: 'masque_du_harpirate',
     name: 'Masque du Harpirate',
@@ -16666,7 +15657,6 @@ item.masque_du_harpirate = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'critResPct', value: 11 }, { stat: 'res.feu', value: 11 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 11 }, { stat: 'res.air', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.bottes_de_brume = {
     id: 'bottes_de_brume',
     name: 'Bottes de Brume',
@@ -16680,7 +15670,6 @@ item.bottes_de_brume = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 28 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 4 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.amulette_de_cantile = {
     id: 'amulette_de_cantile',
     name: 'Amulette de Cantile',
@@ -16694,7 +15683,6 @@ item.amulette_de_cantile = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.bottes_de_cantile = {
     id: 'bottes_de_cantile',
     name: 'Bottes de Cantile',
@@ -16708,7 +15696,6 @@ item.bottes_de_cantile = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 57 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.masque_du_frelon_noir = {
     id: 'masque_du_frelon_noir',
     name: 'Masque du Frelon Noir',
@@ -16722,7 +15709,6 @@ item.masque_du_frelon_noir = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 21 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.fantomasque = {
     id: 'fantomasque',
     name: 'Fantômasque',
@@ -16736,7 +15722,6 @@ item.fantomasque = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 26 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.marteau_de_la_vigie_pirate = {
     id: 'marteau_de_la_vigie_pirate',
     name: 'Marteau de la Vigie Pirate',
@@ -16750,7 +15735,6 @@ item.marteau_de_la_vigie_pirate = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 39 }, { stat: 'lifestealPct', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_du_minotot = {
     id: 'cape_du_minotot',
     name: 'Cape du Minotot',
@@ -16764,7 +15748,6 @@ item.cape_du_minotot = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.coiffe_du_maitre_zoth = {
     id: 'coiffe_du_maitre_zoth',
     name: 'Coiffe du Maître Zoth',
@@ -16778,7 +15761,6 @@ item.coiffe_du_maitre_zoth = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_ben_le_ripate = {
     id: 'ceinture_de_ben_le_ripate',
     name: 'Ceinture de Ben le Ripate',
@@ -16792,7 +15774,6 @@ item.ceinture_de_ben_le_ripate = {
     stats: [{ stat: 'maxHp', value: 181 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.collier_de_fantomayte = {
     id: 'collier_de_fantomayte',
     name: 'Collier de Fantômayte',
@@ -16806,7 +15787,6 @@ item.collier_de_fantomayte = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 91 }, { stat: 'flatDamage', value: 25 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.amulette_de_l_orfelin = {
     id: 'amulette_de_l_orfelin',
     name: 'Amulette de l\'Orfélin',
@@ -16820,7 +15800,6 @@ item.amulette_de_l_orfelin = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 84 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.hache_a_lamelles = {
     id: 'hache_a_lamelles',
     name: 'Hache à Lamelles',
@@ -16834,7 +15813,6 @@ item.hache_a_lamelles = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.katana_de_spiritueur = {
     id: 'katana_de_spiritueur',
     name: 'Katana de Spiritueur',
@@ -16848,7 +15826,6 @@ item.katana_de_spiritueur = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 11 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 46 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'critResPct', value: -10 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.coiffe_du_minotot = {
     id: 'coiffe_du_minotot',
     name: 'Coiffe du Minotot',
@@ -16862,7 +15839,6 @@ item.coiffe_du_minotot = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 47 }, { stat: 'spd', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.sceau_souverain_du_roissingue = {
     id: 'sceau_souverain_du_roissingue',
     name: 'Sceau Souverain du Roissingue',
@@ -16876,7 +15852,6 @@ item.sceau_souverain_du_roissingue = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.ceinture_de_tsukinochi = {
     id: 'ceinture_de_tsukinochi',
     name: 'Ceinture de Tsukinochi',
@@ -16890,7 +15865,6 @@ item.ceinture_de_tsukinochi = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 25 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 4 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.ceinture_de_grozilla = {
     id: 'ceinture_de_grozilla',
     name: 'Ceinture de Grozilla',
@@ -16904,7 +15878,6 @@ item.ceinture_de_grozilla = {
     stats: [{ stat: 'maxHp', value: 171 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 11 }, { stat: 'res.air', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.ceinture_de_l_orfelin = {
     id: 'ceinture_de_l_orfelin',
     name: 'Ceinture de l\'Orfélin',
@@ -16918,7 +15891,6 @@ item.ceinture_de_l_orfelin = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 85 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 14 }],
     description: ''
 }
-
 item.ceinture_du_kaniblou = {
     id: 'ceinture_du_kaniblou',
     name: 'Ceinture du Kaniblou',
@@ -16932,7 +15904,6 @@ item.ceinture_du_kaniblou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.collier_du_minotot = {
     id: 'collier_du_minotot',
     name: 'Collier du Minotot',
@@ -16946,7 +15917,6 @@ item.collier_du_minotot = {
     stats: [{ stat: 'maxHp', value: 181 }, { stat: 'atk', value: 87 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.baton_du_maitre_zoth = {
     id: 'baton_du_maitre_zoth',
     name: 'Bâton du Maître Zoth',
@@ -16960,7 +15930,6 @@ item.baton_du_maitre_zoth = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: -6 }, { stat: 'flatDamage', value: 27 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.fut_d_aspiratueur = {
     id: 'fut_d_aspiratueur',
     name: 'Fût d\'Aspiratueur',
@@ -16974,7 +15943,6 @@ item.fut_d_aspiratueur = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 1 }, { stat: 'critDamagePct', value: 4 }, { stat: 'critResPct', value: -20 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.collier_ye = {
     id: 'collier_ye',
     name: 'Collier Yé',
@@ -16988,7 +15956,6 @@ item.collier_ye = {
     stats: [{ stat: 'atk', value: 80 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.coiffe_de_l_orfelin = {
     id: 'coiffe_de_l_orfelin',
     name: 'Coiffe de l\'Orfélin',
@@ -17002,7 +15969,6 @@ item.coiffe_de_l_orfelin = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 59 }, { stat: 'flatDamage', value: 5 }, { stat: 'critResPct', value: 9 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceinture_des_matougarous = {
     id: 'ceinture_des_matougarous',
     name: 'Ceinture des Matougarous',
@@ -17016,7 +15982,6 @@ item.ceinture_des_matougarous = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 9 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.pupille_de_madura = {
     id: 'pupille_de_madura',
     name: 'Pupille de Madura',
@@ -17030,7 +15995,6 @@ item.pupille_de_madura = {
     stats: [{ stat: 'maxHp', value: 111 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 11 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.epee_du_bretteur_celeste = {
     id: 'epee_du_bretteur_celeste',
     name: 'Épée du Bretteur Céleste',
@@ -17044,7 +16008,6 @@ item.epee_du_bretteur_celeste = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 44 }, { stat: 'critDamagePct', value: 7 }, { stat: 'critResPct', value: 11 }, { stat: 'lifestealPct', value: 4 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.cape_du_kaniblou = {
     id: 'cape_du_kaniblou',
     name: 'Cape du Kaniblou',
@@ -17058,7 +16021,6 @@ item.cape_du_kaniblou = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.sandales_du_minotot = {
     id: 'sandales_du_minotot',
     name: 'Sandales du Minotot',
@@ -17072,7 +16034,6 @@ item.sandales_du_minotot = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 39 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: -4 }],
     description: ''
 }
-
 item.bague_de_l_obsidiantre = {
     id: 'bague_de_l_obsidiantre',
     name: 'Bague de l\'Obsidiantre',
@@ -17086,7 +16047,6 @@ item.bague_de_l_obsidiantre = {
     stats: [{ stat: 'maxHp', value: 121 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 5 }],
     description: ''
 }
-
 item.anneau_des_matougarous = {
     id: 'anneau_des_matougarous',
     name: 'Anneau des Matougarous',
@@ -17100,7 +16060,6 @@ item.anneau_des_matougarous = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 21 }, { stat: 'critDamagePct', value: 7 }],
     description: ''
 }
-
 item.cape_tivante = {
     id: 'cape_tivante',
     name: 'Cape Tivante',
@@ -17114,7 +16073,6 @@ item.cape_tivante = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 70 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.cape_des_matougarous = {
     id: 'cape_des_matougarous',
     name: 'Cape des Matougarous',
@@ -17128,7 +16086,6 @@ item.cape_des_matougarous = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 21 }, { stat: 'critDamagePct', value: 9 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_du_bretteur_celeste = {
     id: 'cape_du_bretteur_celeste',
     name: 'Cape du Bretteur Céleste',
@@ -17142,7 +16099,6 @@ item.cape_du_bretteur_celeste = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.ceinture_du_bretteur_celeste = {
     id: 'ceinture_du_bretteur_celeste',
     name: 'Ceinture du Bretteur Céleste',
@@ -17156,7 +16112,6 @@ item.ceinture_du_bretteur_celeste = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 11 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.anneau_du_kaniblou = {
     id: 'anneau_du_kaniblou',
     name: 'Anneau du Kaniblou',
@@ -17170,7 +16125,6 @@ item.anneau_du_kaniblou = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.slip_noze = {
     id: 'slip_noze',
     name: 'Slip Noze',
@@ -17184,7 +16138,6 @@ item.slip_noze = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.bottes_de_ush = {
     id: 'bottes_de_ush',
     name: 'Bottes de Ush',
@@ -17198,7 +16151,6 @@ item.bottes_de_ush = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 59 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.cape_de_l_obsidiantre = {
     id: 'cape_de_l_obsidiantre',
     name: 'Cape de l\'Obsidiantre',
@@ -17212,7 +16164,6 @@ item.cape_de_l_obsidiantre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 18 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ceinture_des_prophetes = {
     id: 'ceinture_des_prophetes',
     name: 'Ceinture des Prophètes',
@@ -17226,7 +16177,6 @@ item.ceinture_des_prophetes = {
     stats: [{ stat: 'maxHp', value: 181 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 11 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.col_de_ush = {
     id: 'col_de_ush',
     name: 'Col de Ush',
@@ -17240,7 +16190,6 @@ item.col_de_ush = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 94 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.amulette_de_l_obsidiantre = {
     id: 'amulette_de_l_obsidiantre',
     name: 'Amulette de l\'Obsidiantre',
@@ -17254,7 +16203,6 @@ item.amulette_de_l_obsidiantre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 15 }, { stat: 'heal', value: 5 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.anneau_de_koumiho = {
     id: 'anneau_de_koumiho',
     name: 'Anneau de Koumiho',
@@ -17268,7 +16216,6 @@ item.anneau_de_koumiho = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.coiffe_du_tynril = {
     id: 'coiffe_du_tynril',
     name: 'Coiffe du Tynril',
@@ -17282,7 +16229,6 @@ item.coiffe_du_tynril = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 35 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.rhizome_du_tynril = {
     id: 'rhizome_du_tynril',
     name: 'Rhizome du Tynril',
@@ -17296,7 +16242,6 @@ item.rhizome_du_tynril = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.epee_de_ush = {
     id: 'epee_de_ush',
     name: 'Épée de Ush',
@@ -17310,7 +16255,6 @@ item.epee_de_ush = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 85 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 6 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.anneau_tabene = {
     id: 'anneau_tabene',
     name: 'Anneau Tabéné',
@@ -17324,7 +16268,6 @@ item.anneau_tabene = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 18 }, { stat: 'critResPct', value: 4 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.coquille_de_vengeuse_masquee = {
     id: 'coquille_de_vengeuse_masquee',
     name: 'Coquille de Vengeuse Masquée',
@@ -17338,7 +16281,6 @@ item.coquille_de_vengeuse_masquee = {
     stats: [{ stat: 'maxHp', value: 131 }, { stat: 'atk', value: 46 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.casque_de_l_obsidiantre = {
     id: 'casque_de_l_obsidiantre',
     name: 'Casque de l\'Obsidiantre',
@@ -17352,7 +16294,6 @@ item.casque_de_l_obsidiantre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 6 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.geta_des_tombeaux = {
     id: 'geta_des_tombeaux',
     name: 'Geta des Tombeaux',
@@ -17366,7 +16307,6 @@ item.geta_des_tombeaux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 4 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 12 }],
     description: ''
 }
-
 item.bottes_de_l_obsidiantre = {
     id: 'bottes_de_l_obsidiantre',
     name: 'Bottes de l\'Obsidiantre',
@@ -17380,7 +16320,6 @@ item.bottes_de_l_obsidiantre = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.capuche_souveraine_du_roissingue = {
     id: 'capuche_souveraine_du_roissingue',
     name: 'Capuche Souveraine du Roissingue',
@@ -17394,7 +16333,6 @@ item.capuche_souveraine_du_roissingue = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 21 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.brassard_de_vengeuse_masquee = {
     id: 'brassard_de_vengeuse_masquee',
     name: 'Brassard de Vengeuse Masquée',
@@ -17408,7 +16346,6 @@ item.brassard_de_vengeuse_masquee = {
     stats: [{ stat: 'maxHp', value: 131 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.anneau_des_prophetes = {
     id: 'anneau_des_prophetes',
     name: 'Anneau des Prophètes',
@@ -17422,7 +16359,6 @@ item.anneau_des_prophetes = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.ceinture_d_onigori = {
     id: 'ceinture_d_onigori',
     name: 'Ceinture d\'Onigori',
@@ -17436,7 +16372,6 @@ item.ceinture_d_onigori = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 7 }, { stat: 'heal', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.baton_des_prophetes = {
     id: 'baton_des_prophetes',
     name: 'Bâton des Prophètes',
@@ -17450,7 +16385,6 @@ item.baton_des_prophetes = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 11 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 7 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.veranneau = {
     id: 'veranneau',
     name: 'Veranneau',
@@ -17464,7 +16398,6 @@ item.veranneau = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }],
     description: ''
 }
-
 item.crolier = {
     id: 'crolier',
     name: 'Crolier',
@@ -17478,7 +16411,6 @@ item.crolier = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 11 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.masque_de_vengeuse_masquee = {
     id: 'masque_de_vengeuse_masquee',
     name: 'Masque de Vengeuse Masquée',
@@ -17492,7 +16424,6 @@ item.masque_de_vengeuse_masquee = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_xlii = {
     id: 'ceinture_de_xlii',
     name: 'Ceinture de XLII',
@@ -17506,7 +16437,6 @@ item.ceinture_de_xlii = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.dagues_de_kabombz = {
     id: 'dagues_de_kabombz',
     name: 'Dagues de Kabombz',
@@ -17520,7 +16450,6 @@ item.dagues_de_kabombz = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 1 }, { stat: 'lifestealPct', value: 3 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_soissanth = {
     id: 'ceinture_de_soissanth',
     name: 'Ceinture de Soissanth',
@@ -17534,7 +16463,6 @@ item.ceinture_de_soissanth = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 14 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.anneau_de_xlii = {
     id: 'anneau_de_xlii',
     name: 'Anneau de XLII',
@@ -17548,7 +16476,6 @@ item.anneau_de_xlii = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 9 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.pagne_de_kabombz = {
     id: 'pagne_de_kabombz',
     name: 'Pagne de Kabombz',
@@ -17562,7 +16489,6 @@ item.pagne_de_kabombz = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.capiktenia = {
     id: 'capiktenia',
     name: 'Capikténia',
@@ -17576,7 +16502,6 @@ item.capiktenia = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.casquoporth = {
     id: 'casquoporth',
     name: 'Casquoporth',
@@ -17590,7 +16515,6 @@ item.casquoporth = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.panier_de_z_ufs = {
     id: 'panier_de_z_ufs',
     name: 'Panier de zœufs',
@@ -17604,7 +16528,6 @@ item.panier_de_z_ufs = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bottines_des_sous_bois = {
     id: 'bottines_des_sous_bois',
     name: 'Bottines des sous-bois',
@@ -17618,7 +16541,6 @@ item.bottines_des_sous_bois = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 52 }, { stat: 'spd', value: 56 }, { stat: 'flatDamage', value: 5 }, { stat: 'dropRate', value: 4 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.amulette_c_tera = {
     id: 'amulette_c_tera',
     name: 'Amulette Cætera',
@@ -17632,7 +16554,6 @@ item.amulette_c_tera = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 97 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.alliance_de_guten_tak = {
     id: 'alliance_de_guten_tak',
     name: 'Alliance de Guten Tak',
@@ -17646,7 +16567,6 @@ item.alliance_de_guten_tak = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 16 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.arc_de_guten_tak = {
     id: 'arc_de_guten_tak',
     name: 'Arc de Guten Tak',
@@ -17660,7 +16580,6 @@ item.arc_de_guten_tak = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 42 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }, { stat: 'lifestealPct', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.coiffe_de_soissanth = {
     id: 'coiffe_de_soissanth',
     name: 'Coiffe de Soissanth',
@@ -17674,7 +16593,6 @@ item.coiffe_de_soissanth = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 14 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bottes_du_tengu_givrefoux = {
     id: 'bottes_du_tengu_givrefoux',
     name: 'Bottes du Tengu Givrefoux',
@@ -17688,7 +16606,6 @@ item.bottes_du_tengu_givrefoux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 8 }],
     description: ''
 }
-
 item.chaussquales = {
     id: 'chaussquales',
     name: 'Chaussquales',
@@ -17702,7 +16619,6 @@ item.chaussquales = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.ceintremorse = {
     id: 'ceintremorse',
     name: 'Ceintrémorse',
@@ -17716,7 +16632,6 @@ item.ceintremorse = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 11 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.pantoufles_de_soissanth = {
     id: 'pantoufles_de_soissanth',
     name: 'Pantoufles de Soissanth',
@@ -17730,7 +16645,6 @@ item.pantoufles_de_soissanth = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 14 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_blitere = {
     id: 'anneau_blitere',
     name: 'Anneau Bliteré',
@@ -17744,7 +16658,6 @@ item.anneau_blitere = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 12 }],
     description: ''
 }
-
 item.chapeau_pourih = {
     id: 'chapeau_pourih',
     name: 'Chapeau Pourih',
@@ -17758,7 +16671,6 @@ item.chapeau_pourih = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.la_broche_celeste_ankarton = {
     id: 'la_broche_celeste_ankarton',
     name: 'La Broche Céleste Ankarton',
@@ -17772,7 +16684,6 @@ item.la_broche_celeste_ankarton = {
     stats: [],
     description: ''
 }
-
 item.anneau_de_guten_tak = {
     id: 'anneau_de_guten_tak',
     name: 'Anneau de Guten Tak',
@@ -17786,7 +16697,6 @@ item.anneau_de_guten_tak = {
     stats: [{ stat: 'atk', value: 63 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.coiffe_de_tengu_givrefoux = {
     id: 'coiffe_de_tengu_givrefoux',
     name: 'Coiffe de Tengu Givrefoux',
@@ -17800,7 +16710,6 @@ item.coiffe_de_tengu_givrefoux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 62 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.chapeau_de_dremoan = {
     id: 'chapeau_de_dremoan',
     name: 'Chapeau de Dremoan',
@@ -17814,7 +16723,6 @@ item.chapeau_de_dremoan = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bottes_de_xlii = {
     id: 'bottes_de_xlii',
     name: 'Bottes de XLII',
@@ -17828,7 +16736,6 @@ item.bottes_de_xlii = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 15 }, { stat: 'critResPct', value: 11 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.anneau_du_korriandre = {
     id: 'anneau_du_korriandre',
     name: 'Anneau du Korriandre',
@@ -17842,7 +16749,6 @@ item.anneau_du_korriandre = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 5 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.collier_du_yech_ti = {
     id: 'collier_du_yech_ti',
     name: 'Collier du YeCh\'Ti',
@@ -17856,7 +16762,6 @@ item.collier_du_yech_ti = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 21 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bottes_necrotiques = {
     id: 'bottes_necrotiques',
     name: 'Bottes Nécrotiques',
@@ -17870,7 +16775,6 @@ item.bottes_necrotiques = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.amulette_de_guten_tak = {
     id: 'amulette_de_guten_tak',
     name: 'Amulette de Guten Tak',
@@ -17884,7 +16788,6 @@ item.amulette_de_guten_tak = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 77 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 24 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 16 }],
     description: ''
 }
-
 item.cape_de_tengu_givrefoux = {
     id: 'cape_de_tengu_givrefoux',
     name: 'Cape de Tengu Givrefoux',
@@ -17898,7 +16801,6 @@ item.cape_de_tengu_givrefoux = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 3 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ceinture_du_tengu_givrefoux = {
     id: 'ceinture_du_tengu_givrefoux',
     name: 'Ceinture du Tengu Givrefoux',
@@ -17912,7 +16814,6 @@ item.ceinture_du_tengu_givrefoux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.baguette_nolog = {
     id: 'baguette_nolog',
     name: 'Baguette Nolog',
@@ -17926,7 +16827,6 @@ item.baguette_nolog = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 41 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 5 }, { stat: 'lifestealPct', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.ceinture_mycosine = {
     id: 'ceinture_mycosine',
     name: 'Ceinture Mycosine',
@@ -17940,7 +16840,6 @@ item.ceinture_mycosine = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.amulette_necrotique = {
     id: 'amulette_necrotique',
     name: 'Amulette Nécrotique',
@@ -17954,7 +16853,6 @@ item.amulette_necrotique = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 33 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ougalurette = {
     id: 'ougalurette',
     name: 'Ougalurette',
@@ -17968,7 +16866,6 @@ item.ougalurette = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 8 }, { stat: 'dropRate', value: 4 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.carapace_ailee_du_superviz_uf = {
     id: 'carapace_ailee_du_superviz_uf',
     name: 'Carapace ailée du Supervizœuf',
@@ -17982,7 +16879,6 @@ item.carapace_ailee_du_superviz_uf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 7 }, { stat: 'res.air', value: 23 }],
     description: ''
 }
-
 item.mitaine_du_yech_ti = {
     id: 'mitaine_du_yech_ti',
     name: 'Mitaine du YeCh\'Ti',
@@ -17996,7 +16892,6 @@ item.mitaine_du_yech_ti = {
     stats: [{ stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 33 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.tranche_des_sous_bois = {
     id: 'tranche_des_sous_bois',
     name: 'Tranche des Sous-bois',
@@ -18010,7 +16905,6 @@ item.tranche_des_sous_bois = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 4 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.bracelet_ventre = {
     id: 'bracelet_ventre',
     name: 'Bracelet Ventré',
@@ -18024,7 +16918,6 @@ item.bracelet_ventre = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 26 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 12 }],
     description: ''
 }
-
 item.cape_du_korriandre = {
     id: 'cape_du_korriandre',
     name: 'Cape du Korriandre',
@@ -18038,7 +16931,6 @@ item.cape_du_korriandre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.poing_du_superviz_uf = {
     id: 'poing_du_superviz_uf',
     name: 'Poing du Supervizœuf',
@@ -18052,7 +16944,6 @@ item.poing_du_superviz_uf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 37 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 4 }, { stat: 'res.terre', value: 23 }],
     description: ''
 }
-
 item.bottes_de_dremoan = {
     id: 'bottes_de_dremoan',
     name: 'Bottes de Dremoan',
@@ -18066,7 +16957,6 @@ item.bottes_de_dremoan = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bottes_du_k_o = {
     id: 'bottes_du_k_o',
     name: 'Bottes du K.O.',
@@ -18080,7 +16970,6 @@ item.bottes_du_k_o = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 73 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'res.feu', value: 8 }, { stat: 'res.eau', value: 8 }],
     description: ''
 }
-
 item.ougarteau = {
     id: 'ougarteau',
     name: 'Ougarteau',
@@ -18094,7 +16983,6 @@ item.ougarteau = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 32 }, { stat: 'lifestealPct', value: 5 }, { stat: 'dropRate', value: 1 }],
     description: ''
 }
-
 item.casque_du_superviz_uf = {
     id: 'casque_du_superviz_uf',
     name: 'Casque du Supervizœuf',
@@ -18108,7 +16996,6 @@ item.casque_du_superviz_uf = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 5 }, { stat: 'res.feu', value: 23 }],
     description: ''
 }
-
 item.bras_du_yech_ti = {
     id: 'bras_du_yech_ti',
     name: 'Bras du YeCh\'Ti',
@@ -18122,7 +17009,6 @@ item.bras_du_yech_ti = {
     stats: [{ stat: 'maxHp', value: 131 }, { stat: 'atk', value: 31 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.anneau_chevelu = {
     id: 'anneau_chevelu',
     name: 'Anneau Chevelu',
@@ -18136,7 +17022,6 @@ item.anneau_chevelu = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 12 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.ceinture_tore = {
     id: 'ceinture_tore',
     name: 'Ceinture Toré',
@@ -18150,7 +17035,6 @@ item.ceinture_tore = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 52 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 12 }],
     description: ''
 }
-
 item.amulette_du_k_o = {
     id: 'amulette_du_k_o',
     name: 'Amulette du K.O.',
@@ -18164,7 +17048,6 @@ item.amulette_du_k_o = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 87 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.ougamulette = {
     id: 'ougamulette',
     name: 'Ougamulette',
@@ -18178,7 +17061,6 @@ item.ougamulette = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 51 }, { stat: 'flatDamage', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.dard_du_superviz_uf = {
     id: 'dard_du_superviz_uf',
     name: 'Dard du Supervizœuf',
@@ -18192,7 +17074,6 @@ item.dard_du_superviz_uf = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 45 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: -8 }, { stat: 'heal', value: 9 }, { stat: 'res.eau', value: 23 }],
     description: ''
 }
-
 item.bottines_hodore = {
     id: 'bottines_hodore',
     name: 'Bottines Hodore',
@@ -18206,7 +17087,6 @@ item.bottines_hodore = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.caprin = {
     id: 'caprin',
     name: 'Caprin',
@@ -18220,7 +17100,6 @@ item.caprin = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.chaussons_pignons = {
     id: 'chaussons_pignons',
     name: 'Chaussons Pignons',
@@ -18234,7 +17113,6 @@ item.chaussons_pignons = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.cape_necrotique = {
     id: 'cape_necrotique',
     name: 'Cape Nécrotique',
@@ -18248,7 +17126,6 @@ item.cape_necrotique = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.cape_de_dremoan = {
     id: 'cape_de_dremoan',
     name: 'Cape de Dremoan',
@@ -18262,7 +17139,6 @@ item.cape_de_dremoan = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'heal', value: 9 }],
     description: ''
 }
-
 item.lame_assacre = {
     id: 'lame_assacre',
     name: 'Lame Assacre',
@@ -18276,7 +17152,6 @@ item.lame_assacre = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'lifestealPct', value: 3 }, { stat: 'res.air', value: 12 }],
     description: ''
 }
-
 item.amulette_du_korriandre = {
     id: 'amulette_du_korriandre',
     name: 'Amulette du Korriandre',
@@ -18290,7 +17165,6 @@ item.amulette_du_korriandre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.blindage_du_superviz_uf = {
     id: 'blindage_du_superviz_uf',
     name: 'Blindage du Supervizœuf',
@@ -18304,7 +17178,6 @@ item.blindage_du_superviz_uf = {
     stats: [{ stat: 'maxHp', value: 131 }, { stat: 'atk', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'res.neutre', value: 23 }],
     description: ''
 }
-
 item.cape_peupret = {
     id: 'cape_peupret',
     name: 'Cape Peupret',
@@ -18318,7 +17191,6 @@ item.cape_peupret = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 25 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 3 }, { stat: 'res.neutre', value: 10 }],
     description: ''
 }
-
 item.bague_de_boreale = {
     id: 'bague_de_boreale',
     name: 'Bague de Boréale',
@@ -18332,7 +17204,6 @@ item.bague_de_boreale = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 7 }, { stat: 'res.feu', value: 16 }],
     description: ''
 }
-
 item.ceinture_du_k_o = {
     id: 'ceinture_du_k_o',
     name: 'Ceinture du K.O.',
@@ -18346,7 +17217,6 @@ item.ceinture_du_k_o = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 88 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.cape_debruk_sayl = {
     id: 'cape_debruk_sayl',
     name: 'Cape Debruk\'Sayl',
@@ -18360,7 +17230,6 @@ item.cape_debruk_sayl = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.ceinture_bine = {
     id: 'ceinture_bine',
     name: 'Ceinture Bine',
@@ -18374,7 +17243,6 @@ item.ceinture_bine = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.chapignon = {
     id: 'chapignon',
     name: 'Chapignon',
@@ -18388,7 +17256,6 @@ item.chapignon = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.amulette_ripage = {
     id: 'amulette_ripage',
     name: 'Amulette Ripage',
@@ -18402,7 +17269,6 @@ item.amulette_ripage = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 17 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }],
     description: ''
 }
-
 item.bottes_repane = {
     id: 'bottes_repane',
     name: 'Bottes Répané',
@@ -18416,7 +17282,6 @@ item.bottes_repane = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.ceinture_de_boreale = {
     id: 'ceinture_de_boreale',
     name: 'Ceinture de Boréale',
@@ -18430,7 +17295,6 @@ item.ceinture_de_boreale = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.cape_erforee = {
     id: 'cape_erforee',
     name: 'Cape Erforée',
@@ -18444,7 +17308,6 @@ item.cape_erforee = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 25 }, { stat: 'dropRate', value: 4 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.ougature = {
     id: 'ougature',
     name: 'Ougature',
@@ -18458,7 +17321,6 @@ item.ougature = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.collier_debruk_sayl = {
     id: 'collier_debruk_sayl',
     name: 'Collier Debruk\'Sayl',
@@ -18472,7 +17334,6 @@ item.collier_debruk_sayl = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.amulette_heroclite = {
     id: 'amulette_heroclite',
     name: 'Amulette Héroclite',
@@ -18486,7 +17347,6 @@ item.amulette_heroclite = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.alliance_boletee = {
     id: 'alliance_boletee',
     name: 'Alliance Boletée',
@@ -18500,7 +17360,6 @@ item.alliance_boletee = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 4 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.cape_d_ogivol = {
     id: 'cape_d_ogivol',
     name: 'Cape d\'Ogivol',
@@ -18514,7 +17373,6 @@ item.cape_d_ogivol = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 8 }],
     description: ''
 }
-
 item.coiffe_de_boreale = {
     id: 'coiffe_de_boreale',
     name: 'Coiffe de Boréale',
@@ -18528,7 +17386,6 @@ item.coiffe_de_boreale = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 16 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 16 }],
     description: ''
 }
-
 item.ceinture_de_kolosso = {
     id: 'ceinture_de_kolosso',
     name: 'Ceinture de Kolosso',
@@ -18542,7 +17399,6 @@ item.ceinture_de_kolosso = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_debruk_sayl = {
     id: 'anneau_debruk_sayl',
     name: 'Anneau Debruk\'Sayl',
@@ -18556,7 +17412,6 @@ item.anneau_debruk_sayl = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 1 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.couteaux_a_champignons = {
     id: 'couteaux_a_champignons',
     name: 'Couteaux à Champignons',
@@ -18570,7 +17425,6 @@ item.couteaux_a_champignons = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: -4 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 52 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.frimacoiffe = {
     id: 'frimacoiffe',
     name: 'Frimacoiffe',
@@ -18584,7 +17438,6 @@ item.frimacoiffe = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.ceinture_de_danathor = {
     id: 'ceinture_de_danathor',
     name: 'Ceinture de Danathor',
@@ -18598,7 +17451,6 @@ item.ceinture_de_danathor = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 4 }],
     description: ''
 }
-
 item.hache_du_korriandre = {
     id: 'hache_du_korriandre',
     name: 'Hache du Korriandre',
@@ -18612,7 +17464,6 @@ item.hache_du_korriandre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: -4 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 7 }, { stat: 'lifestealPct', value: 16 }, { stat: 'dropRate', value: 4 }],
     description: ''
 }
-
 item.anneau_colerette = {
     id: 'anneau_colerette',
     name: 'Anneau Colerette',
@@ -18626,7 +17477,6 @@ item.anneau_colerette = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 12 }, { stat: 'res.terre', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.amunite = {
     id: 'amunite',
     name: 'Amunite',
@@ -18640,7 +17490,6 @@ item.amunite = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 72 }, { stat: 'flatDamage', value: 6 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.annolamour = {
     id: 'annolamour',
     name: 'Annolamour',
@@ -18650,11 +17499,10 @@ item.annolamour = {
     set: 'panoplie_ventouse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 189,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 51 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.bottes_de_boreale = {
     id: 'bottes_de_boreale',
     name: 'Bottes de Boréale',
@@ -18668,7 +17516,6 @@ item.bottes_de_boreale = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 16 }],
     description: ''
 }
-
 item.casque_harnage = {
     id: 'casque_harnage',
     name: 'Casque Harnage',
@@ -18682,7 +17529,6 @@ item.casque_harnage = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 4 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.gresilobottes = {
     id: 'gresilobottes',
     name: 'Grésilobottes',
@@ -18696,7 +17542,6 @@ item.gresilobottes = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 9 }, { stat: 'res.terre', value: 9 }],
     description: ''
 }
-
 item.capignon = {
     id: 'capignon',
     name: 'Capignon',
@@ -18710,7 +17555,6 @@ item.capignon = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 5 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 12 }],
     description: ''
 }
-
 item.grelots_de_barberyl = {
     id: 'grelots_de_barberyl',
     name: 'Grelots de Barbéryl',
@@ -18724,7 +17568,6 @@ item.grelots_de_barberyl = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.flashaux = {
     id: 'flashaux',
     name: 'Flashaux',
@@ -18738,7 +17581,6 @@ item.flashaux = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 27 }, { stat: 'flatDamage', value: 54 }, { stat: 'critChance', value: 4 }, { stat: 'lifestealPct', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.anneau_de_kolosso = {
     id: 'anneau_de_kolosso',
     name: 'Anneau de Kolosso',
@@ -18752,7 +17594,6 @@ item.anneau_de_kolosso = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.perruque_de_predagob = {
     id: 'perruque_de_predagob',
     name: 'Perruque de Predagob',
@@ -18766,7 +17607,6 @@ item.perruque_de_predagob = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 83 }, { stat: 'flatDamage', value: 18 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.marteau_aigri = {
     id: 'marteau_aigri',
     name: 'Marteau Aigri',
@@ -18780,7 +17620,6 @@ item.marteau_aigri = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 76 }, { stat: 'critChance', value: 4 }, { stat: 'lifestealPct', value: 6 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.serpe_aigrie = {
     id: 'serpe_aigrie',
     name: 'Serpe Aigrie',
@@ -18794,7 +17633,6 @@ item.serpe_aigrie = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 64 }, { stat: 'critChance', value: 4 }, { stat: 'lifestealPct', value: 6 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bottes_d_allister = {
     id: 'bottes_d_allister',
     name: 'Bottes d\'Allister',
@@ -18808,7 +17646,6 @@ item.bottes_d_allister = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.lunettes_du_docteur_eggob = {
     id: 'lunettes_du_docteur_eggob',
     name: 'Lunettes du Docteur Eggob',
@@ -18822,7 +17659,6 @@ item.lunettes_du_docteur_eggob = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 83 }, { stat: 'flatDamage', value: 27 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.anneau_du_professeur_xa = {
     id: 'anneau_du_professeur_xa',
     name: 'Anneau du Professeur Xa',
@@ -18836,7 +17672,6 @@ item.anneau_du_professeur_xa = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 29 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 32 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.pelle_du_professeur_xa = {
     id: 'pelle_du_professeur_xa',
     name: 'Pelle du Professeur Xa',
@@ -18850,7 +17685,6 @@ item.pelle_du_professeur_xa = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 39 }, { stat: 'critChance', value: 4 }, { stat: 'lifestealPct', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.frimamulette = {
     id: 'frimamulette',
     name: 'Frimamulette',
@@ -18864,7 +17698,6 @@ item.frimamulette = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 96 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.gresilosceptre = {
     id: 'gresilosceptre',
     name: 'Grésilosceptre',
@@ -18878,7 +17711,6 @@ item.gresilosceptre = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 31 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.binocle_airvoyant = {
     id: 'binocle_airvoyant',
     name: 'Binocle Airvoyant',
@@ -18892,7 +17724,6 @@ item.binocle_airvoyant = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 82 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.string_tue_mouche = {
     id: 'string_tue_mouche',
     name: 'String Tue-Mouche',
@@ -18906,7 +17737,6 @@ item.string_tue_mouche = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.bottes_d_otomai = {
     id: 'bottes_d_otomai',
     name: 'Bottes d\'Otomaï',
@@ -18920,7 +17750,6 @@ item.bottes_d_otomai = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 6 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.subligar_de_barberyl = {
     id: 'subligar_de_barberyl',
     name: 'Subligar de Barbéryl',
@@ -18934,7 +17763,6 @@ item.subligar_de_barberyl = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.bouclieclair_de_flasho = {
     id: 'bouclieclair_de_flasho',
     name: 'Boucliéclair de Flasho',
@@ -18948,7 +17776,6 @@ item.bouclieclair_de_flasho = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 67 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bracelet_de_predagob = {
     id: 'bracelet_de_predagob',
     name: 'Bracelet de Predagob',
@@ -18962,7 +17789,6 @@ item.bracelet_de_predagob = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 55 }, { stat: 'flatDamage', value: 10 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.bague_de_san_jifu = {
     id: 'bague_de_san_jifu',
     name: 'Bague de San Jifu',
@@ -18976,7 +17802,6 @@ item.bague_de_san_jifu = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 1 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.anneau_de_la_fuji_givrefoux = {
     id: 'anneau_de_la_fuji_givrefoux',
     name: 'Anneau de la Fuji Givrefoux',
@@ -18990,7 +17815,6 @@ item.anneau_de_la_fuji_givrefoux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 1 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.collier_gris = {
     id: 'collier_gris',
     name: 'Collier Gris',
@@ -19004,7 +17828,6 @@ item.collier_gris = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.marteau_d_henual = {
     id: 'marteau_d_henual',
     name: 'Marteau d\'Henual',
@@ -19018,7 +17841,6 @@ item.marteau_d_henual = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 71 }, { stat: 'flatDamage', value: 51 }, { stat: 'critResPct', value: -11 }, { stat: 'heal', value: 4 }, { stat: 'lifestealPct', value: 6 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.coiffe_d_ogivol = {
     id: 'coiffe_d_ogivol',
     name: 'Coiffe d\'Ogivol',
@@ -19032,7 +17854,6 @@ item.coiffe_d_ogivol = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.coiffe_de_kolosso = {
     id: 'coiffe_de_kolosso',
     name: 'Coiffe de Kolosso',
@@ -19046,7 +17867,6 @@ item.coiffe_de_kolosso = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 77 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 8 }, { stat: 'res.eau', value: 8 }],
     description: ''
 }
-
 item.amulette_de_theodoran_ax = {
     id: 'amulette_de_theodoran_ax',
     name: 'Amulette de Théodoran Ax',
@@ -19060,7 +17880,6 @@ item.amulette_de_theodoran_ax = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.cape_de_la_fuji_givrefoux = {
     id: 'cape_de_la_fuji_givrefoux',
     name: 'Cape de la Fuji Givrefoux',
@@ -19074,7 +17893,6 @@ item.cape_de_la_fuji_givrefoux = {
     stats: [{ stat: 'atk', value: 55 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.amulette_hale = {
     id: 'amulette_hale',
     name: 'Amulette Hale',
@@ -19088,7 +17906,6 @@ item.amulette_hale = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.chaussons_du_comte_razof = {
     id: 'chaussons_du_comte_razof',
     name: 'Chaussons du Comte Razof',
@@ -19102,7 +17919,6 @@ item.chaussons_du_comte_razof = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.anneau_dore_du_docteur_eggob = {
     id: 'anneau_dore_du_docteur_eggob',
     name: 'Anneau doré du Docteur Eggob',
@@ -19116,7 +17932,6 @@ item.anneau_dore_du_docteur_eggob = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 70 }, { stat: 'flatDamage', value: 15 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }],
     description: ''
 }
-
 item.bottes_du_professeur_xa = {
     id: 'bottes_du_professeur_xa',
     name: 'Bottes du Professeur Xa',
@@ -19130,7 +17945,6 @@ item.bottes_du_professeur_xa = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 1 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.anneau_clochecuivre = {
     id: 'anneau_clochecuivre',
     name: 'Anneau Clochecuivre',
@@ -19144,7 +17958,6 @@ item.anneau_clochecuivre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 45 }, { stat: 'spd', value: -20 }, { stat: 'flatDamage', value: 20 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.gresilocape = {
     id: 'gresilocape',
     name: 'Grésilocape',
@@ -19158,7 +17971,6 @@ item.gresilocape = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 57 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.pendentif_oton = {
     id: 'pendentif_oton',
     name: 'Pendentif Oton',
@@ -19172,7 +17984,6 @@ item.pendentif_oton = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 102 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }],
     description: ''
 }
-
 item.sept_ans_de_malheur = {
     id: 'sept_ans_de_malheur',
     name: 'Sept ans de malheur',
@@ -19186,7 +17997,6 @@ item.sept_ans_de_malheur = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 21 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.kralamansion = {
     id: 'kralamansion',
     name: 'Kralamansion',
@@ -19196,11 +18006,10 @@ item.kralamansion = {
     set: 'panoplie_ventouse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 194,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 4 }],
     description: ''
 }
-
 item.rouleau_a_patisserie_d_aermyne = {
     id: 'rouleau_a_patisserie_d_aermyne',
     name: 'Rouleau à Pâtisserie d\'Aermyne',
@@ -19214,7 +18023,6 @@ item.rouleau_a_patisserie_d_aermyne = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: -91 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: -11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_d_hel_munster = {
     id: 'cape_d_hel_munster',
     name: 'Cape d\'Hel Munster',
@@ -19228,7 +18036,6 @@ item.cape_d_hel_munster = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: -30 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.tonfas_de_barberyl = {
     id: 'tonfas_de_barberyl',
     name: 'Tonfas de Barbéryl',
@@ -19242,7 +18049,6 @@ item.tonfas_de_barberyl = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 51 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 9 }, { stat: 'lifestealPct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.ceinture_de_brouce = {
     id: 'ceinture_de_brouce',
     name: 'Ceinture de Brouce',
@@ -19256,7 +18062,6 @@ item.ceinture_de_brouce = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 101 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.amulette_de_danathor = {
     id: 'amulette_de_danathor',
     name: 'Amulette de Danathor',
@@ -19270,7 +18075,6 @@ item.amulette_de_danathor = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 101 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.anneau_de_flasho = {
     id: 'anneau_de_flasho',
     name: 'Anneau de Flasho',
@@ -19284,7 +18088,6 @@ item.anneau_de_flasho = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 9 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.bottes_de_lethaline = {
     id: 'bottes_de_lethaline',
     name: 'Bottes de Léthaline',
@@ -19298,7 +18101,6 @@ item.bottes_de_lethaline = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 15 }, { stat: 'spd', value: 56 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'heal', value: 11 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.cape_de_lethaline = {
     id: 'cape_de_lethaline',
     name: 'Cape de Léthaline',
@@ -19312,7 +18114,6 @@ item.cape_de_lethaline = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 47 }, { stat: 'spd', value: 15 }, { stat: 'res.feu', value: 14 }, { stat: 'res.eau', value: 14 }, { stat: 'res.terre', value: 14 }, { stat: 'res.air', value: 14 }],
     description: ''
 }
-
 item.ceinture_de_lethaline = {
     id: 'ceinture_de_lethaline',
     name: 'Ceinture de Léthaline',
@@ -19326,7 +18127,6 @@ item.ceinture_de_lethaline = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 15 }, { stat: 'spd', value: 31 }, { stat: 'critChance', value: 7 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.amulette_de_nevark = {
     id: 'amulette_de_nevark',
     name: 'Amulette de Nevark',
@@ -19340,7 +18140,6 @@ item.amulette_de_nevark = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 48 }, { stat: 'critDamagePct', value: -21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }],
     description: ''
 }
-
 item.pagne_de_predagob = {
     id: 'pagne_de_predagob',
     name: 'Pagne de Predagob',
@@ -19354,7 +18153,6 @@ item.pagne_de_predagob = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.faux_de_san_jifu = {
     id: 'faux_de_san_jifu',
     name: 'Faux de San Jifu',
@@ -19368,7 +18166,6 @@ item.faux_de_san_jifu = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 6 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 36 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_de_la_fuji_givrefoux = {
     id: 'bottes_de_la_fuji_givrefoux',
     name: 'Bottes de la Fuji Givrefoux',
@@ -19382,7 +18179,6 @@ item.bottes_de_la_fuji_givrefoux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.bouclier_gris = {
     id: 'bouclier_gris',
     name: 'Bouclier Gris',
@@ -19396,7 +18192,6 @@ item.bouclier_gris = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'damageReductionPct', value: 4 }, { stat: 'critChance', value: 4 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.cape_du_professeur_xa = {
     id: 'cape_du_professeur_xa',
     name: 'Cape du Professeur Xa',
@@ -19410,7 +18205,6 @@ item.cape_du_professeur_xa = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.frimanneau = {
     id: 'frimanneau',
     name: 'Frimanneau',
@@ -19424,7 +18218,6 @@ item.frimanneau = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.ceinture_hyolite = {
     id: 'ceinture_hyolite',
     name: 'Ceinture Hyolite',
@@ -19438,7 +18231,6 @@ item.ceinture_hyolite = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 48 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.obscture = {
     id: 'obscture',
     name: 'Obscture',
@@ -19452,7 +18244,6 @@ item.obscture = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_d_hel_munster = {
     id: 'amulette_d_hel_munster',
     name: 'Amulette d\'Hel Munster',
@@ -19466,7 +18257,6 @@ item.amulette_d_hel_munster = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: -20 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.ceinture_d_ogivol = {
     id: 'ceinture_d_ogivol',
     name: 'Ceinture d\'Ogivol',
@@ -19480,7 +18270,6 @@ item.ceinture_d_ogivol = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.casqnoar = {
     id: 'casqnoar',
     name: 'Casqnoar',
@@ -19494,7 +18283,6 @@ item.casqnoar = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.l_ecu_de_danathor = {
     id: 'l_ecu_de_danathor',
     name: 'L\'Écu de Danathor',
@@ -19508,7 +18296,6 @@ item.l_ecu_de_danathor = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_de_nevark = {
     id: 'ceinture_de_nevark',
     name: 'Ceinture de Nevark',
@@ -19522,7 +18309,6 @@ item.ceinture_de_nevark = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 48 }, { stat: 'critDamagePct', value: -16 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.sangle_de_sylargh = {
     id: 'sangle_de_sylargh',
     name: 'Sangle de Sylargh',
@@ -19536,7 +18322,6 @@ item.sangle_de_sylargh = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 11 }, { stat: 'res.air', value: 18 }],
     description: ''
 }
-
 item.bottes_de_theodoran_ax = {
     id: 'bottes_de_theodoran_ax',
     name: 'Bottes de Théodoran Ax',
@@ -19550,7 +18335,6 @@ item.bottes_de_theodoran_ax = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 16 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.coiffe_de_la_fuji_givrefoux = {
     id: 'coiffe_de_la_fuji_givrefoux',
     name: 'Coiffe de la Fuji Givrefoux',
@@ -19564,7 +18348,6 @@ item.coiffe_de_la_fuji_givrefoux = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.chaussures_face = {
     id: 'chaussures_face',
     name: 'Chaussures Face',
@@ -19578,7 +18361,6 @@ item.chaussures_face = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_du_comte_razof = {
     id: 'ceinture_du_comte_razof',
     name: 'Ceinture du Comte Razof',
@@ -19592,7 +18374,6 @@ item.ceinture_du_comte_razof = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.fleau_du_docteur_eggob = {
     id: 'fleau_du_docteur_eggob',
     name: 'Fléau du Docteur Eggob',
@@ -19606,7 +18387,6 @@ item.fleau_du_docteur_eggob = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 78 }, { stat: 'flatDamage', value: 61 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.ceinture_du_glourseleste = {
     id: 'ceinture_du_glourseleste',
     name: 'Ceinture du Glourséleste',
@@ -19620,7 +18400,6 @@ item.ceinture_du_glourseleste = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 8 }, { stat: 'res.eau', value: 8 }, { stat: 'res.terre', value: 8 }, { stat: 'res.air', value: 8 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.sandales_circulaires_du_kimbo = {
     id: 'sandales_circulaires_du_kimbo',
     name: 'Sandales Circulaires du Kimbo',
@@ -19634,7 +18413,6 @@ item.sandales_circulaires_du_kimbo = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.amulette_du_professeur_xa = {
     id: 'amulette_du_professeur_xa',
     name: 'Amulette du Professeur Xa',
@@ -19648,7 +18426,6 @@ item.amulette_du_professeur_xa = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 72 }, { stat: 'spd', value: 56 }, { stat: 'flatDamage', value: 44 }, { stat: 'critResPct', value: 16 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.chapeau_lochon = {
     id: 'chapeau_lochon',
     name: 'Chapeau Lochon',
@@ -19662,7 +18439,6 @@ item.chapeau_lochon = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 8 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.pikano = {
     id: 'pikano',
     name: 'Pikano',
@@ -19676,7 +18452,6 @@ item.pikano = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 32 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.masse_clochecuivre = {
     id: 'masse_clochecuivre',
     name: 'Masse Clochecuivre',
@@ -19690,7 +18465,6 @@ item.masse_clochecuivre = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 60 }, { stat: 'spd', value: -30 }, { stat: 'flatDamage', value: 68 }, { stat: 'lifestealPct', value: 15 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.ceinture_glaciale = {
     id: 'ceinture_glaciale',
     name: 'Ceinture Glaciale',
@@ -19704,7 +18478,6 @@ item.ceinture_glaciale = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 83 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.gresilanneau = {
     id: 'gresilanneau',
     name: 'Grésilanneau',
@@ -19718,7 +18491,6 @@ item.gresilanneau = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.ceinture_instable = {
     id: 'ceinture_instable',
     name: 'Ceinture Instable',
@@ -19732,7 +18504,6 @@ item.ceinture_instable = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 30 }, { stat: 'critChance', value: 8 }, { stat: 'heal', value: 8 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.calotte_spot = {
     id: 'calotte_spot',
     name: 'Calotte Spot',
@@ -19746,7 +18517,6 @@ item.calotte_spot = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 48 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 7 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.chaussures_hau = {
     id: 'chaussures_hau',
     name: 'Chaussures Hau',
@@ -19760,7 +18530,6 @@ item.chaussures_hau = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.amulette_rangleur = {
     id: 'amulette_rangleur',
     name: 'Amulette Rangleur',
@@ -19774,7 +18543,6 @@ item.amulette_rangleur = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 82 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: -11 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 15 }],
     description: ''
 }
-
 item.bague_nostik = {
     id: 'bague_nostik',
     name: 'Bague Nostik',
@@ -19788,7 +18556,6 @@ item.bague_nostik = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 16 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.cape_d_aermyne = {
     id: 'cape_d_aermyne',
     name: 'Cape d\'Aermyne',
@@ -19802,7 +18569,6 @@ item.cape_d_aermyne = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: -55 }, { stat: 'heal', value: 16 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.couronne_d_allister = {
     id: 'couronne_d_allister',
     name: 'Couronne d\'Allister',
@@ -19816,7 +18582,6 @@ item.couronne_d_allister = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_d_henual = {
     id: 'anneau_d_henual',
     name: 'Anneau d\'Henual',
@@ -19830,7 +18595,6 @@ item.anneau_d_henual = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 33 }, { stat: 'critResPct', value: -7 }, { stat: 'res.feu', value: 8 }, { stat: 'res.terre', value: 8 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.anneau_kturne = {
     id: 'anneau_kturne',
     name: 'Anneau Kturne',
@@ -19844,7 +18608,6 @@ item.anneau_kturne = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.amulette_d_oshimo = {
     id: 'amulette_d_oshimo',
     name: 'Amulette d\'Oshimo',
@@ -19858,7 +18621,6 @@ item.amulette_d_oshimo = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 83 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 16 }],
     description: ''
 }
-
 item.fiole_d_otomai = {
     id: 'fiole_d_otomai',
     name: 'Fiole d\'Otomaï',
@@ -19872,7 +18634,6 @@ item.fiole_d_otomai = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.epee_d_otomai = {
     id: 'epee_d_otomai',
     name: 'Épée d\'Otomaï',
@@ -19886,7 +18647,6 @@ item.epee_d_otomai = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 50 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 16 }, { stat: 'res.neutre', value: 16 }],
     description: ''
 }
-
 item.ecorce_de_brouce = {
     id: 'ecorce_de_brouce',
     name: 'Écorce de Brouce',
@@ -19900,7 +18660,6 @@ item.ecorce_de_brouce = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.coiffe_de_danathor = {
     id: 'coiffe_de_danathor',
     name: 'Coiffe de Danathor',
@@ -19914,7 +18673,6 @@ item.coiffe_de_danathor = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.masque_de_klime = {
     id: 'masque_de_klime',
     name: 'Masque de Klime',
@@ -19928,7 +18686,6 @@ item.masque_de_klime = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 11 }],
     description: ''
 }
-
 item.bottes_de_missiz_frizz = {
     id: 'bottes_de_missiz_frizz',
     name: 'Bottes de Missiz Frizz',
@@ -19942,7 +18699,6 @@ item.bottes_de_missiz_frizz = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 43 }, { stat: 'spd', value: -5 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 8 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.casque_de_missiz_frizz = {
     id: 'casque_de_missiz_frizz',
     name: 'Casque de Missiz Frizz',
@@ -19956,7 +18712,6 @@ item.casque_de_missiz_frizz = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.cape_de_nevark = {
     id: 'cape_de_nevark',
     name: 'Cape de Nevark',
@@ -19970,7 +18725,6 @@ item.cape_de_nevark = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 48 }, { stat: 'critDamagePct', value: -16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.amulette_de_nileza = {
     id: 'amulette_de_nileza',
     name: 'Amulette de Nileza',
@@ -19984,7 +18738,6 @@ item.amulette_de_nileza = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 101 }, { stat: 'flatDamage', value: 16 }, { stat: 'critDamagePct', value: 8 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.geta_de_padgref = {
     id: 'geta_de_padgref',
     name: 'Geta de Padgref',
@@ -19998,7 +18751,6 @@ item.geta_de_padgref = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 63 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 16 }, { stat: 'heal', value: 8 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_de_san_jifu = {
     id: 'ceinture_de_san_jifu',
     name: 'Ceinture de San Jifu',
@@ -20012,7 +18764,6 @@ item.ceinture_de_san_jifu = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.capuche_de_sylargh = {
     id: 'capuche_de_sylargh',
     name: 'Capuche de Sylargh',
@@ -20026,7 +18777,6 @@ item.capuche_de_sylargh = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 10 }, { stat: 'res.air', value: 10 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.cape_hiculteur = {
     id: 'cape_hiculteur',
     name: 'Cape Hiculteur',
@@ -20040,7 +18790,6 @@ item.cape_hiculteur = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.amulette_ikete = {
     id: 'amulette_ikete',
     name: 'Amulette Ikête',
@@ -20054,7 +18803,6 @@ item.amulette_ikete = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 18 }, { stat: 'critDamagePct', value: -16 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.bottes_du_glourseleste = {
     id: 'bottes_du_glourseleste',
     name: 'Bottes du Glourséleste',
@@ -20068,7 +18816,6 @@ item.bottes_du_glourseleste = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 46 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 8 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.amulette_du_kanimate = {
     id: 'amulette_du_kanimate',
     name: 'Amulette du Kanimate',
@@ -20082,7 +18829,6 @@ item.amulette_du_kanimate = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: -30 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 7 }, { stat: 'res.feu', value: 16 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.le_kim = {
     id: 'le_kim',
     name: 'Le Kim',
@@ -20096,7 +18842,6 @@ item.le_kim = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 6 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.cape_matelassee = {
     id: 'cape_matelassee',
     name: 'Cape Matelassée',
@@ -20110,7 +18855,6 @@ item.cape_matelassee = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }, { stat: 'critDamagePct', value: 7 }, { stat: 'critResPct', value: -7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.pantoufles_emar = {
     id: 'pantoufles_emar',
     name: 'Pantoufles Émar',
@@ -20124,7 +18868,6 @@ item.pantoufles_emar = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'heal', value: 4 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.casquipik = {
     id: 'casquipik',
     name: 'Casquipik',
@@ -20138,7 +18881,6 @@ item.casquipik = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 48 }, { stat: 'critDamagePct', value: 9 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.frimature = {
     id: 'frimature',
     name: 'Frimature',
@@ -20152,7 +18894,6 @@ item.frimature = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 10 }, { stat: 'res.air', value: 10 }, { stat: 'res.neutre', value: 10 }],
     description: ''
 }
-
 item.anneau_glacial = {
     id: 'anneau_glacial',
     name: 'Anneau Glacial',
@@ -20166,7 +18907,6 @@ item.anneau_glacial = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.cape_glaciale = {
     id: 'cape_glaciale',
     name: 'Cape Glaciale',
@@ -20180,7 +18920,6 @@ item.cape_glaciale = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 12 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 16 }],
     description: ''
 }
-
 item.bague_gloursonne = {
     id: 'bague_gloursonne',
     name: 'Bague Gloursonne',
@@ -20194,7 +18933,6 @@ item.bague_gloursonne = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.phylactere_mic = {
     id: 'phylactere_mic',
     name: 'Phylactère Mic',
@@ -20208,7 +18946,6 @@ item.phylactere_mic = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 42 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.amulule = {
     id: 'amulule',
     name: 'Amulule',
@@ -20222,7 +18959,6 @@ item.amulule = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.bonnet_vicieux = {
     id: 'bonnet_vicieux',
     name: 'Bonnet Vicieux',
@@ -20236,7 +18972,6 @@ item.bonnet_vicieux = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.anneau_d_allister = {
     id: 'anneau_d_allister',
     name: 'Anneau d\'Allister',
@@ -20250,7 +18985,6 @@ item.anneau_d_allister = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.egide_d_allister = {
     id: 'egide_d_allister',
     name: 'Égide d\'Allister',
@@ -20264,7 +18998,6 @@ item.egide_d_allister = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_d_henual = {
     id: 'ceinture_d_henual',
     name: 'Ceinture d\'Henual',
@@ -20278,7 +19011,6 @@ item.ceinture_d_henual = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: -11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.amulette_d_otomai = {
     id: 'amulette_d_otomai',
     name: 'Amulette d\'Otomaï',
@@ -20292,7 +19024,6 @@ item.amulette_d_otomai = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 8 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_de_brouce = {
     id: 'bottes_de_brouce',
     name: 'Bottes de Brouce',
@@ -20306,7 +19037,6 @@ item.bottes_de_brouce = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.cape_de_klime = {
     id: 'cape_de_klime',
     name: 'Cape de Klime',
@@ -20320,7 +19050,6 @@ item.cape_de_klime = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.nev_arc = {
     id: 'nev_arc',
     name: 'Nev\'Arc',
@@ -20334,7 +19063,6 @@ item.nev_arc = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 70 }, { stat: 'critDamagePct', value: -21 }, { stat: 'lifestealPct', value: 22 }, { stat: 'res.eau', value: 11 }],
     description: ''
 }
-
 item.anneau_de_padgref = {
     id: 'anneau_de_padgref',
     name: 'Anneau de Padgref',
@@ -20348,7 +19076,6 @@ item.anneau_de_padgref = {
     stats: [{ stat: 'maxHp', value: 71 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 8 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_de_viti_glourson = {
     id: 'amulette_de_viti_glourson',
     name: 'Amulette de Viti Glourson',
@@ -20362,7 +19089,6 @@ item.amulette_de_viti_glourson = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 21 }],
     description: ''
 }
-
 item.cape_tif = {
     id: 'cape_tif',
     name: 'Cape Tif',
@@ -20376,7 +19102,6 @@ item.cape_tif = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.bottes_des_voyageurs = {
     id: 'bottes_des_voyageurs',
     name: 'Bottes des Voyageurs',
@@ -20390,7 +19115,6 @@ item.bottes_des_voyageurs = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.bouclier_des_voyageurs = {
     id: 'bouclier_des_voyageurs',
     name: 'Bouclier des Voyageurs',
@@ -20404,7 +19128,6 @@ item.bouclier_des_voyageurs = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 63 }, { stat: 'spd', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.capuche_des_voyageurs = {
     id: 'capuche_des_voyageurs',
     name: 'Capuche des Voyageurs',
@@ -20418,7 +19141,6 @@ item.capuche_des_voyageurs = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.ceinture_des_voyageurs = {
     id: 'ceinture_des_voyageurs',
     name: 'Ceinture des Voyageurs',
@@ -20432,7 +19154,6 @@ item.ceinture_des_voyageurs = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.gant_des_voyageurs = {
     id: 'gant_des_voyageurs',
     name: 'Gant des Voyageurs',
@@ -20446,7 +19167,6 @@ item.gant_des_voyageurs = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 53 }, { stat: 'spd', value: 26 }, { stat: 'flatDamage', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.portail_des_voyageurs = {
     id: 'portail_des_voyageurs',
     name: 'Portail des Voyageurs',
@@ -20460,7 +19180,6 @@ item.portail_des_voyageurs = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 68 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 5 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_parition = {
     id: 'cape_parition',
     name: 'Cape Parition',
@@ -20474,7 +19193,6 @@ item.cape_parition = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: -11 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.chapeau_du_comte_razof = {
     id: 'chapeau_du_comte_razof',
     name: 'Chapeau du Comte Razof',
@@ -20488,7 +19206,6 @@ item.chapeau_du_comte_razof = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 21 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.cape_du_glourseleste = {
     id: 'cape_du_glourseleste',
     name: 'Cape du Glourséleste',
@@ -20502,7 +19219,6 @@ item.cape_du_glourseleste = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 7 }, { stat: 'res.feu', value: 8 }, { stat: 'res.eau', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.coiffe_du_kanimate = {
     id: 'coiffe_du_kanimate',
     name: 'Coiffe du Kanimate',
@@ -20516,7 +19232,6 @@ item.coiffe_du_kanimate = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 21 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 8 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_du_pere_fwetar = {
     id: 'bottes_du_pere_fwetar',
     name: 'Bottes du Père Fwetar',
@@ -20530,7 +19245,6 @@ item.bottes_du_pere_fwetar = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 35 }, { stat: 'critResPct', value: 21 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.bivalve = {
     id: 'bivalve',
     name: 'Bivalve',
@@ -20544,7 +19258,6 @@ item.bivalve = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 93 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 11 }, { stat: 'res.eau', value: 7 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.zarbappeau = {
     id: 'zarbappeau',
     name: 'Zarbappeau',
@@ -20558,7 +19271,6 @@ item.zarbappeau = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 26 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.zarbaudrier = {
     id: 'zarbaudrier',
     name: 'Zarbaudrier',
@@ -20572,7 +19284,6 @@ item.zarbaudrier = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.zarbottes = {
     id: 'zarbottes',
     name: 'Zarbottes',
@@ -20586,7 +19297,6 @@ item.zarbottes = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.zarbouclier = {
     id: 'zarbouclier',
     name: 'Zarbouclier',
@@ -20600,7 +19310,6 @@ item.zarbouclier = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 63 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.heaume_clochecuivre = {
     id: 'heaume_clochecuivre',
     name: 'Heaume Clochecuivre',
@@ -20614,7 +19323,6 @@ item.heaume_clochecuivre = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 48 }, { stat: 'spd', value: -30 }, { stat: 'flatDamage', value: 28 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.alliance_gloursonne = {
     id: 'alliance_gloursonne',
     name: 'Alliance Gloursonne',
@@ -20628,7 +19336,6 @@ item.alliance_gloursonne = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 16 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.batonnet_ronien = {
     id: 'batonnet_ronien',
     name: 'Bâtonnet Ronien',
@@ -20642,7 +19349,6 @@ item.batonnet_ronien = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 47 }, { stat: 'flatDamage', value: 38 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 9 }, { stat: 'res.feu', value: 11 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.bottes_vicieuses = {
     id: 'bottes_vicieuses',
     name: 'Bottes Vicieuses',
@@ -20656,7 +19362,6 @@ item.bottes_vicieuses = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 24 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 6 }, { stat: 'dropRate', value: 3 }, { stat: 'res.air', value: 10 }, { stat: 'res.neutre', value: 10 }],
     description: ''
 }
-
 item.coiffe_d_aermyne = {
     id: 'coiffe_d_aermyne',
     name: 'Coiffe d\'Aermyne',
@@ -20670,7 +19375,6 @@ item.coiffe_d_aermyne = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 15 }, { stat: 'flatDamage', value: -55 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.coiffe_d_hel_munster = {
     id: 'coiffe_d_hel_munster',
     name: 'Coiffe d\'Hel Munster',
@@ -20684,7 +19388,6 @@ item.coiffe_d_hel_munster = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 83 }, { stat: 'spd', value: -30 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 11 }],
     description: ''
 }
-
 item.bottes_refois = {
     id: 'bottes_refois',
     name: 'Bottes Refois',
@@ -20698,7 +19401,6 @@ item.bottes_refois = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 9 }],
     description: ''
 }
-
 item.coiffe_d_oshimo = {
     id: 'coiffe_d_oshimo',
     name: 'Coiffe d\'Oshimo',
@@ -20712,7 +19414,6 @@ item.coiffe_d_oshimo = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.anneau_de_brouce = {
     id: 'anneau_de_brouce',
     name: 'Anneau de Brouce',
@@ -20726,7 +19427,6 @@ item.anneau_de_brouce = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 22 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.ceinture_de_klime = {
     id: 'ceinture_de_klime',
     name: 'Ceinture de Klime',
@@ -20740,7 +19440,6 @@ item.ceinture_de_klime = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 8 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 8 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 16 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.alliance_de_missiz_frizz = {
     id: 'alliance_de_missiz_frizz',
     name: 'Alliance de Missiz Frizz',
@@ -20754,7 +19453,6 @@ item.alliance_de_missiz_frizz = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_de_nileza = {
     id: 'cape_de_nileza',
     name: 'Cape de Nileza',
@@ -20768,7 +19466,6 @@ item.cape_de_nileza = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 11 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.coiffe_de_padgref = {
     id: 'coiffe_de_padgref',
     name: 'Coiffe de Padgref',
@@ -20782,7 +19479,6 @@ item.coiffe_de_padgref = {
     stats: [{ stat: 'maxHp', value: 101 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 5 }, { stat: 'critDamagePct', value: 11 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 8 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.cape_de_sylargh = {
     id: 'cape_de_sylargh',
     name: 'Cape de Sylargh',
@@ -20796,7 +19492,6 @@ item.cape_de_sylargh = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.cape_de_theodoran_ax = {
     id: 'cape_de_theodoran_ax',
     name: 'Cape de Théodoran Ax',
@@ -20810,7 +19505,6 @@ item.cape_de_theodoran_ax = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 8 }, { stat: 'res.terre', value: 12 }],
     description: ''
 }
-
 item.pagne_de_viti_glourson = {
     id: 'pagne_de_viti_glourson',
     name: 'Pagne de Viti Glourson',
@@ -20824,7 +19518,6 @@ item.pagne_de_viti_glourson = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 1 }],
     description: ''
 }
-
 item.amulette_du_glourseleste = {
     id: 'amulette_du_glourseleste',
     name: 'Amulette du Glourséleste',
@@ -20838,7 +19531,6 @@ item.amulette_du_glourseleste = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 81 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.cape_du_kanimate = {
     id: 'cape_du_kanimate',
     name: 'Cape du Kanimate',
@@ -20852,7 +19544,6 @@ item.cape_du_kanimate = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.ceinture_du_pere_fwetar = {
     id: 'ceinture_du_pere_fwetar',
     name: 'Ceinture du Père Fwetar',
@@ -20866,7 +19557,6 @@ item.ceinture_du_pere_fwetar = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 21 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.pikottes = {
     id: 'pikottes',
     name: 'Pikottes',
@@ -20880,7 +19570,6 @@ item.pikottes = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 46 }, { stat: 'flatDamage', value: 33 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.feu', value: 9 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.epee_gloursonne = {
     id: 'epee_gloursonne',
     name: 'Épée Gloursonne',
@@ -20894,7 +19583,6 @@ item.epee_gloursonne = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 6 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.anneau_instable = {
     id: 'anneau_instable',
     name: 'Anneau Instable',
@@ -20908,7 +19596,6 @@ item.anneau_instable = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.bague_instable = {
     id: 'bague_instable',
     name: 'Bague Instable',
@@ -20922,7 +19609,6 @@ item.bague_instable = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 20 }],
     description: ''
 }
-
 item.kralano = {
     id: 'kralano',
     name: 'Kralano',
@@ -20932,11 +19618,10 @@ item.kralano = {
     set: 'panoplie_ventouse',
     rarity: 'commun',
     itemLevelMax: 20,
-    requiredLevel: 199,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 4 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 6 }, { stat: 'dropRate', value: 1 }, { stat: 'res.neutre', value: 12 }],
     description: ''
 }
-
 item.anneau_vicieux = {
     id: 'anneau_vicieux',
     name: 'Anneau Vicieux',
@@ -20950,7 +19635,6 @@ item.anneau_vicieux = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 39 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.bottes_d_oshimo = {
     id: 'bottes_d_oshimo',
     name: 'Bottes d\'Oshimo',
@@ -20964,7 +19648,6 @@ item.bottes_d_oshimo = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 16 }, { stat: 'spd', value: 46 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.bottes_de_nileza = {
     id: 'bottes_de_nileza',
     name: 'Bottes de Nileza',
@@ -20978,7 +19661,6 @@ item.bottes_de_nileza = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 8 }, { stat: 'res.terre', value: 8 }, { stat: 'res.air', value: 8 }],
     description: ''
 }
-
 item.pot_de_miel_de_viti_glourson = {
     id: 'pot_de_miel_de_viti_glourson',
     name: 'Pot de miel de Viti Glourson',
@@ -20992,7 +19674,6 @@ item.pot_de_miel_de_viti_glourson = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 1 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.bouclier_alveole = {
     id: 'bouclier_alveole',
     name: 'Bouclier alvéolé',
@@ -21006,7 +19687,6 @@ item.bouclier_alveole = {
     stats: [{ stat: 'maxHp', value: 151 }, { stat: 'atk', value: 41 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 16 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bandeau_culaire = {
     id: 'bandeau_culaire',
     name: 'Bandeau Culaire',
@@ -21020,7 +19700,6 @@ item.bandeau_culaire = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.masque_du_glourseleste = {
     id: 'masque_du_glourseleste',
     name: 'Masque du Glourséleste',
@@ -21034,7 +19713,6 @@ item.masque_du_glourseleste = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 24 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }],
     description: ''
 }
-
 item.anneau_du_pere_fwetar = {
     id: 'anneau_du_pere_fwetar',
     name: 'Anneau du Père Fwetar',
@@ -21048,7 +19726,6 @@ item.anneau_du_pere_fwetar = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 16 }],
     description: ''
 }
-
 item.anneau_en_grithril = {
     id: 'anneau_en_grithril',
     name: 'Anneau en Grithril',
@@ -21062,7 +19739,6 @@ item.anneau_en_grithril = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 11 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.casque_en_grithril = {
     id: 'casque_en_grithril',
     name: 'Casque en Grithril',
@@ -21076,7 +19752,6 @@ item.casque_en_grithril = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 21 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.ceinture_en_grithril = {
     id: 'ceinture_en_grithril',
     name: 'Ceinture en Grithril',
@@ -21090,7 +19765,6 @@ item.ceinture_en_grithril = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.bottarpille = {
     id: 'bottarpille',
     name: 'Bottarpille',
@@ -21104,7 +19778,6 @@ item.bottarpille = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.capille = {
     id: 'capille',
     name: 'Capille',
@@ -21118,7 +19791,6 @@ item.capille = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 11 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.harpendentif = {
     id: 'harpendentif',
     name: 'Harpendentif',
@@ -21132,7 +19804,6 @@ item.harpendentif = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 65 }, { stat: 'critChance', value: 4 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.chagrin_de_cire = {
     id: 'chagrin_de_cire',
     name: 'Chagrin de Cire',
@@ -21146,7 +19817,6 @@ item.chagrin_de_cire = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 36 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.claymomore = {
     id: 'claymomore',
     name: 'Claymomore',
@@ -21160,7 +19830,6 @@ item.claymomore = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 108 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.lourd_fardeau = {
     id: 'lourd_fardeau',
     name: 'Lourd Fardeau',
@@ -21174,7 +19843,6 @@ item.lourd_fardeau = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.triste_sceau = {
     id: 'triste_sceau',
     name: 'Triste Sceau',
@@ -21188,7 +19856,6 @@ item.triste_sceau = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ames_hurlantes = {
     id: 'ames_hurlantes',
     name: 'Âmes Hurlantes',
@@ -21202,7 +19869,6 @@ item.ames_hurlantes = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 51 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.eternelle_poursuite = {
     id: 'eternelle_poursuite',
     name: 'Éternelle Poursuite',
@@ -21216,7 +19882,6 @@ item.eternelle_poursuite = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 44 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.amertume_de_belladone = {
     id: 'amertume_de_belladone',
     name: 'Amertume de Belladone',
@@ -21230,7 +19895,6 @@ item.amertume_de_belladone = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 21 }, { stat: 'critResPct', value: 7 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.cruaute_de_belladone = {
     id: 'cruaute_de_belladone',
     name: 'Cruauté de Belladone',
@@ -21244,7 +19908,6 @@ item.cruaute_de_belladone = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 28 }, { stat: 'critResPct', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.mur_de_ronces = {
     id: 'mur_de_ronces',
     name: 'Mur de Ronces',
@@ -21258,7 +19921,6 @@ item.mur_de_ronces = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 21 }, { stat: 'critResPct', value: 16 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.pilier_d_ephedrya = {
     id: 'pilier_d_ephedrya',
     name: 'Pilier d\'Ephedrya',
@@ -21272,7 +19934,6 @@ item.pilier_d_ephedrya = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 71 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: -114 }, { stat: 'critChance', value: -10 }, { stat: 'critResPct', value: 21 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.potence_d_ephedrya = {
     id: 'potence_d_ephedrya',
     name: 'Potence d\'Ephedrya',
@@ -21286,7 +19947,6 @@ item.potence_d_ephedrya = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: -104 }, { stat: 'critChance', value: -10 }, { stat: 'critResPct', value: 21 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.tendresse_de_belladone = {
     id: 'tendresse_de_belladone',
     name: 'Tendresse de Belladone',
@@ -21300,7 +19960,6 @@ item.tendresse_de_belladone = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 21 }, { stat: 'critResPct', value: 7 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.amibou = {
     id: 'amibou',
     name: 'Amibou',
@@ -21314,7 +19973,6 @@ item.amibou = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 123 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.capibou = {
     id: 'capibou',
     name: 'Capibou',
@@ -21328,7 +19986,6 @@ item.capibou = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 73 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 25 }],
     description: ''
 }
-
 item.chapibou = {
     id: 'chapibou',
     name: 'Chapibou',
@@ -21342,7 +19999,6 @@ item.chapibou = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 73 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 16 }, { stat: 'res.neutre', value: 16 }],
     description: ''
 }
-
 item.gelano_ankarton = {
     id: 'gelano_ankarton',
     name: 'Gelano Ankarton',
@@ -21356,7 +20012,6 @@ item.gelano_ankarton = {
     stats: [],
     description: ''
 }
-
 item.cape_ardente = {
     id: 'cape_ardente',
     name: 'Cape Ardente',
@@ -21370,7 +20025,6 @@ item.cape_ardente = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: -10 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.chaussures_ardentes = {
     id: 'chaussures_ardentes',
     name: 'Chaussures Ardentes',
@@ -21384,7 +20038,6 @@ item.chaussures_ardentes = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: -10 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.masque_ardent = {
     id: 'masque_ardent',
     name: 'Masque Ardent',
@@ -21398,7 +20051,6 @@ item.masque_ardent = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 98 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: -10 }, { stat: 'heal', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.alliance_brulame = {
     id: 'alliance_brulame',
     name: 'Alliance Brûlâme',
@@ -21412,7 +20064,6 @@ item.alliance_brulame = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 20 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.masque_brulame = {
     id: 'masque_brulame',
     name: 'Masque Brûlâme',
@@ -21426,7 +20077,6 @@ item.masque_brulame = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.pompes_funebres = {
     id: 'pompes_funebres',
     name: 'Pompes Funèbres',
@@ -21440,7 +20090,6 @@ item.pompes_funebres = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.amulette_cryochrone = {
     id: 'amulette_cryochrone',
     name: 'Amulette Cryochrone',
@@ -21454,7 +20103,6 @@ item.amulette_cryochrone = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 20 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.anneau_cryochrone = {
     id: 'anneau_cryochrone',
     name: 'Anneau Cryochrone',
@@ -21468,7 +20116,6 @@ item.anneau_cryochrone = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 16 }, { stat: 'critDamagePct', value: 7 }, { stat: 'heal', value: 7 }],
     description: ''
 }
-
 item.coiffe_cryochrone = {
     id: 'coiffe_cryochrone',
     name: 'Coiffe Cryochrone',
@@ -21482,7 +20129,6 @@ item.coiffe_cryochrone = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 7 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.baguette_heroclite = {
     id: 'baguette_heroclite',
     name: 'Baguette Héroclite',
@@ -21496,7 +20142,6 @@ item.baguette_heroclite = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 66 }, { stat: 'heal', value: 11 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_solution = {
     id: 'cape_solution',
     name: 'Cape Solution',
@@ -21510,7 +20155,6 @@ item.cape_solution = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 118 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.amulette_luminescente = {
     id: 'amulette_luminescente',
     name: 'Amulette Luminescente',
@@ -21524,7 +20168,6 @@ item.amulette_luminescente = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 108 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_luminescente = {
     id: 'cape_luminescente',
     name: 'Cape Luminescente',
@@ -21538,7 +20181,6 @@ item.cape_luminescente = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 98 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceinture_luminescente = {
     id: 'ceinture_luminescente',
     name: 'Ceinture Luminescente',
@@ -21552,7 +20194,6 @@ item.ceinture_luminescente = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 83 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.anneau_lunaire = {
     id: 'anneau_lunaire',
     name: 'Anneau Lunaire',
@@ -21566,7 +20207,6 @@ item.anneau_lunaire = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.bottes_lunaires = {
     id: 'bottes_lunaires',
     name: 'Bottes Lunaires',
@@ -21580,7 +20220,6 @@ item.bottes_lunaires = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 46 }, { stat: 'flatDamage', value: 22 }, { stat: 'heal', value: 4 }],
     description: ''
 }
-
 item.collier_lunaire = {
     id: 'collier_lunaire',
     name: 'Collier Lunaire',
@@ -21594,7 +20233,6 @@ item.collier_lunaire = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 32 }, { stat: 'dropRate', value: 3 }],
     description: ''
 }
-
 item.amulette_martegel = {
     id: 'amulette_martegel',
     name: 'Amulette Martegel',
@@ -21608,7 +20246,6 @@ item.amulette_martegel = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_martegel = {
     id: 'cape_martegel',
     name: 'Cape Martegel',
@@ -21622,7 +20259,6 @@ item.cape_martegel = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 91 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.masquegel = {
     id: 'masquegel',
     name: 'Masquegel',
@@ -21636,7 +20272,6 @@ item.masquegel = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'res.eau', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.anneau_toriete = {
     id: 'anneau_toriete',
     name: 'Anneau Toriété',
@@ -21650,7 +20285,6 @@ item.anneau_toriete = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.collier_rophante = {
     id: 'collier_rophante',
     name: 'Collier Rophante',
@@ -21664,7 +20298,6 @@ item.collier_rophante = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 35 }, { stat: 'spd', value: 15 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_paztek = {
     id: 'cape_paztek',
     name: 'Cape Paztek',
@@ -21678,7 +20311,6 @@ item.cape_paztek = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 78 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.couteaux_sacrificiels = {
     id: 'couteaux_sacrificiels',
     name: 'Couteaux Sacrificiels',
@@ -21692,7 +20324,6 @@ item.couteaux_sacrificiels = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 32 }, { stat: 'critResPct', value: -30 }, { stat: 'lifestealPct', value: 24 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.masque_paztek = {
     id: 'masque_paztek',
     name: 'Masque Paztek',
@@ -21706,7 +20337,6 @@ item.masque_paztek = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 103 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.sandales_paztek = {
     id: 'sandales_paztek',
     name: 'Sandales Paztek',
@@ -21720,7 +20350,6 @@ item.sandales_paztek = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 93 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'critResPct', value: -30 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bottes_owesli = {
     id: 'bottes_owesli',
     name: 'Bottes Owesli',
@@ -21734,7 +20363,6 @@ item.bottes_owesli = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 78 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 32 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceintrigue = {
     id: 'ceintrigue',
     name: 'Ceintrigue',
@@ -21748,7 +20376,6 @@ item.ceintrigue = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 88 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 11 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.talisman_igans = {
     id: 'talisman_igans',
     name: 'Talisman Igans',
@@ -21762,7 +20389,6 @@ item.talisman_igans = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 91 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.amulette_possedee = {
     id: 'amulette_possedee',
     name: 'Amulette Possédée',
@@ -21776,7 +20402,6 @@ item.amulette_possedee = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 133 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.anneau_possede = {
     id: 'anneau_possede',
     name: 'Anneau Possédé',
@@ -21790,7 +20415,6 @@ item.anneau_possede = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 1 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bouclier_possede = {
     id: 'bouclier_possede',
     name: 'Bouclier Possédé',
@@ -21804,7 +20428,6 @@ item.bouclier_possede = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 103 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.ceinture_possedee = {
     id: 'ceinture_possedee',
     name: 'Ceinture Possédée',
@@ -21818,7 +20441,6 @@ item.ceinture_possedee = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 84 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.collier_rhoarim = {
     id: 'collier_rhoarim',
     name: 'Collier Rhoarim',
@@ -21832,7 +20454,6 @@ item.collier_rhoarim = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 11 }],
     description: ''
 }
-
 item.faux_ve = {
     id: 'faux_ve',
     name: 'Faux\'ve',
@@ -21846,7 +20467,6 @@ item.faux_ve = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 40 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 11 }, { stat: 'lifestealPct', value: 13 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.masse_osseuse = {
     id: 'masse_osseuse',
     name: 'Masse Osseuse',
@@ -21860,7 +20480,6 @@ item.masse_osseuse = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 42 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 11 }, { stat: 'lifestealPct', value: 14 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.pagne_rhoarim = {
     id: 'pagne_rhoarim',
     name: 'Pagne Rhoarim',
@@ -21874,7 +20493,6 @@ item.pagne_rhoarim = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 16 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 11 }],
     description: ''
 }
-
 item.cape_de_cranonier = {
     id: 'cape_de_cranonier',
     name: 'Cape de Crânonier',
@@ -21888,7 +20506,6 @@ item.cape_de_cranonier = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.chapeau_de_tournoye = {
     id: 'chapeau_de_tournoye',
     name: 'Chapeau de Tournoyé',
@@ -21902,7 +20519,6 @@ item.chapeau_de_tournoye = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.lance_horsele = {
     id: 'lance_horsele',
     name: 'Lance Horselé',
@@ -21916,7 +20532,6 @@ item.lance_horsele = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 60 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 9 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.sangle_oriole = {
     id: 'sangle_oriole',
     name: 'Sangle Oriole',
@@ -21930,7 +20545,6 @@ item.sangle_oriole = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.amulette_seculaire = {
     id: 'amulette_seculaire',
     name: 'Amulette Séculaire',
@@ -21944,7 +20558,6 @@ item.amulette_seculaire = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 74 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.ceinture_seculaire = {
     id: 'ceinture_seculaire',
     name: 'Ceinture Séculaire',
@@ -21958,7 +20571,6 @@ item.ceinture_seculaire = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 5 }, { stat: 'critDamagePct', value: 11 }, { stat: 'heal', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.coiffe_seculaire = {
     id: 'coiffe_seculaire',
     name: 'Coiffe Séculaire',
@@ -21972,7 +20584,6 @@ item.coiffe_seculaire = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 14 }, { stat: 'heal', value: 8 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 11 }],
     description: ''
 }
-
 item.bague_trithon = {
     id: 'bague_trithon',
     name: 'Bague Trithon',
@@ -21986,7 +20597,6 @@ item.bague_trithon = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 22 }, { stat: 'critDamagePct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.bottes_trithon = {
     id: 'bottes_trithon',
     name: 'Bottes Trithon',
@@ -22000,7 +20610,6 @@ item.bottes_trithon = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 57 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.masque_trithon = {
     id: 'masque_trithon',
     name: 'Masque Trithon',
@@ -22014,7 +20623,6 @@ item.masque_trithon = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 42 }, { stat: 'spd', value: 61 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.amulette_volcanique = {
     id: 'amulette_volcanique',
     name: 'Amulette Volcanique',
@@ -22028,7 +20636,6 @@ item.amulette_volcanique = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 4 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bouclier_de_solar = {
     id: 'bouclier_de_solar',
     name: 'Bouclier de Solar',
@@ -22042,7 +20649,6 @@ item.bouclier_de_solar = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.sabots_volcaniques = {
     id: 'sabots_volcaniques',
     name: 'Sabots Volcaniques',
@@ -22056,7 +20662,6 @@ item.sabots_volcaniques = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.sac_volcanique = {
     id: 'sac_volcanique',
     name: 'Sac Volcanique',
@@ -22070,7 +20675,6 @@ item.sac_volcanique = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.amulette_volkorne = {
     id: 'amulette_volkorne',
     name: 'Amulette Volkorne',
@@ -22084,7 +20688,6 @@ item.amulette_volkorne = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 116 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.anneau_volkorne = {
     id: 'anneau_volkorne',
     name: 'Anneau Volkorne',
@@ -22098,7 +20701,6 @@ item.anneau_volkorne = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.arc_volkorne = {
     id: 'arc_volkorne',
     name: 'Arc Volkorne',
@@ -22112,7 +20714,6 @@ item.arc_volkorne = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 99 }, { stat: 'critChance', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.casque_volkorne = {
     id: 'casque_volkorne',
     name: 'Casque Volkorne',
@@ -22126,7 +20727,6 @@ item.casque_volkorne = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ceinture_volkorne = {
     id: 'ceinture_volkorne',
     name: 'Ceinture Volkorne',
@@ -22140,7 +20740,6 @@ item.ceinture_volkorne = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 4 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bouclier_d_anerice = {
     id: 'bouclier_d_anerice',
     name: 'Bouclier d\'Anerice',
@@ -22154,7 +20753,6 @@ item.bouclier_d_anerice = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'damageReductionPct', value: 7 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.cape_d_anerice = {
     id: 'cape_d_anerice',
     name: 'Cape d\'Anerice',
@@ -22168,7 +20766,6 @@ item.cape_d_anerice = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'critChance', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.masque_d_anerice = {
     id: 'masque_d_anerice',
     name: 'Masque d\'Anerice',
@@ -22182,7 +20779,6 @@ item.masque_d_anerice = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 15 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.cape_d_atcham = {
     id: 'cape_d_atcham',
     name: 'Cape d\'Atcham',
@@ -22196,7 +20792,6 @@ item.cape_d_atcham = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.sabres_d_atcham = {
     id: 'sabres_d_atcham',
     name: 'Sabres d\'Atcham',
@@ -22210,7 +20805,6 @@ item.sabres_d_atcham = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 22 }, { stat: 'flatDamage', value: 81 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.sandales_d_atcham = {
     id: 'sandales_d_atcham',
     name: 'Sandales d\'Atcham',
@@ -22224,7 +20818,6 @@ item.sandales_d_atcham = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.amulette_d_ilyzaelle = {
     id: 'amulette_d_ilyzaelle',
     name: 'Amulette d\'Ilyzaelle',
@@ -22238,7 +20831,6 @@ item.amulette_d_ilyzaelle = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 111 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'res.feu', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bouclier_d_ilyzaelle = {
     id: 'bouclier_d_ilyzaelle',
     name: 'Bouclier d\'Ilyzaelle',
@@ -22252,7 +20844,6 @@ item.bouclier_d_ilyzaelle = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: -10 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.casque_d_ilyzaelle = {
     id: 'casque_d_ilyzaelle',
     name: 'Casque d\'Ilyzaelle',
@@ -22266,7 +20857,6 @@ item.casque_d_ilyzaelle = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 71 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.chaussons_de_macrab = {
     id: 'chaussons_de_macrab',
     name: 'Chaussons de Macrab',
@@ -22280,7 +20870,6 @@ item.chaussons_de_macrab = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.culotte_de_bethel = {
     id: 'culotte_de_bethel',
     name: 'Culotte de Bethel',
@@ -22294,7 +20883,6 @@ item.culotte_de_bethel = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 33 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.masque_de_funespadon = {
     id: 'masque_de_funespadon',
     name: 'Masque de Funespadon',
@@ -22308,7 +20896,6 @@ item.masque_de_funespadon = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.alliance_de_corruption = {
     id: 'alliance_de_corruption',
     name: 'Alliance de Corruption',
@@ -22322,7 +20909,6 @@ item.alliance_de_corruption = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.bague_de_corruption = {
     id: 'bague_de_corruption',
     name: 'Bague de Corruption',
@@ -22336,7 +20922,6 @@ item.bague_de_corruption = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceinturonce_de_corruption = {
     id: 'ceinturonce_de_corruption',
     name: 'Ceinturonce de Corruption',
@@ -22350,7 +20935,6 @@ item.ceinturonce_de_corruption = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 16 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.crocanneau = {
     id: 'crocanneau',
     name: 'Crocanneau',
@@ -22364,7 +20948,6 @@ item.crocanneau = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 11 }],
     description: ''
 }
-
 item.croclier = {
     id: 'croclier',
     name: 'Croclier',
@@ -22378,7 +20961,6 @@ item.croclier = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 61 }, { stat: 'critChance', value: 4 }, { stat: 'res.eau', value: 11 }],
     description: ''
 }
-
 item.anneau_de_culbut_uf = {
     id: 'anneau_de_culbut_uf',
     name: 'Anneau de Culbutœuf',
@@ -22392,7 +20974,6 @@ item.anneau_de_culbut_uf = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 28 }, { stat: 'dropRate', value: 1 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.arc_de_culbut_uf = {
     id: 'arc_de_culbut_uf',
     name: 'Arc de Culbutœuf',
@@ -22406,7 +20987,6 @@ item.arc_de_culbut_uf = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 83 }, { stat: 'flatDamage', value: 78 }, { stat: 'lifestealPct', value: 14 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.disque_de_culbut_uf = {
     id: 'disque_de_culbut_uf',
     name: 'Disque de Culbutœuf',
@@ -22420,7 +21000,6 @@ item.disque_de_culbut_uf = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 88 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 9 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.belier_de_gargandyas = {
     id: 'belier_de_gargandyas',
     name: 'Bélier de Gargandyas',
@@ -22434,7 +21013,6 @@ item.belier_de_gargandyas = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 52 }, { stat: 'spd', value: 41 }, { stat: 'damageReductionPct', value: 3 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.collier_de_gargandyas = {
     id: 'collier_de_gargandyas',
     name: 'Collier de Gargandyas',
@@ -22448,7 +21026,6 @@ item.collier_de_gargandyas = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 158 }, { stat: 'spd', value: -15 }, { stat: 'damageReductionPct', value: 6 }, { stat: 'critChance', value: 3 }],
     description: ''
 }
-
 item.fureur_de_gargandyas = {
     id: 'fureur_de_gargandyas',
     name: 'Fureur de Gargandyas',
@@ -22462,7 +21039,6 @@ item.fureur_de_gargandyas = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 11 }, { stat: 'flatDamage', value: 148 }, { stat: 'damageReductionPct', value: 3 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 16 }],
     description: ''
 }
-
 item.griffe_de_gargandyas = {
     id: 'griffe_de_gargandyas',
     name: 'Griffe de Gargandyas',
@@ -22476,7 +21052,6 @@ item.griffe_de_gargandyas = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 88 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 156 }, { stat: 'damageReductionPct', value: 3 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.amulette_de_gein = {
     id: 'amulette_de_gein',
     name: 'Amulette de Gein',
@@ -22490,7 +21065,6 @@ item.amulette_de_gein = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 101 }, { stat: 'flatDamage', value: 21 }, { stat: 'critDamagePct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceinture_de_gein = {
     id: 'ceinture_de_gein',
     name: 'Ceinture de Gein',
@@ -22504,7 +21078,6 @@ item.ceinture_de_gein = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 21 }, { stat: 'critDamagePct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 11 }],
     description: ''
 }
-
 item.chapeau_de_gein = {
     id: 'chapeau_de_gein',
     name: 'Chapeau de Gein',
@@ -22518,7 +21091,6 @@ item.chapeau_de_gein = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bouclier_de_glourdorak = {
     id: 'bouclier_de_glourdorak',
     name: 'Bouclier de Glourdorak',
@@ -22532,7 +21104,6 @@ item.bouclier_de_glourdorak = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 2 }],
     description: ''
 }
-
 item.cape_de_glourdorak = {
     id: 'cape_de_glourdorak',
     name: 'Cape de Glourdorak',
@@ -22546,7 +21117,6 @@ item.cape_de_glourdorak = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 30 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 21 }, { stat: 'critResPct', value: -30 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.masse_de_glourdorak = {
     id: 'masse_de_glourdorak',
     name: 'Masse de Glourdorak',
@@ -22560,7 +21130,6 @@ item.masse_de_glourdorak = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 32 }, { stat: 'critChance', value: 5 }, { stat: 'critDamagePct', value: 16 }, { stat: 'heal', value: 7 }, { stat: 'lifestealPct', value: 27 }, { stat: 'dropRate', value: 4 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.ceste_de_guerre = {
     id: 'ceste_de_guerre',
     name: 'Ceste de Guerre',
@@ -22574,7 +21143,6 @@ item.ceste_de_guerre = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'heal', value: -10 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.forteresse_de_guerre = {
     id: 'forteresse_de_guerre',
     name: 'Forteresse de Guerre',
@@ -22588,7 +21156,6 @@ item.forteresse_de_guerre = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 46 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 11 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.heaume_de_guerre = {
     id: 'heaume_de_guerre',
     name: 'Heaume de Guerre',
@@ -22602,7 +21169,6 @@ item.heaume_de_guerre = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.solerets_de_guerre = {
     id: 'solerets_de_guerre',
     name: 'Solerets de Guerre',
@@ -22616,7 +21182,6 @@ item.solerets_de_guerre = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 81 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.eau', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.boucle_d_oreille_de_kongoku = {
     id: 'boucle_d_oreille_de_kongoku',
     name: 'Boucle d\'oreille de Kongoku',
@@ -22630,7 +21195,6 @@ item.boucle_d_oreille_de_kongoku = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 21 }, { stat: 'spd', value: 41 }, { stat: 'critChance', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.cape_de_kongoku = {
     id: 'cape_de_kongoku',
     name: 'Cape de Kongoku',
@@ -22644,7 +21208,6 @@ item.cape_de_kongoku = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 36 }, { stat: 'critChance', value: 5 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.ceinture_de_kongoku = {
     id: 'ceinture_de_kongoku',
     name: 'Ceinture de Kongoku',
@@ -22658,7 +21221,6 @@ item.ceinture_de_kongoku = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 36 }, { stat: 'spd', value: 41 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bandana_de_mama_ayuto = {
     id: 'bandana_de_mama_ayuto',
     name: 'Bandana de Mama Ayuto',
@@ -22672,7 +21234,6 @@ item.bandana_de_mama_ayuto = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 68 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 16 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.paravoile_de_mama_ayuto = {
     id: 'paravoile_de_mama_ayuto',
     name: 'Paravoile de Mama Ayuto',
@@ -22686,7 +21247,6 @@ item.paravoile_de_mama_ayuto = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 103 }, { stat: 'spd', value: 15 }, { stat: 'heal', value: 11 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.rouleau_de_mama_ayuto = {
     id: 'rouleau_de_mama_ayuto',
     name: 'Rouleau de Mama Ayuto',
@@ -22700,7 +21260,6 @@ item.rouleau_de_mama_ayuto = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 103 }, { stat: 'flatDamage', value: 50 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 7 }, { stat: 'lifestealPct', value: 9 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.boulon_de_mekamouth = {
     id: 'boulon_de_mekamouth',
     name: 'Boulon de Mekamouth',
@@ -22714,7 +21273,6 @@ item.boulon_de_mekamouth = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 46 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.beche_de_mekamouth = {
     id: 'beche_de_mekamouth',
     name: 'Bêche de Mekamouth',
@@ -22728,7 +21286,6 @@ item.beche_de_mekamouth = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 6 }, { stat: 'flatDamage', value: 83 }, { stat: 'critChance', value: 2 }, { stat: 'lifestealPct', value: 12 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ecrou_de_mekamouth = {
     id: 'ecrou_de_mekamouth',
     name: 'Écrou de Mekamouth',
@@ -22742,7 +21299,6 @@ item.ecrou_de_mekamouth = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.bottes_de_meno = {
     id: 'bottes_de_meno',
     name: 'Bottes de Meno',
@@ -22756,7 +21312,6 @@ item.bottes_de_meno = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_de_meno = {
     id: 'cape_de_meno',
     name: 'Cape de Meno',
@@ -22770,7 +21325,6 @@ item.cape_de_meno = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'heal', value: 9 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.casquette_de_meno = {
     id: 'casquette_de_meno',
     name: 'Casquette de Meno',
@@ -22784,7 +21338,6 @@ item.casquette_de_meno = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 11 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.convoitise_de_misere = {
     id: 'convoitise_de_misere',
     name: 'Convoitise de Misère',
@@ -22798,7 +21351,6 @@ item.convoitise_de_misere = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.corset_de_misere = {
     id: 'corset_de_misere',
     name: 'Corset de Misère',
@@ -22812,7 +21364,6 @@ item.corset_de_misere = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 16 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.solerets_de_misere = {
     id: 'solerets_de_misere',
     name: 'Solerets de Misère',
@@ -22826,7 +21377,6 @@ item.solerets_de_misere = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.anneau_de_nidas = {
     id: 'anneau_de_nidas',
     name: 'Anneau de Nidas',
@@ -22840,7 +21390,6 @@ item.anneau_de_nidas = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 9 }, { stat: 'heal', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.couronne_de_nidas = {
     id: 'couronne_de_nidas',
     name: 'Couronne de Nidas',
@@ -22854,7 +21403,6 @@ item.couronne_de_nidas = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 11 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.tongues_de_nidas = {
     id: 'tongues_de_nidas',
     name: 'Tongues de Nidas',
@@ -22868,7 +21416,6 @@ item.tongues_de_nidas = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 9 }],
     description: ''
 }
-
 item.amulette_de_pol_ouatnos = {
     id: 'amulette_de_pol_ouatnos',
     name: 'Amulette de Pol Ouatnos',
@@ -22882,7 +21429,6 @@ item.amulette_de_pol_ouatnos = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.anneau_de_pol_ouatnos = {
     id: 'anneau_de_pol_ouatnos',
     name: 'Anneau de Pol Ouatnos',
@@ -22896,7 +21442,6 @@ item.anneau_de_pol_ouatnos = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 15 }, { stat: 'spd', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.aiguille_de_psikopompe = {
     id: 'aiguille_de_psikopompe',
     name: 'Aiguille de Psikopompe',
@@ -22910,7 +21455,6 @@ item.aiguille_de_psikopompe = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 77 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 58 }, { stat: 'critResPct', value: 11 }, { stat: 'lifestealPct', value: 14 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bouton_de_psikopompe = {
     id: 'bouton_de_psikopompe',
     name: 'Bouton de Psikopompe',
@@ -22924,7 +21468,6 @@ item.bouton_de_psikopompe = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 77 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.gant_de_psikopompe = {
     id: 'gant_de_psikopompe',
     name: 'Gant de Psikopompe',
@@ -22938,7 +21481,6 @@ item.gant_de_psikopompe = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 10 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 4 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_rifique = {
     id: 'anneau_rifique',
     name: 'Anneau Rifique',
@@ -22952,7 +21494,6 @@ item.anneau_rifique = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 10 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 11 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.casque_cyclopeen = {
     id: 'casque_cyclopeen',
     name: 'Casque Cyclopéen',
@@ -22966,7 +21507,6 @@ item.casque_cyclopeen = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 22 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.pendentif_mignon_de_koutoulou = {
     id: 'pendentif_mignon_de_koutoulou',
     name: 'Pendentif mignon de Koutoulou',
@@ -22980,7 +21520,6 @@ item.pendentif_mignon_de_koutoulou = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 22 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.dora_de_servitude = {
     id: 'dora_de_servitude',
     name: 'Dora de Servitude',
@@ -22994,7 +21533,6 @@ item.dora_de_servitude = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 2 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.manteau_de_servitude = {
     id: 'manteau_de_servitude',
     name: 'Manteau de Servitude',
@@ -23008,7 +21546,6 @@ item.manteau_de_servitude = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.echarpe_de_servitude = {
     id: 'echarpe_de_servitude',
     name: 'Écharpe de Servitude',
@@ -23022,7 +21559,6 @@ item.echarpe_de_servitude = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 131 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.chevelure_de_tal_kasha = {
     id: 'chevelure_de_tal_kasha',
     name: 'Chevelure de Tal Kasha',
@@ -23036,7 +21572,6 @@ item.chevelure_de_tal_kasha = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 10 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 21 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.nemes_de_tal_kasha = {
     id: 'nemes_de_tal_kasha',
     name: 'Némès de Tal Kasha',
@@ -23050,7 +21585,6 @@ item.nemes_de_tal_kasha = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.sandales_de_tal_kasha = {
     id: 'sandales_de_tal_kasha',
     name: 'Sandales de Tal Kasha',
@@ -23064,7 +21598,6 @@ item.sandales_de_tal_kasha = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.baguette_de_torkelonia = {
     id: 'baguette_de_torkelonia',
     name: 'Baguette de Torkélonia',
@@ -23078,7 +21611,6 @@ item.baguette_de_torkelonia = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 80 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 11 }],
     description: ''
 }
-
 item.carapace_de_torkelonia = {
     id: 'carapace_de_torkelonia',
     name: 'Carapace de Torkélonia',
@@ -23092,7 +21624,6 @@ item.carapace_de_torkelonia = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 8 }, { stat: 'res.feu', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.corne_de_torkelonia = {
     id: 'corne_de_torkelonia',
     name: 'Corne de Torkélonia',
@@ -23106,7 +21637,6 @@ item.corne_de_torkelonia = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 36 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 8 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.amulette_voldelor = {
     id: 'amulette_voldelor',
     name: 'Amulette Voldelor',
@@ -23120,7 +21650,6 @@ item.amulette_voldelor = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 18 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.bottes_voldelor = {
     id: 'bottes_voldelor',
     name: 'Bottes Voldelor',
@@ -23134,7 +21663,6 @@ item.bottes_voldelor = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 7 }],
     description: ''
 }
-
 item.ceinture_voldelor = {
     id: 'ceinture_voldelor',
     name: 'Ceinture Voldelor',
@@ -23148,7 +21676,6 @@ item.ceinture_voldelor = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 22 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.cagoule_de_vortex = {
     id: 'cagoule_de_vortex',
     name: 'Cagoule de Vortex',
@@ -23162,7 +21689,6 @@ item.cagoule_de_vortex = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ceinture_de_vortex = {
     id: 'ceinture_de_vortex',
     name: 'Ceinture de Vortex',
@@ -23176,7 +21702,6 @@ item.ceinture_de_vortex = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.sabots_de_vortex = {
     id: 'sabots_de_vortex',
     name: 'Sabots de Vortex',
@@ -23190,7 +21715,6 @@ item.sabots_de_vortex = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'heal', value: 9 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.amulette_de_wulan = {
     id: 'amulette_de_wulan',
     name: 'Amulette de Wulan',
@@ -23204,7 +21728,6 @@ item.amulette_de_wulan = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 91 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 16 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.arc_de_wulan = {
     id: 'arc_de_wulan',
     name: 'Arc de Wulan',
@@ -23218,7 +21741,6 @@ item.arc_de_wulan = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 61 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.terre', value: 9 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.diademe_de_wulan = {
     id: 'diademe_de_wulan',
     name: 'Diadème de Wulan',
@@ -23232,7 +21754,6 @@ item.diademe_de_wulan = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 42 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.bottes_de_l_esprit_malsain = {
     id: 'bottes_de_l_esprit_malsain',
     name: 'Bottes de l\'Esprit Malsain',
@@ -23246,7 +21767,6 @@ item.bottes_de_l_esprit_malsain = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'heal', value: 11 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.ceinture_de_l_esprit_malsain = {
     id: 'ceinture_de_l_esprit_malsain',
     name: 'Ceinture de l\'Esprit Malsain',
@@ -23260,7 +21780,6 @@ item.ceinture_de_l_esprit_malsain = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.masque_de_l_esprit_malsain = {
     id: 'masque_de_l_esprit_malsain',
     name: 'Masque de l\'Esprit Malsain',
@@ -23274,7 +21793,6 @@ item.masque_de_l_esprit_malsain = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 73 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bottes_de_l_esprit_salvateur = {
     id: 'bottes_de_l_esprit_salvateur',
     name: 'Bottes de l\'Esprit Salvateur',
@@ -23288,7 +21806,6 @@ item.bottes_de_l_esprit_salvateur = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 55 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ceinture_de_l_esprit_salvateur = {
     id: 'ceinture_de_l_esprit_salvateur',
     name: 'Ceinture de l\'Esprit Salvateur',
@@ -23302,7 +21819,6 @@ item.ceinture_de_l_esprit_salvateur = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 55 }, { stat: 'critChance', value: -10 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.masque_de_l_esprit_salvateur = {
     id: 'masque_de_l_esprit_salvateur',
     name: 'Masque de l\'Esprit Salvateur',
@@ -23316,7 +21832,6 @@ item.masque_de_l_esprit_salvateur = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 55 }, { stat: 'critChance', value: -10 }, { stat: 'critResPct', value: 16 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.amulette_de_l_indicible = {
     id: 'amulette_de_l_indicible',
     name: 'Amulette de l\'Indicible',
@@ -23330,7 +21845,6 @@ item.amulette_de_l_indicible = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 55 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bottes_de_l_indicible = {
     id: 'bottes_de_l_indicible',
     name: 'Bottes de l\'Indicible',
@@ -23344,7 +21858,6 @@ item.bottes_de_l_indicible = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 15 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 80 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.ceinture_de_l_indicible = {
     id: 'ceinture_de_l_indicible',
     name: 'Ceinture de l\'Indicible',
@@ -23358,7 +21871,6 @@ item.ceinture_de_l_indicible = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 45 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.amulette_de_l_il_attentif = {
     id: 'amulette_de_l_il_attentif',
     name: 'Amulette de l\'Œil Attentif',
@@ -23372,7 +21884,6 @@ item.amulette_de_l_il_attentif = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_de_l_il_attentif = {
     id: 'cape_de_l_il_attentif',
     name: 'Cape de l\'Œil Attentif',
@@ -23386,7 +21897,6 @@ item.cape_de_l_il_attentif = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 71 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.capuche_de_l_il_attentif = {
     id: 'capuche_de_l_il_attentif',
     name: 'Capuche de l\'Œil Attentif',
@@ -23400,7 +21910,6 @@ item.capuche_de_l_il_attentif = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.amulette_de_l_il_putride = {
     id: 'amulette_de_l_il_putride',
     name: 'Amulette de l\'Œil Putride',
@@ -23414,7 +21923,6 @@ item.amulette_de_l_il_putride = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_de_l_il_putride = {
     id: 'cape_de_l_il_putride',
     name: 'Cape de l\'Œil Putride',
@@ -23428,7 +21936,6 @@ item.cape_de_l_il_putride = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.capuche_de_l_il_putride = {
     id: 'capuche_de_l_il_putride',
     name: 'Capuche de l\'Œil Putride',
@@ -23442,7 +21949,6 @@ item.capuche_de_l_il_putride = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 4 }],
     description: ''
 }
-
 item.baleinabottes = {
     id: 'baleinabottes',
     name: 'Baleinabottes',
@@ -23456,7 +21962,6 @@ item.baleinabottes = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.capchalot = {
     id: 'capchalot',
     name: 'Capchalot',
@@ -23470,7 +21975,6 @@ item.capchalot = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 35 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceintace = {
     id: 'ceintace',
     name: 'Ceintacé',
@@ -23484,7 +21988,6 @@ item.ceintace = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.kidibonnet = {
     id: 'kidibonnet',
     name: 'Kidibonnet',
@@ -23498,7 +22001,6 @@ item.kidibonnet = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 87 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.masse_etacee = {
     id: 'masse_etacee',
     name: 'Masse Étacée',
@@ -23512,7 +22014,6 @@ item.masse_etacee = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 45 }, { stat: 'flatDamage', value: 74 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 16 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bottes_de_la_cour_sombre = {
     id: 'bottes_de_la_cour_sombre',
     name: 'Bottes de la Cour Sombre',
@@ -23526,7 +22027,6 @@ item.bottes_de_la_cour_sombre = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.cape_de_la_cour_sombre = {
     id: 'cape_de_la_cour_sombre',
     name: 'Cape de la Cour Sombre',
@@ -23540,7 +22040,6 @@ item.cape_de_la_cour_sombre = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 9 }],
     description: ''
 }
-
 item.ceinture_de_la_cour_sombre = {
     id: 'ceinture_de_la_cour_sombre',
     name: 'Ceinture de la Cour Sombre',
@@ -23554,7 +22053,6 @@ item.ceinture_de_la_cour_sombre = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.bottes_de_la_dame_du_hasard = {
     id: 'bottes_de_la_dame_du_hasard',
     name: 'Bottes de la Dame du Hasard',
@@ -23568,7 +22066,6 @@ item.bottes_de_la_dame_du_hasard = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_de_la_dame_du_hasard = {
     id: 'cape_de_la_dame_du_hasard',
     name: 'Cape de la Dame du Hasard',
@@ -23582,7 +22079,6 @@ item.cape_de_la_dame_du_hasard = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.collier_de_la_dame_du_hasard = {
     id: 'collier_de_la_dame_du_hasard',
     name: 'Collier de la Dame du Hasard',
@@ -23596,7 +22092,6 @@ item.collier_de_la_dame_du_hasard = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 18 }, { stat: 'critDamagePct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.criniere_de_la_dechireuse = {
     id: 'criniere_de_la_dechireuse',
     name: 'Crinière de la Déchireuse',
@@ -23610,7 +22105,6 @@ item.criniere_de_la_dechireuse = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 68 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.griffes_de_la_dechireuse = {
     id: 'griffes_de_la_dechireuse',
     name: 'Griffes de la Déchireuse',
@@ -23624,7 +22118,6 @@ item.griffes_de_la_dechireuse = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 83 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 29 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 5 }, { stat: 'lifestealPct', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.hachoir_de_la_dechireuse = {
     id: 'hachoir_de_la_dechireuse',
     name: 'Hachoir de la Déchireuse',
@@ -23638,7 +22131,6 @@ item.hachoir_de_la_dechireuse = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 83 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 52 }, { stat: 'critChance', value: 1 }, { stat: 'critDamagePct', value: 5 }, { stat: 'lifestealPct', value: 10 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.trophee_de_la_dechireuse = {
     id: 'trophee_de_la_dechireuse',
     name: 'Trophée de la Déchireuse',
@@ -23652,7 +22144,6 @@ item.trophee_de_la_dechireuse = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 73 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 4 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.amulette_de_shokkoth = {
     id: 'amulette_de_shokkoth',
     name: 'Amulette de Shokkoth',
@@ -23666,7 +22157,6 @@ item.amulette_de_shokkoth = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 146 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_de_mantaze = {
     id: 'cape_de_mantaze',
     name: 'Cape de Mantaze',
@@ -23680,7 +22170,6 @@ item.cape_de_mantaze = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.dagoulinantes = {
     id: 'dagoulinantes',
     name: 'Dagoulinantes',
@@ -23694,7 +22183,6 @@ item.dagoulinantes = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 42 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.heaume_oplate = {
     id: 'heaume_oplate',
     name: 'Heaume Oplate',
@@ -23708,7 +22196,6 @@ item.heaume_oplate = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 111 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.massier = {
     id: 'massier',
     name: 'Massier',
@@ -23722,7 +22209,6 @@ item.massier = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 9 }, { stat: 'lifestealPct', value: 24 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.goulano = {
     id: 'goulano',
     name: 'Goulano',
@@ -23736,7 +22222,6 @@ item.goulano = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 20 }, { stat: 'critResPct', value: 16 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.goulbottes = {
     id: 'goulbottes',
     name: 'Goulbottes',
@@ -23750,7 +22235,6 @@ item.goulbottes = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 36 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.goulclier = {
     id: 'goulclier',
     name: 'Goulclier',
@@ -23764,7 +22248,6 @@ item.goulclier = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'critResPct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ankhape = {
     id: 'ankhape',
     name: 'Ankhape',
@@ -23778,7 +22261,6 @@ item.ankhape = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 32 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: -30 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.capuche_de_moum_ra = {
     id: 'capuche_de_moum_ra',
     name: 'Capuche de Moum-Ra',
@@ -23792,7 +22274,6 @@ item.capuche_de_moum_ra = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.heqache = {
     id: 'heqache',
     name: 'Héqache',
@@ -23806,7 +22287,6 @@ item.heqache = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 58 }, { stat: 'flatDamage', value: 47 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 20 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_de_la_reine_des_voleurs = {
     id: 'bottes_de_la_reine_des_voleurs',
     name: 'Bottes de la Reine des Voleurs',
@@ -23820,7 +22300,6 @@ item.bottes_de_la_reine_des_voleurs = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: 16 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.ceinture_de_la_reine_des_voleurs = {
     id: 'ceinture_de_la_reine_des_voleurs',
     name: 'Ceinture de la Reine des Voleurs',
@@ -23834,7 +22313,6 @@ item.ceinture_de_la_reine_des_voleurs = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.coiffe_de_la_reine_des_voleurs = {
     id: 'coiffe_de_la_reine_des_voleurs',
     name: 'Coiffe de la Reine des Voleurs',
@@ -23848,7 +22326,6 @@ item.coiffe_de_la_reine_des_voleurs = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 33 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.anneau_tique = {
     id: 'anneau_tique',
     name: 'Anneau Tique',
@@ -23862,7 +22339,6 @@ item.anneau_tique = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: -21 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.dorabysses = {
     id: 'dorabysses',
     name: 'Dorabysses',
@@ -23876,7 +22352,6 @@ item.dorabysses = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: -21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.talisman_glouti = {
     id: 'talisman_glouti',
     name: 'Talisman Glouti',
@@ -23890,7 +22365,6 @@ item.talisman_glouti = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 81 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: -21 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_indescriptible = {
     id: 'cape_indescriptible',
     name: 'Cape Indescriptible',
@@ -23904,7 +22378,6 @@ item.cape_indescriptible = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 101 }, { stat: 'flatDamage', value: 16 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.manthache = {
     id: 'manthache',
     name: 'Manthache',
@@ -23918,7 +22391,6 @@ item.manthache = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 41 }, { stat: 'critResPct', value: 21 }, { stat: 'lifestealPct', value: 16 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.palmes_trithons = {
     id: 'palmes_trithons',
     name: 'Palmes Trithons',
@@ -23932,7 +22404,6 @@ item.palmes_trithons = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 81 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.arc_du_karkanik = {
     id: 'arc_du_karkanik',
     name: 'Arc du Karkanik',
@@ -23946,7 +22417,6 @@ item.arc_du_karkanik = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 102 }, { stat: 'lifestealPct', value: 29 }, { stat: 'res.feu', value: 9 }, { stat: 'res.neutre', value: 9 }],
     description: ''
 }
-
 item.bouclier_du_stalak = {
     id: 'bouclier_du_stalak',
     name: 'Bouclier du Stalak',
@@ -23960,7 +22430,6 @@ item.bouclier_du_stalak = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 62 }, { stat: 'flatDamage', value: 11 }, { stat: 'damageReductionPct', value: 8 }, { stat: 'critResPct', value: 26 }],
     description: ''
 }
-
 item.col_du_ventrublion = {
     id: 'col_du_ventrublion',
     name: 'Col du Ventrublion',
@@ -23974,7 +22443,6 @@ item.col_du_ventrublion = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 169 }, { stat: 'res.terre', value: 9 }, { stat: 'res.air', value: 9 }],
     description: ''
 }
-
 item.amulette_des_chocomanciens = {
     id: 'amulette_des_chocomanciens',
     name: 'Amulette des Chocomanciens',
@@ -23988,7 +22456,6 @@ item.amulette_des_chocomanciens = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 1 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bouclier_des_chocomanciens = {
     id: 'bouclier_des_chocomanciens',
     name: 'Bouclier des Chocomanciens',
@@ -24002,7 +22469,6 @@ item.bouclier_des_chocomanciens = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.ceinture_des_chocomanciens = {
     id: 'ceinture_des_chocomanciens',
     name: 'Ceinture des Chocomanciens',
@@ -24016,7 +22482,6 @@ item.ceinture_des_chocomanciens = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 14 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 4 }, { stat: 'res.air', value: 4 }, { stat: 'res.neutre', value: 4 }],
     description: ''
 }
-
 item.bracelet_des_fonds_marins = {
     id: 'bracelet_des_fonds_marins',
     name: 'Bracelet des Fonds marins',
@@ -24030,7 +22495,6 @@ item.bracelet_des_fonds_marins = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.masque_des_fonds_marins = {
     id: 'masque_des_fonds_marins',
     name: 'Masque des Fonds marins',
@@ -24044,7 +22508,6 @@ item.masque_des_fonds_marins = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.sandales_des_fonds_marins = {
     id: 'sandales_des_fonds_marins',
     name: 'Sandales des Fonds marins',
@@ -24058,7 +22521,6 @@ item.sandales_des_fonds_marins = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.bouclier_du_captain_amakna = {
     id: 'bouclier_du_captain_amakna',
     name: 'Bouclier du Captain Amakna',
@@ -24072,7 +22534,6 @@ item.bouclier_du_captain_amakna = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 26 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 4 }, { stat: 'res.feu', value: 2 }, { stat: 'res.eau', value: 2 }, { stat: 'res.terre', value: 2 }, { stat: 'res.air', value: 2 }, { stat: 'res.neutre', value: 2 }],
     description: ''
 }
-
 item.cape_des_justiciers = {
     id: 'cape_des_justiciers',
     name: 'Cape des Justiciers',
@@ -24086,7 +22547,6 @@ item.cape_des_justiciers = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.maskrobe = {
     id: 'maskrobe',
     name: 'Maskrobe',
@@ -24100,7 +22560,6 @@ item.maskrobe = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 45 }, { stat: 'critChance', value: 2 }],
     description: ''
 }
-
 item.pataugastrique = {
     id: 'pataugastrique',
     name: 'Pataugastrique',
@@ -24114,7 +22573,6 @@ item.pataugastrique = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 18 }, { stat: 'critDamagePct', value: 11 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.protopagne = {
     id: 'protopagne',
     name: 'Protopagne',
@@ -24128,7 +22586,6 @@ item.protopagne = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'spd', value: 15 }, { stat: 'critResPct', value: 21 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.voilamibe = {
     id: 'voilamibe',
     name: 'Voilamibe',
@@ -24142,7 +22599,6 @@ item.voilamibe = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 55 }, { stat: 'critDamagePct', value: -20 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_des_malveilleurs = {
     id: 'bottes_des_malveilleurs',
     name: 'Bottes des Malveilleurs',
@@ -24156,7 +22612,6 @@ item.bottes_des_malveilleurs = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_des_malveilleurs = {
     id: 'cape_des_malveilleurs',
     name: 'Cape des Malveilleurs',
@@ -24170,7 +22625,6 @@ item.cape_des_malveilleurs = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 103 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.chapeau_des_malveilleurs = {
     id: 'chapeau_des_malveilleurs',
     name: 'Chapeau des Malveilleurs',
@@ -24184,7 +22638,6 @@ item.chapeau_des_malveilleurs = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 73 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.anneaur_us = {
     id: 'anneaur_us',
     name: 'Anneauræus',
@@ -24198,7 +22651,6 @@ item.anneaur_us = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: -30 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.pagne_du_rykaon = {
     id: 'pagne_du_rykaon',
     name: 'Pagne du Rykaon',
@@ -24212,7 +22664,6 @@ item.pagne_du_rykaon = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.pyraguette = {
     id: 'pyraguette',
     name: 'Pyraguette',
@@ -24226,7 +22677,6 @@ item.pyraguette = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 77 }, { stat: 'critChance', value: -10 }, { stat: 'critResPct', value: 11 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bottes_innommables = {
     id: 'bottes_innommables',
     name: 'Bottes Innommables',
@@ -24240,7 +22690,6 @@ item.bottes_innommables = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 81 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 14 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.harpelle = {
     id: 'harpelle',
     name: 'Harpelle',
@@ -24254,7 +22703,6 @@ item.harpelle = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 26 }, { stat: 'flatDamage', value: 47 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 16 }, { stat: 'heal', value: 11 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.pendentif_affame = {
     id: 'pendentif_affame',
     name: 'Pendentif affamé',
@@ -24268,7 +22716,6 @@ item.pendentif_affame = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 116 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ceste_de_ravageur = {
     id: 'ceste_de_ravageur',
     name: 'Ceste de Ravageur',
@@ -24282,7 +22729,6 @@ item.ceste_de_ravageur = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 55 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 1 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.hachoir_de_ravageur = {
     id: 'hachoir_de_ravageur',
     name: 'Hachoir de Ravageur',
@@ -24296,7 +22742,6 @@ item.hachoir_de_ravageur = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 83 }, { stat: 'flatDamage', value: 46 }, { stat: 'critChance', value: 3 }, { stat: 'lifestealPct', value: 8 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.torque_de_ravageur = {
     id: 'torque_de_ravageur',
     name: 'Torque de Ravageur',
@@ -24310,7 +22755,6 @@ item.torque_de_ravageur = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 133 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.anneau_crustique = {
     id: 'anneau_crustique',
     name: 'Anneau Crustique',
@@ -24324,7 +22768,6 @@ item.anneau_crustique = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.collier_de_tourthon = {
     id: 'collier_de_tourthon',
     name: 'Collier de Tourthon',
@@ -24338,7 +22781,6 @@ item.collier_de_tourthon = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 116 }, { stat: 'flatDamage', value: 32 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.marteau_r_ture = {
     id: 'marteau_r_ture',
     name: 'Marteau R\'ture',
@@ -24352,7 +22794,6 @@ item.marteau_r_ture = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 84 }, { stat: 'critChance', value: 3 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_des_egares = {
     id: 'anneau_des_egares',
     name: 'Anneau des égarés',
@@ -24366,7 +22807,6 @@ item.anneau_des_egares = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 42 }, { stat: 'flatDamage', value: 27 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.bottes_des_egares = {
     id: 'bottes_des_egares',
     name: 'Bottes des égarés',
@@ -24380,7 +22820,6 @@ item.bottes_des_egares = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.casque_des_egares = {
     id: 'casque_des_egares',
     name: 'Casque des égarés',
@@ -24394,7 +22833,6 @@ item.casque_des_egares = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.cape_du_barbetoal = {
     id: 'cape_du_barbetoal',
     name: 'Cape du Barbétoal',
@@ -24408,7 +22846,6 @@ item.cape_du_barbetoal = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 4 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.ceinture_du_barbetoal = {
     id: 'ceinture_du_barbetoal',
     name: 'Ceinture du Barbétoal',
@@ -24422,7 +22859,6 @@ item.ceinture_du_barbetoal = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.masque_du_barbetoal = {
     id: 'masque_du_barbetoal',
     name: 'Masque du Barbétoal',
@@ -24436,7 +22872,6 @@ item.masque_du_barbetoal = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 103 }, { stat: 'flatDamage', value: 18 }, { stat: 'critResPct', value: 16 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.cape_ovri = {
     id: 'cape_ovri',
     name: 'Cape Ovri',
@@ -24450,7 +22885,6 @@ item.cape_ovri = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 16 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.sangle_ouare = {
     id: 'sangle_ouare',
     name: 'Sangle Ouare',
@@ -24464,7 +22898,6 @@ item.sangle_ouare = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 94 }, { stat: 'spd', value: -15 }, { stat: 'critDamagePct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.talisman_songe = {
     id: 'talisman_songe',
     name: 'Talisman Songe',
@@ -24478,7 +22911,6 @@ item.talisman_songe = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 44 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 11 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.bottes_du_captain_chafer = {
     id: 'bottes_du_captain_chafer',
     name: 'Bottes du Captain Chafer',
@@ -24492,7 +22924,6 @@ item.bottes_du_captain_chafer = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 46 }, { stat: 'flatDamage', value: 22 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.poignards_du_captain_chafer = {
     id: 'poignards_du_captain_chafer',
     name: 'Poignards du Captain Chafer',
@@ -24506,7 +22937,6 @@ item.poignards_du_captain_chafer = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 35 }, { stat: 'lifestealPct', value: 12 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.slip_du_captain_chafer = {
     id: 'slip_du_captain_chafer',
     name: 'Slip du Captain Chafer',
@@ -24520,7 +22950,6 @@ item.slip_du_captain_chafer = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 66 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 22 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_du_chal_il = {
     id: 'bottes_du_chal_il',
     name: 'Bottes du Chalœil',
@@ -24534,7 +22963,6 @@ item.bottes_du_chal_il = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 53 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.cape_du_chal_il = {
     id: 'cape_du_chal_il',
     name: 'Cape du Chalœil',
@@ -24548,7 +22976,6 @@ item.cape_du_chal_il = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 38 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.casque_du_chal_il = {
     id: 'casque_du_chal_il',
     name: 'Casque du Chalœil',
@@ -24562,7 +22989,6 @@ item.casque_du_chal_il = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 38 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.ceste_gele_du_chevalier_de_glace = {
     id: 'ceste_gele_du_chevalier_de_glace',
     name: 'Ceste gelé du Chevalier de Glace',
@@ -24576,7 +23002,6 @@ item.ceste_gele_du_chevalier_de_glace = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 57 }, { stat: 'flatDamage', value: 10 }, { stat: 'dropRate', value: 1 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.lame_givree_du_chevalier_de_glace = {
     id: 'lame_givree_du_chevalier_de_glace',
     name: 'Lame givrée du Chevalier de Glace',
@@ -24590,7 +23015,6 @@ item.lame_givree_du_chevalier_de_glace = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 77 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 51 }, { stat: 'lifestealPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.pavois_frigorifie_du_chevalier_de_glace = {
     id: 'pavois_frigorifie_du_chevalier_de_glace',
     name: 'Pavois frigorifié du Chevalier de Glace',
@@ -24604,7 +23028,6 @@ item.pavois_frigorifie_du_chevalier_de_glace = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 62 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.anneau_du_comte_harebourg = {
     id: 'anneau_du_comte_harebourg',
     name: 'Anneau du Comte Harebourg',
@@ -24618,7 +23041,6 @@ item.anneau_du_comte_harebourg = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: -40 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 5 }, { stat: 'critResPct', value: 16 }],
     description: ''
 }
-
 item.bottes_du_comte_harebourg = {
     id: 'bottes_du_comte_harebourg',
     name: 'Bottes du Comte Harebourg',
@@ -24632,7 +23054,6 @@ item.bottes_du_comte_harebourg = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 32 }, { stat: 'res.neutre', value: 21 }],
     description: ''
 }
-
 item.coiffe_du_comte_harebourg = {
     id: 'coiffe_du_comte_harebourg',
     name: 'Coiffe du Comte Harebourg',
@@ -24646,7 +23067,6 @@ item.coiffe_du_comte_harebourg = {
     stats: [{ stat: 'maxHp', value: 451 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 32 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: -4 }, { stat: 'res.eau', value: -4 }, { stat: 'res.terre', value: -4 }, { stat: 'res.air', value: -4 }, { stat: 'res.neutre', value: -4 }],
     description: ''
 }
-
 item.amulette_du_cycloide = {
     id: 'amulette_du_cycloide',
     name: 'Amulette du Cycloïde',
@@ -24660,7 +23080,6 @@ item.amulette_du_cycloide = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 32 }, { stat: 'res.feu', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.anneau_du_cycloide = {
     id: 'anneau_du_cycloide',
     name: 'Anneau du Cycloïde',
@@ -24674,7 +23093,6 @@ item.anneau_du_cycloide = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 28 }, { stat: 'res.eau', value: 6 }],
     description: ''
 }
-
 item.bottes_du_cycloide = {
     id: 'bottes_du_cycloide',
     name: 'Bottes du Cycloïde',
@@ -24688,7 +23106,6 @@ item.bottes_du_cycloide = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 4 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.terre', value: 11 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bouclier_du_cycloide = {
     id: 'bouclier_du_cycloide',
     name: 'Bouclier du Cycloïde',
@@ -24702,7 +23119,6 @@ item.bouclier_du_cycloide = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: 4 }, { stat: 'res.feu', value: 4 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.amulette_du_c_ur_saignant = {
     id: 'amulette_du_c_ur_saignant',
     name: 'Amulette du Cœur Saignant',
@@ -24716,7 +23132,6 @@ item.amulette_du_c_ur_saignant = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 96 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.bottes_du_c_ur_saignant = {
     id: 'bottes_du_c_ur_saignant',
     name: 'Bottes du Cœur Saignant',
@@ -24730,7 +23145,6 @@ item.bottes_du_c_ur_saignant = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 9 }, { stat: 'res.eau', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.cape_du_c_ur_saignant = {
     id: 'cape_du_c_ur_saignant',
     name: 'Cape du Cœur Saignant',
@@ -24744,7 +23158,6 @@ item.cape_du_c_ur_saignant = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 2 }, { stat: 'critDamagePct', value: 7 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_du_c_ur_vaillant = {
     id: 'amulette_du_c_ur_vaillant',
     name: 'Amulette du Cœur Vaillant',
@@ -24758,7 +23171,6 @@ item.amulette_du_c_ur_vaillant = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 108 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.bottes_du_c_ur_vaillant = {
     id: 'bottes_du_c_ur_vaillant',
     name: 'Bottes du Cœur Vaillant',
@@ -24772,7 +23184,6 @@ item.bottes_du_c_ur_vaillant = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 98 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.cape_du_c_ur_vaillant = {
     id: 'cape_du_c_ur_vaillant',
     name: 'Cape du Cœur Vaillant',
@@ -24786,7 +23197,6 @@ item.cape_du_c_ur_vaillant = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.alliance_du_dark_vlad = {
     id: 'alliance_du_dark_vlad',
     name: 'Alliance du Dark Vlad',
@@ -24800,7 +23210,6 @@ item.alliance_du_dark_vlad = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 68 }, { stat: 'flatDamage', value: 9 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.col_du_dark_vlad = {
     id: 'col_du_dark_vlad',
     name: 'Col du Dark Vlad',
@@ -24814,7 +23223,6 @@ item.col_du_dark_vlad = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 113 }, { stat: 'flatDamage', value: 13 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: -14 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.flamberge_du_dark_vlad = {
     id: 'flamberge_du_dark_vlad',
     name: 'Flamberge du Dark Vlad',
@@ -24828,7 +23236,6 @@ item.flamberge_du_dark_vlad = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 108 }, { stat: 'flatDamage', value: 65 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 9 }, { stat: 'res.eau', value: -14 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.tabard_du_dark_vlad = {
     id: 'tabard_du_dark_vlad',
     name: 'Tabard du Dark Vlad',
@@ -24842,7 +23249,6 @@ item.tabard_du_dark_vlad = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 78 }, { stat: 'flatDamage', value: 13 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 9 }, { stat: 'res.eau', value: -14 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.ceinture_gence = {
     id: 'ceinture_gence',
     name: 'Ceinture Gence',
@@ -24856,7 +23262,6 @@ item.ceinture_gence = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 128 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.lav_hache = {
     id: 'lav_hache',
     name: 'Lav\'Hache',
@@ -24870,7 +23275,6 @@ item.lav_hache = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 58 }, { stat: 'flatDamage', value: 34 }, { stat: 'lifestealPct', value: 12 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.amulette_du_granduk = {
     id: 'amulette_du_granduk',
     name: 'Amulette du Granduk',
@@ -24884,7 +23288,6 @@ item.amulette_du_granduk = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 91 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 3 }, { stat: 'critDamagePct', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 16 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.masque_du_granduk = {
     id: 'masque_du_granduk',
     name: 'Masque du Granduk',
@@ -24898,7 +23301,6 @@ item.masque_du_granduk = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 14 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 6 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.epee_du_granduk = {
     id: 'epee_du_granduk',
     name: 'Épée du Granduk',
@@ -24912,7 +23314,6 @@ item.epee_du_granduk = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 46 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 44 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 16 }, { stat: 'lifestealPct', value: 9 }, { stat: 'dropRate', value: 3 }, { stat: 'res.feu', value: 11 }],
     description: ''
 }
-
 item.amulette_du_kamasterisk = {
     id: 'amulette_du_kamasterisk',
     name: 'Amulette du Kamasterisk',
@@ -24926,7 +23327,6 @@ item.amulette_du_kamasterisk = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 86 }, { stat: 'flatDamage', value: 27 }, { stat: 'critResPct', value: 16 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.bottes_du_kamasterisk = {
     id: 'bottes_du_kamasterisk',
     name: 'Bottes du Kamasterisk',
@@ -24940,7 +23340,6 @@ item.bottes_du_kamasterisk = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 4 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 9 }],
     description: ''
 }
-
 item.cape_du_kamasterisk = {
     id: 'cape_du_kamasterisk',
     name: 'Cape du Kamasterisk',
@@ -24954,7 +23353,6 @@ item.cape_du_kamasterisk = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 27 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.anneau_du_katcheur = {
     id: 'anneau_du_katcheur',
     name: 'Anneau du Katcheur',
@@ -24968,7 +23366,6 @@ item.anneau_du_katcheur = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 28 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.bottes_du_katcheur = {
     id: 'bottes_du_katcheur',
     name: 'Bottes du Katcheur',
@@ -24982,7 +23379,6 @@ item.bottes_du_katcheur = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 46 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.masque_du_katcheur = {
     id: 'masque_du_katcheur',
     name: 'Masque du Katcheur',
@@ -24996,7 +23392,6 @@ item.masque_du_katcheur = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 36 }, { stat: 'critChance', value: 3 }, { stat: 'heal', value: 9 }, { stat: 'dropRate', value: 2 }],
     description: ''
 }
-
 item.alliance_du_levitrof = {
     id: 'alliance_du_levitrof',
     name: 'Alliance du Lévitrof',
@@ -25010,7 +23405,6 @@ item.alliance_du_levitrof = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 28 }, { stat: 'res.feu', value: 4 }],
     description: ''
 }
-
 item.bottes_du_levitrof = {
     id: 'bottes_du_levitrof',
     name: 'Bottes du Lévitrof',
@@ -25024,7 +23418,6 @@ item.bottes_du_levitrof = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 44 }, { stat: 'res.terre', value: 6 }],
     description: ''
 }
-
 item.coiffe_du_levitrof = {
     id: 'coiffe_du_levitrof',
     name: 'Coiffe du Lévitrof',
@@ -25038,7 +23431,6 @@ item.coiffe_du_levitrof = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 31 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 44 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: -21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_du_nocturlabe = {
     id: 'amulette_du_nocturlabe',
     name: 'Amulette du Nocturlabe',
@@ -25052,7 +23444,6 @@ item.amulette_du_nocturlabe = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 106 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: -5 }, { stat: 'critDamagePct', value: 11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 16 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bottes_du_nocturlabe = {
     id: 'bottes_du_nocturlabe',
     name: 'Bottes du Nocturlabe',
@@ -25066,7 +23457,6 @@ item.bottes_du_nocturlabe = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: 11 }, { stat: 'critDamagePct', value: -11 }, { stat: 'dropRate', value: 3 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.ceinture_du_nocturlabe = {
     id: 'ceinture_du_nocturlabe',
     name: 'Ceinture du Nocturlabe',
@@ -25080,7 +23470,6 @@ item.ceinture_du_nocturlabe = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 88 }, { stat: 'flatDamage', value: 11 }, { stat: 'critChance', value: 5 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 7 }, { stat: 'res.terre', value: 16 }],
     description: ''
 }
-
 item.alliance_du_pandamonium = {
     id: 'alliance_du_pandamonium',
     name: 'Alliance du Pandamonium',
@@ -25094,7 +23483,6 @@ item.alliance_du_pandamonium = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 21 }, { stat: 'flatDamage', value: 12 }, { stat: 'res.terre', value: 5 }],
     description: ''
 }
-
 item.amulette_du_pandamonium = {
     id: 'amulette_du_pandamonium',
     name: 'Amulette du Pandamonium',
@@ -25108,7 +23496,6 @@ item.amulette_du_pandamonium = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 101 }, { stat: 'spd', value: 41 }, { stat: 'flatDamage', value: 18 }, { stat: 'heal', value: 16 }, { stat: 'res.air', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.baguette_du_pandamonium = {
     id: 'baguette_du_pandamonium',
     name: 'Baguette du Pandamonium',
@@ -25122,7 +23509,6 @@ item.baguette_du_pandamonium = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 22 }, { stat: 'heal', value: 11 }, { stat: 'lifestealPct', value: 36 }, { stat: 'res.terre', value: 5 }, { stat: 'res.air', value: 5 }],
     description: ''
 }
-
 item.amulette_du_piloztere = {
     id: 'amulette_du_piloztere',
     name: 'Amulette du Piloztère',
@@ -25136,7 +23522,6 @@ item.amulette_du_piloztere = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 51 }, { stat: 'flatDamage', value: 48 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 21 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.bracelet_du_piloztere = {
     id: 'bracelet_du_piloztere',
     name: 'Bracelet du Piloztère',
@@ -25150,7 +23535,6 @@ item.bracelet_du_piloztere = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 71 }, { stat: 'flatDamage', value: 21 }, { stat: 'critChance', value: 3 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.pantoufles_du_piloztere = {
     id: 'pantoufles_du_piloztere',
     name: 'Pantoufles du Piloztère',
@@ -25164,7 +23548,6 @@ item.pantoufles_du_piloztere = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottes_du_roi_joueur = {
     id: 'bottes_du_roi_joueur',
     name: 'Bottes du Roi Joueur',
@@ -25178,7 +23561,6 @@ item.bottes_du_roi_joueur = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 56 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 33 }, { stat: 'critChance', value: 4 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.chevaliere_du_roi_joueur = {
     id: 'chevaliere_du_roi_joueur',
     name: 'Chevalière du Roi Joueur',
@@ -25192,7 +23574,6 @@ item.chevaliere_du_roi_joueur = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.couronne_du_roi_joueur = {
     id: 'couronne_du_roi_joueur',
     name: 'Couronne du Roi Joueur',
@@ -25206,7 +23587,6 @@ item.couronne_du_roi_joueur = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 16 }, { stat: 'dropRate', value: 2 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.amulette_du_sinistrofu = {
     id: 'amulette_du_sinistrofu',
     name: 'Amulette du Sinistrofu',
@@ -25220,7 +23600,6 @@ item.amulette_du_sinistrofu = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 133 }, { stat: 'critChance', value: 4 }, { stat: 'critResPct', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.air', value: 16 }],
     description: ''
 }
-
 item.bottes_du_sinistrofu = {
     id: 'bottes_du_sinistrofu',
     name: 'Bottes du Sinistrofu',
@@ -25234,7 +23613,6 @@ item.bottes_du_sinistrofu = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 36 }, { stat: 'flatDamage', value: -2 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 11 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }, { stat: 'res.neutre', value: 11 }],
     description: ''
 }
-
 item.cape_du_sinistrofu = {
     id: 'cape_du_sinistrofu',
     name: 'Cape du Sinistrofu',
@@ -25248,7 +23626,6 @@ item.cape_du_sinistrofu = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 71 }, { stat: 'flatDamage', value: 3 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 3 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: 11 }, { stat: 'res.neutre', value: 8 }],
     description: ''
 }
-
 item.amulette_du_strigide = {
     id: 'amulette_du_strigide',
     name: 'Amulette du Strigide',
@@ -25262,7 +23639,6 @@ item.amulette_du_strigide = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 86 }, { stat: 'critChance', value: 4 }, { stat: 'critDamagePct', value: 16 }, { stat: 'critResPct', value: -16 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.bottes_du_strigide = {
     id: 'bottes_du_strigide',
     name: 'Bottes du Strigide',
@@ -25276,7 +23652,6 @@ item.bottes_du_strigide = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 51 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 45 }, { stat: 'critResPct', value: -16 }, { stat: 'res.feu', value: 6 }],
     description: ''
 }
-
 item.ceinture_du_strigide = {
     id: 'ceinture_du_strigide',
     name: 'Ceinture du Strigide',
@@ -25290,7 +23665,6 @@ item.ceinture_du_strigide = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 31 }, { stat: 'flatDamage', value: 35 }, { stat: 'critChance', value: 5 }, { stat: 'critDamagePct', value: 11 }, { stat: 'critResPct', value: -16 }, { stat: 'heal', value: 5 }, { stat: 'res.neutre', value: 6 }],
     description: ''
 }
-
 item.cape_du_valet_veinard = {
     id: 'cape_du_valet_veinard',
     name: 'Cape du Valet Veinard',
@@ -25304,7 +23678,6 @@ item.cape_du_valet_veinard = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 61 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: -5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 7 }, { stat: 'res.neutre', value: 7 }],
     description: ''
 }
-
 item.collier_du_valet_veinard = {
     id: 'collier_du_valet_veinard',
     name: 'Collier du Valet Veinard',
@@ -25318,7 +23691,6 @@ item.collier_du_valet_veinard = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 111 }, { stat: 'flatDamage', value: 16 }, { stat: 'critChance', value: -5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.gant_du_valet_veinard = {
     id: 'gant_du_valet_veinard',
     name: 'Gant du Valet Veinard',
@@ -25332,7 +23704,6 @@ item.gant_du_valet_veinard = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 56 }, { stat: 'flatDamage', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 7 }],
     description: ''
 }
-
 item.arc_du_venerable_endormi = {
     id: 'arc_du_venerable_endormi',
     name: 'Arc du Vénérable Endormi',
@@ -25346,7 +23717,6 @@ item.arc_du_venerable_endormi = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 86 }, { stat: 'spd', value: -20 }, { stat: 'flatDamage', value: 56 }, { stat: 'critChance', value: 5 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: 4 }],
     description: ''
 }
-
 item.cornes_du_venerable_endormi = {
     id: 'cornes_du_venerable_endormi',
     name: 'Cornes du Vénérable Endormi',
@@ -25360,7 +23730,6 @@ item.cornes_du_venerable_endormi = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 71 }, { stat: 'spd', value: -30 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 5 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.malediction_du_venerable_endormi = {
     id: 'malediction_du_venerable_endormi',
     name: 'Malédiction du Vénérable Endormi',
@@ -25374,7 +23743,6 @@ item.malediction_du_venerable_endormi = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 71 }, { stat: 'spd', value: -30 }, { stat: 'critChance', value: 2 }, { stat: 'dropRate', value: 1 }, { stat: 'res.feu', value: 4 }, { stat: 'res.eau', value: 4 }],
     description: ''
 }
-
 item.manteau_du_venerable_endormi = {
     id: 'manteau_du_venerable_endormi',
     name: 'Manteau du Vénérable Endormi',
@@ -25388,7 +23756,6 @@ item.manteau_du_venerable_endormi = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 71 }, { stat: 'spd', value: -20 }, { stat: 'flatDamage', value: 7 }, { stat: 'critChance', value: 4 }, { stat: 'heal', value: 11 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: 3 }],
     description: ''
 }
-
 item.bouclier_ponyme = {
     id: 'bouclier_ponyme',
     name: 'Bouclier Ponyme',
@@ -25402,7 +23769,6 @@ item.bouclier_ponyme = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: -3 }, { stat: 'critResPct', value: 11 }, { stat: 'res.feu', value: -3 }, { stat: 'res.eau', value: -3 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.cape_ostrophe = {
     id: 'cape_ostrophe',
     name: 'Cape Ostrophe',
@@ -25416,7 +23782,6 @@ item.cape_ostrophe = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: -4 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.casque_onsonne = {
     id: 'casque_onsonne',
     name: 'Casque Onsonne',
@@ -25430,7 +23795,6 @@ item.casque_onsonne = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: -5 }, { stat: 'critResPct', value: 16 }, { stat: 'res.feu', value: 7 }, { stat: 'res.eau', value: 7 }],
     description: ''
 }
-
 item.faux_neme = {
     id: 'faux_neme',
     name: 'Faux Nème',
@@ -25444,7 +23808,6 @@ item.faux_neme = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: -15 }, { stat: 'flatDamage', value: 72 }, { stat: 'critChance', value: -3 }, { stat: 'critResPct', value: 16 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: 3 }],
     description: ''
 }
-
 item.amulette_rinne = {
     id: 'amulette_rinne',
     name: 'Amulette Rinne',
@@ -25458,7 +23821,6 @@ item.amulette_rinne = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 76 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: -25 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.carapace_onance = {
     id: 'carapace_onance',
     name: 'Carapace Onance',
@@ -25472,7 +23834,6 @@ item.carapace_onance = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 51 }, { stat: 'critChance', value: 2 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: -3 }, { stat: 'res.air', value: -3 }],
     description: ''
 }
-
 item.sangle_icisme = {
     id: 'sangle_icisme',
     name: 'Sangle Icisme',
@@ -25486,7 +23847,6 @@ item.sangle_icisme = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 18 }, { stat: 'critChance', value: 3 }, { stat: 'res.terre', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.solerets_kritur = {
     id: 'solerets_kritur',
     name: 'Solerets Kritur',
@@ -25500,7 +23860,6 @@ item.solerets_kritur = {
     stats: [{ stat: 'maxHp', value: 401 }, { stat: 'atk', value: 61 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 22 }, { stat: 'critChance', value: 2 }, { stat: 'critResPct', value: -25 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.baguistik = {
     id: 'baguistik',
     name: 'Baguistik',
@@ -25514,7 +23873,6 @@ item.baguistik = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 46 }, { stat: 'flatDamage', value: 15 }, { stat: 'critChance', value: 3 }, { stat: 'critResPct', value: 21 }, { stat: 'heal', value: 7 }, { stat: 'res.eau', value: 5 }],
     description: ''
 }
-
 item.bottistik = {
     id: 'bottistik',
     name: 'Bottistik',
@@ -25528,7 +23886,6 @@ item.bottistik = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 63 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 21 }, { stat: 'critResPct', value: 21 }, { stat: 'heal', value: 9 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.bouclistik = {
     id: 'bouclistik',
     name: 'Bouclistik',
@@ -25542,7 +23899,6 @@ item.bouclistik = {
     stats: [{ stat: 'maxHp', value: 201 }, { stat: 'atk', value: 118 }, { stat: 'damageReductionPct', value: 5 }, { stat: 'dropRate', value: 3 }, { stat: 'res.neutre', value: 3 }],
     description: ''
 }
-
 item.torquistik = {
     id: 'torquistik',
     name: 'Torquistik',
@@ -25556,7 +23912,6 @@ item.torquistik = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 113 }, { stat: 'flatDamage', value: 21 }, { stat: 'critResPct', value: 16 }, { stat: 'heal', value: 7 }, { stat: 'dropRate', value: 2 }, { stat: 'res.feu', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.ceintouse = {
     id: 'ceintouse',
     name: 'Ceintouse',
@@ -25570,7 +23925,6 @@ item.ceintouse = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }, { stat: 'res.air', value: 7 }],
     description: ''
 }
-
 item.chapoulpe = {
     id: 'chapoulpe',
     name: 'Chapoulpe',
@@ -25584,7 +23938,6 @@ item.chapoulpe = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 66 }, { stat: 'flatDamage', value: 27 }, { stat: 'critChance', value: 3 }, { stat: 'res.feu', value: 7 }],
     description: ''
 }
-
 item.tentassons = {
     id: 'tentassons',
     name: 'Tentassons',
@@ -25598,7 +23951,6 @@ item.tentassons = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 41 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 33 }, { stat: 'dropRate', value: 2 }, { stat: 'res.terre', value: 5 }, { stat: 'res.neutre', value: 5 }],
     description: ''
 }
-
 item.bois_de_la_liche = {
     id: 'bois_de_la_liche',
     name: 'Bois de la Liche',
@@ -25612,7 +23964,6 @@ item.bois_de_la_liche = {
     stats: [{ stat: 'maxHp', value: 351 }, { stat: 'atk', value: 54 }, { stat: 'flatDamage', value: 46 }, { stat: 'critResPct', value: -16 }, { stat: 'res.feu', value: -3 }, { stat: 'res.eau', value: 4 }, { stat: 'res.terre', value: -3 }, { stat: 'res.air', value: 4 }],
     description: ''
 }
-
 item.chant_du_necromant = {
     id: 'chant_du_necromant',
     name: 'Chant du Nécromant',
@@ -25626,7 +23977,6 @@ item.chant_du_necromant = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 74 }, { stat: 'flatDamage', value: 26 }, { stat: 'critResPct', value: 7 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: -4 }, { stat: 'res.terre', value: 6 }, { stat: 'res.air', value: -4 }],
     description: ''
 }
-
 item.ciel_de_foudre_noire = {
     id: 'ciel_de_foudre_noire',
     name: 'Ciel de Foudre Noire',
@@ -25640,7 +23990,6 @@ item.ciel_de_foudre_noire = {
     stats: [{ stat: 'maxHp', value: 301 }, { stat: 'atk', value: 39 }, { stat: 'spd', value: 15 }, { stat: 'flatDamage', value: 26 }, { stat: 'critResPct', value: -20 }, { stat: 'res.feu', value: -4 }, { stat: 'res.eau', value: 6 }, { stat: 'res.terre', value: -4 }, { stat: 'res.air', value: 6 }],
     description: ''
 }
-
 item.derniere_aube = {
     id: 'derniere_aube',
     name: 'Dernière Aube',
@@ -25654,7 +24003,6 @@ item.derniere_aube = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 29 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: 9 }, { stat: 'res.feu', value: 3 }, { stat: 'res.eau', value: -2 }, { stat: 'res.terre', value: 3 }, { stat: 'res.air', value: -2 }],
     description: ''
 }
-
 item.mort_du_centoror = {
     id: 'mort_du_centoror',
     name: 'Mort du Centoror',
@@ -25668,7 +24016,6 @@ item.mort_du_centoror = {
     stats: [{ stat: 'maxHp', value: 251 }, { stat: 'atk', value: 29 }, { stat: 'flatDamage', value: 16 }, { stat: 'critResPct', value: -24 }, { stat: 'res.feu', value: -2 }, { stat: 'res.eau', value: 3 }, { stat: 'res.terre', value: -2 }, { stat: 'res.air', value: 3 }],
     description: ''
 }
-
 item.portes_de_bonta = {
     id: 'portes_de_bonta',
     name: 'Portes de Bonta',

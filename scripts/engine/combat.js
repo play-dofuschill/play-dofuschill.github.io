@@ -157,6 +157,8 @@ function _syncCombatToState() {
         memberTrophyCounters: JSON.parse(JSON.stringify(combat.memberTrophyCounters || {})),
         sessionLoot:          JSON.parse(JSON.stringify(combat.sessionLoot)),
         syncedLevel:          combat.syncedLevel || null,
+        dofusKillStacks:      JSON.parse(JSON.stringify(combat.dofusKillStacks   || {})),
+        dofusDamageCounter:   JSON.parse(JSON.stringify(combat.dofusDamageCounter || {})),
     }
 }
 
@@ -370,6 +372,8 @@ function startCombat(areaId) {
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
+        dofusKillStacks:    {},
+        dofusDamageCounter: {},
         spellStacks:           {},
         huppermageLastElement: {},
         huppermageComboCount:  0,
@@ -396,6 +400,8 @@ function startCombat(areaId) {
         if (sc.spellStacks)               combat.spellStacks          = JSON.parse(JSON.stringify(sc.spellStacks))
         if (sc.memberTrophyCounters)      combat.memberTrophyCounters = JSON.parse(JSON.stringify(sc.memberTrophyCounters))
         if (sc.sessionLoot)               combat.sessionLoot          = JSON.parse(JSON.stringify(sc.sessionLoot))
+        if (sc.dofusKillStacks)           combat.dofusKillStacks      = JSON.parse(JSON.stringify(sc.dofusKillStacks))
+        if (sc.dofusDamageCounter)        combat.dofusDamageCounter   = JSON.parse(JSON.stringify(sc.dofusDamageCounter))
         state.savedCombatState = null
     } else {
         // Pré-calcul des états passifs initiaux
@@ -480,6 +486,10 @@ function startCombat(areaId) {
     const menuParent = document.getElementById('menu-button-parent')
     if (menuParent) menuParent.style.display = ''
     setCombatSpeed('play')
+    if (!_isResume) {
+        const _initActiveIdx = state.team.findIndex(m => m && m.currentHp > 0)
+        if (_initActiveIdx !== -1) _triggerDofusOnActive(_initActiveIdx)
+    }
     updateCombatUI()
 }
 
@@ -657,6 +667,8 @@ function startPoutchCombat(mode) {
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
+        dofusKillStacks:    {},
+        dofusDamageCounter: {},
         spellStacks:           {},
         huppermageLastElement: {},
         huppermageComboCount:  0,
@@ -765,14 +777,16 @@ function gameTick() {
     const activeIdx = combat.activeMemberIndex
     const activeM   = state.team[activeIdx]
     if (activeM && activeM.currentHp > 0) {
-        const stats = getEffectiveStats(activeM)
-        const _mCd  = _peekNextCastCooldown(activeM, activeIdx)
-        const rate  = (100 / (_mCd / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100) * _spdMult
-        combat.memberTimers[activeIdx] = (combat.memberTimers[activeIdx] || 0) + rate
+        if (!combat.respawnPending) {
+            const stats = getEffectiveStats(activeM)
+            const _mCd  = _peekNextCastCooldown(activeM, activeIdx)
+            const rate  = (100 / (_mCd / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100) * _spdMult
+            combat.memberTimers[activeIdx] = (combat.memberTimers[activeIdx] || 0) + rate
 
-        if (combat.memberTimers[activeIdx] >= 100) {
-            combat.memberTimers[activeIdx] = 0
-            if (combat.enemy && combat.enemy.currentHp > 0 && !combat.respawnPending) executeMemberAction(activeIdx)
+            if (combat.memberTimers[activeIdx] >= 100) {
+                combat.memberTimers[activeIdx] = 0
+                if (combat.enemy && combat.enemy.currentHp > 0) executeMemberAction(activeIdx)
+            }
         }
     }
 
@@ -1074,9 +1088,51 @@ function _applyItemPassives(member, memberIndex, newRawIdx, slotEnemy) {
         if (!itm?.effects?.length) continue
 
         for (const eff of itm.effects) {
-            if (eff.on_effect) continue                               // géré dans executeEffect
-            if (eff.after  && newRawIdx < eff.after)  continue       // pas encore actif
-            if (!eff.every || newRawIdx % eff.every !== 0) continue   // pas le bon intervalle
+            if (eff.on_effect) continue           // géré dans _applyItemOnEffectTriggers
+            if (eff.on_active) continue           // géré dans setActiveMember / startCombat
+            if (eff.on_damage_received) continue  // géré dans _handleDofusDamageReceived
+            if (eff.on_kill) continue             // géré dans _handleDofusOnKill
+            if (eff.type === 'stat_bonus') continue // géré dans getEffectiveStats
+            if (eff.after  && newRawIdx < eff.after)  continue
+            if (!eff.every || newRawIdx % eff.every !== 0) continue
+
+            if (eff.condition === 'no_direct_dmg'  && _memberHasDirectDmg(member))  continue
+            if (eff.condition === 'no_buff_debuff' && _memberHasBuffDebuff(member)) continue
+
+            if (eff.type === 'alternating_buff_debuff') {
+                combat.memberPassiveState[memberIndex] = combat.memberPassiveState[memberIndex] || {}
+                const _altPst = combat.memberPassiveState[memberIndex]
+                const _altKey = itemId + '_altPhase'
+                const _isBuffPhase = !_altPst[_altKey]
+                executeEffect({
+                    caster: member, casterStats: stats, targetEnemy: enemy,
+                    effect: { type: 'buff', stat: eff.stat, value: _isBuffPhase ? eff.buff_value : -eff.debuff_value, duration: eff.duration, target: 'self' },
+                    moveData: { name: itm.name }, moveId: itm.id,
+                    fromItemPassive: true
+                })
+                _altPst[_altKey] = !_altPst[_altKey]
+                continue
+            }
+
+            if (eff.type === 'random_buff_debuff') {
+                if (Math.random() < 0.5) {
+                    executeEffect({
+                        caster: member, casterStats: stats, targetEnemy: enemy,
+                        effect: { type: 'buff', stat: eff.stat, value: eff.value, duration: eff.duration, target: 'ally_random' },
+                        moveData: { name: itm.name }, moveId: itm.id,
+                        fromItemPassive: true
+                    })
+                } else {
+                    executeEffect({
+                        caster: member, casterStats: stats, targetEnemy: enemy,
+                        effect: { type: 'debuff', stat: eff.stat, value: eff.value, duration: eff.duration },
+                        moveData: { name: itm.name }, moveId: itm.id,
+                        fromItemPassive: true
+                    })
+                }
+                continue
+            }
+
             executeEffect({
                 caster: member, casterStats: stats, targetEnemy: enemy,
                 effect: eff, moveData: { name: itm.name }, moveId: itm.id,
@@ -1114,16 +1170,31 @@ function _applyItemOnEffectTriggers(ctx) {
                     const types = Array.isArray(trigger.type) ? trigger.type : [trigger.type]
                     if (!types.includes(effect.type)) continue
                 }
+                if (trigger.stat !== undefined && effect.stat !== trigger.stat) continue
 
                 const mName = member.name || classes[member.classId]?.name || '?'
                 if (eff.reaction === 'cancel') {
                     addLog(`${mName} [${itm.name}] → annule ${effect.type} !`)
                     cancelled = true
+                } else if (eff.reaction === 'invert') {
+                    const _invertVal = Math.abs(_resolveEffectValue(effect.value) || 0)
+                    const _invertStats = getEffectiveStats(member) ?? member._stats
+                    executeEffect({
+                        caster: member, casterStats: _invertStats, targetEnemy: ctx.targetEnemy || combat.enemy,
+                        effect: { type: 'buff', stat: effect.stat, value: _invertVal, duration: effect.duration || 2, target: 'self' },
+                        moveData: { name: itm.name }, moveId: itm.id,
+                        fromItemPassive: true
+                    })
+                    addLog(`${mName} [${itm.name}] → débuff ${effect.stat} inversé en buff !`)
+                    cancelled = true
                 } else if (eff.reaction === 'trigger') {
                     const stats = getEffectiveStats(member) ?? member._stats
+                    const _trigEff = eff.value_from_level
+                        ? { ...eff, value: member.level || 1 }
+                        : eff
                     executeEffect({
                         caster: member, casterStats: stats, targetEnemy: ctx.targetEnemy || combat.enemy,
-                        effect: eff, moveData: { name: itm.name }, moveId: itm.id,
+                        effect: _trigEff, moveData: { name: itm.name }, moveId: itm.id,
                         fromItemPassive: true
                     })
                 } else if (eff.reaction === 'heal_to_damage') {
@@ -1805,6 +1876,16 @@ function executeEffect(ctx) {
                 }
             }
 
+            // Dofus Ivoire : damage_block — annule le prochain coup reçu (one-shot)
+            if (dmg > 0 && state.team.includes(targetEnemy) && !state.team.includes(caster)) {
+                const _blockIdx = (targetEnemy.buffs || []).findIndex(b => b.stat === 'damage_block')
+                if (_blockIdx !== -1) {
+                    targetEnemy.buffs.splice(_blockIdx, 1)
+                    addLog(`${targetEnemy.name || classes[targetEnemy.classId]?.name || '?'} [Dofus Ivoire] → coup annulé !`)
+                    return 0
+                }
+            }
+
             const _hpBeforeHit = targetEnemy.currentHp || 0
             targetEnemy.currentHp = Math.max(0, targetEnemy.currentHp - dmg)
             const _effectiveDmg = _hpBeforeHit - targetEnemy.currentHp   // dégâts réels (sans overkill)
@@ -1832,6 +1913,8 @@ function executeEffect(ctx) {
             const memberHitIdx = state.team.indexOf(targetEnemy)
             if (combat && memberHitIdx !== -1 && dmg > 0) {
                 combat.sessionLoot.memberDamageReceived[memberHitIdx] = (combat.sessionLoot.memberDamageReceived[memberHitIdx] || 0) + dmg
+                // Dofus Ivoire : compteur de coups reçus → applique damage_block au seuil
+                if (!state.team.includes(caster)) _handleDofusDamageReceived(memberHitIdx, targetEnemy)
             }
             // Popup dégâts uniquement quand c'est l'ennemi qui encaisse (pas un membre)
             if (dmg > 0 && memberHitIdx === -1 && typeof showDamageNumber === 'function') {
@@ -2807,6 +2890,13 @@ function executeEffect(ctx) {
 
         case 'switch': {
             if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
+            if (!state.team.includes(caster)) {
+                const _trophyM = state.team[combat.activeMemberIndex]
+                if (_trophyM?.equip?.accessoire && item[_trophyM.equip.accessoire]?.trophy) {
+                    addLog(`${moveData?.name ?? '?'} → ${_trophyM.name || '?'} [trophée] immunisé au déplacement !`)
+                    break
+                }
+            }
             if (combat?.isRaid) {
                 const _isTeamCaster = state.team.includes(caster)
                 if (_isTeamCaster && effect.target !== 'self') {
@@ -2921,6 +3011,13 @@ function executeEffect(ctx) {
 
         case 'recul': {
             if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
+            if (!state.team.includes(caster)) {
+                const _trophyMR = state.team[combat.activeMemberIndex]
+                if (_trophyMR?.equip?.accessoire && item[_trophyMR.equip.accessoire]?.trophy) {
+                    addLog(`${moveData?.name ?? '?'} → ${_trophyMR.name || '?'} [trophée] immunisé au déplacement !`)
+                    break
+                }
+            }
             // Sur self (membre de l'équipe) : active le prochain membre vivant N+1 (solo et raid)
             if (effect.target === 'self' && state.team.includes(caster)) {
                 {
@@ -2960,6 +3057,13 @@ function executeEffect(ctx) {
 
         case 'avance': {
             if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
+            if (!state.team.includes(caster)) {
+                const _trophyMA = state.team[combat.activeMemberIndex]
+                if (_trophyMA?.equip?.accessoire && item[_trophyMA.equip.accessoire]?.trophy) {
+                    addLog(`${moveData?.name ?? '?'} → ${_trophyMA.name || '?'} [trophée] immunisé au déplacement !`)
+                    break
+                }
+            }
             // Sur self (membre de l'équipe) : active le membre vivant précédent N-1 (solo et raid)
             if (effect.target === 'self' && state.team.includes(caster)) {
                 {
@@ -3386,15 +3490,26 @@ function pickNextEnemyMove(enemy) {
 function tickDots(entity, onKill) {
     if (!entity.dots?.length) return
     let dotTotalDmg = 0
+    const _dotMemberIdx = state.team.indexOf(entity)
     for (const dot of entity.dots) {
+        // Dofus Ivoire : damage_block absorbe aussi les DOTs
+        if (dot.value > 0 && _dotMemberIdx !== -1) {
+            const _dbIdx = (entity.buffs || []).findIndex(b => b.stat === 'damage_block')
+            if (_dbIdx !== -1) {
+                entity.buffs.splice(_dbIdx, 1)
+                addLog(`${entity.name || classes[entity.classId]?.name || '?'} [Dofus Ivoire] → brûlure annulée !`)
+                continue
+            }
+        }
         entity.currentHp = Math.max(0, entity.currentHp - dot.value)
         addLog(`${dot.label || 'Brûlure'} → ${dot.value} dégâts`)
         dotTotalDmg += dot.value
+        // Dofus Ivoire : chaque tick de DOT compte comme un coup reçu
+        if (dot.value > 0 && _dotMemberIdx !== -1) _handleDofusDamageReceived(_dotMemberIdx, entity)
     }
     if (combat && dotTotalDmg > 0) {
-        const idx = state.team.indexOf(entity)
-        if (idx !== -1) {
-            combat.sessionLoot.memberDamageReceived[idx] = (combat.sessionLoot.memberDamageReceived[idx] || 0) + dotTotalDmg
+        if (_dotMemberIdx !== -1) {
+            combat.sessionLoot.memberDamageReceived[_dotMemberIdx] = (combat.sessionLoot.memberDamageReceived[_dotMemberIdx] || 0) + dotTotalDmg
         }
     }
     entity.dots = entity.dots
@@ -3688,6 +3803,7 @@ function onVictory() {
     // Kill credit pour passifs Sram / Féca
     const killerIdx = combat.activeMemberIndex
     combat.memberKillCount[killerIdx] = (combat.memberKillCount[killerIdx] || 0) + 1
+    _handleDofusOnKill(killerIdx)
 
     // Limite 200 kills/personnage : KO forcé, le suivant prend le relais
     if (combat.memberKillCount[killerIdx] >= 200) {
@@ -3973,12 +4089,15 @@ function setActiveMember(index) {
     }
     const m = state.team[index]
     if (!m || m.currentHp <= 0) return
-    if (index !== combat.activeMemberIndex) {
-        combat.memberTimers[index] = 0  // le sort repart de zéro à chaque switch
+    const _wasSwap = index !== combat.activeMemberIndex
+    if (_wasSwap) {
+        combat.memberTimers[index] = 0
         const _prevM = state.team[combat.activeMemberIndex]
         if (_prevM) _prevM.spellStacks = {}
+        _handleDofusSwapEffects(combat.activeMemberIndex)
     }
     combat.activeMemberIndex = index
+    if (_wasSwap) _triggerDofusOnActive(index)
     updateCombatUI()
 }
 
@@ -4042,6 +4161,109 @@ function _triggerReuche(depletedAlly) {
     const zobalName = zobal.name || classes[zobal.classId]?.name || '?'
     addLog(`Reuche → ${zobalName} prend la place de ${allyName} !`)
     setActiveMember(zIdx)
+}
+
+// ─── Helpers Dofus passifs avancés ───────────────────────────────────────────
+
+// Dofus Ivoire : compte les coups reçus et applique damage_block au seuil
+function _handleDofusDamageReceived(memberIdx, member) {
+    if (!member?.equip || !combat) return
+    for (const slotId in member.equip) {
+        const itemId = member.equip[slotId]
+        if (!itemId) continue
+        const itm = item[itemId]
+        if (!itm?.effects?.length) continue
+        for (const eff of itm.effects) {
+            if (!eff.on_damage_received) continue
+            const every = eff.on_damage_received.every || 4
+            combat.dofusDamageCounter[memberIdx] = combat.dofusDamageCounter[memberIdx] || {}
+            combat.dofusDamageCounter[memberIdx][itemId] = (combat.dofusDamageCounter[memberIdx][itemId] || 0) + 1
+            if (combat.dofusDamageCounter[memberIdx][itemId] >= every) {
+                combat.dofusDamageCounter[memberIdx][itemId] = 0
+                if (eff.reaction === 'cancel_next_damage') {
+                    member.buffs = member.buffs || []
+                    member.buffs.push({ stat: 'damage_block', duration: Infinity })
+                    addLog(`${member.name || classes[member.classId]?.name || '?'} [${itm.name}] → prochain coup annulé !`)
+                }
+            }
+        }
+    }
+}
+
+// Dofus Sylvestre / Abyssal : accumule des stacks de stat à chaque kill
+function _handleDofusOnKill(memberIdx) {
+    const m = state.team[memberIdx]
+    if (!m?.equip || !combat) return
+    for (const slotId in m.equip) {
+        const itemId = m.equip[slotId]
+        if (!itemId) continue
+        const itm = item[itemId]
+        if (!itm?.effects?.length) continue
+        for (const eff of itm.effects) {
+            if (!eff.on_kill) continue
+            const cfg = eff.on_kill
+            combat.dofusKillStacks[memberIdx] = combat.dofusKillStacks[memberIdx] || {}
+            const current = combat.dofusKillStacks[memberIdx][itemId] || 0
+            if (current >= cfg.max_value) continue
+            const newVal = Math.min(current + cfg.per_kill, cfg.max_value)
+            combat.dofusKillStacks[memberIdx][itemId] = newVal
+            addLog(`${m.name || classes[m.classId]?.name || '?'} [${itm.name}] → +${cfg.per_kill} ${cfg.stat} (${newVal}/${cfg.max_value})`)
+        }
+    }
+}
+
+// Dofus Sylvestre : gère le heal on_inactive_at_max et reset des stacks au swap
+function _handleDofusSwapEffects(prevIdx) {
+    const prevM = state.team[prevIdx]
+    if (!prevM?.equip || !combat) return
+    for (const slotId in prevM.equip) {
+        const itemId = prevM.equip[slotId]
+        if (!itemId) continue
+        const itm = item[itemId]
+        if (!itm?.effects?.length) continue
+        for (const eff of itm.effects) {
+            if (!eff.on_kill?.swap_reset) continue
+            const cfg = eff.on_kill
+            const stacks = combat.dofusKillStacks?.[prevIdx]?.[itemId] || 0
+            if (cfg.on_inactive_at_max && stacks >= cfg.max_value) {
+                const stats = getEffectiveStats(prevM) ?? prevM._stats
+                executeEffect({
+                    caster: prevM, casterStats: stats, targetEnemy: combat.enemy,
+                    effect: cfg.on_inactive_at_max, moveData: { name: itm.name }, moveId: itm.id,
+                    fromItemPassive: true
+                })
+                addLog(`${prevM.name || classes[prevM.classId]?.name || '?'} [${itm.name}] → compteur max, soin au passage !`)
+            }
+            if (combat.dofusKillStacks[prevIdx]) {
+                delete combat.dofusKillStacks[prevIdx][itemId]
+            }
+        }
+    }
+}
+
+// Dofus Émeraude : déclenche les effets on_active quand un membre devient actif
+function _triggerDofusOnActive(memberIdx) {
+    if (!combat) return
+    const m = state.team[memberIdx]
+    if (!m?.equip || m.currentHp <= 0) return
+    const stats = getEffectiveStats(m) ?? m._stats
+    for (const slotId in m.equip) {
+        const itemId = m.equip[slotId]
+        if (!itemId) continue
+        const itm = item[itemId]
+        if (!itm?.effects?.length) continue
+        for (const eff of itm.effects) {
+            if (!eff.on_active) continue
+            const effToExec = eff.value_level_mult
+                ? { ...eff, value: (m.level || 1) * eff.value_level_mult }
+                : eff
+            executeEffect({
+                caster: m, casterStats: stats, targetEnemy: combat.enemy,
+                effect: effToExec, moveData: { name: itm.name }, moveId: itm.id,
+                fromItemPassive: true
+            })
+        }
+    }
 }
 
 function _autoSwitchActive() {
@@ -4588,6 +4810,7 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     combat.sessionLoot.killCount++
     if (killerMemberIdx >= 0) {
         combat.memberKillCount[killerMemberIdx] = (combat.memberKillCount[killerMemberIdx] || 0) + 1
+        _handleDofusOnKill(killerMemberIdx)
 
         // Limite 200 kills/personnage en Raid
         if (combat.memberKillCount[killerMemberIdx] >= 200) {

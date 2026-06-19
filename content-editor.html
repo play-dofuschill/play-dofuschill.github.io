@@ -66,6 +66,9 @@
   .intro{padding:40px;max-width:760px;margin:0 auto;color:var(--mut)}
   .intro code{background:var(--bg3);padding:2px 6px;border-radius:5px;color:var(--fg)}
   .dirty{color:var(--acc)}
+  .mm-eff{border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:8px;background:var(--bg3)}
+  .mm-fav{font-size:12px;padding:3px 10px;border-radius:12px;background:var(--acc);color:#1a1a1a;border:none;cursor:pointer;font-weight:600}
+  .mm-fav:hover{opacity:.8}
 </style>
 </head>
 <body>
@@ -74,18 +77,19 @@
   <button id="openBtn" class="primary">📂 Ouvrir le dossier du jeu</button>
   <span id="status" class="pill">Aucun dossier ouvert</span>
   <span class="grow"></span>
+  <button id="syncLevelsBtn" style="display:none;font-size:12px;padding:5px 10px">⚖️ Sync levels items</button>
   <span id="dirtyState" class="pill"></span>
   <button id="saveBtn" class="primary" disabled>💾 Enregistrer</button>
 </header>
 <div class="tabs" id="tabs" style="display:none">
   <button data-tab="items" class="active">Items</button>
   <button data-tab="panoplies">Panoplies</button>
-  <button data-tab="loot">Loot (zones)</button>
   <button data-tab="monstres">Monstres</button>
   <button data-tab="sauvage">Sauvages</button>
   <button data-tab="donjon">Donjons</button>
   <button data-tab="raid">Raids</button>
   <button data-tab="event">Events</button>
+  <button data-tab="sorts">Sorts monstres</button>
 </div>
 
 <div id="intro" class="intro">
@@ -121,7 +125,7 @@ const STATS = ['maxHp','atk','spd','flatDamage','finalDamagePct','spellDamagePct
   'res.feu','res.eau','res.terre','res.air','res.neutre']
 
 let dirHandle = null
-let H = { item:null, pano:null, area:null, monster:null }   // file handles
+let H = { item:null, pano:null, area:null, monster:null, mstrMove:null }   // file handles
 let ITEM = {}, PANO = {}, ZONESETS = {}, AREAS = {}, MONSTERS = {}
 let DIVERS_IDS = new Set()  // IDs des items chargés depuis diversDictionary.js
 let MOVELIST = []                                  // [{id,name}] pour les pickers de sorts
@@ -131,6 +135,9 @@ let dirtyZones = new Set()                          // zones dont nom/niveaux/sp
 let newZones = new Set()                            // zones créées dans l'éditeur (à insérer)
 let tab = 'items'
 let selId = null
+let MSTRMOVES = {}, mstrMoveText = ''
+let mstrMoveDirtyIds = new Set(), mstrMoveNewIds = new Set()
+let mmSelMove = null, mmSelMon = null, mmMonSortDir = -1, mmMonQ = '', mmWorkMove = null
 
 // ───────────────────────── utilitaires JS-literal ─────────────────────────
 const isIdent = k => /^[A-Za-z_$][\w$]*$/.test(k)
@@ -171,12 +178,44 @@ async function getFile(dir, ...path){
   return h.getFileHandle(path[path.length-1])
 }
 
+// ───────────────────────── dossier persistant (IndexedDB) ─────────────────────────
+let _idb = null
+function getIDB(){
+  if(_idb) return Promise.resolve(_idb)
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open('dofuschill-editor',1)
+    req.onupgradeneeded=e=>e.target.result.createObjectStore('data')
+    req.onsuccess=e=>{_idb=e.target.result;res(_idb)}
+    req.onerror=e=>rej(e.target.error)
+  })
+}
+function idbGet(k){ return getIDB().then(db=>new Promise((res,rej)=>{ const r=db.transaction('data','readonly').objectStore('data').get(k); r.onsuccess=()=>res(r.result); r.onerror=e=>rej(e.target.error) })) }
+function idbSet(k,v){ return getIDB().then(db=>new Promise((res,rej)=>{ const t=db.transaction('data','readwrite'); t.objectStore('data').put(v,k); t.oncomplete=res; t.onerror=e=>rej(e.target.error) })) }
+
+async function tryRestoreFolder(){
+  try {
+    const h = await idbGet('dirHandle')
+    if(!h) return
+    const perm = await h.requestPermission({mode:'readwrite'})
+    if(perm!=='granted') return
+    dirHandle = h
+    await loadFromHandle()
+    toast('Dossier restauré automatiquement')
+  } catch(e){ /* silencieux */ }
+}
+
 async function openFolder(){
-  dirHandle = await window.showDirectoryPicker({ mode:'readwrite' })
+  dirHandle = await window.showDirectoryPicker({mode:'readwrite'})
+  idbSet('dirHandle', dirHandle).catch(()=>{})
+  await loadFromHandle()
+}
+
+async function loadFromHandle(){
   H.item    = await getFile(dirHandle, 'scripts','data','itemDictionary.js')
   H.pano    = await getFile(dirHandle, 'scripts','data','panoplieDictionary.js')
   H.area    = await getFile(dirHandle, 'scripts','data','areaDictionary.js')
-  H.monster = await getFile(dirHandle, 'scripts','data','monsterDictionary.js')
+  H.monster  = await getFile(dirHandle, 'scripts','data','monsterDictionary.js')
+  H.mstrMove = await getFile(dirHandle, 'scripts','data','mstrMoveDictionary.js')
 
   const itemTxt = await (await H.item.getFile()).text()
   const panoTxt = await (await H.pano.getFile()).text()
@@ -202,15 +241,19 @@ async function openFolder(){
   const a = evalReturn(areaText, 'areas, ZONE_SETS:(typeof ZONE_SETS!=="undefined"?ZONE_SETS:{})')
   AREAS = a.areas; ZONESETS = a['ZONE_SETS'] || {}
 
-  // dico des sorts (lecture seule) pour les pickers de moves — fichiers volumineux
+  // dico des sorts pour les pickers de moves + parsing MSTRMOVES
   try {
-    const mv = await (await getFile(dirHandle,'scripts','data','moveDictionary.js')).getFile().then(f=>f.text())
-    const mvm = await (await getFile(dirHandle,'scripts','data','mstrMoveDictionary.js')).getFile().then(f=>f.text())
+    const mv  = await (await getFile(dirHandle,'scripts','data','moveDictionary.js')).getFile().then(f=>f.text())
+    const mvm = await (await H.mstrMove.getFile()).text()
+    mstrMoveText = mvm
     let inv = ''
     try { inv = await (await getFile(dirHandle,'scripts','data','invocationDictionary.js')).getFile().then(f=>f.text()) } catch(e){}
-    const move = evalReturn(mv + '\n' + mvm + '\n' + inv, 'move').move
+    const moveBase = evalReturn(mv, 'move').move || {}
+    const move     = evalReturn(mv + '\n' + mvm + '\n' + inv, 'move').move || {}
+    MSTRMOVES = {}
+    for(const k of Object.keys(move)){ if(!moveBase[k] && move[k]) MSTRMOVES[k] = move[k] }
     MOVELIST = Object.keys(move).filter(id=>move[id]).map(id=>({ id, name: move[id].name || id })).sort((a,b)=>a.name.localeCompare(b.name))
-  } catch(e){ console.warn('dico sorts non chargé', e); MOVELIST = [] }
+  } catch(e){ console.warn('dico sorts non chargé', e); MOVELIST = []; MSTRMOVES = {} }
 
   dirtyZones = new Set(); newZones = new Set()
   document.getElementById('status').textContent =
@@ -218,6 +261,7 @@ async function openFolder(){
   document.getElementById('intro').style.display='none'
   document.getElementById('tabs').style.display='flex'
   document.getElementById('app').style.display='grid'
+  document.getElementById('syncLevelsBtn').style.display='inline-block'
   setDirty(false)
   render()
 }
@@ -236,6 +280,37 @@ function buildPanoFile(){
 function buildMonsterFile(){
   const blocks = Object.keys(MONSTERS).map(id => objBlock('monsters', id, MONSTERS[id]))
   return monsterHeader + '\n\n' + blocks.join('\n\n') + '\n'
+}
+function mmMoveBlockStr(id, m){
+  const effLine = e => '        { ' + Object.entries(e).map(([k,v]) => key(k)+': '+lit(v)).join(', ') + ' }'
+  const name = (m.name||id).replace(/\\/g,'\\\\').replace(/'/g,"\\'")
+  const effStr = (m.effects||[]).map(effLine).join(',\n')
+  const head = isIdent(id) ? 'move.'+id : "move['"+id+"']"
+  return `${head} = {\n    id: '${id}',\n    name: '${name}',\n    cooldownMs: ${m.cooldownMs||2000},\n    effects: [\n${effStr}\n    ]\n}`
+}
+function buildMstrMoveFile(){
+  let txt = mstrMoveText
+  // 1. Patch/delete dirty moves that already existed
+  for (const id of mstrMoveDirtyIds){
+    if(mstrMoveNewIds.has(id)) continue  // new moves handled below
+    const head = isIdent(id) ? 'move.'+id+' ' : "move['"+id+"'] "
+    const r = blockRange(txt, head)
+    if(!r) continue
+    if(!MSTRMOVES[id]){
+      // deleted: remove block + preceding blank lines
+      let s = r[0]; while(s>0 && txt[s-1]==='\n') s--
+      txt = txt.slice(0, s) + '\n' + txt.slice(r[1])
+    } else {
+      // edited: replace in place
+      txt = txt.slice(0, r[0]) + mmMoveBlockStr(id, MSTRMOVES[id]) + txt.slice(r[1])
+    }
+  }
+  // 2. Append new moves at end
+  const toAppend = [...mstrMoveNewIds].filter(id => MSTRMOVES[id])
+  if(toAppend.length){
+    txt = txt.trimEnd() + '\n\n' + toAppend.map(id => mmMoveBlockStr(id, MSTRMOVES[id])).join('\n\n') + '\n'
+  }
+  return txt
 }
 function spawnsLiteral(spawns){
   return '[\n' + (spawns||[]).map(s => `        { id: ${q(s.id)}, weight: ${Number(s.weight)||1} }`).join(',\n') + '\n    ]'
@@ -326,6 +401,7 @@ async function saveAll(){
     await writeFile(H.item, buildItemFile())
     await writeFile(H.pano, buildPanoFile())
     await writeFile(H.monster, buildMonsterFile())
+    if(H.mstrMove){ mstrMoveText = buildMstrMoveFile(); await writeFile(H.mstrMove, mstrMoveText); mstrMoveDirtyIds = new Set(); mstrMoveNewIds = new Set() }
     areaText = buildAreaText()
     await writeFile(H.area, areaText)
     dirtyZones = new Set(); newZones = new Set()
@@ -350,12 +426,12 @@ const imgSrc = it => it && it.image ? it.image : ''
 function render(){
   if (tab==='items') renderItems()
   else if (tab==='panoplies') renderPanoplies()
-  else if (tab==='loot') renderLoot()
   else if (tab==='monstres') renderMonsters()
   else if (tab==='donjon') renderZoneFull('donjon')
   else if (tab==='raid') renderZoneFull('raid')
   else if (tab==='event') renderZoneFull('event')
   else if (tab==='sauvage') renderZoneFull('wild')
+  else if (tab==='sorts') renderMstrMoves()
 }
 
 // —— filtres réutilisables ——
@@ -398,8 +474,10 @@ function renderItemList(){
 }
 function detailEmpty(){ document.getElementById('detail').innerHTML='<div class="empty">Sélectionne un élément à gauche.</div>' }
 
+function _isDofusTrophee(it){ return it.slot === 'accessoire' && (it.rarity === 'legendaire' || !!it.trophy) }
 function renderItemDetail(id){
   const it = ITEM[id]
+  const isDT = _isDofusTrophee(it)
   const setOpts = ['',...Object.keys(PANO)].map(s=>`<option ${it.set===s?'selected':''} value="${s}">${s||'— aucune —'}</option>`).join('')
   const D = document.getElementById('detail')
   D.innerHTML = `
@@ -415,7 +493,7 @@ function renderItemDetail(id){
       <div><label>Set (panoplie)</label><select id="e_set">${setOpts}</select></div>
     </div>
     <div class="grid3">
-      <div><label>requiredLevel</label><input type="number" id="e_req" value="${it.requiredLevel??1}"></div>
+      ${isDT ? `<div><label style="opacity:0.4">requiredLevel</label><input type="number" id="e_req" value="—" disabled style="opacity:0.4;cursor:not-allowed" title="Non applicable aux Dofus et Trophées"></div>` : `<div><label>requiredLevel</label><input type="number" id="e_req" value="${it.requiredLevel??1}"></div>`}
       <div><label>itemLevelMax</label><input type="number" id="e_ilm" value="${it.itemLevelMax??20}"></div>
       <div><label>type</label><input id="e_type" value="${it.type||'equipment'}"></div>
     </div>
@@ -432,7 +510,7 @@ function renderItemDetail(id){
   bind('e_slot',v=>{it.slot=v;renderItemList()})
   bind('e_rarity',v=>{it.rarity=v;renderItemList()})
   bind('e_set',v=>{if(v)it.set=v;else delete it.set;renderItemList()})
-  bind('e_req',v=>{it.requiredLevel=+v||1;renderItemList()})
+  if (!isDT) bind('e_req',v=>{it.requiredLevel=+v||1;renderItemList()})
   bind('e_ilm',v=>it.itemLevelMax=+v||20)
   bind('e_type',v=>it.type=v)
   bind('e_desc',v=>it.description=v)
@@ -505,60 +583,7 @@ function renderBonuses(p){
   wrap.querySelectorAll('.bsx').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.splice(+el.dataset.i,1);renderBonuses(p);setDirty(true)})
 }
 
-// ───────────────────────── Loot (ZONE_SETS) ─────────────────────────
-let lq='', lzq=''
-function renderLoot(){
-  const F=document.getElementById('filters')
-  F.innerHTML=`<input id="lzq" placeholder="Rechercher une zone (nom / id)…" value="${lzq}">`
-  F.querySelector('#lzq').oninput=e=>{lzq=e.target.value;renderLootList()}
-  renderLootList()
-  if (selId && AREAS[selId]) renderZoneDetail(selId); else detailEmpty()
-}
-function renderLootList(){
-  const body=document.getElementById('listBody')
-  const ids=Object.keys(AREAS).filter(z=>(z+' '+(AREAS[z].name||'')).toLowerCase().includes(lzq.toLowerCase()))
-  body.innerHTML=ids.map(z=>{
-    const n=(ZONESETS[z]||[]).length
-    return `<div class="list-item ${z===selId?'sel':''}" data-id="${z}">
-      <div class="nm"><b>${AREAS[z].name||z}</b><small>${z} · ${n} panoplie(s)</small></div></div>`
-  }).join('')||'<div class="muted" style="padding:10px">Aucune zone.</div>'
-  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;lq='';renderLoot()})
-}
-function renderZoneDetail(z){
-  const a=AREAS[z]; const assigned=new Set(ZONESETS[z]||[])
-  const D=document.getElementById('detail')
-  D.innerHTML=`<h2>${a.name||z}</h2>
-    <div class="muted">niveau monstres ${a.mobMinLevel??'?'}-${a.mobMaxLevel??'?'} · <span id="assignedCount">${assigned.size}</span> panoplie(s) assignée(s)</div>
-    <div class="section"><h3>Panoplies assignées</h3>
-      <div id="assignedTags">${[...assigned].map(k=>`<span class="badge" style="margin:2px">${k}</span>`).join('')||'<span class="muted">aucune</span>'}</div></div>
-    <input id="lq" placeholder="Filtrer les panoplies…" value="${lq}" style="margin-bottom:10px">
-    <div class="checks" id="lootChecks"></div>`
-  const refreshTags=()=>{
-    const cur=ZONESETS[z]||[]
-    D.querySelector('#assignedTags').innerHTML=cur.map(k=>`<span class="badge" style="margin:2px">${k}</span>`).join('')||'<span class="muted">aucune</span>'
-    D.querySelector('#assignedCount').textContent=cur.length
-    renderLootListCount(z)
-  }
-  const renderChecks=()=>{
-    const all=Object.keys(PANO).filter(k=>(k+' '+(PANO[k].name||'')).toLowerCase().includes(lq.toLowerCase()))
-    D.querySelector('#lootChecks').innerHTML=all.slice(0,300).map(k=>{
-      const lv=(PANO[k].pieces||[]).map(id=>ITEM[id]?.requiredLevel||0); const mn=lv.length?Math.min(...lv):0
-      return `<div class="checkrow"><label><input type="checkbox" class="zc" value="${k}" ${assigned.has(k)?'checked':''} style="width:auto"> ${PANO[k].name||k} <span class="muted">[${mn}]</span></label></div>`
-    }).join('')
-    D.querySelectorAll('.zc').forEach(el=>el.onchange=()=>{
-      let arr=ZONESETS[z]||(ZONESETS[z]=[])
-      if(el.checked){ if(!arr.includes(el.value)) arr.push(el.value); assigned.add(el.value) }
-      else { ZONESETS[z]=arr.filter(x=>x!==el.value); assigned.delete(el.value) }
-      setDirty(true); refreshTags()
-    })
-  }
-  D.querySelector('#lq').oninput=e=>{lq=e.target.value;renderChecks()}   // ne re-rend que la liste -> garde le focus
-  renderChecks()
-}
-function renderLootListCount(z){
-  const el=document.querySelector(`.list-item[data-id="${z}"] small`)
-  if(el) el.textContent=`${z} · ${(ZONESETS[z]||[]).length} panoplie(s)`
-}
+
 
 // ───────────────────────── Monstres ─────────────────────────
 let mf = { q:'', tier:'', rarity:'' }
@@ -592,14 +617,13 @@ function renderMonsterList(){
     return `<div class="list-item ${id===selId?'sel':''}" data-id="${id}">
       <img loading="lazy" src="${monImg(m)}" onerror="this.style.opacity=.15">
       <div class="nm"><b class="rarity-${m.rarity||'commun'}">${m.name||id}</b>
-        <small>${m.tier} · hp ${m.bst?.hp} · atk ${m.bst?.atk} · ${(m.moves?.length||0)} sort(s)</small></div></div>`
+        <small>${m.tier} · hp ${m.bst?.hp} · atk ${m.bst?.atk} · ${monMoveCount(id)} sort(s)</small></div></div>`
   }).join('') + (ids.length>shown.length?`<div class="muted" style="padding:10px">… ${ids.length-shown.length} de plus (affine)</div>`:'')
     + (!ids.length?`<div class="muted" style="padding:10px">Aucun résultat.</div>`:'')
   body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;renderMonsters()})
 }
 function renderMonsterDetail(id){
   const m=MONSTERS[id]; m.bst=m.bst||{}; m.bst.res=m.bst.res||{}
-  const movesArr = Array.isArray(m.moves) ? m.moves : null   // l'éditeur gère le format tableau
   const D=document.getElementById('detail')
   D.innerHTML=`
     <div class="preview"><img src="${monImg(m)}" onerror="this.style.opacity=.15">
@@ -627,11 +651,7 @@ function renderMonsterDetail(id){
         <div><label>critDamagePct</label><input type="number" id="m_cd" value="${m.bst.critDamagePct??''}" placeholder="déf. 50"></div>
       </div>
     </div>
-    <div class="section"><h3>Sorts (max 4)</h3>
-      ${movesArr===null?`<div class="muted">Format avancé {pool,fixed} — éditer dans le fichier.</div>`:`<div id="m_moves"></div>
-      <input id="m_moveSearch" placeholder="Ajouter un sort (recherche par nom)…" list="m_movedl">
-      <datalist id="m_movedl">${MOVELIST.slice(0,4000).map(o=>`<option value="${o.name.replace(/"/g,'&quot;')}" data-id="${o.id}">`).join('')}</datalist>`}
-    </div>`
+    <div class="section" id="m_sort_section"></div>`
   const bind=(elId,fn)=>{const el=D.querySelector('#'+elId);if(el)el.oninput=el.onchange=()=>{fn(el.value);setDirty(true)}}
   bind('m_name',v=>{m.name=v;renderMonsterList()})
   bind('m_image',v=>m.image=v)
@@ -643,27 +663,554 @@ function renderMonsterDetail(id){
   bind('m_cc',v=>{ if(v==='')delete m.bst.critChance; else m.bst.critChance=+v })
   bind('m_cd',v=>{ if(v==='')delete m.bst.critDamagePct; else m.bst.critDamagePct=+v })
   D.querySelectorAll('.m_res').forEach(el=>el.oninput=()=>{m.bst.res[el.dataset.e]=+el.value||0;setDirty(true)})
-  if (movesArr!==null){
-    renderMonsterMoves(m)
-    const inp=D.querySelector('#m_moveSearch')
-    inp.onchange=()=>{
-      const opt=[...D.querySelectorAll('#m_movedl option')].find(o=>o.value===inp.value)
-      const mid=opt?opt.dataset.id:inp.value.trim()
-      if(mid){ m.moves=m.moves||[]; if(m.moves.length<4 && !m.moves.includes(mid)){m.moves.push(mid);renderMonsterMoves(m);renderMonsterList();setDirty(true)} }
-      inp.value=''
-    }
-  }
+  renderMonsterMoves(m)
 }
 function renderMonsterMoves(m){
-  const wrap=document.getElementById('detail').querySelector('#m_moves'); if(!wrap)return
-  const nameOf=id=>{const o=MOVELIST.find(x=>x.id===id);return o?o.name:id}
-  wrap.innerHTML=(m.moves||[]).map((id,i)=>`<div class="statrow">
+  const D=document.getElementById('detail')
+  const wrap=D.querySelector('#m_sort_section'); if(!wrap) return
+  const isAdv = m.moves && !Array.isArray(m.moves)
+  const nameOf = id => { const o=MOVELIST.find(x=>x.id===id); return o?o.name:id }
+  const dlOpts = MOVELIST.slice(0,4000).map(o=>`<option value="${o.name.replace(/"/g,'&quot;')}" data-id="${o.id}">`).join('')
+  const moveTag = id => `<div class="statrow">
     <span class="badge" style="flex:1;text-align:left">${nameOf(id)} <span class="muted">(${id})</span></span>
-    <button data-i="${i}" class="mvx">✕</button></div>`).join('')||'<div class="muted">aucun sort</div>'
-  wrap.querySelectorAll('.mvx').forEach(el=>el.onclick=()=>{m.moves.splice(+el.dataset.i,1);renderMonsterMoves(m);renderMonsterList();setDirty(true)})
+    <button data-id="${id}" class="mvx">✕</button></div>`
+  const searchBlock = (cls,dlId,ph) => `<input class="${cls}" placeholder="${ph}" list="${dlId}" autocomplete="off" style="margin-top:4px">
+    <datalist id="${dlId}">${dlOpts}</datalist>`
+  const toggleLabel = isAdv ? '⇄ Aléatoire (simple)' : '⇄ Pool + Fixes'
+
+  let html = `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+    <h3 style="margin:0">Sorts (max 4)</h3>
+    <button class="mm_toggle" style="font-size:11px;padding:2px 6px">${toggleLabel}</button></div>`
+
+  if(!isAdv){
+    const moves = Array.isArray(m.moves) ? m.moves : []
+    html += `<div id="mm_list">${moves.map(moveTag).join('')||'<div class="muted">aucun sort</div>'}</div>`
+    html += searchBlock('mm_srch','mm_dl','Ajouter un sort…')
+  } else {
+    const pool = m.moves.pool||[], fixed = m.moves.fixed||[]
+    html += `<div style="margin-bottom:8px">
+      <label style="font-weight:600;font-size:12px;display:block;margin-bottom:4px">Pool (aléatoire)</label>
+      <div id="mm_pool">${pool.map(moveTag).join('')||'<div class="muted">aucun sort</div>'}</div>
+      ${searchBlock('mm_srch_pool','mm_dl_pool','Ajouter au pool…')}</div>
+    <div>
+      <label style="font-weight:600;font-size:12px;display:block;margin-bottom:4px">Fixes</label>
+      <div id="mm_fixed">${fixed.map(moveTag).join('')||'<div class="muted">aucun sort</div>'}</div>
+      ${searchBlock('mm_srch_fixed','mm_dl_fixed','Ajouter en fixe…')}</div>
+    <div class="muted" style="font-size:11px;margin-top:6px">${pool.length+fixed.length}/4 sorts total</div>`
+  }
+
+  wrap.innerHTML = html
+
+  wrap.querySelector('.mm_toggle').onclick = () => {
+    if(!isAdv){ m.moves = { pool: [...(Array.isArray(m.moves)?m.moves:[])], fixed: [] } }
+    else { m.moves = [...(m.moves.pool||[]), ...(m.moves.fixed||[])] }
+    renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+  }
+
+  if(!isAdv){
+    wrap.querySelectorAll('.mvx').forEach(el=>el.onclick=()=>{
+      m.moves=(Array.isArray(m.moves)?m.moves:[]).filter(x=>x!==el.dataset.id)
+      renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+    })
+    const inp=wrap.querySelector('.mm_srch')
+    inp.onchange=()=>{
+      const opt=[...wrap.querySelectorAll('#mm_dl option')].find(o=>o.value===inp.value)
+      const mid=opt?opt.dataset.id:inp.value.trim()
+      if(!Array.isArray(m.moves)) m.moves=[]
+      if(mid&&m.moves.length<4&&!m.moves.includes(mid)){m.moves.push(mid);renderMonsterMoves(m);renderMonsterList();setDirty(true)}
+      inp.value=''
+    }
+  } else {
+    wrap.querySelectorAll('#mm_pool .mvx').forEach(el=>el.onclick=()=>{
+      m.moves.pool=m.moves.pool.filter(x=>x!==el.dataset.id)
+      renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+    })
+    wrap.querySelectorAll('#mm_fixed .mvx').forEach(el=>el.onclick=()=>{
+      m.moves.fixed=m.moves.fixed.filter(x=>x!==el.dataset.id)
+      renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+    })
+    const addTo = (arr, cls, dlId) => {
+      const inp=wrap.querySelector('.'+cls)
+      inp.onchange=()=>{
+        const opt=[...wrap.querySelectorAll('#'+dlId+' option')].find(o=>o.value===inp.value)
+        const mid=opt?opt.dataset.id:inp.value.trim()
+        const tot=(m.moves.pool||[]).length+(m.moves.fixed||[]).length
+        if(mid&&tot<4&&!arr.includes(mid)){arr.push(mid);renderMonsterMoves(m);renderMonsterList();setDirty(true)}
+        inp.value=''
+      }
+    }
+    addTo(m.moves.pool,'mm_srch_pool','mm_dl_pool')
+    addTo(m.moves.fixed,'mm_srch_fixed','mm_dl_fixed')
+  }
 }
 
-// ───────────────────── Zone complète (Donjon / Event / Sauvage) ─────────────────────
+// ───────────────────────── Sorts Monstres ─────────────────────────
+const MM_EFFECT_TYPES = [
+  'damage','dot','heal','heal_team','heal%maxHp','heal%maxHp_team','hot','lifesteal',
+  'buff','buff_team','debuff','shield','renvoi','renvoiTotal','oeilPourOeil',
+  'switch','recul','avance','swap_enemies','antiHeal','turret','portal','repeat',
+  'buffDrain','debuffDrain','drop_bonus','esquive',
+  'summon','random','cast_proc','dmgIfDebuff','setEnutrof','enutrof_bonus'
+]
+const MM_ELEMENTS = ['neutre','terre','feu','eau','air']
+const MM_TARGETS  = ['enemy','self','all_allies','ally_random','ally_min_hp','all_enemies',
+                      'enemy_1','enemy_2','enemy_3','enemy_cycle','self_and_adjacent','adjacent']
+const MM_STATS    = ['atk','spd','flatDamage','finalDamagePct','spellDamagePct',
+                      'damageReductionPct','critChance','critDamagePct','healPct','lifestealPct']
+const MM_JSON_TYPES = new Set(['random','cast_proc'])
+
+function mmGetFavs(){ return JSON.parse(localStorage.getItem('mmFavTypes')||'["damage","buff","debuff","dot","heal"]') }
+function mmSetFavs(arr){ localStorage.setItem('mmFavTypes', JSON.stringify(arr)) }
+
+function monMoveCount(id){
+  const m = MONSTERS[id]; if(!m) return 0
+  if(Array.isArray(m.moves)) return m.moves.length
+  if(m.moves && typeof m.moves==='object') return (m.moves.pool||[]).length + (m.moves.fixed||[]).length
+  return 0
+}
+
+function renderMstrMoves(){
+  const F = document.getElementById('filters')
+  F.innerHTML = `
+    <input id="mmq" placeholder="Filtrer monstres (nom/id)…" value="${mmMonQ}">
+    <div class="row">
+      <span class="muted" style="font-size:12px;align-self:center;flex:1">${Object.keys(MONSTERS).length} monstres</span>
+      <button id="mmSortBtn" style="flex:none;font-size:12px">Sorts ${mmMonSortDir>0?'↑':'↓'}</button>
+    </div>`
+  F.querySelector('#mmq').oninput = e => { mmMonQ = e.target.value; renderMstrMonList() }
+  F.querySelector('#mmSortBtn').onclick = () => { mmMonSortDir *= -1; renderMstrMoves() }
+  renderMstrMonList()
+  renderMstrMovePanel()
+}
+
+function renderMstrMonList(){
+  const ids = Object.keys(MONSTERS)
+    .filter(id => (id+' '+(MONSTERS[id].name||'')).toLowerCase().includes(mmMonQ.toLowerCase()))
+    .sort((a,b) => mmMonSortDir * (monMoveCount(b) - monMoveCount(a)))
+  const body = document.getElementById('listBody')
+  body.innerHTML = ids.map(id => {
+    const m = MONSTERS[id], cnt = monMoveCount(id)
+    return `<div class="list-item ${id===mmSelMon?'sel':''}" data-id="${id}">
+      <img loading="lazy" src="${monImg(m)}" onerror="this.style.opacity=.15">
+      <div class="nm"><b class="rarity-${m.rarity||'commun'}">${m.name||id}</b><small>${m.tier}</small></div>
+      <span style="min-width:22px;text-align:right;font-size:13px;font-weight:600;color:${cnt===0?'var(--err)':'var(--mut)'}">${cnt}</span>
+    </div>`
+  }).join('') || '<div class="muted" style="padding:10px">Aucun résultat.</div>'
+  body.querySelectorAll('.list-item').forEach(el => el.onclick = () => {
+    mmSelMon = el.dataset.id; renderMstrMonList(); renderMstrMovePanel()
+  })
+}
+
+function renderMstrMovePanel(){
+  const D = document.getElementById('detail')
+  const moveIds = Object.keys(MSTRMOVES).sort((a,b)=>(MSTRMOVES[a].name||a).localeCompare(MSTRMOVES[b].name||b))
+
+  let monBar = ''
+  if(mmSelMon){
+    const m = MONSTERS[mmSelMon]
+    const movesArr = Array.isArray(m.moves) ? m.moves : []
+    const pills = movesArr.map(mid => {
+      const nm = (MSTRMOVES[mid]||{}).name || (MOVELIST.find(x=>x.id===mid)||{}).name || mid
+      return `<span class="badge mmMonPill" data-id="${mid}" style="margin:2px;cursor:pointer">${nm} <span class="muted">✕</span></span>`
+    }).join('') || '<span class="muted" style="font-size:12px">aucun sort assigné</span>'
+    monBar = `<div class="section" style="margin-bottom:10px;padding:8px 12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <img src="${monImg(m)}" style="width:28px;height:28px;object-fit:contain;image-rendering:pixelated;border-radius:4px" onerror="this.style.opacity=.15">
+        <b>${m.name||mmSelMon}</b>
+        <span class="muted" style="font-size:12px">${movesArr.length} sort(s)</span>
+        <button id="mmSelMoveNew" style="font-size:12px;padding:2px 8px;margin-left:auto">+ Sort pour ce monstre</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap">${pills}</div>
+    </div>`
+  }
+
+  const selOpts = `<option value="">— Nouveau sort —</option>` +
+    moveIds.map(id=>`<option ${mmSelMove===id?'selected':''} value="${id}">${MSTRMOVES[id].name||id} (${id})</option>`).join('')
+
+  D.innerHTML = monBar + `
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:12px">
+      <select id="mmMoveSel" style="flex:1">${selOpts}</select>
+      <button id="mmNewMoveBtn" style="flex:none">+ Nouveau</button>
+      ${mmSelMove?`<button id="mmDelMoveBtn" style="flex:none;color:var(--err);border-color:var(--err)">Supprimer</button>`:''}
+    </div>
+    <div id="mmForm"></div>`
+
+  if(mmSelMon){
+    D.querySelector('#mmSelMoveNew').onclick = () => { mmSelMove = null; renderMstrMovePanel() }
+    D.querySelectorAll('.mmMonPill').forEach(el => el.onclick = () => {
+      const m2 = MONSTERS[mmSelMon]
+      if(Array.isArray(m2.moves)){ m2.moves = m2.moves.filter(x=>x!==el.dataset.id); setDirty(true); renderMstrMonList(); renderMstrMovePanel() }
+    })
+  }
+  D.querySelector('#mmMoveSel').onchange = e => { mmSelMove = e.target.value||null; renderMstrMovePanel() }
+  D.querySelector('#mmNewMoveBtn').onclick = () => { mmSelMove = null; renderMstrMovePanel() }
+  if(mmSelMove){
+    D.querySelector('#mmDelMoveBtn').onclick = () => {
+      if(!confirm(`Supprimer "${MSTRMOVES[mmSelMove].name||mmSelMove}" ?`)) return
+      const delId = mmSelMove
+      if(!mstrMoveNewIds.has(delId)) mstrMoveDirtyIds.add(delId)  // existing → needs removal from file
+      mstrMoveNewIds.delete(delId)
+      delete MSTRMOVES[delId]; mmSelMove = null; setDirty(true); renderMstrMoves()
+    }
+  }
+  mmBuildForm(D)
+}
+
+function mmBuildForm(D){
+  const srcMove = mmSelMove ? MSTRMOVES[mmSelMove] : null
+  mmWorkMove = srcMove ? JSON.parse(JSON.stringify(srcMove)) : { id:'', name:'', cooldownMs:2000, effects:[] }
+  mmWorkMove._assignTo = new Set(mmSelMon && !mmSelMove ? [mmSelMon] : [])
+
+  const wrap = D.querySelector('#mmForm')
+  wrap.innerHTML = `
+    <div class="section">
+      <div class="grid2">
+        <div><label>Nom du sort</label><input id="mm_name" value="${(mmWorkMove.name||'').replace(/"/g,'&quot;')}"></div>
+        <div><label>ID</label><input id="mm_id" value="${(mmWorkMove.id||'').replace(/"/g,'&quot;')}"></div>
+      </div>
+      <div><label>CooldownMs</label><input type="number" id="mm_cd" value="${mmWorkMove.cooldownMs||2000}" style="width:160px"></div>
+    </div>
+    <div class="section">
+      <h3>Effets</h3>
+      <div id="mm_favs_bar" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;align-items:center"></div>
+      <div id="mm_effects"></div>
+      <button id="mm_addEffect" style="margin-top:6px">+ Ajouter un effet</button>
+    </div>
+    <div class="section">
+      <h3>Assigner à des monstres</h3>
+      <div id="mm_assigned" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px"></div>
+      <input id="mm_monSearch" placeholder="Rechercher un monstre…" list="mm_mondl" autocomplete="off">
+      <datalist id="mm_mondl">${Object.values(MONSTERS).map(m=>`<option value="${(m.name||m.id).replace(/"/g,'&quot;')}" data-id="${m.id}">`).join('')}</datalist>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px;align-items:center">
+      <button id="mm_save" class="primary">${mmSelMove?'💾 Mettre à jour':'💾 Créer le sort'}</button>
+      <span id="mm_err" style="color:var(--err);font-size:12px"></span>
+    </div>`
+
+  const nameEl = wrap.querySelector('#mm_name')
+  const idEl   = wrap.querySelector('#mm_id')
+  nameEl.oninput = () => {
+    mmWorkMove.name = nameEl.value
+    if(!mmSelMove){
+      const slug = nameEl.value.normalize('NFD').replace(/[̀-ͯ]/g,'')
+        .toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'')
+      idEl.value = slug; mmWorkMove.id = slug
+    }
+  }
+  idEl.oninput = () => { mmWorkMove.id = idEl.value.trim() }
+  wrap.querySelector('#mm_cd').oninput = e => { mmWorkMove.cooldownMs = +e.target.value||2000 }
+
+  renderMmFavs(wrap)
+  renderMmEffects(wrap)
+  renderMmAssigned(wrap)
+
+  wrap.querySelector('#mm_addEffect').onclick = () => {
+    mmWorkMove.effects.push(mmDefaultEffect('damage'))
+    renderMmEffects(wrap)
+  }
+  const ms = wrap.querySelector('#mm_monSearch')
+  ms.onchange = () => {
+    const opt = [...wrap.querySelectorAll('#mm_mondl option')].find(o=>o.value===ms.value)
+    const mid = opt ? opt.dataset.id : ms.value.trim()
+    if(mid && MONSTERS[mid]){ mmWorkMove._assignTo.add(mid); renderMmAssigned(wrap) }
+    ms.value = ''
+  }
+  wrap.querySelector('#mm_save').onclick = () => mmSaveMove(wrap)
+}
+
+function renderMmFavs(wrap){
+  const bar = wrap.querySelector('#mm_favs_bar'); if(!bar) return
+  const favs = mmGetFavs()
+  bar.innerHTML = favs.map(t =>
+    `<button class="mmFavBtn mm-fav" data-type="${t}">${t}</button>`
+  ).join('') +
+  `<select id="mm_fav_add" style="font-size:12px;padding:2px 5px;border-radius:6px;height:26px;width:auto">
+    <option value="">☆ Ajouter favori…</option>
+    ${MM_EFFECT_TYPES.filter(t=>!favs.includes(t)).map(t=>`<option value="${t}">${t}</option>`).join('')}
+  </select>
+  ${favs.length?`<button id="mm_fav_edit" style="font-size:11px;padding:2px 6px;color:var(--mut)" title="Retirer un favori">✎</button>`:''}`
+
+  bar.querySelectorAll('.mmFavBtn').forEach(el => el.onclick = () => {
+    mmWorkMove.effects.push(mmDefaultEffect(el.dataset.type))
+    renderMmEffects(wrap)
+  })
+  const fa = bar.querySelector('#mm_fav_add')
+  if(fa) fa.onchange = () => {
+    if(!fa.value) return
+    const cur = mmGetFavs(); cur.push(fa.value); mmSetFavs(cur); fa.value = ''; renderMmFavs(wrap)
+  }
+  const fe = bar.querySelector('#mm_fav_edit')
+  if(fe) fe.onclick = () => {
+    const cur = mmGetFavs()
+    const res = prompt('Types à retirer des favoris (séparés par virgule) :', cur.join(', '))
+    if(res===null) return
+    const toRemove = res.split(',').map(s=>s.trim())
+    mmSetFavs(cur.filter(t=>!toRemove.includes(t))); renderMmFavs(wrap)
+  }
+}
+
+function renderMmEffects(wrap){
+  const effw = wrap.querySelector('#mm_effects'); if(!effw) return
+  const effects = mmWorkMove.effects || []
+  effw.innerHTML = effects.map((eff,i) => mmEffectHTML(eff,i)).join('') ||
+    '<div class="muted" style="padding:4px 0">Aucun effet — utilise les favoris ou le bouton +.</div>'
+
+  effw.querySelectorAll('.mm_efftype').forEach(el => el.onchange = () => {
+    mmWorkMove.effects[+el.dataset.i] = mmDefaultEffect(el.value)
+    renderMmEffects(wrap)
+  })
+  effw.querySelectorAll('[data-ei]').forEach(el => {
+    el.oninput = el.onchange = () => {
+      mmApplyField(mmWorkMove.effects[+el.dataset.ei], el.dataset.field, el.value, el.type)
+    }
+  })
+  effw.querySelectorAll('.mm_effDel').forEach(el => el.onclick = () => {
+    mmWorkMove.effects.splice(+el.dataset.i, 1); renderMmEffects(wrap)
+  })
+  effw.querySelectorAll('.mm_effUp').forEach(el => el.onclick = () => {
+    const i=+el.dataset.i; if(i===0) return
+    ;[mmWorkMove.effects[i],mmWorkMove.effects[i-1]]=[mmWorkMove.effects[i-1],mmWorkMove.effects[i]]
+    renderMmEffects(wrap)
+  })
+  effw.querySelectorAll('.mm_effDn').forEach(el => el.onclick = () => {
+    const i=+el.dataset.i; if(i>=mmWorkMove.effects.length-1) return
+    ;[mmWorkMove.effects[i],mmWorkMove.effects[i+1]]=[mmWorkMove.effects[i+1],mmWorkMove.effects[i]]
+    renderMmEffects(wrap)
+  })
+  effw.querySelectorAll('.mm_effJson').forEach(el => el.onchange = () => {
+    try { mmWorkMove.effects[+el.dataset.i]=JSON.parse(el.value); el.style.borderColor=''; renderMmEffects(wrap) }
+    catch(e){ el.style.borderColor='var(--err)' }
+  })
+}
+
+function mmApplyField(eff, field, rawVal, inputType){
+  const val = inputType==='number' ? +rawVal : rawVal
+  if(field.includes('.')){
+    const [p1,p2] = field.split('.')
+    if(!eff[p1]||typeof eff[p1]!=='object') eff[p1] = {}
+    eff[p1][p2] = val
+  } else { eff[field] = val }
+}
+
+function mmDefaultEffect(type){
+  const d = {
+    damage:            { type:'damage',          element:'neutre', damage:{min:0,max:0}, target:'enemy' },
+    dot:               { type:'dot',             element:'neutre', value:10, duration:2, target:'enemy' },
+    heal:              { type:'heal',            heal:50, target:'self' },
+    heal_team:         { type:'heal_team',       heal:30 },
+    'heal%maxHp':      { type:'heal%maxHp',      heal:20, target:'self' },
+    'heal%maxHp_team': { type:'heal%maxHp_team', heal:20 },
+    hot:               { type:'hot',             heal:20, duration:3, target:'self' },
+    lifesteal:         { type:'lifesteal',        ratio:0.5, target:'self' },
+    buff:              { type:'buff',             stat:'atk', value:30, duration:2, target:'self' },
+    buff_team:         { type:'buff_team',        stat:'atk', value:20, duration:2 },
+    debuff:            { type:'debuff',           stat:'atk', value:30, duration:2, target:'enemy' },
+    shield:            { type:'shield',           value:100, duration:2, target:'self' },
+    renvoi:            { type:'renvoi',           ratio:0.5, target:'self' },
+    renvoiTotal:       { type:'renvoiTotal',      ratio:1.0, target:'self' },
+    oeilPourOeil:      { type:'oeilPourOeil',     ratio:0.8, target:'self' },
+    switch:            { type:'switch',           value:1, target:'enemy' },
+    recul:             { type:'recul',            target:'enemy' },
+    avance:            { type:'avance',           target:'enemy' },
+    swap_enemies:      { type:'swap_enemies',     target:'enemy' },
+    antiHeal:          { type:'antiHeal',         duration:3, target:'enemy' },
+    turret:            { type:'turret',           element:'feu', value:20, duration:3, target:'enemy' },
+    portal:            { type:'portal',           duration:3, selfBonus:25, resMalus:10, allyBonus:10, target:'self' },
+    repeat:            { type:'repeat',           target:'self' },
+    buffDrain:         { type:'buffDrain',         value:1, target:'enemy' },
+    debuffDrain:       { type:'debuffDrain',       value:1, target:'self' },
+    drop_bonus:        { type:'drop_bonus',        value:10 },
+    esquive:           { type:'esquive',           chancePct:40, reductionPct:100, duration:3, target:'self' },
+    summon:            { type:'summon',            summonId:'', duration:4, target:'enemy' },
+    dmgIfDebuff:       { type:'dmgIfDebuff',       stat:'spd', element:'neutre', damage:{min:0,max:0}, target:'enemy' },
+    setEnutrof:        { type:'setEnutrof',        state:'air', duration:3 },
+    enutrof_bonus:     { type:'enutrof_bonus',     state:'air', element:'air', damage:{min:0,max:0}, target:'enemy' },
+    random:            { type:'random',            choices:[] },
+    cast_proc:         { type:'cast_proc',         procEffect:{type:'debuff',stat:'spd',value:10,duration:2,target:'enemy'}, duration:3, target:'self' },
+  }
+  return d[type] ? {...d[type]} : { type }
+}
+
+function mmEffectHTML(eff, i){
+  const typeOpts = MM_EFFECT_TYPES.map(t=>`<option ${eff.type===t?'selected':''}>${t}</option>`).join('')
+  const elOpts  = v => MM_ELEMENTS.map(e=>`<option ${v===e?'selected':''}>${e}</option>`).join('')
+  const tgtOpts = v => MM_TARGETS.map(t=>`<option ${v===t?'selected':''}>${t}</option>`).join('')
+  const stOpts  = v => MM_STATS.map(s=>`<option ${v===s?'selected':''}>${s}</option>`).join('')
+  const n = (field,val,label) =>
+    `<div><label>${label}</label><input type="number" data-ei="${i}" data-field="${field}" value="${val??0}"></div>`
+  const tx = (field,val,label) =>
+    `<div><label>${label}</label><input data-ei="${i}" data-field="${field}" value="${(val||'').replace(/"/g,'&quot;')}"></div>`
+  const sl = (field,val,opts,label) =>
+    `<div><label>${label}</label><select data-ei="${i}" data-field="${field}">${opts(val)}</select></div>`
+
+  const hdr = `<div style="display:flex;gap:4px;align-items:center;margin-bottom:8px">
+    <select class="mm_efftype" data-i="${i}" style="flex:1">${typeOpts}</select>
+    <button class="mm_effUp"  data-i="${i}" style="padding:3px 8px" title="Monter">↑</button>
+    <button class="mm_effDn"  data-i="${i}" style="padding:3px 8px" title="Descendre">↓</button>
+    <button class="mm_effDel" data-i="${i}" style="padding:3px 8px;color:var(--err)">✕</button>
+  </div>`
+
+  let body = ''
+  if(MM_JSON_TYPES.has(eff.type)){
+    body = `<textarea class="mm_effJson" data-i="${i}" style="height:120px;width:100%">${JSON.stringify(eff,null,2)}</textarea>`
+  } else {
+    switch(eff.type){
+      case 'damage':
+        body = `<div class="grid2">${sl('element',eff.element,elOpts,'Element')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`
+        break
+      case 'dot':
+      case 'turret':
+        body = `<div class="grid3">${sl('element',eff.element,elOpts,'Element')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Duree')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`
+        break
+      case 'heal':
+        body = `<div class="grid2">${n('heal',eff.heal,'Soin')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'heal_team':
+        body = n('heal',eff.heal,'Soin')
+        break
+      case 'heal%maxHp':
+        body = `<div class="grid2">${n('heal',eff.heal,'Soin % HP max')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'heal%maxHp_team':
+        body = n('heal',eff.heal,'Soin % HP max (team)')
+        break
+      case 'hot':
+        body = `<div class="grid3">${n('heal',eff.heal,'Soin')}${n('duration',eff.duration,'Duree')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'lifesteal':
+        body = `<div class="grid2">${n('ratio',eff.ratio,'Ratio (0.0-1.0)')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'buff':
+      case 'debuff':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Stat')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Duree')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`
+        break
+      case 'buff_team':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Stat')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Duree')}</div>`
+        break
+      case 'shield':
+        body = `<div class="grid3">${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Duree')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'renvoi':
+      case 'renvoiTotal':
+      case 'oeilPourOeil':
+        body = `<div class="grid2">${n('ratio',eff.ratio,'Ratio (0.0-1.0)')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'switch':
+        body = `<div class="grid2">${n('value',eff.value,'Crans')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'recul':
+      case 'avance':
+      case 'swap_enemies':
+        body = sl('target',eff.target,tgtOpts,'Cible')
+        break
+      case 'antiHeal':
+        body = `<div class="grid2">${n('duration',eff.duration,'Duree')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'portal':
+        body = `<div class="grid3">${n('selfBonus',eff.selfBonus,'Self bonus %')}${n('resMalus',eff.resMalus,'Res malus %')}${n('allyBonus',eff.allyBonus,'Allie bonus %')}</div>
+          <div class="grid2">${n('duration',eff.duration,'Duree')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'repeat':
+        body = `<div class="muted" style="font-size:12px;padding:4px 0">Relance le sort precedent dans la rotation (2e fois).</div>`
+        break
+      case 'buffDrain':
+      case 'debuffDrain':
+        body = `<div class="grid2">${n('value',eff.value,'Tours a reduire')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`
+        break
+      case 'drop_bonus':
+        body = n('value',eff.value,'Bonus drop %')
+        break
+      case 'esquive':
+        body = `<div class="grid3">${n('chancePct',eff.chancePct,'Chance %')}${n('reductionPct',eff.reductionPct,'Reduction %')}${n('duration',eff.duration,'Duree')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`
+        break
+      case 'summon':
+        body = `<div class="grid2">${tx('summonId',eff.summonId,'ID invocation')}${n('duration',eff.duration,'Duree actions')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`
+        break
+      case 'dmgIfDebuff':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Debuff check')}${sl('element',eff.element,elOpts,'Element')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`
+        break
+      case 'setEnutrof': {
+        const sO = v => ['air','terre','eau'].map(s=>`<option ${v===s?'selected':''}>${s}</option>`).join('')
+        body = `<div class="grid2">${sl('state',eff.state,sO,'Etat')}${n('duration',eff.duration??3,'Duree')}</div>`
+        break
+      }
+      case 'enutrof_bonus': {
+        const sO2 = v => ['air','terre','eau'].map(s=>`<option ${v===s?'selected':''}>${s}</option>`).join('')
+        body = `<div class="grid3">${sl('state',eff.state,sO2,'Etat')}${sl('element',eff.element,elOpts,'Element')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`
+        break
+      }
+      default:
+        body = `<textarea class="mm_effJson" data-i="${i}" style="height:80px;width:100%">${JSON.stringify(eff,null,2)}</textarea>`
+    }
+  }
+  return `<div class="mm-eff">${hdr}${body}</div>`
+}
+
+function renderMmAssigned(wrap){
+  const el = wrap.querySelector('#mm_assigned'); if(!el) return
+  const assigned = [...(mmWorkMove._assignTo||[])]
+  el.innerHTML = assigned.map(mid => {
+    const m = MONSTERS[mid]
+    return `<span class="badge mmAssignBadge" data-mid="${mid}" style="cursor:pointer;margin:2px">${m?m.name:mid} <span class="muted">x</span></span>`
+  }).join('') || '<span class="muted" style="font-size:12px">Aucun monstre selectionne (optionnel).</span>'
+  el.querySelectorAll('.mmAssignBadge').forEach(el2 => el2.onclick = () => {
+    mmWorkMove._assignTo.delete(el2.dataset.mid); renderMmAssigned(wrap)
+  })
+}
+
+function mmSaveMove(wrap){
+  const errEl = wrap.querySelector('#mm_err')
+  const id   = (wrap.querySelector('#mm_id').value||'').trim()
+  const name = (wrap.querySelector('#mm_name').value||'').trim()
+  if(!id){ errEl.textContent = 'ID requis'; return }
+  if(!name){ errEl.textContent = 'Nom requis'; return }
+  if(!mmSelMove && MSTRMOVES[id]){ errEl.textContent = `ID "${id}" deja utilise`; return }
+  errEl.textContent = ''
+
+  const oldId = mmSelMove
+  const isNew = !oldId
+  if(oldId && oldId !== id){
+    // rename: mark old as dirty (will be removed from file), new will be appended
+    mstrMoveDirtyIds.add(oldId)
+    delete MSTRMOVES[oldId]
+    for(const mid of Object.keys(MONSTERS)){
+      const m = MONSTERS[mid]
+      if(Array.isArray(m.moves)) m.moves = m.moves.map(x => x===oldId ? id : x)
+    }
+  }
+
+  const { _assignTo, ...cleanMove } = mmWorkMove
+  cleanMove.id = id; cleanMove.name = name
+  cleanMove.cooldownMs = +(wrap.querySelector('#mm_cd').value)||2000
+  MSTRMOVES[id] = cleanMove
+
+  // track for surgical save
+  if(isNew || (oldId && oldId !== id)){
+    mstrMoveNewIds.add(id)
+  } else {
+    mstrMoveDirtyIds.add(id)
+  }
+
+  for(const mid of (_assignTo||[])){
+    const m = MONSTERS[mid]
+    if(!Array.isArray(m.moves)) m.moves = []
+    if(!m.moves.includes(id)) m.moves.push(id)
+  }
+
+  mmSelMove = id
+  setDirty(true)
+  toast(`Sort "${name}" ${isNew?'cree':'mis a jour'} ok`, 'ok')
+  renderMstrMoves()
+}
+
+// ───────────────────── Zone complete (Donjon / Event / Sauvage) ─────────────────────
 let zq=''
 function zoneCat(z){
   if (z.startsWith('donjon')) return 'donjon'
@@ -712,7 +1259,7 @@ function renderZoneFullList(cat){
   const body=document.getElementById('listBody')
   body.innerHTML=ids.map(z=>{const a=AREAS[z]
     return `<div class="list-item ${z===selId?'sel':''}" data-id="${z}">
-      <div class="nm"><b>${a.name||z}</b><small>niv ${a.mobMinLevel}-${a.mobMaxLevel} · ${(a.spawns||[]).length} spawns · ${(ZONESETS[z]||[]).length} pano</small></div></div>`
+      <div class="nm"><b>${a.name||z}</b><small>niv ${a.mobMinLevel}-${a.mobMaxLevel} · ${(a.spawns||[]).length} spawns · ${zoneLootCount(z)} items</small></div></div>`
   }).join('')||'<div class="muted" style="padding:10px">Aucune zone.</div>'
   body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{selId=el.dataset.id;renderZoneFull(cat)})
 }
@@ -807,7 +1354,7 @@ function renderZoneFullDetail(z,cat){
   ensureZoneLoot(z)
   renderZoneLoot(z)
   // quick-add âme / gardien / clé
-  const addToLoot=(itemId,dropRate,extra={})=>{ if(!a.lootTable.some(e=>e.itemId===itemId)){a.lootTable.push({itemId,dropRate,...extra});renderZoneLoot(z);md()} }
+  const addToLoot=(itemId,dropRate,extra={})=>{ if(!a.lootTable.some(e=>e.itemId===itemId)){a.lootTable.push({itemId,dropRate,...extra});applyZoneLevel(itemId,extra.isKey,a.mobMinLevel);renderZoneLoot(z);updateZoneListItem(z);md()} }
   D.querySelector('#z_qame').onclick=()=>addToLoot('pierreDame',0.45)
   D.querySelector('#z_qgardien').onclick=()=>addToLoot('pierreDameGardien',0.45)
   const kp=D.querySelector('#z_key_panel')
@@ -822,7 +1369,7 @@ function renderZoneFullDetail(z,cat){
   is_.onchange=()=>{
     const opt=[...D.querySelectorAll('#z_itemdl option')].find(o=>o.value===is_.value)
     const iid=opt?opt.dataset.id:is_.value.trim()
-    if(iid&&ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){ a.lootTable.push({itemId:iid,dropRate:0.01}); renderZoneLoot(z); md() }
+    if(iid&&ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){ a.lootTable.push({itemId:iid,dropRate:0.01}); applyZoneLevel(iid,false,a.mobMinLevel); renderZoneLoot(z); updateZoneListItem(z); md() }
     is_.value=''
   }
   // + panoplie complète
@@ -832,8 +1379,8 @@ function renderZoneFullDetail(z,cat){
     const pid=opt?opt.dataset.id:pf.value.trim()
     if(pid&&PANO[pid]){
       let added=0
-      ;(PANO[pid].pieces||[]).forEach(iid=>{ if(ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){a.lootTable.push({itemId:iid,dropRate:0.01});added++} })
-      if(added){ renderZoneLoot(z); md() }
+      ;(PANO[pid].pieces||[]).forEach(iid=>{ if(ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){a.lootTable.push({itemId:iid,dropRate:0.01});applyZoneLevel(iid,false,a.mobMinLevel);added++} })
+      if(added){ renderZoneLoot(z); updateZoneListItem(z); md() }
     }
     pf.value=''
   }
@@ -843,7 +1390,7 @@ function renderZoneFullDetail(z,cat){
     if(ds) ds.onchange=()=>{
       const opt=[...D.querySelectorAll('#z_diversdl option')].find(o=>o.value===ds.value)
       const iid=opt?opt.dataset.id:ds.value.trim()
-      if(iid&&ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){ a.lootTable.push({itemId:iid,dropRate:0.05}); renderZoneLoot(z); md() }
+      if(iid&&ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){ a.lootTable.push({itemId:iid,dropRate:0.05}); applyZoneLevel(iid,false,a.mobMinLevel); renderZoneLoot(z); updateZoneListItem(z); md() }
       ds.value=''
     }
   }
@@ -906,6 +1453,36 @@ function lootLiteral(loot){
 function ensureZoneLoot(z){
   const a=AREAS[z]; if(!a.lootTable) a.lootTable=[]
 }
+function zoneLootCount(z){
+  return (AREAS[z]?.lootTable||[]).filter(e=>!e.isKey&&e.itemId!=='pierreDame'&&e.itemId!=='pierreDameGardien').length
+}
+function updateZoneListItem(z){
+  const el=document.querySelector(`.list-item[data-id="${z}"] small`); const a=AREAS[z]; if(!el||!a) return
+  el.textContent=`niv ${a.mobMinLevel}-${a.mobMaxLevel} · ${(a.spawns||[]).length} spawns · ${zoneLootCount(z)} items`
+}
+function applyZoneLevel(itemId, isKey, mobMinLevel){
+  if(isKey || itemId==='pierreDame' || itemId==='pierreDameGardien') return
+  if(!ITEM[itemId]) return
+  if(_isDofusTrophee(ITEM[itemId])) return
+  ITEM[itemId].requiredLevel = mobMinLevel||0
+}
+function syncItemLevels(){
+  // pour chaque item dans toutes les lootTable, prend le niveau minimum de zone
+  const minLvl = {}
+  for(const z of Object.keys(AREAS)){
+    const lvl = AREAS[z].mobMinLevel||0
+    for(const e of (AREAS[z].lootTable||[])){
+      if(e.isKey || e.itemId==='pierreDame' || e.itemId==='pierreDameGardien') continue
+      if(!(e.itemId in minLvl) || lvl < minLvl[e.itemId]) minLvl[e.itemId] = lvl
+    }
+  }
+  let count = 0
+  for(const [id, lvl] of Object.entries(minLvl)){
+    if(ITEM[id] && !_isDofusTrophee(ITEM[id]) && ITEM[id].requiredLevel !== lvl){ ITEM[id].requiredLevel = lvl; count++ }
+  }
+  if(count) setDirty(true)
+  toast(count ? `${count} item(s) mis à jour` : 'Aucun changement')
+}
 function renderZoneLoot(z){
   const a=AREAS[z]; const loot=a.lootTable||[]
   const D=document.getElementById('detail')
@@ -932,7 +1509,7 @@ function renderZoneLoot(z){
   })
   wrap.querySelectorAll('.ldx').forEach(el=>el.onclick=()=>{
     a.lootTable.splice(+el.dataset.i,1)
-    renderZoneLoot(z); dirtyZones.add(z); setDirty(true)
+    renderZoneLoot(z); updateZoneListItem(z); dirtyZones.add(z); setDirty(true)
   })
 }
 function renderZoneMiniBossMonsters(a,z){
@@ -976,8 +1553,18 @@ function renderZonePanoChecks(z, flt=''){
   const tagsEl=D.querySelector('#z_pano_tags'); const cntEl=D.querySelector('#z_pano_count')
   wrap.querySelectorAll('.zpc').forEach(el=>el.onchange=()=>{
     let arr=ZONESETS[z]||(ZONESETS[z]=[])
-    if(el.checked){if(!arr.includes(el.value))arr.push(el.value)}
-    else ZONESETS[z]=arr.filter(x=>x!==el.value)
+    if(el.checked){
+      if(!arr.includes(el.value)) arr.push(el.value)
+      // ajouter chaque pièce de la panoplie dans lootTable
+      const a=AREAS[z]; if(!a.lootTable) a.lootTable=[]
+      let added=0
+      ;(PANO[el.value]?.pieces||[]).forEach(iid=>{
+        if(ITEM[iid]&&!a.lootTable.some(e=>e.itemId===iid)){a.lootTable.push({itemId:iid,dropRate:0.01});applyZoneLevel(iid,false,a.mobMinLevel);added++}
+      })
+      if(added){ renderZoneLoot(z); updateZoneListItem(z) }
+    } else {
+      ZONESETS[z]=arr.filter(x=>x!==el.value)
+    }
     if(tagsEl) tagsEl.innerHTML=(ZONESETS[z]||[]).map(k=>`<span class="badge" style="margin:2px">${PANO[k]?.name||k}</span>`).join('')||'<span class="muted">aucune</span>'
     if(cntEl) cntEl.textContent=(ZONESETS[z]||[]).length
     setDirty(true)
@@ -987,11 +1574,13 @@ function renderZonePanoChecks(z, flt=''){
 // ───────────────────────── événements ─────────────────────────
 document.getElementById('openBtn').onclick=()=>openFolder().catch(e=>{toast('Ouverture annulée/échouée','err');console.error(e)})
 document.getElementById('saveBtn').onclick=saveAll
+document.getElementById('syncLevelsBtn').onclick=syncItemLevels
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('active'))
   b.classList.add('active'); tab=b.dataset.tab; selId=null; render()
 })
 window.addEventListener('beforeunload', e=>{ if(dirty){e.preventDefault();e.returnValue=''} })
+tryRestoreFolder().catch(()=>{})
 if(!window.showDirectoryPicker){
   document.getElementById('openBtn').disabled=true
   document.getElementById('status').textContent='Navigateur non compatible (utilise Chrome/Edge)'

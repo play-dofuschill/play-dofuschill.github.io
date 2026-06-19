@@ -1,5 +1,30 @@
 // engine/stats.js — Calcul des stats et des dégâts DofusChill
 
+// ─── Helpers pour conditions d'items (Domakuro, Dorigami, Tacheté) ───────────
+
+function _memberHasDirectDmg(member) {
+    if (!member?.moves || typeof move === 'undefined') return false
+    return Object.values(member.moves).some(mid => {
+        if (!mid) return false
+        const mv = move[mid]
+        return mv?.effects?.some(e =>
+            e.type === 'damage' ||
+            e.type === 'best_element_damage' ||
+            e.type === 'worst_element_damage' ||
+            e.type === 'absorbElementDmg'
+        )
+    })
+}
+
+function _memberHasBuffDebuff(member) {
+    if (!member?.moves || typeof move === 'undefined') return false
+    return Object.values(member.moves).some(mid => {
+        if (!mid) return false
+        const mv = move[mid]
+        return mv?.effects?.some(e => e.type === 'buff' || e.type === 'debuff')
+    })
+}
+
 function getEffectiveStats(member, syncedLevel = null) {
     const cls = classes[member.classId]
     if (!cls) return null
@@ -259,6 +284,47 @@ function getEffectiveStats(member, syncedLevel = null) {
             } else if (pst === 'gueule_de_bois') {
                 finalDamagePct -= 20
                 for (const e in res) res[e] -= 10
+            }
+        }
+    }
+
+    // ─── Stacks on_kill (Dofus Sylvestre, Abyssal, Tacheté) ──────────────────────
+
+    if (_activeCombat) {
+        const _killMemberIdx = state.team.indexOf(member)
+        if (_killMemberIdx !== -1 && _activeCombat.dofusKillStacks?.[_killMemberIdx]) {
+            for (const [_stackItemId, _stackVal] of Object.entries(_activeCombat.dofusKillStacks[_killMemberIdx])) {
+                const _stackItm = typeof item !== 'undefined' ? item[_stackItemId] : null
+                if (!_stackItm?.effects) continue
+                for (const _sEff of _stackItm.effects) {
+                    if (!_sEff.on_kill) continue
+                    const _sStat = _sEff.on_kill.stat
+                    if      (_sStat === 'atk')        atk        += _stackVal
+                    else if (_sStat === 'spd')        spd        += _stackVal
+                    else if (_sStat === 'flatDamage') flatDamage += _stackVal
+                }
+            }
+        }
+    }
+
+    // ─── Bonus conditionnels d'items (Domakuro: no_direct_dmg, Dorigami: no_buff_debuff) ──
+
+    if (member.equip && typeof item !== 'undefined') {
+        for (const _cSlotId in member.equip) {
+            const _cItemId = member.equip[_cSlotId]
+            if (!_cItemId) continue
+            const _cItm = item[_cItemId]
+            if (!_cItm?.effects) continue
+            for (const _cEff of _cItm.effects) {
+                if (_cEff.type !== 'stat_bonus' || !_cEff.condition) continue
+                let _condMet = false
+                if (_cEff.condition === 'no_direct_dmg')  _condMet = !_memberHasDirectDmg(member)
+                if (_cEff.condition === 'no_buff_debuff') _condMet = !_memberHasBuffDebuff(member)
+                if (!_condMet) continue
+                if      (_cEff.stat === 'flatDamage')     flatDamage += _cEff.value
+                else if (_cEff.stat === 'atk')            atk        += _cEff.value
+                else if (_cEff.stat === 'spd')            spd        += _cEff.value
+                else if (_cEff.stat === 'finalDamagePct') finalDamagePct += _cEff.value
             }
         }
     }

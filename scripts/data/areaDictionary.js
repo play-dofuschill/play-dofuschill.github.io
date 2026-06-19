@@ -15,7 +15,7 @@ areas.cimetiereincarnam = {
     name: "Cimetiere d'Incarnam",
     minLevel: 1, maxLevel: 20,
     mobMinLevel: 1, mobMaxLevel: 10,
-    background: "cimetiere_incarnam",
+    background: "donjon_tofus",
     icon: "images/monsters/Chafer_Débutant.png",
     description: "Cimetière où reposent les âmes de nombreux aventuriers tombés au combat.",
     spawns: [
@@ -352,6 +352,9 @@ areas.fermeDragonCochon = {
 // #endregion
 
 // #region DONJONS ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 15
+// ─────────────────────────────────────────────────────────────────────────────
 
 areas.donjonIncarnam = {
     id: 'donjonIncarnam',
@@ -362,7 +365,7 @@ areas.donjonIncarnam = {
     mobMinLevel: 15, mobMaxLevel: 15,
     background: 'cimetiere_incarnam',
     icon: 'images/monsters/Kardorim.png',
-    description: "Les profondeurs d’Incarnam, placées sous la vigilance du redoutable Kardorim, ancien capitaine devenu aventurier, sont toujours parcourues en compagnie de son fidèle compagnon.",
+    description: "Les profondeurs d'Incarnam, placées sous la vigilance du redoutable Kardorim, ancien capitaine devenu aventurier, sont toujours parcourues en compagnie de son fidèle compagnon.",
     spawns: [{ id: 'kardorim',    weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
@@ -371,6 +374,11 @@ areas.donjonIncarnam = {
         { itemId: 'cape_de_kardorim',              dropRate: 0.03 }
     ]
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 25
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonMousse = {
     id: 'donjonMousse',
     type: 'dungeon',
@@ -417,6 +425,11 @@ areas.donjonChamps = {
         { itemId: 'la_plantouze_des_champs', dropRate: 0.06 }
     ]
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 35
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonBouftou = {
     id: 'donjonBouftou',
     type: 'dungeon',
@@ -440,6 +453,27 @@ areas.donjonBouftou = {
         { itemId: 'cuirasse_royale_du_bouftou', dropRate: 0.02 }
     ]
 }
+
+areas.donjonAcademieGobs = {
+    id: 'donjonAcademieGobs',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Akadémie des Gobs',
+    minLevel: 35, maxLevel: 35,
+    mobMinLevel: 35, mobMaxLevel: 35,
+    background: 'academie_gobs',
+    icon: 'images/monsters/Directeur_Grunob.png',
+    description: '',
+    spawns: [{ id: 'directeurGrunob', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 45
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonScarafeuille = {
     id: 'donjonScarafeuille',
     type: 'dungeon',
@@ -462,6 +496,59 @@ areas.donjonScarafeuille = {
         { itemId: 'baguette_du_scarabosse_dore',    dropRate: 0.01 }
     ]
 }
+
+areas.donjonSquelettes = {
+    id: 'donjonSquelettes',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon des Squelettes',
+    minLevel: 45, maxLevel: 45,
+    mobMinLevel: 45, mobMaxLevel: 45,
+    background: 'donjon_squelettes',
+    icon: 'images/monsters/Chafer_Rōnin.png',
+    description: "Dans les profondeurs d'un ancien cimetière oublié errent les âmes de guerriers incapables de trouver le repos. Les Chafers y poursuivent éternellement leurs combats, guidés par l'honneur perdu du redoutable Chafer Rônin.",
+    spawns: [{ id: 'chaferRonin', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonTofus = {
+    id: 'donjonTofus',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon des Tofus',
+    minLevel: 45, maxLevel: 45,
+    mobMinLevel: 45, mobMaxLevel: 45,
+    background: 'donjon_tofus',
+    icon: 'images/monsters/Batofu.png',
+    description: "Ce qui n'était autrefois qu'un simple nid est devenu un véritable royaume à plumes. Dans ce dédale de couloirs et de nids géants, les Tofus protègent farouchement leur territoire contre quiconque ose troubler leur tranquillité.",
+    spawns: [{ id: 'batofu', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonKankreblath = {
+    id: 'donjonKankreblath',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Cache de Kankreblath',
+    minLevel: 45, maxLevel: 45,
+    mobMinLevel: 45, mobMaxLevel: 45,
+    background: 'cache_kankreblath',
+    icon: 'images/monsters/Kankreblath.png',
+    description: '',
+    spawns: [{ id: 'kankreblath', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 55
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonKwakwa = {
     id: 'donjonKwakwa',
     type: 'dungeon',
@@ -481,6 +568,91 @@ areas.donjonKwakwa = {
         { itemId: 'kwakwalame',        dropRate: 0.02 }
     ]
 }
+
+areas.donjonBworks = {
+    id: 'donjonBworks',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon des Bworks',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: 'donjon_bworks',
+    icon: 'images/monsters/Bworkette.png',
+    description: "Au cœur des terres sauvages d'Amakna, les Bworks ont bâti un repaire aussi chaotique que ses habitants. Entre barricades de fortune et inventions douteuses, seule la loi du plus fort règne dans ces tunnels malodorants.",
+    spawns: [{ id: 'bworkette', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonForgerons = {
+    id: 'donjonForgerons',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon des Forgerons',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: 'donjon_forgerons',
+    icon: 'images/monsters/Coffre_des_Forgerons.png',
+    description: "Abandonnées depuis des années, les anciennes forges recèlent encore de nombreux trésors. Mais les richesses attirent les convoitises, et le mystérieux Coffre des Forgerons semblent prêts à tout pour protéger leur butin.",
+    spawns: [{ id: 'coffreDesForgerons', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonHesque = {
+    id: 'donjonHesque',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Grotte Hesque',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: 'grotte_hesque',
+    icon: 'images/monsters/Corailleur_Magistral.png',
+    description: "Sous les côtes d'Asse se cache un réseau de cavernes coralliennes où prospèrent d'étranges créatures marines. Les Corailleurs y règnent en maîtres, façonnant lentement la roche au gré des marées.",
+    spawns: [{ id: 'corailleurMagistral', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonLarves = {
+    id: 'donjonLarves',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon des Larves',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: 'donjon_larves',
+    icon: 'images/monsters/Shin_Larve.png',
+    description: "Dans les entrailles du monde s'étend un immense réseau de galeries creusées par des larves géantes. Au centre de cette ruche souterraine veille la légendaire Shin Larve, mère d'innombrables générations.",
+    spawns: [{ id: 'shinLarve', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonRefugeSylvestre = {
+    id: 'donjonRefugeSylvestre',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Refuge sylvestre',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: 'refuge_sylvestre',
+    icon: 'images/monsters/Rakoopeur.png',
+    description: '',
+    spawns: [{ id: 'rakoopeur', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 65
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonBlop = {
     id: 'donjonBlop',
     type: 'dungeon',
@@ -518,6 +690,59 @@ areas.donjonBlop = {
         { itemId: 'blopture_indigo_royale',      dropRate: 0.01 }
     ]
 }
+
+areas.donjonWabbit = {
+    id: 'donjonWabbit',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Château du Wa Wabbit',
+    minLevel: 65, maxLevel: 65,
+    mobMinLevel: 65, mobMaxLevel: 65,
+    background: 'chateau_wabbit',
+    icon: 'images/monsters/Wa_Wabbit.png',
+    description: "Pewché au sommet de l'île des Wabbits, ce château extwavagant abwite le célèbwe Wa Wabbit. Dewwièwe son appawence widicule se cache pouwtant un souverain impwévisible entouwé d'une awmée de wabbits dévoués.",
+    spawns: [{ id: 'waWabbit', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonKanniboul = {
+    id: 'donjonKanniboul',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Village Kanniboul',
+    minLevel: 65, maxLevel: 65,
+    mobMinLevel: 65, mobMaxLevel: 65,
+    background: 'village_kanniboul',
+    icon: 'images/monsters/Kanniboul_Ebil.png',
+    description: "Perdu dans la jungle de Moon, le village des Kannibouls demeure inaccessible aux étrangers. Les guerriers de la tribu y vénèrent d'anciennes traditions et accueillent rarement les visiteurs avec bienveillance.",
+    spawns: [{ id: 'kannibouleEbil', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonOtomaj = {
+    id: 'donjonOtomaj',
+    type: 'dungeon',
+    keyId: '',
+    name: "Cale de l'Arche d'Otomaï",
+    minLevel: 65, maxLevel: 65,
+    mobMinLevel: 65, mobMaxLevel: 65,
+    background: 'cale_otomaj',
+    icon: 'images/monsters/Gourlo_le_Terrible.png',
+    description: "Ancien navire échoué au large de l'île d'Otomaï, l'Arche est devenue le refuge du terrible pirate Gourlo. Les marins racontent encore que ses trésors maudits reposent quelque part dans ses cales inondées.",
+    spawns: [{ id: 'gourloLeТerrible', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 75
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonMantiscore = {
     id: 'donjonMantiscore',
     type: 'dungeon',
@@ -527,13 +752,50 @@ areas.donjonMantiscore = {
     mobMinLevel: 75, mobMaxLevel: 75,
     background: 'desertMantiscore',
     icon: 'images/monsters/Mantiscore.png',
-    description: "Au cœur du désert brûlant de Saharach, là où les Dunes des Ossements s'étendent à perte de vue, repose un lieu oublié du monde des vivants : le Cimetière des Mastodontes. Ces terres portent le souvenir d’une époque révolue, lorsque d’immenses créatures arpentant l’île s’effondraient ici, laissant derrière elles des squelettes titanesques enfouis sous le sable.",
+    description: "Au cœur du désert brûlant de Saharach, là où les Dunes des Ossements s'étendent à perte de vue, repose un lieu oublié du monde des vivants : le Cimetière des Mastodontes. Ces terres portent le souvenir d'une époque révolue, lorsque d'immenses créatures arpentant l'île s'effondraient ici, laissant derrière elles des squelettes titanesques enfouis sous le sable.",
     spawns: [{ id: 'mantiscore', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'gelano', dropRate: 0.03 }
     ]
 }
+
+areas.donjonCraqueleurs = {
+    id: 'donjonCraqueleurs',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Pitons Rocheux des Craqueleurs',
+    minLevel: 75, maxLevel: 75,
+    mobMinLevel: 75, mobMaxLevel: 75,
+    background: 'pitons_craqueleurs',
+    icon: 'images/monsters/Craqueleur_Légendaire.png',
+    description: "Au milieu d'impressionnants monolithes de pierre vivent les Craqueleurs, créatures nées des profondeurs de la terre. Dominant ces géants minéraux, le Craqueleur Légendaire incarne la force brute des montagnes d'Amakna.",
+    spawns: [{ id: 'craqueleurLegendaire', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonBrumen = {
+    id: 'donjonBrumen',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Laboratoire de Brumen Tinctorias',
+    minLevel: 75, maxLevel: 75,
+    mobMinLevel: 75, mobMaxLevel: 75,
+    background: 'labo_brumen',
+    icon: 'images/monsters/Nelween.png',
+    description: "Ancien repaire du célèbre bandit Brumen Tinctorias, ce laboratoire renferme encore les vestiges de ses expériences et de ses méfaits. Les lieux sont aujourd'hui hantés par les créatures et les inventions laissées à l'abandon.",
+    spawns: [{ id: 'nelween', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 85
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonDraegnerys = {
     id: 'donjonDraegnerys',
     type: 'dungeon',
@@ -552,6 +814,27 @@ areas.donjonDraegnerys = {
         { itemId: 'epis_de_shika',     dropRate: 0.02}
     ]
 }
+
+areas.donjonTerrierWabbit = {
+    id: 'donjonTerrierWabbit',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Terrier du Wa Wabbit',
+    minLevel: 85, maxLevel: 85,
+    mobMinLevel: 85, mobMaxLevel: 85,
+    background: 'terrier_wabbit',
+    icon: 'images/monsters/Wa_Wobot.png',
+    description: "Sous le château woyal s'étend un vaste wéseau de galewies où les Wabbits ont développé leuws plus étwanges inventions. Au cœuw de ce labywinthe mécanique veille le wedoutable Wa Wobot, pwotecteur du woyaume mais aussi du wéputé Dofus Cawotte.",
+    spawns: [{ id: 'waWobot', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 95
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonAbraknydeAncestral = {
     id: 'donjonAbraknydeAncestral',
     type: 'dungeon',
@@ -573,6 +856,75 @@ areas.donjonAbraknydeAncestral = {
         { itemId: 'abrature_ancestrale',   dropRate: 0.01}
     ]
 }
+
+areas.donjonKoulosse = {
+    id: 'donjonKoulosse',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Caverne du Koulosse',
+    minLevel: 95, maxLevel: 95,
+    mobMinLevel: 95, mobMaxLevel: 95,
+    background: 'caverne_koulosse',
+    icon: 'images/monsters/Koulosse.png',
+    description: "Caché dans les montagnes koalaks, cette immense grotte abrite le légendaire Koulosse. Mi-rasta, mi-divinité aux yeux de certains indigènes, il règne sur une jungle aussi mystérieuse que dangereuse. Attention aux fumées qui pourraient vous faire tourner la tête.",
+    spawns: [{ id: 'koulosse', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonReineNyee = {
+    id: 'donjonReineNyee',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Antre de la Reine Nyée',
+    minLevel: 95, maxLevel: 95,
+    mobMinLevel: 95, mobMaxLevel: 95,
+    background: 'antre_reine_nyee',
+    icon: 'images/monsters/Reine_Nyée.png',
+    description: '',
+    spawns: [{ id: 'reineNyee', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonChouque = {
+    id: 'donjonChouque',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Bateau du Chouque',
+    minLevel: 95, maxLevel: 95,
+    mobMinLevel: 95, mobMaxLevel: 95,
+    background: 'bateau_chouque',
+    icon: 'images/monsters/Le_Chouque.png',
+    description: '',
+    spawns: [{ id: 'leChouque', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+areas.donjonMagikRiktus = {
+    id: 'donjonMagikRiktus',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Chapiteau des Magik Riktus',
+    minLevel: 95, maxLevel: 95,
+    mobMinLevel: 95, mobMaxLevel: 95,
+    background: 'chapiteau_magik_riktus',
+    icon: 'images/monsters/Choudini.png',
+    description: '',
+    spawns: [{ id: 'choudini', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 105
+// ─────────────────────────────────────────────────────────────────────────────
+
 areas.donjonDragonCochon = {
     id: 'donjonDragonCochon',
     type: 'dungeon',
@@ -585,13 +937,1350 @@ areas.donjonDragonCochon = {
     description: "Au cœur du Territoire des Porcos se cache un dédale de galeries nauséabondes où résonnent grognements et rugissements. C'est ici que siège le Dragon Cochon, une créature contre-nature née de la fusion improbable entre la férocité d'un dragon et la brutalité d'un porc géant.",
     spawns: [{ id: 'dragonCochon', weight: 100 }],
     lootTable: [
-        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'pierreDameGardien',    dropRate: 0.40 },
         { itemId: 'cape_du_dragon_cochon',   dropRate: 0.02 },
         { itemId: 'coiffe_du_dragon_cochon', dropRate: 0.02 },
         { itemId: 'kaiser',   dropRate: 0.02 },
         { itemId: 'Dofus_Turquoise',      dropRate: 0.0005}
     ]
 }
+
+areas.donjonMeulou = {
+    id: 'donjonMeulou',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tanière du Meulou',
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: 'taniere_meulou',
+    icon: 'images/monsters/Meulou.png',
+    description: "Dans les profondeurs de la forêt, les hurlements du Meulou résonnent à travers les arbres. Cette créature maudite, à mi-chemin entre l'homme et le loup, traque sans relâche ceux qui osent pénétrer sur son territoire.",
+    spawns: [{ id: 'meulou', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Emeraude',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonRasboul = {
+    id: 'donjonRasboul',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Goulet du Rasboul',
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: 'goulet_rasboul',
+    icon: 'images/monsters/Silf_le_Rasboul_Majeur.png',
+    description: "Au cœur des plaines d'Otomaï se trouve le territoire du Rasboul Majeur. Ce gigantesque insecte ou que sais-je règne sur ces plaines et défend agilement son royaume au prix de la vie de ses invocations.",
+    spawns: [{ id: 'silfLeRasboulMajeur', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonDramak = {
+    id: 'donjonDramak',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Théâtre de Dramak',
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: 'theatre_dramak',
+    icon: 'images/monsters/Maître_des_Pantins.png',
+    description: '',
+    spawns: [{ id: 'maitreDePantins', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonMoon = {
+    id: 'donjonMoon',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Arbre de Moon',
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: 'arbre_moon',
+    icon: 'images/monsters/Moon.png',
+    description: '',
+    spawns: [{ id: 'moon', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonKharnozor = {
+    id: 'donjonKharnozor',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Repaire du Kharnozor',
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: 'repaire_kharnozor',
+    icon: 'images/monsters/Kharnozor.png',
+    description: '',
+    spawns: [{ id: 'kharnozor', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 115
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonCorbac = {
+    id: 'donjonCorbac',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Bibliothèque du Maître Corbac',
+    minLevel: 115, maxLevel: 115,
+    mobMinLevel: 115, mobMaxLevel: 115,
+    background: 'bibliotheque_corbac',
+    icon: 'images/monsters/Maître_Corbac.png',
+    description: "Derrière les rayonnages poussiéreux de cette bibliothèque oubliée se cache le domaine du Maître Corbac. Savant, collectionneur et manipulateur, il protège jalousement les connaissances accumulées au fil des siècles.",
+    spawns: [{ id: 'maitreCorbac', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Pourpre',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonRatBlanc = {
+    id: 'donjonRatBlanc',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Garde-manger du Rat Blanc',
+    minLevel: 115, maxLevel: 115,
+    mobMinLevel: 115, mobMaxLevel: 115,
+    background: 'gardemanger_rat',
+    icon: 'images/monsters/Rat_Blanc.png',
+    description: "Dans les égouts de Bonta, le Rat Blanc a bâti un véritable empire souterrain. Ses fidèles accumulent vivres et richesses, faisant de ce garde-manger l'un des lieux les plus convoités des profondeurs.",
+    spawns: [{ id: 'ratBlanc', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonRatNoir = {
+    id: 'donjonRatNoir',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Sousouricière du Rat Noir',
+    minLevel: 115, maxLevel: 115,
+    mobMinLevel: 115, mobMaxLevel: 115,
+    background: 'souriciere_rat',
+    icon: 'images/monsters/Rat_Noir.png',
+    description: "Sous les rues de Brâkmar s'étend le repaire du Rat Noir et de sa meute. Rusés et impitoyables, ces rongeurs ont transformé les souterrains en un royaume où règnent l'ombre et la maladie.",
+    spawns: [{ id: 'ratNoir', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonDamadrya = {
+    id: 'donjonDamadrya',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Bambusaie de Damadrya',
+    minLevel: 115, maxLevel: 115,
+    mobMinLevel: 115, mobMaxLevel: 115,
+    background: 'bambusaie_damadrya',
+    icon: 'images/monsters/Damadrya.png',
+    description: '',
+    spawns: [{ id: 'damadrya', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Domakuro',      dropRate: 0.0005}
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 125
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonMinotoror = {
+    id: 'donjonMinotoror',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Centre du Labyrinthe du Minotoror',
+    minLevel: 125, maxLevel: 125,
+    mobMinLevel: 125, mobMaxLevel: 125,
+    background: 'labyrinthe_minotoror',
+    icon: 'images/monsters/Minotoror.png',
+    description: "Depuis des siècles, le Minotoror attend les aventuriers assez courageux pour traverser son immense labyrinthe. Peu nombreux sont ceux qui atteignent son sanctuaire, et plus rares encore ceux qui en ressortent vivants.",
+    spawns: [{ id: 'minotoror', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonCrocabulia = {
+    id: 'donjonCrocabulia',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Antre de Crocabulia',
+    minLevel: 125, maxLevel: 125,
+    mobMinLevel: 125, mobMaxLevel: 125,
+    background: 'antre_crocabulia',
+    icon: 'images/monsters/Crocabulia.png',
+    description: "Au plus profond des montagnes dort Crocabulia, l'une des dernières dragonnes du Monde des Douze. Gardienne de trésors inestimables, elle n'accorde aucune pitié aux intrus. Bien qu'il court une rumeur concernant un sadida s'y étant frotté plus d'un millier de fois, mais tout ça n'est que rumeurs... n'est ce pas ?",
+    spawns: [{ id: 'crocabulia', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Vulbis',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonTofulaillerRoyal = {
+    id: 'donjonTofulaillerRoyal',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tofulailler Royal',
+    minLevel: 125, maxLevel: 125,
+    mobMinLevel: 125, mobMaxLevel: 125,
+    background: 'tofulailler_royal',
+    icon: 'images/monsters/Tofu_Royal.png',
+    description: "Des milliers de Tofus s'agitent dans ce gigantesque nid dirigé par leur souverain. Malgré son apparence inoffensive et plutot mignonne, le Tofu Royal défend farouchement sa couvée.",
+    spawns: [{ id: 'tofuRoyal', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonRoyalmouth = {
+    id: 'donjonRoyalmouth',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Serre du Royalmouth',
+    minLevel: 125, maxLevel: 125,
+    mobMinLevel: 125, mobMaxLevel: 125,
+    background: 'serre_royalmouth',
+    icon: 'images/monsters/Royalmouth.png',
+    description: "Dans les plaines glacées de Frigost, le Royalmouth règne sur une meute de créatures adaptées au froid extrême. Sa puissance et son endurance en font l'un des premiers grands dangers de l'île.",
+    spawns: [{ id: 'royalmouth', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonSkeunk = {
+    id: 'donjonSkeunk',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Repaire de Skeunk',
+    minLevel: 125, maxLevel: 125,
+    mobMinLevel: 125, mobMaxLevel: 125,
+    background: 'repaire_skeunk',
+    icon: 'images/monsters/Skeunk.png',
+    description: "Ancien disciple du dieu Sadida, Skeunk s'est isolé dans les profondeurs de la forêt avec ses poupées. Les aventuriers qui s'approchent de son domaine découvrent rapidement que sa folie n'a d'égale que sa puissance.",
+    spawns: [{ id: 'skeunk', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 135
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonBlopMulticolore = {
+    id: 'donjonBlopMulticolore',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Antre du Blop Multicolore Royal',
+    minLevel: 135, maxLevel: 135,
+    mobMinLevel: 135, mobMaxLevel: 135,
+    background: 'blop',
+    icon: 'images/monsters/Blop_Multicolore_Royal.png',
+    description: "Au centre du Clos des Blops réside une créature aussi étrange que redoutable. Né de l'union des différentes lignées de Blops, le Blop Multicolore Royal est le maître incontesté de ce royaume gélatineux. Il vous en fera voir de toutes les couleurs.",
+    spawns: [{ id: 'blopMulticoloreRoyal', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonHauteTruche = {
+    id: 'donjonHauteTruche',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Volière de la Haute Truche',
+    minLevel: 135, maxLevel: 135,
+    mobMinLevel: 135, mobMaxLevel: 135,
+    background: 'voliere_haute_truche',
+    icon: 'images/monsters/Haute_Truche.png',
+    description: '',
+    spawns: [{ id: 'hauteTruche', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonElPiko = {
+    id: 'donjonElPiko',
+    type: 'dungeon',
+    keyId: '',
+    name: "Caverne d'El Piko",
+    minLevel: 135, maxLevel: 135,
+    mobMinLevel: 135, mobMaxLevel: 135,
+    background: 'caverne_el_piko',
+    icon: 'images/monsters/El_Piko.png',
+    description: '',
+    spawns: [{ id: 'elPiko', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonDameEaux = {
+    id: 'donjonDameEaux',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Vallée de la Dame des eaux',
+    minLevel: 135, maxLevel: 135,
+    mobMinLevel: 135, mobMaxLevel: 135,
+    background: 'vallee_dame_eaux',
+    icon: 'images/monsters/Nagate.png',
+    description: '',
+    spawns: [{ id: 'nagate', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Domakuro',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonTanukoi = {
+    id: 'donjonTanukoi',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Atelier du Tanukouï San',
+    minLevel: 135, maxLevel: 135,
+    mobMinLevel: 135, mobMaxLevel: 135,
+    background: 'atelier_tanukoi',
+    icon: 'images/monsters/Tanukouï_San.png',
+    description: '',
+    spawns: [{ id: 'tanukouiSan', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Domakuro',      dropRate: 0.0005}
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 145
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonCheneMou = {
+    id: 'donjonCheneMou',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Clairière du Chêne Mou',
+    minLevel: 145, maxLevel: 145,
+    mobMinLevel: 145, mobMaxLevel: 145,
+    background: 'clairiere_chene_mou',
+    icon: 'images/monsters/Chêne_Mou.png',
+    description: "Autrefois sage parmi les siens, le Chêne Mou fut corrompu par une magie ancienne qui le plongea dans la folie. Depuis, il règne sur une partie de la Forêt des Abraknydes, transformant chaque intrus en ennemi de la nature.",
+    spawns: [{ id: 'cheneMou', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Turquoise',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonMansot = {
+    id: 'donjonMansot',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Excavation du Mansot Royal',
+    minLevel: 145, maxLevel: 145,
+    mobMinLevel: 145, mobMaxLevel: 145,
+    background: 'excavation_mansot',
+    icon: 'images/monsters/Mansot_Royal.png',
+    description: "Sur le Lac gelé de Frigost, les Mansots ont creusé un vaste réseau de galeries sous la glace. Leur souverain, le Mansot Royal, dirige son peuple avec une autorité aussi glaciale que son royaume.",
+    spawns: [{ id: 'mansotRoyal', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonTynril = {
+    id: 'donjonTynril',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Laboratoire du Tynril',
+    minLevel: 145, maxLevel: 145,
+    mobMinLevel: 145, mobMaxLevel: 145,
+    background: 'labo_tynril',
+    icon: 'images/monsters/Tynril_Consterné.png',
+    description: "Au cœur de l'île d'Otomaï subsistent les vestiges d'expériences biologiques menées sans aucune limite morale. Les Tynrils, créatures issues de ces manipulations, continuent d'errer dans le laboratoire en quête de nouvelles victimes.",
+    bossMode: 'any',
+    spawns: [
+        { id: 'tynrilConsterne',    weight: 25 },
+        { id: 'tynrilDeconcerte',   weight: 25 },
+        { id: 'tynrilPerfide',      weight: 25 },
+        { id: 'tynrilAhuri',        weight: 25 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonDojoVent = {
+    id: 'donjonDojoVent',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Dojo du Vent',
+    minLevel: 145, maxLevel: 145,
+    mobMinLevel: 145, mobMaxLevel: 145,
+    background: 'dojo_vent',
+    icon: 'images/monsters/Shihan.png',
+    description: '',
+    bossMode: 'any',
+    spawns: [
+        { id: 'shihan', weight: 50 },
+        { id: 'hanshi',  weight: 50 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Domakuro',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonFouxArtifice = {
+    id: 'donjonFouxArtifice',
+    type: 'dungeon',
+    keyId: '',
+    name: "Fabrique de foux d'artifice",
+    minLevel: 145, maxLevel: 145,
+    mobMinLevel: 145, mobMaxLevel: 145,
+    background: 'fabrique_foux_artifice',
+    icon: 'images/monsters/Founoroshi.png',
+    description: '',
+    spawns: [{ id: 'founoroshi', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Domakuro',      dropRate: 0.0005}
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 155
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonSphincter = {
+    id: 'donjonSphincter',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Repaire de Sphincter Cell',
+    minLevel: 155, maxLevel: 155,
+    mobMinLevel: 155, mobMaxLevel: 155,
+    background: 'repaire_sphincter',
+    icon: 'images/monsters/Sphincter_Cell.png',
+    description: '',
+    spawns: [{ id: 'sphincterCell', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonGrolandais = {
+    id: 'donjonGrolandais',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Épave du Grolandais violent',
+    minLevel: 155, maxLevel: 155,
+    mobMinLevel: 155, mobMaxLevel: 155,
+    background: 'epave_grolandais',
+    icon: 'images/monsters/Ben_le_Ripate.png',
+    description: "Le navire de Ben le Ripate gît désormais prisonnier des glaces de Frigost. Mais même immobilisé, le célèbre pirate continue de terroriser les mers du nord grâce à son équipage de corsaires et de pillards. Gare à son apparence de fantôme, son crochet lui, est bien réel.",
+    spawns: [{ id: 'benLeRipate', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonTertreSommeil = {
+    id: 'donjonTertreSommeil',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tertre du long sommeil',
+    minLevel: 155, maxLevel: 155,
+    mobMinLevel: 155, mobMaxLevel: 155,
+    background: 'tertre_long_sommeil',
+    icon: 'images/monsters/Hell_Mina.png',
+    description: '',
+    spawns: [{ id: 'hellMina', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Emeraude',      dropRate: 0.0005}
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 165
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonObsidiantre = {
+    id: 'donjonObsidiantre',
+    type: 'dungeon',
+    keyId: '',
+    name: "Hypogée de l'Obsidiantre",
+    minLevel: 165, maxLevel: 165,
+    mobMinLevel: 165, mobMaxLevel: 165,
+    background: 'hypogee_obsidiantre',
+    icon: 'images/monsters/Obsidiantre.png',
+    description: "Sous les terres volcaniques de Frigost sommeille l'Obsidiantre, une créature née de la lave et de la roche en fusion. Son réveil menace constamment l'équilibre fragile entre glace et feu qui règne sur l'île.",
+    spawns: [{ id: 'obsidiantre', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonKimbo = {
+    id: 'donjonKimbo',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Canopée du Kimbo',
+    minLevel: 165, maxLevel: 165,
+    mobMinLevel: 165, mobMaxLevel: 165,
+    background: 'canopee_kimbo',
+    icon: 'images/monsters/Kimbo.png',
+    description: "Au sommet des arbres géants de l'île d'Otomaï vit le Kimbo, gardien ancestral des lieux. Sa maîtrise de la flore et sa connaissance des secrets de l'île en font un adversaire aussi sage que redoutable.",
+    spawns: [{ id: 'kimbo', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonMinotot = {
+    id: 'donjonMinotot',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Salle du Minotot',
+    minLevel: 165, maxLevel: 165,
+    mobMinLevel: 165, mobMaxLevel: 165,
+    background: 'labyrinthe_minotoror',
+    icon: 'images/monsters/Minotot.png',
+    description: "Plus érudit que son cousin Minotoror, le Minotot règne au plus profond du légendaire labyrinthe. Les aventuriers qui parviennent jusqu'à lui doivent affronter autant son intelligence que sa puissance. On dit qu'il aime tellement les oeufs de tofu, qu'il en collectionnerait un bien particulier, infusé de pouvoirs magiques.",
+    spawns: [{ id: 'minotot', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Pourpre',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonKanigroula = {
+    id: 'donjonKanigroula',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Grotte de Kanigroula',
+    minLevel: 165, maxLevel: 165,
+    mobMinLevel: 165, mobMaxLevel: 165,
+    background: 'grotte_kanigroula',
+    icon: 'images/monsters/Kanigroula.png',
+    description: '',
+    spawns: [{ id: 'kanigroula', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonShogunTofugawa = {
+    id: 'donjonShogunTofugawa',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tombe du Shogun Tofugawa',
+    minLevel: 165, maxLevel: 165,
+    mobMinLevel: 165, mobMaxLevel: 165,
+    background: 'tombe_shogun',
+    icon: 'images/monsters/Shogun_Tofugawa.png',
+    description: '',
+    spawns: [{ id: 'shogunTofugawa', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Dorigami',      dropRate: 0.0005}
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 175
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonGivrefoux = {
+    id: 'donjonGivrefoux',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tanière Givrefoux',
+    minLevel: 175, maxLevel: 175,
+    mobMinLevel: 175, mobMaxLevel: 175,
+    background: 'taniere_givrefoux',
+    icon: 'images/monsters/Tengu_Givrefoux.png',
+    description: "Dans les montagnes enneigées de Frigost, les Givrefoux perpétuent d'antiques traditions héritées d'un passé oublié. Leur chef, le Tengu Givrefoux, veille jalousement sur son clan et ses secrets.",
+    spawns: [{ id: 'tenguGivrefoux', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonPereVer = {
+    id: 'donjonPereVer',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Boyau du Père Ver',
+    minLevel: 175, maxLevel: 175,
+    mobMinLevel: 175, mobMaxLevel: 175,
+    background: 'boyau_pere_ver',
+    icon: 'images/monsters/Père_Ver.png',
+    description: '',
+    spawns: [{ id: 'pereVer', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonDemeureEsprits = {
+    id: 'donjonDemeureEsprits',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Demeure des Esprits',
+    minLevel: 175, maxLevel: 175,
+    mobMinLevel: 175, mobMaxLevel: 175,
+    background: 'demeure_esprits',
+    icon: 'images/monsters/Koumiho.png',
+    description: '',
+    spawns: [{ id: 'koumiho', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Dorigami',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonSupervizoeuf = {
+    id: 'donjonSupervizoeuf',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Poste de contrôle du Supervizœuf',
+    minLevel: 175, maxLevel: 175,
+    mobMinLevel: 175, mobMaxLevel: 175,
+    background: 'poste_supervizoeuf',
+    icon: 'images/monsters/Supervizœuf.png',
+    description: '',
+    spawns: [{ id: 'supervizoeuf', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 185
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonBworker = {
+    id: 'donjonBworker',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Grotte du Bworker',
+    minLevel: 185, maxLevel: 185,
+    mobMinLevel: 185, mobMaxLevel: 185,
+    background: 'grotte_bworker',
+    icon: 'images/monsters/Bworker.png',
+    description: "Fruit d'expériences interdites menées sur les Bworks, le Bworker est devenu une abomination d'une puissance terrifiante. Son influence s'étend sur toutes les tribus voisines qui le considèrent comme un véritable dieu vivant.",
+    spawns: [{ id: 'bworker', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonOugah = {
+    id: 'donjonOugah',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Temple du Grand Ougah',
+    minLevel: 185, maxLevel: 185,
+    mobMinLevel: 185, mobMaxLevel: 185,
+    background: 'temple_ougah',
+    icon: 'images/monsters/Ougah.png',
+    description: "Au cœur de la forêt pétrifiée repose le temple du Grand Ougah, chef spirituel des Fungus. Les spores et champignons qui envahissent les lieux semblent obéir à sa seule volonté.",
+    spawns: [{ id: 'ougah', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonKolosso = {
+    id: 'donjonKolosso',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Cavernes du Kolosso',
+    minLevel: 185, maxLevel: 185,
+    mobMinLevel: 185, mobMaxLevel: 185,
+    background: 'cavernes_kolosso',
+    icon: 'images/monsters/Kolosso.png',
+    description: "Ancien disciple du Comte Harebourg, le Professeur Xa poursuit encore ses recherches sur le temps et les dimensions. Ses expériences ont transformé les créatures qui vivaient autrefoit dans ces cavernes.",
+    bossMode: 'any',
+    spawns: [
+        { id: 'kolosso',       weight: 50 },
+        { id: 'professeurXa',  weight: 50 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonSakai = {
+    id: 'donjonSakai',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon de la mine de Sakaï',
+    minLevel: 185, maxLevel: 185,
+    mobMinLevel: 185, mobMaxLevel: 185,
+    background: 'mine_sakai',
+    icon: 'images/monsters/Grolloum.png',
+    description: "Abandonnée depuis longtemps par les mineurs, la mine de Sakaï est devenue le territoire du redoutable Grolloum. Entre galeries effondrées et créatures sauvages, les richesses enfouies attirent toujours les aventuriers les plus téméraires.",
+    spawns: [{ id: 'grolloum', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonKorriandre = {
+    id: 'donjonKorriandre',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Antre du Korriandre',
+    minLevel: 185, maxLevel: 185,
+    mobMinLevel: 185, mobMaxLevel: 185,
+    background: 'antre_korriandre',
+    icon: 'images/monsters/Korriandre.png',
+    description: '',
+    spawns: [{ id: 'korriandre', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 195
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonGloursons = {
+    id: 'donjonGloursons',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Antichambre des Gloursons',
+    minLevel: 195, maxLevel: 195,
+    mobMinLevel: 195, mobMaxLevel: 195,
+    background: 'antichambre_gloursons',
+    icon: 'images/monsters/Glourséleste.png',
+    description: "Aux portes des remparts enneigés au sommet du Mont Torrideau se dresse une ruches au dimensions plutôt impressionnantes : la ruche du Glourséleste. Un royaume où prospèrent des créatures étranges, nées de l'évolution des aibeilles endémiques de Frigost. Leur maître règne sur cet écosystème unique, fruit d'années d'adaptation au froid.",
+    spawns: [{ id: 'gourseleste', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonOmbre = {
+    id: 'donjonOmbre',
+    type: 'dungeon',
+    keyId: '',
+    name: "Pyramide d'Ombre",
+    minLevel: 195, maxLevel: 195,
+    mobMinLevel: 200, mobMaxLevel: 200,
+    background: 'pyramide_ombre',
+    icon: 'images/monsters/Ombre.png',
+    description: '',
+    spawns: [{ id: 'ombre', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonRazof = {
+    id: 'donjonRazof',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Camp du Comte Razof',
+    minLevel: 195, maxLevel: 195,
+    mobMinLevel: 200, mobMaxLevel: 200,
+    background: 'camp_razof',
+    icon: 'images/monsters/Comte_Razof.png',
+    description: '',
+    spawns: [{ id: 'comteRazof', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+areas.donjonBastionMarteaux = {
+    id: 'donjonBastionMarteaux',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Bastion des Marteaux-Aigris',
+    minLevel: 195, maxLevel: 195,
+    mobMinLevel: 200, mobMaxLevel: 200,
+    background: 'bastion_marteaux',
+    icon: 'images/monsters/Barbéryl_Clochecuivre.png',
+    description: '',
+    spawns: [{ id: 'barberyClocheCuivre', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NIVEAU 200
+// ─────────────────────────────────────────────────────────────────────────────
+
+areas.donjonSylargh = {
+    id: 'donjonSylargh',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Transporteur de Sylargh',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'transporteur_sylargh',
+    icon: 'images/monsters/Sylargh.png',
+    description: '',
+    spawns: [{ id: 'sylargh', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonKlime = {
+    id: 'donjonKlime',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Salons privés de Klime',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'salons_klime',
+    icon: 'images/monsters/Klime.png',
+    description: '',
+    spawns: [{ id: 'klime', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonMissizFrizz = {
+    id: 'donjonMissizFrizz',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Forgefroide de Missiz Frizz',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'forgefroide_missiz_frizz',
+    icon: 'images/monsters/Missiz_Frizz.png',
+    description: '',
+    spawns: [{ id: 'missizFrizz', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonNileza = {
+    id: 'donjonNileza',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Laboratoire de Nileza',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'laboratoire_nileza',
+    icon: 'images/monsters/Nileza.png',
+    description: '',
+    spawns: [{ id: 'nileza', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonHarebourg = {
+    id: 'donjonHarebourg',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Donjon du Comte Harebourg',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'donjon_harebourg',
+    icon: 'images/monsters/Comte_Harebourg.png',
+    description: '',
+    spawns: [{ id: 'comteHarebourg', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonMerkator = {
+    id: 'donjonMerkator',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Aquadôme de Merkator',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'aquadome_merkator',
+    icon: 'images/monsters/Merkator.png',
+    description: '',
+    spawns: [{ id: 'merkator', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Abyssal',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonBaleine = {
+    id: 'donjonBaleine',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Ventre de la Baleine',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'ventre_baleine',
+    icon: 'images/monsters/Protozorreur.png',
+    description: '',
+    spawns: [{ id: 'protozorreur', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonMeno = {
+    id: 'donjonMeno',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Vaisseau du Capitaine Meno',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'vaisseau_meno',
+    icon: 'images/monsters/Capitaine_Meno.png',
+    description: '',
+    spawns: [{ id: 'capitaineMeno', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Abyssal',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonKoutoulou = {
+    id: 'donjonKoutoulou',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Temple de Koutoulou',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'temple_koutoulou',
+    icon: 'images/monsters/Larve_de_Koutoulou.png',
+    description: '',
+    spawns: [{ id: 'larveDeKoutoulou', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Abyssal',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonDantinea = {
+    id: 'donjonDantinea',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Palais de Dantinéa',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'palais_dantinea',
+    icon: 'images/monsters/Dantinéa.png',
+    description: '',
+    spawns: [{ id: 'dantinea', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Abyssal',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonKatrepat = {
+    id: 'donjonKatrepat',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Manoir des Katrepat',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'manoir_katrepat',
+    icon: 'images/monsters/Anerice_la_Shushess.png',
+    description: '',
+    spawns: [{ id: 'anericeShushess', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonIlyzaelle = {
+    id: 'donjonIlyzaelle',
+    type: 'dungeon',
+    keyId: '',
+    name: "Belvédère d'Ilyzaelle",
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'belvedere_ilyzaelle',
+    icon: 'images/monsters/Ilyzaelle.png',
+    description: '',
+    spawns: [{ id: 'ilyzaelle', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Ivoire',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonBethel = {
+    id: 'donjonBethel',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tour de Bethel',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'tour_bethel',
+    icon: 'images/monsters/Bethel_Akarna.png',
+    description: '',
+    spawns: [{ id: 'bethelAkarna', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Ebene',      dropRate: 0.0005},
+        { itemId: 'Dofus_Forgelave',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonSolar = {
+    id: 'donjonSolar',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Tour de Solar',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'tour_solar',
+    icon: 'images/monsters/Solar.png',
+    description: '',
+    spawns: [{ id: 'solar', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Ebene',      dropRate: 0.0005},
+        { itemId: 'Dofus_Forgelave',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonDazak = {
+    id: 'donjonDazak',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Brasserie du roi Dazak',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'brasserie_dazak',
+    icon: 'images/monsters/Dazak_Martegel.png',
+    description: '',
+    spawns: [{ id: 'dazakMartegel', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonTorkelonia = {
+    id: 'donjonTorkelonia',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Sanctuaire de Torkélonia',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'sanctuaire_torkelonia',
+    icon: 'images/monsters/Torkélonia.png',
+    description: '',
+    spawns: [{ id: 'torkelonia', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonArbreMort = {
+    id: 'donjonArbreMort',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Arbre de Mort',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'arbre_mort',
+    icon: 'images/monsters/Corruption.png',
+    description: '',
+    spawns: [{ id: 'corruption', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonTyrannie = {
+    id: 'donjonTyrannie',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Fers de la Tyrannie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'fers_tyrannie',
+    icon: 'images/monsters/Servitude.png',
+    description: '',
+    spawns: [{ id: 'servitude', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonBalance = {
+    id: 'donjonBalance',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Sentence de la Balance',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'sentence_balance',
+    icon: 'images/monsters/Misère.png',
+    description: '',
+    spawns: [{ id: 'misere', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonTroneSang = {
+    id: 'donjonTroneSang',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Trône de Sang',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'trone_sang',
+    icon: 'images/monsters/Guerre.png',
+    description: '',
+    spawns: [{ id: 'guerre', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonTalKasha = {
+    id: 'donjonTalKasha',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Chambre de Tal Kasha',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'chambre_tal_kasha',
+    icon: 'images/monsters/Tal_Kasha.png',
+    description: '',
+    spawns: [{ id: 'talKasha', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonKabahal = {
+    id: 'donjonKabahal',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Rituel de Kabahal',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'rituel_kabahal',
+    icon: 'images/monsters/Kabahal.png',
+    description: '',
+    spawns: [{ id: 'kabahal', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonAurorePourpre = {
+    id: 'donjonAurorePourpre',
+    type: 'dungeon',
+    keyId: '',
+    name: "Bataille de l'Aurore Pourpre",
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'aurore_pourpre',
+    icon: 'images/monsters/L_Éternel_Conflit.png',
+    description: '',
+    spawns: [{ id: 'eternelConflit', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_du_Cauchemard',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonMalefices = {
+    id: 'donjonMalefices',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Chambre des maléfices',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'chambre_malefices',
+    icon: 'images/monsters/Belladone.png',
+    description: '',
+    spawns: [{ id: 'belladone', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'Dofus_Sylvestre',      dropRate: 0.0005}
+    ]
+}
+
+areas.donjonBreuil = {
+    id: 'donjonBreuil',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Breuil du Vénérable',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'breuil_venerable',
+    icon: 'images/monsters/Vénérable_Endormi.png',
+    description: '',
+    spawns: [{ id: 'venerableEndormi', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+areas.donjonDechireuse = {
+    id: 'donjonDechireuse',
+    type: 'dungeon',
+    keyId: '',
+    name: 'Autel de la Déchireuse',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'autel_dechireuse',
+    icon: 'images/monsters/Déchireuse.png',
+    description: '',
+    spawns: [{ id: 'dechireuse', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+    ]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SAISONNIERS (à décommenter si besoin)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// areas.donjonHalouine = {
+//     id: 'donjonHalouine',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: "Potager d'Halouine",
+//     minLevel: 105, maxLevel: 105,
+//     mobMinLevel: 105, mobMaxLevel: 105,
+//     background: 'potager_halouine',
+//     icon: 'images/monsters/Halouine.png',
+//     description: '',
+//     spawns: [{ id: 'halouine', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+// areas.donjonNowel = {
+//     id: 'donjonNowel',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: 'Donjon de Nowel',
+//     minLevel: 55, maxLevel: 55,
+//     mobMinLevel: 55, mobMaxLevel: 55,
+//     background: 'donjon_nowel',
+//     icon: 'images/monsters/Sapik.png',
+//     description: '',
+//     spawns: [{ id: 'sapik', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+// areas.donjonCaverneNowel = {
+//     id: 'donjonCaverneNowel',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: 'Caverne de Nowel',
+//     minLevel: 115, maxLevel: 115,
+//     mobMinLevel: 115, mobMaxLevel: 115,
+//     background: 'caverne_nowel',
+//     icon: 'images/monsters/Papa_Nowel.png',
+//     description: '',
+//     spawns: [{ id: 'papaNowel', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+// areas.donjonPapaNowel = {
+//     id: 'donjonPapaNowel',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: 'Maison du Papa Nowel',
+//     minLevel: 175, maxLevel: 175,
+//     mobMinLevel: 175, mobMaxLevel: 175,
+//     background: 'maison_papa_nowel',
+//     icon: 'images/monsters/Père_Fwetar.png',
+//     description: '',
+//     spawns: [{ id: 'pereFwetar', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+// areas.donjonWaddicts = {
+//     id: 'donjonWaddicts',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: 'Fonderie des Waddicts',
+//     minLevel: 65, maxLevel: 65,
+//     mobMinLevel: 65, mobMaxLevel: 65,
+//     background: 'fonderie_waddicts',
+//     icon: 'images/monsters/Mawabouaino.png',
+//     description: '',
+//     spawns: [{ id: 'mawabouaino', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+// areas.donjonCroquanterie = {
+//     id: 'donjonCroquanterie',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: 'Croquanterie',
+//     minLevel: 135, maxLevel: 135,
+//     mobMinLevel: 135, mobMaxLevel: 135,
+//     background: 'croquanterie',
+//     icon: 'images/monsters/Croqueleur.png',
+//     description: '',
+//     spawns: [{ id: 'croqueleur', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+// areas.donjonKao = {
+//     id: 'donjonKao',
+//     type: 'dungeon',
+//     keyId: '',
+//     name: 'Temple du dieu Kao',
+//     minLevel: 200, maxLevel: 200,
+//     mobMinLevel: 220, mobMaxLevel: 220,
+//     background: 'temple_kao',
+//     icon: 'images/monsters/Prêtresse_de_Kao.png',
+//     description: '',
+//     spawns: [{ id: 'pretresseDeKao', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+//         { itemId: '',       dropRate: 0.01 },
+//     ]
+// }
+
 // #endregion
 
 // #region EVENTS ─────────────────────────────────────────────────────────────
@@ -809,10 +2498,6 @@ areas.evenementForetAstrub = {
 }
 
 
-
-
-
-
 // #endregion
 
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
@@ -833,7 +2518,7 @@ areas.raidDofusArgenté = {
     miniBoss: { id: 'Rathrosk', everyKills: 6, statMult: 1 },
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'Dofus_Argente', dropRate: 0.001 }
+        { itemId: 'Dofus_Argente', dropRate: 0.01 }
     ],
     lootTable: []
 }
@@ -866,6 +2551,70 @@ areas.raidGelees = {
         { itemId: 'gelano',      dropRate: 0.01 }
     ]
 }
+areas.raidMallefisk = {
+    id: 'raidMallefisk',
+    name: 'Fabrique de Malléfisk',
+    type: 'raid',
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: 'fabrique_mallefisk',
+    icon: 'images/monsters/Malléfisk.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'mallefisk', everyKills: 9, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
+areas.raidPounicheur = {
+    id: 'raidPounicheur',
+    type: 'raid',
+    name: 'Miausolée du Pounicheur',
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: 'miausolee_pounicheur',
+    icon: 'images/monsters/Pounicheur.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'pounicheur', everyKills: 9, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
+areas.raidFraktale = {
+    id: 'raidFraktale',
+    type: 'raid',
+    name: 'Mégalithe de Fraktale',
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: 'megalith_fraktale',
+    icon: 'images/monsters/Fraktale.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'fraktale', everyKills: 9, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
+areas.raidEkarlatte = {
+    id: 'raidEkarlatte',
+    type: 'raid',
+    name: 'Ring du Capitaine Ekarlatte',
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: 'ring_ekarlatte',
+    icon: 'images/monsters/Capitaine_Ekarlatte.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'capitaineEkarlatte', everyKills: 9, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
 areas.raidTourbeduRoissingue = {
     id: 'raidTourbeduRoissingue',
     name: 'Raid de la tourbière du Roissingue',
@@ -880,7 +2629,7 @@ areas.raidTourbeduRoissingue = {
         { id: 'LEouassingue',   weight: 15 },
         { id: 'tourbassingue',    weight: 35 },
         { id: 'bourbassingue',    weight: 35 }],
-    miniBoss: {id: 'roissingue', everyKills: 10, statMult: 1},
+    miniBoss: {id: 'roissingue', everyKills: 9, statMult: 1},
     lootTable: [
         { itemId: 'pierreDame',          dropRate: 0.35 },
         { itemId: 'cape_de_la_ouassingue',     dropRate: 0.005 },
@@ -893,6 +2642,72 @@ areas.raidTourbeduRoissingue = {
         { itemId: 'cape_souveraine_du_roissingue',      dropRate: 0.01 },
         { itemId: 'capuche_souveraine_du_roissingue',    dropRate: 0.01 },
         { itemId: 'sceau_souverain_du_roissingue',    dropRate: 0.01 }
+    ]
+}
+
+areas.raidPhossile = {
+    id: 'raidPhossile',
+    type: 'raid',
+    name: 'Galerie du Phossile',
+    minLevel: 140, maxLevel: 160,
+    mobMinLevel: 140, mobMaxLevel: 150,
+    background: 'galerie_phossile',
+    icon: 'images/monsters/Phossile.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'phossile', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
+areas.raidUsh = {
+    id: 'raidUsh',
+    type: 'raid',
+    name: 'Plateau de Ush',
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: 'plateau_ush',
+    icon: 'images/monsters/Ush_Galesh.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'ushGalesh', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
+
+areas.raidXLII = {
+    id: 'raidXLII',
+    type: 'raid',
+    name: 'Horologium de XLII',
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: 'horologium_xlii',
+    icon: 'images/monsters/XLII.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'xlii', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+    ]
+}
+areas.raidToxoliath = {
+    id: 'raidToxoliath',
+    type: 'raid',
+    name: 'Cave du Toxoliath',
+    minLevel: 160, maxLevel: 180,
+    mobMinLevel: 160, mobMaxLevel: 170,
+    background: 'cave_toxoliath',
+    icon: 'images/monsters/Toxoliath.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'toxoliath', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
     ]
 }
 areas.raidKralamoureGeant = {
@@ -918,7 +2733,123 @@ areas.raidKralamoureGeant = {
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',   dropRate: 0.45 },
-        { itemId: 'Dofus_Ocre',           dropRate: 0.005 }
+        { itemId: 'Dofus_Ocre',           dropRate: 0.01 }
     ]
+}
+areas.raidNidas = {
+    id: 'raidNidas',
+    type: 'raid',
+    name: 'Palais du roi Nidas',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'palais_nidas',
+    icon: 'images/monsters/Roi_Nidas.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'roiNidas', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+       { itemId: 'Dofus_Nebuleux',      dropRate: 0.01},
+       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+}
+
+areas.raidCourSombre = {
+    id: 'raidCourSombre',
+    type: 'raid',
+    name: 'Trône de la Cour Sombre',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'trone_cour_sombre',
+    icon: 'images/monsters/Reine_des_Voleurs.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'reineDesVoleurs', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+       { itemId: 'Dofus_Nebuleux',      dropRate: 0.01},
+       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+}
+areas.raidVortex = {
+    id: 'raidVortex',
+    type: 'raid',
+    name: 'Œil de Vortex',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'oeil_vortex',
+    icon: 'images/monsters/Vortex.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'vortex', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+       { itemId: 'Dofus_Nebuleux',      dropRate: 0.01},
+       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+}
+
+areas.raidChaloeil = {
+    id: 'raidChaloeil',
+    type: 'raid',
+    name: 'Défi du Chalœil',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'defi_chaloeil',
+    icon: 'images/monsters/Chalœil.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'chaloeil', everyKills: 12, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+       { itemId: 'Dofus_Ivoire',      dropRate: 0.01},
+       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+}
+areas.raidOrukam = {
+    id: 'raidOrukam',
+    type: 'raid',
+    name: "Mémoire d'Orukam",
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'memoire_orukam',
+    icon: 'images/monsters/Roi_Imagami.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'roiImagami', everyKills: 9, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+       { itemId: 'Dofus_Tachete',      dropRate: 0.01},
+       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+}
+
+areas.raidImagiro = {
+    id: 'raidImagiro',
+    type: 'raid',
+    name: "Souvenir d'Imagiro",
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'souvenir_imagiro',
+    icon: 'images/monsters/Reine_Amirukam.png',
+    description: '',
+    spawns: [],
+    miniBoss: {id: 'reineAmirukam', everyKills: 9, statMult: 1},
+    lootTable: [],
+    miniBossLootTable: [
+       { itemId: 'Dofus_Tachete',      dropRate: 0.01},
+       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+}
+areas.raidEliocalypse = {
+    id: 'raidEliocalypse',
+    type: 'raid',
+    name: "Tempête de l'Eliocalypse",
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 220, mobMaxLevel: 220,
+    background: 'tempete_eliocalypse',
+    icon: 'images/monsters/Corruption.png',
+    description: '',
+    spawns: [
+        { id: 'servitude',  weight: 33 },
+        { id: 'misere',     weight: 33 },
+        { id: 'guerre',     weight: 34 },
+        { id: 'corruption',     weight: 34 },
+    ],
+    lootTable: [{ itemId: 'pierreDameGardien',         dropRate: 0.45 }],
 }
 // #endregion RAIDS

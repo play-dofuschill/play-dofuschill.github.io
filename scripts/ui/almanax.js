@@ -74,7 +74,7 @@ const ALMANAX_REWARDS = {
     },
     commun: {
         label: 'Commun',
-        color: '#383838',
+        color: '#ECDEB7',
         chance: 1,
         pool: [
             { itemId: 'piloteAutomatique',      qty: 1 },
@@ -148,8 +148,10 @@ function claimAlmanax() {
     const body = `
         <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;padding:0.5rem 0;">
             ${tierBadge}
-            <img src="${imgSrc}" onerror="this.src='img/icons/icon.png'"
-                 style="width:5rem;height:5rem;object-fit:contain;filter:drop-shadow(0 0 14px ${color});">
+            <div style="background:var(--dark2);border-radius:50%;padding:0.6rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <img src="${imgSrc}" onerror="this.src='img/icons/icon.png'"
+                     style="width:4rem;height:4rem;object-fit:contain;filter:drop-shadow(0 0 10px ${color});">
+            </div>
             <div style="font-size:1.1rem;font-weight:bold;color:${color};background:var(--dark2);padding:0.3rem 1rem;border-radius:0.5rem;">Almanax du jour réclamé !</div>
             <div style="font-size:0.9rem;opacity:0.8;text-align:center;">Vous recevez ${rewardLine}.</div>
             <div style="font-size:0.75rem;opacity:0.5;">Revenez demain pour une nouvelle récompense.</div>

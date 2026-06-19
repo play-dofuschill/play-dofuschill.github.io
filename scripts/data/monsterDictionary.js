@@ -59,65 +59,6 @@ monsters. = {
 
 const monsters = {}
 
-// monsterDictionary.js — Monstres DofusChill
-//
-/*
-monsters. = {
-    id: '',
-    name: '',
-    image: 'images/monsters/.png',
-    rarity: 'commun','peu_commun','rare','legendaire',
-    tier: 'boss','elite', 'normal'
-    bst: {
-        hp: 1, atk: 1, spd: 100,
-        res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 },
-        // Stats critiques (defaults si absent : critChance=5, critDamagePct=50, res.crit=0)
-        critChance: 5, critDamagePct: 50,
-        // res.crit : résistance critique — réduit le bonus de dégâts critiques reçus
-    },
-    // Format simple : tableau de sorts → ordre aléatoire au spawn (max 4 tirés si + de 4)
-    moves: ['sort_A', 'sort_B', 'sort_C'],
-
-    // Format avancé : pool (tirés aléatoirement) + fixed (toujours en dernier, dans l'ordre)
-    // Le nb de slots aléatoires = 4 - fixed.length
-    // Exemples :
-    //   { pool: ['C','D','E'], fixed: ['A','B'] }  → [random, random, A, B]
-    //   { pool: ['D','E'],     fixed: ['A','B','C'] } → [random, A, B, C]
-    //   { fixed: ['A','B','C','D'] }               → [A, B, C, D]  (aucun aléa)
-    moves: { pool: ['sort_C', 'sort_D'], fixed: ['sort_A', 'sort_B'] },
-}
-*/
-
-// ═══════════════════════════════════════════════════════
-// #region EXEMPLE
-
-
-
-// ═══════════════════════════════════════════════════════
-// DONJON EXEMPLE
-// ═══════════════════════════════════════════════════════
-// monsters. = {
-//     id: '',
-//     name: '',
-//     image: 'images/monsters/.png',
-//     rarity: 'commun','peu_commun','rare','legendaire',
-//     tier: 'boss','elite', 'normal'
-//     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', '']
-// }
-// #endregion
-
-
-// possibilité d'ajouter la fonction de trigger pour déclancher l'effet d'un familier
-
-// trigger: 'onKill',
-// effects: [
-//     { type: 'stat', stat: 'atk', value: 1 }
-// ]
-
 monsters.poulpor = {
     id: 'poulpor',
     name: 'Poulpor',
@@ -147,6 +88,7 @@ monsters.amas_de_tentacules = {
     bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.volkornade = {
     id: 'volkornade',
     name: 'Volkornade',
@@ -526,6 +468,7 @@ monsters.aminite = {
     bst: { hp: 28, atk: 45, spd: 100, res: { neutre: 20, terre: 0, feu: -10, eau: 10, air: -10 } },
     moves: []
 }
+
 monsters.chaferEclaireur = {
     id: 'chaferEclaireur',
     name: 'Chafer Éclaireur',
@@ -555,6 +498,7 @@ monsters.ronronchon = {
     bst: { hp: 32, atk: 10, spd: 100, res: { neutre: 0, terre: 0, feu: -10, eau: 2, air: -10 } },
     moves: []
 }
+
 monsters.chaferPiquier = {
     id: 'chaferPiquier',
     name: 'Chafer Piquier',
@@ -584,6 +528,7 @@ monsters.tofu_malade = {
     bst: { hp: 44, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: 6, eau: 0, air: -14 } },
     moves: []
 }
+
 monsters.arakne_minuscule = {
     id: 'arakne_minuscule',
     name: 'Arakne Minuscule',
@@ -723,6 +668,7 @@ monsters.arakmute = {
     bst: { hp: 49, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: -14, eau: 6, air: 11 } },
     moves: []
 }
+
 monsters.cadeau_anime = {
     id: 'cadeau_anime',
     name: 'Cadeau animé',
@@ -732,6 +678,7 @@ monsters.cadeau_anime = {
     bst: { hp: 55, atk: 38, spd: 100, res: { neutre: -5, terre: 5, feu: 10, eau: -20, air: 10 } },
     moves: []
 }
+
 monsters.bomberfu = {
     id: 'bomberfu',
     name: 'Bomberfu',
@@ -751,6 +698,7 @@ monsters.kolerat_strubien = {
     bst: { hp: 72, atk: 96, spd: 100, res: { neutre: -5, terre: -5, feu: -5, eau: -5, air: -5 } },
     moves: []
 }
+
 monsters.tofu_degenere = {
     id: 'tofu_degenere',
     name: 'Tofu Dégénéré',
@@ -990,6 +938,7 @@ monsters.poutch_ingball = {
     bst: { hp: 50000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.poutch_vil_smisse = {
     id: 'poutch_vil_smisse',
     name: 'Poutch Vil Smisse',
@@ -999,6 +948,7 @@ monsters.poutch_vil_smisse = {
     bst: { hp: 50000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.poutch_ombre = {
     id: 'poutch_ombre',
     name: 'Poutch Ombre',
@@ -1038,6 +988,7 @@ monsters.poutch_crane_rose = {
     bst: { hp: 50000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.workette = {
     id: 'workette',
     name: 'Workette',
@@ -1187,6 +1138,7 @@ monsters.krokille_juvenile_seche = {
     bst: { hp: 130, atk: 25, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
     moves: []
 }
+
 monsters.ecurouille = {
     id: 'ecurouille',
     name: 'Écurouille',
@@ -1356,6 +1308,7 @@ monsters.pikdoa = {
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: -9, feu: 6, eau: 11, air: 16 } },
     moves: []
 }
+
 monsters.bouftou = {
     id: 'bouftou',
     name: 'Bouftou',
@@ -1665,6 +1618,7 @@ monsters.biblop_indigo = {
     bst: { hp: 210, atk: 70, spd: 100, res: { neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 } },
     moves: ['bibloperie_eau', 'biblopiment_eau']
 }
+
 monsters.bouftou_d_halouine = {
     id: 'bouftou_d_halouine',
     name: 'Bouftou d\'Halouine',
@@ -1814,6 +1768,7 @@ monsters.kwoan = {
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 16, terre: 6, feu: 0, eau: 11, air: -14 } },
     moves: []
 }
+
 monsters.tofoune = {
     id: 'tofoune',
     name: 'Tofoune',
@@ -2073,6 +2028,7 @@ monsters.michelangela = {
     bst: { hp: 310, atk: 128, spd: 100, res: { neutre: 50, terre: 30, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.ceglumen = {
     id: 'ceglumen',
     name: 'Céglumen',
@@ -2382,6 +2338,7 @@ monsters.corailleur = {
     bst: { hp: 370, atk: 100, spd: 100, res: { neutre: 5, terre: 17, feu: -10, eau: -5, air: 12 } },
     moves: []
 }
+
 monsters.chafer_archer = {
     id: 'chafer_archer',
     name: 'Chafer Archer',
@@ -2451,6 +2408,7 @@ monsters.arakne_poilue = {
     bst: { hp: 400, atk: 100, spd: 100, res: { neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 } },
     moves: ['Absorption_Sanguine', 'Ralentissement_Arakneen']
 }
+
 monsters.tiwabbit_kiafin = {
     id: 'tiwabbit_kiafin',
     name: 'Tiwabbit Kiafin',
@@ -2960,6 +2918,7 @@ monsters.bwak_de_flamme = {
     bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 50, terre: 0, feu: 50, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.sanglier_des_plaines = {
     id: 'sanglier_des_plaines',
     name: 'Sanglier des Plaines',
@@ -3189,6 +3148,7 @@ monsters.totem_de_la_terre = {
     bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.sousouris_agressive = {
     id: 'sousouris_agressive',
     name: 'Sousouris Agressive',
@@ -3228,6 +3188,7 @@ monsters.chafer_d_elite = {
     bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 0, terre: 16, feu: 21, eau: 6, air: 11 } },
     moves: []
 }
+
 monsters.noeul = {
     id: 'noeul',
     name: 'Noeul',
@@ -3427,6 +3388,7 @@ monsters.poupee_aycetroy = {
     bst: { hp: 610, atk: 25, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.rat_d_hyoactif = {
     id: 'rat_d_hyoactif',
     name: 'Rat d\'Hyoactif',
@@ -3646,6 +3608,7 @@ monsters.gelee_citron = {
     bst: { hp: 650, atk: 150, spd: 110, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['Gelpikes', 'Citron_Os', 'Tartinade']
 }
+
 monsters.souris_verte = {
     id: 'souris_verte',
     name: 'Souris Verte',
@@ -3705,6 +3668,7 @@ monsters.blopReinette = {
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 } },
     moves: ['bibloperie_terre', 'biblopiment_terre']
 }
+
 monsters.guerrier_mental = {
     id: 'guerrier_mental',
     name: 'Guerrier Mental',
@@ -3724,6 +3688,7 @@ monsters.wadnozeam = {
     bst: { hp: 680, atk: 100, spd: 100, res: { neutre: 10, terre: 15, feu: 5, eau: 0, air: 7 } },
     moves: []
 }
+
 monsters.larve_champetre = {
     id: 'larve_champetre',
     name: 'Larve Champêtre',
@@ -3823,6 +3788,7 @@ monsters.elementerre = {
     bst: { hp: 750, atk: 236, spd: 100, res: { neutre: 21, terre: 50, feu: -24, eau: 9, air: -14 } },
     moves: []
 }
+
 monsters.koalak_immature = {
     id: 'koalak_immature',
     name: 'Koalak Immature',
@@ -4272,6 +4238,7 @@ monsters.pekeualak = {
     bst: { hp: 990, atk: 138, spd: 100, res: { neutre: 10, terre: -10, feu: 60, eau: 50, air: 10 } },
     moves: []
 }
+
 monsters.black_wo_wabbit = {
     id: 'black_wo_wabbit',
     name: 'Black Wo Wabbit',
@@ -5141,6 +5108,7 @@ monsters.coffre_sombre = {
     bst: { hp: 1500, atk: 425, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
     moves: []
 }
+
 monsters.dragodinde_de_nowel_sauvage = {
     id: 'dragodinde_de_nowel_sauvage',
     name: 'Dragodinde de Nowel sauvage',
@@ -5820,6 +5788,7 @@ monsters.z_uf_perturbe = {
     bst: { hp: 1800, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.tourbassingue = {
     id: 'tourbassingue',
     name: 'Tourbassingue',
@@ -5989,6 +5958,7 @@ monsters.chika_rat = {
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: -2, terre: 5, feu: 2, eau: -6, air: 1 } },
     moves: []
 }
+
 monsters.dragoss_charbon = {
     id: 'dragoss_charbon',
     name: 'Dragoss Charbon',
@@ -6168,6 +6138,7 @@ monsters.bourgeon = {
     bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: 10, terre: 15, feu: 15, eau: 15, air: 15 } },
     moves: []
 }
+
 monsters.rat_li = {
     id: 'rat_li',
     name: 'Rat Li',
@@ -6637,6 +6608,7 @@ monsters.tofu_dodu = {
     bst: { hp: 2400, atk: 0, spd: 100, res: { neutre: 40, terre: -40, feu: 10, eau: 20, air: 40 } },
     moves: []
 }
+
 monsters.guerrier_zoth = {
     id: 'guerrier_zoth',
     name: 'Guerrier Zoth',
@@ -7066,6 +7038,7 @@ monsters.chiendent = {
     bst: { hp: 2600, atk: 100, spd: 100, res: { neutre: 10, terre: 35, feu: -20, eau: 9, air: -10 } },
     moves: []
 }
+
 monsters.rat_pine = {
     id: 'rat_pine',
     name: 'Rat Pine',
@@ -7085,6 +7058,7 @@ monsters.glutin_tapageur = {
     bst: { hp: 2700, atk: 250, spd: 100, res: { neutre: 31, terre: -5, feu: -5, eau: 20, air: 23 } },
     moves: []
 }
+
 monsters.bitouf_sombre = {
     id: 'bitouf_sombre',
     name: 'Bitouf Sombre',
@@ -7424,6 +7398,7 @@ monsters.rat_fraichi = {
     bst: { hp: 3000, atk: 473, spd: 100, res: { neutre: 20, terre: 69, feu: -10, eau: 5, air: -30 } },
     moves: []
 }
+
 monsters.boubourse = {
     id: 'boubourse',
     name: 'Boubourse',
@@ -7803,6 +7778,7 @@ monsters.krokille_venerable_seche = {
     bst: { hp: 3400, atk: 119, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
     moves: []
 }
+
 monsters.dragodinde_de_nowel_fougueuse = {
     id: 'dragodinde_de_nowel_fougueuse',
     name: 'Dragodinde de Nowel fougueuse',
@@ -8122,6 +8098,7 @@ monsters.darkli_moon = {
     bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 10, terre: 20, feu: 10, eau: -15, air: 10 } },
     moves: []
 }
+
 monsters.branche_invocatrice = {
     id: 'branche_invocatrice',
     name: 'Branche Invocatrice',
@@ -8711,6 +8688,7 @@ monsters.balebz = {
     bst: { hp: 4500, atk: 502, spd: 100, res: { neutre: 7, terre: -4, feu: 11, eau: -8, air: -6 } },
     moves: []
 }
+
 monsters.kwakao_surdose = {
     id: 'kwakao_surdose',
     name: 'Kwakao surdosé',
@@ -9130,6 +9108,7 @@ monsters.uf_de_la_mort = {
     bst: { hp: 5000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.globilum = {
     id: 'globilum',
     name: 'Globilum',
@@ -9159,6 +9138,7 @@ monsters.chocoskargo_surdose = {
     bst: { hp: 5100, atk: 600, spd: 100, res: { neutre: 22, terre: 1, feu: 14, eau: 18, air: -10 } },
     moves: []
 }
+
 monsters.blerom = {
     id: 'blerom',
     name: 'Blérom',
@@ -9218,6 +9198,7 @@ monsters.stratege_dompteur = {
     bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
 monsters.dagon_des_profondeurs = {
     id: 'dagon_des_profondeurs',
     name: 'Dagon des Profondeurs',
@@ -10987,6 +10968,7 @@ monsters.brutasmodan = {
     bst: { hp: 8000, atk: 640, spd: 100, res: { neutre: -19, terre: 22, feu: 5, eau: 24, air: -13 } },
     moves: []
 }
+
 monsters.garde_du_conseil = {
     id: 'garde_du_conseil',
     name: 'Garde du Conseil',
@@ -11557,12 +11539,6 @@ monsters.mama_troollette = {
     moves: []
 }
 
-// #endregion
-
-// ═══════════════════════════════════════════════════════
-// #region ELITE
-// ═══════════════════════════════════════════════════════
-
 monsters.kardorib = {
     id: 'kardorib',
     name: 'Kardorib',
@@ -11718,12 +11694,6 @@ monsters.tentaculeQuartenaire = {
     moves: ['paralysie_tentaculaire', 'kraken_quartenaire']
 }
 
-// #endregion
-
-// ═══════════════════════════════════════════════════════
-// #region BOSS
-// ═══════════════════════════════════════════════════════
-
 monsters.kardorim = {
     id: 'kardorim',
     name: 'Kardorim',
@@ -11731,7 +11701,7 @@ monsters.kardorim = {
     rarity: 'peu_commun',
     tier: 'boss',
     bst: { hp: 140, atk: 50, spd: 100, res: { neutre: 10, terre: -15, feu: 20, eau: -10, air: 5 } },
-    moves: ['cassecrane','appeldeKardorib']
+    moves: ['cassecrane', 'appeldeKardorib']
 }
 
 monsters.mobLeponge = {
@@ -13383,5 +13353,3 @@ monsters.ilyzaelle = {
     bst: { hp: 42000, atk: 800, spd: 100, res: { neutre: 20, terre: 30, feu: 40, eau: 15, air: 25 } },
     moves: []
 }
-
-// #endregion
