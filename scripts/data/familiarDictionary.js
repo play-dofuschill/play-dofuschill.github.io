@@ -145,7 +145,7 @@ const familiars = [
     {
         id:       'familierkardorim',
         name:     "Kardorib Apprivoisé",
-        image:    'img/monstres/sprites/kardorib.png',
+        image:    'images/monsters/Kardorib.png',
         rarity:   'peu_commun',
         monsters: ['kardorim'],
         bonuses: [
@@ -231,7 +231,7 @@ const familiars = [
     {
         id:       'familiertournesolAffame',
         name:     'Tournesol Affamé Apprivoisé',
-        image:    'img/monstres/sprites/tournesolAffame.png',
+        image:    'images/monsters/Tournesol_Affamé.png',
         rarity:   'rare',
         monsters: ['tournesolAffame'],
         bonuses: [
@@ -252,7 +252,7 @@ const familiars = [
     {
         id:       'familiermobLeponge',
         name:     "Mob L'éponge Apprivoisé",
-        image:    'img/monstres/sprites/mobLeponge.png',
+        image:    'images/monsters/Mob_l_Éponge.png',
         rarity:   'rare',
         monsters: ['mobLeponge'],
         bonuses: [
@@ -294,7 +294,7 @@ const familiars = [
     {
         id:       'familierbouftouRoyal',
         name:     'Bouftou Royal Apprivoisé',
-        image:    'img/monstres/sprites/bouftouRoyal.png',
+        image:    'images/monsters/Bouftou_Royal.png',
         rarity:   'rare',
         monsters: ['bouftouRoyal'],
         bonuses: [
@@ -305,7 +305,7 @@ const familiars = [
     {
         id:       'familierrobotPoussePousse',
         name:     'Robot ménager',
-        image:    'img/monstres/Events/robotPoussePousse.png',
+        image:    'images/monsters/Robot_Pousse-Pousse.png',
         rarity:   'commun',
         monsters: ['robionicle', 'robotFleau', 'robotPoussePousse', 'malleOutillee'],
         bonuses: [
@@ -326,7 +326,7 @@ const familiars = [
     {
         id:       'familierblopignon',
         name:     'Blopmignon',
-        image:    'img/monstres/sprites/blopignon.png',
+        image:    'images/monsters/Blopignon.png',
         rarity:   'commun',
         monsters: ['blopCoco', 'blopReinette', 'blopGriotte', 'blopIndigo', 'blopignon', 'tronkoBlop', 'gloutoBlop'],
         bonuses: [
@@ -336,7 +336,7 @@ const familiars = [
     {
         id:       'familierblopReinetteRoyal',
         name:     'Blop Reinette Royal Apprivoisé',
-        image:    'img/monstres/sprites/blopReinetteRoyal.png',
+        image:    'images/monsters/Blop_Reinette_Royal.png',
         rarity:   'rare',
         monsters: ['blopReinetteRoyal'],
         bonuses: [
@@ -347,7 +347,7 @@ const familiars = [
     {
         id:       'familierblopCocoRoyal',
         name:     'Blop Coco Royal Apprivoisé',
-        image:    'img/monstres/sprites/blopCocoRoyal.png',
+        image:    'images/monsters/Blop_Coco_Royal.png',
         rarity:   'rare',
         monsters: ['blopCocoRoyal'],
         bonuses: [
@@ -358,7 +358,7 @@ const familiars = [
     {
         id:       'familierblopGriotteRoyal',
         name:     'Blop Griotte Royal Apprivoisé',
-        image:    'img/monstres/sprites/blopGriotteRoyal.png',
+        image:    'images/monsters/Blop_Griotte_Royal.png',
         rarity:   'rare',
         monsters: ['blopGriotteRoyal'],
         bonuses: [
@@ -369,7 +369,7 @@ const familiars = [
     {
         id:       'familierblopIndigoRoyal',
         name:     'Blop Indigo Royal Apprivoisé',
-        image:    'img/monstres/sprites/blopIndigoRoyal.png',
+        image:    'images/monsters/Blop_Indigo_Royal.png',
         rarity:   'rare',
         monsters: ['blopIndigoRoyal'],
         bonuses: [
@@ -380,7 +380,7 @@ const familiars = [
     {
         id:       'familierDarkvlad',
         name:     'Esprit du dopeul Darkvlad',
-        image:    'img/monstres/Events/dopeul_darkvlad.png',
+        image:    'images/monsters/Dopeul_Dark_Vlad.png',
         rarity:   'rare',
         monsters: ['dopeul_cra', 'dopeul_ecaflip', 'dopeul_eliotrope', 'dopeul_eniripsa', 'dopeul_enutrof',
                    'dopeul_feca', 'dopeul_forgelance', 'dopeul_huppermage', 'dopeul_iop', 'dopeul_osamodas',
@@ -407,7 +407,7 @@ const familiars = [
     {
         id:       'familierscarabossDoree',
         name:     'Scaraboss Dorée Apprivoisé',
-        image:    'img/monstres/sprites/scarabossDoree.png',
+        image:    'images/monsters/Scarabosse_Doré.png',
         rarity:   'rare',
         monsters: ['scarabossDoree'],
         bonuses: [
@@ -446,7 +446,7 @@ const familiars = [
     {
         id:       'familierkwakwa',
         name:     'Kwakwa Apprivoisé',
-        image:    'img/monstres/sprites/kwakwa.png',
+        image:    'images/monsters/Kwakwa.png',
         rarity:   'rare',
         monsters: ['kwakwa'],
         bonuses: [
@@ -460,7 +460,7 @@ const familiars = [
     {
         id:       'familierRathrosk',
         name:     'Rathrosk Apprivoisé',
-        image:    'img/monstres/Raids/Rathrosk.png',
+        image:    'images/monsters/Rathrosk.png',
         rarity:   'rare',
         monsters: ['Rathrosk'],
         bonuses: [
@@ -485,7 +485,7 @@ const familiars = [
     {
         id:       'familiermantiscore',
         name:     'Mantiscore Apprivoisé',
-        image:    'img/monstres/sprites/mantiscore.png',
+        image:    'images/monsters/Mantiscore.png',
         rarity:   'rare',
         monsters: ['mantiscore'],
         bonuses: [
@@ -507,7 +507,7 @@ const familiars = [
     {
         id:       'familierdragonCochon',
         name:     'Dragon Cochon Apprivoisé',
-        image:    'img/monstres/sprites/dragonCochon.png',
+        image:    'images/monsters/Dragon_Cochon.png',
         rarity:   'rare',
         monsters: ['dragonCochon'],
         bonuses: [

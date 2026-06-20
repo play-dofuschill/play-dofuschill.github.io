@@ -25,6 +25,7 @@ function _Boss_UltimeDragonState(dragonId) {
         const dragon = Boss_UltimeDragons[dragonId]
         st.dragons[dragonId] = {
             currentHp:      dragon?.phase1.bst.hp ?? 1000000,
+            maxHp:          dragon?.phase1.bst.hp ?? 1000000,
             phase:          1,
             lastFightDate:  null,
             hasFoughtToday: false
@@ -40,7 +41,8 @@ function Boss_UltimeTodayStr() {
 }
 
 function Boss_UltimeCanFight(dragonId) {
-    return true   // TODO : retirer pour la prod (limite 1 combat/jour désactivée pour les tests)
+    const ds = _Boss_UltimeDragonState(dragonId)
+    return ds.lastFightDate !== Boss_UltimeTodayStr()
 }
 
 // Retourne tous les sorts débloqués d'un membre (startingMove + learnset ≤ level)
@@ -586,7 +588,8 @@ function _Boss_UltimeOnDefeat() {
     const s  = Boss_UltimeSession
     const ds = _Boss_UltimeDragonState(s.dragonId)
 
-    // Persistance des PV du boss
+    // Persistance des PV du boss (currentHp + maxHp érodé)
+    ds.maxHp          = Math.max(1, s.boss.maxHp)
     ds.currentHp      = Math.max(0, s.boss.currentHp)
     ds.phase          = s.boss.phase
     ds.hasFoughtToday = true
@@ -683,8 +686,8 @@ function Boss_UltimeStartCombat(dragonId) {
         name:        dragon.name,
         image:       phase.image,
         phase:       ds.phase,
-        maxHp:       dragon.phase1.bst.hp,
-        _baseMaxHp:  dragon.phase1.bst.hp,
+        maxHp:       ds.maxHp ?? dragon.phase1.bst.hp,
+        _baseMaxHp:  ds.maxHp ?? dragon.phase1.bst.hp,
         currentHp:   ds.currentHp,
         atk:         bstBase.atk,
         res:         { ...bstBase.res },

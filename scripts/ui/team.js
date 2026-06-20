@@ -15,7 +15,10 @@ function updateTeamUI() {
     const isTutoPrepEmpty = state.tutorial === 'team_prep' && !_tutoTeamPicked
 
     const _skullCap = (() => {
-        if (_pendingAreaId && state.skullLevel > 0) return areas[_pendingAreaId]?.maxLevel || null
+        if (_pendingAreaId) {
+            const _area = areas[_pendingAreaId]
+            if (_area?.maxLevel && (state.skullLevel > 0 || _area.type === 'wanted')) return _area.maxLevel
+        }
         if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
         return null
     })()
@@ -143,7 +146,10 @@ function renderEquipSlots(member, slotIndex) {
         const itm  = itemId ? item[itemId] : null
         const ilvl = itemId ? getItemLevel(itemId) : 0
         const _skullCap = (() => {
-            if (_pendingAreaId && state.skullLevel > 0) return areas[_pendingAreaId]?.maxLevel || null
+            if (_pendingAreaId) {
+                const _area = areas[_pendingAreaId]
+                if (_area?.maxLevel && (state.skullLevel > 0 || _area.type === 'wanted')) return _area.maxLevel
+            }
             if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
             return null
         })()
@@ -560,7 +566,10 @@ function openEquipSelector(memberIndex, equipSlot) {
     )
 
     const _skullMaxLevel = (() => {
-        if (_pendingAreaId && state.skullLevel > 0) return areas[_pendingAreaId]?.maxLevel || null
+        if (_pendingAreaId) {
+            const _area = areas[_pendingAreaId]
+            if (_area?.maxLevel && (state.skullLevel > 0 || _area.type === 'wanted')) return _area.maxLevel
+        }
         if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
         return null
     })()

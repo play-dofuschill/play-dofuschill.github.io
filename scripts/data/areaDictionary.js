@@ -15,7 +15,7 @@ areas.cimetiereincarnam = {
     name: "Cimetiere d'Incarnam",
     minLevel: 1, maxLevel: 20,
     mobMinLevel: 1, mobMaxLevel: 10,
-    background: "donjon_tofus",
+    background: "",
     icon: "images/monsters/Chafer_Débutant.png",
     description: "Cimetière où reposent les âmes de nombreux aventuriers tombés au combat.",
     spawns: [
@@ -36,6 +36,7 @@ areas.cimetiereincarnam = {
         { itemId: 'cleDonjonKardorim', dropRate: 0.15, isKey: true }
     ]
 }
+
 areas.champsAstrub = {
     id: 'champsAstrub',
     name: "Champs d'Astrub",
@@ -63,6 +64,7 @@ areas.champsAstrub = {
         { itemId: 'cleDonjonChamps',  dropRate: 0.15, isKey: true }
     ]
 }
+
 areas.plageAstrub = {
     id: 'plageAstrub',
     name: "Plage d'Astrub",
@@ -91,6 +93,7 @@ areas.plageAstrub = {
         { itemId: 'cleDonjonSable',    dropRate: 0.15, isKey: true }
     ]
 }
+
 areas.tainela = {
     id: 'tainela',
     name: 'Tainela',
@@ -119,6 +122,7 @@ areas.tainela = {
         { itemId: 'cleDonjonBouftou', dropRate: 0.15, isKey: true }
     ]
 }
+
 areas.scarafeuilles = {
     id: 'scarafeuilles',
     name: 'Plaine des scarafeuilles',
@@ -159,6 +163,53 @@ areas.scarafeuilles = {
         { itemId: 'cleDonjonScarafeuille',      dropRate: 0.15, isKey: true }
     ]
 }
+
+areas.crypteDuCimetiere = {
+    id: 'crypteDuCimetiere',
+    name: "Crypte du cimetière",
+    minLevel: 30, maxLevel: 50,
+    mobMinLevel: 30, mobMaxLevel: 40,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonSquelettes', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.champsDesIngalsse = {
+    id: 'champsDesIngalsse',
+    name: "Champs des Ingalsse",
+    minLevel: 30, maxLevel: 50,
+    mobMinLevel: 30, mobMaxLevel: 40,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTofus', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.egoutsAstrub = {
+    id: 'egoutsAstrub',
+    name: "Égouts d'Astrub",
+    minLevel: 30, maxLevel: 50,
+    mobMinLevel: 30, mobMaxLevel: 40,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKankreblath', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
 areas.Kwaks = {
     id: 'Kwaks',
     name: 'Falaise des Kwaks',
@@ -210,6 +261,83 @@ areas.Kwaks = {
         { itemId: 'cleDonjonKwakwa',       dropRate: 0.15, isKey: true }
     ]
 }
+
+areas.campementBwork = {
+    id: 'campementBwork',
+    name: "Campement Bwork",
+    minLevel: 40, maxLevel: 60,
+    mobMinLevel: 40, mobMaxLevel: 50,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBworks', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.territoireDesBandits = {
+    id: 'territoireDesBandits',
+    name: "Territoire des bandits",
+    minLevel: 40, maxLevel: 60,
+    mobMinLevel: 40, mobMaxLevel: 50,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonForgerons', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.coteDeCorail = {
+    id: 'coteDeCorail',
+    name: "Côte de corail",
+    minLevel: 40, maxLevel: 60,
+    mobMinLevel: 40, mobMaxLevel: 50,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonHesque', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.prairiesAstrub = {
+    id: 'prairiesAstrub',
+    name: "Prairies d'Astrub",
+    minLevel: 40, maxLevel: 60,
+    mobMinLevel: 40, mobMaxLevel: 50,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonLarves', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.futaieEnneigee = {
+    id: 'futaieEnneigee',
+    name: "Futaie enneigée",
+    minLevel: 40, maxLevel: 60,
+    mobMinLevel: 40, mobMaxLevel: 50,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonRefugeSylvestre', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
 areas.blops = {
     id: 'blops',
     name: 'Lac de Cania',
@@ -248,6 +376,53 @@ areas.blops = {
         { itemId: 'cleDonjonBlop', dropRate: 0.15, isKey: true }
     ]
 }
+
+areas.ileDesWabbits = {
+    id: 'ileDesWabbits',
+    name: "Île des Wabbits",
+    minLevel: 50, maxLevel: 70,
+    mobMinLevel: 50, mobMaxLevel: 60,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonWabbit', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.foretDesMasques = {
+    id: 'foretDesMasques',
+    name: "Forêt des masques",
+    minLevel: 50, maxLevel: 70,
+    mobMinLevel: 50, mobMaxLevel: 60,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKanniboul', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.tourbieresSansFond = {
+    id: 'tourbieresSansFond',
+    name: "Tourbière sans fonds",
+    minLevel: 50, maxLevel: 70,
+    mobMinLevel: 50, mobMaxLevel: 60,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonOtomaj', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
 areas.plateauMantiscore = {
     id: 'plateauMantiscore',
     name: 'Désert de Saharash',
@@ -274,6 +449,38 @@ areas.plateauMantiscore = {
         { itemId: 'cleDonjonMantiscore', dropRate: 0.15, isKey: true }
     ]
 }
+
+areas.montagneDesCraqueleurs = {
+    id: 'montagneDesCraqueleurs',
+    name: "Montagne des craqueleurs",
+    minLevel: 60, maxLevel: 80,
+    mobMinLevel: 60, mobMaxLevel: 70,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonCraqueleurs', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.desolationDeSidimote = {
+    id: 'desolationDeSidimote',
+    name: "Désolation de sidimote",
+    minLevel: 60, maxLevel: 80,
+    mobMinLevel: 60, mobMaxLevel: 70,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBrumen', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
 areas.nidsDragaeufs = {
     id: 'nidsDragaeufs',
     name: 'Nids des Dragaeufs',
@@ -298,6 +505,23 @@ areas.nidsDragaeufs = {
         { itemId: 'cleDonjonDraegnerys', dropRate: 0.15, isKey: true }
     ]
 }
+
+areas.souterrainsWabbits = {
+    id: 'souterrainsWabbits',
+    name: "Souterrains Wabbits",
+    minLevel: 70, maxLevel: 90,
+    mobMinLevel: 70, mobMaxLevel: 80,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTerrierWabbit', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
 areas.foretAbraknydes = {
     id: 'foretAbraknydes',
     name: 'Forêt des Abraknydes',
@@ -325,6 +549,68 @@ areas.foretAbraknydes = {
         { itemId: 'cleDonjonAbraknydeAncestral', dropRate: 0.15, isKey: true }
     ]
 }
+
+areas.canyonSauvage = {
+    id: 'canyonSauvage',
+    name: "Canyon sauvage",
+    minLevel: 80, maxLevel: 100,
+    mobMinLevel: 80, mobMaxLevel: 90,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKoulosse', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.boisDesArakhai = {
+    id: 'boisDesArakhai',
+    name: "Bois des arak_haï",
+    minLevel: 80, maxLevel: 100,
+    mobMinLevel: 80, mobMaxLevel: 90,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonReineNyee', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.cheminDuCrane = {
+    id: 'cheminDuCrane',
+    name: "Chemin du crâne",
+    minLevel: 80, maxLevel: 100,
+    mobMinLevel: 80, mobMaxLevel: 90,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonChouque', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.routeDesRoulottes = {
+    id: 'routeDesRoulottes',
+    name: "Route des roulottes",
+    minLevel: 80, maxLevel: 100,
+    mobMinLevel: 80, mobMaxLevel: 90,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMagikRiktus', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
 areas.fermeDragonCochon = {
     id: 'fermeDragonCochon',
     name: 'Territoire des porcos',
@@ -347,6 +633,1022 @@ areas.fermeDragonCochon = {
         { itemId: 'anneau_du_dragon_cochon',   dropRate: 0.01 },
         { itemId: 'collier_du_dragon_cochon', dropRate: 0.01 },
         { itemId: 'ceinture_dracochoune', dropRate: 0.01 }
+    ]
+}
+
+
+areas.hautDesHurlements = {
+    id: 'hautDesHurlements',
+    name: "Haut des hurlements",
+    minLevel: 90, maxLevel: 110,
+    mobMinLevel: 90, mobMaxLevel: 100,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMeulou', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.plainesHerbeuses = {
+    id: 'plainesHerbeuses',
+    name: "Plaines Herbeuses",
+    minLevel: 90, maxLevel: 110,
+    mobMinLevel: 90, mobMaxLevel: 100,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonRasboul', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.ileDeKartonpath = {
+    id: 'ileDeKartonpath',
+    name: "Ile de Kartonpath",
+    minLevel: 90, maxLevel: 110,
+    mobMinLevel: 90, mobMaxLevel: 100,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDramak', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.jungleInterdite = {
+    id: 'jungleInterdite',
+    name: "Jungle Interdite",
+    minLevel: 90, maxLevel: 110,
+    mobMinLevel: 90, mobMaxLevel: 100,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMoon', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.villageDragoeufs = {
+    id: 'villageDragoeufs',
+    name: "Village des Dragoeufs",
+    minLevel: 90, maxLevel: 110,
+    mobMinLevel: 90, mobMaxLevel: 100,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKharnozor', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.penatesDuCorbac = {
+    id: 'penatesDuCorbac',
+    name: "Pénates du corbac",
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonCorbac', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.egoutsDeBonta = {
+    id: 'egoutsDeBonta',
+    name: "Égouts de Bonta",
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonRatBlanc', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.egoutsDeBrakmar = {
+    id: 'egoutsDeBrakmar',
+    name: "Égouts de Brâkmar",
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonRatNoir', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.plantala = {
+    id: 'plantala',
+    name: "Plantala",
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDamadrya', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.ileDuMinotoror = {
+    id: 'ileDuMinotoror',
+    name: "Ile du Minotoror",
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMinotoror', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.souterrainsDragoeufs = {
+    id: 'souterrainsDragoeufs',
+    name: "Souterrains des Dragoeufs",
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonCrocabulia', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.champsDesTofusSauvages = {
+    id: 'champsDesTofusSauvages',
+    name: "Champs des Tofus Sauvages",
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTofulaillerRoyal', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.champsDeGlace = {
+    id: 'champsDeGlace',
+    name: "Champs de Glace",
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonRoyalmouth', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.valleeDeLaMortKitu = {
+    id: 'valleeDeLaMortKitu',
+    name: "Vallée de la mort Kitu",
+    minLevel: 110, maxLevel: 130,
+    mobMinLevel: 110, mobMaxLevel: 120,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonSkeunk', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.lacDeCaniaProfond = {
+    id: 'lacDeCaniaProfond',
+    name: "Lac de Cania",
+    minLevel: 120, maxLevel: 140,
+    mobMinLevel: 120, mobMaxLevel: 130,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBlopMulticolore', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.cirqueDeCania = {
+    id: 'cirqueDeCania',
+    name: "Cirque de Cania",
+    minLevel: 120, maxLevel: 140,
+    mobMinLevel: 120, mobMaxLevel: 130,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonHauteTruche', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.territoireCacterre = {
+    id: 'territoireCacterre',
+    name: "Territoire Cacterre",
+    minLevel: 120, maxLevel: 140,
+    mobMinLevel: 120, mobMaxLevel: 130,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonElPiko', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.akwadala = {
+    id: 'akwadala',
+    name: "Akwadala",
+    minLevel: 120, maxLevel: 140,
+    mobMinLevel: 120, mobMaxLevel: 130,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDameEaux', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.terrdala = {
+    id: 'terrdala',
+    name: "Terrdala",
+    minLevel: 120, maxLevel: 140,
+    mobMinLevel: 120, mobMaxLevel: 130,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTanukoi', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.foretSombre = {
+    id: 'foretSombre',
+    name: "Forêt sombre",
+    minLevel: 130, maxLevel: 150,
+    mobMinLevel: 130, mobMaxLevel: 140,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonCheneMou', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.lacGele = {
+    id: 'lacGele',
+    name: "Lac gelé",
+    minLevel: 130, maxLevel: 150,
+    mobMinLevel: 130, mobMaxLevel: 140,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMansot', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.jungleObscure = {
+    id: 'jungleObscure',
+    name: "Jungle Obscure",
+    minLevel: 130, maxLevel: 150,
+    mobMinLevel: 130, mobMaxLevel: 140,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTynril', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.aerdala = {
+    id: 'aerdala',
+    name: "Aerdala",
+    minLevel: 130, maxLevel: 150,
+    mobMinLevel: 130, mobMaxLevel: 140,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDojoVent', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.feudala = {
+    id: 'feudala',
+    name: "Feudala",
+    minLevel: 130, maxLevel: 150,
+    mobMinLevel: 130, mobMaxLevel: 140,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonFouxArtifice', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.egoutsDuChateauAmakna = {
+    id: 'egoutsDuChateauAmakna',
+    name: "Égouts du château d'Amakna",
+    minLevel: 140, maxLevel: 160,
+    mobMinLevel: 140, mobMaxLevel: 150,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonSphincter', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.berceauDAlma = {
+    id: 'berceauDAlma',
+    name: "Berceau d'Alma",
+    minLevel: 140, maxLevel: 160,
+    mobMinLevel: 140, mobMaxLevel: 150,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonGrolandais', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.dedaleDuDarkVlad = {
+    id: 'dedaleDuDarkVlad',
+    name: "Dédale du Dark Vlad",
+    minLevel: 140, maxLevel: 160,
+    mobMinLevel: 140, mobMaxLevel: 150,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTertreSommeil', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.larmesDOuronigride = {
+    id: 'larmesDOuronigride',
+    name: "Larmes d'Ouronigride",
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonObsidiantre', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.feuillageArbreHakam = {
+    id: 'feuillageArbreHakam',
+    name: "Feuillage de l'arbre Hakam",
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKimbo', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.centreDuLabyrintheMinotoror = {
+    id: 'centreDuLabyrintheMinotoror',
+    name: "Centre du Labyrinthe du Minotoror",
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMinotot', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.dentsDePierre = {
+    id: 'dentsDePierre',
+    name: "Dents de pierre",
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKanigroula', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.cimetiereDeGrobe = {
+    id: 'cimetiereDeGrobe',
+    name: "Cimetière de Grobe",
+    minLevel: 150, maxLevel: 170,
+    mobMinLevel: 150, mobMaxLevel: 160,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonShogunTofugawa', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.crevassePerge = {
+    id: 'crevassePerge',
+    name: "Crevasse Perge",
+    minLevel: 160, maxLevel: 180,
+    mobMinLevel: 160, mobMaxLevel: 170,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonGivrefoux', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.gorgeDesVentsHurlants = {
+    id: 'gorgeDesVentsHurlants',
+    name: "Gorge des vents hurlants",
+    minLevel: 160, maxLevel: 180,
+    mobMinLevel: 160, mobMaxLevel: 170,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonPereVer', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.montDesTombeaux = {
+    id: 'montDesTombeaux',
+    name: "Mont des tombeaux",
+    minLevel: 160, maxLevel: 180,
+    mobMinLevel: 160, mobMaxLevel: 170,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDemeureEsprits', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.gisgoul = {
+    id: 'gisgoul',
+    name: "Gisgoul",
+    minLevel: 170, maxLevel: 190,
+    mobMinLevel: 170, mobMaxLevel: 180,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBworker', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.domaineDesFungus = {
+    id: 'domaineDesFungus',
+    name: "Domaine des Fungus",
+    minLevel: 170, maxLevel: 190,
+    mobMinLevel: 170, mobMaxLevel: 180,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonOugah', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.crocsDeVerre = {
+    id: 'crocsDeVerre',
+    name: "Crocs de verre",
+    minLevel: 170, maxLevel: 190,
+    mobMinLevel: 170, mobMaxLevel: 180,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKolosso', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.ileDeSakai = {
+    id: 'ileDeSakai',
+    name: "Île de Sakaï",
+    minLevel: 170, maxLevel: 190,
+    mobMinLevel: 170, mobMaxLevel: 180,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonSakai', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.foretPetrifiee = {
+    id: 'foretPetrifiee',
+    name: "Forêt pétrifiée",
+    minLevel: 170, maxLevel: 190,
+    mobMinLevel: 170, mobMaxLevel: 180,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKorriandre', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.montTorrideau = {
+    id: 'montTorrideau',
+    name: "Mont Torrideau",
+    minLevel: 180, maxLevel: 200,
+    mobMinLevel: 180, mobMaxLevel: 190,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonGloursons', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.citeOubliee = {
+    id: 'citeOubliee',
+    name: "Cité oubliée",
+    minLevel: 180, maxLevel: 200,
+    mobMinLevel: 180, mobMaxLevel: 190,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonOmbre', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.nimotopia = {
+    id: 'nimotopia',
+    name: "Nimotopia",
+    minLevel: 180, maxLevel: 200,
+    mobMinLevel: 180, mobMaxLevel: 190,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonRazof', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.ereboria = {
+    id: 'ereboria',
+    name: "Ereboria",
+    minLevel: 180, maxLevel: 200,
+    mobMinLevel: 180, mobMaxLevel: 190,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBastionMarteaux', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+areas.bastionFroidesLegions = {
+    id: 'bastionFroidesLegions',
+    name: "Bastion des Froides légions",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonSylargh', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.jardinsHivers = {
+    id: 'jardinsHivers',
+    name: "Jardins d'Hivers",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKlime', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.rempartsAVent = {
+    id: 'rempartsAVent',
+    name: "Remparts à vent",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMissizFrizz', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.tannerieEcarlate = {
+    id: 'tannerieEcarlate',
+    name: "Tannerie Écarlate",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonNileza', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.tourDeLaClepsydre = {
+    id: 'tourDeLaClepsydre',
+    name: "Tour de la Clepsydre",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonHarebourg', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.abyssesDeSufokia = {
+    id: 'abyssesDeSufokia',
+    name: "Abysses de Sufokia",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMerkator', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.rocDesSalbatroce = {
+    id: 'rocDesSalbatroce',
+    name: "Roc des Salbatroce",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBaleine', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.domaineDesTrithons = {
+    id: 'domaineDesTrithons',
+    name: "Domaine des Trithons",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMeno', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.villeSubmergee = {
+    id: 'villeSubmergee',
+    name: "Ville submergée",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKoutoulou', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.plateauRlyugluglu = {
+    id: 'plateauRlyugluglu',
+    name: "Plateau de R'lyugluglu",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDantinea', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.caserneDuJourSansFin = {
+    id: 'caserneDuJourSansFin',
+    name: "Caserne du jour sans fin",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonIlyzaelle', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.epaveSilencieuse = {
+    id: 'epaveSilencieuse',
+    name: "Épave silencieuse",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBethel', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.marchesMagmatiques = {
+    id: 'marchesMagmatiques',
+    name: "Marches magmatiques",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonSolar', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.royaumeDesMartegel = {
+    id: 'royaumeDesMartegel',
+    name: "Royaume des martegel",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonDazak', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.crocuzko = {
+    id: 'crocuzko',
+    name: "Crocuzko",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTorkelonia', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.royaumeCorrompu = {
+    id: 'royaumeCorrompu',
+    name: "Royaume Corrompu",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonArbreMort', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.galereDeServitude = {
+    id: 'galereDeServitude',
+    name: "Galère de Servitude",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTyrannie', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.desertDeMisere = {
+    id: 'desertDeMisere',
+    name: "Désert de Misère",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBalance', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.blessureDeGuerre = {
+    id: 'blessureDeGuerre',
+    name: "Blessure de Guerre",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTroneSang', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.pyramideMaudite = {
+    id: 'pyramideMaudite',
+    name: "Pyramide maudite",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonTalKasha', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.pandamonium = {
+    id: 'pandamonium',
+    name: "Pandamonium",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKabahal', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.cauchemarDesRavageurs = {
+    id: 'cauchemarDesRavageurs',
+    name: "Cauchemar des Ravageurs",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonAurorePourpre', dropRate: 0.15, isKey: true }
+    ]
+}
+
+areas.ephedrya = {
+    id: 'ephedrya',
+    name: "Ephedrya",
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/.png",
+    description: "",
+    spawns: [],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonMalefices', dropRate: 0.15, isKey: true }
     ]
 }
 // #endregion
@@ -2377,6 +3679,67 @@ areas.evenementPious = {
         { itemId: 'piloteAutomatique', dropRate: 0.05 }
     ]
 }
+
+areas.evenementForetAstrub = {
+    id: 'evenementForetAstrub',
+    type: 'event',
+    name: 'Attention au loup !',
+    minLevel: 20, maxLevel: 35,
+    mobMinLevel: 20, mobMaxLevel: 30,
+    background: 'Foret_Astrub',
+    icon: 'images/monsters/Milimulou.png',
+    description: "Depuis plusieurs semaines, la forêt d'Astrub est le théâtre d'étranges disparitions. Entre les arbres rongés par la mousse et les sentiers envahis de brouillard, des voyageurs affirment avoir aperçu une silhouette massive rôdant dans l'ombre : l'Homme Ours. Certains le décrivent comme une bête sanguinaire surgie des profondeurs de la forêt, tandis que d'autres murmurent qu'il protégerait les créatures blessées et les secrets oubliés des bois.",
+    spawns: [
+        { id: 'milimulou',         weight: 22 },
+        { id: 'prespic',         weight: 22 },
+        { id: 'sanglier',  weight: 22 },
+        { id: 'ecurouille',      weight: 22 },
+        { id: 'hommeOurs',      weight: 12 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',                 dropRate: 0.45 },
+        { itemId: 'cape_du_prespic',            dropRate: 0.005 },
+        { itemId: 'coiffe_du_prespic',          dropRate: 0.005 },
+        { itemId: 'anneau_du_prespic',          dropRate: 0.005 },
+        { itemId: 'ceinture_du_prespic',        dropRate: 0.005 },
+        { itemId: 'bouclier_herisse_du_prespic',        dropRate: 0.005 },
+        { itemId: 'pieds_du_sanglier',         dropRate: 0.005 },
+        { itemId: 'anneau_du_sanglier',         dropRate: 0.005 },
+        { itemId: 'pieds_du_sanglier',       dropRate: 0.005 },
+        { itemId: 'cape_de_l_homme_ours',        dropRate: 0.005 },
+        { itemId: 'coiffe_de_l_homme_ours',      dropRate: 0.005 },
+        { itemId: 'bottes_de_l_homme_ours',      dropRate: 0.005 },
+        { itemId: 'alliance_de_l_homme_ours',      dropRate: 0.005 },
+        { itemId: 'amulette_de_l_homme_ours',    dropRate: 0.005 },
+        { itemId: 'ceinture_de_l_homme_ours',    dropRate: 0.005 },
+        { itemId: 'baton_de_l_homme_ours',       dropRate: 0.005 },
+    ]
+}
+
+
+
+// #endregion
+areas.evenementBiblop = {
+    id: 'evenementBiblop',
+    type: 'event',
+    name: 'Invasion de Blops',
+    minLevel: 25, maxLevel: 30,
+    mobMinLevel: 25, mobMaxLevel: 30,
+    background: 'Blop',
+    icon: 'images/monsters/Biblop_Griotte.png',
+    description: "Des habitants ont rapportés qu'aux alentours du lac de Cania, des blops se multiplient vitesse grand V... Essayez de stoper cette invasion tant qu'ils ne sont pas pleinement développés.",
+    spawns: [
+        { id: 'biblop_coco',     weight: 25 },
+        { id: 'biblop_reinette', weight: 25 },
+        { id: 'biblop_griotte',  weight: 25 },
+        { id: 'biblop_indigo',   weight: 25 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.05 }
+    ]
+}
+
 areas.evenementDopeuls = {
     id: 'evenementDopeuls',
     type: 'event',
@@ -2417,26 +3780,7 @@ areas.evenementDopeuls = {
         { itemId: 'runeCritS',         dropRate: 0.01 }
     ]
 }
-areas.evenementBiblop = {
-    id: 'evenementBiblop',
-    type: 'event',
-    name: 'Invasion de Blops',
-    minLevel: 25, maxLevel: 30,
-    mobMinLevel: 25, mobMaxLevel: 30,
-    background: 'Blop',
-    icon: 'images/monsters/Biblop_Griotte.png',
-    description: "Des habitants ont rapportés qu'aux alentours du lac de Cania, des blops se multiplient vitesse grand V... Essayez de stoper cette invasion tant qu'ils ne sont pas pleinement développés.",
-    spawns: [
-        { id: 'biblop_coco',     weight: 25 },
-        { id: 'biblop_reinette', weight: 25 },
-        { id: 'biblop_griotte',  weight: 25 },
-        { id: 'biblop_indigo',   weight: 25 },
-    ],
-    lootTable: [
-        { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }
-    ]
-}
+
 areas.evenementRobots = {
     id: 'evenementRobots',
     type: 'event',
@@ -2461,44 +3805,6 @@ areas.evenementRobots = {
         { itemId: 'runeCritS',         dropRate: 0.015 }
     ]
 }
-areas.evenementForetAstrub = {
-    id: 'evenementForetAstrub',
-    type: 'event',
-    name: 'Attention au loup !',
-    minLevel: 20, maxLevel: 35,
-    mobMinLevel: 20, mobMaxLevel: 30,
-    background: 'Foret_Astrub',
-    icon: 'images/monsters/Milimulou.png',
-    description: "Depuis plusieurs semaines, la forêt d'Astrub est le théâtre d'étranges disparitions. Entre les arbres rongés par la mousse et les sentiers envahis de brouillard, des voyageurs affirment avoir aperçu une silhouette massive rôdant dans l'ombre : l'Homme Ours. Certains le décrivent comme une bête sanguinaire surgie des profondeurs de la forêt, tandis que d'autres murmurent qu'il protégerait les créatures blessées et les secrets oubliés des bois.",
-    spawns: [
-        { id: 'milimulou',         weight: 22 },
-        { id: 'prespic',         weight: 22 },
-        { id: 'sanglier',  weight: 22 },
-        { id: 'ecurouille',      weight: 22 },
-        { id: 'hommeOurs',      weight: 12 }
-    ],
-    lootTable: [
-        { itemId: 'pierreDame',                 dropRate: 0.45 },
-        { itemId: 'cape_du_prespic',            dropRate: 0.005 },
-        { itemId: 'coiffe_du_prespic',          dropRate: 0.005 },
-        { itemId: 'anneau_du_prespic',          dropRate: 0.005 },
-        { itemId: 'ceinture_du_prespic',        dropRate: 0.005 },
-        { itemId: 'bouclier_herisse_du_prespic',        dropRate: 0.005 },
-        { itemId: 'pieds_du_sanglier',         dropRate: 0.005 },
-        { itemId: 'anneau_du_sanglier',         dropRate: 0.005 },
-        { itemId: 'pieds_du_sanglier',       dropRate: 0.005 },
-        { itemId: 'cape_de_l_homme_ours',        dropRate: 0.005 },
-        { itemId: 'coiffe_de_l_homme_ours',      dropRate: 0.005 },
-        { itemId: 'bottes_de_l_homme_ours',      dropRate: 0.005 },
-        { itemId: 'alliance_de_l_homme_ours',      dropRate: 0.005 },
-        { itemId: 'amulette_de_l_homme_ours',    dropRate: 0.005 },
-        { itemId: 'ceinture_de_l_homme_ours',    dropRate: 0.005 },
-        { itemId: 'baton_de_l_homme_ours',       dropRate: 0.005 },
-    ]
-}
-
-
-// #endregion
 
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
 areas.raidDofusArgenté = {

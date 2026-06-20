@@ -109,14 +109,11 @@ function getZoneUnlockHint(area) {
 
 // Génère / rafraîchit les pools journaliers. Appelé à chaque ouverture du menu zones.
 function refreshDailyPools() {
-    const today     = _todayStr()
-    const bossCount = (state.defeatedBosses || []).length
-    const seed      = _dateSeed(today)
+    const today = _todayStr()
+    const seed  = _dateSeed(today)
 
-    // Wild : stale si nouveau jour OU si un boss a été battu depuis le dernier tirage
-    const wildStale = !state.dailyPool ||
-        state.dailyPool.date !== today ||
-        state.dailyPool.bossCount !== bossCount
+    // Wild : stale uniquement si nouveau jour (pas de recalcul intra-journalier après boss kill)
+    const wildStale = !state.dailyPool || state.dailyPool.date !== today
 
     if (wildStale) {
         const accessible = Object.values(areas).filter(a =>
@@ -153,7 +150,7 @@ function refreshDailyPools() {
             pickedRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             zones.push(choice.id)
         }
-        state.dailyPool = { date: today, bossCount, zones }
+        state.dailyPool = { date: today, zones }
     }
 
     // Événements : refresh tous les EVENT_REFRESH_DAYS jours (pas lié aux boss)

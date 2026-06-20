@@ -8,10 +8,12 @@ const ZONE_TAB_LABELS = { wild: 'zones sauvages', dungeon: 'donjons', event: 'é
 // Retourne le niveau après cap pour un membre en préparation (skull > 0, zone en attente, membre au-dessus du cap).
 // Retourne null si pas de cap applicable (membre déjà sous le maxLevel, ou skull inactif).
 function _getTeamPrepSyncedLevel(member) {
-    if (!_pendingAreaId || !state.skullLevel) return null
-    const cap = areas[_pendingAreaId]?.maxLevel
-    if (!cap || !member || member.level <= cap) return null
-    return cap
+    if (!_pendingAreaId) return null
+    const area = areas[_pendingAreaId]
+    if (!area?.maxLevel) return null
+    if (state.skullLevel === 0 && area.type !== 'wanted') return null
+    if (!member || member.level <= area.maxLevel) return null
+    return area.maxLevel
 }
 
 function setZoneTab(type) {
@@ -285,8 +287,10 @@ function joinArea(areaId) {
 }
 
 function cancelZoneConfirm() {
-    const wasRaid = areas[_pendingAreaId]?.type === 'raid'
-    _pendingAreaId = null
+    const wasRaid   = areas[_pendingAreaId]?.type === 'raid'
+    const wasWanted = areas[_pendingAreaId]?.type === 'wanted'
+    _pendingAreaId        = null
+    state.pendingWantedId = null
     const bar = document.getElementById('zone-confirm-bar')
     if (bar) bar.style.display = 'none'
     // Remet le bouton à son état par défaut
@@ -303,6 +307,11 @@ function cancelZoneConfirm() {
     // Retour au menu Raid si c'était un Raid en attente
     if (wasRaid) {
         switchMenu('raid')
+        return
+    }
+    // Retour au menu Avis de Recherche si c'était un Wanted en attente
+    if (wasWanted) {
+        switchMenu('wanted')
         return
     }
     // Retourne au menu zones

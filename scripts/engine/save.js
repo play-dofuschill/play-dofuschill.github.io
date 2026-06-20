@@ -62,6 +62,7 @@ function saveGame() {
         skullRecords:              state.skullRecords || {},
         ownedSkins:                state.ownedSkins || [],
         Boss_Ultime:                    state.Boss_Ultime    || null,
+        wanted:                    state.wanted         || null,
         version:                   '0.2'
     }
     try {
@@ -119,6 +120,7 @@ function loadGame() {
         if (data.skullRecords)                      state.skullRecords              = data.skullRecords
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
         if (data.Boss_Ultime)                            state.Boss_Ultime                    = data.Boss_Ultime
+        if (data.wanted)                                 state.wanted                         = data.wanted
 
         // Migration : forgedStat (ancien) → forgedStats (tableau)
         for (const entry of Object.values(state.inventory)) {

@@ -107,7 +107,7 @@ function updateInventoryUI() {
         }
     }
 
-    // Collecter + filtrer
+    // Collecter + filtrer (possédés)
     const levelRanges = { '5': [1, 5], '10': [6, 10], '15': [11, 15], '20': [16, 20] }
     let entries = []
     for (const [itemId, entry] of Object.entries(state.inventory)) {
@@ -149,22 +149,41 @@ function updateInventoryUI() {
         })
     }
 
-    // Rendre
-    for (const { itemId, entry, itm } of entries) {
-        const card = document.createElement('div')
-        card.className    = 'game-bubble'
+    // Collecter les items non-possédés (même filtres, sans filtre niveau)
+    let unownedEntries = []
+    for (const [itemId, itm] of Object.entries(item)) {
+        if (state.inventory[itemId]) continue
+        if (itm.hiddenInInventory) continue
+        if (!matchCat(itm)) continue
+        if (inventoryFilter === 'equipment') {
+            if (!_itemMatchesEquipFilters(itm, slotFilter, bonusFilter, searchIds)) continue
+        }
+        unownedEntries.push({ itemId, entry: null, itm })
+    }
+
+    // Rendre — possédés d'abord, non-possédés ensuite
+    for (const { itemId, entry, itm } of [...entries, ...unownedEntries]) {
+        const owned = !!entry
+        const card  = document.createElement('div')
         card.dataset.help = itemId
-        card.title        = itm.name
-        const badge = itm.itemLevelMax
-            ? `<span class="bubble-level">Niv.${entry.level}</span>`
-            : entry.count > 1 ? `<span class="bubble-level">×${entry.count}</span>` : ''
-        card.innerHTML = `${badge}<img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
+        if (owned) {
+            card.className = 'game-bubble'
+            card.title     = itm.name
+            const badge = itm.itemLevelMax
+                ? `<span class="bubble-level">Niv.${entry.level}</span>`
+                : entry.count > 1 ? `<span class="bubble-level">×${entry.count}</span>` : ''
+            card.innerHTML = `${badge}<img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
+        } else {
+            card.className = 'game-bubble bubble-unknown'
+            card.title     = '???'
+            card.innerHTML = `<img class="silhouette" src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
+        }
         card.addEventListener('click',       () => showItemTooltip(itemId))
         card.addEventListener('contextmenu', e  => { e.preventDefault(); e.stopPropagation(); showItemTooltip(itemId) })
         list.appendChild(card)
     }
 
-    if (entries.length === 0) {
+    if (entries.length === 0 && unownedEntries.length === 0) {
         list.innerHTML = `<div class="inventory-empty">Aucun ${label[inventoryFilter] || 'objet'}.<br>Partez en exploration !</div>`
     }
 }
@@ -326,11 +345,12 @@ function showItemTooltip(itemId, fromClassId) {
 
     // Passifs de l'item (effects)
     const _passifLines = (itm.effects || []).filter(e => !e.every).map(e => {
-        const chance = e.on_effect?.chancePct != null ? `${e.on_effect.chancePct}% : ` : ''
-        const src    = e.on_effect?.source === 'enemy' ? 'ennemi' : e.on_effect?.source === 'ally' ? 'allié' : null
+        const chance   = e.on_effect?.chancePct != null ? `${e.on_effect.chancePct}% : ` : ''
+        const src      = e.on_effect?.source === 'enemy' ? 'ennemi' : e.on_effect?.source === 'ally' ? 'allié' : null
         const critOnly = e.on_effect?.crit_only ? ' critique' : ''
-        const types  = e.on_effect?.type ? (Array.isArray(e.on_effect.type) ? e.on_effect.type : [e.on_effect.type]) : []
-        const typeStr = types.map(t => ({ damage:'dégâts', dot:'DoT', heal:'soin', 'heal%maxHp':'soin', buff:'buff', debuff:'débuff' }[t] || t)).filter((v,i,a)=>a.indexOf(v)===i).join('/')
+        const types    = e.on_effect?.type ? (Array.isArray(e.on_effect.type) ? e.on_effect.type : [e.on_effect.type]) : []
+        const TYPE_FR  = { damage: 'dégâts', dot: 'DoT', heal: 'soin', 'heal%maxHp': 'soin', buff: 'buff', debuff: 'débuff', avance: 'avance', recul: 'recul', switch: 'switch' }
+        const typeStr  = types.map(t => TYPE_FR[t] || t).filter((v, i, a) => a.indexOf(v) === i).join('/')
 
         if (e.reaction === 'cancel')
             return `${chance}Annule les ${src ? src + ' ' : ''}${critOnly}${typeStr}`
@@ -340,27 +360,83 @@ function showItemTooltip(itemId, fromClassId) {
             return `${chance}Convertit les soins${src ? ' ' + src + 's' : ''} en dégâts ${el}${raw ? ` (${raw})` : ''}`
         }
         if (e.reaction === 'crit_absorb_heal')
-            return `${chance}Absorbe un coup${critOnly} ${src || ''} et soigne ${e.heal_pct ?? 20}% des dégâts`
+            return `${chance}Absorbe un coup${critOnly}${src ? ' ' + src : ''} et soigne ${e.heal_pct ?? 20}% des dégâts`
+        if (e.reaction === 'invert') {
+            const statLabel = e.on_effect?.stat ? (STAT_LABELS[e.on_effect.stat] || e.on_effect.stat) : typeStr
+            return `${chance}Inverse les débuffs de ${statLabel}${src ? ' ' + src : ''} en buffs`
+        }
         if (e.reaction === 'trigger') {
-            const tgt = e.target === 'self' ? '(soi)' : e.target || ''
-            return `${chance}Au ${typeStr} ${src || ''} : ${e.value > 0 ? '+' : ''}${e.value} ${e.stat} × ${e.duration} tours ${tgt}`
+            if (e.type === 'shield')
+                return `${chance}Au ${typeStr}${src ? ' ' + src : ''} : bouclier × ${e.duration} tours`
+            const statLabel = STAT_LABELS[e.stat] || e.stat || ''
+            const tgt = e.target === 'self' ? ' (soi)' : e.target ? ' ' + e.target : ''
+            return `${chance}Au ${typeStr}${src ? ' ' + src : ''} : +${e.value} ${statLabel} × ${e.duration} tours${tgt}`
+        }
+        if (e.on_damage_received && e.reaction === 'cancel_next_damage')
+            return `Tous les ${e.on_damage_received.every} dégâts reçus : annule le prochain coup`
+        if (e.on_active && e.type === 'shield')
+            return `En entrant en combat : bouclier × ${e.duration} tours`
+        if (e.on_kill) {
+            const ok        = e.on_kill
+            const statLabel = STAT_LABELS[ok.stat] || ok.stat
+            const max       = ok.max_value ? ` (max ${ok.max_value})` : ''
+            const reset     = ok.swap_reset ? ', reset au changement' : ''
+            const extra     = ok.on_inactive_at_max?.type === 'heal%maxHp'
+                ? ` — au max : soin ${ok.on_inactive_at_max.heal}% PV max au changement` : ''
+            return `+${ok.per_kill} ${statLabel} par kill${max}${reset}${extra}`
+        }
+        if (e.condition === 'no_direct_dmg' && e.type === 'stat_bonus') {
+            const statLabel = STAT_LABELS[e.stat] || e.stat
+            return `+${e.value} ${statLabel} si aucun dégât direct ce tour`
         }
         return null
     }).filter(Boolean)
 
     const _passifPeriodic = (itm.effects || []).filter(e => e.every).map(e => {
-        const after  = e.after ? ` (après le ${e.after}e)` : ''
-        if (e.type === 'heal%maxHp') return `Tous les ${e.every} sorts${after} : soin de ${e.heal}% des PV max`
-        if (e.type === 'heal')       return `Tous les ${e.every} sorts${after} : soin de ${e.heal} PV`
-        if (e.type === 'buff')       return `Tous les ${e.every} sorts${after} : +${e.value} ${e.stat} × ${e.duration} tours`
+        const cond  = e.condition === 'no_buff_debuff' ? ' (si aucun buff/débuff actif)' : ''
+        const after = e.after ? ` (après le ${e.after}e)` : ''
+        if (e.type === 'heal%maxHp')
+            return `Tous les ${e.every} sorts${after} : soin de ${e.heal}% des PV max`
+        if (e.type === 'heal')
+            return `Tous les ${e.every} sorts${after} : soin de ${e.heal} PV`
+        if (e.type === 'buff') {
+            const statLabel = STAT_LABELS[e.stat] || e.stat
+            return `Tous les ${e.every} sorts${after} : +${e.value} ${statLabel} × ${e.duration} tours`
+        }
+        if (e.type === 'dot') {
+            const val = typeof e.value === 'object' ? `${e.value.min}–${e.value.max}` : e.value
+            return `Tous les ${e.every} sorts${after} : inflige ${val} dégâts ${e.element || 'neutre'} × ${e.duration} tours`
+        }
+        if (e.type === 'alternating_buff_debuff') {
+            const statLabel = STAT_LABELS[e.stat] || e.stat
+            return `Tous les ${e.every} sorts${after} : alterne +${e.buff_value} / −${e.debuff_value} ${statLabel} × ${e.duration} tours`
+        }
+        if (e.type === 'random_buff_debuff') {
+            const statLabel = STAT_LABELS[e.stat] || e.stat
+            return `Tous les ${e.every} sorts${after}${cond} : buff ou débuff aléatoire ${statLabel} (±${e.value}) × ${e.duration} tours`
+        }
         return null
     }).filter(Boolean)
 
     const allPassifs = [..._passifPeriodic, ..._passifLines]
-    const passifHtml = allPassifs.length
+    const passifLines = itm.passif ? [itm.passif] : allPassifs
+    const passifHtml = passifLines.length
         ? `<div class="item-passif-block" style="margin:0.4rem 0;padding:0.4rem 0.5rem;border-left:3px solid #7c5cfc;font-size:0.78rem;line-height:1.5;opacity:0.9;">
             <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;opacity:0.6;margin-bottom:0.2rem;">Passif</div>
-            ${allPassifs.map(l => `<div>⚡ ${l}</div>`).join('')}
+            ${passifLines.map(l => `<div>⚡ ${l}</div>`).join('')}
+           </div>`
+        : ''
+
+    // Zones de drop (lootTable + miniBossLootTable)
+    const dropZones = typeof areas !== 'undefined'
+        ? Object.values(areas).filter(a =>
+            a.lootTable?.some(l => l.itemId === itemId) ||
+            a.miniBossLootTable?.some(l => l.itemId === itemId))
+        : []
+    const zonesHtml = dropZones.length > 0
+        ? `<div class="item-drop-zones">
+            <div class="item-drop-zones-title">Zones de drop</div>
+            ${dropZones.map(a => `<span class="item-drop-zone-badge">${a.name}</span>`).join('')}
            </div>`
         : ''
 
@@ -379,6 +455,7 @@ function showItemTooltip(itemId, fromClassId) {
         ${statsHtml ? `<div class="item-stats-block">${statsHtml}</div>` : ''}
         ${setHtml}
         ${passifHtml}
+        ${zonesHtml}
         ${descHtml}
     </div>`
 

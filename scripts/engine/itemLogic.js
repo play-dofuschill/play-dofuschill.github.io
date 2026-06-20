@@ -10,47 +10,32 @@
 // ───────────────── fonctionnalité de level de l'item ────────────────────
 // ────────────────────────────────────────────────────────────────────────
 
-const LEVEL_TIERS = [
-    { maxLevel: 5, tier: 1 },
-    { maxLevel: 12, tier: 2 },
-    { maxLevel: 19, tier: 3 },
-    { maxLevel: 20, tier: 4 }
-]
-
-function getItemTier(level) {
-    return (LEVEL_TIERS.find(t => level <= t.maxLevel) ?? LEVEL_TIERS[LEVEL_TIERS.length - 1]).tier
-}
-
-const ITEM_TIER_MULTIPLIERS = {
-    1: 1.00,
-    2: 1.15,
-    3: 1.30,
-    4: 1.50
-}
-
 function getMaxForgeSlots(statCount) {
     return Math.ceil(statCount / 2)
 }
 
+// Interpole linéairement entre s.min (level 1) et s.max (level itemLevelMax).
+// Si l'item n'a qu'une valeur fixe (ancien format), utilise s.value pour les deux bornes.
 function getItemStats(itm, level, forgedStats = null, transForge = null) {
-    const tier       = getItemTier(level)
-    const multiplier = ITEM_TIER_MULTIPLIERS[tier] || 1
+    const maxLevel = itm.itemLevelMax || 20
+    const t = maxLevel > 1 ? (level - 1) / (maxLevel - 1) : 1
 
-    // support array (new) and single object (backward compat)
     const arr = Array.isArray(forgedStats) ? forgedStats : (forgedStats ? [forgedStats] : [])
     const map = {}
     for (const f of arr) { map[f.statIndex] = f }
 
     const result = itm.stats.map((s, i) => {
+        const lo   = s.min ?? s.value ?? 0
+        const hi   = s.max ?? s.value ?? 0
+        const base = Math.round(lo + (hi - lo) * t)
         const forged = map[i]
         if (forged) {
-            const base = Math.round(s.value * multiplier)
             if (forged.stat !== s.stat) {
                 return { stat: forged.stat, value: forged.value, isForged: true, isTranscendance: false }
             }
             return { stat: s.stat, value: base + forged.value, isForged: true, forgeBonus: forged.value }
         }
-        return { stat: s.stat, value: Math.round(s.value * multiplier), isForged: false }
+        return { stat: s.stat, value: base, isForged: false }
     })
 
     if (transForge) {

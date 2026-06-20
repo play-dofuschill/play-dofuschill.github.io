@@ -262,7 +262,15 @@ function showMemberSheet(member) {
     const cls = classes[member.classId]
     if (!cls) return
 
-    const lvl = member.level || 1
+    const _sheetCap = (() => {
+        if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
+        if (typeof _pendingAreaId !== 'undefined' && _pendingAreaId) {
+            const _pa = areas[_pendingAreaId]
+            if (_pa?.maxLevel && (state.skullLevel > 0 || _pa.type === 'wanted')) return _pa.maxLevel
+        }
+        return null
+    })()
+    const lvl = _sheetCap ? Math.min(member.level || 1, _sheetCap) : (member.level || 1)
     const g   = cls.growthPerLevel
 
     // Stats de base (classe × niveau, sans équipement ni familiars)
@@ -278,7 +286,7 @@ function showMemberSheet(member) {
             neutre: Math.floor(cls.bst.res.neutre + (g.res?.neutre || 0) * (lvl - 1))
         }
     }
-    const eff = getEffectiveStats(member) || base
+    const eff = getEffectiveStats(member, _sheetCap) || base
 
     // Slot d'équipement (cliquable)
     function msEquipSlot(slotId) {
@@ -501,7 +509,14 @@ function openEquipFromSheet(classId, slotId) {
     compatible.forEach(itm => itm.stats?.forEach(s => statSet.add(s.stat)))
     const filterStats = [...statSet].map(s => [s, EQUIP_STAT_LABELS[s] || s])
 
-    const _sheetSkullLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) ? combat.syncedLevel : null
+    const _sheetSkullLvl = (() => {
+        if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
+        if (typeof _pendingAreaId !== 'undefined' && _pendingAreaId) {
+            const _pa = areas[_pendingAreaId]
+            if (_pa?.maxLevel && (state.skullLevel > 0 || _pa.type === 'wanted')) return _pa.maxLevel
+        }
+        return null
+    })()
     _equipPickState = {
         items: compatible,
         filter: null,
@@ -525,7 +540,14 @@ function equipItemFromSheet(classId, slotId, itemId) {
     if (!member) return
     if (itemId) {
         const itm = item[itemId]
-        const _syncedLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) || null
+        const _syncedLvl = (() => {
+            if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
+            if (typeof _pendingAreaId !== 'undefined' && _pendingAreaId) {
+                const _pa = areas[_pendingAreaId]
+                if (_pa?.maxLevel && (state.skullLevel > 0 || _pa.type === 'wanted')) return _pa.maxLevel
+            }
+            return null
+        })()
         const _lvlCap = _syncedLvl ?? (member.level || 0)
         if (itm?.requiredLevel && itm.requiredLevel > _lvlCap) return
     }

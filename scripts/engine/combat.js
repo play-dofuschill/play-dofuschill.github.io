@@ -116,7 +116,13 @@ function startGameLoop() {
 function _syncCombatToState() {
     state.autoPilotAccumulated      = _autoPilot ? JSON.parse(JSON.stringify(_autoPilot.accumulated)) : null
     state.offlineAutoPilotRemaining = _autoPilot ? _autoPilot.remaining : 0
-    if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch) {
+    // Wanted : pas de reprise de page (team morte au restart), mais on sync les PV du boss en cours
+    // Ne sync que si le boss est encore vivant — évite d'écraser le currentHp=maxHp posé par _onWantedVictory
+    if (combat?.isWanted && combat.enemy && combat.enemy.currentHp > 0) {
+        const _wsSync = _wantedBossState(combat.isWanted)
+        if (_wsSync) _wsSync.currentHp = Math.max(0, combat.enemy.currentHp ?? 0)
+    }
+    if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch || combat.isWanted) {
         state.savedCombatEnemy = null
         state.savedCombatState = null
         return
@@ -319,9 +325,18 @@ function startCombat(areaId) {
     }
 
     // Niveau synchro pour le mode modulé (skull > 0 → niveau = maxLevel de la zone)
-    const _startArea   = areas[areaId]
-    const _syncedLevel = (state.skullLevel > 0 && _startArea?.maxLevel)
+    const _startArea = areas[areaId]
+    let _syncedLevel = (state.skullLevel > 0 && _startArea?.maxLevel)
         ? _startArea.maxLevel : null
+
+    // Wanted : cap de niveau sans difficulté skull
+    const _pendingWantedId = state.pendingWantedId
+        || (areas[areaId]?.type === 'wanted' ? areaId.replace(/^_wanted_/, '') : null)
+    if (_pendingWantedId) {
+        state.pendingWantedId = null
+        const _wd = WantedBosses[_pendingWantedId]
+        if (_wd?.levelCap) _syncedLevel = _wd.levelCap
+    }
 
     // Auto-déséquipement sur départ frais uniquement
     if (!_isResume && _syncedLevel !== null) {
@@ -342,7 +357,8 @@ function startCombat(areaId) {
         if (Object.keys(unequipped).length > 0) {
             state.skullUnequipped = unequipped
             const count = Object.values(unequipped).reduce((s, slots) => s + Object.keys(slots).length, 0)
-            showNotification(`${count} équipement${count > 1 ? 's' : ''} retiré${count > 1 ? 's' : ''} (niveau trop élevé pour cette zone modulée)`, 'warning')
+            const reason = _pendingWantedId ? 'Avis de Recherche — niveau trop élevé' : 'niveau trop élevé pour cette zone modulée'
+            showNotification(`${count} équipement${count > 1 ? 's' : ''} retiré${count > 1 ? 's' : ''} (${reason})`, 'warning')
         }
     }
 
@@ -386,6 +402,10 @@ function startCombat(areaId) {
         dungeonBossQueue:      null,
         playerAttackCount:     0,
         memberTrophyCounters:  {}
+    }
+    if (_pendingWantedId) {
+        combat.isWanted      = _pendingWantedId
+        combat.wantedStartHp = _wantedBossState(_pendingWantedId)?.currentHp ?? 0
     }
 
     if (_isResume && state.savedCombatState) {
@@ -469,6 +489,17 @@ function startCombat(areaId) {
             if (combat.enemy) combat.enemy.isRaidMiniBoss = false
         } else {
             combat.enemy = spawnEnemy(areaId)
+            // Wanted : remplace les stats spawned par les valeurs persistées
+            if (_pendingWantedId && combat.enemy) {
+                const _ws = _wantedBossState(_pendingWantedId)
+                const _wd = WantedBosses[_pendingWantedId]
+                if (_ws && _wd) {
+                    combat.enemy.maxHp      = _ws.maxHp
+                    combat.enemy.currentHp  = _ws.currentHp
+                    combat.enemy.atk        = Math.floor(_wd.bst.atk * _ws.statMultiplier)
+                    combat.enemy._baseMaxHp = _ws.maxHp
+                }
+            }
         }
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
     }
@@ -527,6 +558,7 @@ function setCombatSpeed(mode) {
 }
 
 function exitCombat() {
+    const _exitAreaType = areas[state.currentArea]?.type || null
     state.savedCombatEnemy = null
     state.savedCombatState = null
     if (typeof musicExitZone === 'function') musicExitZone()
@@ -552,7 +584,8 @@ function exitCombat() {
     if (menuParent) menuParent.style.display = state.hasChosenStarter ? '' : 'none'
     saveGame()
     if (typeof updateCollectionUI === 'function') updateCollectionUI()
-    switchMenu('worldmap')
+    if (_exitAreaType === 'wanted') switchMenu('wanted')
+    else                            switchMenu('worldmap')
 }
 
 function leaveCombat() {
@@ -3868,6 +3901,25 @@ function onVictory() {
         return
     }
 
+    // Wanted boss : victoire — récompense panoplie + mise à l'échelle de difficulté
+    // L'autopilot s'arrête toujours sur une victoire wanted (boss vaincu = fin de cycle)
+    if (combat.isWanted) {
+        const _wid = combat.isWanted
+        combat.respawnPending = false
+        _onWantedVictory(_wid)
+        stopCombat()
+        state.isRunning = false
+        _afkSeconds = 0
+        if (_autoPilot) {
+            _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
+            combat.sessionLoot = JSON.parse(JSON.stringify(_autoPilot.accumulated))
+            _autoPilot = null
+        }
+        saveGame()
+        showSessionSummary('wanted_victory')
+        return
+    }
+
     // Donjon : victoire finale — consomme la clé, relance si option active
     if (areas[state.currentArea]?.type === 'dungeon') {
         combat.respawnPending = false
@@ -3919,8 +3971,11 @@ function onDefeat() {
     state.savedCombatState = null
 
     if (_afkSeconds > 0) {
+        const _afkWantedId = combat?.isWanted || null
+        if (_afkWantedId) _onWantedDefeat(_afkWantedId)
         stopCombat()
         if (combat) combat.enemy = null
+        if (_afkWantedId) saveGame()
         _offlineHandleDefeat()
         return
     }
@@ -3931,6 +3986,41 @@ function onDefeat() {
         showPoutchSummary('defeat')
         return
     }
+
+    // Wanted boss : défaite → persiste les PV restants du boss
+    if (combat?.isWanted) {
+        _onWantedDefeat(combat.isWanted)
+        stopCombat()
+        state.isRunning = false
+        combat.enemy = null
+        if (_autoPilot && _autoPilot.remaining > 0 &&
+            (state.inventory['piloteAutomatique']?.count || 0) > 0) {
+            _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
+            _consumeAutoPilotTicket()
+            _autoPilot.remaining--
+            state.offlineAutoPilotRemaining = _autoPilot.remaining
+            if (_autoPilot.remaining > 0 && (state.inventory['piloteAutomatique']?.count || 0) > 0) {
+                for (const m of state.team) {
+                    if (!m) continue
+                    const stats = getEffectiveStats(m)
+                    if (stats) { m.currentHp = stats.hp; m.maxHp = stats.hp }
+                    m.buffs = []; m.dots = []; m.hots = []; m.shield = null
+                }
+                saveGame()
+                setTimeout(() => rejoinArea(), 800)
+                return
+            }
+            saveGame()
+            combat.sessionLoot = JSON.parse(JSON.stringify(_autoPilot.accumulated))
+            _autoPilot = null
+            showSessionSummary('autopilot')
+            return
+        }
+        saveGame()
+        showSessionSummary('defeat')
+        return
+    }
+
     stopCombat()
     state.isRunning = false
     combat.enemy = null

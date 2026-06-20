@@ -4943,6 +4943,10 @@ transform: translateY(-1rem);
 .item-sheet-level            { font-size: 0.75rem; opacity: 0.65; white-space: nowrap; }
 
 .item-stats-block            { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.item-drop-zones             { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.6rem; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0.3rem; }
+.item-drop-zones-title       { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; width: 100%; }
+.item-drop-zone-badge        { display: inline-block; font-size: 0.78rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 0.4rem; padding: 0.15rem 0.5rem; opacity: 0.85; }
 .item-stat-row               { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; }
 .item-stat-icon              { width: 1rem; height: 1rem; object-fit: contain; flex-shrink: 0; }
 .item-stat-total             { opacity: 0.55; font-size: 0.78rem; }
@@ -5513,6 +5517,43 @@ transform: translateY(-1rem);
     display: inline-block; font-size: 0.65rem; padding: 0.1em 0.4em;
     background: #c0392b; border-radius: 0.3em; margin-left: 0.4em;
     vertical-align: middle; color: #fff; font-weight: bold;
+}
+
+/* ── Avis de Recherche menu ───────────────────────────────────── */
+#wanted-menu {
+    position: fixed; height: 100%; width: 50%;
+    display: none; flex-direction: column; overflow: hidden;
+    background: var(--dark2); z-index: 30;
+}
+@media (max-width: 1000px) { #wanted-menu { width: 100%; } }
+
+#wanted-menu-header {
+    height: 8rem; width: 100%;
+    background-image: url(img/bg/Avis_bonta.png);
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: column;
+    justify-content: start; align-items: end; text-align: end;
+    flex-shrink: 0; gap: 0.5rem;
+    padding: 0.4rem 2%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: rgba(0,0,0,0.3) 0 4px 4px 0;
+    margin-bottom: 1rem;
+}
+#wanted-menu-header span {
+    height: 2rem; display: flex;
+    justify-content: center; align-items: center;
+    background: rgba(0,0,0,0.5); color: white;
+    border: rgba(255,255,255,0.7) 1px solid;
+    border-radius: 0.5rem; font-size: 1.5rem;
+    padding: 1.3rem 1em; font-weight: 100;
+    flex-shrink: 0; z-index: 2;
+}
+#wanted-content {
+    margin-top: 0; height: 100%; overflow-y: scroll;
+    width: 95%; padding: 0; align-self: center;
+    display: flex; justify-content: start; align-items: center;
+    flex-direction: column; gap: 0.3rem;
+    position: relative; padding-bottom: 5rem;
 }
 
 /* ── Boss_Ultime prep screen ───────────────────────────────────── */

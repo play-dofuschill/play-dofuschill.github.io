@@ -390,6 +390,13 @@
         <div id="Boss_Ultime-content"></div>
     </div>
 
+    <div id="wanted-menu" style="display: none;" class="season-background">
+        <div id="wanted-menu-header">
+            <span>Avis de Recherche</span>
+        </div>
+        <div id="wanted-content"></div>
+    </div>
+
     <!-- Écran de combat Boss Ultime (overlay plein écran, affiché pendant un combat actif) -->
     <div id="Boss_Ultime-screen" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:150;overflow-y:auto;background:var(--dark1,#1a1a1a);flex-direction:column;"></div>
 
@@ -659,6 +666,11 @@
             <img src="img/icons/menu_team.png" onerror="this.src='img/icons/icon.png'">
             <span>Boss Ultime</span>
         </div>
+
+        <div class="menu-item" id="menu-item-wanted" onClick="switchMenu('wanted')">
+            <img src="img/icons/wanted.png" onerror="this.src='img/icons/icon.png'">
+            <span>Avis de recherche</span>
+        </div>
         
         <div class="menu-item" id="menu-item-poutch" onClick="switchMenu('poutch')">
             <img src="img/pnj/Poutch.png" onerror="this.src='img/icons/icon.png'">
@@ -789,6 +801,7 @@
     <script defer src="scripts/data/guideDictionary.js"></script>
     <script defer src="scripts/data/creditsDictionary.js"></script>
     <script defer src="scripts/data/bossUltimeDictionary.js"></script>
+    <script defer src="scripts/data/wantedDictionary.js"></script>
 
     <!-- Moteur (dépend des données) -->
     <script defer src="scripts/engine/save.js"></script>
@@ -800,6 +813,7 @@
     <script defer src="scripts/engine/dailyRoll.js"></script>
     <script defer src="scripts/engine/loot.js"></script>
     <script defer src="scripts/engine/offline.js"></script>
+    <script defer src="scripts/engine/wantedEngine.js"></script>
     <script defer src="scripts/engine/combat.js"></script>
     <script defer src="scripts/engine/bossUltimeCombat.js"></script>
     <script defer src="scripts/engine/shop.js"></script>
@@ -818,6 +832,7 @@
     <script defer src="scripts/ui/forge.js"></script>
     <script defer src="scripts/ui/raid.js"></script>
     <script defer src="scripts/ui/bossUltime.js"></script>
+    <script defer src="scripts/ui/wanted.js"></script>
     <script defer src="scripts/ui/guide.js"></script>
     <script defer src="scripts/ui/credits.js"></script>
     <script defer src="scripts/engine/music.js"></script>

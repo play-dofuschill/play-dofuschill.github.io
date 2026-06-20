@@ -283,6 +283,7 @@ const MENU_MAP = {
     forge:        'forge-menu',
     raid:         'raid-menu',
     Boss_Ultime:       'Boss_Ultime-menu',
+    wanted:       'wanted-menu',
     guide:        'guide-menu',
     credits:      'credits-menu'
 }
@@ -313,6 +314,7 @@ const MENU_ITEM_MAP = {
     'menu-item-forge':    'forge',
     'menu-item-raid':     'raid',
     'menu-item-Boss_Ultime':   'Boss_Ultime',
+    'menu-item-wanted':   'wanted',
     'menu-item-guide':    'guide',
     'menu-item-credits':  'credits'
 }
@@ -397,6 +399,7 @@ function switchMenu(menuName) {
     if (menuName === 'forge')  updateForgeUI()
     if (menuName === 'raid')    updateRaidUI()
     if (menuName === 'Boss_Ultime')  updateBoss_UltimeUI()
+    if (menuName === 'wanted') updateWantedUI()
     if (menuName === 'guide')   renderGuide()
     if (menuName === 'credits') renderCredits()
 }
@@ -571,8 +574,9 @@ function showSessionSummary(type) {
     if (type === 'defeat')       titleText = 'Équipe vaincue...'
     else if (type === 'dungeon') titleText = 'Donjon terminé !'
     else if (type === 'autopilot') titleText = `Pilote auto — ${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
-    else if (type === 'raid')    titleText = `Raid quitté — ${session.killCount} kill${session.killCount > 1 ? 's' : ''}`
-    else if (type === 'leave')   titleText = `${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
+    else if (type === 'raid')           titleText = `Raid quitté — ${session.killCount} kill${session.killCount > 1 ? 's' : ''}`
+    else if (type === 'wanted_victory') titleText = 'Avis de recherche accompli !'
+    else if (type === 'leave')          titleText = `${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
 
     // ── Sorts appris
     const learnedMoves = session.learnedMoves || []
