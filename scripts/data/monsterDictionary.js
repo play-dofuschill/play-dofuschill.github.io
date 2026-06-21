@@ -1,4 +1,4 @@
-// monsterDictionary.js — Monstres DofusChill
+﻿// monsterDictionary.js — Monstres DofusChill
 //
 /*
 monsters. = {
@@ -66,7 +66,7 @@ monsters.poulpor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['double_tranchant']
 }
 
 monsters.percepteur_aquatique = {
@@ -106,7 +106,7 @@ monsters.germinial = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['morsure_putride', 'langue_morte']
 }
 
 monsters.capitaine_brakmarien = {
@@ -116,7 +116,7 @@ monsters.capitaine_brakmarien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['porter_la_boufballe', 'jeter_la_boufballe', 'rapprochement', 'amplification', 'tacle', 'triche']
 }
 
 monsters.capitaine_bontarien = {
@@ -126,7 +126,7 @@ monsters.capitaine_bontarien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tu_pousses_le_bouchon_un_peu_trop_loin_joris', 'verfeur', 'lioube', 'emportement', 'eau_strasisme']
 }
 
 monsters.attaquant_brakmarien_i = {
@@ -136,7 +136,7 @@ monsters.attaquant_brakmarien_i = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['rapprochement_offensif', 'tacle_offensif']
 }
 
 monsters.attaquant_bontarien_i = {
@@ -176,7 +176,7 @@ monsters.defenseur_brakmarien_i = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tacle_lourd']
 }
 
 monsters.defenseur_bontarien_i = {
@@ -226,7 +226,7 @@ monsters.sousouris_grise = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['morsure']
 }
 
 monsters.flammeche_feu = {
@@ -236,7 +236,7 @@ monsters.flammeche_feu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: []
+    moves: ['elemental_spear', 'bomball']
 }
 
 monsters.flammeche_eau = {
@@ -276,7 +276,7 @@ monsters.tofu_chimerique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15, atk: 5, spd: 100, res: { neutre: 0, terre: -10, feu: -5, eau: 0, air: 5 } },
-    moves: []
+    moves: ['beco_du_tofu']
 }
 
 monsters.feu_vif = {
@@ -286,7 +286,7 @@ monsters.feu_vif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 10 } },
-    moves: []
+    moves: ['brulure_legere']
 }
 
 monsters.feu_de_joie = {
@@ -326,7 +326,7 @@ monsters.krokille_de_mer = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 75, terre: 75, feu: 75, eau: 75, air: 75 } },
-    moves: []
+    moves: ['crachat_sale']
 }
 
 monsters.rose_vaporeuse = {
@@ -336,7 +336,7 @@ monsters.rose_vaporeuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 18, atk: 3, spd: 100, res: { neutre: -4, terre: -10, feu: -3, eau: -10, air: -4 } },
-    moves: []
+    moves: ['empoisonnement', 'effleurement']
 }
 
 monsters.pissenlit_miroitant = {
@@ -356,7 +356,7 @@ monsters.petit_gloot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 18, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 10, air: -20 } },
-    moves: []
+    moves: ['glougloutte']
 }
 
 monsters.tournesol_nebuleux = {
@@ -396,7 +396,7 @@ monsters.plikplok = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 21, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 15, air: 0 } },
-    moves: []
+    moves: ['plouf']
 }
 
 monsters.bouftou_nuageux = {
@@ -416,7 +416,7 @@ monsters.grand_splatch = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 24, atk: 0, spd: 100, res: { neutre: 0, terre: -10, feu: 0, eau: 20, air: 0 } },
-    moves: []
+    moves: ['splotch']
 }
 
 monsters.chakrobat = {
@@ -426,7 +426,7 @@ monsters.chakrobat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 24, atk: 0, spd: 100, res: { neutre: -10, terre: -4, feu: -4, eau: -5, air: 0 } },
-    moves: []
+    moves: ['souffle_celeste', 'particules_spirituelles']
 }
 
 monsters.chaferDebutant = {
@@ -456,7 +456,7 @@ monsters.tigrimas = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 28, atk: 10, spd: 100, res: { neutre: 2, terre: 0, feu: -10, eau: 2, air: 0 } },
-    moves: []
+    moves: ['reconstitution_celeste', 'lancer_de_feu_vif']
 }
 
 monsters.aminite = {
@@ -466,7 +466,7 @@ monsters.aminite = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 28, atk: 45, spd: 100, res: { neutre: 20, terre: 0, feu: -10, eau: 10, air: -10 } },
-    moves: []
+    moves: ['coup_de_pileus', 'spore_tensia']
 }
 
 monsters.chaferEclaireur = {
@@ -496,7 +496,7 @@ monsters.ronronchon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 32, atk: 10, spd: 100, res: { neutre: 0, terre: 0, feu: -10, eau: 2, air: -10 } },
-    moves: []
+    moves: ['ron_ron', 'invocation_de_feu_de_joie', 'ecrasement_du_ronronchon']
 }
 
 monsters.chaferPiquier = {
@@ -526,7 +526,7 @@ monsters.tofu_malade = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 44, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: 6, eau: 0, air: -14 } },
-    moves: []
+    moves: ['beco_morveux', 'tentative_d_envol']
 }
 
 monsters.arakne_minuscule = {
@@ -536,7 +536,7 @@ monsters.arakne_minuscule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 45, atk: 96, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['mandibules_toxiques']
 }
 
 monsters.arakne_malade = {
@@ -546,7 +546,7 @@ monsters.arakne_malade = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 44, spd: 100, res: { neutre: -9, terre: 6, feu: 1, eau: -9, air: 6 } },
-    moves: []
+    moves: ['frappe_morveuse', 'glaire_obscure']
 }
 
 monsters.piouBleu = {
@@ -616,7 +616,7 @@ monsters.araknelle = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 13, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['frappe', 'invocation_d_arakne', 'invocation_d_araknelle']
 }
 
 monsters.kol_nenfan = {
@@ -626,7 +626,7 @@ monsters.kol_nenfan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 500, spd: 100, res: { neutre: 40, terre: 40, feu: 40, eau: 40, air: 40 } },
-    moves: []
+    moves: ['gouter', 'attraction_enfantine']
 }
 
 monsters.koup_nenfan = {
@@ -636,7 +636,7 @@ monsters.koup_nenfan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 38, spd: 100, res: { neutre: 40, terre: 40, feu: 40, eau: 40, air: 40 } },
-    moves: []
+    moves: ['coupage']
 }
 
 monsters.pet_nenfan = {
@@ -646,7 +646,7 @@ monsters.pet_nenfan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 88, spd: 100, res: { neutre: 40, terre: 40, feu: 40, eau: 40, air: 40 } },
-    moves: []
+    moves: ['bombombe']
 }
 
 monsters.araknose = {
@@ -656,7 +656,7 @@ monsters.araknose = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 44, spd: 100, res: { neutre: 6, terre: 0, feu: 1, eau: 1, air: -9 } },
-    moves: []
+    moves: ['toile_fragile', 'rejet_acide']
 }
 
 monsters.arakmute = {
@@ -666,7 +666,7 @@ monsters.arakmute = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 49, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: -14, eau: 6, air: 11 } },
-    moves: []
+    moves: ['jet_de_poussiere', 'regard_effrayant']
 }
 
 monsters.cadeau_anime = {
@@ -676,7 +676,7 @@ monsters.cadeau_anime = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 55, atk: 38, spd: 100, res: { neutre: -5, terre: 5, feu: 10, eau: -20, air: 10 } },
-    moves: []
+    moves: ['petit_paquet']
 }
 
 monsters.bomberfu = {
@@ -686,7 +686,7 @@ monsters.bomberfu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 66, atk: 100, spd: 100, res: { neutre: 0, terre: 5, feu: -10, eau: 0, air: 0 } },
-    moves: []
+    moves: ['detonation_du_poulailler']
 }
 
 monsters.kolerat_strubien = {
@@ -696,7 +696,7 @@ monsters.kolerat_strubien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 72, atk: 96, spd: 100, res: { neutre: -5, terre: -5, feu: -5, eau: -5, air: -5 } },
-    moves: []
+    moves: ['hypnose_brulante', 'morstrubien']
 }
 
 monsters.tofu_degenere = {
@@ -736,7 +736,7 @@ monsters.larve_bleue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: 1, terre: 6, feu: 6, eau: -9, air: -9 } },
-    moves: []
+    moves: ['postillon_handicapant', 'bulle_de_protection']
 }
 
 monsters.larve_verte = {
@@ -746,7 +746,7 @@ monsters.larve_verte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: 0, terre: 1, feu: -9, eau: 1, air: 6 } },
-    moves: []
+    moves: ['postillon_aveuglant', 'corps_spongieux']
 }
 
 monsters.larve_orange = {
@@ -756,7 +756,7 @@ monsters.larve_orange = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: 1, terre: -9, feu: -9, eau: 21, air: 6 } },
-    moves: []
+    moves: ['bave_collante', 'dissuasion']
 }
 
 monsters.larve_verte_solitaire = {
@@ -766,7 +766,7 @@ monsters.larve_verte_solitaire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 63, spd: 100, res: { neutre: 6, terre: 5, feu: -10, eau: 6, air: 10 } },
-    moves: []
+    moves: ['larvement', 'retour_de_flamme']
 }
 
 monsters.larve_jaune = {
@@ -776,7 +776,7 @@ monsters.larve_jaune = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: 0, terre: 6, feu: 16, eau: -9, air: 1 } },
-    moves: []
+    moves: ['bave_affaiblissante', 'postillon_cauterisant']
 }
 
 monsters.roseDemoniaque = {
@@ -816,7 +816,7 @@ monsters.arakne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: -9, terre: 1, feu: 11, eau: -14, air: 11 } },
-    moves: []
+    moves: ['frappe_ridicule', 'petite_toile']
 }
 
 monsters.pissenliDiabolique = {
@@ -886,7 +886,7 @@ monsters.champ_champ = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: -14, terre: 0, feu: -9, eau: 21, air: 6 } },
-    moves: []
+    moves: ['champatate', 'champoisonnement']
 }
 
 monsters.moskito = {
@@ -896,7 +896,7 @@ monsters.moskito = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: 0, terre: 16, feu: 0, eau: 6, air: -14 } },
-    moves: []
+    moves: ['piqure', 'esquive_volante']
 }
 
 monsters.campagnoll = {
@@ -906,7 +906,7 @@ monsters.campagnoll = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 64, spd: 100, res: { neutre: 11, terre: -9, feu: 6, eau: -9, air: 1 } },
-    moves: []
+    moves: ['gnoll_haut', 'rongement']
 }
 
 monsters.cadob_oum = {
@@ -936,7 +936,7 @@ monsters.poutch_ingball = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 50000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tuerie']
 }
 
 monsters.poutch_vil_smisse = {
@@ -996,7 +996,7 @@ monsters.workette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 100, atk: 50, spd: 100, res: { neutre: 10, terre: 50, feu: -10, eau: -10, air: 20 } },
-    moves: []
+    moves: ['baiser_de_kaliptus', 'implosion']
 }
 
 monsters.epouvanteur = {
@@ -1016,7 +1016,7 @@ monsters.corbac_fantomatique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 0, terre: -10, feu: 0, eau: 10, air: 0 } },
-    moves: []
+    moves: ['moquerie_fantomatique', 'replique_fantomatique']
 }
 
 monsters.marcassin_fantomatique = {
@@ -1026,7 +1026,7 @@ monsters.marcassin_fantomatique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 0, terre: 10, feu: 0, eau: -10, air: 0 } },
-    moves: []
+    moves: ['embrochement_fantomatique']
 }
 
 monsters.el_scarador_fantomatique = {
@@ -1036,7 +1036,7 @@ monsters.el_scarador_fantomatique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 5, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: []
+    moves: ['element_fantomatique', 'scaraforce_fantomatique']
 }
 
 monsters.croum_fantomatique = {
@@ -1046,7 +1046,7 @@ monsters.croum_fantomatique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 18, terre: -9, feu: 11, eau: -9, air: 11 } },
-    moves: []
+    moves: ['glaive_fantomatique', 'bravoure_fantomatique']
 }
 
 monsters.poupoussiere = {
@@ -1056,7 +1056,7 @@ monsters.poupoussiere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 110, atk: 160, spd: 100, res: { neutre: 10, terre: 0, feu: -20, eau: 10, air: 0 } },
-    moves: []
+    moves: ['nuage_de_poupoussiere']
 }
 
 monsters.rose_obscure = {
@@ -1076,7 +1076,7 @@ monsters.coffre_maudit_du_flib = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 130, atk: 0, spd: 100, res: { neutre: 11, terre: -19, feu: -19, eau: -19, air: -19 } },
-    moves: []
+    moves: ['disruption', 'malediction']
 }
 
 monsters.sac_anime = {
@@ -1096,7 +1096,7 @@ monsters.krokille_juvenile_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 130, atk: 25, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['septicemie', 'esprit_de_meute', 'immunodeficience']
 }
 
 monsters.krokille_juvenile_boueuse = {
@@ -1106,7 +1106,7 @@ monsters.krokille_juvenile_boueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 130, atk: 25, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: []
+    moves: ['fange', 'caprice', 'rebond_punitif']
 }
 
 monsters.krokille_juvenile_incandescente = {
@@ -1116,7 +1116,7 @@ monsters.krokille_juvenile_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 130, atk: 25, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: []
+    moves: ['anemie', 'curee', 'incubation']
 }
 
 monsters.krokille_juvenile_humide = {
@@ -1126,7 +1126,7 @@ monsters.krokille_juvenile_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 130, atk: 25, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: []
+    moves: ['humectation', 'flaque']
 }
 
 monsters.krokille_juvenile_seche = {
@@ -1136,7 +1136,7 @@ monsters.krokille_juvenile_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 130, atk: 25, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: []
+    moves: ['assechement', 'souffle_percutant']
 }
 
 monsters.ecurouille = {
@@ -1166,7 +1166,7 @@ monsters.bwak_de_feu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: []
+    moves: ['bwakikui']
 }
 
 monsters.bwak_de_terre = {
@@ -1266,7 +1266,7 @@ monsters.ashi_magari = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['enchevetrement']
 }
 
 monsters.martoa = {
@@ -1276,7 +1276,7 @@ monsters.martoa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 21, feu: 6, eau: -14, air: 11 } },
-    moves: []
+    moves: ['marteau_branlant', 'mur_de_pelles']
 }
 
 monsters.sherpoa = {
@@ -1286,7 +1286,7 @@ monsters.sherpoa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 11, feu: 11, eau: 11, air: -9 } },
-    moves: []
+    moves: ['lancer_de_caillou', 'piege_de_cailloux']
 }
 
 monsters.douzdoa = {
@@ -1296,7 +1296,7 @@ monsters.douzdoa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 1, feu: 1, eau: 16, air: 6 } },
-    moves: []
+    moves: ['vissage', 'piege_de_vapeur']
 }
 
 monsters.pikdoa = {
@@ -1306,7 +1306,7 @@ monsters.pikdoa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: -9, feu: 6, eau: 11, air: 16 } },
-    moves: []
+    moves: ['piochage', 'piege_a_pieds']
 }
 
 monsters.bouftou = {
@@ -1322,7 +1322,7 @@ monsters.bouftou = {
 monsters.sanglier = {
     id: 'sanglier',
     name: 'Sanglier',
-    image: 'images/monsters/sanglier.png',
+    image: 'images/monsters/Sanglier_des_Plaines.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 170, atk: 88, spd: 100, res: { neutre: 6, terre: 16, feu: -14, eau: 0, air: 6 } },
@@ -1356,7 +1356,7 @@ monsters.arakne_des_egouts = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 180, atk: 96, spd: 100, res: { neutre: -5, terre: 20, feu: -5, eau: -15, air: 10 } },
-    moves: []
+    moves: ['mandibules', 'mere_porteuse']
 }
 
 monsters.ramane_strubien = {
@@ -1366,7 +1366,7 @@ monsters.ramane_strubien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 180, atk: 96, spd: 100, res: { neutre: 20, terre: 10, feu: 20, eau: -5, air: -15 } },
-    moves: []
+    moves: ['roblochon_ancestral', 'trou_d_emmental']
 }
 
 monsters.scelerat_strubien = {
@@ -1376,7 +1376,7 @@ monsters.scelerat_strubien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 180, atk: 96, spd: 100, res: { neutre: -15, terre: -5, feu: -15, eau: 10, air: 20 } },
-    moves: []
+    moves: ['mordillage', 'coup_de_dents']
 }
 
 monsters.milirat_strubien = {
@@ -1386,7 +1386,7 @@ monsters.milirat_strubien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 180, atk: 96, spd: 100, res: { neutre: 10, terre: -15, feu: 10, eau: 20, air: -5 } },
-    moves: []
+    moves: ['lancer_de_lance', 'air_empoisonne']
 }
 
 monsters.tonneau_pirate = {
@@ -1406,7 +1406,7 @@ monsters.boo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 190, atk: 115, spd: 100, res: { neutre: 10, terre: 6, feu: -12, eau: 6, air: -12 } },
-    moves: []
+    moves: ['souillure_booeuse', 'embourbement']
 }
 
 monsters.disciple_du_kimbo = {
@@ -1416,7 +1416,7 @@ monsters.disciple_du_kimbo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 190, atk: 225, spd: 100, res: { neutre: 800, terre: 800, feu: 800, eau: 800, air: 800 } },
-    moves: []
+    moves: ['glyphe_pair', 'glyphe_impair']
 }
 
 monsters.tentacule_quaternaire = {
@@ -1636,7 +1636,7 @@ monsters.chafer_invisible = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 220, atk: 22, spd: 100, res: { neutre: 6, terre: 0, feu: 0, eau: -18, air: 18 } },
-    moves: []
+    moves: ['camouflage', 'coup_du_chafer', 'pantalonnade']
 }
 
 monsters.citwouille = {
@@ -1646,7 +1646,7 @@ monsters.citwouille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 220, atk: 113, spd: 100, res: { neutre: 1, terre: -9, feu: 1, eau: 0, air: 0 } },
-    moves: []
+    moves: ['vol_de_pieces', 'peur_vegetarienne', 'empoisonnement_vegetarien']
 }
 
 monsters.rasboul_mineur = {
@@ -1656,7 +1656,7 @@ monsters.rasboul_mineur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 220, atk: 0, spd: 100, res: { neutre: 75, terre: -75, feu: 75, eau: 75, air: 75 } },
-    moves: []
+    moves: ['bisouille']
 }
 
 monsters.kruella_freuz = {
@@ -1666,7 +1666,7 @@ monsters.kruella_freuz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 230, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['invocation_de_kruella', 'souffle_motivant', 'souffle_empoisonne']
 }
 
 monsters.donatella = {
@@ -1676,7 +1676,7 @@ monsters.donatella = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 240, atk: 60, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 30 } },
-    moves: []
+    moves: ['kawabunga']
 }
 
 monsters.pierre_taillee = {
@@ -1696,7 +1696,7 @@ monsters.dagobert = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 240, atk: 118, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['miaulement_agacant', 'minouille']
 }
 
 monsters.tofu = {
@@ -1706,7 +1706,7 @@ monsters.tofu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 250, atk: 128, spd: 100, res: { neutre: 5, terre: -9, feu: 9, eau: 9, air: -9 } },
-    moves: []
+    moves: ['beco']
 }
 
 monsters.tofu_noir = {
@@ -1716,7 +1716,7 @@ monsters.tofu_noir = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 250, atk: 128, spd: 100, res: { neutre: 12, terre: 9, feu: -10, eau: 16, air: 17 } },
-    moves: []
+    moves: ['beco_rosif', 'fougue_tofuesque']
 }
 
 monsters.uf_de_pwak = {
@@ -1756,7 +1756,7 @@ monsters.vampire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 16, terre: 21, feu: -14, eau: -14, air: 11 } },
-    moves: []
+    moves: ['vol_de_vie', 'force_des_ames_putrides', 'nosfurate']
 }
 
 monsters.kwoan = {
@@ -1766,7 +1766,7 @@ monsters.kwoan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 16, terre: 6, feu: 0, eau: 11, air: -14 } },
-    moves: []
+    moves: ['frappe_gerbante', 'confusion_optique']
 }
 
 monsters.tofoune = {
@@ -1776,7 +1776,7 @@ monsters.tofoune = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 10, terre: -10, feu: 31, eau: 36, air: -23 } },
-    moves: []
+    moves: ['picota', 'graine_empoisonnee', 'mot_de_jeunesse']
 }
 
 monsters.tofukaz = {
@@ -1786,7 +1786,7 @@ monsters.tofukaz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 29, terre: 32, feu: -16, eau: -14, air: 13 } },
-    moves: []
+    moves: ['disparition_groupee', 'provocation']
 }
 
 monsters.boostache_prepubere = {
@@ -1796,7 +1796,7 @@ monsters.boostache_prepubere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 16, terre: 0, feu: 0, eau: 1, air: 26 } },
-    moves: []
+    moves: ['caresse_effrayante', 'timidite', 'boorrade']
 }
 
 monsters.cafarcher = {
@@ -1806,7 +1806,7 @@ monsters.cafarcher = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: 11, terre: -9, feu: 0, eau: 0, air: -13 } },
-    moves: []
+    moves: ['tir_de_cure_dent', 'coup_de_cure_dent']
 }
 
 monsters.pyrasite = {
@@ -1816,7 +1816,7 @@ monsters.pyrasite = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 280, atk: 128, spd: 100, res: { neutre: -13, terre: 0, feu: 12, eau: -28, air: 0 } },
-    moves: []
+    moves: ['souffle_brulant', 'cri_de_l_insecte_ardent']
 }
 
 monsters.totem_motivant = {
@@ -1826,7 +1826,7 @@ monsters.totem_motivant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 0, spd: 100, res: { neutre: 90, terre: 90, feu: -20, eau: 90, air: 90 } },
-    moves: []
+    moves: ['encouragement']
 }
 
 monsters.totem_explosif = {
@@ -1836,7 +1836,7 @@ monsters.totem_explosif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 0, spd: 100, res: { neutre: 90, terre: 90, feu: 100, eau: 90, air: 90 } },
-    moves: []
+    moves: ['tentative_d_explosion']
 }
 
 monsters.totem_soignant = {
@@ -1846,7 +1846,7 @@ monsters.totem_soignant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 50, spd: 100, res: { neutre: 90, terre: 90, feu: -20, eau: 90, air: 90 } },
-    moves: []
+    moves: ['reconstitution_magique']
 }
 
 monsters.LAouassingue = {
@@ -1876,7 +1876,7 @@ monsters.gobet = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 118, spd: 100, res: { neutre: 2, terre: 9, feu: 3, eau: -6, air: -8 } },
-    moves: []
+    moves: ['frappe_temeraire', 'impact_maladroit']
 }
 
 monsters.fantome_egerie = {
@@ -1886,7 +1886,7 @@ monsters.fantome_egerie = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 144, spd: 100, res: { neutre: -15, terre: -5, feu: 10, eau: -15, air: 20 } },
-    moves: []
+    moves: ['renvoi_fantomatique', 'explosion_fantomatique', 'fleche_fantomatique']
 }
 
 monsters.fantome_hicide = {
@@ -1896,7 +1896,7 @@ monsters.fantome_hicide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 144, spd: 100, res: { neutre: 10, terre: 20, feu: -5, eau: 10, air: -15 } },
-    moves: []
+    moves: ['invocation_de_familiers_fantomatiques', 'corbacame', 'cri_de_l_operette']
 }
 
 monsters.fantome_apero = {
@@ -1906,7 +1906,7 @@ monsters.fantome_apero = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 144, spd: 100, res: { neutre: -5, terre: -15, feu: 20, eau: -5, air: 10 } },
-    moves: []
+    moves: ['motivation_fantomatique', 'invocation_d_esprits_familiers', 'erikorbac']
 }
 
 monsters.garglyphe = {
@@ -1916,7 +1916,7 @@ monsters.garglyphe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 118, spd: 100, res: { neutre: 10, terre: 10, feu: -15, eau: 20, air: -5 } },
-    moves: []
+    moves: ['deterrage', 'gare_aux_glyphes', 'durete_ramollissante']
 }
 
 monsters.gobaliste = {
@@ -1926,7 +1926,7 @@ monsters.gobaliste = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 118, spd: 100, res: { neutre: -5, terre: -10, feu: 2, eau: 9, air: 4 } },
-    moves: []
+    moves: ['flatuosite', 'tir_de_gobaliste']
 }
 
 monsters.gobaladee = {
@@ -1936,7 +1936,7 @@ monsters.gobaladee = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 300, atk: 118, spd: 100, res: { neutre: 1, terre: 2, feu: -6, eau: 9, air: -6 } },
-    moves: []
+    moves: ['co_balade', 'egob_trip']
 }
 
 monsters.tofu_malefique = {
@@ -1946,7 +1946,7 @@ monsters.tofu_malefique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 310, atk: 128, spd: 100, res: { neutre: -14, terre: 16, feu: -24, eau: 26, air: -19 } },
-    moves: []
+    moves: ['malefice', 'beco_malefique', 'punksnotdede']
 }
 
 monsters.chafer = {
@@ -2006,7 +2006,7 @@ monsters.brigandine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 310, atk: 70, spd: 100, res: { neutre: 30, terre: 0, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    moves: ['fronde', 'appel_de_papa']
 }
 
 monsters.brigandin = {
@@ -2016,7 +2016,7 @@ monsters.brigandin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 310, atk: 70, spd: 100, res: { neutre: 5, terre: 20, feu: 30, eau: 0, air: 80 } },
-    moves: []
+    moves: ['appel_de_la_mama', 'elagage_de_cou']
 }
 
 monsters.michelangela = {
@@ -2036,7 +2036,7 @@ monsters.ceglumen = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 310, atk: 128, spd: 100, res: { neutre: 10, terre: 0, feu: 0, eau: -33, air: 10 } },
-    moves: []
+    moves: ['badigeonnage_de_cerumen', 'attrape_coton_tige']
 }
 
 monsters.boulanger_sombre = {
@@ -2046,7 +2046,7 @@ monsters.boulanger_sombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 320, atk: 65, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['eventration', 'lancer_de_pain']
 }
 
 monsters.rat_molo = {
@@ -2056,7 +2056,7 @@ monsters.rat_molo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 320, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['rajusteur', 'raclerie']
 }
 
 monsters.champa_vert = {
@@ -2066,7 +2066,7 @@ monsters.champa_vert = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: -9, eau: -9, air: 60 } },
-    moves: []
+    moves: ['teleportation_du_champa', 'champ_oisone']
 }
 
 monsters.champa_rouge = {
@@ -2076,7 +2076,7 @@ monsters.champa_rouge = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: 60, eau: -9, air: -9 } },
-    moves: []
+    moves: ['champsoin', 'champ_hagne']
 }
 
 monsters.champa_bleu = {
@@ -2086,7 +2086,7 @@ monsters.champa_bleu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: -9, eau: 60, air: -9 } },
-    moves: []
+    moves: ['sacrifice_douloureux', 'attraction_champetre']
 }
 
 monsters.champa_marron = {
@@ -2096,7 +2096,7 @@ monsters.champa_marron = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: 60, feu: -9, eau: -9, air: -9 } },
-    moves: []
+    moves: ['champ_homi', 'champ_hetre']
 }
 
 monsters.charogne = {
@@ -2126,7 +2126,7 @@ monsters.gargrouille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 118, spd: 100, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
-    moves: []
+    moves: ['souffle_gargouillesque', 'gargouilli', 'couteau']
 }
 
 monsters.kolerat_d_egoutant = {
@@ -2136,7 +2136,7 @@ monsters.kolerat_d_egoutant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 340, atk: 208, spd: 100, res: { neutre: -14, terre: 31, feu: -14, eau: 41, air: -9 } },
-    moves: []
+    moves: ['morsure_affaiblissante']
 }
 
 monsters.rib = {
@@ -2156,7 +2156,7 @@ monsters.crustorail_kouracao = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 340, atk: 100, spd: 100, res: { neutre: 5, terre: 5, feu: -20, eau: 30, air: 5 } },
-    moves: []
+    moves: ['pince_de_corail', 'protection_de_corail']
 }
 
 monsters.crustorail_malibout = {
@@ -2196,7 +2196,7 @@ monsters.mirgrillon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 340, atk: 128, spd: 100, res: { neutre: 0, terre: 6, feu: 2, eau: 0, air: -14 } },
-    moves: []
+    moves: ['mini_empalement', 'coup_de_boutonclier']
 }
 
 monsters.chafer_fantassin = {
@@ -2216,7 +2216,7 @@ monsters.dragodinde_de_nowel = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 144, spd: 100, res: { neutre: 26, terre: -8, feu: -8, eau: 26, air: -8 } },
-    moves: []
+    moves: ['dindosoin', 'frappodindo']
 }
 
 monsters.tronknyde = {
@@ -2226,7 +2226,7 @@ monsters.tronknyde = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: 28, feu: -17, eau: 38, air: 38 } },
-    moves: []
+    moves: ['glyphe_sylvestre', 'tronc_commun']
 }
 
 monsters.palmifleur_kouracao = {
@@ -2236,7 +2236,7 @@ monsters.palmifleur_kouracao = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: -9, feu: -15, eau: 10, air: -9 } },
-    moves: []
+    moves: ['decapsulation', 'fleur_des_iles']
 }
 
 monsters.palmifleur_malibout = {
@@ -2246,7 +2246,7 @@ monsters.palmifleur_malibout = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: 10, feu: -9, eau: -9, air: -15 } },
-    moves: []
+    moves: ['fleur_des_iles_terre']
 }
 
 monsters.palmifleur_passaoh = {
@@ -2256,7 +2256,7 @@ monsters.palmifleur_passaoh = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: -9, feu: 10, eau: -15, air: -9 } },
-    moves: []
+    moves: ['fleur_des_iles_feu']
 }
 
 monsters.palmifleur_morito = {
@@ -2266,7 +2266,7 @@ monsters.palmifleur_morito = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: -15, feu: -9, eau: -9, air: 10 } },
-    moves: []
+    moves: ['fleur_des_iles_air']
 }
 
 monsters.gob_trotteur = {
@@ -2276,7 +2276,7 @@ monsters.gob_trotteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 360, atk: 118, spd: 100, res: { neutre: -2, terre: 7, feu: -8, eau: -3, air: 6 } },
-    moves: []
+    moves: ['gobond', 'gobrochette']
 }
 
 monsters.sakarien = {
@@ -2286,7 +2286,7 @@ monsters.sakarien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 360, atk: 128, spd: 100, res: { neutre: 0, terre: 2, feu: 0, eau: -16, air: -10 } },
-    moves: []
+    moves: ['frappe_circulaire', 'invocation_de_poupoussiere']
 }
 
 monsters.dopeul_cra = {
@@ -2336,7 +2336,7 @@ monsters.corailleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 370, atk: 100, spd: 100, res: { neutre: 5, terre: 17, feu: -10, eau: -5, air: 12 } },
-    moves: []
+    moves: ['frappe_de_corail', 'lancer_de_corail', 'coraillement']
 }
 
 monsters.chafer_archer = {
@@ -2356,7 +2356,7 @@ monsters.bwork_archer = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 25, spd: 100, res: { neutre: 0, terre: -15, feu: 5, eau: 0, air: 0 } },
-    moves: []
+    moves: ['fleche_trouveuse', 'maitrise_des_armes_de_jet', 'projectile_puissant']
 }
 
 monsters.maitre_vampire = {
@@ -2376,7 +2376,7 @@ monsters.glutin_turbulent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 144, spd: 100, res: { neutre: 3, terre: 3, feu: 3, eau: 3, air: 3 } },
-    moves: []
+    moves: ['boolkiroul', 'namas_pamouss', 'ebouledeneigement']
 }
 
 monsters.bakaza_kopi = {
@@ -2386,7 +2386,7 @@ monsters.bakaza_kopi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 640, spd: 100, res: { neutre: 17, terre: 12, feu: 8, eau: -10, air: -19 } },
-    moves: []
+    moves: ['dorobo']
 }
 
 monsters.chafer_primitif = {
@@ -2396,7 +2396,7 @@ monsters.chafer_primitif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 400, atk: 95, spd: 100, res: { neutre: 10, terre: 8, feu: 4, eau: 0, air: -4 } },
-    moves: []
+    moves: ['curare', 'elance_de_couteau', 'robustesse']
 }
 
 monsters.arakne_poilue = {
@@ -2416,7 +2416,7 @@ monsters.tiwabbit_kiafin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 400, atk: 100, spd: 100, res: { neutre: 12, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['vent_de_panique', 'panique']
 }
 
 monsters.chevalier = {
@@ -2426,7 +2426,7 @@ monsters.chevalier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 400, atk: 100, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    moves: ['laminagile', 'virevoltige', 'attirance_chevaleresque', 'bond_chevaleresque']
 }
 
 monsters.boumbombe = {
@@ -2436,7 +2436,7 @@ monsters.boumbombe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 400, atk: 25, spd: 100, res: { neutre: 75, terre: 75, feu: 50, eau: 50, air: 75 } },
-    moves: []
+    moves: ['tic_tac', 'badaboum']
 }
 
 monsters.tregenaire = {
@@ -2446,7 +2446,7 @@ monsters.tregenaire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 400, atk: 50, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['protection_de_la_reine']
 }
 
 monsters.toile = {
@@ -2476,7 +2476,7 @@ monsters.kitsou_nakwatus = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 410, atk: 144, spd: 100, res: { neutre: 50, terre: 25, feu: -10, eau: 100, air: 15 } },
-    moves: []
+    moves: ['ruse_hivernale', 'kitsouqueue', 'kitsnition_frissonante', 'kitsouflamme']
 }
 
 monsters.tiwabbit = {
@@ -2486,7 +2486,7 @@ monsters.tiwabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 420, atk: 25, spd: 100, res: { neutre: 2, terre: 1, feu: 0, eau: -5, air: 0 } },
-    moves: []
+    moves: ['frappe_des_wabbits', 'envoie_la_patate']
 }
 
 monsters.tofu_enneige = {
@@ -2496,7 +2496,7 @@ monsters.tofu_enneige = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 144, spd: 100, res: { neutre: 40, terre: 15, feu: 20, eau: -39, air: 50 } },
-    moves: []
+    moves: ['tombee_de_neige', 'debarbouillage']
 }
 
 monsters.larve_saphir = {
@@ -2506,7 +2506,7 @@ monsters.larve_saphir = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 63, spd: 100, res: { neutre: 10, terre: 10, feu: 0, eau: 10, air: 10 } },
-    moves: []
+    moves: ['larvure']
 }
 
 monsters.larve_rubis = {
@@ -2516,7 +2516,7 @@ monsters.larve_rubis = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 123, spd: 100, res: { neutre: 20, terre: 20, feu: -10, eau: 20, air: 20 } },
-    moves: []
+    moves: ['carapace']
 }
 
 monsters.larve_emeraude = {
@@ -2526,7 +2526,7 @@ monsters.larve_emeraude = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: -10, eau: 15, air: 0 } },
-    moves: []
+    moves: ['larvage']
 }
 
 monsters.larve_doree = {
@@ -2546,7 +2546,7 @@ monsters.flammeche_fumeuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: []
+    moves: ['rapprochement_elementaire', 'immolation']
 }
 
 monsters.flammeche_aqueuse = {
@@ -2556,7 +2556,7 @@ monsters.flammeche_aqueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
+    moves: ['rapprochement_elementaireeau', 'immolationeau']
 }
 
 monsters.flammeche_terreuse = {
@@ -2566,7 +2566,7 @@ monsters.flammeche_terreuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['rapprochement_elementaireterre', 'immolationterre']
 }
 
 monsters.flammeche_venteuse = {
@@ -2576,7 +2576,7 @@ monsters.flammeche_venteuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: []
+    moves: ['rapprochement_elementaireair', 'immolation']
 }
 
 monsters.fantome_aux_plates = {
@@ -2586,7 +2586,7 @@ monsters.fantome_aux_plates = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 144, spd: 100, res: { neutre: 20, terre: 10, feu: -15, eau: 20, air: -5 } },
-    moves: []
+    moves: ['tempete_fantomatique', 'epee_fantomatique', 'aspiration_fragilisante']
 }
 
 monsters.cochon_de_lait = {
@@ -2596,7 +2596,7 @@ monsters.cochon_de_lait = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 168, spd: 100, res: { neutre: 11, terre: 0, feu: -19, eau: -24, air: 56 } },
-    moves: []
+    moves: ['lard_bat_laite', 'reniflement']
 }
 
 monsters.crabe = {
@@ -2606,7 +2606,7 @@ monsters.crabe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 168, spd: 100, res: { neutre: -9, terre: 21, feu: 21, eau: -24, air: 26 } },
-    moves: []
+    moves: ['pince', 'violon_sel', 'chancre']
 }
 
 monsters.black_tiwabbit = {
@@ -2616,7 +2616,7 @@ monsters.black_tiwabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 50, spd: 100, res: { neutre: 5, terre: -10, feu: 0, eau: 11, air: 12 } },
-    moves: []
+    moves: ['petit_wabehameha']
 }
 
 monsters.tikoko = {
@@ -2626,7 +2626,7 @@ monsters.tikoko = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 100, spd: 100, res: { neutre: 0, terre: -16, feu: 10, eau: 12, air: 2 } },
-    moves: []
+    moves: ['enfeuillage']
 }
 
 monsters.kokoko = {
@@ -2636,7 +2636,7 @@ monsters.kokoko = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 100, spd: 100, res: { neutre: 2, terre: 0, feu: 12, eau: 10, air: -16 } },
-    moves: []
+    moves: ['fremissement', 'aidchotte']
 }
 
 monsters.nodkoko = {
@@ -2646,7 +2646,7 @@ monsters.nodkoko = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 100, spd: 100, res: { neutre: 0, terre: 10, feu: 2, eau: -16, air: 12 } },
-    moves: []
+    moves: ['jus_baveux', 'kokojus']
 }
 
 monsters.tortue_rouge = {
@@ -2656,7 +2656,7 @@ monsters.tortue_rouge = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 109, spd: 100, res: { neutre: -18, terre: 2, feu: 32, eau: 0, air: 0 } },
-    moves: []
+    moves: ['chapeau_incandescent', 'feu_interieur', 'coup_de_pied_tombant']
 }
 
 monsters.tortue_bleue = {
@@ -2666,7 +2666,7 @@ monsters.tortue_bleue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 109, spd: 100, res: { neutre: -18, terre: 0, feu: 2, eau: 32, air: 0 } },
-    moves: []
+    moves: ['carapace_reflechissante', 'feu_aquatique', 'poing_de_la_tortue']
 }
 
 monsters.tortue_verte = {
@@ -2676,7 +2676,7 @@ monsters.tortue_verte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 109, spd: 100, res: { neutre: -18, terre: 0, feu: 0, eau: 2, air: 32 } },
-    moves: []
+    moves: ['vents_percants', 'coup_de_patte_tournoyant', 'ecrasement_terrestre']
 }
 
 monsters.tortue_jaune = {
@@ -2686,7 +2686,7 @@ monsters.tortue_jaune = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 109, spd: 100, res: { neutre: -18, terre: 32, feu: 0, eau: 0, air: 2 } },
-    moves: []
+    moves: ['frappe_eclair_de_la_tortue', 'patte_explosive']
 }
 
 monsters.crocodaille = {
@@ -2706,7 +2706,7 @@ monsters.berger_porkass = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 168, spd: 100, res: { neutre: -14, terre: -9, feu: 21, eau: 31, air: -19 } },
-    moves: []
+    moves: ['koudanlulk', 'tridembrochement', 'appel_de_la_foudre']
 }
 
 monsters.kipik = {
@@ -2716,7 +2716,7 @@ monsters.kipik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 144, spd: 100, res: { neutre: -10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['savapike', 'branche_kipik']
 }
 
 monsters.kwakus = {
@@ -2726,7 +2726,7 @@ monsters.kwakus = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 144, spd: 100, res: { neutre: 50, terre: 0, feu: -100, eau: 100, air: 0 } },
-    moves: []
+    moves: ['kwakiboost', 'kwakikri', 'kwakoukus', 'wakpotus']
 }
 
 monsters.raul_mops = {
@@ -2736,7 +2736,7 @@ monsters.raul_mops = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 168, spd: 100, res: { neutre: 16, terre: -9, feu: 26, eau: 11, air: -9 } },
-    moves: []
+    moves: ['harponnage', 'dispersion_sablee', 'brise']
 }
 
 monsters.etoile_de_la_mer_d_asse = {
@@ -2746,7 +2746,7 @@ monsters.etoile_de_la_mer_d_asse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 168, spd: 100, res: { neutre: 6, terre: 26, feu: -9, eau: -9, air: 21 } },
-    moves: []
+    moves: ['salage', 'crachat_de_sable', 'soin_groupe']
 }
 
 monsters.moumoule = {
@@ -2756,7 +2756,7 @@ monsters.moumoule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 168, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
+    moves: ['ninjattaque', 'bubulle', 'coquille']
 }
 
 monsters.grokoko = {
@@ -2766,7 +2766,7 @@ monsters.grokoko = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 100, spd: 100, res: { neutre: 10, terre: 12, feu: -16, eau: 0, air: 2 } },
-    moves: []
+    moves: ['koulraoul', 'kokospiration']
 }
 
 monsters.abraknyde = {
@@ -2826,7 +2826,7 @@ monsters.blop_indigo_invoque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 } },
-    moves: []
+    moves: ['blyphe_koalak']
 }
 
 monsters.blop_coco_invoque = {
@@ -2866,7 +2866,7 @@ monsters.black_tiwabbitus = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 460, atk: 144, spd: 100, res: { neutre: 50, terre: -10, feu: -10, eau: 2, air: 2 } },
-    moves: []
+    moves: ['enewgie_tewestwe', 'twansposition', 'wabehameha', 'frappus']
 }
 
 monsters.wabbit = {
@@ -2876,7 +2876,7 @@ monsters.wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 470, atk: 43, spd: 100, res: { neutre: 10, terre: 5, feu: 0, eau: -5, air: 0 } },
-    moves: []
+    moves: ['farandole_de_cawottes']
 }
 
 monsters.chafer_draugr = {
@@ -2886,7 +2886,7 @@ monsters.chafer_draugr = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 6, terre: -14, feu: 11, eau: 6, air: 11 } },
-    moves: []
+    moves: ['mjollnir', 'do_fus_rah', 'hel']
 }
 
 monsters.bwak_de_vent = {
@@ -2896,7 +2896,7 @@ monsters.bwak_de_vent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 50 } },
-    moves: []
+    moves: ['bwakitori']
 }
 
 monsters.bwak_de_glace = {
@@ -2926,7 +2926,7 @@ monsters.sanglier_des_plaines = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 160, spd: 100, res: { neutre: 0, terre: 11, feu: 16, eau: 26, air: -29 } },
-    moves: []
+    moves: ['protection_de_la_plaine', 'coup_de_defenses', 'hardeur']
 }
 
 monsters.bwork_mage = {
@@ -2936,7 +2936,7 @@ monsters.bwork_mage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 72, spd: 100, res: { neutre: 2, terre: 0, feu: 5, eau: 2, air: 0 } },
-    moves: []
+    moves: ['eclair_en_serie', 'tornade', 'invocation_de_tofu_malefique']
 }
 
 monsters.bwork = {
@@ -2946,7 +2946,7 @@ monsters.bwork = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 38, spd: 100, res: { neutre: 1, terre: 2, feu: 5, eau: -20, air: 0 } },
-    moves: []
+    moves: ['rage', 'soufflette']
 }
 
 monsters.bandit_manchot = {
@@ -2956,7 +2956,7 @@ monsters.bandit_manchot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 0, terre: -16, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['persecution', 'lancer_de_hachette']
 }
 
 monsters.kwakere_de_flamme = {
@@ -3056,7 +3056,7 @@ monsters.mineur_sombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 72, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['coup_de_pioche', 'gaucherie_de_masse', 'escroquerie']
 }
 
 monsters.forgeron_sombre = {
@@ -3076,7 +3076,7 @@ monsters.cavalier_porkass = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 1, terre: 21, feu: 1, eau: -14, air: 11 } },
-    moves: []
+    moves: ['defonses', 'rudesse', 'porkass_tete']
 }
 
 monsters.timongouste = {
@@ -3086,7 +3086,7 @@ monsters.timongouste = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 144, spd: 100, res: { neutre: -5, terre: 5, feu: -10, eau: 10, air: 0 } },
-    moves: []
+    moves: ['jet_de_salive', 'cri_d_alerte']
 }
 
 monsters.thomondor = {
@@ -3096,7 +3096,7 @@ monsters.thomondor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 144, spd: 100, res: { neutre: -5, terre: 0, feu: -10, eau: 5, air: 10 } },
-    moves: []
+    moves: ['rafale_de_plumes', 'atterrissage']
 }
 
 monsters.trankilou = {
@@ -3106,7 +3106,7 @@ monsters.trankilou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 480, atk: 144, spd: 100, res: { neutre: 0, terre: -5, feu: 10, eau: -10, air: 5 } },
-    moves: []
+    moves: ['laceration', 'croc_brulant']
 }
 
 monsters.totem_du_feu = {
@@ -3156,7 +3156,7 @@ monsters.sousouris_agressive = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 250, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['emmental']
 }
 
 monsters.black_wabbit = {
@@ -3166,7 +3166,7 @@ monsters.black_wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 73, spd: 100, res: { neutre: 10, terre: -5, feu: 5, eau: 11, air: 12 } },
-    moves: []
+    moves: ['wabeha']
 }
 
 monsters.chafer_lancier = {
@@ -3176,7 +3176,7 @@ monsters.chafer_lancier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 11, terre: 1, feu: 26, eau: 16, air: 0 } },
-    moves: []
+    moves: ['euphorie_malsaine', 'transpercement', 'aouh']
 }
 
 monsters.chafer_d_elite = {
@@ -3186,7 +3186,7 @@ monsters.chafer_d_elite = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 0, terre: 16, feu: 21, eau: 6, air: 11 } },
-    moves: []
+    moves: ['frenesie', 'coup_d_elite', 'coup_affaiblissant']
 }
 
 monsters.noeul = {
@@ -3196,7 +3196,7 @@ monsters.noeul = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 520, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['hypnose', 'mirettes']
 }
 
 monsters.wabbit_squelette = {
@@ -3206,7 +3206,7 @@ monsters.wabbit_squelette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 540, atk: 50, spd: 100, res: { neutre: 50, terre: 40, feu: 10, eau: -14, air: 15 } },
-    moves: []
+    moves: ['entetement']
 }
 
 monsters.bourdard = {
@@ -3216,7 +3216,7 @@ monsters.bourdard = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 540, atk: 120, spd: 100, res: { neutre: 7, terre: -18, feu: 20, eau: -5, air: 5 } },
-    moves: []
+    moves: ['essaimage', 'bizz', 'buzz']
 }
 
 monsters.ramane_d_egoutant = {
@@ -3226,7 +3226,7 @@ monsters.ramane_d_egoutant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 550, atk: 208, spd: 100, res: { neutre: 1, terre: 41, feu: 5, eau: 23, air: -10 } },
-    moves: []
+    moves: ['invocation_de_kolerat_d_egoutant', 'emmental_d_egoutant', 'roblochon_d_egoutant']
 }
 
 monsters.rat_d_egoutant = {
@@ -3276,7 +3276,7 @@ monsters.milicien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 570, atk: 0, spd: 100, res: { neutre: 4, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    moves: ['virevolte', 'laminage']
 }
 
 monsters.guerrier = {
@@ -3296,7 +3296,7 @@ monsters.krokille_novice_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 580, atk: 57, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['venin_ankylosant', 'alanguissement']
 }
 
 monsters.krokille_novice_boueuse = {
@@ -3306,7 +3306,7 @@ monsters.krokille_novice_boueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 580, atk: 57, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: []
+    moves: ['entetement_obsessionnel', 'attraction_stabilisante']
 }
 
 monsters.krokille_novice_incandescente = {
@@ -3316,7 +3316,7 @@ monsters.krokille_novice_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 580, atk: 57, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: []
+    moves: ['agonie', 'contre_faiblesse']
 }
 
 monsters.krokille_novice_humide = {
@@ -3326,7 +3326,7 @@ monsters.krokille_novice_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 580, atk: 57, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: []
+    moves: ['humidification', 'noyade']
 }
 
 monsters.krokille_novice_seche = {
@@ -3336,7 +3336,7 @@ monsters.krokille_novice_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 580, atk: 57, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: []
+    moves: ['secheresse', 'ouragan_renversant']
 }
 
 monsters.black_wabbit_squelette = {
@@ -3346,7 +3346,7 @@ monsters.black_wabbit_squelette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 580, atk: 100, spd: 100, res: { neutre: -20, terre: 0, feu: 5, eau: 50, air: 5 } },
-    moves: []
+    moves: ['coup_a_la_wizou']
 }
 
 monsters.tofu_ventripotent = {
@@ -3356,7 +3356,7 @@ monsters.tofu_ventripotent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 146, spd: 100, res: { neutre: 40, terre: 38, feu: 23, eau: -25, air: 32 } },
-    moves: []
+    moves: ['invocation_de_bomberfu', 'benediction_du_tofulailler']
 }
 
 monsters.lanterne_bombe = {
@@ -3386,7 +3386,7 @@ monsters.poupee_aycetroy = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 25, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['myopie_poupesque']
 }
 
 monsters.rat_d_hyoactif = {
@@ -3396,7 +3396,7 @@ monsters.rat_d_hyoactif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 208, spd: 100, res: { neutre: 17, terre: -31, feu: 25, eau: -16, air: 40 } },
-    moves: []
+    moves: ['ratiboisement', 'rayonnement_hyoactif', 'coup_agglutinant']
 }
 
 monsters.blopignon = {
@@ -3436,7 +3436,7 @@ monsters.wo_wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 25, spd: 100, res: { neutre: 18, terre: 18, feu: 10, eau: -15, air: 0 } },
-    moves: []
+    moves: ['invocation_de_tiwabbit', 'invocation_de_black_tiwabbit', 'ventroboom', 'invocation_de_tiwabbit_kiafin']
 }
 
 monsters.kanniboul_ark = {
@@ -3446,7 +3446,7 @@ monsters.kanniboul_ark = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: -18, terre: 2, feu: 22, eau: 2, air: 0 } },
-    moves: []
+    moves: ['coup_de_masque', 'tir_a_l_arc_primitif']
 }
 
 monsters.kanniboul_eth = {
@@ -3456,7 +3456,7 @@ monsters.kanniboul_eth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: 2, terre: 0, feu: -18, eau: 2, air: 22 } },
-    moves: []
+    moves: ['fronde_poche', 'inspiration_vaudou', 'eternuement_collateral']
 }
 
 monsters.kanniboul_jav = {
@@ -3466,7 +3466,7 @@ monsters.kanniboul_jav = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: 0, terre: -18, feu: 2, eau: 22, air: 2 } },
-    moves: []
+    moves: ['poussee_amicale', 'javeline_fulgurante', 'iousholnotpasse']
 }
 
 monsters.kanniboul_sarbak = {
@@ -3476,7 +3476,7 @@ monsters.kanniboul_sarbak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: 2, terre: 22, feu: 2, eau: 0, air: -18 } },
-    moves: []
+    moves: ['sarbakanniboul', 'cri_sauvage']
 }
 
 monsters.kanniboul_tam = {
@@ -3486,7 +3486,7 @@ monsters.kanniboul_tam = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: 22, terre: 2, feu: 0, eau: -18, air: 2 } },
-    moves: []
+    moves: ['batou_kada', 'tambour_motivant']
 }
 
 monsters.twakeuf = {
@@ -3496,7 +3496,7 @@ monsters.twakeuf = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 118, spd: 100, res: { neutre: -5, terre: 0, feu: 5, eau: 10, air: 15 } },
-    moves: []
+    moves: ['souffle_liqueuwant', 'spiwitueuw', 'absowption', 'mowfal']
 }
 
 monsters.warkaik = {
@@ -3506,7 +3506,7 @@ monsters.warkaik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: 2, terre: 12, feu: 5, eau: 10, air: 15 } },
-    moves: []
+    moves: ['chokobombawde', 'twanchee', 'ombwage']
 }
 
 monsters.wadulant = {
@@ -3516,7 +3516,7 @@ monsters.wadulant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 100, spd: 100, res: { neutre: 2, terre: 1, feu: 2, eau: 1, air: 15 } },
-    moves: []
+    moves: ['celewite', 'secouwiste', 'ufowie']
 }
 
 monsters.robotFleau = {
@@ -3536,7 +3536,7 @@ monsters.waccro = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 630, atk: 103, spd: 100, res: { neutre: 7, terre: 12, feu: 0, eau: 5, air: 10 } },
-    moves: []
+    moves: ['stewoides', 'skwat', 'gwokwik']
 }
 
 monsters.buffalourd = {
@@ -3546,7 +3546,7 @@ monsters.buffalourd = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 630, atk: 144, spd: 100, res: { neutre: 5, terre: 10, feu: -5, eau: -10, air: 0 } },
-    moves: []
+    moves: ['secousse_tellurique', 'plaquage']
 }
 
 monsters.grolours = {
@@ -3556,7 +3556,7 @@ monsters.grolours = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 630, atk: 144, spd: 100, res: { neutre: 10, terre: 5, feu: 0, eau: -5, air: -10 } },
-    moves: []
+    moves: ['impact_ecrasant']
 }
 
 monsters.poupee_emeraude = {
@@ -3566,7 +3566,7 @@ monsters.poupee_emeraude = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 650, atk: 50, spd: 100, res: { neutre: 90, terre: 90, feu: 90, eau: 90, air: -20 } },
-    moves: []
+    moves: ['transposition_poupesque', 'calin_poupesque', 'bond_poupesque']
 }
 
 monsters.gelee_fraise = {
@@ -3616,7 +3616,7 @@ monsters.souris_verte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 650, atk: 216, spd: 100, res: { neutre: 20, terre: 15, feu: 7, eau: 7, air: 30 } },
-    moves: []
+    moves: ['regard_fondant', 'postillon_brulant']
 }
 
 monsters.serpentin = {
@@ -3626,7 +3626,7 @@ monsters.serpentin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 100, res: { neutre: -20, terre: 9, feu: -10, eau: 15, air: 5 } },
-    moves: []
+    moves: ['dissimulation', 'venin', 'surprise']
 }
 
 monsters.blopCoco = {
@@ -3676,7 +3676,7 @@ monsters.guerrier_mental = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 100, res: { neutre: -10, terre: -19, feu: 32, eau: 7, air: 25 } },
-    moves: []
+    moves: ['estocade_errante', 'concentration_psychique']
 }
 
 monsters.wadnozeam = {
@@ -3686,7 +3686,7 @@ monsters.wadnozeam = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 100, spd: 100, res: { neutre: 10, terre: 15, feu: 5, eau: 0, air: 7 } },
-    moves: []
+    moves: ['afwiandage', 'wagglutinant', 'pouwsuite']
 }
 
 monsters.larve_champetre = {
@@ -3696,7 +3696,7 @@ monsters.larve_champetre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 690, atk: 224, spd: 100, res: { neutre: 15, terre: 1, feu: 18, eau: 8, air: -15 } },
-    moves: []
+    moves: ['larvaportation', 'toussotement_larvesque', 'larvement_champetre']
 }
 
 monsters.le_flib = {
@@ -3706,7 +3706,7 @@ monsters.le_flib = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 690, atk: 100, spd: 100, res: { neutre: 5, terre: 12, feu: 25, eau: 15, air: -30 } },
-    moves: []
+    moves: ['passton_tournoube', 'trinquons_ensemble_moussaillon', 'prestidigitation']
 }
 
 monsters.sparo = {
@@ -3716,7 +3716,7 @@ monsters.sparo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 710, atk: 100, spd: 100, res: { neutre: 10, terre: -9, feu: -31, eau: 5, air: 29 } },
-    moves: []
+    moves: ['crochet', 'glouto_rhum']
 }
 
 monsters.barbroussa = {
@@ -3726,7 +3726,7 @@ monsters.barbroussa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 730, atk: 100, spd: 100, res: { neutre: 5, terre: -26, feu: -18, eau: 35, air: 10 } },
-    moves: []
+    moves: ['abordage', 'rapine']
 }
 
 monsters.dragodinde_amande_sauvage = {
@@ -3736,7 +3736,7 @@ monsters.dragodinde_amande_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 740, atk: 192, spd: 100, res: { neutre: 25, terre: 15, feu: -9, eau: 50, air: -9 } },
-    moves: []
+    moves: ['dindoboule', 'stimulation_dragodinde']
 }
 
 monsters.dragodinde_rousse_sauvage = {
@@ -3746,7 +3746,7 @@ monsters.dragodinde_rousse_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 740, atk: 192, spd: 100, res: { neutre: 25, terre: -9, feu: 50, eau: -9, air: 15 } },
-    moves: []
+    moves: ['dindofeu']
 }
 
 monsters.dragodinde_doree_sauvage = {
@@ -3756,7 +3756,7 @@ monsters.dragodinde_doree_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 740, atk: 192, spd: 100, res: { neutre: 25, terre: -9, feu: -9, eau: 15, air: 50 } },
-    moves: []
+    moves: ['dindoneau', 'dragodingue']
 }
 
 monsters.maitre_bolet = {
@@ -3766,7 +3766,7 @@ monsters.maitre_bolet = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 740, atk: 248, spd: 100, res: { neutre: 10, terre: 12, feu: 5, eau: -15, air: -9 } },
-    moves: []
+    moves: ['sporification', 'champi_champsoin', 'sabrochement']
 }
 
 monsters.robionicle = {
@@ -3786,7 +3786,7 @@ monsters.elementerre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 750, atk: 236, spd: 100, res: { neutre: 21, terre: 50, feu: -24, eau: 9, air: -14 } },
-    moves: []
+    moves: ['sismologie', 'terraportation', 'terpanation']
 }
 
 monsters.koalak_immature = {
@@ -3796,7 +3796,7 @@ monsters.koalak_immature = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 780, atk: 113, spd: 100, res: { neutre: 20, terre: -9, feu: -40, eau: 30, air: 40 } },
-    moves: []
+    moves: ['decharge', 'decharge_magistrale', 'liberation_koalak']
 }
 
 monsters.dolbinos = {
@@ -3806,7 +3806,7 @@ monsters.dolbinos = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['coup_de_bec_affaiblissant', 'dotite']
 }
 
 monsters.dokachu = {
@@ -3816,7 +3816,7 @@ monsters.dokachu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['dorage', 'donnerre']
 }
 
 monsters.dolivar = {
@@ -3836,7 +3836,7 @@ monsters.garde_de_pwak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 780, atk: 250, spd: 100, res: { neutre: 2, terre: -18, feu: 12, eau: -13, air: 6 } },
-    moves: []
+    moves: ['croquanibalisme', 'guimimauve', 'englumauve', 'attrape_gourmand']
 }
 
 monsters.shokipik = {
@@ -3846,7 +3846,7 @@ monsters.shokipik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 780, atk: 180, spd: 100, res: { neutre: -24, terre: 13, feu: -24, eau: 4, air: -1 } },
-    moves: []
+    moves: ['amstramgram', 'bourebour', 'ratatam']
 }
 
 monsters.pandawasta = {
@@ -3856,7 +3856,7 @@ monsters.pandawasta = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 800, atk: 39, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['meditation', 'coup_de_bambou']
 }
 
 monsters.chef_crocodaille = {
@@ -3866,7 +3866,7 @@ monsters.chef_crocodaille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 800, atk: 55, spd: 100, res: { neutre: 15, terre: 40, feu: 35, eau: 50, air: 15 } },
-    moves: []
+    moves: ['epee_de_panique']
 }
 
 monsters.oeuf_de_tregenaire = {
@@ -3886,7 +3886,7 @@ monsters.degelee = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 810, atk: 100, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['decasse', 'papouille']
 }
 
 monsters.arakne_olithique = {
@@ -3896,7 +3896,7 @@ monsters.arakne_olithique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 6, terre: -17, feu: 50, eau: -46, air: 37 } },
-    moves: []
+    moves: ['remous_marecageux', 'venin_dopant']
 }
 
 monsters.craqueboule = {
@@ -3906,7 +3906,7 @@ monsters.craqueboule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['martelement', 'motivation_tellurique']
 }
 
 monsters.dragoeufArdoise = {
@@ -3956,7 +3956,7 @@ monsters.kanigrou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 22, terre: 22, feu: 22, eau: -9, air: -9 } },
-    moves: []
+    moves: ['saut_majestueux', 'destin_force', 'eventration_multiple']
 }
 
 monsters.scorbute = {
@@ -3966,7 +3966,7 @@ monsters.scorbute = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 1, terre: 6, feu: 21, eau: 11, air: 0 } },
-    moves: []
+    moves: ['alteration', 'poison_du_scorbute', 'coup_de_queue']
 }
 
 monsters.croc_gland = {
@@ -3976,7 +3976,7 @@ monsters.croc_gland = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 21, terre: -9, feu: -9, eau: 1, air: 31 } },
-    moves: []
+    moves: ['dechirement_intestinal', 'ablation_testiculaire', 'desenvoutement_canin']
 }
 
 monsters.macien = {
@@ -3986,7 +3986,7 @@ monsters.macien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 1, terre: 31, feu: 16, eau: -9, air: 0 } },
-    moves: []
+    moves: ['chaine_chienne', 'aboiement_sauvage', 'souffle_canin']
 }
 
 monsters.crowneille = {
@@ -3996,7 +3996,7 @@ monsters.crowneille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 21, terre: -14, feu: 21, eau: -14, air: 21 } },
-    moves: []
+    moves: ['draveine', 'catubodua', 'baillement']
 }
 
 monsters.muldo_indigo_sauvage = {
@@ -4006,7 +4006,7 @@ monsters.muldo_indigo_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 192, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -10, air: 10 } },
-    moves: []
+    moves: ['coup_de_bouldo', 'souille']
 }
 
 monsters.muldo_ebene_sauvage = {
@@ -4056,7 +4056,7 @@ monsters.craquelourd = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 20, terre: 15, feu: -28, eau: 5, air: 28 } },
-    moves: []
+    moves: ['snaille_pierre', 'gravure_dans_la_roche', 'choc_dessus']
 }
 
 monsters.volkorne_orchidee_sauvage = {
@@ -4066,7 +4066,7 @@ monsters.volkorne_orchidee_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 192, spd: 100, res: { neutre: 20, terre: 20, feu: 0, eau: 20, air: 0 } },
-    moves: []
+    moves: ['volkardeur', 'volkolere']
 }
 
 monsters.volkorne_indigo_sauvage = {
@@ -4076,7 +4076,7 @@ monsters.volkorne_indigo_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 192, spd: 100, res: { neutre: 20, terre: 0, feu: 20, eau: 0, air: 20 } },
-    moves: []
+    moves: ['volkohue', 'volkonde']
 }
 
 monsters.volkorne_ebene_sauvage = {
@@ -4086,7 +4086,7 @@ monsters.volkorne_ebene_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 192, spd: 100, res: { neutre: 20, terre: 0, feu: 20, eau: 20, air: 0 } },
-    moves: []
+    moves: ['volkair', 'volkattirance']
 }
 
 monsters.volkorne_pourpre_sauvage = {
@@ -4096,7 +4096,7 @@ monsters.volkorne_pourpre_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 820, atk: 192, spd: 100, res: { neutre: 20, terre: 20, feu: 0, eau: 0, air: 20 } },
-    moves: []
+    moves: ['volkalme', 'volkeclat']
 }
 
 monsters.uf_de_pwak_dore = {
@@ -4116,7 +4116,7 @@ monsters.foufayteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 860, atk: 133, spd: 100, res: { neutre: -9, terre: -11, feu: -19, eau: 4, air: 20 } },
-    moves: []
+    moves: ['quamehameha', 'art_du_combat', 'balayette']
 }
 
 monsters.petite_marionnette = {
@@ -4126,7 +4126,7 @@ monsters.petite_marionnette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 890, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['ainsi_font']
 }
 
 monsters.pantin = {
@@ -4136,7 +4136,7 @@ monsters.pantin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 890, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['coup_de_pied']
 }
 
 monsters.milimeulou = {
@@ -4146,7 +4146,7 @@ monsters.milimeulou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 890, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['grigriffes']
 }
 
 monsters.kolerat = {
@@ -4186,7 +4186,7 @@ monsters.craquelope = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 900, atk: 133, spd: 100, res: { neutre: 2, terre: 12, feu: 32, eau: -12, air: -12 } },
-    moves: []
+    moves: ['caillassage', 'percussion', 'pierrade']
 }
 
 monsters.vetauran = {
@@ -4196,7 +4196,7 @@ monsters.vetauran = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 910, atk: 133, spd: 100, res: { neutre: -9, terre: -19, feu: 12, eau: 7, air: 5 } },
-    moves: []
+    moves: ['craneur', 'pull_vert_izele', 'encornement']
 }
 
 monsters.grand_pa_wabbit = {
@@ -4206,7 +4206,7 @@ monsters.grand_pa_wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 920, atk: 113, spd: 100, res: { neutre: 18, terre: 0, feu: -15, eau: 11, air: 0 } },
-    moves: []
+    moves: ['cawotte_explosive', 'cawotte_vitaminee', 'cawotte_paralysante']
 }
 
 monsters.krokille_juvenile_crue = {
@@ -4216,7 +4216,7 @@ monsters.krokille_juvenile_crue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 930, atk: 25, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['motivation_gluante', 'koque_chok', 'krokille_de_neuf']
 }
 
 monsters.koalak_forestier = {
@@ -4226,7 +4226,7 @@ monsters.koalak_forestier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 990, atk: 125, spd: 100, res: { neutre: 10, terre: 10, feu: 20, eau: -25, air: -15 } },
-    moves: []
+    moves: ['abattage', 'ebranchage', 'deracinage']
 }
 
 monsters.pekeualak = {
@@ -4236,7 +4236,7 @@ monsters.pekeualak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 990, atk: 138, spd: 100, res: { neutre: 10, terre: -10, feu: 60, eau: 50, air: 10 } },
-    moves: []
+    moves: ['moulinet', 'amorce', 'coup_de_poisson']
 }
 
 monsters.black_wo_wabbit = {
@@ -4246,7 +4246,7 @@ monsters.black_wo_wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 140, spd: 100, res: { neutre: 11, terre: 21, feu: 6, eau: -14, air: 1 } },
-    moves: []
+    moves: ['aspiwation', 'etweinte']
 }
 
 monsters.etoile_swagante = {
@@ -4316,7 +4316,7 @@ monsters.wobot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 140, spd: 100, res: { neutre: 12, terre: 12, feu: 12, eau: -10, air: -10 } },
-    moves: []
+    moves: ['massue_wotative', 'wavelot']
 }
 
 monsters.wobot_tamponneur = {
@@ -4336,7 +4336,7 @@ monsters.wobot_kiafin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 140, spd: 100, res: { neutre: 6, terre: 11, feu: 21, eau: 1, air: -14 } },
-    moves: []
+    moves: ['weuche', 'glissement_de_tewwain']
 }
 
 monsters.dok_alako = {
@@ -4346,7 +4346,7 @@ monsters.dok_alako = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 150, spd: 100, res: { neutre: 30, terre: -15, feu: 30, eau: -28, air: 60 } },
-    moves: []
+    moves: ['devotion', 'kalik']
 }
 
 monsters.marionnette_blanche = {
@@ -4356,7 +4356,7 @@ monsters.marionnette_blanche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: -20, eau: -20, air: 200 } },
-    moves: []
+    moves: ['croix_d_attelle', 'castelet', 'balancoire']
 }
 
 monsters.marionnette_bleue = {
@@ -4366,7 +4366,7 @@ monsters.marionnette_bleue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 0, terre: -20, feu: 0, eau: 200, air: -20 } },
-    moves: []
+    moves: ['catharsis']
 }
 
 monsters.marionnette_rouge = {
@@ -4376,7 +4376,7 @@ monsters.marionnette_rouge = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 0, terre: -20, feu: 200, eau: 0, air: -20 } },
-    moves: []
+    moves: ['scene_en_flammes']
 }
 
 monsters.marionnette_verte = {
@@ -4386,7 +4386,7 @@ monsters.marionnette_verte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 0, terre: 200, feu: -20, eau: -20, air: 0 } },
-    moves: []
+    moves: ['fantoche']
 }
 
 monsters.marionnette_grise = {
@@ -4396,7 +4396,7 @@ monsters.marionnette_grise = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 200, terre: -10, feu: -10, eau: -10, air: -10 } },
-    moves: []
+    moves: ['marivaudage']
 }
 
 monsters.blanc_pa_wabbit = {
@@ -4406,7 +4406,7 @@ monsters.blanc_pa_wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 140, spd: 100, res: { neutre: 21, terre: -14, feu: 1, eau: 6, air: 11 } },
-    moves: []
+    moves: ['cawotte_suwvitaminee', 'motivation_cawottique']
 }
 
 monsters.tiwobot = {
@@ -4416,7 +4416,7 @@ monsters.tiwobot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 140, spd: 100, res: { neutre: 21, terre: 6, feu: -14, eau: 1, air: 11 } },
-    moves: []
+    moves: ['wetouw_du_wabbit', 'lancew_de_cawotte', 'coup_de_boule']
 }
 
 monsters.kralab_rah = {
@@ -4426,7 +4426,7 @@ monsters.kralab_rah = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['poulpe', 'lakazam', 'connier']
 }
 
 monsters.tabacille = {
@@ -4436,7 +4436,7 @@ monsters.tabacille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['echange_subtil', 'remontee_gastrique']
 }
 
 monsters.verminocule = {
@@ -4446,7 +4446,7 @@ monsters.verminocule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['gonflement', 'jet_d_acide']
 }
 
 monsters.bacterrib = {
@@ -4456,7 +4456,7 @@ monsters.bacterrib = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['secretion', 'danse_repulsive']
 }
 
 monsters.virustine = {
@@ -4466,7 +4466,7 @@ monsters.virustine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['contamination', 'boulet_viral']
 }
 
 monsters.pataugerme = {
@@ -4476,7 +4476,7 @@ monsters.pataugerme = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['brulure_d_estomac', 'attaque_souterraine']
 }
 
 monsters.saltik = {
@@ -4486,7 +4486,7 @@ monsters.saltik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 2, terre: 1, feu: 0, eau: -28, air: 2 } },
-    moves: []
+    moves: ['bond_etourdissant', 'pressage']
 }
 
 monsters.grokillage = {
@@ -4526,7 +4526,7 @@ monsters.warko_marron = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 50, spd: 100, res: { neutre: 20, terre: 25, feu: -18, eau: -10, air: 60 } },
-    moves: []
+    moves: ['invocation_de_workette', 'cecite', 'vision_lointaine', 'pichenette']
 }
 
 monsters.troollogram = {
@@ -4536,7 +4536,7 @@ monsters.troollogram = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 448, spd: 100, res: { neutre: 16, terre: 26, feu: -19, eau: 26, air: -9 } },
-    moves: []
+    moves: ['troollz', 'pettrooll']
 }
 
 monsters.imikaminokin = {
@@ -4566,7 +4566,7 @@ monsters.bribe_de_zobal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 558, spd: 100, res: { neutre: 25, terre: 29, feu: 14, eau: 14, air: 39 } },
-    moves: []
+    moves: ['agular', 'furia', 'appui', 'plastron', 'apathie', 'cabriole', 'reuche', 'tortoruga', 'catalepsie', 'cavalcade', 'boliche', 'l_arc_ifanss']
 }
 
 monsters.bribe_de_steamer = {
@@ -4576,7 +4576,7 @@ monsters.bribe_de_steamer = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 460, spd: 100, res: { neutre: 15, terre: 41, feu: 33, eau: 18, air: 18 } },
-    moves: []
+    moves: ['exclamaton', 'longue_vue', 'torpille', 'maree', 'scaphandre', 'periscope', 'flibuste', 'ecume', 'embuscade', 'harmattan']
 }
 
 monsters.bribe_de_cra = {
@@ -4616,7 +4616,7 @@ monsters.bribe_de_pandawa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 139, spd: 100, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
-    moves: []
+    moves: ['picole', 'consolation', 'brassage', 'fermentation', 'pandjiu', 'ribote', 'pandanlku']
 }
 
 monsters.bribe_d_eniripsa = {
@@ -4646,7 +4646,7 @@ monsters.bribe_d_huppermage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 604, spd: 100, res: { neutre: 31, terre: 24, feu: 29, eau: 24, air: 26 } },
-    moves: []
+    moves: ['lances_telluriques', 'cataracte', 'onde_celeste', 'tison', 'drain_elementaire', 'orage', 'rafale', 'trait_ardent', 'volcan', 'traversee', 'torrent_arcanique', 'bouclier_elementaire']
 }
 
 monsters.bribe_d_ouginak = {
@@ -4656,7 +4656,7 @@ monsters.bribe_d_ouginak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 454, spd: 100, res: { neutre: 14, terre: 20, feu: 20, eau: 34, air: 27 } },
-    moves: []
+    moves: ['gibier', 'charogne', 'depecage', 'carcasse', 'depouille', 'limier', 'apaisement', 'arcanin']
 }
 
 monsters.bribe_de_sadida = {
@@ -4666,7 +4666,7 @@ monsters.bribe_de_sadida = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 465, spd: 100, res: { neutre: 6, terre: 16, feu: 9, eau: 6, air: 19 } },
-    moves: []
+    moves: ['ronce', 'ronces_agressives', 'foret_hantee', 'seve_paralysante', 'tremblement', 'vent_empoisonne']
 }
 
 monsters.bribe_d_eliotrope = {
@@ -4676,7 +4676,7 @@ monsters.bribe_d_eliotrope = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 408, spd: 100, res: { neutre: 43, terre: 41, feu: 50, eau: 50, air: 37 } },
-    moves: []
+    moves: ['mepris', 'sinecure', 'brimade', 'raillerie', 'sermon', 'cicatrisation', 'distribution']
 }
 
 monsters.bribe_de_xelor = {
@@ -4686,7 +4686,7 @@ monsters.bribe_de_xelor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 413, spd: 100, res: { neutre: 20, terre: 21, feu: 31, eau: 40, air: 28 } },
-    moves: []
+    moves: ['poussiere', 'frappe_de_xelor', 'horloge', 'astrolabe', 'rouage', 'glas', 'refraction', 'sablier_de_xelor']
 }
 
 monsters.wabbit_gm = {
@@ -4696,7 +4696,7 @@ monsters.wabbit_gm = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1200, atk: 143, spd: 100, res: { neutre: 43, terre: 33, feu: 40, eau: -6, air: -15 } },
-    moves: []
+    moves: ['rafale_de_terre', 'cawotte_gm']
 }
 
 monsters.koalak_indigo = {
@@ -4706,7 +4706,7 @@ monsters.koalak_indigo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: -20, feu: -20, eau: 70, air: -20 } },
-    moves: []
+    moves: ['invocation_de_blop_indigo', 'defaillance_indigo']
 }
 
 monsters.koalak_coco = {
@@ -4716,7 +4716,7 @@ monsters.koalak_coco = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1200, atk: 50, spd: 100, res: { neutre: 10, terre: -20, feu: -20, eau: -20, air: 70 } },
-    moves: []
+    moves: ['invocation_de_blop_coco', 'defaillance_coco']
 }
 
 monsters.koalak_griotte = {
@@ -4726,7 +4726,7 @@ monsters.koalak_griotte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: -20, feu: 70, eau: -20, air: -20 } },
-    moves: []
+    moves: ['invocation_de_blop_griotte', 'defaillance_griotte']
 }
 
 monsters.koalak_reinette = {
@@ -4736,7 +4736,7 @@ monsters.koalak_reinette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: 70, feu: -20, eau: -20, air: -20 } },
-    moves: []
+    moves: ['invocation_de_blop_reinette', 'defaillance_reinette']
 }
 
 monsters.porsalu = {
@@ -4766,7 +4766,7 @@ monsters.bouftou_des_cavernes = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 105, spd: 100, res: { neutre: 30, terre: -18, feu: 50, eau: 20, air: -25 } },
-    moves: []
+    moves: ['morsure_du_bouftou_des_cavernes', 'bavouille_des_cavernes', 'crachouille_des_cavernes']
 }
 
 monsters.boomba = {
@@ -4776,7 +4776,7 @@ monsters.boomba = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: -18, terre: 2, feu: 12, eau: 0, air: 12 } },
-    moves: []
+    moves: ['bombe_pirate', 'feu_d_artifesse']
 }
 
 monsters.nakunbra = {
@@ -4786,7 +4786,7 @@ monsters.nakunbra = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: 14, terre: -18, feu: 0, eau: 6, air: 6 } },
-    moves: []
+    moves: ['sus_a_l_ennemi', 'tranchage_mortel']
 }
 
 monsters.canondorf = {
@@ -4796,7 +4796,7 @@ monsters.canondorf = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: 2, terre: 18, feu: 6, eau: 0, air: -18 } },
-    moves: []
+    moves: ['canon_tournoyant', 'gros_boulet_pirate']
 }
 
 monsters.arapex = {
@@ -4806,7 +4806,7 @@ monsters.arapex = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: -20, terre: 20, feu: 10, eau: 5, air: -20 } },
-    moves: []
+    moves: ['estocade', 'tourbillon_mortel']
 }
 
 monsters.dardalaine = {
@@ -4816,7 +4816,7 @@ monsters.dardalaine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: 2, terre: -18, feu: -28, eau: 5, air: 12 } },
-    moves: []
+    moves: ['dards_paralysants', 'secretion_acide']
 }
 
 monsters.nefileuse = {
@@ -4826,7 +4826,7 @@ monsters.nefileuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: -14, terre: 0, feu: -30, eau: 22, air: 10 } },
-    moves: []
+    moves: ['toile_paralysante', 'fil_collant', 'prison_de_soie']
 }
 
 monsters.ricanif = {
@@ -4836,7 +4836,7 @@ monsters.ricanif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: -2, eau: 17, air: 17 } },
-    moves: []
+    moves: ['tornade_de_lames', 'coupe_genoux']
 }
 
 monsters.ivremor = {
@@ -4846,7 +4846,7 @@ monsters.ivremor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: 0, terre: 2, feu: 10, eau: -18, air: 14 } },
-    moves: []
+    moves: ['cocktail_rhumotov', 'crachat_de_rhum', 'et_une_bouteille_de_rhum']
 }
 
 monsters.megabwork = {
@@ -4856,7 +4856,7 @@ monsters.megabwork = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: 21, terre: 26, feu: 16, eau: 11, air: 6 } },
-    moves: []
+    moves: ['koup_puissant', 'grenabombe', 'megarmure']
 }
 
 monsters.medibwork = {
@@ -4866,7 +4866,7 @@ monsters.medibwork = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: 11, terre: 31, feu: -24, eau: 21, air: -9 } },
-    moves: []
+    moves: ['implant_provizoar', 'chirurgie_approksimativ', 'douleur_atross']
 }
 
 monsters.bizarbwork = {
@@ -4876,7 +4876,7 @@ monsters.bizarbwork = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: 1, terre: -9, feu: 11, eau: 16, air: 11 } },
-    moves: []
+    moves: ['kass_kabosh', 'krounch']
 }
 
 monsters.krambwork = {
@@ -4886,7 +4886,7 @@ monsters.krambwork = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: -9, terre: 6, feu: 36, eau: -24, air: 21 } },
-    moves: []
+    moves: ['flan_b', 'kremassion', 'feu_grr_joie']
 }
 
 monsters.bozoteur = {
@@ -4896,7 +4896,7 @@ monsters.bozoteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: 56, terre: -24, feu: 11, eau: 1, air: -14 } },
-    moves: []
+    moves: ['bang', 'dans_la_boite', 'baudruche']
 }
 
 monsters.tivelo = {
@@ -4906,7 +4906,7 @@ monsters.tivelo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: -14, terre: 56, feu: -24, eau: 11, air: 1 } },
-    moves: []
+    moves: ['roule_ma_poule', 'fusee_explosive']
 }
 
 monsters.pirolienne = {
@@ -4916,7 +4916,7 @@ monsters.pirolienne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: 1, terre: -14, feu: 56, eau: -24, air: 11 } },
-    moves: []
+    moves: ['chaudasse', 'haleine_ardente', 'roulette_infernale']
 }
 
 monsters.roukouto = {
@@ -4926,7 +4926,7 @@ monsters.roukouto = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: 11, terre: 1, feu: -14, eau: 56, air: -24 } },
-    moves: []
+    moves: ['chapeau_de_roue', 'eriktion', 'peintures']
 }
 
 monsters.graboule = {
@@ -4936,7 +4936,7 @@ monsters.graboule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 328, spd: 100, res: { neutre: -24, terre: 11, feu: 1, eau: -14, air: 56 } },
-    moves: []
+    moves: ['balle_piegee', 'poirier', 'jonglerie']
 }
 
 monsters.cadob_onux = {
@@ -4946,7 +4946,7 @@ monsters.cadob_onux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['cadeau_puissant']
 }
 
 monsters.cadob_omb = {
@@ -4966,7 +4966,7 @@ monsters.cadob_imbo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['cadeau_soignant']
 }
 
 monsters.abraknydeSombre = {
@@ -4986,7 +4986,7 @@ monsters.fantome_d_aventurier_ardent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 283, spd: 100, res: { neutre: 10, terre: 100, feu: -20, eau: 100, air: -20 } },
-    moves: []
+    moves: ['crasse_piration']
 }
 
 monsters.fantome_d_aventurier_arepo = {
@@ -4996,7 +4996,7 @@ monsters.fantome_d_aventurier_arepo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 288, spd: 100, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
-    moves: []
+    moves: ['invocation_de_corbac_fantomatique']
 }
 
 monsters.fantome_d_aventurier_brave = {
@@ -5016,7 +5016,7 @@ monsters.rat_bougri = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 19, terre: 22, feu: 10, eau: -24, air: 5 } },
-    moves: []
+    moves: ['ratissage', 'rabot', 'racolage']
 }
 
 monsters.crabe_hijacob = {
@@ -5026,7 +5026,7 @@ monsters.crabe_hijacob = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 4, terre: 14, feu: 10, eau: 28, air: -39 } },
-    moves: []
+    moves: ['pincette', 'sucette', 'briquette']
 }
 
 monsters.coquille_soigneuse = {
@@ -5076,7 +5076,7 @@ monsters.dragoss_calcaire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 310, spd: 100, res: { neutre: 22, terre: 32, feu: 16, eau: 11, air: -15 } },
-    moves: []
+    moves: ['dragoss_pelle', 'transmission_sismique', 'offrande_rocailleuse']
 }
 
 monsters.chachachovage = {
@@ -5086,7 +5086,7 @@ monsters.chachachovage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 15, terre: -24, feu: 30, eau: 8, air: 4 } },
-    moves: []
+    moves: ['canine_putride', 'mousse_tache', 'coussinet_protecteur']
 }
 
 monsters.gelikan = {
@@ -5096,7 +5096,7 @@ monsters.gelikan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 5, terre: 13, feu: 10, eau: -20, air: 25 } },
-    moves: []
+    moves: ['koudbec', 'convoitise', 'enthousiasme']
 }
 
 monsters.coffre_sombre = {
@@ -5106,7 +5106,7 @@ monsters.coffre_sombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 425, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
+    moves: ['lancer_de_kamas']
 }
 
 monsters.dragodinde_de_nowel_sauvage = {
@@ -5146,7 +5146,7 @@ monsters.koalak_farouche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 75, spd: 100, res: { neutre: 20, terre: 10, feu: -9, eau: -9, air: 10 } },
-    moves: []
+    moves: ['sarbakane', 'soufflette_de_kaliptus', 'invisibilite_farouche', 'invisibilite_farouche_d_autrui']
 }
 
 monsters.mama_koalak = {
@@ -5156,7 +5156,7 @@ monsters.mama_koalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 100, spd: 100, res: { neutre: 30, terre: 50, feu: 30, eau: -10, air: -18 } },
-    moves: []
+    moves: ['liberation', 'accouchement', 'chiquenaude']
 }
 
 monsters.piralak = {
@@ -5166,7 +5166,7 @@ monsters.piralak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 125, spd: 100, res: { neutre: 10, terre: 50, feu: -10, eau: -19, air: -10 } },
-    moves: []
+    moves: ['bistouille', 'tourbe_empoisonnee', 'bond_du_piralak']
 }
 
 monsters.bouboule_de_neige = {
@@ -5176,7 +5176,7 @@ monsters.bouboule_de_neige = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 304, spd: 100, res: { neutre: 20, terre: 6, feu: -22, eau: 30, air: 30 } },
-    moves: []
+    moves: ['boule_de_neige', 'neige_soignante', 'roulage_de_neige']
 }
 
 monsters.chauffe_soutrille = {
@@ -5186,7 +5186,7 @@ monsters.chauffe_soutrille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 63, spd: 100, res: { neutre: 5, terre: 17, feu: -15, eau: 15, air: 12 } },
-    moves: []
+    moves: ['pus_des_pieds', 'faux_fuyant']
 }
 
 monsters.molette = {
@@ -5196,7 +5196,7 @@ monsters.molette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 210, spd: 100, res: { neutre: 0, terre: -21, feu: 16, eau: 28, air: -19 } },
-    moves: []
+    moves: ['clef_a_pipe', 'clef_plate', 'clef_de_douze']
 }
 
 monsters.gobvious = {
@@ -5206,7 +5206,7 @@ monsters.gobvious = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 200, spd: 100, res: { neutre: 0, terre: 10, feu: -13, eau: -19, air: 26 } },
-    moves: []
+    moves: ['alareskouss', 'evidence', 'kaptene']
 }
 
 monsters.bouledogre = {
@@ -5216,7 +5216,7 @@ monsters.bouledogre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 190, spd: 100, res: { neutre: 16, terre: -19, feu: 24, eau: -24, air: 23 } },
-    moves: []
+    moves: ['attaque', 'morzyloeil', 'glyphe_rose']
 }
 
 monsters.gargantul = {
@@ -5226,7 +5226,7 @@ monsters.gargantul = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 200, spd: 100, res: { neutre: 12, terre: 1, feu: 2, eau: -10, air: 11 } },
-    moves: []
+    moves: ['mastication', 'blindage']
 }
 
 monsters.cactruc = {
@@ -5276,7 +5276,7 @@ monsters.craqueboule_poli = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 150, spd: 100, res: { neutre: 1, terre: 5, feu: -25, eau: 5, air: 25 } },
-    moves: []
+    moves: ['rocaille', 'glotte', 'tourniquet']
 }
 
 monsters.dragoss_argile = {
@@ -5286,7 +5286,7 @@ monsters.dragoss_argile = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 310, spd: 100, res: { neutre: 22, terre: -15, feu: 11, eau: 16, air: 32 } },
-    moves: []
+    moves: ['dragoss_tidkaliss', 'dragoss_imoun', 'offrande_aerienne']
 }
 
 monsters.dragoss_ardoise = {
@@ -5296,7 +5296,7 @@ monsters.dragoss_ardoise = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 310, spd: 100, res: { neutre: 22, terre: 11, feu: -15, eau: 32, air: 16 } },
-    moves: []
+    moves: ['fumerolle', 'eauzone', 'offrande_aqueuse']
 }
 
 monsters.donDorgan = {
@@ -5336,7 +5336,7 @@ monsters.mulou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 368, spd: 100, res: { neutre: 26, terre: -14, feu: 21, eau: 6, air: -9 } },
-    moves: []
+    moves: ['cri_du_mulou', 'cesarienne', 'soin_accelere']
 }
 
 monsters.trukikol = {
@@ -5346,7 +5346,7 @@ monsters.trukikol = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 200, spd: 100, res: { neutre: 0, terre: -18, feu: 0, eau: 18, air: 16 } },
-    moves: []
+    moves: ['virevoltage_collant', 'electromagnetisme']
 }
 
 monsters.gloutovore = {
@@ -5356,7 +5356,7 @@ monsters.gloutovore = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 200, spd: 100, res: { neutre: 20, terre: 6, feu: -20, eau: 0, air: 0 } },
-    moves: []
+    moves: ['gobage']
 }
 
 monsters.fourbasse = {
@@ -5366,7 +5366,7 @@ monsters.fourbasse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 200, spd: 100, res: { neutre: -14, terre: 10, feu: 0, eau: 6, air: 4 } },
-    moves: []
+    moves: ['tir_embusque', 'l_attaque_du_chasseur']
 }
 
 monsters.boufcoul = {
@@ -5376,7 +5376,7 @@ monsters.boufcoul = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 138, spd: 100, res: { neutre: 30, terre: 50, feu: -20, eau: -25, air: 20 } },
-    moves: []
+    moves: ['bise_du_boufcoul', 'morsure_du_boufcoul']
 }
 
 monsters.drakoalak = {
@@ -5386,7 +5386,7 @@ monsters.drakoalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 275, spd: 100, res: { neutre: 30, terre: -9, feu: -9, eau: -9, air: -18 } },
-    moves: []
+    moves: ['coup_de_tete', 'echauffement']
 }
 
 monsters.mufafah = {
@@ -5396,7 +5396,7 @@ monsters.mufafah = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 90, spd: 100, res: { neutre: 5, terre: -36, feu: 27, eau: 5, air: 3 } },
-    moves: []
+    moves: ['rugissement_mufafesque', 'dechirure']
 }
 
 monsters.kido = {
@@ -5406,7 +5406,7 @@ monsters.kido = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 180, spd: 100, res: { neutre: 5, terre: -25, feu: 25, eau: -5, air: 6 } },
-    moves: []
+    moves: ['clapet', 'cuicui_d_amour']
 }
 
 monsters.mega_craqueleur_des_plaines = {
@@ -5426,7 +5426,7 @@ monsters.champetrouille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 63, spd: 100, res: { neutre: 10, terre: 18, feu: 7, eau: -16, air: 6 } },
-    moves: []
+    moves: ['frappe_a_dingues', 'dinguerie', 'cueillette']
 }
 
 monsters.lanverne = {
@@ -5436,7 +5436,7 @@ monsters.lanverne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 63, spd: 100, res: { neutre: 15, terre: 5, feu: 11, eau: 3, air: -18 } },
-    moves: []
+    moves: ['vermifuge', 'subterfuge']
 }
 
 monsters.rhinoferoce = {
@@ -5446,7 +5446,7 @@ monsters.rhinoferoce = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 220, spd: 100, res: { neutre: 32, terre: 34, feu: -23, eau: 19, air: -26 } },
-    moves: []
+    moves: ['rhinoderme', 'rhinopharyngite', 'rhinoplastie']
 }
 
 monsters.boursoin = {
@@ -5456,7 +5456,7 @@ monsters.boursoin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 300, spd: 100, res: { neutre: 36, terre: 16, feu: -24, eau: 6, air: -14 } },
-    moves: []
+    moves: ['renflouage', 'ponderation']
 }
 
 monsters.mimikado = {
@@ -5466,7 +5466,7 @@ monsters.mimikado = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 300, spd: 100, res: { neutre: 16, terre: -24, feu: 6, eau: -14, air: 36 } },
-    moves: []
+    moves: ['mimissile', 'pou', 'mimirage']
 }
 
 monsters.tresantene = {
@@ -5476,7 +5476,7 @@ monsters.tresantene = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 300, spd: 100, res: { neutre: -24, terre: 6, feu: -14, eau: 36, air: 16 } },
-    moves: []
+    moves: ['deferlante', 'decompression', 'eruption']
 }
 
 monsters.berserkoffre = {
@@ -5486,7 +5486,7 @@ monsters.berserkoffre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 300, spd: 100, res: { neutre: 6, terre: -14, feu: 36, eau: 16, air: -24 } },
-    moves: []
+    moves: ['saut_de_joie', 'langueur', 'fouetreinte']
 }
 
 monsters.precieux = {
@@ -5496,7 +5496,7 @@ monsters.precieux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 300, spd: 100, res: { neutre: -14, terre: 36, feu: 16, eau: -24, air: 6 } },
-    moves: []
+    moves: ['morsurprise', 'haleine_de_coffre', 'bondulations']
 }
 
 monsters.dostrogo = {
@@ -5506,7 +5506,7 @@ monsters.dostrogo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 200, spd: 100, res: { neutre: 0, terre: 12, feu: 0, eau: -14, air: 18 } },
-    moves: []
+    moves: ['coup_de_bec_dominant', 'dochirure']
 }
 
 monsters.domoizelle = {
@@ -5516,7 +5516,7 @@ monsters.domoizelle = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 10, eau: -16, air: 22 } },
-    moves: []
+    moves: ['invocation_de_dodoune', 'protection_maternelle', 'poussee_dormone']
 }
 
 monsters.muloubard = {
@@ -5526,7 +5526,7 @@ monsters.muloubard = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 368, spd: 100, res: { neutre: 11, terre: 16, feu: 26, eau: -14, air: -9 } },
-    moves: []
+    moves: ['riffes', 'metalour', 'baikeur']
 }
 
 monsters.cocholou = {
@@ -5536,7 +5536,7 @@ monsters.cocholou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 368, spd: 100, res: { neutre: -9, terre: 16, feu: 11, eau: 1, air: 11 } },
-    moves: []
+    moves: ['dents_longues', 'faim_de_mulou', 'grand_mechant']
 }
 
 monsters.mulounoke = {
@@ -5546,7 +5546,7 @@ monsters.mulounoke = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 368, spd: 100, res: { neutre: 16, terre: -14, feu: 0, eau: 21, air: 11 } },
-    moves: []
+    moves: ['ruee_bestiale', 'esprits_vengeurs', 'froid_de_mulou']
 }
 
 monsters.mergranlou = {
@@ -5556,7 +5556,7 @@ monsters.mergranlou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 368, spd: 100, res: { neutre: -29, terre: 26, feu: 11, eau: 6, air: 16 } },
-    moves: []
+    moves: ['mergran', 'peur_du_mulou', 'chaperon']
 }
 
 monsters.intercepteur = {
@@ -5596,7 +5596,7 @@ monsters.craqueleur_poli = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 180, spd: 100, res: { neutre: 1, terre: 25, feu: -5, eau: -40, air: 5 } },
-    moves: []
+    moves: ['polissage', 'je_vous_en_prie']
 }
 
 monsters.minoskito = {
@@ -5606,7 +5606,7 @@ monsters.minoskito = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 228, spd: 100, res: { neutre: 10, terre: 10, feu: -9, eau: 10, air: -9 } },
-    moves: []
+    moves: ['piqure_pesante', 'pheromones_de_jouvence']
 }
 
 monsters.bonhomme_de_neige = {
@@ -5616,7 +5616,7 @@ monsters.bonhomme_de_neige = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 304, spd: 100, res: { neutre: 10, terre: -18, feu: -25, eau: 25, air: 25 } },
-    moves: []
+    moves: ['poussee_d_egul', 'esprit_de_nowel', 'tire_fesse']
 }
 
 monsters.bitouf_des_plaines = {
@@ -5626,7 +5626,7 @@ monsters.bitouf_des_plaines = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 220, spd: 100, res: { neutre: 5, terre: -19, feu: -23, eau: -9, air: -9 } },
-    moves: []
+    moves: ['vrut_vrut', 'plumeau_cecitant']
 }
 
 monsters.kilibriss = {
@@ -5636,7 +5636,7 @@ monsters.kilibriss = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 180, spd: 100, res: { neutre: 27, terre: 20, feu: -9, eau: 17, air: -27 } },
-    moves: []
+    moves: ['brisskote', 'briss_deuniss', 'brissolette']
 }
 
 monsters.tofubine = {
@@ -5646,7 +5646,7 @@ monsters.tofubine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 175, spd: 100, res: { neutre: 15, terre: 0, feu: 15, eau: 30, air: -15 } },
-    moves: []
+    moves: ['graine_toxique']
 }
 
 monsters.cauchemarakne = {
@@ -5666,7 +5666,7 @@ monsters.bulbiflore = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 304, spd: 100, res: { neutre: 5, terre: 11, feu: 1, eau: 13, air: 8 } },
-    moves: []
+    moves: ['bulbation', 'frappe_vivace', 'pollinisation']
 }
 
 monsters.aloevee_rate = {
@@ -5676,7 +5676,7 @@ monsters.aloevee_rate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 304, spd: 100, res: { neutre: 2, terre: 3, feu: -5, eau: 3, air: -3 } },
-    moves: []
+    moves: ['soignerat', 'drainerat', 'pousserat']
 }
 
 monsters.feu = {
@@ -5696,7 +5696,7 @@ monsters.krokille_mature_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 88, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['frenesie_elementale']
 }
 
 monsters.krokille_mature_boueuse = {
@@ -5706,7 +5706,7 @@ monsters.krokille_mature_boueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 88, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: []
+    moves: ['eclosion']
 }
 
 monsters.krokille_mature_incandescente = {
@@ -5716,7 +5716,7 @@ monsters.krokille_mature_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 88, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: []
+    moves: ['recalcification']
 }
 
 monsters.krokille_mature_humide = {
@@ -5726,7 +5726,7 @@ monsters.krokille_mature_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 88, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: []
+    moves: ['hydrophobie']
 }
 
 monsters.krokille_mature_seche = {
@@ -5736,7 +5736,7 @@ monsters.krokille_mature_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 88, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: []
+    moves: ['il_du_cyclone']
 }
 
 monsters.corbac = {
@@ -5746,7 +5746,7 @@ monsters.corbac = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: 26, terre: 26, feu: 26, eau: -19, air: -19 } },
-    moves: []
+    moves: ['cri_destabilisateur', 'lancer_d_uf', 'dilaceration']
 }
 
 monsters.guerrier_koalak = {
@@ -5756,7 +5756,7 @@ monsters.guerrier_koalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 120, spd: 100, res: { neutre: 40, terre: 10, feu: 10, eau: -9, air: -19 } },
-    moves: []
+    moves: ['boutade', 'assommoir', 'rage_du_guerrier']
 }
 
 monsters.kanigrou_hivernal = {
@@ -5766,7 +5766,7 @@ monsters.kanigrou_hivernal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -9, air: -9 } },
-    moves: []
+    moves: ['griffe_du_kanigrou_hivernal', 'chute_majestueuse']
 }
 
 monsters.croc_gland_de_nowel = {
@@ -5776,7 +5776,7 @@ monsters.croc_gland_de_nowel = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['aboiement']
 }
 
 monsters.z_uf_perturbe = {
@@ -5816,7 +5816,7 @@ monsters.fossoyeur_koalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 163, spd: 100, res: { neutre: 10, terre: 50, feu: 20, eau: -19, air: 20 } },
-    moves: []
+    moves: ['enterrement', 'motte_de_terre']
 }
 
 monsters.buveur = {
@@ -5826,7 +5826,7 @@ monsters.buveur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: 1, terre: -9, feu: -9, eau: 66, air: -9 } },
-    moves: []
+    moves: ['daudoh', 'buvette', 'parchotage']
 }
 
 monsters.buveur_de_sang = {
@@ -5846,7 +5846,7 @@ monsters.renarbo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: -14, terre: 21, feu: -9, eau: -24, air: 66 } },
-    moves: []
+    moves: ['croassement', 'ramage', 'deplumage']
 }
 
 monsters.renarbo_parleur = {
@@ -5866,7 +5866,7 @@ monsters.mandrine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 228, spd: 100, res: { neutre: 10, terre: -9, feu: 10, eau: -9, air: 10 } },
-    moves: []
+    moves: ['empoisonnement_affaiblissant', 'empoisonnement_poisseux', 'empoisonnement_mouvemente']
 }
 
 monsters.tofutoflamme = {
@@ -5876,7 +5876,7 @@ monsters.tofutoflamme = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 150, spd: 100, res: { neutre: 45, terre: 3, feu: 30, eau: -30, air: -30 } },
-    moves: []
+    moves: ['beco_ardent']
 }
 
 monsters.pupuce = {
@@ -5886,7 +5886,7 @@ monsters.pupuce = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 340, spd: 100, res: { neutre: 10, terre: -14, feu: 8, eau: 16, air: 10 } },
-    moves: []
+    moves: ['pupunition', 'pupussuccion']
 }
 
 monsters.morcac = {
@@ -5896,7 +5896,7 @@ monsters.morcac = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 340, spd: 100, res: { neutre: 8, terre: 2, feu: -4, eau: 4, air: 10 } },
-    moves: []
+    moves: ['roupetkifouette']
 }
 
 monsters.pikbul = {
@@ -5906,7 +5906,7 @@ monsters.pikbul = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 340, spd: 100, res: { neutre: 14, terre: 6, feu: 8, eau: 6, air: -14 } },
-    moves: []
+    moves: ['infestation', 'dejection_empoisonnee']
 }
 
 monsters.geriatique = {
@@ -5916,7 +5916,7 @@ monsters.geriatique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 340, spd: 100, res: { neutre: -14, terre: 4, feu: 10, eau: 4, air: 16 } },
-    moves: []
+    moves: ['nuee_de_tiques', 'ponction_revitalisante']
 }
 
 monsters.grath = {
@@ -5926,7 +5926,7 @@ monsters.grath = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 340, spd: 100, res: { neutre: 6, terre: 12, feu: 10, eau: -14, air: 6 } },
-    moves: []
+    moves: ['saut_de_puce', 'demangeaisons', 'secouage']
 }
 
 monsters.bambouto = {
@@ -5936,7 +5936,7 @@ monsters.bambouto = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 10, terre: 9, feu: 9, eau: 4, air: 7 } },
-    moves: []
+    moves: ['bambouffe', 'photosynthese', 'presse_tige']
 }
 
 monsters.rate_atinee = {
@@ -5946,7 +5946,7 @@ monsters.rate_atinee = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 2, terre: 2, feu: 13, eau: -20, air: 3 } },
-    moves: []
+    moves: ['rapiat', 'radotage']
 }
 
 monsters.chika_rat = {
@@ -5956,7 +5956,7 @@ monsters.chika_rat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: -2, terre: 5, feu: 2, eau: -6, air: 1 } },
-    moves: []
+    moves: ['embrocherat', 'lancerat', 'aurat']
 }
 
 monsters.dragoss_charbon = {
@@ -5966,7 +5966,7 @@ monsters.dragoss_charbon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1900, atk: 310, spd: 100, res: { neutre: 22, terre: 16, feu: 32, eau: -15, air: 11 } },
-    moves: []
+    moves: ['combustion', 'offrande_ardente']
 }
 
 monsters.tofuzmo = {
@@ -5976,7 +5976,7 @@ monsters.tofuzmo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1900, atk: 200, spd: 100, res: { neutre: 10, terre: 5, feu: -30, eau: -20, air: 30 } },
-    moves: []
+    moves: ['coup_de_bec_magistral', 'plumeau_aveuglant']
 }
 
 monsters.kirboule_l_erode = {
@@ -5996,7 +5996,7 @@ monsters.chak_rat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1900, atk: 304, spd: 100, res: { neutre: 4, terre: -5, feu: 3, eau: 2, air: -4 } },
-    moves: []
+    moves: ['preciserat', 'affinerat', 'assoifferat']
 }
 
 monsters.vilain_petit_tofu = {
@@ -6006,7 +6006,7 @@ monsters.vilain_petit_tofu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1900, atk: 100, spd: 100, res: { neutre: 25, terre: 15, feu: -15, eau: -30, air: 30 } },
-    moves: []
+    moves: ['vilain_beco']
 }
 
 monsters.bulbuisson = {
@@ -6016,7 +6016,7 @@ monsters.bulbuisson = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1900, atk: 304, spd: 100, res: { neutre: 4, terre: 2, feu: 10, eau: 9, air: 7 } },
-    moves: []
+    moves: ['nectarissement', 'yuccanon']
 }
 
 monsters.malterego_de_malzerb = {
@@ -6036,7 +6036,7 @@ monsters.rat_plapla = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 304, spd: 100, res: { neutre: -8, terre: 7, feu: -18, eau: 11, air: 8 } },
-    moves: []
+    moves: ['raclage', 'radioactivite', 'radar']
 }
 
 monsters.maitre_koalak = {
@@ -6046,7 +6046,7 @@ monsters.maitre_koalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 200, spd: 100, res: { neutre: -25, terre: -10, feu: 50, eau: -10, air: -10 } },
-    moves: []
+    moves: ['frappe_du_maitre', 'reconciliation', 'transposition_du_maitre']
 }
 
 monsters.koalak_sanguin = {
@@ -6056,7 +6056,7 @@ monsters.koalak_sanguin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 25, spd: 100, res: { neutre: 20, terre: 15, feu: 10, eau: -10, air: -20 } },
-    moves: []
+    moves: ['sang_chaud', 'punition_sanguine', 'transfert_de_vie_sanguin', 'chatiment_sanguin']
 }
 
 monsters.dragoss_proteiforme = {
@@ -6066,7 +6066,7 @@ monsters.dragoss_proteiforme = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 310, spd: 100, res: { neutre: 18, terre: 18, feu: 18, eau: 18, air: 18 } },
-    moves: []
+    moves: ['hyoide', 'engouement']
 }
 
 monsters.malterego_de_malepik = {
@@ -6076,7 +6076,7 @@ monsters.malterego_de_malepik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 432, spd: 100, res: { neutre: 0, terre: -8, feu: 21, eau: -7, air: 4 } },
-    moves: []
+    moves: ['malternatif', 'maluminium']
 }
 
 monsters.momie_koalak = {
@@ -6086,7 +6086,7 @@ monsters.momie_koalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 138, spd: 100, res: { neutre: 60, terre: -25, feu: 10, eau: 50, air: -50 } },
-    moves: []
+    moves: ['malediction_de_la_momie', 'clepsydre', 'bandelette_ancestrale']
 }
 
 monsters.fauchalak = {
@@ -6096,7 +6096,7 @@ monsters.fauchalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 225, spd: 100, res: { neutre: 30, terre: 10, feu: -10, eau: 20, air: -10 } },
-    moves: []
+    moves: ['malediction_koalak', 'fauche', 'renfort_du_cimetiere_primitif']
 }
 
 monsters.miasme_polarisateur = {
@@ -6126,7 +6126,7 @@ monsters.floristile = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 304, spd: 100, res: { neutre: 11, terre: 7, feu: 8, eau: 9, air: 0 } },
-    moves: []
+    moves: ['nez_bulleux', 'pistirage', 'petaclier']
 }
 
 monsters.bourgeon = {
@@ -6136,7 +6136,7 @@ monsters.bourgeon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: 10, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: []
+    moves: ['germe']
 }
 
 monsters.rat_li = {
@@ -6146,7 +6146,7 @@ monsters.rat_li = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: -6, terre: -15, feu: 3, eau: 14, air: 4 } },
-    moves: []
+    moves: ['rapport', 'rappel_a_l_ordre', 'rapia']
 }
 
 monsters.wabbit_vampire = {
@@ -6156,7 +6156,7 @@ monsters.wabbit_vampire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 200, spd: 100, res: { neutre: 6, terre: -33, feu: 16, eau: 32, air: 7 } },
-    moves: []
+    moves: ['genewosite_cawottique', 'theowie_de_la_cawotte']
 }
 
 monsters.wabbit_fluo = {
@@ -6166,7 +6166,7 @@ monsters.wabbit_fluo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 200, spd: 100, res: { neutre: 16, terre: 32, feu: 7, eau: 6, air: -33 } },
-    moves: []
+    moves: ['empwise', 'aveuglement_luminescent', 'dispawition_wetawdee']
 }
 
 monsters.wabbit_cephale = {
@@ -6176,7 +6176,7 @@ monsters.wabbit_cephale = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 200, spd: 100, res: { neutre: 32, terre: 7, feu: 6, eau: -33, air: 16 } },
-    moves: []
+    moves: ['ecwasement', 'tewatif']
 }
 
 monsters.wabbit_garou = {
@@ -6186,7 +6186,7 @@ monsters.wabbit_garou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 200, spd: 100, res: { neutre: 7, terre: 6, feu: -33, eau: 16, air: 32 } },
-    moves: []
+    moves: ['suwpwise', 'ecawtelement']
 }
 
 monsters.troollaraj = {
@@ -6196,7 +6196,7 @@ monsters.troollaraj = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: 26, terre: 26, feu: -9, eau: -19, air: 16 } },
-    moves: []
+    moves: ['vindication_troollesque', 'absorption_troollesque', 'ecrasement_troollesque']
 }
 
 monsters.rono_le_renarbo = {
@@ -6226,7 +6226,7 @@ monsters.scaratos = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 225, spd: 100, res: { neutre: 10, terre: 5, feu: 9, eau: -9, air: -9 } },
-    moves: []
+    moves: ['defonce', 'cuticule', 'recueillement', 'scaracornos']
 }
 
 monsters.kramelehon = {
@@ -6236,7 +6236,7 @@ monsters.kramelehon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 175, spd: 100, res: { neutre: -30, terre: 20, feu: 10, eau: 20, air: 10 } },
-    moves: []
+    moves: ['disparition', 'coup_de_langue']
 }
 
 monsters.dragueuse = {
@@ -6246,7 +6246,7 @@ monsters.dragueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 390, spd: 100, res: { neutre: 10, terre: -13, feu: 14, eau: -6, air: 24 } },
-    moves: []
+    moves: ['drague', 'coup_de_foudre', 'tohu_bohu']
 }
 
 monsters.draguaindrop = {
@@ -6256,7 +6256,7 @@ monsters.draguaindrop = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 390, spd: 100, res: { neutre: -8, terre: 9, feu: 16, eau: 24, air: -18 } },
-    moves: []
+    moves: ['coupedaikalle', 'souap', 'shinouque']
 }
 
 monsters.scelee_rate = {
@@ -6266,7 +6266,7 @@ monsters.scelee_rate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: -6, terre: 4, feu: 2, eau: 1, air: 3 } },
-    moves: []
+    moves: ['affaiblirat', 'collapserat', 'freinerat']
 }
 
 monsters.boufmouth = {
@@ -6276,7 +6276,7 @@ monsters.boufmouth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 380, spd: 100, res: { neutre: 23, terre: 15, feu: 5, eau: -32, air: 45 } },
-    moves: []
+    moves: ['krouth', 'klougmouth', 'moumouth']
 }
 
 monsters.boufmouth_de_guerre = {
@@ -6286,7 +6286,7 @@ monsters.boufmouth_de_guerre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 380, spd: 100, res: { neutre: 50, terre: 20, feu: -38, eau: 30, air: 15 } },
-    moves: []
+    moves: ['koudblouze', 'boufbaffe', 'hubermouth']
 }
 
 monsters.boufmouth_legendaire = {
@@ -6296,7 +6296,7 @@ monsters.boufmouth_legendaire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 380, spd: 100, res: { neutre: 15, terre: -35, feu: 51, eau: 10, air: 19 } },
-    moves: []
+    moves: ['koudkorn', 'moutharde', 'moubilite']
 }
 
 monsters.bouftonmouth = {
@@ -6306,7 +6306,7 @@ monsters.bouftonmouth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 380, spd: 100, res: { neutre: 10, terre: 60, feu: 20, eau: 15, air: -40 } },
-    moves: []
+    moves: ['moursure', 'bizmouth']
 }
 
 monsters.cawotman = {
@@ -6316,7 +6316,7 @@ monsters.cawotman = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 200, spd: 100, res: { neutre: -33, terre: 16, feu: 32, eau: 7, air: 6 } },
-    moves: []
+    moves: ['bond_appetissant', 'goinfwage']
 }
 
 monsters.dramak = {
@@ -6326,7 +6326,7 @@ monsters.dramak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 300, spd: 100, res: { neutre: 40, terre: -10, feu: 25, eau: -15, air: 20 } },
-    moves: []
+    moves: ['invocation_de_pantin', 'manipulation', 'entracte', 'marionnette']
 }
 
 monsters.truchideur = {
@@ -6336,7 +6336,7 @@ monsters.truchideur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 220, spd: 100, res: { neutre: 32, terre: 22, feu: -23, eau: 17, air: -13 } },
-    moves: []
+    moves: ['truchidage', 'boulette_baveuse', 'truchenrut', 'bouffee_de_chaleur']
 }
 
 monsters.truchtine = {
@@ -6346,7 +6346,7 @@ monsters.truchtine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 210, spd: 100, res: { neutre: -18, terre: -23, feu: 17, eau: -13, air: 32 } },
-    moves: []
+    moves: ['degage', 'vision_trouble', 'rondelle_reparatrice', 'myopie']
 }
 
 monsters.truchon = {
@@ -6356,7 +6356,7 @@ monsters.truchon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 200, spd: 100, res: { neutre: 2, terre: 12, feu: 22, eau: -3, air: -18 } },
-    moves: []
+    moves: ['claque_du_bec', 'proutoto', 'exhalation_chetive', 'survie_de_l_espece']
 }
 
 monsters.gromorso = {
@@ -6366,7 +6366,7 @@ monsters.gromorso = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 340, spd: 100, res: { neutre: 17, terre: -14, feu: -21, eau: 28, air: 10 } },
-    moves: []
+    moves: ['transmission_instantanee', 'echauffement_songeur']
 }
 
 monsters.farfacette = {
@@ -6376,7 +6376,7 @@ monsters.farfacette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 340, spd: 100, res: { neutre: -14, terre: -21, feu: 28, eau: 10, air: 17 } },
-    moves: []
+    moves: ['tornadhesive', 'cercle_de_lumiere', 'farce_cachee']
 }
 
 monsters.brikablak = {
@@ -6386,7 +6386,7 @@ monsters.brikablak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 340, spd: 100, res: { neutre: -21, terre: 28, feu: 10, eau: 17, air: -14 } },
-    moves: []
+    moves: ['attaque_surprise', 'pluixel']
 }
 
 monsters.eklatleth = {
@@ -6396,7 +6396,7 @@ monsters.eklatleth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 340, spd: 100, res: { neutre: 28, terre: 10, feu: 17, eau: -14, air: -21 } },
-    moves: []
+    moves: ['eklatlatete', 'secoust']
 }
 
 monsters.segmantid = {
@@ -6406,7 +6406,7 @@ monsters.segmantid = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 340, spd: 100, res: { neutre: 10, terre: 17, feu: -14, eau: -21, air: 28 } },
-    moves: []
+    moves: ['segmentation', 'feu_use']
 }
 
 monsters.troolligark = {
@@ -6416,7 +6416,7 @@ monsters.troolligark = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: -9, terre: -19, feu: 16, eau: 26, air: 26 } },
-    moves: []
+    moves: ['controoll', 'troollage']
 }
 
 monsters.troolleole = {
@@ -6426,7 +6426,7 @@ monsters.troolleole = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: -19, terre: 16, feu: 26, eau: -9, air: 26 } },
-    moves: []
+    moves: ['troollahonte', 'troollfesse']
 }
 
 monsters.dragace = {
@@ -6436,7 +6436,7 @@ monsters.dragace = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 390, spd: 100, res: { neutre: -10, terre: 24, feu: -18, eau: 9, air: 18 } },
-    moves: []
+    moves: ['mort_d_illement', 'bourrascasse']
 }
 
 monsters.grenufar = {
@@ -6446,7 +6446,7 @@ monsters.grenufar = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: 10, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: []
+    moves: ['plongeon', 'bactrasoin', 'amphibaffe']
 }
 
 monsters.corbac_apprivoise = {
@@ -6456,7 +6456,7 @@ monsters.corbac_apprivoise = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 408, spd: 100, res: { neutre: 21, terre: -14, feu: 26, eau: 26, air: -29 } },
-    moves: []
+    moves: ['plumeau_destabilisant', 'bousculade_plumeuse']
 }
 
 monsters.corbac_dresse = {
@@ -6476,7 +6476,7 @@ monsters.poupee_affamee = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 75, spd: 100, res: { neutre: 130, terre: 130, feu: 130, eau: 130, air: 130 } },
-    moves: []
+    moves: ['coupe_faim', 'digestion_explosive', 'saphir_apaisant']
 }
 
 monsters.disciple_zoth = {
@@ -6496,7 +6496,7 @@ monsters.rat_sio = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 304, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['rayonnage', 'rapace']
 }
 
 monsters.warko_violet = {
@@ -6516,7 +6516,7 @@ monsters.malterego_de_maltrio = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 432, spd: 100, res: { neutre: 2, terre: 14, feu: 7, eau: -2, air: -11 } },
-    moves: []
+    moves: ['malergie', 'malezi']
 }
 
 monsters.malterego_de_malbois = {
@@ -6526,7 +6526,7 @@ monsters.malterego_de_malbois = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 432, spd: 100, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
-    moves: []
+    moves: ['malgorithmie', 'malimentation']
 }
 
 monsters.mininuit = {
@@ -6536,7 +6536,7 @@ monsters.mininuit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 304, spd: 100, res: { neutre: 30, terre: -20, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['patinage', 'marteau_d_okim', 'marteau_d_orelos']
 }
 
 monsters.gruche = {
@@ -6546,7 +6546,7 @@ monsters.gruche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 240, spd: 100, res: { neutre: 22, terre: 27, feu: -18, eau: -18, air: 12 } },
-    moves: []
+    moves: ['envolee_brutale', 'rejet_toxique', 'pied_de_gruche']
 }
 
 monsters.truchmuche = {
@@ -6556,7 +6556,7 @@ monsters.truchmuche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 230, spd: 100, res: { neutre: -8, terre: -23, feu: 17, eau: 27, air: -3 } },
-    moves: []
+    moves: ['laxatif', 'pourriture_intestinale', 'indigestion_contagieuse', 'diarrhee_affaiblissante']
 }
 
 monsters.sarkapwane = {
@@ -6566,7 +6566,7 @@ monsters.sarkapwane = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2200, atk: 368, spd: 100, res: { neutre: 10, terre: 10, feu: -5, eau: -5, air: 20 } },
-    moves: []
+    moves: ['crache_eau', 'kwap', 'invocation_de_bombombre']
 }
 
 monsters.rate_iboisee = {
@@ -6576,7 +6576,7 @@ monsters.rate_iboisee = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2300, atk: 304, spd: 100, res: { neutre: 12, terre: 6, feu: 2, eau: -5, air: -15 } },
-    moves: []
+    moves: ['raviner', 'raffinage']
 }
 
 monsters.capoei_rat = {
@@ -6586,7 +6586,7 @@ monsters.capoei_rat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2300, atk: 304, spd: 100, res: { neutre: 2, terre: -7, feu: 2, eau: 0, air: 3 } },
-    moves: []
+    moves: ['confinerat', 'dechiquetterat']
 }
 
 monsters.gamine_zoth = {
@@ -6596,7 +6596,7 @@ monsters.gamine_zoth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2300, atk: 400, spd: 100, res: { neutre: 10, terre: -39, feu: 7, eau: 30, air: 0 } },
-    moves: []
+    moves: ['tyrannie', 'gaminerie', 'transgaminerie']
 }
 
 monsters.tofu_dodu = {
@@ -6606,7 +6606,7 @@ monsters.tofu_dodu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 0, spd: 100, res: { neutre: 40, terre: -40, feu: 10, eau: 20, air: 40 } },
-    moves: []
+    moves: ['malediction_du_tofulailler_royal', 'benediction_du_tofulailler_royal', 'envol_liberateur']
 }
 
 monsters.guerrier_zoth = {
@@ -6616,7 +6616,7 @@ monsters.guerrier_zoth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 500, spd: 100, res: { neutre: -15, terre: 5, feu: 38, eau: 10, air: -30 } },
-    moves: []
+    moves: ['hechaud_fourree', 'melee']
 }
 
 monsters.chef_waddict = {
@@ -6626,7 +6626,7 @@ monsters.chef_waddict = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 420, spd: 100, res: { neutre: 5, terre: 11, feu: 0, eau: 10, air: 14 } },
-    moves: []
+    moves: ['enwobage', 'anawchie', 'assasindic']
 }
 
 monsters.gamino = {
@@ -6636,7 +6636,7 @@ monsters.gamino = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 150, spd: 100, res: { neutre: 10, terre: 50, feu: 5, eau: -9, air: -30 } },
-    moves: []
+    moves: ['chevauchee_malicieuse', 'esprit_d_equipe', 'coup_de_sceptre']
 }
 
 monsters.serpiplume = {
@@ -6646,7 +6646,7 @@ monsters.serpiplume = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 175, spd: 100, res: { neutre: 10, terre: 10, feu: -9, eau: -9, air: 10 } },
-    moves: []
+    moves: ['boulette', 'sonnette', 'venin_destabilisateur']
 }
 
 monsters.chienchien_courant = {
@@ -6656,7 +6656,7 @@ monsters.chienchien_courant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 728, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['accrochage']
 }
 
 monsters.lampe_bleue = {
@@ -6666,7 +6666,7 @@ monsters.lampe_bleue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['lumiere_bleue']
 }
 
 monsters.sergent_zoth = {
@@ -6676,7 +6676,7 @@ monsters.sergent_zoth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 400, spd: 100, res: { neutre: -8, terre: 7, feu: 5, eau: 34, air: -35 } },
-    moves: []
+    moves: ['kulbutage']
 }
 
 monsters.ramane = {
@@ -6686,7 +6686,7 @@ monsters.ramane = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 350, spd: 100, res: { neutre: -10, terre: 20, feu: 69, eau: -30, air: 5 } },
-    moves: []
+    moves: ['poils_terrestres', 'desenvoutement_poilu', 'comte_ancestral']
 }
 
 monsters.abraknyde_sombre_irascible = {
@@ -6706,7 +6706,7 @@ monsters.glutin_colerique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 125, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 100, air: 100 } },
-    moves: []
+    moves: ['glutinerie', 'glutincelle']
 }
 
 monsters.glutin_acariatre = {
@@ -6716,7 +6716,7 @@ monsters.glutin_acariatre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 125, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 0, air: 100 } },
-    moves: []
+    moves: ['glutorpille']
 }
 
 monsters.glutin_morose = {
@@ -6726,7 +6726,7 @@ monsters.glutin_morose = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 125, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 0 } },
-    moves: []
+    moves: ['glutimpact']
 }
 
 monsters.glutin_boudeur = {
@@ -6736,7 +6736,7 @@ monsters.glutin_boudeur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 125, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 100, air: 100 } },
-    moves: []
+    moves: ['glutarc']
 }
 
 monsters.malterego_de_malalfa = {
@@ -6746,7 +6746,7 @@ monsters.malterego_de_malalfa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 432, spd: 100, res: { neutre: -28, terre: 5, feu: 6, eau: 21, air: 6 } },
-    moves: []
+    moves: ['malourdissement', 'malienisme']
 }
 
 monsters.horace_le_corbac_apprivoise = {
@@ -6766,7 +6766,7 @@ monsters.silhouette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['empoigne', 'strangulation']
 }
 
 monsters.milimaitre = {
@@ -6776,7 +6776,7 @@ monsters.milimaitre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 380, spd: 100, res: { neutre: -14, terre: 16, feu: -24, eau: 26, air: 6 } },
-    moves: []
+    moves: ['feintrigue', 'coupression', 'plantonyme']
 }
 
 monsters.kartouche = {
@@ -6786,7 +6786,7 @@ monsters.kartouche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 380, spd: 100, res: { neutre: 6, terre: -14, feu: 16, eau: -24, air: 26 } },
-    moves: []
+    moves: ['decrossage', 'tir_progressif']
 }
 
 monsters.sramourai = {
@@ -6796,7 +6796,7 @@ monsters.sramourai = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 380, spd: 100, res: { neutre: 16, terre: -24, feu: 26, eau: 6, air: -14 } },
-    moves: []
+    moves: ['coupe_vent', 'moulinet_sournois']
 }
 
 monsters.tromblion = {
@@ -6806,7 +6806,7 @@ monsters.tromblion = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 380, spd: 100, res: { neutre: -24, terre: 26, feu: 6, eau: -14, air: 16 } },
-    moves: []
+    moves: ['decharge_en_salle', 'crosse_a_terre']
 }
 
 monsters.elsoummo = {
@@ -6816,7 +6816,7 @@ monsters.elsoummo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 380, spd: 100, res: { neutre: 26, terre: 6, feu: -14, eau: 16, air: -24 } },
-    moves: []
+    moves: ['saut_de_lune', 'kimarite']
 }
 
 monsters.cactiflore = {
@@ -6826,7 +6826,7 @@ monsters.cactiflore = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 488, spd: 100, res: { neutre: -24, terre: 26, feu: 31, eau: -19, air: 21 } },
-    moves: []
+    moves: ['cacteau', 'spores_assechantes', 'ispores']
 }
 
 monsters.cactana = {
@@ -6836,7 +6836,7 @@ monsters.cactana = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 488, spd: 100, res: { neutre: 16, terre: 0, feu: -14, eau: 6, air: 26 } },
-    moves: []
+    moves: ['cactanus', 'pixor', 'bonussocac']
 }
 
 monsters.cactoblongo = {
@@ -6846,7 +6846,7 @@ monsters.cactoblongo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 488, spd: 100, res: { neutre: 0, terre: 31, feu: 21, eau: 16, air: -29 } },
-    moves: []
+    moves: ['mouerte', 'percepine', 'camocacterre']
 }
 
 monsters.pampactus = {
@@ -6856,7 +6856,7 @@ monsters.pampactus = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 488, spd: 100, res: { neutre: 0, terre: 11, feu: 16, eau: 6, air: -9 } },
-    moves: []
+    moves: ['unepine', 'couche_pampars']
 }
 
 monsters.levito = {
@@ -6866,7 +6866,7 @@ monsters.levito = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 488, spd: 100, res: { neutre: 6, terre: -24, feu: -9, eau: 26, air: 31 } },
-    moves: []
+    moves: ['maracac', 'salsa', 'joropo']
 }
 
 monsters.kakoalak = {
@@ -6876,7 +6876,7 @@ monsters.kakoalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 432, spd: 100, res: { neutre: 17, terre: 9, feu: -13, eau: 21, air: -8 } },
-    moves: []
+    moves: ['kakoaklake', 'pluie_de_pepite']
 }
 
 monsters.mansocolat = {
@@ -6886,7 +6886,7 @@ monsters.mansocolat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 432, spd: 100, res: { neutre: -17, terre: 16, feu: 7, eau: -8, air: 10 } },
-    moves: []
+    moves: ['maskansocolat', 'mansocolere', 'mansaut']
 }
 
 monsters.glourson_guimauve = {
@@ -6906,7 +6906,7 @@ monsters.chocoskargo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 432, spd: 100, res: { neutre: 13, terre: -8, feu: 5, eau: 9, air: -19 } },
-    moves: []
+    moves: ['enrobage', 'glycemie', 'chocoskarfarce']
 }
 
 monsters.kwakao = {
@@ -6916,7 +6916,7 @@ monsters.kwakao = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 432, spd: 100, res: { neutre: 8, terre: 13, feu: -15, eau: -11, air: 10 } },
-    moves: []
+    moves: ['kwakaoust', 'skwalala']
 }
 
 monsters.shinibaru = {
@@ -6926,7 +6926,7 @@ monsters.shinibaru = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 368, spd: 100, res: { neutre: 20, terre: 30, feu: -20, eau: -10, air: -10 } },
-    moves: []
+    moves: ['henshin_no_numa', 'henshinobi', 'nukiyo_e', 'yama_no_tuki']
 }
 
 monsters.ishigro_pake = {
@@ -6936,7 +6936,7 @@ monsters.ishigro_pake = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 368, spd: 100, res: { neutre: 5, terre: 40, feu: 10, eau: -15, air: -30 } },
-    moves: []
+    moves: ['tsunamishi', 'elevation_du_jardin_de_pierres', 'ishi_nuken']
 }
 
 monsters.tetonuki = {
@@ -6946,7 +6946,7 @@ monsters.tetonuki = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 368, spd: 100, res: { neutre: -5, terre: 20, feu: 30, eau: -30, air: -5 } },
-    moves: []
+    moves: ['tambourrin', 'percusseins']
 }
 
 monsters.parashukoui = {
@@ -6956,7 +6956,7 @@ monsters.parashukoui = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 368, spd: 100, res: { neutre: -15, terre: -20, feu: 5, eau: 10, air: 30 } },
-    moves: []
+    moves: ['valseuses', 'transpompoko', 'testirossa']
 }
 
 monsters.lolojiki = {
@@ -6966,7 +6966,7 @@ monsters.lolojiki = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 368, spd: 100, res: { neutre: 15, terre: 15, feu: -30, eau: 30, air: -15 } },
-    moves: []
+    moves: ['poterie_tanuki', 'kaolin', 'terre_glaise']
 }
 
 monsters.kokom = {
@@ -6976,7 +6976,7 @@ monsters.kokom = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 368, spd: 100, res: { neutre: -15, terre: -15, feu: 20, eau: 20, air: -5 } },
-    moves: []
+    moves: ['kom_koko', 'attirance_du_concombre']
 }
 
 monsters.maitre_zoth = {
@@ -6986,7 +6986,7 @@ monsters.maitre_zoth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2600, atk: 450, spd: 100, res: { neutre: 11, terre: 40, feu: -7, eau: -47, air: 14 } },
-    moves: []
+    moves: ['bataille_pour_la_terre_des_zoths', 'incitation']
 }
 
 monsters.araknotron_irascible = {
@@ -7006,7 +7006,7 @@ monsters.dragnarok = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2600, atk: 390, spd: 100, res: { neutre: 24, terre: 18, feu: 12, eau: -5, air: -10 } },
-    moves: []
+    moves: ['steune', 'dragtaie', 'cuit_rasse']
 }
 
 monsters.brouture = {
@@ -7016,7 +7016,7 @@ monsters.brouture = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2600, atk: 120, spd: 100, res: { neutre: -10, terre: -34, feu: 9, eau: 36, air: 10 } },
-    moves: []
+    moves: ['repousse', 'seve_nourrissante', 'galle']
 }
 
 monsters.nerbe = {
@@ -7026,7 +7026,7 @@ monsters.nerbe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2600, atk: 110, spd: 100, res: { neutre: 30, terre: 5, feu: -22, eau: 3, air: 25 } },
-    moves: []
+    moves: ['herbe_hacha', 'mauvaise_herbe']
 }
 
 monsters.chiendent = {
@@ -7036,7 +7036,7 @@ monsters.chiendent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2600, atk: 100, spd: 100, res: { neutre: 10, terre: 35, feu: -20, eau: 9, air: -10 } },
-    moves: []
+    moves: ['morsure_critique', 'flair_obscur']
 }
 
 monsters.rat_pine = {
@@ -7046,7 +7046,7 @@ monsters.rat_pine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2700, atk: 473, spd: 100, res: { neutre: 20, terre: -10, feu: 69, eau: -30, air: 5 } },
-    moves: []
+    moves: ['ratatinage', 'rature', 'ratatouille']
 }
 
 monsters.glutin_tapageur = {
@@ -7066,7 +7066,7 @@ monsters.bitouf_sombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2700, atk: 150, spd: 100, res: { neutre: 13, terre: 13, feu: 13, eau: -33, air: 25 } },
-    moves: []
+    moves: ['glanage', 'ecrasement_sombre']
 }
 
 monsters.floribonde = {
@@ -7076,7 +7076,7 @@ monsters.floribonde = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2700, atk: 140, spd: 100, res: { neutre: 10, terre: 25, feu: 10, eau: -30, air: -5 } },
-    moves: []
+    moves: ['pistil_ensorcele', 'etamines_libertines', 'flagellation_florale']
 }
 
 monsters.fecorce = {
@@ -7086,7 +7086,7 @@ monsters.fecorce = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2700, atk: 130, spd: 100, res: { neutre: 15, terre: 8, feu: 30, eau: 40, air: -7 } },
-    moves: []
+    moves: ['ecorce_detonante', 'ecorce_malsaine']
 }
 
 monsters.larmichette_de_l_ogre = {
@@ -7096,7 +7096,7 @@ monsters.larmichette_de_l_ogre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2700, atk: 500, spd: 100, res: { neutre: 5, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: []
+    moves: ['glougloutte_salee']
 }
 
 monsters.rat_goutant = {
@@ -7116,7 +7116,7 @@ monsters.abrakleur_sombre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 160, spd: 100, res: { neutre: 1, terre: 1, feu: 1, eau: -19, air: 19 } },
-    moves: []
+    moves: ['nervure', 'ecorce_putride', 'plantage']
 }
 
 monsters.sanglacier = {
@@ -7126,7 +7126,7 @@ monsters.sanglacier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 14, terre: 10, feu: 5, eau: 30, air: -23 } },
-    moves: []
+    moves: ['sanglancornage', 'sanglobouste', 'sanglosoin']
 }
 
 monsters.fricochere = {
@@ -7136,7 +7136,7 @@ monsters.fricochere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 1, terre: 14, feu: 13, eau: -26, air: 22 } },
-    moves: []
+    moves: ['fricochoncete', 'fricadelle', 'fricotage']
 }
 
 monsters.kaniglou = {
@@ -7146,7 +7146,7 @@ monsters.kaniglou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: -21, terre: 15, feu: 10, eau: 14, air: 31 } },
-    moves: []
+    moves: ['glouglou', 'kaniglouton', 'frigogol']
 }
 
 monsters.timansot = {
@@ -7156,7 +7156,7 @@ monsters.timansot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 14, terre: -26, feu: 10, eau: 32, air: 8 } },
-    moves: []
+    moves: ['mansonnette', 'mansotise', 'mansovetage']
 }
 
 monsters.shamansot = {
@@ -7166,7 +7166,7 @@ monsters.shamansot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 16, terre: 10, feu: 32, eau: 12, air: -32 } },
-    moves: []
+    moves: ['mansote_mouton', 'mansovage', 'mansorcier']
 }
 
 monsters.mansobese = {
@@ -7176,7 +7176,7 @@ monsters.mansobese = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 5, terre: 31, feu: 10, eau: -29, air: 7 } },
-    moves: []
+    moves: ['mansolotage', 'mansogrenu', 'mansoldat']
 }
 
 monsters.mamansot = {
@@ -7186,7 +7186,7 @@ monsters.mamansot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 15, terre: 10, feu: -25, eau: 5, air: 31 } },
-    moves: []
+    moves: ['mansolex', 'mansovietik', 'mansovegarde']
 }
 
 monsters.fu_mansot = {
@@ -7196,7 +7196,7 @@ monsters.fu_mansot = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 36, terre: 14, feu: 16, eau: -25, air: 12 } },
-    moves: []
+    moves: ['mansoron', 'mansolfatare', 'mansoja']
 }
 
 monsters.ecumouth = {
@@ -7206,7 +7206,7 @@ monsters.ecumouth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 7, terre: 30, feu: -24, eau: 12, air: 5 } },
-    moves: []
+    moves: ['chataigne_glacee', 'propulsogland', 'equilibrogland']
 }
 
 monsters.smilomouth = {
@@ -7216,7 +7216,7 @@ monsters.smilomouth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 460, spd: 100, res: { neutre: 13, terre: -23, feu: 25, eau: 2, air: 10 } },
-    moves: []
+    moves: ['griffemouth', 'ramolimouth', 'hurlomouth']
 }
 
 monsters.gliglibido = {
@@ -7226,7 +7226,7 @@ monsters.gliglibido = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 333, spd: 100, res: { neutre: 32, terre: -9, feu: 27, eau: 11, air: -23 } },
-    moves: []
+    moves: ['gland_d_ouil', 'remontant', 'fluide_brulant']
 }
 
 monsters.gliglitch = {
@@ -7236,7 +7236,7 @@ monsters.gliglitch = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 333, spd: 100, res: { neutre: 5, terre: 17, feu: 7, eau: -5, air: -17 } },
-    moves: []
+    moves: ['gliglag', 'gligliplication', 'embrochement_dephase']
 }
 
 monsters.ino_naru = {
@@ -7246,7 +7246,7 @@ monsters.ino_naru = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 15, terre: -10, feu: 25, eau: -20, air: 20 } },
-    moves: []
+    moves: ['zephyr', 'nun_shakrang', 'stratus']
 }
 
 monsters.kurookin = {
@@ -7256,7 +7256,7 @@ monsters.kurookin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 10, terre: 15, feu: -10, eau: 25, air: -10 } },
-    moves: []
+    moves: ['rinku', 'armure_des_vents', 'kozaru_no_kotsu', 'depression_atmospherique']
 }
 
 monsters.crachefoux = {
@@ -7266,7 +7266,7 @@ monsters.crachefoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 6, terre: 16, feu: 16, eau: 0, air: -9 } },
-    moves: []
+    moves: ['couleuvrine', 'a_bout_portant', 'boulet_magique']
 }
 
 monsters.rouquette = {
@@ -7276,7 +7276,7 @@ monsters.rouquette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 11, terre: 1, feu: 16, eau: 21, air: -19 } },
-    moves: []
+    moves: ['fusee_incendiaire', 'echec_critique', 'decollage_rate']
 }
 
 monsters.boumbardier = {
@@ -7286,7 +7286,7 @@ monsters.boumbardier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 1, terre: 21, feu: -14, eau: -14, air: 26 } },
-    moves: []
+    moves: ['obus_aveuglant', 'feu_d_artifice', 'obus_gluant']
 }
 
 monsters.petartifoux = {
@@ -7296,7 +7296,7 @@ monsters.petartifoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 6, terre: -24, feu: 21, eau: 11, air: 11 } },
-    moves: []
+    moves: ['petard', 'phosphore', 'poudre_enervante']
 }
 
 monsters.founamboul = {
@@ -7306,7 +7306,7 @@ monsters.founamboul = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 400, spd: 100, res: { neutre: 16, terre: 0, feu: 11, eau: 6, air: 6 } },
-    moves: []
+    moves: ['boumboule', 'tourniboule']
 }
 
 monsters.malzerb = {
@@ -7316,7 +7316,7 @@ monsters.malzerb = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2800, atk: 432, spd: 100, res: { neutre: 3, terre: -3, feu: -14, eau: 2, air: 22 } },
-    moves: []
+    moves: ['maltruisme', 'malveole', 'malumeur']
 }
 
 monsters.rat_masseur = {
@@ -7326,7 +7326,7 @@ monsters.rat_masseur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 398, spd: 100, res: { neutre: 69, terre: 5, feu: -30, eau: 20, air: -10 } },
-    moves: []
+    moves: ['ravin', 'doctorat']
 }
 
 monsters.rat_colleur = {
@@ -7336,7 +7336,7 @@ monsters.rat_colleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 193, spd: 100, res: { neutre: 69, terre: 20, feu: 5, eau: -30, air: -10 } },
-    moves: []
+    moves: ['rajustement']
 }
 
 monsters.devhorreur = {
@@ -7346,7 +7346,7 @@ monsters.devhorreur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 63, spd: 100, res: { neutre: -7, terre: 12, feu: 6, eau: 11, air: 4 } },
-    moves: []
+    moves: ['terreur', 'malheur', 'torpeur']
 }
 
 monsters.akakwa = {
@@ -7356,7 +7356,7 @@ monsters.akakwa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 368, spd: 100, res: { neutre: 20, terre: 20, feu: 10, eau: 5, air: -15 } },
-    moves: []
+    moves: ['kwapoeira', 'akabond']
 }
 
 monsters.kwamourai = {
@@ -7366,7 +7366,7 @@ monsters.kwamourai = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 368, spd: 100, res: { neutre: 15, terre: 15, feu: 10, eau: 5, air: -15 } },
-    moves: []
+    moves: ['aikomu_tuyu', 'katanardent']
 }
 
 monsters.percepteur = {
@@ -7376,7 +7376,7 @@ monsters.percepteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 600, spd: 100, res: { neutre: 24, terre: 24, feu: 24, eau: 24, air: 24 } },
-    moves: []
+    moves: ['labour', 'monnaie_trebuchante', 'rente', 'ferrage', 'douane', 'gabelle', 'deficit', 'ruade', 'liquidation', 'abreuvoir', 'cotisation', 'rodeo', 'levee_de_fonds', 'saut_d_obstacle', 'redevance', 'prelevement', 'sagittarius', 'dommages_et_interets', 'courroux_de_menalt', 'illeres', 'chancellerie', 'surtaxe', 'faillite', 'malversation', 'affranchissement', 'exoneration', 'bride', 'licol', 'lasso', 'recit_hippique', 'eperon', 'trot', 'galop', 'trop_percu', 'subvention', 'fin_de_l_abondance', 'maitre_etalon', 'pur_sang', 'gros_fiacre', 'endurance_de_centoror']
 }
 
 monsters.krokille_fragile = {
@@ -7386,7 +7386,7 @@ monsters.krokille_fragile = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 450, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['volte', 'eruption_vulkaine']
 }
 
 monsters.rat_fraichi = {
@@ -7396,7 +7396,7 @@ monsters.rat_fraichi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 473, spd: 100, res: { neutre: 20, terre: 69, feu: -10, eau: 5, air: -30 } },
-    moves: []
+    moves: ['radical', 'raclette']
 }
 
 monsters.boubourse = {
@@ -7416,7 +7416,7 @@ monsters.peluche_tofu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 50, spd: 100, res: { neutre: -30, terre: 10, feu: 10, eau: 10, air: 30 } },
-    moves: []
+    moves: ['entorse', 'pique_couic']
 }
 
 monsters.doublure = {
@@ -7426,7 +7426,7 @@ monsters.doublure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 650, spd: 100, res: { neutre: 6, terre: -24, feu: 21, eau: 11, air: 26 } },
-    moves: []
+    moves: ['doublage', 'coupe_circulaire', 'subtilite']
 }
 
 monsters.gliglicerin = {
@@ -7436,7 +7436,7 @@ monsters.gliglicerin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 350, spd: 100, res: { neutre: 5, terre: 11, feu: -25, eau: 1, air: 22 } },
-    moves: []
+    moves: ['attirance_du_gligli', 'fauchage_de_glands', 'raffut_bestial']
 }
 
 monsters.dragmatique = {
@@ -7446,7 +7446,7 @@ monsters.dragmatique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3000, atk: 390, spd: 100, res: { neutre: 17, terre: -7, feu: 24, eau: 15, air: -17 } },
-    moves: []
+    moves: ['lavomatik', 'magmorsure']
 }
 
 monsters.rat_caille = {
@@ -7456,7 +7456,7 @@ monsters.rat_caille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 243, spd: 100, res: { neutre: 20, terre: -30, feu: -10, eau: 69, air: 5 } },
-    moves: []
+    moves: ['ramonage', 'rapidite', 'racket']
 }
 
 monsters.rat_botteur = {
@@ -7466,7 +7466,7 @@ monsters.rat_botteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 138, spd: 100, res: { neutre: 20, terre: -10, feu: -30, eau: 5, air: 69 } },
-    moves: []
+    moves: ['rabotage', 'raffut']
 }
 
 monsters.poolay = {
@@ -7476,7 +7476,7 @@ monsters.poolay = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 288, spd: 100, res: { neutre: 5, terre: 40, feu: 5, eau: -9, air: -40 } },
-    moves: []
+    moves: ['fureur_de_vivre', 'haleine_de_vers', 'poolay_frit']
 }
 
 monsters.fancrome = {
@@ -7486,7 +7486,7 @@ monsters.fancrome = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 5, terre: -26, feu: 10, eau: 32, air: 14 } },
-    moves: []
+    moves: ['ancre_d_echine', 'ancre_harton', 'jet_d_ancre']
 }
 
 monsters.fantomalamere = {
@@ -7496,7 +7496,7 @@ monsters.fantomalamere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 21, terre: 33, feu: -28, eau: 10, air: 15 } },
-    moves: []
+    moves: ['boulay', 'bouhay', 'bertha']
 }
 
 monsters.vigie_pirate = {
@@ -7506,7 +7506,7 @@ monsters.vigie_pirate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: -22, terre: 18, feu: 40, eau: 22, air: 25 } },
-    moves: []
+    moves: ['roce', 'harde', 'herissage']
 }
 
 monsters.harpirate = {
@@ -7516,7 +7516,7 @@ monsters.harpirate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 31, terre: 15, feu: -26, eau: 12, air: 19 } },
-    moves: []
+    moves: ['hissage', 'hure', 'homiseur']
 }
 
 monsters.fantomat = {
@@ -7526,7 +7526,7 @@ monsters.fantomat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 15, terre: 10, feu: 12, eau: 32, air: -22 } },
-    moves: []
+    moves: ['cedoine', 'kake']
 }
 
 monsters.fantimonier = {
@@ -7536,7 +7536,7 @@ monsters.fantimonier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 13, terre: 21, feu: 15, eau: -28, air: 31 } },
-    moves: []
+    moves: ['barre_barre', 'barre_hikade', 'barre_botage']
 }
 
 monsters.pitraille = {
@@ -7546,7 +7546,7 @@ monsters.pitraille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 21, terre: -26, feu: 28, eau: 12, air: 34 } },
-    moves: []
+    moves: ['ch_boum', 'ch_bang']
 }
 
 monsters.phorreveur = {
@@ -7556,7 +7556,7 @@ monsters.phorreveur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 460, spd: 100, res: { neutre: -19, terre: 21, feu: -14, eau: 11, air: 26 } },
-    moves: []
+    moves: ['flaqueduc', 'onde_repulsive', 'appel_a_l_aide']
 }
 
 monsters.metaphorreur = {
@@ -7566,7 +7566,7 @@ monsters.metaphorreur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 460, spd: 100, res: { neutre: 21, terre: -14, feu: 11, eau: 26, air: -19 } },
-    moves: []
+    moves: ['dispersion', 'fracturgescence', 'phormol']
 }
 
 monsters.pere_phorreur = {
@@ -7576,7 +7576,7 @@ monsters.pere_phorreur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 460, spd: 100, res: { neutre: -14, terre: 11, feu: 26, eau: -19, air: 21 } },
-    moves: []
+    moves: ['tunnellipse', 'perphorrage']
 }
 
 monsters.phozami = {
@@ -7586,7 +7586,7 @@ monsters.phozami = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 460, spd: 100, res: { neutre: 11, terre: 26, feu: -19, eau: 21, air: -14 } },
-    moves: []
+    moves: ['phorrage', 'defense']
 }
 
 monsters.mere_veilleuse = {
@@ -7596,7 +7596,7 @@ monsters.mere_veilleuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 460, spd: 100, res: { neutre: 26, terre: -19, feu: 21, eau: -14, air: 11 } },
-    moves: []
+    moves: ['ephort_de_guerre']
 }
 
 monsters.fangshu = {
@@ -7606,7 +7606,7 @@ monsters.fangshu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 400, spd: 100, res: { neutre: -20, terre: 15, feu: 20, eau: -10, air: 25 } },
-    moves: []
+    moves: ['altocumulus', 'raijin_yari', 'shinatobe']
 }
 
 monsters.assaishin = {
@@ -7616,7 +7616,7 @@ monsters.assaishin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 630, spd: 100, res: { neutre: 20, terre: -5, feu: -10, eau: 15, air: -20 } },
-    moves: []
+    moves: ['sai_sai_sai_sai']
 }
 
 monsters.malepik = {
@@ -7626,7 +7626,7 @@ monsters.malepik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3100, atk: 432, spd: 100, res: { neutre: 0, terre: -8, feu: 21, eau: -7, air: 4 } },
-    moves: []
+    moves: ['malagile', 'maltitude', 'malibi']
 }
 
 monsters.abrakne_sombre_irascible = {
@@ -7646,7 +7646,7 @@ monsters.bitouf_aerien = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3200, atk: 330, spd: 100, res: { neutre: -17, terre: -35, feu: -15, eau: -6, air: 27 } },
-    moves: []
+    moves: ['envolupte', 'tornade_pernicieuse', 'aeroportage']
 }
 
 monsters.emeraude = {
@@ -7656,7 +7656,7 @@ monsters.emeraude = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3200, atk: 100, spd: 100, res: { neutre: 98, terre: -15, feu: -15, eau: -15, air: 98 } },
-    moves: []
+    moves: ['transposition_amicale', 'transposition_destructrice', 'bouh_m_rang_emeraude', 'tripotee']
 }
 
 monsters.saphira = {
@@ -7666,7 +7666,7 @@ monsters.saphira = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3200, atk: 118, spd: 100, res: { neutre: 98, terre: -15, feu: -15, eau: 98, air: -15 } },
-    moves: []
+    moves: ['bouh_m_rang_saphir', 'camouflage_saphiresque']
 }
 
 monsters.rubise = {
@@ -7676,7 +7676,7 @@ monsters.rubise = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3200, atk: 100, spd: 100, res: { neutre: 98, terre: -15, feu: 98, eau: -15, air: -15 } },
-    moves: []
+    moves: ['bouh_m_rang_rubis', 'invocation_de_totem_motivant', 'invocation_de_totem_explosif', 'bottage_de_fesses', 'invocation_de_totem_soignant', 'totemisation', 'bond_rubisant']
 }
 
 monsters.diamantine = {
@@ -7686,7 +7686,7 @@ monsters.diamantine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3200, atk: 59, spd: 100, res: { neutre: 98, terre: 98, feu: -15, eau: -15, air: -15 } },
-    moves: []
+    moves: ['lourdeur', 'bouh_m_rang_diamant', 'invocation_de_poupee_mortelle', 'bond_etincelant']
 }
 
 monsters.meupette = {
@@ -7696,7 +7696,7 @@ monsters.meupette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3200, atk: 220, spd: 100, res: { neutre: 13, terre: -11, feu: 30, eau: -25, air: 5 } },
-    moves: []
+    moves: ['meurtrissure', 'protection_feuillue']
 }
 
 monsters.maltrio = {
@@ -7706,7 +7706,7 @@ monsters.maltrio = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3300, atk: 432, spd: 100, res: { neutre: 2, terre: 14, feu: 7, eau: -2, air: -11 } },
-    moves: []
+    moves: ['malteration', 'maleze']
 }
 
 monsters.malbois = {
@@ -7716,7 +7716,7 @@ monsters.malbois = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3300, atk: 432, spd: 100, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
-    moves: []
+    moves: ['piege_malechant', 'glyphe_malterant', 'malchimie']
 }
 
 monsters.toubibz = {
@@ -7726,7 +7726,7 @@ monsters.toubibz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3300, atk: 502, spd: 100, res: { neutre: 6, terre: -9, feu: -3, eau: -4, air: 10 } },
-    moves: []
+    moves: ['gueriz_uf', 'tornabz', 'evabzion']
 }
 
 monsters.krokille_venerable_insipide = {
@@ -7806,7 +7806,7 @@ monsters.hamrack = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3400, atk: 600, spd: 100, res: { neutre: 20, terre: 12, feu: 13, eau: 16, air: 22 } },
-    moves: []
+    moves: ['gouverne_ail']
 }
 
 monsters.felygiene = {
@@ -7816,7 +7816,7 @@ monsters.felygiene = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3400, atk: 460, spd: 100, res: { neutre: 6, terre: -24, feu: 21, eau: 6, air: 16 } },
-    moves: []
+    moves: ['griffhanger', 'griffes_aveuglantes', 'hygiene_douteuse']
 }
 
 monsters.panthegros = {
@@ -7826,7 +7826,7 @@ monsters.panthegros = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3400, atk: 460, spd: 100, res: { neutre: 26, terre: 26, feu: 1, eau: 6, air: -19 } },
-    moves: []
+    moves: ['gros_boulet', 'boulet_sauteur', 'choc_electrique']
 }
 
 monsters.lichangoro = {
@@ -7836,7 +7836,7 @@ monsters.lichangoro = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3400, atk: 400, spd: 100, res: { neutre: 25, terre: -20, feu: 10, eau: 15, air: 0 } },
-    moves: []
+    moves: ['fujin_tsuinburedo', 'moussang']
 }
 
 monsters.betto = {
@@ -7846,7 +7846,7 @@ monsters.betto = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3400, atk: 368, spd: 100, res: { neutre: -5, terre: -5, feu: -15, eau: 30, air: 10 } },
-    moves: []
+    moves: ['pioche_concombre', 'komatomi']
 }
 
 monsters.abrakleur_clair = {
@@ -7856,7 +7856,7 @@ monsters.abrakleur_clair = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 480, spd: 100, res: { neutre: 5, terre: 35, feu: -5, eau: 1, air: -43 } },
-    moves: []
+    moves: ['radicule', 'radicelle', 'pedoncule_perfide']
 }
 
 monsters.kaskargo = {
@@ -7866,7 +7866,7 @@ monsters.kaskargo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 300, spd: 100, res: { neutre: 1, terre: 15, feu: -33, eau: 25, air: 5 } },
-    moves: []
+    moves: ['bave', 'cooperation_baveuse', 'mucus']
 }
 
 monsters.crapeur = {
@@ -7876,7 +7876,7 @@ monsters.crapeur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 16, terre: 28, feu: 19, eau: -28, air: 14 } },
-    moves: []
+    moves: ['crapoute', 'crapitulation', 'crapture']
 }
 
 monsters.atomystique = {
@@ -7886,7 +7886,7 @@ monsters.atomystique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 12, terre: 20, feu: 35, eau: 19, air: -30 } },
-    moves: []
+    moves: ['prothon', 'daimocritique', 'neuthron']
 }
 
 monsters.mofette = {
@@ -7896,7 +7896,7 @@ monsters.mofette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: -29, terre: 17, feu: 10, eau: 9, air: 31 } },
-    moves: []
+    moves: ['duslipe', 'depere']
 }
 
 monsters.fumrirolle = {
@@ -7906,7 +7906,7 @@ monsters.fumrirolle = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 15, terre: 37, feu: 25, eau: -41, air: 23 } },
-    moves: []
+    moves: ['fumisterie', 'fumigene', 'fumoir']
 }
 
 monsters.solfatare = {
@@ -7916,7 +7916,7 @@ monsters.solfatare = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 10, terre: 15, feu: -24, eau: 20, air: 29 } },
-    moves: []
+    moves: ['soufre_hance', 'soufre_latte']
 }
 
 monsters.kanihilan = {
@@ -7926,7 +7926,7 @@ monsters.kanihilan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 46, terre: -9, feu: 6, eau: 11, air: -14 } },
-    moves: []
+    moves: ['coup_d_epaule', 'casse_caillou', 'grrr']
 }
 
 monsters.alhyene = {
@@ -7936,7 +7936,7 @@ monsters.alhyene = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 21, terre: 11, feu: -9, eau: -4, air: 11 } },
-    moves: []
+    moves: ['vent_discordant', 'invocation_de_flammes']
 }
 
 monsters.kaniblou = {
@@ -7946,7 +7946,7 @@ monsters.kaniblou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: -24, terre: 16, feu: -19, eau: 26, air: 21 } },
-    moves: []
+    moves: ['lance_enflammee', 'griffes_enflammees', 'kaniblouse']
 }
 
 monsters.orfelin = {
@@ -7956,7 +7956,7 @@ monsters.orfelin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 6, terre: 11, feu: 26, eau: -19, air: 16 } },
-    moves: []
+    moves: ['toupie', 'tranchlame', 'boubou']
 }
 
 monsters.chasquatch = {
@@ -7966,7 +7966,7 @@ monsters.chasquatch = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 18, terre: 11, feu: 24, eau: -19, air: 6 } },
-    moves: []
+    moves: ['lechouille', 'calin_felin']
 }
 
 monsters.chacrebleu = {
@@ -7976,7 +7976,7 @@ monsters.chacrebleu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 12, terre: 20, feu: -14, eau: 8, air: 14 } },
-    moves: []
+    moves: ['chamboulement', 'fortifichation', 'retour_de_chachaton']
 }
 
 monsters.chakichan = {
@@ -7986,7 +7986,7 @@ monsters.chakichan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: -18, terre: 26, feu: 0, eau: 20, air: 16 } },
-    moves: []
+    moves: ['griffe_a_un_pouce', 'mawatougeri']
 }
 
 monsters.chargus = {
@@ -7996,7 +7996,7 @@ monsters.chargus = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 17, terre: 12, feu: 10, eau: 20, air: -19 } },
-    moves: []
+    moves: ['vieillissement_premature', 'duplichation', 'queue_de_poing']
 }
 
 monsters.chakaroze = {
@@ -8006,7 +8006,7 @@ monsters.chakaroze = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 24, terre: -22, feu: 18, eau: 12, air: 8 } },
-    moves: []
+    moves: ['griffure_ondulante', 'miaoulement', 'chatomisation']
 }
 
 monsters.tsukinochi = {
@@ -8016,7 +8016,7 @@ monsters.tsukinochi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 590, spd: 100, res: { neutre: 20, terre: 15, feu: -20, eau: -5, air: -10 } },
-    moves: []
+    moves: ['glaive_lunaire', 'tsukuyomi']
 }
 
 monsters.tambourai = {
@@ -8026,7 +8026,7 @@ monsters.tambourai = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 590, spd: 100, res: { neutre: -15, terre: -20, feu: 10, eau: 5, air: 20 } },
-    moves: []
+    moves: ['fuhaku_tatsumaki', 'raiju_no_kiba', 'tambourbelier']
 }
 
 monsters.onabu_geisha = {
@@ -8036,7 +8036,7 @@ monsters.onabu_geisha = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 590, spd: 100, res: { neutre: 5, terre: -15, feu: -20, eau: 20, air: 10 } },
-    moves: []
+    moves: ['kiri_shigure', 'usugasumi_senbonzakura', 'ranga_cho']
 }
 
 monsters.jiangshi_nobi = {
@@ -8046,7 +8046,7 @@ monsters.jiangshi_nobi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 590, spd: 100, res: { neutre: 5, terre: 20, feu: -15, eau: 10, air: -20 } },
-    moves: []
+    moves: ['griffes_de_la_nuit', 'poing_momifie', 'manie_la_maudite_momie']
 }
 
 monsters.kabushido = {
@@ -8056,7 +8056,7 @@ monsters.kabushido = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 590, spd: 100, res: { neutre: 10, terre: 5, feu: 20, eau: -30, air: -5 } },
-    moves: []
+    moves: ['hiryu_kaen', 'sanjuroku_pondo_ho', 'shishi_sonson']
 }
 
 monsters.kamikabz = {
@@ -8066,7 +8066,7 @@ monsters.kamikabz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3500, atk: 502, spd: 100, res: { neutre: 5, terre: 9, feu: -2, eau: -2, air: -10 } },
-    moves: []
+    moves: ['frakaz_uf', 'aspibz', 'bzimpact']
 }
 
 monsters.gliglidoudur = {
@@ -8076,7 +8076,7 @@ monsters.gliglidoudur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3600, atk: 333, spd: 100, res: { neutre: -11, terre: 30, feu: -9, eau: 26, air: 11 } },
-    moves: []
+    moves: ['charge_emotive', 'contraction', 'rejet']
 }
 
 monsters.uchiwang = {
@@ -8086,7 +8086,7 @@ monsters.uchiwang = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3600, atk: 400, spd: 100, res: { neutre: -10, terre: 20, feu: -20, eau: 10, air: 25 } },
-    moves: []
+    moves: ['toppu', 'futon', 'etreinte_du_vent']
 }
 
 monsters.darkli_moon = {
@@ -8096,7 +8096,7 @@ monsters.darkli_moon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 10, terre: 20, feu: 10, eau: -15, air: 10 } },
-    moves: []
+    moves: ['obscure_singerie']
 }
 
 monsters.branche_invocatrice = {
@@ -8116,7 +8116,7 @@ monsters.branche_soignante = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3800, atk: 380, spd: 100, res: { neutre: 42, terre: 42, feu: -20, eau: -20, air: 42 } },
-    moves: []
+    moves: ['graine_vitalisante']
 }
 
 monsters.pougnette = {
@@ -8126,7 +8126,7 @@ monsters.pougnette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3800, atk: 300, spd: 100, res: { neutre: 25, terre: 17, feu: 10, eau: 9, air: -29 } },
-    moves: []
+    moves: ['pikette']
 }
 
 monsters.malalfa = {
@@ -8136,7 +8136,7 @@ monsters.malalfa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3800, atk: 432, spd: 100, res: { neutre: -28, terre: 5, feu: 6, eau: 21, air: 6 } },
-    moves: []
+    moves: ['maleluia', 'malarmiste', 'malcooliser']
 }
 
 monsters.glutin_malfaisant = {
@@ -8156,7 +8156,7 @@ monsters.yokai_givrefoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 12, terre: 10, feu: -40, eau: 61, air: 13 } },
-    moves: []
+    moves: ['fourre_tout', 'foutaise']
 }
 
 monsters.maho_givrefoux = {
@@ -8166,7 +8166,7 @@ monsters.maho_givrefoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 12, terre: 60, feu: 5, eau: 15, air: -44 } },
-    moves: []
+    moves: ['fourrage', 'fourapin']
 }
 
 monsters.soryo_givrefoux = {
@@ -8176,7 +8176,7 @@ monsters.soryo_givrefoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 10, terre: -40, feu: 15, eau: 20, air: 52 } },
-    moves: []
+    moves: ['fouraille', 'fourbissage']
 }
 
 monsters.yomi_givrefoux = {
@@ -8186,7 +8186,7 @@ monsters.yomi_givrefoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 20, terre: 5, feu: 55, eau: -35, air: 18 } },
-    moves: []
+    moves: ['fouguefoux', 'fouille']
 }
 
 monsters.kami_givrefoux = {
@@ -8196,7 +8196,7 @@ monsters.kami_givrefoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 60, terre: -50, feu: 22, eau: 15, air: 23 } },
-    moves: []
+    moves: ['foulette', 'foux_de_la_fortune', 'foux_ou_rien']
 }
 
 monsters.trezz = {
@@ -8206,7 +8206,7 @@ monsters.trezz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 11, terre: 22, feu: 2, eau: -20, air: 25 } },
-    moves: []
+    moves: ['rayons_entravants', 'rebond_manque']
 }
 
 monsters.vindeux = {
@@ -8216,7 +8216,7 @@ monsters.vindeux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 22, terre: 2, feu: -20, eau: 25, air: 11 } },
-    moves: []
+    moves: ['massurance', 'mecontentement']
 }
 
 monsters.trantroa = {
@@ -8226,7 +8226,7 @@ monsters.trantroa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 2, terre: -20, feu: 25, eau: 11, air: 22 } },
-    moves: []
+    moves: ['brute_haleine', 'poing_terne']
 }
 
 monsters.seith = {
@@ -8236,7 +8236,7 @@ monsters.seith = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: -20, terre: 25, feu: 11, eau: 22, air: 2 } },
-    moves: []
+    moves: ['tourbete', 'massue']
 }
 
 monsters.soissanth = {
@@ -8246,7 +8246,7 @@ monsters.soissanth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 500, spd: 100, res: { neutre: 25, terre: 11, feu: 22, eau: 2, air: -20 } },
-    moves: []
+    moves: ['poinzon', 'taplaudissement']
 }
 
 monsters.piktenia = {
@@ -8256,7 +8256,7 @@ monsters.piktenia = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 648, spd: 100, res: { neutre: -14, terre: 0, feu: 46, eau: 16, air: -19 } },
-    moves: []
+    moves: ['gyroskopik', 'pik_a_saut']
 }
 
 monsters.tremorse = {
@@ -8266,7 +8266,7 @@ monsters.tremorse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 648, spd: 100, res: { neutre: 26, terre: 1, feu: -24, eau: 6, air: 16 } },
-    moves: []
+    moves: ['coups_de_langues', 'avalement', 'crachat_amer']
 }
 
 monsters.masticroc = {
@@ -8276,7 +8276,7 @@ monsters.masticroc = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 648, spd: 100, res: { neutre: 16, terre: 16, feu: 11, eau: -24, air: 6 } },
-    moves: []
+    moves: ['ensablage', 'surgissement', 'gueule_des_sables']
 }
 
 monsters.morsquale = {
@@ -8286,7 +8286,7 @@ monsters.morsquale = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 648, spd: 100, res: { neutre: 6, terre: 6, feu: 0, eau: 31, air: -14 } },
-    moves: []
+    moves: ['charge_croquante', 'sable_tourbillonnant', 'pattes_harassent']
 }
 
 monsters.cycloporth = {
@@ -8296,7 +8296,7 @@ monsters.cycloporth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 648, spd: 100, res: { neutre: -9, terre: 21, feu: 21, eau: 21, air: 21 } },
-    moves: []
+    moves: ['cephalonde', 'volvation', 'aspiration_gourmande']
 }
 
 monsters.bras_demoniaque = {
@@ -8306,7 +8306,7 @@ monsters.bras_demoniaque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 720, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
-    moves: []
+    moves: ['rhizome_demoniaque', 'aplatissement_demoniaque', 'revers_demoniaque']
 }
 
 monsters.quadrabz = {
@@ -8316,7 +8316,7 @@ monsters.quadrabz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 3900, atk: 502, spd: 100, res: { neutre: 4, terre: 0, feu: -11, eau: 8, air: -1 } },
-    moves: []
+    moves: ['vaporiz_uf', 'akuabz', 'bzeklabouss']
 }
 
 monsters.mominotor = {
@@ -8326,7 +8326,7 @@ monsters.mominotor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4000, atk: 125, spd: 100, res: { neutre: 30, terre: 10, feu: 30, eau: 30, air: -13 } },
-    moves: []
+    moves: ['kanope', 'malediction_du_mominotor', 'embaumement', 'lancer_de_degelee']
 }
 
 monsters.deminoboule = {
@@ -8336,7 +8336,7 @@ monsters.deminoboule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4000, atk: 138, spd: 100, res: { neutre: 30, terre: 30, feu: -13, eau: -13, air: 30 } },
-    moves: []
+    moves: ['souffle_etourdissant', 'coup_de_boulet', 'minorage', 'souffle_liberatoire']
 }
 
 monsters.tipoune = {
@@ -8376,7 +8376,7 @@ monsters.capsaaloocke = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4200, atk: 440, spd: 100, res: { neutre: 5, terre: 15, feu: 15, eau: 0, air: 20 } },
-    moves: []
+    moves: ['lancenglante', 'saut_du_bison', 'eclaireurs']
 }
 
 monsters.serpyn = {
@@ -8386,7 +8386,7 @@ monsters.serpyn = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4200, atk: 566, spd: 100, res: { neutre: 32, terre: -27, feu: 7, eau: 9, air: -21 } },
-    moves: []
+    moves: ['nimpitoyable', 'nincendie', 'ninstabilite']
 }
 
 monsters.champ_a_gnons = {
@@ -8396,7 +8396,7 @@ monsters.champ_a_gnons = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 37, terre: -37, feu: 11, eau: 6, air: 13 } },
-    moves: []
+    moves: ['fesse_de_loup', 'invasion_fongique', 'acceleration_fongique']
 }
 
 monsters.cadob = {
@@ -8406,7 +8406,7 @@ monsters.cadob = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 534, spd: 100, res: { neutre: 10, terre: 10, feu: -20, eau: 30, air: 10 } },
-    moves: []
+    moves: ['invocation_de_cadob', 'surprise_drainante', 'surprise_empoisonnante']
 }
 
 monsters.bwork_elemental_de_feu = {
@@ -8416,7 +8416,7 @@ monsters.bwork_elemental_de_feu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 21, terre: 11, feu: 100, eau: -19, air: 6 } },
-    moves: []
+    moves: ['sollicitude_elementaire_fumeuse', 'communion_elementaire', 'poussiere_temporelle_bwork']
 }
 
 monsters.bwork_elemental_d_eau = {
@@ -8426,7 +8426,7 @@ monsters.bwork_elemental_d_eau = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 21, terre: 6, feu: -19, eau: 100, air: 11 } },
-    moves: []
+    moves: ['larme_bwork', 'sollicitude_elementaire_aqueuse']
 }
 
 monsters.bwork_elemental_d_air = {
@@ -8436,7 +8436,7 @@ monsters.bwork_elemental_d_air = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 21, terre: -19, feu: 6, eau: 11, air: 100 } },
-    moves: []
+    moves: ['epee_celeste_bwork', 'sollicitude_elementaire_venteuse']
 }
 
 monsters.bwork_elemental_de_terre = {
@@ -8446,7 +8446,7 @@ monsters.bwork_elemental_de_terre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 21, terre: 100, feu: 11, eau: 6, air: -19 } },
-    moves: []
+    moves: ['epee_du_bwork', 'sollicitude_elementaire_terreuse']
 }
 
 monsters.mama_bwork = {
@@ -8466,7 +8466,7 @@ monsters.peluche_wabbit = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 100, spd: 100, res: { neutre: 10, terre: 10, feu: 30, eau: 10, air: -30 } },
-    moves: []
+    moves: ['rembourrage', 'malediction_de_la_cawotte', 'cawotte_de_nowel']
 }
 
 monsters.tromperelle = {
@@ -8476,7 +8476,7 @@ monsters.tromperelle = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 11, terre: 13, feu: 6, eau: 37, air: -37 } },
-    moves: []
+    moves: ['volve_paralysante', 'soufflette_sporadique', 'thalle_neutralisant']
 }
 
 monsters.champaknyde = {
@@ -8486,7 +8486,7 @@ monsters.champaknyde = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 13, terre: 37, feu: 11, eau: -37, air: 6 } },
-    moves: []
+    moves: ['graphiose', 'fong_ku', 'mycose_toujours']
 }
 
 monsters.champodonte = {
@@ -8496,7 +8496,7 @@ monsters.champodonte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: -37, terre: 6, feu: 13, eau: 11, air: 37 } },
-    moves: []
+    moves: ['mildiou', 'amanite_roglicerine', 'cepe_harti']
 }
 
 monsters.champmane = {
@@ -8506,7 +8506,7 @@ monsters.champmane = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: 37, terre: 13, feu: -37, eau: 6, air: 11 } },
-    moves: []
+    moves: ['sanction_fongique', 'soin_fongique', 'protection_fongique']
 }
 
 monsters.champbis = {
@@ -8516,7 +8516,7 @@ monsters.champbis = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 688, spd: 100, res: { neutre: -37, terre: 11, feu: 37, eau: 13, air: 6 } },
-    moves: []
+    moves: ['spore_de_combat', 'mikota', 'levure']
 }
 
 monsters.dramanite = {
@@ -8526,7 +8526,7 @@ monsters.dramanite = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 65, terre: -46, feu: 10, eau: 5, air: 9 } },
-    moves: []
+    moves: ['spore_kepic', 'marasme', 'spore_teille']
 }
 
 monsters.fistulor = {
@@ -8536,7 +8536,7 @@ monsters.fistulor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 21, terre: 10, feu: -37, eau: 47, air: 5 } },
-    moves: []
+    moves: ['cepe_tique', 'ami_celium', 'spore_heole']
 }
 
 monsters.fongeur = {
@@ -8546,7 +8546,7 @@ monsters.fongeur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 5, terre: 10, feu: 58, eau: 21, air: -37 } },
-    moves: []
+    moves: ['spore_tafaux', 'volve_herine']
 }
 
 monsters.abrazif = {
@@ -8556,7 +8556,7 @@ monsters.abrazif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 3, terre: 64, feu: 20, eau: -41, air: 15 } },
-    moves: []
+    moves: ['spore_d_oeuvre', 'spore_celaine', 'spore_taporte']
 }
 
 monsters.motte = {
@@ -8566,7 +8566,7 @@ monsters.motte = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 25, terre: -36, feu: 12, eau: 55, air: 6 } },
-    moves: []
+    moves: ['hokulteur', 'hivation', 'husse']
 }
 
 monsters.merulette = {
@@ -8576,7 +8576,7 @@ monsters.merulette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 6, terre: 5, feu: -55, eau: 13, air: 30 } },
-    moves: []
+    moves: ['merule_tihme', 'merule_saire']
 }
 
 monsters.scoliopode = {
@@ -8586,7 +8586,7 @@ monsters.scoliopode = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 550, spd: 100, res: { neutre: 31, terre: 0, feu: 21, eau: 11, air: -29 } },
-    moves: []
+    moves: ['coup_percutant', 'salivraison']
 }
 
 monsters.puceronde = {
@@ -8596,7 +8596,7 @@ monsters.puceronde = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 550, spd: 100, res: { neutre: -29, terre: 31, feu: 0, eau: 21, air: 11 } },
-    moves: []
+    moves: ['langagement', 'brazero', 'largage_personnel']
 }
 
 monsters.lucrane = {
@@ -8606,7 +8606,7 @@ monsters.lucrane = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 550, spd: 100, res: { neutre: 21, terre: 11, feu: -29, eau: 31, air: 0 } },
-    moves: []
+    moves: ['offensiviere']
 }
 
 monsters.eperfide = {
@@ -8616,7 +8616,7 @@ monsters.eperfide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 550, spd: 100, res: { neutre: 0, terre: 21, feu: 11, eau: -29, air: 31 } },
-    moves: []
+    moves: ['etoile_d_arakne', 'brulurgence', 'drain']
 }
 
 monsters.morfrelon = {
@@ -8626,7 +8626,7 @@ monsters.morfrelon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 550, spd: 100, res: { neutre: 11, terre: -29, feu: 31, eau: 0, air: 21 } },
-    moves: []
+    moves: ['dardagnan', 'plongeon_quille']
 }
 
 monsters.bakazako = {
@@ -8636,7 +8636,7 @@ monsters.bakazako = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 640, spd: 100, res: { neutre: -12, terre: 11, feu: 16, eau: 21, air: -18 } },
-    moves: []
+    moves: ['hogo', 'kaba', 'suimin_mahi', 'kazkou']
 }
 
 monsters.tsume_bozu = {
@@ -8646,7 +8646,7 @@ monsters.tsume_bozu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 640, spd: 100, res: { neutre: 13, terre: -12, feu: 22, eau: 11, air: -16 } },
-    moves: []
+    moves: ['slurp', 'yokaspiration', 'lourde_langue']
 }
 
 monsters.proto_noxine = {
@@ -8656,7 +8656,7 @@ monsters.proto_noxine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4400, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['bombe_mecanique']
 }
 
 monsters.craqueleur_des_glaces = {
@@ -8666,7 +8666,7 @@ monsters.craqueleur_des_glaces = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 534, spd: 100, res: { neutre: 0, terre: 0, feu: -38, eau: 80, air: 50 } },
-    moves: []
+    moves: ['pic_de_glace', 'ecrasement_glacial', 'glace_paralysante']
 }
 
 monsters.boufronde = {
@@ -8676,7 +8676,7 @@ monsters.boufronde = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 566, spd: 100, res: { neutre: 22, terre: 9, feu: -16, eau: -24, air: 9 } },
-    moves: []
+    moves: ['nimpuissance', 'nincarceration', 'ninsolence']
 }
 
 monsters.balebz = {
@@ -8686,7 +8686,7 @@ monsters.balebz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 502, spd: 100, res: { neutre: 7, terre: -4, feu: 11, eau: -8, air: -6 } },
-    moves: []
+    moves: ['exploz_uf', 'vampibombz', 'aegibz']
 }
 
 monsters.kwakao_surdose = {
@@ -8706,7 +8706,7 @@ monsters.sporakne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4600, atk: 500, spd: 100, res: { neutre: -45, terre: 12, feu: 20, eau: 5, air: 45 } },
-    moves: []
+    moves: ['adehede']
 }
 
 monsters.gobus = {
@@ -8716,7 +8716,7 @@ monsters.gobus = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 52, terre: 12, feu: 20, eau: 33, air: -9 } },
-    moves: []
+    moves: ['gobstruction', 'gobtimisation']
 }
 
 monsters.cybwork = {
@@ -8726,7 +8726,7 @@ monsters.cybwork = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 688, spd: 100, res: { neutre: 36, terre: 41, feu: 6, eau: -14, air: 46 } },
-    moves: []
+    moves: ['pulsation', 'cybarmure']
 }
 
 monsters.abominable_yiti_des_neiges = {
@@ -8736,7 +8736,7 @@ monsters.abominable_yiti_des_neiges = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 534, spd: 100, res: { neutre: 20, terre: 15, feu: 15, eau: -15, air: -15 } },
-    moves: []
+    moves: ['assaisonnement', 'gueuleton', 'colere_du_yiti']
 }
 
 monsters.aperiglours = {
@@ -8746,7 +8746,7 @@ monsters.aperiglours = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 5, terre: 17, feu: 70, eau: 10, air: -44 } },
-    moves: []
+    moves: ['miellat', 'nectar']
 }
 
 monsters.boulglours = {
@@ -8756,7 +8756,7 @@ monsters.boulglours = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 18, terre: 64, feu: 11, eau: -33, air: 21 } },
-    moves: []
+    moves: ['fructose', 'glucause_perdue']
 }
 
 monsters.gloursaya = {
@@ -8766,7 +8766,7 @@ monsters.gloursaya = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 12, terre: 20, feu: -30, eau: 7, air: 55 } },
-    moves: []
+    moves: ['butinage', 'trophallaxie', 'propolis']
 }
 
 monsters.blerauve = {
@@ -8776,7 +8776,7 @@ monsters.blerauve = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 63, terre: -45, feu: 11, eau: 15, air: 20 } },
-    moves: []
+    moves: ['detente', 'biste', 'hanque']
 }
 
 monsters.wolvero = {
@@ -8786,7 +8786,7 @@ monsters.wolvero = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 21, terre: 5, feu: -36, eau: 58, air: 13 } },
-    moves: []
+    moves: ['glouton', 'griffemort', 'mantium']
 }
 
 monsters.croleur = {
@@ -8796,7 +8796,7 @@ monsters.croleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: -38, terre: 44, feu: 22, eau: 1, air: 6 } },
-    moves: []
+    moves: ['acrobatie', 'ombre', 'fugue']
 }
 
 monsters.gobosteur = {
@@ -8806,7 +8806,7 @@ monsters.gobosteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 5, terre: 35, feu: 10, eau: 12, air: -23 } },
-    moves: []
+    moves: ['piolaid', 'piochekour', 'piochetron']
 }
 
 monsters.sapeur = {
@@ -8816,7 +8816,7 @@ monsters.sapeur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 10, terre: 21, feu: 32, eau: -30, air: 14 } },
-    moves: []
+    moves: ['lipopette', 'nicheuze']
 }
 
 monsters.ouilleur = {
@@ -8826,7 +8826,7 @@ monsters.ouilleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 15, terre: -24, feu: 5, eau: 31, air: 10 } },
-    moves: []
+    moves: ['daipe', 'shatte', 'krape']
 }
 
 monsters.marodeur = {
@@ -8836,7 +8836,7 @@ monsters.marodeur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 24, terre: 15, feu: -30, eau: 18, air: 36 } },
-    moves: ['chapardage']
+    moves: []
 }
 
 monsters.perku = {
@@ -8846,7 +8846,7 @@ monsters.perku = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: -26, terre: 10, feu: 17, eau: 19, air: 35 } },
-    moves: []
+    moves: ['djatte', 'beni', 'lautte']
 }
 
 monsters.courtilieur = {
@@ -8856,7 +8856,7 @@ monsters.courtilieur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 27, terre: 12, feu: 20, eau: 22, air: -15 } },
-    moves: []
+    moves: ['minage', 'detourage', 'chaupage']
 }
 
 monsters.fleuro = {
@@ -8866,7 +8866,7 @@ monsters.fleuro = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 12, terre: 5, feu: 60, eau: -43, air: 15 } },
-    moves: []
+    moves: ['pyro', 'charbon']
 }
 
 monsters.blerice = {
@@ -8876,7 +8876,7 @@ monsters.blerice = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 5, terre: 17, feu: 16, eau: 63, air: -41 } },
-    moves: []
+    moves: ['hydrokinesie', 'thermokinesie']
 }
 
 monsters.glourmand = {
@@ -8886,7 +8886,7 @@ monsters.glourmand = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: -46, terre: 5, feu: 15, eau: 45, air: 10 } },
-    moves: []
+    moves: ['glourmandale', 'glourmandise', 'gloursbi_boulga']
 }
 
 monsters.glouragan = {
@@ -8896,7 +8896,7 @@ monsters.glouragan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 20, terre: 7, feu: 10, eau: -39, air: 51 } },
-    moves: []
+    moves: ['gloursonde', 'glourdavu']
 }
 
 monsters.noctulule = {
@@ -8906,7 +8906,7 @@ monsters.noctulule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 400, spd: 100, res: { neutre: -23, terre: 21, feu: 1, eau: 16, air: 2 } },
-    moves: []
+    moves: ['timatum', 'bouligane']
 }
 
 monsters.panterreur = {
@@ -8916,7 +8916,7 @@ monsters.panterreur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 400, spd: 100, res: { neutre: 2, terre: 1, feu: 16, eau: 21, air: -23 } },
-    moves: []
+    moves: ['planque', 'vent_d_etat', 'mesquinerie']
 }
 
 monsters.brutopak = {
@@ -8926,7 +8926,7 @@ monsters.brutopak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 400, spd: 100, res: { neutre: 1, terre: 16, feu: 2, eau: -23, air: 21 } },
-    moves: []
+    moves: ['brutalite', 'mesquin_pacte']
 }
 
 monsters.caznoar = {
@@ -8936,7 +8936,7 @@ monsters.caznoar = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 400, spd: 100, res: { neutre: 16, terre: 21, feu: -23, eau: 2, air: 1 } },
-    moves: []
+    moves: ['detentrave', 'beclipse', 'aigriffure']
 }
 
 monsters.somblero = {
@@ -8946,7 +8946,7 @@ monsters.somblero = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 400, spd: 100, res: { neutre: 1, terre: -23, feu: 21, eau: 16, air: 2 } },
-    moves: []
+    moves: ['vaguichage', 'faille']
 }
 
 monsters.viandargh = {
@@ -8956,7 +8956,7 @@ monsters.viandargh = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 728, spd: 100, res: { neutre: 16, terre: 16, feu: 11, eau: 6, air: 6 } },
-    moves: []
+    moves: ['saute_de_viande', 'viande_hachee', 'appater']
 }
 
 monsters.chevrotine = {
@@ -8966,7 +8966,7 @@ monsters.chevrotine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 728, spd: 100, res: { neutre: 6, terre: -9, feu: 6, eau: 11, air: 16 } },
-    moves: []
+    moves: ['tir_au_juge', 'invocation_de_chienchien_courant', 'dressage']
 }
 
 monsters.brokouillon = {
@@ -8976,7 +8976,7 @@ monsters.brokouillon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 728, spd: 100, res: { neutre: 0, terre: 16, feu: 26, eau: -14, air: 31 } },
-    moves: []
+    moves: ['pandanois', 'pistage', 'hors_piste']
 }
 
 monsters.nemroz = {
@@ -8986,7 +8986,7 @@ monsters.nemroz = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 728, spd: 100, res: { neutre: 1, terre: 0, feu: -9, eau: 11, air: 6 } },
-    moves: []
+    moves: ['trempe_jusqu_a_l_eau', 'piege_erosif', 'piege_eblouissant']
 }
 
 monsters.crambo = {
@@ -8996,7 +8996,7 @@ monsters.crambo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 728, spd: 100, res: { neutre: -9, terre: 11, feu: 0, eau: 21, air: -14 } },
-    moves: []
+    moves: ['premier_sang', 'lampe_bleue', 'uranus']
 }
 
 monsters.madura = {
@@ -9006,7 +9006,7 @@ monsters.madura = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4700, atk: 640, spd: 100, res: { neutre: 13, terre: -16, feu: 18, eau: -10, air: 9 } },
-    moves: []
+    moves: ['negai', 'zudzuki_bozu', 'furue', 'negai_o_kanaeru']
 }
 
 monsters.kruorre_le_chafer_hai = {
@@ -9016,7 +9016,7 @@ monsters.kruorre_le_chafer_hai = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4800, atk: 900, spd: 100, res: { neutre: -10, terre: -5, feu: 15, eau: 5, air: 15 } },
-    moves: []
+    moves: ['chafouette', 'charnaque', 'invisibilite_alpha', 'coup_mortel_du_chafer']
 }
 
 monsters.germinion = {
@@ -9036,7 +9036,7 @@ monsters.typhomet = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 640, spd: 100, res: { neutre: 16, terre: -21, feu: -15, eau: 9, air: 22 } },
-    moves: []
+    moves: ['faux_ouragan', 'regard_de_l_heretique', 'resistance_du_tartare']
 }
 
 monsters.marthos = {
@@ -9046,7 +9046,7 @@ monsters.marthos = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 566, spd: 100, res: { neutre: 4, terre: -8, feu: 13, eau: -20, air: 11 } },
-    moves: []
+    moves: ['ninsipide', 'nimparable', 'ninstantane']
 }
 
 monsters.bebe_gyrafor = {
@@ -9056,7 +9056,7 @@ monsters.bebe_gyrafor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: -20, feu: 0, eau: -20, air: 0 } },
-    moves: []
+    moves: ['kilinmandjaro', 'cou_ragan', 'gyvoirien', 'kilin_tor']
 }
 
 monsters.bebe_lapilope = {
@@ -9066,7 +9066,7 @@ monsters.bebe_lapilope = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: -20, air: -20 } },
-    moves: []
+    moves: ['lapopotin', 'lagomorsure', 'koudulapin', 'rabitole']
 }
 
 monsters.bebe_brutapir = {
@@ -9076,7 +9076,7 @@ monsters.bebe_brutapir = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: -20, terre: -20, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tapirateur', 'tapirogue', 'tapirouge', 'tapiroulant']
 }
 
 monsters.bebe_gropotam = {
@@ -9086,7 +9086,7 @@ monsters.bebe_gropotam = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: -20, terre: 0, feu: 0, eau: 0, air: -20 } },
-    moves: []
+    moves: ['barbotam', 'hajimeno_hippo', 'hippo_faringit', 'kornofulgur']
 }
 
 monsters.bebe_amphibouc = {
@@ -9096,7 +9096,7 @@ monsters.bebe_amphibouc = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: 0, feu: -20, eau: 0, air: -20 } },
-    moves: []
+    moves: ['crapaud_belier', 'batrattaque', 'perlambouc', 'cornebouc']
 }
 
 monsters.uf_de_la_mort = {
@@ -9116,7 +9116,7 @@ monsters.globilum = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['projection_ombreuse']
 }
 
 monsters.mansocolat_surdose = {
@@ -9146,7 +9146,7 @@ monsters.blerom = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5200, atk: 550, spd: 100, res: { neutre: 15, terre: 12, feu: 21, eau: -33, air: 60 } },
-    moves: []
+    moves: ['carnage', 'toxin']
 }
 
 monsters.meliglours = {
@@ -9156,7 +9156,7 @@ monsters.meliglours = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5200, atk: 550, spd: 100, res: { neutre: 22, terre: -41, feu: 11, eau: 68, air: 15 } },
-    moves: []
+    moves: ['glours_contre_la_montre', 'gloursombilical']
 }
 
 monsters.diabelial = {
@@ -9166,7 +9166,7 @@ monsters.diabelial = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5200, atk: 640, spd: 100, res: { neutre: 6, terre: 16, feu: -12, eau: -20, air: 18 } },
-    moves: []
+    moves: ['langue_demoniaque', 'tissu_de_mensonges', 'torrent_diabolique']
 }
 
 monsters.onigori = {
@@ -9176,7 +9176,7 @@ monsters.onigori = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5300, atk: 640, spd: 100, res: { neutre: -15, terre: 17, feu: -7, eau: 24, air: 15 } },
-    moves: []
+    moves: ['gloutonnerie', 'onnichiwa', 'kanabo_jutsu']
 }
 
 monsters.epee_geante = {
@@ -9206,7 +9206,7 @@ monsters.dagon_des_profondeurs = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['souffle_chaud', 'charge_aquatique']
 }
 
 monsters.chazino = {
@@ -9246,7 +9246,7 @@ monsters.voapah = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 600, spd: 100, res: { neutre: -12, terre: 14, feu: 26, eau: 23, air: 5 } },
-    moves: []
+    moves: ['saut_a_l_aveugle', 'tornade_sanglante', 'uppercut_brulant']
 }
 
 monsters.caiguille = {
@@ -9256,7 +9256,7 @@ monsters.caiguille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 600, spd: 100, res: { neutre: 29, terre: 9, feu: 22, eau: -16, air: 7 } },
-    moves: []
+    moves: ['prison_sanguine', 'jeu_d_aiguilles', 'dagyde_ensorcelee']
 }
 
 monsters.lunorbe = {
@@ -9286,7 +9286,7 @@ monsters.armecreante = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 20, terre: 30, feu: 30, eau: 15, air: 20 } },
-    moves: []
+    moves: ['ancrepulsion', 'domestication']
 }
 
 monsters.iopprime = {
@@ -9296,7 +9296,7 @@ monsters.iopprime = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 15, terre: 30, feu: 30, eau: 15, air: 30 } },
-    moves: []
+    moves: ['traumasque', 'moribond', 'barbarie']
 }
 
 monsters.marteau_geant = {
@@ -9336,7 +9336,7 @@ monsters.ravalame = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 20, terre: 25, feu: 20, eau: 35, air: 25 } },
-    moves: []
+    moves: ['psyclope', 'pluie_de_lames']
 }
 
 monsters.fleaunide = {
@@ -9346,7 +9346,7 @@ monsters.fleaunide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 5, terre: 10, feu: 5, eau: 20, air: 10 } },
-    moves: []
+    moves: ['esprit_destructeur', 'cerebrute', 'mortification']
 }
 
 monsters.olgoth = {
@@ -9356,7 +9356,7 @@ monsters.olgoth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 5, terre: 10, feu: 5, eau: 20, air: 10 } },
-    moves: []
+    moves: ['olguropoing', 'presse', 'seisme']
 }
 
 monsters.macabrateur = {
@@ -9366,7 +9366,7 @@ monsters.macabrateur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 5, terre: 10, feu: 5, eau: 20, air: 10 } },
-    moves: []
+    moves: ['decoupe', 'hache_tirante']
 }
 
 monsters.trancharnier = {
@@ -9376,7 +9376,7 @@ monsters.trancharnier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 18, terre: 22, feu: 17, eau: 30, air: 19 } },
-    moves: []
+    moves: ['euphorage', 'catacombe', 'decharner']
 }
 
 monsters.kaonashi = {
@@ -9386,7 +9386,7 @@ monsters.kaonashi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: 19, terre: 15, feu: 12, eau: -5, air: -10 } },
-    moves: []
+    moves: ['noroi', 'kaonashi_no_numa', 'kara_no', 'shunshin_no_shisui']
 }
 
 monsters.imushin = {
@@ -9396,7 +9396,7 @@ monsters.imushin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: -15, terre: -12, feu: -17, eau: 19, air: 25 } },
-    moves: []
+    moves: ['shikigami_no_mai', 'oriken', 'aerogami']
 }
 
 monsters.imorok = {
@@ -9406,7 +9406,7 @@ monsters.imorok = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: 14, terre: 26, feu: -11, eau: -16, air: -13 } },
-    moves: []
+    moves: ['chute_de_papier', 'pli_de_la_vallee']
 }
 
 monsters.imiyama = {
@@ -9416,7 +9416,7 @@ monsters.imiyama = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: -20, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: []
+    moves: ['ronces_de_papier', 'kusudama', 'legende_des_mille_cygrues']
 }
 
 monsters.imetsu = {
@@ -9426,7 +9426,7 @@ monsters.imetsu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: 11, terre: -22, feu: 10, eau: 21, air: -20 } },
-    moves: []
+    moves: ['shidekami', 'sonobe', 'piege_de_miura']
 }
 
 monsters.imafugo = {
@@ -9436,7 +9436,7 @@ monsters.imafugo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: -6, terre: -15, feu: 24, eau: -21, air: 18 } },
-    moves: []
+    moves: ['inspiration_creatrice', 'go_o_hanma', 'ressho_no_kiba']
 }
 
 monsters.shinlam = {
@@ -9446,7 +9446,7 @@ monsters.shinlam = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: -15, terre: -12, feu: -17, eau: 19, air: 25 } },
-    moves: []
+    moves: ['lames_noires', 'shurigami', 'encrepulsion']
 }
 
 monsters.rokoram = {
@@ -9456,7 +9456,7 @@ monsters.rokoram = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: 14, terre: 26, feu: -11, eau: -16, air: -13 } },
-    moves: []
+    moves: ['gakuya', 'encroulement', 'pli_de_la_montagne']
 }
 
 monsters.mabram = {
@@ -9466,7 +9466,7 @@ monsters.mabram = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: -20, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: []
+    moves: ['entracte_aux_papillons', 'ongurencre', 'chant_du_grand_cerf']
 }
 
 monsters.tsunam = {
@@ -9476,7 +9476,7 @@ monsters.tsunam = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: 11, terre: -22, feu: 10, eau: 21, air: -20 } },
-    moves: []
+    moves: ['perle_d_encre', 'kagura', 'choju_giga']
 }
 
 monsters.fugokam = {
@@ -9486,7 +9486,7 @@ monsters.fugokam = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: -6, terre: -15, feu: 24, eau: -21, air: 18 } },
-    moves: []
+    moves: ['souffle_artistique', 'sangaku_hanma', 'kiba_o_kikisaku']
 }
 
 monsters.kraradia = {
@@ -9496,7 +9496,7 @@ monsters.kraradia = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5500, atk: 640, spd: 100, res: { neutre: 15, terre: -20, feu: 5, eau: 20, air: -15 } },
-    moves: []
+    moves: ['menace_grandissante', 'rafale_diabolique', 'dard_corrompu', 'tir_devastateur']
 }
 
 monsters.monture = {
@@ -9526,7 +9526,7 @@ monsters.sanglirok = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5600, atk: 566, spd: 100, res: { neutre: -24, terre: 5, feu: -8, eau: 18, air: 9 } },
-    moves: []
+    moves: ['ningurgite', 'ninsoumis']
 }
 
 monsters.prisme_d_alliance = {
@@ -9546,7 +9546,7 @@ monsters.dolid = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 5800, atk: 800, spd: 100, res: { neutre: 9, terre: 15, feu: -11, eau: -8, air: 14 } },
-    moves: []
+    moves: ['germintaide', 'tetanysme']
 }
 
 monsters.crabe_yoloniste = {
@@ -9556,7 +9556,7 @@ monsters.crabe_yoloniste = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 21, terre: 11, feu: 26, eau: -9, air: 11 } },
-    moves: []
+    moves: ['gesticulation_ridicule', 'pince_ecrasante', 'yolosouague']
 }
 
 monsters.cavalier_chanceux = {
@@ -9566,7 +9566,7 @@ monsters.cavalier_chanceux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 1, terre: -14, feu: 11, eau: 36, air: 26 } },
-    moves: []
+    moves: ['carreausillon', 'carreautage']
 }
 
 monsters.golem_malakite = {
@@ -9576,7 +9576,7 @@ monsters.golem_malakite = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 31, terre: 27, feu: 19, eau: 6, air: 14 } },
-    moves: []
+    moves: ['attraction_minerale', 'boulet_emeraude']
 }
 
 monsters.peluche_bouftou = {
@@ -9586,7 +9586,7 @@ monsters.peluche_bouftou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 100, spd: 100, res: { neutre: 30, terre: 30, feu: 10, eau: -30, air: 10 } },
-    moves: []
+    moves: ['coutures_renforcees', 'ecchymose', 'traumatisme']
 }
 
 monsters.harrogant = {
@@ -9596,7 +9596,7 @@ monsters.harrogant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -31, terre: 10, feu: 20, eau: 5, air: 30 } },
-    moves: []
+    moves: ['dedain', 'coupe_cuir']
 }
 
 monsters.grodruche = {
@@ -9606,7 +9606,7 @@ monsters.grodruche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 4, terre: 42, feu: 11, eau: 19, air: -34 } },
-    moves: []
+    moves: ['vomito', 'nerf_de_boeuf']
 }
 
 monsters.peunch = {
@@ -9616,7 +9616,7 @@ monsters.peunch = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 10, terre: 13, feu: -38, eau: 41, air: 1 } },
-    moves: []
+    moves: ['ioupercute', 'cire_culaire']
 }
 
 monsters.empaille = {
@@ -9626,7 +9626,7 @@ monsters.empaille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 15, terre: 11, feu: 40, eau: -30, air: 20 } },
-    moves: []
+    moves: ['taxidermie', 'paillage', 'gros_sac']
 }
 
 monsters.cuirboule = {
@@ -9636,7 +9636,7 @@ monsters.cuirboule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 42, terre: -40, feu: 3, eau: 5, air: 15 } },
-    moves: []
+    moves: ['maboule', 'gonflage', 'bouffee']
 }
 
 monsters.ventrublion = {
@@ -9646,7 +9646,7 @@ monsters.ventrublion = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 15, terre: 30, feu: -31, eau: 5, air: 7 } },
-    moves: []
+    moves: ['abdomination', 'ventromatisme', 'bidiotisme']
 }
 
 monsters.stalak = {
@@ -9656,7 +9656,7 @@ monsters.stalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: -31, terre: 19, feu: 33, eau: 13, air: 22 } },
-    moves: []
+    moves: ['brise_larmes', 'legoglace']
 }
 
 monsters.karkanik = {
@@ -9666,7 +9666,7 @@ monsters.karkanik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 36, terre: 14, feu: 14, eau: 16, air: -39 } },
-    moves: []
+    moves: ['caroturier', 'karkanciel']
 }
 
 monsters.verglasseur = {
@@ -9676,7 +9676,7 @@ monsters.verglasseur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 15, terre: 8, feu: 12, eau: -33, air: 33 } },
-    moves: []
+    moves: ['braguette', 'bralong', 'braconnage']
 }
 
 monsters.frimar = {
@@ -9686,7 +9686,7 @@ monsters.frimar = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 5, terre: -31, feu: 12, eau: 39, air: 17 } },
-    moves: []
+    moves: ['lame_soeur', 'soupirsute', 'glacerbe']
 }
 
 monsters.nessil = {
@@ -9696,7 +9696,7 @@ monsters.nessil = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 13, terre: 41, feu: -26, eau: 15, air: 12 } },
-    moves: []
+    moves: ['loch', 'bafre', 'drako']
 }
 
 monsters.krakal = {
@@ -9706,7 +9706,7 @@ monsters.krakal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 10, terre: -40, feu: 4, eau: 36, air: 15 } },
-    moves: []
+    moves: ['jappement_dragor', 'morsure_de_soie']
 }
 
 monsters.dodox = {
@@ -9716,7 +9716,7 @@ monsters.dodox = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 9, terre: 13, feu: 37, eau: -35, air: 14 } },
-    moves: []
+    moves: ['picorection', 'pligeon', 'duvet_teran']
 }
 
 monsters.termystique = {
@@ -9726,7 +9726,7 @@ monsters.termystique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: -32, terre: 10, feu: 20, eau: 5, air: 35 } },
-    moves: []
+    moves: ['dard_dard', 'glusure']
 }
 
 monsters.droserale = {
@@ -9736,7 +9736,7 @@ monsters.droserale = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 40, terre: 16, feu: 5, eau: 19, air: -36 } },
-    moves: []
+    moves: ['caduk', 'stigmatraque']
 }
 
 monsters.kanimate = {
@@ -9746,7 +9746,7 @@ monsters.kanimate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 41, terre: 14, feu: 7, eau: -40, air: 12 } },
-    moves: []
+    moves: ['machine_ception', 'marionnettoyage']
 }
 
 monsters.brikoglours = {
@@ -9756,7 +9756,7 @@ monsters.brikoglours = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 5, terre: 42, feu: -39, eau: 13, air: 12 } },
-    moves: []
+    moves: ['clef_en_glaise', 'clef_battue']
 }
 
 monsters.mansordide = {
@@ -9766,7 +9766,7 @@ monsters.mansordide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 21, terre: 14, feu: 35, eau: 15, air: -36 } },
-    moves: []
+    moves: ['envol_de_mort', 'engrenage_de_glace', 'rotaplumes']
 }
 
 monsters.mecanofoux = {
@@ -9776,7 +9776,7 @@ monsters.mecanofoux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 10, terre: -38, feu: 15, eau: 12, air: 41 } },
-    moves: []
+    moves: ['de_grippant', 'petarade', 'rotapousse']
 }
 
 monsters.merulor = {
@@ -9786,7 +9786,7 @@ monsters.merulor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: -37, terre: 8, feu: 22, eau: 40, air: 11 } },
-    moves: []
+    moves: ['degage_limite', 'brulage_bete', 'vidange_gardien']
 }
 
 monsters.granduk = {
@@ -9796,7 +9796,7 @@ monsters.granduk = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: -31, feu: 45, eau: 8, air: 15 } },
-    moves: []
+    moves: ['hibouffonnerie', 'hibougie']
 }
 
 monsters.strigide = {
@@ -9806,7 +9806,7 @@ monsters.strigide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 20, terre: 40, feu: 10, eau: -40, air: 5 } },
-    moves: []
+    moves: ['stricannement', 'strictus', 'stridicule']
 }
 
 monsters.cycloide = {
@@ -9816,7 +9816,7 @@ monsters.cycloide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 19, terre: 5, feu: 13, eau: 40, air: -31 } },
-    moves: []
+    moves: ['cyclore', 'cyclochette', 'cyclaustrophobe']
 }
 
 monsters.sinistrofu = {
@@ -9826,7 +9826,7 @@ monsters.sinistrofu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -50, terre: 9, feu: 5, eau: 20, air: 45 } },
-    moves: []
+    moves: ['sinisterie', 'diligence']
 }
 
 monsters.nocturlabe = {
@@ -9836,7 +9836,7 @@ monsters.nocturlabe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 40, terre: 17, feu: -33, eau: 12, air: 6 } },
-    moves: []
+    moves: ['tonnerre_mecanique', 'surchauffense']
 }
 
 monsters.pikoleur = {
@@ -9846,7 +9846,7 @@ monsters.pikoleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 16, terre: 36, feu: 2, eau: 11, air: -29 } },
-    moves: []
+    moves: ['par_ici', 'perforage']
 }
 
 monsters.harpo = {
@@ -9856,7 +9856,7 @@ monsters.harpo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 2, terre: 11, feu: -29, eau: 36, air: 16 } },
-    moves: []
+    moves: ['moule_chote', 'tireur_franc', 'campeur_et_sans_reproches']
 }
 
 monsters.krabouilleur = {
@@ -9866,7 +9866,7 @@ monsters.krabouilleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: -29, terre: 2, feu: 11, eau: 16, air: 36 } },
-    moves: []
+    moves: ['pince_d_or', 'pincendie']
 }
 
 monsters.eskoglyphe = {
@@ -9876,7 +9876,7 @@ monsters.eskoglyphe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 16, terre: 2, feu: 36, eau: -29, air: 11 } },
-    moves: []
+    moves: ['maraude_a_la_joie', 'glycol_roule', 'predateur_de_gloire']
 }
 
 monsters.cyclophandre = {
@@ -9886,7 +9886,7 @@ monsters.cyclophandre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 500, spd: 100, res: { neutre: 36, terre: -29, feu: 16, eau: 11, air: 2 } },
-    moves: []
+    moves: ['apnee_crochue', 'gras_de_maree', 'relou_de_mer']
 }
 
 monsters.kamasterisk = {
@@ -9896,7 +9896,7 @@ monsters.kamasterisk = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 11, terre: 31, feu: 26, eau: -14, air: 6 } },
-    moves: []
+    moves: ['clignotement', 'assomnolence']
 }
 
 monsters.barbetoal = {
@@ -9906,7 +9906,7 @@ monsters.barbetoal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 31, terre: 26, feu: -14, eau: 6, air: 11 } },
-    moves: []
+    moves: ['barbe_a_trucs', 'super_saillant']
 }
 
 monsters.levitrof = {
@@ -9916,7 +9916,7 @@ monsters.levitrof = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 26, terre: -14, feu: 6, eau: 11, air: 31 } },
-    moves: []
+    moves: ['kama_hamea']
 }
 
 monsters.paspartou = {
@@ -9926,7 +9926,7 @@ monsters.paspartou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: -14, terre: 6, feu: 11, eau: 31, air: 26 } },
-    moves: []
+    moves: ['clemence', 'guideal', 'la_clef_du_succes']
 }
 
 monsters.piloztere = {
@@ -9936,7 +9936,7 @@ monsters.piloztere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 6, terre: 11, feu: 31, eau: 26, air: -14 } },
-    moves: []
+    moves: ['claque', 'sourire_ravageur']
 }
 
 monsters.machassin = {
@@ -9946,7 +9946,7 @@ monsters.machassin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 21, terre: 11, feu: 26, eau: 6, air: -24 } },
-    moves: []
+    moves: ['piege_a_le_ours', 'sans_se_mouiller']
 }
 
 monsters.terristocrate = {
@@ -9956,7 +9956,7 @@ monsters.terristocrate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 11, terre: 26, feu: 6, eau: -24, air: 21 } },
-    moves: []
+    moves: ['bombe_illicale', 'fumerus', 'attentat']
 }
 
 monsters.bouroliste = {
@@ -9966,7 +9966,7 @@ monsters.bouroliste = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 26, terre: 6, feu: -24, eau: 21, air: 11 } },
-    moves: []
+    moves: ['vers_la_lumiere', 'coupable', 'tournoyade']
 }
 
 monsters.magouille = {
@@ -9976,7 +9976,7 @@ monsters.magouille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: -24, terre: 21, feu: 11, eau: 26, air: 6 } },
-    moves: []
+    moves: ['craneantissement', 'crames']
 }
 
 monsters.ikargn = {
@@ -9986,7 +9986,7 @@ monsters.ikargn = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 3, terre: 8, feu: -14, eau: 24, air: 39 } },
-    moves: []
+    moves: ['attraction_ailee', 'cercle_de_feu', 'terre_mythe']
 }
 
 monsters.mejaire = {
@@ -9996,7 +9996,7 @@ monsters.mejaire = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 8, terre: -14, feu: 24, eau: 39, air: 3 } },
-    moves: []
+    moves: ['rayonirique', 'plumiere']
 }
 
 monsters.harpille = {
@@ -10006,7 +10006,7 @@ monsters.harpille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: -14, terre: 24, feu: 39, eau: 3, air: 8 } },
-    moves: []
+    moves: ['tirs_optiques', 'superfidie', 'petit_poison']
 }
 
 monsters.buboxor = {
@@ -10016,7 +10016,7 @@ monsters.buboxor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 24, terre: 39, feu: 3, eau: 8, air: -14 } },
-    moves: []
+    moves: ['bouclier_absorbant', 'feinterception', 'hoxor']
 }
 
 monsters.brabuzar = {
@@ -10026,7 +10026,7 @@ monsters.brabuzar = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 39, terre: 3, feu: 8, eau: -14, air: 24 } },
-    moves: []
+    moves: ['mise_en_situation', 'neutralisation']
 }
 
 monsters.soldat_de_fortune = {
@@ -10036,7 +10036,7 @@ monsters.soldat_de_fortune = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 26, terre: 1, feu: -14, eau: 11, air: 36 } },
-    moves: []
+    moves: ['jet_de_pique', 'en_plein_c_ur']
 }
 
 monsters.valet_veinard = {
@@ -10046,7 +10046,7 @@ monsters.valet_veinard = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: -14, terre: 11, feu: 36, eau: 26, air: 1 } },
-    moves: []
+    moves: ['piquepocket', 'epique']
 }
 
 monsters.dame_du_hasard = {
@@ -10056,7 +10056,7 @@ monsters.dame_du_hasard = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 11, terre: 36, feu: 26, eau: 1, air: -14 } },
-    moves: []
+    moves: ['tourne_griffe', 'creve_c_ur']
 }
 
 monsters.roi_joueur = {
@@ -10066,7 +10066,7 @@ monsters.roi_joueur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 36, terre: 26, feu: 1, eau: -14, air: 11 } },
-    moves: []
+    moves: ['lueur_royale', 'adoubement_brutal']
 }
 
 monsters.tourthon = {
@@ -10076,7 +10076,7 @@ monsters.tourthon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -14, terre: 1, feu: 16, eau: 21, air: 36 } },
-    moves: []
+    moves: ['attraction_lumineuse', 'enlacement']
 }
 
 monsters.poulpee = {
@@ -10086,7 +10086,7 @@ monsters.poulpee = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 21, terre: 36, feu: -14, eau: 1, air: 16 } },
-    moves: []
+    moves: ['siphonage', 'tourbillonement']
 }
 
 monsters.tryde = {
@@ -10096,7 +10096,7 @@ monsters.tryde = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 1, terre: 16, feu: 21, eau: 36, air: -14 } },
-    moves: []
+    moves: ['prison_aqueuse']
 }
 
 monsters.rilur = {
@@ -10106,7 +10106,7 @@ monsters.rilur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 36, terre: -6, feu: 1, eau: 16, air: 21 } },
-    moves: []
+    moves: ['harpon_eclair', 'charge_frontale']
 }
 
 monsters.diondin = {
@@ -10116,7 +10116,7 @@ monsters.diondin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: 21, feu: 36, eau: -14, air: 1 } },
-    moves: []
+    moves: ['projection_hydraulique', 'fougou_rebondissant', 'poussette_mortelle']
 }
 
 monsters.grofond = {
@@ -10126,7 +10126,7 @@ monsters.grofond = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: 26, feu: -9, eau: 16, air: 16 } },
-    moves: []
+    moves: ['attraction_repugnante', 'sphere_corrosive']
 }
 
 monsters.n_yalg = {
@@ -10136,7 +10136,7 @@ monsters.n_yalg = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: 16, feu: 6, eau: 26, air: -9 } },
-    moves: []
+    moves: ['expulsion_miasmatique', 'flagellation_paralysante']
 }
 
 monsters.shokkoth = {
@@ -10146,7 +10146,7 @@ monsters.shokkoth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: 6, feu: 26, eau: -9, air: 16 } },
-    moves: []
+    moves: ['triangle_dement', 'il_horrifiant']
 }
 
 monsters.li_fo = {
@@ -10156,7 +10156,7 @@ monsters.li_fo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -9, terre: 16, feu: 16, eau: 6, air: 26 } },
-    moves: []
+    moves: ['ponction_morbide']
 }
 
 monsters.klutiste = {
@@ -10166,7 +10166,7 @@ monsters.klutiste = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 26, terre: -9, feu: 16, eau: 16, air: 6 } },
-    moves: []
+    moves: ['melopee_pernicieuse', 'folle_cacophonie', 'intensite_demoniaque']
 }
 
 monsters.mol_usk = {
@@ -10176,7 +10176,7 @@ monsters.mol_usk = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -9, terre: 11, feu: 21, eau: 11, air: 26 } },
-    moves: []
+    moves: ['bave_acide', 'trainee_collante', 'roulemboule']
 }
 
 monsters.gambaf = {
@@ -10186,7 +10186,7 @@ monsters.gambaf = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: 26, feu: -9, eau: 11, air: 21 } },
-    moves: []
+    moves: ['pas_chasse_frontal', 'poing_meteore', 'enchainement_de_coups_de_poings_normaux']
 }
 
 monsters.mantaze = {
@@ -10196,7 +10196,7 @@ monsters.mantaze = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 26, terre: -9, feu: 11, eau: 21, air: 11 } },
-    moves: []
+    moves: ['eclair_obscur', 'electrochoc', 'foudre_marine']
 }
 
 monsters.tilamproie = {
@@ -10206,7 +10206,7 @@ monsters.tilamproie = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: 21, feu: 11, eau: 26, air: -9 } },
-    moves: []
+    moves: ['piege_parasite', 'succion_attractive', 'morsure_filtrante']
 }
 
 monsters.chakanoubis = {
@@ -10216,7 +10216,7 @@ monsters.chakanoubis = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 21, terre: -14, feu: 31, eau: 1, air: 16 } },
-    moves: []
+    moves: ['harcelement_de_la_pyramide', 'pyramide']
 }
 
 monsters.bandleth = {
@@ -10226,7 +10226,7 @@ monsters.bandleth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: 21, feu: -14, eau: 31, air: 1 } },
-    moves: []
+    moves: ['calin', 'danse_comme_une_momie']
 }
 
 monsters.momistik = {
@@ -10236,7 +10236,7 @@ monsters.momistik = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 31, terre: 1, feu: 16, eau: 21, air: -14 } },
-    moves: []
+    moves: ['frappe_elementaire', 'grenattrition']
 }
 
 monsters.rykaon = {
@@ -10246,7 +10246,7 @@ monsters.rykaon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 1, terre: 16, feu: 21, eau: -14, air: 31 } },
-    moves: []
+    moves: ['remplacement_maudit', 'sabrupt']
 }
 
 monsters.griffotep = {
@@ -10256,7 +10256,7 @@ monsters.griffotep = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -14, terre: 31, feu: 1, eau: 16, air: 21 } },
-    moves: []
+    moves: ['aigriffes', 'arrivee_fracassante']
 }
 
 monsters.goulafre = {
@@ -10266,7 +10266,7 @@ monsters.goulafre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: 6, feu: 16, eau: -9, air: 31 } },
-    moves: []
+    moves: ['bidonnage']
 }
 
 monsters.kerigoule = {
@@ -10276,7 +10276,7 @@ monsters.kerigoule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: 16, feu: -9, eau: 31, air: 11 } },
-    moves: []
+    moves: ['tranche_air']
 }
 
 monsters.gouligane = {
@@ -10286,7 +10286,7 @@ monsters.gouligane = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: -9, feu: 31, eau: 11, air: 6 } },
-    moves: []
+    moves: ['gouli_gouli', 'griffouille']
 }
 
 monsters.goultime = {
@@ -10296,7 +10296,7 @@ monsters.goultime = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -9, terre: 31, feu: 11, eau: 6, air: 16 } },
-    moves: []
+    moves: ['dantagoule', 'poings_vire_goule']
 }
 
 monsters.pipisteuse = {
@@ -10306,7 +10306,7 @@ monsters.pipisteuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 31, terre: 11, feu: 6, eau: 16, air: -9 } },
-    moves: []
+    moves: ['deplacement_furtif', 'chauffe_kipeu']
 }
 
 monsters.chause = {
@@ -10316,7 +10316,7 @@ monsters.chause = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 21, terre: 6, feu: -14, eau: 36, air: 11 } },
-    moves: []
+    moves: ['flami', 'ebullition', 'doublame']
 }
 
 monsters.ectorche = {
@@ -10326,7 +10326,7 @@ monsters.ectorche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: 21, feu: 6, eau: -14, air: 36 } },
-    moves: []
+    moves: ['coupe_souffle']
 }
 
 monsters.esprigne = {
@@ -10336,7 +10336,7 @@ monsters.esprigne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 36, terre: 11, feu: 21, eau: 6, air: -14 } },
-    moves: []
+    moves: ['bouillie', 'tranche_ame']
 }
 
 monsters.feutome = {
@@ -10346,7 +10346,7 @@ monsters.feutome = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -14, terre: 36, feu: 11, eau: 21, air: 6 } },
-    moves: []
+    moves: ['feu_critique', 'revenant']
 }
 
 monsters.crame = {
@@ -10356,7 +10356,7 @@ monsters.crame = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: -14, feu: 36, eau: 11, air: 21 } },
-    moves: []
+    moves: ['boule_d_eau']
 }
 
 monsters.klemort = {
@@ -10366,7 +10366,7 @@ monsters.klemort = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -24, terre: 21, feu: 16, eau: 26, air: 11 } },
-    moves: []
+    moves: ['eperuption', 'conjuration_volcanique', 'magmagique']
 }
 
 monsters.trepavois = {
@@ -10376,7 +10376,7 @@ monsters.trepavois = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: 11, feu: -19, eau: 31, air: 16 } },
-    moves: []
+    moves: ['glaive_sommaire', 'charge_au_bouclier']
 }
 
 monsters.hacharne = {
@@ -10386,7 +10386,7 @@ monsters.hacharne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: -19, feu: 21, eau: 6, air: 36 } },
-    moves: []
+    moves: ['magmache', 'haleine_enflammee', 'visiosoufre']
 }
 
 monsters.moribombe = {
@@ -10396,7 +10396,7 @@ monsters.moribombe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: 16, feu: 31, eau: -24, air: 21 } },
-    moves: []
+    moves: ['zhen_tian_lei', 'grenade_collante', 'chaudiere']
 }
 
 monsters.halbardent = {
@@ -10406,7 +10406,7 @@ monsters.halbardent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 1, terre: 26, feu: 21, eau: 16, air: -14 } },
-    moves: []
+    moves: ['geoassaut', 'lance_flammes', 'chauffard']
 }
 
 monsters.zombruth = {
@@ -10416,7 +10416,7 @@ monsters.zombruth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: -9, feu: 16, eau: 6, air: 31 } },
-    moves: []
+    moves: ['cumul_des_mandales', 'siphon', 'aquaponey']
 }
 
 monsters.tournoye = {
@@ -10426,7 +10426,7 @@ monsters.tournoye = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: 21, feu: 11, eau: -14, air: 16 } },
-    moves: []
+    moves: ['franchissement', 'monodent', 'restoute']
 }
 
 monsters.funespadon = {
@@ -10436,7 +10436,7 @@ monsters.funespadon = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: 21, feu: 6, eau: 26, air: -19 } },
-    moves: []
+    moves: ['talion', 'profondeurs_marines']
 }
 
 monsters.cranonier = {
@@ -10446,7 +10446,7 @@ monsters.cranonier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: 31, feu: -19, eau: 11, air: 16 } },
-    moves: []
+    moves: ['morlusque', 'hydraire']
 }
 
 monsters.macrab = {
@@ -10456,7 +10456,7 @@ monsters.macrab = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 1, terre: -14, feu: 36, eau: 21, air: 6 } },
-    moves: []
+    moves: ['putrefaction_marine', 'coup_de_pince', 'vapeur']
 }
 
 monsters.boufbos = {
@@ -10466,7 +10466,7 @@ monsters.boufbos = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 26, terre: 6, feu: 21, eau: 16, air: -9 } },
-    moves: []
+    moves: ['lance_pierre', 'forte_tete']
 }
 
 monsters.barbelier = {
@@ -10476,7 +10476,7 @@ monsters.barbelier = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 16, terre: -9, feu: 26, eau: 6, air: 21 } },
-    moves: []
+    moves: ['coup_de_cornes', 'belier']
 }
 
 monsters.kasrok = {
@@ -10486,7 +10486,7 @@ monsters.kasrok = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 6, terre: 21, feu: 16, eau: -9, air: 26 } },
-    moves: []
+    moves: ['marteau_pillon', 'nimpulsion']
 }
 
 monsters.vatenbiere = {
@@ -10496,7 +10496,7 @@ monsters.vatenbiere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 21, terre: 16, feu: -9, eau: 26, air: 6 } },
-    moves: []
+    moves: ['hachis', 'nimplantation']
 }
 
 monsters.chocoligarque = {
@@ -10506,7 +10506,7 @@ monsters.chocoligarque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 9, terre: 32, feu: 19, eau: -12, air: 28 } },
-    moves: []
+    moves: ['chocolat_sperger', 'cacaobstruction']
 }
 
 monsters.torrefactueur = {
@@ -10516,7 +10516,7 @@ monsters.torrefactueur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 36, terre: 29, feu: 18, eau: -6, air: 11 } },
-    moves: []
+    moves: ['torreador', 'torrefaction', 'padbra']
 }
 
 monsters.pralicienne = {
@@ -10526,7 +10526,7 @@ monsters.pralicienne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 13, terre: 21, feu: -10, eau: 37, air: 19 } },
-    moves: []
+    moves: ['hydrolyse', 'chococlier', 'glacage']
 }
 
 monsters.temperaturge = {
@@ -10536,7 +10536,7 @@ monsters.temperaturge = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: -15, terre: 9, feu: 24, eau: 18, air: 34 } },
-    moves: []
+    moves: ['refroidissement', 'surchauffe', 'chaudron_choco']
 }
 
 monsters.cabosseur = {
@@ -10546,7 +10546,7 @@ monsters.cabosseur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 16, terre: 19, feu: 35, eau: 23, air: -11 } },
-    moves: []
+    moves: ['eclabossage', 'feve_du_samedi_soir', 'piege_a_gourmands']
 }
 
 monsters.kashkaille = {
@@ -10556,7 +10556,7 @@ monsters.kashkaille = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 7, terre: -17, feu: 29, eau: 13, air: 15 } },
-    moves: []
+    moves: ['traquenard_reptilien', 'attirance_de_l_invisible']
 }
 
 monsters.alashasss = {
@@ -10566,7 +10566,7 @@ monsters.alashasss = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: 11, terre: -14, feu: 11, eau: 16, air: 21 } },
-    moves: []
+    moves: ['tir_de_precision', 'regeneration_sacrificielle', 'accumulation_critique']
 }
 
 monsters.cronnibal = {
@@ -10576,7 +10576,7 @@ monsters.cronnibal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 600, spd: 100, res: { neutre: -15, terre: 30, feu: 11, eau: 5, air: -5 } },
-    moves: []
+    moves: ['rage_nocturne', 'sauvagerie_reptilienne', 'cronnibalisme']
 }
 
 monsters.ferrailleur = {
@@ -10586,7 +10586,7 @@ monsters.ferrailleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
-    moves: []
+    moves: ['demantelement', 'terminal_gris', 'assembricolage']
 }
 
 monsters.krevladal = {
@@ -10596,7 +10596,7 @@ monsters.krevladal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 16, terre: 19, feu: 23, eau: 35, air: -11 } },
-    moves: []
+    moves: ['pouilleux_massacreur', 'crache_misere']
 }
 
 monsters.desosseur = {
@@ -10606,7 +10606,7 @@ monsters.desosseur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 13, terre: 21, feu: -10, eau: 19, air: 37 } },
-    moves: []
+    moves: ['desossage', 'souffle_du_desert']
 }
 
 monsters.skentu = {
@@ -10616,7 +10616,7 @@ monsters.skentu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: -15, terre: 9, feu: 34, eau: 18, air: 24 } },
-    moves: []
+    moves: ['bantha', 'balle_vorace', 'grenade_aveuglante']
 }
 
 monsters.dawaj = {
@@ -10626,7 +10626,7 @@ monsters.dawaj = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 29, terre: 36, feu: 18, eau: -6, air: 11 } },
-    moves: []
+    moves: ['sol_aride', 'fouet_gadderfi']
 }
 
 monsters.gangredogue = {
@@ -10636,7 +10636,7 @@ monsters.gangredogue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: -10, terre: -14, feu: 9, eau: 16, air: 12 } },
-    moves: []
+    moves: ['tir_purulent', 'gangraine', 'debarbouillie']
 }
 
 monsters.belilith = {
@@ -10646,7 +10646,7 @@ monsters.belilith = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 640, spd: 100, res: { neutre: -15, terre: 15, feu: -20, eau: 5, air: 20 } },
-    moves: []
+    moves: ['compression_furieuse', 'plongeon_tourmente', 'exaltation_terrifiante']
 }
 
 monsters.eninferno = {
@@ -10656,7 +10656,7 @@ monsters.eninferno = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 640, spd: 100, res: { neutre: -15, terre: 5, feu: 20, eau: -15, air: 15 } },
-    moves: []
+    moves: ['murmure_des_lamentations', 'parabole_tordue', 'rumeur_inquietante', 'sermon_effroyable']
 }
 
 monsters.voracle = {
@@ -10666,7 +10666,7 @@ monsters.voracle = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 640, spd: 100, res: { neutre: 13, terre: -5, feu: 26, eau: 1, air: 21 } },
-    moves: []
+    moves: ['hauspice', 'divination', 'pres_age']
 }
 
 monsters.batail_heure = {
@@ -10676,7 +10676,7 @@ monsters.batail_heure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 10, air: 5 } },
-    moves: []
+    moves: ['estoc', 'entaille', 'heroisme', 'providence', 'condamnation', 'bond']
 }
 
 monsters.tir_heure = {
@@ -10706,7 +10706,7 @@ monsters.eclair_heure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 15, terre: 20, feu: 5, eau: 10, air: 25 } },
-    moves: []
+    moves: ['compas', 'entourloupe', 'magnetisme', 'recel', 'pulsar', 'botte', 'aimantation']
 }
 
 monsters.protect_heure = {
@@ -10716,7 +10716,7 @@ monsters.protect_heure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 5, air: 10 } },
-    moves: []
+    moves: ['somnolence', 'rempart', 'renfort', 'barriere']
 }
 
 monsters.berserk_heure = {
@@ -10736,7 +10736,7 @@ monsters.marionnette_du_mulou_meule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6100, atk: 500, spd: 100, res: { neutre: 22, terre: -10, feu: -5, eau: 42, air: 42 } },
-    moves: []
+    moves: ['reconstitution', 'invocation_de_milimeulou']
 }
 
 monsters.blindur = {
@@ -10746,7 +10746,7 @@ monsters.blindur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6100, atk: 566, spd: 100, res: { neutre: -34, terre: 21, feu: 4, eau: 17, air: -8 } },
-    moves: []
+    moves: ['ninculpation', 'nindestructible', 'nindemnite']
 }
 
 monsters.malephisto = {
@@ -10756,7 +10756,7 @@ monsters.malephisto = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6300, atk: 640, spd: 100, res: { neutre: 19, terre: -20, feu: 8, eau: 12, air: -18 } },
-    moves: []
+    moves: ['prison_de_haine', 'fausse_tragedie', 'pacte_demoniaque']
 }
 
 monsters.gardienne_des_egouts = {
@@ -10776,7 +10776,7 @@ monsters.porkzebuth = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6500, atk: 640, spd: 100, res: { neutre: 5, terre: 20, feu: -15, eau: 15, air: -20 } },
-    moves: []
+    moves: ['embrochement_meurtrier', 'connivence_demoniaque', 'ruee_malfaisante']
 }
 
 monsters.voracle_perturbee = {
@@ -10796,7 +10796,7 @@ monsters.tanklume = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6600, atk: 600, spd: 100, res: { neutre: -9, terre: 26, feu: 6, eau: 21, air: 16 } },
-    moves: []
+    moves: ['triple_attaque', 'ninrmure']
 }
 
 monsters.gentyran = {
@@ -10806,7 +10806,7 @@ monsters.gentyran = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6600, atk: 790, spd: 100, res: { neutre: 30, terre: 25, feu: 20, eau: 20, air: 30 } },
-    moves: []
+    moves: ['fouet_palliatif', 'fouet_cadence', 'fouet_dopant']
 }
 
 monsters.sonj = {
@@ -10816,7 +10816,7 @@ monsters.sonj = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6600, atk: 1500, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['sonjerie', 'stimulation', 'manipulation_des_ombres', 'piege_farceur', 'cabriole_simiesque']
 }
 
 monsters.demoloch = {
@@ -10826,7 +10826,7 @@ monsters.demoloch = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6900, atk: 640, spd: 100, res: { neutre: -22, terre: 10, feu: 17, eau: -10, air: 25 } },
-    moves: []
+    moves: ['appetit_infernal', 'salammbo', 'fruit_du_sacrifice']
 }
 
 monsters.soldalia = {
@@ -10836,7 +10836,7 @@ monsters.soldalia = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6900, atk: 640, spd: 100, res: { neutre: 18, terre: -24, feu: 7, eau: 12, air: -17 } },
-    moves: []
+    moves: ['liane_adaptive', 'liane_entravante', 'liane_attirante']
 }
 
 monsters.coquelicogne = {
@@ -10846,7 +10846,7 @@ monsters.coquelicogne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7000, atk: 640, spd: 100, res: { neutre: -18, terre: 20, feu: 7, eau: -20, air: 9 } },
-    moves: []
+    moves: ['poing_aqueux', 'poing_de_repli', 'poing_destructeur']
 }
 
 monsters.kreuvete_la_bwork_ingenue = {
@@ -10856,7 +10856,7 @@ monsters.kreuvete_la_bwork_ingenue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7100, atk: 800, spd: 100, res: { neutre: -10, terre: 5, feu: 10, eau: -20, air: 5 } },
-    moves: []
+    moves: ['moderation', 'mordorsene', 'hedite', 'achesse']
 }
 
 monsters.tambourreau = {
@@ -10866,7 +10866,7 @@ monsters.tambourreau = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7100, atk: 700, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 20, air: 25 } },
-    moves: []
+    moves: ['arbaguette', 'tambourre_pif']
 }
 
 monsters.pistilangue = {
@@ -10876,7 +10876,7 @@ monsters.pistilangue = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7100, atk: 800, spd: 100, res: { neutre: -13, terre: 26, feu: 10, eau: 17, air: -7 } },
-    moves: []
+    moves: ['spore_addikt', 'flemingysme', 'maturation']
 }
 
 monsters.cameliache = {
@@ -10886,7 +10886,7 @@ monsters.cameliache = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7100, atk: 640, spd: 100, res: { neutre: 6, terre: 13, feu: -21, eau: -16, air: 14 } },
-    moves: []
+    moves: ['choc_infini', 'bond_tactique', 'poussee_tourbillonnante']
 }
 
 monsters.domptueuse = {
@@ -10896,7 +10896,7 @@ monsters.domptueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7100, atk: 640, spd: 100, res: { neutre: 16, terre: 21, feu: -6, eau: 14, air: 0 } },
-    moves: []
+    moves: ['martignasse', 'detresse', 'braconatte']
 }
 
 monsters.krtek = {
@@ -10916,7 +10916,7 @@ monsters.bwariok = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7500, atk: 640, spd: 100, res: { neutre: 20, terre: -15, feu: 15, eau: -20, air: 5 } },
-    moves: []
+    moves: ['grappin_abyssal', 'rugissement_infernal', 'trombe_ravageuse']
 }
 
 monsters.ecaptif = {
@@ -10926,7 +10926,7 @@ monsters.ecaptif = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7700, atk: 800, spd: 100, res: { neutre: 25, terre: 20, feu: 25, eau: 30, air: 30 } },
-    moves: []
+    moves: ['megalerien', 'pagaifrenee']
 }
 
 monsters.tentaclaque = {
@@ -10936,7 +10936,7 @@ monsters.tentaclaque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7700, atk: 800, spd: 100, res: { neutre: 24, terre: -13, feu: 14, eau: 21, air: -10 } },
-    moves: []
+    moves: ['parasitysme', 'ponction_lombric']
 }
 
 monsters.statulipe = {
@@ -10946,7 +10946,7 @@ monsters.statulipe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 7700, atk: 640, spd: 100, res: { neutre: 23, terre: 10, feu: -16, eau: 7, air: -14 } },
-    moves: []
+    moves: ['glyphe_des_protecteurs', 'assaut_alternatif', 'ecu_tranchant']
 }
 
 monsters.domptueuse_perturbee = {
@@ -10966,7 +10966,7 @@ monsters.brutasmodan = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8000, atk: 640, spd: 100, res: { neutre: -19, terre: 22, feu: 5, eau: 24, air: -13 } },
-    moves: []
+    moves: ['festin_ardent', 'uppercut_abyssal', 'ruade_brutale']
 }
 
 monsters.garde_du_conseil = {
@@ -10976,7 +10976,7 @@ monsters.garde_du_conseil = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: 20, terre: 10, feu: 10, eau: 50, air: 10 } },
-    moves: []
+    moves: ['relent', 'sepiolite', 'trine']
 }
 
 monsters.briko_altruiste = {
@@ -10986,7 +10986,7 @@ monsters.briko_altruiste = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: -14, terre: -22, feu: 15, eau: 8, air: 2 } },
-    moves: []
+    moves: ['stase_regenerante', 'solidarite_chronique']
 }
 
 monsters.briko_galvanisant = {
@@ -10996,7 +10996,7 @@ monsters.briko_galvanisant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: 3, terre: -9, feu: -16, eau: 17, air: 10 } },
-    moves: []
+    moves: ['chronoxydation', 'onde_protectrice']
 }
 
 monsters.briko_exaltant = {
@@ -11006,7 +11006,7 @@ monsters.briko_exaltant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: 14, terre: -3, feu: -8, eau: -17, air: 20 } },
-    moves: []
+    moves: ['frelaterie', 'deplacements_degradants']
 }
 
 monsters.nheur_gueule = {
@@ -11016,7 +11016,7 @@ monsters.nheur_gueule = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: 15, terre: 10, feu: 17, eau: -12, air: 20 } },
-    moves: []
+    moves: ['tourbe_ylol', 'brutalysme', 'crachacide', 'germinator']
 }
 
 monsters.armuguet = {
@@ -11026,7 +11026,7 @@ monsters.armuguet = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 640, spd: 100, res: { neutre: -29, terre: -19, feu: 23, eau: 17, air: 8 } },
-    moves: []
+    moves: ['epine_revigorante', 'attraction_brulante']
 }
 
 monsters.ebourifauve = {
@@ -11036,7 +11036,7 @@ monsters.ebourifauve = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 640, spd: 100, res: { neutre: 6, terre: 21, feu: 4, eau: 9, air: 26 } },
-    moves: []
+    moves: ['paresse', 'feligance']
 }
 
 monsters.sinj = {
@@ -11046,7 +11046,7 @@ monsters.sinj = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8200, atk: 1500, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    moves: ['sinjerie', 'vague_destructrice_du_singe', 'fulgurang_outan', 'ninjutsinj', 'super_sinj']
 }
 
 monsters.boularbin = {
@@ -11056,7 +11056,7 @@ monsters.boularbin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 8800, atk: 700, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 20, air: 20 } },
-    moves: []
+    moves: ['renfortiche', 'compression', 'penitence']
 }
 
 monsters.lapilope = {
@@ -11086,7 +11086,7 @@ monsters.bonraphin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9100, atk: 640, spd: 100, res: { neutre: 8, terre: -12, feu: -23, eau: 23, air: 16 } },
-    moves: []
+    moves: ['faux_seraphine', 'colonne_de_lumiere']
 }
 
 monsters.braklotin = {
@@ -11096,7 +11096,7 @@ monsters.braklotin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9100, atk: 640, spd: 100, res: { neutre: 8, terre: 16, feu: 23, eau: -23, air: -12 } },
-    moves: []
+    moves: ['epee_diablotine', 'colonne_de_flammes']
 }
 
 monsters.brutapir = {
@@ -11116,7 +11116,7 @@ monsters.briko_taquin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 19, terre: 13, feu: -4, eau: -10, air: -17 } },
-    moves: []
+    moves: ['metaplasme', 'perversion']
 }
 
 monsters.briko_stimulant = {
@@ -11126,7 +11126,7 @@ monsters.briko_stimulant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: -19, terre: 17, feu: 8, eau: 4, air: -7 } },
-    moves: []
+    moves: ['devotion_combative', 'chrono_calmant']
 }
 
 monsters.bruto_pernicieux = {
@@ -11136,7 +11136,7 @@ monsters.bruto_pernicieux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: -10, terre: -15, feu: 16, eau: 11, air: 4 } },
-    moves: []
+    moves: ['metathese', 'pernipiege']
 }
 
 monsters.bruto_frenetique = {
@@ -11146,7 +11146,7 @@ monsters.bruto_frenetique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 3, terre: -7, feu: -16, eau: 19, air: 12 } },
-    moves: []
+    moves: ['bombarde_kantik']
 }
 
 monsters.bruto_colerique = {
@@ -11156,7 +11156,7 @@ monsters.bruto_colerique = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 10, terre: -3, feu: -9, eau: -17, air: 15 } },
-    moves: []
+    moves: ['affaissement', 'encanaillement']
 }
 
 monsters.larve_cauchemardesque = {
@@ -11216,7 +11216,7 @@ monsters.bosko_tho = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 11000, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['contre_courant']
 }
 
 monsters.draguisla_bonita = {
@@ -11226,7 +11226,7 @@ monsters.draguisla_bonita = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 11000, atk: 566, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    moves: ['cratere', 'crachat_anesthesiant']
 }
 
 monsters.kamikabz_perturbe = {
@@ -11296,7 +11296,7 @@ monsters.bruto_acharne = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 20, terre: 12, feu: 5, eau: -14, air: -19 } },
-    moves: []
+    moves: ['inimitie', 'boulversement']
 }
 
 monsters.bruto_virulent = {
@@ -11306,7 +11306,7 @@ monsters.bruto_virulent = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: -14, terre: 16, feu: 11, eau: 4, air: -8 } },
-    moves: []
+    moves: ['perseverance', 'aveuglette']
 }
 
 monsters.gropotam_perturbe = {
@@ -11366,7 +11366,7 @@ monsters.cocolune = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['attraction_lunaire']
 }
 
 monsters.gromo_envahissant = {
@@ -11376,7 +11376,7 @@ monsters.gromo_envahissant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 16000, atk: 800, spd: 100, res: { neutre: 17, terre: 15, feu: 2, eau: -12, air: -18 } },
-    moves: []
+    moves: ['talonnade', 'carcan']
 }
 
 monsters.gromo_ecrasant = {
@@ -11386,7 +11386,7 @@ monsters.gromo_ecrasant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 16000, atk: 800, spd: 100, res: { neutre: -16, terre: 20, feu: 11, eau: 8, air: -2 } },
-    moves: []
+    moves: ['paralysie', 'anabolisme']
 }
 
 monsters.gromo_endurant = {
@@ -11396,7 +11396,7 @@ monsters.gromo_endurant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 16000, atk: 800, spd: 100, res: { neutre: -5, terre: -15, feu: 24, eau: 11, air: 7 } },
-    moves: []
+    moves: ['ingurgitation', 'jonction']
 }
 
 monsters.gromo_intercepteur = {
@@ -11406,7 +11406,7 @@ monsters.gromo_intercepteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 16000, atk: 800, spd: 100, res: { neutre: 7, terre: -8, feu: -16, eau: 25, air: 12 } },
-    moves: []
+    moves: ['chrono_interception', 'chrono_trig_heure', 'exclusion']
 }
 
 monsters.gromo_protecteur = {
@@ -11416,7 +11416,7 @@ monsters.gromo_protecteur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 16000, atk: 800, spd: 100, res: { neutre: 13, terre: 7, feu: -4, eau: -13, air: 23 } },
-    moves: []
+    moves: ['chronoclier', 'liquefaction']
 }
 
 monsters.cauchemar_des_ravageurs = {
@@ -11426,7 +11426,7 @@ monsters.cauchemar_des_ravageurs = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 17000, atk: 800, spd: 100, res: { neutre: 18, terre: -11, feu: -8, eau: 12, air: 23 } },
-    moves: []
+    moves: ['tourments_eternels', 'intrusion_cauchemardesque', 'mauvais_reves', 'songe_d_une_nuit_d_enfer']
 }
 
 monsters.artroolleur = {
@@ -11436,7 +11436,7 @@ monsters.artroolleur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 19000, atk: 750, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tir_d_artroollerie', 'mortrooll']
 }
 
 monsters.krokille_venerable_crue = {
@@ -11456,7 +11456,7 @@ monsters.nitrooll = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 22000, atk: 875, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['double_trooll', 'trooll_de_magie', 'troollement_de_tambour', 'coup_de_trooll']
 }
 
 monsters.bribes_de_gardien = {
@@ -11476,7 +11476,7 @@ monsters.troollibre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 25000, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['troollpoline', 'aspiratrooll', 'patroolleur']
 }
 
 monsters.incarnation_du_ch_tyx = {
@@ -11496,7 +11496,7 @@ monsters.mi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 30000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['enveloppage']
 }
 
 monsters.chi = {
@@ -11506,7 +11506,7 @@ monsters.chi = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 30000, atk: 800, spd: 100, res: { neutre: 15, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: []
+    moves: ['emoussage']
 }
 
 monsters.autel_de_la_chasse = {
@@ -11526,7 +11526,7 @@ monsters.gargandyas = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 100000, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['sceaux_telluriques', 'amnesie_animale', 'gargameha']
 }
 
 monsters.mama_troollette = {
@@ -11536,7 +11536,7 @@ monsters.mama_troollette = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 150000, atk: 1125, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['troollooportation', 'uppertrooll', 'mitroollette_de_poings', 'catastrooll']
 }
 
 monsters.kardorib = {
@@ -11741,7 +11741,7 @@ monsters.chafer_ronin = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 680, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['bushido', 'kikoha']
 }
 
 monsters.batofu = {
@@ -11751,7 +11751,7 @@ monsters.batofu = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 760, atk: 88, spd: 100, res: { neutre: 37, terre: 9, feu: -14, eau: -4, air: 36 } },
-    moves: []
+    moves: ['gotame', 'beco_de_batofu', 'lancer_de_tofu_fugace', 'liberte']
 }
 
 monsters.coffre_des_forgerons = {
@@ -11761,7 +11761,7 @@ monsters.coffre_des_forgerons = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 820, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tchaiste', 'avidite']
 }
 
 monsters.boostache = {
@@ -11771,7 +11771,7 @@ monsters.boostache = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 820, atk: 160, spd: 100, res: { neutre: 55, terre: 0, feu: 0, eau: 15, air: 85 } },
-    moves: []
+    moves: ['frayeurs', 'l_enfer_des_zombies', 'le_dentiste', 'esprit_empetrant']
 }
 
 monsters.kankreblath = {
@@ -11781,7 +11781,7 @@ monsters.kankreblath = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 820, atk: 160, spd: 100, res: { neutre: 0, terre: 34, feu: 12, eau: 26, air: 18 } },
-    moves: []
+    moves: ['blatheration', 'kankroulahoup', 'sfvc_r']
 }
 
 monsters.protozorreur = {
@@ -11791,7 +11791,7 @@ monsters.protozorreur = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['jet_proto', 'electrocution', 'infection']
 }
 
 monsters.kwakwa = {
@@ -11811,7 +11811,7 @@ monsters.directeur_grunob = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1200, atk: 150, spd: 100, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
-    moves: []
+    moves: ['sermon_educatif', 'chachagobert', 'cuvee_des_gobs']
 }
 
 monsters.rakoopeur = {
@@ -11821,7 +11821,7 @@ monsters.rakoopeur = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1200, atk: 144, spd: 100, res: { neutre: 0, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: []
+    moves: ['serpette', 'camaraderie']
 }
 
 monsters.sapik = {
@@ -11831,7 +11831,7 @@ monsters.sapik = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1300, atk: 144, spd: 100, res: { neutre: -20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['enguirlandage', 'calin_kipik', 'kokapik']
 }
 
 monsters.draegnerys = {
@@ -11891,7 +11891,7 @@ monsters.mawabouaino = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1400, atk: 168, spd: 100, res: { neutre: 35, terre: 25, feu: 15, eau: 15, air: 15 } },
-    moves: []
+    moves: ['cacaobstwuant', 'chocohowte', 'eclat', 'chocolave']
 }
 
 monsters.bworkette = {
@@ -11901,7 +11901,7 @@ monsters.bworkette = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1600, atk: 190, spd: 100, res: { neutre: 33, terre: 33, feu: 48, eau: 18, air: 28 } },
-    moves: []
+    moves: ['abolissement', 'charge', 'mot_croise', 'reconstitution_bwork']
 }
 
 monsters.scarabosse_dore = {
@@ -11921,7 +11921,7 @@ monsters.kanniboul_ebil = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1600, atk: 150, spd: 100, res: { neutre: -10, terre: 30, feu: 10, eau: 20, air: -10 } },
-    moves: []
+    moves: ['inspiration_moonesque', 'bouboule']
 }
 
 monsters.grozilla_somnambule = {
@@ -11931,7 +11931,7 @@ monsters.grozilla_somnambule = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1600, atk: 130, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
-    moves: []
+    moves: ['tyrannisation', 'gravite']
 }
 
 monsters.grasmera_somnambule = {
@@ -11951,7 +11951,7 @@ monsters.gourlo_le_terrible = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1900, atk: 140, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: []
+    moves: ['invocation_de_tonneau', 'un_gros_boulet_sur_un_autre_boulet', 'bombarde']
 }
 
 monsters.nelween = {
@@ -11961,7 +11961,7 @@ monsters.nelween = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1900, atk: 280, spd: 100, res: { neutre: 20, terre: 5, feu: 15, eau: 20, air: 15 } },
-    moves: []
+    moves: ['exhalation_toxique', 'mord_mollet', 'soin_diffus']
 }
 
 monsters.gelee_fraise_royale = {
@@ -12011,7 +12011,7 @@ monsters.shin_larve = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 2000, atk: 280, spd: 100, res: { neutre: 54, terre: 34, feu: 34, eau: -26, air: -26 } },
-    moves: []
+    moves: ['enlisement', 'convocation_gluante', 'deglutition']
 }
 
 monsters.corailleur_magistral = {
@@ -12021,7 +12021,7 @@ monsters.corailleur_magistral = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 2000, atk: 140, spd: 100, res: { neutre: 23, terre: -6, feu: 13, eau: 18, air: -7 } },
-    moves: []
+    moves: ['coraillement_magistral', 'lancer_de_corail_magistral', 'frappe_de_corail_magistrale']
 }
 
 monsters.dragonCochon = {
@@ -12091,7 +12091,7 @@ monsters.choudini = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 2900, atk: 360, spd: 100, res: { neutre: 0, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
+    moves: ['reste_assis', 'vinriktus', 'detriktus']
 }
 
 monsters.wa_wabbit = {
@@ -12101,7 +12101,7 @@ monsters.wa_wabbit = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3000, atk: 128, spd: 100, res: { neutre: 28, terre: 28, feu: 18, eau: -7, air: -12 } },
-    moves: []
+    moves: ['wawabehameha', 'abrutissement', 'awmuwe_woyale', 'cawotte_woyale']
 }
 
 monsters.le_chouque = {
@@ -12111,7 +12111,7 @@ monsters.le_chouque = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3100, atk: 300, spd: 100, res: { neutre: 14, terre: 0, feu: -10, eau: 36, air: 0 } },
-    moves: []
+    moves: ['coup_de_sabre_maudit']
 }
 
 monsters.craqueleur_legendaire = {
@@ -12121,7 +12121,7 @@ monsters.craqueleur_legendaire = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3100, atk: 235, spd: 100, res: { neutre: 58, terre: -12, feu: 58, eau: 67, air: -17 } },
-    moves: []
+    moves: ['peau_de_granite', 'pierre_etourdissante', 'peau_de_silex', 'invocation_montagnarde', 'peau_de_topaze', 'coeur_de_craqueleur', 'frappe_du_craqueleur_legendaire']
 }
 
 monsters.halouine = {
@@ -12131,7 +12131,7 @@ monsters.halouine = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3300, atk: 330, spd: 100, res: { neutre: 13, terre: 15, feu: 0, eau: 18, air: 5 } },
-    moves: []
+    moves: ['rattirance', 'moissonnage', 'plantes_zombies', 'citwouille_explosive']
 }
 
 monsters.tofu_royal = {
@@ -12141,7 +12141,7 @@ monsters.tofu_royal = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3400, atk: 300, spd: 100, res: { neutre: 38, terre: 23, feu: 18, eau: 23, air: 58 } },
-    moves: []
+    moves: ['dechiquetage', 'ecrasement_royal', 'invocation_royale_de_tofu', 'beco_du_tofu_royal']
 }
 
 monsters.blop_multicolore_royal = {
@@ -12151,7 +12151,7 @@ monsters.blop_multicolore_royal = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3400, atk: 350, spd: 100, res: { neutre: -15, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: []
+    moves: ['blopoutrage_royal', 'blopacification']
 }
 
 monsters.wa_wobot = {
@@ -12161,7 +12161,7 @@ monsters.wa_wobot = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3500, atk: 200, spd: 100, res: { neutre: -10, terre: 16, feu: 8, eau: 25, air: 21 } },
-    moves: []
+    moves: ['mekattwaction', 'twansmutation', 'mekawapace', 'wouste', 'substitution']
 }
 
 monsters.abraknydeAncestral = {
@@ -12181,7 +12181,7 @@ monsters.reine_nyee = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3600, atk: 300, spd: 100, res: { neutre: 20, terre: 30, feu: -5, eau: -20, air: 40 } },
-    moves: []
+    moves: ['ponte_d_oeuf', 'cisaillage', 'mitraille_de_soie']
 }
 
 monsters.kralamoureGeant = {
@@ -12201,7 +12201,7 @@ monsters.moon = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: []
+    moves: ['marteau_de_moon', 'choc_sismique', 'face_cachee']
 }
 
 monsters.mallefisk = {
@@ -12211,7 +12211,7 @@ monsters.mallefisk = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 22, terre: 12, feu: 28, eau: 6, air: -5 } },
-    moves: []
+    moves: ['ka_dabor', 'chte_hu', 'nonoube_noharnak']
 }
 
 monsters.tynril_consterne = {
@@ -12221,7 +12221,7 @@ monsters.tynril_consterne = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3800, atk: 350, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 0 } },
-    moves: []
+    moves: ['hiffe', 'helse', 'forque']
 }
 
 monsters.tynril_deconcerte = {
@@ -12231,7 +12231,7 @@ monsters.tynril_deconcerte = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3800, atk: 350, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 0, air: 200 } },
-    moves: []
+    moves: ['hiffe_eau', 'helse_eau']
 }
 
 monsters.tynril_perfide = {
@@ -12241,7 +12241,7 @@ monsters.tynril_perfide = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3800, atk: 350, spd: 100, res: { neutre: 200, terre: 200, feu: 0, eau: 200, air: 200 } },
-    moves: []
+    moves: ['hiffe_feu', 'helse']
 }
 
 monsters.tynril_ahuri = {
@@ -12251,7 +12251,7 @@ monsters.tynril_ahuri = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3800, atk: 350, spd: 100, res: { neutre: 200, terre: 0, feu: 200, eau: 200, air: 200 } },
-    moves: []
+    moves: ['hiffe_terre', 'helse_terre']
 }
 
 monsters.papa_nowel = {
@@ -12261,7 +12261,7 @@ monsters.papa_nowel = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3900, atk: 1300, spd: 100, res: { neutre: -2, terre: -2, feu: 40, eau: 40, air: 40 } },
-    moves: []
+    moves: ['engluement', 'dichotomie', 'aspir_nenfan', 'embuche_de_nowel', 'trak_nenfan', 'infantophagie']
 }
 
 monsters.Rathrosk = {
@@ -12281,7 +12281,7 @@ monsters.ush_galesh = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4000, atk: 500, spd: 100, res: { neutre: 20, terre: 10, feu: 20, eau: 20, air: 10 } },
-    moves: []
+    moves: ['eclair_rouge', 'pulsation_malsaine']
 }
 
 monsters.minotoror = {
@@ -12291,7 +12291,7 @@ monsters.minotoror = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4100, atk: 325, spd: 100, res: { neutre: 40, terre: -20, feu: 50, eau: 60, air: 50 } },
-    moves: []
+    moves: ['lancer_de_tofu', 'graines_magiques', 'sabotage']
 }
 
 monsters.founoroshi = {
@@ -12301,7 +12301,7 @@ monsters.founoroshi = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4200, atk: 500, spd: 100, res: { neutre: 50, terre: 15, feu: 35, eau: 5, air: 10 } },
-    moves: []
+    moves: ['fumee_alourdissante', 'fumee_asphyxiante', 'fumee_aveuglante', 'fumee_brulante', 'petards_volants']
 }
 
 monsters.rat_noir = {
@@ -12331,7 +12331,7 @@ monsters.pounicheur = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4400, atk: 300, spd: 100, res: { neutre: 12, terre: 28, feu: -5, eau: 23, air: 12 } },
-    moves: []
+    moves: ['kissifrotsipik', 'poulverisation']
 }
 
 monsters.maitre_corbac = {
@@ -12341,7 +12341,7 @@ monsters.maitre_corbac = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4500, atk: 440, spd: 100, res: { neutre: 25, terre: 25, feu: 45, eau: 55, air: 55 } },
-    moves: []
+    moves: ['sanction_tenebreuse', 'lien_volatile', 'invocation_de_corbac', 'carapace_d_ailes']
 }
 
 monsters.skeunk = {
@@ -12351,7 +12351,7 @@ monsters.skeunk = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4700, atk: 163, spd: 100, res: { neutre: 28, terre: 28, feu: -5, eau: -5, air: 38 } },
-    moves: []
+    moves: ['chant_regenerant', 'chant_stimulant', 'chant_de_jouvence', 'chant_immobilisant', 'chant_foudroyant']
 }
 
 monsters.grozilla_epuise = {
@@ -12381,7 +12381,7 @@ monsters.nagate = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4900, atk: 460, spd: 100, res: { neutre: 5, terre: 5, feu: -5, eau: 15, air: 10 } },
-    moves: []
+    moves: ['eau_fraiche', 'hatsunamiku', 'colere_bouillonnante', 'hors_de_ma_vue', 'invocation_de_bombombre_de_nagate']
 }
 
 monsters.royalmouth = {
@@ -12391,7 +12391,7 @@ monsters.royalmouth = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5000, atk: 500, spd: 100, res: { neutre: 23, terre: 33, feu: 26, eau: -11, air: 48 } },
-    moves: []
+    moves: ['regroupmouth', 'lichemouth', 'aleamouth']
 }
 
 monsters.fraktale = {
@@ -12401,7 +12401,7 @@ monsters.fraktale = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5000, atk: 300, spd: 100, res: { neutre: 26, terre: 12, feu: 21, eau: -8, air: 9 } },
-    moves: []
+    moves: ['instabilite_temporelle', 'chaleur_fugace', 'frakasse']
 }
 
 monsters.damadrya = {
@@ -12411,7 +12411,7 @@ monsters.damadrya = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5000, atk: 380, spd: 100, res: { neutre: 7, terre: 12, feu: 2, eau: 8, air: 10 } },
-    moves: []
+    moves: ['aubepine', 'bourgeonnement', 'urticaire']
 }
 
 monsters.haute_truche = {
@@ -12421,7 +12421,7 @@ monsters.haute_truche = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5200, atk: 600, spd: 100, res: { neutre: -15, terre: 10, feu: 10, eau: 30, air: 25 } },
-    moves: []
+    moves: ['prendre_son_pied', 'flatulences_buccales', 'degazage', 'tete_dans_le_sable']
 }
 
 monsters.roissingue = {
@@ -12441,7 +12441,7 @@ monsters.el_piko = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5600, atk: 520, spd: 100, res: { neutre: 30, terre: 20, feu: 15, eau: 25, air: 20 } },
-    moves: []
+    moves: ['pikak', 'pikepik', 'bamba']
 }
 
 monsters.meulou = {
@@ -12451,7 +12451,7 @@ monsters.meulou = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5700, atk: 400, spd: 100, res: { neutre: 20, terre: 30, feu: -5, eau: 40, air: 40 } },
-    moves: []
+    moves: ['etripage', 'rage_reconstituante']
 }
 
 monsters.capitaine_ekarlatte = {
@@ -12461,7 +12461,7 @@ monsters.capitaine_ekarlatte = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5700, atk: 400, spd: 100, res: { neutre: 12, terre: 23, feu: 7, eau: 14, air: 31 } },
-    moves: []
+    moves: ['case_depart', 'tourbilaule', 'dansorcellement', 'enfumage']
 }
 
 monsters.kharnozor = {
@@ -12481,7 +12481,7 @@ monsters.koulosse = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5800, atk: 2625, spd: 100, res: { neutre: 78, terre: 28, feu: -12, eau: -12, air: 33 } },
-    moves: []
+    moves: ['invocation_de_bouftou_des_cavernes', 'calumet_de_la_paix', 'appel_du_koulosse', 'souffle_du_koulosse']
 }
 
 monsters.shihan = {
@@ -12491,7 +12491,7 @@ monsters.shihan = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5800, atk: 500, spd: 100, res: { neutre: 15, terre: -15, feu: 10, eau: -20, air: 30 } },
-    moves: []
+    moves: ['qikong', 'grande_lame_du_vent', 'ba_gua_zhang', 'brise_apaisante']
 }
 
 monsters.hanshi = {
@@ -12501,7 +12501,7 @@ monsters.hanshi = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5800, atk: 500, spd: 100, res: { neutre: -20, terre: 10, feu: -15, eau: 20, air: 25 } },
-    moves: []
+    moves: ['source_des_vents', 'jufang', 'da_bang', 'ang_eurfiste']
 }
 
 monsters.maitre_des_pantins = {
@@ -12511,7 +12511,7 @@ monsters.maitre_des_pantins = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6000, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tirer_les_ficelles']
 }
 
 monsters.tanukoui_san = {
@@ -12521,7 +12521,7 @@ monsters.tanukoui_san = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6100, atk: 460, spd: 100, res: { neutre: 30, terre: 15, feu: -25, eau: -2, air: 15 } },
-    moves: []
+    moves: ['coup_de_boules', 'uchimizu', 'casse_noisettes', 'tibagin', 'boulodrome']
 }
 
 monsters.sphincter_cell = {
@@ -12531,7 +12531,7 @@ monsters.sphincter_cell = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6400, atk: 355, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: []
+    moves: ['raccourci', 'rasoir', 'mutagen']
 }
 
 monsters.jorbak = {
@@ -12541,7 +12541,7 @@ monsters.jorbak = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6500, atk: 440, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['la_pelle_du_large', 'la_pierre_philosophale']
 }
 
 monsters.mansot_royal = {
@@ -12551,7 +12551,7 @@ monsters.mansot_royal = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6500, atk: 600, spd: 100, res: { neutre: 29, terre: 25, feu: 24, eau: 34, air: 22 } },
-    moves: []
+    moves: ['mansoluble', 'mansolenoide']
 }
 
 monsters.bethel_akarna = {
@@ -12561,7 +12561,7 @@ monsters.bethel_akarna = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['pantang', 'etoile_de_mer']
 }
 
 monsters.croqueleur = {
@@ -12571,7 +12571,7 @@ monsters.croqueleur = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6800, atk: 467, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['attraction_gourmande', 'total_impwakt', 'croustichoc']
 }
 
 monsters.kimbo = {
@@ -12581,7 +12581,7 @@ monsters.kimbo = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6900, atk: 3100, spd: 100, res: { neutre: 400, terre: 400, feu: 400, eau: 400, air: 400 } },
-    moves: []
+    moves: ['boum_boh', 'invocation_du_disciple', 'etat_pair', 'etat_impair', 'furie_du_kimbo', 'teleportation_du_kimbo']
 }
 
 monsters.crocabulia = {
@@ -12601,7 +12601,7 @@ monsters.silf_le_rasboul_majeur = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 7000, atk: 215, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: []
+    moves: ['rasage', 'hololole', 'recrutement']
 }
 
 monsters.hell_mina = {
@@ -12611,7 +12611,7 @@ monsters.hell_mina = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 7200, atk: 540, spd: 100, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
-    moves: []
+    moves: ['bond_malefique', 'fatalite', 'extermination_iopesque', 'prejudice']
 }
 
 monsters.ben_le_ripate = {
@@ -12621,7 +12621,7 @@ monsters.ben_le_ripate = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 7200, atk: 700, spd: 100, res: { neutre: 24, terre: 16, feu: 17, eau: 20, air: 26 } },
-    moves: []
+    moves: ['mousse_haillon', 'tore_tue', 'frere_de_la_cote', 'mate_l_eau']
 }
 
 monsters.chene_mou = {
@@ -12641,7 +12641,7 @@ monsters.obsidiantre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8000, atk: 800, spd: 100, res: { neutre: 25, terre: 23, feu: 27, eau: 21, air: 26 } },
-    moves: []
+    moves: ['objection', 'scie_lisse', 'andesite', 'scie_licate']
 }
 
 monsters.shogun_tofugawa = {
@@ -12651,7 +12651,7 @@ monsters.shogun_tofugawa = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8000, atk: 630, spd: 100, res: { neutre: -20, terre: 5, feu: -10, eau: 10, air: 20 } },
-    moves: []
+    moves: ['hageshi_kaze', 'aspiration_du_yokomainu', 'shin_kudaigyoku']
 }
 
 monsters.ougah = {
@@ -12661,7 +12661,7 @@ monsters.ougah = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8400, atk: 900, spd: 100, res: { neutre: 18, terre: 13, feu: 15, eau: 20, air: 20 } },
-    moves: []
+    moves: ['bizarrerie', 'opiniatrete', 'sirop_spore', 'spore_hanchambre', 'les_coprins_d_abord']
 }
 
 monsters.kanigroula = {
@@ -12671,7 +12671,7 @@ monsters.kanigroula = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8400, atk: 600, spd: 100, res: { neutre: 40, terre: 20, feu: 15, eau: 25, air: 15 } },
-    moves: []
+    moves: ['chachyene_cinglante', 'rugissement_matriarcal', 'motivation_captivante']
 }
 
 monsters.kolosso = {
@@ -12681,7 +12681,7 @@ monsters.kolosso = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8600, atk: 750, spd: 100, res: { neutre: 25, terre: 16, feu: 22, eau: 10, air: 29 } },
-    moves: []
+    moves: ['razepoutine', 'baikal', 'illyana']
 }
 
 monsters.professeur_xa = {
@@ -12691,7 +12691,7 @@ monsters.professeur_xa = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8600, atk: 750, spd: 100, res: { neutre: 18, terre: 24, feu: 29, eau: 16, air: 9 } },
-    moves: []
+    moves: ['acolyte', 'cerebro']
 }
 
 monsters.phossile = {
@@ -12701,7 +12701,7 @@ monsters.phossile = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8600, atk: 500, spd: 100, res: { neutre: -5, terre: 22, feu: 28, eau: 13, air: 37 } },
-    moves: []
+    moves: ['roc_phorreur', 'phorce', 'bain_de_lave', 'epicentre']
 }
 
 monsters.tengu_givrefoux = {
@@ -12711,7 +12711,7 @@ monsters.tengu_givrefoux = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8800, atk: 700, spd: 100, res: { neutre: 33, terre: 13, feu: 19, eau: 28, air: 21 } },
-    moves: []
+    moves: ['torgnole_givree', 'calin_frigorifique', 'farce', 'foux_d_amour', 'malice_glacee']
 }
 
 monsters.xlii = {
@@ -12721,7 +12721,7 @@ monsters.xlii = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8800, atk: 600, spd: 100, res: { neutre: 6, terre: 2, feu: 18, eau: 8, air: 26 } },
-    moves: []
+    moves: ['coquetterie', 'souffle_demoniaque', 'dereglement']
 }
 
 monsters.koumiho = {
@@ -12731,7 +12731,7 @@ monsters.koumiho = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8800, atk: 680, spd: 100, res: { neutre: 19, terre: -11, feu: 23, eau: -6, air: 12 } },
-    moves: []
+    moves: ['hoshi_no_tama', 'no_raj', 'aura_des_kitsounebi', 'koumiho_no_kaze', 'supaku', 'pougix', 'kaiyo', 'retraite']
 }
 
 monsters.superviz_uf = {
@@ -12741,7 +12741,7 @@ monsters.superviz_uf = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8800, atk: 600, spd: 100, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
-    moves: []
+    moves: ['invokabombz', 'bzelan', 'carapabz', 'clonabz', 'abzlation', 'bzovolution']
 }
 
 monsters.bworker = {
@@ -12751,7 +12751,7 @@ monsters.bworker = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9600, atk: 720, spd: 100, res: { neutre: 20, terre: 30, feu: 25, eau: 20, air: -15 } },
-    moves: []
+    moves: ['sanction_bwork', 'correction_bwork', 'fauchoir']
 }
 
 monsters.pere_fwetar = {
@@ -12761,7 +12761,7 @@ monsters.pere_fwetar = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9600, atk: 320, spd: 100, res: { neutre: -2, terre: -2, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    moves: ['fwetage', 'parade_des_vieux_jouets', 'invocation_de_jouet_casse']
 }
 
 monsters.korriandre = {
@@ -12771,7 +12771,7 @@ monsters.korriandre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9700, atk: 700, spd: 100, res: { neutre: 45, terre: 9, feu: 15, eau: 5, air: 17 } },
-    moves: []
+    moves: ['riraule', 'loute', 'hairpay', 'paixe']
 }
 
 monsters.toxoliath = {
@@ -12781,7 +12781,7 @@ monsters.toxoliath = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9700, atk: 600, spd: 100, res: { neutre: 26, terre: 13, feu: 19, eau: 32, air: 23 } },
-    moves: []
+    moves: ['venin_salvateur', 'poison_volatile', 'vile_ruse', 'flacune']
 }
 
 monsters.agonie_la_deterree = {
@@ -12791,7 +12791,7 @@ monsters.agonie_la_deterree = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
-    moves: []
+    moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
 }
 
 monsters.shuccube = {
@@ -12801,7 +12801,7 @@ monsters.shuccube = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
-    moves: []
+    moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
 }
 
 monsters.noximilien_l_horloger = {
@@ -12811,7 +12811,7 @@ monsters.noximilien_l_horloger = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
-    moves: []
+    moves: ['temps_de_retard']
 }
 
 monsters.minotot = {
@@ -12821,7 +12821,7 @@ monsters.minotot = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 10000, atk: 600, spd: 100, res: { neutre: 40, terre: 40, feu: 40, eau: -5, air: -5 } },
-    moves: []
+    moves: ['destinos', 'mythos', 'kitos', 'motivatos']
 }
 
 monsters.grozilla_fatigue = {
@@ -12851,7 +12851,7 @@ monsters.glourseleste = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 750, spd: 100, res: { neutre: 25, terre: 21, feu: 16, eau: 24, air: 23 } },
-    moves: []
+    moves: ['gloursondulation', 'gloursombre', 'petit_glours_brun']
 }
 
 monsters.grolloum = {
@@ -12861,7 +12861,7 @@ monsters.grolloum = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 1000, spd: 100, res: { neutre: 34, terre: 21, feu: 31, eau: -5, air: 24 } },
-    moves: []
+    moves: ['frimas', 'gelee_blanche', 'banquise', 'cycle']
 }
 
 monsters.fuji_givrefoux_nourriciere = {
@@ -12871,7 +12871,7 @@ monsters.fuji_givrefoux_nourriciere = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 750, spd: 100, res: { neutre: -6, terre: 6, feu: 14, eau: 12, air: -11 } },
-    moves: []
+    moves: ['progeniture', 'lait_maternel', 'foufoux']
 }
 
 monsters.ombre = {
@@ -12881,7 +12881,7 @@ monsters.ombre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['liaison', 'distorsion', 'penombre']
 }
 
 monsters.comte_razof = {
@@ -12891,7 +12891,7 @@ monsters.comte_razof = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 760, spd: 100, res: { neutre: 100, terre: 120, feu: 115, eau: 135, air: 105 } },
-    moves: []
+    moves: ['pelliste', 'archi_pelle', 'chasse_gardee', 'trophee_de_chasse']
 }
 
 monsters.julith = {
@@ -12901,7 +12901,7 @@ monsters.julith = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 800, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
-    moves: []
+    moves: ['charge_eclair']
 }
 
 monsters.dathura = {
@@ -12911,7 +12911,7 @@ monsters.dathura = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 800, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['tige_empoisonnee', 'bulbombe', 'pistil_affaiblissant']
 }
 
 monsters.pere_ver = {
@@ -12921,7 +12921,7 @@ monsters.pere_ver = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 12000, atk: 680, spd: 100, res: { neutre: 35, terre: 20, feu: 10, eau: 10, air: 50 } },
-    moves: []
+    moves: ['paternalisme', 'coup_d_il', 'bien_vu_l_aveugle']
 }
 
 monsters.larve_de_rushu = {
@@ -12931,7 +12931,7 @@ monsters.larve_de_rushu = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 12000, atk: 800, spd: 100, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
-    moves: []
+    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
 }
 
 monsters.leorictus_le_roi_grimacant = {
@@ -12941,7 +12941,7 @@ monsters.leorictus_le_roi_grimacant = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 12000, atk: 800, spd: 100, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
-    moves: []
+    moves: ['mortelage', 'oppression', 'trombe_d_acier', 'martel']
 }
 
 monsters.klime = {
@@ -12951,7 +12951,7 @@ monsters.klime = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 700, spd: 100, res: { neutre: 14, terre: 27, feu: 16, eau: 9, air: 25 } },
-    moves: []
+    moves: ['cuir_a_feu_doux', 'cuir_moustache', 'moustacheron']
 }
 
 monsters.missiz_frizz = {
@@ -12961,7 +12961,7 @@ monsters.missiz_frizz = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 700, spd: 100, res: { neutre: 14, terre: 27, feu: 16, eau: 21, air: 25 } },
-    moves: []
+    moves: ['cristallisation', 'sang_froid', 'glace_trop_physique']
 }
 
 monsters.nileza = {
@@ -12971,7 +12971,7 @@ monsters.nileza = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 700, spd: 100, res: { neutre: 14, terre: 15, feu: 16, eau: 32, air: 25 } },
-    moves: []
+    moves: ['fraction_de_molaire', 'glace_seche', 'liqueur_de_fee_ling']
 }
 
 monsters.sylargh = {
@@ -12981,7 +12981,7 @@ monsters.sylargh = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 700, spd: 100, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
-    moves: []
+    moves: ['poincon', 'mortier', 'degage_de_qualite']
 }
 
 monsters.comte_harebourg = {
@@ -12991,7 +12991,7 @@ monsters.comte_harebourg = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 14, terre: 17, feu: 16, eau: 29, air: 25 } },
-    moves: []
+    moves: ['contretemps', 'multicomte', 'jaquemart']
 }
 
 monsters.merkator = {
@@ -13001,7 +13001,7 @@ monsters.merkator = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 700, spd: 100, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
-    moves: []
+    moves: ['torpillage_de_glace', 'sondage_de_bronze', 'baphe_thysca', 'bouche_a_bouche']
 }
 
 monsters.solar = {
@@ -13011,7 +13011,7 @@ monsters.solar = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 40, terre: 20, feu: 5, eau: 20, air: 5 } },
-    moves: []
+    moves: ['aube_saine', 'leve_tot', 'rossee_matinale', 'demon_de_midi', 'coup_de_soleil', 'eruption_solaire', 'coucher_de_soleil', 'cours_du_soir', 'le_grand_soir', 'demons_de_minuit', 'nuit_blanche', 'protecteur_d_emoi']
 }
 
 monsters.percimol = {
@@ -13021,7 +13021,7 @@ monsters.percimol = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['coup_de_marre_d_eau', 'courage_de_l_epouvantail', 'impatience']
 }
 
 monsters.dechireuse = {
@@ -13031,7 +13031,7 @@ monsters.dechireuse = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
-    moves: []
+    moves: ['hemorasoir', 'brutank', 'atermoiement', 'recentrage', 'proxicaire', 'musculot']
 }
 
 monsters.torkelonia = {
@@ -13041,7 +13041,7 @@ monsters.torkelonia = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 14000, atk: 800, spd: 100, res: { neutre: 12, terre: 14, feu: 22, eau: 24, air: 18 } },
-    moves: []
+    moves: ['faisceau_lunaire', 'carapace_lunaire', 'ricochet_sacre', 'goutte_lunaire']
 }
 
 monsters.kabahal = {
@@ -13051,7 +13051,7 @@ monsters.kabahal = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 14000, atk: 800, spd: 100, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
-    moves: []
+    moves: ['ratafia_putride', 'offrande_au_chaos', 'paume_incandescente', 'il_du_nocher', 'd_une_main_de_maitre', 'Pentademonium']
 }
 
 monsters.roi_nidas = {
@@ -13061,7 +13061,7 @@ monsters.roi_nidas = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
-    moves: []
+    moves: ['confusion', 'attrape_mutin', 'mon_precieux']
 }
 
 monsters.reine_des_voleurs = {
@@ -13071,7 +13071,7 @@ monsters.reine_des_voleurs = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 31, terre: 26, feu: 42, eau: 13, air: 18 } },
-    moves: []
+    moves: ['mort_en_sursis', 'coup_critique']
 }
 
 monsters.vortex = {
@@ -13081,7 +13081,7 @@ monsters.vortex = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
-    moves: []
+    moves: ['heuristique', 'morfaille', 'en_temps_et_en_heure']
 }
 
 monsters.chal_il = {
@@ -13091,7 +13091,7 @@ monsters.chal_il = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
-    moves: []
+    moves: ['toilette_ecaflip', 'farce_et_attrape', 'gros_yeux']
 }
 
 monsters.grozilla = {
@@ -13121,7 +13121,7 @@ monsters.dantinea = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 14, terre: 18, feu: 28, eau: 23, air: 17 } },
-    moves: []
+    moves: ['siphon_d_ame', 'cooquillation']
 }
 
 monsters.larve_de_koutoulou = {
@@ -13131,7 +13131,7 @@ monsters.larve_de_koutoulou = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 16, terre: 22, feu: 17, eau: 17, air: 28 } },
-    moves: []
+    moves: ['frappe_koutonienne', 'permutation_inquietante']
 }
 
 monsters.tal_kasha = {
@@ -13141,7 +13141,7 @@ monsters.tal_kasha = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 20, terre: 30, feu: 15, eau: 20, air: 10 } },
-    moves: []
+    moves: ['cheveux_partir_de_la', 'filature', 'transe_perse']
 }
 
 monsters.anerice_la_shushess = {
@@ -13151,7 +13151,7 @@ monsters.anerice_la_shushess = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 15, terre: 20, feu: 10, eau: 25, air: 30 } },
-    moves: []
+    moves: ['goulification', 'vampyrisme', 'appetit_sanguinaire']
 }
 
 monsters.dazak_martegel = {
@@ -13161,7 +13161,7 @@ monsters.dazak_martegel = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 110, terre: 140, feu: 120, eau: 105, air: 130 } },
-    moves: []
+    moves: ['empalement_royal', 'ninflitration', 'nintrepidite']
 }
 
 monsters.pretresse_de_kao = {
@@ -13171,7 +13171,7 @@ monsters.pretresse_de_kao = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 901, spd: 100, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
-    moves: []
+    moves: ['cloches_du_kao', 'equador', 'spatule_tranche_gourmands', 'commerce_inequitable']
 }
 
 monsters.misere = {
@@ -13181,7 +13181,7 @@ monsters.misere = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 901, spd: 100, res: { neutre: 9, terre: 32, feu: 19, eau: 12, air: 28 } },
-    moves: []
+    moves: ['balance_fleau', 'funerailles_celestes', 'grand_urubu', 'dakhma', 'barchan']
 }
 
 monsters.barberyl_clochecuivre = {
@@ -13191,7 +13191,7 @@ monsters.barberyl_clochecuivre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 566, spd: 100, res: { neutre: -9, terre: 10, feu: 2, eau: 4, air: -7 } },
-    moves: []
+    moves: ['ninfernal', 'nimparabilite', 'ninvasion']
 }
 
 monsters.dechireuse_perturbee = {
@@ -13211,7 +13211,7 @@ monsters.champion_de_l_aurore_pourpre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 19000, atk: 800, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['embrigadement', 'troolverisation', 'exaction', 'catapultage']
 }
 
 monsters.l_eternel_conflit = {
@@ -13221,7 +13221,7 @@ monsters.l_eternel_conflit = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 20000, atk: 800, spd: 100, res: { neutre: 20, terre: 29, feu: 17, eau: 23, air: 31 } },
-    moves: []
+    moves: ['poing_de_la_cite_sombre', 'poing_de_la_cite_blanche', 'cycle_de_la_violence', 'massacre_de_l_aurore_pourpre']
 }
 
 monsters.superviz_uf_perturbe = {
@@ -13241,7 +13241,7 @@ monsters.corruption = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 21000, atk: 901, spd: 100, res: { neutre: 22, terre: 16, feu: 5, eau: 11, air: 25 } },
-    moves: []
+    moves: ['beche_corrompue', 'incu_batteur', 'convalescence_prolifique', 'putrefaction', 'bombe_bacteriologique', 'eclosion_germinal']
 }
 
 monsters.guerre = {
@@ -13251,7 +13251,7 @@ monsters.guerre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 22000, atk: 901, spd: 100, res: { neutre: 30, terre: 35, feu: 35, eau: 25, air: 25 } },
-    moves: []
+    moves: ['bravoure', 'impact', 'lynchage', 'magmalefice', 'celerite', 'martyre']
 }
 
 monsters.servitude = {
@@ -13261,7 +13261,7 @@ monsters.servitude = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 26000, atk: 800, spd: 100, res: { neutre: 20, terre: 15, feu: 30, eau: 25, air: 25 } },
-    moves: []
+    moves: ['trahison', 'asservissement', 'joug_protecteur']
 }
 
 monsters.roi_imagami = {
@@ -13271,7 +13271,7 @@ monsters.roi_imagami = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
-    moves: []
+    moves: ['parchemin_de_traverse', 'papetuerie', 'roque_papier_ciseaux', 'kami_no_jishin']
 }
 
 monsters.reine_amirukam = {
@@ -13281,7 +13281,7 @@ monsters.reine_amirukam = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
-    moves: []
+    moves: ['toner_deubraiste', 'getsuga_tensho', 'monarchie_des_roses_noires']
 }
 
 monsters.venerable_endormi = {
@@ -13291,7 +13291,7 @@ monsters.venerable_endormi = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
-    moves: []
+    moves: ['saut_imperieux', 'cri_venerable', 'primattaque', 'primartelement', 'charge_fantastique', 'boulet_fantastique']
 }
 
 monsters.qilby = {
@@ -13301,7 +13301,7 @@ monsters.qilby = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 27000, atk: 1000, spd: 100, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
-    moves: []
+    moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail']
 }
 
 monsters.belladone = {
@@ -13311,7 +13311,7 @@ monsters.belladone = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 29000, atk: 640, spd: 100, res: { neutre: 22, terre: 18, feu: 8, eau: 24, air: 14 } },
-    moves: []
+    moves: ['enchantement_fatal', 'charme_malefique', 'glyphe_de_condamnation', 'dechainement_fantasmagorique', 'malefice_immobile', 'conjuration_entravante']
 }
 
 monsters.venerable_endormi_perturbe = {
@@ -13331,7 +13331,7 @@ monsters.capitaine_meno = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 40000, atk: 800, spd: 100, res: { neutre: 11, terre: 33, feu: 26, eau: 13, air: 17 } },
-    moves: []
+    moves: ['crystalisation', 'matiere_volatile']
 }
 
 monsters.cire_momore = {
@@ -13341,7 +13341,7 @@ monsters.cire_momore = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 41000, atk: 800, spd: 100, res: { neutre: 15, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: []
+    moves: ['metal_hurlant', 'briselame', 'triste_cire']
 }
 
 monsters.ilyzaelle = {
@@ -13351,5 +13351,5 @@ monsters.ilyzaelle = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 42000, atk: 800, spd: 100, res: { neutre: 20, terre: 30, feu: 40, eau: 15, air: 25 } },
-    moves: []
+    moves: ['hantame', 'lance_de_l_effroi']
 }
