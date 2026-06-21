@@ -2372,7 +2372,7 @@ areas.donjonAcademieGobs = {
     icon: "images/monsters/Directeur_Grunob.png",
     description: "",
     spawns: [
-        { id: 'directeurGrunob', weight: 100 }
+        { id: 'directeur_grunob', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2421,7 +2421,7 @@ areas.donjonSquelettes = {
     icon: "images/monsters/Chafer_Rōnin.png",
     description: "Dans les profondeurs d'un ancien cimetière oublié errent les âmes de guerriers incapables de trouver le repos. Les Chafers y poursuivent éternellement leurs combats, guidés par l'honneur perdu du redoutable Chafer Rônin.",
     spawns: [
-        { id: 'chaferRonin', weight: 100 }
+        { id: 'chafer_ronin', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2535,7 +2535,7 @@ areas.donjonForgerons = {
     icon: "images/monsters/Coffre_des_Forgerons.png",
     description: "Abandonnées depuis des années, les anciennes forges recèlent encore de nombreux trésors. Mais les richesses attirent les convoitises, et le mystérieux Coffre des Forgerons semblent prêts à tout pour protéger leur butin.",
     spawns: [
-        { id: 'coffreDesForgerons', weight: 100 }
+        { id: 'coffre_des_forgerons', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2556,7 +2556,7 @@ areas.donjonHesque = {
     background: "",
     icon: 'images/monsters/Corailleur_Magistral.png',
     description: "Sous les côtes d'Asse se cache un réseau de cavernes coralliennes où prospèrent d'étranges créatures marines. Les Corailleurs y règnent en maîtres, façonnant lentement la roche au gré des marées.",
-    spawns: [{ id: 'corailleurMagistral', weight: 100 }],
+    spawns: [{ id: 'corailleur_magistral', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
     ]
@@ -2572,7 +2572,7 @@ areas.donjonLarves = {
     background: "",
     icon: 'images/monsters/Shin_Larve.png',
     description: "Dans les entrailles du monde s'étend un immense réseau de galeries creusées par des larves géantes. Au centre de cette ruche souterraine veille la légendaire Shin Larve, mère d'innombrables générations.",
-    spawns: [{ id: 'shinLarve', weight: 100 }],
+    spawns: [{ id: 'shin_larve', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
     ]
@@ -2652,7 +2652,7 @@ areas.donjonWabbit = {
     icon: "images/monsters/Wa_Wabbit.png",
     description: "Pewché au sommet de l'île des Wabbits, ce château extwavagant abwite le célèbwe Wa Wabbit. Dewwièwe son appawence widicule se cache pouwtant un souverain impwévisible entouwé d'une awmée de wabbits dévoués.",
     spawns: [
-        { id: 'waWabbit', weight: 100 }
+        { id: 'wa_wabbit', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2673,7 +2673,7 @@ areas.donjonKanniboul = {
     icon: "images/monsters/Kanniboul_Ebil.png",
     description: "Perdu dans la jungle de Moon, le village des Kannibouls demeure inaccessible aux étrangers. Les guerriers de la tribu y vénèrent d'anciennes traditions et accueillent rarement les visiteurs avec bienveillance.",
     spawns: [
-        { id: 'kannibouleEbil', weight: 100 }
+        { id: 'kanniboul_ebil', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2737,7 +2737,7 @@ areas.donjonCraqueleurs = {
     icon: "images/monsters/Craqueleur_Légendaire.png",
     description: "Au milieu d'impressionnants monolithes de pierre vivent les Craqueleurs, créatures nées des profondeurs de la terre. Dominant ces géants minéraux, le Craqueleur Légendaire incarne la force brute des montagnes d'Amakna.",
     spawns: [
-        { id: 'craqueleurLegendaire', weight: 100 }
+        { id: 'craqueleur_legendaire', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2807,7 +2807,7 @@ areas.donjonTerrierWabbit = {
     icon: "images/monsters/Wa_Wobot.png",
     description: "Sous le château woyal s'étend un vaste wéseau de galewies où les Wabbits ont développé leuws plus étwanges inventions. Au cœuw de ce labywinthe mécanique veille le wedoutable Wa Wobot, pwotecteur du woyaume mais aussi du wéputé Dofus Cawotte.",
     spawns: [
-        { id: 'waWobot', weight: 100 }
+        { id: 'wa_wobot', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2876,7 +2876,7 @@ areas.donjonReineNyee = {
     icon: "images/monsters/Reine_Nyée.png",
     description: "",
     spawns: [
-        { id: 'reineNyee', weight: 100 }
+        { id: 'reine_nyee', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2897,7 +2897,7 @@ areas.donjonChouque = {
     icon: "images/monsters/Le_Chouque.png",
     description: "",
     spawns: [
-        { id: 'leChouque', weight: 100 }
+        { id: 'le_chouque', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -2994,7 +2994,7 @@ areas.donjonRasboul = {
     background: "",
     icon: 'images/monsters/Silf_le_Rasboul_Majeur.png',
     description: "Au cœur des plaines d'Otomaï se trouve le territoire du Rasboul Majeur. Ce gigantesque insecte ou que sais-je règne sur ces plaines et défend agilement son royaume au prix de la vie de ses invocations.",
-    spawns: [{ id: 'silfLeRasboulMajeur', weight: 100 }],
+    spawns: [{ id: 'silf_le_rasboul_majeur', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3011,7 +3011,7 @@ areas.donjonDramak = {
     icon: "images/monsters/Maître_des_Pantins.png",
     description: "",
     spawns: [
-        { id: 'maitreDePantins', weight: 100 }
+        { id: 'maitre_des_pantins', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3073,7 +3073,7 @@ areas.donjonCorbac = {
     background: "",
     icon: 'images/monsters/Maître_Corbac.png',
     description: "Derrière les rayonnages poussiéreux de cette bibliothèque oubliée se cache le domaine du Maître Corbac. Savant, collectionneur et manipulateur, il protège jalousement les connaissances accumulées au fil des siècles.",
-    spawns: [{ id: 'maitreCorbac', weight: 100 }],
+    spawns: [{ id: 'maitre_corbac', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
         { itemId: 'Dofus_Pourpre',      dropRate: 0.0005}
@@ -3090,7 +3090,7 @@ areas.donjonRatBlanc = {
     background: "",
     icon: 'images/monsters/Rat_Blanc.png',
     description: "Dans les égouts de Bonta, le Rat Blanc a bâti un véritable empire souterrain. Ses fidèles accumulent vivres et richesses, faisant de ce garde-manger l'un des lieux les plus convoités des profondeurs.",
-    spawns: [{ id: 'ratBlanc', weight: 100 }],
+    spawns: [{ id: 'rat_blanc', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3106,7 +3106,7 @@ areas.donjonRatNoir = {
     background: "",
     icon: 'images/monsters/Rat_Noir.png',
     description: "Sous les rues de Brâkmar s'étend le repaire du Rat Noir et de sa meute. Rusés et impitoyables, ces rongeurs ont transformé les souterrains en un royaume où règnent l'ombre et la maladie.",
-    spawns: [{ id: 'ratNoir', weight: 100 }],
+    spawns: [{ id: 'rat_noir', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3201,7 +3201,7 @@ areas.donjonTofulaillerRoyal = {
     background: "",
     icon: 'images/monsters/Tofu_Royal.png',
     description: "Des milliers de Tofus s'agitent dans ce gigantesque nid dirigé par leur souverain. Malgré son apparence inoffensive et plutot mignonne, le Tofu Royal défend farouchement sa couvée.",
-    spawns: [{ id: 'tofuRoyal', weight: 100 }],
+    spawns: [{ id: 'tofu_royal', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3260,7 +3260,7 @@ areas.donjonBlopMulticolore = {
     icon: "images/monsters/Blop_Multicolore_Royal.png",
     description: "Au centre du Clos des Blops réside une créature aussi étrange que redoutable. Né de l'union des différentes lignées de Blops, le Blop Multicolore Royal est le maître incontesté de ce royaume gélatineux. Il vous en fera voir de toutes les couleurs.",
     spawns: [
-        { id: 'blopMulticoloreRoyal', weight: 100 }
+        { id: 'blop_multicolore_royal', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3282,7 +3282,7 @@ areas.donjonHauteTruche = {
     icon: "images/monsters/Haute_Truche.png",
     description: "",
     spawns: [
-        { id: 'hauteTruche', weight: 100 }
+        { id: 'haute_truche', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3303,7 +3303,7 @@ areas.donjonElPiko = {
     icon: "images/monsters/El_Piko.png",
     description: "",
     spawns: [
-        { id: 'elPiko', weight: 100 }
+        { id: 'el_piko', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3346,7 +3346,7 @@ areas.donjonTanukoi = {
     icon: "images/monsters/Tanukouï_San.png",
     description: "",
     spawns: [
-        { id: 'tanukouiSan', weight: 100 }
+        { id: 'tanukoui_san', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3372,7 +3372,7 @@ areas.donjonCheneMou = {
     icon: "images/monsters/Chêne_Mou.png",
     description: "Autrefois sage parmi les siens, le Chêne Mou fut corrompu par une magie ancienne qui le plongea dans la folie. Depuis, il règne sur une partie de la Forêt des Abraknydes, transformant chaque intrus en ennemi de la nature.",
     spawns: [
-        { id: 'cheneMou', weight: 100 }
+        { id: 'chene_mou', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3398,7 +3398,7 @@ areas.donjonMansot = {
     icon: "images/monsters/Mansot_Royal.png",
     description: "Sur le Lac gelé de Frigost, les Mansots ont creusé un vaste réseau de galeries sous la glace. Leur souverain, le Mansot Royal, dirige son peuple avec une autorité aussi glaciale que son royaume.",
     spawns: [
-        { id: 'mansotRoyal', weight: 100 }
+        { id: 'mansot_royal', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3420,10 +3420,10 @@ areas.donjonTynril = {
     description: "Au cœur de l'île d'Otomaï subsistent les vestiges d'expériences biologiques menées sans aucune limite morale. Les Tynrils, créatures issues de ces manipulations, continuent d'errer dans le laboratoire en quête de nouvelles victimes.",
     bossMode: 'any',
     spawns: [
-        { id: 'tynrilConsterne', weight: 25 },
-        { id: 'tynrilDeconcerte', weight: 25 },
-        { id: 'tynrilPerfide', weight: 25 },
-        { id: 'tynrilAhuri', weight: 25 }
+        { id: 'tynril_consterne', weight: 25 },
+        { id: 'tynril_deconcerte', weight: 25 },
+        { id: 'tynril_perfide', weight: 25 },
+        { id: 'tynril_ahuri', weight: 25 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3492,7 +3492,7 @@ areas.donjonSphincter = {
     background: "",
     icon: 'images/monsters/Sphincter_Cell.png',
     description: '',
-    spawns: [{ id: 'sphincterCell', weight: 100 }],
+    spawns: [{ id: 'sphincter_cell', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3508,7 +3508,7 @@ areas.donjonGrolandais = {
     background: "",
     icon: 'images/monsters/Ben_le_Ripate.png',
     description: "Le navire de Ben le Ripate gît désormais prisonnier des glaces de Frigost. Mais même immobilisé, le célèbre pirate continue de terroriser les mers du nord grâce à son équipage de corsaires et de pillards. Gare à son apparence de fantôme, son crochet lui, est bien réel.",
-    spawns: [{ id: 'benLeRipate', weight: 100 }],
+    spawns: [{ id: 'ben_le_ripate', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3524,7 +3524,7 @@ areas.donjonTertreSommeil = {
     background: "",
     icon: 'images/monsters/Hell_Mina.png',
     description: '',
-    spawns: [{ id: 'hellMina', weight: 100 }],
+    spawns: [{ id: 'hell_mina', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
         { itemId: 'Dofus_Emeraude',      dropRate: 0.0005}
@@ -3620,7 +3620,7 @@ areas.donjonShogunTofugawa = {
     icon: "images/monsters/Shogun_Tofugawa.png",
     description: "",
     spawns: [
-        { id: 'shogunTofugawa', weight: 100 }
+        { id: 'shogun_tofugawa', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3646,7 +3646,7 @@ areas.donjonGivrefoux = {
     icon: "images/monsters/Tengu_Givrefoux.png",
     description: "Dans les montagnes enneigées de Frigost, les Givrefoux perpétuent d'antiques traditions héritées d'un passé oublié. Leur chef, le Tengu Givrefoux, veille jalousement sur son clan et ses secrets.",
     spawns: [
-        { id: 'tenguGivrefoux', weight: 100 }
+        { id: 'tengu_givrefoux', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3671,7 +3671,7 @@ areas.donjonPereVer = {
     background: "",
     icon: 'images/monsters/Père_Ver.png',
     description: '',
-    spawns: [{ id: 'pereVer', weight: 100 }],
+    spawns: [{ id: 'pere_ver', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3704,7 +3704,7 @@ areas.donjonSupervizoeuf = {
     background: "",
     icon: 'images/monsters/Supervizœuf.png',
     description: '',
-    spawns: [{ id: 'supervizoeuf', weight: 100 }],
+    spawns: [{ id: 'superviz_uf', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3765,7 +3765,7 @@ areas.donjonKolosso = {
     bossMode: 'any',
     spawns: [
         { id: 'kolosso',       weight: 50 },
-        { id: 'professeurXa',  weight: 50 },
+        { id: 'professeur_xa',  weight: 50 },
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
@@ -3818,7 +3818,7 @@ areas.donjonGloursons = {
     background: "",
     icon: 'images/monsters/Glourséleste.png',
     description: "Aux portes des remparts enneigés au sommet du Mont Torrideau se dresse une ruches au dimensions plutôt impressionnantes : la ruche du Glourséleste. Un royaume où prospèrent des créatures étranges, nées de l'évolution des aibeilles endémiques de Frigost. Leur maître règne sur cet écosystème unique, fruit d'années d'adaptation au froid.",
-    spawns: [{ id: 'gourseleste', weight: 100 }],
+    spawns: [{ id: 'glourseleste', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3850,7 +3850,7 @@ areas.donjonRazof = {
     background: "",
     icon: 'images/monsters/Comte_Razof.png',
     description: '',
-    spawns: [{ id: 'comteRazof', weight: 100 }],
+    spawns: [{ id: 'comte_razof', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
     ]
@@ -3867,7 +3867,7 @@ areas.donjonBastionMarteaux = {
     icon: "images/monsters/Barbéryl_Clochecuivre.png",
     description: "",
     spawns: [
-        { id: 'barberyClocheCuivre', weight: 100 }
+        { id: 'barberyl_clochecuivre', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
@@ -3926,7 +3926,7 @@ areas.donjonMissizFrizz = {
     icon: "images/monsters/Missiz_Frizz.png",
     description: "",
     spawns: [
-        { id: 'missizFrizz', weight: 100 }
+        { id: 'missiz_frizz', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
@@ -3967,7 +3967,7 @@ areas.donjonHarebourg = {
     background: "",
     icon: 'images/monsters/Comte_Harebourg.png',
     description: '',
-    spawns: [{ id: 'comteHarebourg', weight: 100 }],
+    spawns: [{ id: 'comte_harebourg', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
@@ -4018,7 +4018,7 @@ areas.donjonMeno = {
     icon: "images/monsters/Capitaine_Meno.png",
     description: "",
     spawns: [
-        { id: 'capitaineMeno', weight: 100 }
+        { id: 'capitaine_meno', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
@@ -4039,7 +4039,7 @@ areas.donjonKoutoulou = {
     background: "",
     icon: 'images/monsters/Larve_de_Koutoulou.png',
     description: '',
-    spawns: [{ id: 'larveDeKoutoulou', weight: 100 }],
+    spawns: [{ id: 'larve_de_koutoulou', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal',      dropRate: 0.0005}
@@ -4073,7 +4073,7 @@ areas.donjonKatrepat = {
     background: "",
     icon: 'images/monsters/Anerice_la_Shushess.png',
     description: '',
-    spawns: [{ id: 'anericeShushess', weight: 100 }],
+    spawns: [{ id: 'anerice_la_shushess', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
     ]
@@ -4111,7 +4111,7 @@ areas.donjonBethel = {
     background: "",
     icon: 'images/monsters/Bethel_Akarna.png',
     description: '',
-    spawns: [{ id: 'bethelAkarna', weight: 100 }],
+    spawns: [{ id: 'bethel_akarna', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
         { itemId: 'Dofus_Ebene',      dropRate: 0.0005},
@@ -4154,7 +4154,7 @@ areas.donjonDazak = {
     icon: "images/monsters/Dazak_Martegel.png",
     description: "",
     spawns: [
-        { id: 'dazakMartegel', weight: 100 }
+        { id: 'dazak_martegel', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
@@ -4265,7 +4265,7 @@ areas.donjonTalKasha = {
     background: "",
     icon: 'images/monsters/Tal_Kasha.png',
     description: '',
-    spawns: [{ id: 'talKasha', weight: 100 }],
+    spawns: [{ id: 'tal_kasha', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
     ]
@@ -4297,7 +4297,7 @@ areas.donjonAurorePourpre = {
     background: "",
     icon: 'images/monsters/L_Éternel_Conflit.png',
     description: '',
-    spawns: [{ id: 'eternelConflit', weight: 100 }],
+    spawns: [{ id: 'l_eternel_conflit', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
         { itemId: 'Dofus_du_Cauchemard',      dropRate: 0.0005}
@@ -4331,7 +4331,7 @@ areas.donjonBreuil = {
     background: "",
     icon: 'images/monsters/Vénérable_Endormi.png',
     description: '',
-    spawns: [{ id: 'venerableEndormi', weight: 100 }],
+    spawns: [{ id: 'venerable_endormi', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
     ]
@@ -4399,7 +4399,7 @@ areas.donjonDechireuse = {
 //     background: 'caverne_nowel',
 //     icon: 'images/monsters/Papa_Nowel.png',
 //     description: '',
-//     spawns: [{ id: 'papaNowel', weight: 100 }],
+//     spawns: [{ id: 'papa_nowel', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
 //         { itemId: '',       dropRate: 0.01 },
@@ -4415,7 +4415,7 @@ areas.donjonDechireuse = {
 //     background: 'maison_papa_nowel',
 //     icon: 'images/monsters/Père_Fwetar.png',
 //     description: '',
-//     spawns: [{ id: 'pereFwetar', weight: 100 }],
+//     spawns: [{ id: 'pere_fwetar', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
 //         { itemId: '',       dropRate: 0.01 },
@@ -4463,7 +4463,7 @@ areas.donjonDechireuse = {
 //     background: 'temple_kao',
 //     icon: 'images/monsters/Prêtresse_de_Kao.png',
 //     description: '',
-//     spawns: [{ id: 'pretresseDeKao', weight: 100 }],
+//     spawns: [{ id: 'pretresse_de_kao', weight: 100 }],
 //     lootTable: [
 //         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
 //         { itemId: '',       dropRate: 0.01 },
