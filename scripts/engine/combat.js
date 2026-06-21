@@ -2079,6 +2079,11 @@ function executeEffect(ctx) {
             const dotScaled  = Math.max(0, Math.floor(
                 dotBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
             ))
+            const _lsRatio = effect.lifestealRatio ?? null
+            const _dotEntry = (val) => ({
+                element: resolveElement(effect), value: val, duration: effect.duration,
+                ...(_lsRatio != null ? { lifestealRatio: _lsRatio, casterRef: caster } : {})
+            })
             if (effect.target === 'all_enemies' || effect.target === 'all_enemy') {
                 const isEnemyCasterDot = !state.team.includes(caster)
                 const dotTargets = isEnemyCasterDot
@@ -2086,7 +2091,7 @@ function executeEffect(ctx) {
                     : combat?.isRaid && combat.enemies ? combat.enemies.filter(e => e && e.currentHp > 0) : [targetEnemy]
                 for (const t of dotTargets) {
                     t.dots = t.dots || []
-                    t.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
+                    t.dots.push(_dotEntry(dotScaled))
                 }
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour × ${effect.duration} tours (tous)`)
                 break
@@ -2095,13 +2100,13 @@ function executeEffect(ctx) {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
                     m.dots = m.dots || []
-                    m.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
+                    m.dots.push(_dotEntry(dotScaled))
                 }
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour × ${effect.duration} tours (équipe)`)
                 break
             }
             targetEnemy.dots = targetEnemy.dots || []
-            targetEnemy.dots.push({ element: resolveElement(effect), value: dotScaled, duration: effect.duration })
+            targetEnemy.dots.push(_dotEntry(dotScaled))
             addLog(`${ctx.logPrefix || ''}${moveData.name} → brûlure ${dotScaled}/tour (${effect.duration} tours)`)
             _checkWatchStates(targetEnemy, 'dot', { element: resolveElement(effect) })
             break
@@ -3537,6 +3542,13 @@ function tickDots(entity, onKill) {
         entity.currentHp = Math.max(0, entity.currentHp - dot.value)
         addLog(`${dot.label || 'Brûlure'} → ${dot.value} dégâts`)
         dotTotalDmg += dot.value
+        if (dot.lifestealRatio && dot.casterRef && dot.casterRef.currentHp > 0) {
+            const _lsHeal = Math.floor(dot.value * dot.lifestealRatio * _getAntiHealFactor(dot.casterRef))
+            if (_lsHeal > 0) {
+                dot.casterRef.currentHp = Math.min(dot.casterRef.maxHp, dot.casterRef.currentHp + _lsHeal)
+                addLog(`Vol de vie (brûlure) → +${_lsHeal} PV`)
+            }
+        }
         // Dofus Ivoire : chaque tick de DOT compte comme un coup reçu
         if (dot.value > 0 && _dotMemberIdx !== -1) _handleDofusDamageReceived(_dotMemberIdx, entity)
     }

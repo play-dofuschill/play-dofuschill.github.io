@@ -90,6 +90,8 @@
   <button data-tab="raid">Raids</button>
   <button data-tab="event">Events</button>
   <button data-tab="sorts">Sorts monstres</button>
+  <button data-tab="sorts_classes">Sorts classes</button>
+  <button data-tab="wanted">Wanted</button>
 </div>
 
 <div id="intro" class="intro">
@@ -125,7 +127,7 @@ const STATS = ['maxHp','atk','spd','flatDamage','finalDamagePct','spellDamagePct
   'res.feu','res.eau','res.terre','res.air','res.neutre']
 
 let dirHandle = null
-let H = { item:null, pano:null, area:null, monster:null, mstrMove:null }   // file handles
+let H = { item:null, pano:null, area:null, monster:null, mstrMove:null, classMove:null, wanted:null }   // file handles
 let ITEM = {}, PANO = {}, ZONESETS = {}, AREAS = {}, MONSTERS = {}
 let DIVERS_IDS = new Set()  // IDs des items chargés depuis diversDictionary.js
 let MOVELIST = []                                  // [{id,name}] pour les pickers de sorts
@@ -138,6 +140,12 @@ let selId = null
 let MSTRMOVES = {}, mstrMoveText = ''
 let mstrMoveDirtyIds = new Set(), mstrMoveNewIds = new Set()
 let mmSelMove = null, mmSelMon = null, mmMonSortDir = -1, mmMonQ = '', mmWorkMove = null
+let WANTED_MONSTERS = {}, WANTED_BOSSES = {}, wantedText = ''
+let wantedDirtyIds = new Set(), wantedQ = '', wantedSelId = null
+let CLASSMOVES = {}, classMoveText = ''
+let classMoveDirtyIds = new Set(), classMoveNewIds = new Set()
+let cmSelMove = null, cmQ = '', cmClassFilter = '', cmRestrFilter = ''
+let cmWorkMove = null, CLASSES_LIST = []
 
 // ───────────────────────── utilitaires JS-literal ─────────────────────────
 const isIdent = k => /^[A-Za-z_$][\w$]*$/.test(k)
@@ -243,21 +251,48 @@ async function loadFromHandle(){
 
   // dico des sorts pour les pickers de moves + parsing MSTRMOVES
   try {
-    const mv  = await (await getFile(dirHandle,'scripts','data','moveDictionary.js')).getFile().then(f=>f.text())
+    H.classMove = await getFile(dirHandle, 'scripts', 'data', 'moveDictionary.js')
+    const mv  = await (await H.classMove.getFile()).text()
+    classMoveText = mv
     const mvm = await (await H.mstrMove.getFile()).text()
     mstrMoveText = mvm
     let inv = ''
     try { inv = await (await getFile(dirHandle,'scripts','data','invocationDictionary.js')).getFile().then(f=>f.text()) } catch(e){}
     const moveBase = evalReturn(mv, 'move').move || {}
+    CLASSMOVES = {...moveBase}
+    classMoveDirtyIds = new Set(); classMoveNewIds = new Set()
     const move     = evalReturn(mv + '\n' + mvm + '\n' + inv, 'move').move || {}
     MSTRMOVES = {}
     for(const k of Object.keys(move)){ if(!moveBase[k] && move[k]) MSTRMOVES[k] = move[k] }
     MOVELIST = Object.keys(move).filter(id=>move[id]).map(id=>({ id, name: move[id].name || id })).sort((a,b)=>a.name.localeCompare(b.name))
-  } catch(e){ console.warn('dico sorts non chargé', e); MOVELIST = []; MSTRMOVES = {} }
+  } catch(e){ console.warn('dico sorts non chargé', e); MOVELIST = []; MSTRMOVES = {}; CLASSMOVES = {} }
+
+  CLASSES_LIST = []
+  try {
+    const clsTxt = await (await getFile(dirHandle,'scripts','data','classDictionary.js')).getFile().then(f=>f.text())
+    const clsObj = evalReturn(clsTxt, 'classes').classes || {}
+    CLASSES_LIST = Object.keys(clsObj).map(id=>({id, name: clsObj[id].name||id})).sort((a,b)=>a.name.localeCompare(b.name))
+  } catch(e){ console.warn('classDictionary non chargé', e) }
 
   dirtyZones = new Set(); newZones = new Set()
+  // Load wanted
+  wantedText = ''; WANTED_MONSTERS = {}; WANTED_BOSSES = {}; wantedDirtyIds = new Set()
+  try {
+    H.wanted = await getFile(dirHandle, 'scripts', 'data', 'wantedDictionary.js')
+    const wTxt = await (await H.wanted.getFile()).text()
+    wantedText = wTxt
+    const wEval = evalReturn('var monsters={}; var move={}; var areas={};\n' + wTxt, 'monsters, WantedBosses, move')
+    WANTED_MONSTERS = wEval.monsters || {}
+    WANTED_BOSSES = wEval.WantedBosses || {}
+    const wantedMoves = wEval.move || {}
+    for (const [mid, mv2] of Object.entries(wantedMoves)) {
+      if (mv2 && !MOVELIST.find(x => x.id === mid)) MOVELIST.push({ id: mid, name: mv2.name || mid })
+    }
+    MOVELIST.sort((a,b) => a.name.localeCompare(b.name))
+  } catch(e) { console.warn('wantedDictionary non chargé', e) }
+
   document.getElementById('status').textContent =
-    `${Object.keys(ITEM).length} items · ${Object.keys(PANO).length} panoplies · ${Object.keys(MONSTERS).length} monstres · ${Object.keys(AREAS).length} zones`
+    `${Object.keys(ITEM).length} items · ${Object.keys(PANO).length} panoplies · ${Object.keys(MONSTERS).length} monstres · ${Object.keys(AREAS).length} zones · ${Object.keys(CLASSMOVES).length} sorts classes · ${Object.keys(WANTED_BOSSES).length} wanted`
   document.getElementById('intro').style.display='none'
   document.getElementById('tabs').style.display='flex'
   document.getElementById('app').style.display='grid'
@@ -402,9 +437,15 @@ async function saveAll(){
     await writeFile(H.pano, buildPanoFile())
     await writeFile(H.monster, buildMonsterFile())
     if(H.mstrMove){ mstrMoveText = buildMstrMoveFile(); await writeFile(H.mstrMove, mstrMoveText); mstrMoveDirtyIds = new Set(); mstrMoveNewIds = new Set() }
+    if(H.classMove && (classMoveDirtyIds.size > 0 || classMoveNewIds.size > 0)){ classMoveText = buildClassMoveFile(); await writeFile(H.classMove, classMoveText); classMoveDirtyIds = new Set(); classMoveNewIds = new Set() }
     areaText = buildAreaText()
     await writeFile(H.area, areaText)
     dirtyZones = new Set(); newZones = new Set()
+    if (H.wanted && wantedDirtyIds.size > 0) {
+      wantedText = buildWantedFile()
+      await writeFile(H.wanted, wantedText)
+      wantedDirtyIds = new Set()
+    }
     setDirty(false)
     toast('Fichiers enregistrés ✓','ok')
   }catch(e){ toast('Erreur : '+e.message,'err'); console.error(e) }
@@ -432,6 +473,8 @@ function render(){
   else if (tab==='event') renderZoneFull('event')
   else if (tab==='sauvage') renderZoneFull('wild')
   else if (tab==='sorts') renderMstrMoves()
+  else if (tab==='sorts_classes') renderClassMoves()
+  else if (tab==='wanted') renderWanted()
 }
 
 // —— filtres réutilisables ——
@@ -1569,6 +1612,715 @@ function renderZonePanoChecks(z, flt=''){
     if(cntEl) cntEl.textContent=(ZONESETS[z]||[]).length
     setDirty(true)
   })
+}
+
+// ───────────────────────── Wanted ─────────────────────────
+function renderWanted(){
+  const F = document.getElementById('filters')
+  F.innerHTML = `<input id="wq" placeholder="Filtrer (nom / id / niveau)…" value="${wantedQ}">`
+  F.querySelector('#wq').oninput = e => { wantedQ = e.target.value; renderWantedList() }
+  renderWantedList()
+  if (wantedSelId && WANTED_BOSSES[wantedSelId]) renderWantedDetail(wantedSelId)
+  else detailEmpty()
+}
+
+function renderWantedList(){
+  const q2 = wantedQ.toLowerCase()
+  const ids = Object.keys(WANTED_BOSSES)
+    .filter(id => (id + ' ' + (WANTED_BOSSES[id].name||'')).toLowerCase().includes(q2))
+    .sort((a,b) => (WANTED_BOSSES[a].levelCap||0) - (WANTED_BOSSES[b].levelCap||0))
+  const body = document.getElementById('listBody')
+  body.innerHTML = ids.map(id => {
+    const w = WANTED_BOSSES[id], m = WANTED_MONSTERS[id]
+    const moveCount = Array.isArray(m?.moves) ? m.moves.length : 0
+    const lootCount = (w.panoplie||[]).length
+    return `<div class="list-item ${id===wantedSelId?'sel':''}" data-id="${id}">
+      <img loading="lazy" src="${w.icon||''}" onerror="this.style.opacity=.15">
+      <div class="nm"><b class="rarity-legendaire">${w.name||id}</b>
+        <small>niv ${w.levelCap} · ${moveCount} sort(s) · ${lootCount} loot(s)</small></div>
+    </div>`
+  }).join('') || '<div class="muted" style="padding:10px">Aucun résultat.</div>'
+  body.querySelectorAll('.list-item').forEach(el => el.onclick = () => {
+    wantedSelId = el.dataset.id; renderWantedList(); renderWantedDetail(wantedSelId)
+  })
+}
+
+function renderWantedDetail(id){
+  const w = WANTED_BOSSES[id], m = WANTED_MONSTERS[id]
+  if (!w || !m) return
+  m.bst = m.bst || {}; m.bst.res = m.bst.res || {}
+  const D = document.getElementById('detail')
+  D.innerHTML = `
+    <div class="preview">
+      <img src="${w.icon||''}" onerror="this.style.opacity=.15">
+      <div><h2>${w.name||id}</h2><div class="muted">id: ${id}</div></div>
+    </div>
+    <div class="section"><h3>Identité</h3>
+      <div class="grid2">
+        <div><label>Nom</label><input id="w_name" value="${(w.name||'').replace(/"/g,'&quot;')}"></div>
+        <div><label>levelCap</label><input type="number" id="w_level" value="${w.levelCap||1}"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Icon (image)</label><input id="w_icon" value="${(w.icon||'').replace(/"/g,'&quot;')}"></div>
+        <div><label>Background</label><input id="w_bg" value="${(w.background||'').replace(/"/g,'&quot;')}"></div>
+      </div>
+      <div><label>Lore</label><textarea id="w_lore">${(w.lore||'').replace(/</g,'&lt;')}</textarea></div>
+    </div>
+    <div class="section"><h3>Stats (monstre)</h3>
+      <div class="grid3">
+        <div><label>hp</label><input type="number" id="w_hp" value="${m.bst.hp??0}"></div>
+        <div><label>atk</label><input type="number" id="w_atk" value="${m.bst.atk??0}"></div>
+        <div><label>spd</label><input type="number" id="w_spd" value="${m.bst.spd??30}"></div>
+      </div>
+      <label>Résistances %</label>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+        ${['neutre','terre','feu','eau','air'].map(e=>`<div><label>${e}</label><input type="number" class="w_res" data-e="${e}" value="${m.bst.res[e]??0}"></div>`).join('')}
+      </div>
+      <div class="grid2" style="margin-top:8px">
+        <div><label>critChance</label><input type="number" id="w_cc" value="${m.bst.critChance??''}" placeholder="déf. 5"></div>
+        <div><label>critDamagePct</label><input type="number" id="w_cd" value="${m.bst.critDamagePct??''}" placeholder="déf. 50"></div>
+      </div>
+    </div>
+    <div class="section" id="w_sort_section"></div>
+    <div class="section"><h3>Loot (panoplie)</h3>
+      <div id="w_loot_table"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+        <div><label>+ Item</label>
+          <input id="w_item_search" placeholder="Nom ou id d'item…" list="w_itemdl" autocomplete="off">
+          <datalist id="w_itemdl">${Object.keys(ITEM).slice(0,3000).map(k=>`<option value="${(ITEM[k].name||k).replace(/"/g,'&quot;')}" data-id="${k}">`).join('')}</datalist>
+        </div>
+        <div><label>+ Panoplie complète</label>
+          <input id="w_pano_fill" placeholder="Nom ou id de panoplie…" list="w_panodl" autocomplete="off">
+          <datalist id="w_panodl">${Object.keys(PANO).map(k=>`<option value="${(PANO[k].name||k).replace(/"/g,'&quot;')}" data-id="${k}">`).join('')}</datalist>
+        </div>
+      </div>
+    </div>`
+
+  const wmd = () => { wantedDirtyIds.add(id); setDirty(true) }
+  const bind = (elId, fn) => { const el = D.querySelector('#'+elId); if(el) el.oninput = el.onchange = () => { fn(el.value); wmd() } }
+
+  bind('w_name', v => { w.name = v; m.name = v; renderWantedList() })
+  bind('w_level', v => { w.levelCap = +v||1; m.fixedLevel = +v||1; w.bst = w.bst||{}; renderWantedList() })
+  bind('w_icon', v => { w.icon = v; m.image = v })
+  bind('w_bg', v => { w.background = v })
+  bind('w_lore', v => { w.lore = v })
+  bind('w_hp', v => { m.bst.hp = +v||0; w.bst = w.bst||{}; w.bst.hp = +v||0 })
+  bind('w_atk', v => { m.bst.atk = +v||0; w.bst = w.bst||{}; w.bst.atk = +v||0 })
+  bind('w_spd', v => { m.bst.spd = +v||0 })
+  bind('w_cc', v => { if(v==='')delete m.bst.critChance; else m.bst.critChance=+v })
+  bind('w_cd', v => { if(v==='')delete m.bst.critDamagePct; else m.bst.critDamagePct=+v })
+  D.querySelectorAll('.w_res').forEach(el => el.oninput = () => { m.bst.res[el.dataset.e] = +el.value||0; wmd() })
+
+  renderWantedMoves(m, id, wmd)
+
+  w.panoplie = w.panoplie || []
+  renderWantedLoot(w, D, wmd)
+
+  const is_ = D.querySelector('#w_item_search')
+  is_.onchange = () => {
+    const opt = [...D.querySelectorAll('#w_itemdl option')].find(o => o.value === is_.value)
+    const iid = opt ? opt.dataset.id : is_.value.trim()
+    if (iid && ITEM[iid] && !w.panoplie.some(e => e.itemId === iid)) {
+      w.panoplie.push({ itemId: iid, dropRate: 0.1 })
+      renderWantedLoot(w, D, wmd); wmd()
+    }
+    is_.value = ''
+  }
+  const pf = D.querySelector('#w_pano_fill')
+  pf.onchange = () => {
+    const opt = [...D.querySelectorAll('#w_panodl option')].find(o => o.value === pf.value)
+    const pid = opt ? opt.dataset.id : pf.value.trim()
+    if (pid && PANO[pid]) {
+      let added = 0
+      ;(PANO[pid].pieces||[]).forEach(iid => {
+        if (ITEM[iid] && !w.panoplie.some(e => e.itemId === iid)) { w.panoplie.push({ itemId: iid, dropRate: 0.1 }); added++ }
+      })
+      if (added) { renderWantedLoot(w, D, wmd); wmd() }
+    }
+    pf.value = ''
+  }
+}
+
+function renderWantedLoot(w, D, wmd){
+  const loot = w.panoplie || []
+  const wrap = D.querySelector('#w_loot_table'); if (!wrap) return
+  wrap.innerHTML = loot.length ? loot.map((e, i) => {
+    const nm = ITEM[e.itemId]?.name || e.itemId
+    const pct = Math.round((+(e.dropRate)||0)*10000)/100
+    return `<div class="loot-row">
+      <span class="loot-name" title="${e.itemId}">${nm} <span class="muted">(${e.itemId})</span></span>
+      <input class="wldr" data-i="${i}" type="number" min="0" max="100" step="0.5" value="${pct}" style="width:72px">
+      <span class="muted" style="font-size:11px;flex:none">%</span>
+      <button class="wldx" data-i="${i}" style="flex:none">✕</button>
+    </div>`
+  }).join('') : '<div class="muted" style="padding:6px 0">Aucun item de loot configuré.</div>'
+  wrap.querySelectorAll('.wldr').forEach(el => el.oninput = () => {
+    w.panoplie[+el.dataset.i].dropRate = Math.round(+el.value*100)/10000; wmd()
+  })
+  wrap.querySelectorAll('.wldx').forEach(el => el.onclick = () => {
+    w.panoplie.splice(+el.dataset.i, 1); renderWantedLoot(w, D, wmd); wmd()
+  })
+}
+
+function renderWantedMoves(m, id, wmd){
+  const D = document.getElementById('detail')
+  const wrap = D.querySelector('#w_sort_section'); if (!wrap) return
+  const nameOf = mid => { const o = MOVELIST.find(x => x.id === mid); return o ? o.name : mid }
+  const dlOpts = MOVELIST.slice(0,4000).map(o => `<option value="${o.name.replace(/"/g,'&quot;')}" data-id="${o.id}">`).join('')
+  const moves = Array.isArray(m.moves) ? m.moves : []
+  const moveTag = mid => `<div class="statrow">
+    <span class="badge" style="flex:1;text-align:left">${nameOf(mid)} <span class="muted">(${mid})</span></span>
+    <button data-id="${mid}" class="wmvx">✕</button></div>`
+
+  wrap.innerHTML = `<h3 style="margin:0 0 8px">Sorts</h3>
+    <div id="wm_list">${moves.map(moveTag).join('') || '<div class="muted">aucun sort</div>'}</div>
+    <input class="wm_srch" placeholder="Ajouter un sort…" list="wm_dl" autocomplete="off" style="margin-top:4px">
+    <datalist id="wm_dl">${dlOpts}</datalist>`
+
+  wrap.querySelectorAll('.wmvx').forEach(el => el.onclick = () => {
+    m.moves = (Array.isArray(m.moves) ? m.moves : []).filter(x => x !== el.dataset.id)
+    wmd(); renderWantedMoves(m, id, wmd); renderWantedList()
+  })
+  const inp = wrap.querySelector('.wm_srch')
+  inp.onchange = () => {
+    const opt = [...wrap.querySelectorAll('#wm_dl option')].find(o => o.value === inp.value)
+    const mid = opt ? opt.dataset.id : inp.value.trim()
+    if (!Array.isArray(m.moves)) m.moves = []
+    if (mid && !m.moves.includes(mid)) { m.moves.push(mid); wmd(); renderWantedMoves(m, id, wmd); renderWantedList() }
+    inp.value = ''
+  }
+}
+
+// ─── Sérialisation wanted ───
+function buildWantedFile(){
+  let txt = wantedText
+
+  // 1. Patch les blocs monsters['wanted_...'] modifiés
+  for (const id of wantedDirtyIds) {
+    const m = WANTED_MONSTERS[id]; if (!m) continue
+    const marker = `monsters['${id}']`
+    const r = blockRange(txt, marker); if (!r) continue
+    const lines = Object.entries(m).map(([k,v]) => '    ' + key(k) + ': ' + lit(v))
+    txt = txt.slice(0, r[0]) + `monsters['${id}'] = {\n` + lines.join(',\n') + '\n}' + txt.slice(r[1])
+  }
+
+  // 2. Reconstruit WantedBosses en entier
+  const r2 = blockRange(txt, 'const WantedBosses = {')
+  if (r2) {
+    let wbStr = 'const WantedBosses = {\n'
+    for (const [k, w] of Object.entries(WANTED_BOSSES)) {
+      wbStr += '    ' + q(k) + ': {\n'
+      wbStr += '        id:        ' + q(w.id || k) + ',\n'
+      wbStr += '        monsterId: ' + q(w.monsterId || k) + ',\n'
+      wbStr += '        name:      ' + q(w.name || '') + ',\n'
+      wbStr += '        lore:      ' + q(w.lore || '') + ',\n'
+      wbStr += '        icon:      ' + q(w.icon || '') + ',\n'
+      wbStr += '        background: ' + q(w.background || '') + ',\n'
+      wbStr += '        levelCap:  ' + (w.levelCap || 1) + ',\n'
+      wbStr += '        bst:       ' + lit(w.bst || {}) + ',\n'
+      wbStr += '        panoplie:  ' + lit(w.panoplie || []) + '\n'
+      wbStr += '    },\n'
+    }
+    wbStr += '}'
+    const hasSemi = txt[r2[1]] === ';'
+    txt = txt.slice(0, r2[0]) + wbStr + (hasSemi ? ';' : '') + txt.slice(r2[1] + (hasSemi ? 1 : 0))
+  }
+
+  return txt
+}
+
+// ───────────────────────── Sorts Classes ─────────────────────────
+const CM_RESTRICTIONS = ['', 'star', 'arrow', 'shield', 'coeur']
+const CM_EFFECT_TYPES = [
+  'damage','dot','heal','heal_team','heal%maxHp','heal%maxHp_team','hot','lifesteal',
+  'buff','buff_team','debuff','shield','renvoi','renvoiTotal','oeilPourOeil',
+  'switch','recul','avance','swap_enemies','antiHeal','turret','portal','repeat',
+  'buffDrain','debuffDrain','drop_bonus','esquive',
+  'summon','summon_companion','random','cast_proc','dmgIfDebuff','setEnutrof','enutrof_bonus',
+  'trap','mark_proie','buff_adjacent','buff_slot','spd_invert','reactive',
+  'reuche_guard','sacrifice_shield','damage_split','blood_link',
+  'best_element_damage','absorbElementDmg','burnMark'
+]
+const CM_STATS = ['atk','spd','flatDamage','finalDamagePct','spellDamagePct',
+  'damageReductionPct','critChance','critDamagePct','healPct','heal','healTeamPct',
+  'healMaxHpPct','lifestealPct','maxHp','erosionBonus']
+
+function cmMoveBlockStr(id, m){
+  const head = isIdent(id) ? 'move.'+id : "move['"+id+"']"
+  const parts = [
+    '    id: ' + q(id),
+    '    name: ' + q(m.name||id),
+    '    classId: ' + q(m.classId||'')
+  ]
+  if (m.restriction) parts.push('    restriction: ' + q(m.restriction))
+  parts.push('    cooldownMs: ' + (m.cooldownMs||2000))
+  const effLines = (m.effects||[]).map(e => '        ' + lit(e))
+  parts.push('    effects: [\n' + effLines.join(',\n') + (effLines.length?'\n    ]':']'))
+  const spLines = (m.spellProgression||[{lvl:1,patch:{}}]).map(sp =>
+    '        {lvl: '+sp.lvl+', patch: '+lit(sp.patch||{})+'}'
+  )
+  parts.push('    spellProgression: [\n'+spLines.join(',\n')+'\n    ]')
+  parts.push('    description: ' + q(m.description||''))
+  return head + ' = {\n' + parts.join(',\n') + '\n}'
+}
+
+function buildClassMoveFile(){
+  let txt = classMoveText
+  for (const id of classMoveDirtyIds){
+    if (classMoveNewIds.has(id)) continue
+    const head = isIdent(id) ? 'move.'+id+' ' : "move['"+id+"'] "
+    const r = blockRange(txt, head)
+    if (!r) continue
+    if (!CLASSMOVES[id]){
+      let s = r[0]; while(s>0 && txt[s-1]==='\n') s--
+      txt = txt.slice(0, s) + '\n' + txt.slice(r[1])
+    } else {
+      txt = txt.slice(0, r[0]) + cmMoveBlockStr(id, CLASSMOVES[id]) + txt.slice(r[1])
+    }
+  }
+  const toAppend = [...classMoveNewIds].filter(id => CLASSMOVES[id])
+  if (toAppend.length){
+    txt = txt.trimEnd() + '\n\n' + toAppend.map(id => cmMoveBlockStr(id, CLASSMOVES[id])).join('\n\n') + '\n'
+  }
+  return txt
+}
+
+function renderClassMoves(){
+  const F = document.getElementById('filters')
+  const classOpts = CLASSES_LIST.map(c=>`<option value="${c.id}" ${cmClassFilter===c.id?'selected':''}>${c.name}</option>`).join('')
+  F.innerHTML = `
+    <input id="cmq" placeholder="Filtrer (nom / id)…" value="${cmQ}">
+    <div class="row">
+      <select id="cmcls"><option value="">toutes les classes</option>${classOpts}</select>
+      <select id="cmrestr"><option value="">toutes restrictions</option>
+        ${CM_RESTRICTIONS.filter(r=>r).map(r=>`<option ${cmRestrFilter===r?'selected':''}>${r}</option>`).join('')}
+      </select>
+    </div>
+    <button id="cmNew" class="primary" style="margin-top:4px">➕ Nouveau sort</button>`
+  F.querySelector('#cmq').oninput = e => { cmQ = e.target.value; renderClassMoveList() }
+  F.querySelector('#cmcls').onchange = e => { cmClassFilter = e.target.value; renderClassMoveList() }
+  F.querySelector('#cmrestr').onchange = e => { cmRestrFilter = e.target.value; renderClassMoveList() }
+  F.querySelector('#cmNew').onclick = () => { cmSelMove = null; renderClassMoves(); renderClassMovePanel() }
+  renderClassMoveList()
+  renderClassMovePanel()
+}
+
+function matchClassMove(id){
+  const m = CLASSMOVES[id]
+  if (cmClassFilter && m.classId !== cmClassFilter) return false
+  if (cmRestrFilter && (m.restriction||'') !== cmRestrFilter) return false
+  if (cmQ){ const s=(id+' '+(m.name||'')).toLowerCase(); if(!s.includes(cmQ.toLowerCase())) return false }
+  return true
+}
+
+function renderClassMoveList(){
+  const ids = Object.keys(CLASSMOVES).filter(matchClassMove)
+    .sort((a,b) => {
+      const ca = CLASSMOVES[a].classId||'', cb = CLASSMOVES[b].classId||''
+      return ca !== cb ? ca.localeCompare(cb) : (CLASSMOVES[a].name||a).localeCompare(CLASSMOVES[b].name||b)
+    })
+  const body = document.getElementById('listBody')
+  const shown = ids.slice(0,500)
+  body.innerHTML = shown.map(id => {
+    const m = CLASSMOVES[id]
+    const sp = (m.spellProgression||[]).length
+    const restrTag = m.restriction ? `<span class="badge" style="font-size:10px;margin-left:4px">${m.restriction}</span>` : ''
+    return `<div class="list-item ${id===cmSelMove?'sel':''}" data-id="${id}">
+      <div class="nm">
+        <b>${m.name||id}${restrTag}</b>
+        <small>${m.classId||'—'} · ${m.cooldownMs}ms · ${sp} palier(s)</small>
+      </div></div>`
+  }).join('') + (ids.length>500?`<div class="muted" style="padding:10px">… ${ids.length-500} de plus</div>`:'')
+    + (!ids.length?`<div class="muted" style="padding:10px">Aucun résultat.</div>`:'')
+  body.querySelectorAll('.list-item').forEach(el => el.onclick = () => {
+    cmSelMove = el.dataset.id; renderClassMoveList(); renderClassMovePanel()
+  })
+}
+
+function renderClassMovePanel(){
+  const D = document.getElementById('detail')
+  const ids = Object.keys(CLASSMOVES).sort((a,b)=>(CLASSMOVES[a].name||a).localeCompare(CLASSMOVES[b].name||b))
+  const selOpts = `<option value="">— Nouveau sort —</option>` +
+    ids.map(id=>`<option ${cmSelMove===id?'selected':''} value="${id}">${CLASSMOVES[id].name||id} (${id})</option>`).join('')
+
+  D.innerHTML = `
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:12px">
+      <select id="cmMoveSel" style="flex:1">${selOpts}</select>
+      <button id="cmNewBtn" style="flex:none">+ Nouveau</button>
+      ${cmSelMove?`<button id="cmDelBtn" style="flex:none;color:var(--err);border-color:var(--err)">Supprimer</button>`:''}
+    </div>
+    <div id="cmForm"></div>`
+
+  D.querySelector('#cmMoveSel').onchange = e => { cmSelMove = e.target.value||null; renderClassMovePanel() }
+  D.querySelector('#cmNewBtn').onclick = () => { cmSelMove = null; renderClassMovePanel() }
+  if (cmSelMove){
+    D.querySelector('#cmDelBtn').onclick = () => {
+      if (!confirm(`Supprimer "${CLASSMOVES[cmSelMove]?.name||cmSelMove}" ?`)) return
+      const delId = cmSelMove
+      if (!classMoveNewIds.has(delId)) classMoveDirtyIds.add(delId)
+      classMoveNewIds.delete(delId)
+      delete CLASSMOVES[delId]; cmSelMove = null; setDirty(true); renderClassMoves()
+    }
+  }
+  cmBuildForm(D)
+}
+
+function cmBuildForm(D){
+  const src = cmSelMove ? CLASSMOVES[cmSelMove] : null
+  cmWorkMove = src ? JSON.parse(JSON.stringify(src)) : {
+    id:'', name:'', classId: cmClassFilter||'', cooldownMs:2000,
+    effects:[], spellProgression:[{lvl:1,patch:{}}], description:''
+  }
+
+  const classOpts = CLASSES_LIST.map(c=>`<option value="${c.id}" ${cmWorkMove.classId===c.id?'selected':''}>${c.name} (${c.id})</option>`).join('')
+  const restrOpts = CM_RESTRICTIONS.map(r=>`<option value="${r}" ${(cmWorkMove.restriction||'')===r?'selected':''}>${r||'— aucune —'}</option>`).join('')
+
+  const wrap = D.querySelector('#cmForm')
+  wrap.innerHTML = `
+    <div class="section">
+      <div class="grid2">
+        <div><label>Nom du sort</label><input id="cm_name" value="${(cmWorkMove.name||'').replace(/"/g,'&quot;')}"></div>
+        <div><label>ID</label><input id="cm_id" value="${(cmWorkMove.id||'').replace(/"/g,'&quot;')}"></div>
+      </div>
+      <div class="grid3">
+        <div><label>Classe</label><select id="cm_cls"><option value="">— choisir —</option>${classOpts}</select></div>
+        <div><label>CooldownMs</label><input type="number" id="cm_cd" value="${cmWorkMove.cooldownMs||2000}"></div>
+        <div><label>Restriction</label><select id="cm_restr">${restrOpts}</select></div>
+      </div>
+    </div>
+    <div class="section">
+      <h3>Effets</h3>
+      <div id="cm_favs_bar" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;align-items:center"></div>
+      <div id="cm_effects"></div>
+      <button id="cm_addEffect" style="margin-top:6px">+ Ajouter un effet</button>
+    </div>
+    <div class="section">
+      <h3>Spell Progression</h3>
+      <div class="muted" style="font-size:12px;margin-bottom:8px">1er palier = base (patch vide). Les suivants overrident les champs (JSON).</div>
+      <div id="cm_sp_list"></div>
+      <button id="cm_addSp" style="margin-top:6px">+ Ajouter un palier</button>
+    </div>
+    <div><label>Description</label><textarea id="cm_desc">${(cmWorkMove.description||'').replace(/</g,'&lt;')}</textarea></div>
+    <div style="display:flex;gap:8px;margin-top:14px;align-items:center">
+      <button id="cm_save" class="primary">${cmSelMove?'💾 Mettre à jour':'💾 Créer le sort'}</button>
+      <span id="cm_err" style="color:var(--err);font-size:12px"></span>
+    </div>`
+
+  const nameEl = wrap.querySelector('#cm_name')
+  const idEl   = wrap.querySelector('#cm_id')
+  nameEl.oninput = () => {
+    cmWorkMove.name = nameEl.value
+    if (!cmSelMove){
+      const slug = nameEl.value.normalize('NFD').replace(/[̀-ͯ]/g,'')
+        .toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'')
+      idEl.value = slug; cmWorkMove.id = slug
+    }
+  }
+  idEl.oninput = () => { cmWorkMove.id = idEl.value.trim() }
+  wrap.querySelector('#cm_cd').oninput = e => { cmWorkMove.cooldownMs = +e.target.value||2000 }
+  wrap.querySelector('#cm_cls').onchange = e => { cmWorkMove.classId = e.target.value }
+  wrap.querySelector('#cm_restr').onchange = e => {
+    if (e.target.value) cmWorkMove.restriction = e.target.value; else delete cmWorkMove.restriction
+  }
+  wrap.querySelector('#cm_desc').oninput = e => { cmWorkMove.description = e.target.value }
+
+  renderCmEffFavs(wrap)
+  renderCmEffects(wrap)
+  renderCmSpellProg(wrap)
+
+  wrap.querySelector('#cm_addEffect').onclick = () => {
+    cmWorkMove.effects.push(cmDefaultEffect('damage')); renderCmEffects(wrap)
+  }
+  wrap.querySelector('#cm_addSp').onclick = () => {
+    const lastLvl = (cmWorkMove.spellProgression||[]).reduce((m2,s)=>Math.max(m2,s.lvl||0),0)
+    ;(cmWorkMove.spellProgression=cmWorkMove.spellProgression||[]).push({lvl:lastLvl+1,patch:{}})
+    renderCmSpellProg(wrap)
+  }
+  wrap.querySelector('#cm_save').onclick = () => cmSaveMove(wrap)
+}
+
+function renderCmEffects(wrap){
+  const effw = wrap.querySelector('#cm_effects'); if(!effw) return
+  effw.innerHTML = (cmWorkMove.effects||[]).map((eff,i) => cmEffectHTML(eff,i)).join('') ||
+    '<div class="muted" style="padding:4px 0">Aucun effet — utilise les favoris ou le bouton +.</div>'
+  effw.querySelectorAll('.cm_efftype').forEach(el => el.onchange = () => {
+    cmWorkMove.effects[+el.dataset.i] = cmDefaultEffect(el.value); renderCmEffects(wrap)
+  })
+  effw.querySelectorAll('[data-cei]').forEach(el => {
+    el.oninput = el.onchange = () => {
+      mmApplyField(cmWorkMove.effects[+el.dataset.cei], el.dataset.field, el.value, el.type)
+    }
+  })
+  effw.querySelectorAll('.cm_effDel').forEach(el => el.onclick = () => {
+    cmWorkMove.effects.splice(+el.dataset.i,1); renderCmEffects(wrap)
+  })
+  effw.querySelectorAll('.cm_effUp').forEach(el => el.onclick = () => {
+    const i=+el.dataset.i; if(i===0) return
+    ;[cmWorkMove.effects[i],cmWorkMove.effects[i-1]]=[cmWorkMove.effects[i-1],cmWorkMove.effects[i]]
+    renderCmEffects(wrap)
+  })
+  effw.querySelectorAll('.cm_effDn').forEach(el => el.onclick = () => {
+    const i=+el.dataset.i; if(i>=cmWorkMove.effects.length-1) return
+    ;[cmWorkMove.effects[i],cmWorkMove.effects[i+1]]=[cmWorkMove.effects[i+1],cmWorkMove.effects[i]]
+    renderCmEffects(wrap)
+  })
+  effw.querySelectorAll('.cm_effJson').forEach(el => el.onchange = () => {
+    try { cmWorkMove.effects[+el.dataset.i]=JSON.parse(el.value); el.style.borderColor=''; renderCmEffects(wrap) }
+    catch(e){ el.style.borderColor='var(--err)' }
+  })
+}
+
+function renderCmEffFavs(wrap){
+  const bar = wrap.querySelector('#cm_favs_bar'); if(!bar) return
+  const favs = mmGetFavs()
+  bar.innerHTML = favs.map(t=>`<button class="cmFavBtn mm-fav" data-type="${t}">${t}</button>`).join('') +
+    `<select id="cm_fav_add" style="font-size:12px;padding:2px 5px;border-radius:6px;height:26px;width:auto">
+      <option value="">☆ Ajouter favori…</option>
+      ${CM_EFFECT_TYPES.filter(t=>!favs.includes(t)).map(t=>`<option value="${t}">${t}</option>`).join('')}
+    </select>
+    ${favs.length?`<button id="cm_fav_edit" style="font-size:11px;padding:2px 6px;color:var(--mut)" title="Retirer un favori">✎</button>`:''}`
+  bar.querySelectorAll('.cmFavBtn').forEach(el => el.onclick = () => {
+    cmWorkMove.effects.push(cmDefaultEffect(el.dataset.type)); renderCmEffects(wrap)
+  })
+  const fa = bar.querySelector('#cm_fav_add')
+  if(fa) fa.onchange = () => {
+    if(!fa.value) return
+    const cur=mmGetFavs(); cur.push(fa.value); mmSetFavs(cur); fa.value=''; renderCmEffFavs(wrap)
+  }
+  const fe = bar.querySelector('#cm_fav_edit')
+  if(fe) fe.onclick = () => {
+    const cur=mmGetFavs()
+    const res=prompt('Types à retirer des favoris (séparés par virgule) :', cur.join(', '))
+    if(res===null) return
+    mmSetFavs(cur.filter(t=>!res.split(',').map(s=>s.trim()).includes(t))); renderCmEffFavs(wrap)
+  }
+}
+
+function renderCmSpellProg(wrap){
+  const spWrap = wrap.querySelector('#cm_sp_list'); if(!spWrap) return
+  const sps = cmWorkMove.spellProgression || []
+  spWrap.innerHTML = sps.map((sp,i) => `
+    <div class="section" style="padding:8px 12px;margin-bottom:8px">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px">
+        <label style="margin:0;flex:none">Lvl</label>
+        <input type="number" class="cm_sp_lvl" data-i="${i}" value="${sp.lvl||1}" style="width:80px">
+        ${i===0?'<span class="muted" style="font-size:11px">Base</span>':''}
+        <span style="flex:1"></span>
+        ${i>0?`<button class="cm_sp_del" data-i="${i}" style="color:var(--err);padding:2px 8px;border-color:var(--err)">✕</button>`:''}
+      </div>
+      <label>Patch (JSON)</label>
+      <textarea class="cm_sp_patch" data-i="${i}" style="min-height:50px;font-size:12px">${JSON.stringify(sp.patch||{},null,2)}</textarea>
+    </div>`
+  ).join('') || '<div class="muted">Aucun palier.</div>'
+
+  spWrap.querySelectorAll('.cm_sp_lvl').forEach(el => el.oninput = () => {
+    cmWorkMove.spellProgression[+el.dataset.i].lvl = +el.value||1
+  })
+  spWrap.querySelectorAll('.cm_sp_patch').forEach(el => el.onchange = () => {
+    try { cmWorkMove.spellProgression[+el.dataset.i].patch=JSON.parse(el.value); el.style.borderColor='' }
+    catch(e){ el.style.borderColor='var(--err)' }
+  })
+  spWrap.querySelectorAll('.cm_sp_del').forEach(el => el.onclick = () => {
+    cmWorkMove.spellProgression.splice(+el.dataset.i,1); renderCmSpellProg(wrap)
+  })
+}
+
+function cmDefaultEffect(type){
+  const base = {
+    damage:           { type:'damage',           element:'neutre', damage:{min:0,max:0}, target:'enemy' },
+    dot:              { type:'dot',              element:'neutre', value:10, duration:2, target:'enemy' },
+    heal:             { type:'heal',             heal:50, target:'self' },
+    heal_team:        { type:'heal_team',        heal:30 },
+    'heal%maxHp':     { type:'heal%maxHp',       heal:20, target:'self' },
+    'heal%maxHp_team':{ type:'heal%maxHp_team',  heal:20 },
+    hot:              { type:'hot',              heal:20, duration:3, target:'self' },
+    lifesteal:        { type:'lifesteal',         ratio:0.5, target:'self' },
+    buff:             { type:'buff',             stat:'atk', value:30, duration:2, target:'self' },
+    buff_team:        { type:'buff_team',        stat:'atk', value:20, duration:2 },
+    debuff:           { type:'debuff',           stat:'atk', value:30, duration:2, target:'enemy' },
+    shield:           { type:'shield',           value:100, duration:2, target:'self' },
+    renvoi:           { type:'renvoi',           ratio:0.5, target:'self' },
+    renvoiTotal:      { type:'renvoiTotal',      ratio:1.0, target:'self' },
+    oeilPourOeil:     { type:'oeilPourOeil',     ratio:0.8, target:'self' },
+    switch:           { type:'switch',           value:1, target:'enemy' },
+    recul:            { type:'recul',            target:'enemy' },
+    avance:           { type:'avance',           target:'enemy' },
+    swap_enemies:     { type:'swap_enemies',     target:'enemy' },
+    antiHeal:         { type:'antiHeal',         duration:3, target:'enemy' },
+    turret:           { type:'turret',           element:'feu', value:20, duration:3, target:'enemy' },
+    portal:           { type:'portal',           duration:3, selfBonus:25, resMalus:10, allyBonus:10, target:'self' },
+    repeat:           { type:'repeat',           target:'self' },
+    buffDrain:        { type:'buffDrain',         value:1, target:'enemy' },
+    debuffDrain:      { type:'debuffDrain',       value:1, target:'self' },
+    drop_bonus:       { type:'drop_bonus',        value:10 },
+    esquive:          { type:'esquive',           chancePct:40, reductionPct:100, duration:3, target:'self' },
+    summon:           { type:'summon',            summonId:'', duration:4, target:'enemy' },
+    summon_companion: { type:'summon_companion',  summonId:'', scale:0.30, target:'self' },
+    dmgIfDebuff:      { type:'dmgIfDebuff',       stat:'spd', element:'neutre', damage:{min:0,max:0}, target:'enemy' },
+    setEnutrof:       { type:'setEnutrof',        state:'air', duration:3 },
+    enutrof_bonus:    { type:'enutrof_bonus',     state:'air', element:'air', damage:{min:0,max:0}, target:'enemy' },
+    trap:             { type:'trap',             threshold:3, damage:{min:20,max:30}, element:'air', target:'enemy' },
+    mark_proie:       { type:'mark_proie',        duration:3, damageBonusPct:10, lifestealPct:5, target:'enemy' },
+    buff_adjacent:    { type:'buff_adjacent',     stat:'flatDamage', value:50, duration:2 },
+    buff_slot:        { type:'buff_slot',         slot:1, stat:'finalDamagePct', value:20, duration:3 },
+    spd_invert:       { type:'spd_invert',        duration:3, target:'enemy' },
+    reactive:         { type:'reactive',          target:'self', trigger:{type:'damage'}, reaction:{type:'damage',element:'neutre',damage:'_reflect',target:'enemy'}, duration:1 },
+    reuche_guard:     { type:'reuche_guard',      duration:3, target:'self' },
+    sacrifice_shield: { type:'sacrifice_shield',  pct:70, duration:3 },
+    damage_split:     { type:'damage_split',      target:'self' },
+    blood_link:       { type:'blood_link',        slot:1, duration:4 },
+    best_element_damage:{ type:'best_element_damage', stackedDamage:[{min:1,max:1}], stackSource:'comboCount', target:'enemy' },
+    absorbElementDmg: { type:'absorbElementDmg',  damage:{min:0,max:0}, target:'enemy' },
+    burnMark:         { type:'burnMark',          element:'feu', damage:{min:0,max:0} },
+    random:           { type:'random',            choices:[] },
+    cast_proc:        { type:'cast_proc',         procEffect:{type:'debuff',stat:'spd',value:10,duration:2,target:'enemy'}, duration:3, target:'self' },
+  }
+  return base[type] ? {...base[type]} : { type }
+}
+
+const CM_JSON_TYPES = new Set(['random','cast_proc','reactive','best_element_damage',
+  'absorbElementDmg','burnMark','summon_companion','reuche_guard','sacrifice_shield',
+  'damage_split','blood_link'])
+
+function cmEffectHTML(eff, i){
+  const typeOpts = CM_EFFECT_TYPES.map(t=>`<option ${eff.type===t?'selected':''}>${t}</option>`).join('')
+  const elOpts   = v => MM_ELEMENTS.map(e=>`<option ${v===e?'selected':''}>${e}</option>`).join('')
+  const tgtOpts  = v => MM_TARGETS.map(t=>`<option ${v===t?'selected':''}>${t}</option>`).join('')
+  const stOpts   = v => CM_STATS.map(s=>`<option ${v===s?'selected':''}>${s}</option>`).join('')
+  const n = (field,val,label) =>
+    `<div><label>${label}</label><input type="number" data-cei="${i}" data-field="${field}" value="${val??0}"></div>`
+  const tx = (field,val,label) =>
+    `<div><label>${label}</label><input data-cei="${i}" data-field="${field}" value="${(val||'').replace(/"/g,'&quot;')}"></div>`
+  const sl = (field,val,opts,label) =>
+    `<div><label>${label}</label><select data-cei="${i}" data-field="${field}">${opts(val)}</select></div>`
+
+  const hdr = `<div style="display:flex;gap:4px;align-items:center;margin-bottom:8px">
+    <select class="cm_efftype" data-i="${i}" style="flex:1">${typeOpts}</select>
+    <button class="cm_effUp"  data-i="${i}" style="padding:3px 8px" title="Monter">↑</button>
+    <button class="cm_effDn"  data-i="${i}" style="padding:3px 8px" title="Descendre">↓</button>
+    <button class="cm_effDel" data-i="${i}" style="padding:3px 8px;color:var(--err)">✕</button>
+  </div>`
+  const jsonTA = `<textarea class="cm_effJson" data-i="${i}" style="height:100px;width:100%">${JSON.stringify(eff,null,2)}</textarea>`
+
+  let body = ''
+  if (CM_JSON_TYPES.has(eff.type)){
+    body = jsonTA
+  } else {
+    switch(eff.type){
+      case 'damage':
+        body = `<div class="grid2">${sl('element',eff.element,elOpts,'Elément')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`; break
+      case 'dot': case 'turret':
+        body = `<div class="grid3">${sl('element',eff.element,elOpts,'Elément')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Durée')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`; break
+      case 'heal':
+        body = `<div class="grid2">${n('heal',eff.heal,'Soin')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'heal_team':
+        body = n('heal',eff.heal,'Soin'); break
+      case 'heal%maxHp':
+        body = `<div class="grid2">${n('heal',eff.heal,'Soin % HP max')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'heal%maxHp_team':
+        body = n('heal',eff.heal,'Soin % HP max (team)'); break
+      case 'hot':
+        body = `<div class="grid3">${n('heal',eff.heal,'Soin')}${n('duration',eff.duration,'Durée')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'lifesteal':
+        body = `<div class="grid2">${n('ratio',eff.ratio,'Ratio (0–1)')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'buff': case 'debuff':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Stat')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Durée')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`; break
+      case 'buff_team':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Stat')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Durée')}</div>`; break
+      case 'shield':
+        body = `<div class="grid3">${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Durée')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'renvoi': case 'renvoiTotal': case 'oeilPourOeil':
+        body = `<div class="grid2">${n('ratio',eff.ratio,'Ratio (0–1)')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'switch':
+        body = `<div class="grid2">${n('value',eff.value,'Crans')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'recul': case 'avance': case 'swap_enemies':
+        body = sl('target',eff.target,tgtOpts,'Cible'); break
+      case 'antiHeal':
+        body = `<div class="grid2">${n('duration',eff.duration,'Durée')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'portal':
+        body = `<div class="grid3">${n('selfBonus',eff.selfBonus,'Self bonus %')}${n('resMalus',eff.resMalus,'Res malus %')}${n('allyBonus',eff.allyBonus,'Allié bonus %')}</div>
+          <div class="grid2">${n('duration',eff.duration,'Durée')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'repeat':
+        body = `<div class="muted" style="font-size:12px;padding:4px 0">Relance le sort précédent dans la rotation.</div>`; break
+      case 'buffDrain': case 'debuffDrain':
+        body = `<div class="grid2">${n('value',eff.value,'Tours à réduire')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      case 'drop_bonus':
+        body = n('value',eff.value,'Bonus drop %'); break
+      case 'esquive':
+        body = `<div class="grid3">${n('chancePct',eff.chancePct,'Chance %')}${n('reductionPct',eff.reductionPct,'Réduction %')}${n('duration',eff.duration,'Durée')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`; break
+      case 'summon':
+        body = `<div class="grid2">${tx('summonId',eff.summonId,'ID invocation')}${n('duration',eff.duration,'Durée actions')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`; break
+      case 'dmgIfDebuff':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Debuff check')}${sl('element',eff.element,elOpts,'Elément')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`; break
+      case 'setEnutrof': {
+        const sO = v => ['air','terre','eau'].map(s=>`<option ${v===s?'selected':''}>${s}</option>`).join('')
+        body = `<div class="grid2">${sl('state',eff.state,sO,'Etat')}${n('duration',eff.duration??3,'Durée')}</div>`; break
+      }
+      case 'enutrof_bonus': {
+        const sO2 = v => ['air','terre','eau'].map(s=>`<option ${v===s?'selected':''}>${s}</option>`).join('')
+        body = `<div class="grid3">${sl('state',eff.state,sO2,'Etat')}${sl('element',eff.element,elOpts,'Elément')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`; break
+      }
+      case 'trap':
+        body = `<div class="grid3">${sl('element',eff.element,elOpts,'Elément')}${n('threshold',eff.threshold,'Seuil')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
+          <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`; break
+      case 'mark_proie':
+        body = `<div class="grid3">${n('duration',eff.duration,'Durée')}${n('damageBonusPct',eff.damageBonusPct,'Bonus dmg %')}${n('lifestealPct',eff.lifestealPct,'Lifesteal %')}</div>
+          ${sl('target',eff.target,tgtOpts,'Cible')}`; break
+      case 'buff_adjacent':
+        body = `<div class="grid3">${sl('stat',eff.stat,stOpts,'Stat')}${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Durée')}</div>`; break
+      case 'buff_slot':
+        body = `<div class="grid2">${n('slot',eff.slot,'Slot (1–6)')}${sl('stat',eff.stat,stOpts,'Stat')}</div>
+          <div class="grid2">${n('value',eff.value,'Valeur')}${n('duration',eff.duration,'Durée')}</div>`; break
+      case 'spd_invert':
+        body = `<div class="grid2">${n('duration',eff.duration,'Durée')}${sl('target',eff.target,tgtOpts,'Cible')}</div>`; break
+      default:
+        body = jsonTA
+    }
+  }
+  return `<div class="mm-eff">${hdr}${body}</div>`
+}
+
+function cmSaveMove(wrap){
+  const errEl = wrap.querySelector('#cm_err')
+  const id    = (wrap.querySelector('#cm_id').value||'').trim()
+  const name  = (wrap.querySelector('#cm_name').value||'').trim()
+  if (!id)   { errEl.textContent = 'ID requis'; return }
+  if (!name) { errEl.textContent = 'Nom requis'; return }
+  if (!cmSelMove && CLASSMOVES[id]){ errEl.textContent = `ID "${id}" déjà utilisé`; return }
+  errEl.textContent = ''
+
+  const oldId = cmSelMove
+  const isNew = !oldId
+  if (oldId && oldId !== id){
+    classMoveDirtyIds.add(oldId)
+    delete CLASSMOVES[oldId]
+  }
+
+  cmWorkMove.id          = id
+  cmWorkMove.name        = name
+  cmWorkMove.classId     = wrap.querySelector('#cm_cls').value || ''
+  cmWorkMove.cooldownMs  = +(wrap.querySelector('#cm_cd').value)||2000
+  cmWorkMove.description = wrap.querySelector('#cm_desc').value || ''
+  const restrVal = wrap.querySelector('#cm_restr').value
+  if (restrVal) cmWorkMove.restriction = restrVal; else delete cmWorkMove.restriction
+
+  const {_assignTo, ...cleanMove} = cmWorkMove
+  CLASSMOVES[id] = cleanMove
+
+  if (isNew || (oldId && oldId !== id)) classMoveNewIds.add(id)
+  else classMoveDirtyIds.add(id)
+
+  cmSelMove = id
+  setDirty(true)
+  toast(`Sort "${name}" ${isNew?'créé':'mis à jour'} ✓`, 'ok')
+  renderClassMoves()
 }
 
 // ───────────────────────── événements ─────────────────────────

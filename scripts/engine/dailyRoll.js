@@ -5,44 +5,44 @@
 // anyBossOf : n'importe lequel de ces boss suffit à valider le palier.
 // hint      : texte affiché dans l'overlay de verrouillage.
 const UNLOCK_TIERS = [
-    // Boss lvl 15 → zones maxLevel 21-30  (Champs/Plage Astrub 10-30, donjons lvl 25)
-    { anyBossOf: ['kardorim'],                                                                    unlocksMaxLevel: 30,  hint: 'le Kardorim' },
-    // Boss lvl 25 → zones maxLevel 31-40  (Tainela 20-40, Donjon Bouftou lvl 35)
-    { anyBossOf: ['mobLeponge', 'tournesolAffame'],                                               unlocksMaxLevel: 40,  hint: 'un boss de niveau 25' },
-    // Boss lvl 35 → zones maxLevel 41-50 (scaraboss dorée)
-    { anyBossOf: ['bouftouRoyal'],                                                                unlocksMaxLevel: 50,  hint: 'un boss de niveau 35' },
-    // Boss lvl 45 → zones maxLevel 51-60 (nid du kwakwa)
-    { anyBossOf: ['scarabossDoree'],                                                              unlocksMaxLevel: 60,  hint: 'un boss de niveau 45' },
-    // Boss lvl 55 → zones maxLevel 61-70  (Blops 50-70)
-    { anyBossOf: ['kwakwa'],                                                                      unlocksMaxLevel: 70,  hint: 'un boss de niveau 55' },
-    // Boss lvl 65 → zones maxLevel 71-80  (Plateau Mantiscore 60-80)
-    { anyBossOf: ['blopCocoRoyal', 'blopGriotteRoyal', 'blopIndigoRoyal', 'blopReinetteRoyal'], unlocksMaxLevel: 80,  hint: 'un boss de niveau 65' },
-    // Boss lvl 75 → zones maxLevel 81-90  (Nids Dragaeufs 70-90)
-    { anyBossOf: ['mantiscore'],                                                                  unlocksMaxLevel: 90,  hint: 'un boss de niveau 75' },
-    // Boss lvl 85 → zones maxLevel 91-100  (Forêt Abraknydes 80-100)
-    { anyBossOf: ['draegnerys'],                                                                  unlocksMaxLevel: 100, hint: 'un boss de niveau 85' },
-    // Boss lvl 95 → zones maxLevel 101-110  (Ferme Dragon Cochon 90-110)
-    { anyBossOf: ['abraknydeAncestral'],                                                          unlocksMaxLevel: 110, hint: 'un boss de niveau 95' },
-    // Boss lvl 105 → zones maxLevel 111-120  (Landes Meulou + Canyons Rat 100-120)
-    { anyBossOf: ['dragonCochon'],                                                                unlocksMaxLevel: 120, hint: 'un boss de niveau 105' },
-    // Boss lvl 115 → zones maxLevel 121-130  (Plaines Boufmouth + Galeries Mansot 110-130)
-    { anyBossOf: ['meulou', 'ratNoir', 'ratBlanc'],                                              unlocksMaxLevel: 130, hint: 'un boss de niveau 115' },
-    // Boss lvl 125 → zones maxLevel 131-140  (Forêt Tofu Royal 120-140)
-    { anyBossOf: ['boufmouthRoyal', 'mansotRoyal'],                                              unlocksMaxLevel: 140, hint: 'un boss de niveau 125' },
-    // Boss lvl 135 → zones maxLevel 141-150  (Forêt Hell Mina + Monts Truche 130-150)
-    { anyBossOf: ['tofuRoyal'],                                                                   unlocksMaxLevel: 150, hint: 'un boss de niveau 135' },
-    // Boss lvl 145 → zones maxLevel 151-160  (Grottes Phossiles + Forêt Chêne Mou 140-160)
-    { anyBossOf: ['hellMina', 'hauteTruche'],                                                     unlocksMaxLevel: 160, hint: 'un boss de niveau 145' },
-    // Boss lvl 155 → zones maxLevel 161-170  (Labyrinthe Minotots + Volcans Obsidiantre 150-170)
-    { anyBossOf: ['phossile', 'cheneMou'],                                                        unlocksMaxLevel: 170, hint: 'un boss de niveau 155' },
-    // Boss lvl 165 → zones maxLevel 171-180  (Sommets Tengu Givrefoux 160-180)
-    { anyBossOf: ['minotot', 'minotoror', 'obsidiantre'],                                         unlocksMaxLevel: 180, hint: 'un boss de niveau 165' },
-    // Boss lvl 175 → zones maxLevel 181-190  (Jungle Ougah + Plaines Kolosso 170-190)
-    { anyBossOf: ['fujiGivrefoux', 'tenguGivrefoux'],                                             unlocksMaxLevel: 190, hint: 'un boss de niveau 175' },
-    // Boss lvl 185 → zones maxLevel 191-200  (Côtes Glourceleste 180-200)
-    { anyBossOf: ['ougah', 'kolosso', 'professeurXa'],                                            unlocksMaxLevel: 200, hint: 'un boss de niveau 185' },
-    // Boss lvl 195 → zones maxLevel 201+  (Domaine Harebourg 200-230)
-    { anyBossOf: ['glourceleste'],                                                                  unlocksMaxLevel: 230, hint: 'un boss de niveau 195' },
+    { anyBossOf: ['kardorim'],
+      unlocksMaxLevel: 30,  hint: 'le Kardorim' },
+    { anyBossOf: ['mobLeponge', 'tournesolAffame'],
+      unlocksMaxLevel: 40,  hint: 'un boss de niveau 25' },
+    { anyBossOf: ['bouftouRoyal', 'directeurGrunob'],
+      unlocksMaxLevel: 50,  hint: 'un boss de niveau 35' },
+    { anyBossOf: ['scarabossDoree', 'chaferRonin', 'batofu', 'kankreblath'],
+      unlocksMaxLevel: 60,  hint: 'un boss de niveau 45' },
+    { anyBossOf: ['kwakwa', 'bworkette', 'coffreDesForgerons', 'corailleurMagistral', 'shinLarve', 'rakoopeur'],
+      unlocksMaxLevel: 70,  hint: 'un boss de niveau 55' },
+    { anyBossOf: ['blopCocoRoyal', 'blopGriotteRoyal', 'blopIndigoRoyal', 'blopReinetteRoyal', 'waWabbit', 'kannibouleEbil', 'gourloLeTerrible'],
+      unlocksMaxLevel: 80,  hint: 'un boss de niveau 65' },
+    { anyBossOf: ['mantiscore', 'craqueleurLegendaire', 'nelween'],
+      unlocksMaxLevel: 90,  hint: 'un boss de niveau 75' },
+    { anyBossOf: ['draegnerys', 'waWobot'],
+      unlocksMaxLevel: 100, hint: 'un boss de niveau 85' },
+    { anyBossOf: ['abraknydeAncestral', 'koulosse', 'reineNyee', 'leChouque', 'choudini'],
+      unlocksMaxLevel: 110, hint: 'un boss de niveau 95' },
+    { anyBossOf: ['dragonCochon', 'silfLeRasboulMajeur', 'maitreDePantins', 'moon', 'kharnozor'],
+      unlocksMaxLevel: 120, hint: 'un boss de niveau 105' },
+    { anyBossOf: ['meulou', 'ratNoir', 'ratBlanc', 'maitreCorbac', 'damadrya'],
+      unlocksMaxLevel: 130, hint: 'un boss de niveau 115' },
+    { anyBossOf: ['boufmouthRoyal', 'mansotRoyal', 'minotoror', 'crocabulia', 'royalmouth', 'skeunk'],
+      unlocksMaxLevel: 140, hint: 'un boss de niveau 125' },
+    { anyBossOf: ['tofuRoyal', 'blopMulticoloreRoyal', 'elPiko', 'nagate', 'tanukouiSan'],
+      unlocksMaxLevel: 150, hint: 'un boss de niveau 135' },
+    { anyBossOf: ['hellMina', 'hauteTruche', 'tynrilConsterne', 'tynrilDeconcerte', 'tynrilPerfide', 'tynrilAhuri', 'shihan', 'hanshi', 'founoroshi'],
+      unlocksMaxLevel: 160, hint: 'un boss de niveau 145' },
+    { anyBossOf: ['phossile', 'cheneMou', 'sphincterCell', 'benLeRipate'],
+      unlocksMaxLevel: 170, hint: 'un boss de niveau 155' },
+    { anyBossOf: ['minotot', 'minotoror', 'obsidiantre', 'kimbo', 'kanigroula', 'shogunTofugawa'],
+      unlocksMaxLevel: 180, hint: 'un boss de niveau 165' },
+    { anyBossOf: ['fujiGivrefoux', 'tenguGivrefoux', 'pereVer', 'koumiho', 'supervizoeuf'],
+      unlocksMaxLevel: 190, hint: 'un boss de niveau 175' },
+    { anyBossOf: ['ougah', 'kolosso', 'professeurXa', 'bworker', 'grolloum', 'korriandre'],
+      unlocksMaxLevel: 200, hint: 'un boss de niveau 185' },
+    { anyBossOf: ['gourseleste', 'ombre', 'comteRazof', 'barberyClocheCuivre'],
+      unlocksMaxLevel: 230, hint: 'un boss de niveau 195' },
 ]
 
 // Un slot = une zone tirée aléatoirement parmi les zones accessibles dont le range chevauche la tranche.
@@ -60,9 +60,9 @@ const WILD_SLOTS = [
     { min: 170, max: 200 },   // slot 10
 ]
 
-const DAILY_EVENT_MAX    = 3
+const DAILY_EVENT_MAX    = 5
 const EVENT_REFRESH_DAYS = 3
-const DAILY_RAID_MAX     = 2
+const DAILY_RAID_MAX     = 3
 const RAID_REFRESH_DAYS  = 3
 
 function _todayStr() {

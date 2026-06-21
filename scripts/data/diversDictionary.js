@@ -8,6 +8,7 @@ item.pierreDame = {
     name: "Pierre d'âme",
     image: 'img/items/objets_bonus/Ame.png',
     type: 'resource',
+    hiddenInInventory: true,
     description: "Pierre magique renfermant l'âme des monstres rencontrés."
 }
 item.pierreDameArchimonstre = {
@@ -31,6 +32,7 @@ item.caisseEquipement = {
     name: "Caisse d'équipement",
     image: 'img/items/objets_bonus/caisseEquipement.png',
     type: 'resource',
+    hiddenInInventory: true,
     description: "Caisse d'équipement récupéré sur les monstres tués au combat. Elle renferme un objet magique."
 }
 item.piloteAutomatique = {
@@ -158,14 +160,6 @@ item.cleDonjonRatBlanc = {
     isKey: true,
     description: "Cette clef permet de rentrer dans le Sanctuaire du Rat Blanc."
 }
-item.cleDonjonBoufmouthRoyal = {
-    id: 'cleDonjonBoufmouthRoyal',
-    name: "Clef de la Fosse du Boufmouth Royal",
-    image: 'img/items/divers/donjonBoufmouthRoyal.png',
-    type: 'resource',
-    isKey: true,
-    description: "Cette clef permet de rentrer dans la Fosse du Boufmouth Royal."
-}
 item.cleDonjonMansotRoyal = {
     id: 'cleDonjonMansotRoyal',
     name: "Clef de la Mine du Mansot Royal",
@@ -176,11 +170,11 @@ item.cleDonjonMansotRoyal = {
 }
 item.cleDonjonTofuRoyal = {
     id: 'cleDonjonTofuRoyal',
-    name: "Clef de l'Arbre du Tofu Royal",
-    image: 'img/items/divers/donjonTofuRoyal.png',
+    name: "Clef du Tofulailler Royal",
+    image: 'img/items/divers/donjonTofulaillerRoyal.png',
     type: 'resource',
     isKey: true,
-    description: "Cette clef permet de rentrer dans l'Arbre du Tofu Royal."
+    description: "Cette clef permet de rentrer dans le Tofulailler Royal."
 }
 item.cleDonjonHellMina = {
     id: 'cleDonjonHellMina',
@@ -197,14 +191,6 @@ item.cleDonjonHauteTruche = {
     type: 'resource',
     isKey: true,
     description: "Cette clef permet de rentrer dans le Sommet de la Haute Truche."
-}
-item.cleDonjonPhossile = {
-    id: 'cleDonjonPhossile',
-    name: "Clef de la Crypte du Phossile",
-    image: 'img/items/divers/donjonPhossile.png',
-    type: 'resource',
-    isKey: true,
-    description: "Cette clef permet de rentrer dans la Crypte du Phossile."
 }
 item.cleDonjonCheneMou = {
     id: 'cleDonjonCheneMou',
@@ -269,6 +255,606 @@ item.cleDonjonHarebourg = {
     type: 'resource',
     isKey: true,
     description: "Cette clef permet de rentrer dans le Château Harebourg."
+}
+item.cleDonjonSquelettes = {
+    id: 'cleDonjonSquelettes',
+    name: "Clef du Donjon des Squelettes",
+    image: 'img/items/divers/donjonSquelettes.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon des Squelettes."
+}
+item.cleDonjonTofus = {
+    id: 'cleDonjonTofus',
+    name: "Clef du Donjon des Tofus",
+    image: 'img/items/divers/donjonTofus.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon des Tofus."
+}
+item.cleDonjonBworks = {
+    id: 'cleDonjonBworks',
+    name: "Clef du Donjon des Bworks",
+    image: 'img/items/divers/donjonBworks.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon des Bworks."
+}
+item.cleDonjonForgerons = {
+    id: 'cleDonjonForgerons',
+    name: "Clef du Donjon des Forgerons",
+    image: 'img/items/divers/donjonForgerons.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon des Forgerons."
+}
+item.cleDonjonHesque = {
+    id: 'cleDonjonHesque',
+    name: "Clef de la Grotte Hesque",
+    image: 'img/items/divers/donjonHesque.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Grotte Hesque."
+}
+item.cleDonjonRefugeSylvestre = {
+    id: 'cleDonjonRefugeSylvestre',
+    name: "Clef du Refuge Sylvestre",
+    image: 'img/items/divers/donjonRefugeSylvestre.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Refuge Sylvestre."
+}
+item.cleDonjonWabbit = {
+    id: 'cleDonjonWabbit',
+    name: "Clef du Château du Wa Wabbit",
+    image: 'img/items/divers/donjonWabbit.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Château du Wa Wabbit."
+}
+item.cleDonjonKanniboul = {
+    id: 'cleDonjonKanniboul',
+    name: "Clef du Village Kanniboul",
+    image: 'img/items/divers/donjonKanniboul.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Village Kanniboul."
+}
+item.cleDonjonOtomaj = {
+    id: 'cleDonjonOtomaj',
+    name: "Clef de l'Arche d'Otomaï",
+    image: 'img/items/divers/donjonOtomaj.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Arche d'Otomaï."
+}
+item.cleDonjonCraqueleurs = {
+    id: 'cleDonjonCraqueleurs',
+    name: "Clef des Pitons Rocheux des Craqueleurs",
+    image: 'img/items/divers/donjonCraqueleurs.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans les Pitons Rocheux des Craqueleurs."
+}
+item.cleDonjonBrumen = {
+    id: 'cleDonjonBrumen',
+    name: "Clef du Laboratoire de Brumen Tinctorias",
+    image: 'img/items/divers/donjonBrumen.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Laboratoire de Brumen Tinctorias."
+}
+item.cleDonjonTerrierWabbit = {
+    id: 'cleDonjonTerrierWabbit',
+    name: "Clef du Terrier du Wa Wabbit",
+    image: 'img/items/divers/donjonTerrierWabbit.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Terrier du Wa Wabbit."
+}
+item.cleDonjonKoulosse = {
+    id: 'cleDonjonKoulosse',
+    name: "Clef de la Caverne du Koulosse",
+    image: 'img/items/divers/donjonKoulosse.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Caverne du Koulosse."
+}
+item.cleDonjonReineNyee = {
+    id: 'cleDonjonReineNyee',
+    name: "Clef de l'Antre de la Reine Nyée",
+    image: 'img/items/divers/donjonReineNyee.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Antre de la Reine Nyée."
+}
+item.cleDonjonChouque = {
+    id: 'cleDonjonChouque',
+    name: "Clef du Bateau du Chouque",
+    image: 'img/items/divers/donjonChouque.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Bateau du Chouque."
+}
+item.cleDonjonMagikRiktus = {
+    id: 'cleDonjonMagikRiktus',
+    name: "Clef du Chapiteau des Magik Riktus",
+    image: 'img/items/divers/donjonMagikRiktus.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Chapiteau des Magik Riktus."
+}
+item.cleDonjonRasboul = {
+    id: 'cleDonjonRasboul',
+    name: "Clef du Goulet du Rasboul",
+    image: 'img/items/divers/donjonRasboul.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Goulet du Rasboul."
+}
+item.cleDonjonDramak = {
+    id: 'cleDonjonDramak',
+    name: "Clef du Théâtre de Dramak",
+    image: 'img/items/divers/donjonDramak.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Théâtre de Dramak."
+}
+item.cleDonjonMoon = {
+    id: 'cleDonjonMoon',
+    name: "Clef de l'Arbre de Moon",
+    image: 'img/items/divers/donjonMoon.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Arbre de Moon."
+}
+item.cleDonjonKharnozor = {
+    id: 'cleDonjonKharnozor',
+    name: "Clef du Repaire du Kharnozor",
+    image: 'img/items/divers/donjonKharnozor.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Repaire du Kharnozor."
+}
+item.cleDonjonCorbac = {
+    id: 'cleDonjonCorbac',
+    name: "Clef de la Bibliothèque du Maître Corbac",
+    image: 'img/items/divers/donjonCorbac.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Bibliothèque du Maître Corbac."
+}
+item.cleDonjonDamadrya = {
+    id: 'cleDonjonDamadrya',
+    name: "Clef de la Bambusaie de Damadrya",
+    image: 'img/items/divers/donjonDamadrya.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Bambusaie de Damadrya."
+}
+item.cleDonjonMinotoror = {
+    id: 'cleDonjonMinotoror',
+    name: "Clef du Labyrinthe du Minotoror",
+    image: 'img/items/divers/donjonMinotoror.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Labyrinthe du Minotoror."
+}
+item.cleDonjonCrocabulia = {
+    id: 'cleDonjonCrocabulia',
+    name: "Clef de l'Antre de Crocabulia",
+    image: 'img/items/divers/donjonCrocabulia.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Antre de Crocabulia."
+}
+item.cleDonjonTofulaillerRoyal = {
+    id: 'cleDonjonTofulaillerRoyal',
+    name: "Clef Secrète du Tofulailler Royal",
+    image: 'img/items/divers/donjonTofulaillerRoyal.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Tofulailler Royal."
+}
+item.cleDonjonRoyalmouth = {
+    id: 'cleDonjonRoyalmouth',
+    name: "Clef de la Serre du Royalmouth",
+    image: 'img/items/divers/donjonBoufmouthRoyal.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Serre du Royalmouth."
+}
+item.cleDonjonSkeunk = {
+    id: 'cleDonjonSkeunk',
+    name: "Clef du Repaire de Skeunk",
+    image: 'img/items/divers/donjonSkeunk.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Repaire de Skeunk."
+}
+item.cleDonjonBlopMulticolore = {
+    id: 'cleDonjonBlopMulticolore',
+    name: "Clef de l'Antre du Blop Multicolore",
+    image: 'img/items/divers/donjonBlopMulticolore.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Antre du Blop Multicolore."
+}
+item.cleDonjonElPiko = {
+    id: 'cleDonjonElPiko',
+    name: "Clef de la Caverne d'El Piko",
+    image: 'img/items/divers/donjonElPiko.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Caverne d'El Piko."
+}
+item.cleDonjonDameEaux = {
+    id: 'cleDonjonDameEaux',
+    name: "Clef de la Vallée de la Dame des Eaux",
+    image: 'img/items/divers/donjonDameEaux.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Vallée de la Dame des Eaux."
+}
+item.cleDonjonTanukoi = {
+    id: 'cleDonjonTanukoi',
+    name: "Clef de l'Atelier du Tanukouï San",
+    image: 'img/items/divers/donjonTanukoi.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Atelier du Tanukouï San."
+}
+item.cleDonjonTynril = {
+    id: 'cleDonjonTynril',
+    name: "Clef du Laboratoire du Tynril",
+    image: 'img/items/divers/donjonTynril.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Laboratoire du Tynril."
+}
+item.cleDonjonDojoVent = {
+    id: 'cleDonjonDojoVent',
+    name: "Clef du Dojo du Vent",
+    image: 'img/items/divers/donjonDojoVent.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Dojo du Vent."
+}
+item.cleDonjonFouxArtifice = {
+    id: 'cleDonjonFouxArtifice',
+    name: "Clef de la Fabrique de Foux d'Artifice",
+    image: 'img/items/divers/donjonFouxArtifice.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Fabrique de Foux d'Artifice."
+}
+item.cleDonjonSphincter = {
+    id: 'cleDonjonSphincter',
+    name: "Clef du Repaire de Sphincter Cell",
+    image: 'img/items/divers/donjonSphincter.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Repaire de Sphincter Cell."
+}
+item.cleDonjonGrolandais = {
+    id: 'cleDonjonGrolandais',
+    name: "Clef du Grolandais Violent",
+    image: 'img/items/divers/donjonGrolandais.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Grolandais Violent."
+}
+item.cleDonjonTertreSommeil = {
+    id: 'cleDonjonTertreSommeil',
+    name: "Clef du Tertre du Long Sommeil",
+    image: 'img/items/divers/donjonTertreSommeil.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Tertre du Long Sommeil."
+}
+item.cleDonjonKimbo = {
+    id: 'cleDonjonKimbo',
+    name: "Clef de la Canopée du Kimbo",
+    image: 'img/items/divers/donjonKimbo.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Canopée du Kimbo."
+}
+item.cleDonjonKanigroula = {
+    id: 'cleDonjonKanigroula',
+    name: "Clef de la Grotte de Kanigroula",
+    image: 'img/items/divers/donjonKanigroula.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Grotte de Kanigroula."
+}
+item.cleDonjonShogunTofugawa = {
+    id: 'cleDonjonShogunTofugawa',
+    name: "Clef de la Tombe du Shogun Tofugawa",
+    image: 'img/items/divers/donjonShogunTofugawa.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Tombe du Shogun Tofugawa."
+}
+item.cleDonjonGivrefoux = {
+    id: 'cleDonjonGivrefoux',
+    name: "Clef de la Tanière Givrefoux",
+    image: 'img/items/divers/donjonGivrefoux.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Tanière Givrefoux."
+}
+item.cleDonjonPereVer = {
+    id: 'cleDonjonPereVer',
+    name: "Clef du Boyau du Père Ver",
+    image: 'img/items/divers/donjonPereVer.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Boyau du Père Ver."
+}
+item.cleDonjonDemeureEsprits = {
+    id: 'cleDonjonDemeureEsprits',
+    name: "Clef de la Demeure des Esprits",
+    image: 'img/items/divers/donjonDemeureEsprits.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Demeure des Esprits."
+}
+item.cleDonjonBworker = {
+    id: 'cleDonjonBworker',
+    name: "Clef de la Grotte du Bworker",
+    image: 'img/items/divers/donjonBworker.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Grotte du Bworker."
+}
+item.cleDonjonSakai = {
+    id: 'cleDonjonSakai',
+    name: "Clef de la Mine de Sakaï",
+    image: 'img/items/divers/donjonSakai.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Mine de Sakaï."
+}
+item.cleDonjonKorriandre = {
+    id: 'cleDonjonKorriandre',
+    name: "Clef de l'Antre du Korriandre",
+    image: 'img/items/divers/donjonKorriandre.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Antre du Korriandre."
+}
+item.cleDonjonGloursons = {
+    id: 'cleDonjonGloursons',
+    name: "Clef de l'Antichambre des Gloursons",
+    image: 'img/items/divers/donjonGloursons.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Antichambre des Gloursons."
+}
+item.cleDonjonOmbre = {
+    id: 'cleDonjonOmbre',
+    name: "Clef de la Pyramide d'Ombre",
+    image: 'img/items/divers/donjonOmbre.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Pyramide d'Ombre."
+}
+item.cleDonjonRazof = {
+    id: 'cleDonjonRazof',
+    name: "Clef du Camp du Comte Razof",
+    image: 'img/items/divers/donjonRazof.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Camp du Comte Razof."
+}
+item.cleDonjonBastionMarteaux = {
+    id: 'cleDonjonBastionMarteaux',
+    name: "Clef du Bastion des Marteaux-Aigris",
+    image: 'img/items/divers/donjonBastionMarteaux.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Bastion des Marteaux-Aigris."
+}
+item.cleDonjonSylargh = {
+    id: 'cleDonjonSylargh',
+    name: "Clef du Transporteur de Sylargh",
+    image: 'img/items/divers/donjonSylargh.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Transporteur de Sylargh."
+}
+item.cleDonjonKlime = {
+    id: 'cleDonjonKlime',
+    name: "Clef des Salons Privés de Klime",
+    image: 'img/items/divers/donjonKlime.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans les Salons Privés de Klime."
+}
+item.cleDonjonMissizFrizz = {
+    id: 'cleDonjonMissizFrizz',
+    name: "Clef de la Forgefroide de Missiz Frizz",
+    image: 'img/items/divers/donjonMissizFrizz.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Forgefroide de Missiz Frizz."
+}
+item.cleDonjonNileza = {
+    id: 'cleDonjonNileza',
+    name: "Clef du Laboratoire de Nileza",
+    image: 'img/items/divers/donjonNileza.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Laboratoire de Nileza."
+}
+item.cleDonjonMerkator = {
+    id: 'cleDonjonMerkator',
+    name: "Clef de l'Aquadôme de Merkator",
+    image: 'img/items/divers/donjonMerkator.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Aquadôme de Merkator."
+}
+item.cleDonjonBaleine = {
+    id: 'cleDonjonBaleine',
+    name: "Clef du Ventre de la Baleine",
+    image: 'img/items/divers/donjonBaleine.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Ventre de la Baleine."
+}
+item.cleDonjonMeno = {
+    id: 'cleDonjonMeno',
+    name: "Clef du Vaisseau du Capitaine Meno",
+    image: 'img/items/divers/donjonMeno.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Vaisseau du Capitaine Meno."
+}
+item.cleDonjonKoutoulou = {
+    id: 'cleDonjonKoutoulou',
+    name: "Clef du Temple de Koutoulou",
+    image: 'img/items/divers/donjonKoutoulou.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Temple de Koutoulou."
+}
+item.cleDonjonDantinea = {
+    id: 'cleDonjonDantinea',
+    name: "Clef du Palais de Dantinéa",
+    image: 'img/items/divers/donjonDantinea.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Palais de Dantinéa."
+}
+item.cleDonjonIlyzaelle = {
+    id: 'cleDonjonIlyzaelle',
+    name: "Clef du Belvédère d'Ilyzaelle",
+    image: 'img/items/divers/donjonIlyzaelle.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Belvédère d'Ilyzaelle."
+}
+item.cleDonjonBethel = {
+    id: 'cleDonjonBethel',
+    name: "Clef de la Tour de Bethel",
+    image: 'img/items/divers/donjonBethel.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Tour de Bethel."
+}
+item.cleDonjonSolar = {
+    id: 'cleDonjonSolar',
+    name: "Clef de la Tour de Solar",
+    image: 'img/items/divers/donjonSolar.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Tour de Solar."
+}
+item.cleDonjonDazak = {
+    id: 'cleDonjonDazak',
+    name: "Clef de la Brasserie du Roi Dazak",
+    image: 'img/items/divers/donjonDazak.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Brasserie du Roi Dazak."
+}
+item.cleDonjonTorkelonia = {
+    id: 'cleDonjonTorkelonia',
+    name: "Clef du Sanctuaire de Torkélonia",
+    image: 'img/items/divers/donjonTorkelonia.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Sanctuaire de Torkélonia."
+}
+item.cleDonjonArbreMort = {
+    id: 'cleDonjonArbreMort',
+    name: "Clef de l'Arbre de Mort",
+    image: 'img/items/divers/donjonArbreMort.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Arbre de Mort."
+}
+item.cleDonjonTyrannie = {
+    id: 'cleDonjonTyrannie',
+    name: "Clef des Fers de la Tyrannie",
+    image: 'img/items/divers/donjonTyrannie.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans les Fers de la Tyrannie."
+}
+item.cleDonjonBalance = {
+    id: 'cleDonjonBalance',
+    name: "Clef de la Sentence de la Balance",
+    image: 'img/items/divers/donjonBalance.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Sentence de la Balance."
+}
+item.cleDonjonTroneSang = {
+    id: 'cleDonjonTroneSang',
+    name: "Clef du Trône de Sang",
+    image: 'img/items/divers/donjonTroneSang.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Trône de Sang."
+}
+item.cleDonjonTalKasha = {
+    id: 'cleDonjonTalKasha',
+    name: "Clef de la Chambre de Tal Kasha",
+    image: 'img/items/divers/donjonTalKasha.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Chambre de Tal Kasha."
+}
+item.cleDonjonKabahal = {
+    id: 'cleDonjonKabahal',
+    name: "Clef du Rituel de Kabahal",
+    image: 'img/items/divers/donjonKabahal.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Rituel de Kabahal."
+}
+item.cleDonjonAurorePourpre = {
+    id: 'cleDonjonAurorePourpre',
+    name: "Clef de la Bataille de l'Aurore Pourpre",
+    image: 'img/items/divers/donjonAurorePourpre.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Bataille de l'Aurore Pourpre."
+}
+item.cleDonjonMalefices = {
+    id: 'cleDonjonMalefices',
+    name: "Clef de la Chambre des Maléfices",
+    image: 'img/items/divers/donjonMalefices.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Chambre des Maléfices."
+}
+item.cleDonjonAcademieGobs = {
+    id: 'cleDonjonAcademieGobs',
+    name: "Clef de l'Akadémie des Gobs",
+    image: 'img/items/divers/donjonAcademieGobs.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'Akadémie des Gobs."
+}
+item.cleDonjonKankreblath = {
+    id: 'cleDonjonKankreblath',
+    name: "Clef de la Cache de Kankreblath",
+    image: 'img/items/divers/donjonKankreblath.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans la Cache de Kankreblath."
+}
+item.cleDonjonLarves = {
+    id: 'cleDonjonLarves',
+    name: "Clef du Donjon des Larves",
+    image: 'img/items/divers/donjonLarves.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon des Larves."
 }
 // #endregion
 
