@@ -68,31 +68,10 @@ monsters.poulpor = {
     bst: { hp: 1, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['double_tranchant']
 }
-
-monsters.percepteur_aquatique = {
-    id: 'percepteur_aquatique',
-    name: 'Percepteur aquatique',
-    image: 'images/monsters/Percepteur_aquatique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
 monsters.amas_de_tentacules = {
     id: 'amas_de_tentacules',
     name: 'Amas de Tentacules',
     image: 'images/monsters/Amas_de_Tentacules.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
-monsters.volkornade = {
-    id: 'volkornade',
-    name: 'Volkornade',
-    image: 'images/monsters/Volkornade.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
@@ -107,106 +86,6 @@ monsters.germinial = {
     tier: 'normal',
     bst: { hp: 1, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['morsure_putride', 'langue_morte']
-}
-
-monsters.capitaine_brakmarien = {
-    id: 'capitaine_brakmarien',
-    name: 'Capitaine Brâkmarien',
-    image: 'images/monsters/Capitaine_Brâkmarien.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['porter_la_boufballe', 'jeter_la_boufballe', 'rapprochement', 'amplification', 'tacle', 'triche']
-}
-
-monsters.capitaine_bontarien = {
-    id: 'capitaine_bontarien',
-    name: 'Capitaine Bontarien',
-    image: 'images/monsters/Capitaine_Bontarien.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['tu_pousses_le_bouchon_un_peu_trop_loin_joris', 'verfeur', 'lioube', 'emportement', 'eau_strasisme']
-}
-
-monsters.attaquant_brakmarien_i = {
-    id: 'attaquant_brakmarien_i',
-    name: 'Attaquant Brâkmarien I',
-    image: 'images/monsters/Attaquant_Brâkmarien_I.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['rapprochement_offensif', 'tacle_offensif']
-}
-
-monsters.attaquant_bontarien_i = {
-    id: 'attaquant_bontarien_i',
-    name: 'Attaquant Bontarien I',
-    image: 'images/monsters/Attaquant_Bontarien_I.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
-monsters.attaquant_brakmarien_ii = {
-    id: 'attaquant_brakmarien_ii',
-    name: 'Attaquant Brâkmarien II',
-    image: 'images/monsters/Attaquant_Brâkmarien_II.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
-monsters.attaquant_bontarien_ii = {
-    id: 'attaquant_bontarien_ii',
-    name: 'Attaquant Bontarien II',
-    image: 'images/monsters/Attaquant_Bontarien_II.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
-monsters.defenseur_brakmarien_i = {
-    id: 'defenseur_brakmarien_i',
-    name: 'Défenseur Brâkmarien I',
-    image: 'images/monsters/Défenseur_Brâkmarien_I.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['tacle_lourd']
-}
-
-monsters.defenseur_bontarien_i = {
-    id: 'defenseur_bontarien_i',
-    name: 'Défenseur Bontarien I',
-    image: 'images/monsters/Défenseur_Bontarien_I.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
-monsters.defenseur_brakmarien_ii = {
-    id: 'defenseur_brakmarien_ii',
-    name: 'Défenseur Brâkmarien II',
-    image: 'images/monsters/Défenseur_Brâkmarien_II.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-
-monsters.defenseur_bontarien_ii = {
-    id: 'defenseur_bontarien_ii',
-    name: 'Défenseur Bontarien II',
-    image: 'images/monsters/Défenseur_Bontarien_II.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
 }
 
 monsters.bourgeon_de_dathura = {
@@ -235,7 +114,7 @@ monsters.flammeche_feu = {
     image: 'images/monsters/Flammèche_Feu.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 9, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
     moves: ['elemental_spear', 'bomball']
 }
 
@@ -245,8 +124,8 @@ monsters.flammeche_eau = {
     image: 'images/monsters/Flammèche_Eau.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 9, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
+    moves: ['elemental_speareau', 'bomballeau']
 }
 
 monsters.flammeche_terre = {
@@ -255,8 +134,8 @@ monsters.flammeche_terre = {
     image: 'images/monsters/Flammèche_Terre.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 9, atk: 0, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
+    moves: ['elemental_spearterre', 'bomballterre']
 }
 
 monsters.flammeche_air = {
@@ -265,8 +144,8 @@ monsters.flammeche_air = {
     image: 'images/monsters/Flammèche_Air.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 9, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: []
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
+    moves: ['elemental_spearair', 'bomballair']
 }
 
 monsters.tofu_chimerique = {
@@ -1066,7 +945,7 @@ monsters.rose_obscure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 120, atk: 150, spd: 100, res: { neutre: 10, terre: 25, feu: 0, eau: 30, air: 0 } },
-    moves: []
+    moves: ['petalesEmpoisonnes', 'roseEpineuse']
 }
 
 monsters.coffre_maudit_du_flib = {
@@ -1176,7 +1055,7 @@ monsters.bwak_de_terre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['bwakikuiterre']
 }
 
 monsters.bwak_d_air = {
@@ -1186,7 +1065,7 @@ monsters.bwak_d_air = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: []
+    moves: ['bwakikuiair']
 }
 
 monsters.bwak_d_eau = {
@@ -1196,7 +1075,7 @@ monsters.bwak_d_eau = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
+    moves: ['bwakikuieau']
 }
 
 monsters.bouftonBlanc = {
@@ -1277,6 +1156,16 @@ monsters.martoa = {
     tier: 'normal',
     bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 21, feu: 6, eau: -14, air: 11 } },
     moves: ['marteau_branlant', 'mur_de_pelles']
+}
+
+summons.mur_de_pelles = {
+    id:    'mur_de_pelles',
+    name:  'Mur de pelles',
+    image: 'img/classes/invocations/pelle_animee.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 21, feu: 6, eau: -14, air: 11 } },
+    moves: []
 }
 
 monsters.sherpoa = {
@@ -2166,7 +2055,7 @@ monsters.crustorail_malibout = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 340, atk: 100, spd: 100, res: { neutre: 5, terre: 30, feu: 5, eau: 5, air: -20 } },
-    moves: []
+    moves: ['pince_de_corail', 'protection_de_corail']
 }
 
 monsters.crustorail_passaoh = {
@@ -2176,7 +2065,7 @@ monsters.crustorail_passaoh = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 340, atk: 100, spd: 100, res: { neutre: 5, terre: 5, feu: 30, eau: -20, air: 5 } },
-    moves: []
+    moves: ['pince_de_corail', 'protection_de_corail']
 }
 
 monsters.crustorail_morito = {
@@ -2186,7 +2075,7 @@ monsters.crustorail_morito = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 340, atk: 100, spd: 100, res: { neutre: 5, terre: -20, feu: 5, eau: 5, air: 30 } },
-    moves: []
+    moves: ['pince_de_corail', 'protection_de_corail']
 }
 
 monsters.mirgrillon = {
@@ -11700,7 +11589,7 @@ monsters.kardorim = {
     image: 'images/monsters/Kardorim.png',
     rarity: 'peu_commun',
     tier: 'boss',
-    bst: { hp: 140, atk: 50, spd: 100, res: { neutre: 10, terre: -15, feu: 20, eau: -10, air: 5 } },
+    bst: { hp: 250, atk: 100, spd: 100, res: { neutre: 10, terre: -15, feu: 20, eau: -10, air: 5 } },
     moves: ['cassecrane', 'appeldeKardorib']
 }
 
@@ -11710,7 +11599,7 @@ monsters.mobLeponge = {
     image: 'images/monsters/Mob_l_Éponge.png',
     rarity: 'peu_commun',
     tier: 'boss',
-    bst: { hp: 280, atk: 80, spd: 110, res: { neutre: 14, terre: 14, feu: 14, eau: 14, air: 14 } },
+    bst: { hp: 450, atk: 120, spd: 110, res: { neutre: 14, terre: 14, feu: 14, eau: 14, air: 14 } },
     moves: ['degraissage', 'rincage', 'Regeneration_Spontanee']
 }
 
@@ -11720,7 +11609,7 @@ monsters.tournesolAffame = {
     image: 'images/monsters/Tournesol_Affamé.png',
     rarity: 'peu_commun',
     tier: 'boss',
-    bst: { hp: 550, atk: 80, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: -10, air: -15 } },
+    bst: { hp: 600, atk: 120, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: -10, air: -15 } },
     moves: ['soinFeuillu', 'appeldesChamps', 'goinfrage']
 }
 
@@ -11730,7 +11619,7 @@ monsters.bouftouRoyal = {
     image: 'images/monsters/Bouftou_Royal.png',
     rarity: 'peu_commun',
     tier: 'boss',
-    bst: { hp: 610, atk: 120, spd: 110, res: { neutre: 35, terre: 20, feu: 20, eau: 25, air: 5 } },
+    bst: { hp: 800, atk: 150, spd: 110, res: { neutre: 35, terre: 20, feu: 20, eau: 25, air: 5 } },
     moves: ['morsure_royale', 'guerison_bouftou', 'morsure_de_guerre', 'cuirasse_laineuse']
 }
 
@@ -11740,7 +11629,7 @@ monsters.chafer_ronin = {
     image: 'images/monsters/Chafer_Rōnin.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 680, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 680, atk: 150, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['bushido', 'kikoha']
 }
 
@@ -11750,7 +11639,7 @@ monsters.batofu = {
     image: 'images/monsters/Batofu.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 760, atk: 88, spd: 100, res: { neutre: 37, terre: 9, feu: -14, eau: -4, air: 36 } },
+    bst: { hp: 760, atk: 108, spd: 150, res: { neutre: 37, terre: 9, feu: -14, eau: -4, air: 36 } },
     moves: ['gotame', 'beco_de_batofu', 'lancer_de_tofu_fugace', 'liberte']
 }
 
@@ -11780,7 +11669,7 @@ monsters.kankreblath = {
     image: 'images/monsters/Kankreblath.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 820, atk: 160, spd: 100, res: { neutre: 0, terre: 34, feu: 12, eau: 26, air: 18 } },
+    bst: { hp: 1020, atk: 200, spd: 100, res: { neutre: 0, terre: 34, feu: 12, eau: 26, air: 18 } },
     moves: ['blatheration', 'kankroulahoup', 'sfvc_r']
 }
 
@@ -11810,7 +11699,7 @@ monsters.directeur_grunob = {
     image: 'images/monsters/Directeur_Grunob.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1200, atk: 150, spd: 100, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
+    bst: { hp: 1200, atk: 200, spd: 100, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
     moves: ['sermon_educatif', 'chachagobert', 'cuvee_des_gobs']
 }
 
@@ -11820,7 +11709,7 @@ monsters.rakoopeur = {
     image: 'images/monsters/Rakoopeur.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1200, atk: 144, spd: 100, res: { neutre: 0, terre: 5, feu: 5, eau: 5, air: 5 } },
+    bst: { hp: 1200, atk: 200, spd: 100, res: { neutre: 0, terre: 5, feu: 5, eau: 5, air: 5 } },
     moves: ['serpette', 'camaraderie']
 }
 

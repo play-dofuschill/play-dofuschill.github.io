@@ -848,14 +848,31 @@ item.cleDonjonKankreblath = {
     isKey: true,
     description: "Cette clef permet de rentrer dans la Cache de Kankreblath."
 }
+item.cleDonjonAcademieGobs = {
+    id: 'cleDonjonAcademieGobs',
+    name: 'Clef de l\'Akadémie des Gobs',
+    image: 'img/items/divers/donjonAcademieGobs.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans l\'Akadémie des Gobs.'
+}
+item.cleDonjonKankreblath = {
+    id: 'cleDonjonKankreblath',
+    name: 'Clef de la Cache de Kankreblath',
+    image: 'img/items/divers/donjonKankreblath.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans la Cache de Kankreblath.'
+}
 item.cleDonjonLarves = {
     id: 'cleDonjonLarves',
-    name: "Clef du Donjon des Larves",
+    name: 'Clef du Donjon des Larves',
     image: 'img/items/divers/donjonLarves.png',
     type: 'resource',
     isKey: true,
-    description: "Cette clef permet de rentrer dans le Donjon des Larves."
+    description: 'Cette clef permet de rentrer dans le Donjon des Larves.'
 }
+
 // #endregion
 
 // ────────────────────────────────────────────────────────────────────────

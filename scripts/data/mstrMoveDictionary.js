@@ -2287,7 +2287,7 @@ move.elemental_spear = {
     cooldownMs: 2000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'neutre', damage: { min: 1, max: 1 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 1, max: 1 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
     ]
 }
@@ -2296,15 +2296,69 @@ move.bomball = {
     name: 'Bomball',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
     ]
 }
 
 // -------- Flammèche Eau ---------------
+move.elemental_speareau = {
+    id: 'elemental_speareaus',
+    name: 'Elemental Spear',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'avance', target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 1, max: 1 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 1, target: 'self' }
+    ]
+}
+move.bombaleau = {
+    id: 'bomballeau',
+    name: 'Bomball',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'eau', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
+    ]
+}
 
 // -------- Flammèche Terre ---------------
+move.elemental_spearterre = {
+    id: 'elemental_spearterre',
+    name: 'Elemental Spear',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'avance', target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 1, max: 1 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 1, target: 'self' }
+    ]
+}
+move.bomballterre = {
+    id: 'bomballterre',
+    name: 'Bomball',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
+    ]
+}
 
 // -------- Flammèche Air ---------------
+move.elemental_spearair = {
+    id: 'elemental_spearair',
+    name: 'Elemental Spear',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'avance', target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 1, max: 1 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 1, target: 'self' }
+    ]
+}
+move.bomballair = {
+    id: 'bomballair',
+    name: 'Bomball',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
+    ]
+}
 
 // -------- Tofu Chimérique ---------------
 move.beco_du_tofu = {
@@ -3114,11 +3168,32 @@ move.bwakikui = {
 }
 
 // -------- Bwak de Terre ---------------
-
+move.bwakikuiterre = {
+    id: 'bwakikuiterre',
+    name: 'Bwakikui',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 1, max: 80 }, target: 'enemy' }
+    ]
+}
 // -------- Bwak d'Air ---------------
-
+move.bwakikuiair = {
+    id: 'bwakikuiair',
+    name: 'Bwakikui',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 1, max: 80 }, target: 'enemy' }
+    ]
+}
 // -------- Bwak d'Eau ---------------
-
+move.bwakikuieau = {
+    id: 'bwakikuieau',
+    name: 'Bwakikui',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 1, max: 80 }, target: 'enemy' }
+    ]
+}
 // -------- Ashi-magari ---------------
 move.enchevetrement = {
     id: 'enchevetrement',
@@ -3144,7 +3219,7 @@ move.mur_de_pelles = {
     name: 'Mur de Pelles',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['mur_de_pelles'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3162,7 +3237,7 @@ move.piege_de_cailloux = {
     name: 'Piège de Cailloux',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 17, max: 24 }, target: 'enemy' }
     ]
 }
 
@@ -3181,7 +3256,7 @@ move.piege_de_vapeur = {
     name: 'Piège de Vapeur',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 17, max: 24 }, target: 'enemy' }
     ]
 }
 
@@ -3199,7 +3274,7 @@ move.piege_a_pieds = {
     name: 'Piège à Pieds',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 17, max: 24 }, target: 'enemy' }
     ]
 }
 
@@ -3241,7 +3316,6 @@ move.trou_d_emmental = {
     effects: [
         { type: 'buff', stat: 'atk', value: 25, duration: 3, target: 'self' },
         { type: 'heal', heal: 17, target: 'self' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3310,8 +3384,7 @@ move.glyphe_pair = {
     name: 'Glyphe Pair',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'buff', stat: 'agility', value: 9000, duration: 3, target: 'self' },
+        { type: 'buff', stat: 'agility', value: 900, duration: 3, target: 'self' },
         { type: 'recul', target: 'enemy' },
     ]
 }
@@ -3320,14 +3393,10 @@ move.glyphe_impair = {
     name: 'Glyphe Impair',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'buff', stat: 'agility', value: 9000, duration: 3, target: 'self' },
-        { type: 'recul', target: 'enemy' },
+        { type: 'buff', stat: 'agility', value: 900, duration: 3, target: 'self' },
+        { type: 'avance', target: 'enemy' },
     ]
 }
-
-// -------- Pépite croquante ---------------
-// Aucun sort dans DofusDB pour ce monstre
 
 // -------- Chafer Invisible ---------------
 move.camouflage = {
@@ -3397,7 +3466,7 @@ move.invocation_de_kruella = {
     name: 'Invocation de Kruella',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['Chef_de_Guerre_Bouftou'], duration: 3, target: 'enemy' }
     ]
 }
 move.souffle_motivant = {
@@ -3414,7 +3483,7 @@ move.souffle_empoisonne = {
     cooldownMs: 2000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' },
-        { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 10, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3475,7 +3544,6 @@ move.fougue_tofuesque = {
     name: 'Fougue Tofuesque',
     cooldownMs: 2000,
     effects: [
-        { type: 'recul', target: 'enemy' },
         { type: 'recul', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -3664,7 +3732,7 @@ move.souffle_brulant = {
     cooldownMs: 2000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 27, max: 38 }, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 11, max: 18 }, target: 'enemy' }
+        { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }
     ]
 }
 move.cri_de_l_insecte_ardent = {
@@ -3696,7 +3764,7 @@ move.tentative_d_explosion = {
     name: 'Tentative d\'Explosion',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'flatDamage', value: 31, duration: 3, target: 'self' }
+        { type: 'debuff', stat: 'flatDamage', value: 31, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3762,8 +3830,7 @@ move.invocation_de_familiers_fantomatiques = {
     name: 'Invocation de Familiers Fantômatiques',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['corbac_fantomatique','marcassin_fantomatique'], duration: 3, target: 'enemy' },
     ]
 }
 move.corbacame = {
@@ -3798,8 +3865,7 @@ move.invocation_d_esprits_familiers = {
     name: 'Invocation d\'Esprits Familiers',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['el_scarador_fantomatique','croum_fantomatique'], duration: 3, target: 'enemy' },
     ]
 }
 move.erikorbac = {
@@ -3825,10 +3891,7 @@ move.gare_aux_glyphes = {
     name: 'Gare aux Glyphes',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: [gargrouille], duration: 3, target: 'enemy' },
     ]
 }
 move.durete_ramollissante = {
@@ -3939,7 +4002,7 @@ move.appel_de_papa = {
     name: 'Appel de Papa',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
+        { type: 'summon', summonPool: ['brigandin'], duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
     ]
 }
@@ -3950,7 +4013,7 @@ move.appel_de_la_mama = {
     name: 'Appel de la Mama',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
+        { type: 'summon', summonPool: ['brigandine'], duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
     ]
 }
@@ -3973,7 +4036,8 @@ move.badigeonnage_de_cerumen = {
     name: 'Badigeonnage de cérumen',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 10, duration: 3, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
 }
 move.attrape_coton_tige = {
@@ -4317,7 +4381,7 @@ move.invocation_de_poupoussiere = {
     name: 'Invocation de Poupoussière',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['poupoussiere'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -23580,7 +23644,7 @@ move.chachagobert = {
     name: 'Chachagobert',
     cooldownMs: 2000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['dagobert'], duration: 3, target: 'enemy' }
     ]
 }
 move.cuvee_des_gobs = {
@@ -23719,9 +23783,9 @@ move.reconstitution_bwork = {
 move.inspiration_moonesque = {
     id: 'inspiration_moonesque',
     name: 'Inspiration Moonesque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['kanniboul_ark','kanniboul_jav','kanniboul_eth','kanniboul_sarbak','kanniboul_tam'], duration: 3, target: 'enemy' }
     ]
 }
 move.bouboule = {

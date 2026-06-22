@@ -1,4 +1,4 @@
-﻿// areaDictionary.js — Zones de farm DofusChill
+// areaDictionary.js — Zones de farm DofusChill
 //
 // minLevel / maxLevel  : fourchette affichée dans l'UI de la zone
 // mobMinLevel / mobMaxLevel : fourchette de niveau des monstres spawnés
@@ -130,7 +130,7 @@ areas.campementDesGobs = {
     mobMinLevel: 20, mobMaxLevel: 30,
     background: '',
     icon: 'images/monsters/Gobet.png',
-    description: '',
+    description: "Les Gobets, petites créatures vertes au tempérament belliqueux, ont établi leurs quartiers ici avec une organisation surprenante. Tentes de fortune, braseros crépitants et chants gutturaux rythment la vie de ce campement où la hiérarchie se règle à coups de poing.",
     spawns: [{ id: 'gobet', weight: 10 }, { id: 'gobaliste', weight: 10 }, { id: 'gob_trotteur', weight: 10 }, { id: 'gobichon', weight: 10 }, { id: 'gobaladee', weight: 5 }],
     lootTable: [{ itemId: 'amulette_de_gobeuf', dropRate: 0.01 }, { itemId: 'ceinture_de_gobeuf', dropRate: 0.01 }, { itemId: 'anneau_de_gobeuf', dropRate: 0.01 }, { itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'cleDonjonAcademieGobs', dropRate: 0.15, isKey: true }]
 }
@@ -183,7 +183,7 @@ areas.crypteDuCimetiere = {
     mobMinLevel: 30, mobMaxLevel: 40,
     background: "",
     icon: "images/monsters/Chafer_Fantassin.png",
-    description: "",
+    description: "Sous les dalles usées du cimetière s'étend un réseau de galeries oubliées, où les morts ne semblent jamais vraiment en paix. Les osselets craquent dans l'obscurité, et une lueur blafarde filtre entre les tombes descellées.",
     spawns: [
         { id: 'chafer', weight: 10 },
         { id: 'rib', weight: 10 },
@@ -201,14 +201,14 @@ areas.crypteDuCimetiere = {
     ]
 }
 
-areas.grenierDeKardorim = {
-    id: 'grenierDeKardorim',
+areas.grenierDeKerubim = {
+    id: 'grenierDeKerubim',
     name: "Grenier de Kerubim",
     minLevel: 30, maxLevel: 50,
     mobMinLevel: 30, mobMaxLevel: 40,
     background: "",
     icon: "images/monsters/Cafarcher.png",
-    description: "",
+    description: "Le grenier de Kerubim Crepin, collectionneur excentrique d'Astrub, regorge de trésors poussiéreux et de souvenirs en tout genre. Malheureusement, les Cafarchets qui l'ont envahi depuis des années ne semblent pas disposés à partager l'espace avec les visiteurs.",
     spawns: [
         { id: 'cafarcher', weight: 10 },
         { id: 'pyrasite', weight: 10 },
@@ -231,7 +231,7 @@ areas.champsDesIngalsse = {
     mobMinLevel: 30, mobMaxLevel: 40,
     background: "",
     icon: "images/monsters/Tofu.png",
-    description: "",
+    description: "Les Ingalsse ont tracé leurs sillons dans cette terre depuis des générations. Mais ces derniers temps, leurs récoltes attirent des visiteurs bien moins bienveillants que les marchands habituels, et les épouvantails eux-mêmes semblent avoir pris vie.",
     spawns: [
         { id: 'tofu', weight: 10 },
         { id: 'tofu_noir', weight: 10 },
@@ -312,7 +312,7 @@ areas.campementBwork = {
     mobMinLevel: 40, mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Bwork_Archer.png",
-    description: "",
+    description: "Les Bworks, cousins brutaux aux humeurs guerrières, ont planté leurs bannières sur ce lopin de terre rocailleux. Leurs rituels bruyants et leurs querelles intestines font de ce campement un endroit particulièrement peu recommandable.",
     spawns: [
         { id: 'bwork_archer', weight: 30 },
         { id: 'bwork_mage', weight: 30 },
@@ -335,7 +335,7 @@ areas.territoireDesBandits = {
     mobMinLevel: 40, mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Boulanger_Sombre.png",
-    description: "",
+    description: "Les hors-la-loi qui échouent ici ne cherchent pas la rédemption. Derrière chaque rocher se cache un couteau, derrière chaque sourire une main vers la bourse. Ce territoire aux confins des routes commerciales est le repaire de ceux que la loi a abandonnés.",
     spawns: [
         { id: 'boulanger_sombre', weight: 10 },
         { id: 'mineur_sombre', weight: 10 },
@@ -359,7 +359,7 @@ areas.coteDeCorail = {
     mobMinLevel: 40, mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Crustorail_Kouraçao.png",
-    description: "",
+    description: "Les récifs de corail multicolores s'étendent à perte de vue sous des eaux d'un bleu éclatant. Magnifique à contempler, dangereuse à traverser : la faune marine qui peuple ces fonds n'apprécie guère les intrusions et le fait savoir.",
     spawns: [
         { id: 'crustorail_kouracao', weight: 10 },
         { id: 'crustorail_malibout', weight: 10 },
@@ -384,7 +384,7 @@ areas.prairiesAstrub = {
     mobMinLevel: 40, mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Larve_Bleue.png",
-    description: "",
+    description: "Les prairies qui s'étendent au pied d'Astrub sont le premier terrain d'aventure des nouveaux arrivants dans le Monde des Douze. L'herbe haute dissimule mille dangers à la mesure des débutants — mais même ici, la prudence reste de mise.",
     spawns: [
         { id: 'larve_bleue', weight: 10 },
         { id: 'larve_verte', weight: 10 },
@@ -413,7 +413,7 @@ areas.futaieEnneigee = {
     mobMinLevel: 40, mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Timongouste.png",
-    description: "",
+    description: "Les troncs tordus et décharnés de cette futaie émergent d'un manteau blanc immaculé. À Frigost, même les arbres semblent avoir renoncé à vivre — pourtant, dans l'ombre de ces bois figés, des créatures parfaitement adaptées au froid veillent.",
     spawns: [
         { id: 'timongouste', weight: 10 },
         { id: 'thomondor', weight: 10 },
@@ -477,7 +477,7 @@ areas.ileDesWabbits = {
     mobMinLevel: 50, mobMaxLevel: 60,
     background: "",
     icon: "images/monsters/Tiwabbit_Kiafin.png",
-    description: "",
+    description: "Bienvenue dans le royaume du Wabbit, l'ennemi intime des Enutrofs ! Cette île perdue dans l'océan est le fief de ces lapins diaboliques dont la ressemblance avec des créatures inoffensives n'a d'égal que leur malfaisance légendaire.",
     spawns: [
         { id: 'tiwabbit_kiafin', weight: 15 },
         { id: 'tiwabbit', weight: 15 },
@@ -508,7 +508,7 @@ areas.foretDesMasques = {
     mobMinLevel: 50, mobMaxLevel: 60,
     background: "",
     icon: "images/monsters/Kanniboul_Ark.png",
-    description: "",
+    description: "Dans cette forêt, les visages sculptés dans les troncs semblent vous suivre du regard. Les Masques qui y vivent sont les gardiens ancestraux de secrets anciens, et ils n'ont aucune intention de partager leur territoire avec les étrangers.",
     spawns: [
         { id: 'kanniboul_ark', weight: 10 },
         { id: 'kanniboul_eth', weight: 10 },
@@ -532,7 +532,7 @@ areas.tourbieresSansFond = {
     mobMinLevel: 50, mobMaxLevel: 60,
     background: "",
     icon: "images/monsters/Sparo.png",
-    description: "",
+    description: "La boue noire de ces tourbières a englouti plus d'un aventurier imprudent. Dans les vapeurs verdâtres qui s'en dégagent, des formes visqueuses se déplacent avec une lenteur trompeuse — chaque pas ici peut être le dernier.",
     spawns: [
         { id: 'sparo', weight: 20 },
         { id: 'barbroussa', weight: 20 },
@@ -585,7 +585,7 @@ areas.montagneDesCraqueleurs = {
     mobMinLevel: 60, mobMaxLevel: 70,
     background: "",
     icon: "images/monsters/Craqueboule.png",
-    description: "",
+    description: "Les Craqueleurs se camouflent parmi les rochers de cette montagne avec une facilité déconcertante. Leur carapace minérale les rend presque impossibles à distinguer de la pierre... jusqu'à ce qu'ils bougent, et qu'il soit trop tard.",
     spawns: [
         { id: 'craqueboule', weight: 10 },
         { id: 'craquelourd', weight: 10 },
@@ -614,7 +614,7 @@ areas.desolationDeSidimote = {
     mobMinLevel: 60, mobMaxLevel: 70,
     background: "",
     icon: "images/monsters/Scorbute.png",
-    description: "",
+    description: "Rien ne pousse dans la Désolation de Sidimote. Pas d'herbe, pas d'arbres, pas même de mousse. Cette plaine aride et craquelée semble avoir subi une catastrophe ancienne dont les cicatrices ne se refermeront jamais.",
     spawns: [
         { id: 'scorbute', weight: 10 },
         { id: 'croc_gland', weight: 10 },
@@ -667,7 +667,7 @@ areas.souterrainsWabbits = {
     mobMinLevel: 70, mobMaxLevel: 80,
     background: "",
     icon: "images/monsters/Wobot.png",
-    description: "",
+    description: "Sous l'île des Wabbits s'étend un labyrinthe de galeries creusées par des générations de rongeurs acharnés. L'obscurité y est totale, et les yeux brillants qui vous observent depuis les terriers n'annoncent rien de bon.",
     spawns: [
         { id: 'wobot', weight: 10 },
         { id: 'black_wo_wabbit', weight: 10 },
@@ -720,7 +720,7 @@ areas.canyonSauvage = {
     mobMinLevel: 80, mobMaxLevel: 90,
     background: "",
     icon: "images/monsters/Koalak_Immature.png",
-    description: "",
+    description: "Les parois de grès rouge de ce canyon encaissé résonnent d'échos étranges. Le vent s'y engouffre comme un hurlement, et les créatures qui habitent ces ravines ont appris à en exploiter chaque recoin à leur avantage.",
     spawns: [
         { id: 'koalak_immature', weight: 10 },
         { id: 'mama_koalak', weight: 10 },
@@ -749,7 +749,7 @@ areas.boisDesArakhai = {
     mobMinLevel: 80, mobMaxLevel: 90,
     background: "",
     icon: "images/monsters/Arapex.png",
-    description: "",
+    description: "L'air dans ces bois est chargé d'une humidité poisseuse et de fils de soie quasi invisibles. Les Arakhaï, araignées aux yeux multiples, ont tissé leurs toiles entre chaque branche, attendant patiemment que leurs proies trébuchent dans leurs pièges.",
     spawns: [
         { id: 'arapex', weight: 10 },
         { id: 'dardalaine', weight: 10 },
@@ -773,7 +773,7 @@ areas.cheminDuCrane = {
     mobMinLevel: 80, mobMaxLevel: 90,
     background: "",
     icon: "images/monsters/Boomba.png",
-    description: "",
+    description: "Ce sentier sinistre doit son nom aux crânes blanchis plantés à chaque carrefour — des avertissements laissés par ceux qui ont survécu... ou par ceux qui ont prospéré dans ces lieux. Dans tous les cas, le message est clair.",
     spawns: [
         { id: 'boomba', weight: 10 },
         { id: 'nakunbra', weight: 10 },
@@ -798,7 +798,7 @@ areas.routeDesRoulottes = {
     mobMinLevel: 80, mobMaxLevel: 90,
     background: "",
     icon: "images/monsters/Bozoteur.png",
-    description: "",
+    description: "Autrefois animée par les marchands et les saltimbanques, cette route est maintenant infestée de brigands et de créatures sauvages. Les roulottes abandonnées au bord du chemin témoignent du sort réservé aux voyageurs imprudents.",
     spawns: [
         { id: 'bozoteur', weight: 10 },
         { id: 'tivelo', weight: 10 },
@@ -849,7 +849,7 @@ areas.hautDesHurlements = {
     mobMinLevel: 90, mobMaxLevel: 100,
     background: "",
     icon: "images/monsters/Mulou.png",
-    description: "",
+    description: "Personne ne sait vraiment d'où viennent ces hurlements qui déchirent la nuit sur ces hauteurs. Certains disent que c'est le vent s'engouffrant dans les crevasses, d'autres murmurent que ce sont les âmes de ceux qui n'en sont jamais redescendus.",
     spawns: [
         { id: 'mulou', weight: 10 },
         { id: 'mulounoke', weight: 10 },
@@ -880,7 +880,7 @@ areas.plainesHerbeuses = {
     mobMinLevel: 90, mobMaxLevel: 100,
     background: "",
     icon: "images/monsters/Craqueboule_Poli.png",
-    description: "",
+    description: "À première vue, ces plaines paisibles semblent idéales pour une promenade tranquille. L'herbe haute se balance doucement, le ciel est dégagé… Mais les créatures tapies dans cette végétation ne partagent pas votre sérénité.",
     spawns: [
         { id: 'craqueboule_poli', weight: 10 },
         { id: 'craqueleur_poli', weight: 10 },
@@ -905,7 +905,7 @@ areas.ileDeKartonpath = {
     mobMinLevel: 90, mobMaxLevel: 100,
     background: "",
     icon: "images/monsters/Rhinoféroce.png",
-    description: "",
+    description: "L'Île de Kartonpath, coincée entre les courants de la Mer de Cania et les vents violents du nord, est réputée aussi fragile que dangereuse. Ses falaises friables s'effritent sous les pas, et la faune qui s'y est adaptée l'est tout autant.",
     spawns: [
         { id: 'rhinoferoce', weight: 10 },
         { id: 'molette', weight: 10 },
@@ -929,7 +929,7 @@ areas.jungleInterdite = {
     mobMinLevel: 90, mobMaxLevel: 100,
     background: "",
     icon: "images/monsters/Trukikol.png",
-    description: "",
+    description: "L'accès à cette jungle est officiellement proscrit depuis l'incident qu'on ne nomme plus à Pandala. Les lianes qui en obstruent l'entrée semblent pousser plus vite dès que l'on tente de les écarter, comme si la forêt elle-même refusait les intrus.",
     spawns: [
         { id: 'trukikol', weight: 10 },
         { id: 'gloutovore', weight: 10 },
@@ -957,7 +957,7 @@ areas.villageDragoeufs = {
     mobMinLevel: 90, mobMaxLevel: 100,
     background: "",
     icon: "images/monsters/Dragoss_Calcaire.png",
-    description: "",
+    description: "Au cœur de l'île de Moon, ce village bariolé sent la poudre et le soufre. Les Dragoeufs y règnent en maîtres, couvant leurs œufs avec une jalousie féroce. Gare à celui qui s'approche d'un nid sans en avoir reçu la permission.",
     spawns: [
         { id: 'dragoss_calcaire', weight: 10 },
         { id: 'dragoss_argile', weight: 10 },
@@ -979,7 +979,7 @@ areas.penatesDuCorbac = {
     mobMinLevel: 100, mobMaxLevel: 110,
     background: "",
     icon: "images/monsters/Renarbo.png",
-    description: "",
+    description: "Les Corbacs ont établi leurs pénates dans ces collines venteuses depuis des temps immémoriaux. Leur caquètement strident résonne entre les rochers, et leurs becs acérés ont défendu ce territoire contre bien des prédateurs.",
     spawns: [
         { id: 'renarbo', weight: 10 },
         { id: 'buveur', weight: 10 },
@@ -1007,7 +1007,7 @@ areas.egoutsDeBonta = {
     mobMinLevel: 100, mobMaxLevel: 110,
     background: "",
     icon: "images/monsters/Scélée_Rate.png",
-    description: "",
+    description: "Sous les rues propres et ordonnées de Bonta coule un monde bien moins reluisant. Les égouts de la cité de lumière sont le refuge des marginaux, des créatures rampantes et de tout ce que la surface préfère oublier.",
     spawns: [
         { id: 'scelee_rate', weight: 10 },
         { id: 'chak_rat', weight: 10 },
@@ -1035,7 +1035,7 @@ areas.egoutsDeBrakmar = {
     mobMinLevel: 100, mobMaxLevel: 110,
     background: "",
     icon: "images/monsters/Rat_Plapla.png",
-    description: "",
+    description: "Brakmar est une ville sombre en surface ; ses égouts le sont encore davantage. L'air y est irrespirable, les murs suintent d'un liquide douteux, et les créatures qui y vivent ont depuis longtemps perdu toute trace d'innocence.",
     spawns: [
         { id: 'rat_plapla', weight: 10 },
         { id: 'rat_li', weight: 10 },
@@ -1063,7 +1063,7 @@ areas.plantala = {
     mobMinLevel: 100, mobMaxLevel: 110,
     background: "",
     icon: "images/monsters/Bambouto.png",
-    description: "",
+    description: "Dans ce coin de Pandala où la végétation a pris le dessus sur tout le reste, des plantes d'une taille inhabituelle s'enracinent dans un sol gorgé de sève arcanique. Elles ont développé conscience et mauvais caractère — un mélange explosif.",
     spawns: [
         { id: 'bambouto', weight: 10 },
         { id: 'floristile', weight: 10 },
@@ -1093,7 +1093,7 @@ areas.ileDuMinotoror = {
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
     icon: "images/monsters/Gamino.png",
-    description: "",
+    description: "L'île du Minotoror est un labyrinthe naturel de falaises et de grottes où se perd volontiers quiconque s'y aventure sans guide. La bête qui lui donne son nom en est à la fois le geôlier et le souverain incontesté.",
     spawns: [
         { id: 'gamino', weight: 10 },
         { id: 'serpiplume', weight: 10 },
@@ -1124,7 +1124,7 @@ areas.souterrainsDragoeufs = {
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
     icon: "images/monsters/Dragnarok.png",
-    description: "",
+    description: "Ces galeries souterraines servent d'écloserie aux Dragoeufs de Moon. Dans la chaleur des tunnels de lave refroidie, les œufs pulsent d'une lumière orangée tandis que leurs gardiens en assurent la protection avec une violence redoublée.",
     spawns: [
         { id: 'dragnarok', weight: 10 },
         { id: 'dragueuse', weight: 10 },
@@ -1151,7 +1151,7 @@ areas.champsDesTofusSauvages = {
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
     icon: "images/monsters/Tofuzmo.png",
-    description: "",
+    description: "Ces champs sont envahis par des Tofus que personne n'a jamais réussi à domestiquer. Ces volatiles sauvages défendent leur espace avec une énergie déconcertante pour des créatures aussi petites — ne vous laissez pas tromper par leurs plumes.",
     spawns: [
         { id: 'tofuzmo', weight: 10 },
         { id: 'vilain_petit_tofu', weight: 10 },
@@ -1172,7 +1172,7 @@ areas.champsDeGlace = {
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
     icon: "images/monsters/Boufmouth.png",
-    description: "",
+    description: "À Frigost, même la neige peut tuer. Ces champs de glace s'étendent sur des kilomètres sans le moindre abri, balayés par des vents coupants qui gèlent les articulations et brouillent les repères. Les créatures qui y vivent, elles, ne semblent pas souffrir du froid.",
     spawns: [
         { id: 'boufmouth', weight: 10 },
         { id: 'bouftonmouth', weight: 10 },
@@ -1196,7 +1196,7 @@ areas.valleeDeLaMortKitu = {
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
     icon: "images/monsters/Koalak_Sanguin.png",
-    description: "",
+    description: "La Mort-Kitu est une divinité locale à qui l'on prête bien des vertus funestes. La vallée qui porte son nom est enveloppée d'un brouillard permanent et d'un silence anormal — aucun oiseau n'y chante, aucun insecte n'y bourdonne.",
     spawns: [
         { id: 'koalak_sanguin', weight: 10 },
         { id: 'guerrier_koalak', weight: 10 },
@@ -1218,7 +1218,7 @@ areas.lacDeCaniaProfond = {
     mobMinLevel: 120, mobMaxLevel: 130,
     background: "",
     icon: "images/monsters/Blop_Coco_Royal.png",
-    description: "",
+    description: "Les eaux sombres et profondes de ce lac abritent des variétés de Blops bien plus agressives que leurs cousins de surface. Les pêcheurs d'Amakna évitent soigneusement ces rives, préférant les eaux moins... mouvementées.",
     spawns: [
         { id: 'blopCocoRoyal', weight: 10 },
         { id: 'blopGriotteRoyal', weight: 10 },
@@ -1255,7 +1255,7 @@ areas.cirqueDeCania = {
     mobMinLevel: 120, mobMaxLevel: 130,
     background: "",
     icon: "images/monsters/Gruche.png",
-    description: "",
+    description: "Le Cirque de Cania est une dépression naturelle au relief circulaire qui fait office d'arène improvisée. Les monstres qui s'y affrontent pour marquer leur territoire offrent un spectacle saisissant... pour ceux qui observent depuis un endroit suffisamment éloigné.",
     spawns: [
         { id: 'gruche', weight: 10 },
         { id: 'truchmuche', weight: 10 },
@@ -1279,7 +1279,7 @@ areas.territoireCacterre = {
     mobMinLevel: 120, mobMaxLevel: 130,
     background: "",
     icon: "images/monsters/Cactiflore.png",
-    description: "",
+    description: "Bienvenue à Sufokia, où même les plantes cherchent à vous tuer. Les Cacteires qui règnent sur ce territoire aride ont développé des épines d'une taille imposante et une humeur particulièrement sèche.",
     spawns: [
         { id: 'cactiflore', weight: 10 },
         { id: 'cactana', weight: 10 },
@@ -1303,7 +1303,7 @@ areas.akwadala = {
     mobMinLevel: 120, mobMaxLevel: 130,
     background: "",
     icon: "images/monsters/Sarkapwane.png",
-    description: "",
+    description: "Cette partie de Pandala est dominée par l'élément eau dans tous ses états : cascades, sources bouillonnantes, mares stagnantes. Les créatures aquatiques qui y évoluent semblent avoir absorbé quelque chose de l'énergie magique de l'île.",
     spawns: [
         { id: 'sarkapwane', weight: 10 },
         { id: 'kokom', weight: 10 },
@@ -1332,7 +1332,7 @@ areas.terrdala = {
     mobMinLevel: 120, mobMaxLevel: 130,
     background: "",
     icon: "images/monsters/Shinibaru.png",
-    description: "",
+    description: "La Terre de Pandala : un sol grumeleux d'une fertilité étrange, où des racines gigantesques émergent sans prévenir et où les créatures semblent surgir directement du sol, comme si l'île elle-même les engendrait.",
     spawns: [
         { id: 'shinibaru', weight: 10 },
         { id: 'ishigro_pake', weight: 10 },
@@ -1362,7 +1362,7 @@ areas.foretSombre = {
     mobMinLevel: 130, mobMaxLevel: 140,
     background: "",
     icon: "images/monsters/Branche_Invocatrice.png",
-    description: "",
+    description: "La Forêt sombre est le domaine d'Elya Wood, une entité arborescente que la corruption a rendue aussi puissante que malveillante. Ses branches invocatrices fouettent l'air à tout va, et les Abraknides qui tissent leurs toiles entre les troncs noircis en sont les gardiens involontaires.",
     spawns: [
         { id: 'branche_invocatrice', weight: 10 },
         { id: 'branche_soignante', weight: 10 },
@@ -1387,7 +1387,7 @@ areas.lacGele = {
     mobMinLevel: 130, mobMaxLevel: 140,
     background: "",
     icon: "images/monsters/Timansot.png",
-    description: "",
+    description: "La surface de ce lac de Frigost est prise dans la glace la plus épaisse de toute l'île, et pourtant quelque chose bat dessous. Les Timansots et leurs chamans ont établi leur camp sur ce miroir gelé, défendant ses eaux avec des rituels de glace aussi beaux que dévastateurs.",
     spawns: [
         { id: 'timansot', weight: 10 },
         { id: 'shamansot', weight: 10 },
@@ -1412,7 +1412,7 @@ areas.jungleObscure = {
     mobMinLevel: 130, mobMaxLevel: 140,
     background: "",
     icon: "images/monsters/Floribonde.png",
-    description: "",
+    description: "Même les rayons du soleil peinent à percer la canopée épaisse de cette jungle. Dans cette obscurité permanente, des créatures aux yeux phosphorescents ont évolué loin de toute lumière, développant des sens que les aventuriers peinent à anticiper.",
     spawns: [
         { id: 'floribonde', weight: 10 },
         { id: 'bitouf_sombre', weight: 10 },
@@ -1438,7 +1438,7 @@ areas.aerdala = {
     mobMinLevel: 130, mobMaxLevel: 140,
     background: "",
     icon: "images/monsters/Uchiwang.png",
-    description: "",
+    description: "Les courants aériens qui traversent Pandala convergent ici, tourbillonnant en une danse perpétuelle qui soulève poussière et feuilles mortes. Les créatures de l'air qui y prospèrent sont aussi imprévisibles que le vent lui-même.",
     spawns: [
         { id: 'uchiwang', weight: 10 },
         { id: 'ino_naru', weight: 10 },
@@ -1467,7 +1467,7 @@ areas.feudala = {
     mobMinLevel: 130, mobMaxLevel: 140,
     background: "",
     icon: "images/monsters/Crachefoux.png",
-    description: "",
+    description: "Le feu coule sous Pandala, et il remonte ici à la surface. Les sols brûlants, les geysers de vapeur et la chaleur suffocante font de cette zone un enfer pour les impréparés. Ses habitants, eux, s'y sentent comme des poissons dans l'eau.",
     spawns: [
         { id: 'crachefoux', weight: 10 },
         { id: 'rouquette', weight: 10 },
@@ -1497,7 +1497,7 @@ areas.egoutsDuChateauAmakna = {
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Sous les fondations du Château d'Amakna s'étend un réseau de galeries médiévales creusées par des bâtisseurs depuis longtemps oubliés. Les squelettes qui y patrouillent semblent avoir reçu pour ordre de défendre ces lieux pour l'éternité.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1512,7 +1512,7 @@ areas.berceauDAlma = {
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Le Berceau d'Alma est un lieu saint pour les Sadidas : c'est ici, dit-on, que la déesse de la Nature fit naître les premières plantes du Monde des Douze. Malheureusement, même les lieux sacrés ne sont pas à l'abri des créatures mal intentionnées.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1527,7 +1527,7 @@ areas.dedaleDuDarkVlad = {
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Le Dédale du Dark Vlad est le résultat de siècles de magie noire accumulée. Les couloirs de ce labyrinthe maudit changent de configuration sans prévenir, et les ombres qui y habitent semblent nourries par la peur de ceux qui s'y perdent.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1543,7 +1543,7 @@ areas.larmesDOuronigride = {
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Ouronigride, dragon de l'obscurité, aurait versé ses larmes en ce lieu lors d'un combat titanesque. Ces larmes, cristallisées au fil des millénaires, ont donné naissance à un paysage aussi beau que dangereux.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1558,7 +1558,7 @@ areas.feuillageArbreHakam = {
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "L'Arbre Hakam, colossal gardien de la forêt, étend ses branches sur plusieurs hectares. Dans ce feuillage dense comme un second sol, des créatures arboricoles ont établi leurs nids, invisibles depuis le sol.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1573,7 +1573,7 @@ areas.centreDuLabyrintheMinotoror = {
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
     icon: "images/monsters/Mominotor.png",
-    description: "",
+    description: "Vous avez survécu au labyrinthe. Félicitations : vous voici au centre, là où le Minotoror attend ceux qui ont résolu ses énigmes de pierre. L'air y sent la sueur, le sang et quelque chose d'indéfinissable qui ressemble à de l'impatience.",
     spawns: [
         { id: 'mominotor', weight: 10 },
         { id: 'deminoboule', weight: 10 },
@@ -1606,7 +1606,7 @@ areas.dentsDePierre = {
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Ces formations rocheuses acérées qui percent la plaine comme autant de molaires de géant donnent leur nom à ce lieu inhospitalier. Entre ces aiguilles de pierre, des créatures minérales ont élu domicile depuis si longtemps qu'elles semblent en faire partie.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1621,7 +1621,7 @@ areas.cimetiereDeGrobe = {
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
     icon: "images/monsters/Tsukinochi.png",
-    description: "",
+    description: "Le village de Grobe a disparu depuis longtemps, mais son cimetière, lui, demeure. Ses habitants reposent sous des stèles rongées par la mousse... du moins, certains d'entre eux y reposent. Les autres ont repris du service.",
     spawns: [
         { id: 'tsukinochi', weight: 10 },
         { id: 'tambourai', weight: 10 },
@@ -1647,7 +1647,7 @@ areas.crevassePerge = {
     mobMinLevel: 160, mobMaxLevel: 170,
     background: "",
     icon: "images/monsters/Yokaï_Givrefoux.png",
-    description: "",
+    description: "La Crevasse de Perge est une cicatrice dans la roche vive qui plonge dans l'obscurité la plus totale. Des créatures adaptées à l'absence de lumière y prospèrent, et ce qui remonte de ces profondeurs n'a jamais l'air d'être de bonne humeur.",
     spawns: [
         { id: 'yokai_givrefoux', weight: 10 },
         { id: 'maho_givrefoux', weight: 10 },
@@ -1672,7 +1672,7 @@ areas.gorgeDesVentsHurlants = {
     mobMinLevel: 160, mobMaxLevel: 170,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Les vents qui s'engouffrent dans cette gorge depuis les plaines d'Amakna atteignent une violence qui fait siffler les oreilles. Dans ce couloir naturel, chaque mouvement est compliqué et chaque son amplifié — y compris les grognements des créatures qui y ont fait leur tanière.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1687,11 +1687,24 @@ areas.montDesTombeaux = {
     mobMinLevel: 160, mobMaxLevel: 170,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Le Mont des Tombeaux est sacré pour certains, maudit pour d'autres. Des générations d'aventuriers y ont été inhumées avec leurs équipements, ce qui attire inévitablement les pilleurs et les nécromanciens en quête de trésors... et de serviteurs.",
+    spawns: [
+        { id: 'madura', weight: 10 },
+        { id: 'bakazako', weight: 10 },
+        { id: 'kaonashi', weight: 10 },
+        { id: 'tsume_bozu', weight: 10 },
+        { id: 'onigori', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonDemeureEsprits', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonDemeureEsprits', dropRate: 0.15, isKey: true },
+        { itemId: 'pupille_de_madura', dropRate: 0.01 },
+        { itemId: 'anneau_de_koumiho', dropRate: 0.01 },
+        { itemId: 'geta_des_tombeaux', dropRate: 0.01 },
+        { itemId: 'ceinture_d_onigori', dropRate: 0.01 },
+        { itemId: 'bandeau_de_spiritueur', dropRate: 0.01 },
+        { itemId: 'katana_de_spiritueur', dropRate: 0.01 },
+        { itemId: 'fut_d_aspiratueur', dropRate: 0.01 }
     ]
 }
 
@@ -1703,7 +1716,7 @@ areas.gisgoul = {
     mobMinLevel: 170, mobMaxLevel: 180,
     background: "",
     icon: "images/monsters/Mama_Bwork.png",
-    description: "",
+    description: "Gisgoul est un être de légende dans l'imaginaire de Pandala : un roi déchu dont le palais est tombé en ruines mais dont les serviteurs gardent encore les salles. Ces créatures corrompues par des siècles d'isolement ne font plus la distinction entre protéger et attaquer.",
     spawns: [
         { id: 'mama_bwork', weight: 10 },
         { id: 'bwork_elemental_de_terre', weight: 10 },
@@ -1729,7 +1742,7 @@ areas.domaineDesFungus = {
     mobMinLevel: 170, mobMaxLevel: 180,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Le Domaine des Fungus est un monde régi par les lois mystérieuses de la mycoflore. Des champignons de toutes les tailles prolifèrent ici, certains libérant des spores hallucinogènes, d'autres cachant des prédateurs tapis sous leurs chapeaux.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1744,7 +1757,7 @@ areas.crocsDeVerre = {
     mobMinLevel: 170, mobMaxLevel: 180,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Les formations de cristal translucide qui parsèment ce territoire leur valent leur nom effrayant. Tranchants comme des lames, les Crocs de Verre lacèrent autant les semelles des aventuriers que les chairs des imprudents qui trébuchent.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1759,7 +1772,7 @@ areas.ileDeSakai = {
     mobMinLevel: 170, mobMaxLevel: 180,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "L'Île de Sakaï est réputée pour ses mines de métaux précieux, exploitées pendant des siècles jusqu'à ce que les ouvriers rencontrent quelque chose dans les galeries qui les fit fuir définitivement. Ce qu'ils ont trouvé... est encore là.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1774,7 +1787,7 @@ areas.foretPetrifiee = {
     mobMinLevel: 170, mobMaxLevel: 180,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Quelque chose a transformé cette forêt entière en pierre. Les arbres, les buissons, les champignons — tout est minéralisé dans une perfection étrange, figé dans un instant de silence éternel. Les Fungus qui y errent semblent les seuls à y avoir trouvé leur place.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1790,7 +1803,7 @@ areas.montTorrideau = {
     mobMinLevel: 180, mobMaxLevel: 190,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Le Mont Torrideau dresse sa masse imposante au-dessus des plaines glacées de Frigost, formant un contraste saisissant avec les terres environnantes. Ses pentes escarpées abritent des créatures adaptées aux températures extrêmes qui y règnent.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1805,7 +1818,7 @@ areas.citeOubliee = {
     mobMinLevel: 180, mobMaxLevel: 190,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Une cité entière, avalée par le temps et la végétation. Les façades sculptées émergent encore çà et là de la jungle, témoins d'une civilisation que personne ne se souvient avoir connue. Ses gardiens actuels, eux, n'ont pas oublié leur mission.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1820,7 +1833,7 @@ areas.nimotopia = {
     mobMinLevel: 180, mobMaxLevel: 190,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Nimotopia est la terre des Nimaux, créatures hybrides dont personne n'a jamais vraiment expliqué l'origine. Ce plateau mystérieux doit son ambiance particulière aux vibrations profondes qui émanent du sol.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1835,7 +1848,7 @@ areas.ereboria = {
     mobMinLevel: 180, mobMaxLevel: 190,
     background: "",
     icon: "images/monsters/Blindur.png",
-    description: "",
+    description: "Ereboria porte le nom des dieux de l'obscurité, et ses habitants semblent en avoir hérité le tempérament. Cette zone plongée dans une pénombre permanente est le territoire de créatures qui ont évolué loin de toute lumière bienveillante.",
     spawns: [
         { id: 'blindur', weight: 10 },
         { id: 'marthos', weight: 10 },
@@ -1864,7 +1877,7 @@ areas.bastionFroidesLegions = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Ventrublion.png",
-    description: "",
+    description: "Ce bastion, perdu dans les glaces de Frigost, était autrefois une forteresse militaire. La Grande Congélation l'a transformé en relique de pierre et de glace, repeuplée par les Froides Légions — des guerriers qui n'ont pas oublié leur serment de défense.",
     spawns: [
         { id: 'ventrublion', weight: 10 },
         { id: 'stalak', weight: 10 },
@@ -1888,7 +1901,7 @@ areas.jardinsHivers = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Les Jardins d'Hivers de Frigost sont à la fois sublimes et mortels. Des fleurs de givre aux pétales de cristal, des sculptures de glace façonnées par le vent… et entre elles, des créatures qui n'ont rien de décoratif.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1903,7 +1916,7 @@ areas.rempartsAVent = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Les Remparts à Vent de Frigost servaient jadis à protéger la ville des blizzards qui s'abattent sur l'île. Leurs ruines battues par les vents abritent aujourd'hui des créatures qui ont fait des courants glaciaux leurs alliés de prédilection.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1918,7 +1931,7 @@ areas.tannerieEcarlate = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "L'odeur de cuir tanné et de produits chimiques âcres qui imprègne l'air de la Tannerie Écarlate est difficile à oublier. Ceux qui y travaillaient ont depuis longtemps abandonné les lieux, laissant derrière eux des créatures bien adaptées à cet environnement toxique.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1933,7 +1946,7 @@ areas.tourDeLaClepsydre = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "La Tour de la Clepsydre est un monument à l'obsession d'un architecte Xélor dont on a oublié le nom. Le temps lui-même semble s'y écouler différemment, et les gardiens qui en protègent les mécanismes anciens sont aussi impitoyables que leur maître était ponctuel.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1948,7 +1961,7 @@ areas.abyssesDeSufokia = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Sous les eaux de la mer qui borde Sufokia s'ouvrent des abysses où la pression et l'obscurité font loi. Les créatures qui y ont évolué sont aussi étranges que les conditions qui les ont façonnées, et elles défendent jalousement leurs profondeurs.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1963,7 +1976,7 @@ areas.rocDesSalbatroce = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Les Salbatroces ont transformé ce roc saillant au-dessus des flots sufokiens en une véritable cité aérienne. Leurs nids de fortune s'accrochent aux parois verticales, et malheur à quiconque s'approche de leurs œufs lors de la saison de nidification.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1978,7 +1991,7 @@ areas.domaineDesTrithons = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Mol_Usk.png",
-    description: "",
+    description: "Les Trithons, créatures mi-humaines mi-marines, ont fait de ce domaine sous-marin leur royaume. Leurs ruines coralliennes sont parcourues par des courants chauds montant des profondeurs, et leurs gardiens n'accordent aucune grâce aux intrus.",
     spawns: [
         { id: 'mol_usk', weight: 10 },
         { id: 'crabe_yoloniste', weight: 10 },
@@ -2002,7 +2015,7 @@ areas.villeSubmergee = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Une ville entière gît sous les eaux de Sufokia, victime d'un raz-de-marée dont les chroniques gardent peu de traces. Ses rues pavées et ses tours sont encore reconnaissables, peuplées maintenant par une faune qui a fait sien ce décor fantomatique.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -2017,7 +2030,7 @@ areas.plateauRlyugluglu = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
+    description: "Le Plateau Rlyugluglu doit son nom à une onomatopée locale évoquant le gargouillement des sources chaudes qui le parsèment. L'écosystème particulier qui en découle attire une faune unique dans tout le Monde des Douze.",
     spawns: [],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -2032,7 +2045,7 @@ areas.caserneDuJourSansFin = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Chause.png",
-    description: "",
+    description: "Dans cette caserne de Sufokia, le soleil ne se couche jamais — un artifice magique mis en place par les Roublards qui en ont fait leur quartier général. Ses occupants actuels ont depuis largement perdu l'habitude de dormir.",
     spawns: [
         { id: 'chause', weight: 10 },
         { id: 'ectorche', weight: 10 },
@@ -2057,11 +2070,25 @@ areas.epaveSilencieuse = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Cet immense navire échoué gît sur un banc de sable depuis si longtemps que la mer a commencé à le réclamer. Dans ses cales obscures et ses ponts envahis par les algues, une vie étrange s'est développée, loin des hommes et de leurs préoccupations.",
+    spawns: [
+        { id: 'zombruth', weight: 10 },
+        { id: 'tournoye', weight: 10 },
+        { id: 'funespadon', weight: 10 },
+        { id: 'cranonier', weight: 10 },
+        { id: 'macrab', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonBethel', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonBethel', dropRate: 0.15, isKey: true },
+        { itemId: 'cape_de_cranonier', dropRate: 0.01 },
+        { itemId: 'chapeau_de_tournoye', dropRate: 0.01 },
+        { itemId: 'lance_horsele', dropRate: 0.01 },
+        { itemId: 'sangle_oriole', dropRate: 0.01 },
+        { itemId: 'baguette_heroclite', dropRate: 0.01 },
+        { itemId: 'cape_solution', dropRate: 0.01 },
+        { itemId: 'anneau_toriete', dropRate: 0.01 },
+        { itemId: 'collier_rophante', dropRate: 0.01 }
     ]
 }
 
@@ -2072,7 +2099,7 @@ areas.marchesMagmatiques = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Klémort.png",
-    description: "",
+    description: "Les Marches Magmatiques sont taillées dans la roche volcanique brûlante par des siècles d'érosion. Les coulées de lave figées forment des escaliers naturels que seules les créatures ignifuges peuvent parcourir sans hésitation.",
     spawns: [
         { id: 'klemort', weight: 10 },
         { id: 'trepavois', weight: 10 },
@@ -2100,7 +2127,7 @@ areas.royaumeDesMartegel = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Tanklume.png",
-    description: "",
+    description: "Les Martegel, créatures marines aux carapaces magnétiques, ont bâti leur royaume dans les fonds marins de Sufokia. Leurs cités de métal et de corail ont une architecture que les meilleurs ingénieurs de la surface ne comprennent pas tout à fait.",
     spawns: [
         { id: 'tanklume', weight: 10 },
         { id: 'boufbos', weight: 10 },
@@ -2129,11 +2156,22 @@ areas.crocuzko = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Ces marécages aux eaux croupissantes sont le fief des Crocodyls, et leur roi — le Crocuzko himself — assure la sécurité du territoire avec une efficacité dentaire remarquable. Ne vous laissez pas tromper par leur apparente lenteur.",
+    spawns: [
+        { id: 'kashkaille', weight: 10 },
+        { id: 'voapah', weight: 10 },
+        { id: 'caiguille', weight: 10 },
+        { id: 'alashasss', weight: 10 },
+        { id: 'cronnibal', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonTorkelonia', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonTorkelonia', dropRate: 0.15, isKey: true },
+        { itemId: 'anneau_lunaire', dropRate: 0.01 },
+        { itemId: 'bottes_lunaires', dropRate: 0.01 },
+        { itemId: 'collier_lunaire', dropRate: 0.01 },
+        { itemId: 'crocanneau', dropRate: 0.01 },
+        { itemId: 'croclier', dropRate: 0.01 }
     ]
 }
 
@@ -2144,11 +2182,20 @@ areas.royaumeCorrompu = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Ce qui était autrefois un lieu de beauté a été souillé par une magie noire dont on ne connaît pas l'origine. Le Royaume Corrompu est désormais un miroir déformant du monde ordinaire, où chaque créature semble atteinte d'une folie qui se propage comme un venin.",
+    spawns: [
+        { id: 'pistilangue', weight: 10 },
+        { id: 'dolid', weight: 10 },
+        { id: 'nheur_gueule', weight: 10 },
+        { id: 'tentaclaque', weight: 10 },
+        { id: 'gangredogue', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonArbreMort', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonArbreMort', dropRate: 0.15, isKey: true },
+        { itemId: 'alliance_de_corruption', dropRate: 0.01 },
+        { itemId: 'bague_de_corruption', dropRate: 0.01 },
+        { itemId: 'ceinturonce_de_corruption', dropRate: 0.01 }
     ]
 }
 
@@ -2159,11 +2206,20 @@ areas.galereDeServitude = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Cette galère fantôme dérive dans les eaux de Sufokia depuis des siècles, portée par des vents qui soufflent à contresens du monde. Son équipage de condamnés n'a jamais eu le droit de reposer, et leur ressentiment nourrit leur violence.",
+    spawns: [
+        { id: 'tambourreau', weight: 10 },
+        { id: 'armecreante', weight: 10 },
+        { id: 'gentyran', weight: 10 },
+        { id: 'boularbin', weight: 10 },
+        { id: 'ecaptif', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonTyrannie', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonTyrannie', dropRate: 0.15, isKey: true },
+        { itemId: 'dora_de_servitude', dropRate: 0.01 },
+        { itemId: 'manteau_de_servitude', dropRate: 0.01 },
+        { itemId: 'echarpe_de_servitude', dropRate: 0.01 }
     ]
 }
 
@@ -2174,11 +2230,20 @@ areas.desertDeMisere = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Le Désert de Misère ne porte pas son nom par hasard. Ses sables noirs et brûlants s'étendent à perte de vue, parsemés de rochers tranchants et traversés par des tornades de cendres. La survie y est une question d'obstination.",
+    spawns: [
+        { id: 'desosseur', weight: 10 },
+        { id: 'ferrailleur', weight: 10 },
+        { id: 'krevladal', weight: 10 },
+        { id: 'skentu', weight: 10 },
+        { id: 'dawaj', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonBalance', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonBalance', dropRate: 0.15, isKey: true },
+        { itemId: 'convoitise_de_misere', dropRate: 0.01 },
+        { itemId: 'corset_de_misere', dropRate: 0.01 },
+        { itemId: 'solerets_de_misere', dropRate: 0.01 }
     ]
 }
 
@@ -2189,11 +2254,21 @@ areas.blessureDeGuerre = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Ce champ de bataille porte encore les stigmates d'une guerre ancienne dont les chroniques gardent peu de détails. La magie destructrice qui y fut déployée a laissé des plaies dans la réalité elle-même, et les créatures qui en ont émergé portent ces cicatrices.",
+    spawns: [
+        { id: 'olgoth', weight: 10 },
+        { id: 'ravalame', weight: 10 },
+        { id: 'fleaunide', weight: 10 },
+        { id: 'macabrateur', weight: 10 },
+        { id: 'trancharnier', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonTroneSang', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonTroneSang', dropRate: 0.15, isKey: true },
+        { itemId: 'ceste_de_guerre', dropRate: 0.01 },
+        { itemId: 'forteresse_de_guerre', dropRate: 0.01 },
+        { itemId: 'heaume_de_guerre', dropRate: 0.01 },
+        { itemId: 'solerets_de_guerre', dropRate: 0.01 }
     ]
 }
 
@@ -2204,11 +2279,27 @@ areas.pyramideMaudite = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Cette pyramide fut construite à une époque où d'autres lois régissaient le Monde des Douze. Les malédictions qui la protègent sont aussi fraîches aujourd'hui qu'au premier jour, et ses gardiens ont eu largement le temps de perfectionner leur art.",
+    spawns: [
+        { id: 'chakanoubis', weight: 10 },
+        { id: 'bandleth', weight: 10 },
+        { id: 'momistik', weight: 10 },
+        { id: 'rykaon', weight: 10 },
+        { id: 'griffotep', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonTalKasha', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonTalKasha', dropRate: 0.15, isKey: true },
+        { itemId: 'baguistik', dropRate: 0.01 },
+        { itemId: 'bottistik', dropRate: 0.01 },
+        { itemId: 'bouclistik', dropRate: 0.01 },
+        { itemId: 'torquistik', dropRate: 0.01 },
+        { itemId: 'anneaur_us', dropRate: 0.01 },
+        { itemId: 'pagne_du_rykaon', dropRate: 0.01 },
+        { itemId: 'pyraguette', dropRate: 0.01 },
+        { itemId: 'ankhape', dropRate: 0.01 },
+        { itemId: 'capuche_de_moum_ra', dropRate: 0.01 },
+        { itemId: 'heqache', dropRate: 0.01 }
     ]
 }
 
@@ -2219,11 +2310,24 @@ areas.pandamonium = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Le Pandamonium est la version cauchemardesque de ce que serait Pandala si tout le monde y avait perdu la raison en même temps — ce qui semble être exactement ce qui s'est passé. Chaos, conflits d'éléments et créatures déchaînées y règnent en maîtres.",
+    spawns: [
+        { id: 'kraradia', weight: 10 },
+        { id: 'belilith', weight: 10 },
+        { id: 'bwariok', weight: 10 },
+        { id: 'porkzebuth', weight: 10 },
+        { id: 'eninferno', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonKabahal', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonKabahal', dropRate: 0.15, isKey: true },
+        { itemId: 'alliance_du_pandamonium', dropRate: 0.01 },
+        { itemId: 'amulette_du_pandamonium', dropRate: 0.01 },
+        { itemId: 'baguette_du_pandamonium', dropRate: 0.01 },
+        { itemId: 'amulette_possedee', dropRate: 0.01 },
+        { itemId: 'anneau_possede', dropRate: 0.01 },
+        { itemId: 'bouclier_possede', dropRate: 0.01 },
+        { itemId: 'ceinture_possedee', dropRate: 0.01 }
     ]
 }
 
@@ -2234,11 +2338,20 @@ areas.cauchemarDesRavageurs = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Les Ravageurs sont des créatures qui semblent sorties d'un cauchemar d'enfant — sauf qu'elles sont bien réelles. Cette zone abandonnée à leur emprise ressemble à une scène de destruction permanente, comme si ses habitants ne savaient faire que cela.",
+    spawns: [
+        { id: 'brutasmodan', weight: 10 },
+        { id: 'diabelial', weight: 10 },
+        { id: 'typhomet', weight: 10 },
+        { id: 'demoloch', weight: 10 },
+        { id: 'malephisto', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonAurorePourpre', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonAurorePourpre', dropRate: 0.15, isKey: true },
+        { itemId: 'ceste_de_ravageur', dropRate: 0.01 },
+        { itemId: 'hachoir_de_ravageur', dropRate: 0.01 },
+        { itemId: 'torque_de_ravageur', dropRate: 0.01 }
     ]
 }
 
@@ -2249,11 +2362,23 @@ areas.ephedrya = {
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Ephedrya, domaine sylvestre de Belladone, est une forêt où la beauté cache le venin. Chaque fleur parfumée peut être mortelle, chaque baie appétissante peut paralyser, et les lianes qui s'agitent seules cherchent à saisir ceux qui s'approchent trop près.",
+    spawns: [
+        { id: 'soldalia', weight: 10 },
+        { id: 'cameliache', weight: 10 },
+        { id: 'armuguet', weight: 10 },
+        { id: 'coquelicogne', weight: 10 },
+        { id: 'statulipe', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonMalefices', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonMalefices', dropRate: 0.15, isKey: true },
+        { itemId: 'amertume_de_belladone', dropRate: 0.01 },
+        { itemId: 'cruaute_de_belladone', dropRate: 0.01 },
+        { itemId: 'mur_de_ronces', dropRate: 0.01 },
+        { itemId: 'pilier_d_ephedrya', dropRate: 0.01 },
+        { itemId: 'potence_d_ephedrya', dropRate: 0.01 },
+        { itemId: 'tendresse_de_belladone', dropRate: 0.01 }
     ]
 }
 // #endregion
@@ -2370,7 +2495,7 @@ areas.donjonAcademieGobs = {
     mobMinLevel: 35, mobMaxLevel: 35,
     background: "",
     icon: "images/monsters/Directeur_Grunob.png",
-    description: "",
+    description: "L'Académie des Gobelins est aussi terrifiante pour les inscrits que pour les intrus. Les Gobets, bien qu'idiots en apparence, ont développé une organisation militaire redoutable au fil des siècles — et leur maître le Kankreblath veille sur la discipline avec une rigueur impitoyable.",
     spawns: [
         { id: 'directeur_grunob', weight: 100 }
     ],
@@ -2466,7 +2591,7 @@ areas.donjonKankreblath = {
     mobMinLevel: 45, mobMaxLevel: 45,
     background: "",
     icon: "images/monsters/Kankreblath.png",
-    description: "",
+    description: "Le Kankreblath trône au cœur de son académie avec la majesté d'une créature qui n'a jamais perdu un combat. Ses serres peuvent fendre l'acier et ses cris paralysent les plus courageux. Ceux qui ont survécu à son antre n'en parlent qu'à voix basse.",
     spawns: [
         { id: 'kankreblath', weight: 100 }
     ],
@@ -2566,15 +2691,22 @@ areas.donjonLarves = {
     id: 'donjonLarves',
     type: 'dungeon',
     keyId: 'cleDonjonLarves',
-    name: 'Donjon des Larves',
+    name: "Donjon des Larves",
     minLevel: 55, maxLevel: 55,
     mobMinLevel: 55, mobMaxLevel: 55,
     background: "",
-    icon: 'images/monsters/Shin_Larve.png',
+    icon: "images/monsters/Shin_Larve.png",
     description: "Dans les entrailles du monde s'étend un immense réseau de galeries creusées par des larves géantes. Au centre de cette ruche souterraine veille la légendaire Shin Larve, mère d'innombrables générations.",
-    spawns: [{ id: 'shin_larve', weight: 100 }],
+    spawns: [
+        { id: 'shin_larve', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'larvamulette', dropRate: 0.01 },
+        { itemId: 'larvasac', dropRate: 0.01 },
+        { itemId: 'larvabottes', dropRate: 0.01 },
+        { itemId: 'larvacoiffe', dropRate: 0.01 },
+        { itemId: 'baguette_larvesque', dropRate: 0.01 }
     ]
 }
 
@@ -2587,7 +2719,7 @@ areas.donjonRefugeSylvestre = {
     mobMinLevel: 55, mobMaxLevel: 55,
     background: "",
     icon: "images/monsters/Rakoopeur.png",
-    description: "",
+    description: "Ce refuge au cœur de la forêt d'Amakna cache derrière sa façade paisible un nid de créatures qui n'ont pas dit leur dernier mot. La nature elle-même semble conspirer contre les visiteurs non désirés, guidée par une présence ancienne et rancunière.",
     spawns: [
         { id: 'rakoopeur', weight: 100 }
     ],
@@ -2717,12 +2849,13 @@ areas.donjonMantiscore = {
     minLevel: 75, maxLevel: 75,
     mobMinLevel: 75, mobMaxLevel: 75,
     background: "",
-    icon: 'images/monsters/Mantiscore.png',
+    icon: "images/monsters/Mantiscore.png",
     description: "Au cœur du désert brûlant de Saharach, là où les Dunes des Ossements s'étendent à perte de vue, repose un lieu oublié du monde des vivants : le Cimetière des Mastodontes. Ces terres portent le souvenir d'une époque révolue, lorsque d'immenses créatures arpentant l'île s'effondraient ici, laissant derrière elles des squelettes titanesques enfouis sous le sable.",
-    spawns: [{ id: 'mantiscore', weight: 100 }],
+    spawns: [
+        { id: 'mantiscore', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'gelano', dropRate: 0.03 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 
@@ -2874,7 +3007,7 @@ areas.donjonReineNyee = {
     mobMinLevel: 95, mobMaxLevel: 95,
     background: "",
     icon: "images/monsters/Reine_Nyée.png",
-    description: "",
+    description: "La Reine Nyée règne sur une colonie de créatures souterraines avec l'autorité d'une monarque absolue. Son palais taillé dans la roche vivante vibre d'une énergie qui met mal à l'aise, et ses sujets défendraient leur reine jusqu'au dernier.",
     spawns: [
         { id: 'reine_nyee', weight: 100 }
     ],
@@ -2895,7 +3028,7 @@ areas.donjonChouque = {
     mobMinLevel: 95, mobMaxLevel: 95,
     background: "",
     icon: "images/monsters/Le_Chouque.png",
-    description: "",
+    description: "Le Chouque est une créature que l'on dirait sortie d'une mauvaise blague de Féca — sauf que l'humour s'arrête quand ses appendices magnétiques entrent en contact avec votre armure. Son antre est aussi chaotique que lui-même.",
     spawns: [
         { id: 'le_chouque', weight: 100 }
     ],
@@ -2917,7 +3050,7 @@ areas.donjonMagikRiktus = {
     mobMinLevel: 95, mobMaxLevel: 95,
     background: "",
     icon: "images/monsters/Choudini.png",
-    description: "",
+    description: "Le Magik Riktus est le clown de la mort, le bouffon de l'apocalypse. Son cirque souterrain est un spectacle de cauchemar où les numéros ont tendance à être définitifs. Les feux d'artifice qui illuminent son antre sont aussi beaux que mortels.",
     spawns: [
         { id: 'choudini', weight: 100 }
     ],
@@ -3009,7 +3142,7 @@ areas.donjonDramak = {
     mobMinLevel: 105, mobMaxLevel: 105,
     background: "",
     icon: "images/monsters/Maître_des_Pantins.png",
-    description: "",
+    description: "Dramak le Dragon règne sur une caverne dont les parois suintent de magie draconique. L'air y est chargé de soufre et de quelque chose d'indéfinissable, comme si l'atmosphère elle-même rendait hommage à la puissance de son maître.",
     spawns: [
         { id: 'maitre_des_pantins', weight: 100 }
     ],
@@ -3030,7 +3163,7 @@ areas.donjonMoon = {
     mobMinLevel: 105, mobMaxLevel: 105,
     background: "",
     icon: "images/monsters/Moon.png",
-    description: "",
+    description: "Au cœur de l'île de Moon se dissimule ce donjon taillé dans la roche volcanique, gardé par le Minotoror et ses sbires. La chaleur qui s'en dégage n'est pas uniquement due à la géographie — quelque chose d'ancien et de puissant y couve.",
     spawns: [
         { id: 'moon', weight: 100 }
     ],
@@ -3052,7 +3185,7 @@ areas.donjonKharnozor = {
     mobMinLevel: 105, mobMaxLevel: 105,
     background: "",
     icon: 'images/monsters/Kharnozor.png',
-    description: '',
+    description: "Kharnozor, l'ancien dragon des Dragoeufs, repose dans cette caverne de Moon Island avec la patience caractéristique de sa race. Les ossements qui parsèment le sol autour de lui témoignent de ceux qui ont cru que patience était synonyme de faiblesse.",
     spawns: [{ id: 'kharnozor', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
@@ -3084,15 +3217,24 @@ areas.donjonRatBlanc = {
     id: 'donjonRatBlanc',
     type: 'dungeon',
     keyId: 'cleDonjonRatBlanc',
-    name: 'Garde-manger du Rat Blanc',
+    name: "Garde-manger du Rat Blanc",
     minLevel: 115, maxLevel: 115,
     mobMinLevel: 115, mobMaxLevel: 115,
     background: "",
-    icon: 'images/monsters/Rat_Blanc.png',
+    icon: "images/monsters/Rat_Blanc.png",
     description: "Dans les égouts de Bonta, le Rat Blanc a bâti un véritable empire souterrain. Ses fidèles accumulent vivres et richesses, faisant de ce garde-manger l'un des lieux les plus convoités des profondeurs.",
-    spawns: [{ id: 'rat_blanc', weight: 100 }],
+    spawns: [
+        { id: 'rat_blanc', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'bottes_du_rat_blanc', dropRate: 0.01 },
+        { itemId: 'gant_du_rat_blanc', dropRate: 0.01 },
+        { itemId: 'cape_du_rat_blanc', dropRate: 0.01 },
+        { itemId: 'ceinture_du_rat_blanc', dropRate: 0.01 },
+        { itemId: 'collier_du_rat_blanc', dropRate: 0.01 },
+        { itemId: 'couvre_chef_du_rat_blanc', dropRate: 0.01 },
+        { itemId: 'rapiere_du_rat_blanc', dropRate: 0.01 }
     ]
 }
 
@@ -3100,15 +3242,24 @@ areas.donjonRatNoir = {
     id: 'donjonRatNoir',
     type: 'dungeon',
     keyId: 'cleDonjonRatNoir',
-    name: 'Sousouricière du Rat Noir',
+    name: "Sousouricière du Rat Noir",
     minLevel: 115, maxLevel: 115,
     mobMinLevel: 115, mobMaxLevel: 115,
     background: "",
-    icon: 'images/monsters/Rat_Noir.png',
+    icon: "images/monsters/Rat_Noir.png",
     description: "Sous les rues de Brâkmar s'étend le repaire du Rat Noir et de sa meute. Rusés et impitoyables, ces rongeurs ont transformé les souterrains en un royaume où règnent l'ombre et la maladie.",
-    spawns: [{ id: 'rat_noir', weight: 100 }],
+    spawns: [
+        { id: 'rat_noir', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'gant_du_rat_noir', dropRate: 0.01 },
+        { itemId: 'bottes_du_rat_noir', dropRate: 0.01 },
+        { itemId: 'ceinture_du_rat_noir', dropRate: 0.01 },
+        { itemId: 'masque_du_rat_noir', dropRate: 0.01 },
+        { itemId: 'collier_du_rat_noir', dropRate: 0.01 },
+        { itemId: 'cape_du_rat_noir', dropRate: 0.01 },
+        { itemId: 'dagues_du_rat_noir', dropRate: 0.01 }
     ]
 }
 
@@ -3121,7 +3272,7 @@ areas.donjonDamadrya = {
     mobMinLevel: 115, mobMaxLevel: 115,
     background: "",
     icon: "images/monsters/Damadrya.png",
-    description: "",
+    description: "La Damadrya est la mère de tous les Arbres dans la croyance Sadida. Son donjon est un entrelacement organique de racines et de branches qui forment des salles vivantes, où chaque mur peut se refermer et chaque couloir peut disparaître.",
     spawns: [
         { id: 'damadrya', weight: 100 }
     ],
@@ -3280,7 +3431,7 @@ areas.donjonHauteTruche = {
     mobMinLevel: 135, mobMaxLevel: 135,
     background: "",
     icon: "images/monsters/Haute_Truche.png",
-    description: "",
+    description: "La Haute Truche est une créature de la forêt d'Amakna qui a grandi jusqu'à atteindre des proportions monstrueuses. Son aire de jeu se confond avec son donjon : un espace naturel transformé par sa présence en zone de haute dangerosité.",
     spawns: [
         { id: 'haute_truche', weight: 100 }
     ],
@@ -3301,7 +3452,7 @@ areas.donjonElPiko = {
     mobMinLevel: 135, mobMaxLevel: 135,
     background: "",
     icon: "images/monsters/El_Piko.png",
-    description: "",
+    description: "El Piko est un géant parmi les Koalaks de la savane du Caillou de Sidimote. Ce donjon rocheux est son territoire de chasse ancestral, transmis de génération en génération avec une fidélité qui force un respect certain... à distance raisonnable.",
     spawns: [
         { id: 'el_piko', weight: 100 }
     ],
@@ -3322,7 +3473,7 @@ areas.donjonDameEaux = {
     mobMinLevel: 135, mobMaxLevel: 135,
     background: "",
     icon: "images/monsters/Nagate.png",
-    description: "",
+    description: "La Dame des Eaux gouverne les profondeurs lacustres de Cania depuis des siècles. Son palais aquatique est une merveille architecturale dans laquelle l'eau est à la fois le mur, le plafond et le sol — et la Dame en contrôle chaque molécule.",
     spawns: [
         { id: 'nagate', weight: 100 }
     ],
@@ -3344,7 +3495,7 @@ areas.donjonTanukoi = {
     mobMinLevel: 135, mobMaxLevel: 135,
     background: "",
     icon: "images/monsters/Tanukouï_San.png",
-    description: "",
+    description: "Le Tanukoi est une créature de Pandala, esprit renard que l'on dit capable de sept métamorphoses. Son antre est un dédale d'illusions où rien n'est ce qu'il semble, et où le visiteur perd progressivement pied avec la réalité.",
     spawns: [
         { id: 'tanukoui_san', weight: 100 }
     ],
@@ -3441,7 +3592,7 @@ areas.donjonDojoVent = {
     mobMinLevel: 145, mobMaxLevel: 145,
     background: "",
     icon: "images/monsters/Shihan.png",
-    description: "",
+    description: "Ce dojo de Pandala est consacré à l'élément air dans toute sa brutalité. Les maîtres des vents qui y enseignent ont réduit des armures en morceaux avec de simples rafales, et leur élève le plus doué est aussi le plus impitoyable.",
     bossMode: 'any',
     spawns: [
         { id: 'shihan', weight: 50 },
@@ -3465,7 +3616,7 @@ areas.donjonFouxArtifice = {
     mobMinLevel: 145, mobMaxLevel: 145,
     background: "",
     icon: "images/monsters/Founoroshi.png",
-    description: "",
+    description: "Les Foux d'Artifice sont des artificiers qui ont perdu la raison et le sens de la mesure. Leur forteresse est un feu d'artifice permanent où les explosions remplacent la conversation et les bombes tiennent lieu de bonjour.",
     spawns: [
         { id: 'founoroshi', weight: 100 }
     ],
@@ -3486,15 +3637,23 @@ areas.donjonSphincter = {
     id: 'donjonSphincter',
     type: 'dungeon',
     keyId: 'cleDonjonSphincter',
-    name: 'Repaire de Sphincter Cell',
+    name: "Repaire de Sphincter Cell",
     minLevel: 155, maxLevel: 155,
     mobMinLevel: 155, mobMaxLevel: 155,
     background: "",
-    icon: 'images/monsters/Sphincter_Cell.png',
-    description: '',
-    spawns: [{ id: 'sphincter_cell', weight: 100 }],
+    icon: "images/monsters/Sphincter_Cell.png",
+    description: "Le Sphincter Cell est une zone que même les Iops évitent de nommer à voix haute. Gardé par une créature dont la biologie défie la décence, ce donjon souterrain réserve des surprises que nul guide d'aventure n'a jamais eu l'audace de décrire.",
+    spawns: [
+        { id: 'sphincter_cell', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'cape_ceremoniale_du_seigneur_des_rats', dropRate: 0.01 },
+        { itemId: 'anneau_ceremonial_du_seigneur_des_rats', dropRate: 0.01 },
+        { itemId: 'ceinture_ceremoniale_du_seigneur_des_rats', dropRate: 0.01 },
+        { itemId: 'coiffe_ceremoniale_du_seigneur_des_rats', dropRate: 0.01 },
+        { itemId: 'bottes_ceremoniales_du_seigneur_des_rats', dropRate: 0.01 },
+        { itemId: 'collier_ceremonial_du_seigneur_des_rats', dropRate: 0.01 }
     ]
 }
 
@@ -3502,15 +3661,21 @@ areas.donjonGrolandais = {
     id: 'donjonGrolandais',
     type: 'dungeon',
     keyId: 'cleDonjonGrolandais',
-    name: 'Épave du Grolandais violent',
+    name: "Épave du Grolandais violent",
     minLevel: 155, maxLevel: 155,
     mobMinLevel: 155, mobMaxLevel: 155,
     background: "",
-    icon: 'images/monsters/Ben_le_Ripate.png',
+    icon: "images/monsters/Ben_le_Ripate.png",
     description: "Le navire de Ben le Ripate gît désormais prisonnier des glaces de Frigost. Mais même immobilisé, le célèbre pirate continue de terroriser les mers du nord grâce à son équipage de corsaires et de pillards. Gare à son apparence de fantôme, son crochet lui, est bien réel.",
-    spawns: [{ id: 'ben_le_ripate', weight: 100 }],
+    spawns: [
+        { id: 'ben_le_ripate', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'sabre_de_ben_le_ripate', dropRate: 0.01 },
+        { itemId: 'chapeau_de_ben_le_ripate', dropRate: 0.01 },
+        { itemId: 'crochet_de_ben_le_ripate', dropRate: 0.01 },
+        { itemId: 'ceinture_de_ben_le_ripate', dropRate: 0.01 }
     ]
 }
 
@@ -3518,16 +3683,21 @@ areas.donjonTertreSommeil = {
     id: 'donjonTertreSommeil',
     type: 'dungeon',
     keyId: 'cleDonjonTertreSommeil',
-    name: 'Tertre du long sommeil',
+    name: "Tertre du long sommeil",
     minLevel: 155, maxLevel: 155,
     mobMinLevel: 155, mobMaxLevel: 155,
     background: "",
-    icon: 'images/monsters/Hell_Mina.png',
-    description: '',
-    spawns: [{ id: 'hell_mina', weight: 100 }],
+    icon: "images/monsters/Hell_Mina.png",
+    description: "Le Tertre du Sommeil est un monticule artificiel dans lequel s'endorment des créatures de grande puissance. On ne sait jamais exactement ce qu'on va réveiller dans ces chambres funéraires... et ce qu'on réveille n'est jamais de bonne humeur.",
+    spawns: [
+        { id: 'hell_mina', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
-        { itemId: 'Dofus_Emeraude',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'Dofus_Emeraude', dropRate: 0.0005 },
+        { itemId: 'alliance_d_hell_mina', dropRate: 0.01 },
+        { itemId: 'cape_d_hell_mina', dropRate: 0.01 },
+        { itemId: 'pertuisane_d_hell_mina', dropRate: 0.01 }
     ]
 }
 
@@ -3543,11 +3713,18 @@ areas.donjonObsidiantre = {
     minLevel: 165, maxLevel: 165,
     mobMinLevel: 165, mobMaxLevel: 165,
     background: "",
-    icon: 'images/monsters/Obsidiantre.png',
+    icon: "images/monsters/Obsidiantre.png",
     description: "Sous les terres volcaniques de Frigost sommeille l'Obsidiantre, une créature née de la lave et de la roche en fusion. Son réveil menace constamment l'équilibre fragile entre glace et feu qui règne sur l'île.",
-    spawns: [{ id: 'obsidiantre', weight: 100 }],
+    spawns: [
+        { id: 'obsidiantre', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'bague_de_l_obsidiantre', dropRate: 0.01 },
+        { itemId: 'cape_de_l_obsidiantre', dropRate: 0.01 },
+        { itemId: 'amulette_de_l_obsidiantre', dropRate: 0.01 },
+        { itemId: 'casque_de_l_obsidiantre', dropRate: 0.01 },
+        { itemId: 'bottes_de_l_obsidiantre', dropRate: 0.01 }
     ]
 }
 
@@ -3555,15 +3732,19 @@ areas.donjonKimbo = {
     id: 'donjonKimbo',
     type: 'dungeon',
     keyId: 'cleDonjonKimbo',
-    name: 'Canopée du Kimbo',
+    name: "Canopée du Kimbo",
     minLevel: 165, maxLevel: 165,
     mobMinLevel: 165, mobMaxLevel: 165,
     background: "",
-    icon: 'images/monsters/Kimbo.png',
+    icon: "images/monsters/Kimbo.png",
     description: "Au sommet des arbres géants de l'île d'Otomaï vit le Kimbo, gardien ancestral des lieux. Sa maîtrise de la flore et sa connaissance des secrets de l'île en font un adversaire aussi sage que redoutable.",
-    spawns: [{ id: 'kimbo', weight: 100 }],
+    spawns: [
+        { id: 'kimbo', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'sandales_circulaires_du_kimbo', dropRate: 0.01 },
+        { itemId: 'le_kim', dropRate: 0.01 }
     ]
 }
 
@@ -3597,15 +3778,20 @@ areas.donjonKanigroula = {
     id: 'donjonKanigroula',
     type: 'dungeon',
     keyId: 'cleDonjonKanigroula',
-    name: 'Grotte de Kanigroula',
+    name: "Grotte de Kanigroula",
     minLevel: 165, maxLevel: 165,
     mobMinLevel: 165, mobMaxLevel: 165,
     background: "",
-    icon: 'images/monsters/Kanigroula.png',
-    description: '',
-    spawns: [{ id: 'kanigroula', weight: 100 }],
+    icon: "images/monsters/Kanigroula.png",
+    description: "La Kanigroula est une créature de la nuit d'Amakna que les conteurs locaux utilisent pour effrayer les enfants. Sauf que la Kanigroula est bien réelle, et son repaire sous les collines boisées l'est tout autant.",
+    spawns: [
+        { id: 'kanigroula', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'amulette_du_kanimate', dropRate: 0.01 },
+        { itemId: 'coiffe_du_kanimate', dropRate: 0.01 },
+        { itemId: 'cape_du_kanimate', dropRate: 0.01 }
     ]
 }
 
@@ -3618,7 +3804,7 @@ areas.donjonShogunTofugawa = {
     mobMinLevel: 165, mobMaxLevel: 165,
     background: "",
     icon: "images/monsters/Shogun_Tofugawa.png",
-    description: "",
+    description: "Le Shogun Tofugawa règne sur ses terres de Pandala avec le code d'honneur impitoyable d'un guerrier ancien. Son palais de laque et de bois précieux est aussi beau que son maître est redoutable, et l'accès sans invitation y est puni de mort.",
     spawns: [
         { id: 'shogun_tofugawa', weight: 100 }
     ],
@@ -3670,7 +3856,7 @@ areas.donjonPereVer = {
     mobMinLevel: 175, mobMaxLevel: 175,
     background: "",
     icon: 'images/monsters/Père_Ver.png',
-    description: '',
+    description: "Le Père Ver est le patriarche d'une lignée de créatures souterraines qui ont creusé des tunnels à travers toute l'Amakna. Son repaire central est un nœud de galeries dans lequel même les plus expérimentés des aventuriers perdent leur chemin.",
     spawns: [{ id: 'pere_ver', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
@@ -3686,7 +3872,7 @@ areas.donjonDemeureEsprits = {
     mobMinLevel: 175, mobMaxLevel: 175,
     background: "",
     icon: 'images/monsters/Koumiho.png',
-    description: '',
+    description: "La Demeure des Esprits est un espace à la frontière entre le monde des vivants et celui des morts. Les esprits qui y résident n'ont pas accepté leur condition et refusent le passage, s'accrochant à la réalité avec une férocité née du désespoir.",
     spawns: [{ id: 'koumiho', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
@@ -3703,7 +3889,7 @@ areas.donjonSupervizoeuf = {
     mobMinLevel: 175, mobMaxLevel: 175,
     background: "",
     icon: 'images/monsters/Supervizœuf.png',
-    description: '',
+    description: "Le Supervizœuf est l'agent de contrôle de la Nation des Œufs, une entité bureaucratique dont les tampons font plus de dégâts que la plupart des armes. Son poste de contrôle est un cauchemar administratif doublé d'un danger mortel.",
     spawns: [{ id: 'superviz_uf', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
@@ -3740,15 +3926,21 @@ areas.donjonOugah = {
     id: 'donjonOugah',
     type: 'dungeon',
     keyId: 'cleDonjonOugah',
-    name: 'Temple du Grand Ougah',
+    name: "Temple du Grand Ougah",
     minLevel: 185, maxLevel: 185,
     mobMinLevel: 185, mobMaxLevel: 185,
     background: "",
-    icon: 'images/monsters/Ougah.png',
+    icon: "images/monsters/Ougah.png",
     description: "Au cœur de la forêt pétrifiée repose le temple du Grand Ougah, chef spirituel des Fungus. Les spores et champignons qui envahissent les lieux semblent obéir à sa seule volonté.",
-    spawns: [{ id: 'ougah', weight: 100 }],
+    spawns: [
+        { id: 'ougah', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'ougalurette', dropRate: 0.01 },
+        { itemId: 'ougarteau', dropRate: 0.01 },
+        { itemId: 'ougamulette', dropRate: 0.01 },
+        { itemId: 'ougature', dropRate: 0.01 }
     ]
 }
 
@@ -3756,19 +3948,27 @@ areas.donjonKolosso = {
     id: 'donjonKolosso',
     type: 'dungeon',
     keyId: 'cleDonjonKolosso',
-    name: 'Cavernes du Kolosso',
+    name: "Cavernes du Kolosso",
     minLevel: 185, maxLevel: 185,
     mobMinLevel: 185, mobMaxLevel: 185,
     background: "",
-    icon: 'images/monsters/Kolosso.png',
+    icon: "images/monsters/Kolosso.png",
     description: "Ancien disciple du Comte Harebourg, le Professeur Xa poursuit encore ses recherches sur le temps et les dimensions. Ses expériences ont transformé les créatures qui vivaient autrefoit dans ces cavernes.",
     bossMode: 'any',
     spawns: [
-        { id: 'kolosso',       weight: 50 },
-        { id: 'professeur_xa',  weight: 50 },
+        { id: 'kolosso', weight: 50 },
+        { id: 'professeur_xa', weight: 50 }
     ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'ceinture_de_kolosso', dropRate: 0.01 },
+        { itemId: 'anneau_de_kolosso', dropRate: 0.01 },
+        { itemId: 'coiffe_de_kolosso', dropRate: 0.01 },
+        { itemId: 'anneau_du_professeur_xa', dropRate: 0.01 },
+        { itemId: 'pelle_du_professeur_xa', dropRate: 0.01 },
+        { itemId: 'bottes_du_professeur_xa', dropRate: 0.01 },
+        { itemId: 'cape_du_professeur_xa', dropRate: 0.01 },
+        { itemId: 'amulette_du_professeur_xa', dropRate: 0.01 }
     ]
 }
 
@@ -3797,7 +3997,7 @@ areas.donjonKorriandre = {
     mobMinLevel: 185, mobMaxLevel: 185,
     background: "",
     icon: 'images/monsters/Korriandre.png',
-    description: '',
+    description: "Le Korriandre est une plante carnivore que l'alchimie runique a rendu consciente et particulièrement mauvaise. Son antre exhale des parfums trompeurs destinés à attirer les proies dans ses mâchoires végétales, et ces dernières n'ont pas de pitié.",
     spawns: [{ id: 'korriandre', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
@@ -3812,15 +4012,20 @@ areas.donjonGloursons = {
     id: 'donjonGloursons',
     type: 'dungeon',
     keyId: 'cleDonjonGloursons',
-    name: 'Antichambre des Gloursons',
+    name: "Antichambre des Gloursons",
     minLevel: 195, maxLevel: 195,
     mobMinLevel: 195, mobMaxLevel: 195,
     background: "",
-    icon: 'images/monsters/Glourséleste.png',
+    icon: "images/monsters/Glourséleste.png",
     description: "Aux portes des remparts enneigés au sommet du Mont Torrideau se dresse une ruches au dimensions plutôt impressionnantes : la ruche du Glourséleste. Un royaume où prospèrent des créatures étranges, nées de l'évolution des aibeilles endémiques de Frigost. Leur maître règne sur cet écosystème unique, fruit d'années d'adaptation au froid.",
-    spawns: [{ id: 'glourseleste', weight: 100 }],
+    spawns: [
+        { id: 'glourseleste', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'bague_gloursonne', dropRate: 0.01 },
+        { itemId: 'alliance_gloursonne', dropRate: 0.01 },
+        { itemId: 'epee_gloursonne', dropRate: 0.01 }
     ]
 }
 
@@ -3832,11 +4037,16 @@ areas.donjonOmbre = {
     minLevel: 195, maxLevel: 195,
     mobMinLevel: 200, mobMaxLevel: 200,
     background: "",
-    icon: 'images/monsters/Ombre.png',
-    description: '',
-    spawns: [{ id: 'ombre', weight: 100 }],
+    icon: "images/monsters/Ombre.png",
+    description: "La Pyramide d'Ombre est un monument à l'inverse de la lumière. Construite par une secte ancienne dans le désert de Sufokia, elle fonctionne comme un piège à âmes dont Ombre est à la fois le gardien et le principal bénéficiaire.",
+    spawns: [
+        { id: 'ombre', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'casqnoar', dropRate: 0.01 },
+        { itemId: 'anneau_kturne', dropRate: 0.01 },
+        { itemId: 'bottes_refois', dropRate: 0.01 }
     ]
 }
 
@@ -3844,15 +4054,20 @@ areas.donjonRazof = {
     id: 'donjonRazof',
     type: 'dungeon',
     keyId: 'cleDonjonRazof',
-    name: 'Camp du Comte Razof',
+    name: "Camp du Comte Razof",
     minLevel: 195, maxLevel: 195,
     mobMinLevel: 200, mobMaxLevel: 200,
     background: "",
-    icon: 'images/monsters/Comte_Razof.png',
-    description: '',
-    spawns: [{ id: 'comte_razof', weight: 100 }],
+    icon: "images/monsters/Comte_Razof.png",
+    description: "Le Comte Razof, vampire des contrées froides de Frigost, a établi son camp dans un château de glace aux couleurs d'un crépuscule éternel. Ses sbires, aussi pâles que leur maître, gardent les accès avec la fidélité absolue que seule la nuit froide peut inspirer.",
+    spawns: [
+        { id: 'comte_razof', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'chaussons_du_comte_razof', dropRate: 0.01 },
+        { itemId: 'ceinture_du_comte_razof', dropRate: 0.01 },
+        { itemId: 'chapeau_du_comte_razof', dropRate: 0.01 }
     ]
 }
 
@@ -3865,7 +4080,7 @@ areas.donjonBastionMarteaux = {
     mobMinLevel: 200, mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Barbéryl_Clochecuivre.png",
-    description: "",
+    description: "Les Marteaux-Aigris sont des Nains que la frustration et l'alchimie ont transformés en guerriers d'une efficacité redoutable. Leur bastion souterrain résonne du fracas de leur artisanat de destruction, et Barbéryl Clochecuivre en est le chef d'orchestre.",
     spawns: [
         { id: 'barberyl_clochecuivre', weight: 100 }
     ],
@@ -3885,16 +4100,21 @@ areas.donjonSylargh = {
     id: 'donjonSylargh',
     type: 'dungeon',
     keyId: 'cleDonjonSylargh',
-    name: 'Transporteur de Sylargh',
+    name: "Transporteur de Sylargh",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Sylargh.png',
-    description: '',
-    spawns: [{ id: 'sylargh', weight: 100 }],
+    icon: "images/monsters/Sylargh.png",
+    description: "Sylargh est un mastodonte de métal et de magie qui sillonnait les glaces de Frigost avant que la Grande Congélation ne scelle son destin. Réanimé par des forces inconnues, il transporte maintenant vers une destination que nul ne souhaite atteindre.",
+    spawns: [
+        { id: 'sylargh', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
+        { itemId: 'sangle_de_sylargh', dropRate: 0.01 },
+        { itemId: 'capuche_de_sylargh', dropRate: 0.01 },
+        { itemId: 'cape_de_sylargh', dropRate: 0.01 }
     ]
 }
 
@@ -3902,16 +4122,21 @@ areas.donjonKlime = {
     id: 'donjonKlime',
     type: 'dungeon',
     keyId: 'cleDonjonKlime',
-    name: 'Salons privés de Klime',
+    name: "Salons privés de Klime",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Klime.png',
-    description: '',
-    spawns: [{ id: 'klime', weight: 100 }],
+    icon: "images/monsters/Klime.png",
+    description: "Les Salons privés de Klime, dans les profondeurs glacées de Frigost, sont un paradoxe de luxe et de violence. Ce mage des glaces reçoit ses visiteurs avec toute la courtoisie d'un aristocrate... avant de les congeler pour sa collection personnelle.",
+    spawns: [
+        { id: 'klime', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
+        { itemId: 'masque_de_klime', dropRate: 0.01 },
+        { itemId: 'cape_de_klime', dropRate: 0.01 },
+        { itemId: 'ceinture_de_klime', dropRate: 0.01 }
     ]
 }
 
@@ -3924,7 +4149,7 @@ areas.donjonMissizFrizz = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Missiz_Frizz.png",
-    description: "",
+    description: "La Forgefroide de Missiz Frizz est l'atelier d'une artisane qui a fait du froid son matériau de prédilection. Ses créations — armures de glace vive, armes d'acier glacial — sont aussi belles que meurtrières, et leur créatrice l'est tout autant.",
     spawns: [
         { id: 'missiz_frizz', weight: 100 }
     ],
@@ -3944,16 +4169,21 @@ areas.donjonNileza = {
     id: 'donjonNileza',
     type: 'dungeon',
     keyId: 'cleDonjonNileza',
-    name: 'Laboratoire de Nileza',
+    name: "Laboratoire de Nileza",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Nileza.png',
-    description: '',
-    spawns: [{ id: 'nileza', weight: 100 }],
+    icon: "images/monsters/Nileza.png",
+    description: "Le Laboratoire de Nileza est l'antre d'une scientifique dont les expériences sur le froid et la vie ont depuis longtemps dépassé les bornes éthiques. Ses cobayes involontaires peuplent les couloirs avec une résignation qui fait froid dans le dos.",
+    spawns: [
+        { id: 'nileza', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
+        { itemId: 'amulette_de_nileza', dropRate: 0.01 },
+        { itemId: 'cape_de_nileza', dropRate: 0.01 },
+        { itemId: 'bottes_de_nileza', dropRate: 0.01 }
     ]
 }
 
@@ -3961,16 +4191,21 @@ areas.donjonHarebourg = {
     id: 'donjonHarebourg',
     type: 'dungeon',
     keyId: 'cleDonjonHarebourg',
-    name: 'Donjon du Comte Harebourg',
+    name: "Donjon du Comte Harebourg",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Comte_Harebourg.png',
-    description: '',
-    spawns: [{ id: 'comte_harebourg', weight: 100 }],
+    icon: "images/monsters/Comte_Harebourg.png",
+    description: "Le Donjon du Comte Harebourg est la demeure du maître de Frigost, celui-là même qui a fait pacte avec des puissances interdites pour plonger son île dans l'hiver éternel. Y entrer, c'est pénétrer dans le cœur d'une obsession vieille de siècles.",
+    spawns: [
+        { id: 'comte_harebourg', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_des_Glaces',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
+        { itemId: 'anneau_du_comte_harebourg', dropRate: 0.01 },
+        { itemId: 'bottes_du_comte_harebourg', dropRate: 0.01 },
+        { itemId: 'coiffe_du_comte_harebourg', dropRate: 0.01 }
     ]
 }
 
@@ -3978,16 +4213,23 @@ areas.donjonMerkator = {
     id: 'donjonMerkator',
     type: 'dungeon',
     keyId: 'cleDonjonMerkator',
-    name: 'Aquadôme de Merkator',
+    name: "Aquadôme de Merkator",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Merkator.png',
-    description: '',
-    spawns: [{ id: 'merkator', weight: 100 }],
+    icon: "images/monsters/Merkator.png",
+    description: "L'Aquadôme de Merkator est une merveille d'ingénierie sufokienne : un dôme sous-marin dans lequel l'eau et la magie coexistent dans un équilibre fragile. Merkator, son créateur, n'apprécie pas les visites non sollicitées de son chef-d'œuvre.",
+    spawns: [
+        { id: 'merkator', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_Abyssal',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
+        { itemId: 'scaphandre_ojine', dropRate: 0.01 },
+        { itemId: 'sac_rebleux', dropRate: 0.01 },
+        { itemId: 'bottes_omates', dropRate: 0.01 },
+        { itemId: 'ceinture_blot', dropRate: 0.01 },
+        { itemId: 'steamanneau_maitre', dropRate: 0.01 }
     ]
 }
 
@@ -3995,15 +4237,22 @@ areas.donjonBaleine = {
     id: 'donjonBaleine',
     type: 'dungeon',
     keyId: 'cleDonjonBaleine',
-    name: 'Ventre de la Baleine',
+    name: "Ventre de la Baleine",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Protozorreur.png',
-    description: '',
-    spawns: [{ id: 'protozorreur', weight: 100 }],
+    icon: "images/monsters/Protozorreur.png",
+    description: "Vous ne visitez pas ce donjon — vous êtes digéré par lui. Le ventre de la Baleine est un écosystème à part entière, dans lequel des créatures ont évolué dans l'obscurité acide d'un estomac de léviathan. Le Protozorreur en est le gardien.",
+    spawns: [
+        { id: 'protozorreur', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'baleinabottes', dropRate: 0.01 },
+        { itemId: 'capchalot', dropRate: 0.01 },
+        { itemId: 'ceintace', dropRate: 0.01 },
+        { itemId: 'kidibonnet', dropRate: 0.01 },
+        { itemId: 'masse_etacee', dropRate: 0.01 }
     ]
 }
 
@@ -4016,7 +4265,7 @@ areas.donjonMeno = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Capitaine_Meno.png",
-    description: "",
+    description: "Le Capitaine Meno est la légende des mers de Sufokia : un corsaire immortel dont le vaisseau fantôme sème la terreur dans tous les ports. Monter à bord de ce navire, c'est accepter de jouer aux dés avec un mort qui triche.",
     spawns: [
         { id: 'capitaine_meno', weight: 100 }
     ],
@@ -4038,7 +4287,7 @@ areas.donjonKoutoulou = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Larve_de_Koutoulou.png',
-    description: '',
+    description: "Le Temple de Koutoulou, dressé sur Moon Island, est dédié à une entité que les habitants de l'île vénèrent avec une terreur sacrée. Les Larves de Koutoulou en gardent les passages, et ce qu'elles protègent au cœur du temple dépasse l'entendement.",
     spawns: [{ id: 'larve_de_koutoulou', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
@@ -4055,7 +4304,7 @@ areas.donjonDantinea = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Dantinéa.png',
-    description: '',
+    description: "Le Palais de Dantinéa, au cœur de Pandala, est celui d'une impératrice Dragon dont l'autorité est absolue sur tous les êtres reptiliens de l'île. Son trône, taillé dans un seul cristal rouge, diffuse une chaleur qui fait fondre les armures des intrus.",
     spawns: [{ id: 'dantinea', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
@@ -4072,7 +4321,7 @@ areas.donjonKatrepat = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Anerice_la_Shushess.png',
-    description: '',
+    description: "Le Manoir des Katrepat est une demeure aristocratique tombée entre les mains de créatures qui ont fait de la noblesse une forme de guerre. Anérice la Shushess y règne avec tous les codes de l'étiquette — appliqués avec une brutalité raffinée.",
     spawns: [{ id: 'anerice_la_shushess', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
@@ -4088,7 +4337,7 @@ areas.donjonIlyzaelle = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Ilyzaelle.png",
-    description: "",
+    description: "Le Belvédère d'Ilyzaelle offre une vue imprenable sur la forêt de Hhoohoho... pour ceux qui survivent assez longtemps pour en profiter. Ilyzaelle, créature divine du panthéon des Dopeuls, n'accorde pas ce privilège facilement.",
     spawns: [
         { id: 'ilyzaelle', weight: 100 }
     ],
@@ -4105,17 +4354,22 @@ areas.donjonBethel = {
     id: 'donjonBethel',
     type: 'dungeon',
     keyId: 'cleDonjonBethel',
-    name: 'Tour de Bethel',
+    name: "Tour de Bethel",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Bethel_Akarna.png',
-    description: '',
-    spawns: [{ id: 'bethel_akarna', weight: 100 }],
+    icon: "images/monsters/Bethel_Akarna.png",
+    description: "La Tour de Bethel est un édifice à la croisée des forces de la nature et des ambitions humaines. Bethel Akarna manipule les éléments avec une maîtrise que même les Féca les plus aguerris regardent avec une inquiétude respectueuse.",
+    spawns: [
+        { id: 'bethel_akarna', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_Ebene',      dropRate: 0.0005},
-        { itemId: 'Dofus_Forgelave',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_Ebene', dropRate: 0.0005 },
+        { itemId: 'Dofus_Forgelave', dropRate: 0.0005 },
+        { itemId: 'chaussons_de_macrab', dropRate: 0.01 },
+        { itemId: 'culotte_de_bethel', dropRate: 0.01 },
+        { itemId: 'masque_de_funespadon', dropRate: 0.01 }
     ]
 }
 
@@ -4128,7 +4382,7 @@ areas.donjonSolar = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Solar.png",
-    description: "",
+    description: "La Tour de Solar est le pendant enflammé de la Tour de Bethel. Solar, créature de feu pur, y règne sur une chaleur qui fait fondre la pierre et carbonise la chair. Seuls les aventuriers aux résistances exceptionnelles survivent à l'ascension.",
     spawns: [
         { id: 'solar', weight: 100 }
     ],
@@ -4152,7 +4406,7 @@ areas.donjonDazak = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Dazak_Martegel.png",
-    description: "",
+    description: "La Brasserie du Roi Dazak est un établissement unique dans le monde souterrain : une brasserie intégrée à une forteresse de guerre. Dazak Martegel a fait du brassage de bières explosives son art de combat préféré.",
     spawns: [
         { id: 'dazak_martegel', weight: 100 }
     ],
@@ -4173,7 +4427,7 @@ areas.donjonTorkelonia = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Torkélonia.png",
-    description: "",
+    description: "Le Sanctuaire de Torkélonia est consacré à une tortue divine d'une longévité qui dépasse les calendriers. Ses défenseurs ont adopté sa philosophie fondamentale : ils sont lents à s'énerver, mais implacables une fois qu'ils ont décidé de vous écraser.",
     spawns: [
         { id: 'torkelonia', weight: 100 }
     ],
@@ -4189,15 +4443,20 @@ areas.donjonArbreMort = {
     id: 'donjonArbreMort',
     type: 'dungeon',
     keyId: 'cleDonjonArbreMort',
-    name: 'Arbre de Mort',
+    name: "Arbre de Mort",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Corruption.png',
-    description: '',
-    spawns: [{ id: 'corruption', weight: 100 }],
+    icon: "images/monsters/Corruption.png",
+    description: "L'Arbre de Mort est le vestige d'un arbre sacré corrompu par une magie si noire qu'elle en est devenue sentiente. La Corruption qui l'habite a transformé les environs en zone de mort progressive, où même les pierres semblent pourrir.",
+    spawns: [
+        { id: 'corruption', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'alliance_de_corruption', dropRate: 0.01 },
+        { itemId: 'bague_de_corruption', dropRate: 0.01 },
+        { itemId: 'ceinturonce_de_corruption', dropRate: 0.01 }
     ]
 }
 
@@ -4205,15 +4464,20 @@ areas.donjonTyrannie = {
     id: 'donjonTyrannie',
     type: 'dungeon',
     keyId: 'cleDonjonTyrannie',
-    name: 'Fers de la Tyrannie',
+    name: "Fers de la Tyrannie",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Servitude.png',
-    description: '',
-    spawns: [{ id: 'servitude', weight: 100 }],
+    icon: "images/monsters/Servitude.png",
+    description: "Les Fers de la Tyrannie sont les chaînes qui, selon une légende obscure, ont encerclé le monde. Servitude, leur gardien, est une entité faite de liens et de contraintes, dont la seule existence est une métaphore réifiée de l'asservissement.",
+    spawns: [
+        { id: 'servitude', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'dora_de_servitude', dropRate: 0.01 },
+        { itemId: 'manteau_de_servitude', dropRate: 0.01 },
+        { itemId: 'echarpe_de_servitude', dropRate: 0.01 }
     ]
 }
 
@@ -4221,15 +4485,20 @@ areas.donjonBalance = {
     id: 'donjonBalance',
     type: 'dungeon',
     keyId: 'cleDonjonBalance',
-    name: 'Sentence de la Balance',
+    name: "Sentence de la Balance",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Misère.png',
-    description: '',
-    spawns: [{ id: 'misere', weight: 100 }],
+    icon: "images/monsters/Misère.png",
+    description: "La Sentence de la Balance est un tribunal cosmique où Misère juge et condamne selon des règles que nul n'a jamais pu consulter. Les peines qu'elle inflige n'ont aucun rapport avec les fautes commises, ce qui la rend particulièrement redoutable.",
+    spawns: [
+        { id: 'misere', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'convoitise_de_misere', dropRate: 0.01 },
+        { itemId: 'corset_de_misere', dropRate: 0.01 },
+        { itemId: 'solerets_de_misere', dropRate: 0.01 }
     ]
 }
 
@@ -4242,7 +4511,7 @@ areas.donjonTroneSang = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: "images/monsters/Guerre.png",
-    description: "",
+    description: "Le Trône de Sang est l'endroit où Guerre — incarnation du conflit — a planté son siège depuis la nuit des temps. L'air y est chargé d'une tension permanente, et les créatures qui gardent ce trône n'ont connu que la violence depuis leur naissance.",
     spawns: [
         { id: 'guerre', weight: 100 }
     ],
@@ -4259,15 +4528,20 @@ areas.donjonTalKasha = {
     id: 'donjonTalKasha',
     type: 'dungeon',
     keyId: 'cleDonjonTalKasha',
-    name: 'Chambre de Tal Kasha',
+    name: "Chambre de Tal Kasha",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Tal_Kasha.png',
-    description: '',
-    spawns: [{ id: 'tal_kasha', weight: 100 }],
+    icon: "images/monsters/Tal_Kasha.png",
+    description: "Tal Kasha, l'Araignée-Reine de Moon Island, a tissé sa chambre dans les profondeurs de l'île avec une précision d'architecte. Chaque fil de sa toile est une arme, chaque recoin une embuscade. Elle attend depuis des siècles, et la patience lui a toujours bien réussi.",
+    spawns: [
+        { id: 'tal_kasha', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'chevelure_de_tal_kasha', dropRate: 0.01 },
+        { itemId: 'nemes_de_tal_kasha', dropRate: 0.01 },
+        { itemId: 'sandales_de_tal_kasha', dropRate: 0.01 }
     ]
 }
 
@@ -4275,15 +4549,24 @@ areas.donjonKabahal = {
     id: 'donjonKabahal',
     type: 'dungeon',
     keyId: 'cleDonjonKabahal',
-    name: 'Rituel de Kabahal',
+    name: "Rituel de Kabahal",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Kabahal.png',
-    description: '',
-    spawns: [{ id: 'kabahal', weight: 100 }],
+    icon: "images/monsters/Kabahal.png",
+    description: "Kabahal est une entité de Sufokia qui a fait du chaos aquatique son domaine. Son rituel, auquel on assiste malgré soi en entrant dans son temple, est une cérémonie de transformation au terme de laquelle rien de vivant ne ressort vraiment intact.",
+    spawns: [
+        { id: 'kabahal', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'amulette_possedee', dropRate: 0.01 },
+        { itemId: 'anneau_possede', dropRate: 0.01 },
+        { itemId: 'bouclier_possede', dropRate: 0.01 },
+        { itemId: 'ceinture_possedee', dropRate: 0.01 },
+        { itemId: 'alliance_du_pandamonium', dropRate: 0.01 },
+        { itemId: 'amulette_du_pandamonium', dropRate: 0.01 },
+        { itemId: 'baguette_du_pandamonium', dropRate: 0.01 }
     ]
 }
 
@@ -4295,12 +4578,20 @@ areas.donjonAurorePourpre = {
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/L_Éternel_Conflit.png',
-    description: '',
-    spawns: [{ id: 'l_eternel_conflit', weight: 100 }],
+    icon: "images/monsters/L_Éternel_Conflit.png",
+    description: "L'Aurore Pourpre marque le champ de bataille où L'Éternel Conflit engage ses armées depuis la nuit des temps. Bonta et Brakmar s'y sont affrontées pendant des millénaires, et leurs champions tombés sont devenus les fantômes qui peuplent encore ce site.",
+    spawns: [
+        { id: 'l_eternel_conflit', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_du_Cauchemard',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_du_Cauchemard', dropRate: 0.0005 },
+        { itemId: 'bois_de_la_liche', dropRate: 0.01 },
+        { itemId: 'chant_du_necromant', dropRate: 0.01 },
+        { itemId: 'ciel_de_foudre_noire', dropRate: 0.01 },
+        { itemId: 'derniere_aube', dropRate: 0.01 },
+        { itemId: 'mort_du_centoror', dropRate: 0.01 },
+        { itemId: 'portes_de_bonta', dropRate: 0.01 }
     ]
 }
 
@@ -4308,16 +4599,24 @@ areas.donjonMalefices = {
     id: 'donjonMalefices',
     type: 'dungeon',
     keyId: 'cleDonjonMalefices',
-    name: 'Chambre des maléfices',
+    name: "Chambre des maléfices",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Belladone.png',
-    description: '',
-    spawns: [{ id: 'belladone', weight: 100 }],
+    icon: "images/monsters/Belladone.png",
+    description: "La Chambre des Maléfices est le laboratoire de Belladone, grande prêtresse de la forêt de Hhoohoho. Chaque sort qui y est pratiqué laisse une trace indélébile dans l'air ; l'atmosphère est si chargée de magie hostile qu'elle semble palpable.",
+    spawns: [
+        { id: 'belladone', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
-        { itemId: 'Dofus_Sylvestre',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'Dofus_Sylvestre', dropRate: 0.0005 },
+        { itemId: 'amertume_de_belladone', dropRate: 0.01 },
+        { itemId: 'cruaute_de_belladone', dropRate: 0.01 },
+        { itemId: 'mur_de_ronces', dropRate: 0.01 },
+        { itemId: 'pilier_d_ephedrya', dropRate: 0.01 },
+        { itemId: 'potence_d_ephedrya', dropRate: 0.01 },
+        { itemId: 'tendresse_de_belladone', dropRate: 0.01 }
     ]
 }
 
@@ -4330,7 +4629,7 @@ areas.donjonBreuil = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Vénérable_Endormi.png',
-    description: '',
+    description: "Le Breuil du Vénérable est un espace sacré de la sylve profonde où sommeille le Vénérable Endormi, un être ancien dont le réveil est à la fois redouté et recherché. Troubler son sommeil a des conséquences — ne pas le troubler aussi.",
     spawns: [{ id: 'venerable_endormi', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
@@ -4346,7 +4645,7 @@ areas.donjonDechireuse = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Déchireuse.png',
-    description: '',
+    description: "L'Autel de la Déchireuse est consacré à une créature dont le nom dit tout ce qu'il y a à savoir sur ses intentions. Son autel, taillé dans une roche noire et brillante, semble absorber la lumière comme la Déchireuse absorbe les âmes de ses offrandes.",
     spawns: [{ id: 'dechireuse', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.35 },
@@ -4547,23 +4846,59 @@ Résistances
 areas.evenementPious = {
     id: 'evenementPious',
     type: 'event',
-    name: 'Invasion Pious',
+    name: "Invasion Pious",
     minLevel: 10, maxLevel: 15,
     mobMinLevel: 10, mobMaxLevel: 15,
     background: "",
-    icon: 'images/monsters/Piou_Bleu.png',
+    icon: "images/monsters/Piou_Bleu.png",
     description: "Les habitants d'Astrub sont submergés par ces oiseaux multicolores ! Venez leur prêter main-forte en vous en débarrassant.",
     spawns: [
-        { id: 'piouRouge',  weight: 17 },
-        { id: 'piouBleu',   weight: 17 },
-        { id: 'piouJaune',  weight: 17 },
-        { id: 'piouVert',   weight: 17 },
-        { id: 'piouRose',   weight: 17 },
+        { id: 'piouRouge', weight: 17 },
+        { id: 'piouBleu', weight: 17 },
+        { id: 'piouJaune', weight: 17 },
+        { id: 'piouVert', weight: 17 },
+        { id: 'piouRose', weight: 17 },
         { id: 'piouViolet', weight: 15 }
     ],
     lootTable: [
-        { itemId: 'pierreDame',      dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'cape_du_piou_bleu', dropRate: 0.01 },
+        { itemId: 'sandales_du_piou_bleu', dropRate: 0.01 },
+        { itemId: 'anneau_du_piou_bleu', dropRate: 0.01 },
+        { itemId: 'amulette_du_piou_bleu', dropRate: 0.01 },
+        { itemId: 'chapeau_du_piou_bleu', dropRate: 0.01 },
+        { itemId: 'ceinture_du_piou_bleu', dropRate: 0.01 },
+        { itemId: 'amulette_du_piou_jaune', dropRate: 0.01 },
+        { itemId: 'chapeau_du_piou_jaune', dropRate: 0.01 },
+        { itemId: 'ceinture_du_piou_jaune', dropRate: 0.01 },
+        { itemId: 'cape_du_piou_jaune', dropRate: 0.01 },
+        { itemId: 'sandales_du_piou_jaune', dropRate: 0.01 },
+        { itemId: 'anneau_du_piou_jaune', dropRate: 0.01 },
+        { itemId: 'anneau_du_piou_rose', dropRate: 0.01 },
+        { itemId: 'amulette_du_piou_rose', dropRate: 0.01 },
+        { itemId: 'chapeau_du_piou_rose', dropRate: 0.01 },
+        { itemId: 'ceinture_du_piou_rose', dropRate: 0.01 },
+        { itemId: 'cape_du_piou_rose', dropRate: 0.01 },
+        { itemId: 'sandales_du_piou_rose', dropRate: 0.01 },
+        { itemId: 'ceinture_du_piou_rouge', dropRate: 0.01 },
+        { itemId: 'cape_du_piou_rouge', dropRate: 0.01 },
+        { itemId: 'sandales_du_piou_rouge', dropRate: 0.01 },
+        { itemId: 'anneau_du_piou_rouge', dropRate: 0.01 },
+        { itemId: 'amulette_du_piou_rouge', dropRate: 0.01 },
+        { itemId: 'chapeau_du_piou_rouge', dropRate: 0.01 },
+        { itemId: 'chapeau_du_piou_vert', dropRate: 0.01 },
+        { itemId: 'ceinture_du_piou_vert', dropRate: 0.01 },
+        { itemId: 'cape_du_piou_vert', dropRate: 0.01 },
+        { itemId: 'sandales_du_piou_vert', dropRate: 0.01 },
+        { itemId: 'anneau_du_piou_vert', dropRate: 0.01 },
+        { itemId: 'amulette_du_piou_vert', dropRate: 0.01 },
+        { itemId: 'sandales_du_piou_violet', dropRate: 0.01 },
+        { itemId: 'anneau_du_piou_violet', dropRate: 0.01 },
+        { itemId: 'amulette_du_piou_violet', dropRate: 0.01 },
+        { itemId: 'chapeau_du_piou_violet', dropRate: 0.01 },
+        { itemId: 'ceinture_du_piou_violet', dropRate: 0.01 },
+        { itemId: 'cape_du_piou_violet', dropRate: 0.01 }
     ]
 }
 
@@ -4635,10 +4970,18 @@ areas.egoutsAstrub = {
     mobMinLevel: 30, mobMaxLevel: 40,
     background: "",
     icon: "images/monsters/.png",
-    description: "",
-    spawns: [],
+    description: "Les Égouts d'Astrub sont le reflet souterrain de la ville au-dessus : aussi animés, aussi dangereux, et beaucoup moins bien éclairés. Une odeur caractéristique y règne, ainsi qu'une faune opportuniste qui a fait des déchets de la surface son garde-manger.",
+    spawns: [
+        { id: 'kolerat_strubien', weight: 10 },
+        { id: 'ramane_strubien', weight: 10 },
+        { id: 'scelerat_strubien', weight: 10 },
+        { id: 'milirat_strubien', weight: 10 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'amulette_de_rapine', dropRate: 0.01 },
+        { itemId: 'ceinture_de_rapine', dropRate: 0.01 },
+        { itemId: 'bottes_de_rapine', dropRate: 0.01 }
     ]
 }
 areas.evenementDopeuls = {
@@ -4760,66 +5103,88 @@ areas.raidGelees = {
 }
 areas.raidMallefisk = {
     id: 'raidMallefisk',
-    name: 'Fabrique de Malléfisk',
+    name: "Fabrique de Malléfisk",
     type: 'raid',
     minLevel: 100, maxLevel: 120,
     mobMinLevel: 100, mobMaxLevel: 110,
     background: "",
-    icon: 'images/monsters/Malléfisk.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'mallefisk', everyKills: 9, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Malléfisk.png",
+    description: "La Fabrique de Malléfisk est une usine de création de monstres à la chaîne, dirigée par une créature qui a transformé la biologie en industrie. Entre les cuves de mutation et les chaînes d'assemblage, les aventuriers qui y pénètrent deviennent eux-mêmes des matières premières.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'mallefisk', everyKills: 9, statMult: 1 },
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 areas.raidPounicheur = {
     id: 'raidPounicheur',
     type: 'raid',
-    name: 'Miausolée du Pounicheur',
+    name: "Miausolée du Pounicheur",
     minLevel: 100, maxLevel: 120,
     mobMinLevel: 100, mobMaxLevel: 110,
     background: "",
-    icon: 'images/monsters/Pounicheur.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'pounicheur', everyKills: 9, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Pounicheur.png",
+    description: "Le Miausolée du Pounicheur est le mausolée d'un félin légendaire dont la mort, dit-on, n'a jamais été tout à fait complète. Ses disciples continuent de le vénérer dans ces couloirs funèbres où les ronronnements des gardiens ressemblent étrangement à des grondements.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'pounicheur', everyKills: 9, statMult: 1 },
+    lootTable: [
+        { itemId: 'ceinture_du_pounicheur', dropRate: 0.01 },
+        { itemId: 'scalp_du_pounicheur', dropRate: 0.01 },
+        { itemId: 'bottes_du_pounicheur', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 areas.raidFraktale = {
     id: 'raidFraktale',
     type: 'raid',
-    name: 'Mégalithe de Fraktale',
+    name: "Mégalithe de Fraktale",
     minLevel: 110, maxLevel: 130,
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
-    icon: 'images/monsters/Fraktale.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'fraktale', everyKills: 9, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Fraktale.png",
+    description: "Le Mégalithe de Fraktale est une structure de pierre vivante dont les motifs répétitifs semblent défier la géométrie euclidienne. Fraktale elle-même est une entité fractale — la blesser n'est qu'une invitation à se multiplier.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'fraktale', everyKills: 9, statMult: 1 },
+    lootTable: [
+        { itemId: 'anneau_de_fraktale', dropRate: 0.01 },
+        { itemId: 'ceinture_de_fraktale', dropRate: 0.01 },
+        { itemId: 'coiffe_de_fraktale', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 areas.raidEkarlatte = {
     id: 'raidEkarlatte',
     type: 'raid',
-    name: 'Ring du Capitaine Ekarlatte',
+    name: "Ring du Capitaine Ekarlatte",
     minLevel: 110, maxLevel: 130,
     mobMinLevel: 110, mobMaxLevel: 120,
     background: "",
-    icon: 'images/monsters/Capitaine_Ekarlatte.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'capitaineEkarlatte', everyKills: 9, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Capitaine_Ekarlatte.png",
+    description: "Le Ring du Capitaine Ekarlatte est le cirque personnel d'un pirate reconverti en organisateur de combats. Ses arènes improvisées sur les flots de Sufokia ont vu tomber des champions, et le Capitaine lui-même n'hésite pas à descendre dans l'arène quand le spectacle l'exige.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'capitaineEkarlatte', everyKills: 9, statMult: 1 },
+    lootTable: [
+        { itemId: 'ceinture_du_capitaine_ekarlatte', dropRate: 0.01 },
+        { itemId: 'bottes_du_capitaine_ekarlatte', dropRate: 0.01 },
+        { itemId: 'gant_du_capitaine_ekarlatte', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 areas.raidTourbeduRoissingue = {
@@ -4855,50 +5220,68 @@ areas.raidTourbeduRoissingue = {
 areas.raidPhossile = {
     id: 'raidPhossile',
     type: 'raid',
-    name: 'Galerie du Phossile',
+    name: "Galerie du Phossile",
     minLevel: 140, maxLevel: 160,
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
-    icon: 'images/monsters/Phossile.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'phossile', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Phossile.png",
+    description: "La Galerie du Phossile est un musée naturel de fossiles vivants — des créatures dont l'évolution s'est figée dans l'ambre pour des raisons inconnues. Le Phossile, leur chef, est la plus ancienne et la plus redoutable de ces reliques vivantes.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'phossile', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'ceinture_phossile', dropRate: 0.01 },
+        { itemId: 'cape_phossile', dropRate: 0.01 },
+        { itemId: 'bottes_phossiles', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 areas.raidUsh = {
     id: 'raidUsh',
     type: 'raid',
-    name: 'Plateau de Ush',
+    name: "Plateau de Ush",
     minLevel: 150, maxLevel: 170,
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
-    icon: 'images/monsters/Ush_Galesh.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'ushGalesh', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Ush_Galesh.png",
+    description: "Le Plateau de Ush est le terrain de chasse favori de Ush Galesh, chasseur de chasseurs dont la réputation s'étend sur plusieurs continents. Ses proies sont toujours les meilleurs aventuriers disponibles, et le plateau est jonché de leurs équipements.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'ushGalesh', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'bottes_de_ush', dropRate: 0.01 },
+        { itemId: 'col_de_ush', dropRate: 0.01 },
+        { itemId: 'epee_de_ush', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 
 areas.raidXLII = {
     id: 'raidXLII',
     type: 'raid',
-    name: 'Horologium de XLII',
+    name: "Horologium de XLII",
     minLevel: 150, maxLevel: 170,
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
-    icon: 'images/monsters/XLII.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'xlii', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/XLII.png",
+    description: "L'Horologium de XLII est un mécanisme temporel d'une complexité absurde, géré par une entité dont le rapport au temps est fondamentalement différent du nôtre. À l'intérieur, les lois de la causalité sont des suggestions, et les aventuriers peuvent croiser leur propre cadavre.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'xlii', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'ceinture_de_xlii', dropRate: 0.01 },
+        { itemId: 'anneau_de_xlii', dropRate: 0.01 },
+        { itemId: 'bottes_de_xlii', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
 areas.raidToxoliath = {
@@ -4909,7 +5292,7 @@ areas.raidToxoliath = {
     mobMinLevel: 160, mobMaxLevel: 170,
     background: "",
     icon: 'images/monsters/Toxoliath.png',
-    description: '',
+    description: "La Cave du Toxoliath empeste à des kilomètres à la ronde — ce qui est une bonne chose, car cela avertit les imprudents bien avant qu'ils n'entrent dans le territoire de cette créature venimeuse. Le Toxoliath a fait du poison sa langue maternelle.",
     spawns: [],
     miniBoss: {id: 'toxoliath', everyKills: 12, statMult: 1},
     lootTable: [],
@@ -4946,68 +5329,96 @@ areas.raidKralamoureGeant = {
 areas.raidNidas = {
     id: 'raidNidas',
     type: 'raid',
-    name: 'Palais du roi Nidas',
+    name: "Palais du roi Nidas",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Roi_Nidas.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'roiNidas', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Roi_Nidas.png",
+    description: "Le Palais du Roi Nidas est une métaphore architecturale de l'avarice absolue. Tout y est en or — les murs, les sols, les pièges, les gardiens. Le Roi Nidas lui-même est prisonnier de sa propre richesse, mais il a décidé que personne d'autre n'en profiterait.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'roiNidas', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'anneau_de_nidas', dropRate: 0.01 },
+        { itemId: 'couronne_de_nidas', dropRate: 0.01 },
+        { itemId: 'tongues_de_nidas', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-       { itemId: 'Dofus_Nebuleux',      dropRate: 0.01},
-       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+        { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
+    ]
 }
 
 areas.raidCourSombre = {
     id: 'raidCourSombre',
     type: 'raid',
-    name: 'Trône de la Cour Sombre',
+    name: "Trône de la Cour Sombre",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Reine_des_Voleurs.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'reineDesVoleurs', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Reine_des_Voleurs.png",
+    description: "Le Trône de la Cour Sombre est la résidence de la Reine des Voleurs, gouvernante d'une organisation criminelle dont les tentacules s'étendent à travers tout le Monde des Douze. Y accéder, c'est déjà prouver qu'on a le niveau... pour mourir en grande compagnie.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'reineDesVoleurs', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'bottes_de_la_reine_des_voleurs', dropRate: 0.01 },
+        { itemId: 'ceinture_de_la_reine_des_voleurs', dropRate: 0.01 },
+        { itemId: 'coiffe_de_la_reine_des_voleurs', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-       { itemId: 'Dofus_Nebuleux',      dropRate: 0.01},
-       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+        { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
+    ]
 }
 areas.raidVortex = {
     id: 'raidVortex',
     type: 'raid',
-    name: 'Œil de Vortex',
+    name: "Œil de Vortex",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Vortex.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'vortex', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Vortex.png",
+    description: "L'Œil de Vortex est le centre d'une tempête permanente dans les eaux de Sufokia. Vortex, entité aquatique d'une puissance atmosphérique démesurée, y orchestre ses cyclones avec une précision qui suggère une intelligence que la météorologie classique peine à expliquer.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'vortex', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'cagoule_de_vortex', dropRate: 0.01 },
+        { itemId: 'ceinture_de_vortex', dropRate: 0.01 },
+        { itemId: 'sabots_de_vortex', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-       { itemId: 'Dofus_Nebuleux',      dropRate: 0.01},
-       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+        { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
+    ]
 }
 
 areas.raidChaloeil = {
     id: 'raidChaloeil',
     type: 'raid',
-    name: 'Défi du Chalœil',
+    name: "Défi du Chalœil",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Chalœil.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'chaloeil', everyKills: 12, statMult: 1},
-    lootTable: [],
+    icon: "images/monsters/Chalœil.png",
+    description: "Le Chalœil est un prédateur des profondeurs qui a fait de son regard son arme principale. Son antre est une arène de verre et d'obscurité où chaque reflet peut cacher une menace, et où croiser son œil unique suffit à paralyser les plus courageux.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'chaloeil', everyKills: 12, statMult: 1 },
+    lootTable: [
+        { itemId: 'bottes_du_chal_il', dropRate: 0.01 },
+        { itemId: 'cape_du_chal_il', dropRate: 0.01 },
+        { itemId: 'casque_du_chal_il', dropRate: 0.01 }
+    ],
     miniBossLootTable: [
-       { itemId: 'Dofus_Ivoire',      dropRate: 0.01},
-       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+        { itemId: 'Dofus_Ivoire', dropRate: 0.01 },
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
+    ]
 }
 areas.raidOrukam = {
     id: 'raidOrukam',
@@ -5016,14 +5427,17 @@ areas.raidOrukam = {
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Roi_Imagami.png',
-    description: '',
-    spawns: [],
-    miniBoss: {id: 'roiImagami', everyKills: 9, statMult: 1},
+    icon: "images/monsters/Roi_Imagami.png",
+    description: "La Mémoire d'Orukam est un espace à la frontière de l'imaginaire et du réel, gouverné par le Roi Imagami. Ce souverain de l'illusion façonne son royaume à sa guise, rendant chaque visite différente — et chaque mort, inoubliable.",
+    spawns: [
+
+    ],
+    miniBoss: { id: 'roiImagami', everyKills: 9, statMult: 1 },
     lootTable: [],
     miniBossLootTable: [
-       { itemId: 'Dofus_Tachete',      dropRate: 0.01},
-       { itemId: 'pierreDameGardien',         dropRate: 0.45 }]
+        { itemId: 'Dofus_Tachete', dropRate: 0.01 },
+        { itemId: 'pierreDameGardien', dropRate: 0.45 }
+    ]
 }
 
 areas.raidImagiro = {
@@ -5034,7 +5448,7 @@ areas.raidImagiro = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Reine_Amirukam.png',
-    description: '',
+    description: "Le Souvenir d'Imagiro est le pendant sombre de la Mémoire d'Orukam : là où le Roi crée, la Reine Amirukam dévore. Ce sanctuaire de l'oubli efface les souvenirs de ceux qui y pénètrent, les rendant vulnérables à une souveraine qui se nourrit de ce qu'ils ont été.",
     spawns: [],
     miniBoss: {id: 'reineAmirukam', everyKills: 9, statMult: 1},
     lootTable: [],
@@ -5050,7 +5464,7 @@ areas.raidEliocalypse = {
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
     icon: 'images/monsters/Corruption.png',
-    description: '',
+    description: "L'Éliocalypse est la fin du monde que certains prophètes avaient annoncée — sauf qu'elle ne s'est pas arrêtée. Dans cette tempête permanente, Servitude, Misère, Guerre et Corruption règnent ensemble sur un champ de ruines où chaque victoire ne fait que retarder l'inévitable.",
     spawns: [
         { id: 'servitude',  weight: 33 },
         { id: 'misere',     weight: 33 },

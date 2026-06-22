@@ -21,8 +21,7 @@ monsters['wanted_fouduglen_l_ecureuil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 20,
-    bst: { hp: 670, atk: 300, spd: 30,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 670, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fouduglen_l_ecureuil_casse_noisettes', 'wanted_fouduglen_l_ecureuil_discretion']
 }
 
@@ -45,8 +44,7 @@ monsters['wanted_frakacia_leukocytine'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 1300, atk: 300, spd: 30,
-        res: { neutre: 15, feu: 5, eau: -10, air: 25, terre: -20 } },
+    bst: { hp: 1300, atk: 300, spd: 30, res: { neutre: 15, feu: 5, eau: -10, air: 25, terre: -20 } },
     moves: ['wanted_frakacia_leukocytine_crochet_fracassant', 'wanted_frakacia_leukocytine_cri_fracassant', 'wanted_frakacia_leukocytine_hyperleukocytine']
 }
 
@@ -57,8 +55,7 @@ monsters['wanted_ambi_guman'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 1400, atk: 200, spd: 20,
-        res: { neutre: 20, feu: 20, eau: 10, air: 20, terre: 10 } },
+    bst: { hp: 1400, atk: 200, spd: 20, res: { neutre: 20, feu: 20, eau: 10, air: 20, terre: 10 } },
     moves: ['wanted_ambi_guman_patate', 'wanted_ambi_guman_roquette', 'wanted_ambi_guman_enfant_de_la_terre']
 }
 
@@ -105,8 +102,7 @@ monsters['wanted_ogivol_scalarcin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 50,
-    bst: { hp: 3100, atk: 300, spd: 30,
-        res: { neutre: 10, feu: -15, eau: -20, air: 25, terre: 20 } },
+    bst: { hp: 3100, atk: 300, spd: 30, res: { neutre: 10, feu: -15, eau: -20, air: 25, terre: 20 } },
     moves: ['wanted_ogivol_scalarcin_ogivoltaique', 'wanted_ogivol_scalarcin_ogivolage', 'wanted_ogivol_scalarcin_ogivolatilise', 'wanted_ogivol_scalarcin_ogivologramme', 'wanted_ogivol_scalarcin_ogivolverine']
 }
 
@@ -177,8 +173,7 @@ monsters['wanted_qil_bil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 70,
-    bst: { hp: 5300, atk: 300, spd: 30,
-        res: { neutre: 10, feu: 10, eau: -19, air: 0, terre: 12 } },
+    bst: { hp: 5300, atk: 300, spd: 30, res: { neutre: 10, feu: 10, eau: -19, air: 0, terre: 12 } },
     moves: ['wanted_qil_bil_lancer_de_poing', 'wanted_qil_bil_rage_cybernetique', 'wanted_qil_bil_surchauffe']
 }
 
@@ -201,8 +196,7 @@ monsters['wanted_aermyne_braco_scalptaras'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 6600, atk: 300, spd: 30,
-        res: { neutre: 60, feu: 30, eau: 10, air: 20, terre: -20 } },
+    bst: { hp: 6600, atk: 300, spd: 30, res: { neutre: 60, feu: 30, eau: 10, air: 20, terre: -20 } },
     moves: ['wanted_aermyne_braco_scalptaras_calin', 'wanted_aermyne_braco_scalptaras_malaxage', 'wanted_aermyne_braco_scalptaras_sale_marmot']
 }
 
@@ -213,8 +207,7 @@ monsters['wanted_musha_l_oni'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 6600, atk: 300, spd: 30,
-        res: { neutre: 90, feu: 90, eau: 90, air: 90, terre: 90 } },
+    bst: { hp: 6600, atk: 300, spd: 30, res: { neutre: 90, feu: 90, eau: 90, air: 90, terre: 90 } },
     moves: ['wanted_musha_l_oni_onigiri', 'wanted_musha_l_oni_onigaud', 'wanted_musha_l_oni_onivoirien']
 }
 
@@ -225,8 +218,7 @@ monsters['wanted_tyranne_la_terrible'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 6600, atk: 350, spd: 20,
-        res: { neutre: 10, feu: 0, eau: 15, air: -10, terre: 15 } },
+    bst: { hp: 6600, atk: 350, spd: 20, res: { neutre: 10, feu: 0, eau: 15, air: -10, terre: 15 } },
     moves: ['wanted_tyranne_la_terrible_hyper_kick', 'wanted_tyranne_la_terrible_1000_poings', 'wanted_tyranne_la_terrible_frappe_devastatrice']
 }
 
@@ -261,8 +253,7 @@ monsters['wanted_rok_gnorok'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 7900, atk: 300, spd: 30,
-        res: { neutre: 22, feu: 22, eau: 22, air: 22, terre: 22 } },
+    bst: { hp: 7900, atk: 300, spd: 30, res: { neutre: 22, feu: 22, eau: 22, air: 22, terre: 22 } },
     moves: ['wanted_rok_gnorok_martelage', 'wanted_rok_gnorok_armure_rocailleuse', 'wanted_rok_gnorok_surt']
 }
 
@@ -273,8 +264,7 @@ monsters['wanted_simbadas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 8000, atk: 300, spd: 30,
-        res: { neutre: -15, feu: 28, eau: 14, air: 13, terre: -5 } },
+    bst: { hp: 8000, atk: 300, spd: 30, res: { neutre: -15, feu: 28, eau: 14, air: 13, terre: -5 } },
     moves: ['wanted_simbadas_saut_precipite', 'wanted_simbadas_grosse_papatte']
 }
 
@@ -309,8 +299,7 @@ monsters['wanted_naganita'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 9400, atk: 375, spd: 30,
-        res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
+    bst: { hp: 9400, atk: 375, spd: 30, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
     moves: ['wanted_naganita_puissant_balayage', 'wanted_naganita_estoc_fatal']
 }
 
@@ -333,8 +322,7 @@ monsters['wanted_carlita_de_l_aguerfelde'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 9400, atk: 300, spd: 30,
-        res: { neutre: 20, feu: -20, eau: 35, air: -5, terre: 5 } },
+    bst: { hp: 9400, atk: 300, spd: 30, res: { neutre: 20, feu: -20, eau: 35, air: -5, terre: 5 } },
     moves: ['wanted_carlita_de_l_aguerfelde_piege_a_mulou', 'wanted_carlita_de_l_aguerfelde_depecage', 'wanted_carlita_de_l_aguerfelde_carabine_a_gros_gibier']
 }
 
@@ -357,8 +345,7 @@ monsters['wanted_bouflouth'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 13000, atk: 300, spd: 30,
-        res: { neutre: 80, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 13000, atk: 300, spd: 30, res: { neutre: 80, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_bouflouth_mammouth', 'wanted_bouflouth_gloutmouth', 'wanted_bouflouth_hypermouth', 'wanted_bouflouth_embrochmouth']
 }
 
@@ -393,8 +380,7 @@ monsters['wanted_nenufor_tilotus'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 13000, atk: 375, spd: 30,
-        res: { neutre: 0, feu: -15, eau: 10, air: -5, terre: 20 } },
+    bst: { hp: 13000, atk: 375, spd: 30, res: { neutre: 0, feu: -15, eau: 10, air: -5, terre: 20 } },
     moves: ['wanted_nenufor_tilotus_spores_de_nympheacee', 'wanted_nenufor_tilotus_invocation_de_nufor', 'wanted_nenufor_tilotus_rhizome_agressif']
 }
 
@@ -405,8 +391,7 @@ monsters['wanted_monsieur_pingouin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 14000, atk: 300, spd: 30,
-        res: { neutre: 0, feu: 0, eau: 50, air: 20, terre: 0 } },
+    bst: { hp: 14000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 50, air: 20, terre: 0 } },
     moves: ['wanted_monsieur_pingouin_parapluie_gadget', 'wanted_monsieur_pingouin_iceberg_saloon', 'wanted_monsieur_pingouin_mascarade_rocambolesque']
 }
 
@@ -429,8 +414,7 @@ monsters['wanted_padgref_demoel'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 16000, atk: 300, spd: 30,
-        res: { neutre: 30, feu: 15, eau: -15, air: -10, terre: -15 } },
+    bst: { hp: 16000, atk: 300, spd: 30, res: { neutre: 30, feu: 15, eau: -15, air: -10, terre: -15 } },
     moves: ['wanted_padgref_demoel_attraction', 'wanted_padgref_demoel_assaut_aerien', 'wanted_padgref_demoel_transposition_aqueuse', 'wanted_padgref_demoel_absorption_brulante', 'wanted_padgref_demoel_sanction']
 }
 
@@ -441,8 +425,7 @@ monsters['wanted_ali_grothor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 14000, atk: 300, spd: 30,
-        res: { neutre: 20, feu: 30, eau: -15, air: 25, terre: 10 } },
+    bst: { hp: 14000, atk: 300, spd: 30, res: { neutre: 20, feu: 30, eau: -15, air: 25, terre: 10 } },
     moves: ['wanted_ali_grothor_ture', 'wanted_ali_grothor_hida', 'wanted_ali_grothor_risation', 'wanted_ali_grothor_rage_electrique']
 }
 
@@ -465,8 +448,7 @@ monsters['wanted_katigrou'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 15000, atk: 300, spd: 30,
-        res: { neutre: 50, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 15000, atk: 300, spd: 30, res: { neutre: 50, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_katigrou_bond_improbable', 'wanted_katigrou_broukeul', 'wanted_katigrou_grougrou']
 }
 
@@ -502,8 +484,7 @@ monsters['wanted_fojumo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 16000, atk: 400, spd: 40,
-        res: { neutre: -15, feu: 5, eau: 15, air: 10, terre: 10 } },
+    bst: { hp: 16000, atk: 400, spd: 40, res: { neutre: -15, feu: 5, eau: 15, air: 10, terre: 10 } },
     moves: ['wanted_fojumo_assassinat_silencieux', 'wanted_fojumo_substitution_furtive', 'wanted_fojumo_dissimulation_nocive']
 }
 
@@ -514,8 +495,7 @@ monsters['wanted_fantomayte'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 18000, atk: 300, spd: 30,
-        res: { neutre: 25, feu: 30, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 18000, atk: 300, spd: 30, res: { neutre: 25, feu: 30, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fantomayte_qui_rit', 'wanted_fantomayte_qui_pete', 'wanted_fantomayte_litterature']
 }
 
@@ -574,8 +554,7 @@ monsters['wanted_zatoishwan'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 18000, atk: 300, spd: 30,
-        res: { neutre: 20, feu: 80, eau: 60, air: 40, terre: 100 } },
+    bst: { hp: 18000, atk: 300, spd: 30, res: { neutre: 20, feu: 80, eau: 60, air: 40, terre: 100 } },
     moves: ['wanted_zatoishwan_baton_virevoltant', 'wanted_zatoishwan_fee_verte', 'wanted_zatoishwan_vue_trouble', 'wanted_zatoishwan_flasque_incendiaire', 'wanted_zatoishwan_colere_liquide']
 }
 
@@ -586,8 +565,7 @@ monsters['wanted_vengeuse_masquee'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 20000, atk: 300, spd: 30,
-        res: { neutre: 200, feu: 25, eau: 200, air: 25, terre: 25 } },
+    bst: { hp: 20000, atk: 300, spd: 30, res: { neutre: 200, feu: 25, eau: 200, air: 25, terre: 25 } },
     moves: ['wanted_vengeuse_masquee_coup_de_bulle', 'wanted_vengeuse_masquee_attaque_vengeresse', 'wanted_vengeuse_masquee_esprit_de_vengeance']
 }
 
@@ -622,8 +600,7 @@ monsters['wanted_yech_ti'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 22000, atk: 300, spd: 30,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 22000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_yech_ti_goulaf', 'wanted_yech_ti_che_tout_fraique', 'wanted_yech_ti_ch_est_du_leque_mes_louppes', 'wanted_yech_ti_ti_t_as_bou', 'wanted_yech_ti_ch_est_vraimint_abominap', 'wanted_yech_ti_i_fait_cru', 'wanted_yech_ti_ptio_quinquin', 'wanted_yech_ti_avoir_maux_a_ches_dints', 'wanted_yech_ti_qu_i_est_mieffe_c_ti_la']
 }
 
@@ -670,8 +647,7 @@ monsters['wanted_dremoan'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 24000, atk: 300, spd: 30,
-        res: { neutre: 60, feu: 0, eau: 50, air: 40, terre: 50 } },
+    bst: { hp: 24000, atk: 300, spd: 30, res: { neutre: 60, feu: 0, eau: 50, air: 40, terre: 50 } },
     moves: ['wanted_dremoan_graine_de_dremoan', 'wanted_dremoan_mains_crochues', 'wanted_dremoan_ronce_de_deperissement', 'wanted_dremoan_ronces_de_l_assassin', 'wanted_dremoan_pourrissement_accelere', 'wanted_dremoan_zombification_putride']
 }
 
@@ -706,8 +682,7 @@ monsters['wanted_guerrier_du_k_o'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 24000, atk: 650, spd: 60,
-        res: { neutre: 20, feu: 10, eau: 5, air: -20, terre: 15 } },
+    bst: { hp: 24000, atk: 650, spd: 60, res: { neutre: 20, feu: 10, eau: 5, air: -20, terre: 15 } },
     moves: ['wanted_guerrier_du_k_o_tremblement_de_guerre', 'wanted_guerrier_du_k_o_massacre_a_retardement', 'wanted_guerrier_du_k_o_carnageddon']
 }
 
@@ -718,8 +693,7 @@ monsters['wanted_shushu_debruk_sayl'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 25000, atk: 333, spd: 33,
-        res: { neutre: 3, feu: 33, eau: 33, air: 33, terre: 33 } },
+    bst: { hp: 25000, atk: 333, spd: 33, res: { neutre: 3, feu: 33, eau: 33, air: 33, terre: 33 } },
     moves: ['wanted_shushu_debruk_sayl_assimilation_d_energies', 'wanted_shushu_debruk_sayl_mue_demoniaque', 'wanted_shushu_debruk_sayl_malediction_cuisante', 'wanted_shushu_debruk_sayl_poing_des_secousses_deferlantes', 'wanted_shushu_debruk_sayl_poing_des_vents_brulants']
 }
 
@@ -730,8 +704,7 @@ monsters['wanted_flasho'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 24000, atk: 300, spd: 30,
-        res: { neutre: 30, feu: 50, eau: 10, air: 50, terre: 0 } },
+    bst: { hp: 24000, atk: 300, spd: 30, res: { neutre: 30, feu: 50, eau: 10, air: 50, terre: 0 } },
     moves: ['wanted_flasho_courant_d_air', 'wanted_flasho_agitation_moleculaire', 'wanted_flasho_amende', 'wanted_flasho_vibration_moleculaire']
 }
 
@@ -742,8 +715,7 @@ monsters['wanted_viti_glourson'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 29000, atk: 300, spd: 30,
-        res: { neutre: 50, feu: 10, eau: 0, air: 10, terre: 30 } },
+    bst: { hp: 29000, atk: 300, spd: 30, res: { neutre: 50, feu: 10, eau: 0, air: 10, terre: 30 } },
     moves: ['wanted_viti_glourson_miel_cicatrisant', 'wanted_viti_glourson_mielodie', 'wanted_viti_glourson_crepe_au_miel', 'wanted_viti_glourson_gloursonnerie', 'wanted_viti_glourson_statue_de_miel']
 }
 
@@ -754,8 +726,7 @@ monsters['wanted_fuji_givrefoux'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 27000, atk: 300, spd: 30,
-        res: { neutre: -6, feu: 14, eau: 12, air: -11, terre: 6 } },
+    bst: { hp: 27000, atk: 300, spd: 30, res: { neutre: -6, feu: 14, eau: 12, air: -11, terre: 6 } },
     moves: ['wanted_fuji_givrefoux_progeniture', 'wanted_fuji_givrefoux_lait_maternel', 'wanted_fuji_givrefoux_foufoux']
 }
 
@@ -766,8 +737,7 @@ monsters['wanted_gobus_instable'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 500, atk: 400, spd: 40,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 500, atk: 400, spd: 40, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_gobus_instable_explosion_chaotique']
 }
 
@@ -778,8 +748,7 @@ monsters['wanted_docteur_eggob'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 28000, atk: 300, spd: 30,
-        res: { neutre: 200, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 28000, atk: 300, spd: 30, res: { neutre: 200, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_docteur_eggob_gobus_chaotique', 'wanted_docteur_eggob_robotisation', 'wanted_docteur_eggob_rayon_emeraude', 'wanted_docteur_eggob_uf_de_la_mort']
 }
 
@@ -802,8 +771,7 @@ monsters['wanted_predagob'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 26000, atk: 300, spd: 30,
-        res: { neutre: 40, feu: 10, eau: 25, air: 20, terre: 70 } },
+    bst: { hp: 26000, atk: 300, spd: 30, res: { neutre: 40, feu: 10, eau: 25, air: 20, terre: 70 } },
     moves: ['wanted_predagob_moa_chasser_bestioles', 'wanted_predagob_mine_gobliterante', 'wanted_predagob_gobseques']
 }
 
@@ -853,8 +821,7 @@ monsters['wanted_glourdorak'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 34000, atk: 300, spd: 30,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 34000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_glourdorak_gloursofulgur', 'wanted_glourdorak_gloursopoing', 'wanted_glourdorak_dard_des_villes', 'wanted_glourdorak_gloursolaser', 'wanted_glourdorak_ruche_hour', 'wanted_glourdorak_miel_de_jouvence']
 }
 
@@ -865,8 +832,7 @@ monsters['wanted_mekamouth'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 34000, atk: 300, spd: 30,
-        res: { neutre: 25, feu: 50, eau: -15, air: -20, terre: 35 } },
+    bst: { hp: 34000, atk: 300, spd: 30, res: { neutre: 25, feu: 50, eau: -15, air: -20, terre: 35 } },
     moves: ['wanted_mekamouth_glyglyphe', 'wanted_mekamouth_mekabouste', 'wanted_mekamouth_la_defense_c_est_l_attaque', 'wanted_mekamouth_liquide_de_refroidissement', 'wanted_mekamouth_surtension', 'wanted_mekamouth_spahunglif']
 }
 
@@ -877,8 +843,7 @@ monsters['wanted_culbutuf'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 300, spd: 30,
-        res: { neutre: 25, feu: 40, eau: 35, air: -10, terre: -15 } },
+    bst: { hp: 30000, atk: 300, spd: 30, res: { neutre: 25, feu: 40, eau: 35, air: -10, terre: -15 } },
     moves: ['wanted_culbutuf_du_fond_du_cur', 'wanted_culbutuf_roule_ma_boule', 'wanted_culbutuf_sinistro_vole', 'wanted_culbutuf_de_bon_cur', 'wanted_culbutuf_va_te_faire_cuire_un_uf']
 }
 
@@ -889,8 +854,7 @@ monsters['wanted_chevalier_de_glace'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 32000, atk: 300, spd: 30,
-        res: { neutre: 25, feu: -15, eau: -20, air: 35, terre: 50 } },
+    bst: { hp: 32000, atk: 300, spd: 30, res: { neutre: 25, feu: -15, eau: -20, air: 35, terre: 50 } },
     moves: ['wanted_chevalier_de_glace_rafraichissement', 'wanted_chevalier_de_glace_souffler_n_est_pas_jouer', 'wanted_chevalier_de_glace_souffle_amollissant', 'wanted_chevalier_de_glace_la_force_du_faible', 'wanted_chevalier_de_glace_tranchant_absorbant', 'wanted_chevalier_de_glace_saut']
 }
 
@@ -901,8 +865,7 @@ monsters['wanted_psikopompe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 32000, atk: 300, spd: 30,
-        res: { neutre: 25, feu: -25, eau: 50, air: 45, terre: -20 } },
+    bst: { hp: 32000, atk: 300, spd: 30, res: { neutre: 25, feu: -25, eau: 50, air: 45, terre: -20 } },
     moves: ['wanted_psikopompe_coupe_jatte', 'wanted_psikopompe_sentence', 'wanted_psikopompe_bondage', 'wanted_psikopompe_flagellation_stimulante', 'wanted_psikopompe_retour_a_l_envoyeur']
 }
 
@@ -913,8 +876,7 @@ monsters['wanted_le_fantome_braideur'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 300, spd: 30,
-        res: { neutre: 15, feu: 10, eau: 35, air: 35, terre: 15 } },
+    bst: { hp: 30000, atk: 300, spd: 30, res: { neutre: 15, feu: 10, eau: 35, air: 35, terre: 15 } },
     moves: ['wanted_le_fantome_braideur_paleolitige', 'wanted_le_fantome_braideur_carroyage', 'wanted_le_fantome_braideur_mastaba']
 }
 
@@ -925,8 +887,7 @@ monsters['wanted_voldelor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 29000, atk: 800, spd: 80,
-        res: { neutre: 20, feu: 35, eau: -5, air: 15, terre: 10 } },
+    bst: { hp: 29000, atk: 800, spd: 80, res: { neutre: 20, feu: 35, eau: -5, air: 15, terre: 10 } },
     moves: ['wanted_voldelor_sort_scelle', 'wanted_voldelor_magitation', 'wanted_voldelor_armada_cadavra', 'wanted_voldelor_retour_a_la_vie']
 }
 
@@ -949,8 +910,7 @@ monsters['wanted_mi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 800, spd: 80,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 30000, atk: 800, spd: 80, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_mi_enveloppage']
 }
 
@@ -961,8 +921,7 @@ monsters['wanted_fou'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 800, spd: 80,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 30000, atk: 800, spd: 80, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fou_coupe']
 }
 
@@ -973,8 +932,7 @@ monsters['wanted_chi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 800, spd: 80,
-        res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
+    bst: { hp: 30000, atk: 800, spd: 80, res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_chi_emoussage']
 }
 
@@ -1009,8 +967,7 @@ monsters['wanted_grand_kongoku'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 1125, spd: 100,
-        res: { neutre: 15, feu: 15, eau: -10, air: -5, terre: 20 } },
+    bst: { hp: 30000, atk: 1125, spd: 100, res: { neutre: 15, feu: 15, eau: -10, air: -5, terre: 20 } },
     moves: ['wanted_grand_kongoku_puissance_lunaire', 'wanted_grand_kongoku_invocation_de_la_cocolune', 'wanted_grand_kongoku_deplacement_instantane', 'wanted_grand_kongoku_saruharuha', 'wanted_grand_kongoku_uppercut_magistral', 'wanted_grand_kongoku_saruharuha', 'wanted_grand_kongoku_uppercut_magistral', 'wanted_grand_kongoku_deplacement_instantane']
 }
 
@@ -1021,8 +978,7 @@ monsters['wanted_khepricorne'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 32000, atk: 300, spd: 30,
-        res: { neutre: 15, feu: 25, eau: 5, air: 10, terre: 20 } },
+    bst: { hp: 32000, atk: 300, spd: 30, res: { neutre: 15, feu: 25, eau: 5, air: 10, terre: 20 } },
     moves: ['wanted_khepricorne_coup_de_bouse', 'wanted_khepricorne_bouse_de_feu', 'wanted_khepricorne_roule_bouse', 'wanted_khepricorne_avoir_les_bouses', 'wanted_khepricorne_bouse_de_la']
 }
 
@@ -1057,8 +1013,7 @@ monsters['wanted_gein'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 1600,
-    bst: { hp: 24000, atk: 1200, spd: 120,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 24000, atk: 1200, spd: 120, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_gein_paralysie', 'wanted_gein_substitution_funebre', 'wanted_gein_eveil_des_ames_perdues']
 }// ─── Avis de Recherche ───────────────────────────────────────────────────────
 
@@ -1067,7 +1022,7 @@ const WantedBosses = {
         id:        'wanted_sam_sagaz',
         monsterId: 'wanted_sam_sagaz',
         name:      'Sam Sagaz',
-        lore:      "",
+        lore:      'Jardinier fou reconverti en artificier végétal, Sam Sagaz a fait de son potager un champ de mines odorant. Ses anneaux de gaz et l\'appel de son fidèle compagnon Bolesh ont mis fin à bien des aventures prometteuses.',
         icon:      'img/monstres/wanted/avis/sam_sagaz.png',
         background: '',
         levelCap:  20,
@@ -1078,18 +1033,18 @@ const WantedBosses = {
         id:        'wanted_fouduglen_l_ecureuil',
         monsterId: 'wanted_fouduglen_l_ecureuil',
         name:      'Fouduglen l\'Écureuil',
-        lore:      "",
+        lore:      'Fouduglen est l\'écureuil le plus redouté d\'Amakna. Sa discrétion proverbiale en fait une cible quasi impossible à surprendre, et ses noisettes transformées en projectiles ont déconcerté plus d\'un chasseur de prime.',
         icon:      'img/monstres/wanted/avis/fouduglen_l_ecureuil.png',
         background: '',
         levelCap:  20,
         bst:       { hp: 670, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_de_fouduglen', dropRate: 0.1 }, { itemId: 'bottes_de_fouduglen', dropRate: 0.1 }, { itemId: 'coiffe_de_fouduglen', dropRate: 0.1 }]
     },
     'wanted_maitre_boulet': {
         id:        'wanted_maitre_boulet',
         monsterId: 'wanted_maitre_boulet',
         name:      'Maître Boulet',
-        lore:      "",
+        lore:      'Ancien bûcheron devenu sorcier végétal, Maître Boulet commande aux tournesols comme d\'autres commandent à des soldats. Son débitage est précis, son acculement implacable, et personne n\'a encore réussi à lui expliquer ce qu\'il y a de drôle dans son surnom.',
         icon:      'img/monstres/wanted/avis/maitre_boulet.png',
         background: '',
         levelCap:  30,
@@ -1100,29 +1055,29 @@ const WantedBosses = {
         id:        'wanted_frakacia_leukocytine',
         monsterId: 'wanted_frakacia_leukocytine',
         name:      'Frakacia Leukocytine',
-        lore:      "",
+        lore:      'Frakacia Leukocytine est une scientifique dont les travaux sur les leucocytes ont largement débordé du cadre académique. Sa carapace fracassante et son hyperleukocytine en font une adversaire dont les expériences ne profitent qu\'à elle seule.',
         icon:      'img/monstres/wanted/avis/frakacia_leukocytine.png',
         background: '',
         levelCap:  30,
         bst:       { hp: 1300, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'masque_de_frakacia', dropRate: 0.1 }, { itemId: 'bottes_de_frakacia', dropRate: 0.1 }, { itemId: 'gant_de_frakacia', dropRate: 0.1 }]
     },
     'wanted_ambi_guman': {
         id:        'wanted_ambi_guman',
         monsterId: 'wanted_ambi_guman',
         name:      'Ambi Guman',
-        lore:      "",
+        lore:      'Ambi Guman, l\'aîné de la tribu Guman, défend son territoire avec la robustesse d\'un légume centenaire. Ses roquettes et ses enfants de la terre témoignent d\'une maîtrise élémentaire que ses adversaires apprennent trop souvent à leurs dépens.',
         icon:      'img/monstres/wanted/avis/ambi_guman.png',
         background: '',
         levelCap:  30,
         bst:       { hp: 1400, atk: 200 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'caponion', dropRate: 0.1 }, { itemId: 'bottes_donion', dropRate: 0.1 }, { itemId: 'chaponion', dropRate: 0.1 }]
     },
     'wanted_exi_guman': {
         id:        'wanted_exi_guman',
         monsterId: 'wanted_exi_guman',
         name:      'Exi Guman',
-        lore:      "",
+        lore:      'Exi Guman, le cadet nerveux de la famille, compense son manque d\'expérience par une agressivité débordante. Ses spatezoignons et ses pousses éphémères ont semé la panique dans les rangs d\'aventuriers bien mieux équipés que lui.',
         icon:      'img/monstres/wanted/avis/exi_guman.png',
         background: '',
         levelCap:  30,
@@ -1133,7 +1088,7 @@ const WantedBosses = {
         id:        'wanted_roub_ignolles',
         monsterId: 'wanted_roub_ignolles',
         name:      'Roub\' Ignolles',
-        lore:      "",
+        lore:      'Roub\' Ignolles est un artificier dont les créations explosent selon leur propre calendrier. Sa téléportabombe et ses bombes poussées ont transformé plus d\'un champ de bataille en spectacle pyrotechnique involontaire.',
         icon:      'img/monstres/wanted/avis/roub_ignolles.png',
         background: '',
         levelCap:  40,
@@ -1144,7 +1099,7 @@ const WantedBosses = {
         id:        'wanted_bouss_baybe',
         monsterId: 'wanted_bouss_baybe',
         name:      'Bouss Baybe',
-        lore:      "",
+        lore:      'Madame Bouss Baybe tient ce qu\'on appelle poliment un salon porcin. Ses soins sont douloureux, son accueil mitigé, et son économduire vers la sortie est rarement volontaire de la part du visiteur.',
         icon:      'img/monstres/wanted/avis/bouss_baybe.png',
         background: '',
         levelCap:  50,
@@ -1155,18 +1110,18 @@ const WantedBosses = {
         id:        'wanted_ogivol_scalarcin',
         monsterId: 'wanted_ogivol_scalarcin',
         name:      'Ogivol Scalarcin',
-        lore:      "",
+        lore:      'Ogivol Scalarcin est une entité électrique dont chaque attaque porte son propre préfixe « ogivo ». Son champ de bataille ressemble à une leçon de vocabulaire sous haute tension, et ses adversaires finissent électrisés, volatilisés, ou les deux.',
         icon:      'img/monstres/wanted/avis/ogivol_scalarcin.png',
         background: '',
         levelCap:  50,
         bst:       { hp: 3100, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_d_ogivol', dropRate: 0.1 }, { itemId: 'coiffe_d_ogivol', dropRate: 0.1 }, { itemId: 'ceinture_d_ogivol', dropRate: 0.1 }]
     },
     'wanted_nono_le_wobot': {
         id:        'wanted_nono_le_wobot',
         monsterId: 'wanted_nono_le_wobot',
         name:      'Nono le Wobot',
-        lore:      "",
+        lore:      'Nono est un Wobot à la mécanique approximative mais aux résultats indéniables. Sa massue matraquante et son wavelot explosif démontrent qu\'on peut être mal assemblé et tout à fait redoutable.',
         icon:      'img/monstres/wanted/avis/nono_le_wobot.png',
         background: '',
         levelCap:  60,
@@ -1177,7 +1132,7 @@ const WantedBosses = {
         id:        'wanted_brumen_tinctorias',
         monsterId: 'wanted_brumen_tinctorias',
         name:      'Brumen Tinctorias',
-        lore:      "",
+        lore:      'Brumen Tinctorias, alchimiste de Bonta, concocte des élixirs aux effets aussi variés qu\'imprévisibles. Ses poisons et ses soins étant souvent interchangeables, ses adversaires ne savent jamais sur quel pied danser — jusqu\'à ce qu\'ils ne puissent plus danser du tout.',
         icon:      'img/monstres/wanted/avis/brumen_tinctorias.png',
         background: '',
         levelCap:  60,
@@ -1188,7 +1143,7 @@ const WantedBosses = {
         id:        'wanted_marzwel_le_gobelin',
         monsterId: 'wanted_marzwel_le_gobelin',
         name:      'Marzwel le Gobelin',
-        lore:      "",
+        lore:      'Marzwel le Gobelin est l\'un des rares gobelins à avoir acquis une réputation méritée plutôt qu\'héritée par peur. Son déguisement et ses appels à la horde ont fait de lui un chef de guerre redouté, aussi habile à fuir qu\'à frapper.',
         icon:      'img/monstres/wanted/avis/marzwel_le_gobelin.png',
         background: '',
         levelCap:  60,
@@ -1199,7 +1154,7 @@ const WantedBosses = {
         id:        'wanted_gadoo',
         monsterId: 'wanted_gadoo',
         name:      'Gadoo',
-        lore:      "",
+        lore:      'Gadoo est une créature dont la loyauté envers aucune faction n\'est claire. Sa détresse et ses pleurs semblent désarmants — jusqu\'à ce que ses alliés surgissent de nulle part et que la situation bascule irrémédiablement.',
         icon:      'img/monstres/wanted/avis/gadoo.png',
         background: '',
         levelCap:  60,
@@ -1210,7 +1165,7 @@ const WantedBosses = {
         id:        'wanted_armada_l_invincible',
         monsterId: 'wanted_armada_l_invincible',
         name:      'Armada l\'Invincible',
-        lore:      "",
+        lore:      'Armada l\'Invincible ne porte pas son surnom par modestie. Chaque cicatrice de son armure correspond à un adversaire qui a cru pouvoir l\'abattre et n\'est jamais revenu le raconter.',
         icon:      'img/monstres/wanted/avis/armada_l_invincible.png',
         background: '',
         levelCap:  70,
@@ -1221,18 +1176,18 @@ const WantedBosses = {
         id:        'wanted_qil_bil',
         monsterId: 'wanted_qil_bil',
         name:      'Qil Bil',
-        lore:      "",
+        lore:      'Qil Bil est le genre de créature que l\'on croise rarement deux fois — non par peur de la recroiser, mais parce que la première rencontre est généralement sans appel. Sa fréquence de résonance et son onde de choc témoignent d\'une maîtrise acoustique dévastatrice.',
         icon:      'img/monstres/wanted/avis/qil_bil.png',
         background: '',
         levelCap:  70,
         bst:       { hp: 5300, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'casque_de_qil_bil', dropRate: 0.1 }, { itemId: 'anneau_de_qil_bil', dropRate: 0.1 }, { itemId: 'tonfas_de_qil_bil', dropRate: 0.1 }]
     },
     'wanted_dragodingo': {
         id:        'wanted_dragodingo',
         monsterId: 'wanted_dragodingo',
         name:      'Dragodingo',
-        lore:      "",
+        lore:      'Dragodingo est le résultat malheureux d\'une expérimentation croisée entre un dragon et un dingo. Aucune des deux espèces ne revendique la paternité, mais ses crachats et ses attaques frénétiques témoignent que le mélange n\'était peut-être pas la meilleure idée.',
         icon:      'img/monstres/wanted/avis/dragodingo.png',
         background: '',
         levelCap:  80,
@@ -1243,40 +1198,40 @@ const WantedBosses = {
         id:        'wanted_aermyne_braco_scalptaras',
         monsterId: 'wanted_aermyne_braco_scalptaras',
         name:      'Aermyne \'Braco\' Scalptaras',
-        lore:      "",
+        lore:      'Aermyne \'Braco\' Scalptaras est une pâtissière qui a troqué la douceur des choux à la crème contre la violence des rouleau-à-pâtisserie. Sa cape et sa coiffe n\'ont rien perdu de leur élégance, mais son sens de l\'hospitalité laisse sérieusement à désirer.',
         icon:      'img/monstres/wanted/avis/aermyne_braco_scalptaras.png',
         background: '',
         levelCap:  80,
         bst:       { hp: 6600, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'rouleau_a_patisserie_d_aermyne', dropRate: 0.1 }, { itemId: 'cape_d_aermyne', dropRate: 0.1 }, { itemId: 'coiffe_d_aermyne', dropRate: 0.1 }]
     },
     'wanted_musha_l_oni': {
         id:        'wanted_musha_l_oni',
         monsterId: 'wanted_musha_l_oni',
         name:      'Musha L\'Oni',
-        lore:      "",
+        lore:      'Musha L\'Oni est un esprit guerrier aux origines nippones dont la capuche dissimule des yeux qui voient bien au-delà des vivants. Son voile de résistance et son bouclier en font un adversaire qui encaisse aussi bien qu\'il frappe.',
         icon:      'img/monstres/wanted/avis/musha_l_oni.png',
         background: '',
         levelCap:  80,
         bst:       { hp: 6600, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'capuche_de_musha', dropRate: 0.1 }, { itemId: 'voile_de_musha', dropRate: 0.1 }, { itemId: 'boucli_il_de_musha', dropRate: 0.1 }]
     },
     'wanted_tyranne_la_terrible': {
         id:        'wanted_tyranne_la_terrible',
         monsterId: 'wanted_tyranne_la_terrible',
         name:      'Tyranne la Terrible',
-        lore:      "",
+        lore:      'Tyranne la Terrible a obtenu son titre non par héritage, mais par élimination progressive de quiconque osait le lui contester. Sa cape et son gant de domination confirment que son règne, bien que brutal, reste parfaitement organisé.',
         icon:      'img/monstres/wanted/avis/tyranne_la_terrible.png',
         background: '',
         levelCap:  80,
         bst:       { hp: 6600, atk: 350 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'capuche_de_tyranne', dropRate: 0.1 }, { itemId: 'ceinture_de_tyranne', dropRate: 0.1 }, { itemId: 'gant_de_tyranne', dropRate: 0.1 }]
     },
     'wanted_tournade': {
         id:        'wanted_tournade',
         monsterId: 'wanted_tournade',
         name:      'Tournade',
-        lore:      "",
+        lore:      'Tournade surgit sans prévenir et repart en laissant derrière elle un silence pesant et des débris de ce qui était encore des aventuriers prometteurs. Il paraît qu\'elle ne choisit pas ses victimes — c\'est juste qu\'elle ne fait pas la différence.',
         icon:      'img/monstres/wanted/avis/tournade.png',
         background: '',
         levelCap:  80,
@@ -1287,7 +1242,7 @@ const WantedBosses = {
         id:        'wanted_degolas',
         monsterId: 'wanted_degolas',
         name:      'Degolas',
-        lore:      "",
+        lore:      'Degolas est un archer dont la précision légendaire n\'est dépassée que par son ego. Chaque flèche qu\'il tire porte un nom — généralement celui de sa prochaine cible.',
         icon:      'img/monstres/wanted/avis/degolas.png',
         background: '',
         levelCap:  90,
@@ -1298,29 +1253,29 @@ const WantedBosses = {
         id:        'wanted_rok_gnorok',
         monsterId: 'wanted_rok_gnorok',
         name:      'Rok Gnorok',
-        lore:      "",
+        lore:      'Rok Gnorok est une masse de roche et de mauvaise volonté. Son porte-bonheur ne porte chance qu\'à lui, et son rempierre ne laisse guère de chances à ses adversaires de s\'en relever.',
         icon:      'img/monstres/wanted/avis/rok_gnorok.png',
         background: '',
         levelCap:  90,
         bst:       { hp: 7900, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'porte_bonheur_de_rok_gnorok', dropRate: 0.1 }, { itemId: 'le_rok_gnorok', dropRate: 0.1 }, { itemId: 'rempierre_de_rok_gnorok', dropRate: 0.1 }]
     },
     'wanted_simbadas': {
         id:        'wanted_simbadas',
         monsterId: 'wanted_simbadas',
         name:      'Simbadas',
-        lore:      "",
+        lore:      'Simbadas a sillonné les mers du monde en quête de richesses introuvables et de monstres improbables. Sa cage et ses barrières témoignent d\'une longue expérience à emprisonner ce qui voulait lui résister — ce qui finit toujours par inclure ses adversaires.',
         icon:      'img/monstres/wanted/avis/simbadas.png',
         background: '',
         levelCap:  90,
         bst:       { hp: 8000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cage_de_simbadas', dropRate: 0.1 }, { itemId: 'barriere_de_simbadas', dropRate: 0.1 }, { itemId: 'patte_de_simbadas', dropRate: 0.1 }]
     },
     'wanted_prince_marchand': {
         id:        'wanted_prince_marchand',
         monsterId: 'wanted_prince_marchand',
         name:      'Prince Marchand',
-        lore:      "",
+        lore:      'Le Prince Marchand a bâti sa fortune sur des affaires dont personne ne comprend vraiment la nature. Ce qui est certain, c\'est que le prix de l\'affronter est bien plus élevé que ce qu\'il laisse entendre.',
         icon:      'img/monstres/wanted/avis/prince_marchand.png',
         background: '',
         levelCap:  100,
@@ -1331,7 +1286,7 @@ const WantedBosses = {
         id:        'wanted_maxi_malle',
         monsterId: 'wanted_maxi_malle',
         name:      'Maxi-Malle',
-        lore:      "",
+        lore:      'Maxi-Malle est ce que vous obtenez quand vous ouvrez un coffre sans lire l\'avertissement. Personne ne sait ce qu\'il y a à l\'intérieur, et ceux qui ont cherché à le savoir n\'ont pas eu l\'occasion de partager leur découverte.',
         icon:      'img/monstres/wanted/avis/maxi_malle.png',
         background: '',
         levelCap:  100,
@@ -1342,18 +1297,18 @@ const WantedBosses = {
         id:        'wanted_naganita',
         monsterId: 'wanted_naganita',
         name:      'Naganita',
-        lore:      "",
+        lore:      'Naganita est une guerrière dont la naginata a goûté à plus de sang que de rouille. Sa cape de résistance et son collier de précision font d\'elle une adversaire qui ne laisse ni ouverture ni survivant.',
         icon:      'img/monstres/wanted/avis/naganita.png',
         background: '',
         levelCap:  100,
         bst:       { hp: 9400, atk: 375 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_de_naganita', dropRate: 0.1 }, { itemId: 'collier_de_naganita', dropRate: 0.1 }, { itemId: 'naginata_de_naganita', dropRate: 0.1 }]
     },
     'wanted_trukipik': {
         id:        'wanted_trukipik',
         monsterId: 'wanted_trukipik',
         name:      'Trukipik',
-        lore:      "",
+        lore:      'Trukipik n\'a aucune raison évidente d\'être aussi en colère — si ce n\'est d\'être couvert de piques de la tête aux pieds, ce qui peut effectivement affecter l\'humeur. Ses adversaires apprennent trop tard que le toucher n\'était pas une bonne idée.',
         icon:      'img/monstres/wanted/avis/trukipik.png',
         background: '',
         levelCap:  100,
@@ -1364,18 +1319,18 @@ const WantedBosses = {
         id:        'wanted_carlita_de_l_aguerfelde',
         monsterId: 'wanted_carlita_de_l_aguerfelde',
         name:      'Carlita de l\'Aguerfelde',
-        lore:      "",
+        lore:      'Carlita de l\'Aguerfelde est une pistolière dont le tromblon a rendu plus de services que de politesse. Son bandeau couvre un œil qui n\'en voit pas moins, et ses cartouches ont la mauvaise habitude de trouver leur cible.',
         icon:      'img/monstres/wanted/avis/carlita_de_l_aguerfelde.png',
         background: '',
         levelCap:  100,
         bst:       { hp: 9400, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bandeau_de_carlita', dropRate: 0.1 }, { itemId: 'sangle_de_carlita', dropRate: 0.1 }, { itemId: 'tromblon_de_carlita', dropRate: 0.1 }]
     },
     'wanted_gobrechaun': {
         id:        'wanted_gobrechaun',
         monsterId: 'wanted_gobrechaun',
         name:      'Gobrechaun',
-        lore:      "",
+        lore:      'Gobrechaun est ce qu\'on obtient quand un gobelin vole le chapeau d\'un leprechaun et décide que la chance lui appartient désormais. Il est aussi rapide pour dépenser vos kamas que pour s\'en aller avec.',
         icon:      'img/monstres/wanted/avis/gobrechaun.png',
         background: '',
         levelCap:  110,
@@ -1386,18 +1341,18 @@ const WantedBosses = {
         id:        'wanted_bouflouth',
         monsterId: 'wanted_bouflouth',
         name:      'Bouflouth',
-        lore:      "",
+        lore:      'Bouflouth est une créature qui a visiblement abusé des buffets au fil des siècles. Ses souffles sont puissants, sa coiffe est large, et son approche du combat consiste essentiellement à occuper tout l\'espace disponible.',
         icon:      'img/monstres/wanted/avis/bouflouth.png',
         background: '',
         levelCap:  120,
         bst:       { hp: 13000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_de_bouflouth', dropRate: 0.1 }, { itemId: 'ceinture_de_bouflouth', dropRate: 0.1 }, { itemId: 'coiffe_de_bouflouth', dropRate: 0.1 }]
     },
     'wanted_vashkiwi': {
         id:        'wanted_vashkiwi',
         monsterId: 'wanted_vashkiwi',
         name:      'Vashkiwi',
-        lore:      "",
+        lore:      'Vashkiwi est une créature d\'Otomaï qui a trouvé dans la solitude des forêts une sérénité que ses adversaires ne partagent pas. Ses techniques de combat sont aussi impénétrables que le plumage qui l\'enveloppe.',
         icon:      'img/monstres/wanted/avis/vashkiwi.png',
         background: '',
         levelCap:  120,
@@ -1408,7 +1363,7 @@ const WantedBosses = {
         id:        'wanted_morblok',
         monsterId: 'wanted_morblok',
         name:      'Morblok',
-        lore:      "",
+        lore:      'Morblok est une force de la nature sans autre programme que la destruction. Ses adversaires ont souvent tenté de négocier — Morblok a toujours répondu avec ses poings.',
         icon:      'img/monstres/wanted/avis/morblok.png',
         background: '',
         levelCap:  120,
@@ -1419,29 +1374,29 @@ const WantedBosses = {
         id:        'wanted_nenufor_tilotus',
         monsterId: 'wanted_nenufor_tilotus',
         name:      'Nenufor Tilotus',
-        lore:      "",
+        lore:      'Nenufor Tilotus méditait paisiblement sur sa fleur de lotus quand quelqu\'un a eu la mauvaise idée de troubler ses eaux. Depuis, ses nénuphars servent autant d\'armes que de coussins, et personne n\'ose plus approcher de l\'étang.',
         icon:      'img/monstres/wanted/avis/nenufor_tilotus.png',
         background: '',
         levelCap:  120,
         bst:       { hp: 13000, atk: 375 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'nenuphar_de_nenufor', dropRate: 0.1 }, { itemId: 'lotus_de_nenufor', dropRate: 0.1 }, { itemId: 'nenufaur', dropRate: 0.1 }]
     },
     'wanted_monsieur_pingouin': {
         id:        'wanted_monsieur_pingouin',
         monsterId: 'wanted_monsieur_pingouin',
         name:      'Monsieur Pingouin',
-        lore:      "",
+        lore:      'Monsieur Pingouin dirige sa colonie d\'une nageoire de fer. Ses palmes ont beau sembler peu pratiques au combat, elles ont déjà fait vaciller des adversaires bien plus imposants que lui. Ne sous-estimez jamais un pingouin bien habillé.',
         icon:      'img/monstres/wanted/avis/monsieur_pingouin.png',
         background: '',
         levelCap:  130,
         bst:       { hp: 14000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'palmes_de_monsieur_pingouin', dropRate: 0.1 }, { itemId: 'sangle_de_monsieur_pingouin', dropRate: 0.1 }, { itemId: 'chaine_de_monsieur_pingouin', dropRate: 0.1 }]
     },
     'wanted_jerart_dupaindur': {
         id:        'wanted_jerart_dupaindur',
         monsterId: 'wanted_jerart_dupaindur',
         name:      'Jérart Dupaindur',
-        lore:      "",
+        lore:      'Jérart Dupaindur est un boulanger dont les produits sont à l\'image de son caractère : durs, compacts, et capables de laisser des marques. Ses adversaires ont souvent regretté de ne pas avoir apporté davantage de soins — ou de dents.',
         icon:      'img/monstres/wanted/avis/jerart_dupaindur.png',
         background: '',
         levelCap:  130,
@@ -1452,29 +1407,29 @@ const WantedBosses = {
         id:        'wanted_padgref_demoel',
         monsterId: 'wanted_padgref_demoel',
         name:      'Padgref Demoël',
-        lore:      "",
+        lore:      'Padgref Demoël est l\'héritier d\'une lignée guerrière dont l\'épée a traversé autant de batailles que de générations. Son bouclier porte les cicatrices d\'un honneur défendu à bout portant, et l\'adversaire d\'aujourd\'hui deviendra la légende de demain.',
         icon:      'img/monstres/wanted/avis/padgref_demoel.png',
         background: '',
         levelCap:  130,
         bst:       { hp: 16000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'ceinture_des_demoel', dropRate: 0.1 }, { itemId: 'bouclier_des_demoel', dropRate: 0.1 }, { itemId: 'epee_des_demoel', dropRate: 0.1 }]
     },
     'wanted_ali_grothor': {
         id:        'wanted_ali_grothor',
         monsterId: 'wanted_ali_grothor',
         name:      'Ali Grothor',
-        lore:      "",
+        lore:      'Ali Grothor est sorti des profondeurs avec un seul objectif : prouver que la force brute vaut bien n\'importe quelle stratégie. Sa cape et son casque lui donnent un semblant de méthode — mais l\'essentiel reste qu\'il frappe très fort.',
         icon:      'img/monstres/wanted/avis/ali_grothor.png',
         background: '',
         levelCap:  130,
         bst:       { hp: 14000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_d_ali_grothor', dropRate: 0.1 }, { itemId: 'casque_d_ali_grothor', dropRate: 0.1 }, { itemId: 'amulette_d_ali_grothor', dropRate: 0.1 }]
     },
     'wanted_roi_camole': {
         id:        'wanted_roi_camole',
         monsterId: 'wanted_roi_camole',
         name:      'Roi Camole',
-        lore:      "",
+        lore:      'Le Roi Camole règne sur un empire souterrain que personne n\'a jamais cartographié, pour la simple raison que personne n\'en est jamais revenu. Sa couronne est faite de pierres précieuses arrachées des entrailles de la terre — et de quoi d\'autre, on préfère ne pas le savoir.',
         icon:      'img/monstres/wanted/avis/roi_camole.png',
         background: '',
         levelCap:  130,
@@ -1485,18 +1440,18 @@ const WantedBosses = {
         id:        'wanted_katigrou',
         monsterId: 'wanted_katigrou',
         name:      'Katigrou',
-        lore:      "",
+        lore:      'Katigrou est un félin dont la grâce n\'est surpassée que par la brutalité. Ses mitaines griffent avant que vous ayez vu le mouvement, et sa cape ondule encore longtemps après que ses adversaires ont cessé de se relever.',
         icon:      'img/monstres/wanted/avis/katigrou.png',
         background: '',
         levelCap:  140,
         bst:       { hp: 15000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'mitaine_de_katigrou', dropRate: 0.1 }, { itemId: 'cape_de_katigrou', dropRate: 0.1 }, { itemId: 'pattes_de_katigrou', dropRate: 0.1 }]
     },
     'wanted_darma': {
         id:        'wanted_darma',
         monsterId: 'wanted_darma',
         name:      'Darma',
-        lore:      "",
+        lore:      'Darma est une entité dont la sérénité apparente dissimule une puissance dévastatrice. Ses adversaires arrivent en cherchant la sagesse et repartent — ceux qui le peuvent — avec une leçon d\'humilité imprimée sur la peau.',
         icon:      'img/monstres/wanted/avis/darma.png',
         background: '',
         levelCap:  140,
@@ -1507,7 +1462,7 @@ const WantedBosses = {
         id:        'wanted_amy_l_empoisonneuse',
         monsterId: 'wanted_amy_l_empoisonneuse',
         name:      'Amy l\'empoisonneuse',
-        lore:      "",
+        lore:      'Amy l\'empoisonneuse est la preuve qu\'un sourire peut être aussi dangereux qu\'une lame. Elle n\'a jamais eu besoin de se battre pour tuer — ses préparations font le travail à sa place, lentement et sans appel.',
         icon:      'img/monstres/wanted/avis/amy_l_empoisonneuse.png',
         background: '',
         levelCap:  140,
@@ -1518,29 +1473,29 @@ const WantedBosses = {
         id:        'wanted_fojumo',
         monsterId: 'wanted_fojumo',
         name:      'Fojumo',
-        lore:      "",
+        lore:      'Fojumo est un samouraï dont le masque ne révèle aucune émotion et dont l\'épée ne manque jamais sa cible. Ses geta résonnent sur les pavés bien avant qu\'il n\'arrive — les sages en profitent pour partir dans la direction opposée.',
         icon:      'img/monstres/wanted/avis/fojumo.png',
         background: '',
         levelCap:  140,
         bst:       { hp: 16000, atk: 400 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'masque_de_fojumo', dropRate: 0.1 }, { itemId: 'geta_de_fojumo', dropRate: 0.1 }, { itemId: 'epee_de_fojumo', dropRate: 0.1 }]
     },
     'wanted_fantomayte': {
         id:        'wanted_fantomayte',
         monsterId: 'wanted_fantomayte',
         name:      'Fantômayte',
-        lore:      "",
+        lore:      'Fantômayte est un spectre dont l\'existence est une insulte aux vivants. Son bracelet et son voile de protection le rendent insaisissable, et ses victimes rejoignent souvent sa collection personnelle de regrets.',
         icon:      'img/monstres/wanted/avis/fantomayte.png',
         background: '',
         levelCap:  150,
         bst:       { hp: 18000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bracelet_de_fantomayte', dropRate: 0.1 }, { itemId: 'voile_de_fantomayte', dropRate: 0.1 }, { itemId: 'collier_de_fantomayte', dropRate: 0.1 }]
     },
     'wanted_mefisto': {
         id:        'wanted_mefisto',
         monsterId: 'wanted_mefisto',
         name:      'Mefisto',
-        lore:      "",
+        lore:      'Mefisto ne vend pas votre âme — il la prend directement, sans les formalités contractuelles habituelles. Sa puissance est inversement proportionnelle à ses points de vie, ce qui en dit long sur la nature de ce qui l\'alimente.',
         icon:      'img/monstres/wanted/avis/mefisto.png',
         background: '',
         levelCap:  150,
@@ -1551,7 +1506,7 @@ const WantedBosses = {
         id:        'wanted_mogligli',
         monsterId: 'wanted_mogligli',
         name:      'Mogligli',
-        lore:      "",
+        lore:      'Mogligli a grandi au milieu des monstres et en a adopté les mœurs — sans en conserver la grâce. Ses attaques désordonnées mais implacables témoignent d\'une enfance passée à survivre plutôt qu\'à apprendre.',
         icon:      'img/monstres/wanted/avis/mogligli.png',
         background: '',
         levelCap:  150,
@@ -1562,7 +1517,7 @@ const WantedBosses = {
         id:        'wanted_feu_des_ames_perdues',
         monsterId: 'wanted_feu_des_ames_perdues',
         name:      'Feu des âmes perdues',
-        lore:      "",
+        lore:      'Le Feu des Âmes Perdues brûle sans consumation, alimenté par les regrets de ceux qui sont tombés avant vous. Il n\'attaque pas — il attend, patient, que vous fassiez la même erreur que ses précédentes victimes.',
         icon:      'img/monstres/wanted/avis/feu_des_ames_perdues.png',
         background: '',
         levelCap:  150,
@@ -1573,7 +1528,7 @@ const WantedBosses = {
         id:        'wanted_aigripoil',
         monsterId: 'wanted_aigripoil',
         name:      'Aigripoil',
-        lore:      "",
+        lore:      'Aigripoil est amer depuis une date si lointaine que personne ne se souvient de la raison. Ses pics sont aussi nombreux que ses rancœurs, et ses adversaires apprennent à leurs dépens que contrarier quelqu\'un d\'aussi hérissé n\'a rien d\'une bonne idée.',
         icon:      'img/monstres/wanted/avis/aigripoil.png',
         background: '',
         levelCap:  150,
@@ -1584,29 +1539,29 @@ const WantedBosses = {
         id:        'wanted_zatoishwan',
         monsterId: 'wanted_zatoishwan',
         name:      'Zatoïshwan',
-        lore:      "",
+        lore:      'Zatoïshwan est un aveugle dont les oreilles voient mieux que les yeux de quiconque. Son bâton frappe avant que vous ayez eu l\'idée de vous déplacer, et sa barbe flotte dans l\'air comme un avertissement que personne ne prend jamais assez au sérieux.',
         icon:      'img/monstres/wanted/avis/zatoishwan.png',
         background: '',
         levelCap:  150,
         bst:       { hp: 18000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'baton_de_zatoishwan', dropRate: 0.1 }, { itemId: 'ceinture_de_zatoishwan', dropRate: 0.1 }, { itemId: 'barbe_de_zatoishwan', dropRate: 0.1 }]
     },
     'wanted_vengeuse_masquee': {
         id:        'wanted_vengeuse_masquee',
         monsterId: 'wanted_vengeuse_masquee',
         name:      'Vengeuse Masquée',
-        lore:      "",
+        lore:      'La Vengeuse Masquée ne dit pas pour qui elle se venge — et vous avez intérêt à ne pas demander. Sa coquille protège un passé douloureux, et son masque cache un visage qui a décidé que certaines dettes se remboursent au sang.',
         icon:      'img/monstres/wanted/avis/vengeuse_masquee.png',
         background: '',
         levelCap:  160,
         bst:       { hp: 20000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'coquille_de_vengeuse_masquee', dropRate: 0.1 }, { itemId: 'brassard_de_vengeuse_masquee', dropRate: 0.1 }, { itemId: 'masque_de_vengeuse_masquee', dropRate: 0.1 }]
     },
     'wanted_glandaf_l_aigri': {
         id:        'wanted_glandaf_l_aigri',
         monsterId: 'wanted_glandaf_l_aigri',
         name:      'Glandaf l\'Aigri',
-        lore:      "",
+        lore:      'Glandaf l\'Aigri est convaincu que le monde lui doit quelque chose. En attendant d\'être remboursé, il se contente de frapper tout ce qui passe à portée. Ses adversaires ne lui ont rien fait — mais c\'est précisément ce qui l\'énerve.',
         icon:      'img/monstres/wanted/avis/glandaf_l_aigri.png',
         background: '',
         levelCap:  160,
@@ -1617,7 +1572,7 @@ const WantedBosses = {
         id:        'wanted_anatak_diskedor',
         monsterId: 'wanted_anatak_diskedor',
         name:      'Anatak Diskedor',
-        lore:      "",
+        lore:      'Anatak Diskedor est un guerrier dont les disques tranchants ont remplacé les armes conventionnelles. Sa technique tient plus de l\'acrobatie que de la stratégie, et ses adversaires finissent en lambeaux avant même d\'avoir eu le temps de trouver ça impressionnant.',
         icon:      'img/monstres/wanted/avis/anatak_diskedor.png',
         background: '',
         levelCap:  160,
@@ -1628,18 +1583,18 @@ const WantedBosses = {
         id:        'wanted_yech_ti',
         monsterId: 'wanted_yech_ti',
         name:      'YeCh\'Ti',
-        lore:      "",
+        lore:      'YeCh\'Ti vient des plaines froides du nord, où le vent tranche aussi net qu\'une lame et où la résistance se mesure en cicatrices. Son collier et ses mitaines gardent la chaleur — pour lui. Ses adversaires, eux, n\'ont droit qu\'au froid.',
         icon:      'img/monstres/wanted/avis/yech_ti.png',
         background: '',
         levelCap:  170,
         bst:       { hp: 22000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'collier_du_yech_ti', dropRate: 0.1 }, { itemId: 'mitaine_du_yech_ti', dropRate: 0.1 }, { itemId: 'bras_du_yech_ti', dropRate: 0.1 }]
     },
     'wanted_crasper': {
         id:        'wanted_crasper',
         monsterId: 'wanted_crasper',
         name:      'Crasper',
-        lore:      "",
+        lore:      'Crasper est une entité dont le passage laisse des traces durables — sur les murs, sur les sols, et sur les adversaires qui avaient pourtant cru garder leurs distances. Sa méthode de combat manque d\'élégance mais compense en efficacité.',
         icon:      'img/monstres/wanted/avis/crasper.png',
         background: '',
         levelCap:  170,
@@ -1650,7 +1605,7 @@ const WantedBosses = {
         id:        'wanted_hin',
         monsterId: 'wanted_hin',
         name:      'Hin',
-        lore:      "",
+        lore:      'Hin ne parle pas. Hin ne négocie pas. Hin frappe. Ses 700 en attaque en disent plus long sur sa philosophie que n\'importe quelle biographie officielle.',
         icon:      'img/monstres/wanted/avis/hin.png',
         background: '',
         levelCap:  170,
@@ -1661,7 +1616,7 @@ const WantedBosses = {
         id:        'wanted_ka_youloud',
         monsterId: 'wanted_ka_youloud',
         name:      'Ka\'Youloud',
-        lore:      "",
+        lore:      'Ka\'Youloud est une créature dont les cris résonnent bien au-delà du champ de bataille. Ses adversaires essaient souvent de couvrir leurs oreilles — ils auraient mieux fait de couvrir leurs flancs.',
         icon:      'img/monstres/wanted/avis/ka_youloud.png',
         background: '',
         levelCap:  170,
@@ -1672,18 +1627,18 @@ const WantedBosses = {
         id:        'wanted_dremoan',
         monsterId: 'wanted_dremoan',
         name:      'Dremoan',
-        lore:      "",
+        lore:      'Dremoan erre entre les mondes depuis si longtemps qu\'il a oublié ce qu\'il cherchait. Son chapeau et sa cape flottent dans des dimensions que vous ne pouvez pas percevoir, et ses attaques viennent d\'angles que la physique peine à justifier.',
         icon:      'img/monstres/wanted/avis/dremoan.png',
         background: '',
         levelCap:  180,
         bst:       { hp: 24000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'chapeau_de_dremoan', dropRate: 0.1 }, { itemId: 'bottes_de_dremoan', dropRate: 0.1 }, { itemId: 'cape_de_dremoan', dropRate: 0.1 }]
     },
     'wanted_carter_le_pillard': {
         id:        'wanted_carter_le_pillard',
         monsterId: 'wanted_carter_le_pillard',
         name:      'Carter le Pillard',
-        lore:      "",
+        lore:      'Carter le Pillard a ouvert des tombeaux que même les archéologues avaient jugés trop dangereux. Ce qu\'il en a ramené reste un mystère, mais les cicatrices qu\'il porte témoignent que les gardiens de ces sépultures n\'avaient pas apprécié la visite.',
         icon:      'img/monstres/wanted/avis/carter_le_pillard.png',
         background: '',
         levelCap:  180,
@@ -1694,7 +1649,7 @@ const WantedBosses = {
         id:        'wanted_mouchame_3773',
         monsterId: 'wanted_mouchame_3773',
         name:      'Mouchâme',
-        lore:      "",
+        lore:      'Mouchâme 3773 est le modèle amélioré d\'une série dont on espérait que les versions précédentes suffiraient. Elles ne suffisaient pas. Sa vitesse et ses 600 en attaque confirment que l\'ingénieur a corrigé les bugs — tous, sauf le principal.',
         icon:      'img/monstres/wanted/avis/mouchame_3773.png',
         background: '',
         levelCap:  180,
@@ -1705,62 +1660,62 @@ const WantedBosses = {
         id:        'wanted_guerrier_du_k_o',
         monsterId: 'wanted_guerrier_du_k_o',
         name:      'Guerrier du K.O.',
-        lore:      "",
+        lore:      'Le Guerrier du K.O. n\'a qu\'un objectif et qu\'une méthode. Son amulette et sa ceinture sont les seuls ornements d\'un combattant qui préfère finir les choses vite — de préférence d\'un seul coup.',
         icon:      'img/monstres/wanted/avis/guerrier_du_k_o.png',
         background: '',
         levelCap:  180,
         bst:       { hp: 24000, atk: 650 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bottes_du_k_o', dropRate: 0.1 }, { itemId: 'amulette_du_k_o', dropRate: 0.1 }, { itemId: 'ceinture_du_k_o', dropRate: 0.1 }]
     },
     'wanted_shushu_debruk_sayl': {
         id:        'wanted_shushu_debruk_sayl',
         monsterId: 'wanted_shushu_debruk_sayl',
         name:      'Shushu Debruk\'Sayl',
-        lore:      "",
+        lore:      'Shushu Debruk\'Sayl est un démon de la trempe de ceux qu\'on évoque à voix basse et qu\'on ne conjure qu\'en dernière extrémité. Sa cape et son collier dissimulent une intelligence ancienne dont les intentions n\'ont jamais été exactement bienveillantes.',
         icon:      'img/monstres/wanted/avis/shushu_debruk_sayl.png',
         background: '',
         levelCap:  180,
         bst:       { hp: 25000, atk: 333 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_debruk_sayl', dropRate: 0.1 }, { itemId: 'collier_debruk_sayl', dropRate: 0.1 }, { itemId: 'anneau_debruk_sayl', dropRate: 0.1 }]
     },
     'wanted_flasho': {
         id:        'wanted_flasho',
         monsterId: 'wanted_flasho',
         name:      'Flasho',
-        lore:      "",
+        lore:      'Flasho est là, puis n\'est plus là, puis est ailleurs, puis nulle part, puis partout. Ses flashaux rendent le combat aussi prévisible qu\'un éclair — c\'est-à-dire absolument pas.',
         icon:      'img/monstres/wanted/avis/flasho.png',
         background: '',
         levelCap:  190,
         bst:       { hp: 24000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'flashaux', dropRate: 0.1 }, { itemId: 'bouclieclair_de_flasho', dropRate: 0.1 }, { itemId: 'anneau_de_flasho', dropRate: 0.1 }]
     },
     'wanted_viti_glourson': {
         id:        'wanted_viti_glourson',
         monsterId: 'wanted_viti_glourson',
         name:      'Viti Glourson',
-        lore:      "",
+        lore:      'Viti Glourson est un ours dont l\'amour du miel est surpassé seulement par sa haine de quiconque essaie d\'y toucher. Son pagne et son amulette sentent la forêt et l\'ambre, et ses adversaires finissent généralement le visage dans la boue à quelques mètres de lui.',
         icon:      'img/monstres/wanted/avis/viti_glourson.png',
         background: '',
         levelCap:  190,
         bst:       { hp: 29000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_de_viti_glourson', dropRate: 0.1 }, { itemId: 'pagne_de_viti_glourson', dropRate: 0.1 }, { itemId: 'pot_de_miel_de_viti_glourson', dropRate: 0.1 }]
     },
     'wanted_fuji_givrefoux': {
         id:        'wanted_fuji_givrefoux',
         monsterId: 'wanted_fuji_givrefoux',
         name:      'Fuji Givrefoux',
-        lore:      "",
+        lore:      'Fuji Givrefoux est un renard des neiges dont la grâce glaciale contraste avec la brutalité de ses attaques. Son anneau et sa cape sont aussi beaux qu\'ils sont dangereux — tout comme elle.',
         icon:      'img/monstres/wanted/avis/fuji_givrefoux.png',
         background: '',
         levelCap:  190,
         bst:       { hp: 27000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'anneau_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'cape_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'bottes_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'coiffe_de_la_fuji_givrefoux', dropRate: 0.1 }]
     },
     'wanted_gobus_instable': {
         id:        'wanted_gobus_instable',
         monsterId: 'wanted_gobus_instable',
         name:      'Gobus instable',
-        lore:      "",
+        lore:      'Le Gobus instable est ce que vous obtenez quand un gobelin s\'approche trop longtemps d\'une source d\'énergie magique. Il n\'a pas l\'air d\'aller bien — et il est certain de ne pas vous laisser aller bien non plus.',
         icon:      'img/monstres/wanted/avis/gobus_instable.png',
         background: '',
         levelCap:  190,
@@ -1771,18 +1726,18 @@ const WantedBosses = {
         id:        'wanted_docteur_eggob',
         monsterId: 'wanted_docteur_eggob',
         name:      'Docteur Eggob',
-        lore:      "",
+        lore:      'Le Docteur Eggob pratique une médecine dont l\'éthique laisse à désirer et les résultats à craindre. Ses lunettes lui donnent un air savant, son fléau lui donne un air dangereux, et la combinaison des deux donne envie de ne pas avoir besoin de consultation.',
         icon:      'img/monstres/wanted/avis/docteur_eggob.png',
         background: '',
         levelCap:  190,
         bst:       { hp: 28000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'lunettes_du_docteur_eggob', dropRate: 0.1 }, { itemId: 'anneau_dore_du_docteur_eggob', dropRate: 0.1 }, { itemId: 'fleau_du_docteur_eggob', dropRate: 0.1 }]
     },
     'wanted_sans_visage': {
         id:        'wanted_sans_visage',
         monsterId: 'wanted_sans_visage',
         name:      'Sans Visage',
-        lore:      "",
+        lore:      'Sans Visage n\'a pas de nom parce que personne n\'a survécu assez longtemps pour lui en donner un. Son absence de traits n\'est pas un vide — c\'est un avertissement que certaines choses n\'ont pas besoin de visage pour être redoutées.',
         icon:      'img/monstres/wanted/avis/sans_visage.png',
         background: '',
         levelCap:  190,
@@ -1793,19 +1748,18 @@ const WantedBosses = {
         id:        'wanted_predagob',
         monsterId: 'wanted_predagob',
         name:      'Predagob',
-        lore:      "",
+        lore:      'Predagob est un prédateur qui a adopté l\'apparence d\'un gobelin — ou un gobelin qui a adopté les instincts d\'un prédateur. Dans les deux cas, sa perruque ne le rend pas moins dangereux, juste légèrement plus déconcertant.',
         icon:      'img/monstres/wanted/avis/predagob.png',
         background: '',
         levelCap:  190,
         bst:       { hp: 26000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'perruque_de_predagob', dropRate: 0.1 }, { itemId: 'bracelet_de_predagob', dropRate: 0.1 }, { itemId: 'pagne_de_predagob', dropRate: 0.1 }]
     },
-
     'wanted_buldalazred': {
         id:        'wanted_buldalazred',
         monsterId: 'wanted_buldalazred',
         name:      'Buldalazred',
-        lore:      "",
+        lore:      'Buldalazred est une créature ancienne dont la couleur rouge n\'est pas un choix esthétique mais une conséquence de ses activités. Ses 800 en attaque parlent d\'eux-mêmes, et ses adversaires qui voulaient dialoguer ont généralement changé d\'avis trop tard.',
         icon:      'img/monstres/wanted/avis/buldalazred.png',
         background: '',
         levelCap:  200,
@@ -1816,7 +1770,7 @@ const WantedBosses = {
         id:        'wanted_takomako',
         monsterId: 'wanted_takomako',
         name:      'Takomako',
-        lore:      "",
+        lore:      'Takomako est le résultat d\'une rencontre entre les fonds marins et l\'instinct de prédation. Ses tentacules frappent comme des requins et ses dents mordent comme des pieuvres — dans quel ordre, c\'est selon le moment.',
         icon:      'img/monstres/wanted/avis/takomako.png',
         background: '',
         levelCap:  200,
@@ -1827,7 +1781,7 @@ const WantedBosses = {
         id:        'wanted_homard_medali',
         monsterId: 'wanted_homard_medali',
         name:      'Homard Medali',
-        lore:      "",
+        lore:      'Homard Medali est un crustacé décoré pour des services militaires dont personne ne connaît exactement la nature. Ses pinces ont servi autant au combat qu\'à la cérémonie, et ses médailles sonnent comme un avertissement à chaque pas.',
         icon:      'img/monstres/wanted/avis/homard_medali.png',
         background: '',
         levelCap:  200,
@@ -1838,62 +1792,62 @@ const WantedBosses = {
         id:        'wanted_glourdorak',
         monsterId: 'wanted_glourdorak',
         name:      'Glourdorak',
-        lore:      "",
+        lore:      'Glourdorak est une force primordiale que les anciens invoquaient en dernier recours. Sa masse et son bouclier protègent un être d\'une puissance que les légendes peinent à quantifier, et sa cape flotte dans un vent que vous ne sentez pas.',
         icon:      'img/monstres/wanted/avis/glourdorak.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 34000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bouclier_de_glourdorak', dropRate: 0.1 }, { itemId: 'cape_de_glourdorak', dropRate: 0.1 }, { itemId: 'masse_de_glourdorak', dropRate: 0.1 }]
     },
     'wanted_mekamouth': {
         id:        'wanted_mekamouth',
         monsterId: 'wanted_mekamouth',
         name:      'Mekamouth',
-        lore:      "",
+        lore:      'Mekamouth est une bouche mécanique construite pour mâcher ce que la nature a produit. Son boulon, sa bêche et son écrou constituent les restes d\'un dessein original dont l\'inventeur n\'a pas survécu à la première mise en marche.',
         icon:      'img/monstres/wanted/avis/mekamouth.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 34000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'boulon_de_mekamouth', dropRate: 0.1 }, { itemId: 'beche_de_mekamouth', dropRate: 0.1 }, { itemId: 'ecrou_de_mekamouth', dropRate: 0.1 }]
     },
     'wanted_culbutuf': {
         id:        'wanted_culbutuf',
         monsterId: 'wanted_culbutuf',
         name:      'Culbutœuf',
-        lore:      "",
+        lore:      'Culbutœuf est l\'improbable résultat d\'un œuf tombé de trop haut et remonté de trop loin. Son arc et son disque témoignent qu\'il a su tirer parti de sa condition, et ses adversaires constatent qu\'être un œuf n\'est nullement incompatible avec être dangereux.',
         icon:      'img/monstres/wanted/avis/culbutuf.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 30000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'anneau_de_culbut_uf', dropRate: 0.1 }, { itemId: 'arc_de_culbut_uf', dropRate: 0.1 }, { itemId: 'disque_de_culbut_uf', dropRate: 0.1 }]
     },
     'wanted_chevalier_de_glace': {
         id:        'wanted_chevalier_de_glace',
         monsterId: 'wanted_chevalier_de_glace',
         name:      'Chevalier de Glace',
-        lore:      "",
+        lore:      'Le Chevalier de Glace est le gardien d\'un serment prononcé il y a si longtemps que les termes en ont été oubliés. Sa lame givrée et son bouclier frigorifié maintiennent en vie quelque chose qui n\'a plus vraiment de raison de l\'être — si ce n\'est de protéger ce que vous cherchez.',
         icon:      'img/monstres/wanted/avis/chevalier_de_glace.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 32000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'ceste_gele_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'lame_givree_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'pavois_frigorifie_du_chevalier_de_glace', dropRate: 0.1 }]
     },
     'wanted_psikopompe': {
         id:        'wanted_psikopompe',
         monsterId: 'wanted_psikopompe',
         name:      'Psikopompe',
-        lore:      "",
+        lore:      'Psikopompe guide les âmes vers leur destination finale depuis assez longtemps pour ne plus faire la différence entre les morts et ceux qui ne le sont pas encore. Son aiguille coud les destinées, et son gant n\'est là que pour éviter de se salir.',
         icon:      'img/monstres/wanted/avis/psikopompe.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 32000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'aiguille_de_psikopompe', dropRate: 0.1 }, { itemId: 'bouton_de_psikopompe', dropRate: 0.1 }, { itemId: 'gant_de_psikopompe', dropRate: 0.1 }]
     },
     'wanted_le_fantome_braideur': {
         id:        'wanted_le_fantome_braideur',
         monsterId: 'wanted_le_fantome_braideur',
         name:      'Le Fantôme Braïdeur',
-        lore:      "",
+        lore:      'Le Fantôme Braïdeur hante un espace entre les niveaux que même les cartographes ont renoncé à nommer. Il ne tresse pas des cheveux — il tresse les fils du destin, et les adversaires qui s\'y retrouvent entremêlés ont rarement le loisir de se dénouer.',
         icon:      'img/monstres/wanted/avis/le_fantome_braideur.png',
         background: '',
         levelCap:  200,
@@ -1904,18 +1858,18 @@ const WantedBosses = {
         id:        'wanted_voldelor',
         monsterId: 'wanted_voldelor',
         name:      'Voldelor',
-        lore:      "",
+        lore:      'Voldelor est une créature dont l\'appétit pour l\'or dépasse de loin ses besoins réels. Son amulette et sa ceinture sont incrustées de métaux précieux arrachés à ses victimes, et ses bottes sont assez rapides pour qu\'on ne sache jamais exactement d\'où il vient.',
         icon:      'img/monstres/wanted/avis/voldelor.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 29000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_voldelor', dropRate: 0.1 }, { itemId: 'bottes_voldelor', dropRate: 0.1 }, { itemId: 'ceinture_voldelor', dropRate: 0.1 }]
     },
     'wanted_sicogne': {
         id:        'wanted_sicogne',
         monsterId: 'wanted_sicogne',
         name:      'Sicogne',
-        lore:      "",
+        lore:      'Sicogne arrive à grands pas silencieux, livre ce qu\'elle est venue livrer, et repart sans se retourner. Ce qu\'elle livre n\'est jamais une bonne nouvelle pour celui qui la reçoit.',
         icon:      'img/monstres/wanted/avis/sicogne.png',
         background: '',
         levelCap:  200,
@@ -1926,40 +1880,40 @@ const WantedBosses = {
         id:        'wanted_mi',
         monsterId: 'wanted_mi',
         name:      'Mi',
-        lore:      "",
+        lore:      'Mi est le premier fragment d\'une trinité légendaire née aux confins d\'Atcham. Seul, il est déjà redoutable. Accompagné de Fou et Chi, il devient quelque chose que les chroniques préfèrent taire.',
         icon:      'img/monstres/wanted/avis/mi.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 30000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_d_atcham', dropRate: 0.1 }, { itemId: 'sabres_d_atcham', dropRate: 0.1 }, { itemId: 'sandales_d_atcham', dropRate: 0.1 }]
     },
     'wanted_fou': {
         id:        'wanted_fou',
         monsterId: 'wanted_fou',
         name:      'Fou',
-        lore:      "",
+        lore:      'Fou est l\'élément chaotique de la trinité d\'Atcham. Sa folie n\'est pas un défaut mais une arme : imprévisible, inconstant, et parfaitement capable de frapper là où ses adversaires cherchent encore une logique.',
         icon:      'img/monstres/wanted/avis/fou.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 30000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_d_atcham', dropRate: 0.1 }, { itemId: 'sabres_d_atcham', dropRate: 0.1 }, { itemId: 'sandales_d_atcham', dropRate: 0.1 }]
     },
     'wanted_chi': {
         id:        'wanted_chi',
         monsterId: 'wanted_chi',
         name:      'Chi',
-        lore:      "",
+        lore:      'Chi est le fil silencieux qui relie la trinité d\'Atcham. Là où Mi frappe et Fou perturbe, Chi conclut — avec une précision que seuls comprennent ceux qui ont eu la chance d\'y survivre.',
         icon:      'img/monstres/wanted/avis/chi.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 30000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_d_atcham', dropRate: 0.1 }, { itemId: 'sabres_d_atcham', dropRate: 0.1 }, { itemId: 'sandales_d_atcham', dropRate: 0.1 }]
     },
     'wanted_ganos': {
         id:        'wanted_ganos',
         monsterId: 'wanted_ganos',
         name:      'Ganos',
-        lore:      "",
+        lore:      'Ganos est une erreur de la nature que la nature a préféré garder plutôt qu\'avouer. Ses 1000 en attaque en font l\'un des combattants les plus directs du monde de Dofus — nuance qui, pour ses adversaires, se traduit généralement par « très douloureux ».',
         icon:      'img/monstres/wanted/avis/ganos.png',
         background: '',
         levelCap:  200,
@@ -1970,7 +1924,7 @@ const WantedBosses = {
         id:        'wanted_hyperscampe',
         monsterId: 'wanted_hyperscampe',
         name:      'Hyperscampe',
-        lore:      "",
+        lore:      'Hyperscampe est la preuve que la taille n\'a aucun rapport avec la dangerosité. Ses mouvements sont erratiques, ses attaques imprévisibles, et ses adversaires finissent souvent par se demander ce qu\'ils ont bien pu faire pour mériter ça.',
         icon:      'img/monstres/wanted/avis/hyperscampe.png',
         background: '',
         levelCap:  200,
@@ -1981,18 +1935,18 @@ const WantedBosses = {
         id:        'wanted_grand_kongoku',
         monsterId: 'wanted_grand_kongoku',
         name:      'Grand Kongoku',
-        lore:      "",
+        lore:      'Grand Kongoku est le plus grand des Kongoku, ce qui dans sa famille signifie « le plus capable de pulvériser ce qui bouge ». Sa boucle d\'oreille et sa ceinture sont les seuls ornements qu\'il a accepté de porter — tout le reste, il préfère le montrer dans les combats.',
         icon:      'img/monstres/wanted/avis/grand_kongoku.png',
         background: '',
         levelCap:  200,
         bst:       { hp: 30000, atk: 1125 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'boucle_d_oreille_de_kongoku', dropRate: 0.1 }, { itemId: 'cape_de_kongoku', dropRate: 0.1 }, { itemId: 'ceinture_de_kongoku', dropRate: 0.1 }]
     },
     'wanted_khepricorne': {
         id:        'wanted_khepricorne',
         monsterId: 'wanted_khepricorne',
         name:      'Khepricorne',
-        lore:      "",
+        lore:      'Khepricorne est né de la rencontre entre la mythologie pharaonique et l\'imaginaire de Dofus — et il en a gardé le pire des deux. Sa corne et ses ailes le rendent aussi imprévisible dans ses déplacements que dans ses attaques.',
         icon:      'img/monstres/wanted/avis/khepricorne.png',
         background: '',
         levelCap:  200,
@@ -2003,7 +1957,7 @@ const WantedBosses = {
         id:        'wanted_panteroz',
         monsterId: 'wanted_panteroz',
         name:      'Pantèroz',
-        lore:      "",
+        lore:      'Pantèroz est une panthère d\'une espèce que l\'on croyait éteinte et qu\'on aurait préféré laisser disparaître. Sa vitesse est telle que certains aventuriers n\'ont jamais vu ce qui les a frappés — et ses 800 en attaque suggèrent que c\'est aussi bien ainsi.',
         icon:      'img/monstres/wanted/avis/panteroz.png',
         background: '',
         levelCap:  1040,
@@ -2014,7 +1968,7 @@ const WantedBosses = {
         id:        'wanted_mouchame',
         monsterId: 'wanted_mouchame',
         name:      'Mouchâme',
-        lore:      "",
+        lore:      'Mouchâme est la version finale, ultime, définitive d\'une créature que personne n\'avait demandé à voir exister. Contrairement à son homologue de classe 3773, celui-ci n\'a plus aucune limite à compenser. Sa légèreté est inversement proportionnelle à la gravité de son passage.',
         icon:      'img/monstres/wanted/avis/mouchame.png',
         background: '',
         levelCap:  1440,
@@ -2025,13 +1979,14 @@ const WantedBosses = {
         id:        'wanted_gein',
         monsterId: 'wanted_gein',
         name:      'Gein',
-        lore:      "",
+        lore:      'Gein est l\'énigme au bout de toutes les énigmes. Son chapeau dissimule un regard qui a vu plus de fins du monde qu\'il n\'y a de mots pour les décrire. On dit que le vaincre donne la réponse à toutes vos questions — ce qui suppose d\'être encore en état de les poser.',
         icon:      'img/monstres/wanted/avis/gein.png',
         background: '',
         levelCap:  1600,
         bst:       { hp: 24000, atk: 1200 },
-        panoplie:  []
-    },};
+        panoplie:  [{ itemId: 'amulette_de_gein', dropRate: 0.1 }, { itemId: 'ceinture_de_gein', dropRate: 0.1 }, { itemId: 'chapeau_de_gein', dropRate: 0.1 }]
+    },
+};
 
 // ─── Areas synthétiques (créées statiquement pour support rechargement de page) ─
 

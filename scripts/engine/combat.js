@@ -149,8 +149,9 @@ function _syncCombatToState() {
         tier:           combat.enemy.tier,
         dropRate:       combat.enemy.dropRate,
         isArchi:        combat.enemy.isArchi || false,
-        buffs:          JSON.parse(JSON.stringify(combat.enemy.buffs || [])),
-        dots:           JSON.parse(JSON.stringify(combat.enemy.dots  || [])),
+        buffs:          JSON.parse(JSON.stringify(combat.enemy.buffs  || [])),
+        dots:           JSON.parse(JSON.stringify(combat.enemy.dots   || [])),
+        shield:         combat.enemy.shield ? JSON.parse(JSON.stringify(combat.enemy.shield)) : null,
     } : null
     state.savedCombatState = {
         memberTimers:         [...combat.memberTimers],

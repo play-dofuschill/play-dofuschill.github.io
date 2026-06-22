@@ -81,8 +81,8 @@ function updateEnemyDisplay() {
     if (levelEl)  levelEl.textContent = `lvl ${e.level}`
     if (elemEl)   { elemEl.textContent = e.element || ''; elemEl.className = `elem-badge elem-${e.element}` }
     if (spriteEl) { spriteEl.src = e.image; spriteEl.onerror = () => spriteEl.src = 'img/icons/icon.png' }
-    if (hpFill)   { hpFill.style.width = `${hpPct}%`; hpFill.className = `hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}` }
-    if (hpText)   hpText.textContent = `${e.currentHp} / ${e.maxHp}`
+    if (hpFill)   { hpFill.style.width = `${hpPct}%`; hpFill.className = `hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${e.shield?.value > 0 ? 'hp-shield' : ''}` }
+    if (hpText)   hpText.textContent = `${e.currentHp} / ${e.maxHp}${e.shield?.value > 0 ? ' • ' + e.shield.value : ''}`
 
     const movesContainer = document.getElementById('enemy-moves-container')
     if (movesContainer) {
@@ -539,10 +539,10 @@ function updateEnemyDisplayRaid() {
         const hpFill = slot.querySelector('.hp-fill')
         if (hpFill) {
             hpFill.style.width = `${hpPct}%`
-            hpFill.className   = `hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}`
+            hpFill.className   = `hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${enemy.shield?.value > 0 ? 'hp-shield' : ''}`
         }
         const hpText = slot.querySelector('.raid-enemy-hp-text')
-        if (hpText) hpText.textContent = `${enemy.currentHp}/${enemy.maxHp}`
+        if (hpText) hpText.textContent = `${enemy.currentHp}/${enemy.maxHp}${enemy.shield?.value > 0 ? ' • ' + enemy.shield.value : ''}`
 
         const nextIdx = (enemy.moves || []).indexOf(nextMoveId)
         slot.querySelectorAll('.combat-move-fill').forEach((f, idx) => {
@@ -569,9 +569,9 @@ function _buildRaidEnemySlotHTML(enemy, slotIdx) {
         <div class="raid-enemy-name">${enemy.name}</div>
         <div class="hp-container">
             <div class="hp-bar">
-                <div class="hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''}" style="width:${hpPct}%"></div>
+                <div class="hp-fill ${hpPct < 25 ? 'hp-low' : hpPct < 50 ? 'hp-mid' : ''} ${enemy.shield?.value > 0 ? 'hp-shield' : ''}" style="width:${hpPct}%"></div>
             </div>
-            <span class="raid-enemy-hp-text">${enemy.currentHp}/${enemy.maxHp}</span>
+            <span class="raid-enemy-hp-text">${enemy.currentHp}/${enemy.maxHp}${enemy.shield?.value > 0 ? ' • ' + enemy.shield.value : ''}</span>
         </div>
         <div class="member-moves">${moveBars}</div>`
 }

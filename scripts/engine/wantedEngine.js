@@ -91,7 +91,7 @@ function _refreshWantedPool() {
             ...pick(bucket1, 3, 0),
             ...pick(bucket2, 3, 1),
             ...pick(bucket3, 3, 2),
-            ...pick(bucket4, 1, 3)
+            ...pick(bucket4, 5, 3)
         ]
     }
     saveGame()
