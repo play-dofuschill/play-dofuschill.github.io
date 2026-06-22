@@ -76,6 +76,7 @@ let _autoPilot        = null   // { remaining: N, accumulated: sessionLoot } | n
 let _dungeonAutoRun   = null   // { accumulated: sessionLoot } | null — relance auto donjon
 let _afkSeconds       = 0      // secondes d'absence à rattraper en fast-forward
 let _combatSpeedMult  = 1.0    // 1=normal, 0=pause, 0.5=lent×2, 0.33=lent×3, 0.25=lent×4
+let _lastAfkUiUpdate  = 0      // timestamp du dernier updateCombatUI pendant le fast-forward
 
 // ─── Boucle de jeu (requestAnimationFrame) ────────────────────────────────────
 
@@ -93,7 +94,13 @@ function _gameLoop(now) {
             gameTick()
             _afkSeconds = Math.max(0, _afkSeconds - TICK_MS / 1000)
         }
-        if (state.isRunning) updateCombatUI()
+        if (state.isRunning) {
+            const now = performance.now()
+            if (_afkSeconds <= 0 || now - _lastAfkUiUpdate > 300) {
+                _lastAfkUiUpdate = now
+                updateCombatUI()
+            }
+        }
         if (_afkSeconds <= 0) saveGame()
         return
     }
