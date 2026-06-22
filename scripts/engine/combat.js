@@ -521,6 +521,7 @@ function startCombat(areaId) {
     if (!_isResume) {
         const _initActiveIdx = state.team.findIndex(m => m && m.currentHp > 0)
         if (_initActiveIdx !== -1) _triggerDofusOnActive(_initActiveIdx)
+        _triggerSpawnWeaknessTrophies(combat.enemy)
     }
     updateCombatUI()
 }
@@ -631,7 +632,7 @@ function rejoinArea() {
 // ─── Pilote automatique ───────────────────────────────────────────────────────
 
 function _emptySessionLoot() {
-    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
+    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, dofusDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
 }
 
 function _mergeSessionLoot(dest, src) {
@@ -650,6 +651,9 @@ function _mergeSessionLoot(dest, src) {
     }
     for (const [keyId, count] of Object.entries(src.keyDrops || {})) {
         dest.keyDrops[keyId] = (dest.keyDrops[keyId] || 0) + count
+    }
+    for (const [dofusId, count] of Object.entries(src.dofusDrops || {})) {
+        dest.dofusDrops[dofusId] = (dest.dofusDrops[dofusId] || 0) + count
     }
 }
 
@@ -718,7 +722,7 @@ function startPoutchCombat(mode) {
         sessionLoot: {
             itemDrops: [], familiarDrops: [], killCount: 0,
             memberDamage: {}, memberDamageReceived: {},
-            learnedMoves: [], kamasFromDrops: 0, keyDrops: {}
+            learnedMoves: [], kamasFromDrops: 0, keyDrops: {}, dofusDrops: {}
         }
     }
 
@@ -3872,6 +3876,9 @@ function onVictory() {
                 if (item[d.itemId]?.isKey) {
                     combat.sessionLoot.keyDrops[d.itemId] = (combat.sessionLoot.keyDrops[d.itemId] || 0) + 1
                 }
+                if (d.itemId?.startsWith('Dofus_')) {
+                    combat.sessionLoot.dofusDrops[d.itemId] = (combat.sessionLoot.dofusDrops[d.itemId] || 0) + 1
+                }
             }
         }
     }
@@ -3965,6 +3972,7 @@ function onVictory() {
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         combat.savedEnemy      = null
         combat.enemyTimer      = 0
+        _triggerSpawnWeaknessTrophies(combat.enemy)
         return
     }
     setTimeout(() => {
@@ -3974,6 +3982,7 @@ function onVictory() {
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         combat.savedEnemy     = null
         combat.enemyTimer     = 0
+        _triggerSpawnWeaknessTrophies(combat.enemy)
         updateCombatUI()
     }, 500)
 }
@@ -4218,6 +4227,31 @@ function _checkTrophyTrigger(memberIndex) {
         if (combat.memberTrophyCounters[memberIndex] >= trigger.count) {
             if (trigger.resetOnTrigger) combat.memberTrophyCounters[memberIndex] = 0
             _switchByTrophy(memberIndex, switchTo, itm.name)
+        }
+    }
+}
+
+function _triggerSpawnWeaknessTrophies(enemy) {
+    if (!enemy || !combat || !state.isRunning || combat.isRaid) return
+    const res = enemy.res || {}
+    const elements = ['terre', 'feu', 'eau', 'air', 'neutre']
+    const minRes = Math.min(...elements.map(e => res[e] ?? 0))
+    const weakestElems = new Set(elements.filter(e => (res[e] ?? 0) === minRes))
+
+    for (let i = 0; i < state.team.length; i++) {
+        if (i === combat.activeMemberIndex) continue
+        const m = state.team[i]
+        if (!m || m.currentHp <= 0 || !m.equip) continue
+        const trophyId = m.equip.accessoire
+        if (!trophyId) continue
+        const itm = item[trophyId]
+        if (!itm?.trophy?.trigger) continue
+        const { trigger } = itm.trophy
+        if (trigger.type === 'enemy_spawn_weakness' && weakestElems.has(trigger.element)) {
+            const memberName = m.name || classes[m.classId]?.name || `Slot ${i + 1}`
+            addLog(`${itm.name} → ${memberName} entre en jeu !`)
+            setActiveMember(i)
+            return
         }
     }
 }
@@ -4936,6 +4970,9 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
                 combat.sessionLoot.itemDrops.push(d)
                 if (item[d.itemId]?.isKey) {
                     combat.sessionLoot.keyDrops[d.itemId] = (combat.sessionLoot.keyDrops[d.itemId] || 0) + 1
+                }
+                if (d.itemId?.startsWith('Dofus_')) {
+                    combat.sessionLoot.dofusDrops[d.itemId] = (combat.sessionLoot.dofusDrops[d.itemId] || 0) + 1
                 }
             }
         }

@@ -175,7 +175,7 @@ monsters.feu_de_joie = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 0, terre: 10, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['brulure_legere']
 }
 
 monsters.feu_furieux = {
@@ -185,7 +185,7 @@ monsters.feu_furieux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 10, air: 0 } },
-    moves: []
+    moves: ['brulure_legere']
 }
 
 monsters.feu_follet = {
@@ -195,7 +195,7 @@ monsters.feu_follet = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 10, eau: 0, air: 0 } },
-    moves: []
+    moves: ['brulure_legere']
 }
 
 monsters.krokille_de_mer = {
@@ -285,7 +285,7 @@ monsters.bouftou_nuageux = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 24, atk: 3, spd: 100, res: { neutre: 10, terre: -10, feu: -15, eau: 0, air: 0 } },
-    moves: []
+    moves: ['mordillement']
 }
 
 monsters.grand_splatch = {
@@ -585,7 +585,7 @@ monsters.tofu_degenere = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 75, atk: 50, spd: 100, res: { neutre: 10, terre: 5, feu: -29, eau: -19, air: 30 } },
-    moves: []
+    moves: ['beco_rosif', 'fougue_tofuesque']
 }
 
 monsters.tofu_mutant = {
@@ -595,7 +595,7 @@ monsters.tofu_mutant = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 75, atk: 50, spd: 100, res: { neutre: 10, terre: 5, feu: -29, eau: -19, air: 30 } },
-    moves: []
+    moves: ['beco_rosif', 'fougue_tofuesque','beco_morveux', 'tentative_d_envol']
 }
 
 monsters.gardienneChampetre = {
@@ -2005,7 +2005,7 @@ monsters.tofu_d_halouine = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 128, spd: 100, res: { neutre: 5, terre: -9, feu: 9, eau: 9, air: -9 } },
-    moves: []
+    moves: ['beco_rosif', 'fougue_tofuesque']
 }
 
 monsters.gargrouille = {
@@ -2425,7 +2425,7 @@ monsters.larve_doree = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 125, spd: 100, res: { neutre: 0, terre: 0, feu: -10, eau: 10, air: 0 } },
-    moves: []
+    moves: ['larvure','larvage','carapace']
 }
 
 monsters.flammeche_fumeuse = {
@@ -2725,7 +2725,7 @@ monsters.blop_coco_invoque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 } },
-    moves: []
+    moves: ['blyphe_koalak']
 }
 
 monsters.blop_griotte_invoque = {
@@ -2735,7 +2735,7 @@ monsters.blop_griotte_invoque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 } },
-    moves: []
+    moves: ['blyphe_koalak']
 }
 
 monsters.blop_reinette_invoque = {
@@ -2745,7 +2745,7 @@ monsters.blop_reinette_invoque = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 } },
-    moves: []
+    moves: ['blyphe_koalak']
 }
 
 monsters.black_tiwabbitus = {
@@ -2768,6 +2768,16 @@ monsters.wabbit = {
     moves: ['farandole_de_cawottes']
 }
 
+monsters.cawottes = {
+    id: 'cawottes',
+    name: 'Cawottes',
+    image: 'images/monsters/Cawottes.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 470, atk: 0, spd: 100, res: { neutre: 10, terre: 5, feu: 0, eau: -5, air: 0 } },
+    moves: []
+}
+
 monsters.chafer_draugr = {
     id: 'chafer_draugr',
     name: 'Chafer Draugr',
@@ -2776,36 +2786,6 @@ monsters.chafer_draugr = {
     tier: 'normal',
     bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 6, terre: -14, feu: 11, eau: 6, air: 11 } },
     moves: ['mjollnir', 'do_fus_rah', 'hel']
-}
-
-monsters.bwak_de_vent = {
-    id: 'bwak_de_vent',
-    name: 'Bwak de Vent',
-    image: 'images/monsters/Bwak_de_Vent.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 50 } },
-    moves: ['bwakitori']
-}
-
-monsters.bwak_de_glace = {
-    id: 'bwak_de_glace',
-    name: 'Bwak de Glace',
-    image: 'images/monsters/Bwak_de_Glace.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 50, air: 0 } },
-    moves: []
-}
-
-monsters.bwak_de_flamme = {
-    id: 'bwak_de_flamme',
-    name: 'Bwak de Flamme',
-    image: 'images/monsters/Bwak_de_Flamme.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 50, terre: 0, feu: 50, eau: 0, air: 0 } },
-    moves: []
 }
 
 monsters.sanglier_des_plaines = {
@@ -3168,16 +3148,6 @@ monsters.milicien = {
     moves: ['virevolte', 'laminage']
 }
 
-monsters.guerrier = {
-    id: 'guerrier',
-    name: 'Guerrier',
-    image: 'images/monsters/Guerrier.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 570, atk: 0, spd: 100, res: { neutre: 4, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
-}
-
 monsters.krokille_novice_insipide = {
     id: 'krokille_novice_insipide',
     name: 'Krokille Novice Insipide',
@@ -3255,7 +3225,7 @@ monsters.lanterne_bombe = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 500, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['elemental_spear', 'bomball']
 }
 
 monsters.lanterne_grappe_de_petards = {
@@ -3265,7 +3235,7 @@ monsters.lanterne_grappe_de_petards = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 610, atk: 500, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['elemental_spear', 'bomball']
 }
 
 monsters.poupee_aycetroy = {
@@ -3715,7 +3685,7 @@ monsters.dolivar = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['dorage', 'donnerre']
 }
 
 monsters.garde_de_pwak = {
@@ -4045,7 +4015,7 @@ monsters.kolerat = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 900, atk: 248, spd: 100, res: { neutre: -14, terre: 31, feu: -14, eau: 41, air: -9 } },
-    moves: []
+    moves: ['morsure_affaiblissante','hypnose_brulante', 'morstrubien']
 }
 
 monsters.craqueleur = {

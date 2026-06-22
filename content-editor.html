@@ -132,6 +132,8 @@ let ITEM = {}, PANO = {}, ZONESETS = {}, AREAS = {}, MONSTERS = {}
 let DIVERS_IDS = new Set()  // IDs des items chargés depuis diversDictionary.js
 let MOVELIST = []                                  // [{id,name}] pour les pickers de sorts
 let itemHeader = '', panoHeader = '', monsterHeader = '', areaText = ''
+let itemText = '', monsterText = '', panoText = ''
+let itemDirtyIds = new Set(), monsterDirtyIds = new Set(), panoDirtyIds = new Set()
 let dirty = false
 let dirtyZones = new Set()                          // zones dont nom/niveaux/spawns ont changé
 let newZones = new Set()                            // zones créées dans l'éditeur (à insérer)
@@ -225,10 +227,13 @@ async function loadFromHandle(){
   H.monster  = await getFile(dirHandle, 'scripts','data','monsterDictionary.js')
   H.mstrMove = await getFile(dirHandle, 'scripts','data','mstrMoveDictionary.js')
 
-  const itemTxt = await (await H.item.getFile()).text()
-  const panoTxt = await (await H.pano.getFile()).text()
+  itemText      = await (await H.item.getFile()).text()
+  const itemTxt = itemText
+  panoText      = await (await H.pano.getFile()).text()
+  const panoTxt = panoText
   areaText      = await (await H.area.getFile()).text()
-  const monTxt  = await (await H.monster.getFile()).text()
+  monsterText   = await (await H.monster.getFile()).text()
+  const monTxt  = monsterText
 
   // headers à préserver
   const ai = itemTxt.indexOf('const item = {}')
@@ -245,23 +250,38 @@ async function loadFromHandle(){
     for (const k of Object.keys(diversFull)) if(!ITEM[k]){ DIVERS_IDS.add(k); ITEM[k]=diversFull[k] }
   } catch(e){ console.warn('diversDictionary non chargé',e) }
   PANO = evalReturn(panoTxt, 'panoplies').panoplies
-  MONSTERS = evalReturn(monTxt, 'monsters').monsters
-  const a = evalReturn(areaText, 'areas, ZONE_SETS:(typeof ZONE_SETS!=="undefined"?ZONE_SETS:{})')
+
+  // Charge les fichiers de dépendances tôt pour construire un préambule d'eval.
+  // monsterDictionary.js et areaDictionary.js peuvent référencer `summons` (invocationDictionary)
+  // et invocationDictionary.js peut lui-même référencer `move` (moveDictionary + mstrMoveDictionary).
+  let mvTxt = '', mvmTxt = '', invTxt = ''
+  try {
+    H.classMove = await getFile(dirHandle, 'scripts', 'data', 'moveDictionary.js')
+    mvTxt = await (await H.classMove.getFile()).text()
+    classMoveText = mvTxt
+  } catch(e){}
+  try {
+    mvmTxt = await (await H.mstrMove.getFile()).text()
+    mstrMoveText = mvmTxt
+  } catch(e){}
+  try { invTxt = await (await getFile(dirHandle,'scripts','data','invocationDictionary.js')).getFile().then(f=>f.text()) } catch(e){}
+  // préambule dans l'ordre des dépendances : move → mstrMove → invocations
+  const evalPreamble = (mvTxt||'var move={};\n') + '\n' + mvmTxt + '\n' + invTxt + '\n'
+
+  MONSTERS = evalReturn(evalPreamble + monTxt, 'monsters').monsters
+  const a = evalReturn(evalPreamble + areaText, 'areas, ZONE_SETS:(typeof ZONE_SETS!=="undefined"?ZONE_SETS:{})')
   AREAS = a.areas; ZONESETS = a['ZONE_SETS'] || {}
 
   // dico des sorts pour les pickers de moves + parsing MSTRMOVES
   try {
-    H.classMove = await getFile(dirHandle, 'scripts', 'data', 'moveDictionary.js')
-    const mv  = await (await H.classMove.getFile()).text()
-    classMoveText = mv
-    const mvm = await (await H.mstrMove.getFile()).text()
-    mstrMoveText = mvm
-    let inv = ''
-    try { inv = await (await getFile(dirHandle,'scripts','data','invocationDictionary.js')).getFile().then(f=>f.text()) } catch(e){}
+    if(!H.classMove) H.classMove = await getFile(dirHandle, 'scripts', 'data', 'moveDictionary.js')
+    if(!mvTxt){ mvTxt = await (await H.classMove.getFile()).text(); classMoveText = mvTxt }
+    if(!mvmTxt){ mvmTxt = await (await H.mstrMove.getFile()).text(); mstrMoveText = mvmTxt }
+    const mv = mvTxt, mvm = mvmTxt
     const moveBase = evalReturn(mv, 'move').move || {}
     CLASSMOVES = {...moveBase}
     classMoveDirtyIds = new Set(); classMoveNewIds = new Set()
-    const move     = evalReturn(mv + '\n' + mvm + '\n' + inv, 'move').move || {}
+    const move     = evalReturn(mv + '\n' + mvm + '\n' + invTxt, 'move').move || {}
     MSTRMOVES = {}
     for(const k of Object.keys(move)){ if(!moveBase[k] && move[k]) MSTRMOVES[k] = move[k] }
     MOVELIST = Object.keys(move).filter(id=>move[id]).map(id=>({ id, name: move[id].name || id })).sort((a,b)=>a.name.localeCompare(b.name))
@@ -275,6 +295,7 @@ async function loadFromHandle(){
   } catch(e){ console.warn('classDictionary non chargé', e) }
 
   dirtyZones = new Set(); newZones = new Set()
+  itemDirtyIds = new Set(); monsterDirtyIds = new Set(); panoDirtyIds = new Set()
   // Load wanted
   wantedText = ''; WANTED_MONSTERS = {}; WANTED_BOSSES = {}; wantedDirtyIds = new Set()
   try {
@@ -302,19 +323,47 @@ async function loadFromHandle(){
 }
 
 // ───────────────────────── sérialisation + sauvegarde ─────────────────────────
-function buildItemFile(){
-  const blocks = Object.keys(ITEM).map(id => itemBlock(id, ITEM[id]))
-  return itemHeader + '\n\n' + blocks.join('\n') + '\n'
+function buildItemFilePatch(){
+  let txt = itemText
+  for (const id of itemDirtyIds){
+    if (DIVERS_IDS.has(id)) continue
+    const head = isIdent(id) ? 'item.' + id + ' ' : "item['" + id + "'] "
+    const r = blockRange(txt, head)
+    if (!r) continue
+    txt = txt.slice(0, r[0]) + itemBlock(id, ITEM[id]) + txt.slice(r[1])
+  }
+  return txt
 }
-function buildPanoFile(){
-  let s = 'const panoplies = {\n'
-  for (const k of Object.keys(PANO)) s += '    ' + key(k) + ': ' + lit(PANO[k]) + ',\n'
-  s += '}\n'
-  return panoHeader + s
+function buildPanoFilePatch(){
+  let txt = panoText
+  for (const id of panoDirtyIds){
+    const k = key(id)
+    const marker = '\n    ' + k + ': '
+    const start = txt.indexOf(marker)
+    if (start < 0) continue
+    // find opening { and matching }
+    let i = txt.indexOf('{', start + marker.length - 1), d = 0
+    for (; i < txt.length; i++){
+      if(txt[i]==='{') d++
+      else if(txt[i]==='}'){d--; if(d===0){
+        let end = i + 1
+        if(end < txt.length && txt[end] === ',') end++
+        txt = txt.slice(0, start) + '\n    ' + k + ': ' + lit(PANO[id]) + ',' + txt.slice(end)
+        break
+      }}
+    }
+  }
+  return txt
 }
-function buildMonsterFile(){
-  const blocks = Object.keys(MONSTERS).map(id => objBlock('monsters', id, MONSTERS[id]))
-  return monsterHeader + '\n\n' + blocks.join('\n\n') + '\n'
+function buildMonsterFilePatch(){
+  let txt = monsterText
+  for (const id of monsterDirtyIds){
+    const head = isIdent(id) ? 'monsters.' + id + ' ' : "monsters['" + id + "'] "
+    const r = blockRange(txt, head)
+    if (!r) continue
+    txt = txt.slice(0, r[0]) + objBlock('monsters', id, MONSTERS[id]) + txt.slice(r[1])
+  }
+  return txt
 }
 function mmMoveBlockStr(id, m){
   const effLine = e => '        { ' + Object.entries(e).map(([k,v]) => key(k)+': '+lit(v)).join(', ') + ' }'
@@ -433,9 +482,9 @@ async function writeFile(handle, text){
 }
 async function saveAll(){
   try{
-    await writeFile(H.item, buildItemFile())
-    await writeFile(H.pano, buildPanoFile())
-    await writeFile(H.monster, buildMonsterFile())
+    if(itemDirtyIds.size > 0){ itemText = buildItemFilePatch(); await writeFile(H.item, itemText); itemDirtyIds = new Set() }
+    if(panoDirtyIds.size > 0){ panoText = buildPanoFilePatch(); await writeFile(H.pano, panoText); panoDirtyIds = new Set() }
+    if(monsterDirtyIds.size > 0){ monsterText = buildMonsterFilePatch(); await writeFile(H.monster, monsterText); monsterDirtyIds = new Set() }
     if(H.mstrMove){ mstrMoveText = buildMstrMoveFile(); await writeFile(H.mstrMove, mstrMoveText); mstrMoveDirtyIds = new Set(); mstrMoveNewIds = new Set() }
     if(H.classMove && (classMoveDirtyIds.size > 0 || classMoveNewIds.size > 0)){ classMoveText = buildClassMoveFile(); await writeFile(H.classMove, classMoveText); classMoveDirtyIds = new Set(); classMoveNewIds = new Set() }
     areaText = buildAreaText()
@@ -547,7 +596,7 @@ function renderItemDetail(id){
       <div class="muted">Édite avec précaution — doit rester un JSON valide.</div></div>`:''}
     <div class="section"><label>Description</label><textarea id="e_desc">${(it.description||'').replace(/</g,'&lt;')}</textarea></div>
   `
-  const bind=(elId,fn)=>{const el=D.querySelector('#'+elId); if(el) el.oninput=el.onchange=()=>{fn(el.value);setDirty(true)}}
+  const bind=(elId,fn)=>{const el=D.querySelector('#'+elId); if(el) el.oninput=el.onchange=()=>{fn(el.value);itemDirtyIds.add(id);setDirty(true)}}
   bind('e_name',v=>{it.name=v;renderItemList()})
   bind('e_image',v=>it.image=v)
   bind('e_slot',v=>{it.slot=v;renderItemList()})
@@ -557,11 +606,11 @@ function renderItemDetail(id){
   bind('e_ilm',v=>it.itemLevelMax=+v||20)
   bind('e_type',v=>it.type=v)
   bind('e_desc',v=>it.description=v)
-  if (it.effects){ const ta=D.querySelector('#e_eff'); ta.onchange=()=>{ try{ it.effects=JSON.parse(ta.value); ta.style.borderColor=''; setDirty(true)}catch(e){ ta.style.borderColor='var(--err)'} } }
-  renderStats(it)
-  D.querySelector('#addStat').onclick=()=>{ (it.stats=it.stats||[]).push({stat:'atk',value:0}); renderStats(it); setDirty(true) }
+  if (it.effects){ const ta=D.querySelector('#e_eff'); ta.onchange=()=>{ try{ it.effects=JSON.parse(ta.value); ta.style.borderColor=''; itemDirtyIds.add(id); setDirty(true)}catch(e){ ta.style.borderColor='var(--err)'} } }
+  renderStats(it, id)
+  D.querySelector('#addStat').onclick=()=>{ (it.stats=it.stats||[]).push({stat:'atk',value:0}); renderStats(it, id); itemDirtyIds.add(id); setDirty(true) }
 }
-function renderStats(it){
+function renderStats(it, itemId){
   const wrap = document.getElementById('detail').querySelector('#stats')
   it.stats = it.stats || []
   wrap.innerHTML = it.stats.map((s,i)=>`
@@ -570,9 +619,9 @@ function renderStats(it){
       <input data-i="${i}" class="sv" type="number" value="${s.value}">
       <button data-i="${i}" class="sx">✕</button>
     </div>`).join('')
-  wrap.querySelectorAll('.ss').forEach(el=>el.onchange=()=>{it.stats[+el.dataset.i].stat=el.value;setDirty(true)})
-  wrap.querySelectorAll('.sv').forEach(el=>el.oninput=()=>{it.stats[+el.dataset.i].value=+el.value||0;setDirty(true)})
-  wrap.querySelectorAll('.sx').forEach(el=>el.onclick=()=>{it.stats.splice(+el.dataset.i,1);renderStats(it);setDirty(true)})
+  wrap.querySelectorAll('.ss').forEach(el=>el.onchange=()=>{it.stats[+el.dataset.i].stat=el.value;if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
+  wrap.querySelectorAll('.sv').forEach(el=>el.oninput=()=>{it.stats[+el.dataset.i].value=+el.value||0;if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
+  wrap.querySelectorAll('.sx').forEach(el=>el.onclick=()=>{it.stats.splice(+el.dataset.i,1);renderStats(it,itemId);if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
 }
 
 // ───────────────────────── Panoplies ─────────────────────────
@@ -601,12 +650,12 @@ function renderPanoDetail(k){
     <div class="section"><h3>Bonus par palier</h3><div id="bonuses"></div>
       <div class="throw"><input id="newThr" type="number" placeholder="palier (2,3,4…)" style="width:140px;display:inline-block">
       <button id="addThr">+ palier</button></div></div>`
-  D.querySelector('#p_name').oninput=e=>{p.name=e.target.value;renderPanoList();setDirty(true)}
-  D.querySelector('#p_pieces').onchange=e=>{p.pieces=e.target.value.split(',').map(s=>s.trim()).filter(Boolean);setDirty(true)}
-  D.querySelector('#addThr').onclick=()=>{const t=+D.querySelector('#newThr').value;if(t){p.bonuses[t]=p.bonuses[t]||{stats:[]};renderBonuses(p);setDirty(true)}}
-  renderBonuses(p)
+  D.querySelector('#p_name').oninput=e=>{p.name=e.target.value;renderPanoList();panoDirtyIds.add(k);setDirty(true)}
+  D.querySelector('#p_pieces').onchange=e=>{p.pieces=e.target.value.split(',').map(s=>s.trim()).filter(Boolean);panoDirtyIds.add(k);setDirty(true)}
+  D.querySelector('#addThr').onclick=()=>{const t=+D.querySelector('#newThr').value;if(t){p.bonuses[t]=p.bonuses[t]||{stats:[]};renderBonuses(p,k);panoDirtyIds.add(k);setDirty(true)}}
+  renderBonuses(p, k)
 }
-function renderBonuses(p){
+function renderBonuses(p, panoId){
   const wrap=document.getElementById('detail').querySelector('#bonuses')
   const thrs=Object.keys(p.bonuses).map(Number).sort((a,b)=>a-b)
   wrap.innerHTML=thrs.map(t=>{
@@ -619,11 +668,11 @@ function renderBonuses(p){
         <button data-t="${t}" data-i="${i}" class="bsx">✕</button></div>`).join('')}</div>
       <button data-t="${t}" class="bAdd">+ stat</button></div>`
   }).join('') || '<div class="muted">Aucun palier.</div>'
-  wrap.querySelectorAll('.delThr').forEach(el=>el.onclick=()=>{delete p.bonuses[el.dataset.t];renderBonuses(p);setDirty(true)})
-  wrap.querySelectorAll('.bAdd').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.push({stat:'atk',value:0});renderBonuses(p);setDirty(true)})
-  wrap.querySelectorAll('.bss').forEach(el=>el.onchange=()=>{p.bonuses[el.dataset.t].stats[+el.dataset.i].stat=el.value;setDirty(true)})
-  wrap.querySelectorAll('.bsv').forEach(el=>el.oninput=()=>{p.bonuses[el.dataset.t].stats[+el.dataset.i].value=+el.value||0;setDirty(true)})
-  wrap.querySelectorAll('.bsx').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.splice(+el.dataset.i,1);renderBonuses(p);setDirty(true)})
+  wrap.querySelectorAll('.delThr').forEach(el=>el.onclick=()=>{delete p.bonuses[el.dataset.t];renderBonuses(p,panoId);if(panoId)panoDirtyIds.add(panoId);setDirty(true)})
+  wrap.querySelectorAll('.bAdd').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.push({stat:'atk',value:0});renderBonuses(p,panoId);if(panoId)panoDirtyIds.add(panoId);setDirty(true)})
+  wrap.querySelectorAll('.bss').forEach(el=>el.onchange=()=>{p.bonuses[el.dataset.t].stats[+el.dataset.i].stat=el.value;if(panoId)panoDirtyIds.add(panoId);setDirty(true)})
+  wrap.querySelectorAll('.bsv').forEach(el=>el.oninput=()=>{p.bonuses[el.dataset.t].stats[+el.dataset.i].value=+el.value||0;if(panoId)panoDirtyIds.add(panoId);setDirty(true)})
+  wrap.querySelectorAll('.bsx').forEach(el=>el.onclick=()=>{p.bonuses[el.dataset.t].stats.splice(+el.dataset.i,1);renderBonuses(p,panoId);if(panoId)panoDirtyIds.add(panoId);setDirty(true)})
 }
 
 
@@ -695,7 +744,7 @@ function renderMonsterDetail(id){
       </div>
     </div>
     <div class="section" id="m_sort_section"></div>`
-  const bind=(elId,fn)=>{const el=D.querySelector('#'+elId);if(el)el.oninput=el.onchange=()=>{fn(el.value);setDirty(true)}}
+  const bind=(elId,fn)=>{const el=D.querySelector('#'+elId);if(el)el.oninput=el.onchange=()=>{fn(el.value);monsterDirtyIds.add(id);setDirty(true)}}
   bind('m_name',v=>{m.name=v;renderMonsterList()})
   bind('m_image',v=>m.image=v)
   bind('m_tier',v=>{m.tier=v;renderMonsterList()})
@@ -705,10 +754,10 @@ function renderMonsterDetail(id){
   bind('m_spd',v=>m.bst.spd=+v||0)
   bind('m_cc',v=>{ if(v==='')delete m.bst.critChance; else m.bst.critChance=+v })
   bind('m_cd',v=>{ if(v==='')delete m.bst.critDamagePct; else m.bst.critDamagePct=+v })
-  D.querySelectorAll('.m_res').forEach(el=>el.oninput=()=>{m.bst.res[el.dataset.e]=+el.value||0;setDirty(true)})
-  renderMonsterMoves(m)
+  D.querySelectorAll('.m_res').forEach(el=>el.oninput=()=>{m.bst.res[el.dataset.e]=+el.value||0;monsterDirtyIds.add(id);setDirty(true)})
+  renderMonsterMoves(m, id)
 }
-function renderMonsterMoves(m){
+function renderMonsterMoves(m, monId){
   const D=document.getElementById('detail')
   const wrap=D.querySelector('#m_sort_section'); if(!wrap) return
   const isAdv = m.moves && !Array.isArray(m.moves)
@@ -747,30 +796,34 @@ function renderMonsterMoves(m){
   wrap.querySelector('.mm_toggle').onclick = () => {
     if(!isAdv){ m.moves = { pool: [...(Array.isArray(m.moves)?m.moves:[])], fixed: [] } }
     else { m.moves = [...(m.moves.pool||[]), ...(m.moves.fixed||[])] }
-    renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+    if(monId) monsterDirtyIds.add(monId)
+    renderMonsterMoves(m, monId); renderMonsterList(); setDirty(true)
   }
 
   if(!isAdv){
     wrap.querySelectorAll('.mvx').forEach(el=>el.onclick=()=>{
       m.moves=(Array.isArray(m.moves)?m.moves:[]).filter(x=>x!==el.dataset.id)
-      renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+      if(monId) monsterDirtyIds.add(monId)
+      renderMonsterMoves(m, monId); renderMonsterList(); setDirty(true)
     })
     const inp=wrap.querySelector('.mm_srch')
     inp.onchange=()=>{
       const opt=[...wrap.querySelectorAll('#mm_dl option')].find(o=>o.value===inp.value)
       const mid=opt?opt.dataset.id:inp.value.trim()
       if(!Array.isArray(m.moves)) m.moves=[]
-      if(mid&&m.moves.length<4&&!m.moves.includes(mid)){m.moves.push(mid);renderMonsterMoves(m);renderMonsterList();setDirty(true)}
+      if(mid&&m.moves.length<4&&!m.moves.includes(mid)){m.moves.push(mid);if(monId)monsterDirtyIds.add(monId);renderMonsterMoves(m,monId);renderMonsterList();setDirty(true)}
       inp.value=''
     }
   } else {
     wrap.querySelectorAll('#mm_pool .mvx').forEach(el=>el.onclick=()=>{
       m.moves.pool=m.moves.pool.filter(x=>x!==el.dataset.id)
-      renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+      if(monId) monsterDirtyIds.add(monId)
+      renderMonsterMoves(m, monId); renderMonsterList(); setDirty(true)
     })
     wrap.querySelectorAll('#mm_fixed .mvx').forEach(el=>el.onclick=()=>{
       m.moves.fixed=m.moves.fixed.filter(x=>x!==el.dataset.id)
-      renderMonsterMoves(m); renderMonsterList(); setDirty(true)
+      if(monId) monsterDirtyIds.add(monId)
+      renderMonsterMoves(m, monId); renderMonsterList(); setDirty(true)
     })
     const addTo = (arr, cls, dlId) => {
       const inp=wrap.querySelector('.'+cls)
@@ -778,7 +831,7 @@ function renderMonsterMoves(m){
         const opt=[...wrap.querySelectorAll('#'+dlId+' option')].find(o=>o.value===inp.value)
         const mid=opt?opt.dataset.id:inp.value.trim()
         const tot=(m.moves.pool||[]).length+(m.moves.fixed||[]).length
-        if(mid&&tot<4&&!arr.includes(mid)){arr.push(mid);renderMonsterMoves(m);renderMonsterList();setDirty(true)}
+        if(mid&&tot<4&&!arr.includes(mid)){arr.push(mid);if(monId)monsterDirtyIds.add(monId);renderMonsterMoves(m,monId);renderMonsterList();setDirty(true)}
         inp.value=''
       }
     }
@@ -882,7 +935,7 @@ function renderMstrMovePanel(){
     D.querySelector('#mmSelMoveNew').onclick = () => { mmSelMove = null; renderMstrMovePanel() }
     D.querySelectorAll('.mmMonPill').forEach(el => el.onclick = () => {
       const m2 = MONSTERS[mmSelMon]
-      if(Array.isArray(m2.moves)){ m2.moves = m2.moves.filter(x=>x!==el.dataset.id); setDirty(true); renderMstrMonList(); renderMstrMovePanel() }
+      if(Array.isArray(m2.moves)){ m2.moves = m2.moves.filter(x=>x!==el.dataset.id); monsterDirtyIds.add(mmSelMon); setDirty(true); renderMstrMonList(); renderMstrMovePanel() }
     })
   }
   D.querySelector('#mmMoveSel').onchange = e => { mmSelMove = e.target.value||null; renderMstrMovePanel() }
@@ -1225,7 +1278,7 @@ function mmSaveMove(wrap){
     delete MSTRMOVES[oldId]
     for(const mid of Object.keys(MONSTERS)){
       const m = MONSTERS[mid]
-      if(Array.isArray(m.moves)) m.moves = m.moves.map(x => x===oldId ? id : x)
+      if(Array.isArray(m.moves) && m.moves.includes(oldId)){ m.moves = m.moves.map(x => x===oldId ? id : x); monsterDirtyIds.add(mid) }
     }
   }
 
@@ -1244,7 +1297,7 @@ function mmSaveMove(wrap){
   for(const mid of (_assignTo||[])){
     const m = MONSTERS[mid]
     if(!Array.isArray(m.moves)) m.moves = []
-    if(!m.moves.includes(id)) m.moves.push(id)
+    if(!m.moves.includes(id)){ m.moves.push(id); monsterDirtyIds.add(mid) }
   }
 
   mmSelMove = id
@@ -1508,6 +1561,24 @@ function applyZoneLevel(itemId, isKey, mobMinLevel){
   if(!ITEM[itemId]) return
   if(_isDofusTrophee(ITEM[itemId])) return
   ITEM[itemId].requiredLevel = mobMinLevel||0
+  itemDirtyIds.add(itemId)
+}
+function _minLevelForItem(itemId){
+  let min = null
+  for(const z of Object.keys(AREAS)){
+    const lvl = AREAS[z].mobMinLevel||0
+    if((AREAS[z].lootTable||[]).some(e=>e.itemId===itemId && !e.isKey))
+      if(min===null || lvl < min) min = lvl
+  }
+  return min
+}
+function syncItemLevel(itemId){
+  if(!ITEM[itemId] || _isDofusTrophee(ITEM[itemId])) return
+  const lvl = _minLevelForItem(itemId)
+  if(lvl===null){ toast('Item absent des loot tables','err'); return }
+  if(ITEM[itemId].requiredLevel === lvl){ toast(`${ITEM[itemId].name||itemId} déjà à niv ${lvl}`); return }
+  ITEM[itemId].requiredLevel = lvl; itemDirtyIds.add(itemId); setDirty(true)
+  toast(`${ITEM[itemId].name||itemId} → niv ${lvl}`)
 }
 function syncItemLevels(){
   // pour chaque item dans toutes les lootTable, prend le niveau minimum de zone
@@ -1521,7 +1592,7 @@ function syncItemLevels(){
   }
   let count = 0
   for(const [id, lvl] of Object.entries(minLvl)){
-    if(ITEM[id] && !_isDofusTrophee(ITEM[id]) && ITEM[id].requiredLevel !== lvl){ ITEM[id].requiredLevel = lvl; count++ }
+    if(ITEM[id] && !_isDofusTrophee(ITEM[id]) && ITEM[id].requiredLevel !== lvl){ ITEM[id].requiredLevel = lvl; itemDirtyIds.add(id); count++ }
   }
   if(count) setDirty(true)
   toast(count ? `${count} item(s) mis à jour` : 'Aucun changement')
@@ -1544,12 +1615,14 @@ function renderZoneLoot(z){
       <span class="loot-name" title="${e.itemId}">${nm} <span class="muted">(${e.itemId})</span></span>
       <input class="ldr" data-i="${i}" type="number" min="0" max="100" step="0.5" value="${pct}" style="width:72px" title="taux de drop %">
       <span class="muted" style="font-size:11px;flex:none">%</span>
+      ${!e.isKey && e.itemId!=='pierreDame' && e.itemId!=='pierreDameGardien' ? `<button class="ldsync" data-i="${i}" style="flex:none" title="Sync niveau (min toutes zones)">⚡</button>` : ''}
       <button class="ldx" data-i="${i}" style="flex:none">✕</button></div>`
   }).join('') : '<div class="muted" style="padding:6px 0">Aucun item de loot configuré.</div>'
   wrap.querySelectorAll('.ldr').forEach(el=>el.oninput=()=>{
     a.lootTable[+el.dataset.i].dropRate=Math.round(+el.value*100)/10000  // % → decimal
     dirtyZones.add(z);setDirty(true)
   })
+  wrap.querySelectorAll('.ldsync').forEach(el=>el.onclick=()=>syncItemLevel(a.lootTable[+el.dataset.i].itemId))
   wrap.querySelectorAll('.ldx').forEach(el=>el.onclick=()=>{
     a.lootTable.splice(+el.dataset.i,1)
     renderZoneLoot(z); updateZoneListItem(z); dirtyZones.add(z); setDirty(true)
@@ -2324,7 +2397,7 @@ function cmSaveMove(wrap){
 }
 
 // ───────────────────────── événements ─────────────────────────
-document.getElementById('openBtn').onclick=()=>openFolder().catch(e=>{toast('Ouverture annulée/échouée','err');console.error(e)})
+document.getElementById('openBtn').onclick=()=>openFolder().catch(e=>{toast('Ouverture annulée/échouée : '+e.message,'err');console.error(e)})
 document.getElementById('saveBtn').onclick=saveAll
 document.getElementById('syncLevelsBtn').onclick=syncItemLevels
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{

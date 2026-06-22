@@ -364,9 +364,11 @@ function updateResourceBubbles() {
     const archiCount  = allDrops.filter(d =>  d.isArchi).length
     const caisseCount = combat?.sessionLoot?.caisseCount || 0
     const keyDrops    = combat?.sessionLoot?.keyDrops || {}
+    const dofusDrops  = combat?.sessionLoot?.dofusDrops || {}
     const anyKey      = Object.values(keyDrops).some(c => c > 0)
+    const anyDofus    = Object.values(dofusDrops).some(c => c > 0)
 
-    if (!state.isRunning || (pierreCount === 0 && gardienCount === 0 && archiCount === 0 && caisseCount === 0 && !anyKey)) {
+    if (!state.isRunning || (pierreCount === 0 && gardienCount === 0 && archiCount === 0 && caisseCount === 0 && !anyKey && !anyDofus)) {
         container.innerHTML = ''
         return
     }
@@ -407,6 +409,15 @@ function updateResourceBubbles() {
         if (!keyItm) continue
         html += `<div class="res-bubble" onclick="showItemTooltip('${keyId}')" oncontextmenu="event.preventDefault();showItemTooltip('${keyId}')" title="${keyItm.name}">
             <img src="${keyItm.image}" onerror="this.src='img/icons/icon.png'">
+            <span class="res-bubble-count">×${count}</span>
+        </div>`
+    }
+    for (const [dofusId, count] of Object.entries(dofusDrops)) {
+        if (count <= 0) continue
+        const dofusItm = item[dofusId]
+        if (!dofusItm) continue
+        html += `<div class="res-bubble" onclick="showItemTooltip('${dofusId}')" oncontextmenu="event.preventDefault();showItemTooltip('${dofusId}')" title="${dofusItm.name}">
+            <img src="${dofusItm.image}" onerror="this.src='img/icons/icon.png'">
             <span class="res-bubble-count">×${count}</span>
         </div>`
     }
