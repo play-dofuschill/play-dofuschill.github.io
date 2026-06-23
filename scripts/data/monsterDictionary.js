@@ -3271,7 +3271,7 @@ monsters.blopignon = {
 monsters.tronkoBlop = {
     id: 'tronkoBlop',
     name: 'Tronko Blop',
-    image: 'images/monsters/TronkoBlop.png',
+    image: 'images/monsters/Tronkoblop.png',
     rarity: 'peu_commun',
     tier: 'normal',
     bst: { hp: 610, atk: 208, spd: 110, res: { neutre: 0, terre: 41, feu: 31, eau: -9, air: -24 } },
@@ -3491,7 +3491,7 @@ monsters.serpentin = {
 monsters.blopCoco = {
     id: 'blopCoco',
     name: 'Blop Coco',
-    image: 'images/monsters/Biblop_Coco.png',
+    image: 'images/monsters/Blop_Coco.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 } },
@@ -3501,7 +3501,7 @@ monsters.blopCoco = {
 monsters.blopGriotte = {
     id: 'blopGriotte',
     name: 'Blop Griotte',
-    image: 'images/monsters/Biblop_Griotte.png',
+    image: 'images/monsters/Blop_Griotte.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 } },
@@ -3511,7 +3511,7 @@ monsters.blopGriotte = {
 monsters.blopIndigo = {
     id: 'blopIndigo',
     name: 'Blop Indigo',
-    image: 'images/monsters/Biblop_Indigo.png',
+    image: 'images/monsters/Blop_Indigo.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 } },
@@ -3521,7 +3521,7 @@ monsters.blopIndigo = {
 monsters.blopReinette = {
     id: 'blopReinette',
     name: 'Blop Reinette',
-    image: 'images/monsters/Biblop_Reinette.png',
+    image: 'images/monsters/Blop_Reinette.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 } },
@@ -11453,7 +11453,7 @@ monsters.scarafeuilleImmature = {
 monsters.gloutoBlop = {
     id: 'gloutoBlop',
     name: 'Glouto Blop',
-    image: 'images/monsters/GloutoBlop.png',
+    image: 'images/monsters/Gloutoblop.png',
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 800, atk: 208, spd: 110, res: { neutre: 21, terre: -9, feu: -24, eau: 26, air: 11 } },

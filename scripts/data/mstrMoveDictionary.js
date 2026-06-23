@@ -1491,7 +1491,7 @@ move.blotection_air = {
     id: 'blotection_air',
     name: 'Blotection',
     cooldownMs: 2500,
-    effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
+    effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.terre', value: 40, duration: 2, target: 'self'}],
 }
 // Blop Griotte Royal (feu)
@@ -1506,7 +1506,7 @@ move.blotection_feu = {
     id: 'blotection_feu',
     name: 'Blotection',
     cooldownMs: 2500,
-    effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
+    effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.eau', value: 40, duration: 2, target: 'self'}],
 }
 // Blop Indigo Royal (eau)
@@ -1521,7 +1521,7 @@ move.blotection_eau = {
     id: 'blotection_eau',
     name: 'Blotection',
     cooldownMs: 2500,
-    effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
+    effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.feu', value: 40, duration: 2, target: 'self'}],
 }
 // Blop Reinette Royal (terre)
@@ -1536,7 +1536,7 @@ move.blotection_terre = {
     id: 'blotection_terre',
     name: 'Blotection',
     cooldownMs: 2500,
-    effects: [{ type: 'shield', value: 500, duration: 2, target: 'self'},
+    effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.air', value: 40, duration: 2, target: 'self'}],
 }
 // #endregion
