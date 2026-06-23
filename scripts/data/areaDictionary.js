@@ -2837,7 +2837,7 @@ areas.donjonOtomaj = {
     icon: "images/monsters/Gourlo_le_Terrible.png",
     description: "Ancien navire échoué au large de l'île d'Otomaï, l'Arche est devenue le refuge du terrible pirate Gourlo. Les marins racontent encore que ses trésors maudits reposent quelque part dans ses cales inondées.",
     spawns: [
-        { id: 'gourloLeТerrible', weight: 100 }
+        { id: 'gourlo_le_terrible', weight: 100 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
