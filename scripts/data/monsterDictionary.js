@@ -1158,7 +1158,7 @@ monsters.martoa = {
     moves: ['marteau_branlant', 'mur_de_pelles']
 }
 
-summons.mur_de_pelles = {
+monsters.mur_de_pelles = {
     id:    'mur_de_pelles',
     name:  'Mur de pelles',
     image: 'img/classes/invocations/pelle_animee.png',
@@ -1845,7 +1845,7 @@ monsters.chafer = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 310, atk: 43, spd: 100, res: { neutre: 0, terre: -10, feu: 10, eau: 0, air: 5 } },
-    moves: []
+    moves: ['coup_du_chafer']
 }
 
 monsters.scarafeuilleBlanc = {
@@ -2095,7 +2095,7 @@ monsters.chafer_fantassin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 350, atk: 45, spd: 100, res: { neutre: -5, terre: -5, feu: 15, eau: 0, air: 10 } },
-    moves: []
+    moves: ['coup_du_chafer']
 }
 
 monsters.dragodinde_de_nowel = {

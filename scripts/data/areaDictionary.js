@@ -131,8 +131,18 @@ areas.campementDesGobs = {
     background: '',
     icon: 'images/monsters/Gobet.png',
     description: "Les Gobets, petites créatures vertes au tempérament belliqueux, ont établi leurs quartiers ici avec une organisation surprenante. Tentes de fortune, braseros crépitants et chants gutturaux rythment la vie de ce campement où la hiérarchie se règle à coups de poing.",
-    spawns: [{ id: 'gobet', weight: 10 }, { id: 'gobaliste', weight: 10 }, { id: 'gob_trotteur', weight: 10 }, { id: 'gobichon', weight: 10 }, { id: 'gobaladee', weight: 5 }],
-    lootTable: [{ itemId: 'amulette_de_gobeuf', dropRate: 0.01 }, { itemId: 'ceinture_de_gobeuf', dropRate: 0.01 }, { itemId: 'anneau_de_gobeuf', dropRate: 0.01 }, { itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'cleDonjonAcademieGobs', dropRate: 0.15, isKey: true }]
+    spawns: [
+        { id: 'gobet', weight: 10 }, 
+        { id: 'gobaliste', weight: 10 }, 
+        { id: 'gob_trotteur', weight: 10 }, 
+        { id: 'gobichon', weight: 10 }, 
+        { id: 'gobaladee', weight: 5 }],
+    lootTable: [
+        { itemId: 'amulette_de_gobeuf', dropRate: 0.01 }, 
+        { itemId: 'ceinture_de_gobeuf', dropRate: 0.01 }, 
+        { itemId: 'anneau_de_gobeuf', dropRate: 0.01 }, 
+        { itemId: 'pierreDame', dropRate: 0.45 }, 
+        { itemId: 'cleDonjonAcademieGobs', dropRate: 0.15, isKey: true }]
 }
 
 areas.scarafeuilles = {

@@ -3427,6 +3427,7 @@ function executeEnemyAction() {
     if (!combat.enemy || combat.enemy.currentHp <= 0) return
 
     const e          = combat.enemy
+    if (!e.moves?.length) return
     const curMoveIdx = e.moveIndex % e.moves.length
     const moveId     = e.moves[curMoveIdx]
     e.moveIndex++

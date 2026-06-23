@@ -227,7 +227,7 @@ move.fuyezPauvresFous = {
     name: 'Fuyez ! Pauvres fous !',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: { min: 15, max: 20 }, target: 'enemy'},
-              {type: 'debuff', stat: 'atk', value: { min: -40, max: -40 }, duration: 3, target: 'enemy'}]
+              {type: 'debuff', stat: 'atk', value: { min: 40, max: 40 }, duration: 3, target: 'enemy'}]
 }
 move.desherbant = {
     id: 'desherbant',
@@ -9425,7 +9425,6 @@ move.evidence = {
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
-        // TODO: Minimise les effets aléatoires de la cible
     ]
 }
 move.kaptene = {
