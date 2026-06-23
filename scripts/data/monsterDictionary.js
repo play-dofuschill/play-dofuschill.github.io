@@ -3491,7 +3491,7 @@ monsters.serpentin = {
 monsters.blopCoco = {
     id: 'blopCoco',
     name: 'Blop Coco',
-    image: 'images/monsters/Blop_Coco.png',
+    image: 'images/monsters/Blop_Coco_invoqué.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 } },
@@ -3501,7 +3501,7 @@ monsters.blopCoco = {
 monsters.blopGriotte = {
     id: 'blopGriotte',
     name: 'Blop Griotte',
-    image: 'images/monsters/Blop_Griotte.png',
+    image: 'images/monsters/Blop_Griotte_invoqué.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 } },
@@ -3511,7 +3511,7 @@ monsters.blopGriotte = {
 monsters.blopIndigo = {
     id: 'blopIndigo',
     name: 'Blop Indigo',
-    image: 'images/monsters/Blop_Indigo.png',
+    image: 'images/monsters/Blop_Indigo_invoqué.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 } },
@@ -3521,7 +3521,7 @@ monsters.blopIndigo = {
 monsters.blopReinette = {
     id: 'blopReinette',
     name: 'Blop Reinette',
-    image: 'images/monsters/Blop_Reinette.png',
+    image: 'images/monsters/Blop_Reinette_invoqué.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 680, atk: 208, spd: 110, res: { neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 } },

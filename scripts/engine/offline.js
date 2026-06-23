@@ -89,6 +89,59 @@ function _resumeSavedCombat() {
     startCombat(state.currentArea)
 }
 
+// Utilisé depuis le tooltip inventaire pour les items avec offlineMinutes.
+function useOfflineBoostItem(itemId) {
+    const itm   = item[itemId]
+    const entry = state.inventory[itemId]
+    if (!itm?.offlineMinutes || !entry || entry.count <= 0) return
+
+    const canApply = state.isRunning && !combat?.isRaid && !combat?.isPoutch
+
+    if (!canApply) {
+        openTooltip(
+            '⚠️ Aucun combat en cours',
+            `<div class="item-sheet">
+                <p style="margin-bottom:0.5rem;">Attention, vous êtes sur le point d'utiliser <strong>${itm.name}</strong> alors qu'aucun combat n'est en cours.</p>
+                <p style="color:#e07b39;margin-bottom:1rem;font-weight:bold;">Utiliser cet objet n'accordera aucun effet.</p>
+                <div style="display:flex;gap:0.5rem;justify-content:flex-end">
+                    <button class="forge-btn" onclick="closeTooltip()">Annuler</button>
+                    <button class="forge-btn" style="background:#7a3030;border-color:#7a3030" onclick="_applyOfflineBoostItem('${itemId}')">Utiliser quand même</button>
+                </div>
+            </div>`
+        )
+        return
+    }
+
+    _applyOfflineBoostItem(itemId)
+}
+
+function _applyOfflineBoostItem(itemId) {
+    const itm   = item[itemId]
+    const entry = state.inventory[itemId]
+    if (!itm || !entry || entry.count <= 0) return
+
+    const canApply = state.isRunning && !combat?.isRaid && !combat?.isPoutch
+    const minutes  = itm.offlineMinutes || 0
+
+    entry.count--
+    if (entry.count <= 0) delete state.inventory[itemId]
+
+    if (minutes > 0 && canApply) {
+        _afkSeconds += minutes * 60
+    }
+
+    saveGame()
+    closeAllTooltips()
+
+    const label = minutes >= 60 ? `${minutes / 60}h` : `${minutes} min`
+    showNotification(
+        canApply
+            ? `⏩ ${itm.name} utilisé — +${label} en avance rapide !`
+            : `${itm.name} utilisé sans effet.`,
+        canApply ? 'success' : 'info'
+    )
+}
+
 // Appelé depuis onDefeat quand _afkSeconds était actif.
 // Consomme un ticket autopilot et continue le fast-forward, ou stoppe proprement.
 function _offlineHandleDefeat() {

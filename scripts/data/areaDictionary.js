@@ -4784,73 +4784,137 @@ areas.donjonDechireuse = {
 // #region EVENTS ─────────────────────────────────────────────────────────────
 // #region loot table runes 
 /*
-── Lignes de drop disponibles pour les runes ────────────────────────────────
-Copier-coller la ligne souhaitée dans le lootTable d'une zone ou d'un event.
-Les dropRate sont indicatifs — ajuster selon la rareté voulue.
 
-PV
-       { itemId: 'runeHpS',       dropRate: 0.10 },  // +20 PV   · coût −3 niv
-       { itemId: 'runeHpM',       dropRate: 0.05 },  // +60 PV   · coût −7 niv
-       { itemId: 'runeHpL',       dropRate: 0.02 },  // +150 PV  · coût −12 niv
-ATK
-       { itemId: 'runeAtkS',      dropRate: 0.10 },  // +15 ATK  · coût −3 niv
-       { itemId: 'runeAtkM',      dropRate: 0.05 },  // +50 ATK  · coût −7 niv
-       { itemId: 'runeAtkL',      dropRate: 0.02 },  // +130 ATK · coût −12 niv
-Vitesse
-       { itemId: 'runeSpdS',      dropRate: 0.08 },  // +5 Vit   · coût −4 niv
-       { itemId: 'runeSpdM',      dropRate: 0.04 },  // +15 Vit  · coût −8 niv
-Dégâts fixes
-       { itemId: 'runeFlatDmgS',  dropRate: 0.10 },  // +5 Dég   · coût −3 niv
-       { itemId: 'runeFlatDmgM',  dropRate: 0.05 },  // +15 Dég  · coût −7 niv
-Critique
-       { itemId: 'runeCritS',     dropRate: 0.08 },  // +5% Crit · coût −4 niv
-       { itemId: 'runeCritDmgS',  dropRate: 0.06 },  // +10% DégCrit · coût −5 niv
-Dégâts %
-       { itemId: 'runeFinalDmgS', dropRate: 0.06 },  // +7% DégFin   · coût −6 niv
-       { itemId: 'runeSpellDmgS', dropRate: 0.07 },  // +8% DégSort  · coût −5 niv
-Défensif
-       { itemId: 'runeDamRedS',   dropRate: 0.07 },  // +5% Réd.dég  · coût −5 niv
-Résistances
-       { itemId: 'runeFireResS',    dropRate: 0.08 },  // +8% Rés.Feu    · coût −4 niv
-       { itemId: 'runeWaterResS',   dropRate: 0.08 },  // +8% Rés.Eau    · coût −4 niv
-       { itemId: 'runeEarthResS',   dropRate: 0.08 },  // +8% Rés.Terre  · coût −4 niv
-       { itemId: 'runeAirResS',     dropRate: 0.08 },  // +8% Rés.Air    · coût −4 niv
-       { itemId: 'runeNeutralResS', dropRate: 0.08 },  // +8% Rés.Neutre · coût −4 niv
-─────────────────────────────────────────────────────────────────────────────
+        // Runes normales
+        { itemId: 'runeHpS',              dropRate: 0.01 },
+        { itemId: 'runeHpM',              dropRate: 0.01 },
+        { itemId: 'runeHpL',              dropRate: 0.01 },
+        { itemId: 'runeAtkS',             dropRate: 0.01 },
+        { itemId: 'runeAtkM',             dropRate: 0.01 },
+        { itemId: 'runeAtkL',             dropRate: 0.01 },
+        { itemId: 'runeSpdS',             dropRate: 0.01 },
+        { itemId: 'runeSpdM',             dropRate: 0.01 },
+        { itemId: 'runeSpdL',             dropRate: 0.01 },
+        { itemId: 'runeFlatDmgS',         dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM',         dropRate: 0.01 },
+        { itemId: 'runeFlatDmgL',         dropRate: 0.01 },
+        { itemId: 'runeCritS',            dropRate: 0.01 },
+        { itemId: 'runeCritM',            dropRate: 0.01 },
+        { itemId: 'runeCritL',            dropRate: 0.01 },
+        { itemId: 'runeCritDmgM',         dropRate: 0.01 },
+        { itemId: 'runeCritDmgL',         dropRate: 0.01 },
+        { itemId: 'runeFinalDmgM',        dropRate: 0.01 },
+        { itemId: 'runeFinalDmgL',        dropRate: 0.01 },
+        { itemId: 'runeSpellDmgM',        dropRate: 0.01 },
+        { itemId: 'runeSpellDmgL',        dropRate: 0.01 },
+        { itemId: 'runeDamRedM',          dropRate: 0.01 },
+        { itemId: 'runeDamRedL',          dropRate: 0.01 },
+        { itemId: 'runeFireResS',         dropRate: 0.01 },
+        { itemId: 'runeWaterResS',        dropRate: 0.01 },
+        { itemId: 'runeEarthResS',        dropRate: 0.01 },
+        { itemId: 'runeAirResS',          dropRate: 0.01 },
+        { itemId: 'runeNeutralResS',      dropRate: 0.01 },
+        { itemId: 'runeFireResM',         dropRate: 0.01 },
+        { itemId: 'runeWaterResM',        dropRate: 0.01 },
+        { itemId: 'runeEarthResM',        dropRate: 0.01 },
+        { itemId: 'runeAirResM',          dropRate: 0.01 },
+        { itemId: 'runeNeutralResM',      dropRate: 0.01 },
+        { itemId: 'runeFireResL',         dropRate: 0.01 },
+        { itemId: 'runeWaterResL',        dropRate: 0.01 },
+        { itemId: 'runeEarthResL',        dropRate: 0.01 },
+        { itemId: 'runeAirResL',          dropRate: 0.01 },
+        { itemId: 'runeNeutralResL',      dropRate: 0.01 },
+        // Runes Transcendance
+        { itemId: 'runeTransHpS',         dropRate: 0.005 },
+        { itemId: 'runeTransHpM',         dropRate: 0.005 },
+        { itemId: 'runeTransHpL',         dropRate: 0.005 },
+        { itemId: 'runeTransAtkS',        dropRate: 0.005 },
+        { itemId: 'runeTransAtkM',        dropRate: 0.005 },
+        { itemId: 'runeTransAtkL',        dropRate: 0.005 },
+        { itemId: 'runeTransSpdS',        dropRate: 0.005 },
+        { itemId: 'runeTransSpdM',        dropRate: 0.005 },
+        { itemId: 'runeTransSpdL',        dropRate: 0.005 },
+        { itemId: 'runeTransFlatDmgS',    dropRate: 0.005 },
+        { itemId: 'runeTransFlatDmgM',    dropRate: 0.005 },
+        { itemId: 'runeTransFlatDmgL',    dropRate: 0.005 },
+        { itemId: 'runeTransCritS',       dropRate: 0.005 },
+        { itemId: 'runeTransCritM',       dropRate: 0.005 },
+        { itemId: 'runeTransCritL',       dropRate: 0.005 },
+        { itemId: 'runeTransCritDmgS',    dropRate: 0.005 },
+        { itemId: 'runeTransCritDmgM',    dropRate: 0.005 },
+        { itemId: 'runeTransFinalDmgS',   dropRate: 0.005 },
+        { itemId: 'runeTransFinalDmgM',   dropRate: 0.005 },
+        { itemId: 'runeTransSpellDmgS',   dropRate: 0.005 },
+        { itemId: 'runeTransSpellDmgM',   dropRate: 0.005 },
+        { itemId: 'runeTransDamRedS',     dropRate: 0.005 },
+        { itemId: 'runeTransDamRedM',     dropRate: 0.005 },
+        { itemId: 'runeTransFireResS',    dropRate: 0.005 },
+        { itemId: 'runeTransWaterResS',   dropRate: 0.005 },
+        { itemId: 'runeTransEarthResS',   dropRate: 0.005 },
+        { itemId: 'runeTransAirResS',     dropRate: 0.005 },
+        { itemId: 'runeTransNeutralResS', dropRate: 0.005 },
+        { itemId: 'runeTransFireResM',    dropRate: 0.005 },
+        { itemId: 'runeTransWaterResM',   dropRate: 0.005 },
+        { itemId: 'runeTransEarthResM',   dropRate: 0.005 },
+        { itemId: 'runeTransAirResM',     dropRate: 0.005 },
+        { itemId: 'runeTransNeutralResM', dropRate: 0.005 },
 
-        { itemId: 'runeHpS',          dropRate: 0.01 },
-        { itemId: 'runeHpM',          dropRate: 0.01 },
-        { itemId: 'runeHpL',          dropRate: 0.01 },
-        { itemId: 'runeAtkS',         dropRate: 0.01 },
-        { itemId: 'runeAtkM',         dropRate: 0.01 },
-        { itemId: 'runeAtkL',         dropRate: 0.01 },
-        { itemId: 'runeSpdS',         dropRate: 0.01 },
-        { itemId: 'runeSpdM',         dropRate: 0.01 },
-        { itemId: 'runeSpdL',         dropRate: 0.01 },
-        { itemId: 'runeFlatDmgS',     dropRate: 0.01 },
-        { itemId: 'runeFlatDmgM',     dropRate: 0.01 },
-        { itemId: 'runeFlatDmgL',     dropRate: 0.01 },
-        { itemId: 'runeCritS',        dropRate: 0.01 },
-        { itemId: 'runeCritM',        dropRate: 0.01 },
-        { itemId: 'runeCritL',        dropRate: 0.01 },
-        { itemId: 'runeCritDmgS',     dropRate: 0.01 },
-        { itemId: 'runeCritDmgM',     dropRate: 0.01 },
-        { itemId: 'runeFinalDmgS',    dropRate: 0.01 },
-        { itemId: 'runeFinalDmgM',    dropRate: 0.01 },
-        { itemId: 'runeSpellDmgS',    dropRate: 0.01 },
-        { itemId: 'runeSpellDmgM',    dropRate: 0.01 },
-        { itemId: 'runeDamRedS',      dropRate: 0.01 },
-        { itemId: 'runeDamRedM',      dropRate: 0.01 },
-        { itemId: 'runeFireResS',     dropRate: 0.01 },
-        { itemId: 'runeWaterResS',    dropRate: 0.01 },
-        { itemId: 'runeEarthResS',    dropRate: 0.01 },
-        { itemId: 'runeAirResS',      dropRate: 0.01 },
-        { itemId: 'runeNeutralResS',  dropRate: 0.01 },
-        { itemId: 'runeFireResM',     dropRate: 0.01 },
-        { itemId: 'runeWaterResM',    dropRate: 0.01 },
-        { itemId: 'runeEarthResM',    dropRate: 0.01 },
-        { itemId: 'runeAirResM',      dropRate: 0.01 },
-        { itemId: 'runeNeutralResM',  dropRate: 0.01 }
+
+
+        { itemId: 'trophee_slot1_x1',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x2',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x3',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x4',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x5',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x6',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x7',  dropRate: 0.001 },
+        { itemId: 'trophee_slot1_x8',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x1',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x2',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x3',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x4',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x5',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x6',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x7',  dropRate: 0.001 },
+        { itemId: 'trophee_slot2_x8',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x1',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x2',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x3',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x4',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x5',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x6',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x7',  dropRate: 0.001 },
+        { itemId: 'trophee_slot3_x8',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x1',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x2',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x3',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x4',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x5',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x6',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x7',  dropRate: 0.001 },
+        { itemId: 'trophee_slot4_x8',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x1',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x2',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x3',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x4',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x5',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x6',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x7',  dropRate: 0.001 },
+        { itemId: 'trophee_slot5_x8',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x1',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x2',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x3',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x4',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x5',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x6',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x7',  dropRate: 0.001 },
+        { itemId: 'trophee_slot6_x8',  dropRate: 0.001 },
+
+
+        { itemId: 'trophee_de_la_terre',   dropRate: 0.001 },
+        { itemId: 'trophee_du_feu',        dropRate: 0.001 },
+        { itemId: 'trophee_de_l_eau',      dropRate: 0.001 },
+        { itemId: 'trophee_de_l_air',      dropRate: 0.001 },
 */
 // #endregion
 areas.evenementPious = {
@@ -4967,8 +5031,8 @@ areas.evenementBiblop = {
         { id: 'biblop_indigo',   weight: 25 },
     ],
     lootTable: [
-        { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }
+        { itemId: 'pierreDame',            dropRate: 0.45 },
+        { itemId: 'trophee_du_neutre',   dropRate: 0.001 }
     ]
 }
 
@@ -4979,7 +5043,7 @@ areas.egoutsAstrub = {
     minLevel: 30, maxLevel: 50,
     mobMinLevel: 30, mobMaxLevel: 40,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Milirat_Strubien.png",
     description: "Les Égouts d'Astrub sont le reflet souterrain de la ville au-dessus : aussi animés, aussi dangereux, et beaucoup moins bien éclairés. Une odeur caractéristique y règne, ainsi qu'une faune opportuniste qui a fait des déchets de la surface son garde-manger.",
     spawns: [
         { id: 'kolerat_strubien', weight: 10 },
@@ -5100,11 +5164,11 @@ areas.raidGelees = {
     miniBoss: {ids: ['gelee_fraise_royale', 'gelee_menthe_royale', 'gelee_bleuet_royale', 'gelee_citron_royale'], everyKills: 4, statMult: 1},
     lootTable: [
         { itemId: 'pierreDame',     dropRate: 0.35 },
-        { itemId: 'gelocape',     dropRate: 0.02 },
-        { itemId: 'gelocoiffe',   dropRate: 0.02 },
-        { itemId: 'gelobottes',   dropRate: 0.02 },
-        { itemId: 'gelamu', dropRate: 0.02 },
-        { itemId: 'geloture', dropRate: 0.02 }
+        { itemId: 'gelocape',     dropRate: 0.01 },
+        { itemId: 'gelocoiffe',   dropRate: 0.01 },
+        { itemId: 'gelobottes',   dropRate: 0.01 },
+        { itemId: 'gelamu', dropRate: 0.01 },
+        { itemId: 'geloture', dropRate: 0.01 }
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },

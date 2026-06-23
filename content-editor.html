@@ -143,7 +143,8 @@ let MSTRMOVES = {}, mstrMoveText = ''
 let mstrMoveDirtyIds = new Set(), mstrMoveNewIds = new Set()
 let mmSelMove = null, mmSelMon = null, mmMonSortDir = -1, mmMonQ = '', mmWorkMove = null
 let WANTED_MONSTERS = {}, WANTED_BOSSES = {}, wantedText = ''
-let wantedDirtyIds = new Set(), wantedQ = '', wantedSelId = null
+let wantedDirtyIds = new Set(), wantedBossDirtyIds = new Set(), wantedQ = '', wantedSelId = null
+let dirtyZoneSets = false
 let CLASSMOVES = {}, classMoveText = ''
 let classMoveDirtyIds = new Set(), classMoveNewIds = new Set()
 let cmSelMove = null, cmQ = '', cmClassFilter = '', cmRestrFilter = ''
@@ -294,10 +295,10 @@ async function loadFromHandle(){
     CLASSES_LIST = Object.keys(clsObj).map(id=>({id, name: clsObj[id].name||id})).sort((a,b)=>a.name.localeCompare(b.name))
   } catch(e){ console.warn('classDictionary non chargé', e) }
 
-  dirtyZones = new Set(); newZones = new Set()
+  dirtyZones = new Set(); newZones = new Set(); dirtyZoneSets = false
   itemDirtyIds = new Set(); monsterDirtyIds = new Set(); panoDirtyIds = new Set()
   // Load wanted
-  wantedText = ''; WANTED_MONSTERS = {}; WANTED_BOSSES = {}; wantedDirtyIds = new Set()
+  wantedText = ''; WANTED_MONSTERS = {}; WANTED_BOSSES = {}; wantedDirtyIds = new Set(); wantedBossDirtyIds = new Set()
   try {
     H.wanted = await getFile(dirHandle, 'scripts', 'data', 'wantedDictionary.js')
     const wTxt = await (await H.wanted.getFile()).text()
@@ -461,19 +462,21 @@ function buildAreaText(){
       fresh.map(z => objBlock('areas', z, AREAS[z])).join('\n\n') + '\n\n'
     txt = txt.slice(0, at) + ins + txt.slice(at)
   }
-  // 2) remplace le bloc const ZONE_SETS = { ... }
-  const start = txt.indexOf('const ZONE_SETS = {')
-  if (start >= 0){
-    let i = txt.indexOf('{', start), depth = 0, end = i
-    for (; i < txt.length; i++){ if(txt[i]==='{')depth++; else if(txt[i]==='}'){depth--; if(depth===0){end=i+1;break}} }
-    let lit2 = 'const ZONE_SETS = {\n'
-    for (const z of Object.keys(AREAS)) {
-      const sets = ZONESETS[z] || []
-      if (!sets.length && !(z in ZONESETS)) continue
-      lit2 += '    ' + key(z) + ': [' + sets.map(q).join(', ') + '],\n'
+  // 2) remplace le bloc const ZONE_SETS = { ... } uniquement si les assignations ont changé
+  if (dirtyZoneSets) {
+    const start = txt.indexOf('const ZONE_SETS = {')
+    if (start >= 0){
+      let i = txt.indexOf('{', start), depth = 0, end = i
+      for (; i < txt.length; i++){ if(txt[i]==='{')depth++; else if(txt[i]==='}'){depth--; if(depth===0){end=i+1;break}} }
+      let lit2 = 'const ZONE_SETS = {\n'
+      for (const z of Object.keys(AREAS)) {
+        const sets = ZONESETS[z] || []
+        if (!sets.length && !(z in ZONESETS)) continue
+        lit2 += '    ' + key(z) + ': [' + sets.map(q).join(', ') + '],\n'
+      }
+      lit2 += '}'
+      txt = txt.slice(0, start) + lit2 + txt.slice(end)
     }
-    lit2 += '}'
-    txt = txt.slice(0, start) + lit2 + txt.slice(end)
   }
   return txt
 }
@@ -485,15 +488,13 @@ async function saveAll(){
     if(itemDirtyIds.size > 0){ itemText = buildItemFilePatch(); await writeFile(H.item, itemText); itemDirtyIds = new Set() }
     if(panoDirtyIds.size > 0){ panoText = buildPanoFilePatch(); await writeFile(H.pano, panoText); panoDirtyIds = new Set() }
     if(monsterDirtyIds.size > 0){ monsterText = buildMonsterFilePatch(); await writeFile(H.monster, monsterText); monsterDirtyIds = new Set() }
-    if(H.mstrMove){ mstrMoveText = buildMstrMoveFile(); await writeFile(H.mstrMove, mstrMoveText); mstrMoveDirtyIds = new Set(); mstrMoveNewIds = new Set() }
+    if(H.mstrMove && (mstrMoveDirtyIds.size > 0 || mstrMoveNewIds.size > 0)){ mstrMoveText = buildMstrMoveFile(); await writeFile(H.mstrMove, mstrMoveText); mstrMoveDirtyIds = new Set(); mstrMoveNewIds = new Set() }
     if(H.classMove && (classMoveDirtyIds.size > 0 || classMoveNewIds.size > 0)){ classMoveText = buildClassMoveFile(); await writeFile(H.classMove, classMoveText); classMoveDirtyIds = new Set(); classMoveNewIds = new Set() }
-    areaText = buildAreaText()
-    await writeFile(H.area, areaText)
-    dirtyZones = new Set(); newZones = new Set()
+    if(dirtyZones.size > 0 || newZones.size > 0 || dirtyZoneSets){ areaText = buildAreaText(); await writeFile(H.area, areaText); dirtyZones = new Set(); newZones = new Set(); dirtyZoneSets = false }
     if (H.wanted && wantedDirtyIds.size > 0) {
       wantedText = buildWantedFile()
       await writeFile(H.wanted, wantedText)
-      wantedDirtyIds = new Set()
+      wantedDirtyIds = new Set(); wantedBossDirtyIds = new Set()
     }
     setDirty(false)
     toast('Fichiers enregistrés ✓','ok')
@@ -1683,6 +1684,7 @@ function renderZonePanoChecks(z, flt=''){
     }
     if(tagsEl) tagsEl.innerHTML=(ZONESETS[z]||[]).map(k=>`<span class="badge" style="margin:2px">${PANO[k]?.name||k}</span>`).join('')||'<span class="muted">aucune</span>'
     if(cntEl) cntEl.textContent=(ZONESETS[z]||[]).length
+    dirtyZoneSets = true; dirtyZones.add(z)
     setDirty(true)
   })
 }
@@ -1769,8 +1771,9 @@ function renderWantedDetail(id){
       </div>
     </div>`
 
-  const wmd = () => { wantedDirtyIds.add(id); setDirty(true) }
-  const bind = (elId, fn) => { const el = D.querySelector('#'+elId); if(el) el.oninput = el.onchange = () => { fn(el.value); wmd() } }
+  const wmd  = () => { wantedDirtyIds.add(id); setDirty(true) }
+  const wbmd = () => { wantedBossDirtyIds.add(id); wmd() }
+  const bind = (elId, fn, dirty=wbmd) => { const el = D.querySelector('#'+elId); if(el) el.oninput = el.onchange = () => { fn(el.value); dirty() } }
 
   bind('w_name', v => { w.name = v; m.name = v; renderWantedList() })
   bind('w_level', v => { w.levelCap = +v||1; m.fixedLevel = +v||1; w.bst = w.bst||{}; renderWantedList() })
@@ -1779,15 +1782,15 @@ function renderWantedDetail(id){
   bind('w_lore', v => { w.lore = v })
   bind('w_hp', v => { m.bst.hp = +v||0; w.bst = w.bst||{}; w.bst.hp = +v||0 })
   bind('w_atk', v => { m.bst.atk = +v||0; w.bst = w.bst||{}; w.bst.atk = +v||0 })
-  bind('w_spd', v => { m.bst.spd = +v||0 })
-  bind('w_cc', v => { if(v==='')delete m.bst.critChance; else m.bst.critChance=+v })
-  bind('w_cd', v => { if(v==='')delete m.bst.critDamagePct; else m.bst.critDamagePct=+v })
+  bind('w_spd', v => { m.bst.spd = +v||0 }, wmd)
+  bind('w_cc', v => { if(v==='')delete m.bst.critChance; else m.bst.critChance=+v }, wmd)
+  bind('w_cd', v => { if(v==='')delete m.bst.critDamagePct; else m.bst.critDamagePct=+v }, wmd)
   D.querySelectorAll('.w_res').forEach(el => el.oninput = () => { m.bst.res[el.dataset.e] = +el.value||0; wmd() })
 
   renderWantedMoves(m, id, wmd)
 
   w.panoplie = w.panoplie || []
-  renderWantedLoot(w, D, wmd)
+  renderWantedLoot(w, D, wbmd)
 
   const is_ = D.querySelector('#w_item_search')
   is_.onchange = () => {
@@ -1795,7 +1798,7 @@ function renderWantedDetail(id){
     const iid = opt ? opt.dataset.id : is_.value.trim()
     if (iid && ITEM[iid] && !w.panoplie.some(e => e.itemId === iid)) {
       w.panoplie.push({ itemId: iid, dropRate: 0.1 })
-      renderWantedLoot(w, D, wmd); wmd()
+      renderWantedLoot(w, D, wbmd); wbmd()
     }
     is_.value = ''
   }
@@ -1808,7 +1811,7 @@ function renderWantedDetail(id){
       ;(PANO[pid].pieces||[]).forEach(iid => {
         if (ITEM[iid] && !w.panoplie.some(e => e.itemId === iid)) { w.panoplie.push({ itemId: iid, dropRate: 0.1 }); added++ }
       })
-      if (added) { renderWantedLoot(w, D, wmd); wmd() }
+      if (added) { renderWantedLoot(w, D, wbmd); wbmd() }
     }
     pf.value = ''
   }
@@ -1877,7 +1880,8 @@ function buildWantedFile(){
     txt = txt.slice(0, r[0]) + `monsters['${id}'] = {\n` + lines.join(',\n') + '\n}' + txt.slice(r[1])
   }
 
-  // 2. Reconstruit WantedBosses en entier
+  // 2. Reconstruit WantedBosses uniquement si des boss ont été modifiés
+  if (wantedBossDirtyIds.size === 0) return txt
   const r2 = blockRange(txt, 'const WantedBosses = {')
   if (r2) {
     let wbStr = 'const WantedBosses = {\n'

@@ -920,14 +920,14 @@ move.macro_onde = {
 move.pousse_moi = {
     id: 'pousse_moi',
     name: 'Pousse Moi',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'air', damage: {min: 21,max: 30}, target: 'enemy'},
               { type: 'switch', value: 5, target: 'enemy' }],
 }
 move.pousse_toi = {
     id: 'pousse_toi',
     name: 'Pousse Toi',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 21,max: 30}, target: 'enemy'},
               { type: 'switch', value: 1, target: 'enemy' }],
 }

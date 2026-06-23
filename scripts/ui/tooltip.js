@@ -395,6 +395,39 @@ function showMemberSheet(member) {
         </div>`
     }).join('')
 
+    // Farming bonuses for this member (items + panoplies + familier)
+    const _FARM_STATS = new Set(['dropRate', 'xpGain', 'dropRateElite'])
+    const _msFarmBonus = {}
+    if (typeof panoplies !== 'undefined') {
+        const _sc = countSetPieces(member.equip)
+        for (const [_sid, _cnt] of Object.entries(_sc)) {
+            const _pano = panoplies[_sid]
+            if (!_pano?.bonuses) continue
+            const _ts = Object.keys(_pano.bonuses).map(Number).sort((a, b) => a - b)
+            let _at = null
+            for (const _t of _ts) { if (_cnt >= _t) _at = _t }
+            if (_at === null) continue
+            for (const { stat, value } of (_pano.bonuses[_at].stats || []))
+                if (_FARM_STATS.has(stat)) _msFarmBonus[stat] = (_msFarmBonus[stat] || 0) + value
+        }
+    }
+    if (member.equip && typeof item !== 'undefined') {
+        for (const _sid in member.equip) {
+            if (_sid === 'familier') continue
+            const _iid = member.equip[_sid]
+            if (!_iid) continue
+            const _itm = item[_iid]
+            if (!_itm?.stats) continue
+            for (const _s of _itm.stats)
+                if (_FARM_STATS.has(_s.stat)) _msFarmBonus[_s.stat] = (_msFarmBonus[_s.stat] || 0) + (_s.value || 0)
+        }
+    }
+    const _msFamId = member.equip?.familier
+    if (_msFamId && typeof getFamiliarBonusesComputed === 'function') {
+        for (const { bonusType, bonusStat: _bs, value } of getFamiliarBonusesComputed(_msFamId))
+            if (bonusType === 'farming' && _FARM_STATS.has(_bs)) _msFarmBonus[_bs] = (_msFarmBonus[_bs] || 0) + value
+    }
+
     const body = `<div class="member-sheet">
         <div class="ms-equip-area">
             <div class="ms-equip-col">
@@ -449,6 +482,10 @@ function showMemberSheet(member) {
             <div class="ms-stats">
                 ${statRow(STAT_ICONS.hp,     'PV',        base.hp,          eff.hp         )}
                 ${statRow(STAT_ICONS.atk,    'Puissance', base.atk,         eff.atk        )}
+                ${eff.force        ? statRow(ELEM_ICONS.terre,  'Force',        0, eff.force,       '') : ''}
+                ${eff.intelligence ? statRow(ELEM_ICONS.feu,    'Intelligence', 0, eff.intelligence,'') : ''}
+                ${eff.chance       ? statRow(ELEM_ICONS.eau,    'Chance',       0, eff.chance,      '') : ''}
+                ${eff.agilite      ? statRow(ELEM_ICONS.air,    'Agilité',      0, eff.agilite,     '') : ''}
                 ${statRow(STAT_ICONS.spd,    'Initiative',base.spd,         eff.spd        )}
                 ${statRow(ELEM_ICONS.neutre, 'Résistance Neutre', base.res.neutre,  eff.res.neutre, '%', true)}
                 ${statRow(ELEM_ICONS.terre,  'Résistance Terre',  base.res.terre,   eff.res.terre,  '%', true)}
@@ -468,6 +505,11 @@ function showMemberSheet(member) {
                 ${eff.healTeamPct    ? statRow(STAT_ICONS.soin,   'Soins équipe %',  0,  eff.healTeamPct,    '%') : ''}
                 ${eff.healMaxHpPct   ? statRow(STAT_ICONS.soin,   'Soins PV max %',  0,  eff.healMaxHpPct,   '%') : ''}
                 ${eff.lifestealPct   ? statRow(STAT_ICONS.volVie, 'Vol de vie %',    0,  eff.lifestealPct,   '%') : ''}
+                ${eff.critResPct     ? statRow(STAT_ICONS.buff,   'Rés. critique',   0,  eff.critResPct,     '%') : ''}
+                ${eff.healStat       ? statRow(STAT_ICONS.soin,   'Soins fixes',     0,  eff.healStat,       '') : ''}
+                ${_msFarmBonus.dropRate      ? statRow(ELEM_ICONS.sagesse, 'Taux de drop',  0, _msFarmBonus.dropRate,      '%') : ''}
+                ${_msFarmBonus.dropRateElite ? statRow(ELEM_ICONS.sagesse, 'Drop élite',    0, _msFarmBonus.dropRateElite, '%') : ''}
+                ${_msFarmBonus.xpGain        ? statRow(ELEM_ICONS.sagesse, 'Gain XP',       0, _msFarmBonus.xpGain,        '%') : ''}
             </div>
         </div>
         ${_renderCombatStatus(member)}

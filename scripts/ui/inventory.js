@@ -440,6 +440,12 @@ function showItemTooltip(itemId, fromClassId) {
            </div>`
         : ''
 
+    const useHtml = (entry && itm.offlineMinutes)
+        ? `<div style="margin-top:0.8rem;text-align:right">
+               <button class="forge-btn" onclick="useOfflineBoostItem('${itemId}')">Utiliser</button>
+           </div>`
+        : ''
+
     const body = `<div class="item-sheet">
         <div class="item-sheet-header">
             <img src="${itm.image || 'img/icons/icon.png'}" class="item-sheet-img" onerror="this.src='img/icons/icon.png'">
@@ -457,6 +463,7 @@ function showItemTooltip(itemId, fromClassId) {
         ${passifHtml}
         ${zonesHtml}
         ${descHtml}
+        ${useHtml}
     </div>`
 
     openTooltip(itm.name, body)
@@ -474,11 +481,15 @@ function equipFullPanoplie(setId, classId) {
     const _panoSyncedLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) || null
     const _panoLvlCap    = _panoSyncedLvl ?? (member.level || 0)
 
+    const isEquippedElsewhere = (pieceId) =>
+        state.team.some(m => m && m !== member && m.equip && Object.values(m.equip).includes(pieceId))
+
     for (const pieceId of (pano.pieces || [])) {
         if (!state.inventory[pieceId]) continue   // seulement les items possédés
         const itm = item[pieceId]
         if (!itm) continue
         if (itm.requiredLevel && itm.requiredLevel > _panoLvlCap) continue
+        if (isEquippedElsewhere(pieceId)) continue   // déjà équipé sur un autre perso
         let slot = itm.slot
         if (slot === 'anneau') {
             slot = RING_SLOTS[ringUsed] || 'anneau2'
@@ -490,7 +501,7 @@ function equipFullPanoplie(setId, classId) {
 
     if (pano.familiar) {
         const famObj = typeof familiarById !== 'undefined' ? familiarById[pano.familiar] : null
-        if (famObj && getFamiliarLevel(famObj) > 0) {
+        if (famObj && getFamiliarLevel(famObj) > 0 && !isEquippedElsewhere(pano.familiar)) {
             if (!member.equip) member.equip = {}
             member.equip.familier = pano.familiar
         }

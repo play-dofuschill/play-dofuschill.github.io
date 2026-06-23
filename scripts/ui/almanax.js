@@ -137,8 +137,11 @@ function claimAlmanax() {
         rewardLine = `<strong>${reward.kamas} Kamas</strong>`
     }
 
+    addToInventory('sablierXelor')
+
     state.lastAlmanaxDate = _todayStr()
     saveGame()
+    exportData()
     updateAlmanaxNavItem()
 
     const tierBadge = tier
@@ -154,6 +157,7 @@ function claimAlmanax() {
             </div>
             <div style="font-size:1.1rem;font-weight:bold;color:${color};background:var(--dark2);padding:0.3rem 1rem;border-radius:0.5rem;">Almanax du jour réclamé !</div>
             <div style="font-size:0.9rem;opacity:0.8;text-align:center;">Vous recevez ${rewardLine}.</div>
+            <div style="font-size:0.85rem;opacity:0.8;text-align:center;">+ <strong>1× Sablier de Xélor</strong></div>
             <div style="font-size:0.75rem;opacity:0.5;">Revenez demain pour une nouvelle récompense.</div>
         </div>`
     openTooltip('Almanax', body)

@@ -42,6 +42,22 @@ item.piloteAutomatique = {
     type: 'resource',
     description: "Votre fidèle dragodinde vous ramène automatiquement de l'infirmerie jusqu'à la zone de combat."
 }
+item.sablierXelor = {
+    id: 'sablierXelor',
+    name: 'Sablier de Xélor',
+    image: 'img/items/divers/sablierXelor.png',
+    type: 'consumable',
+    offlineMinutes: 30,
+    description: "Un sablier enchanté par Xélor lui-même. Utiliser cet objet accorde 30 minutes de progression accélérée."
+}
+item.horlogeXelor = {
+    id: 'horlogeXelor',
+    name: 'Horloge de Xélor',
+    image: 'img/items/divers/horlogeXelor.png',
+    type: 'consumable',
+    offlineMinutes: 180,
+    description: "Une horloge mystique façonnée par le dieu du Temps. Utiliser cet objet accorde 3 heures de progression accélérée."
+}
 // #endregion
 
 // ───────────────────────────────────────────────────────
