@@ -172,11 +172,11 @@ function updateInventoryUI() {
             const badge = itm.itemLevelMax
                 ? `<span class="bubble-level">Niv.${entry.level}</span>`
                 : entry.count > 1 ? `<span class="bubble-level">×${entry.count}</span>` : ''
-            card.innerHTML = `${badge}<img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
+            card.innerHTML = `${badge}<img src="${itm.image || 'img/icons/icon.png'}" loading="lazy" onerror="this.src='img/icons/icon.png'">`
         } else {
             card.className = 'game-bubble bubble-unknown'
             card.title     = '???'
-            card.innerHTML = `<img class="silhouette" src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">`
+            card.innerHTML = `<img class="silhouette" src="${itm.image || 'img/icons/icon.png'}" loading="lazy" onerror="this.src='img/icons/icon.png'">`
         }
         card.addEventListener('click',       () => showItemTooltip(itemId))
         card.addEventListener('contextmenu', e  => { e.preventDefault(); e.stopPropagation(); showItemTooltip(itemId) })

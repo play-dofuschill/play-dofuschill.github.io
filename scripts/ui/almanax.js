@@ -169,12 +169,14 @@ function updateArchivesUI() {
     const el = document.getElementById('archives-progression')
     if (!el) return
 
-    const teamMembers = state.team.filter(Boolean)
-    const famCount    = Object.keys(state.collection).length
-    const famTotal    = familiars.length
-    const pilotes     = state.inventory['piloteAutomatique']?.count || 0
-    const area        = state.currentArea ? (areas[state.currentArea]?.name || state.currentArea) : 'Aucune'
-    const bossCount   = (state.defeatedBosses || []).length
+    const teamMembers  = state.team.filter(Boolean)
+    const pilotes      = state.inventory['piloteAutomatique']?.count || 0
+    const area         = state.currentArea ? (areas[state.currentArea]?.name || state.currentArea) : 'Aucune'
+    const bossCount    = (state.defeatedBosses || []).length
+    const monsterTotal = Object.keys(monsters).length
+    const captured     = Object.values(state.collection)
+    const capturedCount = captured.length
+    const archiCount   = captured.filter(e => e.isArchi).length
 
     const teamHtml = teamMembers.length > 0
         ? teamMembers.map(m => `
@@ -194,7 +196,8 @@ function updateArchivesUI() {
             <div class="alm-stat-row"><span>Zone actuelle</span><span class="alm-stat-val">${area}</span></div>
             <div class="alm-stat-row"><span>Monstres vaincus</span><span class="alm-stat-val">${(state.totalKills || 0).toLocaleString('fr-FR')}</span></div>
             <div class="alm-stat-row"><span>Boss vaincus</span><span class="alm-stat-val">${bossCount}</span></div>
-            <div class="alm-stat-row"><span>Familiers capturés</span><span class="alm-stat-val">${famCount} / ${famTotal}</span></div>
+            <div class="alm-stat-row"><span>Monstres capturés</span><span class="alm-stat-val">${capturedCount} / ${monsterTotal}</span></div>
+            <div class="alm-stat-row"><span>Archimonstres ★</span><span class="alm-stat-val">${archiCount}</span></div>
             <div class="alm-stat-row"><span>Pilotes automatiques</span><span class="alm-stat-val">${pilotes}</span></div>
         </div>`
 }

@@ -84,13 +84,13 @@ const guideSections = [
         id: 'sorts',
         title: '✨ Sorts',
         content: `
-            <p>Les sorts sont les attaques et capacités utilisées en combat.</p>
+            <p>Les sorts sont les attaques et capacités utilisées en combat. Ils sont lancés automatiquement à chaque fois que la jauge d'<b>Initiative</b> d'un personnage se remplit.</p>
             <ul>
-                <li><b>Recharge</b> : temps nécessaires pour lancer le sort</li>
                 <li><b>Dégâts / Effets</b> : ce que le sort inflige ou applique</li>
                 <li><b>Type élémentaire</b> : Feu, Eau, Terre, Air ou Neutre</li>
                 <li>Certains sorts ont des <b>effets de statut</b> : empoisonnement, ralentissement, etc.</li>
             </ul>
+            <p>Il n'y a pas de cooldown — les sorts sont lancés dans l'ordre, en boucle, aussi vite que l'Initiative le permet.</p>
             <p>💡 <b>Clic droit / appui long</b> sur un sort dans la liste des compétences pour voir sa description complète.</p>
         `
     },
@@ -277,7 +277,7 @@ const guideSections = [
             <ol>
                 <li><b>Lancer de dés</b> — valeur aléatoire entre le min et le max du sort<br>
                 <i>(sorts en % de PV : dégâts = PV cible ou lanceur × %)</i></li>
-                <li><b>× (1 + ATK / 100)</b> — multiplication par l'attaque <i>(ignoré pour les sorts en % de PV)</i></li>
+                <li><b>× (1 + Puissance + stat liée a l'élément / 100)</b> — multiplication par l'attaque <i>(ignoré pour les sorts en % de PV)</i></li>
                 <li><b>+ Dégâts plats</b> <i>(ignoré pour les sorts en % de PV)</i></li>
                 <li><b>× (1 + Dégâts finaux % / 100)</b></li>
                 <li><b>× (1 + Dégâts de sorts % / 100)</b></li>
@@ -288,6 +288,174 @@ const guideSections = [
                 <li><b>Minimum 1</b> — un coup inflige toujours au moins 1 dégât</li>
             </ol>
             <p>⚠️ Les Résistances élémentaires et la Réduction des dégâts sont deux couches séparées — elles se multiplient entre elles, pas s'additionnent.</p>
+        `
+    },
+
+    {
+        id: 'panoplies',
+        title: '👗 Panoplies — Bonus de set',
+        content: `
+            <p>Une <b>panoplie</b> est un ensemble d'objets qui accordent des <b>bonus supplémentaires</b> lorsque plusieurs pièces du même set sont équipées simultanément sur un même personnage.</p>
+            <ul>
+                <li>Le bonus s'active dès que le seuil de pièces requis est atteint (généralement 2, 3, 4…).</li>
+                <li>Plus vous équipez de pièces, plus le bonus cumulé est important.</li>
+                <li>Le bonus de panoplie s'ajoute aux stats normales de chaque item.</li>
+            </ul>
+            <p>💡 Les bonus de panoplie actifs sont visibles sur la fiche de chaque personnage dans le menu Équipe.</p>
+        `
+    },
+
+    {
+        id: 'forge',
+        title: '⚒️ Forgemagie',
+        content: `
+            <p>La <b>Forgemagie</b> permet d'améliorer les stats de vos équipements en y appliquant des <b>runes</b>. Accessible via le menu Forge.</p>
+
+            <p><b>📌 Conditions</b><br>
+            Un équipement doit atteindre son <b>niveau maximum de zone</b> avant d'être forgeable. Une fois éligible, chaque item possède un certain nombre de <b>slots</b> (basé sur son nombre de stats).</p>
+
+            <p><b>🔮 Runes normales</b><br>
+            Sélectionnez un slot (stat), puis choisissez une rune de même type dans votre inventaire.<br>
+            Résultat : la stat ciblée gagne le <b>bonus de la rune</b>. En contrepartie, l'item <b>perd des niveaux</b> (selon le coût de la rune).<br>
+            ⚠️ Une rune de tier trop élevé ne peut pas s'appliquer si l'item n'a pas assez de niveaux restants.</p>
+
+            <p><b>✦ Runes de Transcendance</b><br>
+            Les runes de Transcendance s'ajoutent sur un <b>slot bonus séparé</b>, indépendant des slots normaux. Elles peuvent booster <i>n'importe quelle stat</i>, même absente de l'item.<br>
+            Une seule rune Trans par item. Pour en changer, il faut d'abord la retirer en <b>Concassage</b>.</p>
+
+            <p><b>🔄 Fusion de runes</b> (onglet Fusion)<br>
+            Combinez un certain nombre de runes normales identiques pour obtenir la <b>rune de Transcendance</b> correspondante.</p>
+
+            <p><b>🔨 Concassage</b><br>
+            Permet de modifier une forgemagie déjà appliquée :<br>
+            — <b>Déplacer</b> : change le slot d'une forgemagie (coût : 5k × nombre de stats de l'item − 1)<br>
+            — <b>Retirer</b> : supprime une forgemagie ou la rune Trans (coût : 1 kama)<br>
+            La rune retirée est <b>détruite</b> (non récupérée).</p>
+        `
+    },
+
+    {
+        id: 'raid',
+        title: '⚔️ Raid — Combat multiennemis',
+        content: `
+            <p>Le <b>Raid</b> oppose votre équipe à <b>3 ennemis simultanément</b>. Les zones de Raid changent chaque jour.</p>
+            <ul>
+                <li>Votre équipe combat en continu, exactement comme en zone normale.</li>
+                <li>Les sorts ciblant « tous les ennemis » ou avec effets de <b>zone</b> sont particulièrement efficaces ici.</li>
+                <li>Certaines zones Raid ont un <b>mini-boss</b> qui apparaît tous les X kills.</li>
+            </ul>
+
+            <p><b>💀 Niveau de difficulté (Crânes)</b><br>
+            Un sélecteur de crânes (☠) est disponible en haut du Raid et des Avis de Recherche.<br>
+            Augmenter le niveau de crâne rend les ennemis plus puissants (PV, Puissance, résistances) mais améliore les récompenses (drops, kamas).</p>
+
+            <p>💡 Les pools de Raid se renouvellent quotidiennement.</p>
+        `
+    },
+
+    {
+        id: 'wanted',
+        title: '🎯 Avis de Recherche',
+        content: `
+            <p>Les <b>Avis de Recherche</b> sont des contrats de chasse contre des boss spécifiques, organisés en <b>paliers de difficulté</b>.</p>
+            <ul>
+                <li>Chaque palier se déverrouille en progressant dans le jeu (niveaux, boss vaincus).</li>
+                <li>Les boss Wanted ont des <b>récompenses uniques</b> (objets rares, kamas).</li>
+                <li>Le pool de cibles se renouvelle périodiquement.</li>
+            </ul>
+        `
+    },
+
+    {
+        id: 'poutch',
+        title: '🥊 Poutch — Entraînement',
+        content: `
+            <p>Le <b>Poutch</b> est une cible d'entraînement invincible qui vous permet de tester vos dégâts sans risque.</p>
+            <ul>
+                <li>Plusieurs modes : <b>Vie et tours infinis</b>, 20, 40, 80 ou 200 tours.</li>
+                <li>Le Poutch ne meurt jamais et ne riposte pas.</li>
+                <li>À la fin ou quand vous quittez, un <b>résumé de combat</b> affiche vos dégâts par membre.</li>
+            </ul>
+            <p>Idéal pour comparer des builds, tester des sorts ou optimiser votre DPT (dégâts par tour).</p>
+        `
+    },
+
+    {
+        id: 'almanax',
+        title: '📅 Almanax — Récompense quotidienne',
+        content: `
+            <p>L'<b>Almanax</b> offre une récompense gratuite <b>une fois par jour</b>. Il apparaît dans la navigation dès qu'une nouvelle récompense est disponible.</p>
+            <ul>
+                <li>La récompense est tirée aléatoirement dans un pool avec 3 raretés : <b>Commun</b>, <b>Rare</b> et <b>Très Rare</b>.</li>
+                <li>Chaque claim donne également un <b>Sablier de Xélor</b> garanti.</li>
+                <li>Les récompenses incluent des runes (S, M, L, Trans) ou des Pilotes Automatiques.</li>
+            </ul>
+            <p>Revenez chaque jour pour ne pas rater votre récompense.</p>
+            <p>L'almanax permet également de sauvegarder son avancement en téléchargeant automatiquement un fichier de sauvegarde pret à l'import.</p>
+        `
+    },
+
+    {
+        id: 'pilote-auto',
+        title: '🤖 Pilote Automatique',
+        content: `
+            <p>Le <b>Pilote Automatique</b> est un consommable qui permet de lancer plusieurs sessions de combat à la suite de façon automatisée.</p>
+            <ul>
+                <li>Choisissez le nombre de sessions à lancer (1, 5, 10, 25, 50, 100 ou Max).</li>
+                <li>En cas de <b>défaite</b>, un pilote est consommé, l'équipe est soignée à fond, et le combat repart.</li>
+                <li>Si vous n'avez plus de pilotes, le combat s'arrête à la prochaine défaite.</li>
+                <li>Pour arrêter manuellement, cliquez sur <b>Leave</b> pendant le combat.</li>
+            </ul>
+            <p>💡 Le Pilote Automatique fonctionne aussi en <b>mode offline</b> : fermez le jeu, et à votre retour, le temps écoulé sera simulé automatiquement (jusqu'à 8 heures de progression).</p>
+        `
+    },
+
+    {
+        id: 'offline',
+        title: '⏰ Progression Offline',
+        content: `
+            <p>Le jeu continue de progresser <b>même quand vous le fermez</b>, à condition d'être dans une zone active.</p>
+            <ul>
+                <li>À votre retour, le temps écoulé est simulé en <b>accéléré</b> (fast-forward).</li>
+                <li>Plafond : <b>8 heures</b> de progression offline maximum.</li>
+                <li>Sans <b>Pilote Automatique</b>, la progression s'arrête si votre équipe est vaincue.</li>
+                <li>Avec un Pilote Automatique actif, les défaites offline sont gérées automatiquement.</li>
+            </ul>
+            <p>💡 Cette mécanique fonctionne aussi quand l'onglet est en arrière-plan (navigateur minimisé).</p>
+        `
+    },
+
+    {
+        id: 'collection',
+        title: '📖 Collection — Encyclopédie',
+        content: `
+            <p>La <b>Collection</b> (Encyclopédie) recense tous les familiers que vous avez rencontrés ou capturés.</p>
+            <ul>
+                <li>Chaque familier possède un <b>niveau</b> qui augmente au fil des captures répétées.</li>
+                <li>Le bonus du familier actif en équipe est amplifié par son niveau.</li>
+                <li>Atteindre un niveau suffisamment élevé confère le statut <b>Archi ★</b> — une récompense visuelle et de progression.</li>
+            </ul>
+
+            <p><b>🔓 Déblocage de classes</b><br>
+            Certaines classes jouables se déverrouillent via des objectifs de collection ou de progression :</p>
+            <ul>
+                <li><b>Éniripsa</b>, <b>Iop</b>, <b>Crâ</b> — classes de départ, choisie en début de partie.</li>
+                <li>D'autres classes ont des conditions spécifiques : nombre de kills, boss vaincus, kamas accumulés, familiers collectés, etc.</li>
+            </ul>
+            <p>💡 Consultez la fiche d'une classe verrouillée pour voir un indice sur sa condition de déblocage.</p>
+        `
+    },
+
+    {
+        id: 'archives',
+        title: '🗄️ Archives — Sauvegarde & Progression',
+        content: `
+            <p>Le menu <b>Archives</b> affiche un résumé de votre progression globale : équipe, kamas, kills totaux, boss vaincus, familiers collectés.</p>
+            <ul>
+                <li><b>Export</b> : télécharge votre sauvegarde sous forme de fichier (pour la sauvegarder ou la transférer).</li>
+                <li><b>Import</b> : charge une sauvegarde exportée précédemment.</li>
+            </ul>
+            <p>⚠️ L'import <b>écrase</b> la sauvegarde actuelle sans confirmation — assurez-vous de vouloir restaurer avant d'importer.</p>
         `
     },
 

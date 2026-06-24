@@ -5031,8 +5031,11 @@ areas.evenementBiblop = {
         { id: 'biblop_indigo',   weight: 25 },
     ],
     lootTable: [
-        { itemId: 'pierreDame',            dropRate: 0.45 },
-        { itemId: 'trophee_du_neutre',   dropRate: 0.001 }
+        { itemId: 'pierreDame',   dropRate: 0.45 },
+        { itemId: 'runeForceS',   dropRate: 0.01 },
+        { itemId: 'runeIntelS',   dropRate: 0.01 },
+        { itemId: 'runeChanceS',   dropRate: 0.01 },
+        { itemId: 'runeAgiS',   dropRate: 0.01 }
     ]
 }
 
@@ -5116,11 +5119,11 @@ areas.evenementRobots = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'runeHpS',           dropRate: 0.015 },
-        { itemId: 'runeAtkS',          dropRate: 0.015 },
-        { itemId: 'runeSpdS',          dropRate: 0.015 },
-        { itemId: 'runeFlatDmgS',      dropRate: 0.015 },
-        { itemId: 'runeCritS',         dropRate: 0.015 }
+        { itemId: 'runeHpS',           dropRate: 0.01 },
+        { itemId: 'runeAtkS',          dropRate: 0.01 },
+        { itemId: 'runeSpdS',          dropRate: 0.01 },
+        { itemId: 'runeFlatDmgS',      dropRate: 0.01 },
+        { itemId: 'runeCritS',         dropRate: 0.01 }
     ]
 }
 

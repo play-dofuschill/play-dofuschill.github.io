@@ -255,6 +255,7 @@ const state = {
     skullLevel: 0,
     skullUnequipped: null,
     skullRecords: {},
+    visitedAreas: [],
     session: {
         killCount: 0,
         dropCount: 0,

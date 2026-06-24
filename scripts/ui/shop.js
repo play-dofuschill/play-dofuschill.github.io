@@ -37,7 +37,10 @@ function updateShopUI() {
     if (entries.length === 0) {
         const empty = document.createElement('div')
         empty.className = 'shop-empty'
-        empty.innerHTML = 'Aucun article disponible.<br>Revenez bientôt !'
+        const hasVisited = (state.visitedAreas || []).length > 0
+        empty.innerHTML = hasVisited
+            ? 'Aucun article disponible.<br>Revenez bientôt !'
+            : 'Combattez dans des zones pour débloquer des articles !'
         list.appendChild(empty)
         return
     }

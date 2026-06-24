@@ -57,25 +57,40 @@ function _shopPeriod() {
     return Math.floor(Math.floor(Date.now() / 86400000) / SHOP_ROTATION_DAYS)
 }
 
+function _visitedAreaItemSet() {
+    const ids = new Set()
+    for (const areaId of (state.visitedAreas || [])) {
+        const area = areas[areaId]
+        if (!area?.lootTable) continue
+        for (const entry of area.lootTable) ids.add(entry.itemId)
+    }
+    return ids
+}
+
 function refreshShopPool() {
     const period = _shopPeriod()
-    if (state.shopPool?.period === period) return
+    const visitedKey = (state.visitedAreas || []).slice().sort().join(',')
+    if (state.shopPool?.period === period && state.shopPool?.visitedKey === visitedKey) return
 
-    const seed = (period * 2654435761) >>> 0
+    const seed     = (period * 2654435761) >>> 0
+    const allowed  = _visitedAreaItemSet()
 
-    const allItems = Object.values(item).filter(i => i.type === 'equipment' && i.slot !== 'accessoire')
-    const allKeys  = Object.values(item).filter(i => i.isKey === true)
+    const allItems = Object.values(item).filter(i => i.type === 'equipment' && i.slot !== 'accessoire' && allowed.has(i.id))
+    const allKeys  = Object.values(item).filter(i => i.isKey === true && allowed.has(i.id))
     const allRunes = Object.values(item).filter(i => i.type === 'rune')
     const allSkins = Object.values(item).filter(i => i.type === 'cosmetic_skin')
 
     state.shopPool = {
         period,
+        visitedKey,
         items: _seededShuffle(allItems, seed          ).slice(0, 10).map(i => i.id),
         keys:  _seededShuffle(allKeys,  seed ^ 0x1111 ).slice(0, 5 ).map(i => i.id),
         runes: _seededShuffle(allRunes, seed ^ 0x2222 ).slice(0, 5 ).map(i => i.id),
         skins: _seededShuffle(allSkins, seed ^ 0x3333 ).slice(0, 5 ).map(i => i.id),
     }
-    state.shopPurchases = { period, counts: {} }
+    if (!state.shopPurchases || state.shopPurchases.period !== period) {
+        state.shopPurchases = { period, counts: {} }
+    }
     saveGame()
 }
 

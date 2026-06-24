@@ -63,6 +63,7 @@ function saveGame() {
         ownedSkins:                state.ownedSkins || [],
         Boss_Ultime:                    state.Boss_Ultime    || null,
         wanted:                    state.wanted         || null,
+        visitedAreas:              state.visitedAreas   || [],
         version:                   '0.2'
     }
     try {
@@ -121,6 +122,7 @@ function loadGame() {
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
         if (data.Boss_Ultime)                            state.Boss_Ultime                    = data.Boss_Ultime
         if (data.wanted)                                 state.wanted                         = data.wanted
+        if (data.visitedAreas)                           state.visitedAreas                   = data.visitedAreas
 
         // Migration : forgedStat (ancien) → forgedStats (tableau)
         for (const entry of Object.values(state.inventory)) {

@@ -134,9 +134,9 @@ function updateCollectionUI() {
                     ? `<span class="bubble-level bubble-level-archi">★ Niv.${entry.level} ★</span>`
                     : `<span class="bubble-level">Niv.${entry.level}</span>`)
                 : ''
-            card.innerHTML = `${lvlLabel}<img src="${mob.image}" onerror="this.src='img/icons/icon.png'">`
+            card.innerHTML = `${lvlLabel}<img src="${mob.image}" loading="lazy" onerror="this.src='img/icons/icon.png'">`
         } else {
-            card.innerHTML = `<img class="silhouette" src="${mob.image}" onerror="this.src='img/icons/icon.png'">`
+            card.innerHTML = `<img class="silhouette" src="${mob.image}" loading="lazy" onerror="this.src='img/icons/icon.png'">`
         }
 
         card.addEventListener('click',       () => showMonsterTooltip(monsterId))
@@ -331,9 +331,9 @@ function updateFamiliarListUI() {
             const archiLabel = archiCount > 0
                 ? `<span class="bubble-level bubble-level-archi">★ ×${archiCount}</span>`
                 : `<span class="bubble-level">Niv.${level}</span>`
-            card.innerHTML = `${archiLabel}<img src="${fam.image}" onerror="this.src='img/icons/icon.png'">`
+            card.innerHTML = `${archiLabel}<img src="${fam.image}" loading="lazy" onerror="this.src='img/icons/icon.png'">`
         } else {
-            card.innerHTML = `<img class="silhouette" src="${fam.image}" onerror="this.src='img/icons/icon.png'">`
+            card.innerHTML = `<img class="silhouette" src="${fam.image}" loading="lazy" onerror="this.src='img/icons/icon.png'">`
         }
 
         card.addEventListener('click',       () => showFamiliarTooltip(fam.id))

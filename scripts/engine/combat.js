@@ -323,6 +323,11 @@ function startCombat(areaId) {
     if (!_isResume) stopCombat()
     state.currentArea = areaId
     state.isRunning   = true
+    if (!state.visitedAreas) state.visitedAreas = []
+    if (!state.visitedAreas.includes(areaId)) {
+        state.visitedAreas.push(areaId)
+        state.shopPool = null
+    }
     if (typeof musicStartCombat === 'function') musicStartCombat(areaId)
 
     // Donjon + relance auto : initialise l'accumulateur si pas déjà actif
