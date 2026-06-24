@@ -368,11 +368,25 @@ function showMemberSheet(member) {
         if (!mv) return ''
         const eff0      = mv.effects?.[0]
         const elem      = eff0?.element || 'neutre'
-        const typeLabel = { damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', heal: 'Soin', heal_team: 'Soin éq.', buff: 'Buff', buff_team: 'Buff éq.', debuff: 'Débuff', shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation' }[eff0?.type] || eff0?.type || '—'
+        const typeLabel = {
+            damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT',
+            heal: 'Soin', heal_team: 'Soin éq.', 'heal%maxHp': 'Soin %PV', 'heal%maxHp_team': 'Soin %PV éq.', hot: 'Soin continu',
+            buff: 'Buff', buff_team: 'Buff éq.', debuff: 'Débuff', debuff_team: 'Débuff éq.',
+            shield: 'Bouclier', lifesteal: 'Vol de vie',
+            summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
+            absorbElementDmg: 'Attaque', best_element_damage: 'Attaque', worst_element_damage: 'Attaque',
+            elementDmgPeek: 'Attaque', nextElementDmg: 'Attaque',
+            cycleElement: 'Cycle élém.', consumeElementBuff: 'Consomme élém.',
+            switch: 'Déplacement', recul: 'Recul', avance: 'Avance',
+            portal: 'Portail', turret: 'Tourelle',
+            renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Œil pour Œil',
+            burnMark: 'Brûlure diff.', repeat: 'Répétition', random: 'Aléatoire',
+            drop_bonus: 'Drop', enutrof_trap: 'Piège', esquive: 'Esquive',
+        }[eff0?.type] || eff0?.type || '—'
         const _statLabel = { spd: 'init', atk: 'atk', maxHp: 'PV', hp: 'PV', flatDamage: 'dég', finalDamagePct: 'dég%', damageReductionPct: 'rés%', critChance: 'crit%', critDamagePct: 'crit-dég%' }
         const statLbl = s => _statLabel[s] || s
         let detail = ''
-        if (eff0?.damage)                               detail = `${eff0.damage.min}-${eff0.damage.max} dég`
+        if (eff0?.damage != null) { const d = eff0.damage; detail = typeof d === 'number' ? `${d} dég` : `${d.min}-${d.max} dég` }
         if (eff0?.type === 'heal' || eff0?.type === 'heal_team')  detail = `soin`
         if (eff0?.type === 'buff'   || eff0?.type === 'buff_team')   detail = eff0.stat ? `+${eff0.value} ${statLbl(eff0.stat)}` : 'buff'
         if (eff0?.type === 'debuff' || eff0?.type === 'debuff_team') detail = eff0.stat ? `${eff0.value} ${statLbl(eff0.stat)}` : 'débuff'
@@ -618,7 +632,9 @@ function _renderCombatStatus(entity) {
         damageReductionPct: 'Réd. dégâts', critChance: 'Crit. %',
         critDamagePct: 'Dég. crit.', maxHp: 'PV max', res_all: 'Rés. all',
         antiHeal: 'Anti-soin', healOnCast: 'Fontaine',
-        pendingLifesteal: 'Vol de vie', erosionBonus: 'Érosion'
+        pendingLifesteal: 'Vol de vie', erosionBonus: 'Érosion',
+        feu_eau_debuff: 'Perturbation élém.', eau_air_debuff: 'Bouclier élém.',
+        amplifie_incoming: 'Amplification élém.', huppermage_amplify: 'Instabilité élém.'
     }
     const PCT = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
                          'critChance','critDamagePct','res_all','healOnCast','erosionBonus'])
@@ -638,11 +654,16 @@ function _renderCombatStatus(entity) {
             rows.push(`<div class="es-status-row es-status-debuff">Anti-soin (${b.duration} t.)</div>`)
             continue
         }
-        const name = sName(b.stat)
+        const name     = sName(b.stat)
+        const durLabel = b.duration === Infinity ? '∞' : `${b.duration} t.`
+        if (b.value == null) {
+            rows.push(`<div class="es-status-row es-status-debuff">${name} (${durLabel})</div>`)
+            continue
+        }
         const sign = b.value > 0 ? '+' : ''
         const unit = unitOf(b.stat)
         const cls  = b.value >= 0 ? 'es-status-buff' : 'es-status-debuff'
-        rows.push(`<div class="es-status-row ${cls}">${sign}${Math.round(b.value)}${unit} ${name} (${b.duration} t.)</div>`)
+        rows.push(`<div class="es-status-row ${cls}">${sign}${Math.round(b.value)}${unit} ${name} (${durLabel})</div>`)
     }
     for (const d of (entity.dots || [])) {
         rows.push(`<div class="es-status-row es-status-dot">${d.label || 'DOT'} : −${d.value} PV/${d.element || 'neutre'} (${d.duration} t.)</div>`)

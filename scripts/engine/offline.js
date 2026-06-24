@@ -8,7 +8,8 @@
 
 const OFFLINE_CAP_MS          = 8 * 60 * 60 * 1000  // plafond 8 h
 const OFFLINE_MIN_MS          = 10 * 1000            // ignore si < 10 secondes
-const OFFLINE_FRAME_BUDGET_MS = 4                    // budget CPU max par frame (ms) — réduit pour mobiles
+const _isMobile               = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)
+const OFFLINE_FRAME_BUDGET_MS = _isMobile ? 4 : 12  // 4ms mobile, 12ms desktop
 
 // ─── Gestion onglet en arrière-plan ──────────────────────────────────────────
 

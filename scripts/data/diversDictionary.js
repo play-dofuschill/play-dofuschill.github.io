@@ -1,4 +1,4 @@
-// diversDictionary.js — Objets non-équipements DofusChill
+﻿// diversDictionary.js — Objets non-équipements DofusChill
 // Étend l'objet `item` défini dans itemDictionary.js
 
 // ────────────────────────────────────────────────────────────────────────
@@ -851,7 +851,7 @@ item.cleDonjonMalefices = {
 item.cleDonjonAcademieGobs = {
     id: 'cleDonjonAcademieGobs',
     name: "Clef de l'Akadémie des Gobs",
-    image: 'img/items/divers/donjonAcademieGobs.png',
+    image: 'img/items/divers/donjonGob.png',
     type: 'resource',
     isKey: true,
     description: "Cette clef permet de rentrer dans l'Akadémie des Gobs."
@@ -863,22 +863,6 @@ item.cleDonjonKankreblath = {
     type: 'resource',
     isKey: true,
     description: "Cette clef permet de rentrer dans la Cache de Kankreblath."
-}
-item.cleDonjonAcademieGobs = {
-    id: 'cleDonjonAcademieGobs',
-    name: 'Clef de l\'Akadémie des Gobs',
-    image: 'img/items/divers/donjonAcademieGobs.png',
-    type: 'resource',
-    isKey: true,
-    description: 'Cette clef permet de rentrer dans l\'Akadémie des Gobs.'
-}
-item.cleDonjonKankreblath = {
-    id: 'cleDonjonKankreblath',
-    name: 'Clef de la Cache de Kankreblath',
-    image: 'img/items/divers/donjonKankreblath.png',
-    type: 'resource',
-    isKey: true,
-    description: 'Cette clef permet de rentrer dans la Cache de Kankreblath.'
 }
 item.cleDonjonLarves = {
     id: 'cleDonjonLarves',
@@ -908,6 +892,22 @@ item.runeHpL = { id: 'runeHpL', type: 'rune', name: 'Rune L : PV+150', stat: 'ma
 item.runeAtkS = { id: 'runeAtkS', type: 'rune', name: 'Rune S : Pui+15', stat: 'atk', value: 15, levelCost: 3, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/puissance1.png', description: '+15 ATK sur un slot ATK existant.' }
 item.runeAtkM = { id: 'runeAtkM', type: 'rune', name: 'Rune M : Pui+50', stat: 'atk', value: 50, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/puissance2.png', description: '+50 ATK sur un slot ATK existant (item requis niv.80+).' }
 item.runeAtkL = { id: 'runeAtkL', type: 'rune', name: 'Rune L : Pui+130', stat: 'atk', value: 130, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/puissance3.png', description: '+130 ATK sur un slot ATK existant (item requis niv.150+).' }
+// ── Force ──────────────────────────────────────────────────────────────────────
+item.runeForceS = { id: 'runeForceS', type: 'rune', name: 'Rune S : Force+20',  stat: 'force', value: 20,  levelCost: 3, minRequiredLevel: 0,   fusionCost: 5,  image: 'img/items/runes/force1.png', description: '+20 Force sur un slot Force existant.' }
+item.runeForceM = { id: 'runeForceM', type: 'rune', name: 'Rune M : Force+50', stat: 'force', value: 50, levelCost: 7, minRequiredLevel: 80,  fusionCost: 7,  image: 'img/items/runes/force2.png', description: '+50 Force sur un slot Force existant (item requis niv.80+).' }
+item.runeForceL = { id: 'runeForceL', type: 'rune', name: 'Rune L : Force+100', stat: 'force', value: 100, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/force3.png', description: '+100 Force sur un slot Force existant (item requis niv.150+).' }
+// ── Intelligence ───────────────────────────────────────────────────────────────
+item.runeIntelS = { id: 'runeIntelS', type: 'rune', name: 'Rune S : Intel+20',  stat: 'intelligence', value: 20,  levelCost: 3, minRequiredLevel: 0,   fusionCost: 5,  image: 'img/items/runes/intelligence1.png', description: '+20 Intelligence sur un slot Intelligence existant.' }
+item.runeIntelM = { id: 'runeIntelM', type: 'rune', name: 'Rune M : Intel+50', stat: 'intelligence', value: 50, levelCost: 7, minRequiredLevel: 80,  fusionCost: 7,  image: 'img/items/runes/intelligence2.png', description: '+50 Intelligence sur un slot Intelligence existant (item requis niv.80+).' }
+item.runeIntelL = { id: 'runeIntelL', type: 'rune', name: 'Rune L : Intel+100', stat: 'intelligence', value: 100, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/intelligence3.png', description: '+100 Intelligence sur un slot Intelligence existant (item requis niv.150+).' }
+// ── Chance ─────────────────────────────────────────────────────────────────────
+item.runeChanceS = { id: 'runeChanceS', type: 'rune', name: 'Rune S : Chance+20',  stat: 'chance', value: 20,  levelCost: 3, minRequiredLevel: 0,   fusionCost: 5,  image: 'img/items/runes/chance1.png', description: '+20 Chance sur un slot Chance existant.' }
+item.runeChanceM = { id: 'runeChanceM', type: 'rune', name: 'Rune M : Chance+50', stat: 'chance', value: 50, levelCost: 7, minRequiredLevel: 80,  fusionCost: 7,  image: 'img/items/runes/chance2.png', description: '+50 Chance sur un slot Chance existant (item requis niv.80+).' }
+item.runeChanceL = { id: 'runeChanceL', type: 'rune', name: 'Rune L : Chance+100', stat: 'chance', value: 100, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/chance3.png', description: '+100 Chance sur un slot Chance existant (item requis niv.150+).' }
+// ── Agilité ────────────────────────────────────────────────────────────────────
+item.runeAgiS = { id: 'runeAgiS', type: 'rune', name: 'Rune S : Agi+20',  stat: 'agilite', value: 20,  levelCost: 3, minRequiredLevel: 0,   fusionCost: 5,  image: 'img/items/runes/agilite1.png', description: '+20 Agilité sur un slot Agilité existant.' }
+item.runeAgiM = { id: 'runeAgiM', type: 'rune', name: 'Rune M : Agi+50', stat: 'agilite', value: 50, levelCost: 7, minRequiredLevel: 80,  fusionCost: 7,  image: 'img/items/runes/agilite2.png', description: '+50 Agilité sur un slot Agilité existant (item requis niv.80+).' }
+item.runeAgiL = { id: 'runeAgiL', type: 'rune', name: 'Rune L : Agi+100', stat: 'agilite', value: 100, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/agilite3.png', description: '+100 Agilité sur un slot Agilité existant (item requis niv.150+).' }
 // ── Vitesse ────────────────────────────────────────────────────────────────────
 item.runeSpdS = { id: 'runeSpdS', type: 'rune', name: 'Rune S : Init+5', stat: 'spd', value: 5, levelCost: 4, minRequiredLevel: 0, fusionCost: 5, image: 'img/items/runes/vitesse1.png', description: '+5 Vit sur un slot Vitesse existant.' }
 item.runeSpdM = { id: 'runeSpdM', type: 'rune', name: 'Rune M : Init+15', stat: 'spd', value: 15, levelCost: 8, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/vitesse2.png', description: '+15 Vit sur un slot Vitesse existant (item requis niv.80+).' }
@@ -930,6 +930,9 @@ item.runeSpellDmgL = { id: 'runeSpellDmgL', type: 'rune', name: 'Rune L : DégSo
 // ── Défensif ───────────────────────────────────────────────────────────────────
 item.runeDamRedM = { id: 'runeDamRedM', type: 'rune', name: 'Rune M : Réd+5%', stat: 'damageReductionPct', value: 5, levelCost: 7, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/reduc_dommage_finaux1.png', description: '+5% Réd.dégâts sur un slot Réduction existant.' }
 item.runeDamRedL = { id: 'runeDamRedL', type: 'rune', name: 'Rune L : Réd+12%', stat: 'damageReductionPct', value: 12, levelCost: 12, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/reduc_dommage_finaux2.png', description: '+12% Réd.dégâts sur un slot Réduction existant (item requis niv.80+).' }
+// ── Drop ───────────────────────────────────────────────────────────────────────
+item.runeDropRateM = { id: 'runeDropRateM', type: 'rune', name: 'Rune M : Drop+3', stat: 'dropRate', value: 3, levelCost: 5, minRequiredLevel: 80,  fusionCost: 7,  image: 'img/items/runes/dropRate1.png', description: '+3 Drop sur un slot Drop existant.' }
+item.runeDropRateL = { id: 'runeDropRateL', type: 'rune', name: 'Rune L : Drop+8', stat: 'dropRate', value: 8, levelCost: 9, minRequiredLevel: 150, fusionCost: 10, image: 'img/items/runes/dropRate2.png', description: '+8 Drop sur un slot Drop existant (item requis niv.150+).' }
 // ── Résistances ────────────────────────────────────────────────────────────────
 item.runeFireResM    = { id: 'runeFireResM',    type: 'rune', name: 'Rune Feu+4%',    stat: 'res.feu',    value: 4, levelCost: 9, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/res_feu2.png',    description: '+4% Rés.Feu sur un slot Rés.Feu existant.' }
 item.runeWaterResM   = { id: 'runeWaterResM',   type: 'rune', name: 'Rune Eau+4%',    stat: 'res.eau',    value: 4, levelCost: 9, minRequiredLevel: 80, fusionCost: 7, image: 'img/items/runes/res_eau2.png',    description: '+4% Rés.Eau sur un slot Rés.Eau existant.' }
@@ -953,6 +956,18 @@ item.runeTransHpL    = { id: 'runeTransHpL',    type: 'rune', transcendance: tru
 item.runeTransAtkS   = { id: 'runeTransAtkS',   type: 'rune', transcendance: true, name: 'Rune Trans ATK+15',      stat: 'atk',               value: 15,  levelCost: 3,  minRequiredLevel: 0,   image: 'img/items/runes/puissance1.png',             description: '+15 ATK sur n\'importe quel slot (forge exotique).' }
 item.runeTransAtkM   = { id: 'runeTransAtkM',   type: 'rune', transcendance: true, name: 'Rune Trans ATK+50',      stat: 'atk',               value: 50,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/puissance2.png',             description: '+50 ATK sur n\'importe quel slot (forge exotique).' }
 item.runeTransAtkL   = { id: 'runeTransAtkL',   type: 'rune', transcendance: true, name: 'Rune Trans ATK+130',     stat: 'atk',               value: 130, levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/puissance3.png',             description: '+130 ATK sur n\'importe quel slot (forge exotique).' }
+item.runeTransForceS  = { id: 'runeTransForceS',  type: 'rune', transcendance: true, name: 'Rune Trans Force+20',  stat: 'force',        value: 20,  levelCost: 3,  minRequiredLevel: 0,   image: 'img/items/runes/force1.png',        description: '+20 Force sur n\'importe quel slot (forge exotique).' }
+item.runeTransForceM  = { id: 'runeTransForceM',  type: 'rune', transcendance: true, name: 'Rune Trans Force+50',  stat: 'force',        value: 50,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/force2.png',        description: '+50 Force sur n\'importe quel slot (forge exotique).' }
+item.runeTransForceL  = { id: 'runeTransForceL',  type: 'rune', transcendance: true, name: 'Rune Trans Force+100', stat: 'force',        value: 100, levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/force3.png',        description: '+100 Force sur n\'importe quel slot (forge exotique).' }
+item.runeTransIntelS  = { id: 'runeTransIntelS',  type: 'rune', transcendance: true, name: 'Rune Trans Intel+20',  stat: 'intelligence', value: 20,  levelCost: 3,  minRequiredLevel: 0,   image: 'img/items/runes/intelligence1.png', description: '+20 Intelligence sur n\'importe quel slot (forge exotique).' }
+item.runeTransIntelM  = { id: 'runeTransIntelM',  type: 'rune', transcendance: true, name: 'Rune Trans Intel+50',  stat: 'intelligence', value: 50,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/intelligence2.png', description: '+50 Intelligence sur n\'importe quel slot (forge exotique).' }
+item.runeTransIntelL  = { id: 'runeTransIntelL',  type: 'rune', transcendance: true, name: 'Rune Trans Intel+100', stat: 'intelligence', value: 100, levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/intelligence3.png', description: '+100 Intelligence sur n\'importe quel slot (forge exotique).' }
+item.runeTransChanceS = { id: 'runeTransChanceS', type: 'rune', transcendance: true, name: 'Rune Trans Chance+20',  stat: 'chance',      value: 20,  levelCost: 3,  minRequiredLevel: 0,   image: 'img/items/runes/chance1.png',       description: '+20 Chance sur n\'importe quel slot (forge exotique).' }
+item.runeTransChanceM = { id: 'runeTransChanceM', type: 'rune', transcendance: true, name: 'Rune Trans Chance+50',  stat: 'chance',      value: 50,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/chance2.png',       description: '+50 Chance sur n\'importe quel slot (forge exotique).' }
+item.runeTransChanceL = { id: 'runeTransChanceL', type: 'rune', transcendance: true, name: 'Rune Trans Chance+100', stat: 'chance',      value: 100, levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/chance3.png',       description: '+100 Chance sur n\'importe quel slot (forge exotique).' }
+item.runeTransAgiS    = { id: 'runeTransAgiS',    type: 'rune', transcendance: true, name: 'Rune Trans Agi+20',    stat: 'agilite',     value: 20,  levelCost: 3,  minRequiredLevel: 0,   image: 'img/items/runes/agilite1.png',      description: '+20 Agilite sur n\'importe quel slot (forge exotique).' }
+item.runeTransAgiM    = { id: 'runeTransAgiM',    type: 'rune', transcendance: true, name: 'Rune Trans Agi+50',    stat: 'agilite',     value: 50,  levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/agilite2.png',      description: '+50 Agilite sur n\'importe quel slot (forge exotique).' }
+item.runeTransAgiL    = { id: 'runeTransAgiL',    type: 'rune', transcendance: true, name: 'Rune Trans Agi+100',   stat: 'agilite',     value: 100, levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/agilite3.png',      description: '+100 Agilite sur n\'importe quel slot (forge exotique).' }
 item.runeTransSpdS   = { id: 'runeTransSpdS',   type: 'rune', transcendance: true, name: 'Rune Trans Vit+5',       stat: 'spd',               value: 5,   levelCost: 4,  minRequiredLevel: 0,   image: 'img/items/runes/vitesse1.png',               description: '+5 Vit sur n\'importe quel slot (forge exotique).' }
 item.runeTransSpdM   = { id: 'runeTransSpdM',   type: 'rune', transcendance: true, name: 'Rune Trans Vit+15',      stat: 'spd',               value: 15,  levelCost: 8,  minRequiredLevel: 80,  image: 'img/items/runes/vitesse2.png',               description: '+15 Vit sur n\'importe quel slot (forge exotique).' }
 item.runeTransSpdL   = { id: 'runeTransSpdL',   type: 'rune', transcendance: true, name: 'Rune Trans Vit+35',      stat: 'spd',               value: 35,  levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/vitesse3.png',               description: '+35 Vit sur n\'importe quel slot (forge exotique).' }
@@ -970,6 +985,8 @@ item.runeTransSpellDmgS = { id: 'runeTransSpellDmgS', type: 'rune', transcendanc
 item.runeTransSpellDmgM = { id: 'runeTransSpellDmgM', type: 'rune', transcendance: true, name: 'Rune Trans DégSort+20%', stat: 'spellDamagePct', value: 20, levelCost: 12,  minRequiredLevel: 150,  image: 'img/items/runes/SpellDamage2.png',           description: '+20% Dég.sorts sur n\'importe quel slot (forge exotique).' }
 item.runeTransDamRedS   = { id: 'runeTransDamRedS',   type: 'rune', transcendance: true, name: 'Rune Trans Réd+5%',      stat: 'damageReductionPct', value: 5,  levelCost: 9, minRequiredLevel: 80,   image: 'img/items/runes/reduc_dommage_finaux1.png', description: '+5% Réd.dégâts sur n\'importe quel slot (forge exotique).' }
 item.runeTransDamRedM   = { id: 'runeTransDamRedM',   type: 'rune', transcendance: true, name: 'Rune Trans Réd+12%',     stat: 'damageReductionPct', value: 12, levelCost: 12, minRequiredLevel: 150,  image: 'img/items/runes/reduc_dommage_finaux2.png', description: '+12% Réd.dégâts sur n\'importe quel slot (forge exotique).' }
+item.runeTransDropRateS = { id: 'runeTransDropRateS', type: 'rune', transcendance: true, name: 'Rune Trans Drop+3', stat: 'dropRate', value: 3, levelCost: 7,  minRequiredLevel: 80,  image: 'img/items/runes/dropRate1.png', description: '+3 Drop sur n\'importe quel slot (forge exotique).' }
+item.runeTransDropRateM = { id: 'runeTransDropRateM', type: 'rune', transcendance: true, name: 'Rune Trans Drop+8', stat: 'dropRate', value: 8, levelCost: 12, minRequiredLevel: 150, image: 'img/items/runes/dropRate2.png', description: '+8 Drop sur n\'importe quel slot (forge exotique).' }
 item.runeTransFireResS   = { id: 'runeTransFireResS',   type: 'rune', transcendance: true, name: 'Rune Trans Feu+4%',    stat: 'res.feu',    value: 4, levelCost: 9, minRequiredLevel: 80, image: 'img/items/runes/res_feu2.png',    description: '+4% Rés.Feu sur n\'importe quel slot (forge exotique).' }
 item.runeTransWaterResS  = { id: 'runeTransWaterResS',  type: 'rune', transcendance: true, name: 'Rune Trans Eau+4%',    stat: 'res.eau',    value: 4, levelCost: 9, minRequiredLevel: 80, image: 'img/items/runes/res_eau2.png',    description: '+4% Rés.Eau sur n\'importe quel slot (forge exotique).' }
 item.runeTransEarthResS  = { id: 'runeTransEarthResS',  type: 'rune', transcendance: true, name: 'Rune Trans Terre+4%',  stat: 'res.terre',   value: 4, levelCost: 9, minRequiredLevel: 80, image: 'img/items/runes/res_terre2.png',  description: '+4% Rés.Terre sur n\'importe quel slot (forge exotique).' }
