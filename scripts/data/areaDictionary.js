@@ -2352,7 +2352,7 @@ areas.terresDesacrees = {
     id: 'terresDesacrees',
     name: 'Terres Désacrées',
     minLevel: 185,
-    maxLevel: 20,
+    maxLevel: 200,
     mobMinLevel: 185,
     mobMaxLevel: 200,
     background: '',
