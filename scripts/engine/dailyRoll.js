@@ -115,6 +115,19 @@ function refreshDailyPools() {
     // Wild : stale uniquement si nouveau jour (pas de recalcul intra-journalier après boss kill)
     const wildStale = !state.dailyPool || state.dailyPool.date !== today
 
+    if (!wildStale && state.dailyPool?.zones) {
+        // Nettoyer le pool existant : retirer les zones devenues inaccessibles (ex. typo corrigée)
+        const cleaned = state.dailyPool.zones.filter(id => {
+            const a = areas[id]
+            return a && isZoneAccessible(a)
+        })
+        if (cleaned.length !== state.dailyPool.zones.length) {
+            state.dailyPool.zones = cleaned.includes('cimetiereincarnam')
+                ? cleaned
+                : ['cimetiereincarnam', ...cleaned]
+        }
+    }
+
     if (wildStale) {
         const accessible = Object.values(areas).filter(a =>
             (a.type || 'wild') === 'wild' && isZoneAccessible(a)
@@ -123,15 +136,12 @@ function refreshDailyPools() {
         const pickedRanges = new Set()  // évite deux zones avec le même minLevel-maxLevel
         const zones        = []
 
-        // Garantir au moins une zone Incarnam/départ (maxLevel ≤ 20) dans le pool
-        const starters = accessible.filter(a => a.maxLevel <= 20)
-        if (starters.length > 0) {
-            let s = (seed * 2654435761) >>> 0
-            s = (Math.imul(s, 1664525) + 1013904223) >>> 0
-            const starter = starters[s % starters.length]
-            picked.add(starter.id)
-            pickedRanges.add(`${starter.minLevel}-${starter.maxLevel}`)
-            zones.push(starter.id)
+        // Toujours forcer cimetiereincarnam comme premier slot (zone de départ obligatoire)
+        const incarnam = areas['cimetiereincarnam']
+        if (incarnam) {
+            picked.add('cimetiereincarnam')
+            pickedRanges.add(`${incarnam.minLevel}-${incarnam.maxLevel}`)
+            zones.push('cimetiereincarnam')
         }
 
         for (let i = 0; i < WILD_SLOTS.length; i++) {
