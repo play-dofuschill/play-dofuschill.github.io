@@ -2465,7 +2465,7 @@ monsters.flammeche_venteuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: ['rapprochement_elementaireair', 'immolation']
+    moves: ['rapprochement_elementaireair', 'immolationair']
 }
 
 monsters.fantome_aux_plates = {
@@ -12080,7 +12080,7 @@ monsters.tynril_consterne = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3800, atk: 350, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 0 } },
-    moves: ['hiffe', 'helse', 'forque']
+    moves: ['hiffe', 'helseair', 'forque']
 }
 
 monsters.tynril_deconcerte = {

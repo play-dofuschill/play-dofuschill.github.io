@@ -131,7 +131,7 @@ move.monSort = {
 move.coupdepoutch = {
     id: 'coupdepoutch',
     name: "Coup de poutch",
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy'}]
 }
 
@@ -146,14 +146,14 @@ move.petit_coup_du_Chafer = {
 move.fleche_de_feu = {
     id: 'fleche_de_feu',
     name: 'Flèche de feu',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{type: 'damage', element: 'feu', damage: { min: 8, max: 12 }, target: 'enemy'},
               {type: 'dot', element: 'feu', value: 5, duration: 2, target: 'enemy'}]
 }
 move.empalement = {
     id: 'empalement',
     name: 'empalement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy'}]
 }
 move.embrochement = {
@@ -165,13 +165,13 @@ move.embrochement = {
 move.cassecrane = {
     id: 'cassecrane',
     name: 'Casse-crâne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 34, max: 38 }, target: 'enemy'}]
 }
 move.appeldeKardorib = {
     id: 'appeldeKardorib',
     name: 'Aappel de Kardorib',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'kardorib',duration: 4, target: 'self'}]
 }
 // #endregion
@@ -181,7 +181,7 @@ move.appeldeKardorib = {
 move.herbeSauvage = {
     id: 'herbeSauvage',
     name: 'Herbe Sauvage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy'}]
 }
 move.zizou = {
@@ -193,46 +193,46 @@ move.zizou = {
 move.petalesEmpoisonnes = {
     id: 'petalesEmpoisonnes',
     name: 'Pétale Empoisonné',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{type: 'damage', element: 'terre', damage: { min: 10, max: 10 }, target: 'enemy'},
               {type: 'dot', element: 'terre', value: 10, duration: 2, target: 'enemy'}]
 }
 move.roseEpineuse = {
     id: 'roseEpineuse',
     name: 'Rose Épineuse',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'eau', damage: { min: 11, max: 14 }, target: 'enemy'}]
 }
 move.racinePivotante = {
     id: 'racinePivotante',
     name: 'Racine Pivotante',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'terre', damage: { min: 13, max: 18 }, target: 'enemy'}]
 }
 move.poisonSauvage = {
     id: 'poisonSauvage',
     name: 'Poison Sauvage',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, target: 'enemy'},
               {type: 'dot', element: 'feu', value: 10, duration: 2, target: 'enemy'}]
 }
 move.protectiondesChamps = {
     id: 'protectiondesChamps',
     name: 'Protection des Champs',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'air', damage: { min: 13, max: 16 }, target: 'enemy'}]
 }
 move.fuyezPauvresFous = {
     id: 'fuyezPauvresFous',
     name: 'Fuyez ! Pauvres fous !',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: { min: 15, max: 20 }, target: 'enemy'},
               {type: 'debuff', stat: 'atk', value: { min: 40, max: 40 }, duration: 3, target: 'enemy'}]
 }
 move.desherbant = {
     id: 'desherbant',
     name: 'Désherbant',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'damage', element: 'feu', damage: { min: 11, max: 14 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.5, target: 'self'}],
@@ -247,7 +247,7 @@ move.engrais = {
 move.goinfrage = {
     id: 'goinfrage',
     name: 'Goinfrage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         {type: 'damage', element: 'eau', damage: { min: 17, max: 30 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.5, target: 'self'}],
@@ -256,13 +256,13 @@ move.goinfrage = {
 move.soinFeuillu = {
     id: 'soinFeuillu',
     name: 'Soin Feuillu',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'heal', heal: 60, target: 'self'}],
 }
 move.appeldesChamps = {
     id: 'appeldesChamps',
     name: 'Appel des Champs',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonPool: ['tournesolSauvage', 'roseDemoniaque', 'gardienneChampetre', 'pissenliDiabolique'], duration: 4, target: 'self'}]
 }
 // #endregion
@@ -272,14 +272,14 @@ move.appeldesChamps = {
 move.Sable_Brulant = {
     id: 'Sable_Brulant',
     name: 'Sable Brûlant',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{type: 'damage', element: 'feu', damage: { min: 13, max: 16 }, target: 'enemy'},
               {type: 'dot', element: 'feu', value: 10, duration: 2, target: 'enemy'}]
 }
 move.sel_Marin = {
     id: 'sel_Marin',
     name: "Sel Marin",
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'},
               {type: 'heal', heal: 50, target: 'self'}
     ]
@@ -295,7 +295,7 @@ move.resistivite = {
 move.vaguelette = {
     id: 'vaguelette',
     name: "Vaguelette",
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'eau', damage: { min: 18, max: 18 }, target: 'enemy'}]
 }
 move.bouffeedAir = {
@@ -320,7 +320,7 @@ move.reflux = {
 move.blag = {
     id: 'blag',
     name: 'Blag',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'terre', damage: { min: 10, max: 10 }, target: 'enemy'},
               {type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, target: 'enemy'},
               {type: 'damage', element: 'air', damage: { min: 10, max: 10 }, target: 'enemy'},]
@@ -335,14 +335,14 @@ move.klounerie = {
 move.degraissage = {
     id: 'degraissage',
     name: 'Dégraissage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{type: 'damage', element: 'eau', damage: { min: 15, max: 20 }, target: 'enemy'},
               {type: 'lifesteal', ratio: 0.2, target: 'self'}]
 }
 move.rincage = {
     id: 'rincage',
     name: 'Rinçage',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'eau', damage: { min: 5, max: 15 }, target: 'enemy'}]
 }
 move.Regeneration_Spontanee = {
@@ -359,7 +359,7 @@ move.Regeneration_Spontanee = {
 move.morsure_obscure = {
     id: 'morsure_obscure',
     name: 'Morsure obscure',
-    cooldownMs: 1800,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 16, max: 16 }, target: 'enemy'}]
 }
 move.morsure_de_guerre = {
@@ -371,7 +371,7 @@ move.morsure_de_guerre = {
 move.halaine_du_bouftou = {
     id: 'halaine_du_bouftou',
     name: 'Halaine du bouftou',
-    cooldownMs: 1800,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'air', damage: { min: 16, max: 16 }, target: 'enemy'}]
 }
 move.fureur_du_bouftou = {
@@ -389,31 +389,31 @@ move.morsure_du_bouftou = {
 move.machouillage = {
     id: 'machouillage',
     name: 'Machouillage',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'air', damage: { min: 19, max: 19 }, target: 'enemy'}]
 }
 move.mordillement = {
     id: 'mordillement',
     name: 'Mordillement',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'eau', damage: { min: 19, max: 19 }, target: 'enemy'}]
 }
 move.morsure_royale = {
     id: 'morsure_royale',
     name: 'Morsure royale',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: { min: 35, max: 35 }, target: 'enemy'}]
 }
 move.guerison_bouftou = {
     id: 'guerison_bouftou',
     name: 'Guerison bouftou',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'heal', heal: 60, target: 'self'}]
 }
 move.cuirasse_laineuse = {
     id: 'cuirasse_laineuse',
     name: 'Cuirasse laineuse',
-    cooldownMs: 3000,
+    cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'damageReductionPct', value: 30, duration: 2, target: 'self'}]
 }
 // #endregion
@@ -423,7 +423,7 @@ move.cuirasse_laineuse = {
 move.picore = {
     id: 'picore',
     name: 'Picore',
-    cooldownMs: 1500,
+    cooldownMs: 2000,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 16, max: 20 }, target: 'enemy'}]
 }
 // #endregion
@@ -434,20 +434,20 @@ move.picore = {
 move.scaraforce = {
     id: 'scaraforce',
     name: 'Scaraforce',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 17, max: 19 }, target: 'enemy'}]
 }
 move.elemental_dispersion = {
     id: 'elemental_dispersion',
     name: 'Élémental Dispersion',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'flatDamage', value: 10, duration: 3, target: 'self'}]
 }
 // Scarafeuille Noir uniquement
 move.scarinvi = {
     id: 'scarinvi',
     name: 'Scarinvi',
-    cooldownMs: 3000,
+    cooldownMs: 2000,
     // 50% de chance d'esquiver le prochain coup — modélisé comme renvoi ratio 0 (esquive totale 1 coup)
     effects: [{type: 'renvoi', ratio: 0, target: 'self'}]
 }
@@ -455,7 +455,7 @@ move.scarinvi = {
 move.spriti_element_blanc = {
     id: 'spriti_element_blanc',
     name: 'Spriti Élémental',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy'}]
 }
 move.flammeche_air = {
@@ -468,7 +468,7 @@ move.flammeche_air = {
 move.spriti_element_vert = {
     id: 'spriti_element_vert',
     name: 'Spriti Élémental',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy'}]
 }
 move.flammeche_terre = {
@@ -481,7 +481,7 @@ move.flammeche_terre = {
 move.spriti_element_rouge = {
     id: 'spriti_element_rouge',
     name: 'Spriti Élémental',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy'}]
 }
 move.flammeche_feu = {
@@ -494,7 +494,7 @@ move.flammeche_feu = {
 move.spriti_element_bleu = {
     id: 'spriti_element_bleu',
     name: 'Spriti Élémental',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy'}]
 }
 move.flammeche_eau = {
@@ -514,7 +514,7 @@ move.scarapoison = {
 move.picoti = {
     id: 'picoti',
     name: 'Picoti',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'damage',    elements: ['feu', 'eau', 'terre', 'air'], damage: { min: 11, max: 15 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.2, target: 'self'}]
@@ -522,19 +522,19 @@ move.picoti = {
 move.naissance = {
     id: 'naissance',
     name: 'Naissance',
-    cooldownMs: 4000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'scarafeuilleImmature', duration: 4, target: 'self'}]
 }
 move.premier_soins = {
     id: 'premier_soins',
     name: 'Premier Soins',
-    cooldownMs: 3500,
+    cooldownMs: 3000,
     effects: [{type: 'heal%maxHp', heal: 5, target: 'self'}]
 }
 move.expulsion = {
     id: 'expulsion',
     name: 'Expulsion',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         {type: 'damage', element: 'neutre', damage: { min: 22, max: 30 }, target: 'enemy'},
         {type: 'switch', value: 1,                                         target: 'enemy'}
@@ -547,20 +547,20 @@ move.expulsion = {
 move.griffes_acerees = {
     id: 'griffes_acerees',
     name: 'Griffes Acérées',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy'}]
 }
 move.eventrement = {
     id: 'eventrement',
     name: 'Éventrement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy'}]
 }
 // Kwakere de Vent
 move.wakolanterne_vent = {
     id: 'wakolanterne_vent',
     name: 'Wakolanterne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         {type: 'damage',    element: 'air', damage: { min: 6, max: 8 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                  target: 'self'},
@@ -570,7 +570,7 @@ move.wakolanterne_vent = {
 move.wakzefeute_vent = {
     id: 'wakzefeute_vent',
     name: 'Wakzefeute',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
         {type: 'buff',      stat: 'atk', value:  50, duration: 1,       target: 'self'},
@@ -582,7 +582,7 @@ move.wakzefeute_vent = {
 move.wakolanterne_glace = {
     id: 'wakolanterne_glace',
     name: 'Wakolanterne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         {type: 'damage',    element: 'eau', damage: { min: 6, max: 8 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                  target: 'self'},
@@ -592,7 +592,7 @@ move.wakolanterne_glace = {
 move.wakzefeute_glace = {
     id: 'wakzefeute_glace',
     name: 'Wakzefeute',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
         {type: 'buff',      stat: 'atk', value:  50, duration: 1,       target: 'self'},
@@ -604,7 +604,7 @@ move.wakzefeute_glace = {
 move.wakolanterne_flamme = {
     id: 'wakolanterne_flamme',
     name: 'Wakolanterne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         {type: 'damage',    element: 'feu', damage: { min: 6, max: 8 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                  target: 'self'},
@@ -614,7 +614,7 @@ move.wakolanterne_flamme = {
 move.wakzefeute_flamme = {
     id: 'wakzefeute_flamme',
     name: 'Wakzefeute',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,       target: 'enemy'},
         {type: 'buff',      stat: 'atk', value:  50, duration: 1,       target: 'self'},
@@ -626,7 +626,7 @@ move.wakzefeute_flamme = {
 move.wakolanterne_terre = {
     id: 'wakolanterne_terre',
     name: 'Wakolanterne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         {type: 'damage',    element: 'terre', damage: { min: 6, max: 8 }, target: 'enemy'},
         {type: 'lifesteal', ratio: 1.0,                                    target: 'self'},
@@ -636,7 +636,7 @@ move.wakolanterne_terre = {
 move.wakzefeute_terre = {
     id: 'wakzefeute_terre',
     name: 'Wakzefeute',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 2,         target: 'enemy'},
         {type: 'buff',      stat: 'atk', value:  50, duration: 1,         target: 'self'},
@@ -648,7 +648,7 @@ move.wakzefeute_terre = {
 move.kwakoukas_vent = {
     id: 'kwakoukas_vent',
     name: 'Kwakoukas',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         {type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy'},
         {type: 'switch', value: 1,                                      target: 'enemy'}
@@ -668,7 +668,7 @@ move.wakpot_vent = {
 move.kwakoukas_flamme = {
     id: 'kwakoukas_flamme',
     name: 'Kwakoukas',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         {type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy'},
         {type: 'switch', value: 1,                                      target: 'enemy'}
@@ -688,7 +688,7 @@ move.wakpot_flamme = {
 move.kwakoukas_glace = {
     id: 'kwakoukas_glace',
     name: 'Kwakoukas',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         {type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy'},
         {type: 'switch', value: 1,                                      target: 'enemy'}
@@ -708,7 +708,7 @@ move.wakpot_glace = {
 move.kwakoukas_terre = {
     id: 'kwakoukas_terre',
     name: 'Kwakoukas',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         {type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy'},
         {type: 'switch', value: 1,                                        target: 'enemy'}
@@ -728,7 +728,7 @@ move.wakpot_terre = {
 move.kwakoukas_kwayal = {
     id: 'kwakoukas_kwayal',
     name: 'Kwakoukas Kwayal',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         {type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy'},
         {type: 'switch', value: 1,                                         target: 'enemy'}
@@ -737,7 +737,7 @@ move.kwakoukas_kwayal = {
 move.wakpot_kwayal = {
     id: 'wakpot_kwayal',
     name: 'Wakpot Kwayal',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         {type: 'debuff',    stat: 'atk', value: -50, duration: 4,                                    target: 'enemy'},
         {type: 'buff',      stat: 'atk', value:  50, duration: 3,                                    target: 'self'},
@@ -748,7 +748,7 @@ move.wakpot_kwayal = {
 move.kwabolition = {
     id: 'kwabolition',
     name: 'Kwabolition',
-    cooldownMs: 3000,
+    cooldownMs: 1500,
     effects: [
         {type: 'damage', element: 'feu',   damage: { min: 7, max: 9 }, target: 'enemy'},
         {type: 'damage', element: 'eau',   damage: { min: 7, max: 9 }, target: 'enemy'},
@@ -759,7 +759,7 @@ move.kwabolition = {
 move.kwarmee_kwayal = {
     id: 'kwarmee_kwayal',
     name: 'Kwarmée Kwayal',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonPool: ['kwakGlace', 'kwakVent', 'kwakTerre', 'kwakFlamme'], duration: 1, target: 'self'}]
 }
 // #endregion
@@ -775,7 +775,7 @@ move.flair = {
 move.deboyautage = {
     id: 'deboyautage',
     name: 'Déboyautage',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 21,max: 30}, target: 'enemy'}],
 }
 move.moquerie = {
@@ -787,32 +787,32 @@ move.moquerie = {
 move.cache_cache = {
     id: 'cache_cache',
     name: 'Cache Cache',
-    cooldownMs: 2200,
+    cooldownMs: 2000,
     effects: [{type: 'renvoi', ratio: 0, target: 'self'}],
 }
 move.perce_vessie = {
     id: 'perce_vessie',
     name: 'Perce-Vessie',
-    cooldownMs: 1650,
+    cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: { min: 17, max: 22 }, target: 'enemy'},
               {type: 'switch', value: 1, target: 'enemy'}]
 }
 move.charge_forcee = {
     id: 'charge_forcee',
     name: 'Charge Forcée',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 1, target: 'self' }],
 }
 move.taie_de_gland = {
     id: 'taie_de_gland',
     name: 'Taie de Gland',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 11,max: 16}, target: 'enemy'}],
 }
 move.rafale_venteuse = {
     id: 'rafale_venteuse',
     name: 'Rafale Venteuse',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'vent', damage: {min: 21,max: 28}, target: 'enemy'},
               { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
@@ -825,7 +825,7 @@ move.griffe_de_ours = {
 move.rage_de_Ours = {
     id: 'rage_de_Ours',
     name: "Rage de l'Ours",
-    cooldownMs: 2200,
+    cooldownMs: 2000,
     effects: [{ type: 'buff', stat: 'flatDamage', value: 20, duration: 2, target: 'self' }],
 }
 
@@ -836,52 +836,52 @@ move.rage_de_Ours = {
 move.bibloperie_air = {
     id: 'bibloperie_air',
     name: 'Bibloperie',
-    cooldownMs: 1650,
+    cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'air', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
 move.biblopiment_air = {
     id: 'biblopiment_air',
     name: 'Biblopiment',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 17,max: 24}, target: 'enemy'},
               { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
 move.bibloperie_terre = {
     id: 'bibloperie_terre',
     name: 'Bibloperie',
-    cooldownMs: 1650,
+    cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
 move.biblopiment_terre = {
     id: 'biblopiment_terre',
     name: 'Biblopiment',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 17,max: 24}, target: 'enemy'},
               { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
 move.bibloperie_feu = {
     id: 'bibloperie_feu',
     name: 'Bibloperie',
-    cooldownMs: 1650,
+    cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
 move.biblopiment_feu = {
     id: 'biblopiment_feu',
     name: 'Biblopiment',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 17,max: 24}, target: 'enemy'},
               { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
 move.bibloperie_eau = {
     id: 'bibloperie_eau',
     name: 'Bibloperie',
-    cooldownMs: 1650,
+    cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 17,max: 24}, target: 'enemy'}],
 }
 move.biblopiment_eau = {
     id: 'biblopiment_eau',
     name: 'Biblopiment',
-    cooldownMs: 2200,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 17,max: 24}, target: 'enemy'},
               { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
@@ -892,14 +892,14 @@ move.biblopiment_eau = {
 move.blast = {
     id: 'blast',
     name: 'Blast',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 21,max: 30}, target: 'enemy'},
               {type: 'buff', stat: 'atk', value:  50, duration: 3, target: 'self'}],
 }
 move.turbine = {
     id: 'turbine',
     name: 'Turbine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'air', damage: {min: 21,max: 30}, target: 'enemy'},
               {type: 'debuff', stat: 'atk', value: -50, duration: 4, target: 'enemy'}],
 }
@@ -913,28 +913,28 @@ move.micro_onde = {
 move.macro_onde = {
     id: 'macro_onde',
     name: 'Macro Onde',
-    cooldownMs: 2500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 21,max: 30}, target: 'enemy'},
               { type: 'heal', heal: { min: 11, max: 20 }, target: 'self'}],
 }
 move.pousse_moi = {
     id: 'pousse_moi',
     name: 'Pousse Moi',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 21,max: 30}, target: 'enemy'},
               { type: 'switch', value: 5, target: 'enemy' }],
 }
 move.pousse_toi = {
     id: 'pousse_toi',
     name: 'Pousse Toi',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 21,max: 30}, target: 'enemy'},
               { type: 'switch', value: 1, target: 'enemy' }],
 }
 move.construction = {
     id: 'construction',
     name: 'Construction',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonPool: ['robotPoussePousse', 'robotFleau', 'robionicle'], duration: 2, target: 'self'}]
 }
 // #endregion
@@ -944,20 +944,20 @@ move.construction = {
 move.regain_de_vie = {
     id: 'regain_de_vie',
     name: 'Regain de vie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'heal%maxHp', heal: 15, target: 'self'},
               { type: 'antiHeal', duration: 6, target: 'all_enemies' }],
 }
 move.queue_du_dragon = {
     id: 'queue_du_dragon',
     name: 'Queue du dragon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 35,max: 55}, target: 'enemy'}],
 }
 move.souffle_de_rathrosk = {
     id: 'souffle_de_rathrosk',
     name: 'Souffle de Rathrosk',
-    cooldownMs: 3500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 25,max: 35}, target: 'all_enemies' },
               { type: 'lifesteal', ratio: 0.1, target: 'self' }],
 }
@@ -968,27 +968,27 @@ move.souffle_de_rathrosk = {
 move.kraken_primaire = {
     id: 'kraken_primaire',
     name: 'Kraken Primaire',
-    cooldownMs: 5000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'air', damage: {min: 3000,max: 4000}, target: 'enemy'}],
 }
 move.kraken_secondaire = {
     id: 'kraken_secondaire',
     name: 'Kraken Secondaire',
-    cooldownMs: 5000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 55,max: 100}, target: 'enemy'},
               { type: 'antiHeal', duration: 6, target: 'enemy' }],
 }
 move.kraken_tertiaire = {
     id: 'kraken_tertiaire',
     name: 'Kraken Tertiaire',
-    cooldownMs: 5000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 55,max: 100}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 400, duration: 6, target: 'enemy' }],
 }
 move.kraken_quartenaire = {
     id: 'kraken_quartenaire',
     name: 'Kraken Quartenaire',
-    cooldownMs: 5000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 55,max: 100}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 80, duration: 2, target: 'enemy' }],
 }
@@ -1001,27 +1001,27 @@ move.motivation_naturelle = {
 move.empoisonnement_tentaculaire = {
     id: 'empoisonnement_tentaculaire',
     name: 'Empoisonnement Tentaculaire',
-    cooldownMs: 3000,
+    cooldownMs: 2000,
     effects: [{ type: 'dot', element: 'feu', value: 75, duration: 3, target: 'enemy'}],
 }
 move.malediction_tentaculaire = {
     id: 'malediction_tentaculaire',
     name: 'Malédiction Tentaculaire',
-    cooldownMs: 3000,
+    cooldownMs: 2000,
     effects: [{ type: 'dot', element: 'eau', value: 75, duration: 3, target: 'enemy'},
               { type: 'debuff', stat: 'flatDamage', value: 200, duration: 6, target: 'enemy' }],
 }
 move.paralysie_tentaculaire = {
     id: 'paralysie_tentaculaire',
     name: 'Paralysie Tentaculaire',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'dot', element: 'eau', value: 75, duration: 3, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }],
 }
 move.kracheau_immobilisant = {
     id: 'kracheau_immobilisant',
     name: 'Kracheau Immobilisant',
-    cooldownMs: 3500,
+    cooldownMs: 4000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 250,max: 350}, target: 'random_enemy'},
               { type: 'lifesteal', ratio: 0.5, target: 'self' },
               { type: 'debuff', stat: 'spd', value: 10, duration: 3, target: 'random_enemy' }],
@@ -1029,7 +1029,7 @@ move.kracheau_immobilisant = {
 move.vulnerabilite_de_la_tourbiere = {
     id: 'vulnerabilite_de_la_tourbiere',
     name: 'Vulnérabilité de la Tourbière',
-    cooldownMs: 2500,
+    cooldownMs: 4000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 250,max: 350}, target: 'random_enemy'},
               { type: 'debuff', stat: 'res_all', value: 25, duration: 3, target: 'all_enemies' },
               { type: 'buff', stat: 'res_all', value: -70, duration: 3, target: 'self' }],
@@ -1043,7 +1043,7 @@ move.kraken = {
 move.tourbe_ecrasante = {
     id: 'tourbe_ecrasante',
     name: 'Tourbe écrasante',
-    cooldownMs: 3500,
+    cooldownMs: 3000,
     effects: [{ type: 'debuff', stat: 'spd', value: 50, duration: 3, target: 'all_enemies' }],
 }
 // #endregion
@@ -1061,7 +1061,7 @@ move.oblativite = {
 move.serpilliere = {
     id: 'serpilliere',
     name: 'Serpillière',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 22, max: 26}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.3, target: 'self' },],
 }
@@ -1089,13 +1089,13 @@ move.interversion = {
 move.tourbe_reparatrice = {
     id: 'tourbe_reparatrice',
     name: 'Tourbe réparatrice',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'heal', heal: {min: 25, max: 30}, target: 'self'}],
 }
 move.tourbe_malveillante = {
     id: 'tourbe_malveillante',
     name: 'Tourbe Malveillante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
 
@@ -1103,13 +1103,13 @@ move.tourbe_malveillante = {
 move.boue_sirupeuse = {
     id: 'boue_sirupeuse',
     name: 'Boue sirupeuse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
 move.bourbier = {
     id: 'bourbier',
     name: 'Bourbier',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'debuff', stat: 'spd', value: 20, duration: 4, target: 'enemy'}],
 }
 
@@ -1129,7 +1129,7 @@ move.depouillage = {
 move.dechaussage = {
     id: 'dechaussage',
     name: 'Déchaussage',
-    cooldownMs: 4000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 41, max: 60}, target: 'enemy'}],
 }
 
@@ -1142,20 +1142,20 @@ move.dechaussage = {
 move.fleche_optique_du_dopeul = {
     id: 'fleche_optique_du_dopeul',
     name: 'Flèche Optique du Dopeul',
-    cooldownMs: 1600,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 18 }, target: 'enemy' }],
 }
 move.fleche_glacee_du_dopeul = {
     id: 'fleche_glacee_du_dopeul',
     name: 'Flèche Glacée du Dopeul',
-    cooldownMs: 1600,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy' }],
 }
 // — Dopeul Iop —
 move.epee_divine_du_dopeul = {
     id: 'epee_divine_du_dopeul',
     name: 'Épée Divine du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
               {type: 'buff', stat: 'flatDamage', value: 10, duration: 2, target: 'self'}],
 }
@@ -1182,7 +1182,7 @@ move.mot_tapageur_du_dopeul = {
 move.pile_ou_face_du_dopeul = {
     id: 'pile_ou_face_du_dopeul',
     name: 'Pile ou Face du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{
         type: 'random',
         choices: [{ chance: 0.70, effects: [{ type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' }] },
@@ -1218,14 +1218,14 @@ move.roulage_de_pelle_du_dopeul = {
 move.lancer_de_pieces_du_dopeul = {
     id: 'lancer_de_pieces_du_dopeul',
     name: 'Lancer de Pièces du Dopeul',
-    cooldownMs: 1000,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 8, max: 12 }, target: 'enemy' }],
 }
 // — Dopeul Feca —
 move.retour_du_baton_du_dopeul = {
     id: 'retour_du_baton_du_dopeul',
     name: 'Retour du Bâton du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
               { type: 'debuff', stat: 'atk', value: 20,  duration: 3, target: 'enemy'},
               { type: 'buff', stat: 'atk', value: 20,  duration: 2, target: 'self'}],
@@ -1233,7 +1233,7 @@ move.retour_du_baton_du_dopeul = {
 move.bulle_du_dopeul = {
     id: 'bulle_du_dopeul',
     name: 'Bulle du Dopeul',
-    cooldownMs: 1000,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 8, max: 12 }, target: 'enemy' }],
 }
 // — Dopeul Forgelance —
@@ -1259,7 +1259,7 @@ move.onde_sismique_du_dopeul = {
 move.stalagmite_du_dopeul = {
     id: 'stalagmite_du_dopeul',
     name: 'Stalagmite du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 12, max: 18 }, target: 'enemy' },
               { type: 'lifesteal', ratio: 0.2, target: 'self' }],
 }
@@ -1280,7 +1280,7 @@ move.crocs_du_mulou_du_dopeul = {
 move.cubitus_du_dopeul = {
     id: 'cubitus_du_dopeul',
     name: 'Cubitus du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 14, max: 18 }, target: 'enemy' },
               {type: 'buff', stat: 'spd', value: 20,  duration: 2, target: 'self'}],
 }
@@ -1300,7 +1300,7 @@ move.paume_explosive_du_dopeul = {
 move.ethylo_du_dopeul = {
     id: 'ethylo_du_dopeul',
     name: 'Éthylo du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' },
               {type: 'debuff', stat: 'spd', value: 20,  duration: 3, target: 'enemy'}],
 }
@@ -1308,7 +1308,7 @@ move.ethylo_du_dopeul = {
 move.espingole_du_dopeul = {
     id: 'espingole_du_dopeul',
     name: 'Espingole du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'air', damage: { min: 14, max: 18 }, target: 'enemy' },
               {type: 'switch', value: 1, target: 'enemy'}],
 }
@@ -1322,14 +1322,14 @@ move.pulsar_du_dopeul = {
 move.supplice_du_dopeul = {
     id: 'supplice_du_dopeul',
     name: 'Supplice du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
               { type: 'lifesteal', ratio: 0.1, target: 'self' }],
 }
 move.absorption_du_dopeul = {
     id: 'absorption_du_dopeul',
     name: 'Absorption du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'feu', damage: { min: 18, max: 22 }, target: 'enemy' },
               { type: 'lifesteal', ratio: 0.1, target: 'self' }],
 }
@@ -1343,7 +1343,7 @@ move.ronce_du_dopeul = {
 move.buisson_ardent_du_dopeul = {
     id: 'buisson_ardent_du_dopeul',
     name: 'Buisson Ardent du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'feu', damage: { min: 8, max: 12 }, target: 'enemy' },
               { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }],
 }
@@ -1357,7 +1357,7 @@ move.truanderie_du_dopeul = {
 move.arsenic_du_dopeul = {
     id: 'arsenic_du_dopeul',
     name: 'Arsenic du Dopeul',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'air', damage: { min: 8, max: 12 }, target: 'enemy' },
               { type: 'dot', element: 'air', value: 10, duration: 3, target: 'enemy' }],
 }
@@ -1405,20 +1405,20 @@ move.frappe_de_xelor_du_dopeul = {
 move.lame_de_iop = {
     id: 'lame_de_iop',
     name: 'Lame de iop',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 37, max: 40 }, target: 'enemy' }],
 }
 move.lame_divine = {
     id: 'lame_divine',
     name: 'Lame divine',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: { min: 21, max: 24 }, target: 'enemy' },
               {type: 'buff', stat: 'flatDamage', value: 20,  duration: 3, target: 'self'}],
 }
 move.tension = {
     id: 'tension',
     name: 'Tension',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         {type: 'damage', element: 'feu', damage: {min: 21, max: 26}, target: 'enemy'},
         {type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self'}]
@@ -1431,20 +1431,20 @@ move.tension = {
 move.bloblo = {
     id: 'bloblo',
     name: 'Bloblo',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
 move.blopiction = {
     id: 'blopiction',
     name: 'Blopiction',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 40}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 40, duration: 2, target: 'enemy'}],
 }
 move.bloprojection = {
     id: 'bloprojection',
     name: 'Bloprojection',
-    cooldownMs: 2500,
+    cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 7, max: 10}, target: 'enemy'},
               { type: 'dot', element: 'terre', value: 10, duration: 3, target: 'enemy' }],
 }
@@ -1452,7 +1452,7 @@ move.bloprojection = {
 move.blopsoin = {
     id: 'blopsoin',
     name: 'Blopsoin',
-    cooldownMs: 3000,
+    cooldownMs: 2500,
     effects: [{ type: 'heal', heal: { min: 21, max: 30 }, target: 'self' }],
 }
 move.blopzone = {
@@ -1465,7 +1465,7 @@ move.blopzone = {
 move.gloutage = {
     id: 'gloutage',
     name: 'Gloutage',
-    cooldownMs: 9000,
+    cooldownMs: 4000,
     effects: [{ type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 350, max: 500}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.33, target: 'self'}],
 }
@@ -1483,14 +1483,14 @@ move.blotravail_Royal = {
 move.blopunition_Royale_air = {
     id: 'blopunition_Royale_air',
     name: 'Blopunition Royale',
-    cooldownMs: 2500,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 21, max: 30}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_air = {
     id: 'blotection_air',
     name: 'Blotection',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.terre', value: 40, duration: 2, target: 'self'}],
 }
@@ -1498,14 +1498,14 @@ move.blotection_air = {
 move.blopunition_Royale_feu = {
     id: 'blopunition_Royale_feu',
     name: 'Blopunition Royale',
-    cooldownMs: 2500,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 21, max: 30}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_feu = {
     id: 'blotection_feu',
     name: 'Blotection',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.eau', value: 40, duration: 2, target: 'self'}],
 }
@@ -1513,14 +1513,14 @@ move.blotection_feu = {
 move.blopunition_Royale_eau = {
     id: 'blopunition_Royale_eau',
     name: 'Blopunition Royale',
-    cooldownMs: 2500,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 30}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_eau = {
     id: 'blotection_eau',
     name: 'Blotection',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.feu', value: 40, duration: 2, target: 'self'}],
 }
@@ -1528,14 +1528,14 @@ move.blotection_eau = {
 move.blopunition_Royale_terre = {
     id: 'blopunition_Royale_terre',
     name: 'Blopunition Royale',
-    cooldownMs: 2500,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 21, max: 30}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.3, target: 'self'}],
 }
 move.blotection_terre = {
     id: 'blotection_terre',
     name: 'Blotection',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'shield', value: 500, duration: 1, target: 'self'},
               { type: 'buff', stat: 'res.air', value: 40, duration: 2, target: 'self'}],
 }
@@ -1561,14 +1561,14 @@ move['Roulo-Boulos'] = {
 move.Carapassable = {
     id: 'Carapassable',
     name: 'Carapassable',
-    cooldownMs: 3000,
+    cooldownMs: 2000,
     effects: [{ type: 'buff', stat: 'res_all', value: 10, duration: 2, target: 'self'}],
 }
 // — Scordion Bleu —
 move.Pince_pattes = {
     id: 'Pince_pattes',
     name: 'Pince-pattes',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 31, max: 35}, target: 'enemy'}],
 }
 move.Dard_Empoisonne = {
@@ -1581,27 +1581,27 @@ move.Dard_Empoisonne = {
 move.Creuse_sable = {
     id: 'Creuse_sable',
     name: 'Creuse Sable',
-    cooldownMs: 2200,
+    cooldownMs: 2000,
     effects: [{ type: 'esquive', chancePct: 50, reductionPct: 100, duration: 3, target: 'self' }],
 }
 // — Fennex —
 move.Reconnaissance = {
     id: 'Reconnaissance',
     name: 'Reconnaissance',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'buff', stat: 'atk', value: 150, duration: 2, target: 'self'}],
 }
 move.Entrave_Sableuse = {
     id: 'Entrave_Sableuse',
     name: 'Entrave Sableuse',
-    cooldownMs: 2200,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 20, duration: 2,           target: 'enemy'}],
 }
 move.Enragement_Motivant = {
     id: 'Enragement_Motivant',
     name: 'Enragement Motivant',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'maxHp', value: 300, duration: 2, target: 'self'},
               { type: 'buff', stat: 'atk', value: 100, duration: 2, target: 'self'}],
 }
@@ -1609,20 +1609,20 @@ move.Enragement_Motivant = {
 move.Sirocco = {
     id: 'Sirocco',
     name: 'Sirocco',
-    cooldownMs: 2200,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'air', damage: {min: 36, max: 39}, target: 'enemy'},
               { type: 'buff', stat: 'atk', value: 50, duration: 2, target: 'self'}],
 }
 move.Mort_sure = {
     id: 'Mort_sure',
     name: 'Mort Sûre',
-    cooldownMs: 3500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 51, max: 55}, target: 'enemy'}],
 }
 move.Hyaignement = {
     id: 'Hyaignement',
     name: 'Hyaignement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 26, max: 30}, target: 'enemy'},
               { type: 'dot',    element: 'feu', value: 6, duration: 3,      target: 'all_enemies'}],
 }
@@ -1650,28 +1650,28 @@ move.Durcissement = {
 move.darmocles = {
     id: 'darmocles',
     name: "Dar'Mocles",
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 31, max: 40}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 3,      target: 'enemy'}],
 }
 move.force_Poigne = {
     id: 'force_Poigne',
     name: 'Force Poigne',
-    cooldownMs: 2200,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 36, max: 45}, target: 'enemy'},
               { type: 'buff', stat: 'spd', value: 50, duration: 2,           target: 'self'}],
 }
 move.tombeau_du_desert = {
     id: 'tombeau_du_desert',
     name: 'Tombeau du Désert',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 31, max: 40}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 50, duration: 2,           target: 'enemy'}],
 }
 move.garde_bouclier = {
     id: 'garde_bouclier',
     name: 'Garde Bouclier',
-    cooldownMs: 3500,
+    cooldownMs: 2000,
     effects: [{ type: 'repulsion_guard', duration: 3, target: 'self' },
               { type: 'renvoi', ratio: 0.5, target: 'self' }],
 }
@@ -1683,14 +1683,14 @@ move.garde_bouclier = {
 move.Feuilletage = {
     id: 'Feuilletage',
     name: 'Feuilletage',
-    cooldownMs: 2200,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 26, max: 35}, target: 'enemy'},
               { type: 'debuff', stat: 'chance', value: 200, duration: 3,   target: 'enemy'}],
 }
 move.Fendage = {
     id: 'Fendage',
     name: 'Fendage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 21, max: 30}, target: 'enemy'}],
 }
 // — Dragoeuf Argile (air rés) —
@@ -1710,13 +1710,13 @@ move.Engobage = {
 move.Entartrage = {
     id: 'Entartrage',
     name: 'Entartrage',
-    cooldownMs: 2200,
+    cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 15, max: 25}, target: 'enemy'}],
 }
 move.Calcination = {
     id: 'Calcination',
     name: 'Calcination',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'debuff', stat: 'spd', value: 30, duration: 2,  target: 'enemy'}],
 }
 // — Dragoeuf Charbon (feu rés) —
@@ -1729,7 +1729,7 @@ move.Crassier = {
 move.Silicose = {
     id: 'Silicose',
     name: 'Silicose',
-    cooldownMs: 2500,
+    cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 11, max: 15}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 30, duration: 3,        target: 'enemy'}],
 }
@@ -1737,7 +1737,7 @@ move.Silicose = {
 move.Dralbatre = {
     id: 'Dralbatre',
     name: 'Dralbatre',
-    cooldownMs: 2200,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'air', damage: {min: 11, max: 15}, target: 'enemy'}],
 }
 move['Dragloméra'] = {
@@ -1759,14 +1759,14 @@ move.Pepiniere = {
 move.Knout = {
     id: 'Knout',
     name: 'Knout',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 31, max: 40}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 2,        target: 'enemy'}],
 }
 move.Drakaaris = {
     id: 'Drakaaris',
     name: 'Drakaaris',
-    cooldownMs: 3500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 16, max: 25}, target: 'enemy'},
               { type: 'dot',    element: 'feu', value: 15, duration: 3,      target: 'enemy'}],
 }
@@ -1778,32 +1778,32 @@ move.Drakaaris = {
 move.Bond_affaiblissant = {
     id: 'Bond_affaiblissant',
     name: 'Bond Affaiblissant',
-    cooldownMs: 2200,
+    cooldownMs: 2000,
     effects: [{ type: 'debuff', stat: 'res_all', value: 25, duration: 3,           target: 'enemy'}],
 }
 move.Abraknettoyage = {
     id: 'Abraknettoyage',
     name: 'Abraknettoyage',
-    cooldownMs: 2500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 37, max: 43}, target: 'enemy'}],
 }
 move.Motivation_Sylvestre = {
     id: 'Motivation_Sylvestre',
     name: 'Motivation Sylvestre',
-    cooldownMs: 1500,
+    cooldownMs: 2000,
     effects: [{ type: 'buff', stat: 'critChance', value: 20, duration: 3}],
 }
 // — Abraknyde Sombre —
 move.Abrabranche = {
     id: 'Abrabranche',
     name: 'Abrabranche',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 41, max: 50}, target: 'enemy'}],
 }
 move.Branche_Paralysante = {
     id: 'Branche_Paralysante',
     name: 'Branche Paralysante',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 3, max: 4}, target: 'enemy'},
               { type: 'dot', element: 'neutre', value: 5, duration: 6, target: 'enemy' },
               { type: 'debuff', stat: 'spd', value: 20, duration: 6,  target: 'enemy'}],
@@ -1811,21 +1811,21 @@ move.Branche_Paralysante = {
 move.Ecrasement_Abraknydien = {
     id: 'Ecrasement_Abraknydien',
     name: 'Écrasement Abraknydien',
-    cooldownMs: 2200,
+    cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 13, max: 18}, target: 'enemy'}],
 }
 // — Araknotron —
 move.Lancer_d_Arakne_Morte = {
     id: 'Lancer_d_Arakne_Morte',
     name: "Lancer d'Arakne Morte",
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 31, max: 40}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 20, duration: 2,  target: 'enemy'}],
 }
 move.Complicite = {
     id: 'Complicite',
     name: 'Complicité',
-    cooldownMs: 1500,
+    cooldownMs: 2500,
     effects: [{type: 'random', choices: [{ chance: 0.34, effects: [{ type: 'buff', stat: 'spd',       value: 20,  duration: 2, target: 'self'}]},
                                          { chance: 0.33, effects: [{ type: 'buff', stat: 'atk',       value: 200, duration: 2, target: 'self'}]},
                                          { chance: 0.33, effects: [{ type: 'buff', stat: 'critChance', value: 50, duration: 2, target: 'self'}]}]}],
@@ -1843,28 +1843,28 @@ move.Abrakage = {
 move.Ecorce_agressive = {
     id: 'Ecorce_agressive',
     name: 'Écorce Agressive',
-    cooldownMs: 2500,
+    cooldownMs: 2000,
     effects: [{ type: 'renvoi', ratio: 0.3,               target: 'self'},
               { type: 'shield', value: 300, duration: 4, target: 'self'}],
 }
 move.Reconstitution_Abraknydienne = {
     id: 'Reconstitution_Abraknydienne',
     name: 'Reconstitution Abraknydienne',
-    cooldownMs: 3500,
+    cooldownMs: 2500,
     effects: [{ type: 'heal', heal: {min: 150, max: 250}, target: 'self'}],
 }
 // — Arakne Majeure (élite du donjon) —
 move.Ralentissement_Arakneen = {
     id: 'Ralentissement_Arakneen',
     name: 'Ralentissement Araknéen',
-    cooldownMs: 2200,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 30, max: 40}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 30, duration: 3,            target: 'enemy'}],
 }
 move.Absorption_Sanguine = {
     id: 'Absorption_Sanguine',
     name: 'Absorption Sanguine',
-    cooldownMs: 2500,
+    cooldownMs: 4000,
     effects: [{ type: 'damage',   element: 'neutre', damage: {min: 35, max: 50}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.5,                                    target: 'self' }],
 }
@@ -1873,7 +1873,7 @@ move.Absorption_Sanguine = {
 move.Morsure_Sylvestre = {
     id: 'Morsure_Sylvestre',
     name: 'Morsure Sylvestre',
-    cooldownMs: 2500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage',   element: 'neutre', damage: {min: 21, max: 30}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 100, duration: 3,            target: 'enemy'}],
 }
@@ -1891,7 +1891,7 @@ move.Invocation_d_Arakne_Majeure = {
 move.Sucotement_Porcin = {
     id: 'Sucotement_Porcin',
     name: 'Sucotement Porcin',
-    cooldownMs: 2200,
+    cooldownMs: 2000,
     effects: [{ type: 'damage',   element: 'feu', damage: {min: 3, max: 5}, target: 'enemy'},
               { type: 'dot', element: 'feu', value: 5, duration: 12, target: 'enemy' }],
 }
@@ -1899,7 +1899,7 @@ move.Sucotement_Porcin = {
 move.Menotage = {
     id: 'Menotage',
     name: 'Menotage',
-    cooldownMs: 2500,
+    cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 31, max: 45}, target: 'enemy'}],
 }
 move['Charge Sanguinaire'] = {
@@ -1913,7 +1913,7 @@ move['Charge Sanguinaire'] = {
 move.Vampirisation_Cochonne = {
     id: 'Vampirisation_Cochonne',
     name: 'Vampirisation Cochonne',
-    cooldownMs: 2500,
+    cooldownMs: 4000,
     effects: [{ type: 'damage',   element: 'eau', damage: {min: 71, max: 100}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.2,                                  target: 'self' }],
 }
@@ -1926,7 +1926,7 @@ move['Tire-Bouffon'] = {
 move.Perfusion = {
     id: 'Perfusion',
     name: 'Perfusion',
-    cooldownMs: 5000,
+    cooldownMs: 3500,
     effects: [{ type: 'heal', heal: {min: 70, max: 100}, target: 'self'},
               { type: 'damage', element: 'neutre', damage: {min: 30, max: 60}, target: 'enemy'}],
 }
@@ -1934,13 +1934,13 @@ move.Perfusion = {
 move.Fleche_Renifleuse = {
     id: 'Fleche_Renifleuse',
     name: 'Flèche Renifleuse',
-    cooldownMs: 1700,
+    cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 16,max: 20}, target: 'enemy'}],
 }
 move.Fleche_Douloureuse = {
     id: 'Fleche_Douloureuse',
     name: 'Flèche Douloureuse',
-    cooldownMs: 2500,
+    cooldownMs: 2200,
     effects: [{type: 'damage', elements: ['feu', 'eau', 'terre', 'air'], damage: {min: 6,max: 10}, target: 'enemy'},
               { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 5,        target: 'enemy'}],
 }
@@ -1969,7 +1969,7 @@ move['Yotsu-Zumo'] = {
 move.Ecrasement_Handicapant = {
     id: 'Ecrasement_Handicapant',
     name: 'Écrasement Handicapant',
-    cooldownMs: 2500,
+    cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 13, max: 18}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 200, duration: 3,         target: 'enemy'}],
 }
@@ -1983,13 +1983,13 @@ move.Croutage = {
 move.Immobilisation = {
     id: 'Immobilisation',
     name: 'Immobilisation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'debuff', stat: 'spd', value: 70, duration: 2,  target: 'enemy'}],
 }
 move.etourderie_Mortelle = {
     id: 'etourderie_Mortelle',
     name: 'Étourderie Mortelle',
-    cooldownMs: 6000,
+    cooldownMs: 3500,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 200, max: 250}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 20, duration: 3,             target: 'enemy'}],
 }
@@ -2002,13 +2002,8 @@ move.etourderie_Mortelle = {
 // — Gelées normales —
 move.Tartinade = {
     id: 'Tartinade', name: 'Tartinade',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self'}],
-}
-move.Gelpikes = {
-    id: 'Gelpikes', name: 'Gelpikes',
-    cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'neutre', damage: {min: 14, max: 22}, target: 'enemy'}],
 }
 move.Fraise_Os = {
     id: 'Fraise_Os', name: 'Fraise Os',
@@ -2033,52 +2028,52 @@ move.Citron_Os = {
 // — Gelées Royales —
 move.Gelpikes = {
     id: 'Gelpikes', name: 'Gelpikes',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'neutre', damage: {min: 14, max: 22}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
 }
 move.Royale_Fraise_Os = {
     id: 'Royale_Fraise_Os', name: 'Royale Fraise Os',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'feu', damage: {min: 18, max: 22}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
 }
 move.Gelifiant = {
     id: 'Gelifiant', name: 'Gélifiant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'heal', heal: 60, target: 'self'}],
 }
 move.Royale_Bleuet_Os = {
     id: 'Royale_Bleuet_Os', name: 'Royale Bleuet Os',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'eau', damage: {min: 18, max: 22}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
 }
 move.Isometrie = {
     id: 'Isometrie', name: 'Isométrie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'debuff', stat: 'spd', value: 30, duration: 2, target: 'enemy'}],
 }
 move.Royale_Menthe_Os = {
     id: 'Royale_Menthe_Os', name: 'Royale Menthe Os',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'terre', damage: {min: 18, max: 22}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
 }
 move.Pik_assaut = {
     id: 'Pik_assaut', name: 'Pik-assaut',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'buff', stat: 'spd', value: 30, duration: 2, target: 'self'}],
 }
 move.Royale_Citron_Os = {
     id: 'Royale_Citron_Os', name: 'Royale Citron Os',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{ type: 'damage', element: 'air', damage: {min: 18, max: 22}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy'}],
 }
 move.Fixation_Beton = {
     id: 'Fixation_Beton', name: 'Fixation Béton',
-    cooldownMs: 3000,
+    cooldownMs: 2000,
     effects: [{ type: 'buff', stat: 'damageReductionPct', value: 10, duration: 2, target: 'self'}],
 }
 // #endregion
@@ -2088,7 +2083,7 @@ move.Fixation_Beton = {
 move.double_tranchant = {
     id: 'double_tranchant',
     name: 'Double Tranchant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'heal%maxHp', value: 25, target: 'self' },
@@ -2116,7 +2111,7 @@ move.morsure_putride = {
 move.langue_morte = {
     id: 'langue_morte',
     name: 'Langue Morte',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 23, max: 30 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -2135,7 +2130,7 @@ move.porter_la_boufballe = {
 move.jeter_la_boufballe = {
     id: 'jeter_la_boufballe',
     name: 'Jeter la Boufballe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
     ]
@@ -2177,7 +2172,7 @@ move.triche = {
 move.tu_pousses_le_bouchon_un_peu_trop_loin_joris = {
     id: 'tu_pousses_le_bouchon_un_peu_trop_loin_joris',
     name: 'Tu pousses le bouchon un peu trop loin Joris !',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'heal%maxHp', value: 100, target: 'self' },
         { type: 'buff', stat: 'atk', value: 300, duration: 3, target: 'self' },
@@ -2196,7 +2191,7 @@ move.verfeur = {
 move.lioube = {
     id: 'lioube',
     name: 'Lioube',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 9, max: 13 }, target: 'enemy' },
@@ -2208,7 +2203,7 @@ move.lioube = {
 move.emportement = {
     id: 'emportement',
     name: 'Emportement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 6, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 16, max: 25 }, target: 'enemy' },
@@ -2220,7 +2215,7 @@ move.emportement = {
 move.eau_strasisme = {
     id: 'eau_strasisme',
     name: 'Eau strasisme',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -2274,7 +2269,7 @@ move.tacle_lourd = {
 move.morsure = {
     id: 'morsure',
     name: 'Morsure',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 2, max: 4 }, target: 'enemy' }
     ]
@@ -2284,7 +2279,7 @@ move.morsure = {
 move.elemental_spear = {
     id: 'elemental_spear',
     name: 'Elemental Spear',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 1, max: 1 }, target: 'enemy' },
@@ -2294,7 +2289,7 @@ move.elemental_spear = {
 move.bomball = {
     id: 'bomball',
     name: 'Bomball',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
     ]
@@ -2304,7 +2299,7 @@ move.bomball = {
 move.elemental_speareau = {
     id: 'elemental_speareaus',
     name: 'Elemental Spear',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 1, max: 1 }, target: 'enemy' },
@@ -2314,7 +2309,7 @@ move.elemental_speareau = {
 move.bombaleau = {
     id: 'bomballeau',
     name: 'Bomball',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
     ]
@@ -2324,7 +2319,7 @@ move.bombaleau = {
 move.elemental_spearterre = {
     id: 'elemental_spearterre',
     name: 'Elemental Spear',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 1, max: 1 }, target: 'enemy' },
@@ -2334,7 +2329,7 @@ move.elemental_spearterre = {
 move.bomballterre = {
     id: 'bomballterre',
     name: 'Bomball',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
     ]
@@ -2344,7 +2339,7 @@ move.bomballterre = {
 move.elemental_spearair = {
     id: 'elemental_spearair',
     name: 'Elemental Spear',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 1, max: 1 }, target: 'enemy' },
@@ -2354,7 +2349,7 @@ move.elemental_spearair = {
 move.bomballair = {
     id: 'bomballair',
     name: 'Bomball',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 200 }, target: 'enemy' }
     ]
@@ -2364,7 +2359,7 @@ move.bomballair = {
 move.beco_du_tofu = {
     id: 'beco_du_tofu',
     name: 'Béco du Tofu',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 13, max: 18 }, target: 'enemy' }
     ]
@@ -2374,7 +2369,7 @@ move.beco_du_tofu = {
 move.brulure_legere = {
     id: 'brulure_legere',
     name: 'Brûlure légère',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 6, max: 10 }, target: 'enemy' }
     ]
@@ -2384,7 +2379,7 @@ move.brulure_legere = {
 move.crachat_sale = {
     id: 'crachat_sale',
     name: 'Crachat Salé',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 4, max: 5 }, target: 'enemy' }
     ]
@@ -2394,7 +2389,7 @@ move.crachat_sale = {
 move.empoisonnement = {
     id: 'empoisonnement',
     name: 'Empoisonnement',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 10, max: 10 }, target: 'enemy' }
     ]
@@ -2402,7 +2397,7 @@ move.empoisonnement = {
 move.effleurement = {
     id: 'effleurement',
     name: 'Effleurement',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 14 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -2413,7 +2408,7 @@ move.effleurement = {
 move.glougloutte = {
     id: 'glougloutte',
     name: 'Glougloutte',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 6, max: 10 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -2424,7 +2419,7 @@ move.glougloutte = {
 move.plouf = {
     id: 'plouf',
     name: 'Plouf',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 6, max: 10 }, target: 'enemy' }
     ]
@@ -2436,7 +2431,7 @@ move.plouf = {
 move.splotch = {
     id: 'splotch',
     name: 'Splotch',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 6, max: 10 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -2447,7 +2442,7 @@ move.splotch = {
 move.souffle_celeste = {
     id: 'souffle_celeste',
     name: 'Souffle Céleste',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 4, max: 5 }, target: 'enemy' }
     ]
@@ -2455,7 +2450,7 @@ move.souffle_celeste = {
 move.particules_spirituelles = {
     id: 'particules_spirituelles',
     name: 'Particules Spirituelles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['tigrimas'], duration: 3, target: 'enemy' }
     ]
@@ -2465,7 +2460,7 @@ move.particules_spirituelles = {
 move.reconstitution_celeste = {
     id: 'reconstitution_celeste',
     name: 'Reconstitution Céleste',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 100, target: 'self' },
     ]
@@ -2483,7 +2478,7 @@ move.lancer_de_feu_vif = {
 move.coup_de_pileus = {
     id: 'coup_de_pileus',
     name: 'Coup de Piléus',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 2, duration: 3, target: 'self' }
@@ -2510,7 +2505,7 @@ move.ron_ron = {
 move.invocation_de_feu_de_joie = {
     id: 'invocation_de_feu_de_joie',
     name: 'Invocation de Feu de Joie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['feu_vif'], duration: 3, target: 'enemy' }
     ]
@@ -2528,7 +2523,7 @@ move.ecrasement_du_ronronchon = {
 move.beco_morveux = {
     id: 'beco_morveux',
     name: 'Béco Morveux',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 13, max: 16 }, target: 'enemy' }
     ]
@@ -2546,7 +2541,7 @@ move.tentative_d_envol = {
 move.mandibules_toxiques = {
     id: 'mandibules_toxiques',
     name: 'Mandibules Toxiques',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 12, max: 14 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -2557,7 +2552,7 @@ move.mandibules_toxiques = {
 move.frappe_morveuse = {
     id: 'frappe_morveuse',
     name: 'Frappe Morveuse',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 18 }, target: 'enemy' }
     ]
@@ -2565,7 +2560,7 @@ move.frappe_morveuse = {
 move.glaire_obscure = {
     id: 'glaire_obscure',
     name: 'Glaire Obscure',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 14 }, target: 'enemy' }
     ]
@@ -2575,7 +2570,7 @@ move.glaire_obscure = {
 move.frappe = {
     id: 'frappe',
     name: 'Frappe',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 8, max: 10 }, target: 'enemy' }
     ]
@@ -2583,7 +2578,7 @@ move.frappe = {
 move.invocation_d_arakne = {
     id: 'invocation_d_arakne',
     name: 'Invocation d\'Arakne',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['arakne_minuscule'], duration: 3, target: 'enemy' }
     ]
@@ -2591,7 +2586,7 @@ move.invocation_d_arakne = {
 move.invocation_d_araknelle = {
     id: 'invocation_d_araknelle',
     name: 'Invocation d\'Araknelle',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['arakne_malade'], duration: 3, target: 'enemy' }
     ]
@@ -2601,7 +2596,7 @@ move.invocation_d_araknelle = {
 move.gouter = {
     id: 'gouter',
     name: 'Goûter',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 20, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.2, target: 'self' },
@@ -2621,7 +2616,7 @@ move.attraction_enfantine = {
 move.coupage = {
     id: 'coupage',
     name: 'Coupage',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 13, max: 17 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -2632,7 +2627,7 @@ move.coupage = {
 move.bombombe = {
     id: 'bombombe',
     name: 'Bombombe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['flammeche_feu'], duration: 3, target: 'enemy' }
     ]
@@ -2650,7 +2645,7 @@ move.toile_fragile = {
 move.rejet_acide = {
     id: 'rejet_acide',
     name: 'Rejet Acide',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 7, max: 12 }, target: 'enemy' }
     ]
@@ -2660,7 +2655,7 @@ move.rejet_acide = {
 move.jet_de_poussiere = {
     id: 'jet_de_poussiere',
     name: 'Jet de Poussière',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -2668,7 +2663,7 @@ move.jet_de_poussiere = {
 move.regard_effrayant = {
     id: 'regard_effrayant',
     name: 'Regard Effrayant',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 14 }, target: 'enemy' }
     ]
@@ -2678,7 +2673,7 @@ move.regard_effrayant = {
 move.petit_paquet = {
     id: 'petit_paquet',
     name: 'Petit paquet',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 3, max: 7 }, target: 'enemy' }
     ]
@@ -2688,7 +2683,7 @@ move.petit_paquet = {
 move.detonation_du_poulailler = {
     id: 'detonation_du_poulailler',
     name: 'Détonation du poulailler',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 6, max: 10 }, target: 'enemy' }
     ]
@@ -2698,7 +2693,7 @@ move.detonation_du_poulailler = {
 move.hypnose_brulante = {
     id: 'hypnose_brulante',
     name: 'Hypnose Brûlante',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 10, max: 12 }, target: 'enemy' }
     ]
@@ -2706,7 +2701,7 @@ move.hypnose_brulante = {
 move.morstrubien = {
     id: 'morstrubien',
     name: 'Morstrubien',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 15, max: 17 }, target: 'enemy' }
     ]
@@ -2720,7 +2715,7 @@ move.morstrubien = {
 move.postillon_handicapant = {
     id: 'postillon_handicapant',
     name: 'Postillon Handicapant',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'enemy' }
     ]
@@ -2738,7 +2733,7 @@ move.bulle_de_protection = {
 move.postillon_aveuglant = {
     id: 'postillon_aveuglant',
     name: 'Postillon Aveuglant',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 16 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -2775,7 +2770,7 @@ move.dissuasion = {
 move.larvement = {
     id: 'larvement',
     name: 'Larvement',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 4, max: 5 }, target: 'enemy' }
     ]
@@ -2793,7 +2788,7 @@ move.retour_de_flamme = {
 move.bave_affaiblissante = {
     id: 'bave_affaiblissante',
     name: 'Bave Affaiblissante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 15, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -2802,7 +2797,7 @@ move.bave_affaiblissante = {
 move.postillon_cauterisant = {
     id: 'postillon_cauterisant',
     name: 'Postillon Cautérisant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 9, target: 'self' }
     ]
@@ -2830,7 +2825,7 @@ move.petite_toile = {
 move.champatate = {
     id: 'champatate',
     name: 'Champatate',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'enemy' }
     ]
@@ -2838,7 +2833,7 @@ move.champatate = {
 move.champoisonnement = {
     id: 'champoisonnement',
     name: 'Champoisonnement',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 8, max: 8 }, target: 'enemy' }
     ]
@@ -2848,7 +2843,7 @@ move.champoisonnement = {
 move.piqure = {
     id: 'piqure',
     name: 'Piqûre',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 4, max: 4 }, target: 'enemy' }
@@ -2875,7 +2870,7 @@ move.gnoll_haut = {
 move.rongement = {
     id: 'rongement',
     name: 'Rongement',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -2895,7 +2890,7 @@ move.baiser_de_kaliptus = {
 move.implosion = {
     id: 'implosion',
     name: 'Implosion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 65 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 6, max: 10 }, target: 'enemy' }
@@ -2924,7 +2919,7 @@ move.replique_fantomatique = {
 move.embrochement_fantomatique = {
     id: 'embrochement_fantomatique',
     name: 'Embrochement Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 7, max: 10 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -2936,7 +2931,7 @@ move.embrochement_fantomatique = {
 move.element_fantomatique = {
     id: 'element_fantomatique',
     name: 'Élément Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 15, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -2945,7 +2940,7 @@ move.element_fantomatique = {
 move.scaraforce_fantomatique = {
     id: 'scaraforce_fantomatique',
     name: 'Scaraforce Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 9, max: 11 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -2956,7 +2951,7 @@ move.scaraforce_fantomatique = {
 move.glaive_fantomatique = {
     id: 'glaive_fantomatique',
     name: 'Glaive Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 5, max: 6 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -2977,7 +2972,7 @@ move.bravoure_fantomatique = {
 move.nuage_de_poupoussiere = {
     id: 'nuage_de_poupoussiere',
     name: 'Nuage de Poupoussière',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 12, max: 15 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -2998,7 +2993,7 @@ move.disruption = {
 move.malediction = {
     id: 'malediction',
     name: 'Malédiction',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'dot', element: 'neutre', value: 12, duration: 1, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -3011,7 +3006,7 @@ move.malediction = {
 move.septicemie = {
     id: 'septicemie',
     name: 'Septicémie',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 6, max: 10 }, target: 'enemy' }
     ]
@@ -3019,7 +3014,7 @@ move.septicemie = {
 move.esprit_de_meute = {
     id: 'esprit_de_meute',
     name: 'Esprit de Meute',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' },
         { type: 'heal', heal: 50, target: 'self' },
@@ -3039,7 +3034,7 @@ move.immunodeficience = {
 move.fange = {
     id: 'fange',
     name: 'Fange',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 8, max: 12 }, target: 'enemy' }
     ]
@@ -3055,7 +3050,7 @@ move.caprice = {
 move.rebond_punitif = {
     id: 'rebond_punitif',
     name: 'Rebond punitif',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 12, max: 18 }, target: 'enemy' }
@@ -3075,7 +3070,7 @@ move.anemie = {
 move.curee = {
     id: 'curee',
     name: 'Curée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 50, target: 'self' }
     ]
@@ -3083,7 +3078,7 @@ move.curee = {
 move.incubation = {
     id: 'incubation',
     name: 'Incubation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 15, target: 'self' }
     ]
@@ -3093,7 +3088,7 @@ move.incubation = {
 move.humectation = {
     id: 'humectation',
     name: 'Humectation',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 6, max: 10 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -3102,7 +3097,7 @@ move.humectation = {
 move.flaque = {
     id: 'flaque',
     name: 'Flaque',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -3133,7 +3128,7 @@ move.souffle_percutant = {
 move.bwakikui = {
     id: 'bwakikui',
     name: 'Bwakikui',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 1, max: 80 }, target: 'enemy' }
     ]
@@ -3143,7 +3138,7 @@ move.bwakikui = {
 move.bwakikuiterre = {
     id: 'bwakikuiterre',
     name: 'Bwakikui',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 1, max: 80 }, target: 'enemy' }
     ]
@@ -3152,7 +3147,7 @@ move.bwakikuiterre = {
 move.bwakikuiair = {
     id: 'bwakikuiair',
     name: 'Bwakikui',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 1, max: 80 }, target: 'enemy' }
     ]
@@ -3161,7 +3156,7 @@ move.bwakikuiair = {
 move.bwakikuieau = {
     id: 'bwakikuieau',
     name: 'Bwakikui',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 1, max: 80 }, target: 'enemy' }
     ]
@@ -3170,7 +3165,7 @@ move.bwakikuieau = {
 move.enchevetrement = {
     id: 'enchevetrement',
     name: 'Enchevêtrement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -3189,7 +3184,7 @@ move.marteau_branlant = {
 move.mur_de_pelles = {
     id: 'mur_de_pelles',
     name: 'Mur de Pelles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['mur_de_pelles'], duration: 3, target: 'enemy' }
     ]
@@ -3254,7 +3249,7 @@ move.piege_a_pieds = {
 move.mandibules = {
     id: 'mandibules',
     name: 'Mandibules',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 15, max: 17 }, target: 'enemy' }
     ]
@@ -3262,7 +3257,7 @@ move.mandibules = {
 move.mere_porteuse = {
     id: 'mere_porteuse',
     name: 'Mère Porteuse',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 13 }, target: 'enemy' }
     ]
@@ -3272,7 +3267,7 @@ move.mere_porteuse = {
 move.roblochon_ancestral = {
     id: 'roblochon_ancestral',
     name: 'Roblochon ancestral',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 30, duration: 3, target: 'enemy' },
@@ -3284,7 +3279,7 @@ move.roblochon_ancestral = {
 move.trou_d_emmental = {
     id: 'trou_d_emmental',
     name: 'Trou d\'Emmental',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 25, duration: 3, target: 'self' },
         { type: 'heal', heal: 17, target: 'self' },
@@ -3295,7 +3290,7 @@ move.trou_d_emmental = {
 move.mordillage = {
     id: 'mordillage',
     name: 'Mordillage',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 18 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -3304,7 +3299,7 @@ move.mordillage = {
 move.coup_de_dents = {
     id: 'coup_de_dents',
     name: 'Coup de dents',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 16, max: 18 }, target: 'enemy' }
     ]
@@ -3314,7 +3309,7 @@ move.coup_de_dents = {
 move.lancer_de_lance = {
     id: 'lancer_de_lance',
     name: 'Lancer de Lance',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 12, max: 14 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 1, duration: 2, target: 'enemy' },
@@ -3335,7 +3330,7 @@ move.air_empoisonne = {
 move.souillure_booeuse = {
     id: 'souillure_booeuse',
     name: 'Souillure Booeuse',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 4, max: 6 }, target: 'enemy' }
     ]
@@ -3382,7 +3377,7 @@ move.camouflage = {
 move.coup_du_chafer = {
     id: 'coup_du_chafer',
     name: 'Coup du Chafer',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -3400,7 +3395,7 @@ move.pantalonnade = {
 move.vol_de_pieces = {
     id: 'vol_de_pieces',
     name: 'Vol de Pièces',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -3426,7 +3421,7 @@ move.empoisonnement_vegetarien = {
 move.bisouille = {
     id: 'bisouille',
     name: 'Bisouille',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 10000, target: 'self' }
     ]
@@ -3436,7 +3431,7 @@ move.bisouille = {
 move.invocation_de_kruella = {
     id: 'invocation_de_kruella',
     name: 'Invocation de Kruella',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['Chef_de_Guerre_Bouftou'], duration: 3, target: 'enemy' }
     ]
@@ -3452,7 +3447,7 @@ move.souffle_motivant = {
 move.souffle_empoisonne = {
     id: 'souffle_empoisonne',
     name: 'Souffle Empoisonné',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'dot', element: 'terre', value: 10, duration: 3, target: 'enemy' }
@@ -3484,7 +3479,7 @@ move.miaulement_agacant = {
 move.minouille = {
     id: 'minouille',
     name: 'Minouille',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 17, max: 19 }, target: 'enemy' }
     ]
@@ -3494,7 +3489,7 @@ move.minouille = {
 move.beco = {
     id: 'beco',
     name: 'Béco',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -3505,7 +3500,7 @@ move.beco = {
 move.beco_rosif = {
     id: 'beco_rosif',
     name: 'Béco Rosif',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 17, max: 24 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -3514,7 +3509,7 @@ move.beco_rosif = {
 move.fougue_tofuesque = {
     id: 'fougue_tofuesque',
     name: 'Fougue Tofuesque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -3545,7 +3540,7 @@ move.ovation = {
 move.regeneration_printaniere = {
     id: 'regeneration_printaniere',
     name: 'Régénération printanière',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 20, target: 'self' },
     ]
@@ -3559,7 +3554,7 @@ move.regeneration_printaniere = {
 move.vol_de_vie = {
     id: 'vol_de_vie',
     name: 'Vol de Vie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 15, max: 22 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -3576,7 +3571,7 @@ move.force_des_ames_putrides = {
 move.nosfurate = {
     id: 'nosfurate',
     name: 'Nosfuraté',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 16 }, target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 50, duration: 3, target: 'enemy' },
@@ -3590,7 +3585,7 @@ move.nosfurate = {
 move.frappe_gerbante = {
     id: 'frappe_gerbante',
     name: 'Frappe Gerbante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -3598,7 +3593,7 @@ move.frappe_gerbante = {
 move.confusion_optique = {
     id: 'confusion_optique',
     name: 'Confusion Optique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -3608,7 +3603,7 @@ move.confusion_optique = {
 move.picota = {
     id: 'picota',
     name: 'Picota',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 11, target: 'self' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -3625,7 +3620,7 @@ move.graine_empoisonnee = {
 move.mot_de_jeunesse = {
     id: 'mot_de_jeunesse',
     name: 'Mot de Jeunesse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -3644,7 +3639,7 @@ move.disparition_groupee = {
 move.provocation = {
     id: 'provocation',
     name: 'Provocation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -3655,7 +3650,7 @@ move.provocation = {
 move.caresse_effrayante = {
     id: 'caresse_effrayante',
     name: 'Caresse Effrayante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' }
     ]
@@ -3683,7 +3678,7 @@ move.boorrade = {
 move.tir_de_cure_dent = {
     id: 'tir_de_cure_dent',
     name: 'Tir de cure-dent',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 13, max: 18 }, target: 'enemy' }
     ]
@@ -3701,7 +3696,7 @@ move.coup_de_cure_dent = {
 move.souffle_brulant = {
     id: 'souffle_brulant',
     name: 'Souffle brûlant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 27, max: 38 }, target: 'enemy' },
         { type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy' }
@@ -3744,7 +3739,7 @@ move.tentative_d_explosion = {
 move.reconstitution_magique = {
     id: 'reconstitution_magique',
     name: 'Reconstitution Magique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 31, target: 'self' }
     ]
@@ -3754,7 +3749,7 @@ move.reconstitution_magique = {
 move.frappe_temeraire = {
     id: 'frappe_temeraire',
     name: 'Frappe Téméraire',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 17, max: 19 }, target: 'enemy' }
     ]
@@ -3762,7 +3757,7 @@ move.frappe_temeraire = {
 move.impact_maladroit = {
     id: 'impact_maladroit',
     name: 'Impact Maladroit',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -3781,7 +3776,7 @@ move.renvoi_fantomatique = {
 move.explosion_fantomatique = {
     id: 'explosion_fantomatique',
     name: 'Explosion Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 15, max: 17 }, target: 'enemy' }
     ]
@@ -3789,7 +3784,7 @@ move.explosion_fantomatique = {
 move.fleche_fantomatique = {
     id: 'fleche_fantomatique',
     name: 'Flèche Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 15, max: 17 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -3800,7 +3795,7 @@ move.fleche_fantomatique = {
 move.invocation_de_familiers_fantomatiques = {
     id: 'invocation_de_familiers_fantomatiques',
     name: 'Invocation de Familiers Fantômatiques',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['corbac_fantomatique','marcassin_fantomatique'], duration: 3, target: 'enemy' },
     ]
@@ -3835,7 +3830,7 @@ move.motivation_fantomatique = {
 move.invocation_d_esprits_familiers = {
     id: 'invocation_d_esprits_familiers',
     name: 'Invocation d\'Esprits Familiers',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['el_scarador_fantomatique','croum_fantomatique'], duration: 3, target: 'enemy' },
     ]
@@ -3861,7 +3856,7 @@ move.deterrage = {
 move.gare_aux_glyphes = {
     id: 'gare_aux_glyphes',
     name: 'Gare aux Glyphes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['gargrouille'], duration: 3, target: 'enemy' },
     ]
@@ -3894,7 +3889,7 @@ move.durete_ramollissante = {
 move.flatuosite = {
     id: 'flatuosite',
     name: 'Flatuosité',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 14, max: 16 }, target: 'enemy' }
     ]
@@ -3902,7 +3897,7 @@ move.flatuosite = {
 move.tir_de_gobaliste = {
     id: 'tir_de_gobaliste',
     name: 'Tir de Gobaliste',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 18, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -3921,7 +3916,7 @@ move.co_balade = {
 move.egob_trip = {
     id: 'egob_trip',
     name: 'Egob trip',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 15, max: 17 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -3940,7 +3935,7 @@ move.malefice = {
 move.beco_malefique = {
     id: 'beco_malefique',
     name: 'Béco Maléfique',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 15, max: 18 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 15, max: 18 }, target: 'enemy' },
@@ -3962,7 +3957,7 @@ move.punksnotdede = {
 move.fronde = {
     id: 'fronde',
     name: 'Fronde',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
@@ -3972,7 +3967,7 @@ move.fronde = {
 move.appel_de_papa = {
     id: 'appel_de_papa',
     name: 'Appel de Papa',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['brigandin'], duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -3983,7 +3978,7 @@ move.appel_de_papa = {
 move.appel_de_la_mama = {
     id: 'appel_de_la_mama',
     name: 'Appel de la Mama',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['brigandine'], duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -3992,7 +3987,7 @@ move.appel_de_la_mama = {
 move.elagage_de_cou = {
     id: 'elagage_de_cou',
     name: 'Elagage de cou',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
@@ -4006,7 +4001,7 @@ move.elagage_de_cou = {
 move.badigeonnage_de_cerumen = {
     id: 'badigeonnage_de_cerumen',
     name: 'Badigeonnage de cérumen',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'dot', element: 'terre', value: 10, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -4015,7 +4010,7 @@ move.badigeonnage_de_cerumen = {
 move.attrape_coton_tige = {
     id: 'attrape_coton_tige',
     name: 'Attrape coton-tige',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' }
@@ -4026,7 +4021,7 @@ move.attrape_coton_tige = {
 move.eventration = {
     id: 'eventration',
     name: 'Éventration',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -4034,7 +4029,7 @@ move.eventration = {
 move.lancer_de_pain = {
     id: 'lancer_de_pain',
     name: 'Lancer de Pain',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 7, max: 11 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -4063,7 +4058,7 @@ move.raclerie = {
 move.teleportation_du_champa = {
     id: 'teleportation_du_champa',
     name: 'Téléportation du Champa',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
@@ -4082,7 +4077,7 @@ move.champ_oisone = {
 move.champsoin = {
     id: 'champsoin',
     name: 'Champsoin',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' }
     ]
@@ -4090,7 +4085,7 @@ move.champsoin = {
 move.champ_hagne = {
     id: 'champ_hagne',
     name: 'Champ Hagne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -4101,7 +4096,7 @@ move.champ_hagne = {
 move.sacrifice_douloureux = {
     id: 'sacrifice_douloureux',
     name: 'Sacrifice Douloureux',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' }
     ]
@@ -4109,7 +4104,7 @@ move.sacrifice_douloureux = {
 move.attraction_champetre = {
     id: 'attraction_champetre',
     name: 'Attraction champêtre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'dot', element: 'eau', value: 11, duration: 2, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -4121,7 +4116,7 @@ move.attraction_champetre = {
 move.champ_homi = {
     id: 'champ_homi',
     name: 'Champ Homi',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -4145,7 +4140,7 @@ move.champ_hetre = {
 move.souffle_gargouillesque = {
     id: 'souffle_gargouillesque',
     name: 'Souffle Gargouillesque',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 9, max: 11 }, target: 'enemy' }
     ]
@@ -4153,7 +4148,7 @@ move.souffle_gargouillesque = {
 move.gargouilli = {
     id: 'gargouilli',
     name: 'Gargouilli',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 23, max: 27 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy' }
@@ -4172,7 +4167,7 @@ move.couteau = {
 move.morsure_affaiblissante = {
     id: 'morsure_affaiblissante',
     name: 'Morsure Affaiblissante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -4182,7 +4177,7 @@ move.morsure_affaiblissante = {
 move.pince_de_corail = {
     id: 'pince_de_corail',
     name: 'Pince de Corail',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 3, duration: 3, target: 'self' }
@@ -4201,7 +4196,7 @@ move.protection_de_corail = {
 move.mini_empalement = {
     id: 'mini_empalement',
     name: 'Mini empalement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 35, max: 40 }, target: 'enemy' }
     ]
@@ -4222,7 +4217,7 @@ move.coup_de_boutonclier = {
 move.dindosoin = {
     id: 'dindosoin',
     name: 'Dindosoin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 5, target: 'self' },
     ]
@@ -4230,7 +4225,7 @@ move.dindosoin = {
 move.frappodindo = {
     id: 'frappodindo',
     name: 'Frappodindo',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 16, max: 18 }, target: 'enemy' },
@@ -4242,7 +4237,7 @@ move.frappodindo = {
 move.glyphe_sylvestre = {
     id: 'glyphe_sylvestre',
     name: 'Glyphe Sylvestre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -4269,7 +4264,7 @@ move.decapsulation = {
 move.fleur_des_iles = {
     id: 'fleur_des_iles',
     name: 'Fleur des îles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -4281,7 +4276,7 @@ move.fleur_des_iles = {
 move.fleur_des_iles_terre = {
     id: 'fleur_des_iles_terre',
     name: 'Fleur des îles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -4293,7 +4288,7 @@ move.fleur_des_iles_terre = {
 move.fleur_des_iles_feu = {
     id: 'fleur_des_iles_feu',
     name: 'Fleur des îles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -4305,7 +4300,7 @@ move.fleur_des_iles_feu = {
 move.fleur_des_iles_air = {
     id: 'fleur_des_iles_air',
     name: 'Fleur des îles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -4325,7 +4320,7 @@ move.gobond = {
 move.gobrochette = {
     id: 'gobrochette',
     name: 'Gobrochette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'critChance', value: 6, duration: 3, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 18, max: 20 }, target: 'enemy' }
@@ -4336,7 +4331,7 @@ move.gobrochette = {
 move.frappe_circulaire = {
     id: 'frappe_circulaire',
     name: 'Frappe circulaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'dot', element: 'neutre', value: 11, duration: 4, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 41, max: 54 }, target: 'enemy' }
@@ -4345,7 +4340,7 @@ move.frappe_circulaire = {
 move.invocation_de_poupoussiere = {
     id: 'invocation_de_poupoussiere',
     name: 'Invocation de Poupoussière',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['poupoussiere'], duration: 3, target: 'enemy' }
     ]
@@ -4355,7 +4350,7 @@ move.invocation_de_poupoussiere = {
 move.frappe_de_corail = {
     id: 'frappe_de_corail',
     name: 'Frappe de Corail',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -4365,7 +4360,7 @@ move.frappe_de_corail = {
 move.lancer_de_corail = {
     id: 'lancer_de_corail',
     name: 'Lancer de Corail',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 20 }, target: 'enemy' }
@@ -4374,7 +4369,7 @@ move.lancer_de_corail = {
 move.coraillement = {
     id: 'coraillement',
     name: 'Coraillement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'res.eau', value: 10, duration: 3, target: 'enemy' }
@@ -4413,7 +4408,7 @@ move.projectile_puissant = {
 move.boolkiroul = {
     id: 'boolkiroul',
     name: 'Boolkiroul',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 15, max: 18 }, target: 'enemy' }
@@ -4422,7 +4417,7 @@ move.boolkiroul = {
 move.namas_pamouss = {
     id: 'namas_pamouss',
     name: 'Namas\'Pamouss',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 24, max: 28 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -4452,7 +4447,7 @@ move.dorobo = {
 move.curare = {
     id: 'curare',
     name: 'Curare',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 6, max: 6 }, target: 'enemy' }
@@ -4498,7 +4493,7 @@ move.panique = {
 move.laminagile = {
     id: 'laminagile',
     name: 'Laminagile',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -4545,7 +4540,7 @@ move.tic_tac = {
 move.badaboum = {
     id: 'badaboum',
     name: 'Badaboum',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 250 }, target: 'enemy' }
     ]
@@ -4555,7 +4550,7 @@ move.badaboum = {
 move.protection_de_la_reine = {
     id: 'protection_de_la_reine',
     name: 'Protection de la Reine',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 61, target: 'self' }
     ]
@@ -4576,7 +4571,7 @@ move.ruse_hivernale = {
 move.kitsouqueue = {
     id: 'kitsouqueue',
     name: 'Kitsouqueue',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 29, max: 33 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -4585,7 +4580,7 @@ move.kitsouqueue = {
 move.kitsnition_frissonante = {
     id: 'kitsnition_frissonante',
     name: 'Kitsnition frissonante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -4593,7 +4588,7 @@ move.kitsnition_frissonante = {
 move.kitsouflamme = {
     id: 'kitsouflamme',
     name: 'Kitsouflamme',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 9, max: 13 }, target: 'enemy' }
     ]
@@ -4622,7 +4617,7 @@ move.envoie_la_patate = {
 move.tombee_de_neige = {
     id: 'tombee_de_neige',
     name: 'Tombée de Neige',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 15, max: 19 }, target: 'enemy' }
@@ -4631,7 +4626,7 @@ move.tombee_de_neige = {
 move.debarbouillage = {
     id: 'debarbouillage',
     name: 'Débarbouillage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 20, max: 24 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -4642,7 +4637,7 @@ move.debarbouillage = {
 move.larvure = {
     id: 'larvure',
     name: 'Larvure',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 11, target: 'self' }
     ]
@@ -4674,7 +4669,7 @@ move.larvage = {
 move.rapprochement_elementaire = {
     id: 'rapprochement_elementaire',
     name: 'Rapprochement Élémentaire',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 5, max: 6 }, target: 'enemy' },
@@ -4684,7 +4679,7 @@ move.rapprochement_elementaire = {
 move.immolation = {
     id: 'immolation',
     name: 'Immolation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 150 }, target: 'enemy' }
     ]
@@ -4694,7 +4689,7 @@ move.immolation = {
 move.rapprochement_elementaireeau = {
     id: 'rapprochement_elementaireeau',
     name: 'Rapprochement Élémentaire',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 5, max: 6 }, target: 'enemy' },
@@ -4704,7 +4699,7 @@ move.rapprochement_elementaireeau = {
 move.immolationeau = {
     id: 'immolationeau',
     name: 'Immolation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damageHpPct: { source: 'casterMaxHp', pct: 150 }, target: 'enemy' }
     ]
@@ -4714,7 +4709,7 @@ move.immolationeau = {
 move.rapprochement_elementaireterre = {
     id: 'rapprochement_elementaireterre',
     name: 'Rapprochement Élémentaire',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 5, max: 6 }, target: 'enemy' },
@@ -4724,7 +4719,7 @@ move.rapprochement_elementaireterre = {
 move.immolationterre = {
     id: 'immolationterre',
     name: 'Immolation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 150 }, target: 'enemy' }
     ]
@@ -4734,17 +4729,17 @@ move.immolationterre = {
 move.rapprochement_elementaireair = {
     id: 'rapprochement_elementaireair',
     name: 'Rapprochement Élémentaire',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 5, max: 6 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
     ]
 }
-move.immolation = {
-    id: 'immolation',
+move.immolationair = {
+    id: 'immolationair',
     name: 'Immolation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 150 }, target: 'enemy' }
     ]
@@ -4754,7 +4749,7 @@ move.immolation = {
 move.tempete_fantomatique = {
     id: 'tempete_fantomatique',
     name: 'Tempête Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 17, max: 19 }, target: 'enemy' }
     ]
@@ -4762,7 +4757,7 @@ move.tempete_fantomatique = {
 move.epee_fantomatique = {
     id: 'epee_fantomatique',
     name: 'Épée Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 4, max: 5 }, target: 'enemy' },
@@ -4785,7 +4780,7 @@ move.aspiration_fragilisante = {
 move.lard_bat_laite = {
     id: 'lard_bat_laite',
     name: 'Lard Bat Laite',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -4803,7 +4798,7 @@ move.reniflement = {
 move.pince = {
     id: 'pince',
     name: 'Pince',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 25, max: 36 }, target: 'enemy' }
     ]
@@ -4811,7 +4806,7 @@ move.pince = {
 move.violon_sel = {
     id: 'violon_sel',
     name: 'Violon Sel',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -4819,7 +4814,7 @@ move.violon_sel = {
 move.chancre = {
     id: 'chancre',
     name: 'Chancre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -4850,7 +4845,7 @@ move.enfeuillage = {
 move.fremissement = {
     id: 'fremissement',
     name: 'Frémissement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -4876,7 +4871,7 @@ move.jus_baveux = {
 move.kokojus = {
     id: 'kokojus',
     name: 'Kokojus',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -4887,7 +4882,7 @@ move.kokojus = {
 move.chapeau_incandescent = {
     id: 'chapeau_incandescent',
     name: 'Chapeau Incandescent',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -4903,7 +4898,7 @@ move.feu_interieur = {
 move.coup_de_pied_tombant = {
     id: 'coup_de_pied_tombant',
     name: 'Coup de Pied Tombant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 40 }, target: 'enemy' }
     ]
@@ -4929,7 +4924,7 @@ move.feu_aquatique = {
 move.poing_de_la_tortue = {
     id: 'poing_de_la_tortue',
     name: 'Poing de la Tortue',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 55 }, target: 'enemy' }
     ]
@@ -4939,7 +4934,7 @@ move.poing_de_la_tortue = {
 move.vents_percants = {
     id: 'vents_percants',
     name: 'Vents Perçants',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'enemy' }
@@ -4948,7 +4943,7 @@ move.vents_percants = {
 move.coup_de_patte_tournoyant = {
     id: 'coup_de_patte_tournoyant',
     name: 'Coup de Patte Tournoyant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -4957,7 +4952,7 @@ move.coup_de_patte_tournoyant = {
 move.ecrasement_terrestre = {
     id: 'ecrasement_terrestre',
     name: 'Écrasement Terrestre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -4968,7 +4963,7 @@ move.ecrasement_terrestre = {
 move.frappe_eclair_de_la_tortue = {
     id: 'frappe_eclair_de_la_tortue',
     name: 'Frappe Éclair de la Tortue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -4976,7 +4971,7 @@ move.frappe_eclair_de_la_tortue = {
 move.patte_explosive = {
     id: 'patte_explosive',
     name: 'Patte Explosive',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -5004,7 +4999,7 @@ move.tridembrochement = {
 move.appel_de_la_foudre = {
     id: 'appel_de_la_foudre',
     name: 'Appel de la Foudre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 15, max: 20 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -5023,7 +5018,7 @@ move.savapike = {
 move.branche_kipik = {
     id: 'branche_kipik',
     name: 'Branche Kipik',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 15, max: 17 }, target: 'enemy' }
     ]
@@ -5041,7 +5036,7 @@ move.kwakiboost = {
 move.kwakikri = {
     id: 'kwakikri',
     name: 'Kwakikri',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 30, max: 34 }, target: 'enemy' }
     ]
@@ -5049,7 +5044,7 @@ move.kwakikri = {
 move.kwakoukus = {
     id: 'kwakoukus',
     name: 'Kwakoukus',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 13, max: 17 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -5058,7 +5053,7 @@ move.kwakoukus = {
 move.wakpotus = {
     id: 'wakpotus',
     name: 'Wakpotus',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'intelligence', value: 50, duration: 3, target: 'self' },
@@ -5071,7 +5066,7 @@ move.wakpotus = {
 move.harponnage = {
     id: 'harponnage',
     name: 'Harponnage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -5107,7 +5102,7 @@ move.salage = {
 move.crachat_de_sable = {
     id: 'crachat_de_sable',
     name: 'Crachat de Sable',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -5116,7 +5111,7 @@ move.crachat_de_sable = {
 move.soin_groupe = {
     id: 'soin_groupe',
     name: 'Soin Groupé',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 17, target: 'self' }
     ]
@@ -5126,7 +5121,7 @@ move.soin_groupe = {
 move.ninjattaque = {
     id: 'ninjattaque',
     name: 'Ninjattaque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -5143,7 +5138,7 @@ move.bubulle = {
 move.coquille = {
     id: 'coquille',
     name: 'Coquille',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'damageReductionPct', value: 0, duration: 3, target: 'self' },
         { type: 'heal', heal: 120, target: 'self' }
@@ -5154,7 +5149,7 @@ move.coquille = {
 move.koulraoul = {
     id: 'koulraoul',
     name: 'Koulraoul',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -5162,7 +5157,7 @@ move.koulraoul = {
 move.kokospiration = {
     id: 'kokospiration',
     name: 'Kokospiration',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -5190,7 +5185,7 @@ move.blyphe_koalak = {
 move.enewgie_tewestwe = {
     id: 'enewgie_tewestwe',
     name: 'Enewgie tewestwe',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 15, max: 19 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 1, duration: 2, target: 'enemy' },
@@ -5212,7 +5207,7 @@ move.twansposition = {
 move.wabehameha = {
     id: 'wabehameha',
     name: 'Wabehameha',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -5221,7 +5216,7 @@ move.wabehameha = {
 move.frappus = {
     id: 'frappus',
     name: 'Frappus',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 13, max: 17 }, target: 'enemy' }
@@ -5232,7 +5227,7 @@ move.frappus = {
 move.farandole_de_cawottes = {
     id: 'farandole_de_cawottes',
     name: 'Farandole de cawottes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'heal%maxHp', value: 20, target: 'self' },
@@ -5259,7 +5254,7 @@ move.do_fus_rah = {
 move.hel = {
     id: 'hel',
     name: 'Hel',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -5282,7 +5277,7 @@ move.protection_de_la_plaine = {
 move.coup_de_defenses = {
     id: 'coup_de_defenses',
     name: 'Coup de Défenses',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -5301,7 +5296,7 @@ move.hardeur = {
 move.eclair_en_serie = {
     id: 'eclair_en_serie',
     name: 'Éclair en Série',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 5, max: 9 }, target: 'enemy' }
     ]
@@ -5309,7 +5304,7 @@ move.eclair_en_serie = {
 move.tornade = {
     id: 'tornade',
     name: 'Tornade',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 3, max: 6 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -5318,7 +5313,7 @@ move.tornade = {
 move.invocation_de_tofu_malefique = {
     id: 'invocation_de_tofu_malefique',
     name: 'Invocation de Tofu Maléfique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['tofu_malefique'], duration: 3, target: 'enemy' }
     ]
@@ -5346,7 +5341,7 @@ move.soufflette = {
 move.persecution = {
     id: 'persecution',
     name: 'Persécution',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 25, max: 30 }, target: 'enemy' }
     ]
@@ -5354,7 +5349,7 @@ move.persecution = {
 move.lancer_de_hachette = {
     id: 'lancer_de_hachette',
     name: 'Lancer de Hachette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -5365,7 +5360,7 @@ move.lancer_de_hachette = {
 move.coup_de_pioche = {
     id: 'coup_de_pioche',
     name: 'Coup de Pioche',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 35 }, target: 'enemy' }
     ]
@@ -5381,7 +5376,7 @@ move.gaucherie_de_masse = {
 move.escroquerie = {
     id: 'escroquerie',
     name: 'Escroquerie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 36 }, target: 'enemy' }
     ]
@@ -5455,7 +5450,7 @@ move.atterrissage = {
 move.laceration = {
     id: 'laceration',
     name: 'Lacération',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 19, max: 23 }, target: 'enemy' },
         { type: 'buff', stat: 'critChance', value: 10, duration: 3, target: 'self' }
@@ -5486,7 +5481,7 @@ move.croc_brulant = {
 move.emmental = {
     id: 'emmental',
     name: 'Emmental',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'force', value: 51, duration: 3, target: 'self' },
         { type: 'heal', heal: 26, target: 'self' },
@@ -5517,7 +5512,7 @@ move.euphorie_malsaine = {
 move.transpercement = {
     id: 'transpercement',
     name: 'Transpercement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -5543,7 +5538,7 @@ move.frenesie = {
 move.coup_d_elite = {
     id: 'coup_d_elite',
     name: 'Coup d\'Élite',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -5551,7 +5546,7 @@ move.coup_d_elite = {
 move.coup_affaiblissant = {
     id: 'coup_affaiblissant',
     name: 'Coup Affaiblissant',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 5, max: 6 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 5, max: 6 }, target: 'enemy' },
@@ -5565,7 +5560,7 @@ move.coup_affaiblissant = {
 move.hypnose = {
     id: 'hypnose',
     name: 'Hypnose',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' }
@@ -5574,7 +5569,7 @@ move.hypnose = {
 move.mirettes = {
     id: 'mirettes',
     name: 'Mirettes',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 6, max: 10 }, target: 'enemy' }
     ]
@@ -5584,7 +5579,7 @@ move.mirettes = {
 move.entetement = {
     id: 'entetement',
     name: 'Entêtement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 35 }, target: 'enemy' }
     ]
@@ -5605,7 +5600,7 @@ move.essaimage = {
 move.bizz = {
     id: 'bizz',
     name: 'Bizz',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'atk', value: 30, duration: 3, target: 'self' },
         { type: 'heal%maxHp', value: 5, target: 'self' },
@@ -5614,7 +5609,7 @@ move.bizz = {
 move.buzz = {
     id: 'buzz',
     name: 'Buzz',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -5625,7 +5620,7 @@ move.buzz = {
 move.invocation_de_kolerat_d_egoutant = {
     id: 'invocation_de_kolerat_d_egoutant',
     name: 'Invocation de Kolérat d\'Égoutant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -5633,7 +5628,7 @@ move.invocation_de_kolerat_d_egoutant = {
 move.emmental_d_egoutant = {
     id: 'emmental_d_egoutant',
     name: 'Emmental d\'Égoutant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 51, duration: 3, target: 'self' },
         { type: 'heal', heal: 31, target: 'self' },
@@ -5643,7 +5638,7 @@ move.emmental_d_egoutant = {
 move.roblochon_d_egoutant = {
     id: 'roblochon_d_egoutant',
     name: 'Roblochon d\'Égoutant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' },
@@ -5672,7 +5667,7 @@ move.virevolte = {
 move.laminage = {
     id: 'laminage',
     name: 'Laminage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -5692,7 +5687,7 @@ move.venin_ankylosant = {
 move.alanguissement = {
     id: 'alanguissement',
     name: 'Alanguissement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -5702,7 +5697,7 @@ move.alanguissement = {
 move.entetement_obsessionnel = {
     id: 'entetement_obsessionnel',
     name: 'Entêtement Obsessionnel',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 8, max: 12 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -5711,7 +5706,7 @@ move.entetement_obsessionnel = {
 move.attraction_stabilisante = {
     id: 'attraction_stabilisante',
     name: 'Attraction Stabilisante',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 8, max: 12 }, target: 'enemy' }
@@ -5722,7 +5717,7 @@ move.attraction_stabilisante = {
 move.agonie = {
     id: 'agonie',
     name: 'Agonie',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' }
     ]
@@ -5730,7 +5725,7 @@ move.agonie = {
 move.contre_faiblesse = {
     id: 'contre_faiblesse',
     name: 'Contre-Faiblesse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 100, target: 'self' },
     ]
@@ -5740,7 +5735,7 @@ move.contre_faiblesse = {
 move.humidification = {
     id: 'humidification',
     name: 'Humidification',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 14, max: 17 }, target: 'enemy' }
     ]
@@ -5748,7 +5743,7 @@ move.humidification = {
 move.noyade = {
     id: 'noyade',
     name: 'Noyade',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'enemy' }
     ]
@@ -5758,7 +5753,7 @@ move.noyade = {
 move.secheresse = {
     id: 'secheresse',
     name: 'Sècheresse',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 14, max: 17 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -5778,7 +5773,7 @@ move.ouragan_renversant = {
 move.coup_a_la_wizou = {
     id: 'coup_a_la_wizou',
     name: 'Coup à la Wizou',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 10, max: 10 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -5788,7 +5783,7 @@ move.coup_a_la_wizou = {
 move.invocation_de_bomberfu = {
     id: 'invocation_de_bomberfu',
     name: 'Invocation de Bomberfu',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['bomberfu'], duration: 3, target: 'enemy' }
     ]
@@ -5814,7 +5809,7 @@ move.benediction_du_tofulailler = {
 move.myopie_poupesque = {
     id: 'myopie_poupesque',
     name: 'Myopie Poupesque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -5825,7 +5820,7 @@ move.myopie_poupesque = {
 move.ratiboisement = {
     id: 'ratiboisement',
     name: 'Ratiboisement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -5834,7 +5829,7 @@ move.ratiboisement = {
 move.rayonnement_hyoactif = {
     id: 'rayonnement_hyoactif',
     name: 'Rayonnement Hyoactif',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 7, max: 10 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'enemy' }
@@ -5853,7 +5848,7 @@ move.coup_agglutinant = {
 move.invocation_de_tiwabbit = {
     id: 'invocation_de_tiwabbit',
     name: 'Invocation de Tiwabbit',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['tiwabbit'], duration: 3, target: 'enemy' }
     ]
@@ -5861,7 +5856,7 @@ move.invocation_de_tiwabbit = {
 move.invocation_de_black_tiwabbit = {
     id: 'invocation_de_black_tiwabbit',
     name: 'Invocation de Black Tiwabbit',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['black_tiwabbit'], duration: 3, target: 'enemy' }
     ]
@@ -5869,7 +5864,7 @@ move.invocation_de_black_tiwabbit = {
 move.ventroboom = {
     id: 'ventroboom',
     name: 'Ventroboom',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -5878,7 +5873,7 @@ move.ventroboom = {
 move.invocation_de_tiwabbit_kiafin = {
     id: 'invocation_de_tiwabbit_kiafin',
     name: 'Invocation de Tiwabbit Kiafin',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['tiwabbit_kiafin'], duration: 3, target: 'enemy' }
     ]
@@ -5897,7 +5892,7 @@ move.coup_de_masque = {
 move.tir_a_l_arc_primitif = {
     id: 'tir_a_l_arc_primitif',
     name: 'Tir à l\'Arc Primitif',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 5, duration: 3, target: 'enemy' }
@@ -5908,7 +5903,7 @@ move.tir_a_l_arc_primitif = {
 move.fronde_poche = {
     id: 'fronde_poche',
     name: 'Fronde Poche',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 50, duration: 3, target: 'enemy' },
@@ -5945,7 +5940,7 @@ move.poussee_amicale = {
 move.javeline_fulgurante = {
     id: 'javeline_fulgurante',
     name: 'Javeline Fulgurante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -6000,7 +5995,7 @@ move.tambour_motivant = {
 move.souffle_liqueuwant = {
     id: 'souffle_liqueuwant',
     name: 'Souffle Liqueuwant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -6008,7 +6003,7 @@ move.souffle_liqueuwant = {
 move.spiwitueuw = {
     id: 'spiwitueuw',
     name: 'Spiwitueuw',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -6035,7 +6030,7 @@ move.mowfal = {
 move.chokobombawde = {
     id: 'chokobombawde',
     name: 'Chokobombawde',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -6043,7 +6038,7 @@ move.chokobombawde = {
 move.twanchee = {
     id: 'twanchee',
     name: 'Twanchée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -6051,7 +6046,7 @@ move.twanchee = {
 move.ombwage = {
     id: 'ombwage',
     name: 'Ombwage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 21 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -6089,7 +6084,7 @@ move.ufowie = {
 move.stewoides = {
     id: 'stewoides',
     name: 'Stéwoïdes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 100, duration: 3, target: 'enemy' },
@@ -6099,7 +6094,7 @@ move.stewoides = {
 move.skwat = {
     id: 'skwat',
     name: 'Skwat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -6107,7 +6102,7 @@ move.skwat = {
 move.gwokwik = {
     id: 'gwokwik',
     name: 'Gwokwik',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -6145,7 +6140,7 @@ move.impact_ecrasant = {
 move.transposition_poupesque = {
     id: 'transposition_poupesque',
     name: 'Transposition Poupesque',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 31, max: 50 }, target: 'enemy' },
@@ -6155,7 +6150,7 @@ move.transposition_poupesque = {
 move.calin_poupesque = {
     id: 'calin_poupesque',
     name: 'Câlin Poupesque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 26, target: 'self' }
     ]
@@ -6174,7 +6169,7 @@ move.bond_poupesque = {
 move.regard_fondant = {
     id: 'regard_fondant',
     name: 'Regard Fondant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 17, max: 24 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -6183,7 +6178,7 @@ move.regard_fondant = {
 move.postillon_brulant = {
     id: 'postillon_brulant',
     name: 'Postillon Brûlant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 17, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 6, duration: 3, target: 'enemy' }
@@ -6227,7 +6222,7 @@ move.surprise = {
 move.estocade_errante = {
     id: 'estocade_errante',
     name: 'Estocade Errante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -6236,7 +6231,7 @@ move.estocade_errante = {
 move.concentration_psychique = {
     id: 'concentration_psychique',
     name: 'Concentration Psychique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 11, target: 'self' }
     ]
@@ -6246,7 +6241,7 @@ move.concentration_psychique = {
 move.afwiandage = {
     id: 'afwiandage',
     name: 'Afwiandage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -6255,7 +6250,7 @@ move.afwiandage = {
 move.wagglutinant = {
     id: 'wagglutinant',
     name: 'Wagglutinant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -6263,7 +6258,7 @@ move.wagglutinant = {
 move.pouwsuite = {
     id: 'pouwsuite',
     name: 'Pouwsuite',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -6283,7 +6278,7 @@ move.larvaportation = {
 move.toussotement_larvesque = {
     id: 'toussotement_larvesque',
     name: 'Toussotement Larvesque',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 17 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -6292,7 +6287,7 @@ move.toussotement_larvesque = {
 move.larvement_champetre = {
     id: 'larvement_champetre',
     name: 'Larvement Champêtre',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' }
     ]
@@ -6302,7 +6297,7 @@ move.larvement_champetre = {
 move.passton_tournoube = {
     id: 'passton_tournoube',
     name: 'Passton Tournoube',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -6331,7 +6326,7 @@ move.prestidigitation = {
 move.crochet = {
     id: 'crochet',
     name: 'Crochet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -6359,7 +6354,7 @@ move.abordage = {
 move.rapine = {
     id: 'rapine',
     name: 'Rapine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 15 }, target: 'enemy' }
     ]
@@ -6369,7 +6364,7 @@ move.rapine = {
 move.dindoboule = {
     id: 'dindoboule',
     name: 'Dindoboule',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -6388,7 +6383,7 @@ move.stimulation_dragodinde = {
 move.dindofeu = {
     id: 'dindofeu',
     name: 'Dindofeu',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -6399,7 +6394,7 @@ move.dindofeu = {
 move.dindoneau = {
     id: 'dindoneau',
     name: 'Dindoneau',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -6428,7 +6423,7 @@ move.sporification = {
 move.champi_champsoin = {
     id: 'champi_champsoin',
     name: 'Champi Champsoin',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' },
         { type: 'summon', summonPool: ['champ_champ'], duration: 3, target: 'enemy' }
@@ -6448,7 +6443,7 @@ move.sabrochement = {
 move.sismologie = {
     id: 'sismologie',
     name: 'Sismologie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'res.terre', value: 25, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -6467,7 +6462,7 @@ move.terraportation = {
 move.terpanation = {
     id: 'terpanation',
     name: 'Terpanation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'dot', element: 'terre', value: 11, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 25, max: 36 }, target: 'enemy' }
@@ -6478,7 +6473,7 @@ move.terpanation = {
 move.decharge = {
     id: 'decharge',
     name: 'Décharge',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -6487,7 +6482,7 @@ move.decharge = {
 move.decharge_magistrale = {
     id: 'decharge_magistrale',
     name: 'Décharge Magistrale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 45 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -6506,7 +6501,7 @@ move.liberation_koalak = {
 move.coup_de_bec_affaiblissant = {
     id: 'coup_de_bec_affaiblissant',
     name: 'Coup de Bec Affaiblissant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' }
@@ -6515,7 +6510,7 @@ move.coup_de_bec_affaiblissant = {
 move.dotite = {
     id: 'dotite',
     name: 'Dotite',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -6526,7 +6521,7 @@ move.dotite = {
 move.dorage = {
     id: 'dorage',
     name: 'Dorage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -6534,7 +6529,7 @@ move.dorage = {
 move.donnerre = {
     id: 'donnerre',
     name: 'Donnerre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -6547,7 +6542,7 @@ move.donnerre = {
 move.croquanibalisme = {
     id: 'croquanibalisme',
     name: 'Croquanibalisme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
@@ -6559,7 +6554,7 @@ move.croquanibalisme = {
 move.guimimauve = {
     id: 'guimimauve',
     name: 'Guimimauve',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'intelligence', value: 50, duration: 3, target: 'self' },
@@ -6569,7 +6564,7 @@ move.guimimauve = {
 move.englumauve = {
     id: 'englumauve',
     name: 'Englumauve',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -6605,7 +6600,7 @@ move.bourebour = {
 move.ratatam = {
     id: 'ratatam',
     name: 'Ratatam',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -6637,7 +6632,7 @@ move.coup_de_bambou = {
 move.epee_de_panique = {
     id: 'epee_de_panique',
     name: 'Épée de Panique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' }
     ]
@@ -6662,7 +6657,7 @@ move.decasse = {
 move.papouille = {
     id: 'papouille',
     name: 'Papouille',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 81, target: 'self' },
         { type: 'buff', stat: 'agility', value: 41, duration: 3, target: 'self' },
@@ -6677,7 +6672,7 @@ move.papouille = {
 move.remous_marecageux = {
     id: 'remous_marecageux',
     name: 'Remous Marécageux',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 16 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 11, max: 16 }, target: 'enemy' }
@@ -6696,7 +6691,7 @@ move.venin_dopant = {
 move.martelement = {
     id: 'martelement',
     name: 'Martèlement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 6, duration: 3, target: 'self' }
@@ -6715,7 +6710,7 @@ move.motivation_tellurique = {
 move.saut_majestueux = {
     id: 'saut_majestueux',
     name: 'Saut Majestueux',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -6753,7 +6748,7 @@ move.alteration = {
 move.poison_du_scorbute = {
     id: 'poison_du_scorbute',
     name: 'Poison du Scorbute',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 9, max: 12 }, target: 'enemy' }
     ]
@@ -6761,7 +6756,7 @@ move.poison_du_scorbute = {
 move.coup_de_queue = {
     id: 'coup_de_queue',
     name: 'Coup de Queue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 7, max: 8 }, target: 'enemy' }
@@ -6772,7 +6767,7 @@ move.coup_de_queue = {
 move.dechirement_intestinal = {
     id: 'dechirement_intestinal',
     name: 'Déchirement Intestinal',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 9, max: 12 }, target: 'enemy' }
     ]
@@ -6780,7 +6775,7 @@ move.dechirement_intestinal = {
 move.ablation_testiculaire = {
     id: 'ablation_testiculaire',
     name: 'Ablation Testiculaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -6799,7 +6794,7 @@ move.desenvoutement_canin = {
 move.chaine_chienne = {
     id: 'chaine_chienne',
     name: 'Chaîne Chienne',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -6808,7 +6803,7 @@ move.chaine_chienne = {
 move.aboiement_sauvage = {
     id: 'aboiement_sauvage',
     name: 'Aboiement Sauvage',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 10, max: 10 }, target: 'enemy' }
     ]
@@ -6826,7 +6821,7 @@ move.souffle_canin = {
 move.draveine = {
     id: 'draveine',
     name: 'Draveine',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -6853,7 +6848,7 @@ move.baillement = {
 move.coup_de_bouldo = {
     id: 'coup_de_bouldo',
     name: 'Coup de Bouldo',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -6862,7 +6857,7 @@ move.coup_de_bouldo = {
 move.souille = {
     id: 'souille',
     name: 'Souille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -6890,7 +6885,7 @@ move.gravure_dans_la_roche = {
 move.choc_dessus = {
     id: 'choc_dessus',
     name: 'Choc Dessus',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -6901,7 +6896,7 @@ move.choc_dessus = {
 move.volkardeur = {
     id: 'volkardeur',
     name: 'Volkardeur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -6912,7 +6907,7 @@ move.volkardeur = {
 move.volkolere = {
     id: 'volkolere',
     name: 'Volkolère',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -6923,7 +6918,7 @@ move.volkolere = {
 move.volkohue = {
     id: 'volkohue',
     name: 'Volkohue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -6932,7 +6927,7 @@ move.volkohue = {
 move.volkonde = {
     id: 'volkonde',
     name: 'Volkonde',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -6942,7 +6937,7 @@ move.volkonde = {
 move.volkair = {
     id: 'volkair',
     name: 'Volkair',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -6951,7 +6946,7 @@ move.volkair = {
 move.volkattirance = {
     id: 'volkattirance',
     name: 'Volkattirance',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -6962,7 +6957,7 @@ move.volkattirance = {
 move.volkalme = {
     id: 'volkalme',
     name: 'Volkalme',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 200, duration: 3, target: 'enemy' },
@@ -6974,7 +6969,7 @@ move.volkalme = {
 move.volkeclat = {
     id: 'volkeclat',
     name: 'Volkéclat',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'finalDamagePct', value: 30, duration: 3, target: 'enemy' }
@@ -7013,7 +7008,7 @@ move.balayette = {
 move.ainsi_font = {
     id: 'ainsi_font',
     name: 'Ainsi font',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' },
@@ -7027,7 +7022,7 @@ move.ainsi_font = {
 move.coup_de_pied = {
     id: 'coup_de_pied',
     name: 'Coup de pied',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -7038,7 +7033,7 @@ move.coup_de_pied = {
 move.grigriffes = {
     id: 'grigriffes',
     name: 'Grigriffes',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -7050,7 +7045,7 @@ move.grigriffes = {
 move.caillassage = {
     id: 'caillassage',
     name: 'Caillassage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 16, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -7059,7 +7054,7 @@ move.caillassage = {
 move.percussion = {
     id: 'percussion',
     name: 'Percussion',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -7087,7 +7082,7 @@ move.craneur = {
 move.pull_vert_izele = {
     id: 'pull_vert_izele',
     name: 'Pull vert Izélé',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 100, duration: 3, target: 'enemy' }
@@ -7106,7 +7101,7 @@ move.encornement = {
 move.cawotte_explosive = {
     id: 'cawotte_explosive',
     name: 'Cawotte Explosive',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -7114,7 +7109,7 @@ move.cawotte_explosive = {
 move.cawotte_vitaminee = {
     id: 'cawotte_vitaminee',
     name: 'Cawotte Vitaminée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' }
     ]
@@ -7122,7 +7117,7 @@ move.cawotte_vitaminee = {
 move.cawotte_paralysante = {
     id: 'cawotte_paralysante',
     name: 'Cawotte Paralysante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -7141,7 +7136,7 @@ move.motivation_gluante = {
 move.koque_chok = {
     id: 'koque_chok',
     name: 'Koque Chok',
-    cooldownMs: 10000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 10000, max: 10000 }, target: 'enemy' }
@@ -7161,7 +7156,7 @@ move.krokille_de_neuf = {
 move.abattage = {
     id: 'abattage',
     name: 'Abattage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -7169,7 +7164,7 @@ move.abattage = {
 move.ebranchage = {
     id: 'ebranchage',
     name: 'Ébranchage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -7178,7 +7173,7 @@ move.ebranchage = {
 move.deracinage = {
     id: 'deracinage',
     name: 'Déracinage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'force', value: 21, duration: 3, target: 'self' }
@@ -7189,7 +7184,7 @@ move.deracinage = {
 move.moulinet = {
     id: 'moulinet',
     name: 'Moulinet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -7206,7 +7201,7 @@ move.amorce = {
 move.coup_de_poisson = {
     id: 'coup_de_poisson',
     name: 'Coup de Poisson',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -7226,7 +7221,7 @@ move.aspiwation = {
 move.etweinte = {
     id: 'etweinte',
     name: 'Étweinte',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -7239,7 +7234,7 @@ move.etweinte = {
 move.massue_wotative = {
     id: 'massue_wotative',
     name: 'Massue Wotative',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -7281,7 +7276,7 @@ move.glissement_de_tewwain = {
 move.devotion = {
     id: 'devotion',
     name: 'Dévotion',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 16, target: 'self' },
         { type: 'buff', stat: 'res.terre', value: 21, duration: 3, target: 'self' }
@@ -7290,7 +7285,7 @@ move.devotion = {
 move.kalik = {
     id: 'kalik',
     name: 'Kalik',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -7302,7 +7297,7 @@ move.kalik = {
 move.croix_d_attelle = {
     id: 'croix_d_attelle',
     name: 'Croix d\'attelle',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -7311,7 +7306,7 @@ move.croix_d_attelle = {
 move.castelet = {
     id: 'castelet',
     name: 'Castelet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -7320,7 +7315,7 @@ move.castelet = {
 move.balancoire = {
     id: 'balancoire',
     name: 'Balançoire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -7340,7 +7335,7 @@ move.catharsis = {
 move.scene_en_flammes = {
     id: 'scene_en_flammes',
     name: 'Scène en flammes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -7350,7 +7345,7 @@ move.scene_en_flammes = {
 move.fantoche = {
     id: 'fantoche',
     name: 'Fantoche',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 25, target: 'self' }
     ]
@@ -7370,7 +7365,7 @@ move.marivaudage = {
 move.cawotte_suwvitaminee = {
     id: 'cawotte_suwvitaminee',
     name: 'Cawotte Suwvitaminée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'heal', heal: 26, target: 'self' }
@@ -7379,7 +7374,7 @@ move.cawotte_suwvitaminee = {
 move.motivation_cawottique = {
     id: 'motivation_cawottique',
     name: 'Motivation Cawottique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -7408,7 +7403,7 @@ move.lancew_de_cawotte = {
 move.coup_de_boule = {
     id: 'coup_de_boule',
     name: 'Coup de Boule',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -7419,7 +7414,7 @@ move.coup_de_boule = {
 move.poulpe = {
     id: 'poulpe',
     name: 'Poulpe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['poulpor'], duration: 3, target: 'enemy' }
     ]
@@ -7427,7 +7422,7 @@ move.poulpe = {
 move.lakazam = {
     id: 'lakazam',
     name: 'Lakazam',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -7437,7 +7432,7 @@ move.lakazam = {
 move.connier = {
     id: 'connier',
     name: 'Connier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 160, max: 160 }, target: 'enemy' }
@@ -7448,7 +7443,7 @@ move.connier = {
 move.echange_subtil = {
     id: 'echange_subtil',
     name: 'Échange subtil',
-    cooldownMs: 5000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -7459,7 +7454,7 @@ move.echange_subtil = {
 move.remontee_gastrique = {
     id: 'remontee_gastrique',
     name: 'Remontée gastrique',
-    cooldownMs: 5000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -7472,7 +7467,7 @@ move.remontee_gastrique = {
 move.gonflement = {
     id: 'gonflement',
     name: 'Gonflement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 61, max: 70 }, target: 'enemy' }
@@ -7481,7 +7476,7 @@ move.gonflement = {
 move.jet_d_acide = {
     id: 'jet_d_acide',
     name: 'Jet d\'acide',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 131, max: 150 }, target: 'enemy' }
     ]
@@ -7491,7 +7486,7 @@ move.jet_d_acide = {
 move.secretion = {
     id: 'secretion',
     name: 'Sécrétion',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -7501,7 +7496,7 @@ move.secretion = {
 move.danse_repulsive = {
     id: 'danse_repulsive',
     name: 'Danse répulsive',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -7512,7 +7507,7 @@ move.danse_repulsive = {
 move.contamination = {
     id: 'contamination',
     name: 'Contamination',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -7521,7 +7516,7 @@ move.contamination = {
 move.boulet_viral = {
     id: 'boulet_viral',
     name: 'Boulet Viral',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 200, max: 200 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -7531,7 +7526,7 @@ move.boulet_viral = {
 move.brulure_d_estomac = {
     id: 'brulure_d_estomac',
     name: 'Brûlure d\'estomac',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 28, max: 32 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 28, max: 32 }, target: 'enemy' },
@@ -7543,7 +7538,7 @@ move.brulure_d_estomac = {
 move.attaque_souterraine = {
     id: 'attaque_souterraine',
     name: 'Attaque souterraine',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -7554,7 +7549,7 @@ move.attaque_souterraine = {
 move.bond_etourdissant = {
     id: 'bond_etourdissant',
     name: 'Bond étourdissant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -7582,7 +7577,7 @@ move.pressage = {
 move.invocation_de_workette = {
     id: 'invocation_de_workette',
     name: 'Invocation de Workette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['workette'], duration: 3, target: 'enemy' }
     ]
@@ -7590,7 +7585,7 @@ move.invocation_de_workette = {
 move.cecite = {
     id: 'cecite',
     name: 'Cécité',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -7607,7 +7602,7 @@ move.vision_lointaine = {
 move.pichenette = {
     id: 'pichenette',
     name: 'Pichenette',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -7618,7 +7613,7 @@ move.pichenette = {
 move.troollz = {
     id: 'troollz',
     name: 'Troollz',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -7644,7 +7639,7 @@ move.pettrooll = {
 move.agular = {
     id: 'agular',
     name: 'Agular',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal', heal: 75, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 30, max: 34 }, target: 'enemy' }
@@ -7653,7 +7648,7 @@ move.agular = {
 move.furia = {
     id: 'furia',
     name: 'Furia',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 23 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 3, target: 'self' }
@@ -7662,7 +7657,7 @@ move.furia = {
 move.appui = {
     id: 'appui',
     name: 'Appui',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 6, max: 7 }, target: 'enemy' },
@@ -7683,7 +7678,7 @@ move.plastron = {
 move.apathie = {
     id: 'apathie',
     name: 'Apathie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 23, max: 26 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -7718,7 +7713,7 @@ move.tortoruga = {
 move.catalepsie = {
     id: 'catalepsie',
     name: 'Catalepsie',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -7746,7 +7741,7 @@ move.boliche = {
 move.l_arc_ifanss = {
     id: 'l_arc_ifanss',
     name: 'L\'Arc Ifanss',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 28, max: 34 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 6, max: 8 }, target: 'enemy' },
@@ -7760,7 +7755,7 @@ move.l_arc_ifanss = {
 move.exclamaton = {
     id: 'exclamaton',
     name: 'Exclamâton',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 13, max: 15 }, target: 'enemy' },
@@ -7772,7 +7767,7 @@ move.exclamaton = {
 move.longue_vue = {
     id: 'longue_vue',
     name: 'Longue-vue',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 15, max: 17 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -7781,7 +7776,7 @@ move.longue_vue = {
 move.torpille = {
     id: 'torpille',
     name: 'Torpille',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 15, max: 17 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -7808,7 +7803,7 @@ move.scaphandre = {
 move.periscope = {
     id: 'periscope',
     name: 'Périscope',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 24, max: 28 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -7817,7 +7812,7 @@ move.periscope = {
 move.flibuste = {
     id: 'flibuste',
     name: 'Flibuste',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 33, max: 37 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 23, max: 25 }, target: 'enemy' }
@@ -7826,7 +7821,7 @@ move.flibuste = {
 move.ecume = {
     id: 'ecume',
     name: 'Écume',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 32, max: 36 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -7836,7 +7831,7 @@ move.ecume = {
 move.embuscade = {
     id: 'embuscade',
     name: 'Embuscade',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 7, max: 9 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 7, max: 9 }, target: 'enemy' },
@@ -7847,7 +7842,7 @@ move.embuscade = {
 move.harmattan = {
     id: 'harmattan',
     name: 'Harmattan',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' }
@@ -7866,7 +7861,7 @@ move.picole = {
 move.consolation = {
     id: 'consolation',
     name: 'Consolation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'heal%maxHp', value: 5, target: 'self' },
@@ -7892,7 +7887,7 @@ move.fermentation = {
 move.pandjiu = {
     id: 'pandjiu',
     name: 'Pandjiu',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 28, max: 32 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -7901,7 +7896,7 @@ move.pandjiu = {
 move.ribote = {
     id: 'ribote',
     name: 'Ribote',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 17, max: 19 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 17, max: 19 }, target: 'enemy' }
@@ -7920,7 +7915,7 @@ move.pandanlku = {
 move.lances_telluriques = {
     id: 'lances_telluriques',
     name: 'Lances Telluriques',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 9, max: 11 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 9, max: 11 }, target: 'enemy' },
@@ -7930,7 +7925,7 @@ move.lances_telluriques = {
 move.cataracte = {
     id: 'cataracte',
     name: 'Cataracte',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 13 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 13 }, target: 'enemy' },
@@ -7940,7 +7935,7 @@ move.cataracte = {
 move.onde_celeste = {
     id: 'onde_celeste',
     name: 'Onde Céleste',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 9, max: 11 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 9, max: 11 }, target: 'enemy' },
@@ -7950,7 +7945,7 @@ move.onde_celeste = {
 move.tison = {
     id: 'tison',
     name: 'Tison',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 10, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 10, max: 12 }, target: 'enemy' },
@@ -7979,7 +7974,7 @@ move.orage = {
 move.rafale = {
     id: 'rafale',
     name: 'Rafale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 24 }, target: 'enemy' },
@@ -7998,7 +7993,7 @@ move.trait_ardent = {
 move.volcan = {
     id: 'volcan',
     name: 'Volcan',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 17, max: 19 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -8053,7 +8048,7 @@ move.gibier = {
 move.charogne = {
     id: 'charogne',
     name: 'Charogne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 18, max: 20 }, target: 'enemy' }
@@ -8062,7 +8057,7 @@ move.charogne = {
 move.depecage = {
     id: 'depecage',
     name: 'Dépeçage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal', heal: 50, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 34, max: 38 }, target: 'enemy' }
@@ -8080,7 +8075,7 @@ move.carcasse = {
 move.depouille = {
     id: 'depouille',
     name: 'Dépouille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 35, max: 39 }, target: 'enemy' }
@@ -8098,7 +8093,7 @@ move.limier = {
 move.apaisement = {
     id: 'apaisement',
     name: 'Apaisement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 11, target: 'self' },
     ]
@@ -8116,7 +8111,7 @@ move.arcanin = {
 move.ronce = {
     id: 'ronce',
     name: 'Ronce',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' }
@@ -8125,7 +8120,7 @@ move.ronce = {
 move.ronces_agressives = {
     id: 'ronces_agressives',
     name: 'Ronces Agressives',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 24, max: 27 }, target: 'enemy' }
@@ -8134,7 +8129,7 @@ move.ronces_agressives = {
 move.foret_hantee = {
     id: 'foret_hantee',
     name: 'Forêt Hantée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 29, max: 32 }, target: 'enemy' }
     ]
@@ -8142,7 +8137,7 @@ move.foret_hantee = {
 move.seve_paralysante = {
     id: 'seve_paralysante',
     name: 'Sève Paralysante',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 9, max: 11 }, target: 'enemy' }
     ]
@@ -8159,7 +8154,7 @@ move.tremblement = {
 move.vent_empoisonne = {
     id: 'vent_empoisonne',
     name: 'Vent Empoisonné',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 13 }, target: 'enemy' }
     ]
@@ -8178,7 +8173,7 @@ move.mepris = {
 move.sinecure = {
     id: 'sinecure',
     name: 'Sinécure',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 9, max: 11 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -8188,7 +8183,7 @@ move.sinecure = {
 move.brimade = {
     id: 'brimade',
     name: 'Brimade',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 14, max: 16 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -8198,7 +8193,7 @@ move.brimade = {
 move.raillerie = {
     id: 'raillerie',
     name: 'Raillerie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 29 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -8207,7 +8202,7 @@ move.raillerie = {
 move.sermon = {
     id: 'sermon',
     name: 'Sermon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 38, max: 42 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -8217,7 +8212,7 @@ move.sermon = {
 move.cicatrisation = {
     id: 'cicatrisation',
     name: 'Cicatrisation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 6, target: 'self' },
     ]
@@ -8225,7 +8220,7 @@ move.cicatrisation = {
 move.distribution = {
     id: 'distribution',
     name: 'Distribution',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 15, target: 'self' }
     ]
@@ -8244,7 +8239,7 @@ move.poussiere = {
 move.frappe_de_xelor = {
     id: 'frappe_de_xelor',
     name: 'Frappe de Xélor',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 13, max: 15 }, target: 'enemy' }
@@ -8253,7 +8248,7 @@ move.frappe_de_xelor = {
 move.horloge = {
     id: 'horloge',
     name: 'Horloge',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 14, max: 16 }, target: 'enemy' }
@@ -8272,7 +8267,7 @@ move.astrolabe = {
 move.rouage = {
     id: 'rouage',
     name: 'Rouage',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 16, max: 18 }, target: 'enemy' },
@@ -8294,7 +8289,7 @@ move.glas = {
 move.refraction = {
     id: 'refraction',
     name: 'Réfraction',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 10, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 10, max: 12 }, target: 'enemy' }
@@ -8314,7 +8309,7 @@ move.sablier_de_xelor = {
 move.rafale_de_terre = {
     id: 'rafale_de_terre',
     name: 'Rafale de terre',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' }
     ]
@@ -8322,7 +8317,7 @@ move.rafale_de_terre = {
 move.cawotte_gm = {
     id: 'cawotte_gm',
     name: 'Cawotte GM',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['cawottes'], duration: 3, target: 'enemy' }
     ]
@@ -8332,7 +8327,7 @@ move.cawotte_gm = {
 move.invocation_de_blop_indigo = {
     id: 'invocation_de_blop_indigo',
     name: 'Invocation de Blop Indigo',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['blop_indigo_invoque'], duration: 3, target: 'enemy' }
     ]
@@ -8340,7 +8335,7 @@ move.invocation_de_blop_indigo = {
 move.defaillance_indigo = {
     id: 'defaillance_indigo',
     name: 'Défaillance Indigo',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -8350,7 +8345,7 @@ move.defaillance_indigo = {
 move.invocation_de_blop_coco = {
     id: 'invocation_de_blop_coco',
     name: 'Invocation de Blop Coco',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['blop_coco_invoque'], duration: 3, target: 'enemy' }
     ]
@@ -8358,7 +8353,7 @@ move.invocation_de_blop_coco = {
 move.defaillance_coco = {
     id: 'defaillance_coco',
     name: 'Défaillance Coco',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -8369,7 +8364,7 @@ move.defaillance_coco = {
 move.invocation_de_blop_griotte = {
     id: 'invocation_de_blop_griotte',
     name: 'Invocation de Blop Griotte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['blop_griotte_invoque'], duration: 3, target: 'enemy' }
     ]
@@ -8377,7 +8372,7 @@ move.invocation_de_blop_griotte = {
 move.defaillance_griotte = {
     id: 'defaillance_griotte',
     name: 'Défaillance Griotte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'antiHeal', duration: 3, target: 'enemy' }
@@ -8388,7 +8383,7 @@ move.defaillance_griotte = {
 move.invocation_de_blop_reinette = {
     id: 'invocation_de_blop_reinette',
     name: 'Invocation de Blop Reinette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['blop_reinette_invoque'], duration: 3, target: 'enemy' }
     ]
@@ -8396,7 +8391,7 @@ move.invocation_de_blop_reinette = {
 move.defaillance_reinette = {
     id: 'defaillance_reinette',
     name: 'Défaillance Reinette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 41, duration: 3, target: 'enemy' }
@@ -8410,7 +8405,7 @@ move.defaillance_reinette = {
 move.morsure_du_bouftou_des_cavernes = {
     id: 'morsure_du_bouftou_des_cavernes',
     name: 'Morsure du Bouftou des Cavernes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -8426,7 +8421,7 @@ move.bavouille_des_cavernes = {
 move.crachouille_des_cavernes = {
     id: 'crachouille_des_cavernes',
     name: 'Crachouille des Cavernes',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -8436,7 +8431,7 @@ move.crachouille_des_cavernes = {
 move.bombe_pirate = {
     id: 'bombe_pirate',
     name: 'Bombe Pirate',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' }
@@ -8464,7 +8459,7 @@ move.sus_a_l_ennemi = {
 move.tranchage_mortel = {
     id: 'tranchage_mortel',
     name: 'Tranchage Mortel',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 40 }, target: 'enemy' }
     ]
@@ -8483,7 +8478,7 @@ move.canon_tournoyant = {
 move.gros_boulet_pirate = {
     id: 'gros_boulet_pirate',
     name: 'Gros Boulet Pirate',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -8494,7 +8489,7 @@ move.gros_boulet_pirate = {
 move.estocade = {
     id: 'estocade',
     name: 'Estocade',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 60, max: 60 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -8504,7 +8499,7 @@ move.estocade = {
 move.tourbillon_mortel = {
     id: 'tourbillon_mortel',
     name: 'Tourbillon mortel',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 45 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -8524,7 +8519,7 @@ move.dards_paralysants = {
 move.secretion_acide = {
     id: 'secretion_acide',
     name: 'Sécrétion acide',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 25 }, target: 'enemy' },
@@ -8536,7 +8531,7 @@ move.secretion_acide = {
 move.toile_paralysante = {
     id: 'toile_paralysante',
     name: 'Toile paralysante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'summon', summonPool: ['toile'], duration: 3, target: 'enemy' }
@@ -8545,7 +8540,7 @@ move.toile_paralysante = {
 move.fil_collant = {
     id: 'fil_collant',
     name: 'Fil collant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -8555,7 +8550,7 @@ move.fil_collant = {
 move.prison_de_soie = {
     id: 'prison_de_soie',
     name: 'Prison de soie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
@@ -8567,7 +8562,7 @@ move.prison_de_soie = {
 move.tornade_de_lames = {
     id: 'tornade_de_lames',
     name: 'Tornade de Lames',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -8576,7 +8571,7 @@ move.tornade_de_lames = {
 move.coupe_genoux = {
     id: 'coupe_genoux',
     name: 'Coupe-genoux',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 35 }, target: 'enemy' }
     ]
@@ -8586,7 +8581,7 @@ move.coupe_genoux = {
 move.cocktail_rhumotov = {
     id: 'cocktail_rhumotov',
     name: 'Cocktail Rhumotov',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -8594,7 +8589,7 @@ move.cocktail_rhumotov = {
 move.crachat_de_rhum = {
     id: 'crachat_de_rhum',
     name: 'Crachat de Rhum',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'buffDrain', value: 2, target: 'enemy' }
@@ -8613,7 +8608,7 @@ move.et_une_bouteille_de_rhum = {
 move.koup_puissant = {
     id: 'koup_puissant',
     name: 'Koup Puissant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 27, max: 34 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -8622,7 +8617,7 @@ move.koup_puissant = {
 move.grenabombe = {
     id: 'grenabombe',
     name: 'Grenabombe',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -8633,7 +8628,7 @@ move.grenabombe = {
 move.megarmure = {
     id: 'megarmure',
     name: 'Mégarmure',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -8644,7 +8639,7 @@ move.megarmure = {
 move.implant_provizoar = {
     id: 'implant_provizoar',
     name: 'Implant Provizoâr',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' },
@@ -8657,7 +8652,7 @@ move.implant_provizoar = {
 move.chirurgie_approksimativ = {
     id: 'chirurgie_approksimativ',
     name: 'Chirurgie Approksimativ',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 11, target: 'self' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' },
@@ -8686,7 +8681,7 @@ move.douleur_atross = {
 move.kass_kabosh = {
     id: 'kass_kabosh',
     name: 'Kass\'Kabosh',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -8695,7 +8690,7 @@ move.kass_kabosh = {
 move.krounch = {
     id: 'krounch',
     name: 'Krounch',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -8715,7 +8710,7 @@ move.flan_b = {
 move.kremassion = {
     id: 'kremassion',
     name: 'Krémassion',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 11, max: 20 }, target: 'enemy' }
@@ -8724,7 +8719,7 @@ move.kremassion = {
 move.feu_grr_joie = {
     id: 'feu_grr_joie',
     name: 'Feu Grr Joie',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 11, max: 14 }, target: 'enemy' }
@@ -8735,7 +8730,7 @@ move.feu_grr_joie = {
 move.bang = {
     id: 'bang',
     name: 'Bang',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 4, duration: 2, target: 'enemy' },
@@ -8745,7 +8740,7 @@ move.bang = {
 move.dans_la_boite = {
     id: 'dans_la_boite',
     name: 'Dans la Boîte',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 13, max: 18 }, target: 'enemy' },
@@ -8766,7 +8761,7 @@ move.baudruche = {
 move.roule_ma_poule = {
     id: 'roule_ma_poule',
     name: 'Roule ma Poule',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -8775,7 +8770,7 @@ move.roule_ma_poule = {
 move.fusee_explosive = {
     id: 'fusee_explosive',
     name: 'Fusée Explosive',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 25, max: 36 }, target: 'enemy' }
     ]
@@ -8785,7 +8780,7 @@ move.fusee_explosive = {
 move.chaudasse = {
     id: 'chaudasse',
     name: 'Chaudasse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 24 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -8794,7 +8789,7 @@ move.chaudasse = {
 move.haleine_ardente = {
     id: 'haleine_ardente',
     name: 'Haleine Ardente',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 19, max: 24 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' }
@@ -8813,7 +8808,7 @@ move.roulette_infernale = {
 move.chapeau_de_roue = {
     id: 'chapeau_de_roue',
     name: 'Chapeau de Roue',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 13, max: 18 }, target: 'enemy' }
@@ -8822,7 +8817,7 @@ move.chapeau_de_roue = {
 move.eriktion = {
     id: 'eriktion',
     name: 'Ériktion',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 16, max: 21 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 16, max: 21 }, target: 'enemy' },
@@ -9010,7 +9005,7 @@ move.balle_piegee = {
 move.poirier = {
     id: 'poirier',
     name: 'Poirier',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -9018,7 +9013,7 @@ move.poirier = {
 move.jonglerie = {
     id: 'jonglerie',
     name: 'Jonglerie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -9040,7 +9035,7 @@ move.cadeau_puissant = {
 move.cadeau_soignant = {
     id: 'cadeau_soignant',
     name: 'Cadeau soignant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 5, target: 'self' },
     ]
@@ -9060,7 +9055,7 @@ move.crasse_piration = {
 move.invocation_de_corbac_fantomatique = {
     id: 'invocation_de_corbac_fantomatique',
     name: 'Invocation de Corbac Fantômatique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -9072,7 +9067,7 @@ move.invocation_de_corbac_fantomatique = {
 move.ratissage = {
     id: 'ratissage',
     name: 'Ratissage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 25 }, target: 'enemy' },
         { type: 'heal', heal: 16, target: 'self' }
@@ -9081,7 +9076,7 @@ move.ratissage = {
 move.rabot = {
     id: 'rabot',
     name: 'Rabot',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -9100,7 +9095,7 @@ move.racolage = {
 move.pincette = {
     id: 'pincette',
     name: 'Pincette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -9108,7 +9103,7 @@ move.pincette = {
 move.sucette = {
     id: 'sucette',
     name: 'Sucette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
@@ -9153,7 +9148,7 @@ move.dragoss_pelle = {
 move.transmission_sismique = {
     id: 'transmission_sismique',
     name: 'Transmission sismique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -9162,7 +9157,7 @@ move.transmission_sismique = {
 move.offrande_rocailleuse = {
     id: 'offrande_rocailleuse',
     name: 'Offrande Rocailleuse',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy' }
     ]
@@ -9181,7 +9176,7 @@ move.canine_putride = {
 move.mousse_tache = {
     id: 'mousse_tache',
     name: 'Mousse tache',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -9200,7 +9195,7 @@ move.coussinet_protecteur = {
 move.koudbec = {
     id: 'koudbec',
     name: 'Koudbec',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 26, duration: 3, target: 'self' }
@@ -9227,7 +9222,7 @@ move.enthousiasme = {
 move.lancer_de_kamas = {
     id: 'lancer_de_kamas',
     name: 'Lancer de Kamas',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 12 }, target: 'enemy' }
     ]
@@ -9248,7 +9243,7 @@ move.sarbakane = {
 move.soufflette_de_kaliptus = {
     id: 'soufflette_de_kaliptus',
     name: 'Soufflette de Kaliptus',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 6, duration: 3, target: 'enemy' }
@@ -9284,7 +9279,7 @@ move.liberation = {
 move.accouchement = {
     id: 'accouchement',
     name: 'Accouchement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -9301,7 +9296,7 @@ move.accouchement = {
 move.chiquenaude = {
     id: 'chiquenaude',
     name: 'Chiquenaude',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -9321,7 +9316,7 @@ move.bistouille = {
 move.tourbe_empoisonnee = {
     id: 'tourbe_empoisonnee',
     name: 'Tourbe Empoisonnée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -9347,7 +9342,7 @@ move.boule_de_neige = {
 move.neige_soignante = {
     id: 'neige_soignante',
     name: 'Neige soignante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
@@ -9356,7 +9351,7 @@ move.neige_soignante = {
 move.roulage_de_neige = {
     id: 'roulage_de_neige',
     name: 'Roulage de neige',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 22, max: 26 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -9367,7 +9362,7 @@ move.roulage_de_neige = {
 move.pus_des_pieds = {
     id: 'pus_des_pieds',
     name: 'Pus des Pieds',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' }
     ]
@@ -9393,7 +9388,7 @@ move.clef_a_pipe = {
 move.clef_plate = {
     id: 'clef_plate',
     name: 'Clef plate',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 26, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
@@ -9402,7 +9397,7 @@ move.clef_plate = {
 move.clef_de_douze = {
     id: 'clef_de_douze',
     name: 'Clef de douze',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -9420,7 +9415,7 @@ move.alareskouss = {
 move.evidence = {
     id: 'evidence',
     name: 'Évidence',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -9441,7 +9436,7 @@ move.kaptene = {
 move.attaque = {
     id: 'attaque',
     name: 'Attaque !',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' }
@@ -9450,7 +9445,7 @@ move.attaque = {
 move.morzyloeil = {
     id: 'morzyloeil',
     name: 'Morzyloeil',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -9458,7 +9453,7 @@ move.morzyloeil = {
 move.glyphe_rose = {
     id: 'glyphe_rose',
     name: 'Glyphe rose',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -9468,7 +9463,7 @@ move.glyphe_rose = {
 move.mastication = {
     id: 'mastication',
     name: 'Mastication',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 3, target: 'self' }
@@ -9500,7 +9495,7 @@ move.blindage = {
 move.rocaille = {
     id: 'rocaille',
     name: 'Rocaille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
     ]
@@ -9517,7 +9512,7 @@ move.glotte = {
 move.tourniquet = {
     id: 'tourniquet',
     name: 'Tourniquet',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -9528,7 +9523,7 @@ move.tourniquet = {
 move.dragoss_tidkaliss = {
     id: 'dragoss_tidkaliss',
     name: 'Dragoss Tidkaliss',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -9537,7 +9532,7 @@ move.dragoss_tidkaliss = {
 move.dragoss_imoun = {
     id: 'dragoss_imoun',
     name: 'Dragoss Imoun',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -9546,7 +9541,7 @@ move.dragoss_imoun = {
 move.offrande_aerienne = {
     id: 'offrande_aerienne',
     name: 'Offrande Aérienne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -9556,7 +9551,7 @@ move.offrande_aerienne = {
 move.fumerolle = {
     id: 'fumerolle',
     name: 'Fumerolle',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -9564,7 +9559,7 @@ move.fumerolle = {
 move.eauzone = {
     id: 'eauzone',
     name: 'Eauzone',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -9582,7 +9577,7 @@ move.offrande_aqueuse = {
 move.cri_du_mulou = {
     id: 'cri_du_mulou',
     name: 'Cri du Mulou',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -9590,7 +9585,7 @@ move.cri_du_mulou = {
 move.cesarienne = {
     id: 'cesarienne',
     name: 'Césarienne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -9598,7 +9593,7 @@ move.cesarienne = {
 move.soin_accelere = {
     id: 'soin_accelere',
     name: 'Soin Accéléré',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 17, target: 'self' }
     ]
@@ -9608,7 +9603,7 @@ move.soin_accelere = {
 move.virevoltage_collant = {
     id: 'virevoltage_collant',
     name: 'Virevoltage collant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 40 }, target: 'enemy' }
     ]
@@ -9616,7 +9611,7 @@ move.virevoltage_collant = {
 move.electromagnetisme = {
     id: 'electromagnetisme',
     name: 'Électromagnétisme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 40 }, target: 'enemy' }
     ]
@@ -9626,7 +9621,7 @@ move.electromagnetisme = {
 move.gobage = {
     id: 'gobage',
     name: 'Gobage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 100, target: 'self' },
     ]
@@ -9636,7 +9631,7 @@ move.gobage = {
 move.tir_embusque = {
     id: 'tir_embusque',
     name: 'Tir Embusqué',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 76, max: 80 }, target: 'enemy' }
@@ -9645,7 +9640,7 @@ move.tir_embusque = {
 move.l_attaque_du_chasseur = {
     id: 'l_attaque_du_chasseur',
     name: 'L\'Attaque du Chasseur',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -9676,7 +9671,7 @@ move.morsure_du_boufcoul = {
 move.coup_de_tete = {
     id: 'coup_de_tete',
     name: 'Coup de Tête',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 6, max: 10 }, target: 'enemy' }
@@ -9703,7 +9698,7 @@ move.rugissement_mufafesque = {
 move.dechirure = {
     id: 'dechirure',
     name: 'Déchirure',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -9715,7 +9710,7 @@ move.dechirure = {
 move.clapet = {
     id: 'clapet',
     name: 'Clapet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -9724,7 +9719,7 @@ move.clapet = {
 move.cuicui_d_amour = {
     id: 'cuicui_d_amour',
     name: 'Cuicui d\'Amour',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 16, target: 'self' },
         { type: 'heal', heal: 21, target: 'self' }
@@ -9735,7 +9730,7 @@ move.cuicui_d_amour = {
 move.frappe_a_dingues = {
     id: 'frappe_a_dingues',
     name: 'Frappe à Dingues',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 5, duration: 3, target: 'enemy' }
@@ -9763,7 +9758,7 @@ move.cueillette = {
 move.vermifuge = {
     id: 'vermifuge',
     name: 'Vermifuge',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' },
@@ -9792,7 +9787,7 @@ move.rhinoderme = {
 move.rhinopharyngite = {
     id: 'rhinopharyngite',
     name: 'Rhinopharyngite',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
@@ -9802,7 +9797,7 @@ move.rhinopharyngite = {
 move.rhinoplastie = {
     id: 'rhinoplastie',
     name: 'Rhinoplastie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
@@ -9814,7 +9809,7 @@ move.rhinoplastie = {
 move.renflouage = {
     id: 'renflouage',
     name: 'Renflouage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
     ]
@@ -9822,7 +9817,7 @@ move.renflouage = {
 move.ponderation = {
     id: 'ponderation',
     name: 'Pondération',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 7, target: 'self' },
@@ -9833,7 +9828,7 @@ move.ponderation = {
 move.mimissile = {
     id: 'mimissile',
     name: 'Mimissile',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -9843,7 +9838,7 @@ move.mimissile = {
 move.pou = {
     id: 'pou',
     name: 'Pou',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 100, duration: 3, target: 'enemy' },
@@ -9853,7 +9848,7 @@ move.pou = {
 move.mimirage = {
     id: 'mimirage',
     name: 'Mimirage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 3, duration: 2, target: 'enemy' },
         { type: 'buff', stat: 'spd', value: 3, duration: 2, target: 'self' },
@@ -9866,7 +9861,7 @@ move.mimirage = {
 move.deferlante = {
     id: 'deferlante',
     name: 'Déferlante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'force', value: 50, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'force', value: 50, duration: 3, target: 'self' },
@@ -9884,7 +9879,7 @@ move.decompression = {
 move.eruption = {
     id: 'eruption',
     name: 'Éruption',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -9903,7 +9898,7 @@ move.saut_de_joie = {
 move.langueur = {
     id: 'langueur',
     name: 'Langueur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -9913,7 +9908,7 @@ move.langueur = {
 move.fouetreinte = {
     id: 'fouetreinte',
     name: 'Fouetreinte',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 45 }, target: 'enemy' }
     ]
@@ -9923,7 +9918,7 @@ move.fouetreinte = {
 move.morsurprise = {
     id: 'morsurprise',
     name: 'Morsurprise',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -9932,7 +9927,7 @@ move.morsurprise = {
 move.haleine_de_coffre = {
     id: 'haleine_de_coffre',
     name: 'Haleine de Coffre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 45 }, target: 'enemy' }
     ]
@@ -9940,7 +9935,7 @@ move.haleine_de_coffre = {
 move.bondulations = {
     id: 'bondulations',
     name: 'Bondulations',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -9952,7 +9947,7 @@ move.bondulations = {
 move.coup_de_bec_dominant = {
     id: 'coup_de_bec_dominant',
     name: 'Coup de Bec Dominant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -9961,7 +9956,7 @@ move.coup_de_bec_dominant = {
 move.dochirure = {
     id: 'dochirure',
     name: 'Dochirure',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -9971,7 +9966,7 @@ move.dochirure = {
 move.invocation_de_dodoune = {
     id: 'invocation_de_dodoune',
     name: 'Invocation de Dodoune',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -9981,7 +9976,7 @@ move.invocation_de_dodoune = {
 move.protection_maternelle = {
     id: 'protection_maternelle',
     name: 'Protection Maternelle',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -10000,7 +9995,7 @@ move.poussee_dormone = {
 move.riffes = {
     id: 'riffes',
     name: 'Riffes',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -10009,7 +10004,7 @@ move.riffes = {
 move.metalour = {
     id: 'metalour',
     name: 'Métalour',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 17, max: 20 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -10018,7 +10013,7 @@ move.metalour = {
 move.baikeur = {
     id: 'baikeur',
     name: 'Baïkeur',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'damageReductionPct', value: 0, duration: 3, target: 'self' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -10029,7 +10024,7 @@ move.baikeur = {
 move.dents_longues = {
     id: 'dents_longues',
     name: 'Dents Longues',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -10038,7 +10033,7 @@ move.dents_longues = {
 move.faim_de_mulou = {
     id: 'faim_de_mulou',
     name: 'Faim de Mulou',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -10047,7 +10042,7 @@ move.faim_de_mulou = {
 move.grand_mechant = {
     id: 'grand_mechant',
     name: 'Grand Méchant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 138, max: 100 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
@@ -10058,7 +10053,7 @@ move.grand_mechant = {
 move.ruee_bestiale = {
     id: 'ruee_bestiale',
     name: 'Ruée Bestiale',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -10067,7 +10062,7 @@ move.ruee_bestiale = {
 move.esprits_vengeurs = {
     id: 'esprits_vengeurs',
     name: 'Esprits Vengeurs',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'heal', heal: 70, target: 'self' }
@@ -10076,7 +10071,7 @@ move.esprits_vengeurs = {
 move.froid_de_mulou = {
     id: 'froid_de_mulou',
     name: 'Froid de Mulou',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -10087,7 +10082,7 @@ move.froid_de_mulou = {
 move.mergran = {
     id: 'mergran',
     name: 'Mergran',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -10104,7 +10099,7 @@ move.peur_du_mulou = {
 move.chaperon = {
     id: 'chaperon',
     name: 'Chaperon',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' },
@@ -10125,7 +10120,7 @@ move.chaperon = {
 move.polissage = {
     id: 'polissage',
     name: 'Polissage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 5, duration: 3, target: 'enemy' }
@@ -10134,7 +10129,7 @@ move.polissage = {
 move.je_vous_en_prie = {
     id: 'je_vous_en_prie',
     name: 'Je vous en prie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -10145,7 +10140,7 @@ move.je_vous_en_prie = {
 move.piqure_pesante = {
     id: 'piqure_pesante',
     name: 'Piqûre Pesante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -10193,7 +10188,7 @@ move.tire_fesse = {
 move.vrut_vrut = {
     id: 'vrut_vrut',
     name: 'Vrüt vrüt',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'antiHeal', duration: 3, target: 'enemy' }
@@ -10202,7 +10197,7 @@ move.vrut_vrut = {
 move.plumeau_cecitant = {
     id: 'plumeau_cecitant',
     name: 'Plumeau Cécitant',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' }
@@ -10213,7 +10208,7 @@ move.plumeau_cecitant = {
 move.brisskote = {
     id: 'brisskote',
     name: 'Brisskote',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -10231,7 +10226,7 @@ move.briss_deuniss = {
 move.brissolette = {
     id: 'brissolette',
     name: 'Brissolette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' }
@@ -10252,7 +10247,7 @@ move.graine_toxique = {
 move.bulbation = {
     id: 'bulbation',
     name: 'Bulbation',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 13 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 13 }, target: 'enemy' },
@@ -10264,7 +10259,7 @@ move.bulbation = {
 move.frappe_vivace = {
     id: 'frappe_vivace',
     name: 'Frappe Vivace',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 15, max: 17 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 15, max: 17 }, target: 'enemy' },
@@ -10275,7 +10270,7 @@ move.frappe_vivace = {
 move.pollinisation = {
     id: 'pollinisation',
     name: 'Pollinisation',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 13 }, target: 'enemy' },
@@ -10289,7 +10284,7 @@ move.pollinisation = {
 move.soignerat = {
     id: 'soignerat',
     name: 'Soignerat',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 20, target: 'self' },
     ]
@@ -10297,7 +10292,7 @@ move.soignerat = {
 move.drainerat = {
     id: 'drainerat',
     name: 'Drainerat',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 19, max: 22 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -10306,7 +10301,7 @@ move.drainerat = {
 move.pousserat = {
     id: 'pousserat',
     name: 'Pousserat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -10342,7 +10337,7 @@ move.eclosion = {
 move.recalcification = {
     id: 'recalcification',
     name: 'Recalcification',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' }
     ]
@@ -10389,7 +10384,7 @@ move.lancer_d_uf = {
 move.dilaceration = {
     id: 'dilaceration',
     name: 'Dilacération',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -10399,7 +10394,7 @@ move.dilaceration = {
 move.boutade = {
     id: 'boutade',
     name: 'Boutade',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -10409,7 +10404,7 @@ move.boutade = {
 move.assommoir = {
     id: 'assommoir',
     name: 'Assommoir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
@@ -10429,7 +10424,7 @@ move.rage_du_guerrier = {
 move.griffe_du_kanigrou_hivernal = {
     id: 'griffe_du_kanigrou_hivernal',
     name: 'Griffe du kanigrou hivernal',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 18, max: 22 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -10438,7 +10433,7 @@ move.griffe_du_kanigrou_hivernal = {
 move.chute_majestueuse = {
     id: 'chute_majestueuse',
     name: 'Chute majestueuse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 34, max: 38 }, target: 'enemy' }
@@ -10449,7 +10444,7 @@ move.chute_majestueuse = {
 move.aboiement = {
     id: 'aboiement',
     name: 'Aboiement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -10470,7 +10465,7 @@ move.enterrement = {
 move.motte_de_terre = {
     id: 'motte_de_terre',
     name: 'Motte de terre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 21, duration: 3, target: 'enemy' }
@@ -10481,7 +10476,7 @@ move.motte_de_terre = {
 move.daudoh = {
     id: 'daudoh',
     name: 'Daudoh',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'heal', heal: 21, target: 'self' }
@@ -10498,7 +10493,7 @@ move.buvette = {
 move.parchotage = {
     id: 'parchotage',
     name: 'Parchotage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -10531,7 +10526,7 @@ move.ramage = {
 move.deplumage = {
     id: 'deplumage',
     name: 'Déplumage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -10570,7 +10565,7 @@ move.empoisonnement_mouvemente = {
 move.beco_ardent = {
     id: 'beco_ardent',
     name: 'Béco Ardent',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'dot', element: 'feu', value: 25, duration: 3, target: 'enemy' }
@@ -10581,7 +10576,7 @@ move.beco_ardent = {
 move.pupunition = {
     id: 'pupunition',
     name: 'Pupunition',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 45, max: 49 }, target: 'enemy' }
     ]
@@ -10589,7 +10584,7 @@ move.pupunition = {
 move.pupussuccion = {
     id: 'pupussuccion',
     name: 'Pupussuccion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -10600,7 +10595,7 @@ move.pupussuccion = {
 move.roupetkifouette = {
     id: 'roupetkifouette',
     name: 'Roupetkifouette',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 27, max: 31 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' }
@@ -10611,7 +10606,7 @@ move.roupetkifouette = {
 move.infestation = {
     id: 'infestation',
     name: 'Infestation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -10630,7 +10625,7 @@ move.dejection_empoisonnee = {
 move.nuee_de_tiques = {
     id: 'nuee_de_tiques',
     name: 'Nuée de Tiques',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 47, max: 51 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
@@ -10640,7 +10635,7 @@ move.nuee_de_tiques = {
 move.ponction_revitalisante = {
     id: 'ponction_revitalisante',
     name: 'Ponction Revitalisante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 32, max: 41 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 32, max: 41 }, target: 'enemy' },
@@ -10660,7 +10655,7 @@ move.saut_de_puce = {
 move.demangeaisons = {
     id: 'demangeaisons',
     name: 'Démangeaisons',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 40, max: 44 }, target: 'enemy' },
         { type: 'debuff', stat: 'finalDamagePct', value: 50, duration: 3, target: 'enemy' }
@@ -10669,7 +10664,7 @@ move.demangeaisons = {
 move.secouage = {
     id: 'secouage',
     name: 'Secouage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 54, max: 58 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -10680,7 +10675,7 @@ move.secouage = {
 move.bambouffe = {
     id: 'bambouffe',
     name: 'Bambouffe',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -10691,7 +10686,7 @@ move.bambouffe = {
 move.photosynthese = {
     id: 'photosynthese',
     name: 'Photosynthèse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
     ]
@@ -10713,7 +10708,7 @@ move.presse_tige = {
 move.rapiat = {
     id: 'rapiat',
     name: 'Rapiat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'heal', heal: 21, target: 'self' }
@@ -10722,7 +10717,7 @@ move.rapiat = {
 move.radotage = {
     id: 'radotage',
     name: 'Radotage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -10732,7 +10727,7 @@ move.radotage = {
 move.embrocherat = {
     id: 'embrocherat',
     name: 'Embrocherat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 30, max: 34 }, target: 'enemy' }
     ]
@@ -10749,7 +10744,7 @@ move.lancerat = {
 move.aurat = {
     id: 'aurat',
     name: 'Aurat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'self' },
@@ -10763,7 +10758,7 @@ move.aurat = {
 move.combustion = {
     id: 'combustion',
     name: 'Combustion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -10771,7 +10766,7 @@ move.combustion = {
 move.offrande_ardente = {
     id: 'offrande_ardente',
     name: 'Offrande Ardente',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -10789,7 +10784,7 @@ move.coup_de_bec_magistral = {
 move.plumeau_aveuglant = {
     id: 'plumeau_aveuglant',
     name: 'Plumeau Aveuglant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -10807,7 +10802,7 @@ move.preciserat = {
 move.affinerat = {
     id: 'affinerat',
     name: 'Affinerat',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 39, max: 45 }, target: 'enemy' }
     ]
@@ -10826,7 +10821,7 @@ move.assoifferat = {
 move.vilain_beco = {
     id: 'vilain_beco',
     name: 'Vilain Béco',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 10, duration: 3, target: 'enemy' },
@@ -10838,7 +10833,7 @@ move.vilain_beco = {
 move.nectarissement = {
     id: 'nectarissement',
     name: 'Nectarissement',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 16, max: 18 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 16, max: 18 }, target: 'enemy' },
@@ -10849,7 +10844,7 @@ move.nectarissement = {
 move.yuccanon = {
     id: 'yuccanon',
     name: 'Yuccanon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 17, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -10868,7 +10863,7 @@ move.yuccanon = {
 move.raclage = {
     id: 'raclage',
     name: 'Raclage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 32, max: 38 }, target: 'enemy' }
     ]
@@ -10876,7 +10871,7 @@ move.raclage = {
 move.radioactivite = {
     id: 'radioactivite',
     name: 'Radioactivité',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 19, max: 22 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 19, max: 22 }, target: 'enemy' },
@@ -10897,7 +10892,7 @@ move.radar = {
 move.frappe_du_maitre = {
     id: 'frappe_du_maitre',
     name: 'Frappe du Maître',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 101, max: 120 }, target: 'enemy' }
     ]
@@ -10905,7 +10900,7 @@ move.frappe_du_maitre = {
 move.reconciliation = {
     id: 'reconciliation',
     name: 'Réconciliation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -10932,7 +10927,7 @@ move.sang_chaud = {
 move.punition_sanguine = {
     id: 'punition_sanguine',
     name: 'Punition Sanguine',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -10942,7 +10937,7 @@ move.punition_sanguine = {
 move.transfert_de_vie_sanguin = {
     id: 'transfert_de_vie_sanguin',
     name: 'Transfert de Vie Sanguin',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 10, target: 'self' }
     ]
@@ -10950,7 +10945,7 @@ move.transfert_de_vie_sanguin = {
 move.chatiment_sanguin = {
     id: 'chatiment_sanguin',
     name: 'Châtiment Sanguin',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 126, max: 140 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 5, duration: 3, target: 'self' }
@@ -10961,7 +10956,7 @@ move.chatiment_sanguin = {
 move.hyoide = {
     id: 'hyoide',
     name: 'Hyoïde',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 20, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.2, target: 'self' },
@@ -10976,7 +10971,7 @@ move.hyoide = {
 move.engouement = {
     id: 'engouement',
     name: 'Engouement',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'buff', stat: 'force', value: 50, duration: 3, target: 'self' },
@@ -11005,7 +11000,7 @@ move.malternatif = {
 move.maluminium = {
     id: 'maluminium',
     name: 'Maluminium',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 1, max: 1 }, target: 'enemy' }
     ]
@@ -11024,7 +11019,7 @@ move.malediction_de_la_momie = {
 move.clepsydre = {
     id: 'clepsydre',
     name: 'Clepsydre',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -11045,7 +11040,7 @@ move.bandelette_ancestrale = {
 move.malediction_koalak = {
     id: 'malediction_koalak',
     name: 'Malédiction Koalak',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 400, duration: 3, target: 'enemy' },
@@ -11060,7 +11055,7 @@ move.malediction_koalak = {
 move.fauche = {
     id: 'fauche',
     name: 'Fauche',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -11070,7 +11065,7 @@ move.fauche = {
 move.renfort_du_cimetiere_primitif = {
     id: 'renfort_du_cimetiere_primitif',
     name: 'Renfort du Cimetière Primitif',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -11089,7 +11084,7 @@ move.renfort_du_cimetiere_primitif = {
 move.nez_bulleux = {
     id: 'nez_bulleux',
     name: 'Nez Bulleux',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -11162,7 +11157,7 @@ move.rapia = {
 move.genewosite_cawottique = {
     id: 'genewosite_cawottique',
     name: 'Généwosité Cawottique',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -11172,7 +11167,7 @@ move.genewosite_cawottique = {
 move.theowie_de_la_cawotte = {
     id: 'theowie_de_la_cawotte',
     name: 'Théowie de la Cawotte',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 50, max: 50 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -11183,7 +11178,7 @@ move.theowie_de_la_cawotte = {
 move.empwise = {
     id: 'empwise',
     name: 'Empwise',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -11192,7 +11187,7 @@ move.empwise = {
 move.aveuglement_luminescent = {
     id: 'aveuglement_luminescent',
     name: 'Aveuglement Luminescent',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 40, duration: 3, target: 'enemy' }
@@ -11211,7 +11206,7 @@ move.dispawition_wetawdee = {
 move.ecwasement = {
     id: 'ecwasement',
     name: 'Écwasement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 30, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -11220,7 +11215,7 @@ move.ecwasement = {
 move.tewatif = {
     id: 'tewatif',
     name: 'Téwatif',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 25, max: 25 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -11231,7 +11226,7 @@ move.tewatif = {
 move.suwpwise = {
     id: 'suwpwise',
     name: 'Suwpwise',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
@@ -11240,7 +11235,7 @@ move.suwpwise = {
 move.ecawtelement = {
     id: 'ecawtelement',
     name: 'Écawtèlement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -11260,7 +11255,7 @@ move.vindication_troollesque = {
 move.absorption_troollesque = {
     id: 'absorption_troollesque',
     name: 'Absorption Troollesque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 100, target: 'self' }
     ]
@@ -11268,7 +11263,7 @@ move.absorption_troollesque = {
 move.ecrasement_troollesque = {
     id: 'ecrasement_troollesque',
     name: 'Écrasement Troollesque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -11302,7 +11297,7 @@ move.cuticule = {
 move.recueillement = {
     id: 'recueillement',
     name: 'Recueillement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'heal', heal: 41, target: 'self' }
@@ -11330,7 +11325,7 @@ move.disparition = {
 move.coup_de_langue = {
     id: 'coup_de_langue',
     name: 'Coup de Langue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -11340,7 +11335,7 @@ move.coup_de_langue = {
 move.drague = {
     id: 'drague',
     name: 'Drague',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -11349,7 +11344,7 @@ move.drague = {
 move.coup_de_foudre = {
     id: 'coup_de_foudre',
     name: 'Coup de foudre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -11368,7 +11363,7 @@ move.tohu_bohu = {
 move.coupedaikalle = {
     id: 'coupedaikalle',
     name: 'Coupédaikallé',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -11384,7 +11379,7 @@ move.souap = {
 move.shinouque = {
     id: 'shinouque',
     name: 'Shinouque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 24, max: 33 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -11412,7 +11407,7 @@ move.collapserat = {
 move.freinerat = {
     id: 'freinerat',
     name: 'Freinerat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'buffDrain', value: 2, target: 'enemy' }
@@ -11423,7 +11418,7 @@ move.freinerat = {
 move.krouth = {
     id: 'krouth',
     name: 'Krouth',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -11432,7 +11427,7 @@ move.krouth = {
 move.klougmouth = {
     id: 'klougmouth',
     name: 'Klougmouth',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
@@ -11465,7 +11460,7 @@ move.koudblouze = {
 move.boufbaffe = {
     id: 'boufbaffe',
     name: 'Boufbaffe',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -11484,7 +11479,7 @@ move.hubermouth = {
 move.koudkorn = {
     id: 'koudkorn',
     name: 'Koudkorn',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -11492,7 +11487,7 @@ move.koudkorn = {
 move.moutharde = {
     id: 'moutharde',
     name: 'Moutharde',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -11511,7 +11506,7 @@ move.moubilite = {
 move.moursure = {
     id: 'moursure',
     name: 'Moursure',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 200, duration: 3, target: 'enemy' },
@@ -11521,7 +11516,7 @@ move.moursure = {
 move.bizmouth = {
     id: 'bizmouth',
     name: 'Bizmouth',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' }
     ]
@@ -11531,7 +11526,7 @@ move.bizmouth = {
 move.bond_appetissant = {
     id: 'bond_appetissant',
     name: 'Bond Appétissant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -11541,7 +11536,7 @@ move.bond_appetissant = {
 move.goinfwage = {
     id: 'goinfwage',
     name: 'Goinfwage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -11551,7 +11546,7 @@ move.goinfwage = {
 move.invocation_de_pantin = {
     id: 'invocation_de_pantin',
     name: 'Invocation de Pantin',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -11559,7 +11554,7 @@ move.invocation_de_pantin = {
 move.manipulation = {
     id: 'manipulation',
     name: 'Manipulation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -11567,7 +11562,7 @@ move.manipulation = {
 move.entracte = {
     id: 'entracte',
     name: 'Entracte',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -11578,7 +11573,7 @@ move.entracte = {
 move.marionnette = {
     id: 'marionnette',
     name: 'Marionnette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -11589,7 +11584,7 @@ move.marionnette = {
 move.truchidage = {
     id: 'truchidage',
     name: 'Truchidage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 100, duration: 3, target: 'enemy' },
@@ -11599,7 +11594,7 @@ move.truchidage = {
 move.boulette_baveuse = {
     id: 'boulette_baveuse',
     name: 'Boulette baveuse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -11615,7 +11610,7 @@ move.truchenrut = {
 move.bouffee_de_chaleur = {
     id: 'bouffee_de_chaleur',
     name: 'Bouffée de chaleur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 40, max: 40 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 20, max: 20 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
@@ -11628,7 +11623,7 @@ move.bouffee_de_chaleur = {
 move.degage = {
     id: 'degage',
     name: 'Dégage !',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -11637,7 +11632,7 @@ move.degage = {
 move.vision_trouble = {
     id: 'vision_trouble',
     name: 'Vision trouble',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -11646,7 +11641,7 @@ move.vision_trouble = {
 move.rondelle_reparatrice = {
     id: 'rondelle_reparatrice',
     name: 'Rondelle réparatrice',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' }
     ]
@@ -11654,7 +11649,7 @@ move.rondelle_reparatrice = {
 move.myopie = {
     id: 'myopie',
     name: 'Myopie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -11665,7 +11660,7 @@ move.myopie = {
 move.claque_du_bec = {
     id: 'claque_du_bec',
     name: 'Claque du bec',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -11674,7 +11669,7 @@ move.claque_du_bec = {
 move.proutoto = {
     id: 'proutoto',
     name: 'Proutoto',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -11701,7 +11696,7 @@ move.survie_de_l_espece = {
 move.transmission_instantanee = {
     id: 'transmission_instantanee',
     name: 'Transmission instantanée',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -11721,7 +11716,7 @@ move.echauffement_songeur = {
 move.tornadhesive = {
     id: 'tornadhesive',
     name: 'Tornadhésive',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -11731,7 +11726,7 @@ move.tornadhesive = {
 move.cercle_de_lumiere = {
     id: 'cercle_de_lumiere',
     name: 'Cercle de lumière',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -11750,7 +11745,7 @@ move.farce_cachee = {
 move.attaque_surprise = {
     id: 'attaque_surprise',
     name: 'Attaque surprise',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -11759,7 +11754,7 @@ move.attaque_surprise = {
 move.pluixel = {
     id: 'pluixel',
     name: 'Pluixel',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 5, target: 'self' },
@@ -11790,7 +11785,7 @@ move.secoust = {
 move.segmentation = {
     id: 'segmentation',
     name: 'Segmentation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -11809,7 +11804,7 @@ move.feu_use = {
 move.controoll = {
     id: 'controoll',
     name: 'Controoll',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -11819,7 +11814,7 @@ move.controoll = {
 move.troollage = {
     id: 'troollage',
     name: 'Troollage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -11830,7 +11825,7 @@ move.troollage = {
 move.troollahonte = {
     id: 'troollahonte',
     name: 'Troollahonte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -11839,7 +11834,7 @@ move.troollahonte = {
 move.troollfesse = {
     id: 'troollfesse',
     name: 'Troollfesse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 15, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -11851,7 +11846,7 @@ move.troollfesse = {
 move.mort_d_illement = {
     id: 'mort_d_illement',
     name: 'Mort d\'illement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 45 }, target: 'enemy' }
     ]
@@ -11859,7 +11854,7 @@ move.mort_d_illement = {
 move.bourrascasse = {
     id: 'bourrascasse',
     name: 'Bourrascasse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 40 }, target: 'enemy' }
@@ -11870,7 +11865,7 @@ move.bourrascasse = {
 move.plongeon = {
     id: 'plongeon',
     name: 'Plongeon',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 16, max: 18 }, target: 'enemy' },
@@ -11882,7 +11877,7 @@ move.plongeon = {
 move.bactrasoin = {
     id: 'bactrasoin',
     name: 'Bactrasoin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 20, target: 'self' },
     ]
@@ -11890,7 +11885,7 @@ move.bactrasoin = {
 move.amphibaffe = {
     id: 'amphibaffe',
     name: 'Amphibaffe',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 25 }, target: 'enemy' },
@@ -11913,7 +11908,7 @@ move.plumeau_destabilisant = {
 move.bousculade_plumeuse = {
     id: 'bousculade_plumeuse',
     name: 'Bousculade plumeuse',
-    cooldownMs: 2000,
+    cooldownMs: 2700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 13, max: 18 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -11938,7 +11933,7 @@ move.coupe_faim = {
 move.digestion_explosive = {
     id: 'digestion_explosive',
     name: 'Digestion Explosive',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 101, max: 150 }, target: 'enemy' }
     ]
@@ -11946,7 +11941,7 @@ move.digestion_explosive = {
 move.saphir_apaisant = {
     id: 'saphir_apaisant',
     name: 'Saphir Apaisant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 1250, target: 'self' }
     ]
@@ -11969,7 +11964,7 @@ move.rayonnage = {
 move.rapace = {
     id: 'rapace',
     name: 'Rapace',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -11991,7 +11986,7 @@ move.malergie = {
 move.malezi = {
     id: 'malezi',
     name: 'Malézi',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
@@ -12003,7 +11998,7 @@ move.malezi = {
 move.malgorithmie = {
     id: 'malgorithmie',
     name: 'Malgorithmie',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 13, max: 13 }, target: 'enemy' }
     ]
@@ -12030,7 +12025,7 @@ move.patinage = {
 move.marteau_d_okim = {
     id: 'marteau_d_okim',
     name: 'Marteau d\'Okim',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 20, max: 24 }, target: 'enemy' }
@@ -12039,7 +12034,7 @@ move.marteau_d_okim = {
 move.marteau_d_orelos = {
     id: 'marteau_d_orelos',
     name: 'Marteau d\'Orelos',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 29, max: 33 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 100, duration: 3, target: 'enemy' },
@@ -12051,7 +12046,7 @@ move.marteau_d_orelos = {
 move.envolee_brutale = {
     id: 'envolee_brutale',
     name: 'Envolée brutale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' }
@@ -12060,7 +12055,7 @@ move.envolee_brutale = {
 move.rejet_toxique = {
     id: 'rejet_toxique',
     name: 'Rejet toxique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         // TODO: Maximise les effets aléatoires sur la cible
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -12069,7 +12064,7 @@ move.rejet_toxique = {
 move.pied_de_gruche = {
     id: 'pied_de_gruche',
     name: 'Pied de Gruche',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'damageReductionPct', value: 100, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
@@ -12081,7 +12076,7 @@ move.pied_de_gruche = {
 move.laxatif = {
     id: 'laxatif',
     name: 'Laxatif',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -12089,7 +12084,7 @@ move.laxatif = {
 move.pourriture_intestinale = {
     id: 'pourriture_intestinale',
     name: 'Pourriture intestinale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -12098,7 +12093,7 @@ move.pourriture_intestinale = {
 move.indigestion_contagieuse = {
     id: 'indigestion_contagieuse',
     name: 'Indigestion contagieuse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 30, duration: 3, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -12117,7 +12112,7 @@ move.diarrhee_affaiblissante = {
 move.crache_eau = {
     id: 'crache_eau',
     name: 'Crache eau',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 30, max: 34 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 30, max: 34 }, target: 'enemy' }
@@ -12126,7 +12121,7 @@ move.crache_eau = {
 move.kwap = {
     id: 'kwap',
     name: 'Kwap',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 36, max: 42 }, target: 'enemy' },
@@ -12136,7 +12131,7 @@ move.kwap = {
 move.invocation_de_bombombre = {
     id: 'invocation_de_bombombre',
     name: 'Invocation de Bombombre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -12146,7 +12141,7 @@ move.invocation_de_bombombre = {
 move.raviner = {
     id: 'raviner',
     name: 'Raviner',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 46, max: 54 }, target: 'enemy' }
     ]
@@ -12154,7 +12149,7 @@ move.raviner = {
 move.raffinage = {
     id: 'raffinage',
     name: 'Raffinage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -12172,7 +12167,7 @@ move.confinerat = {
 move.dechiquetterat = {
     id: 'dechiquetterat',
     name: 'Déchiquetterat',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 33, max: 39 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 27, max: 31 }, target: 'enemy' },
@@ -12184,7 +12179,7 @@ move.dechiquetterat = {
 move.tyrannie = {
     id: 'tyrannie',
     name: 'Tyrannie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'res.air', value: 200, duration: 3, target: 'enemy' },
@@ -12197,7 +12192,7 @@ move.tyrannie = {
 move.gaminerie = {
     id: 'gaminerie',
     name: 'Gaminerie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 101, target: 'self' }
     ]
@@ -12244,7 +12239,7 @@ move.envol_liberateur = {
 move.hechaud_fourree = {
     id: 'hechaud_fourree',
     name: 'Héchaud Fourrée',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 6, max: 10 }, target: 'enemy' },
@@ -12272,7 +12267,7 @@ move.enwobage = {
 move.anawchie = {
     id: 'anawchie',
     name: 'Anawchie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -12308,7 +12303,7 @@ move.esprit_d_equipe = {
 move.coup_de_sceptre = {
     id: 'coup_de_sceptre',
     name: 'Coup de Sceptre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 31, max: 35 }, target: 'enemy' }
@@ -12319,7 +12314,7 @@ move.coup_de_sceptre = {
 move.boulette = {
     id: 'boulette',
     name: 'Boulette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'res.eau', value: 11, duration: 3, target: 'enemy' }
@@ -12328,7 +12323,7 @@ move.boulette = {
 move.sonnette = {
     id: 'sonnette',
     name: 'Sonnette',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' }
     ]
@@ -12336,7 +12331,7 @@ move.sonnette = {
 move.venin_destabilisateur = {
     id: 'venin_destabilisateur',
     name: 'Venin Déstabilisateur',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -12347,7 +12342,7 @@ move.venin_destabilisateur = {
 move.accrochage = {
     id: 'accrochage',
     name: 'Accrochage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -12358,7 +12353,7 @@ move.accrochage = {
 move.lumiere_bleue = {
     id: 'lumiere_bleue',
     name: 'Lumière Bleue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -12369,7 +12364,7 @@ move.lumiere_bleue = {
 move.kulbutage = {
     id: 'kulbutage',
     name: 'Kulbutage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 45 }, target: 'enemy' },
         { type: 'dot', element: 'neutre', value: 11, duration: 5, target: 'enemy' }
@@ -12396,7 +12391,7 @@ move.desenvoutement_poilu = {
 move.comte_ancestral = {
     id: 'comte_ancestral',
     name: 'Comté ancestral',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 17, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' },
@@ -12410,7 +12405,7 @@ move.comte_ancestral = {
 move.glutinerie = {
     id: 'glutinerie',
     name: 'Glutinerie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -12420,7 +12415,7 @@ move.glutinerie = {
 move.glutincelle = {
     id: 'glutincelle',
     name: 'Glutincelle',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' },
@@ -12432,7 +12427,7 @@ move.glutincelle = {
 move.glutorpille = {
     id: 'glutorpille',
     name: 'Glutorpille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 30 }, target: 'enemy' }
@@ -12443,7 +12438,7 @@ move.glutorpille = {
 move.glutimpact = {
     id: 'glutimpact',
     name: 'Glutimpact',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 31, max: 60 }, target: 'enemy' },
@@ -12455,7 +12450,7 @@ move.glutimpact = {
 move.glutarc = {
     id: 'glutarc',
     name: 'Glutarc',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' }
@@ -12466,7 +12461,7 @@ move.glutarc = {
 move.malourdissement = {
     id: 'malourdissement',
     name: 'Malourdissement',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' },
@@ -12489,7 +12484,7 @@ move.malienisme = {
 move.empoigne = {
     id: 'empoigne',
     name: 'Empoigne',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -12498,7 +12493,7 @@ move.empoigne = {
 move.strangulation = {
     id: 'strangulation',
     name: 'Strangulation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 40, max: 40 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -12508,7 +12503,7 @@ move.strangulation = {
 move.feintrigue = {
     id: 'feintrigue',
     name: 'Feintrigue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -12517,7 +12512,7 @@ move.feintrigue = {
 move.coupression = {
     id: 'coupression',
     name: 'Coupression',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' }
@@ -12526,7 +12521,7 @@ move.coupression = {
 move.plantonyme = {
     id: 'plantonyme',
     name: 'Plantonyme',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 35, max: 39 }, target: 'enemy' }
     ]
@@ -12536,7 +12531,7 @@ move.plantonyme = {
 move.decrossage = {
     id: 'decrossage',
     name: 'Décrossage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -12546,7 +12541,7 @@ move.decrossage = {
 move.tir_progressif = {
     id: 'tir_progressif',
     name: 'Tir progressif',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 24 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -12557,7 +12552,7 @@ move.tir_progressif = {
 move.coupe_vent = {
     id: 'coupe_vent',
     name: 'Coupe-Vent',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -12566,7 +12561,7 @@ move.coupe_vent = {
 move.moulinet_sournois = {
     id: 'moulinet_sournois',
     name: 'Moulinet sournois',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 28, max: 31 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -12585,7 +12580,7 @@ move.decharge_en_salle = {
 move.crosse_a_terre = {
     id: 'crosse_a_terre',
     name: 'Crosse à terre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 27, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -12596,7 +12591,7 @@ move.crosse_a_terre = {
 move.saut_de_lune = {
     id: 'saut_de_lune',
     name: 'Saut de lune',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 36, max: 39 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -12605,7 +12600,7 @@ move.saut_de_lune = {
 move.kimarite = {
     id: 'kimarite',
     name: 'Kimarite',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 60 }, target: 'enemy' }
     ]
@@ -12615,7 +12610,7 @@ move.kimarite = {
 move.cacteau = {
     id: 'cacteau',
     name: 'Cacteau',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 17, max: 22 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 17, max: 22 }, target: 'enemy' },
@@ -12639,7 +12634,7 @@ move.spores_assechantes = {
 move.ispores = {
     id: 'ispores',
     name: 'Ispores',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         // TODO: Minimise les effets aléatoires de la cible
@@ -12654,7 +12649,7 @@ move.ispores = {
 move.cactanus = {
     id: 'cactanus',
     name: 'Cactanus',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -12681,7 +12676,7 @@ move.bonussocac = {
 move.mouerte = {
     id: 'mouerte',
     name: 'Mouerté',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -12703,7 +12698,7 @@ move.mouerte = {
 move.percepine = {
     id: 'percepine',
     name: 'Percépine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 17, max: 22 }, target: 'enemy' },
@@ -12756,7 +12751,7 @@ move.couche_pampars = {
 move.maracac = {
     id: 'maracac',
     name: 'Maracac',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -12775,7 +12770,7 @@ move.maracac = {
 move.salsa = {
     id: 'salsa',
     name: 'Salsa',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -12810,7 +12805,7 @@ move.joropo = {
 move.kakoaklake = {
     id: 'kakoaklake',
     name: 'Kakoaklake',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 45 }, target: 'enemy' }
     ]
@@ -12818,7 +12813,7 @@ move.kakoaklake = {
 move.pluie_de_pepite = {
     id: 'pluie_de_pepite',
     name: 'Pluie de Pépite',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -12828,7 +12823,7 @@ move.pluie_de_pepite = {
 move.maskansocolat = {
     id: 'maskansocolat',
     name: 'Maskansocolat',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -12837,7 +12832,7 @@ move.maskansocolat = {
 move.mansocolere = {
     id: 'mansocolere',
     name: 'Mansocolère',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 56, max: 65 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -12857,7 +12852,7 @@ move.mansaut = {
 move.enrobage = {
     id: 'enrobage',
     name: 'Enrobage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 5, target: 'self' },
     ]
@@ -12865,7 +12860,7 @@ move.enrobage = {
 move.glycemie = {
     id: 'glycemie',
     name: 'Glycémie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -12892,7 +12887,7 @@ move.kwakaoust = {
 move.skwalala = {
     id: 'skwalala',
     name: 'Skwalala',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' },
@@ -12904,7 +12899,7 @@ move.skwalala = {
 move.henshin_no_numa = {
     id: 'henshin_no_numa',
     name: 'Henshin No Numa',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 25, max: 28 }, target: 'enemy' }
@@ -12921,7 +12916,7 @@ move.henshinobi = {
 move.nukiyo_e = {
     id: 'nukiyo_e',
     name: 'Nukiyo-e',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 11, max: 13 }, target: 'enemy' },
         { type: 'dot', element: 'terre', value: 2, duration: 1, target: 'enemy' },
@@ -12943,7 +12938,7 @@ move.yama_no_tuki = {
 move.tsunamishi = {
     id: 'tsunamishi',
     name: 'Tsunamishi',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 27, max: 30 }, target: 'enemy' },
@@ -12953,7 +12948,7 @@ move.tsunamishi = {
 move.elevation_du_jardin_de_pierres = {
     id: 'elevation_du_jardin_de_pierres',
     name: 'Élévation du Jardin de Pierres',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'neutre', damage: { min: 30, max: 34 }, target: 'enemy' }
@@ -12962,7 +12957,7 @@ move.elevation_du_jardin_de_pierres = {
 move.ishi_nuken = {
     id: 'ishi_nuken',
     name: 'Ishi Nuken',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 6, max: 8 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 6, max: 8 }, target: 'enemy' },
@@ -12974,7 +12969,7 @@ move.ishi_nuken = {
 move.tambourrin = {
     id: 'tambourrin',
     name: 'Tambourrin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'flatDamage', value: 40, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 28, max: 31 }, target: 'enemy' },
@@ -12995,7 +12990,7 @@ move.percusseins = {
 move.valseuses = {
     id: 'valseuses',
     name: 'Valseuses',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 27, max: 30 }, target: 'enemy' }
@@ -13004,7 +12999,7 @@ move.valseuses = {
 move.transpompoko = {
     id: 'transpompoko',
     name: 'Transpompoko',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 29, max: 32 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' },
@@ -13034,7 +13029,7 @@ move.poterie_tanuki = {
 move.kaolin = {
     id: 'kaolin',
     name: 'Kaolin',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 16, max: 19 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -13043,7 +13038,7 @@ move.kaolin = {
 move.terre_glaise = {
     id: 'terre_glaise',
     name: 'Terre Glaise',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 12, max: 14 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 12, max: 14 }, target: 'enemy' }
@@ -13092,7 +13087,7 @@ move.attirance_du_concombre = {
 move.bataille_pour_la_terre_des_zoths = {
     id: 'bataille_pour_la_terre_des_zoths',
     name: 'Bataille pour la terre des Zoths',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -13111,7 +13106,7 @@ move.incitation = {
 move.steune = {
     id: 'steune',
     name: 'Steune',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 100, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' },
@@ -13121,7 +13116,7 @@ move.steune = {
 move.dragtaie = {
     id: 'dragtaie',
     name: 'Dragtaïe',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -13139,7 +13134,7 @@ move.cuit_rasse = {
 move.repousse = {
     id: 'repousse',
     name: 'Repousse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 31, target: 'self' }
     ]
@@ -13173,7 +13168,7 @@ move.herbe_hacha = {
 move.mauvaise_herbe = {
     id: 'mauvaise_herbe',
     name: 'Mauvaise Herbe',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 11 }, target: 'enemy' }
     ]
@@ -13183,7 +13178,7 @@ move.mauvaise_herbe = {
 move.morsure_critique = {
     id: 'morsure_critique',
     name: 'Morsure Critique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' }
     ]
@@ -13191,7 +13186,7 @@ move.morsure_critique = {
 move.flair_obscur = {
     id: 'flair_obscur',
     name: 'Flair Obscur',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
@@ -13221,7 +13216,7 @@ move.rature = {
 move.ratatouille = {
     id: 'ratatouille',
     name: 'Ratatouille',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -13233,7 +13228,7 @@ move.ratatouille = {
 move.glanage = {
     id: 'glanage',
     name: 'Glanage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -13242,7 +13237,7 @@ move.glanage = {
 move.ecrasement_sombre = {
     id: 'ecrasement_sombre',
     name: 'Écrasement Sombre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 70 }, target: 'enemy' }
     ]
@@ -13271,7 +13266,7 @@ move.etamines_libertines = {
 move.flagellation_florale = {
     id: 'flagellation_florale',
     name: 'Flagellation Florale',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 41, max: 80 }, target: 'enemy' }
@@ -13282,7 +13277,7 @@ move.flagellation_florale = {
 move.ecorce_detonante = {
     id: 'ecorce_detonante',
     name: 'Écorce Détonante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13301,7 +13296,7 @@ move.ecorce_malsaine = {
 move.glougloutte_salee = {
     id: 'glougloutte_salee',
     name: 'Glougloutte Salée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -13312,7 +13307,7 @@ move.glougloutte_salee = {
 move.nervure = {
     id: 'nervure',
     name: 'Nervure',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 16, max: 25 }, target: 'enemy' },
@@ -13322,7 +13317,7 @@ move.nervure = {
 move.ecorce_putride = {
     id: 'ecorce_putride',
     name: 'Écorce Putride',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 20 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -13341,7 +13336,7 @@ move.plantage = {
 move.sanglancornage = {
     id: 'sanglancornage',
     name: 'Sanglancornage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13359,7 +13354,7 @@ move.sanglobouste = {
 move.sanglosoin = {
     id: 'sanglosoin',
     name: 'Sanglosoin',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 46, target: 'self' },
         { type: 'heal', heal: 46, target: 'self' }
@@ -13370,7 +13365,7 @@ move.sanglosoin = {
 move.fricochoncete = {
     id: 'fricochoncete',
     name: 'Fricochonceté',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13391,7 +13386,7 @@ move.fricadelle = {
 move.fricotage = {
     id: 'fricotage',
     name: 'Fricotage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' }
@@ -13430,7 +13425,7 @@ move.frigogol = {
 move.mansonnette = {
     id: 'mansonnette',
     name: 'Mansonnette',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13439,7 +13434,7 @@ move.mansonnette = {
 move.mansotise = {
     id: 'mansotise',
     name: 'Mansotise',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 31, duration: 3, target: 'enemy' }
@@ -13448,7 +13443,7 @@ move.mansotise = {
 move.mansovetage = {
     id: 'mansovetage',
     name: 'Mansovetage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 31, target: 'self' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -13459,7 +13454,7 @@ move.mansovetage = {
 move.mansote_mouton = {
     id: 'mansote_mouton',
     name: 'Mansote-mouton',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -13468,7 +13463,7 @@ move.mansote_mouton = {
 move.mansovage = {
     id: 'mansovage',
     name: 'Mansovage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
@@ -13478,7 +13473,7 @@ move.mansovage = {
 move.mansorcier = {
     id: 'mansorcier',
     name: 'Mansorcier',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -13494,7 +13489,7 @@ move.mansorcier = {
 move.mansolotage = {
     id: 'mansolotage',
     name: 'Mansolotage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -13504,7 +13499,7 @@ move.mansolotage = {
 move.mansogrenu = {
     id: 'mansogrenu',
     name: 'Mansogrenu',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 55 }, target: 'enemy' }
     ]
@@ -13523,7 +13518,7 @@ move.mansoldat = {
 move.mansolex = {
     id: 'mansolex',
     name: 'Mansolex',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -13532,7 +13527,7 @@ move.mansolex = {
 move.mansovietik = {
     id: 'mansovietik',
     name: 'Mansoviétik',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'critChance', value: 20, duration: 3, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self' },
@@ -13542,7 +13537,7 @@ move.mansovietik = {
 move.mansovegarde = {
     id: 'mansovegarde',
     name: 'Mansovegarde',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -13552,7 +13547,7 @@ move.mansovegarde = {
 move.mansoron = {
     id: 'mansoron',
     name: 'Mansoron',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -13561,7 +13556,7 @@ move.mansoron = {
 move.mansolfatare = {
     id: 'mansolfatare',
     name: 'Mansolfatare',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' }
@@ -13580,7 +13575,7 @@ move.mansoja = {
 move.chataigne_glacee = {
     id: 'chataigne_glacee',
     name: 'Châtaigne glacée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -13589,7 +13584,7 @@ move.chataigne_glacee = {
 move.propulsogland = {
     id: 'propulsogland',
     name: 'Propulsogland',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13598,7 +13593,7 @@ move.propulsogland = {
 move.equilibrogland = {
     id: 'equilibrogland',
     name: 'Equilibrogland',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13609,7 +13604,7 @@ move.equilibrogland = {
 move.griffemouth = {
     id: 'griffemouth',
     name: 'Griffemouth',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'res.terre', value: 50, duration: 3, target: 'enemy' }
@@ -13645,7 +13640,7 @@ move.gland_d_ouil = {
 move.remontant = {
     id: 'remontant',
     name: 'Remontant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 31, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 41, duration: 3, target: 'self' }
@@ -13654,7 +13649,7 @@ move.remontant = {
 move.fluide_brulant = {
     id: 'fluide_brulant',
     name: 'Fluide Brûlant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 34 }, target: 'enemy' }
     ]
@@ -13664,7 +13659,7 @@ move.fluide_brulant = {
 move.gliglag = {
     id: 'gliglag',
     name: 'Gliglag',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -13673,7 +13668,7 @@ move.gliglag = {
 move.gligliplication = {
     id: 'gligliplication',
     name: 'Gligliplication',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -13681,7 +13676,7 @@ move.gligliplication = {
 move.embrochement_dephase = {
     id: 'embrochement_dephase',
     name: 'Embrochement Déphasé',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 51, max: 53 }, target: 'enemy' },
@@ -13704,7 +13699,7 @@ move.zephyr = {
 move.nun_shakrang = {
     id: 'nun_shakrang',
     name: 'Nun-Shakrang',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -13712,7 +13707,7 @@ move.nun_shakrang = {
 move.stratus = {
     id: 'stratus',
     name: 'Stratus',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -13747,7 +13742,7 @@ move.kozaru_no_kotsu = {
 move.depression_atmospherique = {
     id: 'depression_atmospherique',
     name: 'Dépression Atmosphérique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13758,7 +13753,7 @@ move.depression_atmospherique = {
 move.couleuvrine = {
     id: 'couleuvrine',
     name: 'Couleuvrine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -13768,7 +13763,7 @@ move.couleuvrine = {
 move.a_bout_portant = {
     id: 'a_bout_portant',
     name: 'À bout portant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -13789,7 +13784,7 @@ move.boulet_magique = {
 move.fusee_incendiaire = {
     id: 'fusee_incendiaire',
     name: 'Fusée incendiaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'heal', heal: 41, target: 'self' },
@@ -13817,7 +13812,7 @@ move.decollage_rate = {
 move.obus_aveuglant = {
     id: 'obus_aveuglant',
     name: 'Obus aveuglant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -13827,7 +13822,7 @@ move.obus_aveuglant = {
 move.feu_d_artifice = {
     id: 'feu_d_artifice',
     name: 'Feu d\'artifice',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'finalDamagePct', value: 20, duration: 3, target: 'self' },
@@ -13837,7 +13832,7 @@ move.feu_d_artifice = {
 move.obus_gluant = {
     id: 'obus_gluant',
     name: 'Obus gluant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -13848,7 +13843,7 @@ move.obus_gluant = {
 move.petard = {
     id: 'petard',
     name: 'Pétard',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -13877,7 +13872,7 @@ move.poudre_enervante = {
 move.boumboule = {
     id: 'boumboule',
     name: 'Boumboule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -13887,7 +13882,7 @@ move.boumboule = {
 move.tourniboule = {
     id: 'tourniboule',
     name: 'Tourniboule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -13899,7 +13894,7 @@ move.tourniboule = {
 move.maltruisme = {
     id: 'maltruisme',
     name: 'Maltruisme',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 23, target: 'self' }
     ]
@@ -13915,7 +13910,7 @@ move.malveole = {
 move.malumeur = {
     id: 'malumeur',
     name: 'Malumeur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'intelligence', value: 20, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'intelligence', value: 20, duration: 3, target: 'self' },
@@ -13927,7 +13922,7 @@ move.malumeur = {
 move.ravin = {
     id: 'ravin',
     name: 'Ravin',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -13937,7 +13932,7 @@ move.ravin = {
 move.doctorat = {
     id: 'doctorat',
     name: 'Doctorat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' }
     ]
@@ -13947,7 +13942,7 @@ move.doctorat = {
 move.rajustement = {
     id: 'rajustement',
     name: 'Rajustement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -13957,7 +13952,7 @@ move.rajustement = {
 move.terreur = {
     id: 'terreur',
     name: 'Terreur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 46, max: 50 }, target: 'enemy' }
     ]
@@ -13973,7 +13968,7 @@ move.malheur = {
 move.torpeur = {
     id: 'torpeur',
     name: 'Torpeur',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -13983,7 +13978,7 @@ move.torpeur = {
 move.kwapoeira = {
     id: 'kwapoeira',
     name: 'Kwapoeira',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 39, max: 46 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 39, max: 46 }, target: 'enemy' }
@@ -13992,7 +13987,7 @@ move.kwapoeira = {
 move.akabond = {
     id: 'akabond',
     name: 'Akabond',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 31, max: 36 }, target: 'enemy' }
@@ -14003,7 +13998,7 @@ move.akabond = {
 move.aikomu_tuyu = {
     id: 'aikomu_tuyu',
     name: 'Aikomu Tuyu',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 33, max: 39 }, target: 'enemy' },
@@ -14014,7 +14009,7 @@ move.aikomu_tuyu = {
 move.katanardent = {
     id: 'katanardent',
     name: 'Katanardent',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 42 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 36, max: 42 }, target: 'enemy' }
@@ -14025,7 +14020,7 @@ move.katanardent = {
 move.labour = {
     id: 'labour',
     name: 'Labour',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -14034,7 +14029,7 @@ move.labour = {
 move.monnaie_trebuchante = {
     id: 'monnaie_trebuchante',
     name: 'Monnaie Trébuchante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -14043,7 +14038,7 @@ move.monnaie_trebuchante = {
 move.rente = {
     id: 'rente',
     name: 'Rente',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'heal', heal: 11, target: 'self' }
@@ -14060,7 +14055,7 @@ move.ferrage = {
 move.douane = {
     id: 'douane',
     name: 'Douane',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -14069,7 +14064,7 @@ move.douane = {
 move.gabelle = {
     id: 'gabelle',
     name: 'Gabelle',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -14078,7 +14073,7 @@ move.gabelle = {
 move.deficit = {
     id: 'deficit',
     name: 'Déficit',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 30, duration: 3, target: 'enemy' }
@@ -14087,7 +14082,7 @@ move.deficit = {
 move.ruade = {
     id: 'ruade',
     name: 'Ruade',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' },
@@ -14097,7 +14092,7 @@ move.ruade = {
 move.liquidation = {
     id: 'liquidation',
     name: 'Liquidation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' }
     ]
@@ -14105,7 +14100,7 @@ move.liquidation = {
 move.abreuvoir = {
     id: 'abreuvoir',
     name: 'Abreuvoir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -14114,7 +14109,7 @@ move.abreuvoir = {
 move.cotisation = {
     id: 'cotisation',
     name: 'Cotisation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -14123,7 +14118,7 @@ move.cotisation = {
 move.rodeo = {
     id: 'rodeo',
     name: 'Rodéo',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -14141,7 +14136,7 @@ move.levee_de_fonds = {
 move.saut_d_obstacle = {
     id: 'saut_d_obstacle',
     name: 'Saut d\'obstacle',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' }
@@ -14150,7 +14145,7 @@ move.saut_d_obstacle = {
 move.redevance = {
     id: 'redevance',
     name: 'Redevance',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 25, duration: 3, target: 'enemy' }
@@ -14159,7 +14154,7 @@ move.redevance = {
 move.prelevement = {
     id: 'prelevement',
     name: 'Prélèvement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -14168,7 +14163,7 @@ move.prelevement = {
 move.sagittarius = {
     id: 'sagittarius',
     name: 'Sagittarius',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -14180,7 +14175,7 @@ move.sagittarius = {
 move.dommages_et_interets = {
     id: 'dommages_et_interets',
     name: 'Dommages et Intérêts',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 20, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.2, target: 'self' },
@@ -14191,7 +14186,7 @@ move.dommages_et_interets = {
 move.courroux_de_menalt = {
     id: 'courroux_de_menalt',
     name: 'Courroux de Menalt',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -14201,7 +14196,7 @@ move.courroux_de_menalt = {
 move.illeres = {
     id: 'illeres',
     name: 'Œillères',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -14211,7 +14206,7 @@ move.illeres = {
 move.chancellerie = {
     id: 'chancellerie',
     name: 'Chancellerie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -14221,7 +14216,7 @@ move.chancellerie = {
 move.surtaxe = {
     id: 'surtaxe',
     name: 'Surtaxe',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' }
@@ -14231,7 +14226,7 @@ move.surtaxe = {
 move.faillite = {
     id: 'faillite',
     name: 'Faillite',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -14241,7 +14236,7 @@ move.faillite = {
 move.malversation = {
     id: 'malversation',
     name: 'Malversation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -14267,7 +14262,7 @@ move.exoneration = {
 move.bride = {
     id: 'bride',
     name: 'Bride',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -14323,7 +14318,7 @@ move.galop = {
 move.trop_percu = {
     id: 'trop_percu',
     name: 'Trop-perçu',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 5, target: 'self' },
     ]
@@ -14331,7 +14326,7 @@ move.trop_percu = {
 move.subvention = {
     id: 'subvention',
     name: 'Subvention',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 7, target: 'self' },
         { type: 'heal', heal: 7, target: 'self' },
@@ -14341,7 +14336,7 @@ move.subvention = {
 move.fin_de_l_abondance = {
     id: 'fin_de_l_abondance',
     name: 'Fin de l\'Abondance',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 15, target: 'self' },
         { type: 'heal', heal: 30, target: 'self' }
@@ -14350,7 +14345,7 @@ move.fin_de_l_abondance = {
 move.maitre_etalon = {
     id: 'maitre_etalon',
     name: 'Maître-étalon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'buff', stat: 'atk', value: 150, duration: 3, target: 'self' }
@@ -14386,7 +14381,7 @@ move.endurance_de_centoror = {
 move.volte = {
     id: 'volte',
     name: 'Volte',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 30, max: 34 }, target: 'enemy' }
     ]
@@ -14394,7 +14389,7 @@ move.volte = {
 move.eruption_vulkaine = {
     id: 'eruption_vulkaine',
     name: 'Éruption vulkaine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 35, max: 41 }, target: 'enemy' }
     ]
@@ -14426,7 +14421,7 @@ move.raclette = {
 move.entorse = {
     id: 'entorse',
     name: 'Entorse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -14444,7 +14439,7 @@ move.pique_couic = {
 move.doublage = {
     id: 'doublage',
     name: 'Doublage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
@@ -14453,7 +14448,7 @@ move.doublage = {
 move.coupe_circulaire = {
     id: 'coupe_circulaire',
     name: 'Coupe Circulaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -14462,7 +14457,7 @@ move.coupe_circulaire = {
 move.subtilite = {
     id: 'subtilite',
     name: 'Subtilité',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -14482,7 +14477,7 @@ move.attirance_du_gligli = {
 move.fauchage_de_glands = {
     id: 'fauchage_de_glands',
     name: 'Fauchage de Glands',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 39 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -14491,7 +14486,7 @@ move.fauchage_de_glands = {
 move.raffut_bestial = {
     id: 'raffut_bestial',
     name: 'Raffut Bestial',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 43 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 16, duration: 3, target: 'enemy' },
@@ -14504,7 +14499,7 @@ move.raffut_bestial = {
 move.lavomatik = {
     id: 'lavomatik',
     name: 'Lavomatik',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -14513,7 +14508,7 @@ move.lavomatik = {
 move.magmorsure = {
     id: 'magmorsure',
     name: 'Magmorsure',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' }
@@ -14524,7 +14519,7 @@ move.magmorsure = {
 move.ramonage = {
     id: 'ramonage',
     name: 'Ramonage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 11, max: 35 }, target: 'enemy' }
@@ -14541,7 +14536,7 @@ move.rapidite = {
 move.racket = {
     id: 'racket',
     name: 'Racket',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 118, max: 100 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -14551,7 +14546,7 @@ move.racket = {
 move.rabotage = {
     id: 'rabotage',
     name: 'Rabotage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -14577,7 +14572,7 @@ move.fureur_de_vivre = {
 move.haleine_de_vers = {
     id: 'haleine_de_vers',
     name: 'Haleine de vers',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 20 }, target: 'enemy' },
@@ -14589,7 +14584,7 @@ move.haleine_de_vers = {
 move.poolay_frit = {
     id: 'poolay_frit',
     name: 'Poolay frit',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -14600,7 +14595,7 @@ move.poolay_frit = {
 move.ancre_d_echine = {
     id: 'ancre_d_echine',
     name: 'Ancre d\'échine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -14617,7 +14612,7 @@ move.ancre_harton = {
 move.jet_d_ancre = {
     id: 'jet_d_ancre',
     name: 'Jet d\'Ancre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
@@ -14629,7 +14624,7 @@ move.jet_d_ancre = {
 move.boulay = {
     id: 'boulay',
     name: 'Boulay',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 100 }, target: 'enemy' },
         { type: 'buff', stat: 'critChance', value: 10, duration: 3, target: 'self' }
@@ -14638,7 +14633,7 @@ move.boulay = {
 move.bouhay = {
     id: 'bouhay',
     name: 'Bouhay',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' },
         { type: 'heal', heal: 51, target: 'self' }
@@ -14647,7 +14642,7 @@ move.bouhay = {
 move.bertha = {
     id: 'bertha',
     name: 'Bertha',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -14657,7 +14652,7 @@ move.bertha = {
 move.roce = {
     id: 'roce',
     name: 'Roce',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 20, max: 20 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -14675,7 +14670,7 @@ move.harde = {
 move.herissage = {
     id: 'herissage',
     name: 'Hérissage',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -14686,7 +14681,7 @@ move.herissage = {
 move.hissage = {
     id: 'hissage',
     name: 'Hissage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 66, max: 95 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -14697,7 +14692,7 @@ move.hissage = {
 move.hure = {
     id: 'hure',
     name: 'Hure',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 50, target: 'self' }
     ]
@@ -14715,7 +14710,7 @@ move.homiseur = {
 move.cedoine = {
     id: 'cedoine',
     name: 'Cédoine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 76, max: 105 }, target: 'enemy' }
     ]
@@ -14723,7 +14718,7 @@ move.cedoine = {
 move.kake = {
     id: 'kake',
     name: 'Kake',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -14734,7 +14729,7 @@ move.kake = {
 move.barre_barre = {
     id: 'barre_barre',
     name: 'Barre barre',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -14743,7 +14738,7 @@ move.barre_barre = {
 move.barre_hikade = {
     id: 'barre_hikade',
     name: 'Barre Hikade',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -14751,7 +14746,7 @@ move.barre_hikade = {
 move.barre_botage = {
     id: 'barre_botage',
     name: 'Barre botage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 71, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 100, duration: 3, target: 'self' }
@@ -14762,7 +14757,7 @@ move.barre_botage = {
 move.ch_boum = {
     id: 'ch_boum',
     name: 'Ch\'boum',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 301, max: 400 }, target: 'enemy' }
     ]
@@ -14780,7 +14775,7 @@ move.ch_bang = {
 move.flaqueduc = {
     id: 'flaqueduc',
     name: 'Flaqueduc',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -14789,7 +14784,7 @@ move.flaqueduc = {
 move.onde_repulsive = {
     id: 'onde_repulsive',
     name: 'Onde répulsive',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -14817,7 +14812,7 @@ move.dispersion = {
 move.fracturgescence = {
     id: 'fracturgescence',
     name: 'Fracturgescence',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -14826,7 +14821,7 @@ move.fracturgescence = {
 move.phormol = {
     id: 'phormol',
     name: 'Phormol',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -14836,7 +14831,7 @@ move.phormol = {
 move.tunnellipse = {
     id: 'tunnellipse',
     name: 'Tunnellipse',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' },
@@ -14847,7 +14842,7 @@ move.tunnellipse = {
 move.perphorrage = {
     id: 'perphorrage',
     name: 'Perphorrage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -14859,7 +14854,7 @@ move.perphorrage = {
 move.phorrage = {
     id: 'phorrage',
     name: 'Phorrage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' }
@@ -14868,7 +14863,7 @@ move.phorrage = {
 move.defense = {
     id: 'defense',
     name: 'Défense',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -14879,7 +14874,7 @@ move.defense = {
 move.ephort_de_guerre = {
     id: 'ephort_de_guerre',
     name: 'Éphort de guerre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -14889,7 +14884,7 @@ move.ephort_de_guerre = {
 move.altocumulus = {
     id: 'altocumulus',
     name: 'Altocumulus',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 34, max: 40 }, target: 'enemy' }
     ]
@@ -14916,7 +14911,7 @@ move.shinatobe = {
 move.sai_sai_sai_sai = {
     id: 'sai_sai_sai_sai',
     name: 'Saï Saï Saï Saï',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 7, max: 10 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 7, max: 10 }, target: 'enemy' }
@@ -14927,7 +14922,7 @@ move.sai_sai_sai_sai = {
 move.malagile = {
     id: 'malagile',
     name: 'Malagile',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 27, max: 31 }, target: 'enemy' },
         { type: 'buff', stat: 'critChance', value: 5, duration: 3, target: 'self' }
@@ -14936,7 +14931,7 @@ move.malagile = {
 move.maltitude = {
     id: 'maltitude',
     name: 'Maltitude',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'force', value: 25, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'force', value: 25, duration: 3, target: 'self' },
@@ -14946,7 +14941,7 @@ move.maltitude = {
 move.malibi = {
     id: 'malibi',
     name: 'Malibi',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 32, max: 38 }, target: 'enemy' }
     ]
@@ -14964,7 +14959,7 @@ move.envolupte = {
 move.tornade_pernicieuse = {
     id: 'tornade_pernicieuse',
     name: 'Tornade pernicieuse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -14973,7 +14968,7 @@ move.tornade_pernicieuse = {
 move.aeroportage = {
     id: 'aeroportage',
     name: 'Aéroportage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -14993,7 +14988,7 @@ move.transposition_amicale = {
 move.transposition_destructrice = {
     id: 'transposition_destructrice',
     name: 'Transposition Destructrice',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -15002,7 +14997,7 @@ move.transposition_destructrice = {
 move.bouh_m_rang_emeraude = {
     id: 'bouh_m_rang_emeraude',
     name: 'Bouh M\'Rang Émeraude',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -15021,7 +15016,7 @@ move.tripotee = {
 move.bouh_m_rang_saphir = {
     id: 'bouh_m_rang_saphir',
     name: 'Bouh M\'Rang Saphir',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -15046,7 +15041,7 @@ move.camouflage_saphiresque = {
 move.bouh_m_rang_rubis = {
     id: 'bouh_m_rang_rubis',
     name: 'Bouh M\'Rang Rubis',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -15055,7 +15050,7 @@ move.bouh_m_rang_rubis = {
 move.invocation_de_totem_motivant = {
     id: 'invocation_de_totem_motivant',
     name: 'Invocation de Totem Motivant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -15063,7 +15058,7 @@ move.invocation_de_totem_motivant = {
 move.invocation_de_totem_explosif = {
     id: 'invocation_de_totem_explosif',
     name: 'Invocation de Totem Explosif',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -15080,7 +15075,7 @@ move.bottage_de_fesses = {
 move.invocation_de_totem_soignant = {
     id: 'invocation_de_totem_soignant',
     name: 'Invocation de Totem Soignant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -15088,7 +15083,7 @@ move.invocation_de_totem_soignant = {
 move.totemisation = {
     id: 'totemisation',
     name: 'Totemisation',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -15117,7 +15112,7 @@ move.lourdeur = {
 move.bouh_m_rang_diamant = {
     id: 'bouh_m_rang_diamant',
     name: 'Bouh M\'Rang Diamant',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -15126,7 +15121,7 @@ move.bouh_m_rang_diamant = {
 move.invocation_de_poupee_mortelle = {
     id: 'invocation_de_poupee_mortelle',
     name: 'Invocation de Poupée Mortelle',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -15150,7 +15145,7 @@ move.bond_etincelant = {
 move.meurtrissure = {
     id: 'meurtrissure',
     name: 'Meurtrissure',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -15168,7 +15163,7 @@ move.protection_feuillue = {
 move.malteration = {
     id: 'malteration',
     name: 'Malteration',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 28, max: 32 }, target: 'enemy' }
     ]
@@ -15176,7 +15171,7 @@ move.malteration = {
 move.maleze = {
     id: 'maleze',
     name: 'Malèze',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 32, max: 38 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -15187,7 +15182,7 @@ move.maleze = {
 move.piege_malechant = {
     id: 'piege_malechant',
     name: 'Piège Maléchant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -15195,7 +15190,7 @@ move.piege_malechant = {
 move.glyphe_malterant = {
     id: 'glyphe_malterant',
     name: 'Glyphe Maltérant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -15215,7 +15210,7 @@ move.malchimie = {
 move.gueriz_uf = {
     id: 'gueriz_uf',
     name: 'Guérizœuf',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 79, target: 'self' }
     ]
@@ -15223,7 +15218,7 @@ move.gueriz_uf = {
 move.tornabz = {
     id: 'tornabz',
     name: 'Tornabz',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 74, max: 86 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' }
@@ -15257,7 +15252,7 @@ move.evabzion = {
 move.gouverne_ail = {
     id: 'gouverne_ail',
     name: 'Gouverne ail',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 80 }, target: 'enemy' }
     ]
@@ -15267,7 +15262,7 @@ move.gouverne_ail = {
 move.griffhanger = {
     id: 'griffhanger',
     name: 'Griffhanger',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 50, duration: 3, target: 'enemy' },
@@ -15277,7 +15272,7 @@ move.griffhanger = {
 move.griffes_aveuglantes = {
     id: 'griffes_aveuglantes',
     name: 'Griffes aveuglantes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -15296,7 +15291,7 @@ move.hygiene_douteuse = {
 move.gros_boulet = {
     id: 'gros_boulet',
     name: 'Gros boulet',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -15307,7 +15302,7 @@ move.gros_boulet = {
 move.boulet_sauteur = {
     id: 'boulet_sauteur',
     name: 'Boulet sauteur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 70 }, target: 'enemy' }
     ]
@@ -15325,7 +15320,7 @@ move.choc_electrique = {
 move.fujin_tsuinburedo = {
     id: 'fujin_tsuinburedo',
     name: 'Fujin Tsuinburedo',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 10, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 10, max: 12 }, target: 'enemy' },
@@ -15336,7 +15331,7 @@ move.fujin_tsuinburedo = {
 move.moussang = {
     id: 'moussang',
     name: 'Moussang',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 28, max: 33 }, target: 'enemy' }
@@ -15347,7 +15342,7 @@ move.moussang = {
 move.pioche_concombre = {
     id: 'pioche_concombre',
     name: 'Pioche-concombre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 43, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 43, max: 50 }, target: 'enemy' }
@@ -15356,7 +15351,7 @@ move.pioche_concombre = {
 move.komatomi = {
     id: 'komatomi',
     name: 'Komatomi',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 27, max: 32 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 27, max: 32 }, target: 'enemy' },
@@ -15368,7 +15363,7 @@ move.komatomi = {
 move.radicule = {
     id: 'radicule',
     name: 'Radicule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' }
@@ -15386,7 +15381,7 @@ move.radicelle = {
 move.pedoncule_perfide = {
     id: 'pedoncule_perfide',
     name: 'Pédoncule perfide',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' },
@@ -15398,7 +15393,7 @@ move.pedoncule_perfide = {
 move.bave = {
     id: 'bave',
     name: 'Bave',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -15415,7 +15410,7 @@ move.cooperation_baveuse = {
 move.mucus = {
     id: 'mucus',
     name: 'Mucus',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 61, max: 80 }, target: 'enemy' },
@@ -15430,7 +15425,7 @@ move.mucus = {
 move.crapoute = {
     id: 'crapoute',
     name: 'Crapoute',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -15439,7 +15434,7 @@ move.crapoute = {
 move.crapitulation = {
     id: 'crapitulation',
     name: 'Crapitulation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 41, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 100, duration: 3, target: 'self' },
@@ -15449,7 +15444,7 @@ move.crapitulation = {
 move.crapture = {
     id: 'crapture',
     name: 'Crapture',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -15460,7 +15455,7 @@ move.crapture = {
 move.prothon = {
     id: 'prothon',
     name: 'Prothon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 71, max: 80 }, target: 'enemy' }
     ]
@@ -15468,7 +15463,7 @@ move.prothon = {
 move.daimocritique = {
     id: 'daimocritique',
     name: 'Daimocritique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -15486,7 +15481,7 @@ move.neuthron = {
 move.duslipe = {
     id: 'duslipe',
     name: 'Duslipe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' }
@@ -15495,7 +15490,7 @@ move.duslipe = {
 move.depere = {
     id: 'depere',
     name: 'Dépère',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'heal', heal: 31, target: 'self' }
@@ -15506,7 +15501,7 @@ move.depere = {
 move.fumisterie = {
     id: 'fumisterie',
     name: 'Fumisterie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, target: 'enemy' }
     ]
@@ -15522,7 +15517,7 @@ move.fumigene = {
 move.fumoir = {
     id: 'fumoir',
     name: 'Fumoir',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
@@ -15534,7 +15529,7 @@ move.fumoir = {
 move.soufre_hance = {
     id: 'soufre_hance',
     name: 'Soufre hance',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -15543,7 +15538,7 @@ move.soufre_hance = {
 move.soufre_latte = {
     id: 'soufre_latte',
     name: 'Soufre latté',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -15554,7 +15549,7 @@ move.soufre_latte = {
 move.coup_d_epaule = {
     id: 'coup_d_epaule',
     name: 'Coup d\'épaule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -15563,7 +15558,7 @@ move.coup_d_epaule = {
 move.casse_caillou = {
     id: 'casse_caillou',
     name: 'Casse-caillou',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -15582,7 +15577,7 @@ move.grrr = {
 move.vent_discordant = {
     id: 'vent_discordant',
     name: 'Vent discordant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
@@ -15591,7 +15586,7 @@ move.vent_discordant = {
 move.invocation_de_flammes = {
     id: 'invocation_de_flammes',
     name: 'Invocation de flammes',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -15604,7 +15599,7 @@ move.invocation_de_flammes = {
 move.lance_enflammee = {
     id: 'lance_enflammee',
     name: 'Lance enflammée',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 50, duration: 3, target: 'enemy' },
@@ -15614,7 +15609,7 @@ move.lance_enflammee = {
 move.griffes_enflammees = {
     id: 'griffes_enflammees',
     name: 'Griffes enflammées',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
     ]
@@ -15622,7 +15617,7 @@ move.griffes_enflammees = {
 move.kaniblouse = {
     id: 'kaniblouse',
     name: 'Kaniblouse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 81, target: 'self' }
     ]
@@ -15632,7 +15627,7 @@ move.kaniblouse = {
 move.toupie = {
     id: 'toupie',
     name: 'Toupie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 50, duration: 3, target: 'enemy' },
@@ -15642,7 +15637,7 @@ move.toupie = {
 move.tranchlame = {
     id: 'tranchlame',
     name: 'Tranchlame',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
@@ -15662,7 +15657,7 @@ move.boubou = {
 move.lechouille = {
     id: 'lechouille',
     name: 'Léchouille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 52, max: 56 }, target: 'enemy' }
     ]
@@ -15670,7 +15665,7 @@ move.lechouille = {
 move.calin_felin = {
     id: 'calin_felin',
     name: 'Câlin Félin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 70 }, target: 'enemy' }
     ]
@@ -15688,7 +15683,7 @@ move.chamboulement = {
 move.fortifichation = {
     id: 'fortifichation',
     name: 'Fortifichation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 66, max: 70 }, target: 'enemy' }
     ]
@@ -15696,7 +15691,7 @@ move.fortifichation = {
 move.retour_de_chachaton = {
     id: 'retour_de_chachaton',
     name: 'Retour de Chachaton',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 76, max: 80 }, target: 'enemy' }
     ]
@@ -15706,7 +15701,7 @@ move.retour_de_chachaton = {
 move.griffe_a_un_pouce = {
     id: 'griffe_a_un_pouce',
     name: 'Griffe à un Pouce',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 103, max: 107 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 53, max: 57 }, target: 'enemy' }
@@ -15725,7 +15720,7 @@ move.mawatougeri = {
 move.vieillissement_premature = {
     id: 'vieillissement_premature',
     name: 'Vieillissement Prématuré',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 76, max: 80 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' },
@@ -15735,7 +15730,7 @@ move.vieillissement_premature = {
 move.duplichation = {
     id: 'duplichation',
     name: 'Duplichation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -15743,7 +15738,7 @@ move.duplichation = {
 move.queue_de_poing = {
     id: 'queue_de_poing',
     name: 'Queue de Poing',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 75 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -15754,7 +15749,7 @@ move.queue_de_poing = {
 move.griffure_ondulante = {
     id: 'griffure_ondulante',
     name: 'Griffure Ondulante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 76, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 76, max: 80 }, target: 'enemy' }
@@ -15763,7 +15758,7 @@ move.griffure_ondulante = {
 move.miaoulement = {
     id: 'miaoulement',
     name: 'Miaoulement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 70 }, target: 'enemy' },
         { type: 'buffDrain', value: 2, target: 'enemy' }
@@ -15772,7 +15767,7 @@ move.miaoulement = {
 move.chatomisation = {
     id: 'chatomisation',
     name: 'Chatomisation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 65 }, target: 'enemy' }
     ]
@@ -15782,7 +15777,7 @@ move.chatomisation = {
 move.glaive_lunaire = {
     id: 'glaive_lunaire',
     name: 'Glaive Lunaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -15801,7 +15796,7 @@ move.glaive_lunaire = {
 move.tsukuyomi = {
     id: 'tsukuyomi',
     name: 'Tsukuyomi',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 8, max: 10 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 8, max: 10 }, target: 'enemy' },
@@ -15823,7 +15818,7 @@ move.tsukuyomi = {
 move.fuhaku_tatsumaki = {
     id: 'fuhaku_tatsumaki',
     name: 'Fūhaku Tatsumaki',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -15836,7 +15831,7 @@ move.fuhaku_tatsumaki = {
 move.raiju_no_kiba = {
     id: 'raiju_no_kiba',
     name: 'Raijū No Kiba',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -15862,7 +15857,7 @@ move.tambourbelier = {
 move.kiri_shigure = {
     id: 'kiri_shigure',
     name: 'Kiri Shigure',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -15872,7 +15867,7 @@ move.kiri_shigure = {
 move.usugasumi_senbonzakura = {
     id: 'usugasumi_senbonzakura',
     name: 'Usugasumi Senbonzakura',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -15891,7 +15886,7 @@ move.usugasumi_senbonzakura = {
 move.ranga_cho = {
     id: 'ranga_cho',
     name: 'Ranga Cho',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'heal%maxHp', value: 7, target: 'self' },
@@ -15904,7 +15899,7 @@ move.ranga_cho = {
 move.griffes_de_la_nuit = {
     id: 'griffes_de_la_nuit',
     name: 'Griffes de la Nuit',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'dot', element: 'terre', value: 7, duration: 1, target: 'enemy' },
@@ -15919,7 +15914,7 @@ move.griffes_de_la_nuit = {
 move.poing_momifie = {
     id: 'poing_momifie',
     name: 'Poing Momifié',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -15931,7 +15926,7 @@ move.poing_momifie = {
 move.manie_la_maudite_momie = {
     id: 'manie_la_maudite_momie',
     name: 'Manie la maudite momie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 13, max: 17 }, target: 'enemy' },
@@ -15943,7 +15938,7 @@ move.manie_la_maudite_momie = {
 move.hiryu_kaen = {
     id: 'hiryu_kaen',
     name: 'Hiryū Kaen',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'dot', element: 'feu', value: 7, duration: 1, target: 'enemy' },
@@ -15956,7 +15951,7 @@ move.hiryu_kaen = {
 move.sanjuroku_pondo_ho = {
     id: 'sanjuroku_pondo_ho',
     name: 'Sanjūroku Pondo Hō',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
@@ -15969,7 +15964,7 @@ move.sanjuroku_pondo_ho = {
 move.shishi_sonson = {
     id: 'shishi_sonson',
     name: 'Shishi Sonson',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 50, max: 50 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 50, max: 50 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
@@ -15984,7 +15979,7 @@ move.shishi_sonson = {
 move.frakaz_uf = {
     id: 'frakaz_uf',
     name: 'Frakazœuf',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 83, max: 97 }, target: 'enemy' }
     ]
@@ -15992,7 +15987,7 @@ move.frakaz_uf = {
 move.aspibz = {
     id: 'aspibz',
     name: 'Aspibz',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 31, max: 35 }, target: 'enemy' },
@@ -16002,7 +15997,7 @@ move.aspibz = {
 move.bzimpact = {
     id: 'bzimpact',
     name: 'Bzimpact',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 20, max: 24 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 20, max: 24 }, target: 'enemy' },
@@ -16014,7 +16009,7 @@ move.bzimpact = {
 move.charge_emotive = {
     id: 'charge_emotive',
     name: 'Charge Émotive',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -16033,7 +16028,7 @@ move.contraction = {
 move.rejet = {
     id: 'rejet',
     name: 'Rejet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 26 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 16, max: 21 }, target: 'enemy' },
@@ -16054,7 +16049,7 @@ move.toppu = {
 move.futon = {
     id: 'futon',
     name: 'Fûton',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 35, max: 41 }, target: 'enemy' }
     ]
@@ -16062,7 +16057,7 @@ move.futon = {
 move.etreinte_du_vent = {
     id: 'etreinte_du_vent',
     name: 'Étreinte du Vent',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -16083,7 +16078,7 @@ move.obscure_singerie = {
 move.graine_vitalisante = {
     id: 'graine_vitalisante',
     name: 'Graine Vitalisante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' }
     ]
@@ -16093,7 +16088,7 @@ move.graine_vitalisante = {
 move.pikette = {
     id: 'pikette',
     name: 'Pikette',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 601, max: 800 }, target: 'enemy' }
     ]
@@ -16103,7 +16098,7 @@ move.pikette = {
 move.maleluia = {
     id: 'maleluia',
     name: 'Maléluia',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 59 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -16139,7 +16134,7 @@ move.malcooliser = {
 move.fourre_tout = {
     id: 'fourre_tout',
     name: 'Fourre-tout',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 15, max: 15 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -16147,7 +16142,7 @@ move.fourre_tout = {
 move.foutaise = {
     id: 'foutaise',
     name: 'Foutaise',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -16166,7 +16161,7 @@ move.fourrage = {
 move.fourapin = {
     id: 'fourapin',
     name: 'Fourapin',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 91, max: 110 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -16177,7 +16172,7 @@ move.fourapin = {
 move.fouraille = {
     id: 'fouraille',
     name: 'Fouraille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -16185,7 +16180,7 @@ move.fouraille = {
 move.fourbissage = {
     id: 'fourbissage',
     name: 'Fourbissage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 60 }, target: 'enemy' }
     ]
@@ -16195,7 +16190,7 @@ move.fourbissage = {
 move.fouguefoux = {
     id: 'fouguefoux',
     name: 'Fouguefoux',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -16204,7 +16199,7 @@ move.fouguefoux = {
 move.fouille = {
     id: 'fouille',
     name: 'Fouille',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 50, target: 'self' }
     ]
@@ -16225,7 +16220,7 @@ move.foulette = {
 move.foux_de_la_fortune = {
     id: 'foux_de_la_fortune',
     name: 'Foux de la fortune',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'flatDamage', value: 25, duration: 3, target: 'self' },
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 20 }, target: 'enemy' }
@@ -16234,7 +16229,7 @@ move.foux_de_la_fortune = {
 move.foux_ou_rien = {
     id: 'foux_ou_rien',
     name: 'Foux ou rien',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -16251,7 +16246,7 @@ move.foux_ou_rien = {
 move.rayons_entravants = {
     id: 'rayons_entravants',
     name: 'Rayons entravants',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 66, max: 75 }, target: 'enemy' }
@@ -16260,7 +16255,7 @@ move.rayons_entravants = {
 move.rebond_manque = {
     id: 'rebond_manque',
     name: 'Rebond manqué',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -16271,7 +16266,7 @@ move.rebond_manque = {
 move.massurance = {
     id: 'massurance',
     name: 'Massurance',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -16279,7 +16274,7 @@ move.massurance = {
 move.mecontentement = {
     id: 'mecontentement',
     name: 'Mécontentement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -16289,7 +16284,7 @@ move.mecontentement = {
 move.brute_haleine = {
     id: 'brute_haleine',
     name: 'Brute Haleine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 33, max: 33 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -16298,7 +16293,7 @@ move.brute_haleine = {
 move.poing_terne = {
     id: 'poing_terne',
     name: 'Poing terne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 33, max: 33 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -16330,7 +16325,7 @@ move.massue = {
 move.poinzon = {
     id: 'poinzon',
     name: 'Poinzon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 45, max: 45 }, target: 'enemy' }
     ]
@@ -16356,7 +16351,7 @@ move.gyroskopik = {
 move.pik_a_saut = {
     id: 'pik_a_saut',
     name: 'Pik à Saut',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -16366,7 +16361,7 @@ move.pik_a_saut = {
 move.coups_de_langues = {
     id: 'coups_de_langues',
     name: 'Coups de Langues',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -16374,7 +16369,7 @@ move.coups_de_langues = {
 move.avalement = {
     id: 'avalement',
     name: 'Avalement',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -16385,7 +16380,7 @@ move.avalement = {
 move.crachat_amer = {
     id: 'crachat_amer',
     name: 'Crachat Amer',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
@@ -16408,7 +16403,7 @@ move.ensablage = {
 move.surgissement = {
     id: 'surgissement',
     name: 'Surgissement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' },
@@ -16418,7 +16413,7 @@ move.surgissement = {
 move.gueule_des_sables = {
     id: 'gueule_des_sables',
     name: 'Gueule des Sables',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -16428,7 +16423,7 @@ move.gueule_des_sables = {
 move.charge_croquante = {
     id: 'charge_croquante',
     name: 'Charge Croquante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' },
@@ -16440,7 +16435,7 @@ move.charge_croquante = {
 move.sable_tourbillonnant = {
     id: 'sable_tourbillonnant',
     name: 'Sable Tourbillonnant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -16448,7 +16443,7 @@ move.sable_tourbillonnant = {
 move.pattes_harassent = {
     id: 'pattes_harassent',
     name: 'Pattes Harassent',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 80, target: 'self' }
     ]
@@ -16458,7 +16453,7 @@ move.pattes_harassent = {
 move.cephalonde = {
     id: 'cephalonde',
     name: 'Céphalonde',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -16485,7 +16480,7 @@ move.aspiration_gourmande = {
 move.rhizome_demoniaque = {
     id: 'rhizome_demoniaque',
     name: 'Rhizome Démoniaque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 69, max: 81 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -16494,7 +16489,7 @@ move.rhizome_demoniaque = {
 move.aplatissement_demoniaque = {
     id: 'aplatissement_demoniaque',
     name: 'Aplatissement Démoniaque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 57, max: 67 }, target: 'enemy' }
     ]
@@ -16502,7 +16497,7 @@ move.aplatissement_demoniaque = {
 move.revers_demoniaque = {
     id: 'revers_demoniaque',
     name: 'Revers Démoniaque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 74, max: 86 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -16513,7 +16508,7 @@ move.revers_demoniaque = {
 move.vaporiz_uf = {
     id: 'vaporiz_uf',
     name: 'Vaporizœuf',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 65, max: 75 }, target: 'enemy' }
@@ -16522,7 +16517,7 @@ move.vaporiz_uf = {
 move.akuabz = {
     id: 'akuabz',
     name: 'Akuabz',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 42, max: 48 }, target: 'enemy' }
     ]
@@ -16530,7 +16525,7 @@ move.akuabz = {
 move.bzeklabouss = {
     id: 'bzeklabouss',
     name: 'Bzéklabouss',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -16549,7 +16544,7 @@ move.kanope = {
 move.malediction_du_mominotor = {
     id: 'malediction_du_mominotor',
     name: 'Malédiction du Mominotor',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 301, max: 350 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -16559,7 +16554,7 @@ move.malediction_du_mominotor = {
 move.embaumement = {
     id: 'embaumement',
     name: 'Embaumement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'dot', element: 'air', value: 11, duration: 5, lifestealRatio: 0.1, target: 'enemy' },
@@ -16568,7 +16563,7 @@ move.embaumement = {
 move.lancer_de_degelee = {
     id: 'lancer_de_degelee',
     name: 'Lancer de Dégelée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 11, max: 30 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -16580,7 +16575,7 @@ move.lancer_de_degelee = {
 move.souffle_etourdissant = {
     id: 'souffle_etourdissant',
     name: 'Souffle Étourdissant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' },
@@ -16590,7 +16585,7 @@ move.souffle_etourdissant = {
 move.coup_de_boulet = {
     id: 'coup_de_boulet',
     name: 'Coup de Boulet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 70 }, target: 'enemy' }
     ]
@@ -16625,7 +16620,7 @@ move.souffle_liberatoire = {
 move.lancenglante = {
     id: 'lancenglante',
     name: 'Lancenglanté',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 100, duration: 3, target: 'enemy' },
@@ -16636,7 +16631,7 @@ move.lancenglante = {
 move.saut_du_bison = {
     id: 'saut_du_bison',
     name: 'Saut du Bison',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -16657,7 +16652,7 @@ move.eclaireurs = {
 move.nimpitoyable = {
     id: 'nimpitoyable',
     name: 'Nimpitoyable',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 25, max: 29 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 1, duration: 2, target: 'enemy' },
@@ -16668,7 +16663,7 @@ move.nimpitoyable = {
 move.nincendie = {
     id: 'nincendie',
     name: 'Nincendie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 37, max: 43 }, target: 'enemy' }
@@ -16677,7 +16672,7 @@ move.nincendie = {
 move.ninstabilite = {
     id: 'ninstabilite',
     name: 'Ninstabilité',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 39, max: 45 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 39, max: 45 }, target: 'enemy' }
@@ -16688,7 +16683,7 @@ move.ninstabilite = {
 move.fesse_de_loup = {
     id: 'fesse_de_loup',
     name: 'Fesse de loup',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -16697,7 +16692,7 @@ move.fesse_de_loup = {
 move.invasion_fongique = {
     id: 'invasion_fongique',
     name: 'Invasion fongique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -16715,7 +16710,7 @@ move.acceleration_fongique = {
 move.invocation_de_cadob = {
     id: 'invocation_de_cadob',
     name: 'Invocation de Cadob\'',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -16725,7 +16720,7 @@ move.invocation_de_cadob = {
 move.surprise_drainante = {
     id: 'surprise_drainante',
     name: 'Surprise drainante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 28, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -16734,7 +16729,7 @@ move.surprise_drainante = {
 move.surprise_empoisonnante = {
     id: 'surprise_empoisonnante',
     name: 'Surprise empoisonnante',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 15, max: 18 }, target: 'enemy' }
     ]
@@ -16744,7 +16739,7 @@ move.surprise_empoisonnante = {
 move.sollicitude_elementaire_fumeuse = {
     id: 'sollicitude_elementaire_fumeuse',
     name: 'Sollicitude Élémentaire Fumeuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -16760,7 +16755,7 @@ move.communion_elementaire = {
 move.poussiere_temporelle_bwork = {
     id: 'poussiere_temporelle_bwork',
     name: 'Poussière Temporelle Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 37, max: 48 }, target: 'enemy' }
@@ -16771,7 +16766,7 @@ move.poussiere_temporelle_bwork = {
 move.larme_bwork = {
     id: 'larme_bwork',
     name: 'Larme Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -16780,7 +16775,7 @@ move.larme_bwork = {
 move.sollicitude_elementaire_aqueuse = {
     id: 'sollicitude_elementaire_aqueuse',
     name: 'Sollicitude Élémentaire Aqueuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -16790,7 +16785,7 @@ move.sollicitude_elementaire_aqueuse = {
 move.epee_celeste_bwork = {
     id: 'epee_celeste_bwork',
     name: 'Épée Céleste Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' }
@@ -16799,7 +16794,7 @@ move.epee_celeste_bwork = {
 move.sollicitude_elementaire_venteuse = {
     id: 'sollicitude_elementaire_venteuse',
     name: 'Sollicitude Élémentaire Venteuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -16809,7 +16804,7 @@ move.sollicitude_elementaire_venteuse = {
 move.epee_du_bwork = {
     id: 'epee_du_bwork',
     name: 'Épée du Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -16819,7 +16814,7 @@ move.epee_du_bwork = {
 move.sollicitude_elementaire_terreuse = {
     id: 'sollicitude_elementaire_terreuse',
     name: 'Sollicitude Élémentaire Terreuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -16829,7 +16824,7 @@ move.sollicitude_elementaire_terreuse = {
 move.rembourrage = {
     id: 'rembourrage',
     name: 'Rembourrage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 201, target: 'self' },
         { type: 'heal', heal: 101, target: 'self' },
@@ -16849,7 +16844,7 @@ move.malediction_de_la_cawotte = {
 move.cawotte_de_nowel = {
     id: 'cawotte_de_nowel',
     name: 'Cawotte de Nowel',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -16868,7 +16863,7 @@ move.volve_paralysante = {
 move.soufflette_sporadique = {
     id: 'soufflette_sporadique',
     name: 'Soufflette sporadique',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -16888,7 +16883,7 @@ move.thalle_neutralisant = {
 move.graphiose = {
     id: 'graphiose',
     name: 'Graphiose',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 1 }, target: 'enemy' }
     ]
@@ -16907,7 +16902,7 @@ move.fong_ku = {
 move.mycose_toujours = {
     id: 'mycose_toujours',
     name: 'Mycose toujours',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 20, target: 'self' }
     ]
@@ -16917,7 +16912,7 @@ move.mycose_toujours = {
 move.mildiou = {
     id: 'mildiou',
     name: 'Mildiou',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 20 }, target: 'enemy' }
@@ -16926,7 +16921,7 @@ move.mildiou = {
 move.amanite_roglicerine = {
     id: 'amanite_roglicerine',
     name: 'Amanite roglicérine',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
@@ -16953,7 +16948,7 @@ move.sanction_fongique = {
 move.soin_fongique = {
     id: 'soin_fongique',
     name: 'Soin fongique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -16972,7 +16967,7 @@ move.protection_fongique = {
 move.spore_de_combat = {
     id: 'spore_de_combat',
     name: 'Spore de Combat',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 25, duration: 3, target: 'enemy' }
@@ -16981,7 +16976,7 @@ move.spore_de_combat = {
 move.mikota = {
     id: 'mikota',
     name: 'Mikota',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self' }
@@ -17000,7 +16995,7 @@ move.levure = {
 move.spore_kepic = {
     id: 'spore_kepic',
     name: 'Spore Képic',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17017,7 +17012,7 @@ move.marasme = {
 move.spore_teille = {
     id: 'spore_teille',
     name: 'Spore Teille',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 1000, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 300, duration: 3, target: 'self' }
@@ -17028,7 +17023,7 @@ move.spore_teille = {
 move.cepe_tique = {
     id: 'cepe_tique',
     name: 'Cèpe Tique',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17037,7 +17032,7 @@ move.cepe_tique = {
 move.ami_celium = {
     id: 'ami_celium',
     name: 'Ami Célium',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17046,7 +17041,7 @@ move.ami_celium = {
 move.spore_heole = {
     id: 'spore_heole',
     name: 'Spore Héole',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 10, target: 'self' }
     ]
@@ -17056,7 +17051,7 @@ move.spore_heole = {
 move.spore_tafaux = {
     id: 'spore_tafaux',
     name: 'Spore Tafaux',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -17074,7 +17069,7 @@ move.volve_herine = {
 move.spore_d_oeuvre = {
     id: 'spore_d_oeuvre',
     name: 'Spore d\'oeuvre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 56, max: 65 }, target: 'enemy' }
     ]
@@ -17082,7 +17077,7 @@ move.spore_d_oeuvre = {
 move.spore_celaine = {
     id: 'spore_celaine',
     name: 'Spore Celaine',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -17100,7 +17095,7 @@ move.spore_taporte = {
 move.hokulteur = {
     id: 'hokulteur',
     name: 'Hokulteur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 100, max: 100 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -17109,7 +17104,7 @@ move.hokulteur = {
 move.hivation = {
     id: 'hivation',
     name: 'Hivation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 100, max: 100 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -17118,7 +17113,7 @@ move.hivation = {
 move.husse = {
     id: 'husse',
     name: 'Husse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 100, max: 100 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -17129,7 +17124,7 @@ move.husse = {
 move.merule_tihme = {
     id: 'merule_tihme',
     name: 'Mérule Tihme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, target: 'enemy' }
     ]
@@ -17137,7 +17132,7 @@ move.merule_tihme = {
 move.merule_saire = {
     id: 'merule_saire',
     name: 'Mérule Saire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'antiHeal', duration: 3, target: 'enemy' }
@@ -17148,7 +17143,7 @@ move.merule_saire = {
 move.coup_percutant = {
     id: 'coup_percutant',
     name: 'Coup percutant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 75 }, target: 'enemy' }
     ]
@@ -17156,7 +17151,7 @@ move.coup_percutant = {
 move.salivraison = {
     id: 'salivraison',
     name: 'Salivraison',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -17177,7 +17172,7 @@ move.langagement = {
 move.brazero = {
     id: 'brazero',
     name: 'Brazéro',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 30, max: 30 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -17185,7 +17180,7 @@ move.brazero = {
 move.largage_personnel = {
     id: 'largage_personnel',
     name: 'Largage personnel',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 46 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 50, max: 50 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -17196,7 +17191,7 @@ move.largage_personnel = {
 move.offensiviere = {
     id: 'offensiviere',
     name: 'Offensivière',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 46 }, target: 'enemy' }
@@ -17207,7 +17202,7 @@ move.offensiviere = {
 move.etoile_d_arakne = {
     id: 'etoile_d_arakne',
     name: 'Etoile d\'arakne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 46 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -17216,7 +17211,7 @@ move.etoile_d_arakne = {
 move.brulurgence = {
     id: 'brulurgence',
     name: 'Brûlurgence',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 46 }, target: 'enemy' }
     ]
@@ -17224,7 +17219,7 @@ move.brulurgence = {
 move.drain = {
     id: 'drain',
     name: 'Drain',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17235,7 +17230,7 @@ move.drain = {
 move.dardagnan = {
     id: 'dardagnan',
     name: 'Dardagnan',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 70 }, target: 'enemy' }
     ]
@@ -17243,7 +17238,7 @@ move.dardagnan = {
 move.plongeon_quille = {
     id: 'plongeon_quille',
     name: 'Plongeon quille',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 3, duration: 2, target: 'enemy' },
@@ -17255,7 +17250,7 @@ move.plongeon_quille = {
 move.hogo = {
     id: 'hogo',
     name: 'Hogo',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -17263,7 +17258,7 @@ move.hogo = {
 move.kaba = {
     id: 'kaba',
     name: 'Kabā',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
@@ -17273,7 +17268,7 @@ move.kaba = {
 move.suimin_mahi = {
     id: 'suimin_mahi',
     name: 'Suimin mahi',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -17281,7 +17276,7 @@ move.suimin_mahi = {
 move.kazkou = {
     id: 'kazkou',
     name: 'Kazkou',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 39, max: 45 }, target: 'enemy' }
     ]
@@ -17299,7 +17294,7 @@ move.slurp = {
 move.yokaspiration = {
     id: 'yokaspiration',
     name: 'Yokaspiration',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 54 }, target: 'enemy' }
     ]
@@ -17307,7 +17302,7 @@ move.yokaspiration = {
 move.lourde_langue = {
     id: 'lourde_langue',
     name: 'Lourde langue',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 32, max: 38 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17318,7 +17313,7 @@ move.lourde_langue = {
 move.bombe_mecanique = {
     id: 'bombe_mecanique',
     name: 'Bombe Mécanique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 43, max: 49 }, target: 'enemy' }
     ]
@@ -17328,7 +17323,7 @@ move.bombe_mecanique = {
 move.pic_de_glace = {
     id: 'pic_de_glace',
     name: 'Pic de glace',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 22, max: 26 }, target: 'enemy' }
@@ -17337,7 +17332,7 @@ move.pic_de_glace = {
 move.ecrasement_glacial = {
     id: 'ecrasement_glacial',
     name: 'Écrasement glacial',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 32, max: 36 }, target: 'enemy' }
     ]
@@ -17355,7 +17350,7 @@ move.glace_paralysante = {
 move.nimpuissance = {
     id: 'nimpuissance',
     name: 'Nimpuissance',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 37 }, target: 'enemy' }
     ]
@@ -17363,7 +17358,7 @@ move.nimpuissance = {
 move.nincarceration = {
     id: 'nincarceration',
     name: 'Nincarcération',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -17372,7 +17367,7 @@ move.nincarceration = {
 move.ninsolence = {
     id: 'ninsolence',
     name: 'Ninsolence',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 37, max: 43 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 37, max: 43 }, target: 'enemy' },
@@ -17384,7 +17379,7 @@ move.ninsolence = {
 move.exploz_uf = {
     id: 'exploz_uf',
     name: 'Explozœuf',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 79, max: 91 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 79, max: 91 }, target: 'enemy' }
@@ -17393,7 +17388,7 @@ move.exploz_uf = {
 move.vampibombz = {
     id: 'vampibombz',
     name: 'Vampibombz',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 32, max: 38 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17414,7 +17409,7 @@ move.aegibz = {
 move.adehede = {
     id: 'adehede',
     name: 'Adéhédé',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -17426,7 +17421,7 @@ move.adehede = {
 move.gobstruction = {
     id: 'gobstruction',
     name: 'Gobstruction',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 1001, max: 1500 }, target: 'enemy' }
     ]
@@ -17444,7 +17439,7 @@ move.gobtimisation = {
 move.pulsation = {
     id: 'pulsation',
     name: 'Pulsation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17472,7 +17467,7 @@ move.assaisonnement = {
 move.gueuleton = {
     id: 'gueuleton',
     name: 'Gueuleton',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 30, max: 34 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17491,7 +17486,7 @@ move.colere_du_yiti = {
 move.miellat = {
     id: 'miellat',
     name: 'Miellat',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 80 }, target: 'enemy' },
@@ -17501,7 +17496,7 @@ move.miellat = {
 move.nectar = {
     id: 'nectar',
     name: 'Nectar',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 36, target: 'self' }
     ]
@@ -17511,7 +17506,7 @@ move.nectar = {
 move.fructose = {
     id: 'fructose',
     name: 'Fructose',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 86, max: 95 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17520,7 +17515,7 @@ move.fructose = {
 move.glucause_perdue = {
     id: 'glucause_perdue',
     name: 'Glucause perdue',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17531,7 +17526,7 @@ move.glucause_perdue = {
 move.butinage = {
     id: 'butinage',
     name: 'Butinage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17540,7 +17535,7 @@ move.butinage = {
 move.trophallaxie = {
     id: 'trophallaxie',
     name: 'Trophallaxie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -17558,7 +17553,7 @@ move.propolis = {
 move.detente = {
     id: 'detente',
     name: 'Détente',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 76, max: 85 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -17568,7 +17563,7 @@ move.detente = {
 move.biste = {
     id: 'biste',
     name: 'Biste',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17587,7 +17582,7 @@ move.hanque = {
 move.glouton = {
     id: 'glouton',
     name: 'Glouton',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -17605,7 +17600,7 @@ move.griffemort = {
 move.mantium = {
     id: 'mantium',
     name: 'Mantium',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 150, target: 'self' }
     ]
@@ -17615,7 +17610,7 @@ move.mantium = {
 move.acrobatie = {
     id: 'acrobatie',
     name: 'Acrobatie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 76, max: 85 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -17624,7 +17619,7 @@ move.acrobatie = {
 move.ombre = {
     id: 'ombre',
     name: 'Ombre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 4, duration: 2, target: 'enemy' },
@@ -17644,7 +17639,7 @@ move.fugue = {
 move.piolaid = {
     id: 'piolaid',
     name: 'Piolaid',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -17660,7 +17655,7 @@ move.piochekour = {
 move.piochetron = {
     id: 'piochetron',
     name: 'Piochetron',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17671,7 +17666,7 @@ move.piochetron = {
 move.lipopette = {
     id: 'lipopette',
     name: 'Lipopette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 25, duration: 3, target: 'self' }
@@ -17691,7 +17686,7 @@ move.nicheuze = {
 move.daipe = {
     id: 'daipe',
     name: 'Daipe',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 46, max: 60 }, target: 'enemy' },
@@ -17701,7 +17696,7 @@ move.daipe = {
 move.shatte = {
     id: 'shatte',
     name: 'Shatte',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 50, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self' },
@@ -17712,7 +17707,7 @@ move.shatte = {
 move.krape = {
     id: 'krape',
     name: 'Krape',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' },
         { type: 'heal', heal: 41, target: 'self' }
@@ -17723,7 +17718,7 @@ move.krape = {
 move.djatte = {
     id: 'djatte',
     name: 'Djatte',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 65 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -17741,7 +17736,7 @@ move.beni = {
 move.lautte = {
     id: 'lautte',
     name: 'Lautte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -17751,7 +17746,7 @@ move.lautte = {
 move.minage = {
     id: 'minage',
     name: 'Minage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' }
@@ -17760,7 +17755,7 @@ move.minage = {
 move.detourage = {
     id: 'detourage',
     name: 'Détourage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -17769,7 +17764,7 @@ move.detourage = {
 move.chaupage = {
     id: 'chaupage',
     name: 'Chaupage',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -17780,7 +17775,7 @@ move.chaupage = {
 move.pyro = {
     id: 'pyro',
     name: 'Pyro',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -17788,7 +17783,7 @@ move.pyro = {
 move.charbon = {
     id: 'charbon',
     name: 'Charbon',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 200, duration: 3, target: 'enemy' }
@@ -17799,7 +17794,7 @@ move.charbon = {
 move.hydrokinesie = {
     id: 'hydrokinesie',
     name: 'Hydrokinésie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -17808,7 +17803,7 @@ move.hydrokinesie = {
 move.thermokinesie = {
     id: 'thermokinesie',
     name: 'Thermokinésie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -17819,7 +17814,7 @@ move.thermokinesie = {
 move.glourmandale = {
     id: 'glourmandale',
     name: 'Glourmandale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 86, max: 95 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -17828,7 +17823,7 @@ move.glourmandale = {
 move.glourmandise = {
     id: 'glourmandise',
     name: 'Glourmandise',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -17849,7 +17844,7 @@ move.gloursbi_boulga = {
 move.gloursonde = {
     id: 'gloursonde',
     name: 'Gloursonde',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 86, max: 95 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 5, max: 5 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
@@ -17858,7 +17853,7 @@ move.gloursonde = {
 move.glourdavu = {
     id: 'glourdavu',
     name: 'Glourdavu',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 3, max: 3 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' },
@@ -17870,7 +17865,7 @@ move.glourdavu = {
 move.timatum = {
     id: 'timatum',
     name: 'Timatum',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -17880,7 +17875,7 @@ move.timatum = {
 move.bouligane = {
     id: 'bouligane',
     name: 'Bouligane',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17900,7 +17895,7 @@ move.planque = {
 move.vent_d_etat = {
     id: 'vent_d_etat',
     name: 'Vent d\'état',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -17909,7 +17904,7 @@ move.vent_d_etat = {
 move.mesquinerie = {
     id: 'mesquinerie',
     name: 'Mesquinerie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -17920,7 +17915,7 @@ move.mesquinerie = {
 move.brutalite = {
     id: 'brutalite',
     name: 'Brutalité',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' },
@@ -17930,7 +17925,7 @@ move.brutalite = {
 move.mesquin_pacte = {
     id: 'mesquin_pacte',
     name: 'Mesquin Pacte',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 51, max: 70 }, target: 'enemy' },
@@ -17950,7 +17945,7 @@ move.detentrave = {
 move.beclipse = {
     id: 'beclipse',
     name: 'Beclipse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' }
@@ -17959,7 +17954,7 @@ move.beclipse = {
 move.aigriffure = {
     id: 'aigriffure',
     name: 'Aigriffure',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 101, max: 120 }, target: 'enemy' },
@@ -17971,7 +17966,7 @@ move.aigriffure = {
 move.vaguichage = {
     id: 'vaguichage',
     name: 'Vaguichage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'spd', value: 10, duration: 2, target: 'self' },
         { type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self' },
@@ -17983,7 +17978,7 @@ move.vaguichage = {
 move.faille = {
     id: 'faille',
     name: 'Faille',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' }
@@ -17994,7 +17989,7 @@ move.faille = {
 move.saute_de_viande = {
     id: 'saute_de_viande',
     name: 'Sauté de Viande',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 71, max: 80 }, target: 'enemy' },
@@ -18005,7 +18000,7 @@ move.saute_de_viande = {
 move.viande_hachee = {
     id: 'viande_hachee',
     name: 'Viande Hachée',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
@@ -18028,7 +18023,7 @@ move.appater = {
 move.tir_au_juge = {
     id: 'tir_au_juge',
     name: 'Tir au Jugé',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
@@ -18039,7 +18034,7 @@ move.tir_au_juge = {
 move.invocation_de_chienchien_courant = {
     id: 'invocation_de_chienchien_courant',
     name: 'Invocation de Chienchien Courant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -18058,7 +18053,7 @@ move.dressage = {
 move.pandanois = {
     id: 'pandanois',
     name: 'Pandanois',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
@@ -18076,7 +18071,7 @@ move.pistage = {
 move.hors_piste = {
     id: 'hors_piste',
     name: 'Hors Piste',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -18087,7 +18082,7 @@ move.hors_piste = {
 move.trempe_jusqu_a_l_eau = {
     id: 'trempe_jusqu_a_l_eau',
     name: 'Trempé jusqu\'à l\'Eau',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -18096,7 +18091,7 @@ move.trempe_jusqu_a_l_eau = {
 move.piege_erosif = {
     id: 'piege_erosif',
     name: 'Piège Érosif',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -18104,7 +18099,7 @@ move.piege_erosif = {
 move.piege_eblouissant = {
     id: 'piege_eblouissant',
     name: 'Piège Éblouissant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -18114,7 +18109,7 @@ move.piege_eblouissant = {
 move.premier_sang = {
     id: 'premier_sang',
     name: 'Premier Sang',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' },
@@ -18125,7 +18120,7 @@ move.premier_sang = {
 move.lampe_bleue = {
     id: 'lampe_bleue',
     name: 'Lampe Bleue',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' },
@@ -18135,7 +18130,7 @@ move.lampe_bleue = {
 move.uranus = {
     id: 'uranus',
     name: 'Uranus',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18165,7 +18160,7 @@ move.zudzuki_bozu = {
 move.furue = {
     id: 'furue',
     name: 'Furue',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 54, max: 62 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -18174,7 +18169,7 @@ move.furue = {
 move.negai_o_kanaeru = {
     id: 'negai_o_kanaeru',
     name: 'Negai o kanaeru',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 12, target: 'self' },
     ]
@@ -18192,7 +18187,7 @@ move.chafouette = {
 move.charnaque = {
     id: 'charnaque',
     name: 'Charnaque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' }
     ]
@@ -18209,7 +18204,7 @@ move.invisibilite_alpha = {
 move.coup_mortel_du_chafer = {
     id: 'coup_mortel_du_chafer',
     name: 'Coup mortel du Chafer',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 45 }, target: 'enemy' }
     ]
@@ -18221,7 +18216,7 @@ move.coup_mortel_du_chafer = {
 move.faux_ouragan = {
     id: 'faux_ouragan',
     name: 'Faux-Ouragan',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 68, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -18230,7 +18225,7 @@ move.faux_ouragan = {
 move.regard_de_l_heretique = {
     id: 'regard_de_l_heretique',
     name: 'Regard de l\'Hérétique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -18256,7 +18251,7 @@ move.ninsipide = {
 move.nimparable = {
     id: 'nimparable',
     name: 'Nimparable',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 43, max: 49 }, target: 'enemy' }
     ]
@@ -18264,7 +18259,7 @@ move.nimparable = {
 move.ninstantane = {
     id: 'ninstantane',
     name: 'Ninstantané',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 56, max: 65 }, target: 'enemy' }
@@ -18275,7 +18270,7 @@ move.ninstantane = {
 move.kilinmandjaro = {
     id: 'kilinmandjaro',
     name: 'Kilinmandjaro',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18284,7 +18279,7 @@ move.kilinmandjaro = {
 move.cou_ragan = {
     id: 'cou_ragan',
     name: 'Cou Ragan',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18293,7 +18288,7 @@ move.cou_ragan = {
 move.gyvoirien = {
     id: 'gyvoirien',
     name: 'Gyvoirien',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 65 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -18302,7 +18297,7 @@ move.gyvoirien = {
 move.kilin_tor = {
     id: 'kilin_tor',
     name: 'Kilin Tor',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -18314,7 +18309,7 @@ move.kilin_tor = {
 move.lapopotin = {
     id: 'lapopotin',
     name: 'Lapopotin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' }
@@ -18323,7 +18318,7 @@ move.lapopotin = {
 move.lagomorsure = {
     id: 'lagomorsure',
     name: 'Lagomorsure',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'neutre', damage: { min: 56, max: 70 }, target: 'enemy' },
@@ -18334,7 +18329,7 @@ move.lagomorsure = {
 move.koudulapin = {
     id: 'koudulapin',
     name: 'Koudulapin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, target: 'enemy' },
@@ -18345,7 +18340,7 @@ move.koudulapin = {
 move.rabitole = {
     id: 'rabitole',
     name: 'Rabitole',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -18356,7 +18351,7 @@ move.rabitole = {
 move.tapirateur = {
     id: 'tapirateur',
     name: 'Tapirateur',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'heal%maxHp', value: 8, target: 'self' },
@@ -18368,7 +18363,7 @@ move.tapirateur = {
 move.tapirogue = {
     id: 'tapirogue',
     name: 'Tapirogue',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18377,7 +18372,7 @@ move.tapirogue = {
 move.tapirouge = {
     id: 'tapirouge',
     name: 'Tapirouge',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'heal', heal: 51, target: 'self' },
@@ -18387,7 +18382,7 @@ move.tapirouge = {
 move.tapiroulant = {
     id: 'tapiroulant',
     name: 'Tapiroulant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18398,7 +18393,7 @@ move.tapiroulant = {
 move.barbotam = {
     id: 'barbotam',
     name: 'Barbotam',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 25, duration: 3, target: 'enemy' }
@@ -18407,7 +18402,7 @@ move.barbotam = {
 move.hajimeno_hippo = {
     id: 'hajimeno_hippo',
     name: 'Hajimeno Hippo',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' },
@@ -18425,7 +18420,7 @@ move.hippo_faringit = {
 move.kornofulgur = {
     id: 'kornofulgur',
     name: 'Kornofulgur',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 46, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -18437,7 +18432,7 @@ move.kornofulgur = {
 move.crapaud_belier = {
     id: 'crapaud_belier',
     name: 'Crapaud-Bélier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' }
@@ -18446,7 +18441,7 @@ move.crapaud_belier = {
 move.batrattaque = {
     id: 'batrattaque',
     name: 'Batrattaque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 26, max: 35 }, target: 'enemy' },
@@ -18456,7 +18451,7 @@ move.batrattaque = {
 move.perlambouc = {
     id: 'perlambouc',
     name: 'Perlambouc',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
@@ -18466,7 +18461,7 @@ move.perlambouc = {
 move.cornebouc = {
     id: 'cornebouc',
     name: 'Cornebouc',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -18487,7 +18482,7 @@ move.attirance_de_la_mort = {
 move.projection_ombreuse = {
     id: 'projection_ombreuse',
     name: 'Projection ombreuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -18501,7 +18496,7 @@ move.projection_ombreuse = {
 move.carnage = {
     id: 'carnage',
     name: 'Carnage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -18510,7 +18505,7 @@ move.carnage = {
 move.toxin = {
     id: 'toxin',
     name: 'Toxin',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 500, target: 'self' }
     ]
@@ -18520,7 +18515,7 @@ move.toxin = {
 move.glours_contre_la_montre = {
     id: 'glours_contre_la_montre',
     name: 'Glours contre la montre',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 76, max: 85 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -18539,7 +18534,7 @@ move.gloursombilical = {
 move.langue_demoniaque = {
     id: 'langue_demoniaque',
     name: 'Langue Démoniaque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 28, max: 32 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18548,7 +18543,7 @@ move.langue_demoniaque = {
 move.tissu_de_mensonges = {
     id: 'tissu_de_mensonges',
     name: 'Tissu de Mensonges',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 40, max: 46 }, target: 'enemy' }
     ]
@@ -18556,7 +18551,7 @@ move.tissu_de_mensonges = {
 move.torrent_diabolique = {
     id: 'torrent_diabolique',
     name: 'Torrent Diabolique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 37, max: 43 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 37, max: 43 }, target: 'enemy' }
@@ -18567,7 +18562,7 @@ move.torrent_diabolique = {
 move.gloutonnerie = {
     id: 'gloutonnerie',
     name: 'Gloutonnerie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -18587,7 +18582,7 @@ move.onnichiwa = {
 move.kanabo_jutsu = {
     id: 'kanabo_jutsu',
     name: 'Kanabō-jutsu',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 12, max: 14 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 12, max: 14 }, target: 'enemy' }
@@ -18604,7 +18599,7 @@ move.kanabo_jutsu = {
 move.souffle_chaud = {
     id: 'souffle_chaud',
     name: 'Souffle Chaud',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' }
@@ -18629,7 +18624,7 @@ move.charge_aquatique = {
 move.saut_a_l_aveugle = {
     id: 'saut_a_l_aveugle',
     name: 'Saut à l\'aveugle',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' }
     ]
@@ -18637,7 +18632,7 @@ move.saut_a_l_aveugle = {
 move.tornade_sanglante = {
     id: 'tornade_sanglante',
     name: 'Tornade sanglante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -18648,7 +18643,7 @@ move.tornade_sanglante = {
 move.uppercut_brulant = {
     id: 'uppercut_brulant',
     name: 'Uppercut brûlant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -18658,7 +18653,7 @@ move.uppercut_brulant = {
 move.prison_sanguine = {
     id: 'prison_sanguine',
     name: 'Prison sanguine',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -18666,7 +18661,7 @@ move.prison_sanguine = {
 move.jeu_d_aiguilles = {
     id: 'jeu_d_aiguilles',
     name: 'Jeu d\'aiguilles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 55 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -18675,7 +18670,7 @@ move.jeu_d_aiguilles = {
 move.dagyde_ensorcelee = {
     id: 'dagyde_ensorcelee',
     name: 'Dagyde ensorcelée',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -18692,7 +18687,7 @@ move.dagyde_ensorcelee = {
 move.ancrepulsion = {
     id: 'ancrepulsion',
     name: 'Ancrépulsion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
@@ -18702,7 +18697,7 @@ move.ancrepulsion = {
 move.domestication = {
     id: 'domestication',
     name: 'Domestication',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -18713,7 +18708,7 @@ move.domestication = {
 move.traumasque = {
     id: 'traumasque',
     name: 'Traumasque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 56, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18730,7 +18725,7 @@ move.moribond = {
 move.barbarie = {
     id: 'barbarie',
     name: 'Barbarie',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -18751,7 +18746,7 @@ move.barbarie = {
 move.psyclope = {
     id: 'psyclope',
     name: 'Psyclope',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 56, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -18760,7 +18755,7 @@ move.psyclope = {
 move.pluie_de_lames = {
     id: 'pluie_de_lames',
     name: 'Pluie de Lames',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 66, max: 80 }, target: 'enemy' }
     ]
@@ -18778,7 +18773,7 @@ move.esprit_destructeur = {
 move.cerebrute = {
     id: 'cerebrute',
     name: 'Cérébrute',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -18786,7 +18781,7 @@ move.cerebrute = {
 move.mortification = {
     id: 'mortification',
     name: 'Mortification',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'enemy' }
@@ -18797,7 +18792,7 @@ move.mortification = {
 move.olguropoing = {
     id: 'olguropoing',
     name: 'Olguropoing',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 46, max: 60 }, target: 'enemy' }
     ]
@@ -18805,7 +18800,7 @@ move.olguropoing = {
 move.presse = {
     id: 'presse',
     name: 'Presse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 75 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -18814,7 +18809,7 @@ move.presse = {
 move.seisme = {
     id: 'seisme',
     name: 'Séisme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 75 }, target: 'enemy' }
     ]
@@ -18824,7 +18819,7 @@ move.seisme = {
 move.decoupe = {
     id: 'decoupe',
     name: 'Découpe',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 75 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -18833,7 +18828,7 @@ move.decoupe = {
 move.hache_tirante = {
     id: 'hache_tirante',
     name: 'Hache-Tirante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 81, max: 95 }, target: 'enemy' }
@@ -18860,7 +18855,7 @@ move.catacombe = {
 move.decharner = {
     id: 'decharner',
     name: 'Décharner',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 20, duration: 3, target: 'enemy' }
@@ -18871,7 +18866,7 @@ move.decharner = {
 move.noroi = {
     id: 'noroi',
     name: 'Noroi',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 75, max: 75 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -18879,7 +18874,7 @@ move.noroi = {
 move.kaonashi_no_numa = {
     id: 'kaonashi_no_numa',
     name: 'Kaonashi no numa',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 47, max: 57 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 65, max: 75 }, target: 'enemy' }
@@ -18888,7 +18883,7 @@ move.kaonashi_no_numa = {
 move.kara_no = {
     id: 'kara_no',
     name: 'Kara no',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'maxHp', value: 200, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 28, max: 32 }, target: 'enemy' }
@@ -18907,7 +18902,7 @@ move.shunshin_no_shisui = {
 move.shikigami_no_mai = {
     id: 'shikigami_no_mai',
     name: 'Shikigami No Mai',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 43, max: 48 }, target: 'enemy' }
@@ -18916,7 +18911,7 @@ move.shikigami_no_mai = {
 move.oriken = {
     id: 'oriken',
     name: 'Oriken',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -18925,7 +18920,7 @@ move.oriken = {
 move.aerogami = {
     id: 'aerogami',
     name: 'Aérogami',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' }
@@ -18936,7 +18931,7 @@ move.aerogami = {
 move.chute_de_papier = {
     id: 'chute_de_papier',
     name: 'Chute de Papier',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' }
@@ -18945,7 +18940,7 @@ move.chute_de_papier = {
 move.pli_de_la_vallee = {
     id: 'pli_de_la_vallee',
     name: 'Pli de la Vallée',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -18957,7 +18952,7 @@ move.pli_de_la_vallee = {
 move.ronces_de_papier = {
     id: 'ronces_de_papier',
     name: 'Ronces de Papier',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 9, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 9, max: 12 }, target: 'enemy' },
@@ -18968,7 +18963,7 @@ move.ronces_de_papier = {
 move.kusudama = {
     id: 'kusudama',
     name: 'Kusudama',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 21, target: 'self' },
         { type: 'heal', heal: 31, target: 'self' },
@@ -18978,7 +18973,7 @@ move.kusudama = {
 move.legende_des_mille_cygrues = {
     id: 'legende_des_mille_cygrues',
     name: 'Légende des Mille Cygrues',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -18992,7 +18987,7 @@ move.legende_des_mille_cygrues = {
 move.shidekami = {
     id: 'shidekami',
     name: 'Shidekami',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -19001,7 +18996,7 @@ move.shidekami = {
 move.sonobe = {
     id: 'sonobe',
     name: 'Sonobe',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
@@ -19010,7 +19005,7 @@ move.sonobe = {
 move.piege_de_miura = {
     id: 'piege_de_miura',
     name: 'Piège de Miura',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -19020,7 +19015,7 @@ move.piege_de_miura = {
 move.inspiration_creatrice = {
     id: 'inspiration_creatrice',
     name: 'Inspiration Créatrice',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
@@ -19030,7 +19025,7 @@ move.inspiration_creatrice = {
 move.go_o_hanma = {
     id: 'go_o_hanma',
     name: 'Go-o Hanmā',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 65 }, target: 'enemy' }
     ]
@@ -19038,7 +19033,7 @@ move.go_o_hanma = {
 move.ressho_no_kiba = {
     id: 'ressho_no_kiba',
     name: 'Resshō No Kiba',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -19049,7 +19044,7 @@ move.ressho_no_kiba = {
 move.lames_noires = {
     id: 'lames_noires',
     name: 'Lames Noires',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 38, max: 44 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 45, max: 53 }, target: 'enemy' }
@@ -19058,7 +19053,7 @@ move.lames_noires = {
 move.shurigami = {
     id: 'shurigami',
     name: 'Shurigami',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 48, max: 56 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 5, duration: 3, target: 'self' }
@@ -19067,7 +19062,7 @@ move.shurigami = {
 move.encrepulsion = {
     id: 'encrepulsion',
     name: 'Encrépulsion',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -19086,7 +19081,7 @@ move.gakuya = {
 move.encroulement = {
     id: 'encroulement',
     name: 'Encroulement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 54, max: 62 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 75, duration: 3, target: 'enemy' }
@@ -19095,7 +19090,7 @@ move.encroulement = {
 move.pli_de_la_montagne = {
     id: 'pli_de_la_montagne',
     name: 'Pli de la Montagne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 76, max: 88 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -19107,7 +19102,7 @@ move.pli_de_la_montagne = {
 move.entracte_aux_papillons = {
     id: 'entracte_aux_papillons',
     name: 'Entracte aux papillons',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 14, max: 17 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 14, max: 17 }, target: 'enemy' },
@@ -19118,7 +19113,7 @@ move.entracte_aux_papillons = {
 move.ongurencre = {
     id: 'ongurencre',
     name: 'Ongurencre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 46, target: 'self' },
         { type: 'heal', heal: 46, target: 'self' },
@@ -19129,7 +19124,7 @@ move.ongurencre = {
 move.chant_du_grand_cerf = {
     id: 'chant_du_grand_cerf',
     name: 'Chant du Grand Cerf',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 15, max: 18 }, target: 'enemy' },
@@ -19146,7 +19141,7 @@ move.chant_du_grand_cerf = {
 move.perle_d_encre = {
     id: 'perle_d_encre',
     name: 'Perle d\'encre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 40, max: 46 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -19156,7 +19151,7 @@ move.perle_d_encre = {
 move.kagura = {
     id: 'kagura',
     name: 'Kagura',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 32, max: 38 }, target: 'enemy' }
@@ -19165,7 +19160,7 @@ move.kagura = {
 move.choju_giga = {
     id: 'choju_giga',
     name: 'Chôjû Giga',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -19175,7 +19170,7 @@ move.choju_giga = {
 move.souffle_artistique = {
     id: 'souffle_artistique',
     name: 'Souffle artistique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 42, max: 48 }, target: 'enemy' },
@@ -19185,7 +19180,7 @@ move.souffle_artistique = {
 move.sangaku_hanma = {
     id: 'sangaku_hanma',
     name: 'Sangaku Hanmā',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 27, max: 31 }, target: 'enemy' }
     ]
@@ -19193,7 +19188,7 @@ move.sangaku_hanma = {
 move.kiba_o_kikisaku = {
     id: 'kiba_o_kikisaku',
     name: 'Kiba O Kikisaku',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 63, max: 73 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -19204,7 +19199,7 @@ move.kiba_o_kikisaku = {
 move.menace_grandissante = {
     id: 'menace_grandissante',
     name: 'Menace grandissante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -19212,7 +19207,7 @@ move.menace_grandissante = {
 move.rafale_diabolique = {
     id: 'rafale_diabolique',
     name: 'Rafale Diabolique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 28, max: 33 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 28, max: 33 }, target: 'enemy' }
@@ -19221,7 +19216,7 @@ move.rafale_diabolique = {
 move.dard_corrompu = {
     id: 'dard_corrompu',
     name: 'Dard Corrompu',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 47 }, target: 'enemy' },
         { type: 'dot', element: 'feu', value: 16, duration: 2, target: 'enemy' },
@@ -19231,7 +19226,7 @@ move.dard_corrompu = {
 move.tir_devastateur = {
     id: 'tir_devastateur',
     name: 'Tir Dévastateur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 67, max: 77 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 40, duration: 3, target: 'enemy' },
@@ -19247,7 +19242,7 @@ move.tir_devastateur = {
 move.ningurgite = {
     id: 'ningurgite',
     name: 'Ningurgité',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'maxHp', value: 200, duration: 2, target: 'enemy' },
         { type: 'buff', stat: 'maxHp', value: 200, duration: 2, target: 'self' },
@@ -19270,7 +19265,7 @@ move.ninsoumis = {
 move.germintaide = {
     id: 'germintaide',
     name: 'Germintaïde',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 29, max: 38 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 5, target: 'self' },
@@ -19280,7 +19275,7 @@ move.germintaide = {
 move.tetanysme = {
     id: 'tetanysme',
     name: 'Tétanysme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 36, max: 49 }, target: 'enemy' }
     ]
@@ -19290,7 +19285,7 @@ move.tetanysme = {
 move.gesticulation_ridicule = {
     id: 'gesticulation_ridicule',
     name: 'Gesticulation Ridicule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 53, max: 57 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -19299,7 +19294,7 @@ move.gesticulation_ridicule = {
 move.pince_ecrasante = {
     id: 'pince_ecrasante',
     name: 'Pince Écrasante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 144, max: 148 }, target: 'enemy' }
     ]
@@ -19318,7 +19313,7 @@ move.yolosouague = {
 move.carreausillon = {
     id: 'carreausillon',
     name: 'Carreausillon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -19328,7 +19323,7 @@ move.carreausillon = {
 move.carreautage = {
     id: 'carreautage',
     name: 'Carreautage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -19340,7 +19335,7 @@ move.carreautage = {
 move.attraction_minerale = {
     id: 'attraction_minerale',
     name: 'Attraction Minérale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 56, max: 65 }, target: 'enemy' }
@@ -19349,7 +19344,7 @@ move.attraction_minerale = {
 move.boulet_emeraude = {
     id: 'boulet_emeraude',
     name: 'Boulet Émeraude',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 37, max: 43 }, target: 'enemy' }
     ]
@@ -19367,7 +19362,7 @@ move.coutures_renforcees = {
 move.ecchymose = {
     id: 'ecchymose',
     name: 'Ecchymose',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 91, max: 120 }, target: 'enemy' }
     ]
@@ -19385,7 +19380,7 @@ move.traumatisme = {
 move.dedain = {
     id: 'dedain',
     name: 'Dédain',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -19394,7 +19389,7 @@ move.dedain = {
 move.coupe_cuir = {
     id: 'coupe_cuir',
     name: 'Coupe-cuir',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19406,7 +19401,7 @@ move.coupe_cuir = {
 move.vomito = {
     id: 'vomito',
     name: 'Vomito',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 91, max: 110 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -19415,7 +19410,7 @@ move.vomito = {
 move.nerf_de_boeuf = {
     id: 'nerf_de_boeuf',
     name: 'Nerf de boeuf',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -19426,7 +19421,7 @@ move.nerf_de_boeuf = {
 move.ioupercute = {
     id: 'ioupercute',
     name: 'Ioupercute',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 50, max: 50 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -19435,7 +19430,7 @@ move.ioupercute = {
 move.cire_culaire = {
     id: 'cire_culaire',
     name: 'Cire culaire',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19448,7 +19443,7 @@ move.cire_culaire = {
 move.taxidermie = {
     id: 'taxidermie',
     name: 'Taxidermie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -19459,7 +19454,7 @@ move.taxidermie = {
 move.paillage = {
     id: 'paillage',
     name: 'Paillage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 40, duration: 3, target: 'self' },
@@ -19479,7 +19474,7 @@ move.gros_sac = {
 move.maboule = {
     id: 'maboule',
     name: 'Maboule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -19497,7 +19492,7 @@ move.gonflage = {
 move.bouffee = {
     id: 'bouffee',
     name: 'Bouffée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 91, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 600, duration: 3, target: 'self' }
@@ -19508,7 +19503,7 @@ move.bouffee = {
 move.abdomination = {
     id: 'abdomination',
     name: 'Abdomination',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' }
@@ -19517,7 +19512,7 @@ move.abdomination = {
 move.ventromatisme = {
     id: 'ventromatisme',
     name: 'Ventromatisme',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 71, max: 80 }, target: 'enemy' },
@@ -19537,7 +19532,7 @@ move.bidiotisme = {
 move.brise_larmes = {
     id: 'brise_larmes',
     name: 'Brise-larmes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 71, max: 90 }, target: 'enemy' }
     ]
@@ -19545,7 +19540,7 @@ move.brise_larmes = {
 move.legoglace = {
     id: 'legoglace',
     name: 'Légoglace',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 15, max: 15 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' },
@@ -19557,7 +19552,7 @@ move.legoglace = {
 move.caroturier = {
     id: 'caroturier',
     name: 'Caroturier',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19567,7 +19562,7 @@ move.caroturier = {
 move.karkanciel = {
     id: 'karkanciel',
     name: 'Karkanciel',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 21, max: 40 }, target: 'enemy' }
@@ -19578,7 +19573,7 @@ move.karkanciel = {
 move.braguette = {
     id: 'braguette',
     name: 'Braguette',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -19587,7 +19582,7 @@ move.braguette = {
 move.bralong = {
     id: 'bralong',
     name: 'Bralong',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -19608,7 +19603,7 @@ move.braconnage = {
 move.lame_soeur = {
     id: 'lame_soeur',
     name: 'Lame soeur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 30, max: 30 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -19617,7 +19612,7 @@ move.lame_soeur = {
 move.soupirsute = {
     id: 'soupirsute',
     name: 'Soupirsute',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -19636,7 +19631,7 @@ move.glacerbe = {
 move.loch = {
     id: 'loch',
     name: 'Loch',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -19645,7 +19640,7 @@ move.loch = {
 move.bafre = {
     id: 'bafre',
     name: 'Bâfre',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19666,7 +19661,7 @@ move.drako = {
 move.jappement_dragor = {
     id: 'jappement_dragor',
     name: 'Jappement Dragor',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -19686,7 +19681,7 @@ move.morsure_de_soie = {
 move.picorection = {
     id: 'picorection',
     name: 'Picorection',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 30, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 90 }, target: 'enemy' }
@@ -19695,7 +19690,7 @@ move.picorection = {
 move.pligeon = {
     id: 'pligeon',
     name: 'Pligeon',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' },
@@ -19715,7 +19710,7 @@ move.duvet_teran = {
 move.dard_dard = {
     id: 'dard_dard',
     name: 'Dard dard',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19735,7 +19730,7 @@ move.glusure = {
 move.caduk = {
     id: 'caduk',
     name: 'Caduk',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -19744,7 +19739,7 @@ move.caduk = {
 move.stigmatraque = {
     id: 'stigmatraque',
     name: 'Stigmatraque',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19756,7 +19751,7 @@ move.stigmatraque = {
 move.machine_ception = {
     id: 'machine_ception',
     name: 'Machine Ception',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19766,7 +19761,7 @@ move.machine_ception = {
 move.marionnettoyage = {
     id: 'marionnettoyage',
     name: 'Marionnettoyage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -19777,7 +19772,7 @@ move.marionnettoyage = {
 move.clef_en_glaise = {
     id: 'clef_en_glaise',
     name: 'Clef en glaise',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19787,7 +19782,7 @@ move.clef_en_glaise = {
 move.clef_battue = {
     id: 'clef_battue',
     name: 'Clef battue',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -19798,7 +19793,7 @@ move.clef_battue = {
 move.envol_de_mort = {
     id: 'envol_de_mort',
     name: 'Envol de mort',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' },
@@ -19808,7 +19803,7 @@ move.envol_de_mort = {
 move.engrenage_de_glace = {
     id: 'engrenage_de_glace',
     name: 'Engrenage de glace',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19818,7 +19813,7 @@ move.engrenage_de_glace = {
 move.rotaplumes = {
     id: 'rotaplumes',
     name: 'Rotaplumes',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 200, target: 'self' }
     ]
@@ -19828,7 +19823,7 @@ move.rotaplumes = {
 move.de_grippant = {
     id: 'de_grippant',
     name: 'Dé grippant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -19836,7 +19831,7 @@ move.de_grippant = {
 move.petarade = {
     id: 'petarade',
     name: 'Pétarade',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -19863,7 +19858,7 @@ move.degage_limite = {
 move.brulage_bete = {
     id: 'brulage_bete',
     name: 'Brûlage bête',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -19881,7 +19876,7 @@ move.vidange_gardien = {
 move.hibouffonnerie = {
     id: 'hibouffonnerie',
     name: 'Hibouffonnerie',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19892,7 +19887,7 @@ move.hibouffonnerie = {
 move.hibougie = {
     id: 'hibougie',
     name: 'Hibougie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 30, max: 30 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -19902,7 +19897,7 @@ move.hibougie = {
 move.stricannement = {
     id: 'stricannement',
     name: 'Stricannement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -19910,7 +19905,7 @@ move.stricannement = {
 move.strictus = {
     id: 'strictus',
     name: 'Strictus',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -19929,7 +19924,7 @@ move.stridicule = {
 move.cyclore = {
     id: 'cyclore',
     name: 'Cyclore',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -19939,7 +19934,7 @@ move.cyclore = {
 move.cyclochette = {
     id: 'cyclochette',
     name: 'Cyclochette',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19949,7 +19944,7 @@ move.cyclochette = {
 move.cyclaustrophobe = {
     id: 'cyclaustrophobe',
     name: 'Cyclaustrophobe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 100, duration: 3, target: 'self' },
@@ -19961,7 +19956,7 @@ move.cyclaustrophobe = {
 move.sinisterie = {
     id: 'sinisterie',
     name: 'Sinistérie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -19970,7 +19965,7 @@ move.sinisterie = {
 move.diligence = {
     id: 'diligence',
     name: 'Diligence',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -19982,7 +19977,7 @@ move.diligence = {
 move.tonnerre_mecanique = {
     id: 'tonnerre_mecanique',
     name: 'Tonnerre mécanique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' }
@@ -19991,7 +19986,7 @@ move.tonnerre_mecanique = {
 move.surchauffense = {
     id: 'surchauffense',
     name: 'Surchauffense',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -20002,7 +19997,7 @@ move.surchauffense = {
 move.par_ici = {
     id: 'par_ici',
     name: 'Par ici',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -20012,7 +20007,7 @@ move.par_ici = {
 move.perforage = {
     id: 'perforage',
     name: 'Perforage',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 30, max: 30 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -20022,7 +20017,7 @@ move.perforage = {
 move.moule_chote = {
     id: 'moule_chote',
     name: 'Moule Chote',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -20031,7 +20026,7 @@ move.moule_chote = {
 move.tireur_franc = {
     id: 'tireur_franc',
     name: 'Tireur Franc',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -20041,7 +20036,7 @@ move.tireur_franc = {
 move.campeur_et_sans_reproches = {
     id: 'campeur_et_sans_reproches',
     name: 'Campeur et sans reproches',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -20053,7 +20048,7 @@ move.campeur_et_sans_reproches = {
 move.pince_d_or = {
     id: 'pince_d_or',
     name: 'Pince d\'or',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -20062,7 +20057,7 @@ move.pince_d_or = {
 move.pincendie = {
     id: 'pincendie',
     name: 'Pincendie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 90 }, target: 'enemy' }
@@ -20073,7 +20068,7 @@ move.pincendie = {
 move.maraude_a_la_joie = {
     id: 'maraude_a_la_joie',
     name: 'Maraude à la Joie',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -20083,7 +20078,7 @@ move.maraude_a_la_joie = {
 move.glycol_roule = {
     id: 'glycol_roule',
     name: 'Glycol Roulé',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' },
@@ -20103,7 +20098,7 @@ move.predateur_de_gloire = {
 move.apnee_crochue = {
     id: 'apnee_crochue',
     name: 'Apnée Crochue',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 30, duration: 3, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 101, max: 120 }, target: 'enemy' }
@@ -20132,7 +20127,7 @@ move.relou_de_mer = {
 move.clignotement = {
     id: 'clignotement',
     name: 'Clignotement',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
@@ -20142,7 +20137,7 @@ move.clignotement = {
 move.assomnolence = {
     id: 'assomnolence',
     name: 'Assomnolence',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' }
@@ -20153,7 +20148,7 @@ move.assomnolence = {
 move.barbe_a_trucs = {
     id: 'barbe_a_trucs',
     name: 'Barbe à trucs',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -20172,7 +20167,7 @@ move.super_saillant = {
 move.kama_hamea = {
     id: 'kama_hamea',
     name: 'Kama Haméa',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 50, max: 50 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -20183,7 +20178,7 @@ move.kama_hamea = {
 move.clemence = {
     id: 'clemence',
     name: 'Clémence',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' }
     ]
@@ -20199,7 +20194,7 @@ move.guideal = {
 move.la_clef_du_succes = {
     id: 'la_clef_du_succes',
     name: 'La clef du succès',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 70 }, target: 'enemy' }
     ]
@@ -20209,7 +20204,7 @@ move.la_clef_du_succes = {
 move.claque = {
     id: 'claque',
     name: 'Claque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 91, max: 110 }, target: 'enemy' }
     ]
@@ -20217,7 +20212,7 @@ move.claque = {
 move.sourire_ravageur = {
     id: 'sourire_ravageur',
     name: 'Sourire Ravageur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
@@ -20229,7 +20224,7 @@ move.sourire_ravageur = {
 move.piege_a_le_ours = {
     id: 'piege_a_le_ours',
     name: 'Piège à Le Ours',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 50, max: 50 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -20238,7 +20233,7 @@ move.piege_a_le_ours = {
 move.sans_se_mouiller = {
     id: 'sans_se_mouiller',
     name: 'Sans se mouiller',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 55 }, target: 'enemy' }
     ]
@@ -20248,7 +20243,7 @@ move.sans_se_mouiller = {
 move.bombe_illicale = {
     id: 'bombe_illicale',
     name: 'Bombe Illicale',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -20258,7 +20253,7 @@ move.bombe_illicale = {
 move.fumerus = {
     id: 'fumerus',
     name: 'Fumérus',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 81, max: 85 }, target: 'enemy' },
@@ -20269,7 +20264,7 @@ move.fumerus = {
 move.attentat = {
     id: 'attentat',
     name: 'Attentat',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 81, max: 100 }, target: 'enemy' }
     ]
@@ -20287,7 +20282,7 @@ move.vers_la_lumiere = {
 move.coupable = {
     id: 'coupable',
     name: 'Coupable',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 101, max: 120 }, target: 'enemy' }
@@ -20296,7 +20291,7 @@ move.coupable = {
 move.tournoyade = {
     id: 'tournoyade',
     name: 'Tournoyade',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -20306,7 +20301,7 @@ move.tournoyade = {
 move.craneantissement = {
     id: 'craneantissement',
     name: 'Crânéantissement',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 15, target: 'self' },
@@ -20315,7 +20310,7 @@ move.craneantissement = {
 move.crames = {
     id: 'crames',
     name: 'Crâmes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -20326,7 +20321,7 @@ move.crames = {
 move.attraction_ailee = {
     id: 'attraction_ailee',
     name: 'Attraction ailée',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -20337,7 +20332,7 @@ move.attraction_ailee = {
 move.cercle_de_feu = {
     id: 'cercle_de_feu',
     name: 'Cercle de feu',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'intelligence', value: 100, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'intelligence', value: 100, duration: 3, target: 'self' },
@@ -20347,7 +20342,7 @@ move.cercle_de_feu = {
 move.terre_mythe = {
     id: 'terre_mythe',
     name: 'Terre mythe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'force', value: 100, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'force', value: 100, duration: 3, target: 'self' },
@@ -20359,7 +20354,7 @@ move.terre_mythe = {
 move.rayonirique = {
     id: 'rayonirique',
     name: 'Rayonirique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -20367,7 +20362,7 @@ move.rayonirique = {
 move.plumiere = {
     id: 'plumiere',
     name: 'Plumière',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -20378,7 +20373,7 @@ move.plumiere = {
 move.tirs_optiques = {
     id: 'tirs_optiques',
     name: 'Tirs optiques',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -20387,7 +20382,7 @@ move.tirs_optiques = {
 move.superfidie = {
     id: 'superfidie',
     name: 'Superfidie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -20396,7 +20391,7 @@ move.superfidie = {
 move.petit_poison = {
     id: 'petit_poison',
     name: 'Petit poison',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 50, max: 50 }, target: 'enemy' }
     ]
@@ -20414,7 +20409,7 @@ move.bouclier_absorbant = {
 move.feinterception = {
     id: 'feinterception',
     name: 'Feinterception',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -20424,7 +20419,7 @@ move.feinterception = {
 move.hoxor = {
     id: 'hoxor',
     name: 'Hoxor',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' }
@@ -20443,7 +20438,7 @@ move.mise_en_situation = {
 move.neutralisation = {
     id: 'neutralisation',
     name: 'Neutralisation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 56, max: 75 }, target: 'enemy' },
@@ -20455,7 +20450,7 @@ move.neutralisation = {
 move.jet_de_pique = {
     id: 'jet_de_pique',
     name: 'Jet de Pique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 46, max: 55 }, target: 'enemy' }
     ]
@@ -20463,7 +20458,7 @@ move.jet_de_pique = {
 move.en_plein_c_ur = {
     id: 'en_plein_c_ur',
     name: 'En plein cœur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 55 }, target: 'enemy' }
     ]
@@ -20473,7 +20468,7 @@ move.en_plein_c_ur = {
 move.piquepocket = {
     id: 'piquepocket',
     name: 'Piquepocket',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
@@ -20483,7 +20478,7 @@ move.piquepocket = {
 move.epique = {
     id: 'epique',
     name: 'Épique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -20494,7 +20489,7 @@ move.epique = {
 move.tourne_griffe = {
     id: 'tourne_griffe',
     name: 'Tourne-Griffe',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -20502,7 +20497,7 @@ move.tourne_griffe = {
 move.creve_c_ur = {
     id: 'creve_c_ur',
     name: 'Crève-cœur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -20512,7 +20507,7 @@ move.creve_c_ur = {
 move.lueur_royale = {
     id: 'lueur_royale',
     name: 'Lueur royale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 46, max: 60 }, target: 'enemy' }
@@ -20521,7 +20516,7 @@ move.lueur_royale = {
 move.adoubement_brutal = {
     id: 'adoubement_brutal',
     name: 'Adoubement brutal',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' }
@@ -20532,7 +20527,7 @@ move.adoubement_brutal = {
 move.attraction_lumineuse = {
     id: 'attraction_lumineuse',
     name: 'Attraction Lumineuse',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 34, max: 38 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -20541,7 +20536,7 @@ move.attraction_lumineuse = {
 move.enlacement = {
     id: 'enlacement',
     name: 'Enlacement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 106, max: 110 }, target: 'enemy' }
     ]
@@ -20551,7 +20546,7 @@ move.enlacement = {
 move.siphonage = {
     id: 'siphonage',
     name: 'Siphonage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'heal%maxHp', value: 13, target: 'self' },
@@ -20560,7 +20555,7 @@ move.siphonage = {
 move.tourbillonement = {
     id: 'tourbillonement',
     name: 'Tourbillonement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 48, max: 52 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -20571,7 +20566,7 @@ move.tourbillonement = {
 move.prison_aqueuse = {
     id: 'prison_aqueuse',
     name: 'Prison Aqueuse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 65, max: 69 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -20582,7 +20577,7 @@ move.prison_aqueuse = {
 move.harpon_eclair = {
     id: 'harpon_eclair',
     name: 'Harpon-éclair',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 36, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 36, max: 40 }, target: 'enemy' }
@@ -20591,7 +20586,7 @@ move.harpon_eclair = {
 move.charge_frontale = {
     id: 'charge_frontale',
     name: 'Charge Frontale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 47, max: 51 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -20602,7 +20597,7 @@ move.charge_frontale = {
 move.projection_hydraulique = {
     id: 'projection_hydraulique',
     name: 'Projection Hydraulique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -20611,7 +20606,7 @@ move.projection_hydraulique = {
 move.fougou_rebondissant = {
     id: 'fougou_rebondissant',
     name: 'Fougou Rebondissant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 53, max: 57 }, target: 'enemy' }
     ]
@@ -20619,7 +20614,7 @@ move.fougou_rebondissant = {
 move.poussette_mortelle = {
     id: 'poussette_mortelle',
     name: 'Poussette Mortelle',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 62, max: 66 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -20630,7 +20625,7 @@ move.poussette_mortelle = {
 move.attraction_repugnante = {
     id: 'attraction_repugnante',
     name: 'Attraction Répugnante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 65, max: 69 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -20639,7 +20634,7 @@ move.attraction_repugnante = {
 move.sphere_corrosive = {
     id: 'sphere_corrosive',
     name: 'Sphère Corrosive',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 65, max: 69 }, target: 'enemy' }
     ]
@@ -20649,7 +20644,7 @@ move.sphere_corrosive = {
 move.expulsion_miasmatique = {
     id: 'expulsion_miasmatique',
     name: 'Expulsion Miasmatique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 84, max: 88 }, target: 'enemy' }
     ]
@@ -20657,7 +20652,7 @@ move.expulsion_miasmatique = {
 move.flagellation_paralysante = {
     id: 'flagellation_paralysante',
     name: 'Flagellation Paralysante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 83, max: 87 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -20668,7 +20663,7 @@ move.flagellation_paralysante = {
 move.triangle_dement = {
     id: 'triangle_dement',
     name: 'Triangle Dément',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -20676,7 +20671,7 @@ move.triangle_dement = {
 move.il_horrifiant = {
     id: 'il_horrifiant',
     name: 'Œil Horrifiant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 55 }, target: 'enemy' }
     ]
@@ -20697,7 +20692,7 @@ move.ponction_morbide = {
 move.melopee_pernicieuse = {
     id: 'melopee_pernicieuse',
     name: 'Mélopée Pernicieuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 65, max: 69 }, target: 'enemy' }
@@ -20706,7 +20701,7 @@ move.melopee_pernicieuse = {
 move.folle_cacophonie = {
     id: 'folle_cacophonie',
     name: 'Folle Cacophonie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 83, max: 87 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -20726,7 +20721,7 @@ move.intensite_demoniaque = {
 move.bave_acide = {
     id: 'bave_acide',
     name: 'Bave Acide',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 45 }, target: 'enemy' }
     ]
@@ -20734,7 +20729,7 @@ move.bave_acide = {
 move.trainee_collante = {
     id: 'trainee_collante',
     name: 'Traînée Collante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 77, max: 81 }, target: 'enemy' }
@@ -20743,7 +20738,7 @@ move.trainee_collante = {
 move.roulemboule = {
     id: 'roulemboule',
     name: 'Roulemboule',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'neutre', damage: { min: 65, max: 69 }, target: 'enemy' }
@@ -20754,7 +20749,7 @@ move.roulemboule = {
 move.pas_chasse_frontal = {
     id: 'pas_chasse_frontal',
     name: 'Pas Chassé Frontal',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -20764,7 +20759,7 @@ move.pas_chasse_frontal = {
 move.poing_meteore = {
     id: 'poing_meteore',
     name: 'Poing-météore',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 71, max: 75 }, target: 'enemy' }
@@ -20773,7 +20768,7 @@ move.poing_meteore = {
 move.enchainement_de_coups_de_poings_normaux = {
     id: 'enchainement_de_coups_de_poings_normaux',
     name: 'Enchaînement de Coups de Poings Normaux',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 95, max: 99 }, target: 'enemy' },
         { type: 'buffDrain', value: 2, target: 'enemy' }
@@ -20784,7 +20779,7 @@ move.enchainement_de_coups_de_poings_normaux = {
 move.eclair_obscur = {
     id: 'eclair_obscur',
     name: 'Éclair Obscur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 35, max: 39 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -20793,7 +20788,7 @@ move.eclair_obscur = {
 move.electrochoc = {
     id: 'electrochoc',
     name: 'Électrochoc',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 100, max: 100 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -20801,7 +20796,7 @@ move.electrochoc = {
 move.foudre_marine = {
     id: 'foudre_marine',
     name: 'Foudre Marine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 65 }, target: 'enemy' }
     ]
@@ -20811,7 +20806,7 @@ move.foudre_marine = {
 move.piege_parasite = {
     id: 'piege_parasite',
     name: 'Piège Parasite',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -20819,7 +20814,7 @@ move.piege_parasite = {
 move.succion_attractive = {
     id: 'succion_attractive',
     name: 'Succion Attractive',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 65, max: 69 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -20828,7 +20823,7 @@ move.succion_attractive = {
 move.morsure_filtrante = {
     id: 'morsure_filtrante',
     name: 'Morsure Filtrante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 53, max: 57 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 53, max: 57 }, target: 'enemy' },
@@ -20840,7 +20835,7 @@ move.morsure_filtrante = {
 move.harcelement_de_la_pyramide = {
     id: 'harcelement_de_la_pyramide',
     name: 'Harcèlement de la pyramide',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -20849,7 +20844,7 @@ move.harcelement_de_la_pyramide = {
 move.pyramide = {
     id: 'pyramide',
     name: 'Pyrâmide',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 151, max: 170 }, target: 'enemy' }
     ]
@@ -20859,7 +20854,7 @@ move.pyramide = {
 move.calin = {
     id: 'calin',
     name: 'Calin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 80 }, target: 'enemy' }
@@ -20868,7 +20863,7 @@ move.calin = {
 move.danse_comme_une_momie = {
     id: 'danse_comme_une_momie',
     name: 'Danse comme une momie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' }
     ]
@@ -20878,7 +20873,7 @@ move.danse_comme_une_momie = {
 move.frappe_elementaire = {
     id: 'frappe_elementaire',
     name: 'Frappe élémentaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -20894,7 +20889,7 @@ move.frappe_elementaire = {
 move.grenattrition = {
     id: 'grenattrition',
     name: 'Grenattrition',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 81, max: 90 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 41, max: 45 }, target: 'enemy' },
@@ -20912,7 +20907,7 @@ move.grenattrition = {
 move.remplacement_maudit = {
     id: 'remplacement_maudit',
     name: 'Remplacement maudit',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 81, max: 100 }, target: 'enemy' }
@@ -20921,7 +20916,7 @@ move.remplacement_maudit = {
 move.sabrupt = {
     id: 'sabrupt',
     name: 'Sabrupt',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' },
@@ -20933,7 +20928,7 @@ move.sabrupt = {
 move.aigriffes = {
     id: 'aigriffes',
     name: 'Aigriffes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -20942,7 +20937,7 @@ move.aigriffes = {
 move.arrivee_fracassante = {
     id: 'arrivee_fracassante',
     name: 'Arrivée fracassante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -20952,7 +20947,7 @@ move.arrivee_fracassante = {
 move.bidonnage = {
     id: 'bidonnage',
     name: 'Bidonnage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 151, max: 170 }, target: 'enemy' },
         { type: 'debuff', stat: 'finalDamagePct', value: 50, duration: 3, target: 'enemy' }
@@ -20963,7 +20958,7 @@ move.bidonnage = {
 move.tranche_air = {
     id: 'tranche_air',
     name: 'Tranche air',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 101, max: 120 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -20975,7 +20970,7 @@ move.tranche_air = {
 move.gouli_gouli = {
     id: 'gouli_gouli',
     name: 'Gouli gouli',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -20983,7 +20978,7 @@ move.gouli_gouli = {
 move.griffouille = {
     id: 'griffouille',
     name: 'Griffouille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -20993,7 +20988,7 @@ move.griffouille = {
 move.dantagoule = {
     id: 'dantagoule',
     name: 'Dantagoule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -21001,7 +20996,7 @@ move.dantagoule = {
 move.poings_vire_goule = {
     id: 'poings_vire_goule',
     name: 'Poings vire-goule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -21019,7 +21014,7 @@ move.deplacement_furtif = {
 move.chauffe_kipeu = {
     id: 'chauffe_kipeu',
     name: 'Chauffe kipeu',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -21038,7 +21033,7 @@ move.flami = {
 move.ebullition = {
     id: 'ebullition',
     name: 'Ébullition',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 101, max: 120 }, target: 'enemy' }
     ]
@@ -21056,7 +21051,7 @@ move.doublame = {
 move.coupe_souffle = {
     id: 'coupe_souffle',
     name: 'Coupe-souffle',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 61, max: 80 }, target: 'enemy' }
@@ -21067,7 +21062,7 @@ move.coupe_souffle = {
 move.bouillie = {
     id: 'bouillie',
     name: 'Bouillie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 150, max: 150 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -21075,7 +21070,7 @@ move.bouillie = {
 move.tranche_ame = {
     id: 'tranche_ame',
     name: 'Tranche-âme',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 100, duration: 3, target: 'enemy' },
@@ -21087,7 +21082,7 @@ move.tranche_ame = {
 move.feu_critique = {
     id: 'feu_critique',
     name: 'Feu critique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 121, max: 140 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 30, duration: 3, target: 'enemy' }
@@ -21096,7 +21091,7 @@ move.feu_critique = {
 move.revenant = {
     id: 'revenant',
     name: 'Revenant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -21107,7 +21102,7 @@ move.revenant = {
 move.boule_d_eau = {
     id: 'boule_d_eau',
     name: 'Boule d\'eau',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -21117,7 +21112,7 @@ move.boule_d_eau = {
 move.eperuption = {
     id: 'eperuption',
     name: 'Épéruption',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -21126,7 +21121,7 @@ move.eperuption = {
 move.conjuration_volcanique = {
     id: 'conjuration_volcanique',
     name: 'Conjuration Volcanique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -21145,7 +21140,7 @@ move.magmagique = {
 move.glaive_sommaire = {
     id: 'glaive_sommaire',
     name: 'Glaive Sommaire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 70 }, target: 'enemy' }
     ]
@@ -21153,7 +21148,7 @@ move.glaive_sommaire = {
 move.charge_au_bouclier = {
     id: 'charge_au_bouclier',
     name: 'Charge au Bouclier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -21164,7 +21159,7 @@ move.charge_au_bouclier = {
 move.magmache = {
     id: 'magmache',
     name: 'Magmache',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 70 }, target: 'enemy' }
     ]
@@ -21172,7 +21167,7 @@ move.magmache = {
 move.haleine_enflammee = {
     id: 'haleine_enflammee',
     name: 'Haleine Enflammée',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -21181,7 +21176,7 @@ move.haleine_enflammee = {
 move.visiosoufre = {
     id: 'visiosoufre',
     name: 'Visiosoufre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' }
@@ -21192,7 +21187,7 @@ move.visiosoufre = {
 move.zhen_tian_lei = {
     id: 'zhen_tian_lei',
     name: 'Zhen Tian Lei',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21201,7 +21196,7 @@ move.zhen_tian_lei = {
 move.grenade_collante = {
     id: 'grenade_collante',
     name: 'Grenade Collante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -21220,7 +21215,7 @@ move.chaudiere = {
 move.geoassaut = {
     id: 'geoassaut',
     name: 'Geoassaut',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 30, duration: 3, target: 'self' }
@@ -21229,7 +21224,7 @@ move.geoassaut = {
 move.lance_flammes = {
     id: 'lance_flammes',
     name: 'Lance-flammes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' }
@@ -21248,7 +21243,7 @@ move.chauffard = {
 move.cumul_des_mandales = {
     id: 'cumul_des_mandales',
     name: 'Cumul des Mandales',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -21257,7 +21252,7 @@ move.cumul_des_mandales = {
 move.siphon = {
     id: 'siphon',
     name: 'Siphon',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 300, duration: 3, target: 'enemy' }
@@ -21276,7 +21271,7 @@ move.aquaponey = {
 move.franchissement = {
     id: 'franchissement',
     name: 'Franchissement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' },
@@ -21286,7 +21281,7 @@ move.franchissement = {
 move.monodent = {
     id: 'monodent',
     name: 'Monodent',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21295,7 +21290,7 @@ move.monodent = {
 move.restoute = {
     id: 'restoute',
     name: 'Restouté',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -21305,7 +21300,7 @@ move.restoute = {
 move.talion = {
     id: 'talion',
     name: 'Talion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -21313,7 +21308,7 @@ move.talion = {
 move.profondeurs_marines = {
     id: 'profondeurs_marines',
     name: 'Profondeurs Marines',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -21323,7 +21318,7 @@ move.profondeurs_marines = {
 move.morlusque = {
     id: 'morlusque',
     name: 'Morlusque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -21334,7 +21329,7 @@ move.morlusque = {
 move.hydraire = {
     id: 'hydraire',
     name: 'Hydraire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -21345,7 +21340,7 @@ move.hydraire = {
 move.putrefaction_marine = {
     id: 'putrefaction_marine',
     name: 'Putréfaction Marine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         // TODO: Minimise les effets aléatoires de la cible
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' }
@@ -21354,7 +21349,7 @@ move.putrefaction_marine = {
 move.coup_de_pince = {
     id: 'coup_de_pince',
     name: 'Coup de Pince',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -21362,7 +21357,7 @@ move.coup_de_pince = {
 move.vapeur = {
     id: 'vapeur',
     name: 'Vapeur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' }
     ]
@@ -21372,7 +21367,7 @@ move.vapeur = {
 move.lance_pierre = {
     id: 'lance_pierre',
     name: 'Lance-pierre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 141, max: 150 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 301, max: 310 }, target: 'enemy' }
@@ -21381,7 +21376,7 @@ move.lance_pierre = {
 move.forte_tete = {
     id: 'forte_tete',
     name: 'Forte tête',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21393,7 +21388,7 @@ move.forte_tete = {
 move.coup_de_cornes = {
     id: 'coup_de_cornes',
     name: 'Coup de cornes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 151, max: 170 }, target: 'enemy' },
@@ -21415,7 +21410,7 @@ move.belier = {
 move.marteau_pillon = {
     id: 'marteau_pillon',
     name: 'Marteau pillon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 101, max: 110 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 201, max: 210 }, target: 'enemy' }
@@ -21436,7 +21431,7 @@ move.nimpulsion = {
 move.hachis = {
     id: 'hachis',
     name: 'Hachis',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 101, max: 110 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -21445,7 +21440,7 @@ move.hachis = {
 move.nimplantation = {
     id: 'nimplantation',
     name: 'Nimplantation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -21455,7 +21450,7 @@ move.nimplantation = {
 move.chocolat_sperger = {
     id: 'chocolat_sperger',
     name: 'Chocolat Sperger',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -21465,7 +21460,7 @@ move.chocolat_sperger = {
 move.cacaobstruction = {
     id: 'cacaobstruction',
     name: 'Cacaobstruction',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -21478,7 +21473,7 @@ move.cacaobstruction = {
 move.torreador = {
     id: 'torreador',
     name: 'Torréador',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' },
@@ -21490,7 +21485,7 @@ move.torreador = {
 move.torrefaction = {
     id: 'torrefaction',
     name: 'Torréfaction',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -21500,7 +21495,7 @@ move.torrefaction = {
 move.padbra = {
     id: 'padbra',
     name: 'Padbra',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -21510,7 +21505,7 @@ move.padbra = {
 move.hydrolyse = {
     id: 'hydrolyse',
     name: 'Hydrolyse',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -21521,7 +21516,7 @@ move.hydrolyse = {
 move.chococlier = {
     id: 'chococlier',
     name: 'Chococlier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 41, max: 60 }, target: 'enemy' }
@@ -21540,7 +21535,7 @@ move.glacage = {
 move.refroidissement = {
     id: 'refroidissement',
     name: 'Refroidissement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' }
@@ -21549,7 +21544,7 @@ move.refroidissement = {
 move.surchauffe = {
     id: 'surchauffe',
     name: 'Surchauffe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'dot', element: 'feu', value: 11, duration: 2, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -21559,7 +21554,7 @@ move.surchauffe = {
 move.chaudron_choco = {
     id: 'chaudron_choco',
     name: 'Chaudron Choco',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -21570,7 +21565,7 @@ move.chaudron_choco = {
 move.eclabossage = {
     id: 'eclabossage',
     name: 'Éclabossage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -21579,7 +21574,7 @@ move.eclabossage = {
 move.feve_du_samedi_soir = {
     id: 'feve_du_samedi_soir',
     name: 'Fève du samedi soir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -21590,7 +21585,7 @@ move.feve_du_samedi_soir = {
 move.piege_a_gourmands = {
     id: 'piege_a_gourmands',
     name: 'Piège à gourmands',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -21600,7 +21595,7 @@ move.piege_a_gourmands = {
 move.traquenard_reptilien = {
     id: 'traquenard_reptilien',
     name: 'Traquenard reptilien',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -21608,7 +21603,7 @@ move.traquenard_reptilien = {
 move.attirance_de_l_invisible = {
     id: 'attirance_de_l_invisible',
     name: 'Attirance de l\'invisible',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 36, max: 50 }, target: 'enemy' }
@@ -21619,7 +21614,7 @@ move.attirance_de_l_invisible = {
 move.tir_de_precision = {
     id: 'tir_de_precision',
     name: 'Tir de précision',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
         { type: 'buff', stat: 'spd', value: 2, duration: 2, target: 'self' },
@@ -21631,7 +21626,7 @@ move.tir_de_precision = {
 move.regeneration_sacrificielle = {
     id: 'regeneration_sacrificielle',
     name: 'Régénération sacrificielle',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 36, max: 50 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -21651,7 +21646,7 @@ move.accumulation_critique = {
 move.rage_nocturne = {
     id: 'rage_nocturne',
     name: 'Rage nocturne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 70 }, target: 'enemy' }
     ]
@@ -21659,7 +21654,7 @@ move.rage_nocturne = {
 move.sauvagerie_reptilienne = {
     id: 'sauvagerie_reptilienne',
     name: 'Sauvagerie reptilienne',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -21668,7 +21663,7 @@ move.sauvagerie_reptilienne = {
 move.cronnibalisme = {
     id: 'cronnibalisme',
     name: 'Cronnibalisme ',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -21679,7 +21674,7 @@ move.cronnibalisme = {
 move.demantelement = {
     id: 'demantelement',
     name: 'Démantèlement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 25 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 16, max: 25 }, target: 'enemy' },
@@ -21690,7 +21685,7 @@ move.demantelement = {
 move.terminal_gris = {
     id: 'terminal_gris',
     name: 'Terminal Gris',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'flatDamage', value: 50, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self' },
@@ -21712,7 +21707,7 @@ move.assembricolage = {
 move.pouilleux_massacreur = {
     id: 'pouilleux_massacreur',
     name: 'Pouilleux Massacreur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 41, max: 60 }, target: 'enemy' }
@@ -21721,7 +21716,7 @@ move.pouilleux_massacreur = {
 move.crache_misere = {
     id: 'crache_misere',
     name: 'Crache-Misère',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'chance', value: 200, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'chance', value: 200, duration: 3, target: 'self' },
@@ -21735,7 +21730,7 @@ move.crache_misere = {
 move.desossage = {
     id: 'desossage',
     name: 'Désossage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' }
@@ -21744,7 +21739,7 @@ move.desossage = {
 move.souffle_du_desert = {
     id: 'souffle_du_desert',
     name: 'Souffle du Désert',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'agility', value: 200, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'agility', value: 200, duration: 3, target: 'self' },
@@ -21758,7 +21753,7 @@ move.souffle_du_desert = {
 move.bantha = {
     id: 'bantha',
     name: 'Bantha',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21767,7 +21762,7 @@ move.bantha = {
 move.balle_vorace = {
     id: 'balle_vorace',
     name: 'Balle Vorace',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'intelligence', value: 200, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'intelligence', value: 200, duration: 3, target: 'self' },
@@ -21778,7 +21773,7 @@ move.balle_vorace = {
 move.grenade_aveuglante = {
     id: 'grenade_aveuglante',
     name: 'Grenade Aveuglante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 2, duration: 2, target: 'enemy' },
         { type: 'buff', stat: 'spd', value: 2, duration: 2, target: 'self' },
@@ -21790,7 +21785,7 @@ move.grenade_aveuglante = {
 move.sol_aride = {
     id: 'sol_aride',
     name: 'Sol Aride',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'debuff', stat: 'force', value: 200, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'force', value: 200, duration: 3, target: 'self' },
@@ -21801,7 +21796,7 @@ move.sol_aride = {
 move.fouet_gadderfi = {
     id: 'fouet_gadderfi',
     name: 'Fouet Gadderfi',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'critChance', value: 15, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'critChance', value: 15, duration: 3, target: 'self' },
@@ -21815,7 +21810,7 @@ move.fouet_gadderfi = {
 move.tir_purulent = {
     id: 'tir_purulent',
     name: 'Tir Purulent',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'heal%maxHp', value: 5, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 27, max: 35 }, target: 'enemy' }
@@ -21824,7 +21819,7 @@ move.tir_purulent = {
 move.gangraine = {
     id: 'gangraine',
     name: 'Gangraine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 44 }, target: 'enemy' }
     ]
@@ -21832,7 +21827,7 @@ move.gangraine = {
 move.debarbouillie = {
     id: 'debarbouillie',
     name: 'Débarbouillie',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 35, max: 45 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -21846,7 +21841,7 @@ move.debarbouillie = {
 move.compression_furieuse = {
     id: 'compression_furieuse',
     name: 'Compression Furieuse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 57, max: 67 }, target: 'enemy' }
@@ -21855,7 +21850,7 @@ move.compression_furieuse = {
 move.plongeon_tourmente = {
     id: 'plongeon_tourmente',
     name: 'Plongeon Tourmenté',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 70, max: 82 }, target: 'enemy' },
@@ -21865,7 +21860,7 @@ move.plongeon_tourmente = {
 move.exaltation_terrifiante = {
     id: 'exaltation_terrifiante',
     name: 'Exaltation Terrifiante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 38, max: 44 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21876,7 +21871,7 @@ move.exaltation_terrifiante = {
 move.murmure_des_lamentations = {
     id: 'murmure_des_lamentations',
     name: 'Murmure des Lamentations',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 70, max: 82 }, target: 'enemy' },
         { type: 'heal', heal: 70, target: 'self' }
@@ -21885,7 +21880,7 @@ move.murmure_des_lamentations = {
 move.parabole_tordue = {
     id: 'parabole_tordue',
     name: 'Parabole Tordue',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'heal', heal: 61, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 61, max: 71 }, target: 'enemy' },
@@ -21895,7 +21890,7 @@ move.parabole_tordue = {
 move.rumeur_inquietante = {
     id: 'rumeur_inquietante',
     name: 'Rumeur Inquiétante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' },
@@ -21905,7 +21900,7 @@ move.rumeur_inquietante = {
 move.sermon_effroyable = {
     id: 'sermon_effroyable',
     name: 'Sermon Effroyable',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 59, max: 69 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -21917,7 +21912,7 @@ move.sermon_effroyable = {
 move.hauspice = {
     id: 'hauspice',
     name: 'Hauspice',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 37, max: 43 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21926,7 +21921,7 @@ move.hauspice = {
 move.divination = {
     id: 'divination',
     name: 'Divination',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 74, max: 86 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 11, max: 13 }, target: 'enemy' },
@@ -21936,7 +21931,7 @@ move.divination = {
 move.pres_age = {
     id: 'pres_age',
     name: 'Prés\'âge',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 54 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -21947,7 +21942,7 @@ move.pres_age = {
 move.estoc = {
     id: 'estoc',
     name: 'Estoc',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 8, max: 10 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -21956,7 +21951,7 @@ move.estoc = {
 move.entaille = {
     id: 'entaille',
     name: 'Entaille',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' }
@@ -21965,7 +21960,7 @@ move.entaille = {
 move.heroisme = {
     id: 'heroisme',
     name: 'Héroïsme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 38, max: 42 }, target: 'enemy' }
@@ -21974,7 +21969,7 @@ move.heroisme = {
 move.providence = {
     id: 'providence',
     name: 'Providence',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 43, max: 48 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 25, max: 25 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -21983,7 +21978,7 @@ move.providence = {
 move.condamnation = {
     id: 'condamnation',
     name: 'Condamnation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -22003,7 +21998,7 @@ move.bond = {
 move.compas = {
     id: 'compas',
     name: 'Compas',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 33, max: 37 }, target: 'enemy' }
@@ -22012,7 +22007,7 @@ move.compas = {
 move.entourloupe = {
     id: 'entourloupe',
     name: 'Entourloupe',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 32, max: 34 }, target: 'enemy' }
@@ -22030,7 +22025,7 @@ move.magnetisme = {
 move.recel = {
     id: 'recel',
     name: 'Recel',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 28, max: 30 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -22068,7 +22063,7 @@ move.aimantation = {
 move.somnolence = {
     id: 'somnolence',
     name: 'Somnolence',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 36, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -22077,7 +22072,7 @@ move.somnolence = {
 move.rempart = {
     id: 'rempart',
     name: 'Rempart',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -22093,7 +22088,7 @@ move.renfort = {
 move.barriere = {
     id: 'barriere',
     name: 'Barrière',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -22103,7 +22098,7 @@ move.barriere = {
 move.reconstitution = {
     id: 'reconstitution',
     name: 'Reconstitution',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 51, target: 'self' }
     ]
@@ -22111,7 +22106,7 @@ move.reconstitution = {
 move.invocation_de_milimeulou = {
     id: 'invocation_de_milimeulou',
     name: 'Invocation de Milimeulou',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -22121,7 +22116,7 @@ move.invocation_de_milimeulou = {
 move.ninculpation = {
     id: 'ninculpation',
     name: 'Ninculpation',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 54 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -22130,7 +22125,7 @@ move.ninculpation = {
 move.nindestructible = {
     id: 'nindestructible',
     name: 'Nindestructible',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 43, max: 49 }, target: 'enemy' }
@@ -22139,7 +22134,7 @@ move.nindestructible = {
 move.nindemnite = {
     id: 'nindemnite',
     name: 'Nindemnité',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 41, max: 48 }, target: 'enemy' },
@@ -22151,7 +22146,7 @@ move.nindemnite = {
 move.prison_de_haine = {
     id: 'prison_de_haine',
     name: 'Prison de Haine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 40, max: 46 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -22160,7 +22155,7 @@ move.prison_de_haine = {
 move.fausse_tragedie = {
     id: 'fausse_tragedie',
     name: 'Fausse Tragédie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 42, max: 48 }, target: 'enemy' }
     ]
@@ -22168,7 +22163,7 @@ move.fausse_tragedie = {
 move.pacte_demoniaque = {
     id: 'pacte_demoniaque',
     name: 'Pacte Démoniaque',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 42, max: 48 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 111, max: 129 }, target: 'enemy' },
@@ -22180,7 +22175,7 @@ move.pacte_demoniaque = {
 move.embrochement_meurtrier = {
     id: 'embrochement_meurtrier',
     name: 'Embrochement Meurtrier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 68, max: 80 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -22197,7 +22192,7 @@ move.connivence_demoniaque = {
 move.ruee_malfaisante = {
     id: 'ruee_malfaisante',
     name: 'Ruée Malfaisante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 57, max: 67 }, target: 'enemy' },
@@ -22212,7 +22207,7 @@ move.ruee_malfaisante = {
 move.triple_attaque = {
     id: 'triple_attaque',
     name: 'Triple attaque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 121, max: 130 }, target: 'enemy' }
     ]
@@ -22231,7 +22226,7 @@ move.ninrmure = {
 move.fouet_palliatif = {
     id: 'fouet_palliatif',
     name: 'Fouet Palliatif',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 61, target: 'self' }
     ]
@@ -22239,7 +22234,7 @@ move.fouet_palliatif = {
 move.fouet_cadence = {
     id: 'fouet_cadence',
     name: 'Fouet Cadencé',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -22247,7 +22242,7 @@ move.fouet_cadence = {
 move.fouet_dopant = {
     id: 'fouet_dopant',
     name: 'Fouet Dopant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -22257,7 +22252,7 @@ move.fouet_dopant = {
 move.sonjerie = {
     id: 'sonjerie',
     name: 'Sonjerie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -22268,7 +22263,7 @@ move.sonjerie = {
 move.stimulation = {
     id: 'stimulation',
     name: 'Stimulation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 12, target: 'self' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -22285,7 +22280,7 @@ move.manipulation_des_ombres = {
 move.piege_farceur = {
     id: 'piege_farceur',
     name: 'Piège Farceur',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -22294,7 +22289,7 @@ move.piege_farceur = {
 move.cabriole_simiesque = {
     id: 'cabriole_simiesque',
     name: 'Cabriole Simiesque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 25, max: 25 }, target: 'enemy' },
@@ -22307,7 +22302,7 @@ move.cabriole_simiesque = {
 move.appetit_infernal = {
     id: 'appetit_infernal',
     name: 'Appétit Infernal',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 35, max: 41 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22327,7 +22322,7 @@ move.salammbo = {
 move.fruit_du_sacrifice = {
     id: 'fruit_du_sacrifice',
     name: 'Fruit du Sacrifice',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -22341,7 +22336,7 @@ move.fruit_du_sacrifice = {
 move.liane_adaptive = {
     id: 'liane_adaptive',
     name: 'Liane adaptive',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 59 }, target: 'enemy' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
@@ -22351,7 +22346,7 @@ move.liane_adaptive = {
 move.liane_entravante = {
     id: 'liane_entravante',
     name: 'Liane entravante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 38, max: 44 }, target: 'enemy' }
     ]
@@ -22392,7 +22387,7 @@ move.poing_de_repli = {
 move.poing_destructeur = {
     id: 'poing_destructeur',
     name: 'Poing destructeur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 54 }, target: 'enemy' }
     ]
@@ -22402,7 +22397,7 @@ move.poing_destructeur = {
 move.moderation = {
     id: 'moderation',
     name: 'Modération',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22418,7 +22413,7 @@ move.moderation = {
 move.mordorsene = {
     id: 'mordorsene',
     name: 'Mordorsène',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 400, duration: 3, target: 'self' }
@@ -22427,7 +22422,7 @@ move.mordorsene = {
 move.hedite = {
     id: 'hedite',
     name: 'Hédite',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -22446,7 +22441,7 @@ move.achesse = {
 move.arbaguette = {
     id: 'arbaguette',
     name: 'Arbaguette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -22455,7 +22450,7 @@ move.arbaguette = {
 move.tambourre_pif = {
     id: 'tambourre_pif',
     name: 'Tambourre-Pif',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22475,7 +22470,7 @@ move.spore_addikt = {
 move.flemingysme = {
     id: 'flemingysme',
     name: 'Flemingysme',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 20, max: 30 }, target: 'enemy' }
     ]
@@ -22483,7 +22478,7 @@ move.flemingysme = {
 move.maturation = {
     id: 'maturation',
     name: 'Maturation',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 27, max: 38 }, target: 'enemy' }
     ]
@@ -22493,7 +22488,7 @@ move.maturation = {
 move.choc_infini = {
     id: 'choc_infini',
     name: 'Choc infini',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 60, max: 70 }, target: 'enemy' },
@@ -22512,7 +22507,7 @@ move.bond_tactique = {
 move.poussee_tourbillonnante = {
     id: 'poussee_tourbillonnante',
     name: 'Poussée tourbillonnante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 74, max: 86 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -22523,7 +22518,7 @@ move.poussee_tourbillonnante = {
 move.martignasse = {
     id: 'martignasse',
     name: 'Martignasse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -22532,7 +22527,7 @@ move.martignasse = {
 move.detresse = {
     id: 'detresse',
     name: 'Détresse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 65, max: 75 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -22551,7 +22546,7 @@ move.braconatte = {
 move.grappin_abyssal = {
     id: 'grappin_abyssal',
     name: 'Grappin Abyssal',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 50, max: 58 }, target: 'enemy' },
@@ -22561,7 +22556,7 @@ move.grappin_abyssal = {
 move.rugissement_infernal = {
     id: 'rugissement_infernal',
     name: 'Rugissement Infernal',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 86, max: 100 }, target: 'enemy' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' }
@@ -22570,7 +22565,7 @@ move.rugissement_infernal = {
 move.trombe_ravageuse = {
     id: 'trombe_ravageuse',
     name: 'Trombe Ravageuse',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 62, max: 72 }, target: 'enemy' },
         { type: 'dot', element: 'feu', value: 42, duration: 2, target: 'enemy' }
@@ -22590,7 +22585,7 @@ move.megalerien = {
 move.pagaifrenee = {
     id: 'pagaifrenee',
     name: 'Pagaifrénée',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 60 }, target: 'enemy' }
     ]
@@ -22600,7 +22595,7 @@ move.pagaifrenee = {
 move.parasitysme = {
     id: 'parasitysme',
     name: 'Parasitysme',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 35, max: 42 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -22609,7 +22604,7 @@ move.parasitysme = {
 move.ponction_lombric = {
     id: 'ponction_lombric',
     name: 'Ponction lombric',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 25, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22621,7 +22616,7 @@ move.ponction_lombric = {
 move.glyphe_des_protecteurs = {
     id: 'glyphe_des_protecteurs',
     name: 'Glyphe des protecteurs',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -22629,7 +22624,7 @@ move.glyphe_des_protecteurs = {
 move.assaut_alternatif = {
     id: 'assaut_alternatif',
     name: 'Assaut alternatif',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 100, duration: 3, target: 'enemy' },
@@ -22654,7 +22649,7 @@ move.ecu_tranchant = {
 move.festin_ardent = {
     id: 'festin_ardent',
     name: 'Festin Ardent',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 37 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22665,7 +22660,7 @@ move.festin_ardent = {
 move.uppercut_abyssal = {
     id: 'uppercut_abyssal',
     name: 'Uppercut Abyssal',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 54 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 74, max: 86 }, target: 'enemy' },
@@ -22677,7 +22672,7 @@ move.uppercut_abyssal = {
 move.ruade_brutale = {
     id: 'ruade_brutale',
     name: 'Ruade Brutale',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 200, duration: 3, target: 'enemy' },
@@ -22699,7 +22694,7 @@ move.relent = {
 move.sepiolite = {
     id: 'sepiolite',
     name: 'Sépiolite',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 37, max: 42 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -22708,7 +22703,7 @@ move.sepiolite = {
 move.trine = {
     id: 'trine',
     name: 'Trine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'flatDamage', value: 15, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 27, max: 32 }, target: 'enemy' },
@@ -22721,7 +22716,7 @@ move.trine = {
 move.stase_regenerante = {
     id: 'stase_regenerante',
     name: 'Stase Régénérante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -22730,7 +22725,7 @@ move.stase_regenerante = {
 move.solidarite_chronique = {
     id: 'solidarite_chronique',
     name: 'Solidarité Chronique',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 38, max: 44 }, target: 'enemy' },
         { type: 'heal%maxHp', value: 5, target: 'self' },
@@ -22741,7 +22736,7 @@ move.solidarite_chronique = {
 move.chronoxydation = {
     id: 'chronoxydation',
     name: 'Chronoxydation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 47 }, target: 'enemy' }
         // TODO: Minimise les effets aléatoires de la cible
@@ -22750,7 +22745,7 @@ move.chronoxydation = {
 move.onde_protectrice = {
     id: 'onde_protectrice',
     name: 'Onde Protectrice',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 35, max: 41 }, target: 'enemy' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
@@ -22761,7 +22756,7 @@ move.onde_protectrice = {
 move.frelaterie = {
     id: 'frelaterie',
     name: 'Frelaterie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 43, max: 49 }, target: 'enemy' }
     ]
@@ -22769,7 +22764,7 @@ move.frelaterie = {
 move.deplacements_degradants = {
     id: 'deplacements_degradants',
     name: 'Déplacements dégradants',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 10, max: 14 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -22779,7 +22774,7 @@ move.deplacements_degradants = {
 move.tourbe_ylol = {
     id: 'tourbe_ylol',
     name: 'Tourbe Ylol',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 39, max: 44 }, target: 'enemy' }
     ]
@@ -22787,7 +22782,7 @@ move.tourbe_ylol = {
 move.brutalysme = {
     id: 'brutalysme',
     name: 'Brutalysme',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 35, max: 47 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -22805,7 +22800,7 @@ move.crachacide = {
 move.germinator = {
     id: 'germinator',
     name: 'Germinator',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -22815,7 +22810,7 @@ move.germinator = {
 move.epine_revigorante = {
     id: 'epine_revigorante',
     name: 'Épine revigorante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 44, max: 52 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22825,7 +22820,7 @@ move.epine_revigorante = {
 move.attraction_brulante = {
     id: 'attraction_brulante',
     name: 'Attraction brûlante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 39, max: 45 }, target: 'enemy' }
@@ -22836,7 +22831,7 @@ move.attraction_brulante = {
 move.paresse = {
     id: 'paresse',
     name: 'Paresse',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 42, max: 48 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22847,7 +22842,7 @@ move.paresse = {
 move.feligance = {
     id: 'feligance',
     name: 'Féligance',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 111, max: 129 }, target: 'enemy' },
         { type: 'buff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'self' }
@@ -22858,7 +22853,7 @@ move.feligance = {
 move.sinjerie = {
     id: 'sinjerie',
     name: 'Sinjerie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 15, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 50, max: 50 }, target: 'enemy' },
@@ -22868,7 +22863,7 @@ move.sinjerie = {
 move.vague_destructrice_du_singe = {
     id: 'vague_destructrice_du_singe',
     name: 'Vague Destructrice du Singe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 40, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -22877,7 +22872,7 @@ move.vague_destructrice_du_singe = {
 move.fulgurang_outan = {
     id: 'fulgurang_outan',
     name: 'Fulgurang-outan',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 30, max: 30 }, target: 'enemy' },
@@ -22918,7 +22913,7 @@ move.renfortiche = {
 move.compression = {
     id: 'compression',
     name: 'Compression',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'buff', stat: 'damageReductionPct', value: 5, duration: 3, target: 'self' },
@@ -22928,7 +22923,7 @@ move.compression = {
 move.penitence = {
     id: 'penitence',
     name: 'Pénitence',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' }
@@ -22943,7 +22938,7 @@ move.penitence = {
 move.faux_seraphine = {
     id: 'faux_seraphine',
     name: 'Faux Séraphine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 54 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -22952,7 +22947,7 @@ move.faux_seraphine = {
 move.colonne_de_lumiere = {
     id: 'colonne_de_lumiere',
     name: 'Colonne de Lumière',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 38, max: 44 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 66, max: 76 }, target: 'enemy' },
@@ -22964,7 +22959,7 @@ move.colonne_de_lumiere = {
 move.epee_diablotine = {
     id: 'epee_diablotine',
     name: 'Épée Diablotine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 58, max: 68 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -22973,7 +22968,7 @@ move.epee_diablotine = {
 move.colonne_de_flammes = {
     id: 'colonne_de_flammes',
     name: 'Colonne de Flammes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 29, max: 33 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -22987,7 +22982,7 @@ move.colonne_de_flammes = {
 move.metaplasme = {
     id: 'metaplasme',
     name: 'Métaplasme',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 33, max: 39 }, target: 'enemy' }
     ]
@@ -22995,7 +22990,7 @@ move.metaplasme = {
 move.perversion = {
     id: 'perversion',
     name: 'Perversion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 47 }, target: 'enemy' }
     ]
@@ -23014,7 +23009,7 @@ move.devotion_combative = {
 move.chrono_calmant = {
     id: 'chrono_calmant',
     name: 'Chrono-Calmant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 37 }, target: 'enemy' }
     ]
@@ -23032,7 +23027,7 @@ move.metathese = {
 move.pernipiege = {
     id: 'pernipiege',
     name: 'Pernipiège',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23042,7 +23037,7 @@ move.pernipiege = {
 move.bombarde_kantik = {
     id: 'bombarde_kantik',
     name: 'Bombarde Kantik',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 46, max: 54 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 86, max: 100 }, target: 'enemy' }
@@ -23053,7 +23048,7 @@ move.bombarde_kantik = {
 move.affaissement = {
     id: 'affaissement',
     name: 'Affaissement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 81, max: 95 }, target: 'enemy' }
     ]
@@ -23061,7 +23056,7 @@ move.affaissement = {
 move.encanaillement = {
     id: 'encanaillement',
     name: 'Encanaillement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 67, max: 77 }, target: 'enemy' }
     ]
@@ -23082,7 +23077,7 @@ move.encanaillement = {
 move.contre_courant = {
     id: 'contre_courant',
     name: 'Contre-Courant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -23092,7 +23087,7 @@ move.contre_courant = {
 move.cratere = {
     id: 'cratere',
     name: 'Cratère',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 39, max: 45 }, target: 'enemy' }
     ]
@@ -23100,7 +23095,7 @@ move.cratere = {
 move.crachat_anesthesiant = {
     id: 'crachat_anesthesiant',
     name: 'Crachat anesthésiant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 52, max: 60 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -23123,7 +23118,7 @@ move.crachat_anesthesiant = {
 move.inimitie = {
     id: 'inimitie',
     name: 'Inimitié',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 65, max: 75 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 88, max: 102 }, target: 'enemy' },
@@ -23133,7 +23128,7 @@ move.inimitie = {
 move.boulversement = {
     id: 'boulversement',
     name: 'Boulversement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 74, max: 86 }, target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 150, duration: 3, target: 'enemy' },
@@ -23145,7 +23140,7 @@ move.boulversement = {
 move.perseverance = {
     id: 'perseverance',
     name: 'Persévérance',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 69, max: 81 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -23154,7 +23149,7 @@ move.perseverance = {
 move.aveuglette = {
     id: 'aveuglette',
     name: 'Aveuglette',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 57, max: 67 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -23186,7 +23181,7 @@ move.attraction_lunaire = {
 move.talonnade = {
     id: 'talonnade',
     name: 'Talonnade',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 69, max: 81 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -23195,7 +23190,7 @@ move.talonnade = {
 move.carcan = {
     id: 'carcan',
     name: 'Carcan',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 52, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -23206,7 +23201,7 @@ move.carcan = {
 move.paralysie = {
     id: 'paralysie',
     name: 'Paralysie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 63, max: 73 }, target: 'enemy' }
     ]
@@ -23214,7 +23209,7 @@ move.paralysie = {
 move.anabolisme = {
     id: 'anabolisme',
     name: 'Anabolisme',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 48, max: 56 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -23225,7 +23220,7 @@ move.anabolisme = {
 move.ingurgitation = {
     id: 'ingurgitation',
     name: 'Ingurgitation',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 71 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -23234,7 +23229,7 @@ move.ingurgitation = {
 move.jonction = {
     id: 'jonction',
     name: 'Jonction',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -23245,7 +23240,7 @@ move.jonction = {
 move.chrono_interception = {
     id: 'chrono_interception',
     name: 'Chrono-interception',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23253,7 +23248,7 @@ move.chrono_interception = {
 move.chrono_trig_heure = {
     id: 'chrono_trig_heure',
     name: 'Chrono Trig\'Heure',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 52, max: 60 }, target: 'enemy' }
     ]
@@ -23261,7 +23256,7 @@ move.chrono_trig_heure = {
 move.exclusion = {
     id: 'exclusion',
     name: 'Exclusion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 35, max: 41 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -23272,7 +23267,7 @@ move.exclusion = {
 move.chronoclier = {
     id: 'chronoclier',
     name: 'Chronoclier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 55, max: 63 }, target: 'enemy' }
     ]
@@ -23280,7 +23275,7 @@ move.chronoclier = {
 move.liquefaction = {
     id: 'liquefaction',
     name: 'Liquéfaction',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 47, max: 55 }, target: 'enemy' }
     ]
@@ -23290,7 +23285,7 @@ move.liquefaction = {
 move.tourments_eternels = {
     id: 'tourments_eternels',
     name: 'Tourments Éternels',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 33, max: 38 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 33, max: 38 }, target: 'enemy' }
@@ -23299,7 +23294,7 @@ move.tourments_eternels = {
 move.intrusion_cauchemardesque = {
     id: 'intrusion_cauchemardesque',
     name: 'Intrusion Cauchemardesque',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 39, max: 45 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 77, max: 89 }, target: 'enemy' },
@@ -23318,7 +23313,7 @@ move.mauvais_reves = {
 move.songe_d_une_nuit_d_enfer = {
     id: 'songe_d_une_nuit_d_enfer',
     name: 'Songe d\'une nuit d\'enfer',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 60, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -23330,7 +23325,7 @@ move.songe_d_une_nuit_d_enfer = {
 move.tir_d_artroollerie = {
     id: 'tir_d_artroollerie',
     name: 'Tir d\'Artroollerie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -23339,7 +23334,7 @@ move.tir_d_artroollerie = {
 move.mortrooll = {
     id: 'mortrooll',
     name: 'Mortrooll',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 81, max: 95 }, target: 'enemy' }
     ]
@@ -23351,7 +23346,7 @@ move.mortrooll = {
 move.double_trooll = {
     id: 'double_trooll',
     name: 'Double Trooll',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 32, max: 38 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 32, max: 38 }, target: 'enemy' },
@@ -23361,7 +23356,7 @@ move.double_trooll = {
 move.trooll_de_magie = {
     id: 'trooll_de_magie',
     name: 'Trooll de Magie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 56, target: 'self' }
     ]
@@ -23390,7 +23385,7 @@ move.coup_de_trooll = {
 move.troollpoline = {
     id: 'troollpoline',
     name: 'Troollpoline',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 100, max: 116 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -23399,7 +23394,7 @@ move.troollpoline = {
 move.aspiratrooll = {
     id: 'aspiratrooll',
     name: 'Aspiratrooll',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 65, max: 75 }, target: 'enemy' },
@@ -23436,7 +23431,7 @@ move.enveloppage = {
 move.emoussage = {
     id: 'emoussage',
     name: 'Emoussage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 201, max: 220 }, target: 'enemy' }
     ]
@@ -23449,7 +23444,7 @@ move.emoussage = {
 move.sceaux_telluriques = {
     id: 'sceaux_telluriques',
     name: 'Sceaux Telluriques',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 54 }, target: 'enemy' }
     ]
@@ -23457,7 +23452,7 @@ move.sceaux_telluriques = {
 move.amnesie_animale = {
     id: 'amnesie_animale',
     name: 'Amnésie Animale',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -23475,7 +23470,7 @@ move.gargameha = {
 move.troollooportation = {
     id: 'troollooportation',
     name: 'Troollooportation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 60, max: 70 }, target: 'enemy' }
@@ -23484,7 +23479,7 @@ move.troollooportation = {
 move.uppertrooll = {
     id: 'uppertrooll',
     name: 'Uppertrooll',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 46, max: 54 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -23494,7 +23489,7 @@ move.uppertrooll = {
 move.mitroollette_de_poings = {
     id: 'mitroollette_de_poings',
     name: 'Mitroollette de Poings',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 93, max: 108 }, target: 'enemy' }
     ]
@@ -23513,7 +23508,7 @@ move.catastrooll = {
 move.bushido = {
     id: 'bushido',
     name: 'Bushido',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -23522,7 +23517,7 @@ move.bushido = {
 move.kikoha = {
     id: 'kikoha',
     name: 'Kikoha',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -23533,7 +23528,7 @@ move.kikoha = {
 move.gotame = {
     id: 'gotame',
     name: 'Gotame',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23549,7 +23544,7 @@ move.beco_de_batofu = {
 move.lancer_de_tofu_fugace = {
     id: 'lancer_de_tofu_fugace',
     name: 'Lancer de Tofu Fugace',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -23569,7 +23564,7 @@ move.liberte = {
 move.tchaiste = {
     id: 'tchaiste',
     name: 'Tchaiste',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 50, max: 50 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 30, duration: 3, target: 'self' }
@@ -23578,7 +23573,7 @@ move.tchaiste = {
 move.avidite = {
     id: 'avidite',
     name: 'Avidité',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -23598,7 +23593,7 @@ move.frayeurs = {
 move.l_enfer_des_zombies = {
     id: 'l_enfer_des_zombies',
     name: 'L\'Enfer des Zombies',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23606,7 +23601,7 @@ move.l_enfer_des_zombies = {
 move.le_dentiste = {
     id: 'le_dentiste',
     name: 'Le Dentiste',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -23616,7 +23611,7 @@ move.le_dentiste = {
 move.esprit_empetrant = {
     id: 'esprit_empetrant',
     name: 'Esprit empêtrant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23626,7 +23621,7 @@ move.esprit_empetrant = {
 move.blatheration = {
     id: 'blatheration',
     name: 'Blathération',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 23, max: 38 }, target: 'enemy' }
     ]
@@ -23634,7 +23629,7 @@ move.blatheration = {
 move.kankroulahoup = {
     id: 'kankroulahoup',
     name: 'Kankroulahoup',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal', heal: 19, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 19, max: 30 }, target: 'enemy' }
@@ -23643,7 +23638,7 @@ move.kankroulahoup = {
 move.sfvc_r = {
     id: 'sfvc_r',
     name: 'Sfvc%$*$R ?',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
@@ -23659,7 +23654,7 @@ move.sfvc_r = {
 move.jet_proto = {
     id: 'jet_proto',
     name: 'Jet Proto',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -23669,7 +23664,7 @@ move.jet_proto = {
 move.electrocution = {
     id: 'electrocution',
     name: 'Électrocution',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -23678,7 +23673,7 @@ move.electrocution = {
 move.infection = {
     id: 'infection',
     name: 'Infection',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'recul', target: 'enemy' },
@@ -23699,7 +23694,7 @@ move.sermon_educatif = {
 move.chachagobert = {
     id: 'chachagobert',
     name: 'Chachagobert',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['dagobert'], duration: 3, target: 'enemy' }
     ]
@@ -23718,7 +23713,7 @@ move.cuvee_des_gobs = {
 move.serpette = {
     id: 'serpette',
     name: 'Serpette',
-    cooldownMs: 2000,
+    cooldownMs: 1500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 6, max: 7 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 6, max: 7 }, target: 'enemy' },
@@ -23740,7 +23735,7 @@ move.camaraderie = {
 move.enguirlandage = {
     id: 'enguirlandage',
     name: 'Enguirlandage',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 12, max: 14 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 15, duration: 3, target: 'enemy' }
@@ -23749,7 +23744,7 @@ move.enguirlandage = {
 move.calin_kipik = {
     id: 'calin_kipik',
     name: 'Câlin Kipik',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 28, max: 32 }, target: 'enemy' }
     ]
@@ -23757,7 +23752,7 @@ move.calin_kipik = {
 move.kokapik = {
     id: 'kokapik',
     name: 'Kokapik',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23767,7 +23762,7 @@ move.kokapik = {
 move.cacaobstwuant = {
     id: 'cacaobstwuant',
     name: 'Cacaobstwuant',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -23776,7 +23771,7 @@ move.cacaobstwuant = {
 move.chocohowte = {
     id: 'chocohowte',
     name: 'Chocohowte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -23784,7 +23779,7 @@ move.chocohowte = {
 move.eclat = {
     id: 'eclat',
     name: 'Éclat',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -23793,7 +23788,7 @@ move.eclat = {
 move.chocolave = {
     id: 'chocolave',
     name: 'Chocolave',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'res.terre', value: 20, duration: 3, target: 'enemy' }
@@ -23804,7 +23799,7 @@ move.chocolave = {
 move.abolissement = {
     id: 'abolissement',
     name: 'Abolissement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 200, max: 200 }, target: 'enemy' }
     ]
@@ -23812,7 +23807,7 @@ move.abolissement = {
 move.charge = {
     id: 'charge',
     name: 'Charge',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 21, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 1, duration: 3, target: 'self' }
@@ -23821,7 +23816,7 @@ move.charge = {
 move.mot_croise = {
     id: 'mot_croise',
     name: 'Mot Croisé',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'heal', heal: 15, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 15, max: 18 }, target: 'enemy' }
@@ -23830,7 +23825,7 @@ move.mot_croise = {
 move.reconstitution_bwork = {
     id: 'reconstitution_bwork',
     name: 'Reconstitution Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 50, target: 'self' },
     ]
@@ -23840,7 +23835,7 @@ move.reconstitution_bwork = {
 move.inspiration_moonesque = {
     id: 'inspiration_moonesque',
     name: 'Inspiration Moonesque',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: ['kanniboul_ark','kanniboul_jav','kanniboul_eth','kanniboul_sarbak','kanniboul_tam'], duration: 3, target: 'enemy' }
     ]
@@ -23848,7 +23843,7 @@ move.inspiration_moonesque = {
 move.bouboule = {
     id: 'bouboule',
     name: 'Bouboule',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 45 }, target: 'enemy' }
     ]
@@ -23858,7 +23853,7 @@ move.bouboule = {
 move.tyrannisation = {
     id: 'tyrannisation',
     name: 'Tyrannisation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 50, max: 50 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
@@ -23878,7 +23873,7 @@ move.gravite = {
 move.invocation_de_tonneau = {
     id: 'invocation_de_tonneau',
     name: 'Invocation de Tonneau',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -23891,7 +23886,7 @@ move.invocation_de_tonneau = {
 move.un_gros_boulet_sur_un_autre_boulet = {
     id: 'un_gros_boulet_sur_un_autre_boulet',
     name: 'Un gros boulet sur un autre boulet',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -23899,7 +23894,7 @@ move.un_gros_boulet_sur_un_autre_boulet = {
 move.bombarde = {
     id: 'bombarde',
     name: 'Bombarde',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 110 }, target: 'enemy' },
         { type: 'debuff', stat: 'critChance', value: 1, duration: 3, target: 'enemy' }
@@ -23918,7 +23913,7 @@ move.exhalation_toxique = {
 move.mord_mollet = {
     id: 'mord_mollet',
     name: 'Mord Mollet',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 19, max: 24 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -23927,7 +23922,7 @@ move.mord_mollet = {
 move.soin_diffus = {
     id: 'soin_diffus',
     name: 'Soin Diffus',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -23938,7 +23933,7 @@ move.soin_diffus = {
 move.enlisement = {
     id: 'enlisement',
     name: 'Enlisement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
@@ -23947,7 +23942,7 @@ move.enlisement = {
 move.convocation_gluante = {
     id: 'convocation_gluante',
     name: 'Convocation gluante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -23961,7 +23956,7 @@ move.convocation_gluante = {
 move.deglutition = {
     id: 'deglutition',
     name: 'Déglutition',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -23972,7 +23967,7 @@ move.deglutition = {
 move.coraillement_magistral = {
     id: 'coraillement_magistral',
     name: 'Coraillement Magistral',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
@@ -23982,7 +23977,7 @@ move.coraillement_magistral = {
 move.lancer_de_corail_magistral = {
     id: 'lancer_de_corail_magistral',
     name: 'Lancer de Corail Magistral',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 1, max: 10 }, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 30, duration: 3, target: 'enemy' }
@@ -23991,7 +23986,7 @@ move.lancer_de_corail_magistral = {
 move.frappe_de_corail_magistrale = {
     id: 'frappe_de_corail_magistrale',
     name: 'Frappe de Corail Magistrale',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 9000, max: 9000 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -24010,7 +24005,7 @@ move.reste_assis = {
 move.vinriktus = {
     id: 'vinriktus',
     name: 'Vinriktus',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -24019,7 +24014,7 @@ move.vinriktus = {
 move.detriktus = {
     id: 'detriktus',
     name: 'Détriktus',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -24030,7 +24025,7 @@ move.detriktus = {
 move.wawabehameha = {
     id: 'wawabehameha',
     name: 'WaWabehameha',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
@@ -24057,7 +24052,7 @@ move.awmuwe_woyale = {
 move.cawotte_woyale = {
     id: 'cawotte_woyale',
     name: 'Cawotte Woyale',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -24068,7 +24063,7 @@ move.cawotte_woyale = {
 move.coup_de_sabre_maudit = {
     id: 'coup_de_sabre_maudit',
     name: 'Coup de Sabre Maudit',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 150, duration: 3, target: 'enemy' }
@@ -24087,7 +24082,7 @@ move.peau_de_granite = {
 move.pierre_etourdissante = {
     id: 'pierre_etourdissante',
     name: 'Pierre Étourdissante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 20 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -24104,7 +24099,7 @@ move.peau_de_silex = {
 move.invocation_montagnarde = {
     id: 'invocation_montagnarde',
     name: 'Invocation Montagnarde',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -24130,7 +24125,7 @@ move.coeur_de_craqueleur = {
 move.frappe_du_craqueleur_legendaire = {
     id: 'frappe_du_craqueleur_legendaire',
     name: 'Frappe du Craqueleur Légendaire',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
@@ -24148,7 +24143,7 @@ move.rattirance = {
 move.moissonnage = {
     id: 'moissonnage',
     name: 'Moissonnage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 45 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24159,7 +24154,7 @@ move.moissonnage = {
 move.plantes_zombies = {
     id: 'plantes_zombies',
     name: 'Plantes Zombies',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24186,7 +24181,7 @@ move.dechiquetage = {
 move.ecrasement_royal = {
     id: 'ecrasement_royal',
     name: 'Écrasement Royal',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'maxHp', value: 51, duration: 3, target: 'enemy' }
@@ -24195,7 +24190,7 @@ move.ecrasement_royal = {
 move.invocation_royale_de_tofu = {
     id: 'invocation_royale_de_tofu',
     name: 'Invocation Royale de Tofu',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24203,7 +24198,7 @@ move.invocation_royale_de_tofu = {
 move.beco_du_tofu_royal = {
     id: 'beco_du_tofu_royal',
     name: 'Béco du Tofu Royal',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' }
     ]
@@ -24213,7 +24208,7 @@ move.beco_du_tofu_royal = {
 move.blopoutrage_royal = {
     id: 'blopoutrage_royal',
     name: 'Blopoutrage Royal',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24239,7 +24234,7 @@ move.blopacification = {
 move.mekattwaction = {
     id: 'mekattwaction',
     name: 'Mékattwaction',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -24249,7 +24244,7 @@ move.mekattwaction = {
 move.twansmutation = {
     id: 'twansmutation',
     name: 'Twansmutation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24269,7 +24264,7 @@ move.mekawapace = {
 move.wouste = {
     id: 'wouste',
     name: 'Wouste',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -24288,7 +24283,7 @@ move.substitution = {
 move.ponte_d_oeuf = {
     id: 'ponte_d_oeuf',
     name: 'Ponte d\'Oeuf',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24296,7 +24291,7 @@ move.ponte_d_oeuf = {
 move.cisaillage = {
     id: 'cisaillage',
     name: 'Cisaillage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 45 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -24306,7 +24301,7 @@ move.cisaillage = {
 move.mitraille_de_soie = {
     id: 'mitraille_de_soie',
     name: 'Mitraille de soie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 36, max: 45 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 15, duration: 3, target: 'enemy' }
@@ -24317,7 +24312,7 @@ move.mitraille_de_soie = {
 move.marteau_de_moon = {
     id: 'marteau_de_moon',
     name: 'Marteau de Moon',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -24327,7 +24322,7 @@ move.marteau_de_moon = {
 move.choc_sismique = {
     id: 'choc_sismique',
     name: 'Choc Sismique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -24336,7 +24331,7 @@ move.choc_sismique = {
 move.face_cachee = {
     id: 'face_cachee',
     name: 'Face Cachée',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24346,7 +24341,7 @@ move.face_cachee = {
 move.ka_dabor = {
     id: 'ka_dabor',
     name: 'Ka Dabor',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -24355,7 +24350,7 @@ move.ka_dabor = {
 move.chte_hu = {
     id: 'chte_hu',
     name: 'Chté Hu !',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -24380,10 +24375,10 @@ move.hiffe = {
         { type: 'debuff', stat: 'res.air', value: 2000, duration: 3, target: 'enemy' }
     ]
 }
-move.helse = {
-    id: 'helse',
+move.helseair = {
+    id: 'helseair',
     name: 'Helse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -24391,7 +24386,7 @@ move.helse = {
 move.forque = {
     id: 'forque',
     name: 'Forque',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 50, target: 'self' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -24410,7 +24405,7 @@ move.hiffe_eau = {
 move.helse_eau = {
     id: 'helse_eau',
     name: 'Helse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -24427,7 +24422,7 @@ move.hiffe_feu = {
 move.helse = {
     id: 'helse',
     name: 'Helse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -24444,7 +24439,7 @@ move.hiffe_terre = {
 move.helse_terre = {
     id: 'helse_terre',
     name: 'Helse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 50 }, target: 'enemy' }
     ]
@@ -24462,7 +24457,7 @@ move.engluement = {
 move.dichotomie = {
     id: 'dichotomie',
     name: 'Dichotomie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'maxHp', value: 200, duration: 2, target: 'enemy' }
@@ -24479,7 +24474,7 @@ move.aspir_nenfan = {
 move.embuche_de_nowel = {
     id: 'embuche_de_nowel',
     name: 'Embûche de Nowel',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 10000, target: 'self' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' }
@@ -24488,7 +24483,7 @@ move.embuche_de_nowel = {
 move.trak_nenfan = {
     id: 'trak_nenfan',
     name: 'Trak\'nenfan',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -24499,7 +24494,7 @@ move.trak_nenfan = {
 move.infantophagie = {
     id: 'infantophagie',
     name: 'Infantophagie',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 500, target: 'self' }
     ]
@@ -24509,7 +24504,7 @@ move.infantophagie = {
 move.eclair_rouge = {
     id: 'eclair_rouge',
     name: 'Éclair Rouge',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 52, max: 56 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 15, duration: 3, target: 'enemy' }
@@ -24518,7 +24513,7 @@ move.eclair_rouge = {
 move.pulsation_malsaine = {
     id: 'pulsation_malsaine',
     name: 'Pulsation Malsaine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 76, max: 80 }, target: 'enemy' }
@@ -24529,7 +24524,7 @@ move.pulsation_malsaine = {
 move.lancer_de_tofu = {
     id: 'lancer_de_tofu',
     name: 'Lancer de Tofu',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -24548,7 +24543,7 @@ move.graines_magiques = {
 move.sabotage = {
     id: 'sabotage',
     name: 'Sabotage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 71, max: 110 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -24559,7 +24554,7 @@ move.sabotage = {
 move.fumee_alourdissante = {
     id: 'fumee_alourdissante',
     name: 'Fumée alourdissante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24570,7 +24565,7 @@ move.fumee_alourdissante = {
 move.fumee_asphyxiante = {
     id: 'fumee_asphyxiante',
     name: 'Fumée asphyxiante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24580,7 +24575,7 @@ move.fumee_asphyxiante = {
 move.fumee_aveuglante = {
     id: 'fumee_aveuglante',
     name: 'Fumée aveuglante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24591,7 +24586,7 @@ move.fumee_aveuglante = {
 move.fumee_brulante = {
     id: 'fumee_brulante',
     name: 'Fumée brûlante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24601,7 +24596,7 @@ move.fumee_brulante = {
 move.petards_volants = {
     id: 'petards_volants',
     name: 'Pétards volants',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -24620,7 +24615,7 @@ move.kissifrotsipik = {
 move.poulverisation = {
     id: 'poulverisation',
     name: 'Poulvérisation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 54, max: 58 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -24631,7 +24626,7 @@ move.poulverisation = {
 move.sanction_tenebreuse = {
     id: 'sanction_tenebreuse',
     name: 'Sanction Ténébreuse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' }
     ]
@@ -24647,7 +24642,7 @@ move.lien_volatile = {
 move.invocation_de_corbac = {
     id: 'invocation_de_corbac',
     name: 'Invocation de Corbac',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24655,7 +24650,7 @@ move.invocation_de_corbac = {
 move.carapace_d_ailes = {
     id: 'carapace_d_ailes',
     name: 'Carapace d\'Ailes',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'renvoi', ratio: 0.5, target: 'self' },
@@ -24667,7 +24662,7 @@ move.carapace_d_ailes = {
 move.chant_regenerant = {
     id: 'chant_regenerant',
     name: 'Chant Régénérant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 26, target: 'self' },
         { type: 'heal', heal: 11, target: 'self' }
@@ -24693,7 +24688,7 @@ move.chant_de_jouvence = {
 move.chant_immobilisant = {
     id: 'chant_immobilisant',
     name: 'Chant Immobilisant',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -24701,7 +24696,7 @@ move.chant_immobilisant = {
 move.chant_foudroyant = {
     id: 'chant_foudroyant',
     name: 'Chant Foudroyant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 41, max: 60 }, target: 'enemy' }
     ]
@@ -24713,7 +24708,7 @@ move.chant_foudroyant = {
 move.eau_fraiche = {
     id: 'eau_fraiche',
     name: 'Eau fraîche',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 25, target: 'self' },
         { type: 'heal%maxHp', value: 38, target: 'self' },
@@ -24724,7 +24719,7 @@ move.eau_fraiche = {
 move.hatsunamiku = {
     id: 'hatsunamiku',
     name: 'Hatsunamiku',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 32, max: 37 }, target: 'enemy' }
     ]
@@ -24732,7 +24727,7 @@ move.hatsunamiku = {
 move.colere_bouillonnante = {
     id: 'colere_bouillonnante',
     name: 'Colère bouillonnante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 63, max: 73 }, target: 'enemy' }
     ]
@@ -24740,7 +24735,7 @@ move.colere_bouillonnante = {
 move.hors_de_ma_vue = {
     id: 'hors_de_ma_vue',
     name: 'Hors de ma vue',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 33, max: 39 }, target: 'enemy' }
     ]
@@ -24748,7 +24743,7 @@ move.hors_de_ma_vue = {
 move.invocation_de_bombombre_de_nagate = {
     id: 'invocation_de_bombombre_de_nagate',
     name: 'Invocation de Bombombre de Nagate',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24758,7 +24753,7 @@ move.invocation_de_bombombre_de_nagate = {
 move.regroupmouth = {
     id: 'regroupmouth',
     name: 'Regroupmouth',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -24767,7 +24762,7 @@ move.regroupmouth = {
 move.lichemouth = {
     id: 'lichemouth',
     name: 'Lichemouth',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 66, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -24776,7 +24771,7 @@ move.lichemouth = {
 move.aleamouth = {
     id: 'aleamouth',
     name: 'Aléamouth',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -24789,7 +24784,7 @@ move.aleamouth = {
 move.instabilite_temporelle = {
     id: 'instabilite_temporelle',
     name: 'Instabilité temporelle',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -24798,7 +24793,7 @@ move.instabilite_temporelle = {
 move.chaleur_fugace = {
     id: 'chaleur_fugace',
     name: 'Chaleur fugace',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 125, max: 125 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -24806,7 +24801,7 @@ move.chaleur_fugace = {
 move.frakasse = {
     id: 'frakasse',
     name: 'Frakasse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -24816,7 +24811,7 @@ move.frakasse = {
 move.aubepine = {
     id: 'aubepine',
     name: 'Aubépine',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 16, max: 20 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 16, max: 20 }, target: 'enemy' },
@@ -24828,7 +24823,7 @@ move.aubepine = {
 move.bourgeonnement = {
     id: 'bourgeonnement',
     name: 'Bourgeonnement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -24836,7 +24831,7 @@ move.bourgeonnement = {
 move.urticaire = {
     id: 'urticaire',
     name: 'Urticaire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 26, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' },
@@ -24850,7 +24845,7 @@ move.urticaire = {
 move.prendre_son_pied = {
     id: 'prendre_son_pied',
     name: 'Prendre son pied',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -24859,7 +24854,7 @@ move.prendre_son_pied = {
 move.flatulences_buccales = {
     id: 'flatulences_buccales',
     name: 'Flatulences buccales',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' },
@@ -24878,7 +24873,7 @@ move.degazage = {
 move.tete_dans_le_sable = {
     id: 'tete_dans_le_sable',
     name: 'Tête dans le sable',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -24889,7 +24884,7 @@ move.tete_dans_le_sable = {
 move.pikak = {
     id: 'pikak',
     name: 'Pikak',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'agility', value: 50, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'agility', value: 50, duration: 3, target: 'self' },
@@ -24908,7 +24903,7 @@ move.pikak = {
 move.pikepik = {
     id: 'pikepik',
     name: 'Piképik',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -24931,7 +24926,7 @@ move.pikepik = {
 move.bamba = {
     id: 'bamba',
     name: 'Bamba',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -24946,7 +24941,7 @@ move.bamba = {
 move.etripage = {
     id: 'etripage',
     name: 'Étripage',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -24955,7 +24950,7 @@ move.etripage = {
 move.rage_reconstituante = {
     id: 'rage_reconstituante',
     name: 'Rage Reconstituante',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 400, target: 'self' }
     ]
@@ -24974,7 +24969,7 @@ move.case_depart = {
 move.tourbilaule = {
     id: 'tourbilaule',
     name: 'Tourbilaule',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -24985,7 +24980,7 @@ move.tourbilaule = {
 move.dansorcellement = {
     id: 'dansorcellement',
     name: 'Dansorcellement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -25005,7 +25000,7 @@ move.enfumage = {
 move.invocation_de_bouftou_des_cavernes = {
     id: 'invocation_de_bouftou_des_cavernes',
     name: 'Invocation de Bouftou des cavernes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25043,7 +25038,7 @@ move.souffle_du_koulosse = {
 move.qikong = {
     id: 'qikong',
     name: 'Qìkǒng',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25051,7 +25046,7 @@ move.qikong = {
 move.grande_lame_du_vent = {
     id: 'grande_lame_du_vent',
     name: 'Grande Lame du Vent',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 43, max: 50 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25061,7 +25056,7 @@ move.grande_lame_du_vent = {
 move.ba_gua_zhang = {
     id: 'ba_gua_zhang',
     name: 'Ba Gua Zhang',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 19, max: 22 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -25070,7 +25065,7 @@ move.ba_gua_zhang = {
 move.brise_apaisante = {
     id: 'brise_apaisante',
     name: 'Brise apaisante',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
@@ -25081,7 +25076,7 @@ move.brise_apaisante = {
 move.source_des_vents = {
     id: 'source_des_vents',
     name: 'Source des vents',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -25098,7 +25093,7 @@ move.jufang = {
 move.da_bang = {
     id: 'da_bang',
     name: 'Da Bàng',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 28, max: 33 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -25119,7 +25114,7 @@ move.ang_eurfiste = {
 move.tirer_les_ficelles = {
     id: 'tirer_les_ficelles',
     name: 'Tirer les ficelles',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'debuff', stat: 'agility', value: 100, duration: 3, target: 'enemy' },
@@ -25161,7 +25156,7 @@ move.uchimizu = {
 move.casse_noisettes = {
     id: 'casse_noisettes',
     name: 'Casse-noisettes',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' }
@@ -25170,7 +25165,7 @@ move.casse_noisettes = {
 move.tibagin = {
     id: 'tibagin',
     name: 'Tibagin',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'buffDrain', value: 2, target: 'enemy' },
@@ -25180,7 +25175,7 @@ move.tibagin = {
 move.boulodrome = {
     id: 'boulodrome',
     name: 'Boulodrome',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -25199,7 +25194,7 @@ move.raccourci = {
 move.rasoir = {
     id: 'rasoir',
     name: 'Rasoir',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -25216,7 +25211,7 @@ move.rasoir = {
 move.mutagen = {
     id: 'mutagen',
     name: 'Mutagen',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25229,7 +25224,7 @@ move.mutagen = {
 move.la_pelle_du_large = {
     id: 'la_pelle_du_large',
     name: 'La pelle du large',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 56 }, target: 'enemy' }
     ]
@@ -25237,7 +25232,7 @@ move.la_pelle_du_large = {
 move.la_pierre_philosophale = {
     id: 'la_pierre_philosophale',
     name: 'La pierre philosophale',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 251, max: 260 }, target: 'enemy' }
     ]
@@ -25247,7 +25242,7 @@ move.la_pierre_philosophale = {
 move.mansoluble = {
     id: 'mansoluble',
     name: 'Mansoluble',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -25257,7 +25252,7 @@ move.mansoluble = {
 move.mansolenoide = {
     id: 'mansolenoide',
     name: 'Mansolénoïde',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -25267,7 +25262,7 @@ move.mansolenoide = {
 move.pantang = {
     id: 'pantang',
     name: 'Pantang',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -25276,7 +25271,7 @@ move.pantang = {
 move.etoile_de_mer = {
     id: 'etoile_de_mer',
     name: 'Étoile de Mer',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25288,7 +25283,7 @@ move.etoile_de_mer = {
 move.attraction_gourmande = {
     id: 'attraction_gourmande',
     name: 'Attraction gourmande',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -25301,7 +25296,7 @@ move.attraction_gourmande = {
 move.total_impwakt = {
     id: 'total_impwakt',
     name: 'Total Impwâkt',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 65 }, target: 'enemy' },
         // TODO: Minimise les effets aléatoires de la cible
@@ -25317,7 +25312,7 @@ move.total_impwakt = {
 move.croustichoc = {
     id: 'croustichoc',
     name: 'Croustichoc',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 26, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' },
@@ -25339,7 +25334,7 @@ move.boum_boh = {
 move.invocation_du_disciple = {
     id: 'invocation_du_disciple',
     name: 'Invocation du Disciple',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25363,7 +25358,7 @@ move.etat_impair = {
 move.furie_du_kimbo = {
     id: 'furie_du_kimbo',
     name: 'Furie du Kimbo',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -25418,7 +25413,7 @@ move.hololole = {
 move.recrutement = {
     id: 'recrutement',
     name: 'Recrutement',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25432,7 +25427,7 @@ move.recrutement = {
 move.bond_malefique = {
     id: 'bond_malefique',
     name: 'Bond Maléfique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -25443,7 +25438,7 @@ move.bond_malefique = {
 move.fatalite = {
     id: 'fatalite',
     name: 'Fatalité',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 48, max: 56 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -25471,7 +25466,7 @@ move.prejudice = {
 move.mousse_haillon = {
     id: 'mousse_haillon',
     name: 'Mousse Haillon',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -25480,7 +25475,7 @@ move.mousse_haillon = {
 move.tore_tue = {
     id: 'tore_tue',
     name: 'Tore tue',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25488,7 +25483,7 @@ move.tore_tue = {
 move.frere_de_la_cote = {
     id: 'frere_de_la_cote',
     name: 'Frère de la côte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25501,7 +25496,7 @@ move.frere_de_la_cote = {
 move.mate_l_eau = {
     id: 'mate_l_eau',
     name: 'Mâte l\'eau',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -25512,7 +25507,7 @@ move.mate_l_eau = {
 move.objection = {
     id: 'objection',
     name: 'Objection',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -25521,7 +25516,7 @@ move.objection = {
 move.scie_lisse = {
     id: 'scie_lisse',
     name: 'Scie lisse',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25529,7 +25524,7 @@ move.scie_lisse = {
 move.andesite = {
     id: 'andesite',
     name: 'Andésite',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25537,7 +25532,7 @@ move.andesite = {
 move.scie_licate = {
     id: 'scie_licate',
     name: 'Scie licate',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -25548,7 +25543,7 @@ move.scie_licate = {
 move.hageshi_kaze = {
     id: 'hageshi_kaze',
     name: 'Hageshī Kaze',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' },
@@ -25558,7 +25553,7 @@ move.hageshi_kaze = {
 move.aspiration_du_yokomainu = {
     id: 'aspiration_du_yokomainu',
     name: 'Aspiration du Yokomaïnu',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -25573,7 +25568,7 @@ move.aspiration_du_yokomainu = {
 move.shin_kudaigyoku = {
     id: 'shin_kudaigyoku',
     name: 'Shin Kûdaigyoku',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 25 }, target: 'enemy' },
@@ -25594,7 +25589,7 @@ move.bizarrerie = {
 move.opiniatrete = {
     id: 'opiniatrete',
     name: 'Opiniâtreté',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 16, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -25614,7 +25609,7 @@ move.sirop_spore = {
 move.spore_hanchambre = {
     id: 'spore_hanchambre',
     name: 'Spore Hanchambre',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'buff', stat: 'critChance', value: 50, duration: 3, target: 'self' },
         { type: 'heal', heal: 5000, target: 'self' },
@@ -25625,7 +25620,7 @@ move.spore_hanchambre = {
 move.les_coprins_d_abord = {
     id: 'les_coprins_d_abord',
     name: 'Les Coprins d\'abord',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25640,7 +25635,7 @@ move.les_coprins_d_abord = {
 move.chachyene_cinglante = {
     id: 'chachyene_cinglante',
     name: 'Chachyène cinglante',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'res.eau', value: 20, duration: 3, target: 'enemy' }
@@ -25649,7 +25644,7 @@ move.chachyene_cinglante = {
 move.rugissement_matriarcal = {
     id: 'rugissement_matriarcal',
     name: 'Rugissement matriarcal',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 5 }, target: 'enemy' }
@@ -25670,7 +25665,7 @@ move.motivation_captivante = {
 move.razepoutine = {
     id: 'razepoutine',
     name: 'Razepoutine',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 86, max: 95 }, target: 'enemy' }
     ]
@@ -25686,7 +25681,7 @@ move.baikal = {
 move.illyana = {
     id: 'illyana',
     name: 'Illyana',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 86, target: 'self' },
         { type: 'avance', target: 'enemy' },
@@ -25697,7 +25692,7 @@ move.illyana = {
 move.acolyte = {
     id: 'acolyte',
     name: 'Acolyte',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25705,7 +25700,7 @@ move.acolyte = {
 move.cerebro = {
     id: 'cerebro',
     name: 'Cerebro',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 66, max: 75 }, target: 'enemy' }
     ]
@@ -25715,7 +25710,7 @@ move.cerebro = {
 move.roc_phorreur = {
     id: 'roc_phorreur',
     name: 'Roc Phorreur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -25724,7 +25719,7 @@ move.roc_phorreur = {
 move.phorce = {
     id: 'phorce',
     name: 'Phorce',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 50, max: 50 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
@@ -25733,7 +25728,7 @@ move.phorce = {
 move.bain_de_lave = {
     id: 'bain_de_lave',
     name: 'Bain de lave',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 80 }, target: 'enemy' }
@@ -25742,7 +25737,7 @@ move.bain_de_lave = {
 move.epicentre = {
     id: 'epicentre',
     name: 'Épicentre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
     ]
@@ -25768,7 +25763,7 @@ move.calin_frigorifique = {
 move.farce = {
     id: 'farce',
     name: 'Farce',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 5, max: 5 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 66, max: 75 }, target: 'enemy' }
@@ -25777,7 +25772,7 @@ move.farce = {
 move.foux_d_amour = {
     id: 'foux_d_amour',
     name: 'Foux d\'amour',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25788,7 +25783,7 @@ move.foux_d_amour = {
 move.malice_glacee = {
     id: 'malice_glacee',
     name: 'Malice glacée',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 81, max: 100 }, target: 'enemy' },
@@ -25800,7 +25795,7 @@ move.malice_glacee = {
 move.coquetterie = {
     id: 'coquetterie',
     name: 'Coquetterie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 61, max: 70 }, target: 'enemy' }
@@ -25809,7 +25804,7 @@ move.coquetterie = {
 move.souffle_demoniaque = {
     id: 'souffle_demoniaque',
     name: 'Souffle démoniaque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 81, max: 90 }, target: 'enemy' }
     ]
@@ -25827,7 +25822,7 @@ move.dereglement = {
 move.hoshi_no_tama = {
     id: 'hoshi_no_tama',
     name: 'Hoshi no tama',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 20, target: 'self' },
     ]
@@ -25835,7 +25830,7 @@ move.hoshi_no_tama = {
 move.no_raj = {
     id: 'no_raj',
     name: 'No raj',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 200, duration: 3, target: 'enemy' },
@@ -25845,7 +25840,7 @@ move.no_raj = {
 move.aura_des_kitsounebi = {
     id: 'aura_des_kitsounebi',
     name: 'Aura des Kitsounebi',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 15, max: 17 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 15, max: 17 }, target: 'enemy' },
@@ -25855,14 +25850,14 @@ move.aura_des_kitsounebi = {
 move.koumiho_no_kaze = {
     id: 'koumiho_no_kaze',
     name: 'Koumiho no kaze',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }]
 }
 move.supaku = {
     id: 'supaku',
     name: 'Supāku',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 10, max: 11 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -25871,7 +25866,7 @@ move.supaku = {
 move.pougix = {
     id: 'pougix',
     name: 'Pougix',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 7, max: 11 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 7, max: 11 }, target: 'enemy' },
@@ -25883,7 +25878,7 @@ move.pougix = {
 move.kaiyo = {
     id: 'kaiyo',
     name: 'Kaiyo',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 50, max: 58 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 15, max: 15 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
@@ -25892,7 +25887,7 @@ move.kaiyo = {
 move.retraite = {
     id: 'retraite',
     name: 'Retraite',
-    cooldownMs: 6000,
+    cooldownMs: 3000,
     effects: [
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
         { type: 'heal%maxHp', value: 15, target: 'self' },
@@ -25905,7 +25900,7 @@ move.retraite = {
 move.invokabombz = {
     id: 'invokabombz',
     name: 'Invokabombz',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -25935,7 +25930,7 @@ move.carapabz = {
 move.clonabz = {
     id: 'clonabz',
     name: 'Clonabz',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -25943,7 +25938,7 @@ move.clonabz = {
 move.abzlation = {
     id: 'abzlation',
     name: 'Abzlation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 33, max: 37 }, target: 'enemy' },
         { type: 'dot', element: 'air', value: 23, duration: 2, target: 'enemy' },
@@ -25964,7 +25959,7 @@ move.bzovolution = {
 move.sanction_bwork = {
     id: 'sanction_bwork',
     name: 'Sanction Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 30 }, target: 'enemy' }
     ]
@@ -25972,7 +25967,7 @@ move.sanction_bwork = {
 move.correction_bwork = {
     id: 'correction_bwork',
     name: 'Correction Bwork',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 30, max: 30 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -25980,7 +25975,7 @@ move.correction_bwork = {
 move.fauchoir = {
     id: 'fauchoir',
     name: 'Fauchoir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -25991,7 +25986,7 @@ move.fauchoir = {
 move.fwetage = {
     id: 'fwetage',
     name: 'Fwetage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 141, max: 160 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 141, max: 160 }, target: 'enemy' },
@@ -26003,7 +25998,7 @@ move.fwetage = {
 move.parade_des_vieux_jouets = {
     id: 'parade_des_vieux_jouets',
     name: 'Parade des vieux jouets',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -26016,7 +26011,7 @@ move.parade_des_vieux_jouets = {
 move.invocation_de_jouet_casse = {
     id: 'invocation_de_jouet_casse',
     name: 'Invocation de Jouet Cassé',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -26027,7 +26022,7 @@ move.invocation_de_jouet_casse = {
 move.riraule = {
     id: 'riraule',
     name: 'Riraule',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26035,7 +26030,7 @@ move.riraule = {
 move.loute = {
     id: 'loute',
     name: 'Loute',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 61, max: 70 }, target: 'enemy' },
@@ -26045,7 +26040,7 @@ move.loute = {
 move.hairpay = {
     id: 'hairpay',
     name: 'Hairpay',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -26054,7 +26049,7 @@ move.hairpay = {
 move.paixe = {
     id: 'paixe',
     name: 'Paixe',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26064,7 +26059,7 @@ move.paixe = {
 move.venin_salvateur = {
     id: 'venin_salvateur',
     name: 'Venin Salvateur',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -26073,7 +26068,7 @@ move.venin_salvateur = {
 move.poison_volatile = {
     id: 'poison_volatile',
     name: 'Poison volatile',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 50, max: 50 }, target: 'enemy' }
@@ -26082,7 +26077,7 @@ move.poison_volatile = {
 move.vile_ruse = {
     id: 'vile_ruse',
     name: 'Vile ruse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 50, max: 50 }, target: 'enemy' }
@@ -26091,7 +26086,7 @@ move.vile_ruse = {
 move.flacune = {
     id: 'flacune',
     name: 'Flacune',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 71, max: 80 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
@@ -26102,7 +26097,7 @@ move.flacune = {
 move.frappe_cristalline = {
     id: 'frappe_cristalline',
     name: 'Frappe Cristalline',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 48, max: 56 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -26111,7 +26106,7 @@ move.frappe_cristalline = {
 move.rale_d_agonie = {
     id: 'rale_d_agonie',
     name: 'Râle d\'Agonie',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 74, max: 86 }, target: 'enemy' },
         { type: 'dot', element: 'air', value: 12, duration: 3, target: 'enemy' }
@@ -26130,7 +26125,7 @@ move.geomancie = {
 move.bouillonnement = {
     id: 'bouillonnement',
     name: 'Bouillonnement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 43, max: 49 }, target: 'enemy' }
     ]
@@ -26138,7 +26133,7 @@ move.bouillonnement = {
 move.subreptice = {
     id: 'subreptice',
     name: 'Subreptice',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26146,7 +26141,7 @@ move.subreptice = {
 move.ason_inshu = {
     id: 'ason_inshu',
     name: 'Ason Inshu',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26154,7 +26149,7 @@ move.ason_inshu = {
 move.shurprise = {
     id: 'shurprise',
     name: 'Shurprise',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 47, max: 55 }, target: 'enemy' }
     ]
@@ -26162,7 +26157,7 @@ move.shurprise = {
 move.shuculbute = {
     id: 'shuculbute',
     name: 'Shuculbute',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 17, max: 19 }, target: 'enemy' }
@@ -26171,7 +26166,7 @@ move.shuculbute = {
 move.piege_a_remous = {
     id: 'piege_a_remous',
     name: 'Piège à remous',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26190,7 +26185,7 @@ move.affouillement = {
 move.temps_de_retard = {
     id: 'temps_de_retard',
     name: 'Temps de retard',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 47, max: 55 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
@@ -26214,7 +26209,7 @@ move.destinos = {
 move.mythos = {
     id: 'mythos',
     name: 'Mythos',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 41, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -26230,7 +26225,7 @@ move.mythos = {
 move.kitos = {
     id: 'kitos',
     name: 'Kitos',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 201, target: 'self' }
     ]
@@ -26250,7 +26245,7 @@ move.motivatos = {
 move.gloursondulation = {
     id: 'gloursondulation',
     name: 'Gloursondulation',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 91, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -26260,7 +26255,7 @@ move.gloursondulation = {
 move.gloursombre = {
     id: 'gloursombre',
     name: 'Gloursombre',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -26268,7 +26263,7 @@ move.gloursombre = {
 move.petit_glours_brun = {
     id: 'petit_glours_brun',
     name: 'Petit Glours Brun',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26278,7 +26273,7 @@ move.petit_glours_brun = {
 move.frimas = {
     id: 'frimas',
     name: 'Frimas',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
@@ -26296,7 +26291,7 @@ move.gelee_blanche = {
 move.banquise = {
     id: 'banquise',
     name: 'Banquise',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -26307,7 +26302,7 @@ move.banquise = {
 move.cycle = {
     id: 'cycle',
     name: 'Cycle',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26317,7 +26312,7 @@ move.cycle = {
 move.progeniture = {
     id: 'progeniture',
     name: 'Progéniture',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -26329,7 +26324,7 @@ move.progeniture = {
 move.lait_maternel = {
     id: 'lait_maternel',
     name: 'Lait Maternel',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'heal', heal: 91, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 200, duration: 3, target: 'self' }
@@ -26338,7 +26333,7 @@ move.lait_maternel = {
 move.foufoux = {
     id: 'foufoux',
     name: 'Foufoux',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 71, max: 90 }, target: 'enemy' },
@@ -26350,7 +26345,7 @@ move.foufoux = {
 move.liaison = {
     id: 'liaison',
     name: 'Liaison',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -26361,7 +26356,7 @@ move.liaison = {
 move.distorsion = {
     id: 'distorsion',
     name: 'Distorsion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 100, max: 100 }, target: 'enemy' }
     ]
@@ -26379,7 +26374,7 @@ move.penombre = {
 move.pelliste = {
     id: 'pelliste',
     name: 'Pelliste',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' },
@@ -26389,7 +26384,7 @@ move.pelliste = {
 move.archi_pelle = {
     id: 'archi_pelle',
     name: 'Archi-Pelle',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' }
@@ -26426,7 +26421,7 @@ move.charge_eclair = {
 move.tige_empoisonnee = {
     id: 'tige_empoisonnee',
     name: 'Tige empoisonnée',
-    cooldownMs: 2000,
+    cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 16, max: 19 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 16, max: 19 }, target: 'enemy' }
@@ -26435,7 +26430,7 @@ move.tige_empoisonnee = {
 move.bulbombe = {
     id: 'bulbombe',
     name: 'Bulbombe',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 65, max: 75 }, target: 'enemy' }
     ]
@@ -26443,7 +26438,7 @@ move.bulbombe = {
 move.pistil_affaiblissant = {
     id: 'pistil_affaiblissant',
     name: 'Pistil affaiblissant',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 59 }, target: 'enemy' }
     ]
@@ -26453,7 +26448,7 @@ move.pistil_affaiblissant = {
 move.paternalisme = {
     id: 'paternalisme',
     name: 'Paternalisme',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -26463,7 +26458,7 @@ move.paternalisme = {
 move.coup_d_il = {
     id: 'coup_d_il',
     name: 'Coup d\'Œil',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
@@ -26481,7 +26476,7 @@ move.bien_vu_l_aveugle = {
 move.temps_mort = {
     id: 'temps_mort',
     name: 'Temps mort',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 111, max: 129 }, target: 'enemy' }
     ]
@@ -26498,7 +26493,7 @@ move.combustion_lente = {
 move.catachronie = {
     id: 'catachronie',
     name: 'Catachronie',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 42, max: 48 }, target: 'enemy' }
     ]
@@ -26506,7 +26501,7 @@ move.catachronie = {
 move.alentissement = {
     id: 'alentissement',
     name: 'Alentissement',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -26515,7 +26510,7 @@ move.alentissement = {
 move.contraction_temporelle = {
     id: 'contraction_temporelle',
     name: 'Contraction temporelle',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -26524,7 +26519,7 @@ move.contraction_temporelle = {
 move.inexorabilis = {
     id: 'inexorabilis',
     name: 'Inexorabilis',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -26532,7 +26527,7 @@ move.inexorabilis = {
 move.chronostase = {
     id: 'chronostase',
     name: 'Chronostase',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26542,7 +26537,7 @@ move.chronostase = {
 move.mortelage = {
     id: 'mortelage',
     name: 'Mortelage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 37, max: 43 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 18, max: 19 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
@@ -26551,7 +26546,7 @@ move.mortelage = {
 move.oppression = {
     id: 'oppression',
     name: 'Oppression',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 49, max: 57 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
@@ -26568,7 +26563,7 @@ move.trombe_d_acier = {
 move.martel = {
     id: 'martel',
     name: 'Martel',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 44, max: 52 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 63, max: 73 }, target: 'enemy' },
@@ -26580,7 +26575,7 @@ move.martel = {
 move.cuir_a_feu_doux = {
     id: 'cuir_a_feu_doux',
     name: 'Cuir à feu doux',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 300, duration: 3, target: 'self' },
@@ -26590,7 +26585,7 @@ move.cuir_a_feu_doux = {
 move.cuir_moustache = {
     id: 'cuir_moustache',
     name: 'Cuir moustache',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' }
@@ -26599,7 +26594,7 @@ move.cuir_moustache = {
 move.moustacheron = {
     id: 'moustacheron',
     name: 'Moustacheron',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
@@ -26620,7 +26615,7 @@ move.cristallisation = {
 move.sang_froid = {
     id: 'sang_froid',
     name: 'Sang froid',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 91, max: 110 }, target: 'enemy' },
@@ -26630,7 +26625,7 @@ move.sang_froid = {
 move.glace_trop_physique = {
     id: 'glace_trop_physique',
     name: 'Glace trop physique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' },
@@ -26642,7 +26637,7 @@ move.glace_trop_physique = {
 move.fraction_de_molaire = {
     id: 'fraction_de_molaire',
     name: 'Fraction de molaire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }        ,
@@ -26652,7 +26647,7 @@ move.fraction_de_molaire = {
 move.glace_seche = {
     id: 'glace_seche',
     name: 'Glace sèche',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 90 }, target: 'enemy' },
@@ -26662,7 +26657,7 @@ move.glace_seche = {
 move.liqueur_de_fee_ling = {
     id: 'liqueur_de_fee_ling',
     name: 'Liqueur de Fée Ling',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 5, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 300, duration: 3, target: 'self' }
@@ -26673,7 +26668,7 @@ move.liqueur_de_fee_ling = {
 move.poincon = {
     id: 'poincon',
     name: 'Poinçon',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 101, max: 140 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -26683,7 +26678,7 @@ move.poincon = {
 move.mortier = {
     id: 'mortier',
     name: 'Mortier',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 71, max: 80 }, target: 'enemy' }
@@ -26703,7 +26698,7 @@ move.degage_de_qualite = {
 move.contretemps = {
     id: 'contretemps',
     name: 'Contretemps',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 7, max: 7 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
@@ -26713,7 +26708,7 @@ move.contretemps = {
 move.multicomte = {
     id: 'multicomte',
     name: 'Multicomte',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -26721,7 +26716,7 @@ move.multicomte = {
 move.jaquemart = {
     id: 'jaquemart',
     name: 'Jaquemart',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -26732,7 +26727,7 @@ move.jaquemart = {
 move.torpillage_de_glace = {
     id: 'torpillage_de_glace',
     name: 'Torpillage de glace',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 121, max: 140 }, target: 'enemy' }
     ]
@@ -26740,7 +26735,7 @@ move.torpillage_de_glace = {
 move.sondage_de_bronze = {
     id: 'sondage_de_bronze',
     name: 'Sondage de Bronze',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 101, max: 120 }, target: 'enemy' }
     ]
@@ -26756,7 +26751,7 @@ move.baphe_thysca = {
 move.bouche_a_bouche = {
     id: 'bouche_a_bouche',
     name: 'Bouche-à-Bouche',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -26766,7 +26761,7 @@ move.bouche_a_bouche = {
 move.aube_saine = {
     id: 'aube_saine',
     name: 'Aube Saine',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 101, max: 120 }, target: 'enemy' },
@@ -26776,7 +26771,7 @@ move.aube_saine = {
 move.leve_tot = {
     id: 'leve_tot',
     name: 'Lève-tôt',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 81, max: 100 }, target: 'enemy' }
     ]
@@ -26792,7 +26787,7 @@ move.rossee_matinale = {
 move.demon_de_midi = {
     id: 'demon_de_midi',
     name: 'Démon de Midi',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 101, max: 120 }, target: 'enemy' },
@@ -26802,7 +26797,7 @@ move.demon_de_midi = {
 move.coup_de_soleil = {
     id: 'coup_de_soleil',
     name: 'Coup de Soleil',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         // TODO: Maximise les effets aléatoires sur la cible
         { type: 'damage', element: 'terre', damage: { min: 121, max: 140 }, target: 'enemy' },
@@ -26813,7 +26808,7 @@ move.coup_de_soleil = {
 move.eruption_solaire = {
     id: 'eruption_solaire',
     name: 'Éruption Solaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 121, max: 140 }, target: 'enemy' },
@@ -26823,7 +26818,7 @@ move.eruption_solaire = {
 move.coucher_de_soleil = {
     id: 'coucher_de_soleil',
     name: 'Coucher de Soleil',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -26831,7 +26826,7 @@ move.coucher_de_soleil = {
 move.cours_du_soir = {
     id: 'cours_du_soir',
     name: 'Cours du Soir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 71, max: 80 }, target: 'enemy' }
     ]
@@ -26839,7 +26834,7 @@ move.cours_du_soir = {
 move.le_grand_soir = {
     id: 'le_grand_soir',
     name: 'Le Grand Soir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -26847,7 +26842,7 @@ move.le_grand_soir = {
 move.demons_de_minuit = {
     id: 'demons_de_minuit',
     name: 'Démons de Minuit',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -26856,7 +26851,7 @@ move.demons_de_minuit = {
 move.nuit_blanche = {
     id: 'nuit_blanche',
     name: 'Nuit Blanche',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' }
@@ -26865,7 +26860,7 @@ move.nuit_blanche = {
 move.protecteur_d_emoi = {
     id: 'protecteur_d_emoi',
     name: 'Protecteur d\'émoi',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -26876,7 +26871,7 @@ move.protecteur_d_emoi = {
 move.coup_de_marre_d_eau = {
     id: 'coup_de_marre_d_eau',
     name: 'Coup de Marre d\'eau',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 50, max: 58 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
@@ -26907,7 +26902,7 @@ move.impatience = {
 move.hemorasoir = {
     id: 'hemorasoir',
     name: 'Hémorasoir',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 46, max: 54 }, target: 'enemy' }
     ]
@@ -26915,7 +26910,7 @@ move.hemorasoir = {
 move.brutank = {
     id: 'brutank',
     name: 'Brutank',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' }
@@ -26924,7 +26919,7 @@ move.brutank = {
 move.atermoiement = {
     id: 'atermoiement',
     name: 'Atermoiement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 93, max: 108 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -26933,7 +26928,7 @@ move.atermoiement = {
 move.recentrage = {
     id: 'recentrage',
     name: 'Recentrage',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -26942,7 +26937,7 @@ move.recentrage = {
 move.proxicaire = {
     id: 'proxicaire',
     name: 'Proxicaire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 83, max: 97 }, target: 'enemy' }
@@ -26951,7 +26946,7 @@ move.proxicaire = {
 move.musculot = {
     id: 'musculot',
     name: 'Musculot',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 47, max: 54 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 47, max: 54 }, target: 'enemy' }
@@ -26962,7 +26957,7 @@ move.musculot = {
 move.faisceau_lunaire = {
     id: 'faisceau_lunaire',
     name: 'Faisceau lunaire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 66, max: 85 }, target: 'enemy' }
     ]
@@ -26978,7 +26973,7 @@ move.carapace_lunaire = {
 move.ricochet_sacre = {
     id: 'ricochet_sacre',
     name: 'Ricochet sacré',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 100 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -26987,7 +26982,7 @@ move.ricochet_sacre = {
 move.goutte_lunaire = {
     id: 'goutte_lunaire',
     name: 'Goutte lunaire',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 90 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
@@ -26998,7 +26993,7 @@ move.goutte_lunaire = {
 move.ratafia_putride = {
     id: 'ratafia_putride',
     name: 'Ratafia Putride',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'dot', element: 'air', value: 49, duration: 2, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
@@ -27007,7 +27002,7 @@ move.ratafia_putride = {
 move.offrande_au_chaos = {
     id: 'offrande_au_chaos',
     name: 'Offrande au Chaos',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 34, max: 39 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -27018,7 +27013,7 @@ move.offrande_au_chaos = {
 move.paume_incandescente = {
     id: 'paume_incandescente',
     name: 'Paume Incandescente',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 47, max: 55 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 47, max: 55 }, target: 'enemy' },
@@ -27028,7 +27023,7 @@ move.paume_incandescente = {
 move.il_du_nocher = {
     id: 'il_du_nocher',
     name: 'Œil du Nocher',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'heal%maxHp', value: 10, target: 'self' },
@@ -27047,7 +27042,7 @@ move.d_une_main_de_maitre = {
 move.Pentademonium = {
     id: 'Pentademonium',
     name: 'Pentadémonium',
-    cooldownMs: 10000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 600, max: 700 }, target: 'enemy' }
     ]
@@ -27056,7 +27051,7 @@ move.Pentademonium = {
 move.confusion = {
     id: 'confusion',
     name: 'Confusion',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 61, max: 80 }, target: 'enemy' }
     ]
@@ -27064,7 +27059,7 @@ move.confusion = {
 move.attrape_mutin = {
     id: 'attrape_mutin',
     name: 'Attrape-Mutin',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' },
@@ -27074,7 +27069,7 @@ move.attrape_mutin = {
 move.mon_precieux = {
     id: 'mon_precieux',
     name: 'Mon précieux',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 1000, max: 1000 }, target: 'enemy' },
@@ -27096,7 +27091,7 @@ move.mort_en_sursis = {
 move.coup_critique = {
     id: 'coup_critique',
     name: 'Coup critique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 150, max: 150 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -27106,7 +27101,7 @@ move.coup_critique = {
 move.heuristique = {
     id: 'heuristique',
     name: 'Heuristique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
@@ -27134,7 +27129,7 @@ move.en_temps_et_en_heure = {
 move.toilette_ecaflip = {
     id: 'toilette_ecaflip',
     name: 'Toilette Ecaflip',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -27144,7 +27139,7 @@ move.toilette_ecaflip = {
 move.farce_et_attrape = {
     id: 'farce_et_attrape',
     name: 'Farce et Attrape',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 101, max: 120 }, target: 'enemy' }
@@ -27153,7 +27148,7 @@ move.farce_et_attrape = {
 move.gros_yeux = {
     id: 'gros_yeux',
     name: 'Gros Yeux',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 20, target: 'self' },
         { type: 'buff', stat: 'atk', value: 600, duration: 3, target: 'self' }
@@ -27166,7 +27161,7 @@ move.gros_yeux = {
 move.siphon_d_ame = {
     id: 'siphon_d_ame',
     name: 'Siphon d\'Âme',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 107, max: 111 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -27185,7 +27180,7 @@ move.cooquillation = {
 move.frappe_koutonienne = {
     id: 'frappe_koutonienne',
     name: 'Frappe Koutonienne',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 151, max: 155 }, target: 'enemy' }
     ]
@@ -27211,7 +27206,7 @@ move.cheveux_partir_de_la = {
 move.filature = {
     id: 'filature',
     name: 'Filature',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' }
@@ -27220,7 +27215,7 @@ move.filature = {
 move.transe_perse = {
     id: 'transe_perse',
     name: 'Transe-Perse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 200, max: 200 }, target: 'enemy' }
     ]
@@ -27230,7 +27225,7 @@ move.transe_perse = {
 move.goulification = {
     id: 'goulification',
     name: 'Goulification',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 121, max: 140 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -27239,7 +27234,7 @@ move.goulification = {
 move.vampyrisme = {
     id: 'vampyrisme',
     name: 'Vampyrisme',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 101, max: 120 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -27259,7 +27254,7 @@ move.appetit_sanguinaire = {
 move.empalement_royal = {
     id: 'empalement_royal',
     name: 'Empalement royal',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 101, max: 120 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 40, duration: 3, target: 'self' },
@@ -27269,7 +27264,7 @@ move.empalement_royal = {
 move.ninflitration = {
     id: 'ninflitration',
     name: 'Ninflitration',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 81, max: 100 }, target: 'enemy' },
@@ -27289,7 +27284,7 @@ move.nintrepidite = {
 move.cloches_du_kao = {
     id: 'cloches_du_kao',
     name: 'Cloches du Kao',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
@@ -27298,7 +27293,7 @@ move.cloches_du_kao = {
 move.equador = {
     id: 'equador',
     name: 'Equador',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self' }
@@ -27307,7 +27302,7 @@ move.equador = {
 move.spatule_tranche_gourmands = {
     id: 'spatule_tranche_gourmands',
     name: 'Spatule Tranche-Gourmands',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 70 }, target: 'enemy' }
     ]
@@ -27315,7 +27310,7 @@ move.spatule_tranche_gourmands = {
 move.commerce_inequitable = {
     id: 'commerce_inequitable',
     name: 'Commerce Inéquitable',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -27326,7 +27321,7 @@ move.commerce_inequitable = {
 move.balance_fleau = {
     id: 'balance_fleau',
     name: 'Balance-Fléau',
-    cooldownMs: 2000,
+    cooldownMs: 2200,
     effects: [
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' },
@@ -27339,7 +27334,7 @@ move.balance_fleau = {
 move.funerailles_celestes = {
     id: 'funerailles_celestes',
     name: 'Funérailles Célestes',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
@@ -27348,7 +27343,7 @@ move.funerailles_celestes = {
 move.grand_urubu = {
     id: 'grand_urubu',
     name: 'Grand Urubu',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -27357,7 +27352,7 @@ move.grand_urubu = {
 move.dakhma = {
     id: 'dakhma',
     name: 'Dakhma',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 51, max: 70 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -27368,7 +27363,7 @@ move.dakhma = {
 move.barchan = {
     id: 'barchan',
     name: 'Barchan',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -27381,7 +27376,7 @@ move.barchan = {
 move.ninfernal = {
     id: 'ninfernal',
     name: 'Ninfernal',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 32, max: 38 }, target: 'enemy' }
@@ -27390,7 +27385,7 @@ move.ninfernal = {
 move.nimparabilite = {
     id: 'nimparabilite',
     name: 'Nimparabilité',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -27422,7 +27417,7 @@ move.embrigadement = {
 move.troolverisation = {
     id: 'troolverisation',
     name: 'Troolvérisation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 60, max: 70 }, target: 'enemy' }
     ]
@@ -27430,7 +27425,7 @@ move.troolverisation = {
 move.exaction = {
     id: 'exaction',
     name: 'Exaction',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 45, max: 53 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
@@ -27449,7 +27444,7 @@ move.catapultage = {
 move.poing_de_la_cite_sombre = {
     id: 'poing_de_la_cite_sombre',
     name: 'Poing de la Cité Sombre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 83, max: 97 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -27458,7 +27453,7 @@ move.poing_de_la_cite_sombre = {
 move.poing_de_la_cite_blanche = {
     id: 'poing_de_la_cite_blanche',
     name: 'Poing de la Cité Blanche',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 46, max: 54 }, target: 'enemy' }
@@ -27467,7 +27462,7 @@ move.poing_de_la_cite_blanche = {
 move.cycle_de_la_violence = {
     id: 'cycle_de_la_violence',
     name: 'Cycle de la Violence',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
@@ -27476,7 +27471,7 @@ move.cycle_de_la_violence = {
 move.massacre_de_l_aurore_pourpre = {
     id: 'massacre_de_l_aurore_pourpre',
     name: 'Massacre de l\'Aurore Pourpre',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' },
@@ -27496,7 +27491,7 @@ move.massacre_de_l_aurore_pourpre = {
 move.beche_corrompue = {
     id: 'beche_corrompue',
     name: 'Bêche corrompue',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 34, max: 46 }, target: 'enemy' }
@@ -27505,7 +27500,7 @@ move.beche_corrompue = {
 move.incu_batteur = {
     id: 'incu_batteur',
     name: 'Incu-Batteur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 48, max: 56 }, target: 'enemy' }
     ]
@@ -27513,7 +27508,7 @@ move.incu_batteur = {
 move.convalescence_prolifique = {
     id: 'convalescence_prolifique',
     name: 'Convalescence Prolifique',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 28, max: 35 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -27522,7 +27517,7 @@ move.convalescence_prolifique = {
 move.putrefaction = {
     id: 'putrefaction',
     name: 'Putréfaction',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 56, max: 68 }, target: 'enemy' }
     ]
@@ -27538,7 +27533,7 @@ move.bombe_bacteriologique = {
 move.eclosion_germinal = {
     id: 'eclosion_germinal',
     name: 'Éclosion germinal',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 24, max: 30 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 200, duration: 3, target: 'enemy' },
@@ -27558,7 +27553,7 @@ move.bravoure = {
 move.impact = {
     id: 'impact',
     name: 'Impact',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 85 }, target: 'enemy' }
@@ -27567,7 +27562,7 @@ move.impact = {
 move.lynchage = {
     id: 'lynchage',
     name: 'Lynchage',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 71, max: 85 }, target: 'enemy' }
     ]
@@ -27575,7 +27570,7 @@ move.lynchage = {
 move.magmalefice = {
     id: 'magmalefice',
     name: 'Magmaléfice',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' }
     ]
@@ -27591,7 +27586,7 @@ move.celerite = {
 move.martyre = {
     id: 'martyre',
     name: 'Martyre',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' }
     ]
@@ -27617,7 +27612,7 @@ move.asservissement = {
 move.joug_protecteur = {
     id: 'joug_protecteur',
     name: 'Joug Protecteur',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 76, max: 85 }, target: 'enemy' }
     ]
@@ -27627,7 +27622,7 @@ move.joug_protecteur = {
 move.parchemin_de_traverse = {
     id: 'parchemin_de_traverse',
     name: 'Parchemin de Traverse',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 60 }, target: 'enemy' }
     ]
@@ -27643,7 +27638,7 @@ move.papetuerie = {
 move.roque_papier_ciseaux = {
     id: 'roque_papier_ciseaux',
     name: 'Roque Papier Ciseaux',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 71, max: 100 }, target: 'enemy' },
@@ -27654,7 +27649,7 @@ move.roque_papier_ciseaux = {
 move.kami_no_jishin = {
     id: 'kami_no_jishin',
     name: 'Kami no Jishin',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 41, max: 60 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -27665,7 +27660,7 @@ move.kami_no_jishin = {
 move.toner_deubraiste = {
     id: 'toner_deubraiste',
     name: 'Toner Deubraiste',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 29, max: 33 }, target: 'enemy' },
         { type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 3, target: 'enemy' }
@@ -27674,7 +27669,7 @@ move.toner_deubraiste = {
 move.getsuga_tensho = {
     id: 'getsuga_tensho',
     name: 'Getsuga Tenshō',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 58, max: 68 }, target: 'enemy' }
     ]
@@ -27682,7 +27677,7 @@ move.getsuga_tensho = {
 move.monarchie_des_roses_noires = {
     id: 'monarchie_des_roses_noires',
     name: 'Monarchie des Roses Noires',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 66, max: 76 }, target: 'enemy' },
@@ -27694,7 +27689,7 @@ move.monarchie_des_roses_noires = {
 move.saut_imperieux = {
     id: 'saut_imperieux',
     name: 'Saut Impérieux',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 71, max: 90 }, target: 'enemy' }
@@ -27703,7 +27698,7 @@ move.saut_imperieux = {
 move.cri_venerable = {
     id: 'cri_venerable',
     name: 'Cri Vénérable',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -27713,7 +27708,7 @@ move.cri_venerable = {
 move.primattaque = {
     id: 'primattaque',
     name: 'Primattaque',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
@@ -27722,7 +27717,7 @@ move.primattaque = {
 move.primartelement = {
     id: 'primartelement',
     name: 'Primartèlement',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
@@ -27731,7 +27726,7 @@ move.primartelement = {
 move.charge_fantastique = {
     id: 'charge_fantastique',
     name: 'Charge Fantastique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 71, max: 90 }, target: 'enemy' },
@@ -27741,7 +27736,7 @@ move.charge_fantastique = {
 move.boulet_fantastique = {
     id: 'boulet_fantastique',
     name: 'Boulet Fantastique',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -27752,7 +27747,7 @@ move.boulet_fantastique = {
 move.faux_espoirs = {
     id: 'faux_espoirs',
     name: 'Faux espoirs',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 69 }, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -27761,7 +27756,7 @@ move.faux_espoirs = {
 move.resonance_sempiternelle = {
     id: 'resonance_sempiternelle',
     name: 'Résonance sempiternelle',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 66, max: 74 }, target: 'enemy' }
     ]
@@ -27769,7 +27764,7 @@ move.resonance_sempiternelle = {
 move.portail = {
     id: 'portail',
     name: 'Portail',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
@@ -27790,7 +27785,7 @@ move.enchantement_fatal = {
 move.charme_malefique = {
     id: 'charme_malefique',
     name: 'Charme maléfique',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' },
@@ -27805,7 +27800,7 @@ move.charme_malefique = {
 move.glyphe_de_condamnation = {
     id: 'glyphe_de_condamnation',
     name: 'Glyphe de condamnation',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
@@ -27814,7 +27809,7 @@ move.glyphe_de_condamnation = {
 move.dechainement_fantasmagorique = {
     id: 'dechainement_fantasmagorique',
     name: 'Déchainement fantasmagorique',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 42, max: 48 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -27825,7 +27820,7 @@ move.dechainement_fantasmagorique = {
 move.malefice_immobile = {
     id: 'malefice_immobile',
     name: 'Maléfice immobile',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
@@ -27835,7 +27830,7 @@ move.malefice_immobile = {
 move.conjuration_entravante = {
     id: 'conjuration_entravante',
     name: 'Conjuration entravante',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 60, max: 70 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
@@ -27848,7 +27843,7 @@ move.conjuration_entravante = {
 move.crystalisation = {
     id: 'crystalisation',
     name: 'Crystalisation',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 47, max: 51 }, target: 'enemy' }
     ]
@@ -27856,7 +27851,7 @@ move.crystalisation = {
 move.matiere_volatile = {
     id: 'matiere_volatile',
     name: 'Matière Volatile',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 48, max: 52 }, target: 'enemy' }
     ]
@@ -27880,7 +27875,7 @@ move.metal_hurlant = {
 move.briselame = {
     id: 'briselame',
     name: 'Briselâme',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 59, max: 69 }, target: 'enemy' }
@@ -27889,7 +27884,7 @@ move.briselame = {
 move.triste_cire = {
     id: 'triste_cire',
     name: 'Triste Cire',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 18, max: 20 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
@@ -27901,7 +27896,7 @@ move.triste_cire = {
 move.hantame = {
     id: 'hantame',
     name: 'Hantâme',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 151, max: 170 }, target: 'enemy' },
@@ -27911,7 +27906,7 @@ move.hantame = {
 move.lance_de_l_effroi = {
     id: 'lance_de_l_effroi',
     name: 'Lance de l\'effroi',
-    cooldownMs: 2000,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 151, max: 170 }, target: 'enemy' }
     ]
