@@ -263,7 +263,7 @@ function _renderForgePanel(content) {
         const lbl    = FORGE_STAT_LABELS[rune.stat] || rune.stat
         const active = _forgeSelectedRune === runeId
         const badge  = rune.transcendance ? ' <span class="forge-trans-badge">Trans</span>' : ''
-        return `<div class="forge-rune-card${active ? ' forge-rune-active' : ''}${rune.transcendance ? ' forge-rune-trans' : ''}" onclick="selectForgeRune('${runeId}')" title="${rune.description || ''}">
+        return `<div class="forge-rune-card${active ? ' forge-rune-active' : ''}${rune.transcendance ? ' forge-rune-trans' : ''}" onclick="selectForgeRune('${runeId}')" oncontextmenu="event.preventDefault();event.stopPropagation();showItemTooltip('${runeId}')" title="${rune.description || ''}">
             <img src="${rune.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'" class="forge-rune-img">
             <div class="forge-rune-stat">+${rune.value} ${lbl}${badge}</div>
             <div class="forge-rune-meta">−${rune.levelCost ?? 5} niv. · ×${count}</div>

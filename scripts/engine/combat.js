@@ -235,6 +235,7 @@ function randomInt(min, max) {
 function spawnEnemy(areaId) {
     const area = areas[areaId]
     if (!area) return null
+    if (!area.spawns || area.spawns.length === 0) return null
 
     // Sélection pondérée — dropRateElite booste le poids des mobs elite/rare/légendaire
     const _eliteBonus = (getAllTeamFarmingBonuses().dropRateElite || 0) / 100
@@ -876,7 +877,17 @@ function gameTick() {
     }
 
     if (state.isRunning && _afkSeconds <= 0) updateCombatUI()
-    } catch(e) { console.error('[gameTick]', e) }
+    combat._criticalErrors = 0
+    } catch(e) {
+        console.error('[gameTick]', e)
+        if (combat) {
+            combat._criticalErrors = (combat._criticalErrors || 0) + 1
+            if (combat._criticalErrors > 10) {
+                console.error('[gameTick] Erreur critique répétée — sortie forcée du combat')
+                leaveCombat()
+            }
+        }
+    }
 }
 
 // ─── Actions ─────────────────────────────────────────────────────────────────
@@ -4671,7 +4682,17 @@ function raidGameTick() {
             if (!combat.raidRespawnPending?.some(Boolean)) actCompanion(_cm)
         }
     }
-    } catch(e) { console.error('[raidGameTick]', e) }
+    combat._criticalErrors = 0
+    } catch(e) {
+        console.error('[raidGameTick]', e)
+        if (combat) {
+            combat._criticalErrors = (combat._criticalErrors || 0) + 1
+            if (combat._criticalErrors > 10) {
+                console.error('[raidGameTick] Erreur critique répétée — sortie forcée du combat')
+                leaveCombat()
+            }
+        }
+    }
 }
 
 // ─── Ciblage ─────────────────────────────────────────────────

@@ -872,6 +872,14 @@ item.cleDonjonLarves = {
     isKey: true,
     description: 'Cette clef permet de rentrer dans le Donjon des Larves.'
 }
+item.cleDonjonKatrepat = {
+    id: 'cleDonjonKatrepat',
+    name: 'Clef du Donjon des Katrepat',
+    image: 'img/items/divers/DonjonKatrepat.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans le Donjon des Katrepat.'
+}
 
 // #endregion
 

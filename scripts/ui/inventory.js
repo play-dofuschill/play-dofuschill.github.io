@@ -242,6 +242,33 @@ function showItemTooltip(itemId, fromClassId) {
         }
     }
 
+    // Bloc spécifique aux runes
+    let runeStatHtml = ''
+    if (itm.type === 'rune') {
+        const lbl   = STAT_LABELS[itm.stat] || itm.stat
+        const icon  = STAT_ICON_MAP[itm.stat] || ''
+        const color = itm.transcendance ? '#a855f7' : '#4a9bdb'
+        const qty   = entry?.count ?? 0
+        const fusionLine = (itm.fusionCost && !itm.transcendance)
+            ? `<div>Fusion : <strong>${itm.fusionCost}×</strong> de cette rune → 1 Transcendance</div>`
+            : ''
+        const reqLine = (itm.minRequiredLevel > 0)
+            ? `<div>Item minimum : niveau ${itm.minRequiredLevel}</div>`
+            : ''
+        runeStatHtml = `<div class="item-stats-block">
+            <div class="item-stat-row">
+                ${icon ? `<img src="${icon}" class="item-stat-icon">` : ''}
+                <span style="color:${color}">+${itm.value} ${lbl}</span>
+            </div>
+        </div>
+        <div class="item-passif-block" style="margin:0.3rem 0;padding:0.35rem 0.5rem;border-left:3px solid ${color};font-size:0.78rem;line-height:1.7;opacity:0.9;">
+            <div>Coût : <strong>−${itm.levelCost ?? 5} niveaux</strong> à la forge</div>
+            ${reqLine}
+            ${fusionLine}
+            ${qty > 0 ? `<div>En stock : <strong>×${qty}</strong></div>` : ''}
+        </div>`
+    }
+
     // Panoplie(s) — un item peut appartenir à plusieurs sets (set: string ou set: [str, str])
     let setHtml = ''
     const _setIds = itm.set ? (Array.isArray(itm.set) ? itm.set : [itm.set]) : []
@@ -333,7 +360,9 @@ function showItemTooltip(itemId, fromClassId) {
         </div>`
     }
 
-    const slotLabel = (typeof MS_SLOT_LABELS !== 'undefined' && MS_SLOT_LABELS[itm.slot]) || itm.slot || ''
+    const slotLabel = itm.type === 'rune'
+        ? (itm.transcendance ? 'Rune de Transcendance' : 'Rune de forge')
+        : ((typeof MS_SLOT_LABELS !== 'undefined' && MS_SLOT_LABELS[itm.slot]) || itm.slot || '')
     const lvlBar = itm.itemLevelMax ? `<div class="item-sheet-level-row">
         <div class="item-level-bar"><div class="item-level-fill" style="width:${lvl && itm.itemLevelMax ? (lvl/itm.itemLevelMax)*100 : 0}%"></div></div>
         <span class="item-sheet-level">Niv. ${lvl} / ${itm.itemLevelMax}</span>
@@ -459,6 +488,7 @@ function showItemTooltip(itemId, fromClassId) {
             </div>
         </div>
         ${statsHtml ? `<div class="item-stats-block">${statsHtml}</div>` : ''}
+        ${runeStatHtml}
         ${setHtml}
         ${passifHtml}
         ${zonesHtml}
