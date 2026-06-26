@@ -138,10 +138,10 @@ areas.campementDesGobs = {
         { id: 'gobichon', weight: 10 }, 
         { id: 'gobaladee', weight: 5 }],
     lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'amulette_de_gobeuf', dropRate: 0.01 }, 
         { itemId: 'ceinture_de_gobeuf', dropRate: 0.01 }, 
-        { itemId: 'anneau_de_gobeuf', dropRate: 0.01 }, 
-        { itemId: 'pierreDame', dropRate: 0.45 }, 
+        { itemId: 'anneau_de_gobeuf', dropRate: 0.01 },
         { itemId: 'cleDonjonAcademieGobs', dropRate: 0.15, isKey: true }]
 }
 
@@ -227,6 +227,7 @@ areas.grenierDeKerubim = {
         { id: 'ceglumen', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'anneau_bille', dropRate: 0.01 },
         { itemId: 'amulette_perle', dropRate: 0.01 },
         { itemId: 'cape_lumette', dropRate: 0.01 },
