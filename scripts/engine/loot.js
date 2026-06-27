@@ -80,7 +80,23 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
 
     // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
-    const itemEntries = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
+    const baseEntries      = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
+    const levelableEntries = baseEntries.filter(e => item[e.itemId]?.itemLevelMax)
+    const maxedCount       = levelableEntries.filter(e => {
+        const inv = state.inventory[e.itemId]
+        return inv && inv.level >= item[e.itemId].itemLevelMax
+    }).length
+    const maxedRatio  = levelableEntries.length > 0 ? maxedCount / levelableEntries.length : 0
+    const maxedFactor = 1 - 0.9 * maxedRatio * maxedRatio  // quadratique : [1.0 → 0.1]
+
+    const itemEntries = baseEntries.map(e => {
+        const itm     = item[e.itemId]
+        if (!itm?.itemLevelMax) return e
+        const inv     = state.inventory[e.itemId]
+        const isMaxed = inv && inv.level >= itm.itemLevelMax
+        return isMaxed ? { ...e, dropRate: e.dropRate * maxedFactor } : e
+    })
+
     const levelMult   = _getLevelDropPenaltyMult(areaId)
     const totalChance = Math.min(0.95, (itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus) * levelMult)
 

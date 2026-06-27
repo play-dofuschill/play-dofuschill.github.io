@@ -5563,7 +5563,7 @@ areas.raidEkarlatte = {
         { id: 'tromblion', weight: 10 },
         { id: 'elsoummo', weight: 5 }
     ],
-    miniBoss: { id: 'capitaineEkarlatte', everyKills: 9, statMult: 1 },
+    miniBoss: { id: 'capitaine_ekarlatte', everyKills: 9, statMult: 1 },
     lootTable: [
         { itemId: 'ceinture_du_capitaine_ekarlatte', dropRate: 0.01 },
         { itemId: 'bottes_du_capitaine_ekarlatte', dropRate: 0.01 },
@@ -5648,7 +5648,7 @@ areas.raidUsh = {
         { id: 'chargus', weight: 10 },
         { id: 'chakaroze', weight: 5 }
     ],
-    miniBoss: { id: 'ushGalesh', everyKills: 12, statMult: 1 },
+    miniBoss: { id: 'ush_galesh', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'bottes_de_ush', dropRate: 0.01 },
         { itemId: 'col_de_ush', dropRate: 0.01 },
@@ -5759,7 +5759,7 @@ areas.raidNidas = {
         { id: 'paspartou', weight: 10 },
         { id: 'piloztere', weight: 5 }
     ],
-    miniBoss: { id: 'roiNidas', everyKills: 12, statMult: 1 },
+    miniBoss: { id: 'roi_nidas', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'amulette_du_piloztere', dropRate: 0.01 },
         { itemId: 'bracelet_du_piloztere', dropRate: 0.01 },
@@ -5800,7 +5800,7 @@ areas.raidCourSombre = {
         { id: 'bouroliste', weight: 10 },
         { id: 'magouille', weight: 5 }
     ],
-    miniBoss: { id: 'reineDesVoleurs', everyKills: 12, statMult: 1 },
+    miniBoss: { id: 'reine_des_voleurs', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'bottes_de_la_cour_sombre', dropRate: 0.01 },
         { itemId: 'cape_de_la_cour_sombre', dropRate: 0.01 },
@@ -5877,7 +5877,7 @@ areas.raidChaloeil = {
         { id: 'dame_du_hasard', weight: 10 },
         { id: 'roi_joueur', weight: 5 }
     ],
-    miniBoss: { id: 'chaloeil', everyKills: 12, statMult: 1 },
+    miniBoss: { id: 'chal_il', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'bottes_du_roi_joueur', dropRate: 0.01 },
         { itemId: 'chevaliere_du_roi_joueur', dropRate: 0.01 },
@@ -5913,7 +5913,7 @@ areas.raidOrukam = {
         { id: 'imetsu', weight: 10 },
         { id: 'imafugo', weight: 5 }
     ],
-    miniBoss: { id: 'roiImagami', everyKills: 9, statMult: 1 },
+    miniBoss: { id: 'roi_imagami', everyKills: 9, statMult: 1 },
     lootTable: [
         { itemId: 'bouclier_ponyme', dropRate: 0.01 },
         { itemId: 'cape_ostrophe', dropRate: 0.01 },
@@ -5945,7 +5945,7 @@ areas.raidImagiro = {
         { id: 'tsunam', weight: 10 },
         { id: 'fugokam', weight: 5 }
     ],
-    miniBoss: { id: 'reineAmirukam', everyKills: 9, statMult: 1 },
+    miniBoss: { id: 'reine_amirukam', everyKills: 9, statMult: 1 },
     lootTable: [
         { itemId: 'amulette_rinne', dropRate: 0.01 },
         { itemId: 'carapace_onance', dropRate: 0.01 },

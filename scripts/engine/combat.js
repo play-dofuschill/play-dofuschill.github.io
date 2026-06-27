@@ -10,11 +10,20 @@ const BASE_TIME  = 2000        // cooldown par défaut (ms) si un sort n'en a pa
 // Résout la définition de moves d'un monstre en tableau plat de 0-4 IDs.
 // Format simple  : ['A','B','C']          → shufflé, max 4 pris
 // Format avancé  : { pool:[], fixed:[] }  → N slots tirés du pool + fixed toujours en dernier
-function _scaleStep(mobMinLevel) {
-    if (mobMinLevel >= 181) return 0.02
-    if (mobMinLevel >= 131) return 0.03
-    if (mobMinLevel >= 81)  return 0.04
-    return 0.05
+// Ratios (HPmax/HPmin − 1) et (ATKmax/ATKmin − 1) par maxLevel de zone.
+// Le scaleStep réel = ratio / (mobMaxLevel − mobMinLevel), calculé à la volée
+// pour gérer les zones à range variable (ex: 200 range 10 vs range 15).
+const _HP_RATIO = {
+     20: 0.333,  30: 1.500,  40: 1.667,  50: 1.857,  60: 1.870,
+     70: 1.879,  80: 1.949,  90: 1.944, 100: 2.000,
+    110: 1.278, 120: 1.000, 130: 0.853, 140: 0.762, 150: 0.700,
+    160: 0.655, 170: 0.621, 180: 0.595, 190: 0.573, 200: 0.556
+}
+const _ATK_RATIO = {
+     20: 5.000,  30: 1.400,  40: 1.125,  50: 0.917,  60: 0.750,
+     70: 0.789,  80: 0.696,  90: 0.731, 100: 0.667,
+    110: 0.629, 120: 0.600, 130: 0.578, 140: 0.560, 150: 0.545,
+    160: 0.533, 170: 0.523, 180: 0.514, 190: 0.507, 200: 0.500
 }
 
 function resolveMonsterMoves(movesDef) {
@@ -257,8 +266,10 @@ function spawnEnemy(areaId) {
     const mob      = monsters[spawnId]
     if (!mob) { console.error(`[spawnEnemy] Unknown monster: ${spawnId}`); return null }
     const mobLevel = mob.fixedLevel ?? randomInt(area.mobMinLevel, area.mobMaxLevel)
-    const scale    = mob.fixedLevel != null ? 1 : 1 + (mobLevel - area.mobMinLevel) * _scaleStep(area.mobMinLevel)
-
+    const _range   = (area.mobMaxLevel - area.mobMinLevel) || 1
+    const _t       = mob.fixedLevel != null ? 0 : (mobLevel - area.mobMinLevel)
+    const hpScale  = 1 + _t * (_HP_RATIO[area.maxLevel]  ?? 0.556) / _range
+    const atkScale = 1 + _t * (_ATK_RATIO[area.maxLevel] ?? 0.500) / _range
 
     if (!state.seenMonsters) state.seenMonsters = {}
     state.seenMonsters[spawnId] = true
@@ -269,9 +280,9 @@ function spawnEnemy(areaId) {
         element:  mob.element,
         level:    mobLevel,
         image:    mob.image,
-        maxHp:    Math.floor(mob.bst.hp  * scale),
-        currentHp:Math.floor(mob.bst.hp  * scale),
-        atk:      Math.floor(mob.bst.atk * scale),
+        maxHp:    Math.floor(mob.bst.hp  * hpScale),
+        currentHp:Math.floor(mob.bst.hp  * hpScale),
+        atk:      Math.floor(mob.bst.atk * atkScale),
         spd:      mob.bst.spd,          // vitesse native 100 (pas de scaling par niveau)
         res:      { ...mob.bst.res },
         finalDamagePct: 0,
@@ -4510,7 +4521,10 @@ function _spawnEnemyById(monsterId, statMult = 1) {
     const minLvl   = area.mobMinLevel || area.minLevel
     const maxLvl   = area.mobMaxLevel || area.maxLevel
     const mobLevel = randomInt(minLvl, maxLvl)
-    const scale    = 1 + (mobLevel - minLvl) * _scaleStep(minLvl)
+    const _range   = (maxLvl - minLvl) || 1
+    const _t       = mobLevel - minLvl
+    const hpScale  = 1 + _t * (_HP_RATIO[area.maxLevel]  ?? 0.556) / _range
+    const atkScale = 1 + _t * (_ATK_RATIO[area.maxLevel] ?? 0.500) / _range
 
     if (!state.seenMonsters) state.seenMonsters = {}
     state.seenMonsters[monsterId] = true
@@ -4521,9 +4535,9 @@ function _spawnEnemyById(monsterId, statMult = 1) {
         element:        mob.element,
         level:          mobLevel,
         image:          mob.image,
-        maxHp:          Math.floor(mob.bst.hp  * scale),
-        currentHp:      Math.floor(mob.bst.hp  * scale),
-        atk:            Math.floor(mob.bst.atk * scale),
+        maxHp:          Math.floor(mob.bst.hp  * hpScale),
+        currentHp:      Math.floor(mob.bst.hp  * hpScale),
+        atk:            Math.floor(mob.bst.atk * atkScale),
         spd:            mob.bst.spd,
         res:            { ...mob.bst.res },
         finalDamagePct: 0,
@@ -4562,6 +4576,7 @@ function _spawnEnemyById(monsterId, statMult = 1) {
 // ─── Apparition du mini-boss (push chain slot 0←1←2) ─────────
 
 function _spawnRaidMiniBoss() {
+    if (combat.raidMiniBossActive) return
     const area = areas[state.currentArea]
     if (!area?.miniBoss) return
     const bossIds = area.miniBoss.ids || [area.miniBoss.id]
