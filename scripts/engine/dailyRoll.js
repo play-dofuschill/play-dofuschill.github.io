@@ -134,6 +134,29 @@ function refreshDailyPools() {
                 ? cleaned
                 : ['cimetiereincarnam', ...cleaned]
         }
+
+        // Ajouter les zones devenues accessibles depuis la génération du pool (ex. boss battu en cours de journée)
+        const poolSet    = new Set(state.dailyPool.zones)
+        const poolRanges = new Set(
+            state.dailyPool.zones.map(id => areas[id]).filter(Boolean).map(a => `${a.minLevel}-${a.maxLevel}`)
+        )
+        for (let i = 0; i < WILD_SLOTS.length; i++) {
+            const { min, max } = WILD_SLOTS[i]
+            const candidates = Object.values(areas).filter(a =>
+                (a.type || 'wild') === 'wild' &&
+                isZoneAccessible(a) &&
+                !poolSet.has(a.id) &&
+                !poolRanges.has(`${a.minLevel}-${a.maxLevel}`) &&
+                a.minLevel <= max && a.maxLevel >= min
+            )
+            if (candidates.length === 0) continue
+            let s = (wildSeed + i * 2654435761) >>> 0
+            s = (Math.imul(s, 1664525) + 1013904223) >>> 0
+            const choice = candidates[s % candidates.length]
+            poolSet.add(choice.id)
+            poolRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
+            state.dailyPool.zones.push(choice.id)
+        }
     }
 
     if (wildStale) {
