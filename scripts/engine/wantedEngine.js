@@ -1,6 +1,6 @@
 // scripts/engine/wantedEngine.js — Persistance et logique Avis de Recherche
 
-const WANTED_REFRESH_DAYS = 3
+const WANTED_REFRESH_DAYS = 1
 
 // ─── Paliers de déblocage ─────────────────────────────────────────────────────
 
@@ -120,12 +120,8 @@ function _wantedTierAccessible(tier) {
 // ─── Countdown ────────────────────────────────────────────────────────────────
 
 function nextWantedRefreshLabel() {
-    if (!state.wanted?.pool) return `${WANTED_REFRESH_DAYS} jours`
-    const today   = _todayStr()
-    const elapsed = Math.floor((new Date(today) - new Date(state.wanted.pool.date)) / 86400000)
-    const rem     = WANTED_REFRESH_DAYS - elapsed
-    if (rem <= 1) return 'demain'
-    return `${rem} jours`
+    const now = new Date()
+    return _countdownLabel(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
 }
 
 // ─── Victoire / Défaite ───────────────────────────────────────────────────────

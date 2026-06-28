@@ -73,6 +73,12 @@ function updateWantedUI() {
                 ? `<span style="opacity:0.6;font-size:0.72em">Record : ${ws.bestSessionDamage.toLocaleString('fr-FR')} dégâts</span>`
                 : ''
 
+            const cost = Math.floor(wd.levelCap / 2)
+            const canAfford = state.kamas >= cost
+            const costLabel = accessible
+                ? `<span style="font-size:0.75em;opacity:${canAfford ? '0.65' : '1'};color:${canAfford ? 'inherit' : '#f44336'}"><img src="img/icons/kamas.png" style="width:0.85em;height:0.85em;vertical-align:middle;margin-right:0.2em">${cost} kamas</span>`
+                : ''
+
             const card = document.createElement('div')
             card.className = 'explore-ticket' + (!accessible ? ' explore-ticket-locked' : '')
             card.innerHTML = `
@@ -87,6 +93,7 @@ function updateWantedUI() {
                         </div>
                         ${multLabel}
                         ${bestDmgLabel}
+                        ${costLabel}
                         <span class="explore-ticket-desc">${wd.lore}</span>
                         ${!accessible ? `<span class="Boss_Ultime-locked-notice">${WANTED_TIER_HINT[tier] || 'Palier verrouillé'}</span>` : ''}
                     </div>
@@ -195,8 +202,9 @@ function _launchWanted(wantedId) {
 
         const btnText = document.getElementById('zone-confirm-btn-text')
         const btnSub  = document.getElementById('zone-confirm-btn-sub')
+        const cost    = Math.floor(wd.levelCap / 2)
         if (btnText) btnText.textContent  = 'Affronter le boss'
-        if (btnSub)  btnSub.style.display = 'none'
+        if (btnSub)  { btnSub.textContent = `Coût : ${cost} kamas`; btnSub.style.display = 'block' }
 
         const teamMenu = document.getElementById('team-menu')
         if (teamMenu) { teamMenu.style.display = 'flex'; teamMenu.style.zIndex = '40' }

@@ -125,8 +125,7 @@ monsters['wanted_brumen_tinctorias'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 4300, atk: 300, spd: 30,
-        res: { neutre: 15, feu: 20, eau: -15, air: 5, terre: -10 } },
+    bst: { hp: 4300, atk: 300, spd: 30, res: { neutre: 15, feu: 20, eau: -15, air: 5, terre: -10 } },
     moves: ['wanted_brumen_tinctorias_elixir_curatif', 'wanted_brumen_tinctorias_elixir_interdit', 'wanted_brumen_tinctorias_elixir_stimulant', 'wanted_brumen_tinctorias_elixir_revitalisant', 'wanted_brumen_tinctorias_elixir_vampirique']
 }
 
@@ -310,8 +309,7 @@ monsters['wanted_trukipik'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 9400, atk: 375, spd: 30,
-        res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
+    bst: { hp: 9400, atk: 375, spd: 30, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
     moves: ['wanted_trukipik_puissant_balayage', 'wanted_trukipik_estoc_fatal']
 }
 
@@ -1137,7 +1135,7 @@ const WantedBosses = {
         background: '',
         levelCap:  60,
         bst:       { hp: 4300, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'alliance_apaisante', dropRate: 0.1 }, { itemId: 'pendentif_curatif', dropRate: 0.1 }, { itemId: 'ceinture_anesthesiante', dropRate: 0.1 }]
     },
     'wanted_marzwel_le_gobelin': {
         id:        'wanted_marzwel_le_gobelin',
@@ -1313,7 +1311,7 @@ const WantedBosses = {
         background: '',
         levelCap:  100,
         bst:       { hp: 9400, atk: 375 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'chapokipik', dropRate: 0.1 }, { itemId: 'martokipik', dropRate: 0.1 }, { itemId: 'ekukipik', dropRate: 0.1 }]
     },
     'wanted_carlita_de_l_aguerfelde': {
         id:        'wanted_carlita_de_l_aguerfelde',

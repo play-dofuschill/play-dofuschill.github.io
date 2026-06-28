@@ -1274,7 +1274,7 @@ item.alliance_du_champ_champ = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_champ_champ',
-    requiredLevel: 11,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', min: 16, max: 20 }]
 }
 item.cape_du_champ_champ = {
@@ -1286,7 +1286,7 @@ item.cape_du_champ_champ = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_champ_champ',
-    requiredLevel: 11,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', min: 21, max: 30 }]
 }
 item.champcoiffe = {
@@ -1298,7 +1298,7 @@ item.champcoiffe = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_champ_champ',
-    requiredLevel: 12,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', min: 21, max: 30 }]
 }
 item.anneau_du_champ_champ = {
@@ -1310,7 +1310,7 @@ item.anneau_du_champ_champ = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_champ_champ',
-    requiredLevel: 13,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', min: 16, max: 20 }]
 }
 item.bracelet_de_kardorim = {
@@ -1490,7 +1490,7 @@ item.amulette_du_moskito = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_moskito',
-    requiredLevel: 15,
+    requiredLevel: 20,
     stats: [{ stat: 'maxHp', min: 11, max: 15 }, { stat: 'chance', min: 16, max: 20 }]
 }
 item.moskitogalurette = {
@@ -1502,7 +1502,7 @@ item.moskitogalurette = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_moskito',
-    requiredLevel: 15,
+    requiredLevel: 20,
     stats: [{ stat: 'chance', min: 21, max: 25 }]
 }
 item.sac_du_petit_moskito = {
@@ -1514,7 +1514,7 @@ item.sac_du_petit_moskito = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_moskito',
-    requiredLevel: 16,
+    requiredLevel: 20,
     stats: [{ stat: 'chance', min: 11, max: 15 }]
 }
 item.mos_kitano = {
@@ -1526,7 +1526,7 @@ item.mos_kitano = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_moskito',
-    requiredLevel: 21,
+    requiredLevel: 20,
     stats: [{ stat: 'chance', min: 11, max: 15 }, { stat: 'heal', min: 2, max: 2 }, { stat: 'flatDamage', min: 2, max: 2 }]
 }
 item.mitaines_mitees_du_paysan = {
@@ -3290,7 +3290,7 @@ item.libottes = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_mace',
-    requiredLevel: 39,
+    requiredLevel: 40,
     stats: [{ stat: 'intelligence', min: 21, max: 35 }, { stat: 'spd', min: 1, max: 1 }]
 }
 item.collertue = {
@@ -3302,7 +3302,7 @@ item.collertue = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_mace',
-    requiredLevel: 42,
+    requiredLevel: 40,
     stats: [{ stat: 'intelligence', min: 21, max: 35 }, { stat: 'flatDamage', min: 3, max: 4 }, { stat: 'critDamagePct', min: 4, max: 5 }]
 }
 item.botte_de_kalkaneus = {
@@ -3314,7 +3314,7 @@ item.botte_de_kalkaneus = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_kalkaneus',
-    requiredLevel: 39,
+    requiredLevel: 30,
     stats: [{ stat: 'spd', min: 5, max: 5 }, { stat: 'flatDamage', min: 4, max: 5 }]
 }
 item.slip_de_kalkaneus = {
@@ -3326,7 +3326,7 @@ item.slip_de_kalkaneus = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_kalkaneus',
-    requiredLevel: 40,
+    requiredLevel: 30,
     stats: [{ stat: 'maxHp', min: 21, max: 30 }, { stat: 'force', min: 16, max: 25 }, { stat: 'flatDamage', min: 4, max: 6 }]
 }
 item.amulette_de_kalkaneus = {
@@ -3338,7 +3338,7 @@ item.amulette_de_kalkaneus = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_kalkaneus',
-    requiredLevel: 43,
+    requiredLevel: 30,
     stats: [{ stat: 'force', min: 21, max: 30 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'spd', min: 1, max: 1 }, { stat: 'flatDamage', min: 3, max: 4 }]
 }
 item.ceinture_de_rapiat = {
@@ -3866,7 +3866,7 @@ item.anneau_pomdeupin = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_pomdeupin',
-    requiredLevel: 43,
+    requiredLevel: 40,
     stats: [{ stat: 'force', min: 16, max: 20 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'flatDamage', min: 4, max: 5 }]
 }
 item.ceinture_siks_won_naine = {
@@ -4082,7 +4082,7 @@ item.abrarc = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'abranoplie',
-    requiredLevel: 39,
+    requiredLevel: 80,
     stats: [{ stat: 'chance', min: 21, max: 30 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.abracape = {
@@ -4094,7 +4094,7 @@ item.abracape = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'abranoplie',
-    requiredLevel: 40,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', min: 1, max: 30 }, { stat: 'force', min: -50, max: -50 }, { stat: 'intelligence', min: -50, max: -50 }, { stat: 'chance', min: -50, max: -50 }, { stat: 'agilite', min: -50, max: -50 }, { stat: 'atk', min: 30, max: 30 }]
 }
 item.abranneau = {
@@ -4106,7 +4106,7 @@ item.abranneau = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'abranoplie',
-    requiredLevel: 40,
+    requiredLevel: 80,
     stats: [{ stat: 'force', min: -100, max: -100 }, { stat: 'intelligence', min: -100, max: -100 }, { stat: 'chance', min: -100, max: -100 }, { stat: 'agilite', min: -100, max: -100 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'spd', min: 5, max: 5 }]
 }
 item.abramu = {
@@ -4118,7 +4118,7 @@ item.abramu = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'abranoplie',
-    requiredLevel: 46,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', min: 71, max: 100 }, { stat: 'force', min: -50, max: -50 }, { stat: 'intelligence', min: -50, max: -50 }, { stat: 'chance', min: -50, max: -50 }, { stat: 'agilite', min: -50, max: -50 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'flatDamage', min: 4, max: 5 }]
 }
 item.abranneau_mou = {
@@ -4130,7 +4130,7 @@ item.abranneau_mou = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'abranoplie',
-    requiredLevel: 46,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', min: 31, max: 40 }, { stat: 'force', min: -15, max: -15 }, { stat: 'intelligence', min: -15, max: -15 }, { stat: 'chance', min: -15, max: -15 }, { stat: 'agilite', min: -15, max: -15 }, { stat: 'spd', min: 5, max: 5 }]
 }
 item.bottes_de_grizou = {
@@ -5078,7 +5078,7 @@ item.vegamu = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_vegetatif',
-    requiredLevel: 40,
+    requiredLevel: 25,
     stats: [{ stat: 'maxHp', min: 41, max: 60 }, { stat: 'intelligence', min: -40, max: -40 }, { stat: 'chance', min: -40, max: -40 }, { stat: 'spd', min: 10, max: 10 }]
 }
 item.vegacoiffe = {
@@ -5090,7 +5090,7 @@ item.vegacoiffe = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_vegetatif',
-    requiredLevel: 40,
+    requiredLevel: 25,
     stats: [{ stat: 'maxHp', min: 41, max: 50 }, { stat: 'agilite', min: 31, max: 40 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'flatDamage', min: 2, max: 2 }]
 }
 item.vegacape = {
@@ -5102,7 +5102,7 @@ item.vegacape = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_vegetatif',
-    requiredLevel: 56,
+    requiredLevel: 25,
     stats: [{ stat: 'maxHp', min: 21, max: 30 }, { stat: 'atk', min: 21, max: 30 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'flatDamage', min: 5, max: 7 }]
 }
 item.gladiabottes = {
@@ -5954,7 +5954,7 @@ item.ceinture_d_hulkrap = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_d_hulkrap',
-    requiredLevel: 51,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', min: 31, max: 40 }, { stat: 'intelligence', min: 21, max: 25 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'flatDamage', min: 2, max: 3 }]
 }
 item.amulette_d_hulkrap = {
@@ -5966,7 +5966,7 @@ item.amulette_d_hulkrap = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_d_hulkrap',
-    requiredLevel: 53,
+    requiredLevel: 40,
     stats: [{ stat: 'intelligence', min: 11, max: 15 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'spd', min: 1, max: 1 }]
 }
 item.bottes_d_hulkrap = {
@@ -5978,7 +5978,7 @@ item.bottes_d_hulkrap = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_d_hulkrap',
-    requiredLevel: 53,
+    requiredLevel: 40,
     stats: [{ stat: 'maxHp', min: -30, max: -30 }, { stat: 'force', min: -15, max: -15 }, { stat: 'chance', min: -15, max: -15 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'flatDamage', min: 3, max: 4 }]
 }
 item.ceinture_fulgurante = {
@@ -5990,7 +5990,7 @@ item.ceinture_fulgurante = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_fulgurante',
-    requiredLevel: 50,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', min: 1, max: 30 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'flatDamage', min: 1, max: 3 }]
 }
 item.cape_fulgurante = {
@@ -6782,7 +6782,7 @@ item.cape_ouginak = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_ouginakale',
-    requiredLevel: 50,
+    requiredLevel: 60,
     stats: [{ stat: 'maxHp', min: 41, max: 60 }, { stat: 'atk', min: 26, max: 35 }, { stat: 'flatDamage', min: 2, max: 3 }]
 }
 item.ceinture_ouginakale = {
@@ -6794,7 +6794,7 @@ item.ceinture_ouginakale = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_ouginakale',
-    requiredLevel: 65,
+    requiredLevel: 60,
     stats: [{ stat: 'chance', min: 21, max: 25 }, { stat: 'agilite', min: 21, max: 25 }, { stat: 'atk', min: 11, max: 15 }, { stat: 'res.feu', min: 4, max: 5 }, { stat: 'res.air', min: 4, max: 5 }]
 }
 item.plumodales = {
@@ -6866,7 +6866,7 @@ item.bottauffe_souris = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_chauffe_souris',
-    requiredLevel: 57,
+    requiredLevel: 40,
     stats: [{ stat: 'chance', min: 21, max: 30 }, { stat: 'agilite', min: 16, max: 25 }, { stat: 'heal', min: 3, max: 4 }, { stat: 'flatDamage', min: 3, max: 4 }]
 }
 item.anauffe_souris = {
@@ -6878,7 +6878,7 @@ item.anauffe_souris = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_chauffe_souris',
-    requiredLevel: 59,
+    requiredLevel: 40,
     stats: [{ stat: 'chance', min: 16, max: 25 }, { stat: 'agilite', min: 11, max: 15 }, { stat: 'flatDamage', min: 3, max: 4 }]
 }
 item.amulette_stroplante = {
@@ -8126,7 +8126,7 @@ item.epis_de_farle = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 75,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 21, max: 30 }, { stat: 'force', min: 21, max: 30 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'dropRate', min: 4, max: 5 }]
 }
 item.cape_de_farle = {
@@ -8138,7 +8138,7 @@ item.cape_de_farle = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 76,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 31, max: 40 }, { stat: 'agilite', min: 26, max: 35 }, { stat: 'res.eau', min: 2, max: 3 }, { stat: 'res.air', min: 2, max: 3 }]
 }
 item.fourche_de_farle = {
@@ -8150,7 +8150,7 @@ item.fourche_de_farle = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 76,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 51, max: 70 }, { stat: 'force', min: 61, max: 80 }, { stat: 'atk', min: 11, max: 15 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'flatDamage', min: 17, max: 29 }, { stat: 'spd', min: 2, max: 2 }]
 }
 item.farlacoiffe = {
@@ -8162,7 +8162,7 @@ item.farlacoiffe = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 78,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 61, max: 80 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'flatDamage', min: 2, max: 3 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'res.eau', min: 4, max: 5 }]
 }
 item.bracelet_magique_de_farle = {
@@ -8174,7 +8174,7 @@ item.bracelet_magique_de_farle = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 79,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 21, max: 30 }, { stat: 'force', min: 21, max: 30 }, { stat: 'intelligence', min: 16, max: 20 }, { stat: 'agilite', min: 16, max: 20 }, { stat: 'atk', min: 4, max: 5 }, { stat: 'res.feu', min: 2, max: 2 }, { stat: 'res.eau', min: 2, max: 2 }]
 }
 item.farlature = {
@@ -8186,7 +8186,7 @@ item.farlature = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 80,
+    requiredLevel: 90,
     stats: [{ stat: 'force', min: 21, max: 30 }, { stat: 'atk', min: 7, max: 10 }, { stat: 'dropRate', min: 4, max: 5 }, { stat: 'res.feu', min: 4, max: 5 }, { stat: 'res.eau', min: 4, max: 5 }, { stat: 'res.air', min: 4, max: 5 }]
 }
 item.sabots_de_farle = {
@@ -8198,7 +8198,7 @@ item.sabots_de_farle = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_farle_ingalsse',
-    requiredLevel: 80,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 41, max: 50 }, { stat: 'force', min: 21, max: 25 }, { stat: 'agilite', min: 21, max: 25 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'flatDamage', min: 2, max: 2 }, { stat: 'res.eau', min: 2, max: 3 }]
 }
 item.bracelet_magique_de_shika = {
@@ -8786,7 +8786,7 @@ item.pagne_de_daigoro = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_daigoro',
-    requiredLevel: 82,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 51, max: 70 }, { stat: 'chance', min: 21, max: 30 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'res.terre', min: 3, max: 4 }, { stat: 'flatDamage', min: 3, max: 5 }]
 }
 item.coiffe_de_daigoro = {
@@ -8798,7 +8798,7 @@ item.coiffe_de_daigoro = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_daigoro',
-    requiredLevel: 83,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 51, max: 70 }, { stat: 'agilite', min: 21, max: 30 }, { stat: 'critChance', min: 2, max: 2 }, { stat: 'res.feu', min: 2, max: 2 }, { stat: 'res.eau', min: 2, max: 2 }, { stat: 'flatDamage', min: 4, max: 6 }]
 }
 item.collier_rouge_de_daigoro = {
@@ -8810,7 +8810,7 @@ item.collier_rouge_de_daigoro = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_daigoro',
-    requiredLevel: 86,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 41, max: 50 }, { stat: 'intelligence', min: 21, max: 30 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'critResPct', min: 5, max: 8 }, { stat: 'flatDamage', min: 4, max: 5 }]
 }
 item.baton_de_daigoro = {
@@ -8822,7 +8822,7 @@ item.baton_de_daigoro = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_daigoro',
-    requiredLevel: 88,
+    requiredLevel: 90,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'force', min: 31, max: 40 }, { stat: 'res.neutre', min: 3, max: 4 }, { stat: 'res.air', min: 3, max: 4 }, { stat: 'flatDamage', min: 11, max: 17 }]
 }
 item.capuche_de_musha = {
@@ -9182,7 +9182,7 @@ item.masque_de_choudini = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_choudini',
-    requiredLevel: 88,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', min: 71, max: 100 }, { stat: 'intelligence', min: 26, max: 35 }, { stat: 'chance', min: 26, max: 35 }, { stat: 'critChance', min: 2, max: 2 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'res.air', min: 2, max: 3 }, { stat: 'flatDamage', min: 2, max: 3 }]
 }
 item.bouclier_de_choudini = {
@@ -9194,7 +9194,7 @@ item.bouclier_de_choudini = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_choudini',
-    requiredLevel: 90,
+    requiredLevel: 80,
     stats: [{ stat: 'maxHp', min: 71, max: 90 }, { stat: 'intelligence', min: 21, max: 30 }, { stat: 'chance', min: 21, max: 30 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'critDamagePct', min: 5, max: 7 }]
 }
 item.bottes_de_choudini = {
@@ -9206,7 +9206,7 @@ item.bottes_de_choudini = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'panoplie_de_choudini',
-    requiredLevel: 92,
+    requiredLevel: 80,
     stats: [{ stat: 'intelligence', min: 31, max: 40 }, { stat: 'chance', min: 31, max: 40 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 8, max: 8 }, { stat: 'critDamagePct', min: 5, max: 7 }, { stat: 'flatDamage', min: 2, max: 3 }]
 }
 item.bouclier_du_chouque = {
@@ -9374,7 +9374,7 @@ item.puissante_ceinture_fulgurante = {
     rarity: 'commun',
     itemLevelMax: 20,
     set: 'puissante_panoplie_fulgurante',
-    requiredLevel: 80,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', min: 31, max: 40 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'flatDamage', min: 4, max: 5 }]
 }
 item.puissante_cape_fulgurante = {
@@ -9386,7 +9386,7 @@ item.puissante_cape_fulgurante = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'puissante_panoplie_fulgurante',
-    requiredLevel: 110,
+    requiredLevel: 55,
     stats: [{ stat: 'maxHp', min: 31, max: 40 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'flatDamage', min: 4, max: 5 }]
 }
 item.porte_bonheur_de_rok_gnorok = {
@@ -12014,7 +12014,7 @@ item.holoune = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panododo',
-    requiredLevel: 122,
+    requiredLevel: 105,
     stats: [{ stat: 'maxHp', min: 201, max: 250 }, { stat: 'intelligence', min: 31, max: 50 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'heal', min: 6, max: 10 }, { stat: 'res.terre', min: 6, max: 10 }, { stat: 'res.feu', min: 6, max: 10 }]
 }
 item.coiffe_du_bouftou_ankarton = {
@@ -13094,7 +13094,7 @@ item.couteau_de_mer = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_autochtone',
-    requiredLevel: 124,
+    requiredLevel: 110,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'chance', min: 31, max: 40 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'spd', min: 2, max: 3 }, { stat: 'res.neutre', min: 7, max: 10 }, { stat: 'res.eau', min: 11, max: 15 }, { stat: 'critDamagePct', min: 5, max: 7 }, { stat: 'flatDamage', min: 12, max: 17 }]
 }
 item.bottes_hoktone = {
@@ -13106,7 +13106,7 @@ item.bottes_hoktone = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_autochtone',
-    requiredLevel: 138,
+    requiredLevel: 110,
     stats: [{ stat: 'maxHp', min: 111, max: 160 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'spd', min: 15, max: 15 }, { stat: 'dropRate', min: 11, max: 20 }, { stat: 'res.air', min: 7, max: 10 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'critResPct', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.capterre = {
@@ -13382,7 +13382,7 @@ item.bottes_de_mandrin = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_contrebandiere',
-    requiredLevel: 120,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'force', min: 31, max: 50 }, { stat: 'spd', min: 13, max: 14 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.terre', min: 18, max: 25 }, { stat: 'res.air', min: -10, max: -7 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.mandrano = {
@@ -13394,7 +13394,7 @@ item.mandrano = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_contrebandiere',
-    requiredLevel: 150,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 41, max: 60 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 3, max: 4 }, { stat: 'res.terre', min: 18, max: 25 }, { stat: 'res.air', min: -10, max: -7 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.bottes_de_styx = {
@@ -13406,7 +13406,7 @@ item.bottes_de_styx = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_fluviale',
-    requiredLevel: 120,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'spd', min: 13, max: 14 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.eau', min: 18, max: 25 }, { stat: 'res.feu', min: -10, max: -7 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.styxano = {
@@ -13418,7 +13418,7 @@ item.styxano = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_fluviale',
-    requiredLevel: 150,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'chance', min: 41, max: 60 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 3, max: 4 }, { stat: 'res.eau', min: 18, max: 25 }, { stat: 'res.feu', min: -10, max: -7 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.bottes_d_inferno = {
@@ -13430,7 +13430,7 @@ item.bottes_d_inferno = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_infernale',
-    requiredLevel: 120,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'intelligence', min: 31, max: 50 }, { stat: 'spd', min: 13, max: 14 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.feu', min: 18, max: 25 }, { stat: 'res.eau', min: -10, max: -7 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.infernano = {
@@ -13442,7 +13442,7 @@ item.infernano = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_infernale',
-    requiredLevel: 150,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'intelligence', min: 41, max: 60 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 3, max: 4 }, { stat: 'res.feu', min: 18, max: 25 }, { stat: 'res.eau', min: -10, max: -7 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.bottes_de_will_killson = {
@@ -13454,7 +13454,7 @@ item.bottes_de_will_killson = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_meurtriere',
-    requiredLevel: 120,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'agilite', min: 31, max: 50 }, { stat: 'spd', min: 13, max: 14 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.air', min: 18, max: 25 }, { stat: 'res.terre', min: -10, max: -7 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.willkillsano = {
@@ -13466,7 +13466,7 @@ item.willkillsano = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_meurtriere',
-    requiredLevel: 150,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'agilite', min: 41, max: 60 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 3, max: 4 }, { stat: 'res.air', min: 18, max: 25 }, { stat: 'res.terre', min: -10, max: -7 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.casque_du_guerrier_zoth = {
@@ -13874,7 +13874,7 @@ item.ceinture_de_frigostine = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_frigostine',
-    requiredLevel: 140,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 176, max: 225 }, { stat: 'agilite', min: 41, max: 60 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.terre', min: 7, max: 10 }, { stat: 'res.air', min: 11, max: 15 }, { stat: 'critResPct', min: 7, max: 10 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.bottes_de_frigostine = {
@@ -13886,7 +13886,7 @@ item.bottes_de_frigostine = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_frigostine',
-    requiredLevel: 142,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 126, max: 175 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'agilite', min: 31, max: 40 }, { stat: 'critChance', min: 1, max: 2 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'dropRate', min: 11, max: 20 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.anneau_de_frigostine = {
@@ -13898,7 +13898,7 @@ item.anneau_de_frigostine = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_frigostine',
-    requiredLevel: 144,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 101, max: 140 }, { stat: 'force', min: 31, max: 40 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'res.eau', min: 4, max: 5 }, { stat: 'res.neutre', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.amulette_de_frigostine = {
@@ -13910,7 +13910,7 @@ item.amulette_de_frigostine = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_frigostine',
-    requiredLevel: 147,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'agilite', min: 31, max: 40 }, { stat: 'atk', min: 46, max: 55 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'dropRate', min: 11, max: 20 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.terre', min: 8, max: 12 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.baguette_de_frigostine = {
@@ -13922,7 +13922,7 @@ item.baguette_de_frigostine = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_frigostine',
-    requiredLevel: 149,
+    requiredLevel: 130,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'agilite', min: 21, max: 30 }, { stat: 'atk', min: 21, max: 30 }, { stat: 'heal', min: 5, max: 7 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'res.air', min: 5, max: 7 }, { stat: 'critResPct', min: 7, max: 10 }, { stat: 'flatDamage', min: 11, max: 16 }]
 }
 item.alliance_d_hell_mina = {
@@ -14318,7 +14318,7 @@ item.anneau_de_cantile = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_cantile',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'force', min: 31, max: 40 }, { stat: 'agilite', min: 21, max: 30 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'spd', min: 1, max: 2 }, { stat: 'critResPct', min: 8, max: 12 }, { stat: 'flatDamage', min: 5, max: 7 }]
 }
 item.cape_de_cantile = {
@@ -14330,7 +14330,7 @@ item.cape_de_cantile = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_cantile',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 31, max: 50 }, { stat: 'agilite', min: 31, max: 50 }, { stat: 'critChance', min: 1, max: 1 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.terre', min: 7, max: 10 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.amulette_de_cantile = {
@@ -14342,7 +14342,7 @@ item.amulette_de_cantile = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_cantile',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 31, max: 40 }, { stat: 'agilite', min: 31, max: 40 }, { stat: 'critChance', min: 1, max: 2 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 11, max: 15 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.bottes_de_cantile = {
@@ -14354,7 +14354,7 @@ item.bottes_de_cantile = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_cantile',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 21, max: 30 }, { stat: 'atk', min: 21, max: 30 }, { stat: 'spd', min: 15, max: 15 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'res.air', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.amulette_de_grozilla = {
@@ -14534,7 +14534,7 @@ item.sac_mortuaire_de_jiangshi_nobi = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_brume',
-    requiredLevel: 150,
+    requiredLevel: 160,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 41, max: 60 }, { stat: 'intelligence', min: 31, max: 40 }, { stat: 'chance', min: 41, max: 60 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'dropRate', min: 16, max: 20 }, { stat: 'res.feu', min: 4, max: 5 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.bouclier_du_yokomainu = {
@@ -14546,7 +14546,7 @@ item.bouclier_du_yokomainu = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_brume',
-    requiredLevel: 150,
+    requiredLevel: 160,
     stats: [{ stat: 'maxHp', min: 111, max: 160 }, { stat: 'force', min: 26, max: 35 }, { stat: 'intelligence', min: 26, max: 35 }, { stat: 'chance', min: 26, max: 35 }, { stat: 'res.neutre', min: 3, max: 4 }, { stat: 'res.terre', min: 3, max: 4 }, { stat: 'res.feu', min: 3, max: 4 }, { stat: 'res.eau', min: 3, max: 4 }]
 }
 item.bottes_de_brume = {
@@ -14558,7 +14558,7 @@ item.bottes_de_brume = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_brume',
-    requiredLevel: 150,
+    requiredLevel: 160,
     stats: [{ stat: 'maxHp', min: 101, max: 150 }, { stat: 'force', min: 21, max: 30 }, { stat: 'intelligence', min: 31, max: 50 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'dropRate', min: 21, max: 30 }, { stat: 'res.terre', min: 3, max: 4 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.ceinture_de_tsukinochi = {
@@ -14570,7 +14570,7 @@ item.ceinture_de_tsukinochi = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_brume',
-    requiredLevel: 150,
+    requiredLevel: 160,
     stats: [{ stat: 'maxHp', min: 201, max: 250 }, { stat: 'force', min: 31, max: 40 }, { stat: 'intelligence', min: 31, max: 40 }, { stat: 'chance', min: 16, max: 20 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'dropRate', min: 21, max: 25 }, { stat: 'res.eau', min: 4, max: 6 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.slip_hie = {
@@ -14582,7 +14582,7 @@ item.slip_hie = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_yeye',
-    requiredLevel: 152,
+    requiredLevel: 150,
     stats: [{ stat: 'maxHp', min: 201, max: 250 }, { stat: 'chance', min: 31, max: 40 }, { stat: 'agilite', min: 31, max: 40 }, { stat: 'atk', min: 11, max: 15 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'dropRate', min: 11, max: 20 }, { stat: 'spd', min: 3, max: 4 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'flatDamage', min: 5, max: 7 }]
 }
 item.collier_ye = {
@@ -14594,7 +14594,7 @@ item.collier_ye = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_yeye',
-    requiredLevel: 160,
+    requiredLevel: 150,
     stats: [{ stat: 'chance', min: 31, max: 50 }, { stat: 'agilite', min: 31, max: 50 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'spd', min: 1, max: 2 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'res.air', min: 7, max: 10 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.bandeau_de_spiritueur = {
@@ -15038,7 +15038,7 @@ item.ceinture_des_prophetes = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_des_prophetes',
-    requiredLevel: 140,
+    requiredLevel: 150,
     stats: [{ stat: 'maxHp', min: 181, max: 230 }, { stat: 'intelligence', min: 21, max: 30 }, { stat: 'chance', min: 21, max: 30 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'dropRate', min: 11, max: 20 }, { stat: 'res.terre', min: 11, max: 15 }, { stat: 'res.air', min: 11, max: 15 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.anneau_des_prophetes = {
@@ -15050,7 +15050,7 @@ item.anneau_des_prophetes = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_des_prophetes',
-    requiredLevel: 140,
+    requiredLevel: 150,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'intelligence', min: 26, max: 35 }, { stat: 'chance', min: 26, max: 35 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'res.neutre', min: 7, max: 10 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.baton_des_prophetes = {
@@ -15062,7 +15062,7 @@ item.baton_des_prophetes = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_des_prophetes',
-    requiredLevel: 140,
+    requiredLevel: 150,
     stats: [{ stat: 'atk', min: -30, max: -30 }, { stat: 'maxHp', min: 151, max: 200 }, { stat: 'intelligence', min: 31, max: 40 }, { stat: 'chance', min: 31, max: 40 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'heal', min: 4, max: 5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 7, max: 10 }, { stat: 'critResPct', min: 7, max: 10 }, { stat: 'flatDamage', min: 20, max: 30 }]
 }
 item.coquille_de_vengeuse_masquee = {
@@ -16562,7 +16562,7 @@ item.ceinture_de_danathor = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_de_danathor',
-    requiredLevel: 188,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'chance', min: 61, max: 80 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'dropRate', min: 21, max: 30 }, { stat: 'critResPct', min: 11, max: 15 }, { stat: 'flatDamage', min: 14, max: 18 }]
 }
 item.amulette_de_danathor = {
@@ -16574,7 +16574,7 @@ item.amulette_de_danathor = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_danathor',
-    requiredLevel: 194,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'chance', min: 51, max: 75 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'spd', min: 9, max: 10 }, { stat: 'res.air', min: 16, max: 20 }, { stat: 'flatDamage', min: 14, max: 18 }]
 }
 item.l_ecu_de_danathor = {
@@ -16586,7 +16586,7 @@ item.l_ecu_de_danathor = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_danathor',
-    requiredLevel: 195,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'chance', min: 51, max: 70 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }]
 }
 item.coiffe_de_danathor = {
@@ -16598,7 +16598,7 @@ item.coiffe_de_danathor = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_danathor',
-    requiredLevel: 196,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'chance', min: 71, max: 100 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'spd', min: 9, max: 10 }, { stat: 'res.neutre', min: 11, max: 15 }, { stat: 'flatDamage', min: 14, max: 18 }]
 }
 item.anneau_de_la_fuji_givrefoux = {
@@ -16922,7 +16922,7 @@ item.bottes_d_otomai = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_otomai',
-    requiredLevel: 192,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'intelligence', min: 61, max: 80 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 15, max: 15 }, { stat: 'heal', min: 6, max: 8 }, { stat: 'res.terre', min: 7, max: 10 }, { stat: 'flatDamage', min: 12, max: 16 }]
 }
 item.fiole_d_otomai = {
@@ -16934,7 +16934,7 @@ item.fiole_d_otomai = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_otomai',
-    requiredLevel: 196,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'intelligence', min: 51, max: 70 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.feu', min: 5, max: 7 }]
 }
 item.epee_d_otomai = {
@@ -16946,7 +16946,7 @@ item.epee_d_otomai = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_otomai',
-    requiredLevel: 196,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'intelligence', min: 61, max: 80 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 8, max: 9 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 16, max: 20 }, { stat: 'res.eau', min: 16, max: 20 }, { stat: 'flatDamage', min: 36, max: 44 }]
 }
 item.amulette_d_otomai = {
@@ -16958,7 +16958,7 @@ item.amulette_d_otomai = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_otomai',
-    requiredLevel: 197,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'intelligence', min: 61, max: 80 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'heal', min: 8, max: 12 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'flatDamage', min: 14, max: 18 }]
 }
 item.sept_ans_de_malheur = {
@@ -16970,7 +16970,7 @@ item.sept_ans_de_malheur = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_superstitieuse',
-    requiredLevel: 194,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'atk', min: 26, max: 35 }, { stat: 'res.neutre', min: 3, max: 5 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }]
 }
 item.amulette_rangleur = {
@@ -16982,7 +16982,7 @@ item.amulette_rangleur = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_superstitieuse',
-    requiredLevel: 196,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'intelligence', min: 31, max: 50 }, { stat: 'agilite', min: 31, max: 50 }, { stat: 'atk', min: 46, max: 55 }, { stat: 'heal', min: 6, max: 8 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.terre', min: 15, max: 21 }, { stat: 'critResPct', min: -15, max: -11 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.bague_nostik = {
@@ -16994,7 +16994,7 @@ item.bague_nostik = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_superstitieuse',
-    requiredLevel: 196,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 201, max: 250 }, { stat: 'intelligence', min: 31, max: 50 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'spd', min: -5, max: -5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'critResPct', min: 11, max: 15 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.marteau_d_henual = {
@@ -17006,7 +17006,7 @@ item.marteau_d_henual = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_henual',
-    requiredLevel: 193,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 201, max: 250 }, { stat: 'force', min: 41, max: 60 }, { stat: 'intelligence', min: 41, max: 60 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'heal', min: 4, max: 6 }, { stat: 'dropRate', min: 16, max: 20 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'res.air', min: 5, max: 7 }, { stat: 'critResPct', min: -15, max: -11 }, { stat: 'flatDamage', min: 18, max: 28 }]
 }
 item.anneau_d_henual = {
@@ -17018,7 +17018,7 @@ item.anneau_d_henual = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_henual',
-    requiredLevel: 196,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 31, max: 40 }, { stat: 'intelligence', min: 31, max: 40 }, { stat: 'res.neutre', min: 8, max: 12 }, { stat: 'res.terre', min: 8, max: 12 }, { stat: 'res.feu', min: 8, max: 12 }, { stat: 'critResPct', min: -10, max: -7 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.ceinture_d_henual = {
@@ -17030,7 +17030,7 @@ item.ceinture_d_henual = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_henual',
-    requiredLevel: 197,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 31, max: 50 }, { stat: 'intelligence', min: 31, max: 50 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'dropRate', min: 16, max: 20 }, { stat: 'res.terre', min: 6, max: 8 }, { stat: 'res.neutre', min: 6, max: 8 }, { stat: 'res.eau', min: 6, max: 8 }, { stat: 'critResPct', min: -15, max: -11 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.amulette_de_theodoran_ax = {
@@ -17150,7 +17150,7 @@ item.cape_d_hel_munster = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_hel_munster',
-    requiredLevel: 194,
+    requiredLevel: 170,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'chance', min: 61, max: 80 }, { stat: 'agilite', min: 61, max: 80 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 1, max: 2 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'res.air', min: 5, max: 7 }, { stat: 'critResPct', min: 11, max: 15 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.amulette_d_hel_munster = {
@@ -17162,7 +17162,7 @@ item.amulette_d_hel_munster = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_hel_munster',
-    requiredLevel: 195,
+    requiredLevel: 170,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'chance', min: 51, max: 70 }, { stat: 'agilite', min: 51, max: 70 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'spd', min: -3, max: -2 }, { stat: 'res.terre', min: 11, max: 15 }, { stat: 'critResPct', min: 11, max: 15 }, { stat: 'flatDamage', min: 10, max: 14 }]
 }
 item.coiffe_d_hel_munster = {
@@ -17174,7 +17174,7 @@ item.coiffe_d_hel_munster = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_hel_munster',
-    requiredLevel: 198,
+    requiredLevel: 170,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'chance', min: 61, max: 80 }, { stat: 'agilite', min: 61, max: 80 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'spd', min: -4, max: -3 }, { stat: 'res.feu', min: 11, max: 15 }, { stat: 'critResPct', min: 16, max: 20 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.chapeau_lochon = {
@@ -17366,7 +17366,7 @@ item.ceinture_de_brouce = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_brouce_boulgoure',
-    requiredLevel: 194,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'force', min: 71, max: 100 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'res.neutre', min: 11, max: 15 }, { stat: 'critResPct', min: 11, max: 15 }, { stat: 'flatDamage', min: 14, max: 18 }]
 }
 item.ecorce_de_brouce = {
@@ -17378,7 +17378,7 @@ item.ecorce_de_brouce = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_brouce_boulgoure',
-    requiredLevel: 196,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 51, max: 70 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.terre', min: 5, max: 7 }]
 }
 item.bottes_de_brouce = {
@@ -17390,7 +17390,7 @@ item.bottes_de_brouce = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_brouce_boulgoure',
-    requiredLevel: 197,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 61, max: 90 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'dropRate', min: 16, max: 20 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'res.air', min: 11, max: 15 }, { stat: 'flatDamage', min: 14, max: 18 }]
 }
 item.anneau_de_brouce = {
@@ -17402,7 +17402,7 @@ item.anneau_de_brouce = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_de_brouce_boulgoure',
-    requiredLevel: 198,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 51, max: 70 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.casqnoar = {
@@ -17942,7 +17942,7 @@ item.amulette_d_oshimo = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_oshimo',
-    requiredLevel: 196,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 31, max: 50 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'critChance', min: 4, max: 6 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'spd', min: -3, max: -2 }, { stat: 'dropRate', min: 7, max: 10 }, { stat: 'res.neutre', min: 16, max: 20 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.coiffe_d_oshimo = {
@@ -17954,7 +17954,7 @@ item.coiffe_d_oshimo = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_oshimo',
-    requiredLevel: 198,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 31, max: 40 }, { stat: 'chance', min: 31, max: 40 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: -1, max: 0 }, { stat: 'dropRate', min: 16, max: 20 }, { stat: 'critResPct', min: 7, max: 10 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.bottes_d_oshimo = {
@@ -17966,7 +17966,7 @@ item.bottes_d_oshimo = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_d_oshimo',
-    requiredLevel: 199,
+    requiredLevel: 180,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'force', min: 31, max: 50 }, { stat: 'chance', min: 31, max: 50 }, { stat: 'critChance', min: 2, max: 3 }, { stat: 'spd', min: 8, max: 9 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'flatDamage', min: 8, max: 12 }]
 }
 item.amulette_de_nileza = {
@@ -18482,7 +18482,7 @@ item.alliance_brulame = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_brulame',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 41, max: 60 }, { stat: 'intelligence', min: 41, max: 60 }, { stat: 'agilite', min: 41, max: 60 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'res.air', min: 5, max: 7 }, { stat: 'flatDamage', min: 5, max: 7 }]
 }
 item.masque_brulame = {
@@ -18494,7 +18494,7 @@ item.masque_brulame = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_brulame',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'force', min: 51, max: 70 }, { stat: 'intelligence', min: 51, max: 70 }, { stat: 'agilite', min: 51, max: 70 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'critResPct', min: 16, max: 20 }, { stat: 'flatDamage', min: 9, max: 12 }]
 }
 item.pompes_funebres = {
@@ -18506,7 +18506,7 @@ item.pompes_funebres = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_brulame',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'force', min: 41, max: 60 }, { stat: 'intelligence', min: 41, max: 60 }, { stat: 'agilite', min: 41, max: 60 }, { stat: 'critChance', min: 2, max: 2 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'critResPct', min: 16, max: 20 }, { stat: 'flatDamage', min: 9, max: 12 }]
 }
 item.amulette_cryochrone = {
@@ -18710,7 +18710,7 @@ item.cape_paztek = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_paztek',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'intelligence', min: 61, max: 80 }, { stat: 'chance', min: 61, max: 80 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'spd', min: -5, max: -5 }, { stat: 'res.terre', min: 7, max: 10 }, { stat: 'res.air', min: 7, max: 10 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.couteaux_sacrificiels = {
@@ -18722,7 +18722,7 @@ item.couteaux_sacrificiels = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_paztek',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'intelligence', min: 51, max: 70 }, { stat: 'chance', min: 51, max: 70 }, { stat: 'spd', min: -5, max: -5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'critResPct', min: -30, max: -30 }, { stat: 'flatDamage', min: 16, max: 20 }]
 }
 item.masque_paztek = {
@@ -18734,7 +18734,7 @@ item.masque_paztek = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_paztek',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'intelligence', min: 61, max: 80 }, { stat: 'chance', min: 61, max: 80 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'res.air', min: 7, max: 10 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.sandales_paztek = {
@@ -18746,7 +18746,7 @@ item.sandales_paztek = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'panoplie_paztek',
-    requiredLevel: 200,
+    requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'intelligence', min: 61, max: 80 }, { stat: 'chance', min: 61, max: 80 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'spd', min: 10, max: 10 }, { stat: 'res.neutre', min: 7, max: 10 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'critResPct', min: -30, max: -30 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.bottes_owesli = {

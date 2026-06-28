@@ -1,11 +1,7 @@
 // ui/almanax.js — Almanax + Archives DofusChill
 
-function _todayStr() {
-    return new Date().toISOString().slice(0, 10)
-}
-
 function _canClaimAlmanax() {
-    return state.lastAlmanaxDate !== _todayStr()
+    return state.lastAlmanaxDate !== _periodStr()
 }
 
 // ─── Tableaux de récompenses par palier ──────────────────────────────────────
@@ -139,7 +135,7 @@ function claimAlmanax() {
 
     addToInventory('sablierXelor')
 
-    state.lastAlmanaxDate = _todayStr()
+    state.lastAlmanaxDate = _periodStr()
     saveGame()
     exportData()
     updateAlmanaxNavItem()
@@ -158,7 +154,7 @@ function claimAlmanax() {
             <div style="font-size:1.1rem;font-weight:bold;color:${color};background:var(--dark2);padding:0.3rem 1rem;border-radius:0.5rem;">Almanax du jour réclamé !</div>
             <div style="font-size:0.9rem;opacity:0.8;text-align:center;">Vous recevez ${rewardLine}.</div>
             <div style="font-size:0.85rem;opacity:0.8;text-align:center;">+ <strong>1× Sablier de Xélor</strong></div>
-            <div style="font-size:0.75rem;opacity:0.5;">Revenez demain pour une nouvelle récompense.</div>
+            <div style="font-size:0.75rem;opacity:0.5;">L'almanax se renouvelle à minuit et à midi (UTC).</div>
         </div>`
     openTooltip('Almanax', body)
 }

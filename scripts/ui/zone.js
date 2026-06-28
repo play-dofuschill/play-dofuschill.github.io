@@ -346,6 +346,17 @@ function confirmStartCombat() {
         return
     }
 
+    // Prélèvement kamas pour les avis de recherche
+    if (areaId.startsWith('_wanted_') && state.pendingWantedId) {
+        const wd   = WantedBosses[state.pendingWantedId]
+        const cost = wd ? Math.floor(wd.levelCap / 2) : 0
+        if (cost > 0 && state.kamas < cost) {
+            showNotification(`Pas assez de kamas ! (${cost} requis)`, 'error')
+            return
+        }
+        if (cost > 0) state.kamas -= cost
+    }
+
     _pendingAreaId = null
 
     const bar = document.getElementById('zone-confirm-bar')

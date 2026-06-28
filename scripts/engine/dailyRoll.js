@@ -61,12 +61,18 @@ const WILD_SLOTS = [
 ]
 
 const DAILY_EVENT_MAX    = 5
-const EVENT_REFRESH_DAYS = 3
+const EVENT_REFRESH_DAYS = 1
 const DAILY_RAID_MAX     = 3
-const RAID_REFRESH_DAYS  = 3
+const RAID_REFRESH_DAYS  = 1
 
 function _todayStr() {
     return new Date().toISOString().slice(0, 10)
+}
+
+// Identifiant de demi-journée UTC : "YYYY-MM-DD-0" (minuit–midi) ou "YYYY-MM-DD-1" (midi–minuit)
+function _periodStr() {
+    const now = new Date()
+    return `${now.toISOString().slice(0, 10)}-${now.getUTCHours() < 12 ? 0 : 1}`
 }
 
 function _dateSeed(str) {
@@ -109,11 +115,13 @@ function getZoneUnlockHint(area) {
 
 // Génère / rafraîchit les pools journaliers. Appelé à chaque ouverture du menu zones.
 function refreshDailyPools() {
-    const today = _todayStr()
-    const seed  = _dateSeed(today)
+    const today      = _todayStr()
+    const period     = _periodStr()
+    const wildSeed   = _dateSeed(period)   // change deux fois par jour (minuit + midi UTC)
+    const dailySeed  = _dateSeed(today)    // change une fois par jour (minuit UTC)
 
-    // Wild : stale uniquement si nouveau jour (pas de recalcul intra-journalier après boss kill)
-    const wildStale = !state.dailyPool || state.dailyPool.date !== today
+    // Wild : stale si nouvelle demi-journée (bi-journalier)
+    const wildStale = !state.dailyPool || state.dailyPool.period !== period
 
     if (!wildStale && state.dailyPool?.zones) {
         // Nettoyer le pool existant : retirer les zones devenues inaccessibles (ex. typo corrigée)
@@ -153,17 +161,17 @@ function refreshDailyPools() {
             )
             if (candidates.length === 0) continue
             // Seed différente par slot pour éviter de toujours choisir le même index
-            let s = (seed + i * 2654435761) >>> 0
+            let s = (wildSeed + i * 2654435761) >>> 0
             s = (Math.imul(s, 1664525) + 1013904223) >>> 0
             const choice = candidates[s % candidates.length]
             picked.add(choice.id)
             pickedRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             zones.push(choice.id)
         }
-        state.dailyPool = { date: today, zones }
+        state.dailyPool = { period, zones }
     }
 
-    // Événements : refresh tous les EVENT_REFRESH_DAYS jours (pas lié aux boss)
+    // Événements : refresh journalier (pas lié aux boss)
     const eventStale = !state.eventPool || (() => {
         const ms = new Date(today) - new Date(state.eventPool.date)
         return ms / 86400000 >= EVENT_REFRESH_DAYS
@@ -173,11 +181,11 @@ function refreshDailyPools() {
         const allEvents = Object.values(areas).filter(a => a.type === 'event')
         state.eventPool = {
             date: today,
-            zones: _seededShuffle(allEvents, seed ^ 0xdeadbeef).slice(0, DAILY_EVENT_MAX).map(a => a.id)
+            zones: _seededShuffle(allEvents, dailySeed ^ 0xdeadbeef).slice(0, DAILY_EVENT_MAX).map(a => a.id)
         }
     }
 
-    // Raids : refresh tous les RAID_REFRESH_DAYS jours
+    // Raids : refresh journalier
     const raidStale = !state.raidPool || (() => {
         const ms = new Date(today) - new Date(state.raidPool.date)
         return ms / 86400000 >= RAID_REFRESH_DAYS
@@ -187,7 +195,7 @@ function refreshDailyPools() {
         const allRaids = Object.values(areas).filter(a => a.type === 'raid')
         state.raidPool = {
             date: today,
-            zones: _seededShuffle(allRaids, seed ^ 0xc0ffee).slice(0, DAILY_RAID_MAX).map(a => a.id)
+            zones: _seededShuffle(allRaids, dailySeed ^ 0xc0ffee).slice(0, DAILY_RAID_MAX).map(a => a.id)
         }
     }
 }
@@ -218,31 +226,30 @@ function getDailyDungeons() {
 }
 
 // Labels de countdown pour l'UI.
-function nextWildRefreshLabel() {
-    const now  = new Date()
-    const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
-    const secs = Math.floor((next - now) / 1000)
-    const h    = Math.floor(secs / 3600)
-    const m    = Math.floor((secs % 3600) / 60)
+function _countdownLabel(targetMs) {
+    const secs = Math.floor((targetMs - Date.now()) / 1000)
+    if (secs <= 0) return 'bientôt'
+    const h = Math.floor(secs / 3600)
+    const m = Math.floor((secs % 3600) / 60)
     if (h > 0) return `${h}h${m > 0 ? ` ${m}min` : ''}`
     if (m > 0) return `${m} min`
     return 'bientôt'
 }
 
+function nextWildRefreshLabel() {
+    const now = new Date()
+    const nextMs = now.getUTCHours() < 12
+        ? Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 12)
+        : Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
+    return _countdownLabel(nextMs)
+}
+
 function nextEventRefreshLabel() {
-    if (!state.eventPool) return '3 jours'
-    const today   = _todayStr()
-    const elapsed = Math.floor((new Date(today) - new Date(state.eventPool.date)) / 86400000)
-    const rem     = EVENT_REFRESH_DAYS - elapsed
-    if (rem <= 1) return 'demain'
-    return `${rem} jours`
+    const now = new Date()
+    return _countdownLabel(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
 }
 
 function nextRaidRefreshLabel() {
-    if (!state.raidPool) return '3 jours'
-    const today   = _todayStr()
-    const elapsed = Math.floor((new Date(today) - new Date(state.raidPool.date)) / 86400000)
-    const rem     = RAID_REFRESH_DAYS - elapsed
-    if (rem <= 1) return 'demain'
-    return `${rem} jours`
+    const now = new Date()
+    return _countdownLabel(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
 }
