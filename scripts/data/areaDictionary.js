@@ -145,6 +145,20 @@ areas.campementDesGobs = {
         { itemId: 'cleDonjonAcademieGobs', dropRate: 0.15, isKey: true }]
 }
 
+areas.attractionFantome = {
+    id: 'attractionFantome',
+    name: 'Attraction fantôme',
+    minLevel: 20,
+    maxLevel: 40,
+    mobMinLevel: 20,
+    mobMaxLevel: 30,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'boostache_prepubere', weight: 10 }, { id: 'tofu_malefique', weight: 10 }, { id: 'gargrouille', weight: 5 }, { id: 'kwoan', weight: 10 }, { id: 'vampire', weight: 10 }],
+    lootTable: [{ itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'cleDonjonBoostache', dropRate: 0.15, isKey: true }, { itemId: 'ceinture_de_grouillot', dropRate: 0.01 }, { itemId: 'bottes_de_grouillot', dropRate: 0.01 }, { itemId: 'anneau_de_grouillot', dropRate: 0.01 }]
+}
+
 areas.scarafeuilles = {
     id: 'scarafeuilles',
     name: 'Plaine des scarafeuilles',
@@ -235,6 +249,7 @@ areas.grenierDeKerubim = {
         { itemId: 'cleDonjonKankreblath', dropRate: 0.15, isKey: true }
     ]
 }
+
 areas.champsDesIngalsse = {
     id: 'champsDesIngalsse',
     name: "Champs des Ingalsse",
@@ -441,7 +456,6 @@ areas.futaieEnneigee = {
     ]
 }
 
-
 areas.blops = {
     id: 'blops',
     name: 'Lac de Cania',
@@ -561,7 +575,6 @@ areas.tourbieresSansFond = {
     ]
 }
 
-
 areas.plateauMantiscore = {
     id: 'plateauMantiscore',
     name: 'Désert de Saharash',
@@ -645,7 +658,6 @@ areas.desolationDeSidimote = {
     ]
 }
 
-
 areas.nidsDragaeufs = {
     id: 'nidsDragaeufs',
     name: "Nids des Dragoeufs",
@@ -694,7 +706,6 @@ areas.souterrainsWabbits = {
         { itemId: 'bracelet_du_blanc_pa_wabbit', dropRate: 0.01 }
     ]
 }
-
 
 areas.foretAbraknydes = {
     id: 'foretAbraknydes',
@@ -826,7 +837,6 @@ areas.routeDesRoulottes = {
     ]
 }
 
-
 areas.fermeDragonCochon = {
     id: 'fermeDragonCochon',
     name: "Territoire des porcos",
@@ -851,7 +861,6 @@ areas.fermeDragonCochon = {
         { itemId: 'bottes_du_gorgouille', dropRate: 0.01 }
     ]
 }
-
 
 areas.hautDesHurlements = {
     id: 'hautDesHurlements',
@@ -982,7 +991,6 @@ areas.villageDragoeufs = {
     ]
 }
 
-
 areas.penatesDuCorbac = {
     id: 'penatesDuCorbac',
     name: "Pénates du corbac",
@@ -1095,7 +1103,6 @@ areas.plantala = {
         { itemId: 'hache_terrdala', dropRate: 0.01 }
     ]
 }
-
 
 areas.ileDuMinotoror = {
     id: 'ileDuMinotoror',
@@ -1220,7 +1227,6 @@ areas.valleeDeLaMortKitu = {
         { itemId: 'cleDonjonSkeunk', dropRate: 0.15, isKey: true }
     ]
 }
-
 
 areas.lacDeCaniaProfond = {
     id: 'lacDeCaniaProfond',
@@ -1365,7 +1371,6 @@ areas.terrdala = {
     ]
 }
 
-
 areas.foretSombre = {
     id: 'foretSombre',
     name: "Forêt sombre",
@@ -1500,7 +1505,6 @@ areas.feudala = {
     ]
 }
 
-
 areas.egoutsDuChateauAmakna = {
     id: 'egoutsDuChateauAmakna',
     name: "Égouts du château d'Amakna",
@@ -1509,7 +1513,18 @@ areas.egoutsDuChateauAmakna = {
     background: "",
     icon: "images/monsters/.png",
     description: "Sous les fondations du Château d'Amakna s'étend un réseau de galeries médiévales creusées par des bâtisseurs depuis longtemps oubliés. Les squelettes qui y patrouillent semblent avoir reçu pour ordre de défendre ces lieux pour l'éternité.",
-    spawns: [],
+    spawns: [
+        { id: 'ramane', weight: 10 },
+        { id: 'rat_goutant', weight: 10 },
+        { id: 'rat_masseur', weight: 10 },
+        { id: 'rat_colleur', weight: 10 },
+        { id: 'rat_pine', weight: 10 },
+        { id: 'rat_caille', weight: 10 },
+        { id: 'rat_fraichi', weight: 10 },
+        { id: 'rat_botteur', weight: 10 },
+        { id: 'rat_noir', weight: 1 },
+        { id: 'rat_blanc', weight: 1 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSphincter', dropRate: 0.15, isKey: true }
@@ -1524,10 +1539,19 @@ areas.berceauDAlma = {
     background: "",
     icon: "images/monsters/.png",
     description: "Le Berceau d'Alma est un lieu saint pour les Sadidas : c'est ici, dit-on, que la déesse de la Nature fit naître les premières plantes du Monde des Douze. Malheureusement, même les lieux sacrés ne sont pas à l'abri des créatures mal intentionnées.",
-    spawns: [],
+    spawns: [
+        { id: 'crapeur', weight: 10 },
+        { id: 'atomystique', weight: 10 },
+        { id: 'fumrirolle', weight: 10 },
+        { id: 'solfatare', weight: 10 },
+        { id: 'mofette', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonGrolandais', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonGrolandais', dropRate: 0.15, isKey: true },
+        { itemId: 'ceinture_des_prophetes', dropRate: 0.01 },
+        { itemId: 'anneau_des_prophetes', dropRate: 0.01 },
+        { itemId: 'baton_des_prophetes', dropRate: 0.01 }
     ]
 }
 
@@ -1539,13 +1563,26 @@ areas.dedaleDuDarkVlad = {
     background: "",
     icon: "images/monsters/.png",
     description: "Le Dédale du Dark Vlad est le résultat de siècles de magie noire accumulée. Les couloirs de ce labyrinthe maudit changent de configuration sans prévenir, et les ombres qui y habitent semblent nourries par la peur de ceux qui s'y perdent.",
-    spawns: [],
+    spawns: [
+        { id: 'malzerb', weight: 10 },
+        { id: 'maltrio', weight: 10 },
+        { id: 'malepik', weight: 10 },
+        { id: 'malbois', weight: 10 },
+        { id: 'malalfa', weight: 10 },
+        { id: 'malterego_de_malepik', weight: 2 },
+        { id: 'malterego_de_malzerb', weight: 2 },
+        { id: 'malterego_de_maltrio', weight: 2 },
+        { id: 'malterego_de_malbois', weight: 2 },
+        { id: 'malterego_de_malalfa', weight: 2 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonTertreSommeil', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonTertreSommeil', dropRate: 0.15, isKey: true },
+        { itemId: 'anneau_poli_de_malter', dropRate: 0.01 },
+        { itemId: 'bottes_crepitantes_de_malter', dropRate: 0.01 },
+        { itemId: 'faux_enracinee_de_malter', dropRate: 0.01 }
     ]
 }
-
 
 areas.larmesDOuronigride = {
     id: 'larmesDOuronigride',
@@ -1555,10 +1592,26 @@ areas.larmesDOuronigride = {
     background: "",
     icon: "images/monsters/.png",
     description: "Ouronigride, dragon de l'obscurité, aurait versé ses larmes en ce lieu lors d'un combat titanesque. Ces larmes, cristallisées au fil des millénaires, ont donné naissance à un paysage aussi beau que dangereux.",
-    spawns: [],
+    spawns: [
+        { id: 'fancrome', weight: 10 },
+        { id: 'fantomalamere', weight: 10 },
+        { id: 'vigie_pirate', weight: 10 },
+        { id: 'harpirate', weight: 10 },
+        { id: 'fantomat', weight: 10 },
+        { id: 'fantimonier', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonObsidiantre', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonObsidiantre', dropRate: 0.15, isKey: true },
+        { itemId: 'anneau_de_cantile', dropRate: 0.01 },
+        { itemId: 'cape_de_cantile', dropRate: 0.01 },
+        { itemId: 'amulette_de_cantile', dropRate: 0.01 },
+        { itemId: 'bottes_de_cantile', dropRate: 0.01 },
+        { itemId: 'hache_du_fancrome', dropRate: 0.01 },
+        { itemId: 'fantomasque', dropRate: 0.01 },
+        { itemId: 'marteau_de_la_vigie_pirate', dropRate: 0.01 },
+        { itemId: 'lance_du_harpirate', dropRate: 0.01 },
+        { itemId: 'masque_du_harpirate', dropRate: 0.01 }
     ]
 }
 
@@ -1570,10 +1623,27 @@ areas.feuillageArbreHakam = {
     background: "",
     icon: "images/monsters/.png",
     description: "L'Arbre Hakam, colossal gardien de la forêt, étend ses branches sur plusieurs hectares. Dans ce feuillage dense comme un second sol, des créatures arboricoles ont établi leurs nids, invisibles depuis le sol.",
-    spawns: [],
+    spawns: [
+        { id: 'bitouf_aerien', weight: 10 },
+        { id: 'kaskargo', weight: 10 },
+        { id: 'poolay', weight: 10 },
+        { id: 'abrakleur_clair', weight: 10 },
+        { id: 'meupette', weight: 5 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonKimbo', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonKimbo', dropRate: 0.15, isKey: true },
+        { itemId: 'ceinture_claire_en_abrakleur', dropRate: 0.01 },
+        { itemId: 'branche_de_l_abrakleur_clair', dropRate: 0.01 },
+        { itemId: 'masque_de_l_abrakleur_clair', dropRate: 0.01 },
+        { itemId: 'bottines_en_bois_d_abrakleur', dropRate: 0.01 },
+        { itemId: 'anneau_skargo', dropRate: 0.01 },
+        { itemId: 'kask_arc_go', dropRate: 0.01 },
+        { itemId: 'kaskargo', dropRate: 0.01 },
+        { itemId: 'ceinture_bitoufale_de_prosper_youpla', dropRate: 0.01 },
+        { itemId: 'casque_du_bitouf_aerien', dropRate: 0.01 },
+        { itemId: 'poolache', dropRate: 0.01 },
+        { itemId: 'perruque_du_poolay', dropRate: 0.01 }
     ]
 }
 
@@ -1662,7 +1732,6 @@ areas.cimetiereDeGrobe = {
     ]
 }
 
-
 areas.crevassePerge = {
     id: 'crevassePerge',
     name: "Crevasse Perge",
@@ -1740,7 +1809,6 @@ areas.montDesTombeaux = {
     ]
 }
 
-
 areas.gisgoul = {
     id: 'gisgoul',
     name: "Gisgoul",
@@ -1782,7 +1850,7 @@ areas.domaineDesFungus = {
         { id: 'champmane', weight: 10 },
         { id: 'champbis', weight: 10 },
         { id: 'champ_a_gnons', weight: 10 },
-        { id: 'champ_champ', weight: 10 }
+        { id: 'champ_champ', weight: 1 }
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1883,7 +1951,6 @@ areas.foretPetrifiee = {
         { itemId: 'amulette_heroclite', dropRate: 0.01 }
     ]
 }
-
 
 areas.montTorrideau = {
     id: 'montTorrideau',
@@ -1987,7 +2054,6 @@ areas.ereboria = {
         { itemId: 'bouclier_gris', dropRate: 0.01 }
     ]
 }
-
 
 areas.bastionFroidesLegions = {
     id: 'bastionFroidesLegions',
@@ -2160,10 +2226,22 @@ areas.rocDesSalbatroce = {
     background: "",
     icon: "images/monsters/.png",
     description: "Les Salbatroces ont transformé ce roc saillant au-dessus des flots sufokiens en une véritable cité aérienne. Leurs nids de fortune s'accrochent aux parois verticales, et malheur à quiconque s'approche de leurs œufs lors de la saison de nidification.",
-    spawns: [],
+    spawns: [
+        { id: 'tabacille', weight: 10 },
+        { id: 'bacterrib', weight: 10 },
+        { id: 'virustine', weight: 10 },
+        { id: 'pataugerme', weight: 5 },
+        { id: 'verminocule', weight: 10 }
+    ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonBaleine', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonBaleine', dropRate: 0.15, isKey: true },
+        { itemId: 'amulette_de_pol_ouatnos', dropRate: 0.01 },
+        { itemId: 'anneau_de_pol_ouatnos', dropRate: 0.01 },
+        { itemId: 'maskrobe', dropRate: 0.01 },
+        { itemId: 'pataugastrique', dropRate: 0.01 },
+        { itemId: 'protopagne', dropRate: 0.01 },
+        { itemId: 'voilamibe', dropRate: 0.01 }
     ]
 }
 
@@ -2349,6 +2427,7 @@ areas.royaumeDesMartegel = {
         { itemId: 'ceinture_volkorne', dropRate: 0.01 }
     ]
 }
+
 areas.terresDesacrees = {
     id: 'terresDesacrees',
     name: 'Terres Désacrées',
@@ -2362,6 +2441,7 @@ areas.terresDesacrees = {
     spawns: [{ id: 'goulafre', weight: 10 }, { id: 'kerigoule', weight: 10 }, { id: 'gouligane', weight: 10 }, { id: 'goultime', weight: 10 }, { id: 'pipisteuse', weight: 5 }],
     lootTable: [{ itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'cleDonjonKatrepat', dropRate: 0.15, isKey: true },{ itemId: 'goulano', dropRate: 0.01 }, { itemId: 'goulbottes', dropRate: 0.01 }, { itemId: 'goulclier', dropRate: 0.01 }]
 }
+
 areas.crocuzko = {
     id: 'crocuzko',
     name: "Crocuzko",
@@ -2598,6 +2678,8 @@ areas.ephedrya = {
 
 // #region DONJONS ────────────────────────────────────────────────────────────────
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
 // NIVEAU 15
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -2649,6 +2731,7 @@ areas.donjonMousse = {
         { itemId: 'bouclier_en_mousse', dropRate: 0.02 }
     ]
 }
+
 areas.donjonChamps = {
     id: 'donjonChamps',
     type: 'dungeon',
@@ -2725,6 +2808,22 @@ areas.donjonAcademieGobs = {
         { itemId: 'chapeau_du_directeur_grunob', dropRate: 0.02 },
         { itemId: 'bottes_du_directeur_grunob', dropRate: 0.02 }
     ]
+}
+
+areas.donjonMaisonFantome = {
+    id: 'donjonMaisonFantome',
+    type: 'dungeon',
+    keyId: 'cleDonjonBoostache',
+    name: 'Maison Fantôme',
+    minLevel: 35,
+    maxLevel: 35,
+    mobMinLevel: 35,
+    mobMaxLevel: 35,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'boostache', weight: 10 }],
+    lootTable: [{ itemId: 'pierreDameGardien', dropRate: 0.45 }, { itemId: 'cape_du_boostache', dropRate: 0.02 }, { itemId: 'anneau_du_boostache', dropRate: 0.02 }, { itemId: 'ceinture_du_boostache', dropRate: 0.02 }, { itemId: 'amulette_du_boostache', dropRate: 0.02 }]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -5039,7 +5138,6 @@ areas.donjonDechireuse = {
 //         { itemId: '',       dropRate: 0.01 },
 //     ]
 // }
-
 // #endregion
 
 // #region EVENTS ─────────────────────────────────────────────────────────────
@@ -5178,6 +5276,54 @@ areas.donjonDechireuse = {
         { itemId: 'trophee_de_l_air',      dropRate: 0.001 },
 */
 // #endregion
+
+areas.evenementIncanam = {
+    id: 'evenementIncanam',
+    type: 'event',
+    name: "Incanam",
+    minLevel: 1,
+    maxLevel: 20,
+    mobMinLevel: 1,
+    mobMaxLevel: 10,
+    background: "",
+    icon: "images/monsters/Tigrimas.png",
+    description: "",
+    spawns: [
+        { id: 'feu_vif', weight: 10 },
+        { id: 'feu_de_joie', weight: 10 },
+        { id: 'feu_furieux', weight: 10 },
+        { id: 'feu_follet', weight: 10 },
+        { id: 'tofu_chimerique', weight: 10 },
+        { id: 'rose_vaporeuse', weight: 10 },
+        { id: 'pissenlit_miroitant', weight: 10 },
+        { id: 'tournesol_nebuleux', weight: 10 },
+        { id: 'petit_gloot', weight: 10 },
+        { id: 'plikplok', weight: 10 },
+        { id: 'grand_splatch', weight: 10 },
+        { id: 'tigrimas', weight: 10 },
+        { id: 'chakrobat', weight: 10 },
+        { id: 'ronronchon', weight: 10 },
+        { id: 'aminite', weight: 10 },
+        { id: 'boufton_palichon', weight: 10 },
+        { id: 'boufton_orageux', weight: 10 },
+        { id: 'bouftou_nuageux', weight: 10 },
+        { id: 'bouftor_ethere', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'animulette', dropRate: 0.01 },
+        { itemId: 'cape_syche', dropRate: 0.01 },
+        { itemId: 'coiffe_antome', dropRate: 0.01 },
+        { itemId: 'bounihimee', dropRate: 0.01 },
+        { itemId: 'la_cape_s_loque', dropRate: 0.01 },
+        { itemId: 'la_halte_efkat', dropRate: 0.01 },
+        { itemId: 'la_spamette', dropRate: 0.01 },
+        { itemId: 'le_floude', dropRate: 0.01 },
+        { itemId: 'le_plussain', dropRate: 0.01 },
+        { itemId: 'le_s_mesme', dropRate: 0.01 },
+        { itemId: 'les_incrustes', dropRate: 0.01 }
+    ]
+}
+
 areas.evenementPious = {
     id: 'evenementPious',
     type: 'event',
@@ -5198,42 +5344,42 @@ areas.evenementPious = {
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'piloteAutomatique', dropRate: 0.05 },
-        { itemId: 'cape_du_piou_bleu', dropRate: 0.01 },
-        { itemId: 'sandales_du_piou_bleu', dropRate: 0.01 },
-        { itemId: 'anneau_du_piou_bleu', dropRate: 0.01 },
-        { itemId: 'amulette_du_piou_bleu', dropRate: 0.01 },
-        { itemId: 'chapeau_du_piou_bleu', dropRate: 0.01 },
-        { itemId: 'ceinture_du_piou_bleu', dropRate: 0.01 },
-        { itemId: 'amulette_du_piou_jaune', dropRate: 0.01 },
-        { itemId: 'chapeau_du_piou_jaune', dropRate: 0.01 },
-        { itemId: 'ceinture_du_piou_jaune', dropRate: 0.01 },
-        { itemId: 'cape_du_piou_jaune', dropRate: 0.01 },
-        { itemId: 'sandales_du_piou_jaune', dropRate: 0.01 },
-        { itemId: 'anneau_du_piou_jaune', dropRate: 0.01 },
-        { itemId: 'anneau_du_piou_rose', dropRate: 0.01 },
-        { itemId: 'amulette_du_piou_rose', dropRate: 0.01 },
-        { itemId: 'chapeau_du_piou_rose', dropRate: 0.01 },
-        { itemId: 'ceinture_du_piou_rose', dropRate: 0.01 },
-        { itemId: 'cape_du_piou_rose', dropRate: 0.01 },
-        { itemId: 'sandales_du_piou_rose', dropRate: 0.01 },
-        { itemId: 'ceinture_du_piou_rouge', dropRate: 0.01 },
-        { itemId: 'cape_du_piou_rouge', dropRate: 0.01 },
-        { itemId: 'sandales_du_piou_rouge', dropRate: 0.01 },
-        { itemId: 'anneau_du_piou_rouge', dropRate: 0.01 },
-        { itemId: 'amulette_du_piou_rouge', dropRate: 0.01 },
-        { itemId: 'chapeau_du_piou_rouge', dropRate: 0.01 },
-        { itemId: 'chapeau_du_piou_vert', dropRate: 0.01 },
-        { itemId: 'ceinture_du_piou_vert', dropRate: 0.01 },
-        { itemId: 'cape_du_piou_vert', dropRate: 0.01 },
-        { itemId: 'sandales_du_piou_vert', dropRate: 0.01 },
-        { itemId: 'anneau_du_piou_vert', dropRate: 0.01 },
-        { itemId: 'amulette_du_piou_vert', dropRate: 0.01 },
-        { itemId: 'sandales_du_piou_violet', dropRate: 0.01 },
-        { itemId: 'anneau_du_piou_violet', dropRate: 0.01 },
-        { itemId: 'amulette_du_piou_violet', dropRate: 0.01 },
-        { itemId: 'chapeau_du_piou_violet', dropRate: 0.01 },
-        { itemId: 'ceinture_du_piou_violet', dropRate: 0.01 },
-        { itemId: 'cape_du_piou_violet', dropRate: 0.01 }
+        { itemId: 'cape_du_piou_bleu', dropRate: 0.005 },
+        { itemId: 'sandales_du_piou_bleu', dropRate: 0.005 },
+        { itemId: 'anneau_du_piou_bleu', dropRate: 0.005 },
+        { itemId: 'amulette_du_piou_bleu', dropRate: 0.005 },
+        { itemId: 'chapeau_du_piou_bleu', dropRate: 0.005 },
+        { itemId: 'ceinture_du_piou_bleu', dropRate: 0.005 },
+        { itemId: 'amulette_du_piou_jaune', dropRate: 0.005 },
+        { itemId: 'chapeau_du_piou_jaune', dropRate: 0.005 },
+        { itemId: 'ceinture_du_piou_jaune', dropRate: 0.005 },
+        { itemId: 'cape_du_piou_jaune', dropRate: 0.005 },
+        { itemId: 'sandales_du_piou_jaune', dropRate: 0.005 },
+        { itemId: 'anneau_du_piou_jaune', dropRate: 0.005 },
+        { itemId: 'anneau_du_piou_rose', dropRate: 0.005 },
+        { itemId: 'amulette_du_piou_rose', dropRate: 0.005 },
+        { itemId: 'chapeau_du_piou_rose', dropRate: 0.005 },
+        { itemId: 'ceinture_du_piou_rose', dropRate: 0.005 },
+        { itemId: 'cape_du_piou_rose', dropRate: 0.005 },
+        { itemId: 'sandales_du_piou_rose', dropRate: 0.005 },
+        { itemId: 'ceinture_du_piou_rouge', dropRate: 0.005 },
+        { itemId: 'cape_du_piou_rouge', dropRate: 0.005 },
+        { itemId: 'sandales_du_piou_rouge', dropRate: 0.005 },
+        { itemId: 'anneau_du_piou_rouge', dropRate: 0.005 },
+        { itemId: 'amulette_du_piou_rouge', dropRate: 0.005 },
+        { itemId: 'chapeau_du_piou_rouge', dropRate: 0.005 },
+        { itemId: 'chapeau_du_piou_vert', dropRate: 0.005 },
+        { itemId: 'ceinture_du_piou_vert', dropRate: 0.005 },
+        { itemId: 'cape_du_piou_vert', dropRate: 0.005 },
+        { itemId: 'sandales_du_piou_vert', dropRate: 0.005 },
+        { itemId: 'anneau_du_piou_vert', dropRate: 0.005 },
+        { itemId: 'amulette_du_piou_vert', dropRate: 0.005 },
+        { itemId: 'sandales_du_piou_violet', dropRate: 0.005 },
+        { itemId: 'anneau_du_piou_violet', dropRate: 0.005 },
+        { itemId: 'amulette_du_piou_violet', dropRate: 0.005 },
+        { itemId: 'chapeau_du_piou_violet', dropRate: 0.005 },
+        { itemId: 'ceinture_du_piou_violet', dropRate: 0.005 },
+        { itemId: 'cape_du_piou_violet', dropRate: 0.005 }
     ]
 }
 
@@ -5273,9 +5419,48 @@ areas.evenementForetAstrub = {
     ]
 }
 
+areas.evenementGrouillantsDAstrub = {
+    id: 'evenementGrouillantsDAstrub',
+    type: 'event',
+    name: "Grouillants d'astrub",
+    minLevel: 20,
+    maxLevel: 40,
+    mobMinLevel: 20,
+    mobMaxLevel: 30,
+    background: "",
+    icon: "",
+    description: "",
+    spawns: [
+        { id: 'tofu_malade', weight: 10 },
+        { id: 'arakne_malade', weight: 10 },
+        { id: 'arakne_minuscule', weight: 10 },
+        { id: 'araknose', weight: 10 },
+        { id: 'arakmute', weight: 10 },
+        { id: 'araknelle', weight: 10 }
+    ],
+    lootTable: []
+}
 
+areas.evenementMinerEtFabriquer = {
+    id: 'evenementMinerEtFabriquer',
+    type: 'event',
+    name: "miner et fabriquer",
+    minLevel: 20,
+    maxLevel: 40,
+    mobMinLevel: 20,
+    mobMaxLevel: 30,
+    background: "",
+    icon: "",
+    description: "",
+    spawns: [
+        { id: 'pikdoa', weight: 10 },
+        { id: 'douzdoa', weight: 10 },
+        { id: 'sherpoa', weight: 10 },
+        { id: 'martoa', weight: 10 }
+    ],
+    lootTable: []
+}
 
-// #endregion
 areas.evenementBiblop = {
     id: 'evenementBiblop',
     type: 'event',
@@ -5322,6 +5507,75 @@ areas.egoutsAstrub = {
         { itemId: 'bottes_de_rapine', dropRate: 0.01 }
     ]
 }
+
+areas.evenementBoooouh = {
+    id: 'evenementBoooouh',
+    name: "boooouh",
+    type: 'event',
+    minLevel: 40,
+    maxLevel: 60,
+    mobMinLevel: 40,
+    mobMaxLevel: 50,
+    background: "",
+    icon: "",
+    description: "",
+    spawns: [
+        { id: 'fantome_egerie', weight: 10 },
+        { id: 'fantome_hicide', weight: 10 },
+        { id: 'fantome_apero', weight: 10 },
+        { id: 'fantome_aux_plates', weight: 10 },
+        { id: 'fantome_d_aventurier_ardent', weight: 10 },
+        { id: 'fantome_d_aventurier_arepo', weight: 10 },
+        { id: 'fantome_d_aventurier_brave', weight: 10 }
+    ],
+    lootTable: []
+}
+
+areas.evenementALaPecheAuMoulemoulemoule = {
+    id: 'evenementALaPecheAuMoulemoulemoule',
+    name: 'A la pêche au moulemoulemoule',
+    type: 'event',
+    minLevel: 40,
+    maxLevel: 60,
+    mobMinLevel: 40,
+    mobMaxLevel: 50,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'raul_mops', weight: 10 }, { id: 'etoile_de_la_mer_d_asse', weight: 10 }, { id: 'moumoule', weight: 10 }, { id: 'crabe', weight: 10 }],
+    lootTable: []
+}
+
+areas.evenementElevageDeDragodindes = {
+    id: 'evenementElevageDeDragodindes',
+    name: 'Élevage de Dragodindes',
+    type: 'event',
+    minLevel: 40,
+    maxLevel: 60,
+    mobMinLevel: 40,
+    mobMaxLevel: 50,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'dragodinde_amande_sauvage', weight: 10 }, { id: 'dragodinde_rousse_sauvage', weight: 10 }, { id: 'dragodinde_doree_sauvage', weight: 10 }],
+    lootTable: [{ itemId: 'bottoduvet', dropRate: 0.01 }, { itemId: 'ceinturoduvet', dropRate: 0.01 }, { itemId: 'anodindo', dropRate: 0.01 }, { itemId: 'botodindo', dropRate: 0.01 }, { itemId: 'capodindo', dropRate: 0.01 }, { itemId: 'chapodindo', dropRate: 0.01 }, { itemId: 'bottes_dragocourse', dropRate: 0.01 }, { itemId: 'ceinture_dragocourse', dropRate: 0.01 }]
+}
+
+areas.evenementRepechageDeMuldos = {
+    id: 'evenementRepechageDeMuldos',
+    name: 'Repêchage de Muldos',
+    type: 'event',
+    minLevel: 50,
+    maxLevel: 70,
+    mobMinLevel: 50,
+    mobMaxLevel: 60,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'muldo_indigo_sauvage', weight: 10 }, { id: 'muldo_ebene_sauvage', weight: 10 }, { id: 'muldo_orchidee_sauvage', weight: 10 }, { id: 'muldo_dore_sauvage', weight: 10 }, { id: 'muldo_pourpre_sauvage', weight: 10 }],
+    lootTable: [{ itemId: 'botomuldo', dropRate: 0.01 }, { itemId: 'capomuldo', dropRate: 0.01 }, { itemId: 'chapomuldo', dropRate: 0.01 }]
+}
+
 areas.evenementDopeuls = {
     id: 'evenementDopeuls',
     type: 'event',
@@ -5388,7 +5642,154 @@ areas.evenementRobots = {
     ]
 }
 
+areas.evenementDroleDIle = {
+    id: 'evenementDroleDIle',
+    name: 'Drôle d\'île',
+    type: 'event',
+    minLevel: 60,
+    maxLevel: 80,
+    mobMinLevel: 60,
+    mobMaxLevel: 70,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'tortue_rouge', weight: 10 }, { id: 'tortue_bleue', weight: 10 }, { id: 'tortue_verte', weight: 10 }, { id: 'tortue_jaune', weight: 10 }, { id: 'tikoko', weight: 10 }, { id: 'kokoko', weight: 10 }, { id: 'nodkoko', weight: 10 }, { id: 'grokoko', weight: 10 }],
+    lootTable: [{ itemId: 'carabottes', dropRate: 0.01 }, { itemId: 'caracape', dropRate: 0.01 }, { itemId: 'caracoiffe', dropRate: 0.01 }]
+}
+
+areas.evenementTnLacoste = {
+    id: 'evenementTnLacoste',
+    name: 'TN Lacoste',
+    type: 'event',
+    minLevel: 60,
+    maxLevel: 80,
+    mobMinLevel: 60,
+    mobMaxLevel: 70,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'crocodaille', weight: 10 }, { id: 'boo', weight: 10 }, { id: 'chef_crocodaille', weight: 10 }, { id: 'arakne_olithique', weight: 10 }],
+    lootTable: [{ itemId: 'ceinture_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'pantoufles_crochues_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'amulette_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bouclier_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bracelet_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'coiffe_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'lame_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'petit_sac_d_ecolier_du_chef_crocodaille', dropRate: 0.01 }]
+}
+
+areas.evenementVoisinsPuants = {
+    id: 'evenementVoisinsPuants',
+    name: "Voisins puants",
+    type: 'event',
+    minLevel: 70,
+    maxLevel: 90,
+    mobMinLevel: 70,
+    mobMaxLevel: 80,
+    background: "",
+    icon: "",
+    description: "",
+    spawns: [
+        { id: 'bizarbwork', weight: 10 },
+        { id: 'krambwork', weight: 10 },
+        { id: 'medibwork', weight: 10 },
+        { id: 'megabwork', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'amulette_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'bottes_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'bracelet_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'cape_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'casque_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'lame_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'slip_du_chef_bwork', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementTerriersRadioactifs = {
+    id: 'evenementTerriersRadioactifs',
+    name: "Terriers radioactifs",
+    type: 'event',
+    minLevel: 110,
+    maxLevel: 130,
+    mobMinLevel: 110,
+    mobMaxLevel: 120,
+    background: "",
+    icon: "",
+    description: "",
+    spawns: [
+        { id: 'wabbit_garou', weight: 10 },
+        { id: 'wabbit_cephale', weight: 10 },
+        { id: 'wabbit_fluo', weight: 10 },
+        { id: 'wabbit_vampire', weight: 10 },
+        { id: 'cawotman', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'cape_du_wabbit_garou', dropRate: 0.01 },
+        { itemId: 'bottes_du_wabbit_garou', dropRate: 0.01 },
+        { itemId: 'ceinture_du_wabbit_garou', dropRate: 0.01 },
+        { itemId: 'amulette_du_wabbit_cephale', dropRate: 0.01 },
+        { itemId: 'bottes_du_wabbit_cephale', dropRate: 0.01 },
+        { itemId: 'anneau_du_wabbit_cephale', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementPercheDansLArbre = {
+    id: 'evenementPercheDansLArbre',
+    name: 'Perché dans l\'arbre',
+    type: 'event',
+    minLevel: 130,
+    maxLevel: 150,
+    mobMinLevel: 130,
+    mobMaxLevel: 140,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'disciple_zoth', weight: 10 }, { id: 'gamine_zoth', weight: 10 }, { id: 'guerrier_zoth', weight: 10 }, { id: 'sergent_zoth', weight: 10 }, { id: 'maitre_zoth', weight: 10 }],
+    lootTable: [{ itemId: 'coiffe_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'baton_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'casque_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'hache_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'chapeau_de_la_gamine_zoth', dropRate: 0.01 }, { itemId: 'marteau_de_la_gamine_zoth', dropRate: 0.01 }]
+}
+
+areas.evenementRetrouvezLePinPerdu = {
+    id: 'evenementRetrouvezLePinPerdu',
+    name: 'Retrouvez le pin perdu',
+    type: 'event',
+    minLevel: 130,
+    maxLevel: 150,
+    mobMinLevel: 130,
+    mobMaxLevel: 140,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'smilomouth', weight: 10 }, { id: 'ecumouth', weight: 10 }, { id: 'kaniglou', weight: 10 }, { id: 'sanglacier', weight: 10 }, { id: 'fricochere', weight: 10 }],
+    lootTable: [{ itemId: 'casque_de_l_ecumouth', dropRate: 0.01 }, { itemId: 'coiffe_du_fricochere', dropRate: 0.01 }, { itemId: 'pagniglou', dropRate: 0.01 }]
+}
+
+areas.evenementBugElementaire = {
+    id: 'evenementBugElementaire',
+    name: 'Bug élémentaire',
+    type: 'event',
+    minLevel: 170,
+    maxLevel: 190,
+    mobMinLevel: 170,
+    mobMaxLevel: 180,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'briko_altruiste', weight: 10 }, { id: 'briko_galvanisant', weight: 10 }, { id: 'briko_exaltant', weight: 10 }, { id: 'briko_stimulant', weight: 10 }, { id: 'briko_taquin', weight: 10 }],
+    lootTable: [{ itemId: 'trophee_de_la_terre', dropRate: 0.001 },{ itemId: 'trophee_du_feu', dropRate: 0.001 },{ itemId: 'trophee_de_l_eau', dropRate: 0.001 },{ itemId: 'trophee_de_l_air', dropRate: 0.001 },{ itemId: 'trophee_du_neutre', dropRate: 0.001 }]
+}
+
+areas.evenementChasseAuxVolkornes = {
+    id: 'evenementChasseAuxVolkornes',
+    name: 'Chasse aux volkornes',
+    type: 'event',
+    minLevel: 180,
+    maxLevel: 200,
+    mobMinLevel: 180,
+    mobMaxLevel: 190,
+    background: '',
+    icon: '',
+    description: '',
+    spawns: [{ id: 'volkorne_orchidee_sauvage', weight: 10 }, { id: 'volkorne_indigo_sauvage', weight: 10 }, { id: 'volkorne_ebene_sauvage', weight: 10 }, { id: 'volkorne_pourpre_sauvage', weight: 10 }],
+    lootTable: [{ itemId: 'amulette_volkorne', dropRate: 0.01 }, { itemId: 'anneau_volkorne', dropRate: 0.01 }, { itemId: 'arc_volkorne', dropRate: 0.01 }, { itemId: 'casque_volkorne', dropRate: 0.01 }, { itemId: 'ceinture_volkorne', dropRate: 0.01 }]
+}
+
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
+
 areas.raidDofusArgenté = {
     id: 'raidDofusArgenté',
     name: "Les débuts sont rudes",
@@ -5430,6 +5831,7 @@ areas.raidDofusArgenté = {
         { itemId: 'casque_de_kardorim', dropRate: 0.005 }
     ]
 }
+
 areas.raidGelees = {
     id: 'raidGelees',
     name: "Attention aux caries !",
@@ -5459,6 +5861,7 @@ areas.raidGelees = {
         { itemId: 'gelano', dropRate: 0.03 }
     ]
 }
+
 areas.raidMallefisk = {
     id: 'raidMallefisk',
     name: "Fabrique de Malléfisk",
@@ -5489,6 +5892,7 @@ areas.raidMallefisk = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
 areas.raidPounicheur = {
     id: 'raidPounicheur',
     type: 'raid',
@@ -5518,6 +5922,37 @@ areas.raidPounicheur = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
+areas.raidTourbeduRoissingue = {
+    id: 'raidTourbeduRoissingue',
+    name: "Raid de la tourbière du Roissingue",
+    type: 'raid',
+    minLevel: 100, maxLevel: 170,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: "",
+    icon: "images/monsters/Roissingue.png",
+    description: "Au cœur de la Tourbière sans fond d'Otomaï s'étend le domaine du Roissingue, souverain grotesque d'un royaume noyé dans la boue et les eaux stagnantes. L'air y est lourd, chargé d'une odeur de moisissure et de tourbe humide, tandis que d'étranges créatures rôdent entre les marécages. Les aventuriers qui s'y aventurent racontent avoir aperçu des silhouettes simiesques vêtues de haillons trempés, riant dans l’obscurité avant de disparaître dans les brumes épaisses. Ici, chaque pas peut être le dernier… car la tourbière semble elle-même vouloir engloutir ceux qui osent troubler le règne du Roissingue.",
+    spawns: [
+        { id: 'LAouassingue', weight: 15 },
+        { id: 'LEouassingue', weight: 15 },
+        { id: 'tourbassingue', weight: 35 },
+        { id: 'bourbassingue', weight: 35 }
+    ],
+    miniBoss: { id: 'roissingue', everyKills: 9, statMult: 1 },
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.35 },
+        { itemId: 'cape_de_la_ouassingue', dropRate: 0.01 },
+        { itemId: 'capuche_de_la_ouassingue', dropRate: 0.01 },
+        { itemId: 'ouassulette', dropRate: 0.01 }
+    ],
+    miniBossLootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cape_souveraine_du_roissingue', dropRate: 0.03 },
+        { itemId: 'capuche_souveraine_du_roissingue', dropRate: 0.03 },
+        { itemId: 'sceau_souverain_du_roissingue', dropRate: 0.03 }
+    ]
+}
+
 areas.raidFraktale = {
     id: 'raidFraktale',
     type: 'raid',
@@ -5547,6 +5982,7 @@ areas.raidFraktale = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
 areas.raidEkarlatte = {
     id: 'raidEkarlatte',
     type: 'raid',
@@ -5571,35 +6007,6 @@ areas.raidEkarlatte = {
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
-    ]
-}
-areas.raidTourbeduRoissingue = {
-    id: 'raidTourbeduRoissingue',
-    name: "Raid de la tourbière du Roissingue",
-    type: 'raid',
-    minLevel: 100, maxLevel: 170,
-    mobMinLevel: 100, mobMaxLevel: 110,
-    background: "",
-    icon: "images/monsters/Roissingue.png",
-    description: "Au cœur de la Tourbière sans fond d'Otomaï s'étend le domaine du Roissingue, souverain grotesque d'un royaume noyé dans la boue et les eaux stagnantes. L'air y est lourd, chargé d'une odeur de moisissure et de tourbe humide, tandis que d'étranges créatures rôdent entre les marécages. Les aventuriers qui s'y aventurent racontent avoir aperçu des silhouettes simiesques vêtues de haillons trempés, riant dans l’obscurité avant de disparaître dans les brumes épaisses. Ici, chaque pas peut être le dernier… car la tourbière semble elle-même vouloir engloutir ceux qui osent troubler le règne du Roissingue.",
-    spawns: [
-        { id: 'LAouassingue', weight: 15 },
-        { id: 'LEouassingue', weight: 15 },
-        { id: 'tourbassingue', weight: 35 },
-        { id: 'bourbassingue', weight: 35 }
-    ],
-    miniBoss: { id: 'roissingue', everyKills: 9, statMult: 1 },
-    lootTable: [
-        { itemId: 'pierreDame', dropRate: 0.35 },
-        { itemId: 'cape_de_la_ouassingue', dropRate: 0.01 },
-        { itemId: 'capuche_de_la_ouassingue', dropRate: 0.01 },
-        { itemId: 'ouassulette', dropRate: 0.01 }
-    ],
-    miniBossLootTable: [
-        { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_souveraine_du_roissingue', dropRate: 0.03 },
-        { itemId: 'capuche_souveraine_du_roissingue', dropRate: 0.03 },
-        { itemId: 'sceau_souverain_du_roissingue', dropRate: 0.03 }
     ]
 }
 
@@ -5632,6 +6039,7 @@ areas.raidPhossile = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
 areas.raidUsh = {
     id: 'raidUsh',
     type: 'raid',
@@ -5691,6 +6099,7 @@ areas.raidXLII = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
 areas.raidToxoliath = {
     id: 'raidToxoliath',
     type: 'raid',
@@ -5717,6 +6126,7 @@ areas.raidToxoliath = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
 areas.raidKralamoureGeant = {
     id: 'raidKralamoureGeant',
     name: 'Raid de l\'Antre du Kralamoure Géant',
@@ -5743,6 +6153,7 @@ areas.raidKralamoureGeant = {
         { itemId: 'Dofus_Ocre',           dropRate: 0.01 }
     ]
 }
+
 areas.raidNidas = {
     id: 'raidNidas',
     type: 'raid',
@@ -5821,6 +6232,7 @@ areas.raidCourSombre = {
         { itemId: 'epee_de_la_reine_des_voleurs', dropRate: 0.03 }
     ]
 }
+
 areas.raidVortex = {
     id: 'raidVortex',
     type: 'raid',
@@ -5897,6 +6309,7 @@ areas.raidChaloeil = {
         { itemId: 'hache_du_chal_il', dropRate: 0.01 }
     ]
 }
+
 areas.raidOrukam = {
     id: 'raidOrukam',
     type: 'raid',
@@ -5960,6 +6373,7 @@ areas.raidImagiro = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
+
 areas.raidEliocalypse = {
     id: 'raidEliocalypse',
     type: 'raid',
@@ -5994,9 +6408,3 @@ areas.raidEliocalypse = {
     miniBossLootTable: []
 }
 // #endregion RAIDS
-
-
-
-// ─── Zones créées via l'éditeur ───
-
-

@@ -104,6 +104,14 @@ item.cleDonjonScarafeuille = {
     isKey: true,
     description: "Cette clef permet de rentrer dans le Donjon des Scarafeuilles."
 }
+item.cleDonjonBoostache = {
+    id: 'cleDonjonBoostache',
+    name: "Clef du Donjon de la Maison Fantôme",
+    image: 'img/items/divers/cleDonjonBoostache.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le Donjon de la Maison Fantôme."
+}
 item.cleDonjonKwakwa = {
     id: 'cleDonjonKwakwa',
     name: "Clef du Nid du Kwakwa",

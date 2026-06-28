@@ -414,6 +414,7 @@ function buildAreaText(){
     if (!r) continue
     let blk = txt.slice(r[0], r[1])
     if (a.name != null)         blk = strPatch(blk, 'name', a.name)
+    if (a.keyId != null)        blk = strPatch(blk, 'keyId', a.keyId)
     if (a.background != null)   blk = strPatch(blk, 'background', a.background)
     if (a.icon != null)         blk = strPatch(blk, 'icon', a.icon)
     if (a.description != null)  blk = strPatch(blk, 'description', a.description)
@@ -705,7 +706,7 @@ const monImg = m => !m||!m.image ? '' : m.image
 function renderMonsterList(){
   const ids=Object.keys(MONSTERS).filter(matchMon)
   const body=document.getElementById('listBody')
-  const shown=ids.slice(0,400)
+  const shown=ids.slice(0,2000)
   body.innerHTML=shown.map(id=>{const m=MONSTERS[id]
     return `<div class="list-item ${id===selId?'sel':''}" data-id="${id}">
       <img loading="lazy" src="${monImg(m)}" onerror="this.style.opacity=.15">
@@ -1333,6 +1334,7 @@ function createZone(cat){
   const id = makeZoneId(cat, name)
   AREAS[id] = {
     id, name,
+    ...(cat==='donjon' ? {type:'dungeon', keyId:''} : cat==='event' ? {type:'event'} : {}),
     minLevel:1, maxLevel:20, mobMinLevel:1, mobMaxLevel:10,
     background:'', icon:'', description:'',
     spawns:[], lootTable:[]
@@ -1363,7 +1365,7 @@ function renderZoneFullList(cat){
 function renderZoneFullDetail(z,cat){
   cat=cat||zoneCat(z)
   const a=AREAS[z]; a.spawns=a.spawns||[]
-  const isRaid=cat==='raid'; const isEvent=cat==='event'
+  const isRaid=cat==='raid'; const isEvent=cat==='event'; const isDungeon=cat==='donjon'
   const keyItemIds=Object.keys(ITEM).filter(k=>ITEM[k]?.isKey)
   const D=document.getElementById('detail')
   D.innerHTML=`<h2>${a.name||z}</h2><div class="muted">id: ${z}${newZones.has(z)?' · <span class="dirty">nouvelle</span>':''}</div>
@@ -1378,6 +1380,7 @@ function renderZoneFullDetail(z,cat){
       <div><label>minLevel/maxLevel (affichage)</label><div class="row"><input type="number" id="z_dmin" value="${a.minLevel??1}"><input type="number" id="z_dmax" value="${a.maxLevel??20}"></div></div>
     </div>
     <div><label>description</label><textarea id="z_desc">${(a.description||'').replace(/</g,'&lt;')}</textarea></div>
+    ${isDungeon?`<div><label>keyId (ID de la clé de donjon)</label><input id="z_keyid" value="${(a.keyId||'').replace(/"/g,'&quot;')}"></div>`:''}
     <div class="section"><h3>Spawns (monstres + poids)</h3><div id="z_spawns"></div>
       <input id="z_monSearch" placeholder="Ajouter un monstre (nom / id)…" list="z_mondl">
       <datalist id="z_mondl">${Object.values(MONSTERS).slice(0,4000).map(m=>`<option value="${(m.name||m.id).replace(/"/g,'&quot;')}" data-id="${m.id}">`).join('')}</datalist></div>
@@ -1440,6 +1443,7 @@ function renderZoneFullDetail(z,cat){
   D.querySelector('#z_dmin').oninput=e=>{a.minLevel=+e.target.value||0;md()}
   D.querySelector('#z_dmax').oninput=e=>{a.maxLevel=+e.target.value||0;md()}
   D.querySelector('#z_desc').oninput=e=>{a.description=e.target.value;md()}
+  if(isDungeon){ const ki=D.querySelector('#z_keyid'); if(ki) ki.oninput=e=>{a.keyId=e.target.value;md()} }
   renderZoneSpawns(a,z)
   const ms=D.querySelector('#z_monSearch')
   ms.onchange=()=>{
