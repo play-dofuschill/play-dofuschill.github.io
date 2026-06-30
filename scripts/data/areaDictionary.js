@@ -1,4 +1,4 @@
-// areaDictionary.js — Zones de farm DofusChill
+﻿// areaDictionary.js — Zones de farm DofusChill
 //
 // minLevel / maxLevel  : fourchette affichée dans l'UI de la zone
 // mobMinLevel / mobMaxLevel : fourchette de niveau des monstres spawnés
@@ -147,16 +147,34 @@ areas.campementDesGobs = {
 
 areas.attractionFantome = {
     id: 'attractionFantome',
-    name: 'Attraction fantôme',
+    name: "Attraction fantôme",
     minLevel: 20,
     maxLevel: 40,
     mobMinLevel: 20,
     mobMaxLevel: 30,
-    background: '',
-    icon: '',
-    description: '',
-    spawns: [{ id: 'boostache_prepubere', weight: 10 }, { id: 'tofu_malefique', weight: 10 }, { id: 'gargrouille', weight: 5 }, { id: 'kwoan', weight: 10 }, { id: 'vampire', weight: 10 }],
-    lootTable: [{ itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'cleDonjonBoostache', dropRate: 0.15, isKey: true }, { itemId: 'ceinture_de_grouillot', dropRate: 0.01 }, { itemId: 'bottes_de_grouillot', dropRate: 0.01 }, { itemId: 'anneau_de_grouillot', dropRate: 0.01 }]
+    background: "",
+    icon: "images/monsters/Boostache_Prépubère.png",
+    description: "",
+    spawns: [
+        { id: 'boostache_prepubere', weight: 10 },
+        { id: 'tofu_malefique', weight: 10 },
+        { id: 'gargrouille', weight: 5 },
+        { id: 'kwoan', weight: 10 },
+        { id: 'vampire', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonBoostache', dropRate: 0.15, isKey: true },
+        { itemId: 'ceinture_de_grouillot', dropRate: 0.01 },
+        { itemId: 'bottes_de_grouillot', dropRate: 0.01 },
+        { itemId: 'anneau_de_grouillot', dropRate: 0.01 },
+        { itemId: 'bottes_du_vampyre', dropRate: 0.01 },
+        { itemId: 'cape_du_vampyre', dropRate: 0.01 },
+        { itemId: 'anneau_du_vampyre', dropRate: 0.01 },
+        { itemId: 'ceinture_du_vampyre', dropRate: 0.01 },
+        { itemId: 'masque_du_vampyre', dropRate: 0.01 },
+        { itemId: 'amulette_du_vampyre', dropRate: 0.01 }
+    ]
 }
 
 areas.scarafeuilles = {
@@ -405,7 +423,10 @@ areas.coteDeCorail = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonHesque', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonHesque', dropRate: 0.15, isKey: true },
+        { itemId: 'ceinture_de_tracon', dropRate: 0.01 },
+        { itemId: 'amulette_de_tracon', dropRate: 0.01 },
+        { itemId: 'bottes_de_tracon', dropRate: 0.01 }
     ]
 }
 
@@ -462,7 +483,10 @@ areas.futaieEnneigee = {
         { itemId: 'cape_des_rebelles', dropRate: 0.01 },
         { itemId: 'bottes_des_rebelles', dropRate: 0.01 },
         { itemId: 'ceinture_pomdeupin', dropRate: 0.01 },
-        { itemId: 'anneau_pomdeupin', dropRate: 0.01 }
+        { itemId: 'anneau_pomdeupin', dropRate: 0.01 },
+        { itemId: 'lance_de_trappeur_albueran', dropRate: 0.01 },
+        { itemId: 'ceinture_de_trappeur_albueran', dropRate: 0.01 },
+        { itemId: 'bottes_de_trappeur_albueran', dropRate: 0.01 }
     ]
 }
 
@@ -581,7 +605,11 @@ areas.tourbieresSansFond = {
         { itemId: 'cleDonjonOtomaj', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_d_hichete', dropRate: 0.01 },
         { itemId: 'ceinture_d_hichete', dropRate: 0.01 },
-        { itemId: 'amulette_d_hichete', dropRate: 0.01 }
+        { itemId: 'amulette_d_hichete', dropRate: 0.01 },
+        { itemId: 'anneau_du_kitsou', dropRate: 0.01 },
+        { itemId: 'amulette_du_kitsou', dropRate: 0.01 },
+        { itemId: 'coiffe_du_kitsou', dropRate: 0.01 },
+        { itemId: 'cape_du_kitsou', dropRate: 0.01 }
     ]
 }
 
@@ -1565,7 +1593,9 @@ areas.egoutsDuChateauAmakna = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonSphincter', dropRate: 0.15, isKey: true }
+        { itemId: 'cleDonjonSphincter', dropRate: 0.15, isKey: true },
+        { itemId: 'ceinture_du_frelon_noir', dropRate: 0.01 },
+        { itemId: 'masque_du_frelon_noir', dropRate: 0.01 }
     ]
 }
 
@@ -1590,7 +1620,9 @@ areas.berceauDAlma = {
         { itemId: 'anneau_de_cantile', dropRate: 0.01 },
         { itemId: 'cape_de_cantile', dropRate: 0.01 },
         { itemId: 'amulette_de_cantile', dropRate: 0.01 },
-        { itemId: 'bottes_de_cantile', dropRate: 0.01 }
+        { itemId: 'bottes_de_cantile', dropRate: 0.01 },
+        { itemId: 'cape_tivante', dropRate: 0.01 },
+        { itemId: 'slip_noze', dropRate: 0.01 }
     ]
 }
 
@@ -1869,7 +1901,10 @@ areas.gisgoul = {
         { itemId: 'bracelet_ventre', dropRate: 0.01 },
         { itemId: 'lame_assacre', dropRate: 0.01 },
         { itemId: 'amulette_ripage', dropRate: 0.01 },
-        { itemId: 'cape_erforee', dropRate: 0.01 }
+        { itemId: 'cape_erforee', dropRate: 0.01 },
+        { itemId: 'cape_d_ogivol', dropRate: 0.01 },
+        { itemId: 'coiffe_d_ogivol', dropRate: 0.01 },
+        { itemId: 'ceinture_d_ogivol', dropRate: 0.01 }
     ]
 }
 
@@ -1989,7 +2024,10 @@ areas.foretPetrifiee = {
         { itemId: 'cape_peupret', dropRate: 0.01 },
         { itemId: 'ceinture_bine', dropRate: 0.01 },
         { itemId: 'baguette_nolog', dropRate: 0.01 },
-        { itemId: 'amulette_heroclite', dropRate: 0.01 }
+        { itemId: 'amulette_heroclite', dropRate: 0.01 },
+        { itemId: 'chapeau_pourih', dropRate: 0.01 },
+        { itemId: 'bottines_hodore', dropRate: 0.01 },
+        { itemId: 'bivalve', dropRate: 0.01 }
     ]
 }
 
@@ -2016,7 +2054,10 @@ areas.montTorrideau = {
         { itemId: 'alliance_gloursonne', dropRate: 0.01 },
         { itemId: 'epee_gloursonne', dropRate: 0.01 },
         { itemId: 'cape_hiculteur', dropRate: 0.01 },
-        { itemId: 'bouclier_alveole', dropRate: 0.01 }
+        { itemId: 'bouclier_alveole', dropRate: 0.01 },
+        { itemId: 'amulette_de_theodoran_ax', dropRate: 0.01 },
+        { itemId: 'bottes_de_theodoran_ax', dropRate: 0.01 },
+        { itemId: 'cape_de_theodoran_ax', dropRate: 0.01 }
     ]
 }
 
@@ -2044,7 +2085,11 @@ areas.citeOubliee = {
         { itemId: 'ceinture_de_danathor', dropRate: 0.01 },
         { itemId: 'amulette_de_danathor', dropRate: 0.01 },
         { itemId: 'l_ecu_de_danathor', dropRate: 0.01 },
-        { itemId: 'coiffe_de_danathor', dropRate: 0.01 }
+        { itemId: 'coiffe_de_danathor', dropRate: 0.01 },
+        { itemId: 'bottes_d_allister', dropRate: 0.01 },
+        { itemId: 'couronne_d_allister', dropRate: 0.01 },
+        { itemId: 'anneau_d_allister', dropRate: 0.01 },
+        { itemId: 'egide_d_allister', dropRate: 0.01 }
     ]
 }
 
@@ -2327,7 +2372,10 @@ areas.domaineDesTrithons = {
         { itemId: 'cleDonjonDantinea', dropRate: 0.15, isKey: true },
         { itemId: 'bague_trithon', dropRate: 0.01 },
         { itemId: 'bottes_trithon', dropRate: 0.01 },
-        { itemId: 'masque_trithon', dropRate: 0.01 }
+        { itemId: 'masque_trithon', dropRate: 0.01 },
+        { itemId: 'bottes_innommables', dropRate: 0.01 },
+        { itemId: 'harpelle', dropRate: 0.01 },
+        { itemId: 'pendentif_affame', dropRate: 0.01 }
     ]
 }
 
@@ -2400,7 +2448,10 @@ areas.caserneDuJourSansFin = {
         { itemId: 'sac_mortuaire_de_jiangshi_nobi', dropRate: 0.01 },
         { itemId: 'alliance_brulame', dropRate: 0.01 },
         { itemId: 'masque_brulame', dropRate: 0.01 },
-        { itemId: 'pompes_funebres', dropRate: 0.01 }
+        { itemId: 'pompes_funebres', dropRate: 0.01 },
+        { itemId: 'bandana_de_mama_ayuto', dropRate: 0.01 },
+        { itemId: 'paravoile_de_mama_ayuto', dropRate: 0.01 },
+        { itemId: 'rouleau_de_mama_ayuto', dropRate: 0.01 }
     ]
 }
 
@@ -2491,16 +2542,32 @@ areas.royaumeDesMartegel = {
 
 areas.terresDesacrees = {
     id: 'terresDesacrees',
-    name: 'Terres Désacrées',
+    name: "Terres Désacrées",
     minLevel: 185,
     maxLevel: 200,
     mobMinLevel: 185,
     mobMaxLevel: 200,
-    background: '',
-    icon: 'images/monsters/Goulafre.png',
+    background: "",
+    icon: "images/monsters/Goulafre.png",
     description: "Les Terres Désacrées sont une cicatrice dans le monde des vivants, là où les frontières entre la mort et la vie se sont depuis longtemps effacées. Des Goules de toutes espèces y errent éternellement, rongées par une faim que ni le temps ni les chairs fraîches ne parviennent jamais à assouvir.",
-    spawns: [{ id: 'goulafre', weight: 10 }, { id: 'kerigoule', weight: 10 }, { id: 'gouligane', weight: 10 }, { id: 'goultime', weight: 10 }, { id: 'pipisteuse', weight: 5 }],
-    lootTable: [{ itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'cleDonjonKatrepat', dropRate: 0.15, isKey: true },{ itemId: 'goulano', dropRate: 0.01 }, { itemId: 'goulbottes', dropRate: 0.01 }, { itemId: 'goulclier', dropRate: 0.01 }]
+    spawns: [
+        { id: 'goulafre', weight: 10 },
+        { id: 'kerigoule', weight: 10 },
+        { id: 'gouligane', weight: 10 },
+        { id: 'goultime', weight: 10 },
+        { id: 'pipisteuse', weight: 5 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'cleDonjonKatrepat', dropRate: 0.15, isKey: true },
+        { itemId: 'goulano', dropRate: 0.01 },
+        { itemId: 'goulbottes', dropRate: 0.01 },
+        { itemId: 'goulclier', dropRate: 0.01 },
+        { itemId: 'alliance_du_dark_vlad', dropRate: 0.01 },
+        { itemId: 'col_du_dark_vlad', dropRate: 0.01 },
+        { itemId: 'flamberge_du_dark_vlad', dropRate: 0.01 },
+        { itemId: 'tabard_du_dark_vlad', dropRate: 0.01 }
+    ]
 }
 
 areas.crocuzko = {
@@ -2549,7 +2616,10 @@ areas.royaumeCorrompu = {
         { itemId: 'cleDonjonArbreMort', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_de_corruption', dropRate: 0.01 },
         { itemId: 'bague_de_corruption', dropRate: 0.01 },
-        { itemId: 'ceinturonce_de_corruption', dropRate: 0.01 }
+        { itemId: 'ceinturonce_de_corruption', dropRate: 0.01 },
+        { itemId: 'amulette_de_l_il_putride', dropRate: 0.01 },
+        { itemId: 'cape_de_l_il_putride', dropRate: 0.01 },
+        { itemId: 'capuche_de_l_il_putride', dropRate: 0.01 }
     ]
 }
 
@@ -2573,7 +2643,10 @@ areas.galereDeServitude = {
         { itemId: 'cleDonjonTyrannie', dropRate: 0.15, isKey: true },
         { itemId: 'dora_de_servitude', dropRate: 0.01 },
         { itemId: 'manteau_de_servitude', dropRate: 0.01 },
-        { itemId: 'echarpe_de_servitude', dropRate: 0.01 }
+        { itemId: 'echarpe_de_servitude', dropRate: 0.01 },
+        { itemId: 'amulette_du_c_ur_vaillant', dropRate: 0.01 },
+        { itemId: 'bottes_du_c_ur_vaillant', dropRate: 0.01 },
+        { itemId: 'cape_du_c_ur_vaillant', dropRate: 0.01 }
     ]
 }
 
@@ -2597,7 +2670,10 @@ areas.desertDeMisere = {
         { itemId: 'cleDonjonBalance', dropRate: 0.15, isKey: true },
         { itemId: 'convoitise_de_misere', dropRate: 0.01 },
         { itemId: 'corset_de_misere', dropRate: 0.01 },
-        { itemId: 'solerets_de_misere', dropRate: 0.01 }
+        { itemId: 'solerets_de_misere', dropRate: 0.01 },
+        { itemId: 'amulette_du_c_ur_saignant', dropRate: 0.01 },
+        { itemId: 'bottes_du_c_ur_saignant', dropRate: 0.01 },
+        { itemId: 'cape_du_c_ur_saignant', dropRate: 0.01 }
     ]
 }
 
@@ -2622,7 +2698,10 @@ areas.blessureDeGuerre = {
         { itemId: 'ceste_de_guerre', dropRate: 0.01 },
         { itemId: 'forteresse_de_guerre', dropRate: 0.01 },
         { itemId: 'heaume_de_guerre', dropRate: 0.01 },
-        { itemId: 'solerets_de_guerre', dropRate: 0.01 }
+        { itemId: 'solerets_de_guerre', dropRate: 0.01 },
+        { itemId: 'amulette_de_l_il_attentif', dropRate: 0.01 },
+        { itemId: 'cape_de_l_il_attentif', dropRate: 0.01 },
+        { itemId: 'capuche_de_l_il_attentif', dropRate: 0.01 }
     ]
 }
 
@@ -2705,7 +2784,13 @@ areas.cauchemarDesRavageurs = {
         { itemId: 'cleDonjonAurorePourpre', dropRate: 0.15, isKey: true },
         { itemId: 'ceste_de_ravageur', dropRate: 0.01 },
         { itemId: 'hachoir_de_ravageur', dropRate: 0.01 },
-        { itemId: 'torque_de_ravageur', dropRate: 0.01 }
+        { itemId: 'torque_de_ravageur', dropRate: 0.01 },
+        { itemId: 'bottes_de_l_esprit_malsain', dropRate: 0.01 },
+        { itemId: 'ceinture_de_l_esprit_malsain', dropRate: 0.01 },
+        { itemId: 'masque_de_l_esprit_malsain', dropRate: 0.01 },
+        { itemId: 'bottes_de_l_esprit_salvateur', dropRate: 0.01 },
+        { itemId: 'ceinture_de_l_esprit_salvateur', dropRate: 0.01 },
+        { itemId: 'masque_de_l_esprit_salvateur', dropRate: 0.01 }
     ]
 }
 
@@ -2747,19 +2832,21 @@ areas.ephedrya = {
 areas.donjonIncarnam = {
     id: 'donjonIncarnam',
     type: 'dungeon',
-    keyId: 'cleDonjonKardorim',
-    name: 'La Crypte de Kardorim',
+    keyId: "cleDonjonKardorim",
+    name: "La Crypte de Kardorim",
     minLevel: 15, maxLevel: 15,
     mobMinLevel: 15, mobMaxLevel: 15,
     background: "",
-    icon: 'images/monsters/Kardorim.png',
+    icon: "images/monsters/Kardorim.png",
     description: "Les profondeurs d'Incarnam, placées sous la vigilance du redoutable Kardorim, ancien capitaine devenu aventurier, sont toujours parcourues en compagnie de son fidèle compagnon.",
-    spawns: [{ id: 'kardorim',    weight: 100 }],
+    spawns: [
+        { id: 'kardorim', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-        { itemId: 'casque_de_kardorim',            dropRate: 0.03 },
-        { itemId: 'bracelet_de_kardorim',            dropRate: 0.03 },
-        { itemId: 'cape_de_kardorim',              dropRate: 0.03 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'casque_de_kardorim', dropRate: 0.035 },
+        { itemId: 'bracelet_de_kardorim', dropRate: 0.035 },
+        { itemId: 'cape_de_kardorim', dropRate: 0.035 }
     ]
 }
 
@@ -2808,10 +2895,16 @@ areas.donjonChamps = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'la_plantouze_des_champs', dropRate: 0.02 },
         { itemId: 'vegamu', dropRate: 0.02 },
         { itemId: 'vegacoiffe', dropRate: 0.02 },
-        { itemId: 'vegacape', dropRate: 0.02 }
+        { itemId: 'vegacape', dropRate: 0.02 },
+        { itemId: 'capouze_des_champs', dropRate: 0.02 },
+        { itemId: 'ceinture_fleurie', dropRate: 0.02 },
+        { itemId: 'bottes_champetres', dropRate: 0.02 },
+        { itemId: 'coiffe_champetre', dropRate: 0.02 },
+        { itemId: 'amulette_des_champs', dropRate: 0.02 },
+        { itemId: 'anneau_champetre', dropRate: 0.02 },
+        { itemId: 'la_plantouze_des_champs', dropRate: 0.02 }
     ]
 }
 
@@ -2848,7 +2941,7 @@ areas.donjonBouftou = {
 areas.donjonAcademieGobs = {
     id: 'donjonAcademieGobs',
     type: 'dungeon',
-    keyId: 'cleDonjonAcademieGobs',
+    keyId: "cleDonjonAcademieGobs",
     name: "Akadémie des Gobs",
     minLevel: 35, maxLevel: 35,
     mobMinLevel: 35, mobMaxLevel: 35,
@@ -2860,27 +2953,35 @@ areas.donjonAcademieGobs = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'ceinture_du_directeur_grunob', dropRate: 0.02 },
-        { itemId: 'faux_du_directeur_grunob', dropRate: 0.02 },
-        { itemId: 'chapeau_du_directeur_grunob', dropRate: 0.02 },
-        { itemId: 'bottes_du_directeur_grunob', dropRate: 0.02 }
+        { itemId: 'ceinture_du_directeur_grunob', dropRate: 0.03 },
+        { itemId: 'faux_du_directeur_grunob', dropRate: 0.03 },
+        { itemId: 'chapeau_du_directeur_grunob', dropRate: 0.03 },
+        { itemId: 'bottes_du_directeur_grunob', dropRate: 0.03 }
     ]
 }
 
 areas.donjonMaisonFantome = {
     id: 'donjonMaisonFantome',
     type: 'dungeon',
-    keyId: 'cleDonjonBoostache',
-    name: 'Maison Fantôme',
+    keyId: "cleDonjonBoostache",
+    name: "Maison Fantôme",
     minLevel: 35,
     maxLevel: 35,
     mobMinLevel: 35,
     mobMaxLevel: 35,
-    background: '',
-    icon: '',
-    description: '',
-    spawns: [{ id: 'boostache', weight: 10 }],
-    lootTable: [{ itemId: 'pierreDameGardien', dropRate: 0.45 }, { itemId: 'cape_du_boostache', dropRate: 0.02 }, { itemId: 'anneau_du_boostache', dropRate: 0.02 }, { itemId: 'ceinture_du_boostache', dropRate: 0.02 }, { itemId: 'amulette_du_boostache', dropRate: 0.02 }]
+    background: "",
+    icon: "images/monsters/Boostache.png",
+    description: "",
+    spawns: [
+        { id: 'boostache', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cape_du_boostache', dropRate: 0.03 },
+        { itemId: 'anneau_du_boostache', dropRate: 0.03 },
+        { itemId: 'ceinture_du_boostache', dropRate: 0.03 },
+        { itemId: 'amulette_du_boostache', dropRate: 0.03 }
+    ]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2915,7 +3016,7 @@ areas.donjonScarafeuille = {
 areas.donjonSquelettes = {
     id: 'donjonSquelettes',
     type: 'dungeon',
-    keyId: 'cleDonjonSquelettes',
+    keyId: "cleDonjonSquelettes",
     name: "Donjon des Squelettes",
     minLevel: 45, maxLevel: 45,
     mobMinLevel: 45, mobMaxLevel: 45,
@@ -2927,10 +3028,10 @@ areas.donjonSquelettes = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_du_chafer_primitif', dropRate: 0.02 },
-        { itemId: 'marteau_du_chafer_draugr', dropRate: 0.02 },
-        { itemId: 'kabuto_du_chafer_ronin', dropRate: 0.02 },
-        { itemId: 'pagne_du_chafer_ronin', dropRate: 0.02 }
+        { itemId: 'bottes_du_chafer_primitif', dropRate: 0.03 },
+        { itemId: 'marteau_du_chafer_draugr', dropRate: 0.03 },
+        { itemId: 'kabuto_du_chafer_ronin', dropRate: 0.03 },
+        { itemId: 'pagne_du_chafer_ronin', dropRate: 0.03 }
     ]
 }
 
@@ -2962,7 +3063,7 @@ areas.donjonTofus = {
 areas.donjonKankreblath = {
     id: 'donjonKankreblath',
     type: 'dungeon',
-    keyId: 'cleDonjonKankreblath',
+    keyId: "cleDonjonKankreblath",
     name: "Cache de Kankreblath",
     minLevel: 45, maxLevel: 45,
     mobMinLevel: 45, mobMaxLevel: 45,
@@ -2974,10 +3075,10 @@ areas.donjonKankreblath = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_bille', dropRate: 0.02 },
-        { itemId: 'amulette_perle', dropRate: 0.02 },
-        { itemId: 'cape_lumette', dropRate: 0.02 },
-        { itemId: 'casque_noix', dropRate: 0.02 }
+        { itemId: 'anneau_bille', dropRate: 0.03 },
+        { itemId: 'amulette_perle', dropRate: 0.03 },
+        { itemId: 'cape_lumette', dropRate: 0.03 },
+        { itemId: 'casque_noix', dropRate: 0.03 }
     ]
 }
 
@@ -2988,27 +3089,29 @@ areas.donjonKankreblath = {
 areas.donjonKwakwa = {
     id: 'donjonKwakwa',
     type: 'dungeon',
-    keyId: 'cleDonjonKwakwa',
-    name: 'Le Nid du Kwakwa',
+    keyId: "cleDonjonKwakwa",
+    name: "Le Nid du Kwakwa",
     minLevel: 55, maxLevel: 55,
     mobMinLevel: 55, mobMaxLevel: 55,
     background: "",
-    icon: 'images/monsters/Kwakwa.png',
+    icon: "images/monsters/Kwakwa.png",
     description: "Au sommet de la Montagne des Kwaks, là où les vents soufflent si fort que même les oiseaux refusent de voler, se trouve le nid du Kwakwa. Cette créature majestueuse règne sur l'ensemble des Kwaks et Kwakères de la région. Rares sont les aventuriers assez courageux pour s'y aventurer, et plus rares encore ceux qui en reviennent avec une plume.",
-    spawns: [{ id: 'kwakwa', weight: 100 }],
+    spawns: [
+        { id: 'kwakwa', weight: 100 }
+    ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'kwakwaffe',         dropRate: 0.02 },
-        { itemId: 'kwakwalliance',     dropRate: 0.02 },
-        { itemId: 'kwakwanneau',       dropRate: 0.02 },
-        { itemId: 'kwakwalame',        dropRate: 0.02 }
+        { itemId: 'kwakwaffe', dropRate: 0.03 },
+        { itemId: 'kwakwalliance', dropRate: 0.03 },
+        { itemId: 'kwakwanneau', dropRate: 0.03 },
+        { itemId: 'kwakwalame', dropRate: 0.03 }
     ]
 }
 
 areas.donjonBworks = {
     id: 'donjonBworks',
     type: 'dungeon',
-    keyId: 'cleDonjonBworks',
+    keyId: "cleDonjonBworks",
     name: "Donjon des Bworks",
     minLevel: 55, maxLevel: 55,
     mobMinLevel: 55, mobMaxLevel: 55,
@@ -3020,16 +3123,16 @@ areas.donjonBworks = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'ceinture_de_grut', dropRate: 0.02 },
-        { itemId: 'amulette_de_grut', dropRate: 0.02 },
-        { itemId: 'bottes_de_grut', dropRate: 0.02 }
+        { itemId: 'ceinture_de_grut', dropRate: 0.035 },
+        { itemId: 'amulette_de_grut', dropRate: 0.035 },
+        { itemId: 'bottes_de_grut', dropRate: 0.035 }
     ]
 }
 
 areas.donjonForgerons = {
     id: 'donjonForgerons',
     type: 'dungeon',
-    keyId: 'cleDonjonForgerons',
+    keyId: "cleDonjonForgerons",
     name: "Donjon des Forgerons",
     minLevel: 55, maxLevel: 55,
     mobMinLevel: 55, mobMaxLevel: 55,
@@ -3041,10 +3144,10 @@ areas.donjonForgerons = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'ceinture_de_coffrete', dropRate: 0.02 },
-        { itemId: 'boffes_cottre', dropRate: 0.02 },
-        { itemId: 'caskoffre', dropRate: 0.02 },
-        { itemId: 'pendentiffre', dropRate: 0.02 }
+        { itemId: 'ceinture_de_coffrete', dropRate: 0.03 },
+        { itemId: 'boffes_cottre', dropRate: 0.03 },
+        { itemId: 'caskoffre', dropRate: 0.03 },
+        { itemId: 'pendentiffre', dropRate: 0.03 }
     ]
 }
 
@@ -3067,7 +3170,7 @@ areas.donjonHesque = {
 areas.donjonLarves = {
     id: 'donjonLarves',
     type: 'dungeon',
-    keyId: 'cleDonjonLarves',
+    keyId: "cleDonjonLarves",
     name: "Donjon des Larves",
     minLevel: 55, maxLevel: 55,
     mobMinLevel: 55, mobMaxLevel: 55,
@@ -3079,18 +3182,18 @@ areas.donjonLarves = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'larvamulette', dropRate: 0.02 },
-        { itemId: 'larvasac', dropRate: 0.02 },
-        { itemId: 'larvabottes', dropRate: 0.02 },
-        { itemId: 'larvacoiffe', dropRate: 0.02 },
-        { itemId: 'baguette_larvesque', dropRate: 0.02 }
+        { itemId: 'larvamulette', dropRate: 0.025 },
+        { itemId: 'larvasac', dropRate: 0.025 },
+        { itemId: 'larvabottes', dropRate: 0.025 },
+        { itemId: 'larvacoiffe', dropRate: 0.025 },
+        { itemId: 'baguette_larvesque', dropRate: 0.025 }
     ]
 }
 
 areas.donjonRefugeSylvestre = {
     id: 'donjonRefugeSylvestre',
     type: 'dungeon',
-    keyId: 'cleDonjonRefugeSylvestre',
+    keyId: "cleDonjonRefugeSylvestre",
     name: "Refuge sylvestre",
     minLevel: 55, maxLevel: 55,
     mobMinLevel: 55, mobMaxLevel: 55,
@@ -3102,9 +3205,9 @@ areas.donjonRefugeSylvestre = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'casquette_de_rakoopeur', dropRate: 0.02 },
-        { itemId: 'queue_de_rakoopeur', dropRate: 0.02 },
-        { itemId: 'serpe_de_rakoopeur', dropRate: 0.02 }
+        { itemId: 'casquette_de_rakoopeur', dropRate: 0.035 },
+        { itemId: 'queue_de_rakoopeur', dropRate: 0.035 },
+        { itemId: 'serpe_de_rakoopeur', dropRate: 0.035 }
     ]
 }
 
@@ -3153,7 +3256,7 @@ areas.donjonBlop = {
 areas.donjonWabbit = {
     id: 'donjonWabbit',
     type: 'dungeon',
-    keyId: 'cleDonjonWabbit',
+    keyId: "cleDonjonWabbit",
     name: "Château du Wa Wabbit",
     minLevel: 65, maxLevel: 65,
     mobMinLevel: 65, mobMaxLevel: 65,
@@ -3165,16 +3268,16 @@ areas.donjonWabbit = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'baton_du_wa_wabbit', dropRate: 0.02 },
-        { itemId: 'cape_du_wa_wabbit', dropRate: 0.02 },
-        { itemId: 'couronne_du_wa_wabbit', dropRate: 0.02 }
+        { itemId: 'baton_du_wa_wabbit', dropRate: 0.035 },
+        { itemId: 'cape_du_wa_wabbit', dropRate: 0.035 },
+        { itemId: 'couronne_du_wa_wabbit', dropRate: 0.035 }
     ]
 }
 
 areas.donjonKanniboul = {
     id: 'donjonKanniboul',
     type: 'dungeon',
-    keyId: 'cleDonjonKanniboul',
+    keyId: "cleDonjonKanniboul",
     name: "Village Kanniboul",
     minLevel: 65, maxLevel: 65,
     mobMinLevel: 65, mobMaxLevel: 65,
@@ -3186,17 +3289,17 @@ areas.donjonKanniboul = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_du_kanniboul_ebil', dropRate: 0.02 },
-        { itemId: 'alliance_du_kanniboul_ebil', dropRate: 0.02 },
-        { itemId: 'masque_du_kanniboul_ebil', dropRate: 0.02 },
-        { itemId: 'sceptre_du_kanniboul_ebil', dropRate: 0.02 }
+        { itemId: 'bottes_du_kanniboul_ebil', dropRate: 0.03 },
+        { itemId: 'alliance_du_kanniboul_ebil', dropRate: 0.03 },
+        { itemId: 'masque_du_kanniboul_ebil', dropRate: 0.03 },
+        { itemId: 'sceptre_du_kanniboul_ebil', dropRate: 0.03 }
     ]
 }
 
 areas.donjonOtomaj = {
     id: 'donjonOtomaj',
     type: 'dungeon',
-    keyId: 'cleDonjonOtomaj',
+    keyId: "cleDonjonOtomaj",
     name: "Cale de l'Arche d'Otomaï",
     minLevel: 65, maxLevel: 65,
     mobMinLevel: 65, mobMaxLevel: 65,
@@ -3208,9 +3311,9 @@ areas.donjonOtomaj = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'alliance_d_hichete', dropRate: 0.02 },
-        { itemId: 'ceinture_d_hichete', dropRate: 0.02 },
-        { itemId: 'amulette_d_hichete', dropRate: 0.02 }
+        { itemId: 'alliance_d_hichete', dropRate: 0.035 },
+        { itemId: 'ceinture_d_hichete', dropRate: 0.035 },
+        { itemId: 'amulette_d_hichete', dropRate: 0.035 }
     ]
 }
 
@@ -3239,7 +3342,7 @@ areas.donjonMantiscore = {
 areas.donjonCraqueleurs = {
     id: 'donjonCraqueleurs',
     type: 'dungeon',
-    keyId: 'cleDonjonCraqueleurs',
+    keyId: "cleDonjonCraqueleurs",
     name: "Pitons Rocheux des Craqueleurs",
     minLevel: 75, maxLevel: 75,
     mobMinLevel: 75, mobMaxLevel: 75,
@@ -3251,20 +3354,20 @@ areas.donjonCraqueleurs = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'craquanneau_legendaire', dropRate: 0.02 },
-        { itemId: 'ceinture_du_craqueleur_legendaire', dropRate: 0.02 },
+        { itemId: 'craquanneau_legendaire', dropRate: 0.025 },
+        { itemId: 'ceinture_du_craqueleur_legendaire', dropRate: 0.025 },
         { itemId: 'casque_du_craqueleur_legendaire', dropRate: 0.02 },
-        { itemId: 'marteau_du_craqueleur_legendaire', dropRate: 0.02 },
-        { itemId: 'amulette_du_craqueleur_legendaire', dropRate: 0.02 },
+        { itemId: 'marteau_du_craqueleur_legendaire', dropRate: 0.025 },
+        { itemId: 'amulette_du_craqueleur_legendaire', dropRate: 0.025 },
         { itemId: 'craquelocape_legendaire', dropRate: 0.02 },
-        { itemId: 'bottes_du_craqueleur_legendaire', dropRate: 0.02 }
+        { itemId: 'bottes_du_craqueleur_legendaire', dropRate: 0.025 }
     ]
 }
 
 areas.donjonBrumen = {
     id: 'donjonBrumen',
     type: 'dungeon',
-    keyId: 'cleDonjonBrumen',
+    keyId: "cleDonjonBrumen",
     name: "Laboratoire de Brumen Tinctorias",
     minLevel: 75, maxLevel: 75,
     mobMinLevel: 75, mobMaxLevel: 75,
@@ -3276,10 +3379,10 @@ areas.donjonBrumen = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_de_nelween', dropRate: 0.02 },
-        { itemId: 'amulette_de_nelween', dropRate: 0.02 },
-        { itemId: 'bottes_de_nelween', dropRate: 0.02 },
-        { itemId: 'ceinture_de_nelween', dropRate: 0.02 }
+        { itemId: 'cape_de_nelween', dropRate: 0.03 },
+        { itemId: 'amulette_de_nelween', dropRate: 0.03 },
+        { itemId: 'bottes_de_nelween', dropRate: 0.03 },
+        { itemId: 'ceinture_de_nelween', dropRate: 0.03 }
     ]
 }
 
@@ -3290,26 +3393,28 @@ areas.donjonBrumen = {
 areas.donjonDraegnerys = {
     id: 'donjonDraegnerys',
     type: 'dungeon',
-    keyId: 'cleDonjonDraegnerys',
+    keyId: "cleDonjonDraegnerys",
     name: "L'épreuve' de Draegnerys",
     minLevel: 85, maxLevel: 85,
     mobMinLevel: 85, mobMaxLevel: 85,
     background: "",
-    icon: 'img/monstres/sprites/Draegnerys.png',
+    icon: "img/monstres/sprites/Draegnerys.png",
     description: "Sur la presqu'île des Dragoeufs, au cœur des terres fumantes où la roche semble encore porter l'empreinte des anciens dragons, s'élève l'Épreuve de Draegnerys. Ici, chaque pas est une mise à l'épreuve, chaque couloir un test imposé par la gardienne des lieux.",
-    spawns: [{ id: 'draegnerys', weight: 100 }],
+    spawns: [
+        { id: 'draegnerys', weight: 100 }
+    ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_de_shika',     dropRate: 0.02},
-        { itemId: 'shikacoiffe',     dropRate: 0.02},
-        { itemId: 'epis_de_shika',     dropRate: 0.02}
+        { itemId: 'cape_de_shika', dropRate: 0.035 },
+        { itemId: 'shikacoiffe', dropRate: 0.035 },
+        { itemId: 'epis_de_shika', dropRate: 0.035 }
     ]
 }
 
 areas.donjonTerrierWabbit = {
     id: 'donjonTerrierWabbit',
     type: 'dungeon',
-    keyId: 'cleDonjonTerrierWabbit',
+    keyId: "cleDonjonTerrierWabbit",
     name: "Terrier du Wa Wabbit",
     minLevel: 85, maxLevel: 85,
     mobMinLevel: 85, mobMaxLevel: 85,
@@ -3321,9 +3426,9 @@ areas.donjonTerrierWabbit = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'couronne_du_wa_wobot', dropRate: 0.02 },
-        { itemId: 'cape_du_wa_wobot', dropRate: 0.02 },
-        { itemId: 'ceinture_du_wa_wobot', dropRate: 0.02 }
+        { itemId: 'couronne_du_wa_wobot', dropRate: 0.035 },
+        { itemId: 'cape_du_wa_wobot', dropRate: 0.035 },
+        { itemId: 'ceinture_du_wa_wobot', dropRate: 0.035 }
     ]
 }
 
@@ -3334,7 +3439,7 @@ areas.donjonTerrierWabbit = {
 areas.donjonAbraknydeAncestral = {
     id: 'donjonAbraknydeAncestral',
     type: 'dungeon',
-    keyId: 'cleDonjonAbraknydeAncestral',
+    keyId: "cleDonjonAbraknydeAncestral",
     name: "Domaine Ancestral",
     minLevel: 95, maxLevel: 95,
     mobMinLevel: 95, mobMaxLevel: 95,
@@ -3346,19 +3451,19 @@ areas.donjonAbraknydeAncestral = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'abracapa_ancestrale', dropRate: 0.02 },
-        { itemId: 'abracaska_ancestral', dropRate: 0.02 },
-        { itemId: 'protege_tibias_ancestraux', dropRate: 0.02 },
-        { itemId: 'anneau_ancestral', dropRate: 0.02 },
-        { itemId: 'torque_ancestral', dropRate: 0.02 },
-        { itemId: 'abrature_ancestrale', dropRate: 0.02 }
+        { itemId: 'abracapa_ancestrale', dropRate: 0.025 },
+        { itemId: 'abracaska_ancestral', dropRate: 0.025 },
+        { itemId: 'protege_tibias_ancestraux', dropRate: 0.025 },
+        { itemId: 'anneau_ancestral', dropRate: 0.025 },
+        { itemId: 'torque_ancestral', dropRate: 0.025 },
+        { itemId: 'abrature_ancestrale', dropRate: 0.025 }
     ]
 }
 
 areas.donjonKoulosse = {
     id: 'donjonKoulosse',
     type: 'dungeon',
-    keyId: 'cleDonjonKoulosse',
+    keyId: "cleDonjonKoulosse",
     name: "Caverne du Koulosse",
     minLevel: 95, maxLevel: 95,
     mobMinLevel: 95, mobMaxLevel: 95,
@@ -3370,17 +3475,17 @@ areas.donjonKoulosse = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'sac_du_koulosse', dropRate: 0.02 },
-        { itemId: 'bottes_du_koulosse', dropRate: 0.02 },
-        { itemId: 'baton_du_koulosse', dropRate: 0.02 },
-        { itemId: 'coiffe_du_koulosse', dropRate: 0.02 }
+        { itemId: 'sac_du_koulosse', dropRate: 0.03 },
+        { itemId: 'bottes_du_koulosse', dropRate: 0.03 },
+        { itemId: 'baton_du_koulosse', dropRate: 0.03 },
+        { itemId: 'coiffe_du_koulosse', dropRate: 0.03 }
     ]
 }
 
 areas.donjonReineNyee = {
     id: 'donjonReineNyee',
     type: 'dungeon',
-    keyId: 'cleDonjonReineNyee',
+    keyId: "cleDonjonReineNyee",
     name: "Antre de la Reine Nyée",
     minLevel: 95, maxLevel: 95,
     mobMinLevel: 95, mobMaxLevel: 95,
@@ -3392,16 +3497,16 @@ areas.donjonReineNyee = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'gaine_nyee', dropRate: 0.02 },
-        { itemId: 'amulette_des_huit_yeux', dropRate: 0.02 },
-        { itemId: 'caparak', dropRate: 0.02 }
+        { itemId: 'gaine_nyee', dropRate: 0.035 },
+        { itemId: 'amulette_des_huit_yeux', dropRate: 0.035 },
+        { itemId: 'caparak', dropRate: 0.035 }
     ]
 }
 
 areas.donjonChouque = {
     id: 'donjonChouque',
     type: 'dungeon',
-    keyId: 'cleDonjonChouque',
+    keyId: "cleDonjonChouque",
     name: "Bateau du Chouque",
     minLevel: 95, maxLevel: 95,
     mobMinLevel: 95, mobMaxLevel: 95,
@@ -3413,17 +3518,17 @@ areas.donjonChouque = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bouclier_du_chouque', dropRate: 0.02 },
-        { itemId: 'cape_du_capitaine_pirate', dropRate: 0.02 },
-        { itemId: 'chapeau_du_capitaine_pirate', dropRate: 0.02 },
-        { itemId: 'alliance_du_capitaine_pirate', dropRate: 0.02 }
+        { itemId: 'bouclier_du_chouque', dropRate: 0.03 },
+        { itemId: 'cape_du_capitaine_pirate', dropRate: 0.03 },
+        { itemId: 'chapeau_du_capitaine_pirate', dropRate: 0.03 },
+        { itemId: 'alliance_du_capitaine_pirate', dropRate: 0.03 }
     ]
 }
 
 areas.donjonMagikRiktus = {
     id: 'donjonMagikRiktus',
     type: 'dungeon',
-    keyId: 'cleDonjonMagikRiktus',
+    keyId: "cleDonjonMagikRiktus",
     name: "Chapiteau des Magik Riktus",
     minLevel: 95, maxLevel: 95,
     mobMinLevel: 95, mobMaxLevel: 95,
@@ -3435,9 +3540,9 @@ areas.donjonMagikRiktus = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_riktus', dropRate: 0.02 },
-        { itemId: 'cape_riktus', dropRate: 0.02 },
-        { itemId: 'masque_riktus', dropRate: 0.02 }
+        { itemId: 'anneau_riktus', dropRate: 0.035 },
+        { itemId: 'cape_riktus', dropRate: 0.035 },
+        { itemId: 'masque_riktus', dropRate: 0.035 }
     ]
 }
 
@@ -4263,17 +4368,19 @@ areas.donjonPereVer = {
 areas.donjonDemeureEsprits = {
     id: 'donjonDemeureEsprits',
     type: 'dungeon',
-    keyId: 'cleDonjonDemeureEsprits',
-    name: 'Demeure des Esprits',
+    keyId: "cleDonjonDemeureEsprits",
+    name: "Demeure des Esprits",
     minLevel: 175, maxLevel: 175,
     mobMinLevel: 175, mobMaxLevel: 175,
     background: "",
-    icon: 'images/monsters/Koumiho.png',
+    icon: "images/monsters/Koumiho.png",
     description: "La Demeure des Esprits est un espace à la frontière entre le monde des vivants et celui des morts. Les esprits qui y résident n'ont pas accepté leur condition et refusent le passage, s'accrochant à la réalité avec une férocité née du désespoir.",
-    spawns: [{ id: 'koumiho', weight: 100 }],
+    spawns: [
+        { id: 'koumiho', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
-        { itemId: 'Dofus_Dorigami',      dropRate: 0.0005}
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'Dofus_Dorigami', dropRate: 0.0005 }
     ]
 }
 
@@ -4322,7 +4429,7 @@ areas.donjonBworker = {
 areas.donjonOugah = {
     id: 'donjonOugah',
     type: 'dungeon',
-    keyId: 'cleDonjonOugah',
+    keyId: "cleDonjonOugah",
     name: "Temple du Grand Ougah",
     minLevel: 185, maxLevel: 185,
     mobMinLevel: 185, mobMaxLevel: 185,
@@ -4334,10 +4441,10 @@ areas.donjonOugah = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ougalurette', dropRate: 0.02 },
-        { itemId: 'ougarteau', dropRate: 0.02 },
-        { itemId: 'ougamulette', dropRate: 0.02 },
-        { itemId: 'ougature', dropRate: 0.02 }
+        { itemId: 'ougalurette', dropRate: 0.03 },
+        { itemId: 'ougarteau', dropRate: 0.03 },
+        { itemId: 'ougamulette', dropRate: 0.03 },
+        { itemId: 'ougature', dropRate: 0.03 }
     ]
 }
 
@@ -4630,7 +4737,7 @@ areas.donjonHarebourg = {
 areas.donjonMerkator = {
     id: 'donjonMerkator',
     type: 'dungeon',
-    keyId: 'cleDonjonMerkator',
+    keyId: "cleDonjonMerkator",
     name: "Aquadôme de Merkator",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
@@ -4645,7 +4752,10 @@ areas.donjonMerkator = {
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
         { itemId: 'anneau_tique', dropRate: 0.02 },
         { itemId: 'dorabysses', dropRate: 0.02 },
-        { itemId: 'talisman_glouti', dropRate: 0.02 }
+        { itemId: 'talisman_glouti', dropRate: 0.02 },
+        { itemId: 'bracelet_des_fonds_marins', dropRate: 0.02 },
+        { itemId: 'masque_des_fonds_marins', dropRate: 0.02 },
+        { itemId: 'sandales_des_fonds_marins', dropRate: 0.02 }
     ]
 }
 
@@ -4762,7 +4872,7 @@ areas.donjonKatrepat = {
 areas.donjonIlyzaelle = {
     id: 'donjonIlyzaelle',
     type: 'dungeon',
-    keyId: 'cleDonjonIlyzaelle',
+    keyId: "cleDonjonIlyzaelle",
     name: "Belvédère d'Ilyzaelle",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
@@ -5083,121 +5193,6 @@ areas.donjonDechireuse = {
     ]
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SAISONNIERS (à décommenter si besoin)
-// ─────────────────────────────────────────────────────────────────────────────
-
-// areas.donjonHalouine = {
-//     id: 'donjonHalouine',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: "Potager d'Halouine",
-//     minLevel: 105, maxLevel: 105,
-//     mobMinLevel: 105, mobMaxLevel: 105,
-//     background: 'potager_halouine',
-//     icon: 'images/monsters/Halouine.png',
-//     description: "Dans ce potager maudit où les citrouilles poussent sous la lueur sanglante de la Lune des Crânes, Halouine règne sans partage sur la nuit la plus sombre de l'année. Les aventuriers venus chercher des friandises finissent bien trop souvent à décorer son jardin enchanté... de manière permanente.",
-//     spawns: [{ id: 'halouine', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
-// }
-// areas.donjonNowel = {
-//     id: 'donjonNowel',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: 'Donjon de Nowel',
-//     minLevel: 55, maxLevel: 55,
-//     mobMinLevel: 55, mobMaxLevel: 55,
-//     background: 'donjon_nowel',
-//     icon: 'images/monsters/Sapik.png',
-//     description: "Derrière les guirlandes scintillantes et les montagnes de cadeaux se cache une réalité bien moins festive. Les Sapiks, lutins autrefois dévoués au Papa Nowel, ont pris le contrôle du donjon et n'accorderont à personne le droit de passer.",
-//     spawns: [{ id: 'sapik', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
-// }
-// areas.donjonCaverneNowel = {
-//     id: 'donjonCaverneNowel',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: 'Caverne de Nowel',
-//     minLevel: 115, maxLevel: 115,
-//     mobMinLevel: 115, mobMaxLevel: 115,
-//     background: 'caverne_nowel',
-//     icon: 'images/monsters/Papa_Nowel.png',
-//     description: "Le Papa Nowel est un être pour qui rien ne compte plus que la joie des enfants... et la saveur de leurs entrailles. Cet ogre impitoyable déguisé en vieillard bedonnant attend dans les profondeurs glacées de sa caverne ceux qui ont encore la naïveté de croire aux cadeaux.",
-//     spawns: [{ id: 'papa_nowel', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
-// }
-// areas.donjonPapaNowel = {
-//     id: 'donjonPapaNowel',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: 'Maison du Papa Nowel',
-//     minLevel: 175, maxLevel: 175,
-//     mobMinLevel: 175, mobMaxLevel: 175,
-//     background: 'maison_papa_nowel',
-//     icon: 'images/monsters/Père_Fwetar.png',
-//     description: "Tandis que le Papa Nowel distribue ses présents aux enfants sages, le Père Fwetar s'occupe des autres — et il ne fait preuve d'aucune clémence. Sa demeure en apparence chaleureuse dissimule les rituels les plus obscurs de la nuit de Nowel.",
-//     spawns: [{ id: 'pere_fwetar', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
-// }
-// areas.donjonWaddicts = {
-//     id: 'donjonWaddicts',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: 'Fonderie des Waddicts',
-//     minLevel: 65, maxLevel: 65,
-//     mobMinLevel: 65, mobMaxLevel: 65,
-//     background: 'fonderie_waddicts',
-//     icon: 'images/monsters/Mawabouaino.png',
-//     description: "Dans les entrailles de la Fonderie des Waddicts, les convoyeurs de chocolat fondu ne s'arrêtent jamais. Les Waddicts, ouvriers fanatiques dévoués corps et âme à leur production, ont élu le Mawabouaino comme gardien suprême de leurs réserves et n'ont aucune tolérance pour les intrus qui s'y aventurent.",
-//     spawns: [{ id: 'mawabouaino', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
-// }
-// areas.donjonCroquanterie = {
-//     id: 'donjonCroquanterie',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: 'Croquanterie',
-//     minLevel: 135, maxLevel: 135,
-//     mobMinLevel: 135, mobMaxLevel: 135,
-//     background: 'croquanterie',
-//     icon: 'images/monsters/Croqueleur.png',
-//     description: "À la Croquanterie, tout croque, grince et se brise — y compris les aventuriers qui s'y aventurent sans prudence. Le Croqueleur, créature monstrueuse née d'une recette de confiserie qui a terriblement mal tourné, veille sur ses réserves de sucreries avec une férocité que nul gourmand ne soupçonnerait.",
-//     spawns: [{ id: 'croqueleur', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
-// }
-// areas.donjonKao = {
-//     id: 'donjonKao',
-//     type: 'dungeon',
-//     keyId: '',
-//     name: 'Temple du dieu Kao',
-//     minLevel: 200, maxLevel: 200,
-//     mobMinLevel: 220, mobMaxLevel: 220,
-//     background: 'temple_kao',
-//     icon: 'images/monsters/Prêtresse_de_Kao.png',
-//     description: "Dans ce temple érigé à la gloire de Kao, dieu du Chocolat Absolu, les Chocomanciens murmurent leurs prières en fondu et en craquant. Au plus profond du sanctuaire trône la Prêtresse de Kao, qui a renoncé à toute humanité pour fusionner avec le cacao divin et devenir la gardienne éternelle de la foi chocolatière.",
-//     spawns: [{ id: 'pretresse_de_kao', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
-//         { itemId: '',       dropRate: 0.01 },
-//     ]
 // }
 // #endregion
 
@@ -5212,6 +5207,18 @@ areas.donjonDechireuse = {
         { itemId: 'runeAtkS',             dropRate: 0.01 },
         { itemId: 'runeAtkM',             dropRate: 0.01 },
         { itemId: 'runeAtkL',             dropRate: 0.01 },
+        { itemId: 'runeForceS',           dropRate: 0.01 },
+        { itemId: 'runeForceM',           dropRate: 0.01 },
+        { itemId: 'runeForceL',           dropRate: 0.01 },
+        { itemId: 'runeIntelS',           dropRate: 0.01 },
+        { itemId: 'runeIntelM',           dropRate: 0.01 },
+        { itemId: 'runeIntelL',           dropRate: 0.01 },
+        { itemId: 'runeChanceS',          dropRate: 0.01 },
+        { itemId: 'runeChanceM',          dropRate: 0.01 },
+        { itemId: 'runeChanceL',          dropRate: 0.01 },
+        { itemId: 'runeAgiS',             dropRate: 0.01 },
+        { itemId: 'runeAgiM',             dropRate: 0.01 },
+        { itemId: 'runeAgiL',             dropRate: 0.01 },
         { itemId: 'runeSpdS',             dropRate: 0.01 },
         { itemId: 'runeSpdM',             dropRate: 0.01 },
         { itemId: 'runeSpdL',             dropRate: 0.01 },
@@ -5223,12 +5230,8 @@ areas.donjonDechireuse = {
         { itemId: 'runeCritL',            dropRate: 0.01 },
         { itemId: 'runeCritDmgM',         dropRate: 0.01 },
         { itemId: 'runeCritDmgL',         dropRate: 0.01 },
-        { itemId: 'runeFinalDmgM',        dropRate: 0.01 },
-        { itemId: 'runeFinalDmgL',        dropRate: 0.01 },
-        { itemId: 'runeSpellDmgM',        dropRate: 0.01 },
-        { itemId: 'runeSpellDmgL',        dropRate: 0.01 },
-        { itemId: 'runeDamRedM',          dropRate: 0.01 },
-        { itemId: 'runeDamRedL',          dropRate: 0.01 },
+        { itemId: 'runeDropRateM',        dropRate: 0.01 },
+        { itemId: 'runeDropRateL',        dropRate: 0.01 },
         { itemId: 'runeFireResS',         dropRate: 0.01 },
         { itemId: 'runeWaterResS',        dropRate: 0.01 },
         { itemId: 'runeEarthResS',        dropRate: 0.01 },
@@ -5244,42 +5247,12 @@ areas.donjonDechireuse = {
         { itemId: 'runeEarthResL',        dropRate: 0.01 },
         { itemId: 'runeAirResL',          dropRate: 0.01 },
         { itemId: 'runeNeutralResL',      dropRate: 0.01 },
-        // Runes Transcendance
-        { itemId: 'runeTransHpS',         dropRate: 0.005 },
-        { itemId: 'runeTransHpM',         dropRate: 0.005 },
-        { itemId: 'runeTransHpL',         dropRate: 0.005 },
-        { itemId: 'runeTransAtkS',        dropRate: 0.005 },
-        { itemId: 'runeTransAtkM',        dropRate: 0.005 },
-        { itemId: 'runeTransAtkL',        dropRate: 0.005 },
-        { itemId: 'runeTransSpdS',        dropRate: 0.005 },
-        { itemId: 'runeTransSpdM',        dropRate: 0.005 },
-        { itemId: 'runeTransSpdL',        dropRate: 0.005 },
-        { itemId: 'runeTransFlatDmgS',    dropRate: 0.005 },
-        { itemId: 'runeTransFlatDmgM',    dropRate: 0.005 },
-        { itemId: 'runeTransFlatDmgL',    dropRate: 0.005 },
-        { itemId: 'runeTransCritS',       dropRate: 0.005 },
-        { itemId: 'runeTransCritM',       dropRate: 0.005 },
-        { itemId: 'runeTransCritL',       dropRate: 0.005 },
-        { itemId: 'runeTransCritDmgS',    dropRate: 0.005 },
-        { itemId: 'runeTransCritDmgM',    dropRate: 0.005 },
-        { itemId: 'runeTransFinalDmgS',   dropRate: 0.005 },
-        { itemId: 'runeTransFinalDmgM',   dropRate: 0.005 },
-        { itemId: 'runeTransSpellDmgS',   dropRate: 0.005 },
-        { itemId: 'runeTransSpellDmgM',   dropRate: 0.005 },
-        { itemId: 'runeTransDamRedS',     dropRate: 0.005 },
-        { itemId: 'runeTransDamRedM',     dropRate: 0.005 },
-        { itemId: 'runeTransFireResS',    dropRate: 0.005 },
-        { itemId: 'runeTransWaterResS',   dropRate: 0.005 },
-        { itemId: 'runeTransEarthResS',   dropRate: 0.005 },
-        { itemId: 'runeTransAirResS',     dropRate: 0.005 },
-        { itemId: 'runeTransNeutralResS', dropRate: 0.005 },
-        { itemId: 'runeTransFireResM',    dropRate: 0.005 },
-        { itemId: 'runeTransWaterResM',   dropRate: 0.005 },
-        { itemId: 'runeTransEarthResM',   dropRate: 0.005 },
-        { itemId: 'runeTransAirResM',     dropRate: 0.005 },
-        { itemId: 'runeTransNeutralResM', dropRate: 0.005 },
-
-
+        { itemId: 'runeSpellDmgM',        dropRate: 0.01 },
+        { itemId: 'runeFinalDmgM',        dropRate: 0.01 },
+        { itemId: 'runeDamRedM',          dropRate: 0.01 },
+        { itemId: 'runeSpellDmgL',        dropRate: 0.01 },
+        { itemId: 'runeFinalDmgL',        dropRate: 0.01 },
+        { itemId: 'runeDamRedL',          dropRate: 0.01 }
 
         { itemId: 'trophee_slot1_x1',  dropRate: 0.001 },
         { itemId: 'trophee_slot1_x2',  dropRate: 0.001 },
@@ -5371,6 +5344,7 @@ areas.evenementIncanam = {
         { id: 'bouftor_ethere', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'animulette', dropRate: 0.01 },
         { itemId: 'cape_syche', dropRate: 0.01 },
         { itemId: 'coiffe_antome', dropRate: 0.01 },
@@ -5489,7 +5463,7 @@ areas.evenementGrouillantsDAstrub = {
     mobMinLevel: 20,
     mobMaxLevel: 30,
     background: "",
-    icon: "",
+    icon: "images/monsters/Tofu_Malade.png",
     description: "",
     spawns: [
         { id: 'tofu_malade', weight: 10 },
@@ -5503,6 +5477,7 @@ areas.evenementGrouillantsDAstrub = {
         { id: 'campagnoll', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'alliance_du_champ_champ', dropRate: 0.01 },
         { itemId: 'cape_du_champ_champ', dropRate: 0.01 },
         { itemId: 'champcoiffe', dropRate: 0.01 },
@@ -5523,7 +5498,7 @@ areas.evenementMinerEtFabriquer = {
     mobMinLevel: 20,
     mobMaxLevel: 30,
     background: "",
-    icon: "",
+    icon: "images/monsters/Pikdoa.png",
     description: "",
     spawns: [
         { id: 'pikdoa', weight: 10 },
@@ -5531,7 +5506,14 @@ areas.evenementMinerEtFabriquer = {
         { id: 'sherpoa', weight: 10 },
         { id: 'martoa', weight: 10 }
     ],
-    lootTable: []
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
+        { itemId: 'runeFireResS',         dropRate: 0.01 },
+        { itemId: 'runeWaterResS',        dropRate: 0.01 },
+        { itemId: 'runeEarthResS',        dropRate: 0.01 },
+        { itemId: 'runeAirResS',          dropRate: 0.01 },
+        { itemId: 'runeNeutralResS',      dropRate: 0.01 },
+    ]
 }
 
 areas.evenementBiblop = {
@@ -5590,7 +5572,7 @@ areas.evenementBoooouh = {
     mobMinLevel: 40,
     mobMaxLevel: 50,
     background: "",
-    icon: "",
+    icon: "images/monsters/Fantôme_Égérie.png",
     description: "",
     spawns: [
         { id: 'fantome_egerie', weight: 10 },
@@ -5602,24 +5584,39 @@ areas.evenementBoooouh = {
         { id: 'fantome_d_aventurier_brave', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'bottauffe_souris', dropRate: 0.01 },
-        { itemId: 'anauffe_souris', dropRate: 0.01 }
+        { itemId: 'anauffe_souris', dropRate: 0.01 },
+        { itemId: 'runeForceS',   dropRate: 0.01 },
+        { itemId: 'runeIntelS',   dropRate: 0.01 },
+        { itemId: 'runeChanceS',   dropRate: 0.01 },
+        { itemId: 'runeAgiS',   dropRate: 0.01 }
     ]
 }
 
 areas.evenementALaPecheAuMoulemoulemoule = {
     id: 'evenementALaPecheAuMoulemoulemoule',
-    name: 'A la pêche au moulemoulemoule',
+    name: "A la pêche au moulemoulemoule",
     type: 'event',
     minLevel: 40,
     maxLevel: 60,
     mobMinLevel: 40,
     mobMaxLevel: 50,
-    background: '',
-    icon: '',
-    description: '',
-    spawns: [{ id: 'raul_mops', weight: 10 }, { id: 'etoile_de_la_mer_d_asse', weight: 10 }, { id: 'moumoule', weight: 10 }, { id: 'crabe', weight: 10 }],
-    lootTable: []
+    background: "",
+    icon: "images/monsters/Raul_Mops.png",
+    description: "",
+    spawns: [
+        { id: 'raul_mops', weight: 10 },
+        { id: 'etoile_de_la_mer_d_asse', weight: 10 },
+        { id: 'moumoule', weight: 10 },
+        { id: 'crabe', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
+        { itemId: 'cape_de_bowisse', dropRate: 0.01 },
+        { itemId: 'bouclier_de_bowisse', dropRate: 0.01 },
+        { itemId: 'bottes_de_bowisse', dropRate: 0.01 }
+    ]
 }
 
 areas.evenementElevageDeDragodindes = {
@@ -5631,10 +5628,11 @@ areas.evenementElevageDeDragodindes = {
     mobMinLevel: 40,
     mobMaxLevel: 50,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Dragodinde_amande_sauvage.png',
     description: '',
     spawns: [{ id: 'dragodinde_amande_sauvage', weight: 10 }, { id: 'dragodinde_rousse_sauvage', weight: 10 }, { id: 'dragodinde_doree_sauvage', weight: 10 }],
-    lootTable: [{ itemId: 'bottoduvet', dropRate: 0.01 }, { itemId: 'ceinturoduvet', dropRate: 0.01 }, { itemId: 'anodindo', dropRate: 0.01 }, { itemId: 'botodindo', dropRate: 0.01 }, { itemId: 'capodindo', dropRate: 0.01 }, { itemId: 'chapodindo', dropRate: 0.01 }, { itemId: 'bottes_dragocourse', dropRate: 0.01 }, { itemId: 'ceinture_dragocourse', dropRate: 0.01 }]
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 }, { itemId: 'bottoduvet', dropRate: 0.01 }, { itemId: 'ceinturoduvet', dropRate: 0.01 }, { itemId: 'anodindo', dropRate: 0.01 }, { itemId: 'botodindo', dropRate: 0.01 }, { itemId: 'capodindo', dropRate: 0.01 }, { itemId: 'chapodindo', dropRate: 0.01 }, { itemId: 'bottes_dragocourse', dropRate: 0.01 }, { itemId: 'ceinture_dragocourse', dropRate: 0.01 }]
 }
 
 areas.evenementRepechageDeMuldos = {
@@ -5646,10 +5644,11 @@ areas.evenementRepechageDeMuldos = {
     mobMinLevel: 50,
     mobMaxLevel: 60,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Muldo_indigo_sauvage.png',
     description: '',
     spawns: [{ id: 'muldo_indigo_sauvage', weight: 10 }, { id: 'muldo_ebene_sauvage', weight: 10 }, { id: 'muldo_orchidee_sauvage', weight: 10 }, { id: 'muldo_dore_sauvage', weight: 10 }, { id: 'muldo_pourpre_sauvage', weight: 10 }],
-    lootTable: [{ itemId: 'botomuldo', dropRate: 0.01 }, { itemId: 'capomuldo', dropRate: 0.01 }, { itemId: 'chapomuldo', dropRate: 0.01 }]
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 }, { itemId: 'botomuldo', dropRate: 0.01 }, { itemId: 'capomuldo', dropRate: 0.01 }, { itemId: 'chapomuldo', dropRate: 0.01 }]
 }
 
 areas.evenementDopeuls = {
@@ -5686,6 +5685,10 @@ areas.evenementDopeuls = {
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'runeHpS', dropRate: 0.01 },
+        { itemId: 'runeForceS',   dropRate: 0.01 },
+        { itemId: 'runeIntelS',   dropRate: 0.01 },
+        { itemId: 'runeChanceS',   dropRate: 0.01 },
+        { itemId: 'runeAgiS',   dropRate: 0.01 },
         { itemId: 'runeAtkS', dropRate: 0.01 },
         { itemId: 'runeSpdS', dropRate: 0.01 },
         { itemId: 'runeFlatDmgS', dropRate: 0.01 },
@@ -5718,7 +5721,11 @@ areas.evenementRobots = {
         { itemId: 'runeAtkS',          dropRate: 0.01 },
         { itemId: 'runeSpdS',          dropRate: 0.01 },
         { itemId: 'runeFlatDmgS',      dropRate: 0.01 },
-        { itemId: 'runeCritS',         dropRate: 0.01 }
+        { itemId: 'runeCritS',         dropRate: 0.01 },
+        { itemId: 'runeForceS',   dropRate: 0.01 },
+        { itemId: 'runeIntelS',   dropRate: 0.01 },
+        { itemId: 'runeChanceS',   dropRate: 0.01 },
+        { itemId: 'runeAgiS',   dropRate: 0.01 }
     ]
 }
 
@@ -5731,10 +5738,11 @@ areas.evenementDroleDIle = {
     mobMinLevel: 60,
     mobMaxLevel: 70,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Tortue_Rouge.png',
     description: '',
     spawns: [{ id: 'tortue_rouge', weight: 10 }, { id: 'tortue_bleue', weight: 10 }, { id: 'tortue_verte', weight: 10 }, { id: 'tortue_jaune', weight: 10 }, { id: 'tikoko', weight: 10 }, { id: 'kokoko', weight: 10 }, { id: 'nodkoko', weight: 10 }, { id: 'grokoko', weight: 10 }],
-    lootTable: [{ itemId: 'carabottes', dropRate: 0.01 }, { itemId: 'caracape', dropRate: 0.01 }, { itemId: 'caracoiffe', dropRate: 0.01 }]
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 }, { itemId: 'carabottes', dropRate: 0.01 }, { itemId: 'caracape', dropRate: 0.01 }, { itemId: 'caracoiffe', dropRate: 0.01 }]
 }
 
 areas.evenementTnLacoste = {
@@ -5746,7 +5754,7 @@ areas.evenementTnLacoste = {
     mobMinLevel: 60,
     mobMaxLevel: 70,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Crocodaille.png',
     description: '',
     spawns: [{ id: 'crocodaille', weight: 10 }, { id: 'boo', weight: 10 }, { id: 'chef_crocodaille', weight: 10 }, { id: 'arakne_olithique', weight: 10 }],
     lootTable: [{ itemId: 'ceinture_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'pantoufles_crochues_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'amulette_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bouclier_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bracelet_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'coiffe_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'lame_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'petit_sac_d_ecolier_du_chef_crocodaille', dropRate: 0.01 }]
@@ -5761,7 +5769,7 @@ areas.evenementVoisinsPuants = {
     mobMinLevel: 70,
     mobMaxLevel: 80,
     background: "",
-    icon: "",
+    icon: "images/monsters/Bizarbwork.png",
     description: "",
     spawns: [
         { id: 'bizarbwork', weight: 10 },
@@ -5770,13 +5778,15 @@ areas.evenementVoisinsPuants = {
         { id: 'megabwork', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'amulette_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'bottes_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'bracelet_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'cape_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'casque_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'lame_du_chef_bwork', dropRate: 0.01 },
-        { itemId: 'slip_du_chef_bwork', dropRate: 0.01 }
+        { itemId: 'slip_du_chef_bwork', dropRate: 0.01 },
+        { itemId: 'runeDropRateM',        dropRate: 0.01 },
     ]
 }
 
@@ -5789,7 +5799,7 @@ areas.evenementTerriersRadioactifs = {
     mobMinLevel: 110,
     mobMaxLevel: 120,
     background: "",
-    icon: "",
+    icon: "images/monsters/Wabbit_Garou.png",
     description: "",
     spawns: [
         { id: 'wabbit_garou', weight: 10 },
@@ -5799,12 +5809,19 @@ areas.evenementTerriersRadioactifs = {
         { id: 'cawotman', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'cape_du_wabbit_garou', dropRate: 0.01 },
         { itemId: 'bottes_du_wabbit_garou', dropRate: 0.01 },
         { itemId: 'ceinture_du_wabbit_garou', dropRate: 0.01 },
         { itemId: 'amulette_du_wabbit_cephale', dropRate: 0.01 },
         { itemId: 'bottes_du_wabbit_cephale', dropRate: 0.01 },
-        { itemId: 'anneau_du_wabbit_cephale', dropRate: 0.01 }
+        { itemId: 'anneau_du_wabbit_cephale', dropRate: 0.01 },
+        
+        { itemId: 'runeFireResM',         dropRate: 0.01 },
+        { itemId: 'runeWaterResM',        dropRate: 0.01 },
+        { itemId: 'runeEarthResM',        dropRate: 0.01 },
+        { itemId: 'runeAirResM',          dropRate: 0.01 },
+        { itemId: 'runeNeutralResM',      dropRate: 0.01 },
     ]
 }
 
@@ -5817,10 +5834,22 @@ areas.evenementPercheDansLArbre = {
     mobMinLevel: 130,
     mobMaxLevel: 140,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Disciple_Zoth.png',
     description: '',
     spawns: [{ id: 'disciple_zoth', weight: 10 }, { id: 'gamine_zoth', weight: 10 }, { id: 'guerrier_zoth', weight: 10 }, { id: 'sergent_zoth', weight: 10 }, { id: 'maitre_zoth', weight: 10 }],
-    lootTable: [{ itemId: 'coiffe_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'baton_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'casque_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'hache_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'chapeau_de_la_gamine_zoth', dropRate: 0.01 }, { itemId: 'marteau_de_la_gamine_zoth', dropRate: 0.01 }]
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 }, { itemId: 'coiffe_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'baton_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'casque_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'hache_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'chapeau_de_la_gamine_zoth', dropRate: 0.01 }, { itemId: 'marteau_de_la_gamine_zoth', dropRate: 0.01 },
+    
+        { itemId: 'runeHpM', dropRate: 0.01 },
+        { itemId: 'runeForceM',   dropRate: 0.01 },
+        { itemId: 'runeIntelM',   dropRate: 0.01 },
+        { itemId: 'runeChanceM',   dropRate: 0.01 },
+        { itemId: 'runeAgiM',   dropRate: 0.01 },
+        { itemId: 'runeAtkM', dropRate: 0.01 },
+        { itemId: 'runeSpdM', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM', dropRate: 0.01 },
+        { itemId: 'runeCritM', dropRate: 0.01 },
+        { itemId: 'runeCritDmgM', dropRate: 0.01 }]
 }
 
 areas.evenementRetrouvezLePinPerdu = {
@@ -5832,7 +5861,7 @@ areas.evenementRetrouvezLePinPerdu = {
     mobMinLevel: 130,
     mobMaxLevel: 140,
     background: "",
-    icon: "",
+    icon: "images/monsters/Smilomouth.png",
     description: "",
     spawns: [
         { id: 'smilomouth', weight: 10 },
@@ -5842,6 +5871,7 @@ areas.evenementRetrouvezLePinPerdu = {
         { id: 'fricochere', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'casque_de_l_ecumouth', dropRate: 0.01 },
         { itemId: 'coiffe_du_fricochere', dropRate: 0.01 },
         { itemId: 'pagniglou', dropRate: 0.01 },
@@ -5852,7 +5882,17 @@ areas.evenementRetrouvezLePinPerdu = {
         { itemId: 'bottes_d_inferno', dropRate: 0.01 },
         { itemId: 'infernano', dropRate: 0.01 },
         { itemId: 'bottes_de_will_killson', dropRate: 0.01 },
-        { itemId: 'willkillsano', dropRate: 0.01 }
+        { itemId: 'willkillsano', dropRate: 0.01 },
+        { itemId: 'runeHpM', dropRate: 0.01 },
+        { itemId: 'runeForceM',   dropRate: 0.01 },
+        { itemId: 'runeIntelM',   dropRate: 0.01 },
+        { itemId: 'runeChanceM',   dropRate: 0.01 },
+        { itemId: 'runeAgiM',   dropRate: 0.01 },
+        { itemId: 'runeAtkM', dropRate: 0.01 },
+        { itemId: 'runeSpdM', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM', dropRate: 0.01 },
+        { itemId: 'runeCritM', dropRate: 0.01 },
+        { itemId: 'runeCritDmgM', dropRate: 0.01 }
     ]
 }
 
@@ -5865,10 +5905,21 @@ areas.evenementBugElementaire = {
     mobMinLevel: 170,
     mobMaxLevel: 180,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Briko_Altruiste.png',
     description: '',
     spawns: [{ id: 'briko_altruiste', weight: 10 }, { id: 'briko_galvanisant', weight: 10 }, { id: 'briko_exaltant', weight: 10 }, { id: 'briko_stimulant', weight: 10 }, { id: 'briko_taquin', weight: 10 }],
-    lootTable: [{ itemId: 'trophee_de_la_terre', dropRate: 0.001 },{ itemId: 'trophee_du_feu', dropRate: 0.001 },{ itemId: 'trophee_de_l_eau', dropRate: 0.001 },{ itemId: 'trophee_de_l_air', dropRate: 0.001 },{ itemId: 'trophee_du_neutre', dropRate: 0.001 }]
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 }, { itemId: 'trophee_de_la_terre', dropRate: 0.001 },{ itemId: 'trophee_du_feu', dropRate: 0.001 },{ itemId: 'trophee_de_l_eau', dropRate: 0.001 },{ itemId: 'trophee_de_l_air', dropRate: 0.001 },{ itemId: 'trophee_du_neutre', dropRate: 0.001 },
+        { itemId: 'runeHpL', dropRate: 0.01 },
+        { itemId: 'runeForceL',   dropRate: 0.01 },
+        { itemId: 'runeIntelL',   dropRate: 0.01 },
+        { itemId: 'runeChanceL',   dropRate: 0.01 },
+        { itemId: 'runeAgiL',   dropRate: 0.01 },
+        { itemId: 'runeAtkL', dropRate: 0.01 },
+        { itemId: 'runeSpdL', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgL', dropRate: 0.01 },
+        { itemId: 'runeCritL', dropRate: 0.01 },
+        { itemId: 'runeCritDmgL', dropRate: 0.01 }]
 }
 
 areas.evenementChasseAuxVolkornes = {
@@ -5883,7 +5934,15 @@ areas.evenementChasseAuxVolkornes = {
     icon: '',
     description: '',
     spawns: [{ id: 'volkorne_orchidee_sauvage', weight: 10 }, { id: 'volkorne_indigo_sauvage', weight: 10 }, { id: 'volkorne_ebene_sauvage', weight: 10 }, { id: 'volkorne_pourpre_sauvage', weight: 10 }],
-    lootTable: [{ itemId: 'amulette_volkorne', dropRate: 0.01 }, { itemId: 'anneau_volkorne', dropRate: 0.01 }, { itemId: 'arc_volkorne', dropRate: 0.01 }, { itemId: 'casque_volkorne', dropRate: 0.01 }, { itemId: 'ceinture_volkorne', dropRate: 0.01 }]
+    lootTable: [
+        { itemId: 'pierreDame',        dropRate: 0.45 }, { itemId: 'amulette_volkorne', dropRate: 0.01 }, { itemId: 'anneau_volkorne', dropRate: 0.01 }, { itemId: 'arc_volkorne', dropRate: 0.01 }, { itemId: 'casque_volkorne', dropRate: 0.01 }, { itemId: 'ceinture_volkorne', dropRate: 0.01 },
+    
+        { itemId: 'runeFireResL',         dropRate: 0.01 },
+        { itemId: 'runeWaterResL',        dropRate: 0.01 },
+        { itemId: 'runeEarthResL',        dropRate: 0.01 },
+        { itemId: 'runeAirResL',          dropRate: 0.01 },
+        { itemId: 'runeNeutralResL',      dropRate: 0.01 },
+        { itemId: 'runeDropRateL',        dropRate: 0.01 },]
 }
 
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
@@ -6218,7 +6277,10 @@ areas.raidToxoliath = {
     lootTable: [
         { itemId: 'bottes_necrotiques', dropRate: 0.01 },
         { itemId: 'amulette_necrotique', dropRate: 0.01 },
-        { itemId: 'cape_necrotique', dropRate: 0.01 }
+        { itemId: 'cape_necrotique', dropRate: 0.01 },
+        { itemId: 'chapeau_lochon', dropRate: 0.01 },
+        { itemId: 'cape_matelassee', dropRate: 0.01 },
+        { itemId: 'pantoufles_emar', dropRate: 0.01 }
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
@@ -6506,3 +6568,342 @@ areas.raidEliocalypse = {
     miniBossLootTable: []
 }
 // #endregion RAIDS
+
+// #region SAISONNIERS ─────────────────────────────────────────────────────────────────────
+
+// ════════════════════════════════════════════════════════════════════════════════
+// HALOUINE — 15 octobre au 3 novembre
+// ════════════════════════════════════════════════════════════════════════════════
+
+areas.saisonHalouine = {
+    id: 'saisonHalouine',
+    type: 'saisonnier',
+    season: { start: [10, 15], end: [11, 3] },
+    name: 'Lune des Crânes',
+    minLevel: 90, maxLevel: 105,
+    mobMinLevel: 90, mobMaxLevel: 105,
+    background: '',
+    icon: 'images/monsters/Bouftou_d_Halouine.png',
+    description: "Chaque année, lorsque la Lune des Crânes embrase le ciel d'Halouine, des créatures cauchemardesques envahissent les potagers maudits d'Incarnam. Seuls les aventuriers assez courageux pour affronter la nuit la plus sombre de l'année pourront espérer mettre la main sur la clé du repaire d'Halouine.",
+    spawns: [
+        { id: 'bouftou_d_halouine', weight: 35 },
+        { id: 'tofu_d_halouine',    weight: 35 },
+        { id: 'citwouille',         weight: 30 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonHalouine', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonHalouine = {
+    id: 'donjonHalouine',
+    type: 'saisonnier',
+    season: { start: [10, 15], end: [11, 3] },
+    keyId: 'cleDonjonHalouine',
+    name: "Potager d'Halouine",
+    minLevel: 105, maxLevel: 105,
+    mobMinLevel: 105, mobMaxLevel: 105,
+    background: '',
+    icon: 'images/monsters/Halouine.png',
+    description: "Dans ce potager maudit où les citrouilles poussent sous la lueur sanglante de la Lune des Crânes, Halouine règne sans partage sur la nuit la plus sombre de l'année. Les aventuriers venus chercher des friandises finissent bien trop souvent à décorer son jardin enchanté... de manière permanente.",
+    spawns: [{ id: 'halouine', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+
+// ════════════════════════════════════════════════════════════════════════════════
+// NOWEL — 1 décembre au 6 janvier
+// ════════════════════════════════════════════════════════════════════════════════
+
+areas.saisonNowelVillage = {
+    id: 'saisonNowelVillage',
+    type: 'saisonnier',
+    season: { start: [12, 1], end: [1, 6] },
+    name: 'Village de Nowel',
+    minLevel: 50, maxLevel: 55,
+    mobMinLevel: 50, mobMaxLevel: 55,
+    background: '',
+    icon: 'images/monsters/Dragodinde_de_Nowel.png',
+    description: "Le Village de Nowel s'éveille chaque décembre, recouvert d'une neige éternelle et peuplé de créatures festives aux intentions bien moins bienveillantes qu'elles n'y paraissent. Dragodinde et Croc Gland rôdent entre les chalets illuminés, gardant jalousement la clé du donjon des Sapiks.",
+    spawns: [
+        { id: 'dragodinde_de_nowel', weight: 55 },
+        { id: 'croc_gland_de_nowel', weight: 45 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonNowel', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonNowel = {
+    id: 'donjonNowel',
+    type: 'saisonnier',
+    season: { start: [12, 1], end: [1, 6] },
+    keyId: 'cleDonjonNowel',
+    name: 'Donjon de Nowel',
+    minLevel: 55, maxLevel: 55,
+    mobMinLevel: 55, mobMaxLevel: 55,
+    background: '',
+    icon: 'images/monsters/Sapik.png',
+    description: "Derrière les guirlandes scintillantes et les montagnes de cadeaux se cache une réalité bien moins festive. Les Sapiks, lutins autrefois dévoués au Papa Nowel, ont pris le contrôle du donjon et n'accorderont à personne le droit de passer.",
+    spawns: [{ id: 'sapik', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.saisonNowelToundra = {
+    id: 'saisonNowelToundra',
+    type: 'saisonnier',
+    season: { start: [12, 1], end: [1, 6] },
+    name: 'Toundra de Nowel',
+    minLevel: 100, maxLevel: 115,
+    mobMinLevel: 100, mobMaxLevel: 115,
+    background: '',
+    icon: 'images/monsters/Dragodinde_de_Nowel.png',
+    description: "Plus loin dans les terres gelées, la toundra de Nowel s'étend à perte de vue. Les Dragondindes sauvages y patrouillent en meutes tandis que des Bouboules de neige roulent entre les crevasses. Quelque part sous la glace se trouve l'entrée de la caverne du Papa Nowel.",
+    spawns: [
+        { id: 'dragodinde_de_nowel_sauvage', weight: 55 },
+        { id: 'bouboule_de_neige',           weight: 45 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonCaverneNowel', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonCaverneNowel = {
+    id: 'donjonCaverneNowel',
+    type: 'saisonnier',
+    season: { start: [12, 1], end: [1, 6] },
+    keyId: 'cleDonjonCaverneNowel',
+    name: 'Caverne de Nowel',
+    minLevel: 115, maxLevel: 115,
+    mobMinLevel: 115, mobMaxLevel: 115,
+    background: '',
+    icon: 'images/monsters/Papa_Nowel.png',
+    description: "Le Papa Nowel est un être pour qui rien ne compte plus que la joie des enfants... et la saveur de leurs entrailles. Cet ogre impitoyable déguisé en vieillard bedonnant attend dans les profondeurs glacées de sa caverne ceux qui ont encore la naïveté de croire aux cadeaux.",
+    spawns: [{ id: 'papa_nowel', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.saisonNowelDomaine = {
+    id: 'saisonNowelDomaine',
+    type: 'saisonnier',
+    season: { start: [12, 1], end: [1, 6] },
+    name: 'Domaine du Père Fwetar',
+    minLevel: 160, maxLevel: 175,
+    mobMinLevel: 160, mobMaxLevel: 175,
+    background: '',
+    icon: 'images/monsters/Dragodinde_de_Nowel.png',
+    description: "Aux confins du monde de Nowel se dresse le domaine du Père Fwetar, entouré de Dragondindes fougueuses et de Peluches Wabbit gardiennes des murs. Ceux qui osent s'y aventurer savent qu'ils ne trouveront ni trêve ni pitié à l'approche de la demeure du plus sombre des esprits de la nuit de Nowel.",
+    spawns: [
+        { id: 'dragodinde_de_nowel_fougueuse', weight: 50 },
+        { id: 'peluche_wabbit',                weight: 50 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonPapaNowel', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonPapaNowel = {
+    id: 'donjonPapaNowel',
+    type: 'saisonnier',
+    season: { start: [12, 1], end: [1, 6] },
+    keyId: 'cleDonjonPapaNowel',
+    name: 'Maison du Papa Nowel',
+    minLevel: 175, maxLevel: 175,
+    mobMinLevel: 175, mobMaxLevel: 175,
+    background: '',
+    icon: 'images/monsters/Père_Fwetar.png',
+    description: "Tandis que le Papa Nowel distribue ses présents aux enfants sages, le Père Fwetar s'occupe des autres — et il ne fait preuve d'aucune clémence. Sa demeure en apparence chaleureuse dissimule les rituels les plus obscurs de la nuit de Nowel.",
+    spawns: [{ id: 'pere_fwetar', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+
+// ════════════════════════════════════════════════════════════════════════════════
+// CHOCOLAT / KAO — 1 février au 1 mars
+// ════════════════════════════════════════════════════════════════════════════════
+
+areas.saisonChocolatRuelles = {
+    id: 'saisonChocolatRuelles',
+    type: 'saisonnier',
+    season: { start: [2, 1], end: [3, 1] },
+    name: 'Ruelles Chocolatées',
+    minLevel: 55, maxLevel: 65,
+    mobMinLevel: 55, mobMaxLevel: 65,
+    background: '',
+    icon: 'images/monsters/Chef_Waddict.png',
+    description: "Dans les ruelles envahies de cacao fondu, les Chefs Waddicts et les Kwakao fanatiques font régner l'ordre au nom du dieu Kao. Nul n'entre dans la Fonderie sans avoir prouvé sa valeur dans ces ruelles... et survécu.",
+    spawns: [
+        { id: 'chef_waddict', weight: 50 },
+        { id: 'kwakao',       weight: 50 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonWaddicts', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonWaddicts = {
+    id: 'donjonWaddicts',
+    type: 'saisonnier',
+    season: { start: [2, 1], end: [3, 1] },
+    keyId: 'cleDonjonWaddicts',
+    name: 'Fonderie des Waddicts',
+    minLevel: 65, maxLevel: 65,
+    mobMinLevel: 65, mobMaxLevel: 65,
+    background: '',
+    icon: 'images/monsters/Mawabouaino.png',
+    description: "Dans les entrailles de la Fonderie des Waddicts, les convoyeurs de chocolat fondu ne s'arrêtent jamais. Les Waddicts, ouvriers fanatiques dévoués corps et âme à leur production, ont élu le Mawabouaino comme gardien suprême de leurs réserves et n'ont aucune tolérance pour les intrus qui s'y aventurent.",
+    spawns: [{ id: 'mawabouaino', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.saisonChocolatConfiserie = {
+    id: 'saisonChocolatConfiserie',
+    type: 'saisonnier',
+    season: { start: [2, 1], end: [3, 1] },
+    name: "Confiserie de l'Enfer",
+    minLevel: 120, maxLevel: 135,
+    mobMinLevel: 120, mobMaxLevel: 135,
+    background: '',
+    icon: 'images/monsters/Kwakao.png',
+    description: "Là où le chocolat se cristallise en lames et où les bonbons fondent en acide, la Confiserie de l'Enfer récompense les aventuriers assez solides pour y survivre d'une clé ouvrant les portes de la Croquanterie. Kwakao surdosés et Chocoligarques veillent sur ses couloirs à chaque instant.",
+    spawns: [
+        { id: 'kwakao_surdose', weight: 55 },
+        { id: 'chocoligarque',  weight: 45 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonCroquanterie', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonCroquanterie = {
+    id: 'donjonCroquanterie',
+    type: 'saisonnier',
+    season: { start: [2, 1], end: [3, 1] },
+    keyId: 'cleDonjonCroquanterie',
+    name: 'Croquanterie',
+    minLevel: 135, maxLevel: 135,
+    mobMinLevel: 135, mobMaxLevel: 135,
+    background: '',
+    icon: 'images/monsters/Croqueleur.png',
+    description: "À la Croquanterie, tout croque, grince et se brise — y compris les aventuriers qui s'y aventurent sans prudence. Le Croqueleur, créature monstrueuse née d'une recette de confiserie qui a terriblement mal tourné, veille sur ses réserves de sucreries avec une férocité que nul gourmand ne soupçonnerait.",
+    spawns: [{ id: 'croqueleur', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.saisonChocolatTemple = {
+    id: 'saisonChocolatTemple',
+    type: 'saisonnier',
+    season: { start: [2, 1], end: [3, 1] },
+    name: 'Abords du Temple Kao',
+    minLevel: 185, maxLevel: 200,
+    mobMinLevel: 185, mobMaxLevel: 200,
+    background: '',
+    icon: 'images/monsters/Éclat_Kao.png',
+    description: "Aux portes du sanctuaire divin, les Chocoligarques d'élite et les Éclats Kao — fragments vivants de la volonté du dieu — repoussent tout profane qui oserait s'approcher. Seuls ceux qui parviennent à les vaincre peuvent espérer franchir les portes du Temple Kao et affronter sa Prêtresse.",
+    spawns: [
+        { id: 'chocoligarque', weight: 40 },
+        { id: 'eclat_kao',     weight: 60 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cleDonjonKao', dropRate: 0.15, isKey: true },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonKao = {
+    id: 'donjonKao',
+    type: 'saisonnier',
+    season: { start: [2, 1], end: [3, 1] },
+    keyId: 'cleDonjonKao',
+    name: 'Temple du dieu Kao',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 200, mobMaxLevel: 200,
+    background: '',
+    icon: 'images/monsters/Prêtresse_de_Kao.png',
+    description: "Dans ce temple érigé à la gloire de Kao, dieu du Chocolat Absolu, les Chocomanciens murmurent leurs prières en fondu et en craquant. Au plus profond du sanctuaire trône la Prêtresse de Kao, qui a renoncé à toute humanité pour fusionner avec le cacao divin et devenir la gardienne éternelle de la foi chocolatière.",
+    spawns: [{ id: 'pretresse_de_kao', weight: 100 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '', dropRate: 0.01 },
+    ]
+}
+
+
+// ════════════════════════════════════════════════════════════════════════════════
+// VULKANIA — 1 juillet au 1 septembre
+// ════════════════════════════════════════════════════════════════════════════════
+
+// areas.saisonVulkania_TEST = {
+//     id: 'saisonVulkania_TEST',
+//     type: 'saisonnier',
+//     season: { start: [7, 1], end: [9, 1] },
+//     name: 'Plages de Vulkania',
+//     minLevel: 60, maxLevel: 80,
+//     mobMinLevel: 60, mobMaxLevel: 80,
+//     background: '',
+//     icon: 'images/monsters/Krokille_Novice_Insipide.png',
+//     description: "TODO",
+//     spawns: [
+//         { id: 'krokille_novice_insipide',       weight: 20 },
+//         { id: 'krokille_novice_boueuse',         weight: 20 },
+//         { id: 'krokille_novice_incandescente',   weight: 20 },
+//         { id: 'krokille_novice_humide',          weight: 20 },
+//         { id: 'krokille_novice_seche',           weight: 20 },
+//     ],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+//         { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+//         { itemId: '',                     dropRate: 0.01 },
+//     ]
+// }
+
+// areas.donjonVulkania_TEST = {
+//     id: 'donjonVulkania_TEST',
+//     type: 'saisonnier',
+//     season: { start: [7, 1], end: [9, 1] },
+//     keyId: 'cleDonjonVulkania',
+//     name: 'Donjon de Vulkania',
+//     minLevel: 80, maxLevel: 80,
+//     mobMinLevel: 80, mobMaxLevel: 80,
+//     background: '',
+//     icon: '',
+//     description: "TODO",
+//     spawns: [{ id: 'kralab_rah', weight: 100 }],
+//     lootTable: [
+//         { itemId: 'pierreDameGardien', dropRate: 0.45 },
+//         { itemId: '',                  dropRate: 0.01 },
+//     ]
+// }
+
+// #endregion SAISONNIERS

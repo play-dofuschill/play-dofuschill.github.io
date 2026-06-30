@@ -32,8 +32,7 @@ monsters['wanted_maitre_boulet'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 1200, atk: 300, spd: 30,
-        res: { neutre: -10, feu: 10, eau: 10, air: 10, terre: 10 } },
+    bst: { hp: 1200, atk: 300, spd: 30, res: { neutre: -10, feu: 10, eau: 10, air: 10, terre: 10 } },
     moves: ['wanted_maitre_boulet_acculement', 'wanted_maitre_boulet_debitage', 'wanted_maitre_boulet_invocation_de_tournesol']
 }
 
@@ -66,8 +65,7 @@ monsters['wanted_exi_guman'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 1100, atk: 200, spd: 20,
-        res: { neutre: 30, feu: 5, eau: 5, air: -10, terre: 10 } },
+    bst: { hp: 1100, atk: 200, spd: 20, res: { neutre: 30, feu: 5, eau: 5, air: -10, terre: 10 } },
     moves: ['wanted_exi_guman_spatezoignons', 'wanted_exi_guman_chataigne', 'wanted_exi_guman_pousses_ephemeres']
 }
 
@@ -78,8 +76,7 @@ monsters['wanted_roub_ignolles'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 40,
-    bst: { hp: 1200, atk: 300, spd: 30,
-        res: { neutre: 20, feu: 10, eau: 10, air: 10, terre: 0 } },
+    bst: { hp: 1200, atk: 300, spd: 30, res: { neutre: 20, feu: 10, eau: 10, air: 10, terre: 0 } },
     moves: ['wanted_roub_ignolles_vulnerabilite_bombesque', 'wanted_roub_ignolles_pousse_bombe', 'wanted_roub_ignolles_teleportabombe']
 }
 
@@ -90,8 +87,7 @@ monsters['wanted_bouss_baybe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 50,
-    bst: { hp: 3100, atk: 300, spd: 30,
-        res: { neutre: 15, feu: 5, eau: 0, air: 10, terre: 20 } },
+    bst: { hp: 3100, atk: 300, spd: 30, res: { neutre: 15, feu: 5, eau: 0, air: 10, terre: 20 } },
     moves: ['wanted_bouss_baybe_salon', 'wanted_bouss_baybe_econduire', 'wanted_bouss_baybe_porkasserie']
 }
 
@@ -113,8 +109,7 @@ monsters['wanted_nono_le_wobot'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 4100, atk: 300, spd: 30,
-        res: { neutre: 10, feu: -10, eau: -10, air: 20, terre: 20 } },
+    bst: { hp: 4100, atk: 300, spd: 30, res: { neutre: 10, feu: -10, eau: -10, air: 20, terre: 20 } },
     moves: ['wanted_nono_le_wobot_vewwouillage', 'wanted_nono_le_wobot_wavelot_explosif', 'wanted_nono_le_wobot_massue_matwaquante']
 }
 
@@ -136,8 +131,7 @@ monsters['wanted_marzwel_le_gobelin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 4100, atk: 300, spd: 30,
-        res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 0 } },
+    bst: { hp: 4100, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 0 } },
     moves: ['wanted_marzwel_le_gobelin_javeline_creuse', 'wanted_marzwel_le_gobelin_a_pied_d_uvre', 'wanted_marzwel_le_gobelin_fuite_anticipee']
 }
 
@@ -274,8 +268,7 @@ monsters['wanted_prince_marchand'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 9600, atk: 300, spd: 30,
-        res: { neutre: 50, feu: 15, eau: 10, air: 5, terre: 0 } },
+    bst: { hp: 9600, atk: 300, spd: 30, res: { neutre: 50, feu: 15, eau: 10, air: 5, terre: 0 } },
     moves: ['wanted_prince_marchand_marchandage', 'wanted_prince_marchand_palouf', 'wanted_prince_marchand_charge_heroique']
 }
 
@@ -366,8 +359,7 @@ monsters['wanted_morblok'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 12000, atk: 400, spd: 40,
-        res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
+    bst: { hp: 12000, atk: 400, spd: 40, res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
     moves: ['wanted_morblok_chronocharge', 'wanted_morblok_rajeunissement', 'wanted_morblok_saute_heure']
 }
 
@@ -521,18 +513,6 @@ monsters['wanted_mogligli'] = {
     moves: ['wanted_mogligli_chienchien_rouge', 'wanted_mogligli_au_kanig', 'wanted_mogligli_la_chasse_de_kaa_kaa']
 }
 
-monsters['wanted_feu_des_ames_perdues'] = {
-    id: 'wanted_feu_des_ames_perdues',
-    name: 'Feu des âmes perdues',
-    image: 'img/monstres/wanted/avis/feu_des_ames_perdues.png',
-    rarity: 'legendaire',
-    tier: 'boss',
-    fixedLevel: 150,
-    bst: { hp: 1000, atk: 0, spd: 1,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
-    moves: []
-}
-
 monsters['wanted_aigripoil'] = {
     id: 'wanted_aigripoil',
     name: 'Aigripoil',
@@ -586,8 +566,7 @@ monsters['wanted_anatak_diskedor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 20000, atk: 450, spd: 60,
-        res: { neutre: 0, feu: -5, eau: 20, air: 15, terre: 15 } },
+    bst: { hp: 20000, atk: 450, spd: 60, res: { neutre: 0, feu: -5, eau: 20, air: 15, terre: 15 } },
     moves: ['wanted_anatak_diskedor_lame_tempete', 'wanted_anatak_diskedor_frappe_purificatrice', 'wanted_anatak_diskedor_coup_de_foudre', 'wanted_anatak_diskedor_coup_de_foudre', 'wanted_anatak_diskedor_frappe_purificatrice', 'wanted_anatak_diskedor_lame_tempete']
 }
 
@@ -656,8 +635,7 @@ monsters['wanted_carter_le_pillard'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 25000, atk: 300, spd: 30,
-        res: { neutre: 50, feu: 30, eau: 10, air: 100, terre: 10 } },
+    bst: { hp: 25000, atk: 300, spd: 30, res: { neutre: 50, feu: 30, eau: 10, air: 100, terre: 10 } },
     moves: ['wanted_carter_le_pillard_dans_les_vapes', 'wanted_carter_le_pillard_ce_qui_est_a_toi_est_a_moi', 'wanted_carter_le_pillard_souffle_embrume']
 }
 
@@ -668,8 +646,7 @@ monsters['wanted_mouchame_3773'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 5000, atk: 600, spd: 60,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 5000, atk: 600, spd: 60, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_mouchame_3773_herd']
 }
 
@@ -783,8 +760,7 @@ monsters['wanted_buldalazred'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 29000, atk: 800, spd: 80,
-        res: { neutre: 35, feu: 10, eau: 20, air: 5, terre: 25 } },
+    bst: { hp: 29000, atk: 800, spd: 80, res: { neutre: 35, feu: 10, eau: 20, air: 5, terre: 25 } },
     moves: ['wanted_buldalazred_piege_dimensionnel', 'wanted_buldalazred_uction']
 }
 
@@ -795,8 +771,7 @@ monsters['wanted_takomako'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 29000, atk: 800, spd: 80,
-        res: { neutre: 20, feu: 35, eau: 25, air: 5, terre: 10 } },
+    bst: { hp: 29000, atk: 800, spd: 80, res: { neutre: 20, feu: 35, eau: 25, air: 5, terre: 10 } },
     moves: ['wanted_takomako_takotak', 'wanted_takomako_makomak']
 }
 
@@ -807,8 +782,7 @@ monsters['wanted_homard_medali'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 29000, atk: 800, spd: 80,
-        res: { neutre: 15, feu: -5, eau: 10, air: 30, terre: 20 } },
+    bst: { hp: 29000, atk: 800, spd: 80, res: { neutre: 15, feu: -5, eau: 10, air: 30, terre: 20 } },
     moves: ['wanted_homard_medali_drachetaulque', 'wanted_homard_medali_hypercut', 'wanted_homard_medali_telepunch']
 }
 
@@ -896,8 +870,7 @@ monsters['wanted_sicogne'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 29000, atk: 575, spd: 90,
-        res: { neutre: 30, feu: -10, eau: 15, air: 35, terre: 20 } },
+    bst: { hp: 29000, atk: 575, spd: 90, res: { neutre: 30, feu: -10, eau: 15, air: 35, terre: 20 } },
     moves: ['wanted_sicogne_charge_destructrice', 'wanted_sicogne_superpuissance', 'wanted_sicogne_annihilation', 'wanted_sicogne_agression']
 }
 
@@ -953,8 +926,7 @@ monsters['wanted_hyperscampe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 30000, atk: 500, spd: 50,
-        res: { neutre: 40, feu: 30, eau: 15, air: 25, terre: 10 } },
+    bst: { hp: 30000, atk: 500, spd: 50, res: { neutre: 40, feu: 30, eau: 15, air: 25, terre: 10 } },
     moves: ['wanted_hyperscampe_riveteuse', 'wanted_hyperscampe_percussion', 'wanted_hyperscampe_rupture', 'wanted_hyperscampe_forage']
 }
 
@@ -987,8 +959,7 @@ monsters['wanted_panteroz'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 1040,
-    bst: { hp: 6000, atk: 800, spd: 80,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 6000, atk: 800, spd: 80, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_panteroz_grift', 'wanted_panteroz_rayondule']
 }
 
@@ -1047,7 +1018,7 @@ const WantedBosses = {
         background: '',
         levelCap:  30,
         bst:       { hp: 1200, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'baton_carnivore', dropRate: 0.1 }, { itemId: 'toady', dropRate: 0.1 }, { itemId: 'ceinture_de_phong_huss', dropRate: 0.1 }, { itemId: 'bottes_de_phong_huss', dropRate: 0.1 }, { itemId: 'anneau_de_phong_huss', dropRate: 0.1 }]
     },
     'wanted_frakacia_leukocytine': {
         id:        'wanted_frakacia_leukocytine',
@@ -1080,7 +1051,7 @@ const WantedBosses = {
         background: '',
         levelCap:  30,
         bst:       { hp: 1100, atk: 200 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amuronce', dropRate: 0.1 }, { itemId: 'ceinturonce', dropRate: 0.1 }]
     },
     'wanted_roub_ignolles': {
         id:        'wanted_roub_ignolles',
@@ -1091,7 +1062,7 @@ const WantedBosses = {
         background: '',
         levelCap:  40,
         bst:       { hp: 1200, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_de_kubitus', dropRate: 0.1 }, { itemId: 'ceinture_de_kubitus', dropRate: 0.1 }, { itemId: 'bottes_de_kubitus', dropRate: 0.1 }]
     },
     'wanted_bouss_baybe': {
         id:        'wanted_bouss_baybe',
@@ -1102,7 +1073,7 @@ const WantedBosses = {
         background: '',
         levelCap:  50,
         bst:       { hp: 3100, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'ceinture_de_stroud', dropRate: 0.1 }, { itemId: 'bottes_de_stroud', dropRate: 0.1 }, { itemId: 'ceinture_de_piggy_paupe', dropRate: 0.1 }, { itemId: 'amulette_de_piggy_paupe', dropRate: 0.1 }, { itemId: 'anneau_de_piggy_paupe', dropRate: 0.1 }, { itemId: 'ceinture_lardiere', dropRate: 0.1 }, { itemId: 'jambanneau', dropRate: 0.1 }]
     },
     'wanted_ogivol_scalarcin': {
         id:        'wanted_ogivol_scalarcin',
@@ -1113,7 +1084,7 @@ const WantedBosses = {
         background: '',
         levelCap:  50,
         bst:       { hp: 3100, atk: 300 },
-        panoplie:  [{ itemId: 'cape_d_ogivol', dropRate: 0.1 }, { itemId: 'coiffe_d_ogivol', dropRate: 0.1 }, { itemId: 'ceinture_d_ogivol', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'mitaine_des_scalarcin', dropRate: 0.1 }, { itemId: 'chaussettes_des_scalarcin', dropRate: 0.1 }, { itemId: 'dagu_os_des_scalarcin', dropRate: 0.1 }]
     },
     'wanted_nono_le_wobot': {
         id:        'wanted_nono_le_wobot',
@@ -1124,7 +1095,7 @@ const WantedBosses = {
         background: '',
         levelCap:  60,
         bst:       { hp: 4100, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'anneau_de_karotz', dropRate: 0.1 }, { itemId: 'amulette_de_karotz', dropRate: 0.1 }, { itemId: 'bottes_de_karotz', dropRate: 0.1 }]
     },
     'wanted_brumen_tinctorias': {
         id:        'wanted_brumen_tinctorias',
@@ -1146,7 +1117,7 @@ const WantedBosses = {
         background: '',
         levelCap:  60,
         bst:       { hp: 4100, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'oreilles_de_marzwel', dropRate: 0.1 }, { itemId: 'bracelet_de_marzwel', dropRate: 0.1 }, { itemId: 'javeline_de_marzwel', dropRate: 0.1 }]
     },
     'wanted_gadoo': {
         id:        'wanted_gadoo',
@@ -1201,7 +1172,7 @@ const WantedBosses = {
         background: '',
         levelCap:  80,
         bst:       { hp: 6600, atk: 300 },
-        panoplie:  [{ itemId: 'rouleau_a_patisserie_d_aermyne', dropRate: 0.1 }, { itemId: 'cape_d_aermyne', dropRate: 0.1 }, { itemId: 'coiffe_d_aermyne', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'rouleau_a_patisserie_d_aermyne', dropRate: 0.1 }, { itemId: 'cape_d_aermyne', dropRate: 0.1 }, { itemId: 'coiffe_d_aermyne', dropRate: 0.1 }, { itemId: 'bague_des_scalptaras', dropRate: 0.1 }, { itemId: 'tablier_des_scalptaras', dropRate: 0.1 }, { itemId: 'bottines_des_scalptaras', dropRate: 0.1 }]
     },
     'wanted_musha_l_oni': {
         id:        'wanted_musha_l_oni',
@@ -1278,7 +1249,7 @@ const WantedBosses = {
         background: '',
         levelCap:  100,
         bst:       { hp: 9600, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'casque_de_maitre_nabur', dropRate: 0.1 }, { itemId: 'ceinture_ding_dong', dropRate: 0.1 }]
     },
     'wanted_maxi_malle': {
         id:        'wanted_maxi_malle',
@@ -1366,7 +1337,7 @@ const WantedBosses = {
         background: '',
         levelCap:  120,
         bst:       { hp: 12000, atk: 400 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'arc_de_fleche_mauve', dropRate: 0.1 }, { itemId: 'cape_de_fleche_mauve', dropRate: 0.1 }, { itemId: 'casque_de_fleche_mauve', dropRate: 0.1 }]
     },
     'wanted_nenufor_tilotus': {
         id:        'wanted_nenufor_tilotus',
@@ -1410,7 +1381,7 @@ const WantedBosses = {
         background: '',
         levelCap:  130,
         bst:       { hp: 16000, atk: 300 },
-        panoplie:  [{ itemId: 'ceinture_des_demoel', dropRate: 0.1 }, { itemId: 'bouclier_des_demoel', dropRate: 0.1 }, { itemId: 'epee_des_demoel', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'ceinture_des_demoel', dropRate: 0.1 }, { itemId: 'bouclier_des_demoel', dropRate: 0.1 }, { itemId: 'epee_des_demoel', dropRate: 0.1 }, { itemId: 'geta_de_padgref', dropRate: 0.1 }, { itemId: 'anneau_de_padgref', dropRate: 0.1 }, { itemId: 'coiffe_de_padgref', dropRate: 0.1 }]
     },
     'wanted_ali_grothor': {
         id:        'wanted_ali_grothor',
@@ -1511,17 +1482,6 @@ const WantedBosses = {
         bst:       { hp: 3400, atk: 300 },
         panoplie:  []
     },
-    'wanted_feu_des_ames_perdues': {
-        id:        'wanted_feu_des_ames_perdues',
-        monsterId: 'wanted_feu_des_ames_perdues',
-        name:      'Feu des âmes perdues',
-        lore:      'Le Feu des Âmes Perdues brûle sans consumation, alimenté par les regrets de ceux qui sont tombés avant vous. Il n\'attaque pas — il attend, patient, que vous fassiez la même erreur que ses précédentes victimes.',
-        icon:      'img/monstres/wanted/avis/feu_des_ames_perdues.png',
-        background: '',
-        levelCap:  150,
-        bst:       { hp: 1000, atk: 0 },
-        panoplie:  []
-    },
     'wanted_aigripoil': {
         id:        'wanted_aigripoil',
         monsterId: 'wanted_aigripoil',
@@ -1575,7 +1535,7 @@ const WantedBosses = {
         background: '',
         levelCap:  160,
         bst:       { hp: 20000, atk: 450 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'epee_du_bretteur_celeste', dropRate: 0.1 }, { itemId: 'cape_du_bretteur_celeste', dropRate: 0.1 }, { itemId: 'ceinture_du_bretteur_celeste', dropRate: 0.1 }]
     },
     'wanted_yech_ti': {
         id:        'wanted_yech_ti',
@@ -1641,7 +1601,7 @@ const WantedBosses = {
         background: '',
         levelCap:  180,
         bst:       { hp: 25000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_de_nevark', dropRate: 0.1 }, { itemId: 'ceinture_de_nevark', dropRate: 0.1 }, { itemId: 'cape_de_nevark', dropRate: 0.1 }, { itemId: 'nev_arc', dropRate: 0.1 }]
     },
     'wanted_mouchame_3773': {
         id:        'wanted_mouchame_3773',
@@ -1652,7 +1612,7 @@ const WantedBosses = {
         background: '',
         levelCap:  180,
         bst:       { hp: 5000, atk: 600 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bottes_de_lethaline', dropRate: 0.1 }, { itemId: 'cape_de_lethaline', dropRate: 0.1 }, { itemId: 'ceinture_de_lethaline', dropRate: 0.1 }]
     },
     'wanted_guerrier_du_k_o': {
         id:        'wanted_guerrier_du_k_o',
@@ -1707,7 +1667,7 @@ const WantedBosses = {
         background: '',
         levelCap:  190,
         bst:       { hp: 27000, atk: 300 },
-        panoplie:  [{ itemId: 'anneau_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'cape_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'bottes_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'coiffe_de_la_fuji_givrefoux', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'anneau_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'cape_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'bottes_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'coiffe_de_la_fuji_givrefoux', dropRate: 0.1 }, { itemId: 'bague_de_san_jifu', dropRate: 0.1 }, { itemId: 'faux_de_san_jifu', dropRate: 0.1 }, { itemId: 'ceinture_de_san_jifu', dropRate: 0.1 }]
     },
     'wanted_gobus_instable': {
         id:        'wanted_gobus_instable',
@@ -1762,7 +1722,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 29000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_de_shokkoth', dropRate: 0.1 }, { itemId: 'cape_de_mantaze', dropRate: 0.1 }, { itemId: 'dagoulinantes', dropRate: 0.1 }]
     },
     'wanted_takomako': {
         id:        'wanted_takomako',
@@ -1773,7 +1733,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 29000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'anneau_crustique', dropRate: 0.1 }, { itemId: 'collier_de_tourthon', dropRate: 0.1 }, { itemId: 'marteau_r_ture', dropRate: 0.1 }]
     },
     'wanted_homard_medali': {
         id:        'wanted_homard_medali',
@@ -1784,7 +1744,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 29000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_indescriptible', dropRate: 0.1 }, { itemId: 'manthache', dropRate: 0.1 }, { itemId: 'palmes_trithons', dropRate: 0.1 }]
     },
     'wanted_glourdorak': {
         id:        'wanted_glourdorak',
@@ -1872,7 +1832,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 29000, atk: 575 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bottes_des_voyageurs', dropRate: 0.1 }, { itemId: 'bouclier_des_voyageurs', dropRate: 0.1 }, { itemId: 'capuche_des_voyageurs', dropRate: 0.1 }, { itemId: 'ceinture_des_voyageurs', dropRate: 0.1 }, { itemId: 'gant_des_voyageurs', dropRate: 0.1 }, { itemId: 'portail_des_voyageurs', dropRate: 0.1 }]
     },
     'wanted_mi': {
         id:        'wanted_mi',
@@ -1927,7 +1887,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 30000, atk: 500 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bouclier_du_captain_amakna', dropRate: 0.1 }, { itemId: 'cape_des_justiciers', dropRate: 0.1 }]
     },
     'wanted_grand_kongoku': {
         id:        'wanted_grand_kongoku',
@@ -1960,7 +1920,7 @@ const WantedBosses = {
         background: '',
         levelCap:  1040,
         bst:       { hp: 6000, atk: 800 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'string_fouetteur', dropRate: 0.1 }, { itemId: 'anneau_tranchant', dropRate: 0.1 }, { itemId: 'masque_de_panteroz', dropRate: 0.1 }]
     },
     'wanted_mouchame': {
         id:        'wanted_mouchame',

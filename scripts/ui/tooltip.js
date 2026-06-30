@@ -1009,7 +1009,8 @@ function showMoveTooltip(moveId, casterStats) {
         summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
         renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
         switch: 'Déplacement', repeat: 'Répétition', random: 'Aléatoire',
-        portal: 'Portail', turret: 'Tourelle', recul: 'Recul', avance: 'Avance'
+        portal: 'Portail', turret: 'Tourelle', recul: 'Recul', avance: 'Avance',
+        fatal_intercept: 'Interception fatale'
     }
     const _dmgStr = d => d == null ? null : typeof d === 'number' ? `${d}` : `${d.min}–${d.max}`
     const STAT_LABELS = {

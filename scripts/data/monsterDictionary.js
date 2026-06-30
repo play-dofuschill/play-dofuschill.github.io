@@ -480,7 +480,7 @@ monsters.milimulou = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 90, atk: 25, spd: 100, res: { neutre: 26, terre: 0, feu: 16, eau: -9, air: -19 } },
-    moves: ['flair', 'deboyautage']
+    moves: ['flair_mstr', 'deboyautage']
 }
 monsters.prespic = {
     id: 'prespic',
@@ -1729,7 +1729,7 @@ monsters.tiwabbit_kiafin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 95, spd: 100, res: { neutre: 12, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['vent_de_panique', 'panique']
+    moves: ['vent_de_panique', 'panique_mstr']
 }
 monsters.tiwabbit = {
     id: 'tiwabbit',
@@ -2318,7 +2318,7 @@ monsters.robionicle = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 270, atk: 80, spd: 100, res: { neutre: 40, terre: -20, feu: 10, eau: 30, air: -10 } },
-    moves: ['blast', 'turbine']
+    moves: ['blast', 'turbine_mstr']
 }
 // ═══════════════════════════════════════════════════════
 // DÉSERT DE SAHARASH (lvl 60+)
@@ -2603,7 +2603,7 @@ monsters.gourlo_le_terrible = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1900, atk: 140, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: ['invocation_de_tonneau', 'un_gros_boulet_sur_un_autre_boulet', 'bombarde']
+    moves: ['invocation_de_tonneau', 'un_gros_boulet_sur_un_autre_boulet', 'bombarde_mstr']
 }
 // ═══════════════════════════════════════════════════════
 // CHÂTEAU DU WA WABBIT (lvl 65+)
@@ -2615,7 +2615,7 @@ monsters.wa_wabbit = {
     image: 'images/monsters/Wa_Wabbit.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3000, atk: 128, spd: 100, res: { neutre: 28, terre: 28, feu: 18, eau: -7, air: -12 } },
+    bst: { hp: 3000, atk: 350, spd: 100, res: { neutre: 28, terre: 28, feu: 18, eau: -7, air: -12 } },
     moves: ['wawabehameha', 'abrutissement', 'awmuwe_woyale', 'cawotte_woyale']
 }
 // ═══════════════════════════════════════════════════════
@@ -2792,7 +2792,7 @@ monsters.nelween = {
     image: 'images/monsters/Nelween.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1900, atk: 280, spd: 100, res: { neutre: 20, terre: 5, feu: 15, eau: 20, air: 15 } },
+    bst: { hp: 1900, atk: 380, spd: 100, res: { neutre: 20, terre: 5, feu: 15, eau: 20, air: 15 } },
     moves: ['exhalation_toxique', 'mord_mollet', 'soin_diffus']
 }
 // ═══════════════════════════════════════════════════════
@@ -2904,7 +2904,7 @@ monsters.piralak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 10, terre: 50, feu: -10, eau: -19, air: -10 } },
-    moves: ['bistouille', 'tourbe_empoisonnee', 'bond_du_piralak']
+    moves: ['bistouille_mstr', 'tourbe_empoisonnee', 'bond_du_piralak']
 }
 monsters.drakoalak = {
     id: 'drakoalak',
@@ -3033,7 +3033,7 @@ monsters.graboule = {
 monsters.draegnerys = {
     id: 'draegnerys',
     name: 'Draegnerys',
-    image: 'images/monsters/Draegnerys.png',
+    image: 'images/monsters/draegnerys.png',
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1400, atk: 220, spd: 130, res: { neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 } },
@@ -3557,7 +3557,7 @@ monsters.berserkoffre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1600, atk: 300, spd: 100, res: { neutre: 6, terre: -14, feu: 36, eau: 16, air: -24 } },
-    moves: ['saut_de_joie', 'langueur', 'fouetreinte']
+    moves: ['saut_de_joie', 'langueur_mstr', 'fouetreinte']
 }
 monsters.precieux = {
     id: 'precieux',
@@ -3646,7 +3646,7 @@ monsters.renarbo = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: -14, terre: 21, feu: -9, eau: -24, air: 66 } },
-    moves: ['croassement', 'ramage', 'deplumage']
+    moves: ['croassement', 'ramage', 'deplumage_mstr']
 }
 monsters.rono_le_renarbo = {
     id: 'rono_le_renarbo',
@@ -4595,7 +4595,7 @@ monsters.ino_naru = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2500, atk: 275, spd: 100, res: { neutre: 15, terre: -10, feu: 25, eau: -20, air: 20 } },
-    moves: ['zephyr', 'nun_shakrang', 'stratus']
+    moves: ['zephyr', 'nun_shakrang', 'stratus_mstr']
 }
 monsters.kurookin = {
     id: 'kurookin',
@@ -5173,7 +5173,7 @@ monsters.rat_noir = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4400, atk: 380, spd: 100, res: { neutre: 5, terre: 50, feu: -20, eau: 20, air: -20 } },
-    moves: ['rafale']
+    moves: ['rafale_elementaire']
 }
 monsters.ramane = {
     id: 'ramane',
@@ -5408,7 +5408,7 @@ monsters.minotoror = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 4100, atk: 325, spd: 100, res: { neutre: 40, terre: -20, feu: 50, eau: 60, air: 50 } },
-    moves: ['lancer_de_tofu', 'graines_magiques', 'sabotage']
+    moves: ['lancer_de_tofu', 'graines_magiques', 'sabotage_mstr']
 }
 // ═══════════════════════════════════════════════════════
 // CIMETIÈRE DE GROBE (lvl 150+)
@@ -6118,7 +6118,7 @@ monsters.blerom = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 15, terre: 12, feu: 21, eau: -33, air: 60 } },
-    moves: ['carnage', 'toxin']
+    moves: ['carnage_mstr', 'toxin']
 }
 // ═══════════════════════════════════════════════════════
 // DOMAINE DES FUNGUS (lvl 170+)
@@ -7265,7 +7265,7 @@ monsters.boularbin = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 20, air: 20 } },
-    moves: ['renfortiche', 'compression', 'penitence']
+    moves: ['renfortiche', 'compression', 'penitence_mstr']
 }
 // ═══════════════════════════════════════════════════════
 // GROTTE DU BWORKER (lvl 185+)
@@ -7683,7 +7683,7 @@ monsters.boufbos = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 26, terre: 6, feu: 21, eau: 16, air: -9 } },
-    moves: ['lance_pierre', 'forte_tete']
+    moves: ['lance_pierre_mstr', 'forte_tete']
 }
 monsters.barbelier = {
     id: 'barbelier',
@@ -7980,7 +7980,7 @@ monsters.ombre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['liaison', 'distorsion', 'penombre']
+    moves: ['liaison', 'distorsion_mstr', 'penombre']
 }
 // ═══════════════════════════════════════════════════════
 // AQUADÔME DE MERKATOR (lvl 200+)
@@ -8524,7 +8524,7 @@ monsters.sylargh = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 13000, atk: 700, spd: 100, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
-    moves: ['poincon', 'mortier', 'degage_de_qualite']
+    moves: ['poincon_mstr', 'mortier', 'degage_de_qualite']
 }
 // ═══════════════════════════════════════════════════════
 // TRÔNE DE LA COUR SOMBRE (lvl 200+)
@@ -9288,7 +9288,7 @@ monsters.champa_marron = {
     moves: ['champ_homi', 'champ_hetre']
 }
 monsters.charogne = {
-    id: 'charogne',
+    id: 'charogne_mstr',
     name: 'Charogne',
     image: 'images/monsters/Charogne.png',
     rarity: 'commun',
@@ -9448,7 +9448,7 @@ monsters.flammeche_fumeuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: ['rapprochement_elementaire', 'immolation']
+    moves: ['rapprochement_elementaire', 'immolation_mstr']
 }
 monsters.flammeche_aqueuse = {
     id: 'flammeche_aqueuse',
@@ -10231,7 +10231,7 @@ monsters.bribe_de_zobal = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 558, spd: 100, res: { neutre: 25, terre: 29, feu: 14, eau: 14, air: 39 } },
-    moves: ['agular', 'furia', 'appui', 'plastron', 'apathie', 'cabriole', 'reuche', 'tortoruga', 'catalepsie', 'cavalcade', 'boliche', 'l_arc_ifanss']
+    moves: ['agular_mstr', 'furia_mstr', 'appui_mstr', 'plastron_mstr', 'apathie_mstr', 'cabriole_mstr', 'reuche_mstr', 'tortoruga_mstr', 'catalepsie_mstr', 'cavalcade_mstr', 'boliche_mstr', 'l_arc_ifanss']
 }
 monsters.bribe_de_steamer = {
     id: 'bribe_de_steamer',
@@ -10240,7 +10240,7 @@ monsters.bribe_de_steamer = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 460, spd: 100, res: { neutre: 15, terre: 41, feu: 33, eau: 18, air: 18 } },
-    moves: ['exclamaton', 'longue_vue', 'torpille', 'maree', 'scaphandre', 'periscope', 'flibuste', 'ecume', 'embuscade', 'harmattan']
+    moves: ['exclamaton', 'longue_vue', 'torpille_mstr', 'maree_mstr', 'scaphandre_mstr', 'periscope_mstr', 'flibuste_mstr', 'ecume_mstr', 'embuscade_mstr', 'harmattan_mstr']
 }
 monsters.bribe_de_cra = {
     id: 'bribe_de_cra',
@@ -10276,7 +10276,7 @@ monsters.bribe_de_pandawa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 139, spd: 100, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
-    moves: ['picole', 'consolation', 'brassage', 'fermentation', 'pandjiu', 'ribote', 'pandanlku']
+    moves: ['picole', 'consolation', 'brassage', 'fermentation_mstr', 'pandjiu_mstr', 'ribote_mstr', 'pandanlku_mstr']
 }
 monsters.bribe_d_eniripsa = {
     id: 'bribe_d_eniripsa',
@@ -10303,7 +10303,7 @@ monsters.bribe_d_huppermage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 604, spd: 100, res: { neutre: 31, terre: 24, feu: 29, eau: 24, air: 26 } },
-    moves: ['lances_telluriques', 'cataracte', 'onde_celeste', 'tison', 'drain_elementaire', 'orage', 'rafale', 'trait_ardent', 'volcan', 'traversee', 'torrent_arcanique', 'bouclier_elementaire']
+    moves: ['lances_telluriques_mstr', 'cataracte_mstr', 'onde_celeste_mstr', 'tison_mstr', 'drain_elementaire_mstr', 'orage_mstr', 'rafale_elementaire', 'trait_ardent_mstr', 'volcan_mstr', 'traversee_mstr', 'torrent_arcanique_mstr', 'bouclier_elementaire_mstr']
 }
 monsters.bribe_d_ouginak = {
     id: 'bribe_d_ouginak',
@@ -10312,7 +10312,7 @@ monsters.bribe_d_ouginak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 454, spd: 100, res: { neutre: 14, terre: 20, feu: 20, eau: 34, air: 27 } },
-    moves: ['gibier', 'charogne', 'depecage', 'carcasse', 'depouille', 'limier', 'apaisement', 'arcanin']
+    moves: ['gibier', 'charogne_mstr', 'depecage_mstr', 'carcasse_mstr', 'depouille_mstr', 'limier_mstr', 'apaisement', 'arcanin_mstr']
 }
 monsters.bribe_de_sadida = {
     id: 'bribe_de_sadida',
@@ -10321,7 +10321,7 @@ monsters.bribe_de_sadida = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 465, spd: 100, res: { neutre: 6, terre: 16, feu: 9, eau: 6, air: 19 } },
-    moves: ['ronce', 'ronces_agressives', 'foret_hantee', 'seve_paralysante', 'tremblement', 'vent_empoisonne']
+    moves: ['ronce_mstr', 'ronces_agressives_mstr', 'foret_hantee_mstr', 'seve_paralysante_mstr', 'tremblement_mstr', 'vent_empoisonne_mstr']
 }
 monsters.bribe_d_eliotrope = {
     id: 'bribe_d_eliotrope',
@@ -10330,7 +10330,7 @@ monsters.bribe_d_eliotrope = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 408, spd: 100, res: { neutre: 43, terre: 41, feu: 50, eau: 50, air: 37 } },
-    moves: ['mepris', 'sinecure', 'brimade', 'raillerie', 'sermon', 'cicatrisation', 'distribution']
+    moves: ['mepris_mstr', 'sinecure_mstr', 'brimade_mstr', 'raillerie_mstr', 'sermon_mstr', 'cicatrisation', 'distribution']
 }
 monsters.bribe_de_xelor = {
     id: 'bribe_de_xelor',
@@ -10339,7 +10339,7 @@ monsters.bribe_de_xelor = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1100, atk: 413, spd: 100, res: { neutre: 20, terre: 21, feu: 31, eau: 40, air: 28 } },
-    moves: ['poussiere', 'frappe_de_xelor', 'horloge', 'astrolabe', 'rouage', 'glas', 'refraction', 'sablier_de_xelor']
+    moves: ['poussiere_mstr', 'frappe_de_xelor_mstr', 'horloge_mstr', 'astrolabe', 'rouage_mstr', 'glas_mstr', 'refraction_mstr', 'sablier_de_xelor_mstr']
 }
 monsters.wabbit_gm = {
     id: 'wabbit_gm',
@@ -10798,7 +10798,7 @@ monsters.croc_gland_de_nowel = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['aboiement']
+    moves: ['aboiement_mstr']
 }
 monsters.z_uf_perturbe = {
     id: 'z_uf_perturbe',
@@ -10870,7 +10870,7 @@ monsters.momie_koalak = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2000, atk: 138, spd: 100, res: { neutre: 60, terre: -25, feu: 10, eau: 50, air: -50 } },
-    moves: ['malediction_de_la_momie', 'clepsydre', 'bandelette_ancestrale']
+    moves: ['malediction_de_la_momie', 'clepsydre_mstr', 'bandelette_ancestrale']
 }
 monsters.miasme_polarisateur = {
     id: 'miasme_polarisateur',
@@ -11140,7 +11140,7 @@ monsters.devhorreur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 63, spd: 100, res: { neutre: -7, terre: 12, feu: 6, eau: 11, air: 4 } },
-    moves: ['terreur', 'malheur', 'torpeur']
+    moves: ['terreur', 'malheur', 'torpeur_mstr']
 }
 monsters.percepteur = {
     id: 'percepteur',
@@ -11941,7 +11941,7 @@ monsters.batail_heure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 10, air: 5 } },
-    moves: ['estoc', 'entaille', 'heroisme', 'providence', 'condamnation', 'bond']
+    moves: ['estoc', 'entaille_mstr', 'heroisme', 'providence', 'condamnation', 'bond_mstr']
 }
 monsters.tir_heure = {
     id: 'tir_heure',
@@ -11968,7 +11968,7 @@ monsters.eclair_heure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 15, terre: 20, feu: 5, eau: 10, air: 25 } },
-    moves: ['compas', 'entourloupe', 'magnetisme', 'recel', 'pulsar', 'botte', 'aimantation']
+    moves: ['compas', 'entourloupe', 'magnetisme', 'recel_mstr', 'pulsar_mstr', 'botte', 'aimantation']
 }
 monsters.protect_heure = {
     id: 'protect_heure',
@@ -11977,7 +11977,7 @@ monsters.protect_heure = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 5, air: 10 } },
-    moves: ['somnolence', 'rempart', 'renfort', 'barriere']
+    moves: ['somnolence_mstr', 'rempart_mstr', 'renfort_mstr', 'barriere_mstr']
 }
 monsters.berserk_heure = {
     id: 'berserk_heure',

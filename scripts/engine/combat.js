@@ -1327,6 +1327,11 @@ function _resolveAllyTarget(effect, caster) {
         }
         return best
     }
+    const _allySlotM = effect.target?.match(/^ally_(\d)$/)
+    if (_allySlotM) {
+        const t = state.team[parseInt(_allySlotM[1], 10) - 1]
+        return (t && t.currentHp > 0) ? t : null
+    }
     return caster
 }
 
@@ -3005,6 +3010,16 @@ function executeEffect(ctx) {
             if (targetPos === curPos) break
             addLog(`${moveData.name} → changement de membre forcé !`)
             setActiveMember(living[targetPos])
+            break
+        }
+
+        case 'activate_slot': {
+            const _asIdx = (effect.slot || 1) - 1
+            const _asM = state.team[_asIdx]
+            if (!_asM || _asM.currentHp <= 0) break
+            if (_asIdx === combat.activeMemberIndex) break
+            addLog(`${moveData.name} → ${_asM.name || classes[_asM.classId]?.name || '?'} devient actif !`)
+            setActiveMember(_asIdx)
             break
         }
 

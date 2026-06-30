@@ -90,10 +90,24 @@ function _seededShuffle(arr, seed) {
     return a
 }
 
+// Retourne true si la saison d'une zone saisonnière est active.
+// Gère le chevauchement d'année (ex: déc → jan) quand start > end.
+function isSeasonActive(season) {
+    if (!season) return true
+    const now   = new Date()
+    const today = (now.getMonth() + 1) * 100 + now.getDate()
+    const start = season.start[0] * 100 + season.start[1]
+    const end   = season.end[0]   * 100 + season.end[1]
+    return start <= end
+        ? today >= start && today <= end
+        : today >= start || today <= end
+}
+
 // Retourne true si la zone est accessible d'après les boss battus.
 function isZoneAccessible(area) {
-    if (area.type === 'event') return true
-    if (area.type === 'raid')  return true
+    if (area.type === 'event')      return true
+    if (area.type === 'raid')       return true
+    if (area.type === 'saisonnier') return isSeasonActive(area.season)
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return true
     for (const tier of UNLOCK_TIERS) {
         if (area.maxLevel <= tier.unlocksMaxLevel)
@@ -104,8 +118,9 @@ function isZoneAccessible(area) {
 
 // Retourne le texte d'indication pour l'overlay de verrouillage, ou null si toujours accessible.
 function getZoneUnlockHint(area) {
-    if (area.type === 'event') return null
-    if (area.type === 'raid')  return null
+    if (area.type === 'event')      return null
+    if (area.type === 'raid')       return null
+    if (area.type === 'saisonnier') return null
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return null
     for (const tier of UNLOCK_TIERS) {
         if (area.maxLevel <= tier.unlocksMaxLevel) return tier.hint
@@ -194,6 +209,19 @@ function refreshDailyPools() {
         state.dailyPool = { period, zones }
     }
 
+    // Zones saisonnières : injectées dans le pool wild si leur saison est active.
+    // Retirées automatiquement lors du prochain refresh si la saison est terminée
+    // (le nettoyage du pool non-stale passe par isZoneAccessible qui vérifie isSeasonActive).
+    {
+        const poolSet = new Set(state.dailyPool.zones)
+        for (const area of Object.values(areas)) {
+            if (area.type === 'saisonnier' && !area.keyId && isSeasonActive(area.season) && !poolSet.has(area.id)) {
+                state.dailyPool.zones.push(area.id)
+                poolSet.add(area.id)
+            }
+        }
+    }
+
     // Événements : refresh journalier (pas lié aux boss)
     const eventStale = !state.eventPool || (() => {
         const ms = new Date(today) - new Date(state.eventPool.date)
@@ -230,7 +258,8 @@ function getDailyDungeons() {
 
     const keyToDungeonId = {}
     for (const area of Object.values(areas)) {
-        if (area.type === 'dungeon' && area.keyId) keyToDungeonId[area.keyId] = area.id
+        if ((area.type === 'dungeon' || area.type === 'saisonnier') && area.keyId)
+            keyToDungeonId[area.keyId] = area.id
     }
 
     const result = []

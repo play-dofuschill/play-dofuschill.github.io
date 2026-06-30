@@ -114,7 +114,8 @@ function _showWantedDetail(wantedId) {
     const ws = _wantedBossState(wantedId)
     if (!wd || !ws) return
 
-    const panoplieRows = (wd.panoplie || []).map(itemId => {
+    const panoplieRows = (wd.panoplie || []).map(entry => {
+        const itemId = typeof entry === 'object' ? entry.itemId : entry
         const itm = item[itemId]
         return itm
             ? `<div style="display:flex;align-items:center;gap:0.4rem;margin:0.15rem 0">

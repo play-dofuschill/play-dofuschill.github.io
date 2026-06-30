@@ -1,7 +1,7 @@
 // engine/shop.js
 
 const SHOP_KEY_PRICE     = 1
-const SHOP_ROTATION_DAYS = 2
+const SHOP_ROTATION_DAYS = 1
 
 const SHOP_RUNE_BASE_PRICES = { S: 10, M: 15, L: 25 }
 

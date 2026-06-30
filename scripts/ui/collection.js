@@ -215,7 +215,23 @@ function showMonsterTooltip(monsterId) {
         <div class="ms-stats">${resRows}</div>`
 
         if (mob.moves?.length > 0) {
-            const TYPE_LABELS = { damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', heal: 'Soin', heal_team: 'Soin (éq.)', buff: 'Buff', buff_team: 'Buff (éq.)', debuff: 'Débuff', shield: 'Bouclier', lifesteal: 'Vol de vie', summon: 'Invocation' }
+            const TYPE_LABELS = {
+                damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT',
+                best_element_damage: 'Attaque (adapt.)', worst_element_damage: 'Attaque (adapt.)',
+                absorbElementDmg: 'Attaque (absorbe élem.)', cycleElement: 'Cycle élémentaire',
+                elementDmgPeek: 'Attaque (lit élem.)', nextElementDmg: 'Attaque (élem. suivant)',
+                heal: 'Soin', heal_team: 'Soin (éq.)', 'heal%maxHp': 'Soin (% PV max)', 'heal%maxHp_team': 'Soin (% PV max éq.)', hot: 'Soin continu',
+                buff: 'Buff', buff_team: 'Buff (éq.)', debuff: 'Débuff', debuff_team: 'Débuff (éq.)',
+                shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
+                self_dmg_pct_current: 'Sacrifice (PV courants)',
+                burnMark: 'Brûlure différée', esquive: 'Esquive', consumeElementBuff: 'Consomme élem.',
+                drop_bonus: 'Bonus de drop', enutrof_trap: 'Piège',
+                summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
+                renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
+                switch: 'Déplacement', repeat: 'Répétition', random: 'Aléatoire',
+                portal: 'Portail', turret: 'Tourelle', recul: 'Recul', avance: 'Avance',
+                fatal_intercept: 'Interception fatale'
+            }
 
             const moveRows = mob.moves.map(moveId => {
                 const mv = move[moveId]

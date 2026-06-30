@@ -503,21 +503,39 @@ function showBoss_UltimeDragonSheet(dragonId) {
         }).join('')
     }
 
+    const _BOSS_TYPE_LABELS = {
+        damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT',
+        best_element_damage: 'Attaque (adapt.)', worst_element_damage: 'Attaque (adapt.)',
+        heal: 'Soin', heal_team: 'Soin (éq.)', 'heal%maxHp': 'Soin (% PV max)', hot: 'Soin continu',
+        buff: 'Buff', buff_team: 'Buff (éq.)', debuff: 'Débuff', debuff_team: 'Débuff (éq.)',
+        shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
+        self_dmg_pct_current: 'Sacrifice (PV courants)', burnMark: 'Brûlure différée',
+        summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
+        renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
+        switch: 'Déplacement', recul: 'Recul', avance: 'Avance', portal: 'Portail',
+        turret: 'Tourelle', esquive: 'Esquive', fatal_intercept: 'Interception fatale'
+    }
     function _effectLine(eff) {
         const elem = eff.element || 'neutre'
         const icon = elemIcon(elem, 'ae-move-icon')
-        let txt = ''
-        if (eff.type === 'damage')
+        let txt = _BOSS_TYPE_LABELS[eff.type] || eff.type || '—'
+        if (eff.type === 'damage' && eff.damage)
             txt = `${eff.damage.min}–${eff.damage.max} dégâts ${elem}`
-        else if (eff.type === 'dot')
+        else if (eff.type === 'dot' && eff.value != null)
             txt = `${eff.value}/tour × ${eff.duration} (${eff.label || 'DoT'})`
-        else if (eff.type === 'buff') {
+        else if ((eff.type === 'buff' || eff.type === 'buff_team') && eff.stat) {
             const who = eff.target === 'self' ? 'Boss' : 'Cible'
             txt = `+${eff.value} ${STAT_LBL[eff.stat] || eff.stat} — ${eff.duration}t (${who})`
-        } else if (eff.type === 'debuff') {
+        } else if ((eff.type === 'debuff' || eff.type === 'debuff_team') && eff.stat) {
             txt = `-${eff.value} ${STAT_LBL[eff.stat] || eff.stat} — ${eff.duration}t`
-        } else {
-            txt = eff.type
+        } else if (eff.type === 'self_dmg_pct_current' && eff.ratio != null) {
+            txt = `Sacrifice ${Math.round(eff.ratio * 100)}% PV courants`
+        } else if (eff.type === 'lifesteal' && eff.ratio != null) {
+            txt = `Vol de vie ${Math.round(eff.ratio * 100)}% des dégâts`
+        } else if (eff.type === 'shield' && eff.value != null) {
+            txt = `Bouclier ${eff.value}`
+        } else if (eff.type === 'fatal_intercept' && eff.ratio != null) {
+            txt = `Interception fatale (${Math.round(eff.ratio * 100)}%)`
         }
         return `<div style="display:flex;align-items:center;gap:0.3rem;font-size:0.76rem;opacity:0.85;padding-left:0.5rem;">${icon}<span>${txt}</span></div>`
     }

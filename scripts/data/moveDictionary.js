@@ -3460,12 +3460,6 @@ move.bonne_pioche = {
         { chance: 0.25, effects: [{ type: 'buff', stat: 'critChance',  value: 10, duration: 3, target: 'self' }] },
         { chance: 0.25, effects: [{ type: 'buff', stat: 'spd',         value: 15, duration: 3, target: 'self' }] }
     ]}],
-    spellProgression: [{lvl: 20,
-                        patch: {}},
-                       {lvl: 72,
-                        patch: {}},
-                       {lvl: 139,
-                        patch: {}}],
     description: "Tire une carte au hasard : dégâts dans le meilleur élément, ou bonus d'Attaque, de Chance critique ou de Vitesse pendant 3 tours."
 }
 move.bond_du_felin = {
@@ -3540,12 +3534,6 @@ move.chateau_de_cartes = {
         { chance: 0.30, effects: [{ type: 'shield', levelPct: 1,    duration: 2, target: 'self' }] },
         { chance: 0.40, effects: [{ type: 'shield', levelPct: 0.50, duration: 2, target: 'self' }] }
     ]}],
-    spellProgression: [{lvl: 41,
-                        patch: {}},
-                       {lvl: 97,
-                        patch: {}},
-                       {lvl: 164,
-                        patch: {}}],
     description: "Érige un bouclier aléatoire pendant 2 tours. Plus le tirage est favorable, plus le bouclier est puissant."
 }
 move.blakjak = {
@@ -3652,14 +3640,19 @@ move.esprit_felin = {
     name: 'Esprit Félin',
     classId: 'ecaflip',
     cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 69,
-                        patch: {}},
-                       {lvl: 131,
-                        patch: {}},
-                       {lvl: 198,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 19, max: 21}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 19, max: 21}, target: 'enemy'}]}
+        ]},
+        {type: 'buff', stat: 'damageReductionPct', value: 10, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 69, patch: {}},
+        {lvl: 131, patch: {damage: {min: 26, max: 29}}},
+        {lvl: 198, patch: {cooldownMs: 2200, damage: {min: 31, max: 34}}}
+    ],
+    description: "Téléporte aléatoirement et symétriquement la cible par rapport au lanceur ou le lanceur par rapport à la cible, occasionne des dommages Terre aux ennemis et augmente les Résistances Critiques du lanceur."
 }
 // move.odorat = {
 //     id: 'odorat',
@@ -3669,7 +3662,7 @@ move.esprit_felin = {
 //     effects: [],
 //     spellProgression: [{lvl: 73,
 //                         patch: {}},
-//                        {lvl: 137,  
+//                        {lvl: 137,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -3677,14 +3670,23 @@ move.coussinets = {
     id: 'coussinets',
     name: 'Coussinets',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 77,
-                        patch: {}},
-                       {lvl: 142,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [
+                {type: 'damage', element: 'air', damage: {min: 28, max: 31}, target: 'enemy'},
+                {type: 'recul', target: 'enemy'}
+            ]},
+            {chance: 0.30, effects: [
+                {type: 'heal', heal: {min: 28, max: 31}, target: 'enemy'}
+            ]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 77, patch: {}},
+        {lvl: 142, patch: {cooldownMs: 2700, damage: {min: 35, max: 38}}}
+    ],
+    description: "Éloigne le lanceur de la cible, repousse la cible et occasionne des dommages Air aux ennemis. Pioche un Roi de Pique."
 }
 // move.seconde_chance = {
 //     id: 'seconde_chance',
@@ -3694,7 +3696,7 @@ move.coussinets = {
 //     effects: [],
 //     spellProgression: [{lvl: 81,
 //                         patch: {}},
-//                        {lvl: 147,  
+//                        {lvl: 147,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -3702,81 +3704,110 @@ move.felintion = {
     id: 'felintion',
     name: 'Félintion',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 85,
-                        patch: {}},
-                       {lvl: 152,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [
+                {type: 'damage', element: 'eau', damage: {min: 27, max: 29}, target: 'enemy'},
+                {type: 'avance', target: 'enemy'}
+            ]},
+            {chance: 0.30, effects: [
+                {type: 'heal', heal: {min: 27, max: 29}, target: 'enemy'}
+            ]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 85, patch: {}},
+        {lvl: 152, patch: {cooldownMs: 2700, damage: {min: 33, max: 36}}}
+    ],
+    description: "Rapproche le lanceur vers la cible, attire la cible et occasionne des dommages Eau aux ennemis. Pioche un Roi de Trèfle."
 }
 move.bluff = {
     id: 'bluff',
     name: 'Bluff',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.25, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.25, effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.25, effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.25, effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 90,
-                        patch: {}},
-                       {lvl: 157,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.25, effects: [{type: 'damage', element: 'terre', damage: {min: 8, max: 24}, target: 'enemy'}]},
+            {chance: 0.25, effects: [{type: 'damage', element: 'feu', damage: {min: 8, max: 24}, target: 'enemy'}]},
+            {chance: 0.25, effects: [{type: 'damage', element: 'eau', damage: {min: 8, max: 24}, target: 'enemy'}]},
+            {chance: 0.25, effects: [{type: 'damage', element: 'air', damage: {min: 8, max: 24}, target: 'enemy'}]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 90, patch: {}},
+        {lvl: 157, patch: {cooldownMs: 2700, damage: {min: 12, max: 32}}}
+    ],
+    description: "Occasionne des dommages dans un ou plusieurs éléments selon les Cartes dans la Main et joue la Main. Les dommages du sort dans un élément sont augmentés selon les Cartes. Pioche 4 Cartes aléatoires avant d'appliquer les effets si la Main est vide."
 }
 move.lapement = {
     id: 'lapement',
     name: 'Lapement',
     classId: 'ecaflip',
     cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 95,
-                        patch: {}},
-                       {lvl: 162,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 22}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 18, max: 22}, target: 'enemy'}]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 95, patch: {}},
+        {lvl: 162, patch: {cooldownMs: 2200, damage: {min: 24, max: 28}}}
+    ],
+    description: "Inflige des dommages Terre aux ennemis ou soigne aléatoirement l'adversaire."
 }
 move.langue_rapeuse = {
     id: 'langue_rapeuse',
     name: 'Langue Râpeuse',
     classId: 'ecaflip',
     cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 100,
-                        patch: {}},
-                       {lvl: 167,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 24}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 20, max: 24}, target: 'enemy'}]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 100, patch: {}},
+        {lvl: 167, patch: {cooldownMs: 2200, damage: {min: 26, max: 30}}}
+    ],
+    description: "Inflige des dommages Feu aux ennemis ou soigne aléatoirement l'adversaire."
 }
 move.griffe_joueuse = {
     id: 'griffe_joueuse',
     name: 'Griffe Joueuse',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 105,
-                        patch: {}},
-                       {lvl: 177,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'eau', damage: {min: 22, max: 26}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 22, max: 26}, target: 'enemy'}]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 105, patch: {}},
+        {lvl: 177, patch: {cooldownMs: 2400, damage: {min: 28, max: 32}}}
+    ],
+    description: "Inflige des dommages Eau aux ennemis ou soigne aléatoirement l'adversaire."
 }
 move.fanfaronnade = {
     id: 'fanfaronnade',
     name: 'Fanfaronnade',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}, 
-                                         {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 110,
-                        patch: {}},
-                       {lvl: 172,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 22, max: 26}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 22, max: 26}, target: 'enemy'}]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 110, patch: {}},
+        {lvl: 172, patch: {cooldownMs: 2400, damage: {min: 28, max: 32}}}
+    ],
+    description: "Inflige des dommages Air aux ennemis ou soigne aléatoirement l'adversaire."
 }
 // move.redistribution = {
 //     id: 'redistribution',
@@ -3786,7 +3817,7 @@ move.fanfaronnade = {
 //     effects: [],
 //     spellProgression: [{lvl: 115,
 //                         patch: {}},
-//                        {lvl: 182,  
+//                        {lvl: 182,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -3795,24 +3826,34 @@ move.entrechat = {
     name: 'Entrechat',
     classId: 'ecaflip',
     cooldownMs: 2000,
-    effects: [{type: 'push', target: 'self'}],
-    spellProgression: [{lvl: 120,
-                        patch: {}},
-                       {lvl: 187,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'recul', target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 120, patch: {}},
+        {lvl: 187, patch: {}}
+    ],
+    description: "Éloigne le lanceur de la cible ciblée, permettant un repositionnement tactique rapide."
 }
 move.infortune = {
     id: 'infortune',
     name: 'Infortune',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    spellProgression: [{lvl: 125,
-                        patch: {}},
-                       {lvl: 192,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [
+                {type: 'damage', element: 'eau', damage: {min: 24, max: 28}, target: 'enemy'},
+                {type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy'}
+            ]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 24, max: 28}, target: 'enemy'}]}
+        ]}
+    ],
+    spellProgression: [
+        {lvl: 125, patch: {}},
+        {lvl: 192, patch: {cooldownMs: 2400, damage: {min: 30, max: 35}}}
+    ],
+    description: "Inflige des dommages Eau et réduit l'attaque de l'ennemi, ou soigne aléatoirement l'adversaire."
 }
 // move.predation = {
 //     id: 'predation',
@@ -3822,7 +3863,7 @@ move.infortune = {
 //     effects: [],
 //     spellProgression: [{lvl: 130,
 //                         patch: {}},
-//                        {lvl: 197,  
+//                        {lvl: 197,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -3830,9 +3871,14 @@ move.toupet = {
     id: 'toupet',
     name: 'Toupet',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 26, max: 31}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Air aux ennemis ou soigne aléatoirement l'adversaire avec une grande puissance."
 }
 // move.bonne_etoile = {
 //     id: 'bonne_etoile',
@@ -3846,9 +3892,14 @@ move.destin_decaflip = {
     id: 'destin_decaflip',
     name: "Destin d'Écaflip",
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 26, max: 31}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Terre aux ennemis ou soigne aléatoirement l'adversaire. Le destin de l'Écaflip est capricieux."
 }
 // move.tarot_decaflip = {
 //     id: 'tarot_decaflip',
@@ -3862,9 +3913,14 @@ move.peril = {
     id: 'peril',
     name: 'Péril',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'feu', damage: {min: 26, max: 31}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Feu aux ennemis ou soigne aléatoirement l'adversaire au péril du lanceur."
 }
 // move.tout_ou_rien = {
 //     id: 'tout_ou_rien',
@@ -3878,25 +3934,40 @@ move.griffe_de_ceangal = {
     id: 'griffe_de_ceangal',
     name: 'Griffe de Ceangal',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [
+                {type: 'damage', element: 'air', damage: {min: 26, max: 31}, target: 'enemy'},
+                {type: 'debuff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'enemy'}
+            ]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Air et réduit les résistances aux dommages de l'ennemi, ou soigne aléatoirement l'adversaire."
 }
 move.caresse_invocatrice = {
     id: 'caresse_invocatrice',
     name: 'Caresse Invocatrice',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'caresse_invocatrice_ecaflip', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    cooldownMs: 3500,
+    effects: [
+        {type: 'summon', summonId: 'caresse_invocatrice_ecaflip', scale: 0.30, duration: 2, target: 'self'}
+    ],
+    description: "Invoque une créature féline maîtrisable capable de frapper dans l'élément Eau et de soigner les alliés."
 }
 move.kraps = {
     id: 'kraps',
     name: 'Kraps',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'eau', damage: {min: 26, max: 31}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Eau aux ennemis ou soigne aléatoirement l'adversaire."
 }
 // move.roue_de_la_fortune = {
 //     id: 'roue_de_la_fortune',
@@ -3910,9 +3981,17 @@ move.feulement = {
     id: 'feulement',
     name: 'Feulement',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [
+                {type: 'damage', element: 'feu', damage: {min: 26, max: 31}, target: 'enemy'},
+                {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}
+            ]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Feu et ralentit l'ennemi, ou soigne aléatoirement l'adversaire."
 }
 // move.neuf_vies = {
 //     id: 'neuf_vies',
@@ -3926,17 +4005,36 @@ move.mesaventure = {
     id: 'mesaventure',
     name: 'Mésaventure',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 26, max: 31}, target: 'enemy'}]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Inflige des dommages Terre aux ennemis ou soigne aléatoirement l'adversaire."
 }
 move.rekop = {
     id: 'rekop',
     name: 'Rekop',
     classId: 'ecaflip',
-    cooldownMs: 2000,
-    effects: [{type: 'random', choices: [{chance: 0.14, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.14, effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.14, effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.14, effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.14, effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}]}, {chance: 0.30, effects: [{type: 'heal', heal: {min: 1, max: 1}, target: 'enemy'}]}]}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'random', choices: [
+            {chance: 0.14, effects: [{type: 'damage', element: 'terre', damage: {min: 20, max: 26}, target: 'enemy'}]},
+            {chance: 0.14, effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 26}, target: 'enemy'}]},
+            {chance: 0.14, effects: [{type: 'damage', element: 'eau', damage: {min: 20, max: 26}, target: 'enemy'}]},
+            {chance: 0.14, effects: [{type: 'damage', element: 'air', damage: {min: 20, max: 26}, target: 'enemy'}]},
+            {chance: 0.14, effects: [
+                {type: 'damage', element: 'terre', damage: {min: 10, max: 14}, target: 'enemy'},
+                {type: 'damage', element: 'feu', damage: {min: 10, max: 14}, target: 'enemy'},
+                {type: 'damage', element: 'eau', damage: {min: 10, max: 14}, target: 'enemy'},
+                {type: 'damage', element: 'air', damage: {min: 10, max: 14}, target: 'enemy'}
+            ]},
+            {chance: 0.30, effects: [{type: 'heal', heal: {min: 20, max: 26}, target: 'enemy'}]}
+        ]}
+    ],
+    description: "Applique aléatoirement un effet parmi les 6 cartes du Poker d'Écaflip : dommages dans l'un des 4 éléments, dommages dans tous les éléments, ou soin ennemi."
 }
 // #endregion
 
@@ -3946,13 +4044,13 @@ move.cri_du_corbac = {
     name: 'Cri du Corbac',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'lifesteal', ratio: 0.10, target: 'self'}, {type: 'damage', element: 'air', damage: {min: 8, max: 10}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 11, max: 13}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 13, max: 16}}}],
     description: ""
 }
 move.pics_du_prespic = {
@@ -3960,13 +4058,13 @@ move.pics_du_prespic = {
     name: 'Pics du Prespic',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'lifesteal', ratio: 0.10, target: 'self'}, {type: 'damage', element: 'feu', damage: {min: 8, max: 10}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 11, max: 13}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 14, max: 17}}}],
     description: ""
 }
 move.dents_du_piranya = {
@@ -3974,13 +4072,13 @@ move.dents_du_piranya = {
     name: 'Dents du Piranya',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'lifesteal', ratio: 0.10, target: 'self'}, {type: 'damage', element: 'eau', damage: {min: 11, max: 13}, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 15, max: 17}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 19, max: 22}}}],
     description: ""
 }
 move.cri_de_lours = {
@@ -3988,13 +4086,13 @@ move.cri_de_lours = {
     name: "Cri de l'Ours",
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'lifesteal', ratio: 0.10, target: 'self'}, {type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 18, max: 20}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 23, max: 26}}}],
     description: ""
 }
 // move.fouet = {
@@ -4015,7 +4113,7 @@ move.tofu = {
     id: 'tofu',
     name: 'Tofu',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'tofu_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
@@ -4029,7 +4127,7 @@ move.bouftou = {
     id: 'bouftou',
     name: 'Bouftou',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'bouftou_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
@@ -4043,7 +4141,7 @@ move.crapipou = {
     id: 'crapipou',
     name: 'Crapipou',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'crapipou_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
@@ -4057,7 +4155,7 @@ move.dragoune = {
     id: 'dragoune',
     name: 'Dragoune',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'dragoune_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
@@ -4072,7 +4170,7 @@ move.cortege_sauvage = {
     name: 'Cortège Sauvage',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'atk', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'atk', value: 20, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
@@ -4086,7 +4184,7 @@ move.piqure_motivante = {
     name: 'Piqûre Motivante',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 1, target: 'self'}, {type: 'buff', stat: 'atk', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self'}, {type: 'buff', stat: 'atk', value: 15, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
@@ -4100,27 +4198,27 @@ move.saute_granouille = {
     name: 'Saute-granouille',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 18}, target: 'enemy'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 23}}},
                        {lvl: 174,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 30}}}],
     description: ""
 }
 move.souffle_draconique = {
     id: 'souffle_draconique',
     name: 'Souffle Draconique',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 19, max: 22}}},
                        {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 23, max: 26}}}],
     description: ""
 }
 move.charge_bestiale = {
@@ -4128,13 +4226,13 @@ move.charge_bestiale = {
     name: 'Charge Bestiale',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 25}}},
                        {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 29}}}],
     description: ""
 }
 move.aeropique = {
@@ -4142,27 +4240,27 @@ move.aeropique = {
     name: 'Aéropique',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 24}}},
                        {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 24, max: 27}}}],
     description: ""
 }
 move.discipline = {
     id: 'discipline',
     name: 'Discipline',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'best_element_damage', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
                        {lvl: 127,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 17, max: 20}}},
                        {lvl: 194,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 21, max: 24}}}],
     description: ""
 }
 // move.laisse_spirituelle = {
@@ -4173,7 +4271,7 @@ move.discipline = {
 //     effects: [],
 //     spellProgression: [{lvl: 69,
 //                         patch: {}},
-//                        {lvl: 131,  
+//                        {lvl: 131,
 //                         patch: {}},
 //                        {lvl: 198,
 //                         patch: {}}],
@@ -4183,7 +4281,7 @@ move.ventritofu = {
     id: 'ventritofu',
     name: 'Ventritofu',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'ventritofu_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
@@ -4195,7 +4293,7 @@ move.bouflourd = {
     id: 'bouflourd',
     name: 'Bouflourd',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'bouflourd_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 77,
                         patch: {}},
@@ -4207,7 +4305,7 @@ move.crapipaud = {
     id: 'crapipaud',
     name: 'Crapipaud',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'crapipaud_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
@@ -4219,7 +4317,7 @@ move.dragonnet = {
     id: 'dragonnet',
     name: 'Dragonnet',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'dragonnet_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 85,
                         patch: {}},
@@ -4231,7 +4329,7 @@ move.esprit_glouton = {
     id: 'esprit_glouton',
     name: 'Esprit Glouton',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'esprit_glouton_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 90,
                         patch: {}},
@@ -4243,48 +4341,48 @@ move.crocs_du_mulou = {
     id: 'crocs_du_mulou',
     name: 'Crocs du Mulou',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 36, max: 38}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 43}}}],
     description: ""
 }
 move.deplumage = {
     id: 'deplumage',
     name: 'Déplumage',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'air', damage: {min: 33, max: 35}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 37, max: 40}}}],
     description: ""
 }
 move.coeur_sauvage = {
     id: 'coeur_sauvage',
     name: 'Cœur Sauvage',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 33, max: 37}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 43}}}],
     description: ""
 }
 move.bave_du_crapaud = {
     id: 'bave_du_crapaud',
     name: 'Bave du Crapaud',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 32, max: 34}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 37, max: 40}}}],
     description: ""
 }
 move.cravache = {
@@ -4292,11 +4390,11 @@ move.cravache = {
     name: 'Cravache',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'best_element_damage', damage: {min: 20, max: 24}, target: 'enemy'}],
     spellProgression: [{lvl: 115,
                         patch: {}},
                        {lvl: 182,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 29}}}],
     description: ""
 }
 move.griffes_du_chtigre = {
@@ -4304,11 +4402,11 @@ move.griffes_du_chtigre = {
     name: 'Griffes du Chtigre',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 21, max: 23}, target: 'enemy'}],
     spellProgression: [{lvl: 120,
                         patch: {}},
                        {lvl: 187,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 29}}}],
     description: ""
 }
 move.serres_du_vautour = {
@@ -4316,11 +4414,11 @@ move.serres_du_vautour = {
     name: 'Serres du Vautour',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.toison_dor = {
@@ -4328,19 +4426,19 @@ move.toison_dor = {
     name: "Toison d'Or",
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'shield', value: 100, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {}}],
     description: ""
 }
 move.morsure_du_serpent = {
     id: 'morsure_du_serpent',
     name: 'Morsure du Serpent',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy'}, {type: 'dot', element: 'eau', value: 12, duration: 3, target: 'enemy'}],
     description: ""
 }
 move.pacte_bestial = {
@@ -4348,7 +4446,7 @@ move.pacte_bestial = {
     name: 'Pacte Bestial',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'atk', value: 10, duration: 1, target: 'self'}, {type: 'buff', stat: 'flatDamage', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'finalDamagePct', value: 20, duration: 3, target: 'self'}],
     description: ""
 }
 // move.communion_animale = {
@@ -4363,32 +4461,32 @@ move.tornade_de_plumes = {
     id: 'tornade_de_plumes',
     name: 'Tornade de Plumes',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 25, max: 29}, target: 'enemy'}],
     description: ""
 }
 move.frappe_du_craqueleur = {
     id: 'frappe_du_craqueleur',
     name: 'Frappe du Craqueleur',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 31, max: 35}, target: 'enemy'}],
     description: ""
 }
 move.chant_du_phenix = {
     id: 'chant_du_phenix',
     name: 'Chant du Phénix',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 34}, target: 'enemy'}, {type: 'heal', heal: {min: 15, max: 20}, target: 'ally_min_hp'}],
     description: ""
 }
 move.tourbillon = {
     id: 'tourbillon',
     name: 'Tourbillon',
     classId: 'osamodas',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 24, max: 28}, target: 'enemy'}],
     description: ""
 }
 move.martinet = {
@@ -4396,7 +4494,7 @@ move.martinet = {
     name: 'Martinet',
     classId: 'osamodas',
     cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'best_element_damage', damage: {min: 22, max: 26}, target: 'enemy'}],
     description: ""
 }
 // move.relais_spirituel = {
@@ -4411,7 +4509,7 @@ move.craquolosse = {
     id: 'craquolosse',
     name: 'Craquolosse',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'craquolosse_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -4419,7 +4517,7 @@ move.crocolereux = {
     id: 'crocolereux',
     name: 'Crocoléreux',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'crocolereux_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -4427,7 +4525,7 @@ move.sulfenix = {
     id: 'sulfenix',
     name: 'Sulfénix',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'sulfenix_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -4435,7 +4533,7 @@ move.scarafoudre = {
     id: 'scarafoudre',
     name: 'Scarafoudre',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'scarafoudre_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -4443,7 +4541,7 @@ move.esprit_facetieux = {
     id: 'esprit_facetieux',
     name: 'Esprit Facétieux',
     classId: 'osamodas',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'esprit_facetieux_osamodas', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -4454,113 +4552,129 @@ move.retour_du_baton = {
     id: 'retour_du_baton',
     name: 'Retour du Bâton',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 1,
-                        patch: {}},
-                       {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 17, max: 20}, target: 'enemy'},
+        {type: 'debuff', stat: 'force', value: 50, duration: 2, target: 'enemy'},
+        {type: 'buff', stat: 'force', value: 50, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 1, patch: {}},
+        {lvl: 66, patch: {damage: {min: 23, max: 26}}},
+        {lvl: 132, patch: {cooldownMs: 2700, damage: {min: 29, max: 33}}}
+    ],
+    description: "Retire de la Force et de la Fuite et occasionne des dommages Terre."
 }
 move.langueur = {
     id: 'langueur',
     name: 'Langueur',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 8,
-                        patch: {}},
-                       {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 16, max: 18}, target: 'enemy'},
+        {type: 'debuff', stat: 'intelligence', value: 50, duration: 2, target: 'enemy'},
+        {type: 'debuff', stat: 'critChance', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 8, patch: {}},
+        {lvl: 67, patch: {damage: {min: 21, max: 23}}},
+        {lvl: 133, patch: {cooldownMs: 2400, damage: {min: 27, max: 29}}}
+    ],
+    description: "Retire de l'Intelligence et des Critiques et occasionne des dommages Feu."
 }
 move.nimbus = {
     id: 'nimbus',
     name: 'Nimbus',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 12,
-                        patch: {}},
-                       {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'},
+        {type: 'debuff', stat: 'chance', value: 50, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 12, patch: {}},
+        {lvl: 69, patch: {damage: {min: 18, max: 20}}},
+        {lvl: 136, patch: {cooldownMs: 2200, damage: {min: 23, max: 25}}}
+    ],
+    description: "Retire de la Chance et du Tacle et occasionne des dommages Eau aux ennemis en zone."
 }
 move.typhon = {
     id: 'typhon',
     name: 'Typhon',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 16,
-                        patch: {}},
-                       {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'debuff', stat: 'agilite', value: 20, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 16, patch: {}},
+        {lvl: 68, patch: {damage: {min: 20, max: 22}}},
+        {lvl: 134, patch: {cooldownMs: 2400, damage: {min: 25, max: 27}}}
+    ],
+    description: "Retire de l'Agilité et des Dommages et occasionne des dommages Air aux ennemis en zone."
 }
 move.rempart = {
     id: 'rempart',
     name: 'Rempart',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'res_all', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 20,
-                        patch: {}},
-                       {lvl: 72,
-                        patch: {}},
-                       {lvl: 139,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 20, patch: {}},
+        {lvl: 72, patch: {buff: {value: 20, duration: 3}}},
+        {lvl: 139, patch: {buff: {value: 30, duration: 3}}}
+    ],
+    description: "Réduit les dommages reçus par le lanceur et ses alliés en zone."
 }
 move.barricade = {
     id: 'barricade',
     name: 'Barricade',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'res_all', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 24,
-                        patch: {}},
-                       {lvl: 77,
-                        patch: {}},
-                       {lvl: 144,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'random_ally'}
+    ],
+    spellProgression: [
+        {lvl: 24, patch: {}},
+        {lvl: 77, patch: {buff: {value: 20, duration: 3}}},
+        {lvl: 144, patch: {buff: {value: 30, duration: 3}}}
+    ],
+    description: "Rend l'allié ciblé invulnérable en mêlée. Augmente ses PM s'il est attaqué à distance. Peut invoquer un bouclier statique qui protège les alliés en zone."
 }
 move.somnolence = {
     id: 'somnolence',
     name: 'Somnolence',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 28,
-                        patch: {}},
-                       {lvl: 82,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 149,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 17, max: 19}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 28, patch: {}},
+        {lvl: 82, patch: {damage: {min: 22, max: 24}}},
+        {lvl: 149, patch: {cooldownMs: 2700, damage: {min: 27, max: 30}}}
+    ],
+    description: "Occasionne des dommages Terre et retire des PA aux ennemis en zone."
 }
 move.lethargie = {
     id: 'lethargie',
     name: 'Léthargie',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 33,
-                        patch: {}},
-                       {lvl: 87,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 154,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 33, patch: {}},
+        {lvl: 87, patch: {damage: {min: 23, max: 25}}},
+        {lvl: 154, patch: {cooldownMs: 2700, damage: {min: 28, max: 31}}}
+    ],
+    description: "Occasionne des dommages Feu et retire des PM."
 }
 // move.bastion = {
 //     id: 'bastion',
@@ -4570,7 +4684,7 @@ move.lethargie = {
 //     effects: [],
 //     spellProgression: [{lvl: 37,
 //                         patch: {}},
-//                        {lvl: 92,  
+//                        {lvl: 92,
 //                         patch: {}},
 //                        {lvl: 159,
 //                         patch: {}}],
@@ -4580,269 +4694,324 @@ move.frisson = {
     id: 'frisson',
     name: 'Frisson',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 41,
-                        patch: {}},
-                       {lvl: 97,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 164,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'},
+        {type: 'avance', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 41, patch: {}},
+        {lvl: 97, patch: {damage: {min: 21, max: 23}}},
+        {lvl: 164, patch: {cooldownMs: 2400, damage: {min: 26, max: 29}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et attire les cibles vers la case ciblée en zone."
 }
 move.bulle = {
     id: 'bulle',
     name: 'Bulle',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 45,
-                        patch: {}},
-                       {lvl: 102,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 169,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 45, patch: {}},
+        {lvl: 102, patch: {damage: {min: 13, max: 15}}},
+        {lvl: 169, patch: {damage: {min: 17, max: 19}}}
+    ],
+    description: "Occasionne des dommages Eau et retire de la Portée."
 }
 move.transhumance = {
     id: 'transhumance',
     name: 'Transhumance',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 49,
-                        patch: {}},
-                       {lvl: 107,
-                        patch: {}},
-                       {lvl: 174,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 49, patch: {}},
+        {lvl: 107, patch: {buff: {value: 20, duration: 2}}},
+        {lvl: 174, patch: {buff: {value: 25, duration: 2}}}
+    ],
+    description: "Téléporte le lanceur et déclenche ses glyphes élémentaires sur la case ciblée. Applique l'Étoile du Berger sur les alliés présents dans les glyphes déclenchés."
 }
 move.prairie = {
     id: 'prairie',
     name: 'Prairie',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 53,
-                        patch: {}},
-                       {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'dot', element: 'air', value: 15, duration: 3, target: 'all_enemies'},
+        {type: 'debuff', stat: 'finalDamagePct', value: 10, duration: 2, target: 'all_enemies'}
+    ],
+    spellProgression: [
+        {lvl: 53, patch: {}},
+        {lvl: 112, patch: {dot: {value: 20}}},
+        {lvl: 179, patch: {cooldownMs: 2400, dot: {value: 25}}}
+    ],
+    description: "Pose un glyphe de début de tour qui occasionne des dommages Air aux ennemis. Réduit les dommages finaux des ennemis présents ou entrant dans le glyphe."
 }
 move.vallee = {
     id: 'vallee',
     name: 'Vallée',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 57,
-                        patch: {}},
-                       {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'dot', element: 'eau', value: 15, duration: 3, target: 'all_enemies'},
+        {type: 'debuff', stat: 'atk', value: 15, duration: 2, target: 'all_enemies'}
+    ],
+    spellProgression: [
+        {lvl: 57, patch: {}},
+        {lvl: 117, patch: {dot: {value: 20}}},
+        {lvl: 184, patch: {cooldownMs: 2400, dot: {value: 25}}}
+    ],
+    description: "Pose un glyphe de début de tour qui occasionne des dommages Eau aux ennemis. Retire de la Portée aux ennemis présents ou entrant dans le glyphe."
 }
 move.terre_battue = {
     id: 'terre_battue',
     name: 'Terre Battue',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 61,
-                        patch: {}},
-                       {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'dot', element: 'terre', value: 15, duration: 3, target: 'all_enemies'},
+        {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'all_enemies'}
+    ],
+    spellProgression: [
+        {lvl: 61, patch: {}},
+        {lvl: 122, patch: {dot: {value: 20}}},
+        {lvl: 189, patch: {cooldownMs: 2400, dot: {value: 25}}}
+    ],
+    description: "Pose un glyphe de début de tour qui occasionne des dommages Terre aux ennemis. Retire des PA aux ennemis présents ou entrant dans le glyphe."
 }
 move.terre_brulee = {
     id: 'terre_brulee',
     name: 'Terre Brûlée',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 65,
-                        patch: {}},
-                       {lvl: 127,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 194,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'dot', element: 'feu', value: 15, duration: 3, target: 'all_enemies'},
+        {type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'all_enemies'}
+    ],
+    spellProgression: [
+        {lvl: 65, patch: {}},
+        {lvl: 127, patch: {dot: {value: 20}}},
+        {lvl: 194, patch: {cooldownMs: 2400, dot: {value: 25}}}
+    ],
+    description: "Pose un glyphe de début de tour qui occasionne des dommages Feu aux ennemis. Retire des PM aux ennemis présents ou entrant dans le glyphe."
 }
 move.renfort = {
     id: 'renfort',
     name: 'Renfort',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'res_all', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 69,
-                        patch: {}},
-                       {lvl: 131,
-                        patch: {}},
-                       {lvl: 198,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'spd', value: 20, duration: 1, target: 'ally_1'},
+        {type: 'activate_slot', slot: 1}
+    ],
+    spellProgression: [
+        {lvl: 69, patch: {}},
+        {lvl: 131, patch: {buff: {value: 25, duration: 1}}},
+        {lvl: 198, patch: {buff: {value: 30, duration: 1}}}
+    ],
+    description: "Booste la vitesse du membre en slot 1 et le rend actif."
 }
 move.silbo = {
     id: 'silbo',
     name: 'Silbo',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 73,
-                        patch: {}},
-                       {lvl: 137,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 13, max: 15}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 73, patch: {}},
+        {lvl: 137, patch: {damage: {min: 17, max: 19}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et repousse les cibles depuis le centre en zone."
 }
 move.torpeur = {
     id: 'torpeur',
     name: 'Torpeur',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 77,
-                        patch: {}},
-                       {lvl: 142,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 22, max: 24}, target: 'enemy'},
+        {type: 'avance', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 77, patch: {}},
+        {lvl: 142, patch: {damage: {min: 27, max: 30}}}
+    ],
+    description: "Attire la cible et occasionne des dommages Terre aux ennemis."
 }
 move.bergerie = {
     id: 'bergerie',
     name: 'Bergerie',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'purify', target: 'all_allies'}],
-    spellProgression: [{lvl: 81,
-                        patch: {}},
-                       {lvl: 147,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'self'},
+        {type: 'purify', target: 'all_allies'}
+    ],
+    spellProgression: [
+        {lvl: 81, patch: {}},
+        {lvl: 147, patch: {buff: {value: 20, duration: 2}}}
+    ],
+    description: "Pose un glyphe-aura qui applique les états Inébranlable et Pesanteur sur les entités. Applique l'Étoile du Berger sur les alliés présents ou entrant dans le glyphe."
 }
 move.defiance = {
     id: 'defiance',
     name: 'Défiance',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 85,
-                        patch: {}},
-                       {lvl: 152,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 6, max: 8}, target: 'enemy'},
+        {type: 'damage', element: 'feu', damage: {min: 6, max: 8}, target: 'enemy'},
+        {type: 'damage', element: 'eau', damage: {min: 6, max: 8}, target: 'enemy'},
+        {type: 'damage', element: 'air', damage: {min: 6, max: 8}, target: 'enemy'},
+        {type: 'buff', stat: 'damageReductionPct', value: 10, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 85, patch: {}},
+        {lvl: 152, patch: {damage: {min: 8, max: 10}}}
+    ],
+    description: "Augmente le Tacle de l'allié ciblé pour chaque ennemi à son contact et pose un glyphe de fin de tour qui occasionne des dommages Terre, Feu, Eau et Air aux ennemis. Augmente les résistances en mêlée des alliés présents dans le glyphe."
 }
 move.bouclier_feca = {
     id: 'bouclier_feca',
     name: 'Bouclier Féca',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'res_all', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 90,
-                        patch: {}},
-                       {lvl: 157,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 90, patch: {}},
+        {lvl: 157, patch: {buff: {value: 20, duration: 2}}}
+    ],
+    description: "Réduit les dommages subis par l'allié ciblé. Applique l'Étoile du Berger sur l'allié ciblé et tous les alliés dans un glyphe élémentaire allié."
 }
 move.tetanie = {
     id: 'tetanie',
     name: 'Tétanie',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 95,
-                        patch: {}},
-                       {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 24, max: 27}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 95, patch: {}},
+        {lvl: 162, patch: {cooldownMs: 2700, damage: {min: 30, max: 34}}}
+    ],
+    description: "Occasionne des dommages Terre et immobilise l'ennemi en réduisant sa vitesse de déplacement."
 }
 move.atonie = {
     id: 'atonie',
     name: 'Atonie',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 100,
-                        patch: {}},
-                       {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 24, max: 27}, target: 'enemy'},
+        {type: 'debuff', stat: 'critChance', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 100, patch: {}},
+        {lvl: 167, patch: {cooldownMs: 2700, damage: {min: 30, max: 34}}}
+    ],
+    description: "Occasionne des dommages Feu et réduit les chances de coup critique de l'ennemi."
 }
 move.stratus = {
     id: 'stratus',
     name: 'Stratus',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 105,
-                        patch: {}},
-                       {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 24, max: 27}, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 105, patch: {}},
+        {lvl: 177, patch: {cooldownMs: 2700, damage: {min: 30, max: 34}}}
+    ],
+    description: "Occasionne des dommages Eau et affaiblit l'ennemi en réduisant son attaque."
 }
 move.bourrasque = {
     id: 'bourrasque',
     name: 'Bourrasque',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 110,
-                        patch: {}},
-                       {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 24, max: 27}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 110, patch: {}},
+        {lvl: 172, patch: {cooldownMs: 2700, damage: {min: 30, max: 34}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et repousse la cible."
 }
 move.fortification = {
     id: 'fortification',
     name: 'Fortification',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'res_all', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 115,
-                        patch: {}},
-                       {lvl: 182,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'damageReductionPct', value: 25, duration: 2, target: 'self'},
+        {type: 'shield', value: 80, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 115, patch: {}},
+        {lvl: 182, patch: {buff: {value: 30}, shield: {value: 120}}}
+    ],
+    description: "Renforce les défenses du lanceur en appliquant un bouclier et une réduction des dommages reçus."
 }
 move.pavois = {
     id: 'pavois',
     name: 'Pavois',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'pavois_feca', scale: 0.30, duration: 2, target: 'self'}],
-    spellProgression: [{lvl: 120,
-                        patch: {}},
-                       {lvl: 187,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 3500,
+    effects: [
+        {type: 'summon', summonId: 'pavois_feca', scale: 0.30, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 120, patch: {}},
+        {lvl: 187, patch: {summon: {scale: 0.35}}}
+    ],
+    description: "Invoque un Pavois maîtrisable qui protège les alliés et inflige des dommages Terre aux ennemis."
 }
 move.manoeuvre = {
     id: 'manoeuvre',
     name: 'Manœuvre',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 125,
-                        patch: {}},
-                       {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 125, patch: {}},
+        {lvl: 192, patch: {cooldownMs: 2900, damage: {min: 32, max: 37}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et repousse la cible en manœuvrant tactiquement."
 }
 move.regroupement = {
     id: 'regroupement',
     name: 'Regroupement',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 130,
-                        patch: {}},
-                       {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 130, patch: {}},
+        {lvl: 197, patch: {cooldownMs: 2900, damage: {min: 32, max: 37}}}
+    ],
+    description: "Occasionne des dommages Terre aux ennemis et renforce les défenses du lanceur en le regroupant."
 }
 // move.treve = {
 //     id: 'treve',
@@ -4856,57 +5025,77 @@ move.giboulee = {
     id: 'giboulee',
     name: 'Giboulée',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 25, duration: 2, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Eau et affaiblit considérablement l'ennemi."
 }
 move.sonnailles = {
     id: 'sonnailles',
     name: 'Sonnailles',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'debuff', stat: 'critChance', value: 20, duration: 2, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Feu et réduit les chances de coup critique de l'ennemi."
 }
 move.egide = {
     id: 'egide',
     name: 'Égide',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'egide_feca', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    cooldownMs: 3500,
+    effects: [
+        {type: 'summon', summonId: 'egide_feca', scale: 0.35, duration: 2, target: 'self'}
+    ],
+    description: "Invoque l'Égide, une créature protectrice capable d'absorber les dégâts et de contre-attaquer."
 }
 move.paturage = {
     id: 'paturage',
     name: 'Pâturage',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self'}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et augmente la vitesse du lanceur."
 }
 move.verglas = {
     id: 'verglas',
     name: 'Verglas',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 20, duration: 2, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Eau et ralentit considérablement l'ennemi en le figeant."
 }
 move.refuge = {
     id: 'refuge',
     name: 'Refuge',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'buff', stat: 'damageReductionPct', value: 25, duration: 2, target: 'self'}
+    ],
+    description: "Occasionne des dommages Terre aux ennemis et se réfugie derrière un bouclier défensif."
 }
 move.vigie = {
     id: 'vigie',
     name: 'Vigie',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 26, max: 30}, target: 'enemy'},
+        {type: 'buff', stat: 'finalDamagePct', value: 15, duration: 2, target: 'self'}
+    ],
+    description: "Occasionne des dommages Feu aux ennemis et augmente les dommages finaux du lanceur."
 }
 // move.ataraxie = {
 //     id: 'ataraxie',
@@ -4920,33 +5109,45 @@ move.houlette = {
     id: 'houlette',
     name: 'Houlette',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 28, max: 33}, target: 'enemy'},
+        {type: 'buff', stat: 'atk', value: 30, duration: 2, target: 'self'}
+    ],
+    description: "Frappe puissamment dans l'élément Feu et renforce l'attaque du lanceur."
 }
 move.escapade = {
     id: 'escapade',
     name: 'Escapade',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 28, max: 33}, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Eau puissants aux ennemis."
 }
 move.excursion = {
     id: 'excursion',
     name: 'Excursion',
     classId: 'feca',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 1, target: 'self'}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'spd', value: 25, duration: 2, target: 'self'}
+    ],
+    description: "Augmente considérablement la vitesse de déplacement du lanceur."
 }
 move.barriere = {
     id: 'barriere',
     name: 'Barrière',
     classId: 'feca',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'dot', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'dot', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'dot', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'dot', element: 'terre', value: 8, duration: 3, target: 'enemy'},
+        {type: 'dot', element: 'feu', value: 8, duration: 3, target: 'enemy'},
+        {type: 'dot', element: 'eau', value: 8, duration: 3, target: 'enemy'},
+        {type: 'dot', element: 'air', value: 8, duration: 3, target: 'enemy'}
+    ],
+    description: "Dresse une barrière élémentaire qui inflige des dommages sur la durée dans les 4 éléments à l'ennemi."
 }
 // move.mise_en_garde = {
 //     id: 'mise_en_garde',
@@ -4964,13 +5165,13 @@ move.truanderie = {
     name: 'Truanderie',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 23}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 29}}}],
     description: ""
 }
 move.sournoiserie = {
@@ -4978,27 +5179,27 @@ move.sournoiserie = {
     name: 'Sournoiserie',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 24}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 31}}}],
     description: ""
 }
 move.arsenic = {
     id: 'arsenic',
     name: 'Arsenic',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'dot', element: 'air', value: 9, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {dot: {value: 12}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {dot: {value: 16}}}],
     description: ""
 }
 move.cruaute = {
@@ -5006,13 +5207,13 @@ move.cruaute = {
     name: 'Cruauté',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 18, max: 20}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 // move.invisibilite = {
@@ -5037,7 +5238,7 @@ move.cruaute = {
 //     effects: [],
 //     spellProgression: [{lvl: 24,
 //                         patch: {}},
-//                        {lvl: 77,  
+//                        {lvl: 77,
 //                         patch: {}},
 //                        {lvl: 144,
 //                         patch: {}}],
@@ -5048,13 +5249,13 @@ move.piege_sournois = {
     name: 'Piège Sournois',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 13, max: 15}}},
                        {lvl: 149,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 17, max: 19}}}],
     description: ""
 }
 move.piege_fangeux = {
@@ -5062,13 +5263,13 @@ move.piege_fangeux = {
     name: 'Piège Fangeux',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'eau', damage: {min: 21, max: 25}, target: 'enemy'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 27, max: 31}}},
                        {lvl: 154,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 33, max: 37}}}],
     description: ""
 }
 move.piege_funeste = {
@@ -5076,13 +5277,13 @@ move.piege_funeste = {
     name: 'Piège Funeste',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'terre', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 26}}},
                        {lvl: 159,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 23, max: 26}}}],
     description: ""
 }
 move.piege_repulsif = {
@@ -5090,20 +5291,20 @@ move.piege_repulsif = {
     name: 'Piège Répulsif',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'air', damage: {min: 9, max: 11}, target: 'enemy'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 11, max: 14}}},
                        {lvl: 164,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 14, max: 17}}}],
     description: ""
 }
 move.piege_dimmobilisation = {
     id: 'piege_dimmobilisation',
     name: "Piège d'Immobilisation",
     classId: 'sram',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
@@ -5118,13 +5319,13 @@ move.extorsion = {
     name: 'Extorsion',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 17, max: 19}, target: 'enemy'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 24}}},
                        {lvl: 174,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 30}}}],
     description: ""
 }
 move.arnaque = {
@@ -5132,13 +5333,13 @@ move.arnaque = {
     name: 'Arnaque',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 23}}},
                        {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 28}}}],
     description: ""
 }
 move.pillage = {
@@ -5146,13 +5347,13 @@ move.pillage = {
     name: 'Pillage',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 17, max: 19}, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 25}}},
                        {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 29}}}],
     description: ""
 }
 move.fourberie = {
@@ -5160,13 +5361,13 @@ move.fourberie = {
     name: 'Fourberie',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 24, max: 27}}},
                        {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 31}}}],
     description: ""
 }
 move.peur = {
@@ -5174,7 +5375,7 @@ move.peur = {
     name: 'Peur',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'push', target: 'enemy'}],
+    effects: [{type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
                        {lvl: 127,
@@ -5188,13 +5389,13 @@ move.piege_de_derive = {
     name: 'Piège de Dérive',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'feu', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 15, max: 17}}},
                        {lvl: 198,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 17, max: 19}}}],
     description: ""
 }
 move.piege_scelerat = {
@@ -5202,11 +5403,11 @@ move.piege_scelerat = {
     name: 'Piège Scélérat',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 17, max: 19}}}],
     description: ""
 }
 // move.concentration_de_chakra = {
@@ -5217,7 +5418,7 @@ move.piege_scelerat = {
 //     effects: [],
 //     spellProgression: [{lvl: 77,
 //                         patch: {}},
-//                        {lvl: 142,  
+//                        {lvl: 142,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -5225,12 +5426,12 @@ move.piege_mortel = {
     id: 'piege_mortel',
     name: 'Piège Mortel',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'trap', threshold: 3, element: 'terre', damage: {min: 31, max: 35}, target: 'enemy'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
                        {lvl: 147,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 43}}}],
     description: ""
 }
 move.fourvoiement = {
@@ -5238,11 +5439,11 @@ move.fourvoiement = {
     name: 'Fourvoiement',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 31}, target: 'enemy'}],
     spellProgression: [{lvl: 85,
                         patch: {}},
                        {lvl: 152,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 32, max: 36}}}],
     description: ""
 }
 // move.derobade = {
@@ -5253,7 +5454,7 @@ move.fourvoiement = {
 //     effects: [],
 //     spellProgression: [{lvl: 90,
 //                         patch: {}},
-//                        {lvl: 157,  
+//                        {lvl: 157,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -5262,35 +5463,35 @@ move.chausse_trappe = {
     name: 'Chausse-trappe',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 32}}}],
     description: ""
 }
 move.coupe_gorge = {
     id: 'coupe_gorge',
     name: 'Coupe-gorge',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 33}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 34, max: 38}}}],
     description: ""
 }
 move.toxines = {
     id: 'toxines',
     name: 'Toxines',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'dot', element: 'air', value: 5, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {dot: {value: 7}}}],
     description: ""
 }
 move.poisse = {
@@ -5298,11 +5499,11 @@ move.poisse = {
     name: 'Poisse',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 29, max: 32}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 34, max: 38}}}],
     description: ""
 }
 // move.brume = {
@@ -5313,7 +5514,7 @@ move.poisse = {
 //     effects: [],
 //     spellProgression: [{lvl: 115,
 //                         patch: {}},
-//                        {lvl: 182,  
+//                        {lvl: 182,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -5321,7 +5522,7 @@ move.comploteur = {
     id: 'comploteur',
     name: 'Comploteur',
     classId: 'sram',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'comploteur_sram', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 120,
                         patch: {}},
@@ -5334,31 +5535,31 @@ move.guet_apens = {
     name: 'Guet-apens',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 22}, target: 'enemy'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.epidemie = {
     id: 'epidemie',
     name: 'Épidémie',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
+    cooldownMs: 3000,
+    effects: [{type: 'dot', element: 'air', value: 32, duration: 2, target: 'all_enemies'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {dot: {value: 36}}}],
     description: ""
 }
 move.effraction = {
     id: 'effraction',
     name: 'Effraction',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'}],
     description: ""
 }
 move.piege_effroyable = {
@@ -5366,7 +5567,7 @@ move.piege_effroyable = {
     name: 'Piège Effroyable',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}],
     description: ""
 }
 // move.fosse_commune = {
@@ -5381,32 +5582,32 @@ move.perquisition = {
     id: 'perquisition',
     name: 'Perquisition',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
     description: ""
 }
 move.larcin = {
     id: 'larcin',
     name: 'Larcin',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 34, max: 38}, target: 'enemy'}],
     description: ""
 }
 move.attaque_mortelle = {
     id: 'attaque_mortelle',
     name: 'Attaque Mortelle',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 43, max: 48}, target: 'enemy'}],
     description: ""
 }
 move.injection_toxique = {
     id: 'injection_toxique',
     name: 'Injection Toxique',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'dot', element: 'air', value: 28, duration: 3, target: 'enemy'}],
     description: ""
 }
 // move.meprise = {
@@ -5422,7 +5623,7 @@ move.piege_insidieux = {
     name: 'Piège Insidieux',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'air', damage: {min: 9, max: 11}, target: 'enemy'}],
     description: ""
 }
 move.piege_a_fragmentation = {
@@ -5430,7 +5631,7 @@ move.piege_a_fragmentation = {
     name: 'Piège à Fragmentation',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}],
     description: ""
 }
 move.manigance = {
@@ -5438,7 +5639,7 @@ move.manigance = {
     name: 'Manigance',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'flatDamages', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'flatDamages', value: 20, duration: 2, target: 'self'}],
     description: ""
 }
 move.calamite = {
@@ -5446,15 +5647,15 @@ move.calamite = {
     name: 'Calamité',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'}],
     description: ""
 }
 move.perfidie = {
     id: 'perfidie',
     name: 'Perfidie',
     classId: 'sram',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 56, max: 60}, target: 'enemy'}],
     description: ""
 }
 // move.marque_mortuaire = {
@@ -6591,27 +6792,27 @@ move.ronce = {
     name: 'Ronce',
     classId: 'sadida',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 19, max: 21}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 24, max: 27}}}],
     description: ""
 }
 move.larme_de_sadida = {
     id: 'larme_de_sadida',
     name: 'Larme de Sadida',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 22}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 28}}}],
     description: ""
 }
 move.buisson_ardent = {
@@ -6619,13 +6820,13 @@ move.buisson_ardent = {
     name: 'Buisson Ardent',
     classId: 'sadida',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 18, max: 20}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 20, max: 22}}}],
     description: ""
 }
 move.cigue = {
@@ -6633,13 +6834,13 @@ move.cigue = {
     name: 'Cigüe',
     classId: 'sadida',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 23}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 27}}}],
     description: ""
 }
 // move.arbre = {
@@ -6660,7 +6861,7 @@ move.la_folle = {
     id: 'la_folle',
     name: 'La Folle',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_folle_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
@@ -6674,8 +6875,8 @@ move.seve_paralysante = {
     id: 'seve_paralysante',
     name: 'Sève Paralysante',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'dot', element: 'feu', value: 10, duration: 3, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 7, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
@@ -6688,14 +6889,14 @@ move.contagion = {
     id: 'contagion',
     name: 'Contagion',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'dot', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
+    cooldownMs: 3500,
+    effects: [{type: 'dot', element: 'air', value: 23, duration: 2, target: 'all_enemies'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
-                        patch: {}},
+                        patch: {dot: {value: 28}}},
                        {lvl: 154,
-                        patch: {}}],
+                        patch: {dot: {value: 33}}}],
     description: ""
 }
 // move.ronce_apaisante = {
@@ -6706,7 +6907,7 @@ move.contagion = {
 //     effects: [],
 //     spellProgression: [{lvl: 37,
 //                         patch: {}},
-//                        {lvl: 92,  
+//                        {lvl: 92,
 //                         patch: {}},
 //                        {lvl: 159,
 //                         patch: {}}],
@@ -6716,7 +6917,7 @@ move.la_bloqueuse = {
     id: 'la_bloqueuse',
     name: 'La Bloqueuse',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_bloqueuse_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
@@ -6730,35 +6931,35 @@ move.ronces_agressives = {
     id: 'ronces_agressives',
     name: 'Ronces Agressives',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 24, max: 27}, target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 31, max: 34}}},
                        {lvl: 169,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 38, max: 42}}}],
     description: ""
 }
 move.fleau = {
     id: 'fleau',
     name: 'Fléau',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 18}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 23}}},
                        {lvl: 174,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 28}}}],
     description: ""
 }
 move.puissance_sylvestre = {
     id: 'puissance_sylvestre',
     name: 'Puissance Sylvestre',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'puissance_sylvestre_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
@@ -6772,7 +6973,7 @@ move.la_sacrifiee = {
     id: 'la_sacrifiee',
     name: 'La Sacrifiée',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_sacrifiee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
@@ -6787,34 +6988,34 @@ move.herbes_folles = {
     name: 'Herbes Folles',
     classId: 'sadida',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 23}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 24, max: 27}}},
                        {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 31}}}],
     description: ""
 }
 move.sacrifice_vaudou = {
     id: 'sacrifice_vaudou',
     name: 'Sacrifice Vaudou',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 22, max: 25}, target: 'enemy'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
                        {lvl: 127,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 26, max: 30}}},
                        {lvl: 194,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 30, max: 34}}}],
     description: ""
 }
 move.arbre_de_vie = {
     id: 'arbre_de_vie',
     name: 'Arbre de Vie',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'arbre_de_vie_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
@@ -6828,7 +7029,7 @@ move.la_gonflable = {
     id: 'la_gonflable',
     name: 'La Gonflable',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_gonflable_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
@@ -6840,24 +7041,24 @@ move.tremblement = {
     id: 'tremblement',
     name: 'Tremblement',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 27}, target: 'all_enemies'}],
     spellProgression: [{lvl: 77,
                         patch: {}},
                        {lvl: 142,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 33}}}],
     description: ""
 }
 move.inoculation = {
     id: 'inoculation',
     name: 'Inoculation',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'air', damage: {min: 31, max: 35}, target: 'enemy'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
                        {lvl: 147,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 43}}}],
     description: ""
 }
 // move.don_naturel = {
@@ -6868,7 +7069,7 @@ move.inoculation = {
 //     effects: [],
 //     spellProgression: [{lvl: 85,
 //                         patch: {}},
-//                        {lvl: 152,  
+//                        {lvl: 152,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -6876,7 +7077,7 @@ move.la_surpuissante = {
     id: 'la_surpuissante',
     name: 'La Surpuissante',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_surpuissante_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 90,
                         patch: {}},
@@ -6888,48 +7089,48 @@ move.ronce_insolente = {
     id: 'ronce_insolente',
     name: 'Ronce Insolente',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 30, max: 34}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 38, max: 42}}}],
     description: ""
 }
 move.montee_de_seve = {
     id: 'montee_de_seve',
     name: 'Montée de Sève',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 28, max: 32}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 35, max: 39}}}],
     description: ""
 }
 move.feu_de_brousse = {
     id: 'feu_de_brousse',
     name: 'Feu de Brousse',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 32, max: 36}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 40, max: 45}}}],
     description: ""
 }
 move.vent_empoisonne = {
     id: 'vent_empoisonne',
     name: 'Vent Empoisonné',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3500,
+    effects: [{type: 'dot', element: 'air', value: 22, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {dot: {value: 28}}}],
     description: ""
 }
 // move.arbre_feuillu = {
@@ -6940,7 +7141,7 @@ move.vent_empoisonne = {
 //     effects: [],
 //     spellProgression: [{lvl: 115,
 //                         patch: {}},
-//                        {lvl: 182,  
+//                        {lvl: 182,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -6948,7 +7149,7 @@ move.la_folle_transmutee = {
     id: 'la_folle_transmutee',
     name: 'La Folle Transmutée',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_folle_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 120,
                         patch: {}},
@@ -6960,24 +7161,24 @@ move.miasmes = {
     id: 'miasmes',
     name: 'Miasmes',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 36, max: 40}, target: 'enemy'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 44, max: 49}}}],
     description: ""
 }
 move.mangrove = {
     id: 'mangrove',
     name: 'Mangrove',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 40, max: 45}, target: 'enemy'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 50, max: 56}}}],
     description: ""
 }
 // move.rempotage = {
@@ -6992,7 +7193,7 @@ move.la_bloqueuse_transmutee = {
     id: 'la_bloqueuse_transmutee',
     name: 'La Bloqueuse Transmutée',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_bloqueuse_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -7000,23 +7201,23 @@ move.fetiches_calcines = {
     id: 'fetiches_calcines',
     name: 'Fétiches Calcinés',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 42, max: 47}, target: 'enemy'}],
     description: ""
 }
 move.foret_hantee = {
     id: 'foret_hantee',
     name: 'Forêt Hantée',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 45, max: 50}, target: 'enemy'}],
     description: ""
 }
 move.influence_vegetale = {
     id: 'influence_vegetale',
     name: 'Influence Végétale',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'influence_vegetale_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -7024,7 +7225,7 @@ move.la_sacrifiee_transmutee = {
     id: 'la_sacrifiee_transmutee',
     name: 'La Sacrifiée Transmutée',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_sacrifiee_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -7032,16 +7233,16 @@ move.malediction_vaudou = {
     id: 'malediction_vaudou',
     name: 'Malédiction Vaudou',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 48, max: 54}, target: 'enemy'}],
     description: ""
 }
 move.chardons_ardents = {
     id: 'chardons_ardents',
     name: 'Chardons Ardents',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 50, max: 56}, target: 'enemy'}],
     description: ""
 }
 // move.altruisme_vegetal = {
@@ -7056,7 +7257,7 @@ move.la_gonflable_transmutee = {
     id: 'la_gonflable_transmutee',
     name: 'La Gonflable Transmutée',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_gonflable_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -7064,16 +7265,16 @@ move.mandragore = {
     id: 'mandragore',
     name: 'Mandragore',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'air', damage: {min: 52, max: 58}, target: 'enemy'}],
     description: ""
 }
 move.force_de_la_nature = {
     id: 'force_de_la_nature',
     name: 'Force de la Nature',
     classId: 'sadida',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 55, max: 62}, target: 'enemy'}],
     description: ""
 }
 // move.harmonie = {
@@ -7088,7 +7289,7 @@ move.la_surpuissante_transmutee = {
     id: 'la_surpuissante_transmutee',
     name: 'La Surpuissante Transmutée',
     classId: 'sadida',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'la_surpuissante_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -7100,13 +7301,13 @@ move.explobombe = {
     name: 'Explobombe',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 24}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 29}}}],
     description: ""
 }
 move.tornabombe = {
@@ -7114,13 +7315,13 @@ move.tornabombe = {
     name: 'Tornabombe',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'air', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 22}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 27}}}],
     description: ""
 }
 move.bombe_a_eau = {
@@ -7128,13 +7329,13 @@ move.bombe_a_eau = {
     name: 'Bombe à Eau',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'eau', damage: {min: 17, max: 19}, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 25}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 30}}}],
     description: ""
 }
 move.sismobombe = {
@@ -7142,13 +7343,13 @@ move.sismobombe = {
     name: 'Sismobombe',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 3, element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 23}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 28}}}],
     description: ""
 }
 // move.detonateur = {
@@ -7169,28 +7370,28 @@ move.pulsar = {
     id: 'pulsar',
     name: 'Pulsar',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 24,
                         patch: {}},
                        {lvl: 77,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 24}}},
                        {lvl: 144,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 29}}}],
     description: ""
 }
 move.espingole = {
     id: 'espingole',
     name: 'Espingole',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 22}}},
                        {lvl: 149,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 27}}}],
     description: ""
 }
 // move.botte = {
@@ -7211,28 +7412,28 @@ move.recel = {
     id: 'recel',
     name: 'Recel',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 17, max: 19}, target: 'enemy'}, {type: 'avance', target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 25}}},
                        {lvl: 159,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 30}}}],
     description: ""
 }
 move.bombarde = {
     id: 'bombarde',
     name: 'Bombarde',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 21, max: 23}}},
                        {lvl: 164,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 28}}}],
     description: ""
 }
 // move.aimantation = {
@@ -7281,14 +7482,14 @@ move.dagues_boomerang = {
     id: 'dagues_boomerang',
     name: 'Dagues Boomerang',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 14, max: 16}}},
                        {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 16, max: 18}}}],
     description: ""
 }
 // move.roublardise = {
@@ -7309,14 +7510,14 @@ move.extraction = {
     id: 'extraction',
     name: 'Extraction',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 16, max: 18}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
                        {lvl: 127,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 24}}},
                        {lvl: 194,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 30}}}],
     description: ""
 }
 // move.remission = {
@@ -7338,11 +7539,11 @@ move.mousquet = {
     name: 'Mousquet',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 19, max: 21}}}],
     description: ""
 }
 // move.poudre = {
@@ -7361,12 +7562,12 @@ move.resquille = {
     id: 'resquille',
     name: 'Resquille',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 27, max: 30}, target: 'enemy'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
                        {lvl: 147,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 33, max: 37}}}],
     description: ""
 }
 // move.dernier_souffle = {
@@ -7398,11 +7599,11 @@ move.explobombe_resiliente = {
     name: 'Explobombe Résiliente',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 2, element: 'feu', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 18, max: 21}}}],
     description: ""
 }
 move.tornabombe_resiliente = {
@@ -7410,11 +7611,11 @@ move.tornabombe_resiliente = {
     name: 'Tornabombe Résiliente',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 2, element: 'air', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 16, max: 19}}}],
     description: ""
 }
 move.bombe_a_eau_resiliente = {
@@ -7422,11 +7623,11 @@ move.bombe_a_eau_resiliente = {
     name: 'Bombe à Eau Résiliente',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 2, element: 'eau', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 18, max: 21}}}],
     description: ""
 }
 move.sismobombe_resiliente = {
@@ -7434,11 +7635,11 @@ move.sismobombe_resiliente = {
     name: 'Sismobombe Résiliente',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'trap', threshold: 2, element: 'terre', damage: {min: 13, max: 15}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 17, max: 20}}}],
     description: ""
 }
 // move.etoupille = {
@@ -7457,24 +7658,24 @@ move.shrapnel = {
     id: 'shrapnel',
     name: 'Shrapnel',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 27, max: 30}, target: 'enemy'}],
     spellProgression: [{lvl: 120,
                         patch: {}},
                        {lvl: 187,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 33, max: 37}}}],
     description: ""
 }
 move.obliteration = {
     id: 'obliteration',
     name: 'Oblitération',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 31, max: 35}, target: 'enemy'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 43}}}],
     description: ""
 }
 // move.ruse = {
@@ -7494,7 +7695,7 @@ move.plombage = {
     name: 'Plombage',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 move.mitraille = {
@@ -7502,7 +7703,7 @@ move.mitraille = {
     name: 'Mitraille',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 20, max: 23}, target: 'enemy'}],
     description: ""
 }
 // move.croisement = {
@@ -7533,8 +7734,8 @@ move.tromblon = {
     id: 'tromblon',
     name: 'Tromblon',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 24, max: 27}, target: 'enemy'}],
     description: ""
 }
 // move.stratageme = {
@@ -7550,7 +7751,7 @@ move.cadence = {
     name: 'Cadence',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 26, max: 30}, target: 'enemy'}],
     description: ""
 }
 // move.casemate = {
@@ -7566,23 +7767,23 @@ move.grenaille = {
     name: 'Grenaille',
     classId: 'roublard',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 28, max: 32}, target: 'enemy'}],
     description: ""
 }
 move.bombe_collante = {
     id: 'bombe_collante',
     name: 'Bombe Collante',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'best_element_damage', damage: {min: 20, max: 24}, target: 'enemy'}],
     description: ""
 }
 move.arquebuse = {
     id: 'arquebuse',
     name: 'Arquebuse',
     classId: 'roublard',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 30, max: 34}, target: 'enemy'}],
     description: ""
 }
 // move.piege_magnetique = {
@@ -7608,63 +7809,63 @@ move.perturbation = {
     id: 'perturbation',
     name: 'Perturbation',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 18, max: 20}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 23, max: 26}}}],
     description: ""
 }
 move.gelure = {
     id: 'gelure',
     name: 'Gelure',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 6, max: 8}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 8, max: 10}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 10, max: 12}}}],
     description: ""
 }
 move.souvenir = {
     id: 'souvenir',
     name: 'Souvenir',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 6, max: 8}, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 8, max: 10}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 10, max: 12}}}],
     description: ""
 }
 move.frappe_de_xelor = {
     id: 'frappe_de_xelor',
     name: 'Frappe de Xélor',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 13, max: 15}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 17, max: 20}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.complice = {
     id: 'complice',
     name: 'Complice',
     classId: 'xelor',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'complice_xelor', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
@@ -7692,28 +7893,28 @@ move.fletrissement = {
     id: 'fletrissement',
     name: 'Flétrissement',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 23}}},
                        {lvl: 149,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 28}}}],
     description: ""
 }
 move.engrenage = {
     id: 'engrenage',
     name: 'Engrenage',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 18, max: 20}}},
                        {lvl: 154,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 24}}}],
     description: ""
 }
 // move.fuite_du_temps = {
@@ -7735,27 +7936,27 @@ move.rayon_obscur = {
     name: 'Rayon Obscur',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 22}, target: 'enemy'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 27, max: 30}}},
                        {lvl: 164,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 31, max: 34}}}],
     description: ""
 }
 move.ralentissement = {
     id: 'ralentissement',
     name: 'Ralentissement',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 9, max: 11}, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 12, max: 14}}},
                        {lvl: 169,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 15, max: 17}}}],
     description: ""
 }
 // move.flou_temporel = {
@@ -7790,28 +7991,28 @@ move.horloge = {
     id: 'horloge',
     name: 'Horloge',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 19, max: 21}}},
                        {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 23, max: 25}}}],
     description: ""
 }
 move.refraction = {
     id: 'refraction',
     name: 'Réfraction',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 13, max: 15}}},
                        {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 16, max: 18}}}],
     description: ""
 }
 // move.rembobinage = {
@@ -7846,12 +8047,12 @@ move.petrification = {
     id: 'petrification',
     name: 'Pétrification',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 21, max: 23}, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 30}}}],
     description: ""
 }
 move.distorsion = {
@@ -7859,11 +8060,11 @@ move.distorsion = {
     name: 'Distorsion',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 26}, target: 'enemy'}],
     spellProgression: [{lvl: 77,
                         patch: {}},
                        {lvl: 142,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 32}}}],
     description: ""
 }
 // move.desynchronisation = {
@@ -7894,7 +8095,7 @@ move.synchro = {
     id: 'synchro',
     name: 'Synchro',
     classId: 'xelor',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'synchro_xelor', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 90,
                         patch: {}},
@@ -7907,23 +8108,23 @@ move.rouage = {
     name: 'Rouage',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 32}}}],
     description: ""
 }
 move.poussiere = {
     id: 'poussiere',
     name: 'Poussière',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 17, max: 19}}}],
     description: ""
 }
 move.permutation = {
@@ -7931,11 +8132,11 @@ move.permutation = {
     name: 'Permutation',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 21, max: 23}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 30}}}],
     description: ""
 }
 move.pendule = {
@@ -7943,18 +8144,18 @@ move.pendule = {
     name: 'Pendule',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 26}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 32}}}],
     description: ""
 }
 move.cadran_de_xelor = {
     id: 'cadran_de_xelor',
     name: 'Cadran de Xélor',
     classId: 'xelor',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'cadran_de_xelor_xelor', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 115,
                         patch: {}},
@@ -7979,11 +8180,11 @@ move.aiguille = {
     name: 'Aiguille',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 32}}}],
     description: ""
 }
 move.compte_goutte = {
@@ -7991,11 +8192,11 @@ move.compte_goutte = {
     name: 'Compte-goutte',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 21, max: 23}, target: 'enemy'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 30}}}],
     description: ""
 }
 // move.premonition = {
@@ -8011,7 +8212,7 @@ move.dessechement = {
     name: 'Dessèchement',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 26}, target: 'enemy'}],
     description: ""
 }
 move.sablier_de_xelor = {
@@ -8019,7 +8220,7 @@ move.sablier_de_xelor = {
     name: 'Sablier de Xélor',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
     description: ""
 }
 // move.conservation = {
@@ -8043,7 +8244,7 @@ move.clepsydre = {
     name: 'Clepsydre',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 21, max: 23}, target: 'enemy'}],
     description: ""
 }
 move.regulateur = {
@@ -8051,7 +8252,7 @@ move.regulateur = {
     name: 'Régulateur',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'}],
     description: ""
 }
 // move.remanence = {
@@ -8075,7 +8276,7 @@ move.gousset = {
     name: 'Gousset',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 26}, target: 'enemy'}],
     description: ""
 }
 move.sables_du_temps = {
@@ -8083,7 +8284,7 @@ move.sables_du_temps = {
     name: 'Sables du Temps',
     classId: 'xelor',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
     description: ""
 }
 // move.espace_temps = {
@@ -8106,8 +8307,8 @@ move.glas = {
     id: 'glas',
     name: 'Glas',
     classId: 'xelor',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 10, max: 12}, target: 'enemy'}],
     description: ""
 }
 // #endregion
@@ -8118,27 +8319,27 @@ move['longue-vue'] = {
     name: 'Longue-vue',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 23}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 29}}}],
     description: ""
 }
 move.amarrage = {
     id: 'amarrage',
     name: 'Amarrage',
     classId: 'steamer',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 11, max: 13}, target: 'enemy'}, {type: 'avance', target: 'self'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 14, max: 16}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 16, max: 18}}}],
     description: ""
 }
 move.torpille = {
@@ -8146,27 +8347,27 @@ move.torpille = {
     name: 'Torpille',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 23}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 29}}}],
     description: ""
 }
 move.sabotage = {
     id: 'sabotage',
     name: 'Sabotage',
     classId: 'steamer',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}, {type: 'debuff', stat: 'atk', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 18, max: 21}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.harponneuse = {
@@ -8230,13 +8431,13 @@ move.maree = {
     name: 'Marée',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 21, max: 24}, target: 'enemy'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 27, max: 31}}},
                        {lvl: 159,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 34, max: 38}}}],
     description: ""
 }
 move.turbine = {
@@ -8244,13 +8445,13 @@ move.turbine = {
     name: 'Turbine',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 20}, target: 'enemy'}, {type: 'avance', target: 'self'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 25}}},
                        {lvl: 164,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 27, max: 31}}}],
     description: ""
 }
 move.tactirelle = {
@@ -8271,14 +8472,14 @@ move.scaphandre = {
     id: 'scaphandre',
     name: 'Scaphandre',
     classId: 'steamer',
-    cooldownMs: 2000,
-    effects: [{type: 'shield', value: 5, target: 'self'}],
+    cooldownMs: 2500,
+    effects: [{type: 'shield', value: 100, duration: 3, target: 'self'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {}},
+                        patch: {value: 150}},
                        {lvl: 174,
-                        patch: {}}],
+                        patch: {value: 200}}],
     description: ""
 }
 move.foene = {
@@ -8286,27 +8487,27 @@ move.foene = {
     name: 'Foène',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 20}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 26}}},
                        {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 32}}}],
     description: ""
 }
 move.ressac = {
     id: 'ressac',
     name: 'Ressac',
     classId: 'steamer',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}, {type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 23}}},
                        {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 23, max: 27}}}],
     description: ""
 }
 move.sonar = {
@@ -8314,13 +8515,13 @@ move.sonar = {
     name: 'Sonar',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'best_element_damage', damage: {min: 5, max: 7}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 8, max: 10}}},
                        {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 11, max: 13}}}],
     description: ""
 }
 move.courant = {
@@ -8328,13 +8529,13 @@ move.courant = {
     name: 'Courant',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 22, max: 25}, target: 'enemy'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
                        {lvl: 127,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 27, max: 30}}},
                        {lvl: 194,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 30, max: 34}}}],
     description: ""
 }
 // move.secourisme = {
@@ -8356,11 +8557,11 @@ move.ancrage = {
     name: 'Ancrage',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 27, max: 30}, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 3, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 33, max: 36}}}],
     description: ""
 }
 // move.plongee = {
@@ -8415,12 +8616,12 @@ move.corrosion = {
     id: 'corrosion',
     name: 'Corrosion',
     classId: 'steamer',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2200,
+    effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 21}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 26}}}],
     description: ""
 }
 move.soupape = {
@@ -8428,11 +8629,11 @@ move.soupape = {
     name: 'Soupape',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 21}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.gouvernail = {
@@ -8440,11 +8641,11 @@ move.gouvernail = {
     name: 'Gouvernail',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 21}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.periscope = {
@@ -8452,18 +8653,18 @@ move.periscope = {
     name: 'Périscope',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 18, max: 21}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 25}}}],
     description: ""
 }
 move.chalutier = {
     id: 'chalutier',
     name: 'Chalutier',
     classId: 'steamer',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'chalutier_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 115,
                         patch: {}},
@@ -8487,7 +8688,7 @@ move.foreuse = {
     id: 'foreuse',
     name: 'Foreuse',
     classId: 'steamer',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'foreuse_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
@@ -8512,7 +8713,7 @@ move.vapor = {
     name: 'Vapor',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 move.flibuste = {
@@ -8520,14 +8721,14 @@ move.flibuste = {
     name: 'Flibuste',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 move.bathyscaphe = {
     id: 'bathyscaphe',
     name: 'Bathyscaphe',
     classId: 'steamer',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'bathyscaphe_steamer', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -8544,7 +8745,7 @@ move.cabestan = {
     name: 'Cabestan',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 move.ecume = {
@@ -8552,15 +8753,15 @@ move.ecume = {
     name: 'Écume',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 move.embuscade = {
     id: 'embuscade',
     name: 'Embuscade',
     classId: 'steamer',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 10, max: 12}, target: 'enemy'}],
     description: ""
 }
 move.harmattan = {
@@ -8568,7 +8769,7 @@ move.harmattan = {
     name: 'Harmattan',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 // move.sauvetage = {
@@ -8584,7 +8785,7 @@ move.court_circuit = {
     name: 'Court-circuit',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 // move.submersion = {
@@ -8627,27 +8828,27 @@ move.molosse = {
     name: 'Molosse',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 24, max: 27}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 31, max: 34}}}],
     description: ""
 }
 move.os_a_moelle = {
     id: 'os_a_moelle',
     name: 'Os à Moelle',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 16, max: 19}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 21, max: 24}}}],
     description: ""
 }
 move.charogne = {
@@ -8655,13 +8856,13 @@ move.charogne = {
     name: 'Charogne',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 25, max: 27}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 32, max: 35}}}],
     description: ""
 }
 move.traque = {
@@ -8669,13 +8870,13 @@ move.traque = {
     name: 'Traque',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 25}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 29, max: 31}}}],
     description: ""
 }
 // move.proie = {
@@ -8710,7 +8911,7 @@ move.lance_roquet = {
     id: 'lance_roquet',
     name: 'Lance-roquet',
     classId: 'ouginak',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'lance_roquet_ouginak', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
@@ -8725,13 +8926,13 @@ move.amarok = {
     name: 'Amarok',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 25}}},
                        {lvl: 154,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 31}}}],
     description: ""
 }
 move.cubitus = {
@@ -8739,13 +8940,13 @@ move.cubitus = {
     name: 'Cubitus',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 14, max: 16}}},
                        {lvl: 159,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 16, max: 18}}}],
     description: ""
 }
 move.arcanin = {
@@ -8753,7 +8954,7 @@ move.arcanin = {
     name: 'Arcanin',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'atk', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'atk', value: 25, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 41,
                         patch: {}},
                        {lvl: 97,
@@ -8766,28 +8967,28 @@ move.rabattage = {
     id: 'rabattage',
     name: 'Rabattage',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 25, max: 28}, target: 'enemy'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 33, max: 37}}},
                        {lvl: 169,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 44}}}],
     description: ""
 }
 move.carcasse = {
     id: 'carcasse',
     name: 'Carcasse',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 5, max: 7}, target: 'enemy'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 7, max: 9}}},
                        {lvl: 174,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 9, max: 11}}}],
     description: ""
 }
 // move.pelage_protecteur = {
@@ -8808,28 +9009,28 @@ move.chasse = {
     id: 'chasse',
     name: 'Chasse',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 25, max: 28}, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 33, max: 37}}},
                        {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 39, max: 44}}}],
     description: ""
 }
 move.tibia = {
     id: 'tibia',
     name: 'Tibia',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 25, max: 28}, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 32, max: 36}}},
                        {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 40, max: 45}}}],
     description: ""
 }
 // move.apaisement = {
@@ -8851,13 +9052,13 @@ move.dogue = {
     name: 'Dogue',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 13, max: 15}}},
                        {lvl: 198,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 17, max: 19}}}],
     description: ""
 }
 move.panique = {
@@ -8865,7 +9066,7 @@ move.panique = {
     name: 'Panique',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'push', value: 1, target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy'}],
+    effects: [{type: 'recul', target: 'enemy'}, {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
@@ -8877,7 +9078,7 @@ move.aboiement = {
     name: 'Aboiement',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 77,
                         patch: {}},
                        {lvl: 142,
@@ -8889,19 +9090,19 @@ move.limier = {
     name: 'Limier',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 25}, target: 'enemy'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
                        {lvl: 147,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 31}}}],
     description: ""
 }
 move.flair = {
     id: 'flair',
     name: 'Flair',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'advance', value: 1, target: 'self'}],
+    cooldownMs: 1500,
+    effects: [{type: 'avance', target: 'self'}],
     spellProgression: [{lvl: 85,
                         patch: {}},
                        {lvl: 152,
@@ -8913,7 +9114,7 @@ move.appel_de_la_meute = {
     name: 'Appel de la Meute',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'erosionBonus', value: 10, duration: 1, target: 'all_allies'}],
+    effects: [{type: 'buff', stat: 'erosionBonus', value: 15, duration: 2, target: 'all_allies'}],
     spellProgression: [{lvl: 90,
                         patch: {}},
                        {lvl: 157,
@@ -8925,23 +9126,23 @@ move.machoire = {
     name: 'Mâchoire',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 20, max: 22}}}],
     description: ""
 }
 move.museliere = {
     id: 'museliere',
     name: 'Muselière',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 30, max: 33}, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 37, max: 41}}}],
     description: ""
 }
 move.radius = {
@@ -8949,23 +9150,23 @@ move.radius = {
     name: 'Radius',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 25, max: 28}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 32, max: 36}}}],
     description: ""
 }
 move.depecage = {
     id: 'depecage',
     name: 'Dépeçage',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 5, max: 7}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 7, max: 9}}}],
     description: ""
 }
 // move.gibier = {
@@ -8997,7 +9198,7 @@ move.gangrene = {
     name: 'Gangrène',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'erosionBonus', value: 10, duration: 1, target: 'self'}],
+    effects: [{type: 'buff', stat: 'erosionBonus', value: 20, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
@@ -9008,20 +9209,20 @@ move.cerbere = {
     id: 'cerbere',
     name: 'Cerbère',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 41, max: 46}, target: 'enemy'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 46, max: 52}}}],
     description: ""
 }
 move.calcaneus = {
     id: 'calcaneus',
     name: 'Calcanéus',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'eau', damage: {min: 19, max: 21}, target: 'enemy'}],
     description: ""
 }
 // move.caninos = {
@@ -9036,8 +9237,8 @@ move.aboi = {
     id: 'aboi',
     name: 'Aboi',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'feu', damage: {min: 20, max: 22}, target: 'enemy'}],
     description: ""
 }
 move.battue = {
@@ -9045,7 +9246,7 @@ move.battue = {
     name: 'Battue',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 30}, target: 'enemy'}],
     description: ""
 }
 // move.ferocite = {
@@ -9060,16 +9261,16 @@ move.vertebre = {
     id: 'vertebre',
     name: 'Vertèbre',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'dot', element: 'eau', value: 15, duration: 3, target: 'enemy'}],
     description: ""
 }
 move.humerus = {
     id: 'humerus',
     name: 'Humérus',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 41, max: 46}, target: 'enemy'}],
     description: ""
 }
 // move.affection = {
@@ -9084,8 +9285,8 @@ move.depouille = {
     id: 'depouille',
     name: 'Dépouille',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'air', damage: {min: 35, max: 39}, target: 'enemy'}],
     description: ""
 }
 // move.poursuite = {
@@ -9108,8 +9309,8 @@ move.tetanisation = {
     id: 'tetanisation',
     name: 'Tétanisation',
     classId: 'ouginak',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 41, max: 46}, target: 'enemy'}],
     description: ""
 }
 // move.acharnement = {
@@ -9135,113 +9336,108 @@ move.trident_de_la_mer = {
     id: 'trident_de_la_mer',
     name: 'Trident de la Mer',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 1,
-                        patch: {}},
-                       {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 1, patch: {}},
+        {lvl: 66, patch: {damage: {min: 17, max: 19}}},
+        {lvl: 132, patch: {damage: {min: 21, max: 24}}}
+    ],
+    description: "Occasionne des dommages Eau aux ennemis et attire les cibles vers la case ciblée en zone."
 }
 move.effondrement = {
     id: 'effondrement',
     name: 'Effondrement',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 8,
-                        patch: {}},
-                       {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 13, max: 15}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 8, patch: {}},
+        {lvl: 67, patch: {damage: {min: 16, max: 18}}},
+        {lvl: 133, patch: {damage: {min: 20, max: 22}}}
+    ],
+    description: "Occasionne des dommages Terre aux ennemis et attire les cibles jusqu'au centre en zone. Les dommages de zone ne sont pas dégressifs. N'affecte pas le lanceur."
 }
 move.estoc_brulant = {
     id: 'estoc_brulant',
     name: 'Estoc Brûlant',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 12,
-                        patch: {}},
-                       {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 17, max: 19}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 12, patch: {}},
+        {lvl: 69, patch: {damage: {min: 22, max: 25}}},
+        {lvl: 136, patch: {damage: {min: 28, max: 32}}}
+    ],
+    description: "Occasionne des dommages Feu aux ennemis et repousse les cibles depuis le lanceur en zone."
 }
 move.volee_dairain = {
     id: 'volee_dairain',
     name: "Volée d'Airain",
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 16,
-                        patch: {}},
-                       {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 14, max: 16}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 16, patch: {}},
+        {lvl: 68, patch: {damage: {min: 18, max: 20}}},
+        {lvl: 134, patch: {damage: {min: 22, max: 25}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et repousse les cibles en zone."
 }
 move.epilogue = {
     id: 'epilogue',
     name: 'Épilogue',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'push', value: 1, target: 'self'}],
-    spellProgression: [{lvl: 20,
-                        patch: {}},
-                       {lvl: 72,
-                        patch: {}},
-                       {lvl: 139,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 1500,
+    effects: [{type: 'recul', target: 'self'}],
+    spellProgression: [
+        {lvl: 20, patch: {}},
+        {lvl: 72, patch: {}},
+        {lvl: 139, patch: {}}
+    ],
+    description: "Invoque ou rappelle la Lance. La ligne de vue du sort est désactivée si le lanceur est Désarmé."
 }
 move.charge_heroique = {
     id: 'charge_heroique',
     name: 'Charge Héroïque',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'push', value: 1, target: 'enemy'}],
-    spellProgression: [{lvl: 24,
-                        patch: {}},
-                       {lvl: 77,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 144,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [
+        {type: 'best_element_damage', damage: {min: 17, max: 20}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 24, patch: {}},
+        {lvl: 77, patch: {damage: {min: 23, max: 27}}},
+        {lvl: 144, patch: {damage: {min: 29, max: 33}}}
+    ],
+    description: "Rappelle la Lance, rapproche le lanceur vers la cible et occasionne des dommages dans son meilleur élément aux ennemis. Repousse également la cible si le lanceur termine à son contact."
 }
 move.lance_du_lac = {
     id: 'lance_du_lac',
     name: 'Lance du Lac',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 28,
-                        patch: {}},
-                       {lvl: 82,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 149,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 28, patch: {}},
+        {lvl: 82, patch: {damage: {min: 17, max: 20}}},
+        {lvl: 149, patch: {damage: {min: 22, max: 25}}}
+    ],
+    description: "Occasionne des dommages Eau aux ennemis en zone et invoque la Lance."
 }
 move.lance_pierre = {
     id: 'lance_pierre',
     name: 'Lance-pierre',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 33,
-                        patch: {}},
-                       {lvl: 87,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 154,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 33, patch: {}},
+        {lvl: 87, patch: {damage: {min: 19, max: 21}}},
+        {lvl: 154, patch: {damage: {min: 25, max: 28}}}
+    ],
+    description: "Occasionne des dommages Terre aux ennemis en zone et invoque la Lance. Les dommages de zone ne sont pas dégressifs."
 }
 // move.phalange = {
 //     id: 'phalange',
@@ -9251,7 +9447,7 @@ move.lance_pierre = {
 //     effects: [],
 //     spellProgression: [{lvl: 37,
 //                         patch: {}},
-//                        {lvl: 92,  
+//                        {lvl: 92,
 //                         patch: {}},
 //                        {lvl: 159,
 //                         patch: {}}],
@@ -9261,222 +9457,222 @@ move.lance_a_incendie = {
     id: 'lance_a_incendie',
     name: 'Lance à Incendie',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 41,
-                        patch: {}},
-                       {lvl: 97,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 164,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 11, max: 13}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 41, patch: {}},
+        {lvl: 97, patch: {damage: {min: 14, max: 17}}},
+        {lvl: 164, patch: {damage: {min: 18, max: 21}}}
+    ],
+    description: "Occasionne des dommages Feu aux ennemis en zone. Invoque la Lance si la case est ou devient libre. Les dommages du sort sont augmentés après chaque lancer."
 }
 move.javeline_de_myr = {
     id: 'javeline_de_myr',
     name: 'Javeline de Myr',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 45,
-                        patch: {}},
-                       {lvl: 102,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 169,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 45, patch: {}},
+        {lvl: 102, patch: {damage: {min: 21, max: 24}}},
+        {lvl: 169, patch: {damage: {min: 26, max: 30}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et repousse la cible. Invoque la Lance si la case est ou devient libre."
 }
 move.balestra = {
     id: 'balestra',
     name: 'Balestra',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 49,
-                        patch: {}},
-                       {lvl: 107,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 174,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'eau', damage: {min: 18, max: 20}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 49, patch: {}},
+        {lvl: 107, patch: {damage: {min: 23, max: 25}}},
+        {lvl: 174, patch: {damage: {min: 28, max: 31}}}
+    ],
+    description: "Téléporte le lanceur jusqu'à la cible et occasionne des dommages Eau aux ennemis en zone."
 }
 move.talon_dargile = {
     id: 'talon_dargile',
     name: "Talon d'Argile",
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 53,
-                        patch: {}},
-                       {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 8, max: 10}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 53, patch: {}},
+        {lvl: 112, patch: {damage: {min: 11, max: 13}}},
+        {lvl: 179, patch: {damage: {min: 14, max: 16}}}
+    ],
+    description: "Rappelle la Lance, rapproche le lanceur vers la cible et occasionne des dommages Terre aux ennemis en zone."
 }
 move.kyrja = {
     id: 'kyrja',
     name: 'Kyrja',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}, 
-              {type: 'lifesteal', ratio: 0.09, target: 'self'}],
-    spellProgression: [{lvl: 57,
-                        patch: {}},
-                       {lvl: 117,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 184,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'best_element_damage', damage: {min: 17, max: 20}, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.09, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 57, patch: {}},
+        {lvl: 117, patch: {damage: {min: 24, max: 27}}},
+        {lvl: 184, patch: {damage: {min: 28, max: 32}}}
+    ],
+    description: "Rappelle la Lance, téléporte le lanceur sur la case ciblée et vole de la Fuite et de la vie dans le meilleur élément du lanceur aux ennemis en zone."
 }
 move.muspel = {
     id: 'muspel',
     name: 'Muspel',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 61,
-                        patch: {}},
-                       {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 21}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 61, patch: {}},
+        {lvl: 122, patch: {damage: {min: 24, max: 28}}},
+        {lvl: 189, patch: {damage: {min: 28, max: 32}}}
+    ],
+    description: "Augmente les dommages du sort pour chaque ennemi en zone et occasionne des dommages Feu aux ennemis."
 }
 move.prelude_au_fer = {
     id: 'prelude_au_fer',
     name: 'Prélude au Fer',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'atk', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 65,
-                        patch: {}},
-                       {lvl: 127,
-                        patch: {}},
-                       {lvl: 194,
-                        patch: {}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'buff', stat: 'atk', value: 30, duration: 2, target: 'self'}],
+    spellProgression: [
+        {lvl: 65, patch: {}},
+        {lvl: 127, patch: {}},
+        {lvl: 194, patch: {}}
+    ],
+    description: "Réduit la durée des effets sur les ennemis et augmente la Puissance des alliés en zone."
 }
 move.terre_du_milieu = {
     id: 'terre_du_milieu',
     name: 'Terre du Milieu',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 69,
-                        patch: {}},
-                       {lvl: 131,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 198,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'terre', damage: {min: 22, max: 25}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 69, patch: {}},
+        {lvl: 131, patch: {damage: {min: 30, max: 34}}},
+        {lvl: 198, patch: {damage: {min: 30, max: 34}}}
+    ],
+    description: "Augmente la Puissance du lanceur pour chaque ennemi dans la zone d'effet et occasionne des dommages Terre aux ennemis."
 }
 move.chevalerie = {
     id: 'chevalerie',
     name: 'Chevalerie',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 73,
-                        patch: {}},
-                       {lvl: 137,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'heal', heal: {min: 5, max: 7}, target: 'ally_min_hp'},
+        {type: 'buff', stat: 'spd', value: 10, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 73, patch: {}},
+        {lvl: 137, patch: {}}
+    ],
+    description: "Soigne et augmente les PM des alliés en zone. Rappelle également la Lance si le lanceur est Désarmé."
 }
 move.jormun = {
     id: 'jormun',
     name: 'Jormun',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 77,
-                        patch: {}},
-                       {lvl: 142,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'eau', damage: {min: 24, max: 27}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 77, patch: {}},
+        {lvl: 142, patch: {damage: {min: 30, max: 34}}}
+    ],
+    description: "Occasionne des dommages Eau aux ennemis en zone jusqu'à la Lance."
 }
 move.poincon = {
     id: 'poincon',
     name: 'Poinçon',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy'}],
-    spellProgression: [{lvl: 81,
-                        patch: {}},
-                       {lvl: 147,
-                        patch: {}}],
-    description: ""
+    effects: [{type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'enemy'}],
+    spellProgression: [
+        {lvl: 81, patch: {}},
+        {lvl: 147, patch: {}}
+    ],
+    description: "Rappelle et invoque la Lance dans l'état Poinçon : réduit la vitesse des ennemis au contact."
 }
 move.noa = {
     id: 'noa',
     name: 'Noa',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 85,
-                        patch: {}},
-                       {lvl: 152,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'air', damage: {min: 19, max: 21}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 85, patch: {}},
+        {lvl: 152, patch: {damage: {min: 23, max: 26}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et leur applique l'état Noa : amplifie les dommages reçus."
 }
 move.eclipse = {
     id: 'eclipse',
     name: 'Éclipse',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'all_enemies'}, {type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'all_enemies'}],
-    spellProgression: [{lvl: 90,
-                        patch: {}},
-                       {lvl: 157,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [
+        {type: 'shield', value: 100, duration: 2, target: 'self'},
+        {type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'all_enemies'}
+    ],
+    spellProgression: [
+        {lvl: 90, patch: {}},
+        {lvl: 157, patch: {}}
+    ],
+    description: "Rappelle la Lance, applique un bouclier sur le lanceur et ses alliés en zone et retire de la Portée à tout le monde."
 }
 move.maelstrom = {
     id: 'maelstrom',
     name: 'Maelstrom',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 95,
-                        patch: {}},
-                       {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'feu', damage: {min: 26, max: 29}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 95, patch: {}},
+        {lvl: 162, patch: {damage: {min: 32, max: 36}}}
+    ],
+    description: "Échange de position avec la cible et occasionne des dommages Feu aux ennemis en zone."
 }
 move.lance_cyclone = {
     id: 'lance_cyclone',
     name: 'Lance-cyclone',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 100,
-                        patch: {}},
-                       {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'air', damage: {min: 25, max: 27}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 100, patch: {}},
+        {lvl: 167, patch: {damage: {min: 31, max: 33}}}
+    ],
+    description: "Invoque la Lance, rapproche le lanceur vers elle, occasionne des dommages Air aux ennemis et repousse les cibles en zone."
 }
 move.octave = {
     id: 'octave',
     name: 'Octave',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 105,
-                        patch: {}},
-                       {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 105, patch: {}},
+        {lvl: 177, patch: {damage: {min: 16, max: 18}}}
+    ],
+    description: "Éloigne le lanceur de la cible et occasionne des dommages Eau aux ennemis."
 }
 move.soulevement = {
     id: 'soulevement',
     name: 'Soulèvement',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 110,
-                        patch: {}},
-                       {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 27}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 110, patch: {}},
+        {lvl: 172, patch: {damage: {min: 29, max: 33}}}
+    ],
+    description: "Téléporte les cibles symétriquement par rapport au lanceur et occasionne des dommages Terre aux ennemis en zone. Les dommages de zone ne sont pas dégressifs."
 }
 // move.parade = {
 //     id: 'parade',
@@ -9486,7 +9682,7 @@ move.soulevement = {
 //     effects: [],
 //     spellProgression: [{lvl: 115,
 //                         patch: {}},
-//                        {lvl: 182,  
+//                        {lvl: 182,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -9498,7 +9694,7 @@ move.soulevement = {
 //     effects: [],
 //     spellProgression: [{lvl: 120,
 //                         patch: {}},
-//                        {lvl: 187,  
+//                        {lvl: 187,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -9506,25 +9702,25 @@ move.epieu_sismique = {
     id: 'epieu_sismique',
     name: 'Épieu Sismique',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 125,
-                        patch: {}},
-                       {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 30, max: 35}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 125, patch: {}},
+        {lvl: 192, patch: {damage: {min: 37, max: 42}}}
+    ],
+    description: "Occasionne des dommages Terre puissants aux ennemis en zone et invoque la Lance."
 }
 move.javelot_foudre = {
     id: 'javelot_foudre',
     name: 'Javelot-foudre',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    spellProgression: [{lvl: 130,
-                        patch: {}},
-                       {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [{type: 'damage', element: 'eau', damage: {min: 23, max: 26}, target: 'all_enemies'}],
+    spellProgression: [
+        {lvl: 130, patch: {}},
+        {lvl: 197, patch: {damage: {min: 28, max: 32}}}
+    ],
+    description: "Invoque la Lance et occasionne des dommages Eau aux ennemis en zone. Rebondit sur l'ennemi le plus proche n'étant pas dans la zone d'effet."
 }
 // move.oriflamme = {
 //     id: 'oriflamme',
@@ -9539,48 +9735,51 @@ move.pluie_dairain = {
     name: "Pluie d'Airain",
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    effects: [{type: 'damage', element: 'air', damage: {min: 19, max: 21}, target: 'all_enemies'}],
+    description: "Occasionne des dommages Air aux ennemis et réduit leurs Résistances Poussée en zone. Les dommages de zone ne sont pas dégressifs."
 }
 move.moulin_rouge = {
     id: 'moulin_rouge',
     name: 'Moulin Rouge',
     classId: 'forgelance',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: 'all_enemies'}],
+    description: "Occasionne des dommages Feu aux ennemis et attire les cibles jusqu'au centre en zone. Les dommages de zone ne sont pas dégressifs."
 }
 move.moulin_a_vent = {
     id: 'moulin_a_vent',
     name: 'Moulin à Vent',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 29, max: 33}, target: 'all_enemies'}],
+    description: "Téléporte les cibles symétriquement par rapport au centre et occasionne des dommages Air aux ennemis en zone. N'affecte pas directement le lanceur."
 }
 move.fente = {
     id: 'fente',
     name: 'Fente',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 14}, target: 'all_enemies'}],
+    description: "Rappelle la Lance, téléporte le lanceur sur la case ciblée et occasionne des dommages Feu aux ennemis en zone."
 }
 move.vajra = {
     id: 'vajra',
     name: 'Vajra',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.04, target: 'self'}],
-    description: ""
+    cooldownMs: 3500,
+    effects: [
+        {type: 'best_element_damage', damage: {min: 39, max: 44}, target: 'enemy'},
+        {type: 'lifesteal', ratio: 0.04, target: 'self'}
+    ],
+    description: "Rappelle la Lance, téléporte le lanceur sur la case ciblée et vole de la Fuite et de la vie dans le meilleur élément du lanceur aux ennemis en zone."
 }
 move.ydra = {
     id: 'ydra',
     name: 'Ydra',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 44, max: 50}, target: 'all_enemies'}],
+    description: "Réduit les dommages reçus par le lanceur pour chaque ennemi dans la zone d'effet et leur occasionne des dommages Terre en zone. Les dommages de zone ne sont pas dégressifs."
 }
 // move.crepuscule = {
 //     id: 'crepuscule',
@@ -9594,9 +9793,9 @@ move.degagement = {
     id: 'degagement',
     name: 'Dégagement',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 29, max: 32}, target: 'all_enemies'}],
+    description: "Occasionne des dommages Air aux ennemis et repousse les cibles depuis le centre en zone. N'affecte pas le lanceur."
 }
 // move.renommee = {
 //     id: 'renommee',
@@ -9610,9 +9809,9 @@ move.fer_rouge = {
     id: 'fer_rouge',
     name: 'Fer Rouge',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 34}, target: 'all_enemies'}],
+    description: "Occasionne des dommages Feu aux ennemis et augmente les dommages qu'ils subissent en zone. Invoque la Lance si la case est ou devient libre."
 }
 // move.etreinte_de_valkyr = {
 //     id: 'etreinte_de_valkyr',
@@ -9626,9 +9825,9 @@ move.elding = {
     id: 'elding',
     name: 'Elding',
     classId: 'forgelance',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'all_enemies'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 36, max: 40}, target: 'all_enemies'}],
+    description: "Invoque la Lance, attire les cibles vers le centre et occasionne des dommages Eau aux ennemis en zone. N'affecte pas le lanceur."
 }
 // move.holmgang = {
 //     id: 'holmgang',
@@ -9646,13 +9845,13 @@ move.gueule_de_bois = {
     name: 'Gueule de Bois',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 19, max: 22}}},
                        {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 24, max: 27}}}],
     description: ""
 }
 move.paume_explosive = {
@@ -9660,13 +9859,13 @@ move.paume_explosive = {
     name: 'Paume Explosive',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 15, max: 17}}},
                        {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 18, max: 20}}}],
     description: ""
 }
 move.schnaps = {
@@ -9674,13 +9873,13 @@ move.schnaps = {
     name: 'Schnaps',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 17, max: 19}}},
                        {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 21, max: 24}}}],
     description: ""
 }
 move.ethylo = {
@@ -9688,13 +9887,13 @@ move.ethylo = {
     name: 'Ethylo',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 20, max: 23}}},
                        {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 25, max: 28}}}],
     description: ""
 }
 // move.bombance = {
@@ -9730,7 +9929,7 @@ move.epouvante = {
     name: 'Épouvante',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'push', value: 1, target: 'enemy'}],
+    effects: [{type: 'recul', target: 'enemy'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
@@ -9743,28 +9942,28 @@ move.brancard = {
     id: 'brancard',
     name: 'Brancard',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 26}}},
                        {lvl: 154,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 32}}}],
     description: ""
 }
 move.pandikulation = {
     id: 'pandikulation',
     name: 'Pandikulation',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 23, max: 25}}},
                        {lvl: 159,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 28, max: 31}}}],
     description: ""
 }
 // move.ebriete = {
@@ -9799,35 +9998,35 @@ move.propulsion = {
     id: 'propulsion',
     name: 'Propulsion',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'air', damage: {min: 21, max: 23}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 27, max: 30}}},
                        {lvl: 174,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 33, max: 37}}}],
     description: ""
 }
 move.eau_de_vie = {
     id: 'eau_de_vie',
     name: 'Eau-de-vie',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 18}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 22, max: 24}}},
                        {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 26, max: 29}}}],
     description: ""
 }
 move.souillure = {
     id: 'souillure',
     name: 'Souillure',
     classId: 'pandawa',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [{type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy'}, {type: 'debuff', stat: 'atk', value: 10, duration: 1, target: 'enemy'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
@@ -9842,27 +10041,27 @@ move.fermentation = {
     name: 'Fermentation',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'shield', value: 2, target: 'self'}],
+    effects: [{type: 'shield', value: 50, duration: 1, target: 'self'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {}},
+                        patch: {value: 100}},
                        {lvl: 189,
-                        patch: {}}],
+                        patch: {value: 150}}],
     description: ""
 }
 move.eviction = {
     id: 'eviction',
     name: 'Éviction',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 11, max: 13}, target: 'enemy'}],
     spellProgression: [{lvl: 65,
                         patch: {}},
                        {lvl: 127,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 13, max: 15}}},
                        {lvl: 194,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 15, max: 17}}}],
     description: ""
 }
 move.flasque_explosive = {
@@ -9870,13 +10069,13 @@ move.flasque_explosive = {
     name: 'Flasque Explosive',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'all_enemies'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'all_enemies'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
-                        patch: {damage: {min: 1, max: 1}}},
+                        patch: {damage: {min: 16, max: 18}}},
                        {lvl: 198,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 18, max: 20}}}],
     description: ""
 }
 // move.lait_de_bambou = {
@@ -9895,31 +10094,31 @@ move.nausee = {
     id: 'nausee',
     name: 'Nausée',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 77,
                         patch: {}},
                        {lvl: 142,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 15, max: 17}}}],
     description: ""
 }
 move.vague_a_lame = {
     id: 'vague_a_lame',
     name: 'Vague à Lame',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3000,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 29, max: 32}, target: 'enemy'}],
     spellProgression: [{lvl: 81,
                         patch: {}},
                        {lvl: 147,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 36, max: 40}}}],
     description: ""
 }
 move.lien_spiritueux = {
     id: 'lien_spiritueux',
     name: 'Lien Spiritueux',
     classId: 'pandawa',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'lien_spiritueux_pandawa', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 85,
                         patch: {}},
@@ -9943,24 +10142,24 @@ move.souffle_enflamme = {
     id: 'souffle_enflamme',
     name: 'Souffle Enflammé',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 16, max: 18}}}],
     description: ""
 }
 move.distillation = {
     id: 'distillation',
     name: 'Distillation',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 18}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.05, target: 'self'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 22, max: 24}}}],
     description: ""
 }
 move.ribote = {
@@ -9968,23 +10167,23 @@ move.ribote = {
     name: 'Ribote',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 19, max: 21}}}],
     description: ""
 }
 move.engourdissement = {
     id: 'engourdissement',
     name: 'Engourdissement',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 1700,
+    effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 14}, target: 'enemy'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 15, max: 17}}}],
     description: ""
 }
 // move.picole = {
@@ -10027,12 +10226,12 @@ move.alcoshu = {
     id: 'alcoshu',
     name: 'Alcoshu',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 3500,
+    effects: [{type: 'damage', element: 'eau', damage: {min: 35, max: 38}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.10, target: 'self'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
-                        patch: {damage: {min: 1, max: 1}}}],
+                        patch: {damage: {min: 44, max: 48}}}],
     description: ""
 }
 move.liqueur = {
@@ -10040,7 +10239,7 @@ move.liqueur = {
     name: 'Liqueur',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 20, max: 23}, target: 'enemy'}],
     description: ""
 }
 // move.ivresse = {
@@ -10064,7 +10263,7 @@ move.absinthe = {
     name: 'Absinthe',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
     description: ""
 }
 move.bistouille = {
@@ -10072,7 +10271,7 @@ move.bistouille = {
     name: 'Bistouille',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 24, max: 27}, target: 'enemy'}],
     description: ""
 }
 // move.brassage = {
@@ -10095,16 +10294,16 @@ move.souffle_alcoolise = {
     id: 'souffle_alcoolise',
     name: 'Souffle Alcoolisé',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'all_enemies'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 21}, target: 'all_enemies'}],
     description: ""
 }
 move.pandatak = {
     id: 'pandatak',
     name: 'Pandatak',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'all_enemies'}],
+    cooldownMs: 2500,
+    effects: [{type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'all_enemies'}],
     description: ""
 }
 // move.prohibition = {
@@ -10120,7 +10319,7 @@ move.cascade = {
     name: 'Cascade',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 20, max: 23}, target: 'enemy'}],
     description: ""
 }
 move.pandjiu = {
@@ -10128,14 +10327,14 @@ move.pandjiu = {
     name: 'Pandjiu',
     classId: 'pandawa',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 28, max: 32}, target: 'enemy'}],
     description: ""
 }
 move.bambou = {
     id: 'bambou',
     name: 'Bambou',
     classId: 'pandawa',
-    cooldownMs: 2000,
+    cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'bambou_pandawa', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
@@ -10143,8 +10342,8 @@ move.main_de_pandawa = {
     id: 'main_de_pandawa',
     name: 'Main de Pandawa',
     classId: 'pandawa',
-    cooldownMs: 2000,
-    effects: [{type: 'best_element_damage', damage: {min: 1, max: 1}, target: 'enemy'}],
+    cooldownMs: 2500,
+    effects: [{type: 'best_element_damage', damage: {min: 25, max: 28}, target: 'enemy'}],
     description: ""
 }
 // #endregion
@@ -10154,57 +10353,65 @@ move.affront = {
     id: 'affront',
     name: 'Affront',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 1,
-                        patch: {}},
-                       {lvl: 66,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 132,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 1, patch: {}},
+        {lvl: 66, patch: {damage: {min: 20, max: 22}}},
+        {lvl: 132, patch: {cooldownMs: 2400, damage: {min: 26, max: 28}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis et repousse les cibles en zone. La poussée n'est pas appliquée si le sort est projeté dans un portail."
 }
 move.audace = {
     id: 'audace',
     name: 'Audace',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 8,
-                        patch: {}},
-                       {lvl: 67,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 133,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'avance', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 8, patch: {}},
+        {lvl: 67, patch: {damage: {min: 20, max: 23}}},
+        {lvl: 133, patch: {cooldownMs: 2400, damage: {min: 26, max: 29}}}
+    ],
+    description: "Rapproche le lanceur de la cible et occasionne des dommages Eau aux ennemis. Le rapprochement n'est pas appliqué si le sort est projeté dans un portail."
 }
 move.commotion = {
     id: 'commotion',
     name: 'Commotion',
     classId: 'eliotrope',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 12,
-                        patch: {}},
-                       {lvl: 69,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 136,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 14, max: 16}, target: 'enemy'},
+        {type: 'avance', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 12, patch: {}},
+        {lvl: 69, patch: {damage: {min: 18, max: 20}}},
+        {lvl: 136, patch: {cooldownMs: 2200, damage: {min: 23, max: 26}}}
+    ],
+    description: "Occasionne des dommages Terre aux ennemis et attire les cibles vers le centre en zone. L'attirance affecte le lanceur uniquement si le sort est projeté dans un portail."
 }
 move.rayon_de_wakfu = {
     id: 'rayon_de_wakfu',
     name: 'Rayon de Wakfu',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 16,
-                        patch: {}},
-                       {lvl: 68,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 134,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'heal', heal: {min: 10, max: 14}, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 16, patch: {}},
+        {lvl: 68, patch: {damage: {min: 21, max: 23}, heal: {min: 14, max: 18}}},
+        {lvl: 134, patch: {cooldownMs: 2400, damage: {min: 26, max: 28}, heal: {min: 18, max: 22}}}
+    ],
+    description: "Soigne les alliés et occasionne des dommages Feu aux ennemis en zone."
 }
 // move.portail = {
 //     id: 'portail',
@@ -10228,7 +10435,7 @@ move.rayon_de_wakfu = {
 //     effects: [],
 //     spellProgression: [{lvl: 24,
 //                         patch: {}},
-//                        {lvl: 77,  
+//                        {lvl: 77,
 //                         patch: {}},
 //                        {lvl: 144,
 //                         patch: {}}],
@@ -10238,15 +10445,17 @@ move.persiflage = {
     id: 'persiflage',
     name: 'Persiflage',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 28,
-                        patch: {}},
-                       {lvl: 82,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 149,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 16, max: 18}, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 28, patch: {}},
+        {lvl: 82, patch: {damage: {min: 20, max: 23}}},
+        {lvl: 149, patch: {cooldownMs: 2400, damage: {min: 25, max: 29}}}
+    ],
+    description: "Retire de la Portée et occasionne des dommages Terre. Le retrait devient un vol si le sort est projeté dans un portail."
 }
 // move.cicatrisation = {
 //     id: 'cicatrisation',
@@ -10256,7 +10465,7 @@ move.persiflage = {
 //     effects: [],
 //     spellProgression: [{lvl: 33,
 //                         patch: {}},
-//                        {lvl: 87,  
+//                        {lvl: 87,
 //                         patch: {}},
 //                        {lvl: 154,
 //                         patch: {}}],
@@ -10267,42 +10476,46 @@ move.outrage = {
     name: 'Outrage',
     classId: 'eliotrope',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 37,
-                        patch: {}},
-                       {lvl: 92,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 159,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 15, max: 18}, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 37, patch: {}},
+        {lvl: 92, patch: {damage: {min: 19, max: 23}}},
+        {lvl: 159, patch: {cooldownMs: 2200, damage: {min: 24, max: 29}}}
+    ],
+    description: "Occasionne des dommages Feu. Augmente également la Portée du lanceur si le sort est projeté dans un portail."
 }
 move.odyssee = {
     id: 'odyssee',
     name: 'Odyssée',
     classId: 'eliotrope',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'spd', value: 10, duration: 1, target: 'self'}],
-    spellProgression: [{lvl: 41,
-                        patch: {}},
-                       {lvl: 97,
-                        patch: {}},
-                       {lvl: 164,
-                        patch: {}}],
-    description: ""
+    effects: [
+        {type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 41, patch: {}},
+        {lvl: 97, patch: {buff: {value: 20, duration: 2}}},
+        {lvl: 164, patch: {buff: {value: 25, duration: 2}}}
+    ],
+    description: "Sur un ennemi : éloigne le lanceur de la cible et attire la cible. Sur un allié : repousse la cible et rapproche le lanceur vers elle."
 }
 move.insolence = {
     id: 'insolence',
     name: 'Insolence',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 45,
-                        patch: {}},
-                       {lvl: 102,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 169,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 16, max: 18}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 45, patch: {}},
+        {lvl: 102, patch: {damage: {min: 20, max: 23}}},
+        {lvl: 169, patch: {cooldownMs: 2400, damage: {min: 25, max: 28}}}
+    ],
+    description: "Éloigne le lanceur de la cible et occasionne des dommages Eau aux ennemis. Le recul n'est pas appliqué si le sort est projeté dans un portail."
 }
 // move.cabale = {
 //     id: 'cabale',
@@ -10312,7 +10525,7 @@ move.insolence = {
 //     effects: [],
 //     spellProgression: [{lvl: 49,
 //                         patch: {}},
-//                        {lvl: 107,  
+//                        {lvl: 107,
 //                         patch: {}},
 //                        {lvl: 174,
 //                         patch: {}}],
@@ -10322,15 +10535,17 @@ move.brimade = {
     id: 'brimade',
     name: 'Brimade',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 53,
-                        patch: {}},
-                       {lvl: 112,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 179,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 14, max: 16}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 53, patch: {}},
+        {lvl: 112, patch: {damage: {min: 18, max: 20}}},
+        {lvl: 179, patch: {cooldownMs: 2400, damage: {min: 23, max: 25}}}
+    ],
+    description: "Occasionne des dommages Air aux ennemis en zone et repousse les cibles depuis le centre de la zone. La poussée affecte le lanceur uniquement si le sort est projeté dans un portail."
 }
 // move.sillage = {
 //     id: 'sillage',
@@ -10340,7 +10555,7 @@ move.brimade = {
 //     effects: [],
 //     spellProgression: [{lvl: 57,
 //                         patch: {}},
-//                        {lvl: 117,  
+//                        {lvl: 117,
 //                         patch: {}},
 //                        {lvl: 184,
 //                         patch: {}}],
@@ -10350,15 +10565,17 @@ move.therapie = {
     id: 'therapie',
     name: 'Thérapie',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 61,
-                        patch: {}},
-                       {lvl: 122,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 189,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'},
+        {type: 'heal', heal: {min: 10, max: 14}, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 61, patch: {}},
+        {lvl: 122, patch: {damage: {min: 20, max: 22}, heal: {min: 14, max: 18}}},
+        {lvl: 189, patch: {cooldownMs: 2400, damage: {min: 23, max: 26}, heal: {min: 17, max: 21}}}
+    ],
+    description: "Vole de la vie dans l'élément Terre aux ennemis ou soigne l'allié ciblé et attire la cible."
 }
 // move.distribution = {
 //     id: 'distribution',
@@ -10368,7 +10585,7 @@ move.therapie = {
 //     effects: [],
 //     spellProgression: [{lvl: 65,
 //                         patch: {}},
-//                        {lvl: 127,  
+//                        {lvl: 127,
 //                         patch: {}},
 //                        {lvl: 194,
 //                         patch: {}}],
@@ -10378,15 +10595,17 @@ move.affliction = {
     id: 'affliction',
     name: 'Affliction',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 69,
-                        patch: {}},
-                       {lvl: 131,
-                        patch: {damage: {min: 1, max: 1}}},
-                       {lvl: 198,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2200,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 14, max: 16}, target: 'enemy'},
+        {type: 'heal', heal: {min: 10, max: 12}, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 69, patch: {}},
+        {lvl: 131, patch: {damage: {min: 18, max: 21}, heal: {min: 13, max: 16}}},
+        {lvl: 198, patch: {cooldownMs: 2400, damage: {min: 23, max: 26}, heal: {min: 17, max: 20}}}
+    ],
+    description: "Vole de la vie dans l'élément Eau aux ennemis ou soigne l'allié ciblé. Applique également un poison Eau de début de tour si le sort est projeté dans un portail."
 }
 // move.transcendance = {
 //     id: 'transcendance',
@@ -10396,7 +10615,7 @@ move.affliction = {
 //     effects: [],
 //     spellProgression: [{lvl: 73,
 //                         patch: {}},
-//                        {lvl: 137,  
+//                        {lvl: 137,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -10404,13 +10623,16 @@ move.raillerie = {
     id: 'raillerie',
     name: 'Raillerie',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 77,
-                        patch: {}},
-                       {lvl: 142,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 26, max: 29}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 77, patch: {}},
+        {lvl: 142, patch: {cooldownMs: 2700, damage: {min: 32, max: 36}}}
+    ],
+    description: "Occasionne des dommages Air. Retire également des PM si le sort est projeté dans un portail."
 }
 // move.resonance = {
 //     id: 'resonance',
@@ -10420,7 +10642,7 @@ move.raillerie = {
 //     effects: [],
 //     spellProgression: [{lvl: 81,
 //                         patch: {}},
-//                        {lvl: 147,  
+//                        {lvl: 147,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -10428,13 +10650,15 @@ move.extinction = {
     id: 'extinction',
     name: 'Extinction',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 85,
-                        patch: {}},
-                       {lvl: 152,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2500,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 26, max: 28}, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 85, patch: {}},
+        {lvl: 152, patch: {cooldownMs: 2700, damage: {min: 32, max: 35}}}
+    ],
+    description: "Occasionne des dommages Feu. Applique également un poison Feu de fin de tour sur la cible si le sort est projeté dans un portail."
 }
 // move.entraide = {
 //     id: 'entraide',
@@ -10444,7 +10668,7 @@ move.extinction = {
 //     effects: [],
 //     spellProgression: [{lvl: 90,
 //                         patch: {}},
-//                        {lvl: 157,  
+//                        {lvl: 157,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -10452,49 +10676,60 @@ move.mepris = {
     id: 'mepris',
     name: 'Mépris',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 95,
-                        patch: {}},
-                       {lvl: 162,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 28, max: 32}, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 25, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 95, patch: {}},
+        {lvl: 162, patch: {cooldownMs: 2900, damage: {min: 35, max: 40}}}
+    ],
+    description: "Occasionne des dommages Air et affaiblit considérablement l'ennemi."
 }
 move.tribulation = {
     id: 'tribulation',
     name: 'Tribulation',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 100,
-                        patch: {}},
-                       {lvl: 167,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 28, max: 32}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 100, patch: {}},
+        {lvl: 167, patch: {cooldownMs: 2900, damage: {min: 35, max: 40}}}
+    ],
+    description: "Occasionne des dommages Eau et ralentit l'ennemi."
 }
 move.convulsion = {
     id: 'convulsion',
     name: 'Convulsion',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 105,
-                        patch: {}},
-                       {lvl: 177,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 28, max: 32}, target: 'enemy'},
+        {type: 'debuff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 105, patch: {}},
+        {lvl: 177, patch: {cooldownMs: 2900, damage: {min: 35, max: 40}}}
+    ],
+    description: "Occasionne des dommages Terre aux ennemis et réduit leurs résistances."
 }
 move.faisceau = {
     id: 'faisceau',
     name: 'Faisceau',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 110,
-                        patch: {}},
-                       {lvl: 172,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 28, max: 32}, target: 'enemy'}
+    ],
+    spellProgression: [
+        {lvl: 110, patch: {}},
+        {lvl: 172, patch: {cooldownMs: 2900, damage: {min: 35, max: 40}}}
+    ],
+    description: "Occasionne des dommages Feu puissants aux ennemis en faisceau."
 }
 // move.errance = {
 //     id: 'errance',
@@ -10504,7 +10739,7 @@ move.faisceau = {
 //     effects: [],
 //     spellProgression: [{lvl: 115,
 //                         patch: {}},
-//                        {lvl: 182,  
+//                        {lvl: 182,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -10516,7 +10751,7 @@ move.faisceau = {
 //     effects: [],
 //     spellProgression: [{lvl: 120,
 //                         patch: {}},
-//                        {lvl: 187,  
+//                        {lvl: 187,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -10524,13 +10759,16 @@ move.sinecure = {
     id: 'sinecure',
     name: 'Sinécure',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    spellProgression: [{lvl: 125,
-                        patch: {}},
-                       {lvl: 192,
-                        patch: {damage: {min: 1, max: 1}}}],
-    description: ""
+    cooldownMs: 2700,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 30, max: 35}, target: 'enemy'},
+        {type: 'buff', stat: 'finalDamagePct', value: 15, duration: 2, target: 'self'}
+    ],
+    spellProgression: [
+        {lvl: 125, patch: {}},
+        {lvl: 192, patch: {cooldownMs: 2900, damage: {min: 37, max: 43}}}
+    ],
+    description: "Occasionne des dommages Air et augmente les dommages finaux du lanceur."
 }
 // move.conjuration = {
 //     id: 'conjuration',
@@ -10540,7 +10778,7 @@ move.sinecure = {
 //     effects: [],
 //     spellProgression: [{lvl: 130,
 //                         patch: {}},
-//                        {lvl: 197,  
+//                        {lvl: 197,
 //                         patch: {}}],
 //     description: ""
 // }
@@ -10548,9 +10786,11 @@ move.aplomb = {
     id: 'aplomb',
     name: 'Aplomb',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 32, max: 38}, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Eau très puissants aux ennemis."
 }
 // move.exode = {
 //     id: 'exode',
@@ -10564,9 +10804,12 @@ move.camouflet = {
     id: 'camouflet',
     name: 'Camouflet',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 32, max: 38}, target: 'enemy'},
+        {type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Terre très puissants et affaiblit considérablement l'ennemi."
 }
 // move.resilience = {
 //     id: 'resilience',
@@ -10580,9 +10823,11 @@ move.cataclysme = {
     id: 'cataclysme',
     name: 'Cataclysme',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 32, max: 38}, target: 'enemy'}
+    ],
+    description: "Déclenche un cataclysme de feu dévastateur aux ennemis."
 }
 // move.stupeur = {
 //     id: 'stupeur',
@@ -10596,9 +10841,12 @@ move.poing_fulgurant = {
     id: 'poing_fulgurant',
     name: 'Poing Fulgurant',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'eau', damage: {min: 32, max: 38}, target: 'enemy'},
+        {type: 'recul', target: 'enemy'}
+    ],
+    description: "Frappe l'ennemi avec un poing fulgurant d'énergie Eau et le repousse violemment."
 }
 // move.orgueil = {
 //     id: 'orgueil',
@@ -10612,9 +10860,12 @@ move.offense = {
     id: 'offense',
     name: 'Offense',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'feu', damage: {min: 32, max: 38}, target: 'enemy'},
+        {type: 'debuff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Feu puissants et réduit les résistances de l'ennemi."
 }
 // move.exil = {
 //     id: 'exil',
@@ -10628,25 +10879,33 @@ move.sarcasme = {
     id: 'sarcasme',
     name: 'Sarcasme',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'terre', damage: {min: 32, max: 38}, target: 'enemy'},
+        {type: 'debuff', stat: 'spd', value: 20, duration: 2, target: 'enemy'}
+    ],
+    description: "Occasionne des dommages Terre puissants et ralentit considérablement l'ennemi."
 }
 move.vestige = {
     id: 'vestige',
     name: 'Vestige',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'vestige_eliotrope', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    cooldownMs: 3500,
+    effects: [
+        {type: 'summon', summonId: 'vestige_eliotrope', scale: 0.30, duration: 2, target: 'self'}
+    ],
+    description: "Invoque un Vestige capable de frapper dans plusieurs éléments et de se téléporter via les portails."
 }
 move.sermon = {
     id: 'sermon',
     name: 'Sermon',
     classId: 'eliotrope',
-    cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 1, max: 1}, target: 'enemy'}],
-    description: ""
+    cooldownMs: 3000,
+    effects: [
+        {type: 'damage', element: 'air', damage: {min: 32, max: 38}, target: 'enemy'},
+        {type: 'buff', stat: 'atk', value: 30, duration: 2, target: 'self'}
+    ],
+    description: "Occasionne des dommages Air très puissants et renforce l'attaque du lanceur."
 }
 // move.coalition = {
 //     id: 'coalition',
