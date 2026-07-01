@@ -1218,7 +1218,7 @@ monsters.fantome_d_aventurier_brave = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1400, atk: 195, spd: 100, res: { neutre: 20, terre: -20, feu: 100, eau: -20, air: 100 } },
-    moves: []
+    moves: ['coup_de_bravoure']
 }
 // ═══════════════════════════════════════════════════════
 // CAMPEMENT BWORK (lvl 40+)

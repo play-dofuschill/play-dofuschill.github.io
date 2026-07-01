@@ -5514,11 +5514,10 @@ areas.evenementMinerEtFabriquer = {
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'piloteAutomatique', dropRate: 0.05 },
-        { itemId: 'runeFireResS',         dropRate: 0.01 },
-        { itemId: 'runeWaterResS',        dropRate: 0.01 },
-        { itemId: 'runeEarthResS',        dropRate: 0.01 },
-        { itemId: 'runeAirResS',          dropRate: 0.01 },
-        { itemId: 'runeNeutralResS',      dropRate: 0.01 },
+        { itemId: 'runeForceS',   dropRate: 0.01 },
+        { itemId: 'runeIntelS',   dropRate: 0.01 },
+        { itemId: 'runeChanceS',   dropRate: 0.01 },
+        { itemId: 'runeAgiS',   dropRate: 0.01 }
     ]
 }
 

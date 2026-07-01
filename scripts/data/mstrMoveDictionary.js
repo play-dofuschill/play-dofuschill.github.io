@@ -9060,6 +9060,15 @@ move.invocation_de_corbac_fantomatique = {
 }
 
 // -------- Fantôme d'Aventurier Brave ---------------
+move.coup_de_bravoure = {
+    id: 'coup_de_bravoure',
+    name: 'Coup de Bravoure',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 20, max: 25 }, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 60, duration: 2, target: 'self' }
+    ]
+}
 
 // -------- Rat Bougri ---------------
 move.ratissage = {
