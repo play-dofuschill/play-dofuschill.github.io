@@ -821,7 +821,7 @@ function gameTick() {
     if (!combat) return
     if (combat.isRaid) {
         raidGameTick()
-        if (state.isRunning) updateCombatUI()
+        if (state.isRunning && _afkSeconds <= 0) updateCombatUI()
         return
     }
     if (!combat.enemy) return
@@ -5068,6 +5068,16 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
         combat.raidMiniBossActive = false
         combat.raidKillCount      = 0
         combat.raidTotalSpawned   = 3
+        // Respawn synchrone en fast-forward (setTimeout incompatible avec le drain de _afkSeconds)
+        if (_afkSeconds > 0) {
+            for (let i = 0; i < 3; i++) {
+                combat.enemies[i]         = spawnEnemy(state.currentArea)
+                combat.enemyTimers[i]     = 0
+                combat.enemyNextMoveIds[i] = pickNextEnemyMove(combat.enemies[i])
+                combat.raidRespawnPending[i] = false
+            }
+            return
+        }
         setTimeout(() => {
             if (!state.isRunning || !state.currentArea) return
             for (let i = 0; i < 3; i++) {
@@ -5083,6 +5093,10 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
 
     if (combat.raidMiniBossActive) {
         // Mob lambda mort pendant la phase mini-boss → pas de respawn
+        if (_afkSeconds > 0) {
+            combat.raidRespawnPending[slotIdx] = false
+            return
+        }
         setTimeout(() => {
             combat.raidRespawnPending[slotIdx] = false
             updateCombatUI()
@@ -5096,29 +5110,45 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
 
     if (everyKills && combat.raidKillCount >= everyKills) {
         // Seuil atteint → mini-boss (seul, slots 1-2 vides)
-        setTimeout(() => {
+        if (_afkSeconds > 0) {
             combat.raidRespawnPending[slotIdx] = false
-            if (!state.isRunning || !state.currentArea) return
             _spawnRaidMiniBoss()
-        }, 500)
+        } else {
+            setTimeout(() => {
+                combat.raidRespawnPending[slotIdx] = false
+                if (!state.isRunning || !state.currentArea) return
+                _spawnRaidMiniBoss()
+            }, 500)
+        }
     } else if (!everyKills || combat.raidTotalSpawned < everyKills) {
         // Phase de remplacement : on spawn un nouvel ennemi dans ce slot
         combat.raidTotalSpawned = (combat.raidTotalSpawned || 3) + 1
-        setTimeout(() => {
+        if (_afkSeconds > 0) {
             combat.raidRespawnPending[slotIdx] = false
-            if (!state.isRunning || !state.currentArea) return
             combat.enemies[slotIdx]         = spawnEnemy(state.currentArea)
             combat.enemyTimers[slotIdx]     = 0
             combat.enemyNextMoveIds[slotIdx] = pickNextEnemyMove(combat.enemies[slotIdx])
-            updateCombatUI()
-        }, 500)
+        } else {
+            setTimeout(() => {
+                combat.raidRespawnPending[slotIdx] = false
+                if (!state.isRunning || !state.currentArea) return
+                combat.enemies[slotIdx]         = spawnEnemy(state.currentArea)
+                combat.enemyTimers[slotIdx]     = 0
+                combat.enemyNextMoveIds[slotIdx] = pickNextEnemyMove(combat.enemies[slotIdx])
+                updateCombatUI()
+            }, 500)
+        }
     } else {
         // Phase de drain : tous les ennemis ont été introduits, le slot reste vide
-        setTimeout(() => {
+        if (_afkSeconds > 0) {
             combat.raidRespawnPending[slotIdx] = false
-            if (!state.isRunning || !state.currentArea) return
-            updateCombatUI()
-        }, 500)
+        } else {
+            setTimeout(() => {
+                combat.raidRespawnPending[slotIdx] = false
+                if (!state.isRunning || !state.currentArea) return
+                updateCombatUI()
+            }, 500)
+        }
     }
 }
 

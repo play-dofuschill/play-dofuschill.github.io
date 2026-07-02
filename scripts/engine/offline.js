@@ -25,7 +25,7 @@ function onTabVisible() {
     const elapsed = Math.min(OFFLINE_CAP_MS, Date.now() - _tabHiddenAt)
     _tabHiddenAt = null
     if (elapsed < OFFLINE_MIN_MS) return
-    if (!state.isRunning || !combat || combat.isRaid || combat.isPoutch) return
+    if (!state.isRunning || !combat || combat.isPoutch) return
     _afkSeconds += elapsed / 1000
 }
 
@@ -72,9 +72,7 @@ function simulateOfflineProgress() {
     }
 
     // Injecte le temps à rattraper — la boucle RAF (_gameLoop) s'en charge
-    // Les raids utilisent des setTimeout de 500ms pour les respawns → incompatible avec le fast-forward
-    // (onTabVisible fait déjà ça correctement ; on aligne simulateOfflineProgress sur ce comportement)
-    if (combat?.isRaid || combat?.isPoutch) return
+    if (combat?.isPoutch) return
     _afkSeconds = elapsed / 1000
 }
 
@@ -96,7 +94,7 @@ function useOfflineBoostItem(itemId) {
     const entry = state.inventory[itemId]
     if (!itm?.offlineMinutes || !entry || entry.count <= 0) return
 
-    const canApply = state.isRunning && !combat?.isRaid && !combat?.isPoutch
+    const canApply = state.isRunning && !combat?.isPoutch
 
     if (!canApply) {
         openTooltip(
@@ -121,7 +119,7 @@ function _applyOfflineBoostItem(itemId) {
     const entry = state.inventory[itemId]
     if (!itm || !entry || entry.count <= 0) return
 
-    const canApply = state.isRunning && !combat?.isRaid && !combat?.isPoutch
+    const canApply = state.isRunning && !combat?.isPoutch
     const minutes  = itm.offlineMinutes || 0
 
     entry.count--
