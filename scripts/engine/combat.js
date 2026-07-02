@@ -5008,6 +5008,11 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     if (combat.raidRespawnPending[slotIdx]) return
     combat.raidRespawnPending[slotIdx] = true
 
+    // Tout le corps est protégé : une exception ici (XP, loot, notifications...) ne doit
+    // jamais laisser raidRespawnPending bloqué à true, sinon le slot reste mort pour
+    // toujours sans jamais déclencher le watchdog tant qu'un autre slot reste valide.
+    try {
+
     if (combat.huppermageLastElement) delete combat.huppermageLastElement[slotIdx]
 
     const defeatedEnemy = combat.enemies[slotIdx]
@@ -5176,6 +5181,15 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
                 updateCombatUI()
             }, 500)
         }
+    }
+
+    } catch (e) {
+        console.error('[onRaidEnemyDeath] erreur inattendue — slot débloqué de force', e)
+        combat.raidRespawnPending[slotIdx] = false
+        combat.enemies[slotIdx]          = spawnEnemy(state.currentArea)
+        combat.enemyTimers[slotIdx]      = 0
+        combat.enemyNextMoveIds[slotIdx] = combat.enemies[slotIdx] ? pickNextEnemyMove(combat.enemies[slotIdx]) : null
+        updateCombatUI()
     }
 }
 
