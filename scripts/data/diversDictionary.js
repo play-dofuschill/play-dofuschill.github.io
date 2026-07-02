@@ -888,6 +888,30 @@ item.cleDonjonKatrepat = {
     isKey: true,
     description: 'Cette clef permet de rentrer dans le Donjon des Katrepat.'
 }
+item.cleDonjonSupervisoeuf = {
+    id: 'cleDonjonSupervisoeuf',
+    name: "Clef du poste de contrôle du Supervisoeuf",
+    image: 'img/items/divers/cleDonjonSupervisoeuf.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans le poste de contrôle du Supervisoeuf."
+}
+item.cleDonjonDechechireuse = {
+    id: 'cleDonjonDechechireuse',
+    name: "Clef de l'autel de la Déchireuse",
+    image: 'img/items/divers/cleDonjonDechechireuse.png',
+    type: 'resource',
+    isKey: true,
+    description: "Cette clef permet de rentrer dans l'autel de la Déchireuse."
+}
+item.cleDonjonBreuil = {
+    id: 'cleDonjonBreuil',
+    name: 'Clef du Breuil du Vénérable',
+    image: 'img/items/divers/DonjonBreuil.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans le du Breuil du Vénérable.'
+}
 
 // #endregion
 

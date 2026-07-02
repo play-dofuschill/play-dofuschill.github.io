@@ -8940,7 +8940,7 @@ move.cubitus = {
     name: 'Cubitus',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.12, target: 'self'}],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
@@ -9052,7 +9052,7 @@ move.dogue = {
     name: 'Dogue',
     classId: 'ouginak',
     cooldownMs: 2000,
-    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.12, target: 'self'}],
     spellProgression: [{lvl: 69,
                         patch: {}},
                        {lvl: 131,
@@ -9222,7 +9222,7 @@ move.calcaneus = {
     name: 'Calcanéus',
     classId: 'ouginak',
     cooldownMs: 2500,
-    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'eau', damage: {min: 19, max: 21}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 21}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.12, target: 'self'}],
     description: ""
 }
 // move.caninos = {
@@ -9238,7 +9238,7 @@ move.aboi = {
     name: 'Aboi',
     classId: 'ouginak',
     cooldownMs: 2500,
-    effects: [{type: 'lifesteal', ratio: 0.12, target: 'self'}, {type: 'damage', element: 'feu', damage: {min: 20, max: 22}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 22}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.12, target: 'self'}],
     description: ""
 }
 move.battue = {

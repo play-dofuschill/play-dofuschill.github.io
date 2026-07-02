@@ -113,6 +113,12 @@ function getShopEntries(cat) {
         case 'cosmetics':
             return pool.skins.map(id => ({ itemId: id, price: item[id]?.price ?? 100 }))
 
+        case 'trophees':
+            return Object.values(item)
+                .filter(i => i.trophy)
+                .sort((a, b) => a.id.localeCompare(b.id))
+                .map(i => ({ itemId: i.id, price: 10 }))
+
         default:
             return []
     }
@@ -160,6 +166,28 @@ function _recordPurchase(itemId, qty) {
 
 function buyShopItem(itemId, price, qty = 1) {
     const itm = item[itemId]
+
+    if (itm?.trophy) {
+        if ((state.ownedTrophees || []).includes(itemId)) {
+            showNotification('Vous possédez déjà ce trophée !', 'info')
+            return
+        }
+        if (state.kamas < price) {
+            showNotification('Pas assez de kamas !', 'error')
+            return
+        }
+        state.kamas -= price
+        if (!state.ownedTrophees) state.ownedTrophees = []
+        state.ownedTrophees.push(itemId)
+        addToInventory(itemId)
+        saveGame()
+        updateKamasDisplay()
+        const el = document.getElementById('shop-kamas-amount')
+        if (el) el.textContent = state.kamas
+        updateShopUI()
+        showNotification(`${itm.name} obtenu !`, 'info')
+        return
+    }
 
     if (itm?.type === 'cosmetic_skin') {
         if ((state.ownedSkins || []).includes(itemId)) {

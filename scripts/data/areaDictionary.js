@@ -1,4 +1,4 @@
-﻿// areaDictionary.js — Zones de farm DofusChill
+// areaDictionary.js — Zones de farm DofusChill
 //
 // minLevel / maxLevel  : fourchette affichée dans l'UI de la zone
 // mobMinLevel / mobMaxLevel : fourchette de niveau des monstres spawnés
@@ -770,7 +770,14 @@ areas.foretAbraknydes = {
         { itemId: 'abracape', dropRate: 0.01 },
         { itemId: 'abranneau', dropRate: 0.01 },
         { itemId: 'abramu', dropRate: 0.01 },
-        { itemId: 'abranneau_mou', dropRate: 0.01 }
+        { itemId: 'abranneau_mou', dropRate: 0.01 },
+        { itemId: 'anobra', dropRate: 0.01 },
+        { itemId: 'araknamu', dropRate: 0.01 },
+        { itemId: 'abrabottes', dropRate: 0.01 },
+        { itemId: 'abracapa', dropRate: 0.01 },
+        { itemId: 'abracaska', dropRate: 0.01 },
+        { itemId: 'abraton', dropRate: 0.01 },
+        { itemId: 'abrature', dropRate: 0.01 }
     ]
 }
 
@@ -799,7 +806,14 @@ areas.canyonSauvage = {
         { itemId: 'ceinture_du_koalak', dropRate: 0.01 },
         { itemId: 'coiffe_du_koalak', dropRate: 0.01 },
         { itemId: 'arc_du_koalak', dropRate: 0.01 },
-        { itemId: 'cape_du_koalak', dropRate: 0.01 }
+        { itemId: 'cape_du_koalak', dropRate: 0.01 },
+        { itemId: 'amulette_du_boufcoul', dropRate: 0.01 },
+        { itemId: 'ceinture_du_boufcoul', dropRate: 0.01 },
+        { itemId: 'anneau_du_boufcoul', dropRate: 0.01 },
+        { itemId: 'bottes_du_boufcoul', dropRate: 0.01 },
+        { itemId: 'marteau_du_boufcoul', dropRate: 0.01 },
+        { itemId: 'coiffe_du_boufcoul', dropRate: 0.01 },
+        { itemId: 'cape_du_boufcoul', dropRate: 0.01 }
     ]
 }
 
@@ -4386,16 +4400,26 @@ areas.donjonDemeureEsprits = {
 areas.donjonSupervizoeuf = {
     id: 'donjonSupervizoeuf',
     type: 'dungeon',
-    keyId: '',
-    name: 'Poste de contrôle du Supervizœuf',
+    keyId: "cleDonjonSupervisoeuf",
+    name: "Poste de contrôle du Supervizœuf",
     minLevel: 175, maxLevel: 175,
     mobMinLevel: 175, mobMaxLevel: 175,
     background: "",
-    icon: 'images/monsters/Supervizœuf.png',
+    icon: "images/monsters/Supervizœuf.png",
     description: "Le Supervizœuf est l'agent de contrôle de la Nation des Œufs, une entité bureaucratique dont les tampons font plus de dégâts que la plupart des armes. Son poste de contrôle est un cauchemar administratif doublé d'un danger mortel.",
-    spawns: [{ id: 'superviz_uf', weight: 100 }],
+    spawns: [
+        { id: 'superviz_uf', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien', dropRate: 0.4 },
+        { itemId: 'carapace_ailee_du_superviz_uf', dropRate: 0.01 },
+        { itemId: 'poing_du_superviz_uf', dropRate: 0.01 },
+        { itemId: 'casque_du_superviz_uf', dropRate: 0.01 },
+        { itemId: 'dard_du_superviz_uf', dropRate: 0.01 },
+        { itemId: 'blindage_du_superviz_uf', dropRate: 0.01 },
+        { itemId: 'dagues_de_kabombz', dropRate: 0.01 },
+        { itemId: 'pagne_de_kabombz', dropRate: 0.01 },
+        { itemId: 'panier_de_z_ufs', dropRate: 0.01 }
     ]
 }
 
@@ -5163,32 +5187,52 @@ areas.donjonMalefices = {
 areas.donjonBreuil = {
     id: 'donjonBreuil',
     type: 'dungeon',
-    keyId: '',
-    name: 'Breuil du Vénérable',
+    keyId: "cleDonjonBreuil",
+    name: "Breuil du Vénérable",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Vénérable_Endormi.png',
+    icon: "images/monsters/Vénérable_Endormi.png",
     description: "Le Breuil du Vénérable est un espace sacré de la sylve profonde où sommeille le Vénérable Endormi, un être ancien dont le réveil est à la fois redouté et recherché. Troubler son sommeil a des conséquences — ne pas le troubler aussi.",
-    spawns: [{ id: 'venerable_endormi', weight: 100 }],
+    spawns: [
+        { id: 'venerable_endormi', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'arc_du_venerable_endormi', dropRate: 0.01 },
+        { itemId: 'cornes_du_venerable_endormi', dropRate: 0.01 },
+        { itemId: 'malediction_du_venerable_endormi', dropRate: 0.01 },
+        { itemId: 'manteau_du_venerable_endormi', dropRate: 0.01 },
+        { itemId: 'zarbappeau', dropRate: 0.01 },
+        { itemId: 'zarbaudrier', dropRate: 0.01 },
+        { itemId: 'zarbottes', dropRate: 0.01 },
+        { itemId: 'zarbouclier', dropRate: 0.01 }
     ]
 }
 
 areas.donjonDechireuse = {
     id: 'donjonDechireuse',
     type: 'dungeon',
-    keyId: '',
-    name: 'Autel de la Déchireuse',
+    keyId: "cleDonjonDechechireuse",
+    name: "Autel de la Déchireuse",
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 220, mobMaxLevel: 220,
     background: "",
-    icon: 'images/monsters/Déchireuse.png',
+    icon: "images/monsters/Déchireuse.png",
     description: "L'Autel de la Déchireuse est consacré à une créature dont le nom dit tout ce qu'il y a à savoir sur ses intentions. Son autel, taillé dans une roche noire et brillante, semble absorber la lumière comme la Déchireuse absorbe les âmes de ses offrandes.",
-    spawns: [{ id: 'dechireuse', weight: 100 }],
+    spawns: [
+        { id: 'dechireuse', weight: 100 }
+    ],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.35 },
+        { itemId: 'pierreDameGardien', dropRate: 0.35 },
+        { itemId: 'criniere_de_la_dechireuse', dropRate: 0.015 },
+        { itemId: 'griffes_de_la_dechireuse', dropRate: 0.015 },
+        { itemId: 'hachoir_de_la_dechireuse', dropRate: 0.015 },
+        { itemId: 'trophee_de_la_dechireuse', dropRate: 0.015 },
+        { itemId: 'collier_rhoarim', dropRate: 0.015 },
+        { itemId: 'faux_ve', dropRate: 0.015 },
+        { itemId: 'masse_osseuse', dropRate: 0.015 },
+        { itemId: 'pagne_rhoarim', dropRate: 0.015 }
     ]
 }
 
@@ -5952,7 +5996,7 @@ areas.evenementChasseAuxVolkornes = {
     mobMinLevel: 180,
     mobMaxLevel: 190,
     background: '',
-    icon: '',
+    icon: 'images/monsters/Volkorne_orchidée_sauvage.png',
     description: '',
     spawns: [{ id: 'volkorne_orchidee_sauvage', weight: 10 }, { id: 'volkorne_indigo_sauvage', weight: 10 }, { id: 'volkorne_ebene_sauvage', weight: 10 }, { id: 'volkorne_pourpre_sauvage', weight: 10 }],
     lootTable: [
@@ -6610,7 +6654,12 @@ areas.saisonHalouine = {
     spawns: [
         { id: 'bouftou_d_halouine', weight: 35 },
         { id: 'tofu_d_halouine',    weight: 35 },
-        { id: 'citwouille',         weight: 30 },
+        { id: 'devhorreur',         weight: 30 },
+        { id: 'cauchemarakne',         weight: 30 },
+        { id: 'champetrouille',         weight: 30 },
+        { id: 'lanverne',         weight: 30 },
+        { id: 'chauffe_soutrille',         weight: 30 },
+
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -6652,15 +6701,20 @@ areas.saisonNowelVillage = {
     id: 'saisonNowelVillage',
     type: 'saisonnier',
     season: { start: [12, 1], end: [1, 6] },
-    name: 'Village de Nowel',
+    name: "Village de Nowel",
     minLevel: 50, maxLevel: 55,
     mobMinLevel: 50, mobMaxLevel: 55,
-    background: '',
-    icon: 'images/monsters/Dragodinde_de_Nowel.png',
+    background: "",
+    icon: "images/monsters/Dragodinde_de_Nowel.png",
     description: "Le Village de Nowel s'éveille chaque décembre, recouvert d'une neige éternelle et peuplé de créatures festives aux intentions bien moins bienveillantes qu'elles n'y paraissent. Dragodinde et Croc Gland rôdent entre les chalets illuminés, gardant jalousement la clé du donjon des Sapiks.",
     spawns: [
-        { id: 'dragodinde_de_nowel', weight: 55 },
-        { id: 'croc_gland_de_nowel', weight: 45 },
+        { id: 'dragodinde_de_nowel', weight: 10 },
+        { id: 'croc_gland_de_nowel', weight: 10 },
+        { id: 'kipik', weight: 10 },
+        { id: 'kitsou_nakwatus', weight: 10 },
+        { id: 'black_tiwabbitus', weight: 10 },
+        { id: 'kwakus', weight: 10 },
+        { id: 'tofu_enneige', weight: 10 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -6670,7 +6724,11 @@ areas.saisonNowelVillage = {
         { itemId: 'glaglano', dropRate: 0.01 },
         { itemId: 'glaglamu', dropRate: 0.01 },
         { itemId: 'bague_cristalline', dropRate: 0.01 },
-        { itemId: 'ceinture_cristalline', dropRate: 0.01 }
+        { itemId: 'ceinture_cristalline', dropRate: 0.01 },
+        { itemId: 'bonnet_du_glutin', dropRate: 0.01 },
+        { itemId: 'bracelet_du_glutin', dropRate: 0.01 },
+        { itemId: 'calecon_fourre_du_glutin', dropRate: 0.01 },
+        { itemId: 'manteau_du_glutin', dropRate: 0.01 }
     ]
 }
 
@@ -6708,8 +6766,12 @@ areas.saisonNowelToundra = {
     icon: 'images/monsters/Dragodinde_de_Nowel.png',
     description: "Plus loin dans les terres gelées, la toundra de Nowel s'étend à perte de vue. Les Dragondindes sauvages y patrouillent en meutes tandis que des Bouboules de neige roulent entre les crevasses. Quelque part sous la glace se trouve l'entrée de la caverne du Papa Nowel.",
     spawns: [
-        { id: 'dragodinde_de_nowel_sauvage', weight: 55 },
-        { id: 'bouboule_de_neige',           weight: 45 },
+        { id: 'dragodinde_de_nowel_sauvage', weight: 10 },
+        { id: 'bouboule_de_neige',           weight: 10 },
+        { id: 'kanigrou_hivernal',           weight: 10 },
+        { id: 'bonhomme_de_neige',           weight: 10 },
+        { id: 'mininuit',           weight: 10 },
+        { id: 'croc_gland_de_nowel',           weight: 10 },
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -6740,20 +6802,27 @@ areas.saisonNowelDomaine = {
     id: 'saisonNowelDomaine',
     type: 'saisonnier',
     season: { start: [12, 1], end: [1, 6] },
-    name: 'Domaine du Père Fwetar',
+    name: "Domaine du Père Fwetar",
     minLevel: 160, maxLevel: 175,
     mobMinLevel: 160, mobMaxLevel: 175,
-    background: '',
-    icon: 'images/monsters/Dragodinde_de_Nowel.png',
+    background: "",
+    icon: "images/monsters/Dragodinde_de_Nowel.png",
     description: "Aux confins du monde de Nowel se dresse le domaine du Père Fwetar, entouré de Dragondindes fougueuses et de Peluches Wabbit gardiennes des murs. Ceux qui osent s'y aventurer savent qu'ils ne trouveront ni trêve ni pitié à l'approche de la demeure du plus sombre des esprits de la nuit de Nowel.",
     spawns: [
-        { id: 'dragodinde_de_nowel_fougueuse', weight: 50 },
-        { id: 'peluche_wabbit',                weight: 50 },
+        { id: 'dragodinde_de_nowel_fougueuse', weight: 10 },
+        { id: 'abominable_yiti_des_neiges', weight: 10 },
+        { id: 'craqueleur_des_glaces', weight: 10 },
+        { id: 'peluche_tofu', weight: 10 },
+        { id: 'peluche_bouftou', weight: 10 },
+        { id: 'peluche_wabbit', weight: 10 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonPapaNowel', dropRate: 0.15, isKey: true },
-        { itemId: '', dropRate: 0.01 },
+        { itemId: 'bottes_du_nowel_cauchemardesque', dropRate: 0.01 },
+        { itemId: 'cape_du_nowel_cauchemardesque', dropRate: 0.01 },
+        { itemId: 'masque_du_nowel_cauchemardesque', dropRate: 0.01 },
+        { itemId: 'porte_malheur_du_nowel_cauchemardesque', dropRate: 0.01 }
     ]
 }
 
@@ -6771,7 +6840,9 @@ areas.donjonPapaNowel = {
     spawns: [{ id: 'pere_fwetar', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: '', dropRate: 0.01 },
+        { itemId: 'bottes_du_pere_fwetar', dropRate: 0.01 },
+        { itemId: 'ceinture_du_pere_fwetar', dropRate: 0.01 },
+        { itemId: 'anneau_du_pere_fwetar', dropRate: 0.01 },
     ]
 }
 
@@ -6784,20 +6855,30 @@ areas.saisonChocolatRuelles = {
     id: 'saisonChocolatRuelles',
     type: 'saisonnier',
     season: { start: [2, 1], end: [3, 1] },
-    name: 'Ruelles Chocolatées',
+    name: "Ruelles Chocolatées",
     minLevel: 55, maxLevel: 65,
     mobMinLevel: 55, mobMaxLevel: 65,
-    background: '',
-    icon: 'images/monsters/Chef_Waddict.png',
+    background: "",
+    icon: "images/monsters/Chef_Waddict.png",
     description: "Dans les ruelles envahies de cacao fondu, les Chefs Waddicts et les Kwakao fanatiques font régner l'ordre au nom du dieu Kao. Nul n'entre dans la Fonderie sans avoir prouvé sa valeur dans ces ruelles... et survécu.",
     spawns: [
-        { id: 'chef_waddict', weight: 50 },
-        { id: 'kwakao',       weight: 50 },
+        { id: 'twakeuf', weight: 50 },
+        { id: 'wadnozeam', weight: 50 },
+        { id: 'waccro', weight: 50 },
+        { id: 'warkaik', weight: 50 },
+        { id: 'wadulant', weight: 50 }
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonWaddicts', dropRate: 0.15, isKey: true },
-        { itemId: '', dropRate: 0.01 },
+        { itemId: 'ceinture_amincissante', dropRate: 0.01 },
+        { itemId: 'rondelle_de_waddict', dropRate: 0.01 },
+        { itemId: 'mawabottes', dropRate: 0.01 },
+        { itemId: 'anneau_de_kloug', dropRate: 0.01 },
+        { itemId: 'ceinture_de_kloug', dropRate: 0.01 },
+        { itemId: 'amulette_de_kloug', dropRate: 0.01 },
+        { itemId: 'bottes_paupayahn', dropRate: 0.01 },
+        { itemId: 'anneau_paupayahn', dropRate: 0.01 }
     ]
 }
 
@@ -6815,7 +6896,9 @@ areas.donjonWaddicts = {
     spawns: [{ id: 'mawabouaino', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: '', dropRate: 0.01 },
+        { itemId: 'ceinture_amincissante', dropRate: 0.01 },
+        { itemId: 'rondelle_de_waddict', dropRate: 0.01 },
+        { itemId: 'mawabottes', dropRate: 0.01 },
     ]
 }
 
@@ -6830,8 +6913,11 @@ areas.saisonChocolatConfiserie = {
     icon: 'images/monsters/Kwakao.png',
     description: "Là où le chocolat se cristallise en lames et où les bonbons fondent en acide, la Confiserie de l'Enfer récompense les aventuriers assez solides pour y survivre d'une clé ouvrant les portes de la Croquanterie. Kwakao surdosés et Chocoligarques veillent sur ses couloirs à chaque instant.",
     spawns: [
-        { id: 'kwakao_surdose', weight: 55 },
-        { id: 'chocoligarque',  weight: 45 },
+        { id: 'kwakao', weight: 15 },
+        { id: 'kakoalak',  weight: 15 },
+        { id: 'mansocolat',  weight: 15 },
+        { id: 'glourson_guimauve',  weight: 15 },
+        { id: 'chocoskargo',  weight: 15 },
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -6871,13 +6957,18 @@ areas.saisonChocolatTemple = {
     icon: 'images/monsters/Éclat_Kao.png',
     description: "Aux portes du sanctuaire divin, les Chocoligarques d'élite et les Éclats Kao — fragments vivants de la volonté du dieu — repoussent tout profane qui oserait s'approcher. Seuls ceux qui parviennent à les vaincre peuvent espérer franchir les portes du Temple Kao et affronter sa Prêtresse.",
     spawns: [
-        { id: 'chocoligarque', weight: 40 },
-        { id: 'eclat_kao',     weight: 60 },
+        { id: 'chocoligarque', weight: 10 },
+        { id: 'torrefactueur',     weight: 10 },
+        { id: 'pralicienne',     weight: 10 },
+        { id: 'temperaturge',     weight: 10 },
+        { id: 'cabosseur',     weight: 10 },
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonKao', dropRate: 0.15, isKey: true },
-        { itemId: '', dropRate: 0.01 },
+        { itemId: 'amulette_des_chocomanciens', dropRate: 0.01 },
+        { itemId: 'bouclier_des_chocomanciens', dropRate: 0.01 },
+        { itemId: 'ceinture_des_chocomanciens', dropRate: 0.01 },
     ]
 }
 
@@ -6906,46 +6997,280 @@ areas.donjonKao = {
 // VULKANIA — 1 juillet au 1 septembre
 // ════════════════════════════════════════════════════════════════════════════════
 
-// areas.saisonVulkania_TEST = {
-//     id: 'saisonVulkania_TEST',
-//     type: 'saisonnier',
-//     season: { start: [7, 1], end: [9, 1] },
-//     name: 'Plages de Vulkania',
-//     minLevel: 60, maxLevel: 80,
-//     mobMinLevel: 60, mobMaxLevel: 80,
-//     background: '',
-//     icon: 'images/monsters/Krokille_Novice_Insipide.png',
-//     description: "TODO",
-//     spawns: [
-//         { id: 'krokille_novice_insipide',       weight: 20 },
-//         { id: 'krokille_novice_boueuse',         weight: 20 },
-//         { id: 'krokille_novice_incandescente',   weight: 20 },
-//         { id: 'krokille_novice_humide',          weight: 20 },
-//         { id: 'krokille_novice_seche',           weight: 20 },
-//     ],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-//         { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
-//         { itemId: '',                     dropRate: 0.01 },
-//     ]
-// }
+areas.saisonVulkania_1 = {
+    id: 'saisonVulkania_1',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    name: "Forêt d'Etraktopel",
+    minLevel: 20, maxLevel: 50,
+    mobMinLevel: 20, mobMaxLevel: 40,
+    background: '',
+    icon: 'images/monsters/Krokille_Juvénile_Insipide.png',
+    description: "TODO",
+    spawns: [
+        { id: 'krokille_juvenile_insipide',       weight: 20 },
+        { id: 'krokille_juvenile_boueuse',         weight: 20 },
+        { id: 'krokille_juvenile_incandescente',   weight: 20 },
+        { id: 'krokille_juvenile_humide',          weight: 20 },
+        { id: 'krokille_juvenile_seche',           weight: 20 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: '',                     dropRate: 0.01 },
+    ]
+}
 
-// areas.donjonVulkania_TEST = {
-//     id: 'donjonVulkania_TEST',
-//     type: 'saisonnier',
-//     season: { start: [7, 1], end: [9, 1] },
-//     keyId: 'cleDonjonVulkania',
-//     name: 'Donjon de Vulkania',
-//     minLevel: 80, maxLevel: 80,
-//     mobMinLevel: 80, mobMaxLevel: 80,
-//     background: '',
-//     icon: '',
-//     description: "TODO",
-//     spawns: [{ id: 'kralab_rah', weight: 100 }],
-//     lootTable: [
-//         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-//         { itemId: '',                  dropRate: 0.01 },
-//     ]
-// }
+areas.saisonVulkania_2 = {
+    id: 'saisonVulkania_2',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    name: "Forêt d'Espartiate",
+    minLevel: 50, maxLevel: 100,
+    mobMinLevel: 50, mobMaxLevel: 90,
+    background: '',
+    icon: 'images/monsters/Krokille_Novice_Insipide.png',
+    description: "TODO",
+    spawns: [
+        { id: 'krokille_novice_insipide',       weight: 20 },
+        { id: 'krokille_novice_boueuse',         weight: 20 },
+        { id: 'krokille_novice_incandescente',   weight: 20 },
+        { id: 'krokille_novice_humide',          weight: 20 },
+        { id: 'krokille_novice_seche',           weight: 20 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'sac_de_voyage_du_parfait_petit_vulkain', dropRate: 0.01 },
+        { itemId: 'chapeau_du_vulkain',   dropRate: 0.01 },
+        { itemId: 'anneau_du_vulkain',    dropRate: 0.01 },
+        { itemId: 'bottes_du_vulkain',    dropRate: 0.01 },
+        { itemId: 'bracelet_du_vulkain',  dropRate: 0.01 },
+    ]
+}
+
+areas.saisonVulkania_3 = {
+    id: 'saisonVulkania_3',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    name: 'Forêt des Strates Igraphies',
+    minLevel: 100, maxLevel: 140,
+    mobMinLevel: 100, mobMaxLevel: 130,
+    background: '',
+    icon: 'images/monsters/Krokille_Mature_Insipide.png',
+    description: "TODO",
+    spawns: [
+        { id: 'krokille_mature_insipide',       weight: 20 },
+        { id: 'krokille_mature_boueuse',         weight: 20 },
+        { id: 'krokille_mature_incandescente',   weight: 20 },
+        { id: 'krokille_mature_humide',          weight: 20 },
+        { id: 'krokille_mature_seche',           weight: 20 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'cape_du_krokilleur',   dropRate: 0.01 },
+        { itemId: 'ceinture_du_krokilleur', dropRate: 0.01 },
+        { itemId: 'amulette_du_krokilleur', dropRate: 0.01 },
+    ]
+}
+
+areas.saisonVulkania_4 = {
+    id: 'saisonVulkania_4',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    name: 'Forêt de Ponefarr',
+    minLevel: 140, maxLevel: 200,
+    mobMinLevel: 140, mobMaxLevel: 190,
+    background: '',
+    icon: 'images/monsters/Krokille_Vénérable_Insipide.png',
+    description: "TODO",
+    spawns: [
+        { id: 'krokille_venerable_insipide',       weight: 20 },
+        { id: 'krokille_venerable_boueuse',         weight: 20 },
+        { id: 'krokille_venerable_incandescente',   weight: 20 },
+        { id: 'krokille_venerable_humide',          weight: 20 },
+        { id: 'krokille_venerable_seche',           weight: 20 },
+    ],
+    lootTable: [
+        { itemId: 'pierreDameGardien',    dropRate: 0.45 },
+        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'binocle_airvoyant',    dropRate: 0.01 },
+        { itemId: 'pendentif_oton',       dropRate: 0.01 },
+        { itemId: 'batonnet_ronien',      dropRate: 0.01 },
+        { itemId: 'ceinture_hyolite',     dropRate: 0.01 },
+        { itemId: 'calotte_spot',         dropRate: 0.01 },
+        { itemId: 'phylactere_mic',       dropRate: 0.01 },
+    ]
+}
+
+areas.donjonVulkania_1 = {
+    id: 'donjonVulkania_1',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    keyId: 'cleDonjonVulkania',
+    name: 'Cratère Minus somnolant',
+    minLevel: 60, maxLevel: 60,
+    mobMinLevel: 60, mobMaxLevel: 60,
+    background: '',
+    icon: 'images/monsters/Grozilla.png',
+    description: "TODO",
+    spawns: [{ id: 'grozilla_somnambule', weight: 50 },
+             { id: 'grasmera_somnambule', weight: 50 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: '',                  dropRate: 0.01 },
+    ]
+}
+
+areas.donjonVulkania_2 = {
+    id: 'donjonVulkania_2',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    keyId: 'cleDonjonVulkania',
+    name: 'Cratère Minus épuisant',
+    minLevel: 110, maxLevel: 110,
+    mobMinLevel: 110, mobMaxLevel: 110,
+    background: '',
+    icon: 'images/monsters/Grozilla.png',
+    description: "TODO",
+    spawns: [{ id: 'grozilla_epuise', weight: 50 },
+             { id: 'grasmera_epuise', weight: 50 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'sac_de_voyage_du_parfait_petit_vulkain', dropRate: 0.01 },
+        { itemId: 'chapeau_du_vulkain',   dropRate: 0.01 },
+        { itemId: 'anneau_du_vulkain',    dropRate: 0.01 },
+        { itemId: 'bottes_du_vulkain',    dropRate: 0.01 },
+        { itemId: 'bracelet_du_vulkain',  dropRate: 0.01 },
+    ]
+}
+
+areas.donjonVulkania_3 = {
+    id: 'donjonVulkania_3',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    keyId: 'cleDonjonVulkania',
+    name: 'Cratère Minus fatiguant',
+    minLevel: 150, maxLevel: 150,
+    mobMinLevel: 150, mobMaxLevel: 150,
+    background: '',
+    icon: 'images/monsters/Grozilla.png',
+    description: "TODO",
+    spawns: [{ id: 'grozilla_fatigue', weight: 50 },
+             { id: 'grasmera_fatigue', weight: 50 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'cape_du_krokilleur',    dropRate: 0.01 },
+        { itemId: 'ceinture_du_krokilleur', dropRate: 0.01 },
+        { itemId: 'amulette_du_krokilleur', dropRate: 0.01 },
+    ]
+}
+
+areas.donjonVulkania_4 = {
+    id: 'donjonVulkania_4',
+    type: 'saisonnier',
+    season: { start: [7, 1], end: [9, 1] },
+    keyId: 'cleDonjonVulkania',
+    name: 'Cratère Minus',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 200, mobMaxLevel: 200,
+    background: '',
+    icon: 'images/monsters/Grozilla.png',
+    description: "TODO",
+    spawns: [{ id: 'grozilla', weight: 100 },
+             { id: 'grasmera', weight: 50 }],
+    lootTable: [
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'binocle_airvoyant',    dropRate: 0.01 },
+        { itemId: 'pendentif_oton',       dropRate: 0.01 },
+        { itemId: 'batonnet_ronien',      dropRate: 0.01 },
+        { itemId: 'ceinture_hyolite',     dropRate: 0.01 },
+        { itemId: 'calotte_spot',         dropRate: 0.01 },
+        { itemId: 'phylactere_mic',       dropRate: 0.01 },
+        { itemId: 'amulette_de_grozilla', dropRate: 0.01 },
+        { itemId: 'coiffe_de_grozilla',   dropRate: 0.01 },
+        { itemId: 'bottes_de_grozilla',   dropRate: 0.01 },
+        { itemId: 'ceinture_de_grozilla', dropRate: 0.01 },
+    ]
+}
 
 // #endregion SAISONNIERS
+
+// ─── Zones créées via l'éditeur ───
+areas.toorbzBoorzzbz = {
+    id: 'toorbzBoorzzbz',
+    name: 'Toorbz Boorzzbz',
+    minLevel: 160,
+    maxLevel: 180,
+    mobMinLevel: 160,
+    mobMaxLevel: 170,
+    background: '',
+    icon: 'images/monsters/Balebz.png',
+    description: '',
+    spawns: [{ id: 'balebz', weight: 10 }, { id: 'toubibz', weight: 10 }, { id: 'kamikabz', weight: 10 }, { id: 'quadrabz', weight: 10 }, { id: 'balebz_perturbe', weight: 1 }, { id: 'toubibz_perturbe', weight: 1 }, { id: 'kamikabz_perturbe', weight: 1 }, { id: 'quadrabz_perturbe', weight: 1 }],
+    lootTable: [{ itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'dagues_de_kabombz', dropRate: 0.01 }, { itemId: 'pagne_de_kabombz', dropRate: 0.01 }, { itemId: 'panier_de_z_ufs', dropRate: 0.01 }, { itemId: 'cleDonjonSupervisoeuf', dropRate: 0.15, isKey: true }]
+}
+
+
+// ─── Zones créées via l'éditeur ───
+areas.reserveTouffue = {
+    id: 'reserveTouffue',
+    name: "Réserve Touffue",
+    minLevel: 185,
+    maxLevel: 200,
+    mobMinLevel: 185,
+    mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/Lapilope.png",
+    description: "",
+    spawns: [
+        { id: 'lapilope', weight: 10 },
+        { id: 'brutapir', weight: 10 },
+        { id: 'gropotam', weight: 10 },
+        { id: 'amphibouc', weight: 10 },
+        { id: 'lapilope_perturbe', weight: 1 },
+        { id: 'brutapir_perturbe', weight: 1 },
+        { id: 'gropotam_perturbe', weight: 1 },
+        { id: 'amphibouc_perturbe', weight: 1 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'zarbappeau', dropRate: 0.01 },
+        { itemId: 'zarbaudrier', dropRate: 0.01 },
+        { itemId: 'zarbottes', dropRate: 0.01 },
+        { itemId: 'zarbouclier', dropRate: 0.01 },
+        { itemId: 'cleDonjonBreuil', dropRate: 0.15, isKey: true }
+    ]
+}
+
+
+// ─── Zones créées via l'éditeur ───
+areas.villageRhoarim = {
+    id: 'villageRhoarim',
+    name: "Village Rhoarim",
+    minLevel: 185,
+    maxLevel: 200,
+    mobMinLevel: 185,
+    mobMaxLevel: 200,
+    background: "",
+    icon: "images/monsters/Domptueuse.png",
+    description: "",
+    spawns: [
+        { id: 'domptueuse', weight: 10 },
+        { id: 'voracle', weight: 10 },
+        { id: 'ebourifauve', weight: 10 },
+        { id: 'domptueuse_perturbee', weight: 1 },
+        { id: 'voracle_perturbee', weight: 1 },
+        { id: 'ebourifauve_perturbee', weight: 1 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'collier_rhoarim', dropRate: 0.01 },
+        { itemId: 'faux_ve', dropRate: 0.01 },
+        { itemId: 'masse_osseuse', dropRate: 0.01 },
+        { itemId: 'pagne_rhoarim', dropRate: 0.01 },
+        { itemId: 'cleDonjonDechechireuse', dropRate: 0.15, isKey: true }
+    ]
+}
+

@@ -9,8 +9,7 @@ monsters['wanted_sam_sagaz'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 20,
-    bst: { hp: 6500, atk: 300, spd: 30,
-        res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 6500, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_sam_sagaz_jardinage', 'wanted_sam_sagaz_anneau_de_gaz', 'wanted_sam_sagaz_appel_de_bolesh']
 }
 
@@ -877,8 +876,7 @@ monsters['wanted_ganos'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 250000, atk: 1000, spd: 100,
-        res: { neutre: 20, feu: -5, eau: 15, air: 15, terre: 15 } },
+    bst: { hp: 250000, atk: 1000, spd: 100, res: { neutre: 20, feu: -5, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_ganos_matatak', 'wanted_ganos_sanglinglin', 'wanted_ganos_sabotage', 'wanted_ganos_taure_ture', 'wanted_ganos_lardage', 'wanted_ganos_sanglissade', 'wanted_ganos_taure_peur', 'wanted_ganos_rugibier', 'wanted_ganos_groincision']
 }
 
@@ -959,6 +957,17 @@ monsters['wanted_cire_momore'] = {
     bst: { hp: 700000, atk: 500, spd: 90, res: { neutre: 27, feu: 27, eau: 27, air: 27, terre: 27 } },
     moves: ['wanted_cire_momore_metal_hurlant', 'wanted_cire_momore_briselame', 'wanted_cire_momore_triste_cire', 'wanted_cire_momore_fatalite']
 }
+
+monsters['wanted_gargandyas'] = {
+    id: 'wanted_gargandyas',
+    name: 'Gargandyas',
+    image: 'img/monstres/wanted/avis/gargandyas.png',
+    rarity: 'legendaire',
+    tier: 'boss',
+    fixedLevel: 200,
+    bst: { hp: 100000, atk: 300, spd: 0, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    moves: ['wanted_gargandyas_sceaux_telluriques', 'wanted_gargandyas_amnesie_animale', 'wanted_gargandyas_cri_primitif', 'wanted_gargandyas_rituel_primordial', 'wanted_gargandyas_gargameha', 'wanted_gargandyas_rafale_bestiale']
+}
 // ─── Avis de Recherche ───────────────────────────────────────────────────────
 
 const WantedBosses = {
@@ -971,7 +980,7 @@ const WantedBosses = {
         background: '',
         levelCap:  20,
         bst:       { hp: 6500, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'amulette_d_hectaupe', dropRate: 0.1 }, { itemId: 'anneau_d_hectaupe', dropRate: 0.1 }, { itemId: 'ceinture_d_hectaupe', dropRate: 0.1 }]
     },
     'wanted_fouduglen_l_ecureuil': {
         id:        'wanted_fouduglen_l_ecureuil',
@@ -1752,7 +1761,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 300000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'bottes_du_captain_chafer', dropRate: 0.1 }, { itemId: 'poignards_du_captain_chafer', dropRate: 0.1 }, { itemId: 'slip_du_captain_chafer', dropRate: 0.1 }]
     },
     'wanted_voldelor': {
         id:        'wanted_voldelor',
@@ -1851,7 +1860,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 320000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'cape_ovri', dropRate: 0.1 }, { itemId: 'sangle_ouare', dropRate: 0.1 }, { itemId: 'talisman_songe', dropRate: 0.1 }]
     },
     'wanted_panteroz': {
         id:        'wanted_panteroz',
@@ -1895,7 +1904,18 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 700000, atk: 500 },
-        panoplie:  [{ itemId: 'chagrin_de_cire', dropRate: 0.1 },{ itemId: 'claymomore', dropRate: 0.1 },{ itemId: 'lourd_fardeau', dropRate: 0.1 },{ itemId: 'triste_sceau', dropRate: 0.1 },{ itemId: 'ames_hurlantes', dropRate: 0.1 },{ itemId: 'eternelle_poursuite', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'chagrin_de_cire', dropRate: 0.1 }, { itemId: 'claymomore', dropRate: 0.1 }, { itemId: 'lourd_fardeau', dropRate: 0.1 }, { itemId: 'triste_sceau', dropRate: 0.1 }, { itemId: 'ames_hurlantes', dropRate: 0.1 }, { itemId: 'eternelle_poursuite', dropRate: 0.1 }]
+    },
+    'wanted_gargandyas': {
+        id:        'wanted_gargandyas',
+        monsterId: 'wanted_gargandyas',
+        name:      'Gargandyas',
+        lore:      'Gargandyas est une bête primordiale dont les sceaux telluriques font trembler la terre et le cri primitif glace le sang. Impassible et immuable, il frappe depuis son socle sans jamais bouger, comme si le monde entier devait venir à lui.',
+        icon:      'img/monstres/wanted/avis/gargandyas.png',
+        background: '',
+        levelCap:  200,
+        bst:       { hp: 100000, atk: 300 },
+        panoplie:  [{ itemId: 'belier_de_gargandyas', dropRate: 0.1 }, { itemId: 'collier_de_gargandyas', dropRate: 0.1 }, { itemId: 'fureur_de_gargandyas', dropRate: 0.1 }, { itemId: 'griffe_de_gargandyas', dropRate: 0.1 }]
     },
 };
 
@@ -4900,5 +4920,59 @@ move['wanted_cire_momore_fatalite'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 88, max: 99 }, target: 'enemy' }
+    ]
+}
+
+move['wanted_gargandyas_sceaux_telluriques'] = {
+    id: 'wanted_gargandyas_sceaux_telluriques',
+    name: 'Sceaux Telluriques',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+    ]
+}
+
+move['wanted_gargandyas_amnesie_animale'] = {
+    id: 'wanted_gargandyas_amnesie_animale',
+    name: 'Amnésie Animale',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+    ]
+}
+
+move['wanted_gargandyas_cri_primitif'] = {
+    id: 'wanted_gargandyas_cri_primitif',
+    name: 'Cri Primitif',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+    ]
+}
+
+move['wanted_gargandyas_rituel_primordial'] = {
+    id: 'wanted_gargandyas_rituel_primordial',
+    name: 'Rituel Primordial',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+    ]
+}
+
+move['wanted_gargandyas_gargameha'] = {
+    id: 'wanted_gargandyas_gargameha',
+    name: 'Gargameha',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+    ]
+}
+
+move['wanted_gargandyas_rafale_bestiale'] = {
+    id: 'wanted_gargandyas_rafale_bestiale',
+    name: 'Rafale Bestiale',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
     ]
 }
