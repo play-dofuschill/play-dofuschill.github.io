@@ -3868,6 +3868,21 @@ function onVictory() {
     combat.respawnPending = true
     combat.trapStacks = {}
 
+    // Tout le corps est protégé : une exception ici (XP, loot, level-up...) ne doit jamais
+    // laisser respawnPending bloqué à true, sinon le combat reste gelé avec l'ennemi à 0 PV
+    // pour toujours (plus de mort, plus de respawn, plus de fin de combat).
+    try {
+        _onVictoryBody()
+    } catch (e) {
+        console.error('[onVictory] erreur inattendue — combat débloqué de force:', e)
+        combat.respawnPending = false
+        addLog('⚠️ Erreur de combat — combat interrompu')
+        stopCombat()
+        state.isRunning = false
+    }
+}
+
+function _onVictoryBody() {
     // Capture l'ennemi — on le garde en place pour que le UI reste stable pendant
     // les 500ms de respawn ; gameTick ignore les actions quand respawnPending est vrai
     const defeatedEnemy = combat.enemy
