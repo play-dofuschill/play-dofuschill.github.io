@@ -4607,28 +4607,40 @@ function _spawnEnemyById(monsterId, statMult = 1) {
 
 function _spawnRaidMiniBoss() {
     if (combat.raidMiniBossActive) return
-    const area = areas[state.currentArea]
-    if (!area?.miniBoss) return
-    const bossIds = area.miniBoss.ids || [area.miniBoss.id]
-    const bossId  = bossIds[Math.floor(Math.random() * bossIds.length)]
-    const boss = _spawnEnemyById(bossId, area.miniBoss.statMult || 1)
-    if (!boss) return
+    try {
+        const area = areas[state.currentArea]
+        if (!area?.miniBoss) return
+        const bossIds = area.miniBoss.ids || [area.miniBoss.id]
+        const bossId  = bossIds[Math.floor(Math.random() * bossIds.length)]
+        const boss = _spawnEnemyById(bossId, area.miniBoss.statMult || 1)
+        if (!boss) throw new Error(`spawn du mini-boss échoué (id invalide: ${bossId})`)
 
-    // Boss seul au slot 0 — slots 1 et 2 vidés pour qu'aucun mob normal ne combat en même temps
-    combat.enemies[0]          = boss
-    combat.enemyTimers[0]      = 0
-    combat.enemyNextMoveIds[0] = pickNextEnemyMove(boss)
-    combat.enemies[1]          = null
-    combat.enemyTimers[1]      = 0
-    combat.enemyNextMoveIds[1] = null
-    combat.enemies[2]          = null
-    combat.enemyTimers[2]      = 0
-    combat.enemyNextMoveIds[2] = null
+        // Boss seul au slot 0 — slots 1 et 2 vidés pour qu'aucun mob normal ne combat en même temps
+        combat.enemies[0]          = boss
+        combat.enemyTimers[0]      = 0
+        combat.enemyNextMoveIds[0] = pickNextEnemyMove(boss)
+        combat.enemies[1]          = null
+        combat.enemyTimers[1]      = 0
+        combat.enemyNextMoveIds[1] = null
+        combat.enemies[2]          = null
+        combat.enemyTimers[2]      = 0
+        combat.enemyNextMoveIds[2] = null
 
-    combat.raidRespawnPending  = [false, false, false]
-    combat.raidMiniBossActive  = true
-    addLog(`${boss.name} apparaît !`)
-    updateCombatUI()
+        combat.raidRespawnPending  = [false, false, false]
+        combat.raidMiniBossActive  = true
+        addLog(`${boss.name} apparaît !`)
+        updateCombatUI()
+    } catch (e) {
+        // Ne jamais laisser le raid bloqué en attente du watchdog (5s) si le spawn du
+        // boss échoue (donnée invalide, exception de rendu...) — on relance des mobs normaux.
+        console.error('[_spawnRaidMiniBoss] échec — fallback sur un mob normal', e)
+        combat.raidMiniBossActive = false
+        combat.enemies[0]         = spawnEnemy(state.currentArea)
+        combat.enemyTimers[0]     = 0
+        combat.enemyNextMoveIds[0] = combat.enemies[0] ? pickNextEnemyMove(combat.enemies[0]) : null
+        combat.raidRespawnPending  = [false, false, false]
+        updateCombatUI()
+    }
 }
 
 // ─── Boucle principale Raid ───────────────────────────────────
