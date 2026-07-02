@@ -979,7 +979,7 @@ function executeMemberAction(memberIndex) {
                     caster: member, casterStats: stats, targetEnemy: _bTarget,
                     effect: { type: 'damage', element: burn.element, damage: burn.damage, target: 'enemy' },
                     moveData: { name: 'Sentence (brûlure)' }, moveId: 'sentence',
-                    onTargetKill: () => { if (!_bTarget.isSummon) onVictory() }
+                    onTargetKill: () => { if (!_bTarget.isSummon) onRaidEnemyDeath(_bi, state.team.indexOf(member)) }
                 })
             }
         }
@@ -2026,10 +2026,7 @@ function executeEffect(ctx) {
                     if (caster.currentHp <= 0) {
                         if (combat?.isRaid && combat.enemies) {
                             const _raEnemyIdx = combat.enemies.indexOf(caster)
-                            if (_raEnemyIdx !== -1) {
-                                combat.enemies[_raEnemyIdx] = null
-                                if (combat.enemies.every(e => !e || e.currentHp <= 0)) onVictory()
-                            }
+                            if (_raEnemyIdx !== -1) onRaidEnemyDeath(_raEnemyIdx, state.team.indexOf(targetEnemy))
                         } else {
                             onVictory()
                         }
@@ -2088,12 +2085,14 @@ function executeEffect(ctx) {
             // splashPct : ricochet brut sur e2 (bypass défenses, pas d'érosion)
             // splashPct2 : ricochet sur e3 — % de e1 par défaut, % de e2 si splashChain:true
             if (effect.splashPct && combat?.isRaid && dmg > 0) {
+                const killerIdx = state.team.indexOf(caster)
                 const secondary = combat.enemies?.[1]
                 let e2Dmg = 0
                 if (secondary && secondary.currentHp > 0) {
                     e2Dmg = Math.max(0, Math.floor(dmg * effect.splashPct / 100))
                     secondary.currentHp = Math.max(0, secondary.currentHp - e2Dmg)
                     addLog(`${moveData.name} → ricochet : ${e2Dmg} dégâts (ennemi sec.)`)
+                    if (secondary.currentHp <= 0) onRaidEnemyDeath(1, killerIdx >= 0 ? killerIdx : -1)
                 }
                 if (effect.splashPct2) {
                     const tertiary = combat.enemies?.[2]
@@ -2103,6 +2102,7 @@ function executeEffect(ctx) {
                             const e3Dmg = Math.max(0, Math.floor(base * effect.splashPct2 / 100))
                             tertiary.currentHp = Math.max(0, tertiary.currentHp - e3Dmg)
                             addLog(`${moveData.name} → ricochet : ${e3Dmg} dégâts (ennemi ter.)`)
+                            if (tertiary.currentHp <= 0) onRaidEnemyDeath(2, killerIdx >= 0 ? killerIdx : -1)
                         }
                     }
                 }
