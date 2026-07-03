@@ -2,79 +2,116 @@
 
 const SAVE_KEY = 'dofuschill_v01'
 
-let _clearingData = false
+let _clearingData    = false
+let _lastSaveFailNotified = false
+// loadGame() ne tourne qu'à l'évènement 'load' (initGame), qui peut être retardé de plusieurs
+// secondes par le chargement des images/musiques. Tant qu'il n'a pas tourné, `state` contient
+// encore ses valeurs par défaut (vierges) — il ne faut surtout pas les sauvegarder, sinon
+// l'autosave (toutes les 5s) ou un changement d'onglet pendant ce délai écraserait la vraie
+// sauvegarde du joueur avec un état neuf.
+let _gameLoaded = false
 
 function saveGame() {
     if (_clearingData) return
-    // Snapshote l'état du combat en cours avant de sérialiser
-    if (typeof _syncCombatToState === 'function') _syncCombatToState()
+    if (!_gameLoaded) return
 
-    // Sync de l'équipe active dans previewTeams avant la sauvegarde
-    state.previewTeams[state.currentPreviewTeam] = state.team
+    // Snapshote l'état du combat en cours avant de sérialiser.
+    // Isolé : une exception ici (état de combat incohérent) ne doit jamais empêcher
+    // la sauvegarde du reste de la progression (inventaire, collection, kamas...).
+    try {
+        if (typeof _syncCombatToState === 'function') _syncCombatToState()
+    } catch (e) {
+        console.error('[saveGame] _syncCombatToState a échoué — snapshot de combat ignoré :', e)
+    }
 
-    // Sync classEquip.level/exp depuis tous les previewTeams
+    // Sync de l'équipe active dans previewTeams avant la sauvegarde,
+    // et classEquip.level/exp depuis tous les previewTeams
     // (les membres qui sont dans une équipe et qui ont levélé up ne mettent pas à jour classEquip en temps réel)
-    if (!state.classEquip) state.classEquip = {}
-    for (const teamArr of Object.values(state.previewTeams)) {
-        for (const m of (teamArr || [])) {
-            if (!m?.classId) continue
-            if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
-            state.classEquip[m.classId].level = m.level
-            state.classEquip[m.classId].exp   = m.exp ?? 0
-            state.classEquip[m.classId].equip = { ...m.equip }
+    try {
+        state.previewTeams[state.currentPreviewTeam] = state.team
+        if (!state.classEquip) state.classEquip = {}
+        for (const teamArr of Object.values(state.previewTeams)) {
+            for (const m of (teamArr || [])) {
+                if (!m?.classId) continue
+                if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
+                state.classEquip[m.classId].level = m.level
+                state.classEquip[m.classId].exp   = m.exp ?? 0
+                state.classEquip[m.classId].equip = { ...m.equip }
+            }
         }
+    } catch (e) {
+        console.error('[saveGame] sync previewTeams/classEquip a échoué :', e)
     }
 
-    const saveData = {
-        team:               state.team,
-        inventory:          state.inventory,
-        collection:         state.collection,
-        seenMonsters:       state.seenMonsters,
-        kamas:              state.kamas,
-        currentArea:        state.currentArea,
-        isRunning:          state.isRunning || false,
-        hasChosenStarter:   state.hasChosenStarter,
-        theme:              state.theme,
-        tutorial:           state.tutorial,
-        previewTeams:       state.previewTeams,
-        currentPreviewTeam: state.currentPreviewTeam,
-        classEquip:         state.classEquip,
-        teamNames:          state.teamNames,
-        unlockedClasses:    state.unlockedClasses || [],
-        newlyUnlockedClasses: state.newlyUnlockedClasses || [],
-        totalKills:                state.totalKills || 0,
-        defeatedBosses:            state.defeatedBosses || [],
-        doubleCritAchieved:        state.doubleCritAchieved || false,
-        lastFrameRecorded:         state.lastFrameRecorded    || null,
-        offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
-        autoPilotAccumulated:      state.autoPilotAccumulated || null,
-        savedCombatEnemy:          state.savedCombatEnemy || null,
-        savedCombatState:          state.savedCombatState || null,
-        dungeonAutoRestart:        state.dungeonAutoRestart || false,
-        lastAlmanaxDate:           state.lastAlmanaxDate || null,
-        dailyPool:                 state.dailyPool  || null,
-        eventPool:                 state.eventPool  || null,
-        raidPool:                  state.raidPool   || null,
-        shopPool:                  state.shopPool      || null,
-        shopPurchases:             state.shopPurchases || null,
-        skullLevel:                state.skullLevel || 0,
-        skullUnequipped:           state.skullUnequipped || null,
-        skullRecords:              state.skullRecords || {},
-        ownedSkins:                state.ownedSkins || [],
-        Boss_Ultime:                    state.Boss_Ultime    || null,
-        wanted:                    state.wanted         || null,
-        visitedAreas:              state.visitedAreas   || [],
-        version:                   '0.2'
+    let saveData
+    try {
+        saveData = {
+            team:               state.team,
+            inventory:          state.inventory,
+            collection:         state.collection,
+            seenMonsters:       state.seenMonsters,
+            kamas:              state.kamas,
+            currentArea:        state.currentArea,
+            isRunning:          state.isRunning || false,
+            hasChosenStarter:   state.hasChosenStarter,
+            theme:              state.theme,
+            tutorial:           state.tutorial,
+            previewTeams:       state.previewTeams,
+            currentPreviewTeam: state.currentPreviewTeam,
+            classEquip:         state.classEquip,
+            teamNames:          state.teamNames,
+            unlockedClasses:    state.unlockedClasses || [],
+            newlyUnlockedClasses: state.newlyUnlockedClasses || [],
+            totalKills:                state.totalKills || 0,
+            defeatedBosses:            state.defeatedBosses || [],
+            doubleCritAchieved:        state.doubleCritAchieved || false,
+            lastFrameRecorded:         state.lastFrameRecorded    || null,
+            offlineAutoPilotRemaining: state.offlineAutoPilotRemaining || 0,
+            autoPilotAccumulated:      state.autoPilotAccumulated || null,
+            savedCombatEnemy:          state.savedCombatEnemy || null,
+            savedCombatState:          state.savedCombatState || null,
+            dungeonAutoRestart:        state.dungeonAutoRestart || false,
+            lastAlmanaxDate:           state.lastAlmanaxDate || null,
+            dailyPool:                 state.dailyPool  || null,
+            eventPool:                 state.eventPool  || null,
+            raidPool:                  state.raidPool   || null,
+            shopPool:                  state.shopPool      || null,
+            shopPurchases:             state.shopPurchases || null,
+            skullLevel:                state.skullLevel || 0,
+            skullUnequipped:           state.skullUnequipped || null,
+            skullRecords:              state.skullRecords || {},
+            ownedSkins:                state.ownedSkins || [],
+            Boss_Ultime:                    state.Boss_Ultime    || null,
+            wanted:                    state.wanted         || null,
+            visitedAreas:              state.visitedAreas   || [],
+            version:                   '0.2'
+        }
+    } catch (e) {
+        console.error('[saveGame] construction de saveData a échoué — sauvegarde annulée :', e)
+        return
     }
+
     try {
         localStorage.setItem(SAVE_KEY, JSON.stringify(saveData))
+        _lastSaveFailNotified = false
     } catch(e) {
         console.warn('Impossible de sauvegarder :', e)
+        // Évite de spammer l'utilisateur (appelé toutes les 5s) : une seule notif tant que
+        // la sauvegarde échoue en continu (quota localStorage dépassé, mode privé, etc.)
+        if (!_lastSaveFailNotified) {
+            _lastSaveFailNotified = true
+            if (typeof showNotification === 'function') {
+                showNotification('⚠️ Sauvegarde impossible ! Exporte ta save (menu Options) pour ne rien perdre.', 'error')
+            }
+        }
     }
 }
 
 function loadGame() {
     const raw = localStorage.getItem(SAVE_KEY)
+    // À partir d'ici, `state` reflète soit la sauvegarde restaurée, soit un état neuf légitime
+    // (aucune sauvegarde trouvée) — dans les deux cas, saveGame() peut désormais écrire sans risque.
+    _gameLoaded = true
     if (!raw) return false
     try {
         const data = JSON.parse(raw)
