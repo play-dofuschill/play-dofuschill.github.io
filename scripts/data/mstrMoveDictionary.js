@@ -3008,7 +3008,16 @@ move.septicemie = {
     name: 'Septicémie',
     cooldownMs: 1700,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 6, max: 10 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 10, max: 15 }, target: 'enemy' }
+    ]
+}
+move.morsure_croupissante = {
+    id: 'morsure_croupissante',
+    name: 'Morsure Croupissante',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 10, max: 15 }, target: 'enemy' },
+        { type: 'antiHeal', duration: 2, target: 'enemy' }
     ]
 }
 move.esprit_de_meute = {
@@ -3021,14 +3030,6 @@ move.esprit_de_meute = {
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
     ]
 }
-move.immunodeficience = {
-    id: 'immunodeficience',
-    name: 'Immunodéficience',
-    cooldownMs: 2000,
-    effects: [
-        { type: 'buffDrain', value: 2, target: 'enemy' },
-    ]
-}
 
 // -------- Krokille Juvénile Boueuse ---------------
 move.fange = {
@@ -3036,7 +3037,7 @@ move.fange = {
     name: 'Fange',
     cooldownMs: 1700,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 8, max: 12 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 10, max: 15 }, target: 'enemy' }
     ]
 }
 move.caprice = {
@@ -3053,7 +3054,7 @@ move.rebond_punitif = {
     cooldownMs: 1700,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 12, max: 18 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 10, max: 15 }, target: 'enemy' }
     ]
 }
 
@@ -3063,8 +3064,16 @@ move.anemie = {
     name: 'Anémie',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 6, max: 8 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 10, max: 15 }, target: 'enemy' },
         { type: 'antiHeal', duration: 3, target: 'enemy' }
+    ]
+}
+move.fievre_couvante = {
+    id: 'fievre_couvante',
+    name: 'Fièvre Couvante',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 10, max: 15 }, target: 'enemy' }
     ]
 }
 move.curee = {
@@ -3075,14 +3084,6 @@ move.curee = {
         { type: 'heal', heal: 50, target: 'self' }
     ]
 }
-move.incubation = {
-    id: 'incubation',
-    name: 'Incubation',
-    cooldownMs: 2500,
-    effects: [
-        { type: 'heal', heal: 15, target: 'self' }
-    ]
-}
 
 // -------- Krokille Juvénile Humide ---------------
 move.humectation = {
@@ -3090,16 +3091,24 @@ move.humectation = {
     name: 'Humectation',
     cooldownMs: 2200,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 6, max: 10 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 10, max: 15 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' }
     ]
 }
-move.flaque = {
-    id: 'flaque',
-    name: 'Flaque',
-    cooldownMs: 3500,
+move.immersion = {
+    id: 'immersion',
+    name: 'Immersion',
+    cooldownMs: 1700,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 10, max: 15 }, target: 'enemy' }
+    ]
+}
+move.maree_basse = {
+    id: 'maree_basse',
+    name: 'Marée Basse',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3113,6 +3122,14 @@ move.assechement = {
         { type: 'damage', element: 'air', damage: { min: 5, max: 8 }, target: 'enemy' },
         { type: 'debuff', stat: 'flatDamage', value: 8, duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 8, duration: 3, target: 'self' }
+    ]
+}
+move.bourrasque = {
+    id: 'bourrasque',
+    name: 'Bourrasque',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 10, max: 15 }, target: 'enemy' }
     ]
 }
 move.souffle_percutant = {
@@ -5681,7 +5698,15 @@ move.venin_ankylosant = {
     name: 'Venin Ankylosant',
     cooldownMs: 2000,
     effects: [
-        { type: 'best_element_damage', damage: { min: 19, max: 21 }, target: 'enemy' }
+        { type: 'best_element_damage', damage: { min: 25, max: 30 }, target: 'enemy' }
+    ]
+}
+move.toxine_rampante = {
+    id: 'toxine_rampante',
+    name: 'Toxine Rampante',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 25, max: 30 }, target: 'enemy' }
     ]
 }
 move.alanguissement = {
@@ -5699,7 +5724,7 @@ move.entetement_obsessionnel = {
     name: 'Entêtement Obsessionnel',
     cooldownMs: 2200,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 8, max: 12 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
     ]
 }
@@ -5709,7 +5734,15 @@ move.attraction_stabilisante = {
     cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 8, max: 12 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 25, max: 30 }, target: 'enemy' }
+    ]
+}
+move.argile_collante = {
+    id: 'argile_collante',
+    name: 'Argile Collante',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'debuff', stat: 'spd', value: 25, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -5719,7 +5752,15 @@ move.agonie = {
     name: 'Agonie',
     cooldownMs: 1700,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 25, max: 30 }, target: 'enemy' }
+    ]
+}
+move.fievre_ardente = {
+    id: 'fievre_ardente',
+    name: 'Fièvre Ardente',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 25, max: 30 }, target: 'enemy' }
     ]
 }
 move.contre_faiblesse = {
@@ -5737,7 +5778,7 @@ move.humidification = {
     name: 'Humidification',
     cooldownMs: 1700,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 14, max: 17 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 25, max: 30 }, target: 'enemy' }
     ]
 }
 move.noyade = {
@@ -5745,7 +5786,15 @@ move.noyade = {
     name: 'Noyade',
     cooldownMs: 1700,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 25, max: 30 }, target: 'enemy' }
+    ]
+}
+move.courant_glacial = {
+    id: 'courant_glacial',
+    name: 'Courant Glacial',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -5755,8 +5804,16 @@ move.secheresse = {
     name: 'Sècheresse',
     cooldownMs: 2700,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 14, max: 17 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 25, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' }
+    ]
+}
+move.bourrasque_tranchante = {
+    id: 'bourrasque_tranchante',
+    name: 'Bourrasque Tranchante',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 25, max: 30 }, target: 'enemy' }
     ]
 }
 move.ouragan_renversant = {
@@ -10310,6 +10367,23 @@ move.pousserat = {
 // Aucun sort dans DofusDB pour ce monstre
 
 // -------- Krokille Mature Insipide ---------------
+move.peste_devorante = {
+    id: 'peste_devorante',
+    name: 'Peste Dévorante',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 44, max: 50 }, target: 'enemy' }
+    ]
+}
+move.toxine_virulente = {
+    id: 'toxine_virulente',
+    name: 'Toxine Virulente',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 44, max: 50 }, target: 'enemy' },
+        { type: 'antiHeal', duration: 2, target: 'enemy' }
+    ]
+}
 move.frenesie_elementale = {
     id: 'frenesie_elementale',
     name: 'Frénésie Élémentale',
@@ -10322,6 +10396,23 @@ move.frenesie_elementale = {
 }
 
 // -------- Krokille Mature Boueuse ---------------
+move.coulee_de_boue = {
+    id: 'coulee_de_boue',
+    name: 'Coulée de Boue',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 44, max: 50 }, target: 'enemy' }
+    ]
+}
+move.eboulement = {
+    id: 'eboulement',
+    name: 'Éboulement',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 44, max: 50 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 20, duration: 2, target: 'enemy' }
+    ]
+}
 move.eclosion = {
     id: 'eclosion',
     name: 'Éclosion',
@@ -10332,12 +10423,29 @@ move.eclosion = {
 }
 
 // -------- Krokille Mature Incandescente ---------------
+move.calcination = {
+    id: 'calcination',
+    name: 'Calcination',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 44, max: 50 }, target: 'enemy' }
+    ]
+}
+move.braise_ardente = {
+    id: 'braise_ardente',
+    name: 'Braise Ardente',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 44, max: 50 }, target: 'enemy' },
+        { type: 'antiHeal', duration: 2, target: 'enemy' }
+    ]
+}
 move.recalcification = {
     id: 'recalcification',
     name: 'Recalcification',
     cooldownMs: 2500,
     effects: [
-        { type: 'heal', heal: 21, target: 'self' }
+        { type: 'heal', heal: 80, target: 'self' }
     ]
 }
 
@@ -10347,11 +10455,44 @@ move.hydrophobie = {
     name: 'Hydrophobie',
     cooldownMs: 2000,
     effects: [
-        { type: 'best_element_damage', damage: { min: 19, max: 21 }, target: 'enemy' }
+        { type: 'best_element_damage', damage: { min: 44, max: 50 }, target: 'enemy' }
+    ]
+}
+move.raz_de_maree = {
+    id: 'raz_de_maree',
+    name: 'Raz-de-Marée',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 44, max: 50 }, target: 'enemy' }
+    ]
+}
+move.asphyxie = {
+    id: 'asphyxie',
+    name: 'Asphyxie',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'debuff', stat: 'atk', value: 35, duration: 3, target: 'enemy' }
     ]
 }
 
 // -------- Krokille Mature Sèche ---------------
+move.tempete_seche = {
+    id: 'tempete_seche',
+    name: 'Tempête Sèche',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 44, max: 50 }, target: 'enemy' }
+    ]
+}
+move.lame_de_vent = {
+    id: 'lame_de_vent',
+    name: 'Lame de Vent',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 44, max: 50 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.3, target: 'self' }
+    ]
+}
 move.il_du_cyclone = {
     id: 'il_du_cyclone',
     name: 'Œil du Cyclone',
@@ -15233,14 +15374,140 @@ move.evabzion = {
 }
 
 // -------- Krokille Vénérable Insipide ---------------
+move.peste_ancestrale = {
+    id: 'peste_ancestrale',
+    name: 'Peste Ancestrale',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 52, max: 70 }, target: 'enemy' }
+    ]
+}
+move.corruption_septique = {
+    id: 'corruption_septique',
+    name: 'Corruption Septique',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 52, max: 70 }, target: 'enemy' },
+        { type: 'antiHeal', duration: 3, target: 'enemy' }
+    ]
+}
+move.rage_millenaire = {
+    id: 'rage_millenaire',
+    name: 'Rage Millénaire',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'buff', stat: 'atk', value: 80, duration: 3, target: 'self' },
+        { type: 'buff', stat: 'flatDamage', value: 30, duration: 3, target: 'self' }
+    ]
+}
 
 // -------- Krokille Vénérable Boueuse ---------------
+move.avalanche_de_boue = {
+    id: 'avalanche_de_boue',
+    name: 'Avalanche de Boue',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 52, max: 70 }, target: 'enemy' }
+    ]
+}
+move.linceul_argileux = {
+    id: 'linceul_argileux',
+    name: 'Linceul Argileux',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 52, max: 70 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 30, duration: 3, target: 'enemy' }
+    ]
+}
+move.carapace_fossilisee = {
+    id: 'carapace_fossilisee',
+    name: 'Carapace Fossilisée',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'shield', value: 400, duration: 3, target: 'self' }
+    ]
+}
 
 // -------- Krokille Vénérable Incandescente ---------------
+move.eruption_ancestrale = {
+    id: 'eruption_ancestrale',
+    name: 'Éruption Ancestrale',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 52, max: 70 }, target: 'enemy' }
+    ]
+}
+move.flammes_devorantes = {
+    id: 'flammes_devorantes',
+    name: 'Flammes Dévorantes',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 52, max: 70 }, target: 'enemy' },
+        { type: 'antiHeal', duration: 3, target: 'enemy' }
+    ]
+}
+move.regeneration_ignee = {
+    id: 'regeneration_ignee',
+    name: 'Régénération Ignée',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'heal', heal: 180, target: 'self' }
+    ]
+}
 
 // -------- Krokille Vénérable Humide ---------------
+move.deluge = {
+    id: 'deluge',
+    name: 'Déluge',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 52, max: 70 }, target: 'enemy' }
+    ]
+}
+move.noyade_profonde = {
+    id: 'noyade_profonde',
+    name: 'Noyade Profonde',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 52, max: 70 }, target: 'enemy' },
+        { type: 'debuff', stat: 'atk', value: 40, duration: 3, target: 'enemy' }
+    ]
+}
+move.marais_engloutissant = {
+    id: 'marais_engloutissant',
+    name: 'Marais Engloutissant',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'debuff', stat: 'spd', value: 35, duration: 3, target: 'enemy' }
+    ]
+}
 
 // -------- Krokille Vénérable Sèche ---------------
+move.cyclone_devastateur = {
+    id: 'cyclone_devastateur',
+    name: 'Cyclone Dévastateur',
+    cooldownMs: 1700,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 52, max: 70 }, target: 'enemy' }
+    ]
+}
+move.lame_d_ouragan = {
+    id: 'lame_d_ouragan',
+    name: "Lame d'Ouragan",
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 52, max: 70 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.4, target: 'self' }
+    ]
+}
+move.voile_du_vent = {
+    id: 'voile_du_vent',
+    name: 'Voile du Vent',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' }
+    ]
+}
 
 // -------- Dragodinde de Nowel fougueuse ---------------
 

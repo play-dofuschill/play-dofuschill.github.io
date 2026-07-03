@@ -8915,7 +8915,7 @@ monsters.krokille_juvenile_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['septicemie', 'esprit_de_meute', 'immunodeficience']
+    moves: ['septicemie', 'morsure_croupissante', 'esprit_de_meute']
 }
 monsters.krokille_juvenile_boueuse = {
     id: 'krokille_juvenile_boueuse',
@@ -8933,7 +8933,7 @@ monsters.krokille_juvenile_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: ['anemie', 'curee', 'incubation']
+    moves: ['anemie', 'fievre_couvante', 'curee']
 }
 monsters.krokille_juvenile_humide = {
     id: 'krokille_juvenile_humide',
@@ -8942,7 +8942,7 @@ monsters.krokille_juvenile_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: ['humectation', 'flaque']
+    moves: ['humectation', 'immersion', 'maree_basse']
 }
 monsters.krokille_juvenile_seche = {
     id: 'krokille_juvenile_seche',
@@ -8951,7 +8951,7 @@ monsters.krokille_juvenile_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: ['assechement', 'souffle_percutant']
+    moves: ['assechement', 'bourrasque', 'souffle_percutant']
 }
 monsters.bwak_de_feu = {
     id: 'bwak_de_feu',
@@ -9763,7 +9763,7 @@ monsters.krokille_novice_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['venin_ankylosant', 'alanguissement']
+    moves: ['venin_ankylosant', 'toxine_rampante', 'alanguissement']
 }
 monsters.krokille_novice_boueuse = {
     id: 'krokille_novice_boueuse',
@@ -9772,7 +9772,7 @@ monsters.krokille_novice_boueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: ['entetement_obsessionnel', 'attraction_stabilisante']
+    moves: ['entetement_obsessionnel', 'attraction_stabilisante', 'argile_collante']
 }
 monsters.krokille_novice_incandescente = {
     id: 'krokille_novice_incandescente',
@@ -9781,7 +9781,7 @@ monsters.krokille_novice_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: ['agonie', 'contre_faiblesse']
+    moves: ['agonie', 'fievre_ardente', 'contre_faiblesse']
 }
 monsters.krokille_novice_humide = {
     id: 'krokille_novice_humide',
@@ -9790,7 +9790,7 @@ monsters.krokille_novice_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: ['humidification', 'noyade']
+    moves: ['humidification', 'noyade', 'courant_glacial']
 }
 monsters.krokille_novice_seche = {
     id: 'krokille_novice_seche',
@@ -9799,7 +9799,7 @@ monsters.krokille_novice_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: ['secheresse', 'ouragan_renversant']
+    moves: ['secheresse', 'bourrasque_tranchante', 'ouragan_renversant']
 }
 monsters.lanterne_bombe = {
     id: 'lanterne_bombe',
@@ -10744,7 +10744,7 @@ monsters.krokille_mature_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['frenesie_elementale']
+    moves: ['peste_devorante', 'toxine_virulente', 'frenesie_elementale']
 }
 monsters.krokille_mature_boueuse = {
     id: 'krokille_mature_boueuse',
@@ -10753,7 +10753,7 @@ monsters.krokille_mature_boueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: ['eclosion']
+    moves: ['coulee_de_boue', 'eboulement', 'eclosion']
 }
 monsters.krokille_mature_incandescente = {
     id: 'krokille_mature_incandescente',
@@ -10762,7 +10762,7 @@ monsters.krokille_mature_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: ['recalcification']
+    moves: ['calcination', 'braise_ardente', 'recalcification']
 }
 monsters.krokille_mature_humide = {
     id: 'krokille_mature_humide',
@@ -10771,7 +10771,7 @@ monsters.krokille_mature_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: ['hydrophobie']
+    moves: ['hydrophobie', 'raz_de_maree', 'asphyxie']
 }
 monsters.krokille_mature_seche = {
     id: 'krokille_mature_seche',
@@ -10780,7 +10780,7 @@ monsters.krokille_mature_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: ['il_du_cyclone']
+    moves: ['tempete_seche', 'lame_de_vent', 'il_du_cyclone']
 }
 monsters.kanigrou_hivernal = {
     id: 'kanigrou_hivernal',
@@ -11266,7 +11266,7 @@ monsters.krokille_venerable_insipide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['peste_ancestrale', 'corruption_septique', 'rage_millenaire']
 }
 monsters.krokille_venerable_boueuse = {
     id: 'krokille_venerable_boueuse',
@@ -11275,7 +11275,7 @@ monsters.krokille_venerable_boueuse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: []
+    moves: ['avalanche_de_boue', 'linceul_argileux', 'carapace_fossilisee']
 }
 monsters.krokille_venerable_incandescente = {
     id: 'krokille_venerable_incandescente',
@@ -11284,7 +11284,7 @@ monsters.krokille_venerable_incandescente = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: []
+    moves: ['eruption_ancestrale', 'flammes_devorantes', 'regeneration_ignee']
 }
 monsters.krokille_venerable_humide = {
     id: 'krokille_venerable_humide',
@@ -11293,7 +11293,7 @@ monsters.krokille_venerable_humide = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: []
+    moves: ['deluge', 'noyade_profonde', 'marais_engloutissant']
 }
 monsters.krokille_venerable_seche = {
     id: 'krokille_venerable_seche',
@@ -11302,7 +11302,7 @@ monsters.krokille_venerable_seche = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: []
+    moves: ['cyclone_devastateur', 'lame_d_ouragan', 'voile_du_vent']
 }
 monsters.dragodinde_de_nowel_fougueuse = {
     id: 'dragodinde_de_nowel_fougueuse',
