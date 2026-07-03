@@ -30,43 +30,6 @@ monsters. = {
 // ═══════════════════════════════════════════════════════
 // #region EXEMPLE
 
-
-
-// ═══════════════════════════════════════════════════════
-// DONJON EXEMPLE
-// ═══════════════════════════════════════════════════════
-// monsters. = {
-//     id: '',
-//     name: '',
-//     image: 'img/monstres/sprites/.png',
-//     rarity: 'commun','peu_commun','rare','legendaire',
-//     tier: 'boss','elite', 'normal'
-//     bst: {
-//         hp: 1, atk: 1, spd: 100,
-//         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 }
-//     },
-//     moves: ['', '']
-// }
-// #endregion
-
-
-// possibilité d'ajouter la fonction de trigger pour déclancher l'effet d'un familier
-
-// trigger: 'onKill',
-// effects: [
-//     { type: 'stat', stat: 'atk', value: 1 }
-// ]
-
-const monsters = {}
-
-// ═══════════════════════════════════════════════════════
-// CIMETIERE D'INCARNAM (lvl 1+)
-// ═══════════════════════════════════════════════════════
-
-// ═══════════════════════════════════════════════════════
-// CIMETIERE D'INCARNAM (lvl 1+)
-// ═══════════════════════════════════════════════════════
-
 // ═══════════════════════════════════════════════════════
 // CIMETIERE D'INCARNAM (lvl 1+)
 // ═══════════════════════════════════════════════════════
@@ -1890,7 +1853,7 @@ monsters.muldo_ebene_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 95, spd: 100, res: { neutre: 10, terre: -10, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['coup_de_bouldo', 'souille']
 }
 monsters.muldo_orchidee_sauvage = {
     id: 'muldo_orchidee_sauvage',
@@ -1899,7 +1862,7 @@ monsters.muldo_orchidee_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 95, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: -10 } },
-    moves: []
+    moves: ['coup_de_bouldo', 'souille']
 }
 monsters.muldo_pourpre_sauvage = {
     id: 'muldo_pourpre_sauvage',
@@ -1908,7 +1871,7 @@ monsters.muldo_pourpre_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 95, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['coup_de_bouldo', 'souille']
 }
 monsters.muldo_dore_sauvage = {
     id: 'muldo_dore_sauvage',
@@ -1917,7 +1880,7 @@ monsters.muldo_dore_sauvage = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 330, atk: 95, spd: 100, res: { neutre: -10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
+    moves: ['coup_de_bouldo', 'souille']
 }
 // ═══════════════════════════════════════════════════════
 // TOURBIÈRE SANS FONDS (lvl 50+)
@@ -2179,7 +2142,7 @@ monsters.dopeul_sram = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 115, spd: 100, res: { neutre: 2, terre: 2, feu: 2, eau: 2, air: 2 } },
-    moves: ['truanderie_du_Dopeul', 'arsenic_du_dopeul']
+    moves: ['truanderie_du_dopeul', 'arsenic_du_dopeul']
 }
 monsters.dopeul_steamer = {
     id: 'dopeul_steamer',
@@ -3380,7 +3343,7 @@ monsters.le_chouque = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3100, atk: 300, spd: 100, res: { neutre: 14, terre: 0, feu: -10, eau: 36, air: 0 } },
-    moves: ['coup_de_sabre_maudit']
+    moves: ['coup_de_sabre_maudit', 'malediction_pirate', 'teleportation_spectrale']
 }
 // ═══════════════════════════════════════════════════════
 // CAVERNE DU KOULOSSE (lvl 95+)
@@ -3420,6 +3383,15 @@ monsters.abraknydeAncestral = {
     tier: 'boss',
     bst: { hp: 3600, atk: 605, spd: 90, res: { neutre: 53, terre: 53, feu: -5, eau: 53, air: -5 } },
     moves: ['Morsure_Sylvestre', 'Branche_Paralysante', 'Invocation_d_Arakne_Majeure', 'Reconstitution_Abraknydienne']
+}
+monsters.abraknyde_venerable = {
+    id: 'abraknyde_venerable',
+    name: 'Abraknyde Vénérable',
+    image: 'images/monsters/Abraknyde_Ancestral.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 4500, atk: 560, spd: 90, res: { neutre: 60, terre: 60, feu: -5, eau: 40, air: -5 } },
+    moves: ['racines_etouffantes', 'souffle_ancestral']
 }
 // ═══════════════════════════════════════════════════════
 // ÉGOUTS DE BONTA (lvl 100+)
@@ -3588,7 +3560,7 @@ monsters.morcac = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1800, atk: 340, spd: 100, res: { neutre: 8, terre: 2, feu: -4, eau: 4, air: 10 } },
-    moves: ['roupetkifouette']
+    moves: ['roupetkifouette', 'pupunition', 'saut_de_puce']
 }
 monsters.pikbul = {
     id: 'pikbul',
@@ -3655,7 +3627,7 @@ monsters.rono_le_renarbo = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: -10, terre: 25, feu: -5, eau: -20, air: 70 } },
-    moves: []
+    moves: ['croassement', 'ramage', 'deplumage_mstr']
 }
 monsters.kapotie_le_buveur = {
     id: 'kapotie_le_buveur',
@@ -3664,7 +3636,7 @@ monsters.kapotie_le_buveur = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 5, terre: -5, feu: -5, eau: 70, air: -5 } },
-    moves: []
+    moves: ['daudoh', 'buvette', 'parchotage']
 }
 monsters.corbac_dresse = {
     id: 'corbac_dresse',
@@ -3673,7 +3645,7 @@ monsters.corbac_dresse = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1300, atk: 200, spd: 100, res: { neutre: 21, terre: -14, feu: 26, eau: 26, air: -29 } },
-    moves: []
+    moves: ['cri_destabilisateur', 'lancer_d_uf', 'dilaceration']
 }
 monsters.horace_le_corbac_apprivoise = {
     id: 'horace_le_corbac_apprivoise',
@@ -3682,7 +3654,7 @@ monsters.horace_le_corbac_apprivoise = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 25, terre: -10, feu: 30, eau: 30, air: -25 } },
-    moves: []
+    moves: ['cri_destabilisateur', 'lancer_d_uf', 'dilaceration']
 }
 monsters.capsaaloocke = {
     id: 'capsaaloocke',
@@ -3832,7 +3804,7 @@ monsters.kharnozor = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 5700, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: ['Mort_sure']
+    moves: ['emplafonnement', 'cri_dechirant', 'mort_sure_kharnozor']
 }
 // ═══════════════════════════════════════════════════════
 // TANIÈRE DU MEULOU (lvl 105+)
@@ -3858,7 +3830,7 @@ monsters.maitre_des_pantins = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 6000, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['tirer_les_ficelles']
+    moves: ['tirer_les_ficelles', 'ensecret']
 }
 // ═══════════════════════════════════════════════════════
 // CHAMPS DE GLACE (lvl 110+)
@@ -4268,7 +4240,7 @@ monsters.warko_violet = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 30, terre: -19, feu: 10, eau: -19, air: 10 } },
-    moves: []
+    moves: ['invocation_de_workette', 'cecite', 'vision_lointaine', 'pichenette']
 }
 // ═══════════════════════════════════════════════════════
 // BAMBUSAIE DE DAMADRYA (lvl 115+)
@@ -4481,7 +4453,7 @@ monsters.lolojiki = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 2500, atk: 275, spd: 100, res: { neutre: 15, terre: 15, feu: -30, eau: 30, air: -15 } },
-    moves: ['poterie_tanuki', 'kaolin', 'terre_glaise']
+    moves: ['kaolin', 'terre_glaise']
 }
 // ═══════════════════════════════════════════════════════
 // TERRITOIRE CACTERRE (lvl 120+)
@@ -4543,7 +4515,7 @@ monsters.crocabulia = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 7000, atk: 500, spd: 100, res: { neutre: 13, terre: 15, feu: 21, eau: 18, air: 9 } },
-    moves: ['souffle']
+    moves: ['souffle_du_crocabulia', 'pietinement_du_crocabulia', 'crokenjambe', 'crokabriole']
 }
 // ═══════════════════════════════════════════════════════
 // REPAIRE DE SKEUNK (lvl 125+)
@@ -5070,7 +5042,7 @@ monsters.malterego_de_malzerb = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2900, atk: 300, spd: 100, res: { neutre: 3, terre: -3, feu: -14, eau: 2, air: 22 } },
-    moves: []
+    moves: ['maltruisme', 'malveole', 'malumeur']
 }
 monsters.malterego_de_malepik = {
     id: 'malterego_de_malepik',
@@ -5294,7 +5266,7 @@ monsters.mere_veilleuse = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 3100, atk: 460, spd: 100, res: { neutre: 26, terre: -19, feu: 21, eau: -14, air: 11 } },
-    moves: ['ephort_de_guerre']
+    moves: ['ephort_de_guerre', 'phormol', 'tunnellipse']
 }
 // ═══════════════════════════════════════════════════════
 // CLAIRIÈRE DU CHÊNE MOU (lvl 145+)
@@ -5307,7 +5279,7 @@ monsters.chene_mou = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 7800, atk: 650, spd: 100, res: { neutre: 82, terre: 52, feu: 52, eau: -5, air: -5 } },
-    moves: ['Complicite']
+    moves: ['ecorcage', 'tornade_de_branches', 'branchelebas', 'appel_du_venerable']
 }
 // ═══════════════════════════════════════════════════════
 // DOJO DU VENT (lvl 145+)
@@ -5781,7 +5753,7 @@ monsters.lucrane = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 4300, atk: 550, spd: 100, res: { neutre: 21, terre: 11, feu: -29, eau: 31, air: 0 } },
-    moves: ['offensiviere']
+    moves: ['offensiviere', 'coup_percutant', 'dardagnan']
 }
 monsters.eperfide = {
     id: 'eperfide',
@@ -8353,7 +8325,7 @@ monsters.levitrof = {
     rarity: 'peu_commun',
     tier: 'elite',
     bst: { hp: 6000, atk: 650, spd: 100, res: { neutre: 26, terre: -14, feu: 6, eau: 11, air: 31 } },
-    moves: ['kama_hamea']
+    moves: ['kama_hamea', 'clignotement', 'la_clef_du_succes']
 }
 monsters.paspartou = {
     id: 'paspartou',
@@ -8616,99 +8588,8 @@ monsters.protozorreur = {
 }
 
 // ═══════════════════════════════════════════════════════
-// MONSTRES NON IMPLANTÉS (triés par HP croissant)
+// INCARNAM (lvl 1+)
 // ═══════════════════════════════════════════════════════
-
-monsters.poulpor = {
-    id: 'poulpor',
-    name: 'Poulpor',
-    image: 'images/monsters/Poulpor.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['double_tranchant']
-}
-monsters.amas_de_tentacules = {
-    id: 'amas_de_tentacules',
-    name: 'Amas de Tentacules',
-    image: 'images/monsters/Amas_de_Tentacules.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.germinial = {
-    id: 'germinial',
-    name: 'Germinial',
-    image: 'images/monsters/Germinial.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['morsure_putride', 'langue_morte']
-}
-monsters.bourgeon_de_dathura = {
-    id: 'bourgeon_de_dathura',
-    name: 'Bourgeon de Dathura',
-    image: 'images/monsters/Bourgeon_de_Dathura.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.sousouris_grise = {
-    id: 'sousouris_grise',
-    name: 'Sousouris Grise',
-    image: 'images/monsters/Sousouris_Grise.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['morsure']
-}
-monsters.flammeche_feu = {
-    id: 'flammeche_feu',
-    name: 'Flammèche Feu',
-    image: 'images/monsters/Flammèche_Feu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: ['elemental_spear', 'bomball']
-}
-monsters.flammeche_eau = {
-    id: 'flammeche_eau',
-    name: 'Flammèche Eau',
-    image: 'images/monsters/Flammèche_Eau.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: ['elemental_speareau', 'bomballeau']
-}
-monsters.flammeche_terre = {
-    id: 'flammeche_terre',
-    name: 'Flammèche Terre',
-    image: 'images/monsters/Flammèche_Terre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: ['elemental_spearterre', 'bomballterre']
-}
-monsters.flammeche_air = {
-    id: 'flammeche_air',
-    name: 'Flammèche Air',
-    image: 'images/monsters/Flammèche_Air.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: ['elemental_spearair', 'bomballair']
-}
-monsters.krokille_de_mer = {
-    id: 'krokille_de_mer',
-    name: 'Krokille de Mer',
-    image: 'images/monsters/Krokille_de_Mer.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 75, terre: 75, feu: 75, eau: 75, air: 75 } },
-    moves: ['crachat_sale']
-}
 monsters.kol_nenfan = {
     id: 'kol_nenfan',
     name: 'Kol\'nenfan',
@@ -8736,42 +8617,23 @@ monsters.pet_nenfan = {
     bst: { hp: 49, atk: 88, spd: 100, res: { neutre: 40, terre: 40, feu: 40, eau: 40, air: 40 } },
     moves: ['bombombe']
 }
-monsters.cadeau_anime = {
-    id: 'cadeau_anime',
-    name: 'Cadeau animé',
-    image: 'images/monsters/Cadeau_animé.png',
+monsters.sousouris_grise = {
+    id: 'sousouris_grise',
+    name: 'Sousouris Grise',
+    image: 'images/monsters/Sousouris_Grise.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 55, atk: 38, spd: 100, res: { neutre: -5, terre: 5, feu: 10, eau: -20, air: 10 } },
-    moves: ['petit_paquet']
+    bst: { hp: 4, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['morsure']
 }
-monsters.kardorib = {
-    id: 'kardorib',
-    name: 'Kardorib',
-    image: 'images/monsters/Kardorib.png',
-    rarity: 'peu_commun',
-    tier: 'elite',
-    bst: { hp: 60, atk: 20, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['embrochement'],
-    ownerId: 'kardorim'
-}
-monsters.bomberfu = {
-    id: 'bomberfu',
-    name: 'Bomberfu',
-    image: 'images/monsters/Bomberfu.png',
+monsters.sousouris_agressive = {
+    id: 'sousouris_agressive',
+    name: 'Sousouris Agressive',
+    image: 'images/monsters/Sousouris_Agressive.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 66, atk: 100, spd: 100, res: { neutre: 0, terre: 5, feu: -10, eau: 0, air: 0 } },
-    moves: ['detonation_du_poulailler']
-}
-monsters.tofu_degenere = {
-    id: 'tofu_degenere',
-    name: 'Tofu Dégénéré',
-    image: 'images/monsters/Tofu_Dégénéré.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 75, atk: 50, spd: 100, res: { neutre: 10, terre: 5, feu: -29, eau: -19, air: 30 } },
-    moves: ['beco_rosif', 'fougue_tofuesque']
+    bst: { hp: 500, atk: 250, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
+    moves: ['emmental']
 }
 monsters.larve_verte_solitaire = {
     id: 'larve_verte_solitaire',
@@ -8782,15 +8644,10 @@ monsters.larve_verte_solitaire = {
     bst: { hp: 90, atk: 63, spd: 100, res: { neutre: 6, terre: 5, feu: -10, eau: 6, air: 10 } },
     moves: ['larvement', 'retour_de_flamme']
 }
-monsters.pissenlit_diabolique = {
-    id: 'pissenlit_diabolique',
-    name: 'Pissenlit Diabolique',
-    image: 'images/monsters/Pissenlit_Diabolique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 90, atk: 64, spd: 100, res: { neutre: -9, terre: 16, feu: -9, eau: 0, air: 11 } },
-    moves: ['herbeSauvage', 'zizou']
-}
+
+// ═══════════════════════════════════════════════════════
+// CHAMPS D'ASTRUB (lvl 10+)
+// ═══════════════════════════════════════════════════════
 monsters.arakne = {
     id: 'arakne',
     name: 'Arakne',
@@ -8818,68 +8675,50 @@ monsters.campagnoll = {
     bst: { hp: 150, atk: 40, spd: 100, res: { neutre: 11, terre: -9, feu: 6, eau: -9, air: 1 } },
     moves: ['gnoll_haut', 'rongement']
 }
-monsters.cadob_oum = {
-    id: 'cadob_oum',
-    name: 'Cadob\'Oum',
-    image: 'images/monsters/Cadob_Oum.png',
+monsters.pissenlit_diabolique = {
+    id: 'pissenlit_diabolique',
+    name: 'Pissenlit Diabolique',
+    image: 'images/monsters/Pissenlit_Diabolique.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 99, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 90, atk: 64, spd: 100, res: { neutre: -9, terre: 16, feu: -9, eau: 0, air: 11 } },
+    moves: ['herbeSauvage', 'zizou']
+}
+monsters.tofu_degenere = {
+    id: 'tofu_degenere',
+    name: 'Tofu Dégénéré',
+    image: 'images/monsters/Tofu_Dégénéré.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 75, atk: 50, spd: 100, res: { neutre: 10, terre: 5, feu: -29, eau: -19, air: 30 } },
+    moves: ['beco_rosif', 'fougue_tofuesque']
+}
+monsters.charogne = {
+    id: 'charogne_mstr',
+    name: 'Charogne',
+    image: 'images/monsters/Charogne.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 320, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.workette = {
-    id: 'workette',
-    name: 'Workette',
-    image: 'images/monsters/Workette.png',
+monsters.larve_champetre = {
+    id: 'larve_champetre',
+    name: 'Larve Champêtre',
+    image: 'images/monsters/Larve_Champêtre.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 100, atk: 50, spd: 100, res: { neutre: 10, terre: 50, feu: -10, eau: -10, air: 20 } },
-    moves: ['baiser_de_kaliptus', 'implosion']
+    bst: { hp: 690, atk: 224, spd: 100, res: { neutre: 15, terre: 1, feu: 18, eau: 8, air: -15 } },
+    moves: ['larvaportation', 'toussotement_larvesque', 'larvement_champetre']
 }
-monsters.corbac_fantomatique = {
-    id: 'corbac_fantomatique',
-    name: 'Corbac Fantômatique',
-    image: 'images/monsters/Corbac_Fantômatique.png',
+monsters.bourdard = {
+    id: 'bourdard',
+    name: 'Bourdard',
+    image: 'images/monsters/Bourdard.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 0, terre: -10, feu: 0, eau: 10, air: 0 } },
-    moves: ['moquerie_fantomatique', 'replique_fantomatique']
-}
-monsters.marcassin_fantomatique = {
-    id: 'marcassin_fantomatique',
-    name: 'Marcassin Fantômatique',
-    image: 'images/monsters/Marcassin_Fantômatique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 0, terre: 10, feu: 0, eau: -10, air: 0 } },
-    moves: ['embrochement_fantomatique']
-}
-monsters.el_scarador_fantomatique = {
-    id: 'el_scarador_fantomatique',
-    name: 'El Scarador Fantômatique',
-    image: 'images/monsters/El_Scarador_Fantômatique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 5, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: ['element_fantomatique', 'scaraforce_fantomatique']
-}
-monsters.croum_fantomatique = {
-    id: 'croum_fantomatique',
-    name: 'Croum Fantômatique',
-    image: 'images/monsters/Croum_Fantômatique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 18, terre: -9, feu: 11, eau: -9, air: 11 } },
-    moves: ['glaive_fantomatique', 'bravoure_fantomatique']
-}
-monsters.poupoussiere = {
-    id: 'poupoussiere',
-    name: 'Poupoussière',
-    image: 'images/monsters/Poupoussière.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 110, atk: 160, spd: 100, res: { neutre: 10, terre: 0, feu: -20, eau: 10, air: 0 } },
-    moves: ['nuage_de_poupoussiere']
+    bst: { hp: 540, atk: 120, spd: 100, res: { neutre: 7, terre: -18, feu: 20, eau: -5, air: 5 } },
+    moves: ['essaimage', 'bizz', 'buzz']
 }
 monsters.rose_obscure = {
     id: 'rose_obscure',
@@ -8890,6 +8729,37 @@ monsters.rose_obscure = {
     bst: { hp: 120, atk: 150, spd: 100, res: { neutre: 10, terre: 25, feu: 0, eau: 30, air: 0 } },
     moves: ['petalesEmpoisonnes', 'roseEpineuse']
 }
+
+// ═══════════════════════════════════════════════════════
+// PLAGE D'ASTRUB (lvl 10+)
+// ═══════════════════════════════════════════════════════
+monsters.krokille_de_mer = {
+    id: 'krokille_de_mer',
+    name: 'Krokille de Mer',
+    image: 'images/monsters/Krokille_de_Mer.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 15, atk: 0, spd: 100, res: { neutre: 75, terre: 75, feu: 75, eau: 75, air: 75 } },
+    moves: ['crachat_sale']
+}
+monsters.amas_de_tentacules = {
+    id: 'amas_de_tentacules',
+    name: 'Amas de Tentacules',
+    image: 'images/monsters/Amas_de_Tentacules.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.tonneau_pirate = {
+    id: 'tonneau_pirate',
+    name: 'Tonneau Pirate',
+    image: 'images/monsters/Tonneau_Pirate.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 190, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['motivation_naturelle']
+}
 monsters.coffre_maudit_du_flib = {
     id: 'coffre_maudit_du_flib',
     name: 'Coffre Maudit du Flib',
@@ -8899,14 +8769,436 @@ monsters.coffre_maudit_du_flib = {
     bst: { hp: 130, atk: 0, spd: 100, res: { neutre: 11, terre: -19, feu: -19, eau: -19, air: -19 } },
     moves: ['disruption', 'malediction']
 }
-monsters.sac_anime = {
-    id: 'sac_anime',
-    name: 'Sac Animé',
-    image: 'images/monsters/Sac_Animé.png',
+monsters.crabe_hijacob = {
+    id: 'crabe_hijacob',
+    name: 'Crabe Hijacob',
+    image: 'images/monsters/Crabe_Hijacob.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 130, atk: 0, spd: 100, res: { neutre: 50, terre: 19, feu: 32, eau: 23, air: 23 } },
+    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 4, terre: 14, feu: 10, eau: 28, air: -39 } },
+    moves: ['pincette', 'sucette', 'briquette']
+}
+
+// ═══════════════════════════════════════════════════════
+// ÉGOUTS D'ASTRUB (lvl 30+)
+// ═══════════════════════════════════════════════════════
+monsters.arakne_des_egouts = {
+    id: 'arakne_des_egouts',
+    name: 'Arakne des Égouts',
+    image: 'images/monsters/Arakne_des_Égouts.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 180, atk: 96, spd: 100, res: { neutre: -5, terre: 20, feu: -5, eau: -15, air: 10 } },
+    moves: ['mandibules', 'mere_porteuse']
+}
+monsters.rat_d_egoutant = {
+    id: 'rat_d_egoutant',
+    name: 'Rat d\'Égoutant',
+    image: 'images/monsters/Rat_d_Égoutant.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 550, atk: 208, spd: 100, res: { neutre: 5, terre: 47, feu: -24, eau: 24, air: -17 } },
+    moves: ['empalement']
+}
+monsters.ramane_d_egoutant = {
+    id: 'ramane_d_egoutant',
+    name: 'Ramane d\'Égoutant',
+    image: 'images/monsters/Ramane.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 550, atk: 208, spd: 100, res: { neutre: 1, terre: 41, feu: 5, eau: 23, air: -10 } },
+    moves: ['invocation_de_kolerat_d_egoutant', 'emmental_d_egoutant', 'roblochon_d_egoutant']
+}
+monsters.kolerat_d_egoutant = {
+    id: 'kolerat_d_egoutant',
+    name: 'Kolérat d\'Égoutant',
+    image: 'images/monsters/Kolérat.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 340, atk: 208, spd: 100, res: { neutre: -14, terre: 31, feu: -14, eau: 41, air: -9 } },
+    moves: ['morsure_affaiblissante']
+}
+monsters.rat_bougri = {
+    id: 'rat_bougri',
+    name: 'Rat Bougri',
+    image: 'images/monsters/Rat_Bougri.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 19, terre: 22, feu: 10, eau: -24, air: 5 } },
+    moves: ['ratissage', 'rabot', 'racolage']
+}
+monsters.gardienne_des_egouts = {
+    id: 'gardienne_des_egouts',
+    name: 'Gardienne des Égouts',
+    image: 'images/monsters/Gardienne_des_Égouts.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6500, atk: 675, spd: 100, res: { neutre: 90, terre: 37, feu: 35, eau: 20, air: 10 } },
+    moves: ['Invocation_d_Arakne_Majeure']
+}
+monsters.milicien = {
+    id: 'milicien',
+    name: 'Milicien',
+    image: 'images/monsters/Milicien.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 570, atk: 0, spd: 100, res: { neutre: 4, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['virevolte', 'laminage']
+}
+
+// ═══════════════════════════════════════════════════════
+// CRYPTE DU CIMETIÈRE (lvl 30+)
+// ═══════════════════════════════════════════════════════
+monsters.chafer_archer = {
+    id: 'chafer_archer',
+    name: 'Chafer Archer',
+    image: 'images/monsters/Chafer_Archer.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 390, atk: 168, spd: 100, res: { neutre: 0, terre: 11, feu: -9, eau: 6, air: 16 } },
+    moves: ['fleche_de_feu']
+}
+monsters.chafer_lancier = {
+    id: 'chafer_lancier',
+    name: 'Chafer Lancier',
+    image: 'images/monsters/Chafer_Lancier.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 11, terre: 1, feu: 26, eau: 16, air: 0 } },
+    moves: ['euphorie_malsaine', 'transpercement', 'aouh']
+}
+monsters.chafer_d_elite = {
+    id: 'chafer_d_elite',
+    name: 'Chafer d\'Élite',
+    image: 'images/monsters/Chafer_d_Élite.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 0, terre: 16, feu: 21, eau: 6, air: 11 } },
+    moves: ['frenesie', 'coup_d_elite', 'coup_affaiblissant']
+}
+monsters.chafer_lancier_veteran = {
+    id: 'chafer_lancier_veteran',
+    name: 'Chafer Lancier Vétéran',
+    image: 'images/monsters/Chafer_Lancier_Vétéran.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 13000, atk: 600, spd: 100, res: { neutre: 15, terre: 5, feu: 30, eau: 20, air: 0 } },
     moves: []
+}
+monsters.kruorre_le_chafer_hai = {
+    id: 'kruorre_le_chafer_hai',
+    name: 'Kruorre le Chafer Haï',
+    image: 'images/monsters/Kruorre_le_Chafer_Haï.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4800, atk: 900, spd: 100, res: { neutre: -10, terre: -5, feu: 15, eau: 5, air: 15 } },
+    moves: ['chafouette', 'charnaque', 'invisibilite_alpha', 'coup_mortel_du_chafer']
+}
+monsters.maitre_vampire = {
+    id: 'maitre_vampire',
+    name: 'Maître Vampire',
+    image: 'images/monsters/Maître_Vampire.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 390, atk: 113, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: -10, air: 10 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// TERRITOIRE DES BANDITS (lvl 40+)
+// ═══════════════════════════════════════════════════════
+monsters.marodeur = {
+    id: 'marodeur',
+    name: 'Marôdeur',
+    image: 'images/monsters/Marôdeur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 24, terre: 15, feu: -30, eau: 18, air: 36 } },
+    moves: []
+}
+monsters.reine_des_voleurs = {
+    id: 'reine_des_voleurs',
+    name: 'Reine des Voleurs',
+    image: 'images/monsters/Reine_des_Voleurs.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 31, terre: 26, feu: 42, eau: 13, air: 18 } },
+    moves: ['mort_en_sursis', 'coup_critique']
+}
+
+// ═══════════════════════════════════════════════════════
+// CÔTE DE CORAIL (lvl 40+)
+// ═══════════════════════════════════════════════════════
+monsters.grozilla = {
+    id: 'grozilla',
+    name: 'Grozilla',
+    image: 'images/monsters/Grozilla.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 16000, atk: 950, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    moves: ['tyrannisation', 'gravite']
+}
+monsters.grasmera = {
+    id: 'grasmera',
+    name: 'Grasmera',
+    image: 'images/monsters/Grasmera.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 16000, atk: 950, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['meteore']
+}
+monsters.grozilla_somnambule = {
+    id: 'grozilla_somnambule',
+    name: 'Grozilla Somnambule',
+    image: 'images/monsters/Grozilla.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1600, atk: 130, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    moves: ['tyrannisation', 'gravite']
+}
+monsters.grasmera_somnambule = {
+    id: 'grasmera_somnambule',
+    name: 'Grasmera Somnambule',
+    image: 'images/monsters/Grasmera.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1600, atk: 130, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['meteore']
+}
+monsters.grozilla_epuise = {
+    id: 'grozilla_epuise',
+    name: 'Grozilla Épuisé',
+    image: 'images/monsters/Grozilla.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 4800, atk: 400, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    moves: ['tyrannisation', 'gravite']
+}
+monsters.grasmera_epuise = {
+    id: 'grasmera_epuise',
+    name: 'Grasmera Épuisé',
+    image: 'images/monsters/Grasmera.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 4800, atk: 400, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['meteore']
+}
+monsters.grozilla_fatigue = {
+    id: 'grozilla_fatigue',
+    name: 'Grozilla Fatigué',
+    image: 'images/monsters/Grozilla.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 10000, atk: 680, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    moves: ['tyrannisation', 'gravite']
+}
+monsters.grasmera_fatigue = {
+    id: 'grasmera_fatigue',
+    name: 'Grasmera Fatigué',
+    image: 'images/monsters/Grasmera.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 10000, atk: 680, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['meteore']
+}
+
+// ═══════════════════════════════════════════════════════
+// FALAISE DES KWAKS (lvl 40+)
+// ═══════════════════════════════════════════════════════
+monsters.kwakus = {
+    id: 'kwakus',
+    name: 'Kwakus',
+    image: 'images/monsters/Kwakus.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 50, terre: 0, feu: -100, eau: 100, air: 0 } },
+    moves: ['kwakiboost', 'kwakikri', 'kwakoukus', 'wakpotus']
+}
+monsters.kwakere_de_flamme = {
+    id: 'kwakere_de_flamme',
+    name: 'Kwakere de Flamme',
+    image: 'images/monsters/Kwakere_de_Flamme.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: 21, feu: 100, eau: -29, air: 21 } },
+    moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees']
+}
+monsters.kwakere_de_terre = {
+    id: 'kwakere_de_terre',
+    name: 'Kwakere de Terre',
+    image: 'images/monsters/Kwakere_de_Terre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: 100, feu: 21, eau: 21, air: -29 } },
+    moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees']
+}
+monsters.kwakere_de_glace = {
+    id: 'kwakere_de_glace',
+    name: 'Kwakere de Glace',
+    image: 'images/monsters/Kwakere_de_Glace.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: 21, feu: -29, eau: 100, air: 21 } },
+    moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees']
+}
+monsters.kwakere_de_vent = {
+    id: 'kwakere_de_vent',
+    name: 'Kwakere de Vent',
+    image: 'images/monsters/Kwakere_de_Vent.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: -29, feu: 21, eau: 21, air: 100 } },
+    moves: ['griffes_acerees', 'wakzefeute_terre', 'wakolanterne_terre']
+}
+
+// ═══════════════════════════════════════════════════════
+// ÉLEVAGE DE DRAGODINDES (lvl 40+)
+// ═══════════════════════════════════════════════════════
+monsters.uf_de_pwak = {
+    id: 'uf_de_pwak',
+    name: 'Œuf de Pwâk',
+    image: 'images/monsters/Œuf_de_Pwâk.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 250, atk: 50, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.uf_de_pwak_dore = {
+    id: 'uf_de_pwak_dore',
+    name: 'Œuf de Pwâk doré',
+    image: 'images/monsters/Œuf_de_Pwâk_doré.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 860, atk: 180, spd: 100, res: { neutre: 100, terre: 5, feu: 5, eau: 5, air: 5 } },
+    moves: []
+}
+monsters.garde_de_pwak = {
+    id: 'garde_de_pwak',
+    name: 'Garde de Pwâk',
+    image: 'images/monsters/Garde_de_Pwâk.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 780, atk: 250, spd: 100, res: { neutre: 2, terre: -18, feu: 12, eau: -13, air: 6 } },
+    moves: ['croquanibalisme', 'guimimauve', 'englumauve', 'attrape_gourmand']
+}
+
+// ═══════════════════════════════════════════════════════
+// BWAKS ÉLÉMENTAIRES (lvl 40+)
+// ═══════════════════════════════════════════════════════
+monsters.bwak_de_feu = {
+    id: 'bwak_de_feu',
+    name: 'Bwak de Feu',
+    image: 'images/monsters/Bwak_de_Feu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
+    moves: ['bwakikui']
+}
+monsters.bwak_de_terre = {
+    id: 'bwak_de_terre',
+    name: 'Bwak de Terre',
+    image: 'images/monsters/Bwak_de_Terre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
+    moves: ['bwakikuiterre']
+}
+monsters.bwak_d_air = {
+    id: 'bwak_d_air',
+    name: 'Bwak d\'Air',
+    image: 'images/monsters/Bwak_d_Air.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
+    moves: ['bwakikuiair']
+}
+monsters.bwak_d_eau = {
+    id: 'bwak_d_eau',
+    name: 'Bwak d\'Eau',
+    image: 'images/monsters/Bwak_d_Eau.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
+    moves: ['bwakikuieau']
+}
+
+// ═══════════════════════════════════════════════════════
+// FLAMMÈCHES ÉLÉMENTAIRES (lvl 40+)
+// ═══════════════════════════════════════════════════════
+monsters.flammeche_eau = {
+    id: 'flammeche_eau',
+    name: 'Flammèche Eau',
+    image: 'images/monsters/Flammèche_Eau.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
+    moves: ['elemental_speareau', 'bomballeau']
+}
+monsters.flammeche_terre = {
+    id: 'flammeche_terre',
+    name: 'Flammèche Terre',
+    image: 'images/monsters/Flammèche_Terre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
+    moves: ['elemental_spearterre', 'bomballterre']
+}
+monsters.flammeche_air = {
+    id: 'flammeche_air',
+    name: 'Flammèche Air',
+    image: 'images/monsters/Flammèche_Air.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
+    moves: ['elemental_spearair', 'bomballair']
+}
+
+// ═══════════════════════════════════════════════════════
+// DONJON DES TOFUS (lvl 45+)
+// ═══════════════════════════════════════════════════════
+monsters.tofu_enneige = {
+    id: 'tofu_enneige',
+    name: 'Tofu enneigé',
+    image: 'images/monsters/Tofu_enneigé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 40, terre: 15, feu: 20, eau: -39, air: 50 } },
+    moves: ['tombee_de_neige', 'debarbouillage']
+}
+
+// ═══════════════════════════════════════════════════════
+// ÎLE DES WABBITS (lvl 50+)
+// ═══════════════════════════════════════════════════════
+monsters.black_tiwabbitus = {
+    id: 'black_tiwabbitus',
+    name: 'Black tiwabbitus',
+    image: 'images/monsters/Black_tiwabbitus.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 50, terre: -10, feu: -10, eau: 2, air: 2 } },
+    moves: ['enewgie_tewestwe', 'twansposition', 'wabehameha', 'frappus']
+}
+monsters.wabbit_gm = {
+    id: 'wabbit_gm',
+    name: 'Wabbit Gm',
+    image: 'images/monsters/Wabbit_Gm.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1200, atk: 143, spd: 100, res: { neutre: 43, terre: 33, feu: 40, eau: -6, air: -15 } },
+    moves: ['rafale_de_terre', 'cawotte_gm']
+}
+
+// ═══════════════════════════════════════════════════════
+// KROKILLES ÉLÉMENTAIRES (SUFOKIA) (lvl 50+)
+// ═══════════════════════════════════════════════════════
+monsters.krokille_fragile = {
+    id: 'krokille_fragile',
+    name: 'Krokille fragile',
+    image: 'images/monsters/Krokille_fragile.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3000, atk: 450, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['volte', 'eruption_vulkaine']
 }
 monsters.krokille_juvenile_insipide = {
     id: 'krokille_juvenile_insipide',
@@ -8953,808 +9245,14 @@ monsters.krokille_juvenile_seche = {
     bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
     moves: ['assechement', 'bourrasque', 'souffle_percutant']
 }
-monsters.bwak_de_feu = {
-    id: 'bwak_de_feu',
-    name: 'Bwak de Feu',
-    image: 'images/monsters/Bwak_de_Feu.png',
+monsters.krokille_juvenile_crue = {
+    id: 'krokille_juvenile_crue',
+    name: 'Krokille Juvénile Crue',
+    image: 'images/monsters/Krokille_Juvénile_Crue.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: ['bwakikui']
-}
-monsters.bwak_de_terre = {
-    id: 'bwak_de_terre',
-    name: 'Bwak de Terre',
-    image: 'images/monsters/Bwak_de_Terre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: ['bwakikuiterre']
-}
-monsters.bwak_d_air = {
-    id: 'bwak_d_air',
-    name: 'Bwak d\'Air',
-    image: 'images/monsters/Bwak_d_Air.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: ['bwakikuiair']
-}
-monsters.bwak_d_eau = {
-    id: 'bwak_d_eau',
-    name: 'Bwak d\'Eau',
-    image: 'images/monsters/Bwak_d_Eau.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 140, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: ['bwakikuieau']
-}
-monsters.bambou = {
-    id: 'bambou',
-    name: 'Bambou',
-    image: 'images/monsters/Bambou.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.poupee_mortelle = {
-    id: 'poupee_mortelle',
-    name: 'Poupée Mortelle',
-    image: 'images/monsters/Workette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 90, terre: -90, feu: 90, eau: 90, air: 90 } },
-    moves: []
-}
-monsters.ashi_magari = {
-    id: 'ashi_magari',
-    name: 'Ashi-magari',
-    image: 'images/monsters/Ashi-magari.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['enchevetrement']
-}
-monsters.mur_de_pelles = {
-    id:    'mur_de_pelles',
-    name:  'Mur de pelles',
-    image: 'img/classes/invocations/pelle_anime.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 21, feu: 6, eau: -14, air: 11 } },
-    moves: []
-}
-monsters.ballotin_le_bouftou = {
-    id: 'ballotin_le_bouftou',
-    name: 'Ballotin le Bouftou',
-    image: 'images/monsters/Ballotin_le_Bouftou.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 170, atk: 88, spd: 100, res: { neutre: 1, terre: 11, feu: -14, eau: -9, air: 16 } },
-    moves: ['morsure_du_bouftou']
-}
-monsters.arakne_des_egouts = {
-    id: 'arakne_des_egouts',
-    name: 'Arakne des Égouts',
-    image: 'images/monsters/Arakne_des_Égouts.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 180, atk: 96, spd: 100, res: { neutre: -5, terre: 20, feu: -5, eau: -15, air: 10 } },
-    moves: ['mandibules', 'mere_porteuse']
-}
-monsters.tonneau_pirate = {
-    id: 'tonneau_pirate',
-    name: 'Tonneau Pirate',
-    image: 'images/monsters/Tonneau_Pirate.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 190, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['motivation_naturelle']
-}
-monsters.disciple_du_kimbo = {
-    id: 'disciple_du_kimbo',
-    name: 'Disciple du Kimbo',
-    image: 'images/monsters/Disciple_du_Kimbo.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 190, atk: 225, spd: 100, res: { neutre: 800, terre: 800, feu: 800, eau: 800, air: 800 } },
-    moves: ['glyphe_pair', 'glyphe_impair']
-}
-monsters.tentacule_quaternaire = {
-    id: 'tentacule_quaternaire',
-    name: 'Tentacule Quaternaire',
-    image: 'images/monsters/Tentacule_Quaternaire.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 190, atk: 400, spd: 100, res: { neutre: 90, terre: 0, feu: 90, eau: 90, air: 90 } },
-    moves: ['paralysie_tentaculaire']
-}
-monsters.pepite_croquante = {
-    id: 'pepite_croquante',
-    name: 'Pépite croquante',
-    image: 'images/monsters/Pépite_croquante.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 200, atk: 0, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
-}
-monsters.bouftou_d_halouine = {
-    id: 'bouftou_d_halouine',
-    name: 'Bouftou d\'Halouine',
-    image: 'images/monsters/Bouftou_d_Halouine.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 1, terre: 11, feu: -14, eau: -9, air: 16 } },
-    moves: ['morsure_du_bouftou']
-}
-monsters.citwouille = {
-    id: 'citwouille',
-    name: 'Citwouille',
-    image: 'images/monsters/Citwouille.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 220, atk: 113, spd: 100, res: { neutre: 1, terre: -9, feu: 1, eau: 0, air: 0 } },
-    moves: ['vol_de_pieces', 'peur_vegetarienne', 'empoisonnement_vegetarien']
-}
-monsters.rasboul_mineur = {
-    id: 'rasboul_mineur',
-    name: 'Rasboul Mineur',
-    image: 'images/monsters/Rasboul_Mineur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 220, atk: 0, spd: 100, res: { neutre: 75, terre: -75, feu: 75, eau: 75, air: 75 } },
-    moves: ['bisouille']
-}
-monsters.kruella_freuz = {
-    id: 'kruella_freuz',
-    name: 'Kruella Freuz',
-    image: 'images/monsters/Kruella_Freuz.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 230, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['invocation_de_kruella', 'souffle_motivant', 'souffle_empoisonne']
-}
-monsters.donatella = {
-    id: 'donatella',
-    name: 'Donatella',
-    image: 'images/monsters/Donatella.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 240, atk: 60, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 30 } },
-    moves: ['kawabunga']
-}
-monsters.pierre_taillee = {
-    id: 'pierre_taillee',
-    name: 'Pierre Taillée',
-    image: 'images/monsters/Pierre_Taillée.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 240, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.dagobert = {
-    id: 'dagobert',
-    name: 'Dagobert',
-    image: 'images/monsters/Dagobert.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 240, atk: 118, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['miaulement_agacant', 'minouille']
-}
-monsters.uf_de_pwak = {
-    id: 'uf_de_pwak',
-    name: 'Œuf de Pwâk',
-    image: 'images/monsters/Œuf_de_Pwâk.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 250, atk: 50, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.scarafeuilleImmature = {
-    id: 'scarafeuilleImmature',
-    name: 'Scarafeuille Immature',
-    image: 'images/monsters/Scarafeuille_Immature.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 250, atk: 80, spd: 100, res: { neutre: -10, terre: 100, feu: -10, eau: -10, air: -10 } },
-    moves: ['scarapoison'],
-    ownerId: 'scarabosse_dore'
-}
-monsters.raphaela = {
-    id: 'raphaela',
-    name: 'Raphaela',
-    image: 'images/monsters/Raphaela.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 260, atk: 63, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 30, air: 0 } },
-    moves: []
-}
-monsters.leonardawa = {
-    id: 'leonardawa',
-    name: 'Leonardawa',
-    image: 'images/monsters/Leonardawa.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 270, atk: 65, spd: 100, res: { neutre: 50, terre: 0, feu: 30, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.totem_motivant = {
-    id: 'totem_motivant',
-    name: 'Totem Motivant',
-    image: 'images/monsters/Totem_Motivant.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 300, atk: 0, spd: 100, res: { neutre: 90, terre: 90, feu: -20, eau: 90, air: 90 } },
-    moves: ['encouragement']
-}
-monsters.totem_explosif = {
-    id: 'totem_explosif',
-    name: 'Totem Explosif',
-    image: 'images/monsters/Totem_Explosif.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 300, atk: 0, spd: 100, res: { neutre: 90, terre: 90, feu: 100, eau: 90, air: 90 } },
-    moves: ['tentative_d_explosion']
-}
-monsters.totem_soignant = {
-    id: 'totem_soignant',
-    name: 'Totem Soignant',
-    image: 'images/monsters/Totem_Soignant.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 300, atk: 50, spd: 100, res: { neutre: 90, terre: 90, feu: -20, eau: 90, air: 90 } },
-    moves: ['reconstitution_magique']
-}
-monsters.garglyphe = {
-    id: 'garglyphe',
-    name: 'Garglyphe',
-    image: 'images/monsters/Garglyphe.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 300, atk: 118, spd: 100, res: { neutre: 10, terre: 10, feu: -15, eau: 20, air: -5 } },
-    moves: ['deterrage', 'gare_aux_glyphes', 'durete_ramollissante']
-}
-monsters.brigandine = {
-    id: 'brigandine',
-    name: 'Brigandine',
-    image: 'images/monsters/Brigandine.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 310, atk: 70, spd: 100, res: { neutre: 30, terre: 0, feu: 30, eau: 30, air: 30 } },
-    moves: ['fronde', 'appel_de_papa']
-}
-monsters.brigandin = {
-    id: 'brigandin',
-    name: 'Brigandin',
-    image: 'images/monsters/Brigandin.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 310, atk: 70, spd: 100, res: { neutre: 5, terre: 20, feu: 30, eau: 0, air: 80 } },
-    moves: ['appel_de_la_mama', 'elagage_de_cou']
-}
-monsters.michelangela = {
-    id: 'michelangela',
-    name: 'Michelangela',
-    image: 'images/monsters/Michelangela.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 310, atk: 128, spd: 100, res: { neutre: 50, terre: 30, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.rat_molo = {
-    id: 'rat_molo',
-    name: 'Rat Molo',
-    image: 'images/monsters/Rat_Molo.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 320, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['rajusteur', 'raclerie']
-}
-monsters.champa_vert = {
-    id: 'champa_vert',
-    name: 'Champa Vert',
-    image: 'images/monsters/Champa_Vert.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: -9, eau: -9, air: 60 } },
-    moves: ['teleportation_du_champa', 'champ_oisone']
-}
-monsters.champa_rouge = {
-    id: 'champa_rouge',
-    name: 'Champa Rouge',
-    image: 'images/monsters/Champa_Rouge.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: 60, eau: -9, air: -9 } },
-    moves: ['champsoin', 'champ_hagne']
-}
-monsters.champa_bleu = {
-    id: 'champa_bleu',
-    name: 'Champa Bleu',
-    image: 'images/monsters/Champa_Bleu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: -9, eau: 60, air: -9 } },
-    moves: ['sacrifice_douloureux', 'attraction_champetre']
-}
-monsters.champa_marron = {
-    id: 'champa_marron',
-    name: 'Champa Marron',
-    image: 'images/monsters/Champa_Marron.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: 60, feu: -9, eau: -9, air: -9 } },
-    moves: ['champ_homi', 'champ_hetre']
-}
-monsters.charogne = {
-    id: 'charogne_mstr',
-    name: 'Charogne',
-    image: 'images/monsters/Charogne.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 320, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.tofu_d_halouine = {
-    id: 'tofu_d_halouine',
-    name: 'Tofu d\'Halouine',
-    image: 'images/monsters/Tofu_d_Halouine.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 5, terre: -9, feu: 9, eau: 9, air: -9 } },
-    moves: ['beco_rosif', 'fougue_tofuesque']
-}
-monsters.kolerat_d_egoutant = {
-    id: 'kolerat_d_egoutant',
-    name: 'Kolérat d\'Égoutant',
-    image: 'images/monsters/Kolérat.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 340, atk: 208, spd: 100, res: { neutre: -14, terre: 31, feu: -14, eau: 41, air: -9 } },
-    moves: ['morsure_affaiblissante']
-}
-monsters.dragodinde_de_nowel = {
-    id: 'dragodinde_de_nowel',
-    name: 'Dragodinde de Nowel',
-    image: 'images/monsters/Dragodinde_de_Nowel.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 26, terre: -8, feu: -8, eau: 26, air: -8 } },
-    moves: ['dindosoin', 'frappodindo']
-}
-monsters.tronknyde = {
-    id: 'tronknyde',
-    name: 'Tronknyde',
-    image: 'images/monsters/Tronknyde.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: 28, feu: -17, eau: 38, air: 38 } },
-    moves: ['glyphe_sylvestre', 'tronc_commun']
-}
-monsters.chafer_archer = {
-    id: 'chafer_archer',
-    name: 'Chafer Archer',
-    image: 'images/monsters/Chafer_Archer.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 390, atk: 168, spd: 100, res: { neutre: 0, terre: 11, feu: -9, eau: 6, air: 16 } },
-    moves: ['fleche_de_feu']
-}
-monsters.maitre_vampire = {
-    id: 'maitre_vampire',
-    name: 'Maître Vampire',
-    image: 'images/monsters/Maître_Vampire.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 390, atk: 113, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: -10, air: 10 } },
-    moves: []
-}
-monsters.glutin_turbulent = {
-    id: 'glutin_turbulent',
-    name: 'Glutin turbulent',
-    image: 'images/monsters/Glutin_Tapageur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 390, atk: 144, spd: 100, res: { neutre: 3, terre: 3, feu: 3, eau: 3, air: 3 } },
-    moves: ['boolkiroul', 'namas_pamouss', 'ebouledeneigement']
-}
-monsters.bakaza_kopi = {
-    id: 'bakaza_kopi',
-    name: 'Bakaza kopi',
-    image: 'images/monsters/Bakaza_kopi.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 390, atk: 640, spd: 100, res: { neutre: 17, terre: 12, feu: 8, eau: -10, air: -19 } },
-    moves: ['dorobo']
-}
-monsters.arakne_poilue = {
-    id: 'arakne_poilue',
-    name: 'Arakne Poilue',
-    image: 'images/monsters/Arakne_Majeure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 400, atk: 100, spd: 100, res: { neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 } },
-    moves: ['Absorption_Sanguine', 'Ralentissement_Arakneen']
-}
-monsters.chevalier = {
-    id: 'chevalier',
-    name: 'Chevalier',
-    image: 'images/monsters/Chevalier.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 400, atk: 100, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['laminagile', 'virevoltige', 'attirance_chevaleresque', 'bond_chevaleresque']
-}
-monsters.boumbombe = {
-    id: 'boumbombe',
-    name: 'Boumbombe',
-    image: 'images/monsters/Boumbombe.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 400, atk: 25, spd: 100, res: { neutre: 75, terre: 75, feu: 50, eau: 50, air: 75 } },
-    moves: ['tic_tac', 'badaboum']
-}
-monsters.tregenaire = {
-    id: 'tregenaire',
-    name: 'Trégénaire',
-    image: 'images/monsters/Trégénaire.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 400, atk: 50, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['protection_de_la_reine']
-}
-monsters.toile = {
-    id: 'toile',
-    name: 'Toile',
-    image: 'images/monsters/Toile.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 400, atk: 0, spd: 100, res: { neutre: -5, terre: 10, feu: -15, eau: 15, air: 5 } },
-    moves: []
-}
-monsters.arakne_majeure = {
-    id: 'arakne_majeure',
-    name: 'Arakne Majeure',
-    image: 'images/monsters/Arakne_Majeure.png',
-    rarity: 'peu_commun',
-    tier: 'elite',
-    bst: { hp: 400, atk: 100, spd: 115, res: { neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 } },
-    moves: ['Absorption_Sanguine', 'Ralentissement_Arakneen'],
-    ownerId: 'abraknydeAncestral'
-}
-monsters.kitsou_nakwatus = {
-    id: 'kitsou_nakwatus',
-    name: 'Kitsou nakwatus',
-    image: 'images/monsters/Kitsou_nakwatus.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 50, terre: 25, feu: -10, eau: 100, air: 15 } },
-    moves: ['ruse_hivernale', 'kitsouqueue', 'kitsnition_frissonante', 'kitsouflamme']
-}
-monsters.tofu_enneige = {
-    id: 'tofu_enneige',
-    name: 'Tofu enneigé',
-    image: 'images/monsters/Tofu_enneigé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 40, terre: 15, feu: 20, eau: -39, air: 50 } },
-    moves: ['tombee_de_neige', 'debarbouillage']
-}
-monsters.flammeche_fumeuse = {
-    id: 'flammeche_fumeuse',
-    name: 'Flammèche Fumeuse',
-    image: 'images/monsters/Flammèche_Feu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: ['rapprochement_elementaire', 'immolation_mstr']
-}
-monsters.flammeche_aqueuse = {
-    id: 'flammeche_aqueuse',
-    name: 'Flammèche Aqueuse',
-    image: 'images/monsters/Flammèche_Eau.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: ['rapprochement_elementaireeau', 'immolationeau']
-}
-monsters.flammeche_terreuse = {
-    id: 'flammeche_terreuse',
-    name: 'Flammèche Terreuse',
-    image: 'images/monsters/Flammèche_Terre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: ['rapprochement_elementaireterre', 'immolationterre']
-}
-monsters.flammeche_venteuse = {
-    id: 'flammeche_venteuse',
-    name: 'Flammèche Venteuse',
-    image: 'images/monsters/Flammèche_Air.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: ['rapprochement_elementaireair', 'immolationair']
-}
-monsters.cochon_de_lait = {
-    id: 'cochon_de_lait',
-    name: 'Cochon de Lait',
-    image: 'images/monsters/Cochon_de_Lait.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 430, atk: 168, spd: 100, res: { neutre: 11, terre: 0, feu: -19, eau: -24, air: 56 } },
-    moves: ['lard_bat_laite', 'reniflement']
-}
-monsters.berger_porkass = {
-    id: 'berger_porkass',
-    name: 'Berger Porkass',
-    image: 'images/monsters/Berger_Porkass.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 430, atk: 168, spd: 100, res: { neutre: -14, terre: -9, feu: 21, eau: 31, air: -19 } },
-    moves: ['koudanlulk', 'tridembrochement', 'appel_de_la_foudre']
-}
-monsters.kipik = {
-    id: 'kipik',
-    name: 'Kipik',
-    image: 'images/monsters/Kipik.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: -10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: ['savapike', 'branche_kipik']
-}
-monsters.kwakus = {
-    id: 'kwakus',
-    name: 'Kwakus',
-    image: 'images/monsters/Kwakus.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 50, terre: 0, feu: -100, eau: 100, air: 0 } },
-    moves: ['kwakiboost', 'kwakikri', 'kwakoukus', 'wakpotus']
-}
-monsters.blop_indigo_invoque = {
-    id: 'blop_indigo_invoque',
-    name: 'Blop Indigo invoqué',
-    image: 'images/monsters/Blop_Indigo_invoqué.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 } },
-    moves: ['blyphe_koalak']
-}
-monsters.blop_coco_invoque = {
-    id: 'blop_coco_invoque',
-    name: 'Blop Coco invoqué',
-    image: 'images/monsters/Blop_Coco_invoqué.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 } },
-    moves: ['blyphe_koalak']
-}
-monsters.blop_griotte_invoque = {
-    id: 'blop_griotte_invoque',
-    name: 'Blop Griotte invoqué',
-    image: 'images/monsters/Blop_Griotte_invoqué.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 } },
-    moves: ['blyphe_koalak']
-}
-monsters.blop_reinette_invoque = {
-    id: 'blop_reinette_invoque',
-    name: 'Blop Reinette invoqué',
-    image: 'images/monsters/Blop_Reinette_invoqué.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 } },
-    moves: ['blyphe_koalak']
-}
-monsters.black_tiwabbitus = {
-    id: 'black_tiwabbitus',
-    name: 'Black tiwabbitus',
-    image: 'images/monsters/Black_tiwabbitus.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 50, terre: -10, feu: -10, eau: 2, air: 2 } },
-    moves: ['enewgie_tewestwe', 'twansposition', 'wabehameha', 'frappus']
-}
-monsters.cawottes = {
-    id: 'cawottes',
-    name: 'Cawottes',
-    image: 'images/monsters/Cawottes.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 470, atk: 0, spd: 100, res: { neutre: 10, terre: 5, feu: 0, eau: -5, air: 0 } },
-    moves: []
-}
-monsters.sanglier_des_plaines = {
-    id: 'sanglier_des_plaines',
-    name: 'Sanglier des Plaines',
-    image: 'images/monsters/Sanglier_des_Plaines.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 160, spd: 100, res: { neutre: 0, terre: 11, feu: 16, eau: 26, air: -29 } },
-    moves: ['protection_de_la_plaine', 'coup_de_defenses', 'hardeur']
-}
-monsters.kwakere_de_flamme = {
-    id: 'kwakere_de_flamme',
-    name: 'Kwakere de Flamme',
-    image: 'images/monsters/Kwakere_de_Flamme.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: 21, feu: 100, eau: -29, air: 21 } },
-    moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees']
-}
-monsters.kwakere_de_terre = {
-    id: 'kwakere_de_terre',
-    name: 'Kwakere de Terre',
-    image: 'images/monsters/Kwakere_de_Terre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: 100, feu: 21, eau: 21, air: -29 } },
-    moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees']
-}
-monsters.kwakere_de_glace = {
-    id: 'kwakere_de_glace',
-    name: 'Kwakere de Glace',
-    image: 'images/monsters/Kwakere_de_Glace.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: 21, feu: -29, eau: 100, air: 21 } },
-    moves: ['wakolanterne_terre', 'wakzefeute_terre', 'griffes_acerees']
-}
-monsters.kwakere_de_vent = {
-    id: 'kwakere_de_vent',
-    name: 'Kwakere de Vent',
-    image: 'images/monsters/Kwakere_de_Vent.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 100, terre: -29, feu: 21, eau: 21, air: 100 } },
-    moves: ['griffes_acerees', 'wakzefeute_terre', 'wakolanterne_terre']
-}
-monsters.abrakne = {
-    id: 'abrakne',
-    name: 'Abrakne',
-    image: 'images/monsters/Abrakne.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 144, spd: 100, res: { neutre: 10, terre: -20, feu: 20, eau: -9, air: 10 } },
-    moves: ['Motivation_Sylvestre', 'Bond_affaiblissant', 'Abraknettoyage']
-}
-monsters.cavalier_porkass = {
-    id: 'cavalier_porkass',
-    name: 'Cavalier Porkass',
-    image: 'images/monsters/Cavalier_Porkass.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 1, terre: 21, feu: 1, eau: -14, air: 11 } },
-    moves: ['defonses', 'rudesse', 'porkass_tete']
-}
-monsters.totem_du_feu = {
-    id: 'totem_du_feu',
-    name: 'Totem du Feu',
-    image: 'images/monsters/Totem_du_Feu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.totem_de_l_eau = {
-    id: 'totem_de_l_eau',
-    name: 'Totem de l\'Eau',
-    image: 'images/monsters/Totem_de_l_Eau.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
-}
-monsters.totem_de_l_air = {
-    id: 'totem_de_l_air',
-    name: 'Totem de l\'Air',
-    image: 'images/monsters/Totem_de_l_Air.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: []
-}
-monsters.totem_de_la_terre = {
-    id: 'totem_de_la_terre',
-    name: 'Totem de la Terre',
-    image: 'images/monsters/Totem_de_la_Terre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.sousouris_agressive = {
-    id: 'sousouris_agressive',
-    name: 'Sousouris Agressive',
-    image: 'images/monsters/Sousouris_Agressive.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 250, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: ['emmental']
-}
-monsters.chafer_lancier = {
-    id: 'chafer_lancier',
-    name: 'Chafer Lancier',
-    image: 'images/monsters/Chafer_Lancier.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 11, terre: 1, feu: 26, eau: 16, air: 0 } },
-    moves: ['euphorie_malsaine', 'transpercement', 'aouh']
-}
-monsters.chafer_d_elite = {
-    id: 'chafer_d_elite',
-    name: 'Chafer d\'Élite',
-    image: 'images/monsters/Chafer_d_Élite.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 520, atk: 168, spd: 100, res: { neutre: 0, terre: 16, feu: 21, eau: 6, air: 11 } },
-    moves: ['frenesie', 'coup_d_elite', 'coup_affaiblissant']
-}
-monsters.noeul = {
-    id: 'noeul',
-    name: 'Noeul',
-    image: 'images/monsters/Noeul.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 520, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['hypnose', 'mirettes']
-}
-monsters.bourdard = {
-    id: 'bourdard',
-    name: 'Bourdard',
-    image: 'images/monsters/Bourdard.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 540, atk: 120, spd: 100, res: { neutre: 7, terre: -18, feu: 20, eau: -5, air: 5 } },
-    moves: ['essaimage', 'bizz', 'buzz']
-}
-monsters.ramane_d_egoutant = {
-    id: 'ramane_d_egoutant',
-    name: 'Ramane d\'Égoutant',
-    image: 'images/monsters/Ramane.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 550, atk: 208, spd: 100, res: { neutre: 1, terre: 41, feu: 5, eau: 23, air: -10 } },
-    moves: ['invocation_de_kolerat_d_egoutant', 'emmental_d_egoutant', 'roblochon_d_egoutant']
-}
-monsters.rat_d_egoutant = {
-    id: 'rat_d_egoutant',
-    name: 'Rat d\'Égoutant',
-    image: 'images/monsters/Rat_d_Égoutant.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 550, atk: 208, spd: 100, res: { neutre: 5, terre: 47, feu: -24, eau: 24, air: -17 } },
-    moves: ['empalement']
-}
-monsters.rupture_d_encre = {
-    id: 'rupture_d_encre',
-    name: 'Rupture d\'encre',
-    image: 'images/monsters/Rupture_d_encre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 550, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.rupture_de_papier = {
-    id: 'rupture_de_papier',
-    name: 'Rupture de papier',
-    image: 'images/monsters/Rupture_de_papier.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 550, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.milicien = {
-    id: 'milicien',
-    name: 'Milicien',
-    image: 'images/monsters/Milicien.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 570, atk: 0, spd: 100, res: { neutre: 4, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['virevolte', 'laminage']
+    bst: { hp: 930, atk: 25, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: ['motivation_gluante', 'koque_chok', 'krokille_de_neuf']
 }
 monsters.krokille_novice_insipide = {
     id: 'krokille_novice_insipide',
@@ -9801,42 +9299,220 @@ monsters.krokille_novice_seche = {
     bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
     moves: ['secheresse', 'bourrasque_tranchante', 'ouragan_renversant']
 }
-monsters.lanterne_bombe = {
-    id: 'lanterne_bombe',
-    name: 'Lanterne bombe',
-    image: 'images/monsters/Lanterne_bombe.png',
+monsters.krokille_novice_crue = {
+    id: 'krokille_novice_crue',
+    name: 'Krokille Novice Crue',
+    image: 'images/monsters/Krokille_Novice_Crue.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 610, atk: 500, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['elemental_spear', 'bomball']
+    bst: { hp: 5600, atk: 38, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: []
 }
-monsters.lanterne_grappe_de_petards = {
-    id: 'lanterne_grappe_de_petards',
-    name: 'Lanterne grappe de pétards',
-    image: 'images/monsters/Lanterne_grappe_de_pétards.png',
+monsters.krokille_mature_insipide = {
+    id: 'krokille_mature_insipide',
+    name: 'Krokille Mature Insipide',
+    image: 'images/monsters/Krokille_Mature_Insipide.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 610, atk: 500, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['elemental_spear', 'bomball']
+    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['peste_devorante', 'toxine_virulente', 'frenesie_elementale']
 }
-monsters.poupee_aycetroy = {
-    id: 'poupee_aycetroy',
-    name: 'Poupée Aycetroy',
-    image: 'images/monsters/Poupée_Aycetroy.png',
+monsters.krokille_mature_boueuse = {
+    id: 'krokille_mature_boueuse',
+    name: 'Krokille Mature Boueuse',
+    image: 'images/monsters/Krokille_Mature_Boueuse.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 610, atk: 25, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['myopie_poupesque']
+    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
+    moves: ['coulee_de_boue', 'eboulement', 'eclosion']
 }
-monsters.rat_d_hyoactif = {
-    id: 'rat_d_hyoactif',
-    name: 'Rat d\'Hyoactif',
-    image: 'images/monsters/Rat_d_Hyoactif.png',
+monsters.krokille_mature_incandescente = {
+    id: 'krokille_mature_incandescente',
+    name: 'Krokille Mature Incandescente',
+    image: 'images/monsters/Krokille_Mature_Incandescente.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 610, atk: 208, spd: 100, res: { neutre: 17, terre: -31, feu: 25, eau: -16, air: 40 } },
-    moves: ['ratiboisement', 'rayonnement_hyoactif', 'coup_agglutinant']
+    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
+    moves: ['calcination', 'braise_ardente', 'recalcification']
 }
+monsters.krokille_mature_humide = {
+    id: 'krokille_mature_humide',
+    name: 'Krokille Mature Humide',
+    image: 'images/monsters/Krokille_Mature_Humide.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
+    moves: ['hydrophobie', 'raz_de_maree', 'asphyxie']
+}
+monsters.krokille_mature_seche = {
+    id: 'krokille_mature_seche',
+    name: 'Krokille Mature Sèche',
+    image: 'images/monsters/Krokille_Mature_Sèche.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
+    moves: ['tempete_seche', 'lame_de_vent', 'il_du_cyclone']
+}
+monsters.krokille_mature_crue = {
+    id: 'krokille_mature_crue',
+    name: 'Krokille Mature Crue',
+    image: 'images/monsters/Krokille_Mature_Crue.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 13000, atk: 63, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: []
+}
+monsters.krokille_venerable_insipide = {
+    id: 'krokille_venerable_insipide',
+    name: 'Krokille Vénérable Insipide',
+    image: 'images/monsters/Krokille_Vénérable_Insipide.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['peste_ancestrale', 'corruption_septique', 'rage_millenaire']
+}
+monsters.krokille_venerable_boueuse = {
+    id: 'krokille_venerable_boueuse',
+    name: 'Krokille Vénérable Boueuse',
+    image: 'images/monsters/Krokille_Vénérable_Boueuse.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
+    moves: ['avalanche_de_boue', 'linceul_argileux', 'carapace_fossilisee']
+}
+monsters.krokille_venerable_incandescente = {
+    id: 'krokille_venerable_incandescente',
+    name: 'Krokille Vénérable Incandescente',
+    image: 'images/monsters/Krokille_Vénérable_Incandescente.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
+    moves: ['eruption_ancestrale', 'flammes_devorantes', 'regeneration_ignee']
+}
+monsters.krokille_venerable_humide = {
+    id: 'krokille_venerable_humide',
+    name: 'Krokille Vénérable Humide',
+    image: 'images/monsters/Krokille_Vénérable_Humide.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
+    moves: ['deluge', 'noyade_profonde', 'marais_engloutissant']
+}
+monsters.krokille_venerable_seche = {
+    id: 'krokille_venerable_seche',
+    name: 'Krokille Vénérable Sèche',
+    image: 'images/monsters/Krokille_Vénérable_Sèche.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
+    moves: ['cyclone_devastateur', 'lame_d_ouragan', 'voile_du_vent']
+}
+monsters.krokille_venerable_crue = {
+    id: 'krokille_venerable_crue',
+    name: 'Krokille Vénérable Crue',
+    image: 'images/monsters/Krokille_Vénérable_Crue.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 22000, atk: 100, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 40 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// REFUGE SYLVESTRE (lvl 55+)
+// ═══════════════════════════════════════════════════════
+monsters.koalak_forestier = {
+    id: 'koalak_forestier',
+    name: 'Koalak Forestier',
+    image: 'images/monsters/Koalak_Forestier.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 990, atk: 125, spd: 100, res: { neutre: 10, terre: 10, feu: 20, eau: -25, air: -15 } },
+    moves: ['abattage', 'ebranchage', 'deracinage']
+}
+monsters.pekeualak = {
+    id: 'pekeualak',
+    name: 'Pékeualak',
+    image: 'images/monsters/Pékeualak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 990, atk: 138, spd: 100, res: { neutre: 10, terre: -10, feu: 60, eau: 50, air: 10 } },
+    moves: ['moulinet', 'amorce', 'coup_de_poisson']
+}
+
+// ═══════════════════════════════════════════════════════
+// INVASION DOPEULS (lvl 55+)
+// ═══════════════════════════════════════════════════════
+monsters.guerrier_mental = {
+    id: 'guerrier_mental',
+    name: 'Guerrier Mental',
+    image: 'images/monsters/Guerrier_Mental.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 680, atk: 208, spd: 100, res: { neutre: -10, terre: -19, feu: 32, eau: 7, air: 25 } },
+    moves: ['estocade_errante', 'concentration_psychique']
+}
+monsters.chevalier = {
+    id: 'chevalier',
+    name: 'Chevalier',
+    image: 'images/monsters/Chevalier.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 400, atk: 100, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['laminagile', 'virevoltige', 'attirance_chevaleresque', 'bond_chevaleresque']
+}
+
+// ═══════════════════════════════════════════════════════
+// MONTAGNE DES CRAQUELEURS (lvl 60+)
+// ═══════════════════════════════════════════════════════
+monsters.pierre_taillee = {
+    id: 'pierre_taillee',
+    name: 'Pierre Taillée',
+    image: 'images/monsters/Pierre_Taillée.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 240, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.golem = {
+    id: 'golem',
+    name: 'Golem',
+    image: 'images/monsters/Golem.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1200, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.mega_craqueleur_des_plaines = {
+    id: 'mega_craqueleur_des_plaines',
+    name: 'Méga Craqueleur des plaines',
+    image: 'images/monsters/Méga_Craqueleur_des_plaines.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1600, atk: 630, spd: 100, res: { neutre: 44, terre: 44, feu: 58, eau: 88, air: 68 } },
+    moves: ['Ecrasement_Handicapant']
+}
+monsters.garglyphe = {
+    id: 'garglyphe',
+    name: 'Garglyphe',
+    image: 'images/monsters/Garglyphe.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 300, atk: 118, spd: 100, res: { neutre: 10, terre: 10, feu: -15, eau: 20, air: -5 } },
+    moves: ['deterrage', 'gare_aux_glyphes', 'durete_ramollissante']
+}
+monsters.minikrone = {
+    id: 'minikrone',
+    name: 'Minikrone',
+    image: 'images/monsters/Minikrone.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1500, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// CHÂTEAU DU WA WABBIT (lvl 65+)
+// ═══════════════════════════════════════════════════════
 monsters.twakeuf = {
     id: 'twakeuf',
     name: 'Twakeuf',
@@ -9873,42 +9549,6 @@ monsters.waccro = {
     bst: { hp: 270, atk: 80, spd: 100, res: { neutre: 7, terre: 12, feu: 0, eau: 5, air: 10 } },
     moves: ['stewoides', 'skwat', 'gwokwik']
 }
-monsters.poupee_emeraude = {
-    id: 'poupee_emeraude',
-    name: 'Poupée Émeraude',
-    image: 'images/monsters/Workette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 650, atk: 50, spd: 100, res: { neutre: 90, terre: 90, feu: 90, eau: 90, air: -20 } },
-    moves: ['transposition_poupesque', 'calin_poupesque', 'bond_poupesque']
-}
-monsters.souris_verte = {
-    id: 'souris_verte',
-    name: 'Souris Verte',
-    image: 'images/monsters/Souris_Verte.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 650, atk: 216, spd: 100, res: { neutre: 20, terre: 15, feu: 7, eau: 7, air: 30 } },
-    moves: ['regard_fondant', 'postillon_brulant']
-}
-monsters.serpentin = {
-    id: 'serpentin',
-    name: 'Serpentin',
-    image: 'images/monsters/Serpentin.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 680, atk: 208, spd: 100, res: { neutre: -20, terre: 9, feu: -10, eau: 15, air: 5 } },
-    moves: ['dissimulation', 'venin', 'surprise']
-}
-monsters.guerrier_mental = {
-    id: 'guerrier_mental',
-    name: 'Guerrier Mental',
-    image: 'images/monsters/Guerrier_Mental.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 680, atk: 208, spd: 100, res: { neutre: -10, terre: -19, feu: 32, eau: 7, air: 25 } },
-    moves: ['estocade_errante', 'concentration_psychique']
-}
 monsters.wadnozeam = {
     id: 'wadnozeam',
     name: 'Wadnozéam',
@@ -9918,96 +9558,10 @@ monsters.wadnozeam = {
     bst: { hp: 270, atk: 80, spd: 100, res: { neutre: 10, terre: 15, feu: 5, eau: 0, air: 7 } },
     moves: ['afwiandage', 'wagglutinant', 'pouwsuite']
 }
-monsters.larve_champetre = {
-    id: 'larve_champetre',
-    name: 'Larve Champêtre',
-    image: 'images/monsters/Larve_Champêtre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 690, atk: 224, spd: 100, res: { neutre: 15, terre: 1, feu: 18, eau: 8, air: -15 } },
-    moves: ['larvaportation', 'toussotement_larvesque', 'larvement_champetre']
-}
-monsters.maitre_bolet = {
-    id: 'maitre_bolet',
-    name: 'Maître Bolet',
-    image: 'images/monsters/Maître_Bolet.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 740, atk: 248, spd: 100, res: { neutre: 10, terre: 12, feu: 5, eau: -15, air: -9 } },
-    moves: ['sporification', 'champi_champsoin', 'sabrochement']
-}
-monsters.dolbinos = {
-    id: 'dolbinos',
-    name: 'Dolbinos',
-    image: 'images/monsters/Dolbinos.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['coup_de_bec_affaiblissant', 'dotite']
-}
-monsters.dokachu = {
-    id: 'dokachu',
-    name: 'Dokachu',
-    image: 'images/monsters/Dokachu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['dorage', 'donnerre']
-}
-monsters.dolivar = {
-    id: 'dolivar',
-    name: 'Dolivar',
-    image: 'images/monsters/Dolivar.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['dorage', 'donnerre']
-}
-monsters.garde_de_pwak = {
-    id: 'garde_de_pwak',
-    name: 'Garde de Pwâk',
-    image: 'images/monsters/Garde_de_Pwâk.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 780, atk: 250, spd: 100, res: { neutre: 2, terre: -18, feu: 12, eau: -13, air: 6 } },
-    moves: ['croquanibalisme', 'guimimauve', 'englumauve', 'attrape_gourmand']
-}
-monsters.shokipik = {
-    id: 'shokipik',
-    name: 'Shokipik',
-    image: 'images/monsters/Shokipik.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 780, atk: 180, spd: 100, res: { neutre: -24, terre: 13, feu: -24, eau: 4, air: -1 } },
-    moves: ['amstramgram', 'bourebour', 'ratatam']
-}
-monsters.pandawasta = {
-    id: 'pandawasta',
-    name: 'Pandawasta',
-    image: 'images/monsters/Pandawasta.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 800, atk: 39, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: ['meditation', 'coup_de_bambou']
-}
-monsters.oeuf_de_tregenaire = {
-    id: 'oeuf_de_tregenaire',
-    name: 'Oeuf de Trégénaire',
-    image: 'images/monsters/Oeuf_de_Trégénaire.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 800, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.degelee = {
-    id: 'degelee',
-    name: 'Dégelée',
-    image: 'images/monsters/Dégelée.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 810, atk: 100, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: ['decasse', 'papouille']
-}
+
+// ═══════════════════════════════════════════════════════
+// VILLAGE KANNIBOUL (lvl 65+)
+// ═══════════════════════════════════════════════════════
 monsters.kanigrou = {
     id: 'kanigrou',
     name: 'Kanigrou',
@@ -10017,41 +9571,468 @@ monsters.kanigrou = {
     bst: { hp: 820, atk: 248, spd: 100, res: { neutre: 22, terre: 22, feu: 22, eau: -9, air: -9 } },
     moves: ['saut_majestueux', 'destin_force', 'eventration_multiple']
 }
-monsters.uf_de_pwak_dore = {
-    id: 'uf_de_pwak_dore',
-    name: 'Œuf de Pwâk doré',
-    image: 'images/monsters/Œuf_de_Pwâk_doré.png',
+
+// ═══════════════════════════════════════════════════════
+// FORÊT DES ABRAKNYDES (lvl 80+)
+// ═══════════════════════════════════════════════════════
+monsters.abrakne = {
+    id: 'abrakne',
+    name: 'Abrakne',
+    image: 'images/monsters/Abrakne.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 860, atk: 180, spd: 100, res: { neutre: 100, terre: 5, feu: 5, eau: 5, air: 5 } },
+    bst: { hp: 480, atk: 144, spd: 100, res: { neutre: 10, terre: -20, feu: 20, eau: -9, air: 10 } },
+    moves: ['Motivation_Sylvestre', 'Bond_affaiblissant', 'Abraknettoyage']
+}
+monsters.tronknyde = {
+    id: 'tronknyde',
+    name: 'Tronknyde',
+    image: 'images/monsters/Tronknyde.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 350, atk: 100, spd: 100, res: { neutre: 5, terre: 28, feu: -17, eau: 38, air: 38 } },
+    moves: ['glyphe_sylvestre', 'tronc_commun']
+}
+monsters.arakne_poilue = {
+    id: 'arakne_poilue',
+    name: 'Arakne Poilue',
+    image: 'images/monsters/Arakne_Majeure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 400, atk: 100, spd: 100, res: { neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 } },
+    moves: ['Absorption_Sanguine', 'Ralentissement_Arakneen']
+}
+monsters.sporakne = {
+    id: 'sporakne',
+    name: 'Sporakne',
+    image: 'images/monsters/Sporakne.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4600, atk: 500, spd: 100, res: { neutre: -45, terre: 12, feu: 20, eau: 5, air: 45 } },
+    moves: ['adehede']
+}
+monsters.cauchemarakne = {
+    id: 'cauchemarakne',
+    name: 'Cauchemarakne',
+    image: 'images/monsters/Cauchemarakne.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 7, terre: -18, feu: -1, eau: 5, air: 14 } },
+    moves: ['Mort_sure']
+}
+
+// ═══════════════════════════════════════════════════════
+// TERRITOIRE DES PORCOS (lvl 90+)
+// ═══════════════════════════════════════════════════════
+monsters.cochon_de_lait = {
+    id: 'cochon_de_lait',
+    name: 'Cochon de Lait',
+    image: 'images/monsters/Cochon_de_Lait.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 430, atk: 168, spd: 100, res: { neutre: 11, terre: 0, feu: -19, eau: -24, air: 56 } },
+    moves: ['lard_bat_laite', 'reniflement']
+}
+monsters.berger_porkass = {
+    id: 'berger_porkass',
+    name: 'Berger Porkass',
+    image: 'images/monsters/Berger_Porkass.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 430, atk: 168, spd: 100, res: { neutre: -14, terre: -9, feu: 21, eau: 31, air: -19 } },
+    moves: ['koudanlulk', 'tridembrochement', 'appel_de_la_foudre']
+}
+monsters.cavalier_porkass = {
+    id: 'cavalier_porkass',
+    name: 'Cavalier Porkass',
+    image: 'images/monsters/Cavalier_Porkass.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 480, atk: 168, spd: 100, res: { neutre: 1, terre: 21, feu: 1, eau: -14, air: 11 } },
+    moves: ['defonses', 'rudesse', 'porkass_tete']
+}
+monsters.sanglier_des_plaines = {
+    id: 'sanglier_des_plaines',
+    name: 'Sanglier des Plaines',
+    image: 'images/monsters/Sanglier_des_Plaines.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 480, atk: 160, spd: 100, res: { neutre: 0, terre: 11, feu: 16, eau: 26, air: -29 } },
+    moves: ['protection_de_la_plaine', 'coup_de_defenses', 'hardeur']
+}
+monsters.boufcoul = {
+    id: 'boufcoul',
+    name: 'Boufcoul',
+    image: 'images/monsters/Boufcoul.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1600, atk: 138, spd: 100, res: { neutre: 30, terre: 50, feu: -20, eau: -25, air: 20 } },
+    moves: ['bise_du_boufcoul', 'morsure_du_boufcoul']
+}
+
+// ═══════════════════════════════════════════════════════
+// DOMAINE ANCESTRAL — DATHURA (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.germinial = {
+    id: 'germinial',
+    name: 'Germinial',
+    image: 'images/monsters/Germinial.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['morsure_putride', 'langue_morte']
+}
+monsters.bourgeon = {
+    id: 'bourgeon',
+    name: 'Bourgeon',
+    image: 'images/monsters/Bourgeon.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: 10, terre: 15, feu: 15, eau: 15, air: 15 } },
+    moves: ['germe']
+}
+monsters.bourgeon_de_dathura = {
+    id: 'bourgeon_de_dathura',
+    name: 'Bourgeon de Dathura',
+    image: 'images/monsters/Bourgeon_de_Dathura.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.foufayteur = {
-    id: 'foufayteur',
-    name: 'Foufayteur',
-    image: 'images/monsters/Foufayteur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 860, atk: 133, spd: 100, res: { neutre: -9, terre: -11, feu: -19, eau: 4, air: 20 } },
-    moves: ['quamehameha', 'art_du_combat', 'balayette']
+monsters.dathura = {
+    id: 'dathura',
+    name: 'Dathura',
+    image: 'images/monsters/Dathura.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 11000, atk: 800, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: ['tige_empoisonnee', 'bulbombe', 'pistil_affaiblissant']
 }
-monsters.petite_marionnette = {
-    id: 'petite_marionnette',
-    name: 'Petite Marionnette',
-    image: 'images/monsters/Petite_Marionnette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 890, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['ainsi_font']
+
+// ═══════════════════════════════════════════════════════
+// RAID DE LA TOURBIÈRE DU ROISSINGUE (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.roissingue = {
+    id: 'roissingue',
+    name: 'Roissingue',
+    image: 'images/monsters/Roissingue.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 5500, atk: 600, spd: 140, res: { neutre: 22, terre: 12, feu: -30, eau: 41, air: 5 } },
+    moves: ['retour_du_roi', 'depouillage', 'dechaussage']
 }
-monsters.pantin = {
-    id: 'pantin',
-    name: 'Pantin',
-    image: 'images/monsters/Pantin.png',
+
+// ═══════════════════════════════════════════════════════
+// FABRIQUE DE MALLÉFISK (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.mallefisk = {
+    id: 'mallefisk',
+    name: 'Malléfisk',
+    image: 'images/monsters/Malléfisk.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 22, terre: 12, feu: 28, eau: 6, air: -5 } },
+    moves: ['ka_dabor', 'chte_hu', 'nonoube_noharnak']
+}
+
+// ═══════════════════════════════════════════════════════
+// MIAUSOLÉE DU POUNICHEUR (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.pounicheur = {
+    id: 'pounicheur',
+    name: 'Pounicheur',
+    image: 'images/monsters/Pounicheur.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 4400, atk: 300, spd: 100, res: { neutre: 12, terre: 28, feu: -5, eau: 23, air: 12 } },
+    moves: ['kissifrotsipik', 'poulverisation']
+}
+
+// ═══════════════════════════════════════════════════════
+// ÉVÈNEMENT HALOUINE (HALLOWEEN) (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.bouftou_d_halouine = {
+    id: 'bouftou_d_halouine',
+    name: 'Bouftou d\'Halouine',
+    image: 'images/monsters/Bouftou_d_Halouine.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 890, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['coup_de_pied']
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 1, terre: 11, feu: -14, eau: -9, air: 16 } },
+    moves: ['morsure_du_bouftou']
+}
+monsters.tofu_d_halouine = {
+    id: 'tofu_d_halouine',
+    name: 'Tofu d\'Halouine',
+    image: 'images/monsters/Tofu_d_Halouine.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 5, terre: -9, feu: 9, eau: 9, air: -9 } },
+    moves: ['beco_rosif', 'fougue_tofuesque']
+}
+monsters.citwouille = {
+    id: 'citwouille',
+    name: 'Citwouille',
+    image: 'images/monsters/Citwouille.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 220, atk: 113, spd: 100, res: { neutre: 1, terre: -9, feu: 1, eau: 0, air: 0 } },
+    moves: ['vol_de_pieces', 'peur_vegetarienne', 'empoisonnement_vegetarien']
+}
+monsters.halouine = {
+    id: 'halouine',
+    name: 'Halouine',
+    image: 'images/monsters/Halouine.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 3300, atk: 330, spd: 100, res: { neutre: 13, terre: 15, feu: 0, eau: 18, air: 5 } },
+    moves: ['rattirance', 'moissonnage', 'plantes_zombies', 'citwouille_explosive']
+}
+monsters.peluche_tofu = {
+    id: 'peluche_tofu',
+    name: 'Peluche tofu',
+    image: 'images/monsters/Peluche_tofu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: -30, terre: 10, feu: 10, eau: 10, air: 30 } },
+    moves: ['entorse', 'pique_couic']
+}
+monsters.peluche_bouftou = {
+    id: 'peluche_bouftou',
+    name: 'Peluche bouftou',
+    image: 'images/monsters/Peluche_bouftou.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 30, terre: 30, feu: 10, eau: -30, air: 10 } },
+    moves: ['coutures_renforcees', 'ecchymose', 'traumatisme']
+}
+monsters.peluche_wabbit = {
+    id: 'peluche_wabbit',
+    name: 'Peluche wabbit',
+    image: 'images/monsters/Peluche_wabbit.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 10, terre: 10, feu: 30, eau: 10, air: -30 } },
+    moves: ['rembourrage', 'malediction_de_la_cawotte', 'cawotte_de_nowel']
+}
+
+// ═══════════════════════════════════════════════════════
+// ÉVÈNEMENT KWISMAS (NOËL) (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.dragodinde_de_nowel = {
+    id: 'dragodinde_de_nowel',
+    name: 'Dragodinde de Nowel',
+    image: 'images/monsters/Dragodinde_de_Nowel.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 26, terre: -8, feu: -8, eau: 26, air: -8 } },
+    moves: ['dindosoin', 'frappodindo']
+}
+monsters.dragodinde_de_nowel_sauvage = {
+    id: 'dragodinde_de_nowel_sauvage',
+    name: 'Dragodinde de Nowel sauvage',
+    image: 'images/monsters/Dragodinde_de_Nowel.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 36, terre: 2, feu: 2, eau: 36, air: 2 } },
+    moves: ['dindosoin', 'frappodindo']
+}
+monsters.dragodinde_de_nowel_fougueuse = {
+    id: 'dragodinde_de_nowel_fougueuse',
+    name: 'Dragodinde de Nowel fougueuse',
+    image: 'images/monsters/Dragodinde_de_Nowel.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 49, terre: 14, feu: 14, eau: 49, air: 14 } },
+    moves: ['dindosoin', 'frappodindo']
+}
+monsters.papa_nowel = {
+    id: 'papa_nowel',
+    name: 'Papa Nowel',
+    image: 'images/monsters/Papa_Nowel.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 3900, atk: 1300, spd: 100, res: { neutre: -2, terre: -2, feu: 40, eau: 40, air: 40 } },
+    moves: ['engluement', 'dichotomie', 'aspir_nenfan', 'embuche_de_nowel', 'trak_nenfan', 'infantophagie']
+}
+monsters.pere_fwetar = {
+    id: 'pere_fwetar',
+    name: 'Père Fwetar',
+    image: 'images/monsters/Père_Fwetar.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 9600, atk: 320, spd: 100, res: { neutre: -2, terre: -2, feu: 30, eau: 30, air: 30 } },
+    moves: ['fwetage', 'parade_des_vieux_jouets', 'invocation_de_jouet_casse']
+}
+monsters.croc_gland_de_nowel = {
+    id: 'croc_gland_de_nowel',
+    name: 'Croc gland de Nowel',
+    image: 'images/monsters/Croc_gland_de_Nowel.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['aboiement_mstr']
+}
+monsters.kanigrou_hivernal = {
+    id: 'kanigrou_hivernal',
+    name: 'Kanigrou hivernal',
+    image: 'images/monsters/Kanigrou_hivernal.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -9, air: -9 } },
+    moves: ['griffe_du_kanigrou_hivernal', 'chute_majestueuse']
+}
+monsters.cadeau_anime = {
+    id: 'cadeau_anime',
+    name: 'Cadeau animé',
+    image: 'images/monsters/Cadeau_animé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 55, atk: 38, spd: 100, res: { neutre: -5, terre: 5, feu: 10, eau: -20, air: 10 } },
+    moves: ['petit_paquet']
+}
+monsters.sac_anime = {
+    id: 'sac_anime',
+    name: 'Sac Animé',
+    image: 'images/monsters/Sac_Animé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 130, atk: 0, spd: 100, res: { neutre: 50, terre: 19, feu: 32, eau: 23, air: 23 } },
+    moves: []
+}
+monsters.mininuit = {
+    id: 'mininuit',
+    name: 'Mininuit',
+    image: 'images/monsters/Mininuit.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 30, terre: -20, feu: 10, eau: 10, air: 10 } },
+    moves: ['patinage', 'marteau_d_okim', 'marteau_d_orelos']
+}
+
+// ═══════════════════════════════════════════════════════
+// ÉVÈNEMENT CHOCOLAT / PÂQUES (lvl 100+)
+// ═══════════════════════════════════════════════════════
+monsters.mansocolat = {
+    id: 'mansocolat',
+    name: 'Mansocolat',
+    image: 'images/monsters/Mansocolat.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: -17, terre: 16, feu: 7, eau: -8, air: 10 } },
+    moves: ['maskansocolat', 'mansocolere', 'mansaut']
+}
+monsters.mansocolat_surdose = {
+    id: 'mansocolat_surdose',
+    name: 'Mansocolat surdosé',
+    image: 'images/monsters/Mansocolat.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5100, atk: 600, spd: 100, res: { neutre: -8, terre: 25, feu: 16, eau: 1, air: 19 } },
+    moves: []
+}
+monsters.chocoskargo = {
+    id: 'chocoskargo',
+    name: 'Chocoskargo',
+    image: 'images/monsters/Chocoskargo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 13, terre: -8, feu: 5, eau: 9, air: -19 } },
+    moves: ['enrobage', 'glycemie', 'chocoskarfarce']
+}
+monsters.chocoskargo_surdose = {
+    id: 'chocoskargo_surdose',
+    name: 'Chocoskargo surdosé',
+    image: 'images/monsters/Chocoskargo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5100, atk: 600, spd: 100, res: { neutre: 22, terre: 1, feu: 14, eau: 18, air: -10 } },
+    moves: []
+}
+monsters.kwakao = {
+    id: 'kwakao',
+    name: 'Kwakao',
+    image: 'images/monsters/Kwakao.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 8, terre: 13, feu: -15, eau: -11, air: 10 } },
+    moves: ['kwakaoust', 'skwalala']
+}
+monsters.kwakao_surdose = {
+    id: 'kwakao_surdose',
+    name: 'Kwakao surdosé',
+    image: 'images/monsters/Kwakao.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4600, atk: 600, spd: 100, res: { neutre: 18, terre: 23, feu: -5, eau: -1, air: 20 } },
+    moves: []
+}
+monsters.glourson_guimauve = {
+    id: 'glourson_guimauve',
+    name: 'Glourson Guimauve',
+    image: 'images/monsters/Glourson_Guimauve.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 8, terre: -12, feu: 18, eau: -7, air: 12 } },
+    moves: ['clef_en_glaise', 'clef_battue']
+}
+monsters.chocoligarque = {
+    id: 'chocoligarque',
+    name: 'Chocoligarque',
+    image: 'images/monsters/Chocoligarque.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 9, terre: 32, feu: 19, eau: -12, air: 28 } },
+    moves: ['chocolat_sperger', 'cacaobstruction']
+}
+monsters.torrefactueur = {
+    id: 'torrefactueur',
+    name: 'Torréfactueur',
+    image: 'images/monsters/Torréfactueur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 36, terre: 29, feu: 18, eau: -6, air: 11 } },
+    moves: ['torreador', 'torrefaction', 'padbra']
+}
+monsters.pralicienne = {
+    id: 'pralicienne',
+    name: 'Pralicienne',
+    image: 'images/monsters/Pralicienne.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 13, terre: 21, feu: -10, eau: 37, air: 19 } },
+    moves: ['hydrolyse', 'chococlier', 'glacage']
+}
+monsters.temperaturge = {
+    id: 'temperaturge',
+    name: 'Températurge',
+    image: 'images/monsters/Températurge.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -15, terre: 9, feu: 24, eau: 18, air: 34 } },
+    moves: ['refroidissement', 'surchauffe', 'chaudron_choco']
+}
+monsters.cabosseur = {
+    id: 'cabosseur',
+    name: 'Cabosseur',
+    image: 'images/monsters/Cabosseur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 16, terre: 19, feu: 35, eau: 23, air: -11 } },
+    moves: ['eclabossage', 'feve_du_samedi_soir', 'piege_a_gourmands']
+}
+
+// ═══════════════════════════════════════════════════════
+// TANIÈRE DU MEULOU (lvl 105+)
+// ═══════════════════════════════════════════════════════
+monsters.marionnette_du_mulou_meule = {
+    id: 'marionnette_du_mulou_meule',
+    name: 'Marionnette du Mulou meulé',
+    image: 'images/monsters/Marionnette_du_Mulou_meulé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6100, atk: 500, spd: 100, res: { neutre: 22, terre: -10, feu: -5, eau: 42, air: 42 } },
+    moves: ['reconstitution', 'invocation_de_milimeulou']
 }
 monsters.milimeulou = {
     id: 'milimeulou',
@@ -10062,68 +10043,498 @@ monsters.milimeulou = {
     bst: { hp: 890, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['grigriffes']
 }
-monsters.vetauran = {
-    id: 'vetauran',
-    name: 'Vétauran',
-    image: 'images/monsters/Vétauran.png',
+
+// ═══════════════════════════════════════════════════════
+// ARBRE DE MOON (lvl 105+)
+// ═══════════════════════════════════════════════════════
+monsters.cocolune = {
+    id: 'cocolune',
+    name: 'Cocolune',
+    image: 'images/monsters/Cocolune.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 910, atk: 133, spd: 100, res: { neutre: -9, terre: -19, feu: 12, eau: 7, air: 5 } },
-    moves: ['craneur', 'pull_vert_izele', 'encornement']
+    bst: { hp: 15000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['attraction_lunaire']
 }
-monsters.krokille_juvenile_crue = {
-    id: 'krokille_juvenile_crue',
-    name: 'Krokille Juvénile Crue',
-    image: 'images/monsters/Krokille_Juvénile_Crue.png',
+monsters.darkli_moon = {
+    id: 'darkli_moon',
+    name: 'Darkli Moon',
+    image: 'images/monsters/Darkli_Moon.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 930, atk: 25, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: ['motivation_gluante', 'koque_chok', 'krokille_de_neuf']
+    bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 10, terre: 20, feu: 10, eau: -15, air: 10 } },
+    moves: ['obscure_singerie']
 }
-monsters.koalak_forestier = {
-    id: 'koalak_forestier',
-    name: 'Koalak Forestier',
-    image: 'images/monsters/Koalak_Forestier.png',
+monsters.lunorbe = {
+    id: 'lunorbe',
+    name: 'Lunorbe',
+    image: 'images/monsters/Lunorbe.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 990, atk: 125, spd: 100, res: { neutre: 10, terre: 10, feu: 20, eau: -25, air: -15 } },
-    moves: ['abattage', 'ebranchage', 'deracinage']
-}
-monsters.pekeualak = {
-    id: 'pekeualak',
-    name: 'Pékeualak',
-    image: 'images/monsters/Pékeualak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 990, atk: 138, spd: 100, res: { neutre: 10, terre: -10, feu: 60, eau: 50, air: 10 } },
-    moves: ['moulinet', 'amorce', 'coup_de_poisson']
-}
-monsters.etoile_swagante = {
-    id: 'etoile_swagante',
-    name: 'Étoile Swagante',
-    image: 'images/monsters/Étoile_Swagante.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.coquille_explosive = {
-    id: 'coquille_explosive',
-    name: 'Coquille Explosive',
-    image: 'images/monsters/Coquille_Brutale.png',
+
+// ═══════════════════════════════════════════════════════
+// GOULET DU RASBOUL (lvl 105+)
+// ═══════════════════════════════════════════════════════
+monsters.rasboul_mineur = {
+    id: 'rasboul_mineur',
+    name: 'Rasboul Mineur',
+    image: 'images/monsters/Rasboul_Mineur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1000, atk: 13, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['motivation_naturelle']
+    bst: { hp: 220, atk: 0, spd: 100, res: { neutre: 75, terre: -75, feu: 75, eau: 75, air: 75 } },
+    moves: ['bisouille']
 }
-monsters.wobot_tamponneur = {
-    id: 'wobot_tamponneur',
-    name: 'Wobot Tamponneur',
-    image: 'images/monsters/Wobot_Tamponneur.png',
+
+// ═══════════════════════════════════════════════════════
+// CHAMPS DE GLACE (lvl 110+)
+// ═══════════════════════════════════════════════════════
+monsters.craqueleur_des_glaces = {
+    id: 'craqueleur_des_glaces',
+    name: 'Craqueleur des glaces',
+    image: 'images/monsters/Craqueleur_des_glaces.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1000, atk: 0, spd: 100, res: { neutre: 150, terre: 150, feu: 150, eau: 150, air: 150 } },
+    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 0, terre: 0, feu: -38, eau: 80, air: 50 } },
+    moves: ['pic_de_glace', 'ecrasement_glacial', 'glace_paralysante']
+}
+monsters.abominable_yiti_des_neiges = {
+    id: 'abominable_yiti_des_neiges',
+    name: 'Abominable yiti des neiges',
+    image: 'images/monsters/Abominable_yiti_des_neiges.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 20, terre: 15, feu: 15, eau: -15, air: -15 } },
+    moves: ['assaisonnement', 'gueuleton', 'colere_du_yiti']
+}
+monsters.bouboule_de_neige = {
+    id: 'bouboule_de_neige',
+    name: 'Bouboule de neige',
+    image: 'images/monsters/Bouboule_de_neige.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 20, terre: 6, feu: -22, eau: 30, air: 30 } },
+    moves: ['boule_de_neige', 'neige_soignante', 'roulage_de_neige']
+}
+monsters.bonhomme_de_neige = {
+    id: 'bonhomme_de_neige',
+    name: 'Bonhomme de neige',
+    image: 'images/monsters/Bonhomme_de_neige.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 10, terre: -18, feu: -25, eau: 25, air: 25 } },
+    moves: ['poussee_d_egul', 'esprit_de_nowel', 'tire_fesse']
+}
+
+// ═══════════════════════════════════════════════════════
+// TERRIERS RADIOACTIFS (lvl 110+)
+// ═══════════════════════════════════════════════════════
+monsters.rat_d_hyoactif = {
+    id: 'rat_d_hyoactif',
+    name: 'Rat d\'Hyoactif',
+    image: 'images/monsters/Rat_d_Hyoactif.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 610, atk: 208, spd: 100, res: { neutre: 17, terre: -31, feu: 25, eau: -16, air: 40 } },
+    moves: ['ratiboisement', 'rayonnement_hyoactif', 'coup_agglutinant']
+}
+
+// ═══════════════════════════════════════════════════════
+// RING DU CAPITAINE EKARLATTE (lvl 110+)
+// ═══════════════════════════════════════════════════════
+monsters.capitaine_ekarlatte = {
+    id: 'capitaine_ekarlatte',
+    name: 'Capitaine Ekarlatte',
+    image: 'images/monsters/Capitaine_Ekarlatte.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 5700, atk: 400, spd: 100, res: { neutre: 12, terre: 23, feu: 7, eau: 14, air: 31 } },
+    moves: ['case_depart', 'tourbilaule', 'dansorcellement', 'enfumage']
+}
+
+// ═══════════════════════════════════════════════════════
+// MÉGALITHE DE FRAKTALE (lvl 110+)
+// ═══════════════════════════════════════════════════════
+monsters.fraktale = {
+    id: 'fraktale',
+    name: 'Fraktale',
+    image: 'images/monsters/Fraktale.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 5000, atk: 300, spd: 100, res: { neutre: 26, terre: 12, feu: 21, eau: -8, air: 9 } },
+    moves: ['instabilite_temporelle', 'chaleur_fugace', 'frakasse']
+}
+monsters.monolithe = {
+    id: 'monolithe',
+    name: 'Monolithe',
+    image: 'images/monsters/Monolithe.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 50, terre: 20, feu: 20, eau: 20, air: 20 } },
     moves: []
+}
+monsters.percimol = {
+    id: 'percimol',
+    name: 'Percimol',
+    image: 'images/monsters/Percimol.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['coup_de_marre_d_eau', 'courage_de_l_epouvantail', 'impatience']
+}
+
+// ═══════════════════════════════════════════════════════
+// BIBLIOTHÈQUE DU MAÎTRE CORBAC (lvl 115+)
+// ═══════════════════════════════════════════════════════
+monsters.rupture_d_encre = {
+    id: 'rupture_d_encre',
+    name: 'Rupture d\'encre',
+    image: 'images/monsters/Rupture_d_encre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 550, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.rupture_de_papier = {
+    id: 'rupture_de_papier',
+    name: 'Rupture de papier',
+    image: 'images/monsters/Rupture_de_papier.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 550, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.serpentin = {
+    id: 'serpentin',
+    name: 'Serpentin',
+    image: 'images/monsters/Serpentin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 680, atk: 208, spd: 100, res: { neutre: -20, terre: 9, feu: -10, eau: 15, air: 5 } },
+    moves: ['dissimulation', 'venin', 'surprise']
+}
+monsters.corbac_apprivoise = {
+    id: 'corbac_apprivoise',
+    name: 'Corbac Apprivoisé',
+    image: 'images/monsters/Corbac_Apprivoisé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2200, atk: 408, spd: 100, res: { neutre: 21, terre: -14, feu: 26, eau: 26, air: -29 } },
+    moves: ['plumeau_destabilisant', 'bousculade_plumeuse']
+}
+
+// ═══════════════════════════════════════════════════════
+// TERRITOIRE CACTERRE (lvl 120+)
+// ═══════════════════════════════════════════════════════
+monsters.cactruc = {
+    id: 'cactruc',
+    name: 'Cactruc',
+    image: 'images/monsters/Cactruc.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1500, atk: 50, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// FORÊT SOMBRE — KOALAKS (lvl 130+)
+// ═══════════════════════════════════════════════════════
+monsters.koalak_indigo = {
+    id: 'koalak_indigo',
+    name: 'Koalak Indigo',
+    image: 'images/monsters/Koalak_Indigo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: -20, feu: -20, eau: 70, air: -20 } },
+    moves: ['invocation_de_blop_indigo', 'defaillance_indigo']
+}
+monsters.koalak_coco = {
+    id: 'koalak_coco',
+    name: 'Koalak Coco',
+    image: 'images/monsters/Koalak_Coco.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1200, atk: 50, spd: 100, res: { neutre: 10, terre: -20, feu: -20, eau: -20, air: 70 } },
+    moves: ['invocation_de_blop_coco', 'defaillance_coco']
+}
+monsters.koalak_griotte = {
+    id: 'koalak_griotte',
+    name: 'Koalak Griotte',
+    image: 'images/monsters/Koalak_Griotte.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: -20, feu: 70, eau: -20, air: -20 } },
+    moves: ['invocation_de_blop_griotte', 'defaillance_griotte']
+}
+monsters.koalak_reinette = {
+    id: 'koalak_reinette',
+    name: 'Koalak Reinette',
+    image: 'images/monsters/Koalak_Reinette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: 70, feu: -20, eau: -20, air: -20 } },
+    moves: ['invocation_de_blop_reinette', 'defaillance_reinette']
+}
+monsters.kakoalak = {
+    id: 'kakoalak',
+    name: 'Kakoalak',
+    image: 'images/monsters/Kakoalak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 17, terre: 9, feu: -13, eau: 21, air: -8 } },
+    moves: ['kakoaklake', 'pluie_de_pepite']
+}
+monsters.buveur_de_sang = {
+    id: 'buveur_de_sang',
+    name: 'Buveur de Sang',
+    image: 'images/monsters/Buveur_de_Sang.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: 1, terre: -9, feu: -9, eau: 66, air: -9 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// FORÊT DES TROOLS (lvl 130+)
+// ═══════════════════════════════════════════════════════
+monsters.troollogram = {
+    id: 'troollogram',
+    name: 'Troollogram',
+    image: 'images/monsters/Troollogram.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1100, atk: 448, spd: 100, res: { neutre: 16, terre: 26, feu: -19, eau: 26, air: -9 } },
+    moves: ['troollz', 'pettrooll']
+}
+monsters.troolligark = {
+    id: 'troolligark',
+    name: 'Troolligark',
+    image: 'images/monsters/Troolligark.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: -9, terre: -19, feu: 16, eau: 26, air: 26 } },
+    moves: ['controoll', 'troollage']
+}
+monsters.troolleole = {
+    id: 'troolleole',
+    name: 'Troolléolé',
+    image: 'images/monsters/Troolléolé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: -19, terre: 16, feu: 26, eau: -9, air: 26 } },
+    moves: ['troollahonte', 'troollfesse']
+}
+monsters.artroolleur = {
+    id: 'artroolleur',
+    name: 'Artroolleur',
+    image: 'images/monsters/Artroolleur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 19000, atk: 750, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['tir_d_artroollerie', 'mortrooll']
+}
+monsters.nitrooll = {
+    id: 'nitrooll',
+    name: 'Nitrooll',
+    image: 'images/monsters/Nitrooll.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 22000, atk: 875, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['double_trooll', 'trooll_de_magie', 'troollement_de_tambour', 'coup_de_trooll']
+}
+monsters.troollibre = {
+    id: 'troollibre',
+    name: 'Troollibre',
+    image: 'images/monsters/Troollibre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 25000, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['troollpoline', 'aspiratrooll', 'patroolleur']
+}
+monsters.mama_troollette = {
+    id: 'mama_troollette',
+    name: 'Mama Troollette',
+    image: 'images/monsters/Mama_Troollette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 150000, atk: 1125, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['troollooportation', 'uppertrooll', 'mitroollette_de_poings', 'catastrooll']
+}
+
+// ═══════════════════════════════════════════════════════
+// ANTRE DU BLOP MULTICOLORE ROYAL (lvl 135+)
+// ═══════════════════════════════════════════════════════
+monsters.gelee_royale_bleuet = {
+    id: 'gelee_royale_bleuet',
+    name: 'Gelée Royale Bleuet',
+    image: 'images/monsters/Gelée_Royale_Bleuet.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: 70, feu: 70, eau: -10, air: 70 } },
+    moves: ['Isometrie', 'Royale_Bleuet_Os', 'Tartinade']
+}
+monsters.gelee_royale_menthe = {
+    id: 'gelee_royale_menthe',
+    name: 'Gelée Royale Menthe',
+    image: 'images/monsters/Gelée_Royale_Menthe.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: -10, feu: 70, eau: 70, air: 70 } },
+    moves: ['Tartinade', 'Pik_assaut', 'Royale_Menthe_Os']
+}
+monsters.gelee_royale_fraise = {
+    id: 'gelee_royale_fraise',
+    name: 'Gelée Royale Fraise',
+    image: 'images/monsters/Gelée_Royale_Fraise.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: 70, feu: -10, eau: 70, air: 70 } },
+    moves: ['Tartinade', 'Gelifiant', 'Royale_Fraise_Os']
+}
+monsters.gelee_royale_citron = {
+    id: 'gelee_royale_citron',
+    name: 'Gelée Royale Citron',
+    image: 'images/monsters/Gelée_Royale_Citron.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: 70, feu: 70, eau: 70, air: -10 } },
+    moves: ['Tartinade', 'Fixation_Beton', 'Royale_Citron_Os']
+}
+monsters.gelee_bleuet_royale = {
+    id: 'gelee_bleuet_royale',
+    name: 'Gelée Bleuet Royale',
+    image: 'images/monsters/Gelée_Royale_Bleuet.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: 70, feu: 70, eau: -10, air: 70 } },
+    moves: ['Isometrie', 'Royale_Bleuet_Os', 'Tartinade']
+}
+monsters.gelee_menthe_royale = {
+    id: 'gelee_menthe_royale',
+    name: 'Gelée Menthe Royale',
+    image: 'images/monsters/Gelée_Royale_Menthe.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: -10, feu: 70, eau: 70, air: 70 } },
+    moves: ['Pik_assaut', 'Royale_Menthe_Os', 'Tartinade']
+}
+monsters.gelee_fraise_royale = {
+    id: 'gelee_fraise_royale',
+    name: 'Gelée Fraise Royale',
+    image: 'images/monsters/Gelée_Royale_Fraise.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: 70, feu: -10, eau: 70, air: 70 } },
+    moves: ['Gelifiant', 'Royale_Fraise_Os', 'Tartinade']
+}
+monsters.gelee_citron_royale = {
+    id: 'gelee_citron_royale',
+    name: 'Gelée Citron Royale',
+    image: 'images/monsters/Gelée_Royale_Citron.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: 70, feu: 70, eau: 70, air: -10 } },
+    moves: ['Fixation_Beton', 'Royale_Citron_Os', 'Tartinade']
+}
+monsters.gelikan = {
+    id: 'gelikan',
+    name: 'Gélikan',
+    image: 'images/monsters/Gélikan.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 5, terre: 13, feu: 10, eau: -20, air: 25 } },
+    moves: ['koudbec', 'convoitise', 'enthousiasme']
+}
+
+// ═══════════════════════════════════════════════════════
+// ATELIER DU TANUKOUÏ SAN (lvl 135+)
+// ═══════════════════════════════════════════════════════
+monsters.pandawasta = {
+    id: 'pandawasta',
+    name: 'Pandawasta',
+    image: 'images/monsters/Pandawasta.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 800, atk: 39, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
+    moves: ['meditation', 'coup_de_bambou']
+}
+monsters.ashi_magari = {
+    id: 'ashi_magari',
+    name: 'Ashi-magari',
+    image: 'images/monsters/Ashi-magari.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['enchevetrement']
+}
+monsters.kitsou_nakwatus = {
+    id: 'kitsou_nakwatus',
+    name: 'Kitsou nakwatus',
+    image: 'images/monsters/Kitsou_nakwatus.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: 50, terre: 25, feu: -10, eau: 100, air: 15 } },
+    moves: ['ruse_hivernale', 'kitsouqueue', 'kitsnition_frissonante', 'kitsouflamme']
+}
+monsters.bakaza_kopi = {
+    id: 'bakaza_kopi',
+    name: 'Bakaza kopi',
+    image: 'images/monsters/Bakaza_kopi.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 390, atk: 640, spd: 100, res: { neutre: 17, terre: 12, feu: 8, eau: -10, air: -19 } },
+    moves: ['dorobo']
+}
+monsters.kipik = {
+    id: 'kipik',
+    name: 'Kipik',
+    image: 'images/monsters/Kipik.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 210, atk: 60, spd: 100, res: { neutre: -10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: ['savapike', 'branche_kipik']
+}
+monsters.shokipik = {
+    id: 'shokipik',
+    name: 'Shokipik',
+    image: 'images/monsters/Shokipik.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 780, atk: 180, spd: 100, res: { neutre: -24, terre: 13, feu: -24, eau: 4, air: -1 } },
+    moves: ['amstramgram', 'bourebour', 'ratatam']
+}
+monsters.imikaminokin = {
+    id: 'imikaminokin',
+    name: 'Imikaminokin',
+    image: 'images/monsters/Imikaminokin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1100, atk: 160, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.kinkutsubram = {
+    id: 'kinkutsubram',
+    name: 'Kinkutsubram',
+    image: 'images/monsters/Kinkutsubram.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1100, atk: 160, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// DÉDALE DU DARK VLAD (lvl 140+)
+// ═══════════════════════════════════════════════════════
+monsters.petite_marionnette = {
+    id: 'petite_marionnette',
+    name: 'Petite Marionnette',
+    image: 'images/monsters/Petite_Marionnette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 890, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['ainsi_font']
 }
 monsters.marionnette_blanche = {
     id: 'marionnette_blanche',
@@ -10170,60 +10581,656 @@ monsters.marionnette_grise = {
     bst: { hp: 1000, atk: 200, spd: 100, res: { neutre: 200, terre: -10, feu: -10, eau: -10, air: -10 } },
     moves: ['marivaudage']
 }
-monsters.kralab_rah = {
-    id: 'kralab_rah',
-    name: 'Kralab Rah',
-    image: 'images/monsters/Kralab_Rah.png',
+monsters.poupee_mortelle = {
+    id: 'poupee_mortelle',
+    name: 'Poupée Mortelle',
+    image: 'images/monsters/Workette.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1000, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['poulpe', 'lakazam', 'connier']
-}
-monsters.grokillage = {
-    id: 'grokillage',
-    name: 'Grokillage',
-    image: 'images/monsters/Grokillage.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 90, terre: -90, feu: 90, eau: 90, air: 90 } },
     moves: []
 }
-monsters.eclat_kao = {
-    id: 'eclat_kao',
-    name: 'Éclat Kao',
-    image: 'images/monsters/Éclat_Kao.png',
+monsters.poupee_aycetroy = {
+    id: 'poupee_aycetroy',
+    name: 'Poupée Aycetroy',
+    image: 'images/monsters/Poupée_Aycetroy.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 610, atk: 25, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['myopie_poupesque']
+}
+monsters.poupee_emeraude = {
+    id: 'poupee_emeraude',
+    name: 'Poupée Émeraude',
+    image: 'images/monsters/Workette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 650, atk: 50, spd: 100, res: { neutre: 90, terre: 90, feu: 90, eau: 90, air: -20 } },
+    moves: ['transposition_poupesque', 'calin_poupesque', 'bond_poupesque']
+}
+monsters.poupee_affamee = {
+    id: 'poupee_affamee',
+    name: 'Poupée Affamée',
+    image: 'images/monsters/Workette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2200, atk: 75, spd: 100, res: { neutre: 130, terre: 130, feu: 130, eau: 130, air: 130 } },
+    moves: ['coupe_faim', 'digestion_explosive', 'saphir_apaisant']
+}
+monsters.silhouette = {
+    id: 'silhouette',
+    name: 'Silhouette',
+    image: 'images/monsters/Silhouette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['empoigne', 'strangulation']
+}
+
+// ═══════════════════════════════════════════════════════
+// GALERIE DU PHOSSILE (lvl 140+)
+// ═══════════════════════════════════════════════════════
+monsters.phossile = {
+    id: 'phossile',
+    name: 'Phossile',
+    image: 'images/monsters/Phossile.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 8600, atk: 500, spd: 100, res: { neutre: -5, terre: 22, feu: 28, eau: 13, air: 37 } },
+    moves: ['roc_phorreur', 'phorce', 'bain_de_lave', 'epicentre']
+}
+
+// ═══════════════════════════════════════════════════════
+// FABRIQUE DE FOUX D'ARTIFICE (lvl 145+)
+// ═══════════════════════════════════════════════════════
+monsters.boumbombe = {
+    id: 'boumbombe',
+    name: 'Boumbombe',
+    image: 'images/monsters/Boumbombe.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 400, atk: 25, spd: 100, res: { neutre: 75, terre: 75, feu: 50, eau: 50, air: 75 } },
+    moves: ['tic_tac', 'badaboum']
+}
+monsters.bombombre_a_eau = {
+    id: 'bombombre_a_eau',
+    name: 'Bombombre à Eau',
+    image: 'images/monsters/Bombombre_à_Eau.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1500, atk: 368, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.troollogram = {
-    id: 'troollogram',
-    name: 'Troollogram',
-    image: 'images/monsters/Troollogram.png',
+monsters.foufayteur = {
+    id: 'foufayteur',
+    name: 'Foufayteur',
+    image: 'images/monsters/Foufayteur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 448, spd: 100, res: { neutre: 16, terre: 26, feu: -19, eau: 26, air: -9 } },
-    moves: ['troollz', 'pettrooll']
+    bst: { hp: 860, atk: 133, spd: 100, res: { neutre: -9, terre: -11, feu: -19, eau: 4, air: 20 } },
+    moves: ['quamehameha', 'art_du_combat', 'balayette']
 }
-monsters.imikaminokin = {
-    id: 'imikaminokin',
-    name: 'Imikaminokin',
-    image: 'images/monsters/Imikaminokin.png',
+monsters.lanterne_bombe = {
+    id: 'lanterne_bombe',
+    name: 'Lanterne bombe',
+    image: 'images/monsters/Lanterne_bombe.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 160, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 610, atk: 500, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['elemental_spear', 'bomball']
+}
+monsters.lanterne_grappe_de_petards = {
+    id: 'lanterne_grappe_de_petards',
+    name: 'Lanterne grappe de pétards',
+    image: 'images/monsters/Lanterne_grappe_de_pétards.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 610, atk: 500, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['elemental_spear', 'bomball']
+}
+monsters.lanverne = {
+    id: 'lanverne',
+    name: 'Lanverne',
+    image: 'images/monsters/Lanverne.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 15, terre: 5, feu: 11, eau: 3, air: -18 } },
+    moves: ['vermifuge', 'subterfuge']
+}
+monsters.lampe_bleue = {
+    id: 'lampe_bleue',
+    name: 'Lampe Bleue',
+    image: 'images/monsters/Lampe_Bleue.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['lumiere_bleue']
+}
+
+// ═══════════════════════════════════════════════════════
+// HOROLOGIUM DE XLII (lvl 150+)
+// ═══════════════════════════════════════════════════════
+monsters.batail_heure = {
+    id: 'batail_heure',
+    name: 'Batail\'heure',
+    image: 'images/monsters/Batail_heure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 10, air: 5 } },
+    moves: ['estoc', 'entaille_mstr', 'heroisme', 'providence', 'condamnation', 'bond_mstr']
+}
+monsters.tir_heure = {
+    id: 'tir_heure',
+    name: 'Tir\'heure',
+    image: 'images/monsters/Tir_heure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 10, air: 5 } },
+    moves: ['punition']
+}
+monsters.gueris_heure = {
+    id: 'gueris_heure',
+    name: 'Guéris\'heure',
+    image: 'images/monsters/Guéris_heure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 5, terre: 10, feu: 15, eau: 25, air: 20 } },
+    moves: ['jouvence']
+}
+monsters.eclair_heure = {
+    id: 'eclair_heure',
+    name: 'Éclair\'heure',
+    image: 'images/monsters/Éclair_heure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 15, terre: 20, feu: 5, eau: 10, air: 25 } },
+    moves: ['compas', 'entourloupe', 'magnetisme', 'recel_mstr', 'pulsar_mstr', 'botte', 'aimantation']
+}
+monsters.protect_heure = {
+    id: 'protect_heure',
+    name: 'Protect\'heure',
+    image: 'images/monsters/Protect_heure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 5, air: 10 } },
+    moves: ['somnolence_mstr', 'rempart_mstr', 'renfort_mstr', 'barriere_mstr']
+}
+monsters.berserk_heure = {
+    id: 'berserk_heure',
+    name: 'Berserk\'heure',
+    image: 'images/monsters/Berserk_heure.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 5, feu: 25, eau: 15, air: 10 } },
+    moves: ['assaut', 'attirance']
+}
+monsters.xlii = {
+    id: 'xlii',
+    name: 'XLII',
+    image: 'images/monsters/XLII.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 8800, atk: 600, spd: 100, res: { neutre: 6, terre: 2, feu: 18, eau: 8, air: 26 } },
+    moves: ['coquetterie', 'souffle_demoniaque', 'dereglement']
+}
+monsters.noximilien_l_horloger = {
+    id: 'noximilien_l_horloger',
+    name: 'Noximilien l\'Horloger',
+    image: 'images/monsters/Noximilien_l_Horloger.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
+    moves: ['temps_de_retard']
+}
+
+// ═══════════════════════════════════════════════════════
+// PLATEAU DE USH (lvl 150+)
+// ═══════════════════════════════════════════════════════
+monsters.ush_galesh = {
+    id: 'ush_galesh',
+    name: 'Ush Galesh',
+    image: 'images/monsters/Ush_Galesh.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 4000, atk: 500, spd: 100, res: { neutre: 20, terre: 10, feu: 20, eau: 20, air: 10 } },
+    moves: ['eclair_rouge', 'pulsation_malsaine']
+}
+
+// ═══════════════════════════════════════════════════════
+// LARMES D'OURONIGRIDE — GEMMES (lvl 150+)
+// ═══════════════════════════════════════════════════════
+monsters.emeraude = {
+    id: 'emeraude',
+    name: 'Émeraude',
+    image: 'images/monsters/Émeraude.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3200, atk: 100, spd: 100, res: { neutre: 98, terre: -15, feu: -15, eau: -15, air: 98 } },
+    moves: ['transposition_amicale', 'transposition_destructrice', 'bouh_m_rang_emeraude', 'tripotee']
+}
+monsters.saphira = {
+    id: 'saphira',
+    name: 'Saphira',
+    image: 'images/monsters/Saphira.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3200, atk: 118, spd: 100, res: { neutre: 98, terre: -15, feu: -15, eau: 98, air: -15 } },
+    moves: ['bouh_m_rang_saphir', 'camouflage_saphiresque']
+}
+monsters.rubise = {
+    id: 'rubise',
+    name: 'Rubise',
+    image: 'images/monsters/Rubise.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3200, atk: 100, spd: 100, res: { neutre: 98, terre: -15, feu: 98, eau: -15, air: -15 } },
+    moves: ['bouh_m_rang_rubis', 'invocation_de_totem_motivant', 'invocation_de_totem_explosif', 'bottage_de_fesses', 'invocation_de_totem_soignant', 'totemisation', 'bond_rubisant']
+}
+monsters.diamantine = {
+    id: 'diamantine',
+    name: 'Diamantine',
+    image: 'images/monsters/Diamantine.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3200, atk: 59, spd: 100, res: { neutre: 98, terre: 98, feu: -15, eau: -15, air: -15 } },
+    moves: ['lourdeur', 'bouh_m_rang_diamant', 'invocation_de_poupee_mortelle', 'bond_etincelant']
+}
+
+// ═══════════════════════════════════════════════════════
+// CAVE DU TOXOLIATH (lvl 160+)
+// ═══════════════════════════════════════════════════════
+monsters.toxoliath = {
+    id: 'toxoliath',
+    name: 'Toxoliath',
+    image: 'images/monsters/Toxoliath.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 9700, atk: 600, spd: 100, res: { neutre: 26, terre: 13, feu: 19, eau: 32, air: 23 } },
+    moves: ['venin_salvateur', 'poison_volatile', 'vile_ruse', 'flacune']
+}
+
+// ═══════════════════════════════════════════════════════
+// CANOPÉE DU KIMBO (lvl 165+)
+// ═══════════════════════════════════════════════════════
+monsters.disciple_du_kimbo = {
+    id: 'disciple_du_kimbo',
+    name: 'Disciple du Kimbo',
+    image: 'images/monsters/Disciple_du_Kimbo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 190, atk: 225, spd: 100, res: { neutre: 800, terre: 800, feu: 800, eau: 800, air: 800 } },
+    moves: ['glyphe_pair', 'glyphe_impair']
+}
+
+// ═══════════════════════════════════════════════════════
+// DOMAINE DES FUNGUS (lvl 170+)
+// ═══════════════════════════════════════════════════════
+monsters.maitre_bolet = {
+    id: 'maitre_bolet',
+    name: 'Maître Bolet',
+    image: 'images/monsters/Maître_Bolet.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 740, atk: 248, spd: 100, res: { neutre: 10, terre: 12, feu: 5, eau: -15, air: -9 } },
+    moves: ['sporification', 'champi_champsoin', 'sabrochement']
+}
+monsters.champetrouille = {
+    id: 'champetrouille',
+    name: 'Champêtrouille',
+    image: 'images/monsters/Champêtrouille.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 10, terre: 18, feu: 7, eau: -16, air: 6 } },
+    moves: ['frappe_a_dingues', 'dinguerie', 'cueillette']
+}
+
+// ═══════════════════════════════════════════════════════
+// BUG ÉLÉMENTAIRE — GLIGLIS (lvl 170+)
+// ═══════════════════════════════════════════════════════
+monsters.gliglibido = {
+    id: 'gliglibido',
+    name: 'Gliglibido',
+    image: 'images/monsters/Gliglibido.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2800, atk: 333, spd: 100, res: { neutre: 32, terre: -9, feu: 27, eau: 11, air: -23 } },
+    moves: ['gland_d_ouil', 'remontant', 'fluide_brulant']
+}
+monsters.gliglitch = {
+    id: 'gliglitch',
+    name: 'Gliglitch',
+    image: 'images/monsters/Gliglitch.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2800, atk: 333, spd: 100, res: { neutre: 5, terre: 17, feu: 7, eau: -5, air: -17 } },
+    moves: ['gliglag', 'gligliplication', 'embrochement_dephase']
+}
+monsters.gliglicerin = {
+    id: 'gliglicerin',
+    name: 'Gliglicérin',
+    image: 'images/monsters/Gliglicérin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3000, atk: 350, spd: 100, res: { neutre: 5, terre: 11, feu: -25, eau: 1, air: 22 } },
+    moves: ['attirance_du_gligli', 'fauchage_de_glands', 'raffut_bestial']
+}
+monsters.gliglidoudur = {
+    id: 'gliglidoudur',
+    name: 'Gliglidoudur',
+    image: 'images/monsters/Gliglidoudur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3600, atk: 333, spd: 100, res: { neutre: -11, terre: 30, feu: -9, eau: 26, air: 11 } },
+    moves: ['charge_emotive', 'contraction', 'rejet']
+}
+monsters.devhorreur = {
+    id: 'devhorreur',
+    name: 'Dévhorreur',
+    image: 'images/monsters/Dévhorreur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: -7, terre: 12, feu: 6, eau: 11, air: 4 } },
+    moves: ['terreur', 'malheur', 'torpeur_mstr']
+}
+monsters.wobot_tamponneur = {
+    id: 'wobot_tamponneur',
+    name: 'Wobot Tamponneur',
+    image: 'images/monsters/Wobot_Tamponneur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1000, atk: 0, spd: 100, res: { neutre: 150, terre: 150, feu: 150, eau: 150, air: 150 } },
     moves: []
 }
-monsters.kinkutsubram = {
-    id: 'kinkutsubram',
-    name: 'Kinkutsubram',
-    image: 'images/monsters/Kinkutsubram.png',
+monsters.intercepteur = {
+    id: 'intercepteur',
+    name: 'Intercepteur',
+    image: 'images/monsters/Intercepteur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 160, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 1600, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
+
+// ═══════════════════════════════════════════════════════
+// TANIÈRE GIVREFOUX (lvl 175+)
+// ═══════════════════════════════════════════════════════
+monsters.fuji_givrefoux_nourriciere = {
+    id: 'fuji_givrefoux_nourriciere',
+    name: 'Fuji Givrefoux Nourricière',
+    image: 'images/monsters/Fuji_Givrefoux_Nourricière.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 11000, atk: 750, spd: 100, res: { neutre: -6, terre: 6, feu: 14, eau: 12, air: -11 } },
+    moves: ['progeniture', 'lait_maternel', 'foufoux']
+}
+monsters.chauffe_soutrille = {
+    id: 'chauffe_soutrille',
+    name: 'Chauffe-Soutrille',
+    image: 'images/monsters/Chauffe-Soutrille.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 5, terre: 17, feu: -15, eau: 15, air: 12 } },
+    moves: ['pus_des_pieds', 'faux_fuyant']
+}
+
+// ═══════════════════════════════════════════════════════
+// POSTE DE CONTRÔLE DU SUPERVIZŒUF (lvl 175+)
+// ═══════════════════════════════════════════════════════
+monsters.z_uf = {
+    id: 'z_uf',
+    name: 'Zœuf',
+    image: 'images/monsters/Zœuf.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1600, atk: 502, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.z_uf_perturbe = {
+    id: 'z_uf_perturbe',
+    name: 'Zœuf perturbé',
+    image: 'images/monsters/Zœuf_perturbé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.uf_de_la_mort = {
+    id: 'uf_de_la_mort',
+    name: 'Œuf de la Mort',
+    image: 'images/monsters/Œuf_de_la_Mort.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.superviz_uf_perturbe = {
+    id: 'superviz_uf_perturbe',
+    name: 'Supervizœuf perturbé',
+    image: 'images/monsters/Supervizœuf_perturbé.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 20000, atk: 1000, spd: 100, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
+    moves: []
+}
+monsters.oeuf_de_tregenaire = {
+    id: 'oeuf_de_tregenaire',
+    name: 'Oeuf de Trégénaire',
+    image: 'images/monsters/Oeuf_de_Trégénaire.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 800, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.tregenaire = {
+    id: 'tregenaire',
+    name: 'Trégénaire',
+    image: 'images/monsters/Trégénaire.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 400, atk: 50, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['protection_de_la_reine']
+}
+
+// ═══════════════════════════════════════════════════════
+// BÊTES PRIMORDIALES D'OTOMAÏ (lvl 180+)
+// ═══════════════════════════════════════════════════════
+monsters.bebe_gyrafor = {
+    id: 'bebe_gyrafor',
+    name: 'Bébé Gyrafor',
+    image: 'images/monsters/Bébé_Gyrafor.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: -20, feu: 0, eau: -20, air: 0 } },
+    moves: ['kilinmandjaro', 'cou_ragan', 'gyvoirien', 'kilin_tor']
+}
+monsters.bebe_lapilope = {
+    id: 'bebe_lapilope',
+    name: 'Bébé Lapilope',
+    image: 'images/monsters/Bébé_Lapilope.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: -20, air: -20 } },
+    moves: ['lapopotin', 'lagomorsure', 'koudulapin', 'rabitole']
+}
+monsters.bebe_brutapir = {
+    id: 'bebe_brutapir',
+    name: 'Bébé Brutapir',
+    image: 'images/monsters/Bébé_Brutapir.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: -20, terre: -20, feu: 0, eau: 0, air: 0 } },
+    moves: ['tapirateur', 'tapirogue', 'tapirouge', 'tapiroulant']
+}
+monsters.bebe_gropotam = {
+    id: 'bebe_gropotam',
+    name: 'Bébé Gropotam',
+    image: 'images/monsters/Bébé_Gropotam.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: -20, terre: 0, feu: 0, eau: 0, air: -20 } },
+    moves: ['barbotam', 'hajimeno_hippo', 'hippo_faringit', 'kornofulgur']
+}
+monsters.bebe_amphibouc = {
+    id: 'bebe_amphibouc',
+    name: 'Bébé Amphibouc',
+    image: 'images/monsters/Bébé_Amphibouc.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: 0, feu: -20, eau: 0, air: -20 } },
+    moves: ['crapaud_belier', 'batrattaque', 'perlambouc', 'cornebouc']
+}
+monsters.gyrafor = {
+    id: 'gyrafor',
+    name: 'Gyrafor',
+    image: 'images/monsters/Gyrafor.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 10000, atk: 640, spd: 100, res: { neutre: 10, terre: -10, feu: 10, eau: -10, air: 10 } },
+    moves: []
+}
+monsters.lapilope = {
+    id: 'lapilope',
+    name: 'Lapilope',
+    image: 'images/monsters/Lapilope.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -10, air: -10 } },
+    moves: ['lapopotin', 'lagomorsure', 'koudulapin', 'rabitole']
+}
+monsters.brutapir = {
+    id: 'brutapir',
+    name: 'Brutapir',
+    image: 'images/monsters/Brutapir.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -10, terre: -10, feu: 10, eau: 10, air: 10 } },
+    moves: ['tapirateur', 'tapirogue', 'tapirouge', 'tapiroulant']
+}
+monsters.gropotam = {
+    id: 'gropotam',
+    name: 'Gropotam',
+    image: 'images/monsters/Gropotam.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -10, terre: 10, feu: 10, eau: 10, air: -10 } },
+    moves: ['barbotam', 'hajimeno_hippo', 'hippo_faringit', 'kornofulgur']
+}
+monsters.amphibouc = {
+    id: 'amphibouc',
+    name: 'Amphibouc',
+    image: 'images/monsters/Amphibouc.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: -10 } },
+    moves: ['crapaud_belier', 'batrattaque', 'perlambouc', 'cornebouc']
+}
+monsters.gyrafor_perturbe = {
+    id: 'gyrafor_perturbe',
+    name: 'Gyrafor perturbé',
+    image: 'images/monsters/Gyrafor_perturbé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 14000, atk: 800, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: -10 } },
+    moves: []
+}
+monsters.lapilope_perturbe = {
+    id: 'lapilope_perturbe',
+    name: 'Lapilope perturbé',
+    image: 'images/monsters/Lapilope_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -10, air: -10 } },
+    moves: ['lapopotin', 'lagomorsure', 'koudulapin', 'rabitole']
+}
+monsters.brutapir_perturbe = {
+    id: 'brutapir_perturbe',
+    name: 'Brutapir perturbé',
+    image: 'images/monsters/Brutapir_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -10, terre: -10, feu: 10, eau: 10, air: 10 } },
+    moves: ['tapirateur', 'tapirogue', 'tapirouge', 'tapiroulant']
+}
+monsters.gropotam_perturbe = {
+    id: 'gropotam_perturbe',
+    name: 'Gropotam perturbé',
+    image: 'images/monsters/Gropotam_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 0, feu: -10, eau: 0, air: 0 } },
+    moves: ['barbotam', 'hajimeno_hippo', 'hippo_faringit', 'kornofulgur']
+}
+monsters.amphibouc_perturbe = {
+    id: 'amphibouc_perturbe',
+    name: 'Amphibouc perturbé',
+    image: 'images/monsters/Amphibouc_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: -10 } },
+    moves: ['crapaud_belier', 'batrattaque', 'perlambouc', 'cornebouc']
+}
+monsters.bruto_pernicieux = {
+    id: 'bruto_pernicieux',
+    name: 'Bruto Pernicieux',
+    image: 'images/monsters/Bruto_Pernicieux.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: -10, terre: -15, feu: 16, eau: 11, air: 4 } },
+    moves: ['metathese', 'pernipiege']
+}
+monsters.bruto_frenetique = {
+    id: 'bruto_frenetique',
+    name: 'Bruto Frénétique',
+    image: 'images/monsters/Bruto_Frénétique.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 3, terre: -7, feu: -16, eau: 19, air: 12 } },
+    moves: ['bombarde_kantik']
+}
+monsters.bruto_colerique = {
+    id: 'bruto_colerique',
+    name: 'Bruto Colérique',
+    image: 'images/monsters/Bruto_Colérique.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 10, terre: -3, feu: -9, eau: -17, air: 15 } },
+    moves: ['affaissement', 'encanaillement']
+}
+monsters.bruto_acharne = {
+    id: 'bruto_acharne',
+    name: 'Bruto Acharné',
+    image: 'images/monsters/Bruto_Acharné.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 20, terre: 12, feu: 5, eau: -14, air: -19 } },
+    moves: ['inimitie', 'boulversement']
+}
+monsters.bruto_virulent = {
+    id: 'bruto_virulent',
+    name: 'Bruto Virulent',
+    image: 'images/monsters/Bruto_Virulent.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: -14, terre: 16, feu: 11, eau: 4, air: -8 } },
+    moves: ['perseverance', 'aveuglette']
+}
+
+// ═══════════════════════════════════════════════════════
+// ANTRE DU KRALAMOURE GÉANT (lvl 180+)
+// ═══════════════════════════════════════════════════════
+monsters.kralamoureGeant = {
+    id: 'kralamoureGeant',
+    name: 'Kralamoure Geant',
+    image: 'images/monsters/Kralamoure_Géant.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 3700, atk: 1600, spd: 100, res: { neutre: 900, terre: 900, feu: 900, eau: 900, air: 900 } },
+    moves: ['kracheau_immobilisant', 'vulnerabilite_de_la_tourbiere', 'kraken', 'tourbe_ecrasante']
+}
+
+// ═══════════════════════════════════════════════════════
+// BRIBES DES CLASSES (lvl 180+)
+// ═══════════════════════════════════════════════════════
 monsters.bribe_de_zobal = {
     id: 'bribe_de_zobal',
     name: 'Bribe de Zobal',
@@ -10341,536 +11348,54 @@ monsters.bribe_de_xelor = {
     bst: { hp: 1100, atk: 413, spd: 100, res: { neutre: 20, terre: 21, feu: 31, eau: 40, air: 28 } },
     moves: ['poussiere_mstr', 'frappe_de_xelor_mstr', 'horloge_mstr', 'astrolabe', 'rouage_mstr', 'glas_mstr', 'refraction_mstr', 'sablier_de_xelor_mstr']
 }
-monsters.wabbit_gm = {
-    id: 'wabbit_gm',
-    name: 'Wabbit Gm',
-    image: 'images/monsters/Wabbit_Gm.png',
+monsters.bribes_de_gardien = {
+    id: 'bribes_de_gardien',
+    name: 'Bribes de gardien',
+    image: 'images/monsters/Bribes_de_gardien.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1200, atk: 143, spd: 100, res: { neutre: 43, terre: 33, feu: 40, eau: -6, air: -15 } },
-    moves: ['rafale_de_terre', 'cawotte_gm']
-}
-monsters.koalak_indigo = {
-    id: 'koalak_indigo',
-    name: 'Koalak Indigo',
-    image: 'images/monsters/Koalak_Indigo.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: -20, feu: -20, eau: 70, air: -20 } },
-    moves: ['invocation_de_blop_indigo', 'defaillance_indigo']
-}
-monsters.koalak_coco = {
-    id: 'koalak_coco',
-    name: 'Koalak Coco',
-    image: 'images/monsters/Koalak_Coco.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1200, atk: 50, spd: 100, res: { neutre: 10, terre: -20, feu: -20, eau: -20, air: 70 } },
-    moves: ['invocation_de_blop_coco', 'defaillance_coco']
-}
-monsters.koalak_griotte = {
-    id: 'koalak_griotte',
-    name: 'Koalak Griotte',
-    image: 'images/monsters/Koalak_Griotte.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: -20, feu: 70, eau: -20, air: -20 } },
-    moves: ['invocation_de_blop_griotte', 'defaillance_griotte']
-}
-monsters.koalak_reinette = {
-    id: 'koalak_reinette',
-    name: 'Koalak Reinette',
-    image: 'images/monsters/Koalak_Reinette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1200, atk: 75, spd: 100, res: { neutre: 10, terre: 70, feu: -20, eau: -20, air: -20 } },
-    moves: ['invocation_de_blop_reinette', 'defaillance_reinette']
-}
-monsters.golem = {
-    id: 'golem',
-    name: 'Golem',
-    image: 'images/monsters/Golem.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1200, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 22000, atk: 2000, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: []
 }
-monsters.bouftou_des_cavernes = {
-    id: 'bouftou_des_cavernes',
-    name: 'Bouftou des cavernes',
-    image: 'images/monsters/Bouftou_des_cavernes.png',
+
+// ═══════════════════════════════════════════════════════
+// ABYSSES DE SUFOKIA (lvl 185+)
+// ═══════════════════════════════════════════════════════
+monsters.dagon_des_profondeurs = {
+    id: 'dagon_des_profondeurs',
+    name: 'Dagon des Profondeurs',
+    image: 'images/monsters/Dagon_des_Profondeurs.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1300, atk: 105, spd: 100, res: { neutre: 30, terre: -18, feu: 50, eau: 20, air: -25 } },
-    moves: ['morsure_du_bouftou_des_cavernes', 'bavouille_des_cavernes', 'crachouille_des_cavernes']
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['souffle_chaud', 'charge_aquatique']
 }
-monsters.sapik = {
-    id: 'sapik',
-    name: 'Sapik',
-    image: 'images/monsters/Sapik.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1300, atk: 144, spd: 100, res: { neutre: -20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: ['enguirlandage', 'calin_kipik', 'kokapik']
-}
-monsters.cadob_onux = {
-    id: 'cadob_onux',
-    name: 'Cadob\'Onux',
-    image: 'images/monsters/Cadob_Onux.png',
+monsters.octolithe = {
+    id: 'octolithe',
+    name: 'Octolithe',
+    image: 'images/monsters/Octolithe.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['cadeau_puissant']
-}
-monsters.cadob_omb = {
-    id: 'cadob_omb',
-    name: 'Cadob\'Omb',
-    image: 'images/monsters/Cadob_Omb.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.cadob_imbo = {
-    id: 'cadob_imbo',
-    name: 'Cadob\'Imbo',
-    image: 'images/monsters/Cadob_Imbo.png',
+monsters.tentacule_quaternaire = {
+    id: 'tentacule_quaternaire',
+    name: 'Tentacule Quaternaire',
+    image: 'images/monsters/Tentacule_Quaternaire.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['cadeau_soignant']
+    bst: { hp: 190, atk: 400, spd: 100, res: { neutre: 90, terre: 0, feu: 90, eau: 90, air: 90 } },
+    moves: ['paralysie_tentaculaire']
 }
-monsters.rat_bougri = {
-    id: 'rat_bougri',
-    name: 'Rat Bougri',
-    image: 'images/monsters/Rat_Bougri.png',
+monsters.proto_noxine = {
+    id: 'proto_noxine',
+    name: 'Proto-Noxine',
+    image: 'images/monsters/Proto-Noxine.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 19, terre: 22, feu: 10, eau: -24, air: 5 } },
-    moves: ['ratissage', 'rabot', 'racolage']
-}
-monsters.crabe_hijacob = {
-    id: 'crabe_hijacob',
-    name: 'Crabe Hijacob',
-    image: 'images/monsters/Crabe_Hijacob.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 4, terre: 14, feu: 10, eau: 28, air: -39 } },
-    moves: ['pincette', 'sucette', 'briquette']
-}
-monsters.coquille_soigneuse = {
-    id: 'coquille_soigneuse',
-    name: 'Coquille Soigneuse',
-    image: 'images/monsters/Coquille_Brutale.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.coquille_brutale = {
-    id: 'coquille_brutale',
-    name: 'Coquille Brutale',
-    image: 'images/monsters/Coquille_Brutale.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.coquille_veloce = {
-    id: 'coquille_veloce',
-    name: 'Coquille Véloce',
-    image: 'images/monsters/Coquille_Brutale.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.coquille_protectrice = {
-    id: 'coquille_protectrice',
-    name: 'Coquille Protectrice',
-    image: 'images/monsters/Coquille_Brutale.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.chachachovage = {
-    id: 'chachachovage',
-    name: 'Chachachovage',
-    image: 'images/monsters/Chachachovage.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 15, terre: -24, feu: 30, eau: 8, air: 4 } },
-    moves: ['canine_putride', 'mousse_tache', 'coussinet_protecteur']
-}
-monsters.gelikan = {
-    id: 'gelikan',
-    name: 'Gélikan',
-    image: 'images/monsters/Gélikan.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 5, terre: 13, feu: 10, eau: -20, air: 25 } },
-    moves: ['koudbec', 'convoitise', 'enthousiasme']
-}
-monsters.gelee_royale_bleuet = {
-    id: 'gelee_royale_bleuet',
-    name: 'Gelée Royale Bleuet',
-    image: 'images/monsters/Gelée_Royale_Bleuet.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: 70, feu: 70, eau: -10, air: 70 } },
-    moves: ['Isometrie', 'Royale_Bleuet_Os', 'Tartinade']
-}
-monsters.gelee_royale_menthe = {
-    id: 'gelee_royale_menthe',
-    name: 'Gelée Royale Menthe',
-    image: 'images/monsters/Gelée_Royale_Menthe.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: -10, feu: 70, eau: 70, air: 70 } },
-    moves: ['Tartinade', 'Pik_assaut', 'Royale_Menthe_Os']
-}
-monsters.gelee_royale_fraise = {
-    id: 'gelee_royale_fraise',
-    name: 'Gelée Royale Fraise',
-    image: 'images/monsters/Gelée_Royale_Fraise.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: 70, feu: -10, eau: 70, air: 70 } },
-    moves: ['Tartinade', 'Gelifiant', 'Royale_Fraise_Os']
-}
-monsters.gelee_royale_citron = {
-    id: 'gelee_royale_citron',
-    name: 'Gelée Royale Citron',
-    image: 'images/monsters/Gelée_Royale_Citron.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1400, atk: 250, spd: 100, res: { neutre: 70, terre: 70, feu: 70, eau: 70, air: -10 } },
-    moves: ['Tartinade', 'Fixation_Beton', 'Royale_Citron_Os']
-}
-monsters.mawabouaino = {
-    id: 'mawabouaino',
-    name: 'Mawabouaino',
-    image: 'images/monsters/Mawabouaino.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1400, atk: 168, spd: 100, res: { neutre: 35, terre: 25, feu: 15, eau: 15, air: 15 } },
-    moves: ['cacaobstwuant', 'chocohowte', 'eclat', 'chocolave']
-}
-monsters.coffre_sombre = {
-    id: 'coffre_sombre',
-    name: 'Coffre Sombre',
-    image: 'images/monsters/Coffre_des_Forgerons.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1500, atk: 425, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: ['lancer_de_kamas']
-}
-monsters.dragodinde_de_nowel_sauvage = {
-    id: 'dragodinde_de_nowel_sauvage',
-    name: 'Dragodinde de Nowel sauvage',
-    image: 'images/monsters/Dragodinde_de_Nowel.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 36, terre: 2, feu: 2, eau: 36, air: 2 } },
-    moves: []
-}
-monsters.bouboule_de_neige = {
-    id: 'bouboule_de_neige',
-    name: 'Bouboule de neige',
-    image: 'images/monsters/Bouboule_de_neige.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 20, terre: 6, feu: -22, eau: 30, air: 30 } },
-    moves: ['boule_de_neige', 'neige_soignante', 'roulage_de_neige']
-}
-monsters.chauffe_soutrille = {
-    id: 'chauffe_soutrille',
-    name: 'Chauffe-Soutrille',
-    image: 'images/monsters/Chauffe-Soutrille.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 5, terre: 17, feu: -15, eau: 15, air: 12 } },
-    moves: ['pus_des_pieds', 'faux_fuyant']
-}
-monsters.cactruc = {
-    id: 'cactruc',
-    name: 'Cactruc',
-    image: 'images/monsters/Cactruc.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1500, atk: 50, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.minikrone = {
-    id: 'minikrone',
-    name: 'Minikrone',
-    image: 'images/monsters/Minikrone.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1500, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.bombombre = {
-    id: 'bombombre',
-    name: 'Bombombre',
-    image: 'images/monsters/Bombombre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.bombombre_a_eau = {
-    id: 'bombombre_a_eau',
-    name: 'Bombombre à Eau',
-    image: 'images/monsters/Bombombre_à_Eau.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1500, atk: 368, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.boufcoul = {
-    id: 'boufcoul',
-    name: 'Boufcoul',
-    image: 'images/monsters/Boufcoul.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1600, atk: 138, spd: 100, res: { neutre: 30, terre: 50, feu: -20, eau: -25, air: 20 } },
-    moves: ['bise_du_boufcoul', 'morsure_du_boufcoul']
-}
-monsters.mega_craqueleur_des_plaines = {
-    id: 'mega_craqueleur_des_plaines',
-    name: 'Méga Craqueleur des plaines',
-    image: 'images/monsters/Méga_Craqueleur_des_plaines.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1600, atk: 630, spd: 100, res: { neutre: 44, terre: 44, feu: 58, eau: 88, air: 68 } },
-    moves: ['Ecrasement_Handicapant']
-}
-monsters.champetrouille = {
-    id: 'champetrouille',
-    name: 'Champêtrouille',
-    image: 'images/monsters/Champêtrouille.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 10, terre: 18, feu: 7, eau: -16, air: 6 } },
-    moves: ['frappe_a_dingues', 'dinguerie', 'cueillette']
-}
-monsters.lanverne = {
-    id: 'lanverne',
-    name: 'Lanverne',
-    image: 'images/monsters/Lanverne.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 15, terre: 5, feu: 11, eau: 3, air: -18 } },
-    moves: ['vermifuge', 'subterfuge']
-}
-monsters.intercepteur = {
-    id: 'intercepteur',
-    name: 'Intercepteur',
-    image: 'images/monsters/Intercepteur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1600, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.z_uf = {
-    id: 'z_uf',
-    name: 'Zœuf',
-    image: 'images/monsters/Zœuf.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1600, atk: 502, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.grozilla_somnambule = {
-    id: 'grozilla_somnambule',
-    name: 'Grozilla Somnambule',
-    image: 'images/monsters/Grozilla.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1600, atk: 130, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
-    moves: ['tyrannisation', 'gravite']
-}
-monsters.grasmera_somnambule = {
-    id: 'grasmera_somnambule',
-    name: 'Grasmera Somnambule',
-    image: 'images/monsters/Grasmera.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 1600, atk: 130, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['meteore']
-}
-monsters.glutin_hargneux = {
-    id: 'glutin_hargneux',
-    name: 'Glutin hargneux',
-    image: 'images/monsters/Glutin_hargneux.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1700, atk: 304, spd: 100, res: { neutre: 6, terre: 6, feu: 6, eau: 6, air: 6 } },
-    moves: []
-}
-monsters.bonhomme_de_neige = {
-    id: 'bonhomme_de_neige',
-    name: 'Bonhomme de neige',
-    image: 'images/monsters/Bonhomme_de_neige.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 10, terre: -18, feu: -25, eau: 25, air: 25 } },
-    moves: ['poussee_d_egul', 'esprit_de_nowel', 'tire_fesse']
-}
-monsters.cauchemarakne = {
-    id: 'cauchemarakne',
-    name: 'Cauchemarakne',
-    image: 'images/monsters/Cauchemarakne.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: 7, terre: -18, feu: -1, eau: 5, air: 14 } },
-    moves: ['Mort_sure']
-}
-monsters.feu = {
-    id: 'feu',
-    name: 'Feu',
-    image: 'images/monsters/Feu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.krokille_mature_insipide = {
-    id: 'krokille_mature_insipide',
-    name: 'Krokille Mature Insipide',
-    image: 'images/monsters/Krokille_Mature_Insipide.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['peste_devorante', 'toxine_virulente', 'frenesie_elementale']
-}
-monsters.krokille_mature_boueuse = {
-    id: 'krokille_mature_boueuse',
-    name: 'Krokille Mature Boueuse',
-    image: 'images/monsters/Krokille_Mature_Boueuse.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: ['coulee_de_boue', 'eboulement', 'eclosion']
-}
-monsters.krokille_mature_incandescente = {
-    id: 'krokille_mature_incandescente',
-    name: 'Krokille Mature Incandescente',
-    image: 'images/monsters/Krokille_Mature_Incandescente.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: ['calcination', 'braise_ardente', 'recalcification']
-}
-monsters.krokille_mature_humide = {
-    id: 'krokille_mature_humide',
-    name: 'Krokille Mature Humide',
-    image: 'images/monsters/Krokille_Mature_Humide.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: ['hydrophobie', 'raz_de_maree', 'asphyxie']
-}
-monsters.krokille_mature_seche = {
-    id: 'krokille_mature_seche',
-    name: 'Krokille Mature Sèche',
-    image: 'images/monsters/Krokille_Mature_Sèche.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 250, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: ['tempete_seche', 'lame_de_vent', 'il_du_cyclone']
-}
-monsters.kanigrou_hivernal = {
-    id: 'kanigrou_hivernal',
-    name: 'Kanigrou hivernal',
-    image: 'images/monsters/Kanigrou_hivernal.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -9, air: -9 } },
-    moves: ['griffe_du_kanigrou_hivernal', 'chute_majestueuse']
-}
-monsters.croc_gland_de_nowel = {
-    id: 'croc_gland_de_nowel',
-    name: 'Croc gland de Nowel',
-    image: 'images/monsters/Croc_gland_de_Nowel.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['aboiement_mstr']
-}
-monsters.z_uf_perturbe = {
-    id: 'z_uf_perturbe',
-    name: 'Zœuf perturbé',
-    image: 'images/monsters/Zœuf_perturbé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.chevaucheur_koalak = {
-    id: 'chevaucheur_koalak',
-    name: 'Chevaucheur Koalak',
-    image: 'images/monsters/Chevaucheur_Koalak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 125, spd: 100, res: { neutre: 20, terre: 29, feu: -58, eau: 10, air: 50 } },
-    moves: ['prevention']
-}
-monsters.fossoyeur_koalak = {
-    id: 'fossoyeur_koalak',
-    name: 'Fossoyeur Koalak',
-    image: 'images/monsters/Fossoyeur_Koalak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 163, spd: 100, res: { neutre: 10, terre: 50, feu: 20, eau: -19, air: 20 } },
-    moves: ['enterrement', 'motte_de_terre']
-}
-monsters.buveur_de_sang = {
-    id: 'buveur_de_sang',
-    name: 'Buveur de Sang',
-    image: 'images/monsters/Buveur_de_Sang.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: 1, terre: -9, feu: -9, eau: 66, air: -9 } },
-    moves: []
-}
-monsters.renarbo_parleur = {
-    id: 'renarbo_parleur',
-    name: 'Renarbo Parleur',
-    image: 'images/monsters/Renarbo_Parleur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: -14, terre: 21, feu: -9, eau: -24, air: 66 } },
-    moves: []
-}
-monsters.kirboule_l_erode = {
-    id: 'kirboule_l_erode',
-    name: 'Kirboule l\'Érodé',
-    image: 'images/monsters/Kirboule_l_Érodé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1900, atk: 363, spd: 100, res: { neutre: 6, terre: 6, feu: 20, eau: 50, air: 30 } },
-    moves: ['Ecrasement_Handicapant']
-}
-monsters.maitre_koalak = {
-    id: 'maitre_koalak',
-    name: 'Maître Koalak',
-    image: 'images/monsters/Maître_Koalak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2000, atk: 200, spd: 100, res: { neutre: -25, terre: -10, feu: 50, eau: -10, air: -10 } },
-    moves: ['frappe_du_maitre', 'reconciliation', 'transposition_du_maitre']
-}
-monsters.momie_koalak = {
-    id: 'momie_koalak',
-    name: 'Momie Koalak',
-    image: 'images/monsters/Momie_Koalak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2000, atk: 138, spd: 100, res: { neutre: 60, terre: -25, feu: 10, eau: 50, air: -50 } },
-    moves: ['malediction_de_la_momie', 'clepsydre_mstr', 'bandelette_ancestrale']
+    bst: { hp: 4400, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['bombe_mecanique']
 }
 monsters.miasme_polarisateur = {
     id: 'miasme_polarisateur',
@@ -10881,131 +11406,27 @@ monsters.miasme_polarisateur = {
     bst: { hp: 2000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.crystal_de_stasili = {
-    id: 'crystal_de_stasili',
-    name: 'Crystal de Stasili',
-    image: 'images/monsters/Crystal_de_Stasili.png',
+
+// ═══════════════════════════════════════════════════════
+// PANDAMONIUM — GLUTINS (lvl 185+)
+// ═══════════════════════════════════════════════════════
+monsters.glutin_turbulent = {
+    id: 'glutin_turbulent',
+    name: 'Glutin turbulent',
+    image: 'images/monsters/Glutin_Tapageur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 2000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 390, atk: 144, spd: 100, res: { neutre: 3, terre: 3, feu: 3, eau: 3, air: 3 } },
+    moves: ['boolkiroul', 'namas_pamouss', 'ebouledeneigement']
+}
+monsters.glutin_hargneux = {
+    id: 'glutin_hargneux',
+    name: 'Glutin hargneux',
+    image: 'images/monsters/Glutin_hargneux.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1700, atk: 304, spd: 100, res: { neutre: 6, terre: 6, feu: 6, eau: 6, air: 6 } },
     moves: []
-}
-monsters.gelee_fraise_royale = {
-    id: 'gelee_fraise_royale',
-    name: 'Gelée Fraise Royale',
-    image: 'images/monsters/Gelée_Royale_Fraise.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: 70, feu: -10, eau: 70, air: 70 } },
-    moves: ['Gelifiant', 'Royale_Fraise_Os', 'Tartinade']
-}
-monsters.gelee_bleuet_royale = {
-    id: 'gelee_bleuet_royale',
-    name: 'Gelée Bleuet Royale',
-    image: 'images/monsters/Gelée_Royale_Bleuet.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: 70, feu: 70, eau: -10, air: 70 } },
-    moves: ['Isometrie', 'Royale_Bleuet_Os', 'Tartinade']
-}
-monsters.gelee_menthe_royale = {
-    id: 'gelee_menthe_royale',
-    name: 'Gelée Menthe Royale',
-    image: 'images/monsters/Gelée_Royale_Menthe.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: -10, feu: 70, eau: 70, air: 70 } },
-    moves: ['Pik_assaut', 'Royale_Menthe_Os', 'Tartinade']
-}
-monsters.gelee_citron_royale = {
-    id: 'gelee_citron_royale',
-    name: 'Gelée Citron Royale',
-    image: 'images/monsters/Gelée_Royale_Citron.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 2000, atk: 400, spd: 120, res: { neutre: 70, terre: 70, feu: 70, eau: 70, air: -10 } },
-    moves: ['Fixation_Beton', 'Royale_Citron_Os', 'Tartinade']
-}
-monsters.bourgeon = {
-    id: 'bourgeon',
-    name: 'Bourgeon',
-    image: 'images/monsters/Bourgeon.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 304, spd: 100, res: { neutre: 10, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: ['germe']
-}
-monsters.troolligark = {
-    id: 'troolligark',
-    name: 'Troolligark',
-    image: 'images/monsters/Troolligark.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: -9, terre: -19, feu: 16, eau: 26, air: 26 } },
-    moves: ['controoll', 'troollage']
-}
-monsters.troolleole = {
-    id: 'troolleole',
-    name: 'Troolléolé',
-    image: 'images/monsters/Troolléolé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2100, atk: 448, spd: 100, res: { neutre: -19, terre: 16, feu: 26, eau: -9, air: 26 } },
-    moves: ['troollahonte', 'troollfesse']
-}
-monsters.corbac_apprivoise = {
-    id: 'corbac_apprivoise',
-    name: 'Corbac Apprivoisé',
-    image: 'images/monsters/Corbac_Apprivoisé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2200, atk: 408, spd: 100, res: { neutre: 21, terre: -14, feu: 26, eau: 26, air: -29 } },
-    moves: ['plumeau_destabilisant', 'bousculade_plumeuse']
-}
-monsters.poupee_affamee = {
-    id: 'poupee_affamee',
-    name: 'Poupée Affamée',
-    image: 'images/monsters/Workette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2200, atk: 75, spd: 100, res: { neutre: 130, terre: 130, feu: 130, eau: 130, air: 130 } },
-    moves: ['coupe_faim', 'digestion_explosive', 'saphir_apaisant']
-}
-monsters.mininuit = {
-    id: 'mininuit',
-    name: 'Mininuit',
-    image: 'images/monsters/Mininuit.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 900, atk: 175, spd: 100, res: { neutre: 30, terre: -20, feu: 10, eau: 10, air: 10 } },
-    moves: ['patinage', 'marteau_d_okim', 'marteau_d_orelos']
-}
-monsters.chef_waddict = {
-    id: 'chef_waddict',
-    name: 'Chef Waddict',
-    image: 'images/monsters/Chef_Waddict.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2400, atk: 420, spd: 100, res: { neutre: 5, terre: 11, feu: 0, eau: 10, air: 14 } },
-    moves: ['enwobage', 'anawchie', 'assasindic']
-}
-monsters.chienchien_courant = {
-    id: 'chienchien_courant',
-    name: 'Chienchien Courant',
-    image: 'images/monsters/Chienchien_Courant.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2400, atk: 728, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['accrochage']
-}
-monsters.lampe_bleue = {
-    id: 'lampe_bleue',
-    name: 'Lampe Bleue',
-    image: 'images/monsters/Lampe_Bleue.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['lumiere_bleue']
 }
 monsters.glutin_colerique = {
     id: 'glutin_colerique',
@@ -11043,60 +11464,6 @@ monsters.glutin_boudeur = {
     bst: { hp: 2500, atk: 125, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 100, air: 100 } },
     moves: ['glutarc']
 }
-monsters.silhouette = {
-    id: 'silhouette',
-    name: 'Silhouette',
-    image: 'images/monsters/Silhouette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['empoigne', 'strangulation']
-}
-monsters.kakoalak = {
-    id: 'kakoalak',
-    name: 'Kakoalak',
-    image: 'images/monsters/Kakoalak.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 17, terre: 9, feu: -13, eau: 21, air: -8 } },
-    moves: ['kakoaklake', 'pluie_de_pepite']
-}
-monsters.mansocolat = {
-    id: 'mansocolat',
-    name: 'Mansocolat',
-    image: 'images/monsters/Mansocolat.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: -17, terre: 16, feu: 7, eau: -8, air: 10 } },
-    moves: ['maskansocolat', 'mansocolere', 'mansaut']
-}
-monsters.glourson_guimauve = {
-    id: 'glourson_guimauve',
-    name: 'Glourson Guimauve',
-    image: 'images/monsters/Glourson_Guimauve.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 8, terre: -12, feu: 18, eau: -7, air: 12 } },
-    moves: []
-}
-monsters.chocoskargo = {
-    id: 'chocoskargo',
-    name: 'Chocoskargo',
-    image: 'images/monsters/Chocoskargo.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 13, terre: -8, feu: 5, eau: 9, air: -19 } },
-    moves: ['enrobage', 'glycemie', 'chocoskarfarce']
-}
-monsters.kwakao = {
-    id: 'kwakao',
-    name: 'Kwakao',
-    image: 'images/monsters/Kwakao.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 1700, atk: 225, spd: 100, res: { neutre: 8, terre: 13, feu: -15, eau: -11, air: 10 } },
-    moves: ['kwakaoust', 'skwalala']
-}
 monsters.glutin_tapageur = {
     id: 'glutin_tapageur',
     name: 'Glutin Tapageur',
@@ -11104,213 +11471,6 @@ monsters.glutin_tapageur = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 2700, atk: 250, spd: 100, res: { neutre: 31, terre: -5, feu: -5, eau: 20, air: 23 } },
-    moves: []
-}
-monsters.larmichette_de_l_ogre = {
-    id: 'larmichette_de_l_ogre',
-    name: 'Larmichette de l\'ogre',
-    image: 'images/monsters/Larmichette_de_l_ogre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2700, atk: 500, spd: 100, res: { neutre: 5, terre: 5, feu: 5, eau: 5, air: 5 } },
-    moves: ['glougloutte_salee']
-}
-monsters.gliglibido = {
-    id: 'gliglibido',
-    name: 'Gliglibido',
-    image: 'images/monsters/Gliglibido.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2800, atk: 333, spd: 100, res: { neutre: 32, terre: -9, feu: 27, eau: 11, air: -23 } },
-    moves: ['gland_d_ouil', 'remontant', 'fluide_brulant']
-}
-monsters.gliglitch = {
-    id: 'gliglitch',
-    name: 'Gliglitch',
-    image: 'images/monsters/Gliglitch.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 2800, atk: 333, spd: 100, res: { neutre: 5, terre: 17, feu: 7, eau: -5, air: -17 } },
-    moves: ['gliglag', 'gligliplication', 'embrochement_dephase']
-}
-monsters.devhorreur = {
-    id: 'devhorreur',
-    name: 'Dévhorreur',
-    image: 'images/monsters/Dévhorreur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 500, atk: 150, spd: 100, res: { neutre: -7, terre: 12, feu: 6, eau: 11, air: 4 } },
-    moves: ['terreur', 'malheur', 'torpeur_mstr']
-}
-monsters.percepteur = {
-    id: 'percepteur',
-    name: 'Percepteur',
-    image: 'images/monsters/Percepteur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3000, atk: 600, spd: 100, res: { neutre: 24, terre: 24, feu: 24, eau: 24, air: 24 } },
-    moves: ['labour', 'monnaie_trebuchante', 'rente', 'ferrage', 'douane', 'gabelle', 'deficit', 'ruade', 'liquidation', 'abreuvoir', 'cotisation', 'rodeo', 'levee_de_fonds', 'saut_d_obstacle', 'redevance', 'prelevement', 'sagittarius', 'dommages_et_interets', 'courroux_de_menalt', 'illeres', 'chancellerie', 'surtaxe', 'faillite', 'malversation', 'affranchissement', 'exoneration', 'bride', 'licol', 'lasso', 'recit_hippique', 'eperon', 'trot', 'galop', 'trop_percu', 'subvention', 'fin_de_l_abondance', 'maitre_etalon', 'pur_sang', 'gros_fiacre', 'endurance_de_centoror']
-}
-monsters.krokille_fragile = {
-    id: 'krokille_fragile',
-    name: 'Krokille fragile',
-    image: 'images/monsters/Krokille_fragile.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3000, atk: 450, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['volte', 'eruption_vulkaine']
-}
-monsters.boubourse = {
-    id: 'boubourse',
-    name: 'Boubourse',
-    image: 'images/monsters/Boubourse.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.peluche_tofu = {
-    id: 'peluche_tofu',
-    name: 'Peluche tofu',
-    image: 'images/monsters/Peluche_tofu.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: -30, terre: 10, feu: 10, eau: 10, air: 30 } },
-    moves: ['entorse', 'pique_couic']
-}
-monsters.gliglicerin = {
-    id: 'gliglicerin',
-    name: 'Gliglicérin',
-    image: 'images/monsters/Gliglicérin.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3000, atk: 350, spd: 100, res: { neutre: 5, terre: 11, feu: -25, eau: 1, air: 22 } },
-    moves: ['attirance_du_gligli', 'fauchage_de_glands', 'raffut_bestial']
-}
-monsters.pitraille = {
-    id: 'pitraille',
-    name: 'Pitraille',
-    image: 'images/monsters/Pitraille.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 21, terre: -26, feu: 28, eau: 12, air: 34 } },
-    moves: ['ch_boum', 'ch_bang']
-}
-monsters.assaishin = {
-    id: 'assaishin',
-    name: 'Assaïshin',
-    image: 'images/monsters/Assaïshin.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3100, atk: 630, spd: 100, res: { neutre: 20, terre: -5, feu: -10, eau: 15, air: -20 } },
-    moves: ['sai_sai_sai_sai']
-}
-monsters.emeraude = {
-    id: 'emeraude',
-    name: 'Émeraude',
-    image: 'images/monsters/Émeraude.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3200, atk: 100, spd: 100, res: { neutre: 98, terre: -15, feu: -15, eau: -15, air: 98 } },
-    moves: ['transposition_amicale', 'transposition_destructrice', 'bouh_m_rang_emeraude', 'tripotee']
-}
-monsters.saphira = {
-    id: 'saphira',
-    name: 'Saphira',
-    image: 'images/monsters/Saphira.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3200, atk: 118, spd: 100, res: { neutre: 98, terre: -15, feu: -15, eau: 98, air: -15 } },
-    moves: ['bouh_m_rang_saphir', 'camouflage_saphiresque']
-}
-monsters.rubise = {
-    id: 'rubise',
-    name: 'Rubise',
-    image: 'images/monsters/Rubise.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3200, atk: 100, spd: 100, res: { neutre: 98, terre: -15, feu: 98, eau: -15, air: -15 } },
-    moves: ['bouh_m_rang_rubis', 'invocation_de_totem_motivant', 'invocation_de_totem_explosif', 'bottage_de_fesses', 'invocation_de_totem_soignant', 'totemisation', 'bond_rubisant']
-}
-monsters.diamantine = {
-    id: 'diamantine',
-    name: 'Diamantine',
-    image: 'images/monsters/Diamantine.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3200, atk: 59, spd: 100, res: { neutre: 98, terre: 98, feu: -15, eau: -15, air: -15 } },
-    moves: ['lourdeur', 'bouh_m_rang_diamant', 'invocation_de_poupee_mortelle', 'bond_etincelant']
-}
-monsters.toubibz = {
-    id: 'toubibz',
-    name: 'Toubibz',
-    image: 'images/monsters/Toubibz.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 6, terre: -9, feu: -3, eau: -4, air: 10 } },
-    moves: ['gueriz_uf', 'tornabz', 'evabzion']
-}
-monsters.halouine = {
-    id: 'halouine',
-    name: 'Halouine',
-    image: 'images/monsters/Halouine.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 3300, atk: 330, spd: 100, res: { neutre: 13, terre: 15, feu: 0, eau: 18, air: 5 } },
-    moves: ['rattirance', 'moissonnage', 'plantes_zombies', 'citwouille_explosive']
-}
-monsters.krokille_venerable_insipide = {
-    id: 'krokille_venerable_insipide',
-    name: 'Krokille Vénérable Insipide',
-    image: 'images/monsters/Krokille_Vénérable_Insipide.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 70, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['peste_ancestrale', 'corruption_septique', 'rage_millenaire']
-}
-monsters.krokille_venerable_boueuse = {
-    id: 'krokille_venerable_boueuse',
-    name: 'Krokille Vénérable Boueuse',
-    image: 'images/monsters/Krokille_Vénérable_Boueuse.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 70, feu: 0, eau: 0, air: -15 } },
-    moves: ['avalanche_de_boue', 'linceul_argileux', 'carapace_fossilisee']
-}
-monsters.krokille_venerable_incandescente = {
-    id: 'krokille_venerable_incandescente',
-    name: 'Krokille Vénérable Incandescente',
-    image: 'images/monsters/Krokille_Vénérable_Incandescente.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 70, eau: -15, air: 0 } },
-    moves: ['eruption_ancestrale', 'flammes_devorantes', 'regeneration_ignee']
-}
-monsters.krokille_venerable_humide = {
-    id: 'krokille_venerable_humide',
-    name: 'Krokille Vénérable Humide',
-    image: 'images/monsters/Krokille_Vénérable_Humide.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: -15, eau: 70, air: 0 } },
-    moves: ['deluge', 'noyade_profonde', 'marais_engloutissant']
-}
-monsters.krokille_venerable_seche = {
-    id: 'krokille_venerable_seche',
-    name: 'Krokille Vénérable Sèche',
-    image: 'images/monsters/Krokille_Vénérable_Sèche.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 0, terre: -15, feu: 0, eau: 0, air: 70 } },
-    moves: ['cyclone_devastateur', 'lame_d_ouragan', 'voile_du_vent']
-}
-monsters.dragodinde_de_nowel_fougueuse = {
-    id: 'dragodinde_de_nowel_fougueuse',
-    name: 'Dragodinde de Nowel fougueuse',
-    image: 'images/monsters/Dragodinde_de_Nowel.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 49, terre: 14, feu: 14, eau: 49, air: 14 } },
     moves: []
 }
 monsters.chef_glutin_tapageur = {
@@ -11322,78 +11482,6 @@ monsters.chef_glutin_tapageur = {
     bst: { hp: 3400, atk: 625, spd: 100, res: { neutre: 12, terre: -14, feu: -14, eau: 4, air: 4 } },
     moves: []
 }
-monsters.hamrack = {
-    id: 'hamrack',
-    name: 'Hamrack',
-    image: 'images/monsters/Hamrack.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3400, atk: 600, spd: 100, res: { neutre: 20, terre: 12, feu: 13, eau: 16, air: 22 } },
-    moves: ['gouverne_ail']
-}
-monsters.alhyene = {
-    id: 'alhyene',
-    name: 'Alhyène',
-    image: 'images/monsters/Alhyène.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 21, terre: 11, feu: -9, eau: -4, air: 11 } },
-    moves: ['vent_discordant', 'invocation_de_flammes']
-}
-monsters.kamikabz = {
-    id: 'kamikabz',
-    name: 'Kamikabz',
-    image: 'images/monsters/Kamikabz.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 5, terre: 9, feu: -2, eau: -2, air: -10 } },
-    moves: ['frakaz_uf', 'aspibz', 'bzimpact']
-}
-monsters.gliglidoudur = {
-    id: 'gliglidoudur',
-    name: 'Gliglidoudur',
-    image: 'images/monsters/Gliglidoudur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3600, atk: 333, spd: 100, res: { neutre: -11, terre: 30, feu: -9, eau: 26, air: 11 } },
-    moves: ['charge_emotive', 'contraction', 'rejet']
-}
-monsters.darkli_moon = {
-    id: 'darkli_moon',
-    name: 'Darkli Moon',
-    image: 'images/monsters/Darkli_Moon.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 10, terre: 20, feu: 10, eau: -15, air: 10 } },
-    moves: ['obscure_singerie']
-}
-monsters.kralamoureGeant = {
-    id: 'kralamoureGeant',
-    name: 'Kralamoure Geant',
-    image: 'images/monsters/Kralamoure_Géant.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 3700, atk: 1600, spd: 100, res: { neutre: 900, terre: 900, feu: 900, eau: 900, air: 900 } },
-    moves: ['kracheau_immobilisant', 'vulnerabilite_de_la_tourbiere', 'kraken', 'tourbe_ecrasante']
-}
-monsters.mallefisk = {
-    id: 'mallefisk',
-    name: 'Malléfisk',
-    image: 'images/monsters/Malléfisk.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 3700, atk: 300, spd: 100, res: { neutre: 22, terre: 12, feu: 28, eau: 6, air: -5 } },
-    moves: ['ka_dabor', 'chte_hu', 'nonoube_noharnak']
-}
-monsters.pougnette = {
-    id: 'pougnette',
-    name: 'Pougnette',
-    image: 'images/monsters/Pougnette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3800, atk: 300, spd: 100, res: { neutre: 25, terre: 17, feu: 10, eau: 9, air: -29 } },
-    moves: ['pikette']
-}
 monsters.glutin_malfaisant = {
     id: 'glutin_malfaisant',
     name: 'Glutin malfaisant',
@@ -11403,1139 +11491,18 @@ monsters.glutin_malfaisant = {
     bst: { hp: 3900, atk: 825, spd: 100, res: { neutre: 9, terre: 9, feu: 9, eau: 9, air: 9 } },
     moves: []
 }
-monsters.bras_demoniaque = {
-    id: 'bras_demoniaque',
-    name: 'Bras démoniaque',
-    image: 'images/monsters/Bras_démoniaque.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3900, atk: 720, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
-    moves: ['rhizome_demoniaque', 'aplatissement_demoniaque', 'revers_demoniaque']
-}
-monsters.quadrabz = {
-    id: 'quadrabz',
-    name: 'Quadrabz',
-    image: 'images/monsters/Quadrabz.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 4, terre: 0, feu: -11, eau: 8, air: -1 } },
-    moves: ['vaporiz_uf', 'akuabz', 'bzeklabouss']
-}
-monsters.papa_nowel = {
-    id: 'papa_nowel',
-    name: 'Papa Nowel',
-    image: 'images/monsters/Papa_Nowel.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 3900, atk: 1300, spd: 100, res: { neutre: -2, terre: -2, feu: 40, eau: 40, air: 40 } },
-    moves: ['engluement', 'dichotomie', 'aspir_nenfan', 'embuche_de_nowel', 'trak_nenfan', 'infantophagie']
-}
-monsters.tipoune = {
-    id: 'tipoune',
-    name: 'Tipoune',
-    image: 'images/monsters/Tipoune.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.tipoude = {
-    id: 'tipoude',
-    name: 'Tipoude',
-    image: 'images/monsters/Tipoude.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.tipoutre = {
-    id: 'tipoutre',
-    name: 'Tipoutre',
-    image: 'images/monsters/Tipoutre.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.Rathrosk = {
-    id: 'Rathrosk',
-    name: 'Rathrosk',
-    image: 'images/monsters/Rathrosk.png',
-    rarity: 'legendaire',
-    tier: 'boss',
-    bst: { hp: 4000, atk: 320, spd: 125, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
-    moves: ['souffle_de_rathrosk', 'queue_du_dragon', 'regain_de_vie']
-}
-monsters.ush_galesh = {
-    id: 'ush_galesh',
-    name: 'Ush Galesh',
-    image: 'images/monsters/Ush_Galesh.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 4000, atk: 500, spd: 100, res: { neutre: 20, terre: 10, feu: 20, eau: 20, air: 10 } },
-    moves: ['eclair_rouge', 'pulsation_malsaine']
-}
-monsters.cadob = {
-    id: 'cadob',
-    name: 'Cadob\'',
-    image: 'images/monsters/Cadob_.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4300, atk: 534, spd: 100, res: { neutre: 10, terre: 10, feu: -20, eau: 30, air: 10 } },
-    moves: ['invocation_de_cadob', 'surprise_drainante', 'surprise_empoisonnante']
-}
-monsters.peluche_wabbit = {
-    id: 'peluche_wabbit',
-    name: 'Peluche wabbit',
-    image: 'images/monsters/Peluche_wabbit.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 10, terre: 10, feu: 30, eau: 10, air: -30 } },
-    moves: ['rembourrage', 'malediction_de_la_cawotte', 'cawotte_de_nowel']
-}
-monsters.motte = {
-    id: 'motte',
-    name: 'Motte',
-    image: 'images/monsters/Motte.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 25, terre: -36, feu: 12, eau: 55, air: 6 } },
-    moves: ['hokulteur', 'hivation', 'husse']
-}
-monsters.proto_noxine = {
-    id: 'proto_noxine',
-    name: 'Proto-Noxine',
-    image: 'images/monsters/Proto-Noxine.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4400, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['bombe_mecanique']
-}
-monsters.pounicheur = {
-    id: 'pounicheur',
-    name: 'Pounicheur',
-    image: 'images/monsters/Pounicheur.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 4400, atk: 300, spd: 100, res: { neutre: 12, terre: 28, feu: -5, eau: 23, air: 12 } },
-    moves: ['kissifrotsipik', 'poulverisation']
-}
-monsters.craqueleur_des_glaces = {
-    id: 'craqueleur_des_glaces',
-    name: 'Craqueleur des glaces',
-    image: 'images/monsters/Craqueleur_des_glaces.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 0, terre: 0, feu: -38, eau: 80, air: 50 } },
-    moves: ['pic_de_glace', 'ecrasement_glacial', 'glace_paralysante']
-}
-monsters.balebz = {
-    id: 'balebz',
-    name: 'Balebz',
-    image: 'images/monsters/Balebz.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 7, terre: -4, feu: 11, eau: -8, air: -6 } },
-    moves: ['exploz_uf', 'vampibombz', 'aegibz']
-}
-monsters.kwakao_surdose = {
-    id: 'kwakao_surdose',
-    name: 'Kwakao surdosé',
-    image: 'images/monsters/Kwakao.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4600, atk: 600, spd: 100, res: { neutre: 18, terre: 23, feu: -5, eau: -1, air: 20 } },
-    moves: []
-}
-monsters.sporakne = {
-    id: 'sporakne',
-    name: 'Sporakne',
-    image: 'images/monsters/Sporakne.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4600, atk: 500, spd: 100, res: { neutre: -45, terre: 12, feu: 20, eau: 5, air: 45 } },
-    moves: ['adehede']
-}
-monsters.gobus = {
-    id: 'gobus',
-    name: 'Gobus',
-    image: 'images/monsters/Gobus.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 52, terre: 12, feu: 20, eau: 33, air: -9 } },
-    moves: ['gobstruction', 'gobtimisation']
-}
-monsters.abominable_yiti_des_neiges = {
-    id: 'abominable_yiti_des_neiges',
-    name: 'Abominable yiti des neiges',
-    image: 'images/monsters/Abominable_yiti_des_neiges.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 20, terre: 15, feu: 15, eau: -15, air: -15 } },
-    moves: ['assaisonnement', 'gueuleton', 'colere_du_yiti']
-}
-monsters.marodeur = {
-    id: 'marodeur',
-    name: 'Marôdeur',
-    image: 'images/monsters/Marôdeur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 24, terre: 15, feu: -30, eau: 18, air: 36 } },
-    moves: []
-}
-monsters.kruorre_le_chafer_hai = {
-    id: 'kruorre_le_chafer_hai',
-    name: 'Kruorre le Chafer Haï',
-    image: 'images/monsters/Kruorre_le_Chafer_Haï.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4800, atk: 900, spd: 100, res: { neutre: -10, terre: -5, feu: 15, eau: 5, air: 15 } },
-    moves: ['chafouette', 'charnaque', 'invisibilite_alpha', 'coup_mortel_du_chafer']
-}
-monsters.grozilla_epuise = {
-    id: 'grozilla_epuise',
-    name: 'Grozilla Épuisé',
-    image: 'images/monsters/Grozilla.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 4800, atk: 400, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
-    moves: []
-}
-monsters.grasmera_epuise = {
-    id: 'grasmera_epuise',
-    name: 'Grasmera Épuisé',
-    image: 'images/monsters/Grasmera.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 4800, atk: 400, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['meteore']
-}
-monsters.germinion = {
-    id: 'germinion',
-    name: 'Germinion',
-    image: 'images/monsters/Germinion.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4900, atk: 800, spd: 100, res: { neutre: -6, terre: 13, feu: -15, eau: 21, air: 16 } },
-    moves: []
-}
-monsters.bebe_gyrafor = {
-    id: 'bebe_gyrafor',
-    name: 'Bébé Gyrafor',
-    image: 'images/monsters/Bébé_Gyrafor.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: -20, feu: 0, eau: -20, air: 0 } },
-    moves: ['kilinmandjaro', 'cou_ragan', 'gyvoirien', 'kilin_tor']
-}
-monsters.bebe_lapilope = {
-    id: 'bebe_lapilope',
-    name: 'Bébé Lapilope',
-    image: 'images/monsters/Bébé_Lapilope.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: -20, air: -20 } },
-    moves: ['lapopotin', 'lagomorsure', 'koudulapin', 'rabitole']
-}
-monsters.bebe_brutapir = {
-    id: 'bebe_brutapir',
-    name: 'Bébé Brutapir',
-    image: 'images/monsters/Bébé_Brutapir.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: -20, terre: -20, feu: 0, eau: 0, air: 0 } },
-    moves: ['tapirateur', 'tapirogue', 'tapirouge', 'tapiroulant']
-}
-monsters.bebe_gropotam = {
-    id: 'bebe_gropotam',
-    name: 'Bébé Gropotam',
-    image: 'images/monsters/Bébé_Gropotam.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: -20, terre: 0, feu: 0, eau: 0, air: -20 } },
-    moves: ['barbotam', 'hajimeno_hippo', 'hippo_faringit', 'kornofulgur']
-}
-monsters.bebe_amphibouc = {
-    id: 'bebe_amphibouc',
-    name: 'Bébé Amphibouc',
-    image: 'images/monsters/Bébé_Amphibouc.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4900, atk: 320, spd: 100, res: { neutre: 0, terre: 0, feu: -20, eau: 0, air: -20 } },
-    moves: ['crapaud_belier', 'batrattaque', 'perlambouc', 'cornebouc']
-}
-monsters.uf_de_la_mort = {
-    id: 'uf_de_la_mort',
-    name: 'Œuf de la Mort',
-    image: 'images/monsters/Œuf_de_la_Mort.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.globilum = {
-    id: 'globilum',
-    name: 'Globilum',
-    image: 'images/monsters/Globilum.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['projection_ombreuse']
-}
-monsters.fraktale = {
-    id: 'fraktale',
-    name: 'Fraktale',
-    image: 'images/monsters/Fraktale.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 5000, atk: 300, spd: 100, res: { neutre: 26, terre: 12, feu: 21, eau: -8, air: 9 } },
-    moves: ['instabilite_temporelle', 'chaleur_fugace', 'frakasse']
-}
-monsters.mansocolat_surdose = {
-    id: 'mansocolat_surdose',
-    name: 'Mansocolat surdosé',
-    image: 'images/monsters/Mansocolat.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5100, atk: 600, spd: 100, res: { neutre: -8, terre: 25, feu: 16, eau: 1, air: 19 } },
-    moves: []
-}
-monsters.chocoskargo_surdose = {
-    id: 'chocoskargo_surdose',
-    name: 'Chocoskargo surdosé',
-    image: 'images/monsters/Chocoskargo.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5100, atk: 600, spd: 100, res: { neutre: 22, terre: 1, feu: 14, eau: 18, air: -10 } },
-    moves: []
-}
-monsters.epee_geante = {
-    id: 'epee_geante',
-    name: 'Épée Géante',
-    image: 'images/monsters/Épée_Géante.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.stratege_dompteur = {
-    id: 'stratege_dompteur',
-    name: 'Stratège Dompteur',
-    image: 'images/monsters/Stratège_Dompteur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.dagon_des_profondeurs = {
-    id: 'dagon_des_profondeurs',
-    name: 'Dagon des Profondeurs',
-    image: 'images/monsters/Dagon_des_Profondeurs.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['souffle_chaud', 'charge_aquatique']
-}
-monsters.chazino = {
-    id: 'chazino',
-    name: 'Chazino',
-    image: 'images/monsters/Chazino.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: ['expulsion']
-}
-monsters.auroraire = {
-    id: 'auroraire',
-    name: 'Auroraire',
-    image: 'images/monsters/Auroraire.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.malice = {
-    id: 'malice',
-    name: 'Malice',
-    image: 'images/monsters/Malice.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.lunorbe = {
-    id: 'lunorbe',
-    name: 'Lunorbe',
-    image: 'images/monsters/Lunorbe.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.octolithe = {
-    id: 'octolithe',
-    name: 'Octolithe',
-    image: 'images/monsters/Octolithe.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.iopprime = {
-    id: 'iopprime',
-    name: 'Iopprimé',
-    image: 'images/monsters/Iopprimé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 15, terre: 30, feu: 30, eau: 15, air: 30 } },
-    moves: ['traumasque', 'moribond', 'barbarie']
-}
-monsters.marteau_geant = {
-    id: 'marteau_geant',
-    name: 'Marteau Géant',
-    image: 'images/monsters/Marteau_Géant.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.hache_geante = {
-    id: 'hache_geante',
-    name: 'Hache Géante',
-    image: 'images/monsters/Hache_Géante.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.morgenstern_geant = {
-    id: 'morgenstern_geant',
-    name: 'Morgenstern Géant',
-    image: 'images/monsters/Morgenstern_Géant.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.monture = {
-    id: 'monture',
-    name: 'Monture',
-    image: 'images/monsters/Monture.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.roissingue = {
-    id: 'roissingue',
-    name: 'Roissingue',
-    image: 'images/monsters/Roissingue.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 5500, atk: 600, spd: 140, res: { neutre: 22, terre: 12, feu: -30, eau: 41, air: 5 } },
-    moves: ['retour_du_roi', 'depouillage', 'dechaussage']
-}
-monsters.krokille_novice_crue = {
-    id: 'krokille_novice_crue',
-    name: 'Krokille Novice Crue',
-    image: 'images/monsters/Krokille_Novice_Crue.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5600, atk: 38, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
-}
-monsters.capitaine_ekarlatte = {
-    id: 'capitaine_ekarlatte',
-    name: 'Capitaine Ekarlatte',
-    image: 'images/monsters/Capitaine_Ekarlatte.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 5700, atk: 400, spd: 100, res: { neutre: 12, terre: 23, feu: 7, eau: 14, air: 31 } },
-    moves: ['case_depart', 'tourbilaule', 'dansorcellement', 'enfumage']
-}
-monsters.prisme_d_alliance = {
-    id: 'prisme_d_alliance',
-    name: 'Prisme d\'alliance',
-    image: 'images/monsters/Prisme_d_alliance.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 5800, atk: 800, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
-    moves: []
-}
-monsters.golem_malakite = {
-    id: 'golem_malakite',
-    name: 'Golem Malakite',
-    image: 'images/monsters/Golem_Malakite.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 31, terre: 27, feu: 19, eau: 6, air: 14 } },
-    moves: ['attraction_minerale', 'boulet_emeraude']
-}
-monsters.peluche_bouftou = {
-    id: 'peluche_bouftou',
-    name: 'Peluche bouftou',
-    image: 'images/monsters/Peluche_bouftou.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 3300, atk: 325, spd: 100, res: { neutre: 30, terre: 30, feu: 10, eau: -30, air: 10 } },
-    moves: ['coutures_renforcees', 'ecchymose', 'traumatisme']
-}
-monsters.chocoligarque = {
-    id: 'chocoligarque',
-    name: 'Chocoligarque',
-    image: 'images/monsters/Chocoligarque.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 9, terre: 32, feu: 19, eau: -12, air: 28 } },
-    moves: ['chocolat_sperger', 'cacaobstruction']
-}
-monsters.torrefactueur = {
-    id: 'torrefactueur',
-    name: 'Torréfactueur',
-    image: 'images/monsters/Torréfactueur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 36, terre: 29, feu: 18, eau: -6, air: 11 } },
-    moves: ['torreador', 'torrefaction', 'padbra']
-}
-monsters.pralicienne = {
-    id: 'pralicienne',
-    name: 'Pralicienne',
-    image: 'images/monsters/Pralicienne.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 13, terre: 21, feu: -10, eau: 37, air: 19 } },
-    moves: ['hydrolyse', 'chococlier', 'glacage']
-}
-monsters.temperaturge = {
-    id: 'temperaturge',
-    name: 'Températurge',
-    image: 'images/monsters/Températurge.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -15, terre: 9, feu: 24, eau: 18, air: 34 } },
-    moves: ['refroidissement', 'surchauffe', 'chaudron_choco']
-}
-monsters.cabosseur = {
-    id: 'cabosseur',
-    name: 'Cabosseur',
-    image: 'images/monsters/Cabosseur.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 16, terre: 19, feu: 35, eau: 23, air: -11 } },
-    moves: ['eclabossage', 'feve_du_samedi_soir', 'piege_a_gourmands']
-}
-monsters.voracle = {
-    id: 'voracle',
-    name: 'Voracle',
-    image: 'images/monsters/Voracle.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 13, terre: -5, feu: 26, eau: 1, air: 21 } },
-    moves: ['hauspice', 'divination', 'pres_age']
-}
-monsters.batail_heure = {
-    id: 'batail_heure',
-    name: 'Batail\'heure',
-    image: 'images/monsters/Batail_heure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 10, air: 5 } },
-    moves: ['estoc', 'entaille_mstr', 'heroisme', 'providence', 'condamnation', 'bond_mstr']
-}
-monsters.tir_heure = {
-    id: 'tir_heure',
-    name: 'Tir\'heure',
-    image: 'images/monsters/Tir_heure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 10, air: 5 } },
-    moves: ['punition']
-}
-monsters.gueris_heure = {
-    id: 'gueris_heure',
-    name: 'Guéris\'heure',
-    image: 'images/monsters/Guéris_heure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 5, terre: 10, feu: 15, eau: 25, air: 20 } },
-    moves: ['jouvence']
-}
-monsters.eclair_heure = {
-    id: 'eclair_heure',
-    name: 'Éclair\'heure',
-    image: 'images/monsters/Éclair_heure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 15, terre: 20, feu: 5, eau: 10, air: 25 } },
-    moves: ['compas', 'entourloupe', 'magnetisme', 'recel_mstr', 'pulsar_mstr', 'botte', 'aimantation']
-}
-monsters.protect_heure = {
-    id: 'protect_heure',
-    name: 'Protect\'heure',
-    image: 'images/monsters/Protect_heure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 25, feu: 15, eau: 5, air: 10 } },
-    moves: ['somnolence_mstr', 'rempart_mstr', 'renfort_mstr', 'barriere_mstr']
-}
-monsters.berserk_heure = {
-    id: 'berserk_heure',
-    name: 'Berserk\'heure',
-    image: 'images/monsters/Berserk_heure.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 100, res: { neutre: 20, terre: 5, feu: 25, eau: 15, air: 10 } },
-    moves: ['assaut', 'attirance']
-}
-monsters.marionnette_du_mulou_meule = {
-    id: 'marionnette_du_mulou_meule',
-    name: 'Marionnette du Mulou meulé',
-    image: 'images/monsters/Marionnette_du_Mulou_meulé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6100, atk: 500, spd: 100, res: { neutre: 22, terre: -10, feu: -5, eau: 42, air: 42 } },
-    moves: ['reconstitution', 'invocation_de_milimeulou']
-}
-monsters.gardienne_des_egouts = {
-    id: 'gardienne_des_egouts',
-    name: 'Gardienne des Égouts',
-    image: 'images/monsters/Gardienne_des_Égouts.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6500, atk: 675, spd: 100, res: { neutre: 90, terre: 37, feu: 35, eau: 20, air: 10 } },
-    moves: ['Invocation_d_Arakne_Majeure']
-}
-monsters.jorbak = {
-    id: 'jorbak',
-    name: 'Jorbak',
-    image: 'images/monsters/Jorbak.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 6500, atk: 440, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['la_pelle_du_large', 'la_pierre_philosophale']
-}
-monsters.voracle_perturbee = {
-    id: 'voracle_perturbee',
-    name: 'Voracle perturbée',
-    image: 'images/monsters/Voracle_perturbée.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 17, terre: -1, feu: 30, eau: 5, air: 25 } },
-    moves: []
-}
-monsters.sonj = {
-    id: 'sonj',
-    name: 'Sonj',
-    image: 'images/monsters/Sonj.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 6600, atk: 1500, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: ['sonjerie', 'stimulation', 'manipulation_des_ombres', 'piege_farceur', 'cabriole_simiesque']
-}
-monsters.croqueleur = {
-    id: 'croqueleur',
-    name: 'Croqueleur',
-    image: 'images/monsters/Croqueleur.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 6800, atk: 467, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['attraction_gourmande', 'total_impwakt', 'croustichoc']
-}
-monsters.kreuvete_la_bwork_ingenue = {
-    id: 'kreuvete_la_bwork_ingenue',
-    name: 'Kreuvète la Bwork Ingénue',
-    image: 'images/monsters/Kreuvète_la_Bwork_Ingénue.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 7100, atk: 800, spd: 100, res: { neutre: -10, terre: 5, feu: 10, eau: -20, air: 5 } },
-    moves: ['moderation', 'mordorsene', 'hedite', 'achesse']
-}
-monsters.domptueuse = {
-    id: 'domptueuse',
-    name: 'Domptueuse',
-    image: 'images/monsters/Domptueuse.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 16, terre: 21, feu: -6, eau: 14, air: 0 } },
-    moves: ['martignasse', 'detresse', 'braconatte']
-}
-monsters.krtek = {
-    id: 'krtek',
-    name: 'Krtek',
-    image: 'images/monsters/Krtek.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 7500, atk: 23, spd: 100, res: { neutre: 50, terre: 45, feu: 25, eau: 0, air: 35 } },
-    moves: ['bonne_pioche']
-}
-monsters.domptueuse_perturbee = {
-    id: 'domptueuse_perturbee',
-    name: 'Domptueuse perturbée',
-    image: 'images/monsters/Domptueuse_perturbée.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 20, terre: 25, feu: -2, eau: 18, air: 4 } },
-    moves: []
-}
-monsters.garde_du_conseil = {
-    id: 'garde_du_conseil',
-    name: 'Garde du Conseil',
-    image: 'images/monsters/Garde_du_Conseil.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: 20, terre: 10, feu: 10, eau: 50, air: 10 } },
-    moves: ['relent', 'sepiolite', 'trine']
-}
-monsters.ebourifauve = {
-    id: 'ebourifauve',
-    name: 'Ébourifauve',
-    image: 'images/monsters/Ébourifauve.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 6, terre: 21, feu: 4, eau: 9, air: 26 } },
-    moves: ['paresse', 'feligance']
-}
-monsters.sinj = {
-    id: 'sinj',
-    name: 'Sinj',
-    image: 'images/monsters/Sinj.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 8200, atk: 1500, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['sinjerie', 'vague_destructrice_du_singe', 'fulgurang_outan', 'ninjutsinj', 'super_sinj']
-}
-monsters.phossile = {
-    id: 'phossile',
-    name: 'Phossile',
-    image: 'images/monsters/Phossile.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 8600, atk: 500, spd: 100, res: { neutre: -5, terre: 22, feu: 28, eau: 13, air: 37 } },
-    moves: ['roc_phorreur', 'phorce', 'bain_de_lave', 'epicentre']
-}
-monsters.lapilope = {
-    id: 'lapilope',
-    name: 'Lapilope',
-    image: 'images/monsters/Lapilope.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -10, air: -10 } },
-    moves: []
-}
-monsters.xlii = {
-    id: 'xlii',
-    name: 'XLII',
-    image: 'images/monsters/XLII.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 8800, atk: 600, spd: 100, res: { neutre: 6, terre: 2, feu: 18, eau: 8, air: 26 } },
-    moves: ['coquetterie', 'souffle_demoniaque', 'dereglement']
-}
-monsters.ebourifauve_perturbee = {
-    id: 'ebourifauve_perturbee',
-    name: 'Ébourifauve perturbée',
-    image: 'images/monsters/Ébourifauve_perturbée.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 25, feu: 8, eau: 13, air: 30 } },
-    moves: []
-}
-monsters.bonraphin = {
-    id: 'bonraphin',
-    name: 'Bonraphin',
-    image: 'images/monsters/Bonraphin.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9100, atk: 640, spd: 100, res: { neutre: 8, terre: -12, feu: -23, eau: 23, air: 16 } },
-    moves: ['faux_seraphine', 'colonne_de_lumiere']
-}
-monsters.braklotin = {
-    id: 'braklotin',
-    name: 'Brâklotin',
-    image: 'images/monsters/Brâklotin.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9100, atk: 640, spd: 100, res: { neutre: 8, terre: 16, feu: 23, eau: -23, air: -12 } },
-    moves: ['epee_diablotine', 'colonne_de_flammes']
-}
-monsters.brutapir = {
-    id: 'brutapir',
-    name: 'Brutapir',
-    image: 'images/monsters/Brutapir.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -10, terre: -10, feu: 10, eau: 10, air: 10 } },
-    moves: []
-}
-monsters.pere_fwetar = {
-    id: 'pere_fwetar',
-    name: 'Père Fwetar',
-    image: 'images/monsters/Père_Fwetar.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9600, atk: 320, spd: 100, res: { neutre: -2, terre: -2, feu: 30, eau: 30, air: 30 } },
-    moves: ['fwetage', 'parade_des_vieux_jouets', 'invocation_de_jouet_casse']
-}
-monsters.toxoliath = {
-    id: 'toxoliath',
-    name: 'Toxoliath',
-    image: 'images/monsters/Toxoliath.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9700, atk: 600, spd: 100, res: { neutre: 26, terre: 13, feu: 19, eau: 32, air: 23 } },
-    moves: ['venin_salvateur', 'poison_volatile', 'vile_ruse', 'flacune']
-}
-monsters.bruto_pernicieux = {
-    id: 'bruto_pernicieux',
-    name: 'Bruto Pernicieux',
-    image: 'images/monsters/Bruto_Pernicieux.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: -10, terre: -15, feu: 16, eau: 11, air: 4 } },
-    moves: ['metathese', 'pernipiege']
-}
-monsters.bruto_frenetique = {
-    id: 'bruto_frenetique',
-    name: 'Bruto Frénétique',
-    image: 'images/monsters/Bruto_Frénétique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 3, terre: -7, feu: -16, eau: 19, air: 12 } },
-    moves: ['bombarde_kantik']
-}
-monsters.bruto_colerique = {
-    id: 'bruto_colerique',
-    name: 'Bruto Colérique',
-    image: 'images/monsters/Bruto_Colérique.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 10, terre: -3, feu: -9, eau: -17, air: 15 } },
-    moves: ['affaissement', 'encanaillement']
-}
-monsters.agonie_la_deterree = {
-    id: 'agonie_la_deterree',
-    name: 'Agonie la Déterrée',
-    image: 'images/monsters/Agonie_la_Déterrée.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
-    moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
-}
-monsters.shuccube = {
-    id: 'shuccube',
-    name: 'Shuccube',
-    image: 'images/monsters/Shuccube.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
-    moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
-}
-monsters.noximilien_l_horloger = {
-    id: 'noximilien_l_horloger',
-    name: 'Noximilien l\'Horloger',
-    image: 'images/monsters/Noximilien_l_Horloger.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
-    moves: ['temps_de_retard']
-}
-monsters.larve_cauchemardesque = {
-    id: 'larve_cauchemardesque',
-    name: 'Larve Cauchemardesque',
-    image: 'images/monsters/Larve_Cauchemardesque.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 10000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.toubibz_perturbe = {
-    id: 'toubibz_perturbe',
-    name: 'Toubibz perturbé',
-    image: 'images/monsters/Toubibz_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 6, terre: -9, feu: -3, eau: -4, air: 10 } },
-    moves: []
-}
-monsters.gyrafor = {
-    id: 'gyrafor',
-    name: 'Gyrafor',
-    image: 'images/monsters/Gyrafor.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 10000, atk: 640, spd: 100, res: { neutre: 10, terre: -10, feu: 10, eau: -10, air: 10 } },
-    moves: []
-}
-monsters.gropotam = {
-    id: 'gropotam',
-    name: 'Gropotam',
-    image: 'images/monsters/Gropotam.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -10, terre: 10, feu: 10, eau: 10, air: -10 } },
-    moves: []
-}
-monsters.amphibouc = {
-    id: 'amphibouc',
-    name: 'Amphibouc',
-    image: 'images/monsters/Amphibouc.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: -10 } },
-    moves: []
-}
-monsters.grozilla_fatigue = {
-    id: 'grozilla_fatigue',
-    name: 'Grozilla Fatigué',
-    image: 'images/monsters/Grozilla.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 10000, atk: 680, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
-    moves: []
-}
-monsters.grasmera_fatigue = {
-    id: 'grasmera_fatigue',
-    name: 'Grasmera Fatigué',
-    image: 'images/monsters/Grasmera.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 10000, atk: 680, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['meteore']
-}
-monsters.bosko_tho = {
-    id: 'bosko_tho',
-    name: 'Bosko Tho',
-    image: 'images/monsters/Bosko_Tho.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 11000, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['contre_courant']
-}
-monsters.draguisla_bonita = {
-    id: 'draguisla_bonita',
-    name: 'Draguisla Bonita',
-    image: 'images/monsters/Draguisla_Bonita.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 11000, atk: 566, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['cratere', 'crachat_anesthesiant']
-}
-monsters.fuji_givrefoux_nourriciere = {
-    id: 'fuji_givrefoux_nourriciere',
-    name: 'Fuji Givrefoux Nourricière',
-    image: 'images/monsters/Fuji_Givrefoux_Nourricière.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 11000, atk: 750, spd: 100, res: { neutre: -6, terre: 6, feu: 14, eau: 12, air: -11 } },
-    moves: ['progeniture', 'lait_maternel', 'foufoux']
-}
-monsters.julith = {
-    id: 'julith',
-    name: 'Julith',
-    image: 'images/monsters/Julith.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 11000, atk: 800, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
-    moves: ['charge_eclair']
-}
-monsters.dathura = {
-    id: 'dathura',
-    name: 'Dathura',
-    image: 'images/monsters/Dathura.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 11000, atk: 800, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: ['tige_empoisonnee', 'bulbombe', 'pistil_affaiblissant']
-}
-monsters.kamikabz_perturbe = {
-    id: 'kamikabz_perturbe',
-    name: 'Kamikabz perturbé',
-    image: 'images/monsters/Kamikabz_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 5, terre: 9, feu: -2, eau: -2, air: -10 } },
-    moves: []
-}
-monsters.lapilope_perturbe = {
-    id: 'lapilope_perturbe',
-    name: 'Lapilope perturbé',
-    image: 'images/monsters/Lapilope_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: -10, air: -10 } },
-    moves: []
-}
-monsters.larve_de_rushu = {
-    id: 'larve_de_rushu',
-    name: 'Larve de Rushu',
-    image: 'images/monsters/Larve_de_Rushu.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 12000, atk: 800, spd: 100, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
-    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
-}
-monsters.leorictus_le_roi_grimacant = {
-    id: 'leorictus_le_roi_grimacant',
-    name: 'Léorictus le Roi Grimaçant',
-    image: 'images/monsters/Léorictus_le_Roi_Grimaçant.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 12000, atk: 800, spd: 100, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
-    moves: ['mortelage', 'oppression', 'trombe_d_acier', 'martel']
-}
-monsters.krokille_mature_crue = {
-    id: 'krokille_mature_crue',
-    name: 'Krokille Mature Crue',
-    image: 'images/monsters/Krokille_Mature_Crue.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 13000, atk: 63, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: []
-}
-monsters.chafer_lancier_veteran = {
-    id: 'chafer_lancier_veteran',
-    name: 'Chafer Lancier Vétéran',
-    image: 'images/monsters/Chafer_Lancier_Vétéran.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 13000, atk: 600, spd: 100, res: { neutre: 15, terre: 5, feu: 30, eau: 20, air: 0 } },
-    moves: []
-}
-monsters.quadrabz_perturbe = {
-    id: 'quadrabz_perturbe',
-    name: 'Quadrabz perturbé',
-    image: 'images/monsters/Quadrabz_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 4, terre: 0, feu: -11, eau: 8, air: -1 } },
-    moves: []
-}
-monsters.brutapir_perturbe = {
-    id: 'brutapir_perturbe',
-    name: 'Brutapir perturbé',
-    image: 'images/monsters/Brutapir_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: -10, terre: -10, feu: 10, eau: 10, air: 10 } },
-    moves: []
-}
-monsters.bruto_acharne = {
-    id: 'bruto_acharne',
-    name: 'Bruto Acharné',
-    image: 'images/monsters/Bruto_Acharné.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 20, terre: 12, feu: 5, eau: -14, air: -19 } },
-    moves: ['inimitie', 'boulversement']
-}
-monsters.bruto_virulent = {
-    id: 'bruto_virulent',
-    name: 'Bruto Virulent',
-    image: 'images/monsters/Bruto_Virulent.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: -14, terre: 16, feu: 11, eau: 4, air: -8 } },
-    moves: ['perseverance', 'aveuglette']
-}
-monsters.gropotam_perturbe = {
-    id: 'gropotam_perturbe',
-    name: 'Gropotam perturbé',
-    image: 'images/monsters/Gropotam_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 0, feu: -10, eau: 0, air: 0 } },
-    moves: []
-}
-monsters.amphibouc_perturbe = {
-    id: 'amphibouc_perturbe',
-    name: 'Amphibouc perturbé',
-    image: 'images/monsters/Amphibouc_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: -10 } },
-    moves: []
-}
-monsters.monolithe = {
-    id: 'monolithe',
-    name: 'Monolithe',
-    image: 'images/monsters/Monolithe.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 50, terre: 20, feu: 20, eau: 20, air: 20 } },
-    moves: []
-}
-monsters.percimol = {
-    id: 'percimol',
-    name: 'Percimol',
-    image: 'images/monsters/Percimol.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 13000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['coup_de_marre_d_eau', 'courage_de_l_epouvantail', 'impatience']
-}
-monsters.balebz_perturbe = {
-    id: 'balebz_perturbe',
-    name: 'Balebz perturbé',
-    image: 'images/monsters/Balebz_perturbé.png',
-    rarity: 'commun',
-    tier: 'elite',
-    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 7, terre: -4, feu: 11, eau: -8, air: -6 } },
-    moves: []
-}
-monsters.gyrafor_perturbe = {
-    id: 'gyrafor_perturbe',
-    name: 'Gyrafor perturbé',
-    image: 'images/monsters/Gyrafor_perturbé.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 14000, atk: 800, spd: 100, res: { neutre: 10, terre: 10, feu: -10, eau: 10, air: -10 } },
-    moves: []
-}
-monsters.cocolune = {
-    id: 'cocolune',
-    name: 'Cocolune',
-    image: 'images/monsters/Cocolune.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 15000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['attraction_lunaire']
-}
-monsters.roi_nidas = {
-    id: 'roi_nidas',
-    name: 'Roi Nidas',
-    image: 'images/monsters/Roi_Nidas.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
-    moves: ['confusion', 'attrape_mutin', 'mon_precieux']
-}
-monsters.reine_des_voleurs = {
-    id: 'reine_des_voleurs',
-    name: 'Reine des Voleurs',
-    image: 'images/monsters/Reine_des_Voleurs.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 31, terre: 26, feu: 42, eau: 13, air: 18 } },
-    moves: ['mort_en_sursis', 'coup_critique']
-}
-monsters.vortex = {
-    id: 'vortex',
-    name: 'Vortex',
-    image: 'images/monsters/Vortex.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
-    moves: ['heuristique', 'morfaille', 'en_temps_et_en_heure']
-}
-monsters.chal_il = {
-    id: 'chal_il',
-    name: 'Chalœil',
-    image: 'images/monsters/Chalœil.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
-    moves: ['toilette_ecaflip', 'farce_et_attrape', 'gros_yeux']
+
+// ═══════════════════════════════════════════════════════
+// CAUCHEMAR DES RAVAGEURS (lvl 185+)
+// ═══════════════════════════════════════════════════════
+monsters.cauchemar_des_ravageurs = {
+    id: 'cauchemar_des_ravageurs',
+    name: 'Cauchemar des Ravageurs',
+    image: 'images/monsters/Cauchemar_des_Ravageurs.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 17000, atk: 800, spd: 100, res: { neutre: 18, terre: -11, feu: -8, eau: 12, air: 23 } },
+    moves: ['tourments_eternels', 'intrusion_cauchemardesque', 'mauvais_reves', 'songe_d_une_nuit_d_enfer']
 }
 monsters.gromo_envahissant = {
     id: 'gromo_envahissant',
@@ -12582,186 +11549,126 @@ monsters.gromo_protecteur = {
     bst: { hp: 16000, atk: 800, spd: 100, res: { neutre: 13, terre: 7, feu: -4, eau: -13, air: 23 } },
     moves: ['chronoclier', 'liquefaction']
 }
-monsters.grozilla = {
-    id: 'grozilla',
-    name: 'Grozilla',
-    image: 'images/monsters/Grozilla.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 16000, atk: 950, spd: 100, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
-    moves: []
-}
-monsters.grasmera = {
-    id: 'grasmera',
-    name: 'Grasmera',
-    image: 'images/monsters/Grasmera.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 16000, atk: 950, spd: 100, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['meteore']
-}
-monsters.cauchemar_des_ravageurs = {
-    id: 'cauchemar_des_ravageurs',
-    name: 'Cauchemar des Ravageurs',
-    image: 'images/monsters/Cauchemar_des_Ravageurs.png',
+
+// ═══════════════════════════════════════════════════════
+// CAUCHEMAR DES RAVAGEURS — ROUBLARDS (lvl 185+)
+// ═══════════════════════════════════════════════════════
+monsters.assaishin = {
+    id: 'assaishin',
+    name: 'Assaïshin',
+    image: 'images/monsters/Assaïshin.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 17000, atk: 800, spd: 100, res: { neutre: 18, terre: -11, feu: -8, eau: 12, air: 23 } },
-    moves: ['tourments_eternels', 'intrusion_cauchemardesque', 'mauvais_reves', 'songe_d_une_nuit_d_enfer']
+    bst: { hp: 3100, atk: 630, spd: 100, res: { neutre: 20, terre: -5, feu: -10, eau: 15, air: -20 } },
+    moves: ['sai_sai_sai_sai']
 }
-monsters.pretresse_de_kao = {
-    id: 'pretresse_de_kao',
-    name: 'Prêtresse de Kao',
-    image: 'images/monsters/Prêtresse_de_Kao.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 18000, atk: 901, spd: 100, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
-    moves: ['cloches_du_kao', 'equador', 'spatule_tranche_gourmands', 'commerce_inequitable']
-}
-monsters.dechireuse_perturbee = {
-    id: 'dechireuse_perturbee',
-    name: 'Déchireuse perturbée',
-    image: 'images/monsters/Déchireuse_perturbée.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
-    moves: []
-}
-monsters.artroolleur = {
-    id: 'artroolleur',
-    name: 'Artroolleur',
-    image: 'images/monsters/Artroolleur.png',
+monsters.kamikabz = {
+    id: 'kamikabz',
+    name: 'Kamikabz',
+    image: 'images/monsters/Kamikabz.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 19000, atk: 750, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['tir_d_artroollerie', 'mortrooll']
+    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 5, terre: 9, feu: -2, eau: -2, air: -10 } },
+    moves: ['frakaz_uf', 'aspibz', 'bzimpact']
 }
-monsters.champion_de_l_aurore_pourpre = {
-    id: 'champion_de_l_aurore_pourpre',
-    name: 'Champion de l\'Aurore Pourpre',
-    image: 'images/monsters/Champion_de_l_Aurore_Pourpre.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 19000, atk: 800, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['embrigadement', 'troolverisation', 'exaction', 'catapultage']
+monsters.kamikabz_perturbe = {
+    id: 'kamikabz_perturbe',
+    name: 'Kamikabz perturbé',
+    image: 'images/monsters/Kamikabz_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 5, terre: 9, feu: -2, eau: -2, air: -10 } },
+    moves: ['frakaz_uf', 'aspibz', 'bzimpact']
 }
-monsters.superviz_uf_perturbe = {
-    id: 'superviz_uf_perturbe',
-    name: 'Supervizœuf perturbé',
-    image: 'images/monsters/Supervizœuf_perturbé.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 20000, atk: 1000, spd: 100, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
-    moves: []
-}
-monsters.krokille_venerable_crue = {
-    id: 'krokille_venerable_crue',
-    name: 'Krokille Vénérable Crue',
-    image: 'images/monsters/Krokille_Vénérable_Crue.png',
+monsters.quadrabz = {
+    id: 'quadrabz',
+    name: 'Quadrabz',
+    image: 'images/monsters/Quadrabz.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 22000, atk: 100, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 40 } },
-    moves: []
+    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 4, terre: 0, feu: -11, eau: 8, air: -1 } },
+    moves: ['vaporiz_uf', 'akuabz', 'bzeklabouss']
 }
-monsters.nitrooll = {
-    id: 'nitrooll',
-    name: 'Nitrooll',
-    image: 'images/monsters/Nitrooll.png',
+monsters.quadrabz_perturbe = {
+    id: 'quadrabz_perturbe',
+    name: 'Quadrabz perturbé',
+    image: 'images/monsters/Quadrabz_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 4, terre: 0, feu: -11, eau: 8, air: -1 } },
+    moves: ['vaporiz_uf', 'akuabz', 'bzeklabouss']
+}
+
+// ═══════════════════════════════════════════════════════
+// BLESSURE DE GUERRE (lvl 185+)
+// ═══════════════════════════════════════════════════════
+monsters.toubibz = {
+    id: 'toubibz',
+    name: 'Toubibz',
+    image: 'images/monsters/Toubibz.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 22000, atk: 875, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['double_trooll', 'trooll_de_magie', 'troollement_de_tambour', 'coup_de_trooll']
+    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 6, terre: -9, feu: -3, eau: -4, air: 10 } },
+    moves: ['gueriz_uf', 'tornabz', 'evabzion']
 }
-monsters.bribes_de_gardien = {
-    id: 'bribes_de_gardien',
-    name: 'Bribes de gardien',
-    image: 'images/monsters/Bribes_de_gardien.png',
+monsters.toubibz_perturbe = {
+    id: 'toubibz_perturbe',
+    name: 'Toubibz perturbé',
+    image: 'images/monsters/Toubibz_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 6, terre: -9, feu: -3, eau: -4, air: 10 } },
+    moves: ['gueriz_uf', 'tornabz', 'evabzion']
+}
+monsters.balebz = {
+    id: 'balebz',
+    name: 'Balebz',
+    image: 'images/monsters/Balebz.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 22000, atk: 2000, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
+    bst: { hp: 3700, atk: 350, spd: 100, res: { neutre: 7, terre: -4, feu: 11, eau: -8, air: -6 } },
+    moves: ['exploz_uf', 'vampibombz', 'aegibz']
 }
-monsters.troollibre = {
-    id: 'troollibre',
-    name: 'Troollibre',
-    image: 'images/monsters/Troollibre.png',
+monsters.balebz_perturbe = {
+    id: 'balebz_perturbe',
+    name: 'Balebz perturbé',
+    image: 'images/monsters/Balebz_perturbé.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4100, atk: 375, spd: 100, res: { neutre: 7, terre: -4, feu: 11, eau: -8, air: -6 } },
+    moves: ['exploz_uf', 'vampibombz', 'aegibz']
+}
+monsters.sonj = {
+    id: 'sonj',
+    name: 'Sonj',
+    image: 'images/monsters/Sonj.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 25000, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['troollpoline', 'aspiratrooll', 'patroolleur']
+    bst: { hp: 6600, atk: 1500, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
+    moves: ['sonjerie', 'stimulation', 'manipulation_des_ombres', 'piege_farceur', 'cabriole_simiesque']
 }
-monsters.incarnation_du_ch_tyx = {
-    id: 'incarnation_du_ch_tyx',
-    name: 'Incarnation du Ch\'Tyx',
-    image: 'images/monsters/Incarnation_du_Ch_Tyx.png',
+monsters.sinj = {
+    id: 'sinj',
+    name: 'Sinj',
+    image: 'images/monsters/Sinj.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 27000, atk: 640, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    bst: { hp: 8200, atk: 1500, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['sinjerie', 'vague_destructrice_du_singe', 'fulgurang_outan', 'ninjutsinj', 'super_sinj']
 }
-monsters.roi_imagami = {
-    id: 'roi_imagami',
-    name: 'Roi Imagami',
-    image: 'images/monsters/Roi_Imagami.png',
+monsters.jorbak = {
+    id: 'jorbak',
+    name: 'Jorbak',
+    image: 'images/monsters/Jorbak.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
-    moves: ['parchemin_de_traverse', 'papetuerie', 'roque_papier_ciseaux', 'kami_no_jishin']
+    bst: { hp: 6500, atk: 440, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['la_pelle_du_large', 'la_pierre_philosophale']
 }
-monsters.reine_amirukam = {
-    id: 'reine_amirukam',
-    name: 'Reine Amirukam',
-    image: 'images/monsters/Reine_Amirukam.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
-    moves: ['toner_deubraiste', 'getsuga_tensho', 'monarchie_des_roses_noires']
-}
-monsters.qilby = {
-    id: 'qilby',
-    name: 'Qilby',
-    image: 'images/monsters/Qilby.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 27000, atk: 1000, spd: 100, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
-    moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail']
-}
-monsters.mi = {
-    id: 'mi',
-    name: 'Mi',
-    image: 'images/monsters/Mi.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 30000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['enveloppage']
-}
-monsters.chi = {
-    id: 'chi',
-    name: 'Chi',
-    image: 'images/monsters/Chi.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 30000, atk: 800, spd: 100, res: { neutre: 15, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: ['emoussage']
-}
-monsters.venerable_endormi_perturbe = {
-    id: 'venerable_endormi_perturbe',
-    name: 'Vénérable Endormi perturbé',
-    image: 'images/monsters/Vénérable_Endormi_perturbé.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 30000, atk: 1000, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
-    moves: []
-}
-monsters.cire_momore = {
-    id: 'cire_momore',
-    name: 'Cire Momore',
-    image: 'images/monsters/Cire_Momore.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 41000, atk: 800, spd: 100, res: { neutre: 15, terre: 15, feu: 15, eau: 15, air: 15 } },
-    moves: ['metal_hurlant', 'briselame', 'triste_cire']
-}
+
+// ═══════════════════════════════════════════════════════
+// DONJON DU COMTE HAREBOURG — POUTCH (lvl 200+)
+// ═══════════════════════════════════════════════════════
 monsters.poutch = {
     id: 'poutch',
     name: 'Poutch',
@@ -12825,14 +11732,926 @@ monsters.poutch_crane_rose = {
     bst: { hp: 50000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.autel_de_la_chasse = {
-    id: 'autel_de_la_chasse',
-    name: 'Autel de la Chasse',
-    image: 'images/monsters/Autel_de_la_Chasse.png',
+monsters.cire_momore = {
+    id: 'cire_momore',
+    name: 'Cire Momore',
+    image: 'images/monsters/Cire_Momore.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 41000, atk: 800, spd: 100, res: { neutre: 15, terre: 15, feu: 15, eau: 15, air: 15 } },
+    moves: ['metal_hurlant', 'briselame', 'triste_cire']
+}
+
+// ═══════════════════════════════════════════════════════
+// TRÔNE DE LA COUR SOMBRE (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.mi = {
+    id: 'mi',
+    name: 'Mi',
+    image: 'images/monsters/Mi.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 100000, atk: 640, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
+    bst: { hp: 30000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['enveloppage']
+}
+monsters.chi = {
+    id: 'chi',
+    name: 'Chi',
+    image: 'images/monsters/Chi.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 30000, atk: 800, spd: 100, res: { neutre: 15, terre: 15, feu: 15, eau: 15, air: 15 } },
+    moves: ['emoussage']
+}
+
+// ═══════════════════════════════════════════════════════
+// PALAIS DU ROI NIDAS (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.roi_nidas = {
+    id: 'roi_nidas',
+    name: 'Roi Nidas',
+    image: 'images/monsters/Roi_Nidas.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
+    moves: ['confusion', 'attrape_mutin', 'mon_precieux']
+}
+
+// ═══════════════════════════════════════════════════════
+// SOUVENIR D'IMAGIRO (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.roi_imagami = {
+    id: 'roi_imagami',
+    name: 'Roi Imagami',
+    image: 'images/monsters/Roi_Imagami.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
+    moves: ['parchemin_de_traverse', 'papetuerie', 'roque_papier_ciseaux', 'kami_no_jishin']
+}
+
+// ═══════════════════════════════════════════════════════
+// PALAIS DE DANTINÉA (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.reine_amirukam = {
+    id: 'reine_amirukam',
+    name: 'Reine Amirukam',
+    image: 'images/monsters/Reine_Amirukam.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 27000, atk: 800, spd: 100, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
+    moves: ['toner_deubraiste', 'getsuga_tensho', 'monarchie_des_roses_noires']
+}
+
+// ═══════════════════════════════════════════════════════
+// BREUIL DU VÉNÉRABLE (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.venerable_endormi_perturbe = {
+    id: 'venerable_endormi_perturbe',
+    name: 'Vénérable Endormi perturbé',
+    image: 'images/monsters/Vénérable_Endormi_perturbé.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 30000, atk: 1000, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
     moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// DÉFI DU CHALŒIL (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.chal_il = {
+    id: 'chal_il',
+    name: 'Chalœil',
+    image: 'images/monsters/Chalœil.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
+    moves: ['toilette_ecaflip', 'farce_et_attrape', 'gros_yeux']
+}
+
+// ═══════════════════════════════════════════════════════
+// ŒIL DE VORTEX (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.vortex = {
+    id: 'vortex',
+    name: 'Vortex',
+    image: 'images/monsters/Vortex.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 15000, atk: 800, spd: 100, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
+    moves: ['heuristique', 'morfaille', 'en_temps_et_en_heure']
+}
+
+// ═══════════════════════════════════════════════════════
+// AUTEL DE LA DÉCHIREUSE (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.dechireuse_perturbee = {
+    id: 'dechireuse_perturbee',
+    name: 'Déchireuse perturbée',
+    image: 'images/monsters/Déchireuse_perturbée.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 18000, atk: 800, spd: 100, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// BATAILLE DE L'AURORE POURPRE (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.julith = {
+    id: 'julith',
+    name: 'Julith',
+    image: 'images/monsters/Julith.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 11000, atk: 800, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
+    moves: ['charge_eclair']
+}
+monsters.pretresse_de_kao = {
+    id: 'pretresse_de_kao',
+    name: 'Prêtresse de Kao',
+    image: 'images/monsters/Prêtresse_de_Kao.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 18000, atk: 901, spd: 100, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
+    moves: ['cloches_du_kao', 'equador', 'spatule_tranche_gourmands', 'commerce_inequitable']
+}
+monsters.champion_de_l_aurore_pourpre = {
+    id: 'champion_de_l_aurore_pourpre',
+    name: 'Champion de l\'Aurore Pourpre',
+    image: 'images/monsters/Champion_de_l_Aurore_Pourpre.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 19000, atk: 800, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['embrigadement', 'troolverisation', 'exaction', 'catapultage']
+}
+monsters.eclat_kao = {
+    id: 'eclat_kao',
+    name: 'Éclat Kao',
+    image: 'images/monsters/Éclat_Kao.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.kralab_rah = {
+    id: 'kralab_rah',
+    name: 'Kralab Rah',
+    image: 'images/monsters/Kralab_Rah.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1000, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['poulpe', 'lakazam', 'connier']
+}
+monsters.grokillage = {
+    id: 'grokillage',
+    name: 'Grokillage',
+    image: 'images/monsters/Grokillage.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// TEMPLE DE KOUTOULOU (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.larve_de_rushu = {
+    id: 'larve_de_rushu',
+    name: 'Larve de Rushu',
+    image: 'images/monsters/Larve_de_Rushu.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 12000, atk: 800, spd: 100, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
+    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
+}
+monsters.shuccube = {
+    id: 'shuccube',
+    name: 'Shuccube',
+    image: 'images/monsters/Shuccube.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
+    moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
+}
+monsters.bras_demoniaque = {
+    id: 'bras_demoniaque',
+    name: 'Bras démoniaque',
+    image: 'images/monsters/Bras_démoniaque.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3900, atk: 720, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
+    moves: ['rhizome_demoniaque', 'aplatissement_demoniaque', 'revers_demoniaque']
+}
+monsters.larve_cauchemardesque = {
+    id: 'larve_cauchemardesque',
+    name: 'Larve Cauchemardesque',
+    image: 'images/monsters/Larve_Cauchemardesque.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 10000, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// QILBY / ELIOTROPES (lvl 200+)
+// ═══════════════════════════════════════════════════════
+monsters.qilby = {
+    id: 'qilby',
+    name: 'Qilby',
+    image: 'images/monsters/Qilby.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 27000, atk: 1000, spd: 100, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
+    moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail']
+}
+monsters.incarnation_du_ch_tyx = {
+    id: 'incarnation_du_ch_tyx',
+    name: 'Incarnation du Ch\'Tyx',
+    image: 'images/monsters/Incarnation_du_Ch_Tyx.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 27000, atk: 640, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+
+// ═══════════════════════════════════════════════════════
+// NON CLASSÉ — À VÉRIFIER MANUELLEMENT
+// ═══════════════════════════════════════════════════════
+monsters.totem_motivant = {
+    id: 'totem_motivant',
+    name: 'Totem Motivant',
+    image: 'images/monsters/Totem_Motivant.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 300, atk: 0, spd: 100, res: { neutre: 90, terre: 90, feu: -20, eau: 90, air: 90 } },
+    moves: ['encouragement']
+}
+monsters.totem_explosif = {
+    id: 'totem_explosif',
+    name: 'Totem Explosif',
+    image: 'images/monsters/Totem_Explosif.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 300, atk: 0, spd: 100, res: { neutre: 90, terre: 90, feu: 100, eau: 90, air: 90 } },
+    moves: ['tentative_d_explosion']
+}
+monsters.totem_soignant = {
+    id: 'totem_soignant',
+    name: 'Totem Soignant',
+    image: 'images/monsters/Totem_Soignant.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 300, atk: 50, spd: 100, res: { neutre: 90, terre: 90, feu: -20, eau: 90, air: 90 } },
+    moves: ['reconstitution_magique']
+}
+monsters.totem_du_feu = {
+    id: 'totem_du_feu',
+    name: 'Totem du Feu',
+    image: 'images/monsters/Totem_du_Feu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.totem_de_l_eau = {
+    id: 'totem_de_l_eau',
+    name: 'Totem de l\'Eau',
+    image: 'images/monsters/Totem_de_l_Eau.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 100, air: 0 } },
+    moves: []
+}
+monsters.totem_de_l_air = {
+    id: 'totem_de_l_air',
+    name: 'Totem de l\'Air',
+    image: 'images/monsters/Totem_de_l_Air.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
+    moves: []
+}
+monsters.totem_de_la_terre = {
+    id: 'totem_de_la_terre',
+    name: 'Totem de la Terre',
+    image: 'images/monsters/Totem_de_la_Terre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.coquille_explosive = {
+    id: 'coquille_explosive',
+    name: 'Coquille Explosive',
+    image: 'images/monsters/Coquille_Brutale.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1000, atk: 13, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['motivation_naturelle']
+}
+monsters.coquille_soigneuse = {
+    id: 'coquille_soigneuse',
+    name: 'Coquille Soigneuse',
+    image: 'images/monsters/Coquille_Brutale.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.coquille_brutale = {
+    id: 'coquille_brutale',
+    name: 'Coquille Brutale',
+    image: 'images/monsters/Coquille_Brutale.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.coquille_veloce = {
+    id: 'coquille_veloce',
+    name: 'Coquille Véloce',
+    image: 'images/monsters/Coquille_Brutale.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.coquille_protectrice = {
+    id: 'coquille_protectrice',
+    name: 'Coquille Protectrice',
+    image: 'images/monsters/Coquille_Brutale.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 420, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.prisme_d_alliance = {
+    id: 'prisme_d_alliance',
+    name: 'Prisme d\'alliance',
+    image: 'images/monsters/Prisme_d_alliance.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5800, atk: 800, spd: 100, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
+    moves: []
+}
+monsters.percepteur = {
+    id: 'percepteur',
+    name: 'Percepteur',
+    image: 'images/monsters/Percepteur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3000, atk: 600, spd: 100, res: { neutre: 24, terre: 24, feu: 24, eau: 24, air: 24 } },
+    moves: ['labour', 'monnaie_trebuchante', 'rente', 'ferrage', 'douane', 'gabelle', 'deficit', 'ruade', 'liquidation', 'abreuvoir', 'cotisation', 'rodeo', 'levee_de_fonds', 'saut_d_obstacle', 'redevance', 'prelevement', 'sagittarius', 'dommages_et_interets', 'courroux_de_menalt', 'illeres', 'chancellerie', 'surtaxe', 'faillite', 'malversation', 'affranchissement', 'exoneration', 'bride', 'licol', 'lasso', 'recit_hippique', 'eperon', 'trot', 'galop', 'trop_percu', 'subvention', 'fin_de_l_abondance', 'maitre_etalon', 'pur_sang', 'gros_fiacre', 'endurance_de_centoror']
+}
+monsters.monture = {
+    id: 'monture',
+    name: 'Monture',
+    image: 'images/monsters/Monture.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.feu = {
+    id: 'feu',
+    name: 'Feu',
+    image: 'images/monsters/Feu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.marteau_geant = {
+    id: 'marteau_geant',
+    name: 'Marteau Géant',
+    image: 'images/monsters/Marteau_Géant.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.hache_geante = {
+    id: 'hache_geante',
+    name: 'Hache Géante',
+    image: 'images/monsters/Hache_Géante.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.morgenstern_geant = {
+    id: 'morgenstern_geant',
+    name: 'Morgenstern Géant',
+    image: 'images/monsters/Morgenstern_Géant.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.epee_geante = {
+    id: 'epee_geante',
+    name: 'Épée Géante',
+    image: 'images/monsters/Épée_Géante.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.cadob = {
+    id: 'cadob',
+    name: 'Cadob\'',
+    image: 'images/monsters/Cadob_.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4300, atk: 534, spd: 100, res: { neutre: 10, terre: 10, feu: -20, eau: 30, air: 10 } },
+    moves: ['invocation_de_cadob', 'surprise_drainante', 'surprise_empoisonnante']
+}
+monsters.cadob_oum = {
+    id: 'cadob_oum',
+    name: 'Cadob\'Oum',
+    image: 'images/monsters/Cadob_Oum.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 99, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.cadob_onux = {
+    id: 'cadob_onux',
+    name: 'Cadob\'Onux',
+    image: 'images/monsters/Cadob_Onux.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['cadeau_puissant']
+}
+monsters.cadob_omb = {
+    id: 'cadob_omb',
+    name: 'Cadob\'Omb',
+    image: 'images/monsters/Cadob_Omb.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.cadob_imbo = {
+    id: 'cadob_imbo',
+    name: 'Cadob\'Imbo',
+    image: 'images/monsters/Cadob_Imbo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['cadeau_soignant']
+}
+monsters.coffre_sombre = {
+    id: 'coffre_sombre',
+    name: 'Coffre Sombre',
+    image: 'images/monsters/Coffre_des_Forgerons.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1500, atk: 425, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 100, air: 0 } },
+    moves: ['lancer_de_kamas']
+}
+monsters.bambou = {
+    id: 'bambou',
+    name: 'Bambou',
+    image: 'images/monsters/Bambou.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 150, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.pepite_croquante = {
+    id: 'pepite_croquante',
+    name: 'Pépite croquante',
+    image: 'images/monsters/Pépite_croquante.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 200, atk: 0, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: []
+}
+monsters.noeul = {
+    id: 'noeul',
+    name: 'Noeul',
+    image: 'images/monsters/Noeul.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 520, atk: 44, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['hypnose', 'mirettes']
+}
+monsters.sapik = {
+    id: 'sapik',
+    name: 'Sapik',
+    image: 'images/monsters/Sapik.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1300, atk: 144, spd: 100, res: { neutre: -20, terre: 20, feu: 20, eau: 20, air: 20 } },
+    moves: ['enguirlandage', 'calin_kipik', 'kokapik']
+}
+monsters.ballotin_le_bouftou = {
+    id: 'ballotin_le_bouftou',
+    name: 'Ballotin le Bouftou',
+    image: 'images/monsters/Ballotin_le_Bouftou.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 170, atk: 88, spd: 100, res: { neutre: 1, terre: 11, feu: -14, eau: -9, air: 16 } },
+    moves: ['morsure_du_bouftou']
+}
+monsters.bouftou_des_cavernes = {
+    id: 'bouftou_des_cavernes',
+    name: 'Bouftou des cavernes',
+    image: 'images/monsters/Bouftou_des_cavernes.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1300, atk: 105, spd: 100, res: { neutre: 30, terre: -18, feu: 50, eau: 20, air: -25 } },
+    moves: ['morsure_du_bouftou_des_cavernes', 'bavouille_des_cavernes', 'crachouille_des_cavernes']
+}
+monsters.mawabouaino = {
+    id: 'mawabouaino',
+    name: 'Mawabouaino',
+    image: 'images/monsters/Mawabouaino.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 1400, atk: 168, spd: 100, res: { neutre: 35, terre: 25, feu: 15, eau: 15, air: 15 } },
+    moves: ['cacaobstwuant', 'chocohowte', 'eclat', 'chocolave']
+}
+monsters.boubourse = {
+    id: 'boubourse',
+    name: 'Boubourse',
+    image: 'images/monsters/Boubourse.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.chachachovage = {
+    id: 'chachachovage',
+    name: 'Chachachovage',
+    image: 'images/monsters/Chachachovage.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1400, atk: 260, spd: 100, res: { neutre: 15, terre: -24, feu: 30, eau: 8, air: 4 } },
+    moves: ['canine_putride', 'mousse_tache', 'coussinet_protecteur']
+}
+monsters.kruella_freuz = {
+    id: 'kruella_freuz',
+    name: 'Kruella Freuz',
+    image: 'images/monsters/Kruella_Freuz.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 230, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['invocation_de_kruella', 'souffle_motivant', 'souffle_empoisonne']
+}
+monsters.donatella = {
+    id: 'donatella',
+    name: 'Donatella',
+    image: 'images/monsters/Donatella.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 240, atk: 60, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 30 } },
+    moves: ['kawabunga']
+}
+monsters.raphaela = {
+    id: 'raphaela',
+    name: 'Raphaela',
+    image: 'images/monsters/Raphaela.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 260, atk: 63, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 30, air: 0 } },
+    moves: []
+}
+monsters.leonardawa = {
+    id: 'leonardawa',
+    name: 'Leonardawa',
+    image: 'images/monsters/Leonardawa.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 270, atk: 65, spd: 100, res: { neutre: 50, terre: 0, feu: 30, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.michelangela = {
+    id: 'michelangela',
+    name: 'Michelangela',
+    image: 'images/monsters/Michelangela.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 310, atk: 128, spd: 100, res: { neutre: 50, terre: 30, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.pougnette = {
+    id: 'pougnette',
+    name: 'Pougnette',
+    image: 'images/monsters/Pougnette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3800, atk: 300, spd: 100, res: { neutre: 25, terre: 17, feu: 10, eau: 9, air: -29 } },
+    moves: ['pikette']
+}
+monsters.hamrack = {
+    id: 'hamrack',
+    name: 'Hamrack',
+    image: 'images/monsters/Hamrack.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3400, atk: 600, spd: 100, res: { neutre: 20, terre: 12, feu: 13, eau: 16, air: 22 } },
+    moves: ['gouverne_ail']
+}
+monsters.alhyene = {
+    id: 'alhyene',
+    name: 'Alhyène',
+    image: 'images/monsters/Alhyène.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3500, atk: 460, spd: 100, res: { neutre: 21, terre: 11, feu: -9, eau: -4, air: 11 } },
+    moves: ['vent_discordant', 'invocation_de_flammes']
+}
+monsters.draguisla_bonita = {
+    id: 'draguisla_bonita',
+    name: 'Draguisla Bonita',
+    image: 'images/monsters/Draguisla_Bonita.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 11000, atk: 566, spd: 100, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['cratere', 'crachat_anesthesiant']
+}
+monsters.bosko_tho = {
+    id: 'bosko_tho',
+    name: 'Bosko Tho',
+    image: 'images/monsters/Bosko_Tho.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 11000, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['contre_courant']
+}
+monsters.stratege_dompteur = {
+    id: 'stratege_dompteur',
+    name: 'Stratège Dompteur',
+    image: 'images/monsters/Stratège_Dompteur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.domptueuse = {
+    id: 'domptueuse',
+    name: 'Domptueuse',
+    image: 'images/monsters/Domptueuse.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 16, terre: 21, feu: -6, eau: 14, air: 0 } },
+    moves: ['martignasse', 'detresse', 'braconatte']
+}
+monsters.domptueuse_perturbee = {
+    id: 'domptueuse_perturbee',
+    name: 'Domptueuse perturbée',
+    image: 'images/monsters/Domptueuse_perturbée.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 20, terre: 25, feu: -2, eau: 18, air: 4 } },
+    moves: ['martignasse', 'detresse', 'braconatte']
+}
+monsters.ebourifauve = {
+    id: 'ebourifauve',
+    name: 'Ébourifauve',
+    image: 'images/monsters/Ébourifauve.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 6, terre: 21, feu: 4, eau: 9, air: 26 } },
+    moves: ['paresse', 'feligance']
+}
+monsters.ebourifauve_perturbee = {
+    id: 'ebourifauve_perturbee',
+    name: 'Ébourifauve perturbée',
+    image: 'images/monsters/Ébourifauve_perturbée.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 10, terre: 25, feu: 8, eau: 13, air: 30 } },
+    moves: ['paresse', 'feligance']
+}
+monsters.renarbo_parleur = {
+    id: 'renarbo_parleur',
+    name: 'Renarbo Parleur',
+    image: 'images/monsters/Renarbo_Parleur.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 408, spd: 100, res: { neutre: -14, terre: 21, feu: -9, eau: -24, air: 66 } },
+    moves: []
+}
+monsters.kirboule_l_erode = {
+    id: 'kirboule_l_erode',
+    name: 'Kirboule l\'Érodé',
+    image: 'images/monsters/Kirboule_l_Érodé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1900, atk: 363, spd: 100, res: { neutre: 6, terre: 6, feu: 20, eau: 50, air: 30 } },
+    moves: ['Ecrasement_Handicapant']
+}
+monsters.agonie_la_deterree = {
+    id: 'agonie_la_deterree',
+    name: 'Agonie la Déterrée',
+    image: 'images/monsters/Agonie_la_Déterrée.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 9900, atk: 800, spd: 100, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
+    moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
+}
+monsters.leorictus_le_roi_grimacant = {
+    id: 'leorictus_le_roi_grimacant',
+    name: 'Léorictus le Roi Grimaçant',
+    image: 'images/monsters/Léorictus_le_Roi_Grimaçant.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 12000, atk: 800, spd: 100, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
+    moves: ['mortelage', 'oppression', 'trombe_d_acier', 'martel']
+}
+monsters.crystal_de_stasili = {
+    id: 'crystal_de_stasili',
+    name: 'Crystal de Stasili',
+    image: 'images/monsters/Crystal_de_Stasili.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.globilum = {
+    id: 'globilum',
+    name: 'Globilum',
+    image: 'images/monsters/Globilum.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5000, atk: 600, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['projection_ombreuse']
+}
+monsters.auroraire = {
+    id: 'auroraire',
+    name: 'Auroraire',
+    image: 'images/monsters/Auroraire.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.malice = {
+    id: 'malice',
+    name: 'Malice',
+    image: 'images/monsters/Malice.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.chazino = {
+    id: 'chazino',
+    name: 'Chazino',
+    image: 'images/monsters/Chazino.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 20, terre: 20, feu: 20, eau: 20, air: 20 } },
+    moves: ['expulsion']
+}
+monsters.iopprime = {
+    id: 'iopprime',
+    name: 'Iopprimé',
+    image: 'images/monsters/Iopprimé.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 5500, atk: 800, spd: 100, res: { neutre: 15, terre: 30, feu: 30, eau: 15, air: 30 } },
+    moves: ['traumasque', 'moribond', 'barbarie']
+}
+monsters.larmichette_de_l_ogre = {
+    id: 'larmichette_de_l_ogre',
+    name: 'Larmichette de l\'ogre',
+    image: 'images/monsters/Larmichette_de_l_ogre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2700, atk: 500, spd: 100, res: { neutre: 5, terre: 5, feu: 5, eau: 5, air: 5 } },
+    moves: ['glougloutte_salee']
+}
+monsters.voracle = {
+    id: 'voracle',
+    name: 'Voracle',
+    image: 'images/monsters/Voracle.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 13, terre: -5, feu: 26, eau: 1, air: 21 } },
+    moves: ['hauspice', 'divination', 'pres_age']
+}
+monsters.voracle_perturbee = {
+    id: 'voracle_perturbee',
+    name: 'Voracle perturbée',
+    image: 'images/monsters/Voracle_perturbée.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 4500, atk: 400, spd: 100, res: { neutre: 17, terre: -1, feu: 30, eau: 5, air: 25 } },
+    moves: ['hauspice', 'divination', 'pres_age']
+}
+monsters.croqueleur = {
+    id: 'croqueleur',
+    name: 'Croqueleur',
+    image: 'images/monsters/Croqueleur.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 6800, atk: 467, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['attraction_gourmande', 'total_impwakt', 'croustichoc']
+}
+monsters.kreuvete_la_bwork_ingenue = {
+    id: 'kreuvete_la_bwork_ingenue',
+    name: 'Kreuvète la Bwork Ingénue',
+    image: 'images/monsters/Kreuvète_la_Bwork_Ingénue.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 7100, atk: 800, spd: 100, res: { neutre: -10, terre: 5, feu: 10, eau: -20, air: 5 } },
+    moves: ['moderation', 'mordorsene', 'hedite', 'achesse']
+}
+monsters.garde_du_conseil = {
+    id: 'garde_du_conseil',
+    name: 'Garde du Conseil',
+    image: 'images/monsters/Garde_du_Conseil.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 8200, atk: 800, spd: 100, res: { neutre: 20, terre: 10, feu: 10, eau: 50, air: 10 } },
+    moves: ['relent', 'sepiolite', 'trine']
+}
+monsters.bonraphin = {
+    id: 'bonraphin',
+    name: 'Bonraphin',
+    image: 'images/monsters/Bonraphin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9100, atk: 640, spd: 100, res: { neutre: 8, terre: -12, feu: -23, eau: 23, air: 16 } },
+    moves: ['faux_seraphine', 'colonne_de_lumiere']
+}
+monsters.braklotin = {
+    id: 'braklotin',
+    name: 'Brâklotin',
+    image: 'images/monsters/Brâklotin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9100, atk: 640, spd: 100, res: { neutre: 8, terre: 16, feu: 23, eau: -23, air: -12 } },
+    moves: ['epee_diablotine', 'colonne_de_flammes']
+}
+monsters.krtek = {
+    id: 'krtek',
+    name: 'Krtek',
+    image: 'images/monsters/Krtek.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 7500, atk: 23, spd: 100, res: { neutre: 50, terre: 45, feu: 25, eau: 0, air: 35 } },
+    moves: ['bonne_pioche']
+}
+monsters.chef_waddict = {
+    id: 'chef_waddict',
+    name: 'Chef Waddict',
+    image: 'images/monsters/Chef_Waddict.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2400, atk: 420, spd: 100, res: { neutre: 5, terre: 11, feu: 0, eau: 10, air: 14 } },
+    moves: ['enwobage', 'anawchie', 'assasindic']
+}
+monsters.vetauran = {
+    id: 'vetauran',
+    name: 'Vétauran',
+    image: 'images/monsters/Vétauran.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 910, atk: 133, spd: 100, res: { neutre: -9, terre: -19, feu: 12, eau: 7, air: 5 } },
+    moves: ['craneur', 'pull_vert_izele', 'encornement']
+}
+monsters.tipoune = {
+    id: 'tipoune',
+    name: 'Tipoune',
+    image: 'images/monsters/Tipoune.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.tipoude = {
+    id: 'tipoude',
+    name: 'Tipoude',
+    image: 'images/monsters/Tipoude.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.tipoutre = {
+    id: 'tipoutre',
+    name: 'Tipoutre',
+    image: 'images/monsters/Tipoutre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: []
+}
+monsters.Rathrosk = {
+    id: 'Rathrosk',
+    name: 'Rathrosk',
+    image: 'images/monsters/Rathrosk.png',
+    rarity: 'legendaire',
+    tier: 'boss',
+    bst: { hp: 4000, atk: 320, spd: 125, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
+    moves: ['souffle_de_rathrosk', 'queue_du_dragon', 'regain_de_vie']
 }
 monsters.gargandyas = {
     id: 'gargandyas',
@@ -12843,12 +12662,509 @@ monsters.gargandyas = {
     bst: { hp: 100000, atk: 1000, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['sceaux_telluriques', 'amnesie_animale', 'gargameha']
 }
-monsters.mama_troollette = {
-    id: 'mama_troollette',
-    name: 'Mama Troollette',
-    image: 'images/monsters/Mama_Troollette.png',
+monsters.autel_de_la_chasse = {
+    id: 'autel_de_la_chasse',
+    name: 'Autel de la Chasse',
+    image: 'images/monsters/Autel_de_la_Chasse.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 150000, atk: 1125, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['troollooportation', 'uppertrooll', 'mitroollette_de_poings', 'catastrooll']
+    bst: { hp: 100000, atk: 640, spd: 100, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
+    moves: []
+}
+monsters.golem_malakite = {
+    id: 'golem_malakite',
+    name: 'Golem Malakite',
+    image: 'images/monsters/Golem_Malakite.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 6000, atk: 800, spd: 100, res: { neutre: 31, terre: 27, feu: 19, eau: 6, air: 14 } },
+    moves: ['attraction_minerale', 'boulet_emeraude']
+}
+monsters.souris_verte = {
+    id: 'souris_verte',
+    name: 'Souris Verte',
+    image: 'images/monsters/Souris_Verte.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 650, atk: 216, spd: 100, res: { neutre: 20, terre: 15, feu: 7, eau: 7, air: 30 } },
+    moves: ['regard_fondant', 'postillon_brulant']
+}
+
+// ═══════════════════════════════════════════════════════
+// INVOCATIONS (déjà utilisées par le sort d'un autre monstre — non farmables seules)
+// ═══════════════════════════════════════════════════════
+
+// invoqué par warko_marron, warko_violet (invocation_de_workette)
+monsters.workette = {
+    id: 'workette',
+    name: 'Workette',
+    image: 'images/monsters/Workette.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 100, atk: 50, spd: 100, res: { neutre: 10, terre: 50, feu: -10, eau: -10, air: 20 } },
+    moves: ['baiser_de_kaliptus', 'implosion']
+}
+// invoqué par kralab_rah (poulpe)
+monsters.poulpor = {
+    id: 'poulpor',
+    name: 'Poulpor',
+    image: 'images/monsters/Poulpor.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1, atk: 700, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['double_tranchant']
+}
+// invoqué par kardorim (appeldeKardorib)
+monsters.kardorib = {
+    id: 'kardorib',
+    name: 'Kardorib',
+    image: 'images/monsters/Kardorib.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: { hp: 60, atk: 20, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['embrochement'],
+    ownerId: 'kardorim'
+}
+// invoqué par rate_atinee (radotage)
+monsters.rat_molo = {
+    id: 'rat_molo',
+    name: 'Rat Molo',
+    image: 'images/monsters/Rat_Molo.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 320, atk: 304, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['rajusteur', 'raclerie']
+}
+// invoqué par scarabosse_dore (naissance)
+monsters.scarafeuilleImmature = {
+    id: 'scarafeuilleImmature',
+    name: 'Scarafeuille Immature',
+    image: 'images/monsters/Scarafeuille_Immature.png',
+    rarity: 'commun',
+    tier: 'elite',
+    bst: { hp: 250, atk: 80, spd: 100, res: { neutre: -10, terre: 100, feu: -10, eau: -10, air: -10 } },
+    moves: ['scarapoison'],
+    ownerId: 'scarabosse_dore'
+}
+// invoqué par brigandin (appel_de_la_mama)
+monsters.brigandine = {
+    id: 'brigandine',
+    name: 'Brigandine',
+    image: 'images/monsters/Brigandine.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 310, atk: 70, spd: 100, res: { neutre: 30, terre: 0, feu: 30, eau: 30, air: 30 } },
+    moves: ['fronde', 'appel_de_papa']
+}
+// invoqué par brigandine (appel_de_papa)
+monsters.brigandin = {
+    id: 'brigandin',
+    name: 'Brigandin',
+    image: 'images/monsters/Brigandin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 310, atk: 70, spd: 100, res: { neutre: 5, terre: 20, feu: 30, eau: 0, air: 80 } },
+    moves: ['appel_de_la_mama', 'elagage_de_cou']
+}
+// invoqué par pet_nenfan (bombombe)
+monsters.flammeche_feu = {
+    id: 'flammeche_feu',
+    name: 'Flammèche Feu',
+    image: 'images/monsters/Flammèche_Feu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 9, atk: 100, spd: 100, res: { neutre: 100, terre: 0, feu: 100, eau: 0, air: 0 } },
+    moves: ['elemental_spear', 'bomball']
+}
+// invoqué par bwork_elemental_de_feu (sollicitude_elementaire_fumeuse)
+monsters.flammeche_fumeuse = {
+    id: 'flammeche_fumeuse',
+    name: 'Flammèche Fumeuse',
+    image: 'images/monsters/Flammèche_Feu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
+    moves: ['rapprochement_elementaire', 'immolation_mstr']
+}
+// invoqué par bwork_elemental_de_terre (sollicitude_elementaire_terreuse)
+monsters.flammeche_terreuse = {
+    id: 'flammeche_terreuse',
+    name: 'Flammèche Terreuse',
+    image: 'images/monsters/Flammèche_Terre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
+    moves: ['rapprochement_elementaireterre', 'immolationterre']
+}
+// invoqué par bwork_elemental_d_air (sollicitude_elementaire_venteuse)
+monsters.flammeche_venteuse = {
+    id: 'flammeche_venteuse',
+    name: 'Flammèche Venteuse',
+    image: 'images/monsters/Flammèche_Air.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
+    moves: ['rapprochement_elementaireair', 'immolationair']
+}
+// invoqué par bwork_elemental_d_eau (sollicitude_elementaire_aqueuse)
+monsters.flammeche_aqueuse = {
+    id: 'flammeche_aqueuse',
+    name: 'Flammèche Aqueuse',
+    image: 'images/monsters/Flammèche_Eau.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 430, atk: 688, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 100, air: 0 } },
+    moves: ['rapprochement_elementaireeau', 'immolationeau']
+}
+// invoqué par wabbit_gm, wa_wabbit (cawotte_gm, cawotte_woyale)
+monsters.cawottes = {
+    id: 'cawottes',
+    name: 'Cawottes',
+    image: 'images/monsters/Cawottes.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 470, atk: 0, spd: 100, res: { neutre: 10, terre: 5, feu: 0, eau: -5, air: 0 } },
+    moves: []
+}
+// invoqué par abrazif (spore_celaine)
+monsters.motte = {
+    id: 'motte',
+    name: 'Motte',
+    image: 'images/monsters/Motte.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4300, atk: 500, spd: 100, res: { neutre: 25, terre: -36, feu: 12, eau: 55, air: 6 } },
+    moves: ['hokulteur', 'hivation', 'husse']
+}
+// invoqué par nefileuse (toile_paralysante)
+monsters.toile = {
+    id: 'toile',
+    name: 'Toile',
+    image: 'images/monsters/Toile.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 400, atk: 0, spd: 100, res: { neutre: -5, terre: 10, feu: -15, eau: 15, air: 5 } },
+    moves: []
+}
+// invoqué par fantome_hicide (invocation_de_familiers_fantomatiques)
+monsters.marcassin_fantomatique = {
+    id: 'marcassin_fantomatique',
+    name: 'Marcassin Fantômatique',
+    image: 'images/monsters/Marcassin_Fantômatique.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 0, terre: 10, feu: 0, eau: -10, air: 0 } },
+    moves: ['embrochement_fantomatique']
+}
+// invoqué par abraknydeAncestral, gardienne_des_egouts (Invocation_d_Arakne_Majeure)
+monsters.arakne_majeure = {
+    id: 'arakne_majeure',
+    name: 'Arakne Majeure',
+    image: 'images/monsters/Arakne_Majeure.png',
+    rarity: 'peu_commun',
+    tier: 'elite',
+    bst: { hp: 400, atk: 100, spd: 115, res: { neutre: -14, terre: -14, feu: 10, eau: 10, air: -14 } },
+    moves: ['Absorption_Sanguine', 'Ralentissement_Arakneen'],
+    ownerId: 'abraknydeAncestral'
+}
+// invoqué par nheur_gueule (germinator)
+monsters.germinion = {
+    id: 'germinion',
+    name: 'Germinion',
+    image: 'images/monsters/Germinion.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4900, atk: 800, spd: 100, res: { neutre: -6, terre: 13, feu: -15, eau: 21, air: 16 } },
+    moves: ['germination_ardente']
+}
+// invoqué par fantome_apero (invocation_d_esprits_familiers)
+monsters.croum_fantomatique = {
+    id: 'croum_fantomatique',
+    name: 'Croum Fantômatique',
+    image: 'images/monsters/Croum_Fantômatique.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 18, terre: -9, feu: 11, eau: -9, air: 11 } },
+    moves: ['glaive_fantomatique', 'bravoure_fantomatique']
+}
+// invoqué par fantome_apero (invocation_d_esprits_familiers)
+monsters.el_scarador_fantomatique = {
+    id: 'el_scarador_fantomatique',
+    name: 'El Scarador Fantômatique',
+    image: 'images/monsters/El_Scarador_Fantômatique.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 5, terre: 5, feu: 5, eau: 5, air: 5 } },
+    moves: ['element_fantomatique', 'scaraforce_fantomatique']
+}
+// invoqué par fauchalak (renfort_du_cimetiere_primitif)
+monsters.momie_koalak = {
+    id: 'momie_koalak',
+    name: 'Momie Koalak',
+    image: 'images/monsters/Momie_Koalak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2000, atk: 138, spd: 100, res: { neutre: 60, terre: -25, feu: 10, eau: 50, air: -50 } },
+    moves: ['malediction_de_la_momie', 'clepsydre_mstr', 'bandelette_ancestrale']
+}
+// invoqué par fauchalak (renfort_du_cimetiere_primitif)
+monsters.maitre_koalak = {
+    id: 'maitre_koalak',
+    name: 'Maître Koalak',
+    image: 'images/monsters/Maître_Koalak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2000, atk: 200, spd: 100, res: { neutre: -25, terre: -10, feu: 50, eau: -10, air: -10 } },
+    moves: ['frappe_du_maitre', 'reconciliation', 'transposition_du_maitre']
+}
+// invoqué par fauchalak (renfort_du_cimetiere_primitif)
+monsters.fossoyeur_koalak = {
+    id: 'fossoyeur_koalak',
+    name: 'Fossoyeur Koalak',
+    image: 'images/monsters/Fossoyeur_Koalak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 163, spd: 100, res: { neutre: 10, terre: 50, feu: 20, eau: -19, air: 20 } },
+    moves: ['enterrement', 'motte_de_terre']
+}
+// invoqué par fantome_hicide, fantome_d_aventurier_arepo (invocation_de_familiers_fantomatiques, invocation_de_corbac_fantomatique)
+monsters.corbac_fantomatique = {
+    id: 'corbac_fantomatique',
+    name: 'Corbac Fantômatique',
+    image: 'images/monsters/Corbac_Fantômatique.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 110, atk: 144, spd: 100, res: { neutre: 0, terre: -10, feu: 0, eau: 10, air: 0 } },
+    moves: ['moquerie_fantomatique', 'replique_fantomatique']
+}
+// invoqué par fauchalak (renfort_du_cimetiere_primitif)
+monsters.chevaucheur_koalak = {
+    id: 'chevaucheur_koalak',
+    name: 'Chevaucheur Koalak',
+    image: 'images/monsters/Chevaucheur_Koalak.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1800, atk: 125, spd: 100, res: { neutre: 20, terre: 29, feu: -58, eau: 10, air: 50 } },
+    moves: ['prevention']
+}
+// invoqué par dramak (invocation_de_pantin)
+monsters.pantin = {
+    id: 'pantin',
+    name: 'Pantin',
+    image: 'images/monsters/Pantin.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 890, atk: 100, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['coup_de_pied']
+}
+// invoqué par sakarien (invocation_de_poupoussiere)
+monsters.poupoussiere = {
+    id: 'poupoussiere',
+    name: 'Poupoussière',
+    image: 'images/monsters/Poupoussière.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 110, atk: 160, spd: 100, res: { neutre: 10, terre: 0, feu: -20, eau: 10, air: 0 } },
+    moves: ['nuage_de_poupoussiere']
+}
+// invoqué par domoizelle (invocation_de_dodoune)
+monsters.dokachu = {
+    id: 'dokachu',
+    name: 'Dokachu',
+    image: 'images/monsters/Dokachu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['dorage', 'donnerre']
+}
+// invoqué par domoizelle (invocation_de_dodoune)
+monsters.dolbinos = {
+    id: 'dolbinos',
+    name: 'Dolbinos',
+    image: 'images/monsters/Dolbinos.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['coup_de_bec_affaiblissant', 'dotite']
+}
+// invoqué par domoizelle (invocation_de_dodoune)
+monsters.dolivar = {
+    id: 'dolivar',
+    name: 'Dolivar',
+    image: 'images/monsters/Dolivar.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 780, atk: 200, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['dorage', 'donnerre']
+}
+// invoqué par tofu_ventripotent (invocation_de_bomberfu)
+monsters.bomberfu = {
+    id: 'bomberfu',
+    name: 'Bomberfu',
+    image: 'images/monsters/Bomberfu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 66, atk: 100, spd: 100, res: { neutre: 0, terre: 5, feu: -10, eau: 0, air: 0 } },
+    moves: ['detonation_du_poulailler']
+}
+// invoqué par sarkapwane (invocation_de_bombombre)
+monsters.bombombre = {
+    id: 'bombombre',
+    name: 'Bombombre',
+    image: 'images/monsters/Bombombre.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1500, atk: 400, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: [],
+    onDeath: [{ type: 'damage', element: 'eau', damage: { min: 55, max: 63 }, target: 'enemy' }]
+}
+// invoqué par champ_a_gnons (invasion_fongique)
+monsters.champa_vert = {
+    id: 'champa_vert',
+    name: 'Champa Vert',
+    image: 'images/monsters/Champa_Vert.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: -9, eau: -9, air: 60 } },
+    moves: ['teleportation_du_champa', 'champ_oisone']
+}
+// invoqué par champ_a_gnons (invasion_fongique)
+monsters.champa_rouge = {
+    id: 'champa_rouge',
+    name: 'Champa Rouge',
+    image: 'images/monsters/Champa_Rouge.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: 60, eau: -9, air: -9 } },
+    moves: ['champsoin', 'champ_hagne']
+}
+// invoqué par champ_a_gnons (invasion_fongique)
+monsters.champa_bleu = {
+    id: 'champa_bleu',
+    name: 'Champa Bleu',
+    image: 'images/monsters/Champa_Bleu.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: -9, feu: -9, eau: 60, air: -9 } },
+    moves: ['sacrifice_douloureux', 'attraction_champetre']
+}
+// invoqué par champ_a_gnons (invasion_fongique)
+monsters.champa_marron = {
+    id: 'champa_marron',
+    name: 'Champa Marron',
+    image: 'images/monsters/Champa_Marron.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 320, atk: 100, spd: 100, res: { neutre: 50, terre: 60, feu: -9, eau: -9, air: -9 } },
+    moves: ['champ_homi', 'champ_hetre']
+}
+// invoqué par mominotor (lancer_de_degelee)
+monsters.degelee = {
+    id: 'degelee',
+    name: 'Dégelée',
+    image: 'images/monsters/Dégelée.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 810, atk: 100, spd: 100, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: ['decasse', 'papouille']
+}
+// invoqué par fantomalamere (bertha)
+monsters.pitraille = {
+    id: 'pitraille',
+    name: 'Pitraille',
+    image: 'images/monsters/Pitraille.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 3100, atk: 420, spd: 100, res: { neutre: 21, terre: -26, feu: 28, eau: 12, air: 34 } },
+    moves: ['ch_boum', 'ch_bang']
+}
+// invoqué par martoa (mur_de_pelles)
+monsters.mur_de_pelles = {
+    id:    'mur_de_pelles',
+    name:  'Mur de pelles',
+    image: 'img/classes/invocations/pelle_anime.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 150, atk: 88, spd: 100, res: { neutre: 6, terre: 21, feu: 6, eau: -14, air: 11 } },
+    moves: []
+}
+// invoqué par perku (lautte)
+monsters.gobus = {
+    id: 'gobus',
+    name: 'Gobus',
+    image: 'images/monsters/Gobus.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 52, terre: 12, feu: 20, eau: 33, air: -9 } },
+    moves: ['gobstruction', 'gobtimisation']
+}
+// invoqué par koalak_indigo (invocation_de_blop_indigo)
+monsters.blop_indigo_invoque = {
+    id: 'blop_indigo_invoque',
+    name: 'Blop Indigo invoqué',
+    image: 'images/monsters/Blop_Indigo_invoqué.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: -62, eau: 50, air: 15 } },
+    moves: ['blyphe_koalak']
+}
+// invoqué par koalak_reinette (invocation_de_blop_reinette)
+monsters.blop_reinette_invoque = {
+    id: 'blop_reinette_invoque',
+    name: 'Blop Reinette invoqué',
+    image: 'images/monsters/Blop_Reinette_invoqué.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 50, feu: 15, eau: 15, air: -62 } },
+    moves: ['blyphe_koalak']
+}
+// invoqué par koalak_coco (invocation_de_blop_coco)
+monsters.blop_coco_invoque = {
+    id: 'blop_coco_invoque',
+    name: 'Blop Coco invoqué',
+    image: 'images/monsters/Blop_Coco_invoqué.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: -62, feu: 15, eau: 15, air: 50 } },
+    moves: ['blyphe_koalak']
+}
+// invoqué par koalak_griotte (invocation_de_blop_griotte)
+monsters.blop_griotte_invoque = {
+    id: 'blop_griotte_invoque',
+    name: 'Blop Griotte invoqué',
+    image: 'images/monsters/Blop_Griotte_invoqué.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 440, atk: 100, spd: 100, res: { neutre: 15, terre: 15, feu: 50, eau: -62, air: 15 } },
+    moves: ['blyphe_koalak']
+}
+// invoqué par crabe_yoloniste (gesticulation_ridicule)
+monsters.etoile_swagante = {
+    id: 'etoile_swagante',
+    name: 'Étoile Swagante',
+    image: 'images/monsters/Étoile_Swagante.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 1000, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['reflet_swagant']
+}
+// invoqué par directeur_grunob (chachagobert)
+monsters.dagobert = {
+    id: 'dagobert',
+    name: 'Dagobert',
+    image: 'images/monsters/Dagobert.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 240, atk: 118, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['miaulement_agacant', 'minouille']
+}
+// invoqué par chevrotine (invocation_de_chienchien_courant)
+monsters.chienchien_courant = {
+    id: 'chienchien_courant',
+    name: 'Chienchien Courant',
+    image: 'images/monsters/Chienchien_Courant.png',
+    rarity: 'commun',
+    tier: 'normal',
+    bst: { hp: 2400, atk: 728, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['accrochage']
 }

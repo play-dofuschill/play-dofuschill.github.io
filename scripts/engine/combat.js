@@ -1000,7 +1000,7 @@ function executeMemberAction(memberIndex) {
                 effect, moveData: mv, prevMv, lastDamageDealt, moveId,
                 isCrit: isCritRoll,
                 onTargetKill: () => {
-                    if (combat.enemy?.isSummon) returnToOwner()
+                    if (combat.enemy?.isSummon) returnToOwner(true)
                     else onVictory()
                 }
             })
@@ -1257,7 +1257,8 @@ function _applyItemOnEffectTriggers(ctx) {
                         caster: member, casterStats: _invertStats, targetEnemy: ctx.targetEnemy || combat.enemy,
                         effect: { type: 'buff', stat: effect.stat, value: _invertVal, duration: effect.duration || 2, target: 'self' },
                         moveData: { name: itm.name }, moveId: itm.id,
-                        fromItemPassive: true
+                        fromItemPassive: true,
+                        onTargetKill: () => _handleReactionKill(ctx.targetEnemy || combat.enemy, member)
                     })
                     addLog(`${mName} [${itm.name}] → débuff ${effect.stat} inversé en buff !`)
                     cancelled = true
@@ -1269,7 +1270,8 @@ function _applyItemOnEffectTriggers(ctx) {
                     executeEffect({
                         caster: member, casterStats: stats, targetEnemy: ctx.targetEnemy || combat.enemy,
                         effect: _trigEff, moveData: { name: itm.name }, moveId: itm.id,
-                        fromItemPassive: true
+                        fromItemPassive: true,
+                        onTargetKill: () => _handleReactionKill(ctx.targetEnemy || combat.enemy, member)
                     })
                 } else if (eff.reaction === 'heal_to_damage') {
                     const target = isCasterEnemy ? caster : (ctx.targetEnemy || combat?.enemy)
@@ -1279,7 +1281,8 @@ function _applyItemOnEffectTriggers(ctx) {
                         caster: member, casterStats: stats, targetEnemy: target,
                         effect: { type: 'damage', element: eff.element || 'neutre', damage: eff.rawDamage || { min: 1, max: 5 }, target: 'enemy' },
                         moveData: { name: itm.name }, moveId: itm.id,
-                        fromItemPassive: true
+                        fromItemPassive: true,
+                        onTargetKill: () => _handleReactionKill(target, member)
                     })
                     cancelled = true
                 }
@@ -1360,6 +1363,21 @@ function _resolveReactiveTargets(effect, caster, targetEnemy) {
 // Déclenché quand 2 sorts élémentaires différents frappent le même ennemi en séquence.
 // Effets one-shot stockés avec duration:Infinity → jamais tickés, consommés manuellement.
 
+// Gère la mort d'un ennemi tué par une réaction (piège Énutrof, état réactif...).
+// Ces dégâts sont hors du flux normal d'exécution d'un sort et n'ont donc pas
+// d'onTargetKill fourni par l'appelant : sans ce callback, un ennemi tué par
+// une réaction reste bloqué à 0 PV et le combat boucle indéfiniment.
+function _handleReactionKill(target, killerEntity) {
+    if (!target || state.team.includes(target)) return
+    if (combat?.isRaid && combat.enemies) {
+        const slotIdx = combat.enemies.indexOf(target)
+        if (slotIdx !== -1) onRaidEnemyDeath(slotIdx, state.team.indexOf(killerEntity))
+        return
+    }
+    if (target.isSummon) { returnToOwner(true); return }
+    onVictory()
+}
+
 // Déclenche les pièges Énutrof actifs correspondant au trigger donné.
 // triggerType : 'debuff' | 'buff' | 'heal'
 // triggerStat : stat concernée (ignoré si trap.trigger.stat est absent)
@@ -1379,7 +1397,8 @@ function _fireEnutrofTraps(triggerType, triggerStat, reactionTarget) {
             effect:      { type: 'damage', element: trap.element, damage: trap.damage, target: 'enemy' },
             moveData:    { name: trap.id },
             moveId:      trap.id,
-            memberHitIdx: -1
+            memberHitIdx: -1,
+            onTargetKill: () => _handleReactionKill(reactionTarget, trap.caster)
         })
     }
 }
@@ -1414,7 +1433,8 @@ function _checkWatchStates(entity, triggerType, opts) {
                 targetEnemy: combat?.enemy,
                 effect: reactionEff,
                 moveData: { name: r.moveId }, moveId: r.moveId,
-                fromItemPassive: true
+                fromItemPassive: true,
+                onTargetKill: () => _handleReactionKill(combat?.enemy, r.caster)
             })
         }
     }
@@ -3279,6 +3299,28 @@ function executeEffect(ctx) {
             return executeEffect({ ...ctx, effect: { ...effect, type: 'damage', element: worstEl } })
         }
 
+        case 'best_element_dot': {
+            const _ELEMENTS_BD = ['neutre', 'terre', 'feu', 'eau', 'air']
+            const _resBD = targetEnemy.res || {}
+            let bestElBD = 'neutre', lowestResBD = Infinity
+            for (const el of _ELEMENTS_BD) {
+                const r = _resBD[el] ?? 0
+                if (r < lowestResBD) { lowestResBD = r; bestElBD = el }
+            }
+            return executeEffect({ ...ctx, effect: { ...effect, type: 'dot', element: bestElBD } })
+        }
+
+        case 'best_element_res_debuff': {
+            const _ELEMENTS_BR = ['neutre', 'terre', 'feu', 'eau', 'air']
+            const _resBR = targetEnemy.res || {}
+            let bestElBR = 'neutre', lowestResBR = Infinity
+            for (const el of _ELEMENTS_BR) {
+                const r = _resBR[el] ?? 0
+                if (r < lowestResBR) { lowestResBR = r; bestElBR = el }
+            }
+            return executeEffect({ ...ctx, effect: { ...effect, type: 'debuff', stat: `res.${bestElBR}` } })
+        }
+
         case 'mark_proie': {
             // Pose l'état Proie sur l'ennemi : les N prochains hits reçus gagnent +damageBonusPct%
             // et lifesteal lifestealPct% pour l'attaquant. Refresh la durée si déjà actif.
@@ -3472,7 +3514,7 @@ function executeEnemyAction() {
 
     // DOTs de l'ennemi tick avant son action
     tickDots(combat.enemy, () => {
-        if (combat.enemy?.isSummon) returnToOwner()
+        if (combat.enemy?.isSummon) returnToOwner(true)
         else onVictory()
     })
     if (!combat.enemy || combat.enemy.currentHp <= 0) return
@@ -3727,6 +3769,7 @@ function spawnSummon(caster, effect) {
             moveIndex:        0,
             isSummon:         true,
             actionsRemaining: effect.duration ?? Infinity,
+            onDeath:          effect.onDeath || mob.onDeath || null,
             _justSpawned:     true
         }
         combat.enemyTimer = 0
@@ -3742,16 +3785,18 @@ function returnAllyToOwner(slotIdx) {
 
     if (summon?.onDeath) {
         const summonStats = summon._stats || {}
+        const _summonDeathTarget = (combat.isRaid && combat.enemies)
+            ? (combat.enemies.find(e => e && e.currentHp > 0) || null)
+            : (combat.enemy || null)
         for (const eff of summon.onDeath) {
             executeEffect({
                 caster:      summon,
                 casterStats: summonStats,
-                targetEnemy: (combat.isRaid && combat.enemies)
-                    ? (combat.enemies.find(e => e && e.currentHp > 0) || null)
-                    : (combat.enemy || null),
+                targetEnemy: _summonDeathTarget,
                 effect:      eff,
                 moveData:    { name: summonName },
-                moveId:      null
+                moveId:      null,
+                onTargetKill: () => _handleReactionKill(_summonDeathTarget, summon)
             })
         }
     }
@@ -3822,23 +3867,42 @@ function actCompanion(owner) {
     const mv = move[moveId]
     if (!mv?.effects) return
 
+    const _companionTarget = combat.isRaid && combat.enemies
+        ? (combat.enemies.find(e => e && e.currentHp > 0) || null)
+        : (combat.enemy || null)
     for (const eff of mv.effects) {
         executeEffect({
             caster:      companion,
             casterStats: companion._stats,
-            targetEnemy: combat.isRaid && combat.enemies
-                ? (combat.enemies.find(e => e && e.currentHp > 0) || null)
-                : (combat.enemy || null),
+            targetEnemy: _companionTarget,
             effect:      eff,
             moveData:    mv,
-            moveId
+            moveId,
+            onTargetKill: () => _handleReactionKill(_companionTarget, companion)
         })
     }
     addLog(`${companion.name} → ${mv.name}`)
 }
 
-function returnToOwner() {
+function returnToOwner(died = false) {
     if (!combat.savedEnemy) return
+    const dyingSummon = combat.enemy
+    if (died && dyingSummon?.onDeath) {
+        const target = state.team[combat.activeMemberIndex]
+        if (target && target.currentHp > 0) {
+            const summonStats = {
+                atk: dyingSummon.atk || 0, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0,
+                damageReductionPct: 0, critChance: dyingSummon.critChance ?? 5, critDamagePct: dyingSummon.critDamagePct ?? 50,
+                res: dyingSummon.res || {}
+            }
+            for (const eff of dyingSummon.onDeath) {
+                executeEffect({
+                    caster: dyingSummon, casterStats: summonStats, targetEnemy: target,
+                    effect: eff, moveData: { name: dyingSummon.name }, moveId: null
+                })
+            }
+        }
+    }
     addLog(`${combat.savedEnemy.name} reprend le combat !`)
     combat.enemy           = combat.savedEnemy
     combat.savedEnemy      = null
@@ -4178,7 +4242,8 @@ function _applyCastProcs(member, mv) {
             targetEnemy: combat?.enemy,
             effect: proc.procEffect,
             moveData: mv, moveId: proc._source,
-            fromItemPassive: true
+            fromItemPassive: true,
+            onTargetKill: () => _handleReactionKill(combat?.enemy, member)
         })
         proc.turnsRemaining--
     }
@@ -4294,7 +4359,8 @@ function _explodeOwnedTraps(memberIdx, raidSlotIdx) {
         for (let i = 0; i < count; i++) {
             executeEffect({
                 caster: member, casterStats: stats, targetEnemy,
-                effect: { ...meta.effect, type: 'damage' }, moveData: { name: meta.moveName }, moveId: key + '_blast'
+                effect: { ...meta.effect, type: 'damage' }, moveData: { name: meta.moveName }, moveId: key + '_blast',
+                onTargetKill: () => _handleReactionKill(targetEnemy, member)
             })
         }
     }
@@ -4475,7 +4541,8 @@ function _handleDofusSwapEffects(prevIdx) {
                 executeEffect({
                     caster: prevM, casterStats: stats, targetEnemy: combat.enemy,
                     effect: cfg.on_inactive_at_max, moveData: { name: itm.name }, moveId: itm.id,
-                    fromItemPassive: true
+                    fromItemPassive: true,
+                    onTargetKill: () => _handleReactionKill(combat.enemy, prevM)
                 })
                 addLog(`${prevM.name || classes[prevM.classId]?.name || '?'} [${itm.name}] → compteur max, soin au passage !`)
             }
@@ -4505,7 +4572,8 @@ function _triggerDofusOnActive(memberIdx) {
             executeEffect({
                 caster: m, casterStats: stats, targetEnemy: combat.enemy,
                 effect: effToExec, moveData: { name: itm.name }, moveId: itm.id,
-                fromItemPassive: true
+                fromItemPassive: true,
+                onTargetKill: () => _handleReactionKill(combat.enemy, m)
             })
         }
     }
@@ -4539,7 +4607,7 @@ function _autoSwitchActive() {
             combat.enemy.currentHp = Math.max(0, combat.enemy.currentHp - dmg)
             addLog(`${cur.name || classes[cur.classId]?.name || '?'} [Passif] → Mort Explosive ! ${dmg} dégâts à ${combat.enemy.name} !`)
             if (combat.enemy.currentHp <= 0) {
-                if (combat.enemy.isSummon) returnToOwner()
+                if (combat.enemy.isSummon) returnToOwner(true)
                 else onVictory()
                 return
             }
