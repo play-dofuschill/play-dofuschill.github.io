@@ -2014,7 +2014,8 @@ move['wanted_bouflouth_mammouth'] = {
     name: 'Mammouth',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -2023,7 +2024,8 @@ move['wanted_bouflouth_gloutmouth'] = {
     name: 'Gloutmouth',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 17, max: 33 }, target: 'enemy' },
+        { type: 'heal', heal: { min: 20, max: 35 }, target: 'self' }
     ]
 }
 
@@ -2032,7 +2034,7 @@ move['wanted_bouflouth_hypermouth'] = {
     name: 'Hypermouth',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 25, duration: 3, target: 'self' }
     ]
 }
 
@@ -2071,7 +2073,7 @@ move['wanted_monsieur_pingouin_mascarade_rocambolesque'] = {
     name: 'Mascarade Rocambolesque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2090,7 +2092,8 @@ move['wanted_katigrou_broukeul'] = {
     name: 'Broukeul',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 61, max: 95 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -2119,7 +2122,7 @@ move['wanted_fantomayte_qui_pete'] = {
     name: 'Qui pète',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'neutre', value: 90, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -2128,7 +2131,7 @@ move['wanted_fantomayte_litterature'] = {
     name: 'Littérature',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 35, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2155,7 +2158,8 @@ move['wanted_vengeuse_masquee_esprit_de_vengeance'] = {
     name: 'Esprit de Vengeance',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 40, duration: 3, target: 'self' },
+        { type: 'renvoi', ratio: 0.3, target: 'self' }
     ]
 }
 
@@ -2183,7 +2187,7 @@ move['wanted_yech_ti_ch_est_du_leque_mes_louppes'] = {
     name: 'Ch\'est du lèque mes louppes',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 25, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2224,7 +2228,7 @@ move['wanted_yech_ti_ptio_quinquin'] = {
     name: 'Ptio quinquin',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'heal', heal: { min: 90, max: 130 }, target: 'self' }
     ]
 }
 
@@ -2252,7 +2256,7 @@ move['wanted_dremoan_graine_de_dremoan'] = {
     name: 'Graine de Dremoan',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'terre', value: 100, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2361,7 +2365,7 @@ move['wanted_viti_glourson_mielodie'] = {
     name: 'Mielodie',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 30, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2398,7 +2402,8 @@ move['wanted_fuji_givrefoux_progeniture'] = {
     name: 'Progéniture',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'damageReductionPct', value: 15, duration: 3, target: 'self' },
+        { type: 'heal', heal: { min: 60, max: 90 }, target: 'self' }
     ]
 }
 
@@ -2425,7 +2430,7 @@ move['wanted_glourdorak_gloursofulgur'] = {
     name: 'Gloursofulgur',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 126, max: 175 }, target: 'enemy' }
     ]
 }
 
@@ -2455,7 +2460,7 @@ move['wanted_glourdorak_gloursolaser'] = {
     name: 'Gloursolaser',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'feu', damage: { min: 151, max: 200 }, target: 'enemy' }
     ]
 }
 
@@ -2474,7 +2479,7 @@ move['wanted_glourdorak_miel_de_jouvence'] = {
     name: 'Miel de Jouvence',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'hot', heal: 120, duration: 3, target: 'self' }
     ]
 }
 
@@ -2483,7 +2488,7 @@ move['wanted_docteur_eggob_gobus_chaotique'] = {
     name: 'Gobus Chaotique',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 30, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2492,7 +2497,7 @@ move['wanted_docteur_eggob_robotisation'] = {
     name: 'Robotisation',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 45, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2511,7 +2516,7 @@ move['wanted_docteur_eggob_uf_de_la_mort'] = {
     name: 'Œuf de la Mort',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 201, max: 275 }, target: 'enemy' }
     ]
 }
 
@@ -2520,7 +2525,7 @@ move['wanted_mekamouth_glyglyphe'] = {
     name: 'Glyglyphe',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'res.neutre', value: 30, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2539,7 +2544,7 @@ move['wanted_mekamouth_la_defense_c_est_l_attaque'] = {
     name: 'La défense c\'est l\'attaque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'renvoi', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -2548,7 +2553,7 @@ move['wanted_mekamouth_liquide_de_refroidissement'] = {
     name: 'Liquide de refroidissement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'shield', value: 200, duration: 3, target: 'self' }
     ]
 }
 
@@ -2557,7 +2562,7 @@ move['wanted_mekamouth_surtension'] = {
     name: 'Surtension',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 40, duration: 3, target: 'self' }
     ]
 }
 
@@ -2601,7 +2606,8 @@ move['wanted_culbutuf_sinistro_vole'] = {
     name: 'Sinistro vole',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 151, max: 200 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -2610,7 +2616,7 @@ move['wanted_culbutuf_de_bon_cur'] = {
     name: 'De bon cœur',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'heal', heal: { min: 150, max: 220 }, target: 'self' }
     ]
 }
 
@@ -2619,7 +2625,7 @@ move['wanted_culbutuf_va_te_faire_cuire_un_uf'] = {
     name: 'Va te faire cuire un œuf',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'feu', value: 130, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2628,7 +2634,7 @@ move['wanted_chevalier_de_glace_rafraichissement'] = {
     name: 'Rafraîchissement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'hot', heal: 100, duration: 3, target: 'self' }
     ]
 }
 
@@ -2637,7 +2643,7 @@ move['wanted_chevalier_de_glace_souffler_n_est_pas_jouer'] = {
     name: 'Souffler n\'est pas jouer',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 30, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2675,7 +2681,7 @@ move['wanted_chevalier_de_glace_saut'] = {
     name: 'Saut',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'avance', target: 'self' }
     ]
 }
 
@@ -2706,7 +2712,7 @@ move['wanted_psikopompe_bondage'] = {
     name: 'Bondage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 40, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2715,7 +2721,7 @@ move['wanted_psikopompe_flagellation_stimulante'] = {
     name: 'Flagellation stimulante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 35, duration: 3, target: 'self' }
     ]
 }
 
@@ -2724,7 +2730,7 @@ move['wanted_psikopompe_retour_a_l_envoyeur'] = {
     name: 'Retour à l\'envoyeur',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'renvoiTotal', ratio: 1.0, target: 'self' }
     ]
 }
 
@@ -2761,7 +2767,8 @@ move['wanted_sam_sagaz_appel_de_bolesh'] = {
     name: 'Appel de Bolesh',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 20, duration: 3, target: 'self' },
+        { type: 'damage', element: 'neutre', damage: { min: 8, max: 14 }, target: 'enemy' }
     ]
 }
 
@@ -2792,7 +2799,8 @@ move['wanted_maitre_boulet_invocation_de_tournesol'] = {
     name: 'Invocation de Tournesol',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 20, duration: 3, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 15, duration: 3, target: 'self' }
     ]
 }
 
@@ -2801,7 +2809,7 @@ move['wanted_roub_ignolles_vulnerabilite_bombesque'] = {
     name: 'Vulnérabilité bombesque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'res.feu', value: 25, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2810,7 +2818,8 @@ move['wanted_roub_ignolles_pousse_bombe'] = {
     name: 'Pousse bombe',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'feu', damage: { min: 36, max: 55 }, target: 'enemy' },
+        { type: 'recul', target: 'enemy' }
     ]
 }
 
@@ -2819,7 +2828,8 @@ move['wanted_roub_ignolles_teleportabombe'] = {
     name: 'Téléportabombe',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'avance', target: 'self' },
+        { type: 'damage', element: 'feu', damage: { min: 41, max: 60 }, target: 'enemy' }
     ]
 }
 
@@ -2837,7 +2847,8 @@ move['wanted_bouss_baybe_econduire'] = {
     name: 'Éconduire',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 16, max: 25 }, target: 'enemy' },
+        { type: 'recul', target: 'enemy' }
     ]
 }
 
@@ -2846,7 +2857,7 @@ move['wanted_bouss_baybe_porkasserie'] = {
     name: 'Porkasserie',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 20, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2855,7 +2866,7 @@ move['wanted_nono_le_wobot_vewwouillage'] = {
     name: 'Vewwouillage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2884,7 +2895,7 @@ move['wanted_armada_l_invincible_tankafair'] = {
     name: 'Tankafair',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'shield', value: 150, duration: 3, target: 'self' }
     ]
 }
 
@@ -2907,7 +2918,7 @@ move['wanted_armada_l_invincible_manuvre'] = {
     name: 'Manœuvre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'switch', value: 1, target: 'self' }
     ]
 }
 
@@ -2984,7 +2995,8 @@ move['wanted_prince_marchand_marchandage'] = {
     name: 'Marchandage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 20, duration: 3, target: 'self' }
     ]
 }
 
@@ -2993,7 +3005,8 @@ move['wanted_prince_marchand_palouf'] = {
     name: 'Palouf',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3002,7 +3015,8 @@ move['wanted_prince_marchand_charge_heroique'] = {
     name: 'Charge Héroïque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'avance', target: 'self' },
+        { type: 'damage', element: 'neutre', damage: { min: 61, max: 90 }, target: 'enemy' }
     ]
 }
 
@@ -3021,7 +3035,8 @@ move['wanted_jerart_dupaindur_soif_inextinguible'] = {
     name: 'Soif inextinguible',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'eau', damage: { min: 31, max: 45 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 1.0, target: 'self' }
     ]
 }
 
@@ -3071,7 +3086,7 @@ move['wanted_gobrechaun_jig'] = {
     name: 'Jig',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'spd', value: 25, duration: 3, target: 'self' }
     ]
 }
 
@@ -3089,7 +3104,7 @@ move['wanted_vashkiwi_laitage'] = {
     name: 'Laitage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'heal', heal: { min: 90, max: 130 }, target: 'self' }
     ]
 }
 
@@ -3098,7 +3113,7 @@ move['wanted_vashkiwi_sensations_pures'] = {
     name: 'Sensations Pures',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'critChance', value: 20, duration: 3, target: 'self' }
     ]
 }
 
@@ -3107,7 +3122,7 @@ move['wanted_vashkiwi_fontaine_laiteuse'] = {
     name: 'Fontaine Laiteuse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'hot', heal: 110, duration: 3, target: 'self' }
     ]
 }
 
@@ -3126,7 +3141,7 @@ move['wanted_darma_vivacite_perdue'] = {
     name: 'Vivacité Perdue',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 35, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3135,7 +3150,8 @@ move['wanted_darma_zhostile'] = {
     name: 'Zhostile',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 96, max: 115 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3164,7 +3180,8 @@ move['wanted_mogligli_la_chasse_de_kaa_kaa'] = {
     name: 'La Chasse de Kaa-Kaa',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 71, max: 85 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3183,7 +3200,7 @@ move['wanted_glandaf_l_aigri_anneau_de_feu'] = {
     name: 'Anneau de Feu',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'feu', value: 90, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3192,7 +3209,7 @@ move['wanted_glandaf_l_aigri_grisaille'] = {
     name: 'Grisaille',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 35, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3211,7 +3228,7 @@ move['wanted_crasper_lieu_hante'] = {
     name: 'Lieu Hanté',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'feu', value: 120, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3220,7 +3237,7 @@ move['wanted_crasper_amical'] = {
     name: 'Amical',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 40, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3238,7 +3255,7 @@ move['wanted_carter_le_pillard_ce_qui_est_a_toi_est_a_moi'] = {
     name: 'Ce qui est à toi est à moi',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buffDrain', value: 1, target: 'enemy' }
     ]
 }
 
@@ -3257,7 +3274,7 @@ move['wanted_sans_visage_rage_avide'] = {
     name: 'Rage Avide',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 45, duration: 3, target: 'self' }
     ]
 }
 
@@ -3285,7 +3302,8 @@ move['wanted_sans_visage_invocation_de_bak'] = {
     name: 'Invocation de Bak',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 71, max: 90 }, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 25, duration: 2, target: 'self' }
     ]
 }
 
@@ -3321,7 +3339,7 @@ move['wanted_voldelor_retour_a_la_vie'] = {
     name: 'Retour à la vie',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'heal', heal: { min: 130, max: 180 }, target: 'self' }
     ]
 }
 
@@ -3340,7 +3358,8 @@ move['wanted_aigripoil_empalladium'] = {
     name: 'Empalladium',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3376,7 +3395,7 @@ move['wanted_gein_paralysie'] = {
     name: 'Paralysie',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 50, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3395,7 +3414,7 @@ move['wanted_gein_eveil_des_ames_perdues'] = {
     name: 'Éveil des âmes perdues',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
     ]
 }
 
@@ -3414,7 +3433,8 @@ move['wanted_panteroz_rayondule'] = {
     name: 'Rayondulé',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 91, max: 105 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3463,7 +3483,8 @@ move['wanted_hin_pouss_pouss'] = {
     name: 'Pouss pouss',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'recul', target: 'enemy' }
     ]
 }
 
@@ -3472,7 +3493,8 @@ move['wanted_hin_distanss'] = {
     name: 'Distanss',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'recul', target: 'enemy' },
+        { type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self' }
     ]
 }
 
@@ -3493,7 +3515,7 @@ move['wanted_sicogne_superpuissance'] = {
     name: 'Superpuissance',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
     ]
 }
 
@@ -3558,7 +3580,8 @@ move['wanted_ganos_matatak'] = {
     name: 'Matatak',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 51, max: 65 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3567,7 +3590,8 @@ move['wanted_ganos_sanglinglin'] = {
     name: 'Sanglinglin',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 71, max: 85 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3596,7 +3620,8 @@ move['wanted_ganos_lardage'] = {
     name: 'Lardage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 61, max: 75 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3625,7 +3650,7 @@ move['wanted_ganos_rugibier'] = {
     name: 'Rugibier',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 30, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -3634,7 +3659,8 @@ move['wanted_ganos_groincision'] = {
     name: 'Groincision',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 91, max: 110 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -3673,7 +3699,7 @@ move['wanted_padgref_demoel_attraction'] = {
     name: 'Attraction',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'avance', target: 'enemy' }
     ]
 }
 
@@ -3711,7 +3737,8 @@ move['wanted_padgref_demoel_sanction'] = {
     name: 'Sanction',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 41, max: 55 }, target: 'enemy' },
+        { type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -3740,7 +3767,7 @@ move['wanted_frakacia_leukocytine_hyperleukocytine'] = {
     name: 'Hyperleukocytine',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 25, duration: 3, target: 'self' }
     ]
 }
 
@@ -3771,7 +3798,7 @@ move['wanted_ogivol_scalarcin_ogivolatilise'] = {
     name: 'Ogivolatilisé',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'feu', value: 20, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3780,7 +3807,7 @@ move['wanted_ogivol_scalarcin_ogivologramme'] = {
     name: 'Ogivologramme',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 15, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3809,7 +3836,7 @@ move['wanted_fouduglen_l_ecureuil_discretion'] = {
     name: 'Discrétion',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' }
     ]
 }
 
@@ -3840,7 +3867,7 @@ move['wanted_brumen_tinctorias_elixir_stimulant'] = {
     name: 'Élixir Stimulant',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 25, duration: 3, target: 'self' }
     ]
 }
 
@@ -3879,7 +3906,7 @@ move['wanted_qil_bil_rage_cybernetique'] = {
     name: 'Rage cybernétique',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 25, duration: 3, target: 'self' }
     ]
 }
 
@@ -3908,7 +3935,7 @@ move['wanted_rok_gnorok_armure_rocailleuse'] = {
     name: 'Armure rocailleuse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'shield', value: 180, duration: 3, target: 'self' }
     ]
 }
 
@@ -3993,7 +4020,8 @@ move['wanted_marzwel_le_gobelin_fuite_anticipee'] = {
     name: 'Fuite anticipée',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'recul', target: 'self' },
+        { type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'self' }
     ]
 }
 
@@ -4086,7 +4114,8 @@ move['wanted_ali_grothor_rage_electrique'] = {
     name: 'Rage Électrique',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 91, max: 120 }, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 25, duration: 2, target: 'self' }
     ]
 }
 
@@ -4115,7 +4144,8 @@ move['wanted_ambi_guman_enfant_de_la_terre'] = {
     name: 'Enfant de la terre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4124,7 +4154,8 @@ move['wanted_exi_guman_spatezoignons'] = {
     name: 'Spatézoignons',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'debuff', stat: 'atk', value: 15, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4143,7 +4174,7 @@ move['wanted_exi_guman_pousses_ephemeres'] = {
     name: 'Pousses éphémères',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'terre', value: 20, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -4171,7 +4202,7 @@ move['wanted_gadoo_croute'] = {
     name: 'Croûte',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'shield', value: 120, duration: 3, target: 'self' }
     ]
 }
 
@@ -4180,7 +4211,7 @@ move['wanted_gadoo_bain_de_boo'] = {
     name: 'Bain de Boo',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'terre', value: 55, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4189,7 +4220,8 @@ move['wanted_amy_l_empoisonneuse_ronce_animee'] = {
     name: 'Ronce animée',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 51, max: 65 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4198,7 +4230,7 @@ move['wanted_amy_l_empoisonneuse_poison_vegetal'] = {
     name: 'Poison végétal',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'terre', value: 70, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4227,7 +4259,8 @@ move['wanted_amy_l_empoisonneuse_foret_epineuse'] = {
     name: 'Forêt épineuse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy' },
+        { type: 'dot', element: 'terre', value: 50, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4327,7 +4360,8 @@ move['wanted_fojumo_substitution_furtive'] = {
     name: 'Substitution furtive',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'switch', value: 1, target: 'self' },
+        { type: 'esquive', chancePct: 30, reductionPct: 100, duration: 2, target: 'self' }
     ]
 }
 
@@ -4336,7 +4370,8 @@ move['wanted_fojumo_dissimulation_nocive'] = {
     name: 'Dissimulation nocive',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 25, duration: 2, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 31, max: 45 }, target: 'enemy' }
     ]
 }
 
@@ -4405,7 +4440,8 @@ move['wanted_anatak_diskedor_coup_de_foudre'] = {
     name: 'Coup de Foudre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 46, max: 55 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4453,7 +4489,7 @@ move['wanted_grand_kongoku_puissance_lunaire'] = {
     name: 'Puissance lunaire',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 35, duration: 3, target: 'self' }
     ]
 }
 
@@ -4462,7 +4498,8 @@ move['wanted_grand_kongoku_invocation_de_la_cocolune'] = {
     name: 'Invocation de la Cocolune',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 41, max: 55 }, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 20, duration: 2, target: 'self' }
     ]
 }
 
@@ -4471,7 +4508,7 @@ move['wanted_grand_kongoku_deplacement_instantane'] = {
     name: 'Déplacement instantané',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'switch', value: 1, target: 'self' }
     ]
 }
 
@@ -4520,7 +4557,7 @@ move['wanted_grand_kongoku_deplacement_instantane'] = {
     name: 'Déplacement instantané',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'switch', value: 1, target: 'self' }
     ]
 }
 
@@ -4529,7 +4566,7 @@ move['wanted_nenufor_tilotus_spores_de_nympheacee'] = {
     name: 'Spores de Nymphéacée',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'eau', value: 25, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4538,7 +4575,8 @@ move['wanted_nenufor_tilotus_invocation_de_nufor'] = {
     name: 'Invocation de Nufor',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 15, duration: 2, target: 'self' }
     ]
 }
 
@@ -4577,7 +4615,8 @@ move['wanted_tournade_aspiration_de_masse'] = {
     name: 'Aspiration de masse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'avance', target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' }
     ]
 }
 
@@ -4586,7 +4625,8 @@ move['wanted_tournade_tourbillon_violent'] = {
     name: 'Tourbillon violent',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4605,7 +4645,8 @@ move['wanted_roi_camole_taco_tak'] = {
     name: 'Taco Tak',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 36, max: 40 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4673,7 +4714,7 @@ move['wanted_khepricorne_avoir_les_bouses'] = {
     name: 'Avoir les Bouses',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 35, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4702,7 +4743,7 @@ move['wanted_ka_youloud_liquide_gastrique'] = {
     name: 'Liquide gastrique',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'eau', value: 45, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4731,7 +4772,8 @@ move['wanted_ka_youloud_mache_ouille'] = {
     name: 'Mâche Ouille',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4781,7 +4823,7 @@ move['wanted_carlita_de_l_aguerfelde_piege_a_mulou'] = {
     name: 'Piège à Mulou',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'trap', threshold: 3, element: 'terre', damage: { min: 41, max: 55 }, target: 'enemy' }
     ]
 }
 
@@ -4809,7 +4851,8 @@ move['wanted_shushu_debruk_sayl_assimilation_d_energies'] = {
     name: 'Assimilation d\'énergies',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 41, max: 55 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 1.0, target: 'self' }
     ]
 }
 
@@ -4818,7 +4861,7 @@ move['wanted_shushu_debruk_sayl_mue_demoniaque'] = {
     name: 'Mue démoniaque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 40, duration: 3, target: 'self' }
     ]
 }
 
@@ -4827,7 +4870,7 @@ move['wanted_shushu_debruk_sayl_malediction_cuisante'] = {
     name: 'Malédiction cuisante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'dot', element: 'feu', value: 60, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4868,7 +4911,7 @@ move['wanted_predagob_mine_gobliterante'] = {
     name: 'Mine Goblitérante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'trap', threshold: 3, element: 'feu', damage: { min: 251, max: 350 }, target: 'enemy' }
     ]
 }
 
@@ -4928,7 +4971,8 @@ move['wanted_gargandyas_sceaux_telluriques'] = {
     name: 'Sceaux Telluriques',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 121, max: 160 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -4937,7 +4981,7 @@ move['wanted_gargandyas_amnesie_animale'] = {
     name: 'Amnésie Animale',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'spd', value: 40, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4946,7 +4990,7 @@ move['wanted_gargandyas_cri_primitif'] = {
     name: 'Cri Primitif',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'debuff', stat: 'atk', value: 45, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4955,7 +4999,7 @@ move['wanted_gargandyas_rituel_primordial'] = {
     name: 'Rituel Primordial',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'buff', stat: 'atk', value: 45, duration: 3, target: 'self' }
     ]
 }
 
@@ -4964,7 +5008,7 @@ move['wanted_gargandyas_gargameha'] = {
     name: 'Gargameha',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'terre', damage: { min: 201, max: 260 }, target: 'enemy' }
     ]
 }
 
@@ -4973,6 +5017,7 @@ move['wanted_gargandyas_rafale_bestiale'] = {
     name: 'Rafale Bestiale',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 0, max: 0 }, target: 'enemy' } // TODO: vérifier
+        { type: 'damage', element: 'neutre', damage: { min: 91, max: 130 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
