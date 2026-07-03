@@ -7,7 +7,7 @@ const Boss_UltimeDragons = {
         lore: "Ignemikhal, aussi connu sous le nom d'Arty durant l'une de ses vies, est le Dragon Élémentaire du feu, né du souffle de Spiritia. Séduit par la poupée divine Ladysally, il a pondu le Dofus Pourpre, symbole de son amour pour elle.",
         icon: 'img/monstres/boss_Ultime/Ignemikhal_p1.png',
         phase1: {
-            image: 'img/monstres/boss_Ultime/ignemikhal_p1.png',
+            image: 'img/monstres/boss_Ultime/Ignemikhal_p1.png',
             bst: {hp:  5000000, atk: 700, res: { neutre: 0, feu: 60, eau: -40, air: 0, terre: 20 }},
             moves: ['Boss_Ultime_ignemikhal_embrasement', 'Boss_Ultime_ignemikhal_eruption', 'Boss_Ultime_ignemikhal_souffle_ardent', 'Boss_Ultime_ignemikhal_flammes_eternelles']},
         phase2: {

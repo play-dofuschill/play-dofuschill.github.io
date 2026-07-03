@@ -381,7 +381,7 @@ function showMemberSheet(member) {
             portal: 'Portail', turret: 'Tourelle',
             renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Œil pour Œil',
             burnMark: 'Brûlure diff.', repeat: 'Répétition', random: 'Aléatoire',
-            drop_bonus: 'Drop', enutrof_trap: 'Piège', esquive: 'Esquive',
+            drop_bonus: 'Drop', enutrof_trap: 'Piège', trap: 'Piège cumulatif', retardement: 'Retardement', esquive: 'Esquive',
         }[eff0?.type] || eff0?.type || '—'
         const _statLabel = { spd: 'init', atk: 'atk', maxHp: 'PV', hp: 'PV', flatDamage: 'dég', finalDamagePct: 'dég%', damageReductionPct: 'rés%', critChance: 'crit%', critDamagePct: 'crit-dég%' }
         const statLbl = s => _statLabel[s] || s
@@ -1000,7 +1000,7 @@ function showMoveTooltip(moveId, casterStats) {
         absorbElementDmg: 'Attaque (absorbe l\'élément actif)', cycleElement: 'Cycle élémentaire',
         elementDmgPeek: 'Attaque (lit l\'élément actif)', nextElementDmg: 'Attaque (élément suivant)',
         esquive: 'Esquive', consumeElementBuff: 'Consomme élément',
-        drop_bonus: 'Bonus de drop', enutrof_trap: 'Piège',
+        drop_bonus: 'Bonus de drop', enutrof_trap: 'Piège', trap: 'Piège cumulatif', retardement: 'Retardement',
         heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)', 'heal%maxHp_team': 'Soin (% PV max équipe)', hot: 'Soin continu',
         buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff', debuff_team: 'Débuff (équipe)',
         shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',

@@ -1918,7 +1918,7 @@ const CM_EFFECT_TYPES = [
   'switch','recul','avance','swap_enemies','antiHeal','turret','portal','repeat',
   'buffDrain','debuffDrain','drop_bonus','esquive',
   'summon','summon_companion','random','cast_proc','dmgIfDebuff','setEnutrof','enutrof_bonus',
-  'trap','mark_proie','buff_adjacent','buff_slot','spd_invert','reactive',
+  'trap','retardement','mark_proie','buff_adjacent','buff_slot','spd_invert','reactive',
   'reuche_guard','sacrifice_shield','damage_split','blood_link',
   'best_element_damage','absorbElementDmg','burnMark'
 ]
@@ -2241,6 +2241,7 @@ function cmDefaultEffect(type){
     setEnutrof:       { type:'setEnutrof',        state:'air', duration:3 },
     enutrof_bonus:    { type:'enutrof_bonus',     state:'air', element:'air', damage:{min:0,max:0}, target:'enemy' },
     trap:             { type:'trap',             threshold:3, damage:{min:20,max:30}, element:'air', target:'enemy' },
+    retardement:      { type:'retardement',      threshold:3, damage:{min:20,max:30}, element:'air', target:'enemy' },
     mark_proie:       { type:'mark_proie',        duration:3, damageBonusPct:10, lifestealPct:5, target:'enemy' },
     buff_adjacent:    { type:'buff_adjacent',     stat:'flatDamage', value:50, duration:2 },
     buff_slot:        { type:'buff_slot',         slot:1, stat:'finalDamagePct', value:20, duration:3 },
@@ -2349,6 +2350,7 @@ function cmEffectHTML(eff, i){
           <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`; break
       }
       case 'trap':
+      case 'retardement':
         body = `<div class="grid3">${sl('element',eff.element,elOpts,'Elément')}${n('threshold',eff.threshold,'Seuil')}${sl('target',eff.target,tgtOpts,'Cible')}</div>
           <div class="grid2">${n('damage.min',eff.damage?.min,'Min')}${n('damage.max',eff.damage?.max,'Max')}</div>`; break
       case 'mark_proie':

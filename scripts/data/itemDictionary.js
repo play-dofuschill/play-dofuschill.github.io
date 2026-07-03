@@ -295,7 +295,7 @@ item.Dofus_Tachete = {
 item.Dofus_Domakuro = {
     id: 'Dofus_Domakuro',
     name: 'Dofus Domakuro',
-    image: 'img/items/objets_bonus/Dofus_Domakuro.png',
+    image: 'img/items/objets_bonus/Domakuro.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'legendaire',
@@ -307,7 +307,7 @@ item.Dofus_Domakuro = {
 item.Dofus_Dorigami = {
     id: 'Dofus_Dorigami',
     name: 'Dofus Dorigami',
-    image: 'img/items/objets_bonus/Dofus_Dorigami.png',
+    image: 'img/items/objets_bonus/Dorigami.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'legendaire',
@@ -319,7 +319,7 @@ item.Dofus_Dorigami = {
 item.Dofus_Dokoko = {
     id: 'Dofus_Dokoko',
     name: 'Dofus Dokoko',
-    image: 'img/items/objets_bonus/Dofus_Dokoko.png',
+    image: 'img/items/objets_bonus/Dokoko.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'legendaire',
@@ -11246,7 +11246,7 @@ item.hache_du_fancrome = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_du_grolandais',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'agilite', min: 31, max: 50 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'spd', min: 3, max: 4 }, { stat: 'res.air', min: 5, max: 7 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'critResPct', min: 7, max: 10 }, { stat: 'flatDamage', min: 22, max: 32 }]
 }
 item.fantomasque = {
@@ -11258,7 +11258,7 @@ item.fantomasque = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_du_grolandais',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 151, max: 200 }, { stat: 'force', min: 21, max: 35 }, { stat: 'chance', min: 21, max: 35 }, { stat: 'agilite', min: 21, max: 35 }, { stat: 'atk', min: 11, max: 15 }, { stat: 'critChance', min: 3, max: 4 }, { stat: 'dropRate', min: 11, max: 20 }, { stat: 'res.air', min: 5, max: 7 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'flatDamage', min: 7, max: 10 }]
 }
 item.marteau_de_la_vigie_pirate = {
@@ -11270,7 +11270,7 @@ item.marteau_de_la_vigie_pirate = {
     rarity: 'peu_commun',
     itemLevelMax: 20,
     set: 'panoplie_du_grolandais',
-    requiredLevel: 150,
+    requiredLevel: 140,
     stats: [{ stat: 'maxHp', min: 201, max: 250 }, { stat: 'force', min: 31, max: 40 }, { stat: 'atk', min: 16, max: 20 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.eau', min: 7, max: 10 }, { stat: 'res.terre', min: 7, max: 10 }, { stat: 'flatDamage', min: 18, max: 32 }]
 }
 item.sac_mortuaire_de_jiangshi_nobi = {
@@ -21910,7 +21910,7 @@ item.znzzktoglazvzbz = {
 item.trophee_de_la_cadence = {
     id: 'trophee_de_la_cadence',
     name: 'Trophée de la Cadence',
-    image: 'img/items/objets_bonus/trophee_de_la_cadence.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21920,7 +21920,7 @@ item.trophee_de_la_cadence = {
 item.trophee_du_maestro = {
     id: 'trophee_du_maestro',
     name: 'Trophée du Maestro',
-    image: 'img/items/objets_bonus/trophee_du_maestro.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21930,7 +21930,7 @@ item.trophee_du_maestro = {
 item.trophee_du_trio = {
     id: 'trophee_du_trio',
     name: 'Trophée du Trio',
-    image: 'img/items/objets_bonus/trophee_du_trio.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21940,7 +21940,7 @@ item.trophee_du_trio = {
 item.trophee_du_veteran = {
     id: 'trophee_du_veteran',
     name: 'Trophée du Vétéran',
-    image: 'img/items/objets_bonus/trophee_du_veteran.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21950,7 +21950,7 @@ item.trophee_du_veteran = {
 item.trophee_du_quintette = {
     id: 'trophee_du_quintette',
     name: 'Trophée du Quintette',
-    image: 'img/items/objets_bonus/trophee_du_quintette.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21960,7 +21960,7 @@ item.trophee_du_quintette = {
 item.trophee_de_l_accord = {
     id: 'trophee_de_l_accord',
     name: 'Trophée de l\'Accord',
-    image: 'img/items/objets_bonus/trophee_de_l_accord.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21970,7 +21970,7 @@ item.trophee_de_l_accord = {
 item.trophee_du_virtuose = {
     id: 'trophee_du_virtuose',
     name: 'Trophée du Virtuose',
-    image: 'img/items/objets_bonus/trophee_du_virtuose.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21980,7 +21980,7 @@ item.trophee_du_virtuose = {
 item.trophee_de_l_octave = {
     id: 'trophee_de_l_octave',
     name: 'Trophée de l\'Octave',
-    image: 'img/items/objets_bonus/trophee_de_l_octave.png',
+    image: 'img/items/objets_bonus/trophee_next.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -21990,7 +21990,7 @@ item.trophee_de_l_octave = {
 item.trophee_slot1_x1 = {
     id: 'trophee_slot1_x1',
     name: 'Trophée de l\'Impressionnisme 1 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x1.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22000,7 +22000,7 @@ item.trophee_slot1_x1 = {
 item.trophee_slot1_x2 = {
     id: 'trophee_slot1_x2',
     name: 'Trophée de l\'Impressionnisme 2 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x2.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22010,7 +22010,7 @@ item.trophee_slot1_x2 = {
 item.trophee_slot1_x3 = {
     id: 'trophee_slot1_x3',
     name: 'Trophée de l\'Impressionnisme 3 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x3.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22020,7 +22020,7 @@ item.trophee_slot1_x3 = {
 item.trophee_slot1_x4 = {
     id: 'trophee_slot1_x4',
     name: 'Trophée de l\'Impressionnisme 4 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x4.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22030,7 +22030,7 @@ item.trophee_slot1_x4 = {
 item.trophee_slot1_x5 = {
     id: 'trophee_slot1_x5',
     name: 'Trophée de l\'Impressionnisme 5 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x5.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22040,7 +22040,7 @@ item.trophee_slot1_x5 = {
 item.trophee_slot1_x6 = {
     id: 'trophee_slot1_x6',
     name: 'Trophée de l\'Impressionnisme 6 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x6.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22050,7 +22050,7 @@ item.trophee_slot1_x6 = {
 item.trophee_slot1_x7 = {
     id: 'trophee_slot1_x7',
     name: 'Trophée de l\'Impressionnisme 7 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x7.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22060,7 +22060,7 @@ item.trophee_slot1_x7 = {
 item.trophee_slot1_x8 = {
     id: 'trophee_slot1_x8',
     name: 'Trophée de l\'Impressionnisme 8 pour 1',
-    image: 'img/items/objets_bonus/trophee_slot1_x8.png',
+    image: 'img/items/objets_bonus/trophee_slot1.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22070,7 +22070,7 @@ item.trophee_slot1_x8 = {
 item.trophee_slot2_x1 = {
     id: 'trophee_slot2_x1',
     name: 'Trophée du Réalisme 1 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x1.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22080,7 +22080,7 @@ item.trophee_slot2_x1 = {
 item.trophee_slot2_x2 = {
     id: 'trophee_slot2_x2',
     name: 'Trophée du Réalisme 2 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x2.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22090,7 +22090,7 @@ item.trophee_slot2_x2 = {
 item.trophee_slot2_x3 = {
     id: 'trophee_slot2_x3',
     name: 'Trophée du Réalisme 3 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x3.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22100,7 +22100,7 @@ item.trophee_slot2_x3 = {
 item.trophee_slot2_x4 = {
     id: 'trophee_slot2_x4',
     name: 'Trophée du Réalisme 4 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x4.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22110,7 +22110,7 @@ item.trophee_slot2_x4 = {
 item.trophee_slot2_x5 = {
     id: 'trophee_slot2_x5',
     name: 'Trophée du Réalisme 5 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x5.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22120,7 +22120,7 @@ item.trophee_slot2_x5 = {
 item.trophee_slot2_x6 = {
     id: 'trophee_slot2_x6',
     name: 'Trophée du Réalisme 6 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x6.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22130,7 +22130,7 @@ item.trophee_slot2_x6 = {
 item.trophee_slot2_x7 = {
     id: 'trophee_slot2_x7',
     name: 'Trophée du Réalisme 7 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x7.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22140,7 +22140,7 @@ item.trophee_slot2_x7 = {
 item.trophee_slot2_x8 = {
     id: 'trophee_slot2_x8',
     name: 'Trophée du Réalisme 8 pour 2',
-    image: 'img/items/objets_bonus/trophee_slot2_x8.png',
+    image: 'img/items/objets_bonus/trophee_slot2.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22150,7 +22150,7 @@ item.trophee_slot2_x8 = {
 item.trophee_slot3_x1 = {
     id: 'trophee_slot3_x1',
     name: 'Trophée du Pointillisme 1 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x1.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22160,7 +22160,7 @@ item.trophee_slot3_x1 = {
 item.trophee_slot3_x2 = {
     id: 'trophee_slot3_x2',
     name: 'Trophée du Pointillisme 2 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x2.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22170,7 +22170,7 @@ item.trophee_slot3_x2 = {
 item.trophee_slot3_x3 = {
     id: 'trophee_slot3_x3',
     name: 'Trophée du Pointillisme 3 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x3.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22180,7 +22180,7 @@ item.trophee_slot3_x3 = {
 item.trophee_slot3_x4 = {
     id: 'trophee_slot3_x4',
     name: 'Trophée du Pointillisme 4 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x4.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22190,7 +22190,7 @@ item.trophee_slot3_x4 = {
 item.trophee_slot3_x5 = {
     id: 'trophee_slot3_x5',
     name: 'Trophée du Pointillisme 5 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x5.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22200,7 +22200,7 @@ item.trophee_slot3_x5 = {
 item.trophee_slot3_x6 = {
     id: 'trophee_slot3_x6',
     name: 'Trophée du Pointillisme 6 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x6.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22210,7 +22210,7 @@ item.trophee_slot3_x6 = {
 item.trophee_slot3_x7 = {
     id: 'trophee_slot3_x7',
     name: 'Trophée du Pointillisme 7 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x7.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22220,7 +22220,7 @@ item.trophee_slot3_x7 = {
 item.trophee_slot3_x8 = {
     id: 'trophee_slot3_x8',
     name: 'Trophée du Pointillisme 8 pour 3',
-    image: 'img/items/objets_bonus/trophee_slot3_x8.png',
+    image: 'img/items/objets_bonus/trophee_slot3.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22230,7 +22230,7 @@ item.trophee_slot3_x8 = {
 item.trophee_slot4_x1 = {
     id: 'trophee_slot4_x1',
     name: 'Trophée du Cubisme 1 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x1.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22240,7 +22240,7 @@ item.trophee_slot4_x1 = {
 item.trophee_slot4_x2 = {
     id: 'trophee_slot4_x2',
     name: 'Trophée du Cubisme 2 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x2.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22250,7 +22250,7 @@ item.trophee_slot4_x2 = {
 item.trophee_slot4_x3 = {
     id: 'trophee_slot4_x3',
     name: 'Trophée du Cubisme 3 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x3.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22260,7 +22260,7 @@ item.trophee_slot4_x3 = {
 item.trophee_slot4_x4 = {
     id: 'trophee_slot4_x4',
     name: 'Trophée du Cubisme 4 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x4.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22270,7 +22270,7 @@ item.trophee_slot4_x4 = {
 item.trophee_slot4_x5 = {
     id: 'trophee_slot4_x5',
     name: 'Trophée du Cubisme 5 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x5.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22280,7 +22280,7 @@ item.trophee_slot4_x5 = {
 item.trophee_slot4_x6 = {
     id: 'trophee_slot4_x6',
     name: 'Trophée du Cubisme 6 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x6.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22290,7 +22290,7 @@ item.trophee_slot4_x6 = {
 item.trophee_slot4_x7 = {
     id: 'trophee_slot4_x7',
     name: 'Trophée du Cubisme 7 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x7.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22300,7 +22300,7 @@ item.trophee_slot4_x7 = {
 item.trophee_slot4_x8 = {
     id: 'trophee_slot4_x8',
     name: 'Trophée du Cubisme 8 pour 4',
-    image: 'img/items/objets_bonus/trophee_slot4_x8.png',
+    image: 'img/items/objets_bonus/trophee_slot4.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22310,7 +22310,7 @@ item.trophee_slot4_x8 = {
 item.trophee_slot5_x1 = {
     id: 'trophee_slot5_x1',
     name: 'Trophée du Surréalisme 1 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x1.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22320,7 +22320,7 @@ item.trophee_slot5_x1 = {
 item.trophee_slot5_x2 = {
     id: 'trophee_slot5_x2',
     name: 'Trophée du Surréalisme 2 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x2.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22330,7 +22330,7 @@ item.trophee_slot5_x2 = {
 item.trophee_slot5_x3 = {
     id: 'trophee_slot5_x3',
     name: 'Trophée du Surréalisme 3 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x3.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22340,7 +22340,7 @@ item.trophee_slot5_x3 = {
 item.trophee_slot5_x4 = {
     id: 'trophee_slot5_x4',
     name: 'Trophée du Surréalisme 4 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x4.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22350,7 +22350,7 @@ item.trophee_slot5_x4 = {
 item.trophee_slot5_x5 = {
     id: 'trophee_slot5_x5',
     name: 'Trophée du Surréalisme 5 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x5.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22360,7 +22360,7 @@ item.trophee_slot5_x5 = {
 item.trophee_slot5_x6 = {
     id: 'trophee_slot5_x6',
     name: 'Trophée du Surréalisme 6 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x6.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22370,7 +22370,7 @@ item.trophee_slot5_x6 = {
 item.trophee_slot5_x7 = {
     id: 'trophee_slot5_x7',
     name: 'Trophée du Surréalisme 7 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x7.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22380,7 +22380,7 @@ item.trophee_slot5_x7 = {
 item.trophee_slot5_x8 = {
     id: 'trophee_slot5_x8',
     name: 'Trophée du Surréalisme 8 pour 5',
-    image: 'img/items/objets_bonus/trophee_slot5_x8.png',
+    image: 'img/items/objets_bonus/trophee_slot5.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22390,7 +22390,7 @@ item.trophee_slot5_x8 = {
 item.trophee_slot6_x1 = {
     id: 'trophee_slot6_x1',
     name: 'Trophée de l\'Expressionnisme 1 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x1.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22400,7 +22400,7 @@ item.trophee_slot6_x1 = {
 item.trophee_slot6_x2 = {
     id: 'trophee_slot6_x2',
     name: 'Trophée de l\'Expressionnisme 2 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x2.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22410,7 +22410,7 @@ item.trophee_slot6_x2 = {
 item.trophee_slot6_x3 = {
     id: 'trophee_slot6_x3',
     name: 'Trophée de l\'Expressionnisme 3 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x3.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22420,7 +22420,7 @@ item.trophee_slot6_x3 = {
 item.trophee_slot6_x4 = {
     id: 'trophee_slot6_x4',
     name: 'Trophée de l\'Expressionnisme 4 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x4.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22430,7 +22430,7 @@ item.trophee_slot6_x4 = {
 item.trophee_slot6_x5 = {
     id: 'trophee_slot6_x5',
     name: 'Trophée de l\'Expressionnisme 5 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x5.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22440,7 +22440,7 @@ item.trophee_slot6_x5 = {
 item.trophee_slot6_x6 = {
     id: 'trophee_slot6_x6',
     name: 'Trophée de l\'Expressionnisme 6 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x6.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22450,7 +22450,7 @@ item.trophee_slot6_x6 = {
 item.trophee_slot6_x7 = {
     id: 'trophee_slot6_x7',
     name: 'Trophée de l\'Expressionnisme 7 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x7.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',
@@ -22460,7 +22460,7 @@ item.trophee_slot6_x7 = {
 item.trophee_slot6_x8 = {
     id: 'trophee_slot6_x8',
     name: 'Trophée de l\'Expressionnisme 8 pour 6',
-    image: 'img/items/objets_bonus/trophee_slot6_x8.png',
+    image: 'img/items/objets_bonus/trophee_slot6.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'rare',

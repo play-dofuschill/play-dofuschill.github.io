@@ -356,15 +356,21 @@ INVERSION DE VITESSE
 { type: 'spd_invert', duration: 4, target: 'self'        }
 
 ──────────────────────────────────────────────────────────────────────────────
-PIÈGES CUMULATIFS (Sram / Roublard)
+PIÈGES CUMULATIFS (Sram / Roublard) — et alias 'retardement' pour d'autres classes
 ──────────────────────────────────────────────────────────────────────────────
 // Les threshold premiers lancers posent des pièges silencieux (log "X/threshold").
 // Au (threshold+1)ème lancer : tous les pièges explosent — (threshold+1) × les dégâts.
 // Compteurs INDÉPENDANTS par moveId → plusieurs sorts de piège coexistent.
 // Reset automatique à chaque mort d'ennemi.
+// Explosion anticipée : dès que le lanceur QUITTE la position active (swap manuel, swap raid,
+// ou mort → auto-switch), tous ses pièges/retardements en attente explosent immédiatement,
+// même sous le seuil (voir _explodeOwnedTraps dans combat.js).
 //   threshold: 3  →  casts 1-2-3 = pose,  cast 4 = explosion × 4
+// 'retardement' est un alias strictement identique à 'trap' (même mécanique, même code) —
+// à utiliser pour thématiser un sort hors Sram/Roublard sans changer le comportement.
 { type: 'trap', threshold: 3, damage: { min: 20, max: 30 }, element: 'air',   target: 'enemy' }
 { type: 'trap', threshold: 2, damage: { min: 35, max: 45 }, element: 'terre', target: 'enemy' }
+{ type: 'retardement', threshold: 3, damage: { min: 20, max: 30 }, element: 'feu', target: 'enemy' }
 
 ──────────────────────────────────────────────────────────────────────────────
 SCALING BASÉ SUR LES HP / BOUCLIER / ÉROSION DU LANCEUR
@@ -7150,7 +7156,7 @@ move.la_folle_transmutee = {
     name: 'La Folle Transmutée',
     classId: 'sadida',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'la_folle_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'la_folle_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 120,
                         patch: {}},
                        {lvl: 187,
@@ -7194,7 +7200,7 @@ move.la_bloqueuse_transmutee = {
     name: 'La Bloqueuse Transmutée',
     classId: 'sadida',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'la_bloqueuse_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'la_bloqueuse_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
 move.fetiches_calcines = {
@@ -7218,7 +7224,7 @@ move.influence_vegetale = {
     name: 'Influence Végétale',
     classId: 'sadida',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'influence_vegetale_sadida', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'influence_vegetale_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
 move.la_sacrifiee_transmutee = {
@@ -7226,7 +7232,7 @@ move.la_sacrifiee_transmutee = {
     name: 'La Sacrifiée Transmutée',
     classId: 'sadida',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'la_sacrifiee_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'la_sacrifiee_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
 move.malediction_vaudou = {
@@ -7258,7 +7264,7 @@ move.la_gonflable_transmutee = {
     name: 'La Gonflable Transmutée',
     classId: 'sadida',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'la_gonflable_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'la_gonflable_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
 move.mandragore = {
@@ -7290,7 +7296,7 @@ move.la_surpuissante_transmutee = {
     name: 'La Surpuissante Transmutée',
     classId: 'sadida',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'la_surpuissante_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'la_surpuissante_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
 // #endregion
@@ -7866,7 +7872,7 @@ move.complice = {
     name: 'Complice',
     classId: 'xelor',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'complice_xelor', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'complice_xelor', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
@@ -8096,7 +8102,7 @@ move.synchro = {
     name: 'Synchro',
     classId: 'xelor',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'synchro_xelor', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'synchro_xelor', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 90,
                         patch: {}},
                        {lvl: 157,
@@ -8156,7 +8162,7 @@ move.cadran_de_xelor = {
     name: 'Cadran de Xélor',
     classId: 'xelor',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'cadran_de_xelor_xelor', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'cadran_de_xelor_xelor', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 115,
                         patch: {}},
                        {lvl: 182,
@@ -8375,7 +8381,7 @@ move.harponneuse = {
     name: 'Harponneuse',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'harponneuse_steamer', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'harponneuse_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 20,
                         patch: {}},
                        {lvl: 72,
@@ -8403,7 +8409,7 @@ move.gardienne = {
     name: 'Gardienne',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'gardienne_steamer', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'gardienne_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 28,
                         patch: {}},
                        {lvl: 82,
@@ -8459,7 +8465,7 @@ move.tactirelle = {
     name: 'Tactirelle',
     classId: 'steamer',
     cooldownMs: 2000,
-    effects: [{type: 'summon', summonId: 'tactirelle_steamer', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'tactirelle_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
@@ -8665,7 +8671,7 @@ move.chalutier = {
     name: 'Chalutier',
     classId: 'steamer',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'chalutier_steamer', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'chalutier_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 115,
                         patch: {}},
                        {lvl: 182,
@@ -8689,7 +8695,7 @@ move.foreuse = {
     name: 'Foreuse',
     classId: 'steamer',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'foreuse_steamer', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'foreuse_steamer', scale: 0.30, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
@@ -8729,7 +8735,7 @@ move.bathyscaphe = {
     name: 'Bathyscaphe',
     classId: 'steamer',
     cooldownMs: 3500,
-    effects: [{type: 'summon', summonId: 'bathyscaphe_steamer', scale: 0.30, duration: 2, target: 'self'}],
+    effects: [{type: 'summon_companion', summonId: 'bathyscaphe_steamer', scale: 0.30, duration: 2, target: 'self'}],
     description: ""
 }
 // move.blindage = {
@@ -10892,7 +10898,7 @@ move.vestige = {
     classId: 'eliotrope',
     cooldownMs: 3500,
     effects: [
-        {type: 'summon', summonId: 'vestige_eliotrope', scale: 0.30, duration: 2, target: 'self'}
+        {type: 'summon_companion', summonId: 'vestige_eliotrope', scale: 0.30, duration: 2, target: 'self'}
     ],
     description: "Invoque un Vestige capable de frapper dans plusieurs éléments et de se téléporter via les portails."
 }

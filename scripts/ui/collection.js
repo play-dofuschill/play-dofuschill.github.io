@@ -225,7 +225,7 @@ function showMonsterTooltip(monsterId) {
                 shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
                 self_dmg_pct_current: 'Sacrifice (PV courants)',
                 burnMark: 'Brûlure différée', esquive: 'Esquive', consumeElementBuff: 'Consomme élem.',
-                drop_bonus: 'Bonus de drop', enutrof_trap: 'Piège',
+                drop_bonus: 'Bonus de drop', enutrof_trap: 'Piège', trap: 'Piège cumulatif', retardement: 'Retardement',
                 summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
                 renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
                 switch: 'Déplacement', repeat: 'Répétition', random: 'Aléatoire',

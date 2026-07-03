@@ -2211,7 +2211,7 @@ monsters.dopeul_zobal = {
 monsters.dopeul_cra = {
     id: 'dopeul_cra',
     name: 'Dopeul Cra',
-    image: 'images/monsters/dopeul_cra.png',
+    image: 'images/monsters/Dopeul_Cra.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 115, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -2220,7 +2220,7 @@ monsters.dopeul_cra = {
 monsters.dopeul_eliotrope = {
     id: 'dopeul_eliotrope',
     name: 'Dopeul Eliotrope',
-    image: 'images/monsters/dopeul_eliotrope.png',
+    image: 'images/monsters/Dopeul_Eliotrope.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 115, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -2229,7 +2229,7 @@ monsters.dopeul_eliotrope = {
 monsters.dopeul_huppermage = {
     id: 'dopeul_huppermage',
     name: 'Dopeul Huppermage',
-    image: 'images/monsters/dopeul_huppermage.png',
+    image: 'images/monsters/Dopeul_Huppermage.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 115, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -2238,7 +2238,7 @@ monsters.dopeul_huppermage = {
 monsters.dopeul_ouginak = {
     id: 'dopeul_ouginak',
     name: 'Dopeul Ouginak',
-    image: 'images/monsters/dopeul_ouginak.png',
+    image: 'images/monsters/Dopeul_Ouginak.png',
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 390, atk: 115, spd: 100, res: { neutre: 8, terre: 8, feu: 8, eau: 8, air: 8 } },
@@ -3033,7 +3033,7 @@ monsters.graboule = {
 monsters.draegnerys = {
     id: 'draegnerys',
     name: 'Draegnerys',
-    image: 'images/monsters/draegnerys.png',
+    image: 'images/monsters/Draegnerys.png',
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 1400, atk: 220, spd: 130, res: { neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 } },

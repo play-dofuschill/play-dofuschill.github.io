@@ -1585,7 +1585,7 @@ areas.egoutsDuChateauAmakna = {
     minLevel: 140, maxLevel: 160,
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Ramane.png",
     description: "Sous les fondations du Château d'Amakna s'étend un réseau de galeries médiévales creusées par des bâtisseurs depuis longtemps oubliés. Les squelettes qui y patrouillent semblent avoir reçu pour ordre de défendre ces lieux pour l'éternité.",
     spawns: [
         { id: 'ramane', weight: 10 },
@@ -1613,14 +1613,15 @@ areas.berceauDAlma = {
     minLevel: 140, maxLevel: 160,
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Vigie_pirate.png",
     description: "Le Berceau d'Alma est un lieu saint pour les Sadidas : c'est ici, dit-on, que la déesse de la Nature fit naître les premières plantes du Monde des Douze. Malheureusement, même les lieux sacrés ne sont pas à l'abri des créatures mal intentionnées.",
     spawns: [
-        { id: 'crapeur', weight: 10 },
-        { id: 'atomystique', weight: 10 },
-        { id: 'fumrirolle', weight: 10 },
-        { id: 'solfatare', weight: 10 },
-        { id: 'mofette', weight: 5 }
+        { id: 'fantomalamere', weight: 10 },
+        { id: 'fantimonier', weight: 10 },
+        { id: 'fantomat', weight: 10 },
+        { id: 'harpirate', weight: 10 },
+        { id: 'fancrome', weight: 10 },
+        { id: 'vigie_pirate', weight: 5 }
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
@@ -1630,7 +1631,10 @@ areas.berceauDAlma = {
         { itemId: 'amulette_de_cantile', dropRate: 0.01 },
         { itemId: 'bottes_de_cantile', dropRate: 0.01 },
         { itemId: 'cape_tivante', dropRate: 0.01 },
-        { itemId: 'slip_noze', dropRate: 0.01 }
+        { itemId: 'slip_noze', dropRate: 0.01 },
+        { itemId: 'hache_du_fancrome', dropRate: 0.01 },
+        { itemId: 'fantomasque', dropRate: 0.01 },
+        { itemId: 'marteau_de_la_vigie_pirate', dropRate: 0.01 }
     ]
 }
 
@@ -1640,7 +1644,7 @@ areas.dedaleDuDarkVlad = {
     minLevel: 140, maxLevel: 160,
     mobMinLevel: 140, mobMaxLevel: 150,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Malzerb.png",
     description: "Le Dédale du Dark Vlad est le résultat de siècles de magie noire accumulée. Les couloirs de ce labyrinthe maudit changent de configuration sans prévenir, et les ombres qui y habitent semblent nourries par la peur de ceux qui s'y perdent.",
     spawns: [
         { id: 'malzerb', weight: 10 },
@@ -1669,7 +1673,7 @@ areas.larmesDOuronigride = {
     minLevel: 150, maxLevel: 170,
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Crapeur.png",
     description: "Ouronigride, dragon de l'obscurité, aurait versé ses larmes en ce lieu lors d'un combat titanesque. Ces larmes, cristallisées au fil des millénaires, ont donné naissance à un paysage aussi beau que dangereux.",
     spawns: [
         { id: 'crapeur', weight: 10 },
@@ -1695,7 +1699,7 @@ areas.feuillageArbreHakam = {
     minLevel: 150, maxLevel: 170,
     mobMinLevel: 150, mobMaxLevel: 160,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Bitouf_Aérien.png",
     description: "L'Arbre Hakam, colossal gardien de la forêt, étend ses branches sur plusieurs hectares. Dans ce feuillage dense comme un second sol, des créatures arboricoles ont établi leurs nids, invisibles depuis le sol.",
     spawns: [
         { id: 'bitouf_aerien', weight: 10 },
@@ -2341,7 +2345,7 @@ areas.rocDesSalbatroce = {
     minLevel: 185, maxLevel: 200,
     mobMinLevel: 185, mobMaxLevel: 200,
     background: "",
-    icon: "images/monsters/.png",
+    icon: "images/monsters/Tabacille.png",
     description: "Les Salbatroces ont transformé ce roc saillant au-dessus des flots sufokiens en une véritable cité aérienne. Leurs nids de fortune s'accrochent aux parois verticales, et malheur à quiconque s'approche de leurs œufs lors de la saison de nidification.",
     spawns: [
         { id: 'tabacille', weight: 10 },
@@ -3411,7 +3415,7 @@ areas.donjonDraegnerys = {
     minLevel: 85, maxLevel: 85,
     mobMinLevel: 85, mobMaxLevel: 85,
     background: "",
-    icon: "img/monstres/sprites/Draegnerys.png",
+    icon: "images/monsters/Draegnerys.png",
     description: "Sur la presqu'île des Dragoeufs, au cœur des terres fumantes où la roche semble encore porter l'empreinte des anciens dragons, s'élève l'Épreuve de Draegnerys. Ici, chaque pas est une mise à l'épreuve, chaque couloir un test imposé par la gardienne des lieux.",
     spawns: [
         { id: 'draegnerys', weight: 100 }

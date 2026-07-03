@@ -178,7 +178,7 @@ move.Pelle_de_Fortune = {
 summons.pelle_animee = {
     id:    'pelle_animee',
     name:  'Pelle Animée',
-    image: 'img/classes/invocations/pelle_animee.png',
+    image: 'img/classes/invocations/pelle_anime.png',
     bst:   { spd: 100 },
     moves: ['Deblayage']
 }
@@ -591,6 +591,141 @@ summons.esprit_glouton_osamodas = {
     moves: ['morsure_gloutonne', 'interception_gobgob']
 }
 
+// ── Craquolosse (Terre, retire des PM, augmente ses résistances) ──
+move.fronde_rocheuse = {
+    id: 'fronde_rocheuse',
+    name: 'Fronde Rocheuse',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 22, max: 26 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
+    ]
+}
+move.coeur_de_pierre = {
+    id: 'coeur_de_pierre',
+    name: 'Cœur de Pierre',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 18, max: 22 }, target: 'enemy' },
+        { type: 'buff', stat: 'res_all', value: 15, duration: 2, target: 'self' }
+    ]
+}
+summons.craquolosse_osamodas = {
+    id:    'craquolosse_osamodas',
+    name:  'Craquolosse',
+    image: 'img/classes/invocations/craqueleur.png',
+    bst:   { spd: 95 },
+    moves: ['fronde_rocheuse', 'coeur_de_pierre']
+}
+
+// ── Crocoléreux (Eau, retire des Critiques, réduit dommages reçus) ──
+move.crocs_colereux = {
+    id: 'crocs_colereux',
+    name: 'Crocs Coléreux',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 24, max: 28 }, target: 'enemy' },
+        { type: 'debuff', stat: 'critChance', value: 15, duration: 2, target: 'enemy' }
+    ]
+}
+move.trombe_bourbeuse = {
+    id: 'trombe_bourbeuse',
+    name: 'Trombe Bourbeuse',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 18, max: 22 }, target: 'enemy' },
+        { type: 'buff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'self' }
+    ]
+}
+summons.crocolereux_osamodas = {
+    id:    'crocolereux_osamodas',
+    name:  'Crocoléreux',
+    image: 'img/classes/invocations/croco.png',
+    bst:   { spd: 90 },
+    moves: ['crocs_colereux', 'trombe_bourbeuse']
+}
+
+// ── Sulfénix (Feu, augmente ses Soins, se soigne/téléporte) ──
+move.sulfuria = {
+    id: 'sulfuria',
+    name: 'Sulfuria',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 20, max: 24 }, target: 'enemy' },
+        { type: 'buff', stat: 'healPct', value: 20, duration: 2, target: 'self' }
+    ]
+}
+move.danse_flammes = {
+    id: 'danse_flammes',
+    name: 'Danse Flammes',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 16, max: 20 }, target: 'enemy' },
+        { type: 'heal%maxHp', heal: 6, target: 'ally_min_hp' }
+    ]
+}
+summons.sulfenix_osamodas = {
+    id:    'sulfenix_osamodas',
+    name:  'Sulfénix',
+    image: 'img/classes/invocations/phoenix.png',
+    bst:   { spd: 100 },
+    moves: ['sulfuria', 'danse_flammes']
+}
+
+// ── Scarafoudre (Air, bouclier, retire des Critiques) ──
+move.scarapace = {
+    id: 'scarapace',
+    name: 'Scarapace',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 16, max: 20 }, target: 'enemy' },
+        { type: 'shield', value: 100, duration: 2, target: 'self' }
+    ]
+}
+move.scarafusee = {
+    id: 'scarafusee',
+    name: 'Scarafusée',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 22, max: 26 }, target: 'enemy' },
+        { type: 'debuff', stat: 'critChance', value: 15, duration: 2, target: 'enemy' }
+    ]
+}
+summons.scarafoudre_osamodas = {
+    id:    'scarafoudre_osamodas',
+    name:  'Scarafoudre',
+    image: 'img/classes/invocations/scara.png',
+    bst:   { spd: 110 },
+    moves: ['scarapace', 'scarafusee']
+}
+
+// ── Esprit Facétieux / Gobgob Facétieux (Neutre, échange de position) ──
+move.gobstitution = {
+    id: 'gobstitution',
+    name: 'Gobstitution',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 20, max: 24 }, target: 'enemy' },
+        { type: 'switch', value: 1, target: 'enemy' }
+    ]
+}
+move.gobjection = {
+    id: 'gobjection',
+    name: 'Gobjection',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 16, max: 20 }, target: 'enemy' },
+        { type: 'debuff', stat: 'atk', value: 15, duration: 2, target: 'enemy' }
+    ]
+}
+summons.esprit_facetieux_osamodas = {
+    id:    'esprit_facetieux_osamodas',
+    name:  'Gobgob Facétieux',
+    image: 'img/classes/invocations/Gobgob_facécieux.png',
+    bst:   { spd: 85 },
+    moves: ['gobstitution', 'gobjection']
+}
+
 // #endregion
 // #region SADIDA ──────────────────────────────────────────────────────────────
 
@@ -801,6 +936,257 @@ summons.influence_vegetale_sadida = {
     image: 'img/classes/invocations/groute.png',
     bst:   { spd: 90 },
     moves: ['seve_fortifiante', 'affaiblissement_vegetal']
+}
+
+move.soin_gonflable_transmute = {
+    id: 'soin_gonflable_transmute',
+    name: 'Sève Curative Renforcée',
+    cooldownMs: 2500,
+    effects: [{ type: 'heal%maxHp', heal: 8, target: 'ally_min_hp' }]
+}
+move.explosion_gonflable_transmute = {
+    id: 'explosion_gonflable_transmute',
+    name: 'Explosion Renforcée',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'feu', damage: { min: 20, max: 24 }, target: 'enemy' },
+        { type: 'recul', target: 'enemy' }
+    ]
+}
+summons.la_gonflable_transmutee_sadida = {
+    id:    'la_gonflable_transmutee_sadida',
+    name:  'La Gonflable Transmutée',
+    image: 'img/classes/invocations/la_gonflable.png',
+    bst:   { spd: 105 },
+    moves: ['soin_gonflable_transmute', 'explosion_gonflable_transmute']
+}
+
+move.frappe_sylvestre_transmute = {
+    id: 'frappe_sylvestre_transmute',
+    name: 'Frappe Sylvestre Renforcée',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 26, max: 30 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'enemy' }
+    ]
+}
+move.puissance_terrienne_transmute = {
+    id: 'puissance_terrienne_transmute',
+    name: 'Puissance Terrienne Renforcée',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 32, max: 38 }, target: 'enemy' },
+        { type: 'buff', stat: 'atk', value: 30, duration: 2, target: 'self' }
+    ]
+}
+summons.la_surpuissante_transmutee_sadida = {
+    id:    'la_surpuissante_transmutee_sadida',
+    name:  'La Surpuissante Transmutée',
+    image: 'img/classes/invocations/la_surpuissante.png',
+    bst:   { spd: 110 },
+    moves: ['frappe_sylvestre_transmute', 'puissance_terrienne_transmute']
+}
+
+// #endregion
+// #region XELOR ────────────────────────────────────────────────────────────────
+
+move.ralentissement_complice = {
+    id: 'ralentissement_complice',
+    name: 'Ralentissement',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 10, max: 12 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
+    ]
+}
+summons.complice_xelor = {
+    id:    'complice_xelor',
+    name:  'Complice',
+    image: 'img/classes/invocations/complice.png',
+    bst:   { spd: 100 },
+    moves: ['ralentissement_complice']
+}
+
+move.synchronisation = {
+    id: 'synchronisation',
+    name: 'Synchronisation',
+    cooldownMs: 2000,
+    effects: [{ type: 'buff', stat: 'spd', value: 20, duration: 2, target: 'ally_random' }]
+}
+move.chronodrain = {
+    id: 'chronodrain',
+    name: 'Chronodrain',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 16, max: 18 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 8, duration: 2, target: 'enemy' }
+    ]
+}
+summons.synchro_xelor = {
+    id:    'synchro_xelor',
+    name:  'Synchro',
+    image: 'img/classes/invocations/synchro.png',
+    bst:   { spd: 110 },
+    moves: ['synchronisation', 'chronodrain']
+}
+
+move.detraquement = {
+    id: 'detraquement',
+    name: 'Détraquement',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 20, max: 24 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 15, duration: 3, target: 'enemy' }
+    ]
+}
+move.avance_temporelle = {
+    id: 'avance_temporelle',
+    name: 'Avance Temporelle',
+    cooldownMs: 2500,
+    effects: [{ type: 'buff', stat: 'spd', value: 25, duration: 2, target: 'self' }]
+}
+summons.cadran_de_xelor_xelor = {
+    id:    'cadran_de_xelor_xelor',
+    name:  'Cadran de Xélor',
+    image: 'img/classes/invocations/cadran_xelor.png',
+    bst:   { spd: 120 },
+    moves: ['detraquement', 'avance_temporelle']
+}
+
+// #endregion
+// #region STEAMER ──────────────────────────────────────────────────────────────
+
+move.harpon_perforant = {
+    id: 'harpon_perforant',
+    name: 'Harpon Perforant',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 14, max: 16 }, target: 'enemy' },
+        { type: 'avance', target: 'enemy' }
+    ]
+}
+summons.harponneuse_steamer = {
+    id:    'harponneuse_steamer',
+    name:  'Harponneuse',
+    image: 'img/classes/invocations/harponneuse.png',
+    bst:   { spd: 100 },
+    moves: ['harpon_perforant']
+}
+
+move.rempart_vapeur = {
+    id: 'rempart_vapeur',
+    name: 'Rempart de Vapeur',
+    cooldownMs: 2500,
+    effects: [{ type: 'shield', value: 100, duration: 2, target: 'ally_random' }]
+}
+summons.gardienne_steamer = {
+    id:    'gardienne_steamer',
+    name:  'Gardienne',
+    image: 'img/classes/invocations/gardienne.png',
+    bst:   { spd: 80 },
+    moves: ['rempart_vapeur']
+}
+
+move.manoeuvre_tactique = {
+    id: 'manoeuvre_tactique',
+    name: 'Manœuvre Tactique',
+    cooldownMs: 2500,
+    effects: [{ type: 'buff', stat: 'atk', value: 20, duration: 2, target: 'ally_random' }]
+}
+move.tir_ajuste_tactirelle = {
+    id: 'tir_ajuste_tactirelle',
+    name: 'Tir Ajusté',
+    cooldownMs: 2000,
+    effects: [{ type: 'damage', element: 'air', damage: { min: 18, max: 20 }, target: 'enemy' }]
+}
+summons.tactirelle_steamer = {
+    id:    'tactirelle_steamer',
+    name:  'Tactirelle',
+    image: 'img/classes/invocations/tactirelle.png',
+    bst:   { spd: 105 },
+    moves: ['manoeuvre_tactique', 'tir_ajuste_tactirelle']
+}
+
+move.filet_de_chalut = {
+    id: 'filet_de_chalut',
+    name: 'Filet de Chalut',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'damage', element: 'eau', damage: { min: 20, max: 24 }, target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
+    ]
+}
+summons.chalutier_steamer = {
+    id:    'chalutier_steamer',
+    name:  'Chalutier',
+    image: 'img/classes/invocations/chalutier.png',
+    bst:   { spd: 90 },
+    moves: ['filet_de_chalut']
+}
+
+move.forage_profond = {
+    id: 'forage_profond',
+    name: 'Forage Profond',
+    cooldownMs: 2200,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 22, max: 26 }, target: 'enemy' },
+        { type: 'debuff', stat: 'damageReductionPct', value: 10, duration: 2, target: 'enemy' }
+    ]
+}
+summons.foreuse_steamer = {
+    id:    'foreuse_steamer',
+    name:  'Foreuse',
+    image: 'img/classes/invocations/foreuse.png',
+    bst:   { spd: 95 },
+    moves: ['forage_profond']
+}
+
+move.plongee_abyssale = {
+    id: 'plongee_abyssale',
+    name: 'Plongée Abyssale',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self' },
+        { type: 'shield', value: 120, duration: 2, target: 'self' }
+    ]
+}
+summons.bathyscaphe_steamer = {
+    id:    'bathyscaphe_steamer',
+    name:  'Bathyscaphe',
+    image: 'img/classes/invocations/bathyscaphe.png',
+    bst:   { spd: 75 },
+    moves: ['plongee_abyssale']
+}
+
+// #endregion
+// #region ELIOTROPE ────────────────────────────────────────────────────────────
+
+move.frappe_multielementaire = {
+    id: 'frappe_multielementaire',
+    name: 'Frappe Multiélémentaire',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 8, max: 10 }, target: 'enemy' },
+        { type: 'damage', element: 'feu',   damage: { min: 8, max: 10 }, target: 'enemy' },
+        { type: 'damage', element: 'eau',   damage: { min: 8, max: 10 }, target: 'enemy' },
+        { type: 'damage', element: 'air',   damage: { min: 8, max: 10 }, target: 'enemy' }
+    ]
+}
+move.saut_de_portail = {
+    id: 'saut_de_portail',
+    name: 'Saut de Portail',
+    cooldownMs: 2500,
+    effects: [
+        { type: 'avance', target: 'enemy' },
+        { type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self' }
+    ]
+}
+summons.vestige_eliotrope = {
+    id:    'vestige_eliotrope',
+    name:  'Vestige',
+    image: 'img/classes/invocations/totem_elio.png',
+    bst:   { spd: 100 },
+    moves: ['frappe_multielementaire', 'saut_de_portail']
 }
 
 // #endregion

@@ -907,7 +907,7 @@ item.cleDonjonDechechireuse = {
 item.cleDonjonBreuil = {
     id: 'cleDonjonBreuil',
     name: 'Clef du Breuil du Vénérable',
-    image: 'img/items/divers/DonjonBreuil.png',
+    image: 'img/items/divers/cleDonjonBreuil.png',
     type: 'resource',
     isKey: true,
     description: 'Cette clef permet de rentrer dans le du Breuil du Vénérable.'

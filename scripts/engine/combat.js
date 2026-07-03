@@ -423,6 +423,8 @@ function startCombat(areaId) {
         enutrof_eau_active:    0,
         enutrof_traps:         [],
         trapStacks:            {},
+        trapOwners:            {},
+        trapEffects:           {},
         sessionLoot:           _emptySessionLoot(),
         dungeonBossQueue:      null,
         playerAttackCount:     0,
@@ -3373,13 +3375,20 @@ function executeEffect(ctx) {
             break
         }
 
-        case 'trap': {
-            // Piège cumulatif : les effect.threshold premiers lancers posent des pièges silencieux.
-            // Au (threshold+1)ème lancer : déclenche les dégâts de TOUS les pièges accumulés.
-            // Les stacks sont réinitialisés à chaque mort d'ennemi (voir onVictory).
+        case 'trap':
+        case 'retardement': {
+            // Piège/retardement cumulatif : les effect.threshold premiers lancers posent des charges silencieuses.
+            // Au (threshold+1)ème lancer : déclenche les dégâts de TOUTES les charges accumulées.
+            // Compteurs INDÉPENDANTS par moveId → plusieurs sorts coexistent. Reset auto à chaque mort d'ennemi (voir onVictory).
+            // Explosion anticipée : si le lanceur quitte la position active (swap, mort...) avant le seuil,
+            // les charges posées explosent immédiatement — voir _explodeOwnedTraps.
             if (!combat) break
-            combat.trapStacks = combat.trapStacks || {}
+            combat.trapStacks  = combat.trapStacks  || {}
+            combat.trapOwners  = combat.trapOwners  || {}
+            combat.trapEffects = combat.trapEffects || {}
             const _trapKey  = moveId || effect.id || 'trap'
+            combat.trapOwners[_trapKey]  = state.team.indexOf(caster)
+            combat.trapEffects[_trapKey] = { effect, moveName: moveData.name }
             const _newCount = (combat.trapStacks[_trapKey] || 0) + 1
             if (_newCount > (effect.threshold || 3)) {
                 addLog(`${moveData.name} → EXPLOSION ! ${_newCount} pièges déclenchés !`)
@@ -4258,6 +4267,39 @@ function addLog(msg) {
     if (combat.log.length > 8) combat.log.pop()
 }
 
+// Fait exploser immédiatement les pièges/retardements (voir case 'trap'/'retardement') posés par un
+// membre qui quitte la position active (swap manuel, swap raid, ou mort → auto-switch), avant d'avoir
+// atteint le seuil de déclenchement normal.
+// raidSlotIdx : slot raid (0-2) qu'occupait le membre — utilisé pour retrouver son adversaire en raid.
+function _explodeOwnedTraps(memberIdx, raidSlotIdx) {
+    if (!combat?.trapStacks) return
+    const member = state.team[memberIdx]
+    if (!member) return
+    const stats = getEffectiveStats(member) ?? member._stats
+    let targetEnemy = combat.enemy
+    if (combat.isRaid) {
+        const slotIdx      = raidSlotIdx !== undefined ? raidSlotIdx : (combat.raidSlots?.indexOf(memberIdx) ?? -1)
+        const targetSlotIdx = slotIdx !== -1 ? _getRaidTargetSlot(slotIdx) : -1
+        targetEnemy = targetSlotIdx !== -1 ? combat.enemies[targetSlotIdx] : _getFirstAliveRaidEnemy()
+    }
+    if (!targetEnemy || targetEnemy.currentHp <= 0) return
+    for (const key in combat.trapStacks) {
+        if (combat.trapOwners?.[key] !== memberIdx) continue
+        const count = combat.trapStacks[key]
+        if (!count) continue
+        combat.trapStacks[key] = 0
+        const meta = combat.trapEffects?.[key]
+        if (!meta) continue
+        addLog(`${meta.moveName} → changement d'actif : ${count} piège(s) déclenché(s) !`)
+        for (let i = 0; i < count; i++) {
+            executeEffect({
+                caster: member, casterStats: stats, targetEnemy,
+                effect: { ...meta.effect, type: 'damage' }, moveData: { name: meta.moveName }, moveId: key + '_blast'
+            })
+        }
+    }
+}
+
 function setActiveMember(index) {
     if (!combat || !state.isRunning) return
     if (combat.isRaid) {
@@ -4271,6 +4313,7 @@ function setActiveMember(index) {
         combat.memberTimers[index] = 0
         const _prevM = state.team[combat.activeMemberIndex]
         if (_prevM) _prevM.spellStacks = {}
+        _explodeOwnedTraps(combat.activeMemberIndex)
         _handleDofusSwapEffects(combat.activeMemberIndex)
     }
     combat.activeMemberIndex = index
@@ -4473,6 +4516,8 @@ function _autoSwitchActive() {
     const cur    = state.team[combat.activeMemberIndex]
     const curIdx = combat.activeMemberIndex
     if (cur && cur.currentHp > 0) return
+
+    if (cur) _explodeOwnedTraps(curIdx)
 
     // Invocation alliée morte : restaurer le propriétaire
     if (cur?.isSummon && cur.ownerSlot !== undefined) {
@@ -5202,6 +5247,8 @@ function _autoSwitchRaidSlot(slotIdx) {
     const member = state.team[memberIdx]
     if (member && member.currentHp > 0) return
 
+    if (member) _explodeOwnedTraps(memberIdx, slotIdx)
+
     // Invocation alliée morte : restaurer le propriétaire
     if (member?.isSummon && member.ownerSlot !== undefined) {
         returnAllyToOwner(member.ownerSlot)
@@ -5283,17 +5330,19 @@ function setRaidMemberForSwap(teamIdx) {
     const posB = combat.raidSlots.indexOf(idxB)
 
     if (posA !== -1 && posB !== -1) {
-        // Les deux sont actifs → échange de slots
+        // Les deux sont actifs → échange de slots, aucun ne quitte le combat actif
         combat.raidSlots[posA] = idxB
         combat.raidSlots[posB] = idxA
         combat.memberTimers[idxA] = 0
         combat.memberTimers[idxB] = 0
     } else if (posA !== -1) {
-        // A actif, B banc → B entre dans le slot de A
+        // A actif, B banc → B entre dans le slot de A, A quitte la position active
+        _explodeOwnedTraps(idxA, posA)
         combat.raidSlots[posA] = idxB
         combat.memberTimers[idxB] = 0
     } else if (posB !== -1) {
-        // B actif, A banc → A entre dans le slot de B
+        // B actif, A banc → A entre dans le slot de B, B quitte la position active
+        _explodeOwnedTraps(idxB, posB)
         combat.raidSlots[posB] = idxA
         combat.memberTimers[idxA] = 0
     }
