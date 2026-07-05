@@ -125,7 +125,7 @@ function _renderMemberBuffChips(member) {
     const SILENT_STATS = new Set([
         'dropRate','healOnCast','hpCostPerTurnPct','spdInvert',
         'amplifie_incoming','huppermage_amplify','pendingLifesteal',
-        'repulsion_guard','feu_eau_debuff','eau_air_debuff',
+        'repulsion_guard','feu_eau_debuff','eau_air_debuff','_selfHpRestore',
     ])
     const ICON = {
         atk:               STAT_ICONS.atk,

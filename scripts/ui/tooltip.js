@@ -521,7 +521,7 @@ function showMemberSheet(member) {
                 ${eff.lifestealPct   ? statRow(STAT_ICONS.volVie, 'Vol de vie %',    0,  eff.lifestealPct,   '%') : ''}
                 ${eff.critResPct     ? statRow(STAT_ICONS.buff,   'Rés. critique',   0,  eff.critResPct,     '%') : ''}
                 ${eff.healStat       ? statRow(STAT_ICONS.soin,   'Soins fixes',     0,  eff.healStat,       '') : ''}
-                ${_msFarmBonus.dropRate      ? statRow(ELEM_ICONS.sagesse, 'Taux de drop',  0, _msFarmBonus.dropRate,      '%') : ''}
+                ${statRow(ELEM_ICONS.sagesse, 'Taux de drop', 0, _msFarmBonus.dropRate || 0, '%')}
                 ${_msFarmBonus.dropRateElite ? statRow(ELEM_ICONS.sagesse, 'Drop élite',    0, _msFarmBonus.dropRateElite, '%') : ''}
                 ${_msFarmBonus.xpGain        ? statRow(ELEM_ICONS.sagesse, 'Gain XP',       0, _msFarmBonus.xpGain,        '%') : ''}
             </div>
@@ -1004,7 +1004,7 @@ function showMoveTooltip(moveId, casterStats) {
         heal: 'Soin', heal_team: 'Soin (équipe)', 'heal%maxHp': 'Soin (% PV max)', 'heal%maxHp_team': 'Soin (% PV max équipe)', hot: 'Soin continu',
         buff: 'Buff', buff_team: 'Buff (équipe)', debuff: 'Débuff', debuff_team: 'Débuff (équipe)',
         shield: 'Bouclier', lifesteal: 'Vol de vie', antiHeal: 'Anti-soin',
-        self_dmg_pct_current: 'Sacrifice (PV courants)',
+        self_dmg_pct_current: 'Sacrifice (PV courants)', self_dmg_pct_current_temp: 'Sacrifice temporaire (PV courants)',
         burnMark: 'Brûlure différée',
         summon: 'Invocation', summon_random: 'Invocation', summon_companion: 'Compagnon',
         renvoi: 'Renvoi', renvoiTotal: 'Renvoi total', oeilPourOeil: 'Oeil pour Oeil',
@@ -1221,6 +1221,10 @@ function showMoveTooltip(moveId, casterStats) {
             rows += `<div class="mt-row"><span class="mt-label">Coût</span><span class="mt-val">${Math.round(eff.ratio * 100)}% des PV courants</span></div>`
         }
 
+        if (eff.type === 'self_dmg_pct_current_temp' && eff.ratio != null) {
+            rows += `<div class="mt-row"><span class="mt-label">Coût</span><span class="mt-val">${Math.round(eff.ratio * 100)}% des PV courants (rendus après ${eff.duration} tours)</span></div>`
+        }
+
         if (eff.type === 'consumeElementBuff' && eff.onElement) {
             rows += `<div class="mt-row"><span class="mt-label">Effets</span><span class="mt-val">Terre / Eau / Feu / Air</span></div>`
         }
@@ -1338,13 +1342,13 @@ function showMoveTooltip(moveId, casterStats) {
                                     changes.push(`${_pct}% soin ${_dmgStr(se.heal)}`)
                                 else if ((se.type === 'buff' || se.type === 'debuff') && se.stat != null)
                                     changes.push(`${_pct}% ${se.value >= 0 ? '+' : ''}${se.value} ${STAT_LABELS[se.stat] || se.stat}`)
-                                else if (se.type === 'self_dmg_pct_current' && se.ratio != null)
+                                else if ((se.type === 'self_dmg_pct_current' || se.type === 'self_dmg_pct_current_temp') && se.ratio != null)
                                     changes.push(`${_pct}% sacrifice ${Math.round(se.ratio * 100)}% PV`)
                             }
                         }
                     } else if (e.type !== 'random') {
                         // Effets non-random patchant tout le tableau (ex: sacrieur)
-                        if (e.type === 'self_dmg_pct_current' && e.ratio != null)
+                        if ((e.type === 'self_dmg_pct_current' || e.type === 'self_dmg_pct_current_temp') && e.ratio != null)
                             changes.push(`sacrifice ${Math.round(e.ratio * 100)}% PV`)
                     }
                 }

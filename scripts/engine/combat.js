@@ -2302,8 +2302,12 @@ function executeEffect(ctx) {
             const hotRoll  = effect.pctMaxHp !== undefined
                 ? Math.floor((caster.maxHp || 0) * effect.pctMaxHp / 100)
                 : _resolveEffectValue(effect.heal) || 0
+            // Un soin en % des PV max grandit déjà avec l'équipement (PV/niveau) : lui appliquer en
+            // plus le scaling ATK (pensé pour les soins à valeur fixe) le fait déraper très au-delà
+            // du % annoncé sur les classes à fort ATK (ex: Libation du Sacrieur).
+            const _hotAtkMult = effect.pctMaxHp !== undefined ? 1 : (1 + (casterStats?.atk || 0) * 0.30 / 100)
             const hotVal   = Math.max(1, Math.floor(
-                (hotRoll * (1 + (casterStats?.atk || 0) * 0.30 / 100) + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
+                (hotRoll * _hotAtkMult + (casterStats?.healStat || 0)) * (1 + (casterStats?.healPct || 0) / 100)
             ))
             if (effect.target === 'all_allies') {
                 for (const m of state.team) {
@@ -2641,6 +2645,25 @@ function executeEffect(ctx) {
             if (_selfCost > 0) {
                 caster.currentHp -= _selfCost
                 addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} sacrifie ${_selfCost} PV`)
+                const _selfIdx = state.team.indexOf(caster)
+                if (combat && _selfIdx !== -1)
+                    combat.sessionLoot.memberDamageReceived[_selfIdx] = (combat.sessionLoot.memberDamageReceived[_selfIdx] || 0) + _selfCost
+            }
+            break
+        }
+
+        // Sacrifice de PV courants récupéré à la fin de la durée (ex: Berserk) : contrairement à
+        // self_dmg_pct_current, le coût n'est pas définitif — il est rendu quand le boost se termine.
+        case 'self_dmg_pct_current_temp': {
+            const _selfCost = Math.min(
+                Math.floor((caster.currentHp || 0) * (effect.ratio || 0)),
+                Math.max(0, (caster.currentHp || 1) - 1)
+            )
+            if (_selfCost > 0) {
+                caster.currentHp -= _selfCost
+                caster.buffs = caster.buffs || []
+                caster.buffs.push({ stat: '_selfHpRestore', value: _selfCost, duration: effect.duration, _new: true })
+                addLog(`${moveData.name} → ${caster.name || classes[caster.classId]?.name || '?'} sacrifie ${_selfCost} PV (${effect.duration} tours)`)
                 const _selfIdx = state.team.indexOf(caster)
                 if (combat && _selfIdx !== -1)
                     combat.sessionLoot.memberDamageReceived[_selfIdx] = (combat.sessionLoot.memberDamageReceived[_selfIdx] || 0) + _selfCost
@@ -4282,6 +4305,10 @@ function tickBuffs(entity) {
             if (!b._new && b.duration === 1 && b.directApplied && b.stat === 'maxHp') {
                 entity.maxHp = Math.max(1, (entity.maxHp || 1) - b.value)
                 entity.currentHp = Math.min(entity.currentHp || 0, entity.maxHp)
+            }
+            if (!b._new && b.duration === 1 && b.stat === '_selfHpRestore') {
+                entity.currentHp = Math.min(entity.maxHp || 0, (entity.currentHp || 0) + b.value)
+                addLog(`${entity.name || classes[entity.classId]?.name || '?'} récupère ${b.value} PV sacrifiés`)
             }
         }
         entity.buffs = entity.buffs

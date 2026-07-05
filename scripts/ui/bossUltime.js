@@ -954,8 +954,10 @@ function _Boss_UltimeRenderTurnPanel(s) {
 
 // ─── Helpers buff/dot/hot (réutilisés dans les cartes membre) ─────────────────
 
+const _SILENT_BUFF_STATS = new Set(['_selfHpRestore'])
+
 function _renderBuffRow(entity) {
-    const buffs   = (entity.buffs || []).filter(b => (b.delay ?? 0) <= 0)
+    const buffs   = (entity.buffs || []).filter(b => (b.delay ?? 0) <= 0 && !_SILENT_BUFF_STATS.has(b.stat))
     const dots    = entity.dots  || []
     const hots    = entity.hots  || []
     const shield  = entity.shield?.value > 0 ? entity.shield : null

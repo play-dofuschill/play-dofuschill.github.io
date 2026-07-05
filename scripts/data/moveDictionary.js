@@ -5982,17 +5982,17 @@ move.berserk = {
     classId: 'sacrieur',
     cooldownMs: 2000,
     effects: [
-        { type: 'self_dmg_pct_current', ratio: 0.70 },
+        { type: 'self_dmg_pct_current_temp', ratio: 0.70, duration: 3 },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' }
     ],
     spellProgression: [
         { lvl: 85,  patch: {} },
         { lvl: 152, patch: { effects: [
-            { type: 'self_dmg_pct_current', ratio: 0.70 },
+            { type: 'self_dmg_pct_current_temp', ratio: 0.70, duration: 3 },
             { type: 'buff', stat: 'finalDamagePct', value: 20, duration: 3, target: 'self' }
         ]}}
     ],
-    description: "Sacrifie 70% de ses PV courants pour gagner en dommages finaux pendant 3 tours."
+    description: "Sacrifie 70% de ses PV courants (récupérés après 3 tours) pour gagner en dommages finaux pendant 3 tours."
 }
 move.punition = {
     id: 'punition',
