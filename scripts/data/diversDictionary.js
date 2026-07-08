@@ -480,8 +480,8 @@ item.cleDonjonTofulaillerRoyal = {
     isKey: true,
     description: "Cette clef permet de rentrer dans le Tofulailler Royal."
 }
-item.cleDonjonRoyalmouth = {
-    id: 'cleDonjonRoyalmouth',
+item.cleDonjonBoufmouthRoyal = {
+    id: 'cleDonjonBoufmouthRoyal',
     name: "Clef de la Serre du Royalmouth",
     image: 'img/items/divers/donjonBoufmouthRoyal.png',
     type: 'resource',
@@ -911,6 +911,38 @@ item.cleDonjonBreuil = {
     type: 'resource',
     isKey: true,
     description: 'Cette clef permet de rentrer dans le du Breuil du Vénérable.'
+}
+item.cleDonjonVulkania1 = {
+    id: 'cleDonjonVulkania1',
+    name: 'Clef du Cratère Minus 1',
+    image: 'img/items/divers/cleDonjonVulkania1.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans le Cratère Minus 1.'
+}
+item.cleDonjonVulkania2 = {
+    id: 'cleDonjonVulkania2',
+    name: 'Clef du Cratère Minus 2',
+    image: 'img/items/divers/cleDonjonVulkania1.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans le Cratère Minus 2.'
+}
+item.cleDonjonVulkania3 = {
+    id: 'cleDonjonVulkania3',
+    name: 'Clef du Cratère Minus 3',
+    image: 'img/items/divers/cleDonjonVulkania1.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans le Cratère Minus 3.'
+}
+item.cleDonjonVulkania4 = {
+    id: 'cleDonjonVulkania4',
+    name: 'Clef du Cratère Minus 4',
+    image: 'img/items/divers/cleDonjonVulkania1.png',
+    type: 'resource',
+    isKey: true,
+    description: 'Cette clef permet de rentrer dans le Cratère Minus 4.'
 }
 
 // #endregion

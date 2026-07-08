@@ -291,6 +291,10 @@ const MENU_MAP = {
 
 // Menus verrouillés selon l'étape du tutoriel
 function isTutorialLocked(menuName) {
+    // Archives (import/export de sauvegarde) doit rester accessible même en plein tutoriel,
+    // sinon un joueur qui réinstalle sur un nouvel appareil est bloqué : il ne peut pas
+    // importer sa save tant qu'il n'a pas fini le premier combat forcé.
+    if (menuName === 'archives') return false
     // intro : hamburger caché, verrou de sécurité
     if (state.tutorial === 'intro')
         return menuName === 'worldmap' || menuName === 'zones'

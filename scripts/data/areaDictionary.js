@@ -154,7 +154,7 @@ areas.attractionFantome = {
     mobMaxLevel: 30,
     background: "",
     icon: "images/monsters/Boostache_Prépubère.png",
-    description: "",
+    description: "À la lisière de la Foire du Trool, une bicoque à moitié en ruine attire les curieux depuis des lustres : on raconte qu'un petit fantôme facétieux y aurait élu domicile, entouré de vampires, de gargrouilles et de tofus maléfiques. Les forains eux-mêmes évitent d'en approcher après la tombée de la nuit.",
     spawns: [
         { id: 'boostache_prepubere', weight: 10 },
         { id: 'tofu_malefique', weight: 10 },
@@ -2985,7 +2985,7 @@ areas.donjonMaisonFantome = {
     mobMaxLevel: 35,
     background: "",
     icon: "images/monsters/Boostache.png",
-    description: "",
+    description: "Derrière la porte grinçante de la Maison Fantôme rôde Boostache, un spectre chétif en apparence mais capable de ranimer ses victimes en zombies dociles. Les cris qu'on y entend ne sont pas toujours ceux des vivants.",
     spawns: [
         { id: 'boostache', weight: 10 }
     ],
@@ -5368,7 +5368,7 @@ areas.evenementIncanam = {
     mobMaxLevel: 10,
     background: "",
     icon: "images/monsters/Tigrimas.png",
-    description: "",
+    description: "Un voile brumeux s'est abattu sur Incarnam, faisant naître des échos spectraux de sa faune habituelle : tofus chimériques, tournesols nébuleux et bouftous nuageux errent désormais comme des reflets d'un autre monde. Les nouveaux aventuriers, déjà peu rassurés sur cette île d'initiation, redoublent de prudence.",
     spawns: [
         { id: 'feu_vif', weight: 10 },
         { id: 'feu_de_joie', weight: 10 },
@@ -5425,7 +5425,7 @@ areas.evenementPious = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'cape_du_piou_bleu', dropRate: 0.005 },
         { itemId: 'sandales_du_piou_bleu', dropRate: 0.005 },
         { itemId: 'anneau_du_piou_bleu', dropRate: 0.005 },
@@ -5483,7 +5483,7 @@ areas.evenementForetAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',                 dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'cape_du_prespic',            dropRate: 0.005 },
         { itemId: 'coiffe_du_prespic',          dropRate: 0.005 },
         { itemId: 'anneau_du_prespic',          dropRate: 0.005 },
@@ -5512,7 +5512,7 @@ areas.evenementGrouillantsDAstrub = {
     mobMaxLevel: 30,
     background: "",
     icon: "images/monsters/Tofu_Malade.png",
-    description: "",
+    description: "Dans les champs autour d'Astrub, une étrange maladie s'est répandue parmi tofus et araknes, les rendant plus agressifs qu'à l'accoutumée. Les paysans locaux implorent les aventuriers de nettoyer la région avant que l'épidémie ne gagne la ville.",
     spawns: [
         { id: 'tofu_malade', weight: 10 },
         { id: 'arakne_malade', weight: 10 },
@@ -5526,7 +5526,7 @@ areas.evenementGrouillantsDAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'alliance_du_champ_champ', dropRate: 0.01 },
         { itemId: 'cape_du_champ_champ', dropRate: 0.01 },
         { itemId: 'champcoiffe', dropRate: 0.01 },
@@ -5552,7 +5552,7 @@ areas.evenementMinerEtFabriquer = {
     mobMaxLevel: 30,
     background: "",
     icon: "images/monsters/Pikdoa.png",
-    description: "",
+    description: "Entre pioches et marteaux, Pikdoa, Douzdoa, Sherpoa et Martoa veillent farouchement sur les galeries de Pandala, hantise de tout mineur imprudent. Leurs outils rouillés cachent une force peu commune pour de simples gardiens de mine.",
     spawns: [
         { id: 'pikdoa', weight: 10 },
         { id: 'douzdoa', weight: 10 },
@@ -5561,7 +5561,7 @@ areas.evenementMinerEtFabriquer = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'runeForceS',   dropRate: 0.01 },
         { itemId: 'runeIntelS',   dropRate: 0.01 },
         { itemId: 'runeChanceS',   dropRate: 0.01 },
@@ -5586,7 +5586,7 @@ areas.evenementBiblop = {
     ],
     lootTable: [
         { itemId: 'pierreDame',   dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'runeForceS',   dropRate: 0.01 },
         { itemId: 'runeIntelS',   dropRate: 0.01 },
         { itemId: 'runeChanceS',   dropRate: 0.01 },
@@ -5611,7 +5611,7 @@ areas.egoutsAstrub = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'amulette_de_rapine', dropRate: 0.01 },
         { itemId: 'ceinture_de_rapine', dropRate: 0.01 },
         { itemId: 'bottes_de_rapine', dropRate: 0.01 }
@@ -5628,7 +5628,7 @@ areas.evenementBoooouh = {
     mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Fantôme_Égérie.png",
-    description: "",
+    description: "« Bouh ! » Les fantômes du cimetière des torturés ont décidé de faire une sortie collective, entre égéries évaporées, apéros éternels et âmes d'aventuriers depuis longtemps oubliées. De quoi donner des sueurs froides aux plus téméraires.",
     spawns: [
         { id: 'fantome_egerie', weight: 10 },
         { id: 'fantome_hicide', weight: 10 },
@@ -5640,7 +5640,7 @@ areas.evenementBoooouh = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'bottauffe_souris', dropRate: 0.01 },
         { itemId: 'anauffe_souris', dropRate: 0.01 },
         { itemId: 'runeForceS',   dropRate: 0.01 },
@@ -5660,7 +5660,7 @@ areas.evenementALaPecheAuMoulemoulemoule = {
     mobMaxLevel: 50,
     background: "",
     icon: "images/monsters/Raul_Mops.png",
-    description: "",
+    description: "Sur la côte, les pêcheurs locaux se plaignent d'un envahissement de moules récalcitrantes, secondées par des crabes teigneux et des raul mops peu commodes. Une bonne canne et des nerfs solides sont recommandés pour cette partie de pêche.",
     spawns: [
         { id: 'raul_mops', weight: 10 },
         { id: 'etoile_de_la_mer_d_asse', weight: 10 },
@@ -5669,7 +5669,7 @@ areas.evenementALaPecheAuMoulemoulemoule = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'cape_de_bowisse', dropRate: 0.01 },
         { itemId: 'bouclier_de_bowisse', dropRate: 0.01 },
         { itemId: 'bottes_de_bowisse', dropRate: 0.01 }
@@ -5686,11 +5686,11 @@ areas.evenementElevageDeDragodindes = {
     mobMaxLevel: 50,
     background: '',
     icon: 'images/monsters/Dragodinde_amande_sauvage.png',
-    description: '',
+    description: "Des dragodindes sauvages, à la robe amande, rousse ou dorée, se sont échappées d'un élevage voisin et parcourent librement la région. Rares et convoitées, elles attirent autant les éleveurs en quête d'une nouvelle monture que les chasseurs de trophées.",
     spawns: [{ id: 'dragodinde_amande_sauvage', weight: 10 }, { id: 'dragodinde_rousse_sauvage', weight: 10 }, { id: 'dragodinde_doree_sauvage', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }, { itemId: 'bottoduvet', dropRate: 0.01 }, { itemId: 'ceinturoduvet', dropRate: 0.01 }, { itemId: 'anodindo', dropRate: 0.01 }, { itemId: 'botodindo', dropRate: 0.01 }, { itemId: 'capodindo', dropRate: 0.01 }, { itemId: 'chapodindo', dropRate: 0.01 }, { itemId: 'bottes_dragocourse', dropRate: 0.01 }, { itemId: 'ceinture_dragocourse', dropRate: 0.01 }]
+        { itemId: 'piloteAutomatique', dropRate: 0.03 }, { itemId: 'bottoduvet', dropRate: 0.01 }, { itemId: 'ceinturoduvet', dropRate: 0.01 }, { itemId: 'anodindo', dropRate: 0.01 }, { itemId: 'botodindo', dropRate: 0.01 }, { itemId: 'capodindo', dropRate: 0.01 }, { itemId: 'chapodindo', dropRate: 0.01 }, { itemId: 'bottes_dragocourse', dropRate: 0.01 }, { itemId: 'ceinture_dragocourse', dropRate: 0.01 }]
 }
 
 areas.evenementRepechageDeMuldos = {
@@ -5703,11 +5703,11 @@ areas.evenementRepechageDeMuldos = {
     mobMaxLevel: 60,
     background: '',
     icon: 'images/monsters/Muldo_indigo_sauvage.png',
-    description: '',
+    description: "Les muldos, montures rarissimes des abysses de Sufokia, refont surface le temps d'un repêchage exceptionnel. Dorés, ébène, indigo, pourpres ou orchidée, mieux vaut ne pas les laisser filer tant l'occasion d'en croiser est rare.",
     spawns: [{ id: 'muldo_indigo_sauvage', weight: 10 }, { id: 'muldo_ebene_sauvage', weight: 10 }, { id: 'muldo_orchidee_sauvage', weight: 10 }, { id: 'muldo_dore_sauvage', weight: 10 }, { id: 'muldo_pourpre_sauvage', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }, { itemId: 'botomuldo', dropRate: 0.01 }, { itemId: 'capomuldo', dropRate: 0.01 }, { itemId: 'chapomuldo', dropRate: 0.01 }]
+        { itemId: 'piloteAutomatique', dropRate: 0.03 }, { itemId: 'botomuldo', dropRate: 0.01 }, { itemId: 'capomuldo', dropRate: 0.01 }, { itemId: 'chapomuldo', dropRate: 0.01 }]
 }
 
 areas.evenementDopeuls = {
@@ -5743,7 +5743,7 @@ areas.evenementDopeuls = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'runeHpS', dropRate: 0.01 },
         { itemId: 'runeForceS',   dropRate: 0.01 },
         { itemId: 'runeIntelS',   dropRate: 0.01 },
@@ -5777,7 +5777,7 @@ areas.evenementRobots = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'runeHpS',           dropRate: 0.01 },
         { itemId: 'runeAtkS',          dropRate: 0.01 },
         { itemId: 'runeSpdS',          dropRate: 0.01 },
@@ -5800,11 +5800,11 @@ areas.evenementDroleDIle = {
     mobMaxLevel: 70,
     background: '',
     icon: 'images/monsters/Tortue_Rouge.png',
-    description: '',
+    description: "Sur cette île perdue, tortues placides et petites créatures kokoko cohabitent dans une ambiance étrangement bon enfant... jusqu'à ce qu'on s'en approche d'un peu trop près. Bois de kokoko et coques de noix jonchent le sable, souvenirs d'un naufrage oublié.",
     spawns: [{ id: 'tortue_rouge', weight: 10 }, { id: 'tortue_bleue', weight: 10 }, { id: 'tortue_verte', weight: 10 }, { id: 'tortue_jaune', weight: 10 }, { id: 'tikoko', weight: 10 }, { id: 'kokoko', weight: 10 }, { id: 'nodkoko', weight: 10 }, { id: 'grokoko', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }, { itemId: 'carabottes', dropRate: 0.01 }, { itemId: 'caracape', dropRate: 0.01 }, { itemId: 'caracoiffe', dropRate: 0.01 }]
+        { itemId: 'piloteAutomatique', dropRate: 0.03 }, { itemId: 'carabottes', dropRate: 0.01 }, { itemId: 'caracape', dropRate: 0.01 }, { itemId: 'caracoiffe', dropRate: 0.01 }]
 }
 
 areas.evenementTnLacoste = {
@@ -5817,11 +5817,11 @@ areas.evenementTnLacoste = {
     mobMaxLevel: 70,
     background: '',
     icon: 'images/monsters/Crocodaille.png',
-    description: '',
+    description: "Descendantes de l'empire disparu de Crocuzko, les crocodailles rôdent dans ces marécages boueux depuis l'ère primitive, protégées par des écailles increvables et une hargne légendaire. Leur chef, reconnaissable entre mille, ne laisse jamais un intrus repartir les mains vides — ni les jambes intactes.",
     spawns: [{ id: 'crocodaille', weight: 10 }, { id: 'boo', weight: 10 }, { id: 'chef_crocodaille', weight: 10 }, { id: 'arakne_olithique', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },{ itemId: 'ceinture_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'pantoufles_crochues_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'amulette_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bouclier_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bracelet_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'coiffe_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'lame_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'petit_sac_d_ecolier_du_chef_crocodaille', dropRate: 0.01 }]
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },{ itemId: 'ceinture_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'pantoufles_crochues_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'amulette_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bouclier_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bracelet_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'coiffe_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'lame_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'petit_sac_d_ecolier_du_chef_crocodaille', dropRate: 0.01 }]
 }
 
 areas.evenementVoisinsPuants = {
@@ -5834,7 +5834,7 @@ areas.evenementVoisinsPuants = {
     mobMaxLevel: 80,
     background: "",
     icon: "images/monsters/Bizarbwork.png",
-    description: "",
+    description: "Le camp bwork voisin déborde une fois de plus de sa clairière, entre bizarbworks vindicatifs et megabworks bien décidés à agrandir leur territoire. L'odeur, disons-le, précède toujours leur arrivée.",
     spawns: [
         { id: 'bizarbwork', weight: 10 },
         { id: 'krambwork', weight: 10 },
@@ -5843,7 +5843,7 @@ areas.evenementVoisinsPuants = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'amulette_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'bottes_du_chef_bwork', dropRate: 0.01 },
         { itemId: 'bracelet_du_chef_bwork', dropRate: 0.01 },
@@ -5865,7 +5865,7 @@ areas.evenementTerriersRadioactifs = {
     mobMaxLevel: 120,
     background: "",
     icon: "images/monsters/Wabbit_Garou.png",
-    description: "",
+    description: "Dans les tunnels au nord-est de l'Île des Wabbits, les rescapés d'un laboratoire abandonné errent encore : ces wabbits-garous ont vu leur sang changer de nature au fil des phases de la lune, tout comme leur tempérament. Mieux vaut ne pas s'attarder dans ces terriers après la tombée de la nuit.",
     spawns: [
         { id: 'wabbit_garou', weight: 10 },
         { id: 'wabbit_cephale', weight: 10 },
@@ -5875,7 +5875,7 @@ areas.evenementTerriersRadioactifs = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'cape_du_wabbit_garou', dropRate: 0.01 },
         { itemId: 'bottes_du_wabbit_garou', dropRate: 0.01 },
         { itemId: 'ceinture_du_wabbit_garou', dropRate: 0.01 },
@@ -5901,11 +5901,11 @@ areas.evenementPercheDansLArbre = {
     mobMaxLevel: 140,
     background: '',
     icon: 'images/monsters/Disciple_Zoth.png',
-    description: '',
+    description: "Perchés dans les frondaisons de la Canopée Embrumée, les disciples de Zoth veillent sur leur culte avec une ferveur inquiétante, du plus jeune novice au redouté maître Zoth. Grimper jusqu'à leur repaire demande autant de souffle que de courage.",
     spawns: [{ id: 'disciple_zoth', weight: 10 }, { id: 'gamine_zoth', weight: 10 }, { id: 'guerrier_zoth', weight: 10 }, { id: 'sergent_zoth', weight: 10 }, { id: 'maitre_zoth', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }, { itemId: 'coiffe_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'baton_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'casque_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'hache_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'chapeau_de_la_gamine_zoth', dropRate: 0.01 }, { itemId: 'marteau_de_la_gamine_zoth', dropRate: 0.01 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 }, { itemId: 'coiffe_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'baton_du_maitre_zoth', dropRate: 0.01 }, { itemId: 'casque_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'hache_du_guerrier_zoth', dropRate: 0.01 }, { itemId: 'chapeau_de_la_gamine_zoth', dropRate: 0.01 }, { itemId: 'marteau_de_la_gamine_zoth', dropRate: 0.01 },
     
         { itemId: 'runeHpM', dropRate: 0.01 },
         { itemId: 'runeForceM',   dropRate: 0.01 },
@@ -5929,7 +5929,7 @@ areas.evenementRetrouvezLePinPerdu = {
     mobMaxLevel: 140,
     background: "",
     icon: "images/monsters/Smilomouth.png",
-    description: "",
+    description: "Quelque part sous la neige, un pin isolé aurait disparu — mais entre kaniglous grognons et sanglaciers à l'affût, le retrouver risque de coûter plus cher qu'un simple rhume. Les habitants du coin promettent une belle récompense à qui ramènera des nouvelles rassurantes.",
     spawns: [
         { id: 'smilomouth', weight: 10 },
         { id: 'ecumouth', weight: 10 },
@@ -5939,7 +5939,7 @@ areas.evenementRetrouvezLePinPerdu = {
     ],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
         { itemId: 'casque_de_l_ecumouth', dropRate: 0.01 },
         { itemId: 'coiffe_du_fricochere', dropRate: 0.01 },
         { itemId: 'pagniglou', dropRate: 0.01 },
@@ -5974,11 +5974,11 @@ areas.evenementBugElementaire = {
     mobMaxLevel: 180,
     background: '',
     icon: 'images/monsters/Briko_Altruiste.png',
-    description: '',
+    description: "Un dérèglement inexpliqué agite les brikos, automates élémentaires habituellement réglés comme du papier à musique. Altruistes, galvanisants ou taquins, ils ne répondent plus vraiment aux protocoles prévus — un bug, sans doute, mais un bug qui mord.",
     spawns: [{ id: 'briko_altruiste', weight: 10 }, { id: 'briko_galvanisant', weight: 10 }, { id: 'briko_exaltant', weight: 10 }, { id: 'briko_stimulant', weight: 10 }, { id: 'briko_taquin', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }, { itemId: 'trophee_de_la_terre', dropRate: 0.001 },{ itemId: 'trophee_du_feu', dropRate: 0.001 },{ itemId: 'trophee_de_l_eau', dropRate: 0.001 },{ itemId: 'trophee_de_l_air', dropRate: 0.001 },{ itemId: 'trophee_du_neutre', dropRate: 0.001 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 }, { itemId: 'trophee_de_la_terre', dropRate: 0.001 },{ itemId: 'trophee_du_feu', dropRate: 0.001 },{ itemId: 'trophee_de_l_eau', dropRate: 0.001 },{ itemId: 'trophee_de_l_air', dropRate: 0.001 },{ itemId: 'trophee_du_neutre', dropRate: 0.001 },
         { itemId: 'runeHpL', dropRate: 0.01 },
         { itemId: 'runeForceL',   dropRate: 0.01 },
         { itemId: 'runeIntelL',   dropRate: 0.01 },
@@ -6001,11 +6001,11 @@ areas.evenementChasseAuxVolkornes = {
     mobMaxLevel: 190,
     background: '',
     icon: 'images/monsters/Volkorne_orchidée_sauvage.png',
-    description: '',
+    description: "Créés jadis par le dragon Volkaragnar pour prouver aux Nimbos que la monture du roi n'avait rien d'exceptionnel, les volkornes ont depuis proliféré, à la grande fureur du roi Dazak. Ébène, indigo, pourpres ou orchidée, ces créatures rares ne se laissent que rarement approcher deux fois.",
     spawns: [{ id: 'volkorne_orchidee_sauvage', weight: 10 }, { id: 'volkorne_indigo_sauvage', weight: 10 }, { id: 'volkorne_ebene_sauvage', weight: 10 }, { id: 'volkorne_pourpre_sauvage', weight: 10 }],
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
-        { itemId: 'piloteAutomatique', dropRate: 0.05 }, { itemId: 'amulette_volkorne', dropRate: 0.01 }, { itemId: 'anneau_volkorne', dropRate: 0.01 }, { itemId: 'arc_volkorne', dropRate: 0.01 }, { itemId: 'casque_volkorne', dropRate: 0.01 }, { itemId: 'ceinture_volkorne', dropRate: 0.01 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 }, { itemId: 'amulette_volkorne', dropRate: 0.01 }, { itemId: 'anneau_volkorne', dropRate: 0.01 }, { itemId: 'arc_volkorne', dropRate: 0.01 }, { itemId: 'casque_volkorne', dropRate: 0.01 }, { itemId: 'ceinture_volkorne', dropRate: 0.01 },
     
         { itemId: 'runeFireResL',         dropRate: 0.01 },
         { itemId: 'runeWaterResL',        dropRate: 0.01 },
@@ -7020,7 +7020,7 @@ areas.saisonVulkania_1 = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonVulkania1',    dropRate: 0.15, isKey: true },
         { itemId: '',                     dropRate: 0.01 },
     ]
 }
@@ -7044,7 +7044,7 @@ areas.saisonVulkania_2 = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonVulkania2',    dropRate: 0.15, isKey: true },
         { itemId: 'sac_de_voyage_du_parfait_petit_vulkain', dropRate: 0.01 },
         { itemId: 'chapeau_du_vulkain',   dropRate: 0.01 },
         { itemId: 'anneau_du_vulkain',    dropRate: 0.01 },
@@ -7072,7 +7072,7 @@ areas.saisonVulkania_3 = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonVulkania3',    dropRate: 0.15, isKey: true },
         { itemId: 'cape_du_krokilleur',   dropRate: 0.01 },
         { itemId: 'ceinture_du_krokilleur', dropRate: 0.01 },
         { itemId: 'amulette_du_krokilleur', dropRate: 0.01 },
@@ -7098,7 +7098,7 @@ areas.saisonVulkania_4 = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
-        { itemId: 'cleDonjonVulkania',    dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonVulkania4',    dropRate: 0.15, isKey: true },
         { itemId: 'binocle_airvoyant',    dropRate: 0.01 },
         { itemId: 'pendentif_oton',       dropRate: 0.01 },
         { itemId: 'batonnet_ronien',      dropRate: 0.01 },
@@ -7112,7 +7112,7 @@ areas.donjonVulkania_1 = {
     id: 'donjonVulkania_1',
     type: 'saisonnier',
     season: { start: [7, 1], end: [9, 1] },
-    keyId: 'cleDonjonVulkania',
+    keyId: 'cleDonjonVulkania1',
     name: 'Cratère Minus somnolant',
     minLevel: 60, maxLevel: 60,
     mobMinLevel: 60, mobMaxLevel: 60,
@@ -7131,7 +7131,7 @@ areas.donjonVulkania_2 = {
     id: 'donjonVulkania_2',
     type: 'saisonnier',
     season: { start: [7, 1], end: [9, 1] },
-    keyId: 'cleDonjonVulkania',
+    keyId: 'cleDonjonVulkania2',
     name: 'Cratère Minus épuisant',
     minLevel: 110, maxLevel: 110,
     mobMinLevel: 110, mobMaxLevel: 110,
@@ -7154,7 +7154,7 @@ areas.donjonVulkania_3 = {
     id: 'donjonVulkania_3',
     type: 'saisonnier',
     season: { start: [7, 1], end: [9, 1] },
-    keyId: 'cleDonjonVulkania',
+    keyId: 'cleDonjonVulkania3',
     name: 'Cratère Minus fatiguant',
     minLevel: 150, maxLevel: 150,
     mobMinLevel: 150, mobMaxLevel: 150,
@@ -7175,7 +7175,7 @@ areas.donjonVulkania_4 = {
     id: 'donjonVulkania_4',
     type: 'saisonnier',
     season: { start: [7, 1], end: [9, 1] },
-    keyId: 'cleDonjonVulkania',
+    keyId: 'cleDonjonVulkania4',
     name: 'Cratère Minus',
     minLevel: 200, maxLevel: 200,
     mobMinLevel: 200, mobMaxLevel: 200,
@@ -7211,7 +7211,7 @@ areas.toorbzBoorzzbz = {
     mobMaxLevel: 170,
     background: '',
     icon: 'images/monsters/Balebz.png',
-    description: '',
+    description: "Le vol des balebz, toubibz, kamikabz et quadrabz assourdit la région d'un bourdonnement continu, souvenir d'une invasion d'insectes jamais totalement résorbée. Mieux vaut ne pas trop s'agiter près de leurs nids si l'on veut éviter une volée de piqûres.",
     spawns: [{ id: 'balebz', weight: 10 }, { id: 'toubibz', weight: 10 }, { id: 'kamikabz', weight: 10 }, { id: 'quadrabz', weight: 10 }, { id: 'balebz_perturbe', weight: 1 }, { id: 'toubibz_perturbe', weight: 1 }, { id: 'kamikabz_perturbe', weight: 1 }, { id: 'quadrabz_perturbe', weight: 1 }],
     lootTable: [{ itemId: 'pierreDame', dropRate: 0.45 }, { itemId: 'dagues_de_kabombz', dropRate: 0.01 }, { itemId: 'pagne_de_kabombz', dropRate: 0.01 }, { itemId: 'panier_de_z_ufs', dropRate: 0.01 }, { itemId: 'cleDonjonSupervisoeuf', dropRate: 0.15, isKey: true }]
 }
@@ -7227,7 +7227,7 @@ areas.reserveTouffue = {
     mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Lapilope.png",
-    description: "",
+    description: "Dans cette réserve dense, les zarbivores — lapilopes, brutapirs, gropotams et amphiboucs — paissent en troupeaux dispersés, protégés par une toison si résistante qu'elle sert à tisser cordes et vêtements. Ces herbivores d'Osavora sont bien plus dangereux qu'ils n'y paraissent lorsqu'on s'en prend à leurs petits.",
     spawns: [
         { id: 'lapilope', weight: 10 },
         { id: 'brutapir', weight: 10 },
@@ -7259,7 +7259,7 @@ areas.villageRhoarim = {
     mobMaxLevel: 200,
     background: "",
     icon: "images/monsters/Domptueuse.png",
-    description: "",
+    description: "Au cœur du village des Rhoarims, peuple d'Osavora plus primitif et guerrier que les Douziens, certains membres de la tribu se soumettent à un rituel ancestral qui les métamorphose en créatures féroces : domptueuses, voracles ou ébourifauves. Organisée en société matriarcale malgré la présence d'un roi, la tribu ne laisse pas facilement les étrangers gagner sa confiance.",
     spawns: [
         { id: 'domptueuse', weight: 10 },
         { id: 'voracle', weight: 10 },

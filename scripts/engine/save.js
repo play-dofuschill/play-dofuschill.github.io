@@ -246,9 +246,17 @@ function importData() {
                 _clearingData = true
                 localStorage.setItem(SAVE_KEY, JSON.stringify(data))
                 location.reload()
-            } catch {
+            } catch (err) {
+                console.error('[importData] fichier illisible :', err)
                 showNotification('Fichier de sauvegarde invalide.', 'error')
             }
+        }
+        // Sans ce handler, un fichier choisi via un picker cloud (Drive/Dropbox/OneDrive)
+        // qui échoue à télécharger le contenu localement échoue en silence : aucune erreur,
+        // aucun onload, l'utilisateur ne voit rien se passer.
+        reader.onerror = () => {
+            console.error('[importData] échec de lecture du fichier :', reader.error)
+            showNotification('Impossible de lire ce fichier. Enregistre-le d\'abord sur l\'appareil (pas depuis un aperçu cloud), puis réessaie.', 'error')
         }
         reader.readAsText(file)
     }
