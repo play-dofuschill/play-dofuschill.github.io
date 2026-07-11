@@ -2858,9 +2858,9 @@ areas.donjonIncarnam = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'casque_de_kardorim', dropRate: 0.035 },
-        { itemId: 'bracelet_de_kardorim', dropRate: 0.035 },
-        { itemId: 'cape_de_kardorim', dropRate: 0.035 }
+        { itemId: 'casque_de_kardorim', dropRate: 0.08333 },
+        { itemId: 'bracelet_de_kardorim', dropRate: 0.08333 },
+        { itemId: 'cape_de_kardorim', dropRate: 0.08333 }
     ]
 }
 
@@ -2883,14 +2883,14 @@ areas.donjonMousse = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_en_mousse', dropRate: 0.02 },
-        { itemId: 'coiffe_en_mousse', dropRate: 0.02 },
-        { itemId: 'bottes_en_mousse', dropRate: 0.02 },
-        { itemId: 'anneau_en_mousse', dropRate: 0.02 },
-        { itemId: 'amulette_en_mousse', dropRate: 0.02 },
-        { itemId: 'ceinture_en_mousse', dropRate: 0.02 },
-        { itemId: 'pelle_en_mousse', dropRate: 0.02 },
-        { itemId: 'bouclier_en_mousse', dropRate: 0.02 }
+        { itemId: 'cape_en_mousse', dropRate: 0.03125 },
+        { itemId: 'coiffe_en_mousse', dropRate: 0.03125 },
+        { itemId: 'bottes_en_mousse', dropRate: 0.03125 },
+        { itemId: 'anneau_en_mousse', dropRate: 0.03125 },
+        { itemId: 'amulette_en_mousse', dropRate: 0.03125 },
+        { itemId: 'ceinture_en_mousse', dropRate: 0.03125 },
+        { itemId: 'pelle_en_mousse', dropRate: 0.03125 },
+        { itemId: 'bouclier_en_mousse', dropRate: 0.03125 }
     ]
 }
 
@@ -2909,16 +2909,16 @@ areas.donjonChamps = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'vegamu', dropRate: 0.02 },
-        { itemId: 'vegacoiffe', dropRate: 0.02 },
-        { itemId: 'vegacape', dropRate: 0.02 },
-        { itemId: 'capouze_des_champs', dropRate: 0.02 },
-        { itemId: 'ceinture_fleurie', dropRate: 0.02 },
-        { itemId: 'bottes_champetres', dropRate: 0.02 },
-        { itemId: 'coiffe_champetre', dropRate: 0.02 },
-        { itemId: 'amulette_des_champs', dropRate: 0.02 },
-        { itemId: 'anneau_champetre', dropRate: 0.02 },
-        { itemId: 'la_plantouze_des_champs', dropRate: 0.02 }
+        { itemId: 'vegamu', dropRate: 0.025 },
+        { itemId: 'vegacoiffe', dropRate: 0.025 },
+        { itemId: 'vegacape', dropRate: 0.025 },
+        { itemId: 'capouze_des_champs', dropRate: 0.025 },
+        { itemId: 'ceinture_fleurie', dropRate: 0.025 },
+        { itemId: 'bottes_champetres', dropRate: 0.025 },
+        { itemId: 'coiffe_champetre', dropRate: 0.025 },
+        { itemId: 'amulette_des_champs', dropRate: 0.025 },
+        { itemId: 'anneau_champetre', dropRate: 0.025 },
+        { itemId: 'la_plantouze_des_champs', dropRate: 0.025 }
     ]
 }
 
@@ -2941,14 +2941,14 @@ areas.donjonBouftou = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_bouffante_royale', dropRate: 0.02 },
-        { itemId: 'boufcoiffe_royale', dropRate: 0.02 },
-        { itemId: 'boufbottes_royales', dropRate: 0.02 },
-        { itemId: 'epee_royale_du_bouftou', dropRate: 0.02 },
-        { itemId: 'anneau_royal_du_bouftou', dropRate: 0.02 },
-        { itemId: 'amulette_royale_du_bouftou', dropRate: 0.02 },
-        { itemId: 'ceinture_royale_du_bouftou', dropRate: 0.02 },
-        { itemId: 'cuirasse_royale_du_bouftou', dropRate: 0.02 }
+        { itemId: 'cape_bouffante_royale', dropRate: 0.03125 },
+        { itemId: 'boufcoiffe_royale', dropRate: 0.03125 },
+        { itemId: 'boufbottes_royales', dropRate: 0.03125 },
+        { itemId: 'epee_royale_du_bouftou', dropRate: 0.03125 },
+        { itemId: 'anneau_royal_du_bouftou', dropRate: 0.03125 },
+        { itemId: 'amulette_royale_du_bouftou', dropRate: 0.03125 },
+        { itemId: 'ceinture_royale_du_bouftou', dropRate: 0.03125 },
+        { itemId: 'cuirasse_royale_du_bouftou', dropRate: 0.03125 }
     ]
 }
 
@@ -2967,10 +2967,10 @@ areas.donjonAcademieGobs = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'ceinture_du_directeur_grunob', dropRate: 0.03 },
-        { itemId: 'faux_du_directeur_grunob', dropRate: 0.03 },
-        { itemId: 'chapeau_du_directeur_grunob', dropRate: 0.03 },
-        { itemId: 'bottes_du_directeur_grunob', dropRate: 0.03 }
+        { itemId: 'ceinture_du_directeur_grunob', dropRate: 0.0625 },
+        { itemId: 'faux_du_directeur_grunob', dropRate: 0.0625 },
+        { itemId: 'chapeau_du_directeur_grunob', dropRate: 0.0625 },
+        { itemId: 'bottes_du_directeur_grunob', dropRate: 0.0625 }
     ]
 }
 
@@ -2991,10 +2991,10 @@ areas.donjonMaisonFantome = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_du_boostache', dropRate: 0.03 },
-        { itemId: 'anneau_du_boostache', dropRate: 0.03 },
-        { itemId: 'ceinture_du_boostache', dropRate: 0.03 },
-        { itemId: 'amulette_du_boostache', dropRate: 0.03 }
+        { itemId: 'cape_du_boostache', dropRate: 0.0625 },
+        { itemId: 'anneau_du_boostache', dropRate: 0.0625 },
+        { itemId: 'ceinture_du_boostache', dropRate: 0.0625 },
+        { itemId: 'amulette_du_boostache', dropRate: 0.0625 }
     ]
 }
 
@@ -3017,13 +3017,13 @@ areas.donjonScarafeuille = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'scaracape_doree', dropRate: 0.02 },
-        { itemId: 'scaracoiffe_doree', dropRate: 0.02 },
-        { itemId: 'scarabottes_dorees', dropRate: 0.02 },
-        { itemId: 'anneau_du_scarabosse_dore', dropRate: 0.02 },
-        { itemId: 'amulette_du_scarabosse_dore', dropRate: 0.02 },
-        { itemId: 'scarature_doree', dropRate: 0.02 },
-        { itemId: 'baguette_du_scarabosse_dore', dropRate: 0.02 }
+        { itemId: 'scaracape_doree', dropRate: 0.03571 },
+        { itemId: 'scaracoiffe_doree', dropRate: 0.03571 },
+        { itemId: 'scarabottes_dorees', dropRate: 0.03571 },
+        { itemId: 'anneau_du_scarabosse_dore', dropRate: 0.03571 },
+        { itemId: 'amulette_du_scarabosse_dore', dropRate: 0.03571 },
+        { itemId: 'scarature_doree', dropRate: 0.03571 },
+        { itemId: 'baguette_du_scarabosse_dore', dropRate: 0.03571 }
     ]
 }
 
@@ -3042,10 +3042,10 @@ areas.donjonSquelettes = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_du_chafer_primitif', dropRate: 0.03 },
-        { itemId: 'marteau_du_chafer_draugr', dropRate: 0.03 },
-        { itemId: 'kabuto_du_chafer_ronin', dropRate: 0.03 },
-        { itemId: 'pagne_du_chafer_ronin', dropRate: 0.03 }
+        { itemId: 'bottes_du_chafer_primitif', dropRate: 0.0625 },
+        { itemId: 'marteau_du_chafer_draugr', dropRate: 0.0625 },
+        { itemId: 'kabuto_du_chafer_ronin', dropRate: 0.0625 },
+        { itemId: 'pagne_du_chafer_ronin', dropRate: 0.0625 }
     ]
 }
 
@@ -3064,13 +3064,13 @@ areas.donjonTofus = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_du_tofu', dropRate: 0.02 },
-        { itemId: 'amulette_du_tofu', dropRate: 0.02 },
-        { itemId: 'ceinture_du_tofu', dropRate: 0.02 },
-        { itemId: 'kaskofu', dropRate: 0.02 },
-        { itemId: 'pantoufles_du_tofu', dropRate: 0.02 },
-        { itemId: 'baguette_du_tofu', dropRate: 0.02 },
-        { itemId: 'cape_du_tofu', dropRate: 0.02 }
+        { itemId: 'anneau_du_tofu', dropRate: 0.03571 },
+        { itemId: 'amulette_du_tofu', dropRate: 0.03571 },
+        { itemId: 'ceinture_du_tofu', dropRate: 0.03571 },
+        { itemId: 'kaskofu', dropRate: 0.03571 },
+        { itemId: 'pantoufles_du_tofu', dropRate: 0.03571 },
+        { itemId: 'baguette_du_tofu', dropRate: 0.03571 },
+        { itemId: 'cape_du_tofu', dropRate: 0.03571 }
     ]
 }
 
@@ -3089,10 +3089,10 @@ areas.donjonKankreblath = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_bille', dropRate: 0.03 },
-        { itemId: 'amulette_perle', dropRate: 0.03 },
-        { itemId: 'cape_lumette', dropRate: 0.03 },
-        { itemId: 'casque_noix', dropRate: 0.03 }
+        { itemId: 'anneau_bille', dropRate: 0.0625 },
+        { itemId: 'amulette_perle', dropRate: 0.0625 },
+        { itemId: 'cape_lumette', dropRate: 0.0625 },
+        { itemId: 'casque_noix', dropRate: 0.0625 }
     ]
 }
 
@@ -3115,10 +3115,10 @@ areas.donjonKwakwa = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'kwakwaffe', dropRate: 0.03 },
-        { itemId: 'kwakwalliance', dropRate: 0.03 },
-        { itemId: 'kwakwanneau', dropRate: 0.03 },
-        { itemId: 'kwakwalame', dropRate: 0.03 }
+        { itemId: 'kwakwaffe', dropRate: 0.0625 },
+        { itemId: 'kwakwalliance', dropRate: 0.0625 },
+        { itemId: 'kwakwanneau', dropRate: 0.0625 },
+        { itemId: 'kwakwalame', dropRate: 0.0625 }
     ]
 }
 
@@ -3137,9 +3137,9 @@ areas.donjonBworks = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'ceinture_de_grut', dropRate: 0.035 },
-        { itemId: 'amulette_de_grut', dropRate: 0.035 },
-        { itemId: 'bottes_de_grut', dropRate: 0.035 }
+        { itemId: 'ceinture_de_grut', dropRate: 0.08333 },
+        { itemId: 'amulette_de_grut', dropRate: 0.08333 },
+        { itemId: 'bottes_de_grut', dropRate: 0.08333 }
     ]
 }
 
@@ -3158,10 +3158,10 @@ areas.donjonForgerons = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'ceinture_de_coffrete', dropRate: 0.03 },
-        { itemId: 'boffes_cottre', dropRate: 0.03 },
-        { itemId: 'caskoffre', dropRate: 0.03 },
-        { itemId: 'pendentiffre', dropRate: 0.03 }
+        { itemId: 'ceinture_de_coffrete', dropRate: 0.0625 },
+        { itemId: 'boffes_cottre', dropRate: 0.0625 },
+        { itemId: 'caskoffre', dropRate: 0.0625 },
+        { itemId: 'pendentiffre', dropRate: 0.0625 }
     ]
 }
 
@@ -3196,11 +3196,11 @@ areas.donjonLarves = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'larvamulette', dropRate: 0.025 },
-        { itemId: 'larvasac', dropRate: 0.025 },
-        { itemId: 'larvabottes', dropRate: 0.025 },
-        { itemId: 'larvacoiffe', dropRate: 0.025 },
-        { itemId: 'baguette_larvesque', dropRate: 0.025 }
+        { itemId: 'larvamulette', dropRate: 0.05 },
+        { itemId: 'larvasac', dropRate: 0.05 },
+        { itemId: 'larvabottes', dropRate: 0.05 },
+        { itemId: 'larvacoiffe', dropRate: 0.05 },
+        { itemId: 'baguette_larvesque', dropRate: 0.05 }
     ]
 }
 
@@ -3219,12 +3219,12 @@ areas.donjonRefugeSylvestre = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'lance_de_guerrier_albueran', dropRate: 0.020 },
-        { itemId: 'anneau_de_guerrier_albueran', dropRate: 0.020 },
-        { itemId: 'amulette_de_guerrier_albueran', dropRate: 0.020 },
-        { itemId: 'casquette_de_rakoopeur', dropRate: 0.020 },
-        { itemId: 'queue_de_rakoopeur', dropRate: 0.020 },
-        { itemId: 'serpe_de_rakoopeur', dropRate: 0.020 }
+        { itemId: 'lance_de_guerrier_albueran', dropRate: 0.04167 },
+        { itemId: 'anneau_de_guerrier_albueran', dropRate: 0.04167 },
+        { itemId: 'amulette_de_guerrier_albueran', dropRate: 0.04167 },
+        { itemId: 'casquette_de_rakoopeur', dropRate: 0.04167 },
+        { itemId: 'queue_de_rakoopeur', dropRate: 0.04167 },
+        { itemId: 'serpe_de_rakoopeur', dropRate: 0.04167 }
     ]
 }
 
@@ -3251,22 +3251,22 @@ areas.donjonBlop = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien',          dropRate: 0.45 },
-        { itemId: 'bloptes_reinette_royales',    dropRate: 0.01 },
-        { itemId: 'blopanneau_reinette_royal',   dropRate: 0.01 },
-        { itemId: 'amublop_reinette_royale',     dropRate: 0.01 },
-        { itemId: 'blopture_reinette_royale',    dropRate: 0.01 },
-        { itemId: 'bloptes_coco_royales',        dropRate: 0.01 },
-        { itemId: 'blopanneau_coco_royal',       dropRate: 0.01 },
-        { itemId: 'amublop_coco_royale',         dropRate: 0.01 },
-        { itemId: 'blopture_coco_royale',        dropRate: 0.01 },
-        { itemId: 'bloptes_griotte_royales',     dropRate: 0.01 },
-        { itemId: 'blopanneau_griotte_royal',    dropRate: 0.01 },
-        { itemId: 'amublop_griotte_royale',      dropRate: 0.01 },
-        { itemId: 'blopture_griotte_royale',     dropRate: 0.01 },
-        { itemId: 'bloptes_indigo_royales',      dropRate: 0.01 },
-        { itemId: 'blopanneau_indigo_royal',     dropRate: 0.01 },
-        { itemId: 'amublop_indigo_royale',       dropRate: 0.01 },
-        { itemId: 'blopture_indigo_royale',      dropRate: 0.01 }
+        { itemId: 'bloptes_reinette_royales',    dropRate: 0.01563 },
+        { itemId: 'blopanneau_reinette_royal',   dropRate: 0.01563 },
+        { itemId: 'amublop_reinette_royale',     dropRate: 0.01563 },
+        { itemId: 'blopture_reinette_royale',    dropRate: 0.01563 },
+        { itemId: 'bloptes_coco_royales',        dropRate: 0.01563 },
+        { itemId: 'blopanneau_coco_royal',       dropRate: 0.01563 },
+        { itemId: 'amublop_coco_royale',         dropRate: 0.01563 },
+        { itemId: 'blopture_coco_royale',        dropRate: 0.01563 },
+        { itemId: 'bloptes_griotte_royales',     dropRate: 0.01563 },
+        { itemId: 'blopanneau_griotte_royal',    dropRate: 0.01563 },
+        { itemId: 'amublop_griotte_royale',      dropRate: 0.01563 },
+        { itemId: 'blopture_griotte_royale',     dropRate: 0.01563 },
+        { itemId: 'bloptes_indigo_royales',      dropRate: 0.01563 },
+        { itemId: 'blopanneau_indigo_royal',     dropRate: 0.01563 },
+        { itemId: 'amublop_indigo_royale',       dropRate: 0.01563 },
+        { itemId: 'blopture_indigo_royale',      dropRate: 0.01563 }
     ]
 }
 
@@ -3285,9 +3285,9 @@ areas.donjonWabbit = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'baton_du_wa_wabbit', dropRate: 0.035 },
-        { itemId: 'cape_du_wa_wabbit', dropRate: 0.035 },
-        { itemId: 'couronne_du_wa_wabbit', dropRate: 0.035 }
+        { itemId: 'baton_du_wa_wabbit', dropRate: 0.08333 },
+        { itemId: 'cape_du_wa_wabbit', dropRate: 0.08333 },
+        { itemId: 'couronne_du_wa_wabbit', dropRate: 0.08333 }
     ]
 }
 
@@ -3306,10 +3306,10 @@ areas.donjonKanniboul = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_du_kanniboul_ebil', dropRate: 0.03 },
-        { itemId: 'alliance_du_kanniboul_ebil', dropRate: 0.03 },
-        { itemId: 'masque_du_kanniboul_ebil', dropRate: 0.03 },
-        { itemId: 'sceptre_du_kanniboul_ebil', dropRate: 0.03 }
+        { itemId: 'bottes_du_kanniboul_ebil', dropRate: 0.0625 },
+        { itemId: 'alliance_du_kanniboul_ebil', dropRate: 0.0625 },
+        { itemId: 'masque_du_kanniboul_ebil', dropRate: 0.0625 },
+        { itemId: 'sceptre_du_kanniboul_ebil', dropRate: 0.0625 }
     ]
 }
 
@@ -3328,9 +3328,9 @@ areas.donjonOtomaj = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'alliance_d_hichete', dropRate: 0.035 },
-        { itemId: 'ceinture_d_hichete', dropRate: 0.035 },
-        { itemId: 'amulette_d_hichete', dropRate: 0.035 }
+        { itemId: 'alliance_d_hichete', dropRate: 0.08333 },
+        { itemId: 'ceinture_d_hichete', dropRate: 0.08333 },
+        { itemId: 'amulette_d_hichete', dropRate: 0.08333 }
     ]
 }
 
@@ -3371,13 +3371,13 @@ areas.donjonCraqueleurs = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'craquanneau_legendaire', dropRate: 0.025 },
-        { itemId: 'ceinture_du_craqueleur_legendaire', dropRate: 0.025 },
-        { itemId: 'casque_du_craqueleur_legendaire', dropRate: 0.02 },
-        { itemId: 'marteau_du_craqueleur_legendaire', dropRate: 0.025 },
-        { itemId: 'amulette_du_craqueleur_legendaire', dropRate: 0.025 },
-        { itemId: 'craquelocape_legendaire', dropRate: 0.02 },
-        { itemId: 'bottes_du_craqueleur_legendaire', dropRate: 0.025 }
+        { itemId: 'craquanneau_legendaire', dropRate: 0.03571 },
+        { itemId: 'ceinture_du_craqueleur_legendaire', dropRate: 0.03571 },
+        { itemId: 'casque_du_craqueleur_legendaire', dropRate: 0.03571 },
+        { itemId: 'marteau_du_craqueleur_legendaire', dropRate: 0.03571 },
+        { itemId: 'amulette_du_craqueleur_legendaire', dropRate: 0.03571 },
+        { itemId: 'craquelocape_legendaire', dropRate: 0.03571 },
+        { itemId: 'bottes_du_craqueleur_legendaire', dropRate: 0.03571 }
     ]
 }
 
@@ -3396,10 +3396,10 @@ areas.donjonBrumen = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_de_nelween', dropRate: 0.03 },
-        { itemId: 'amulette_de_nelween', dropRate: 0.03 },
-        { itemId: 'bottes_de_nelween', dropRate: 0.03 },
-        { itemId: 'ceinture_de_nelween', dropRate: 0.03 }
+        { itemId: 'cape_de_nelween', dropRate: 0.0625 },
+        { itemId: 'amulette_de_nelween', dropRate: 0.0625 },
+        { itemId: 'bottes_de_nelween', dropRate: 0.0625 },
+        { itemId: 'ceinture_de_nelween', dropRate: 0.0625 }
     ]
 }
 
@@ -3422,9 +3422,9 @@ areas.donjonDraegnerys = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_de_shika', dropRate: 0.035 },
-        { itemId: 'shikacoiffe', dropRate: 0.035 },
-        { itemId: 'epis_de_shika', dropRate: 0.035 }
+        { itemId: 'cape_de_shika', dropRate: 0.08333 },
+        { itemId: 'shikacoiffe', dropRate: 0.08333 },
+        { itemId: 'epis_de_shika', dropRate: 0.08333 }
     ]
 }
 
@@ -3443,9 +3443,9 @@ areas.donjonTerrierWabbit = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'couronne_du_wa_wobot', dropRate: 0.035 },
-        { itemId: 'cape_du_wa_wobot', dropRate: 0.035 },
-        { itemId: 'ceinture_du_wa_wobot', dropRate: 0.035 }
+        { itemId: 'couronne_du_wa_wobot', dropRate: 0.08333 },
+        { itemId: 'cape_du_wa_wobot', dropRate: 0.08333 },
+        { itemId: 'ceinture_du_wa_wobot', dropRate: 0.08333 }
     ]
 }
 
@@ -3468,12 +3468,12 @@ areas.donjonAbraknydeAncestral = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'abracapa_ancestrale', dropRate: 0.025 },
-        { itemId: 'abracaska_ancestral', dropRate: 0.025 },
-        { itemId: 'protege_tibias_ancestraux', dropRate: 0.025 },
-        { itemId: 'anneau_ancestral', dropRate: 0.025 },
-        { itemId: 'torque_ancestral', dropRate: 0.025 },
-        { itemId: 'abrature_ancestrale', dropRate: 0.025 }
+        { itemId: 'abracapa_ancestrale', dropRate: 0.04167 },
+        { itemId: 'abracaska_ancestral', dropRate: 0.04167 },
+        { itemId: 'protege_tibias_ancestraux', dropRate: 0.04167 },
+        { itemId: 'anneau_ancestral', dropRate: 0.04167 },
+        { itemId: 'torque_ancestral', dropRate: 0.04167 },
+        { itemId: 'abrature_ancestrale', dropRate: 0.04167 }
     ]
 }
 
@@ -3492,10 +3492,10 @@ areas.donjonKoulosse = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'sac_du_koulosse', dropRate: 0.03 },
-        { itemId: 'bottes_du_koulosse', dropRate: 0.03 },
-        { itemId: 'baton_du_koulosse', dropRate: 0.03 },
-        { itemId: 'coiffe_du_koulosse', dropRate: 0.03 }
+        { itemId: 'sac_du_koulosse', dropRate: 0.0625 },
+        { itemId: 'bottes_du_koulosse', dropRate: 0.0625 },
+        { itemId: 'baton_du_koulosse', dropRate: 0.0625 },
+        { itemId: 'coiffe_du_koulosse', dropRate: 0.0625 }
     ]
 }
 
@@ -3514,9 +3514,9 @@ areas.donjonReineNyee = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'gaine_nyee', dropRate: 0.035 },
-        { itemId: 'amulette_des_huit_yeux', dropRate: 0.035 },
-        { itemId: 'caparak', dropRate: 0.035 }
+        { itemId: 'gaine_nyee', dropRate: 0.08333 },
+        { itemId: 'amulette_des_huit_yeux', dropRate: 0.08333 },
+        { itemId: 'caparak', dropRate: 0.08333 }
     ]
 }
 
@@ -3535,10 +3535,10 @@ areas.donjonChouque = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bouclier_du_chouque', dropRate: 0.03 },
-        { itemId: 'cape_du_capitaine_pirate', dropRate: 0.03 },
-        { itemId: 'chapeau_du_capitaine_pirate', dropRate: 0.03 },
-        { itemId: 'alliance_du_capitaine_pirate', dropRate: 0.03 }
+        { itemId: 'bouclier_du_chouque', dropRate: 0.0625 },
+        { itemId: 'cape_du_capitaine_pirate', dropRate: 0.0625 },
+        { itemId: 'chapeau_du_capitaine_pirate', dropRate: 0.0625 },
+        { itemId: 'alliance_du_capitaine_pirate', dropRate: 0.0625 }
     ]
 }
 
@@ -3557,9 +3557,9 @@ areas.donjonMagikRiktus = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_riktus', dropRate: 0.035 },
-        { itemId: 'cape_riktus', dropRate: 0.035 },
-        { itemId: 'masque_riktus', dropRate: 0.035 }
+        { itemId: 'anneau_riktus', dropRate: 0.08333 },
+        { itemId: 'cape_riktus', dropRate: 0.08333 },
+        { itemId: 'masque_riktus', dropRate: 0.08333 }
     ]
 }
 
@@ -3583,13 +3583,13 @@ areas.donjonDragonCochon = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Turquoise', dropRate: 0.0005 },
-        { itemId: 'mules_du_dragon_cochon', dropRate: 0.02 },
-        { itemId: 'ceinture_dracochoune', dropRate: 0.02 },
-        { itemId: 'coiffe_du_dragon_cochon', dropRate: 0.02 },
-        { itemId: 'collier_du_dragon_cochon', dropRate: 0.02 },
-        { itemId: 'cape_du_dragon_cochon', dropRate: 0.02 },
-        { itemId: 'kaiser', dropRate: 0.02 },
-        { itemId: 'anneau_du_dragon_cochon', dropRate: 0.02 }
+        { itemId: 'mules_du_dragon_cochon', dropRate: 0.03571 },
+        { itemId: 'ceinture_dracochoune', dropRate: 0.03571 },
+        { itemId: 'coiffe_du_dragon_cochon', dropRate: 0.03571 },
+        { itemId: 'collier_du_dragon_cochon', dropRate: 0.03571 },
+        { itemId: 'cape_du_dragon_cochon', dropRate: 0.03571 },
+        { itemId: 'kaiser', dropRate: 0.03571 },
+        { itemId: 'anneau_du_dragon_cochon', dropRate: 0.03571 }
     ]
 }
 
@@ -3609,12 +3609,12 @@ areas.donjonMeulou = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Emeraude', dropRate: 0.0005 },
-        { itemId: 'ceinture_du_meulou', dropRate: 0.02 },
-        { itemId: 'anneau_du_meulou', dropRate: 0.02 },
-        { itemId: 'bottes_du_meulou', dropRate: 0.02 },
-        { itemId: 'cape_du_meulou', dropRate: 0.02 },
-        { itemId: 'coiffe_du_meulou', dropRate: 0.02 },
-        { itemId: 'la_meulette', dropRate: 0.02 }
+        { itemId: 'ceinture_du_meulou', dropRate: 0.04167 },
+        { itemId: 'anneau_du_meulou', dropRate: 0.04167 },
+        { itemId: 'bottes_du_meulou', dropRate: 0.04167 },
+        { itemId: 'cape_du_meulou', dropRate: 0.04167 },
+        { itemId: 'coiffe_du_meulou', dropRate: 0.04167 },
+        { itemId: 'la_meulette', dropRate: 0.04167 }
     ]
 }
 
@@ -3649,9 +3649,9 @@ areas.donjonDramak = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ceinture_hetorique', dropRate: 0.02 },
-        { itemId: 'masque_iproquo', dropRate: 0.02 },
-        { itemId: 'bracelet_tmotiv', dropRate: 0.02 }
+        { itemId: 'ceinture_hetorique', dropRate: 0.08333 },
+        { itemId: 'masque_iproquo', dropRate: 0.08333 },
+        { itemId: 'bracelet_tmotiv', dropRate: 0.08333 }
     ]
 }
 
@@ -3670,9 +3670,9 @@ areas.donjonMoon = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'amulette_de_moon', dropRate: 0.02 },
-        { itemId: 'cape_de_moon', dropRate: 0.02 },
-        { itemId: 'marteau_de_moon', dropRate: 0.02 },
+        { itemId: 'amulette_de_moon', dropRate: 0.08333 },
+        { itemId: 'cape_de_moon', dropRate: 0.08333 },
+        { itemId: 'marteau_de_moon', dropRate: 0.08333 },
         { itemId: 'Dofus_Dokoko', dropRate: 0.0005 }
     ]
 }
@@ -3692,8 +3692,8 @@ areas.donjonKharnozor = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'cape_houte', dropRate: 0.01 },
-        { itemId: 'holoune', dropRate: 0.01 }
+        { itemId: 'cape_houte', dropRate: 0.125 },
+        { itemId: 'holoune', dropRate: 0.125 }
     ]
 }
 
@@ -3717,10 +3717,10 @@ areas.donjonCorbac = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Pourpre', dropRate: 0.0005 },
-        { itemId: 'corbottes', dropRate: 0.02 },
-        { itemId: 'corbacoiffe', dropRate: 0.02 },
-        { itemId: 'corbacape', dropRate: 0.02 },
-        { itemId: 'corbalame', dropRate: 0.02 }
+        { itemId: 'corbottes', dropRate: 0.0625 },
+        { itemId: 'corbacoiffe', dropRate: 0.0625 },
+        { itemId: 'corbacape', dropRate: 0.0625 },
+        { itemId: 'corbalame', dropRate: 0.0625 }
     ]
 }
 
@@ -3739,13 +3739,13 @@ areas.donjonRatBlanc = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'bottes_du_rat_blanc', dropRate: 0.02 },
-        { itemId: 'gant_du_rat_blanc', dropRate: 0.02 },
-        { itemId: 'cape_du_rat_blanc', dropRate: 0.02 },
-        { itemId: 'ceinture_du_rat_blanc', dropRate: 0.02 },
-        { itemId: 'collier_du_rat_blanc', dropRate: 0.02 },
-        { itemId: 'couvre_chef_du_rat_blanc', dropRate: 0.02 },
-        { itemId: 'rapiere_du_rat_blanc', dropRate: 0.02 }
+        { itemId: 'bottes_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'gant_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'cape_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'ceinture_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'collier_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'couvre_chef_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'rapiere_du_rat_blanc', dropRate: 0.03571 }
     ]
 }
 
@@ -3764,13 +3764,13 @@ areas.donjonRatNoir = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'gant_du_rat_noir', dropRate: 0.02 },
-        { itemId: 'bottes_du_rat_noir', dropRate: 0.02 },
-        { itemId: 'ceinture_du_rat_noir', dropRate: 0.02 },
-        { itemId: 'masque_du_rat_noir', dropRate: 0.02 },
-        { itemId: 'collier_du_rat_noir', dropRate: 0.02 },
-        { itemId: 'cape_du_rat_noir', dropRate: 0.02 },
-        { itemId: 'dagues_du_rat_noir', dropRate: 0.02 }
+        { itemId: 'gant_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'bottes_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'ceinture_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'masque_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'collier_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'cape_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'dagues_du_rat_noir', dropRate: 0.03571 }
     ]
 }
 
@@ -3790,10 +3790,10 @@ areas.donjonDamadrya = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
-        { itemId: 'boutures', dropRate: 0.02 },
-        { itemId: 'plantamulette', dropRate: 0.02 },
-        { itemId: 'bulbouclier', dropRate: 0.02 },
-        { itemId: 'capistil', dropRate: 0.02 }
+        { itemId: 'boutures', dropRate: 0.0625 },
+        { itemId: 'plantamulette', dropRate: 0.0625 },
+        { itemId: 'bulbouclier', dropRate: 0.0625 },
+        { itemId: 'capistil', dropRate: 0.0625 }
     ]
 }
 
@@ -3816,13 +3816,13 @@ areas.donjonMinotoror = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'cape_du_minotoror', dropRate: 0.02 },
-        { itemId: 'ceinture_du_minotoror', dropRate: 0.02 },
-        { itemId: 'hache_du_minotoror', dropRate: 0.02 },
-        { itemId: 'minotokorno', dropRate: 0.02 },
-        { itemId: 'collier_du_minotoror', dropRate: 0.02 },
-        { itemId: 'anneau_du_minotoror', dropRate: 0.02 },
-        { itemId: 'bottes_du_minotoror', dropRate: 0.02 }
+        { itemId: 'cape_du_minotoror', dropRate: 0.03571 },
+        { itemId: 'ceinture_du_minotoror', dropRate: 0.03571 },
+        { itemId: 'hache_du_minotoror', dropRate: 0.03571 },
+        { itemId: 'minotokorno', dropRate: 0.03571 },
+        { itemId: 'collier_du_minotoror', dropRate: 0.03571 },
+        { itemId: 'anneau_du_minotoror', dropRate: 0.03571 },
+        { itemId: 'bottes_du_minotoror', dropRate: 0.03571 }
     ]
 }
 
@@ -3842,14 +3842,14 @@ areas.donjonCrocabulia = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Vulbis', dropRate: 0.0005 },
-        { itemId: 'marteau_du_dragoeuf', dropRate: 0.02 },
-        { itemId: 'hache_du_dragoeuf', dropRate: 0.02 },
-        { itemId: 'pelle_dragoeuf', dropRate: 0.02 },
-        { itemId: 'epee_du_dragoeuf', dropRate: 0.02 },
-        { itemId: 'arc_du_dragoeuf', dropRate: 0.02 },
-        { itemId: 'baguette_du_dragoeuf', dropRate: 0.02 },
-        { itemId: 'baton_du_dragoeuf', dropRate: 0.02 },
-        { itemId: 'dagues_du_dragoeuf', dropRate: 0.02 }
+        { itemId: 'marteau_du_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'hache_du_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'pelle_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'epee_du_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'arc_du_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'baguette_du_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'baton_du_dragoeuf', dropRate: 0.03125 },
+        { itemId: 'dagues_du_dragoeuf', dropRate: 0.03125 }
     ]
 }
 
@@ -3884,10 +3884,10 @@ areas.donjonRoyalmouth = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'bottes_du_royalmouth', dropRate: 0.02 },
-        { itemId: 'coiffe_du_royalmouth', dropRate: 0.02 },
-        { itemId: 'amulette_du_royalmouth', dropRate: 0.02 },
-        { itemId: 'ceinture_du_royalmouth', dropRate: 0.02 }
+        { itemId: 'bottes_du_royalmouth', dropRate: 0.0625 },
+        { itemId: 'coiffe_du_royalmouth', dropRate: 0.0625 },
+        { itemId: 'amulette_du_royalmouth', dropRate: 0.0625 },
+        { itemId: 'ceinture_du_royalmouth', dropRate: 0.0625 }
     ]
 }
 
@@ -3926,10 +3926,10 @@ areas.donjonBlopMulticolore = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'blopture_multicolore_royale', dropRate: 0.02 },
-        { itemId: 'amublop_multicolore_royale', dropRate: 0.02 },
-        { itemId: 'blopanneau_multicolore_royal', dropRate: 0.02 },
-        { itemId: 'bloptes_multicolores_royales', dropRate: 0.02 }
+        { itemId: 'blopture_multicolore_royale', dropRate: 0.0625 },
+        { itemId: 'amublop_multicolore_royale', dropRate: 0.0625 },
+        { itemId: 'blopanneau_multicolore_royal', dropRate: 0.0625 },
+        { itemId: 'bloptes_multicolores_royales', dropRate: 0.0625 }
     ]
 }
 
@@ -3948,9 +3948,9 @@ areas.donjonHauteTruche = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ceintruche', dropRate: 0.02 },
-        { itemId: 'anneau_truche', dropRate: 0.02 },
-        { itemId: 'chapeau_truche', dropRate: 0.02 }
+        { itemId: 'ceintruche', dropRate: 0.08333 },
+        { itemId: 'anneau_truche', dropRate: 0.08333 },
+        { itemId: 'chapeau_truche', dropRate: 0.08333 }
     ]
 }
 
@@ -3969,9 +3969,9 @@ areas.donjonElPiko = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'sombrero_d_el_piko', dropRate: 0.02 },
-        { itemId: 'anneau_d_el_piko', dropRate: 0.02 },
-        { itemId: 'amulette_d_el_piko', dropRate: 0.02 }
+        { itemId: 'sombrero_d_el_piko', dropRate: 0.08333 },
+        { itemId: 'anneau_d_el_piko', dropRate: 0.08333 },
+        { itemId: 'amulette_d_el_piko', dropRate: 0.08333 }
     ]
 }
 
@@ -3991,9 +3991,9 @@ areas.donjonDameEaux = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
-        { itemId: 'kwarapace', dropRate: 0.02 },
-        { itemId: 'kwaflaque', dropRate: 0.02 },
-        { itemId: 'kwache', dropRate: 0.02 }
+        { itemId: 'kwarapace', dropRate: 0.08333 },
+        { itemId: 'kwaflaque', dropRate: 0.08333 },
+        { itemId: 'kwache', dropRate: 0.08333 }
     ]
 }
 
@@ -4013,9 +4013,9 @@ areas.donjonTanukoi = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
-        { itemId: 'les_casse_noisettes', dropRate: 0.02 },
-        { itemId: 'chapeau_kasse', dropRate: 0.02 },
-        { itemId: 'ceinture_pitude', dropRate: 0.02 }
+        { itemId: 'les_casse_noisettes', dropRate: 0.08333 },
+        { itemId: 'chapeau_kasse', dropRate: 0.08333 },
+        { itemId: 'ceinture_pitude', dropRate: 0.08333 }
     ]
 }
 
@@ -4039,13 +4039,13 @@ areas.donjonCheneMou = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Turquoise', dropRate: 0.0005 },
-        { itemId: 'tongues_du_dimanche_du_chene_mou', dropRate: 0.02 },
-        { itemId: 'talisman_du_chene_mou', dropRate: 0.02 },
-        { itemId: 'anneau_du_chene_mou', dropRate: 0.02 },
-        { itemId: 'vieille_branche_du_chene_mou', dropRate: 0.02 },
-        { itemId: 'string_automnal_du_chene_mou', dropRate: 0.02 },
-        { itemId: 'cape_usee_du_chene_mou', dropRate: 0.02 },
-        { itemId: 'coiffe_du_chene_mou', dropRate: 0.02 }
+        { itemId: 'tongues_du_dimanche_du_chene_mou', dropRate: 0.03571 },
+        { itemId: 'talisman_du_chene_mou', dropRate: 0.03571 },
+        { itemId: 'anneau_du_chene_mou', dropRate: 0.03571 },
+        { itemId: 'vieille_branche_du_chene_mou', dropRate: 0.03571 },
+        { itemId: 'string_automnal_du_chene_mou', dropRate: 0.03571 },
+        { itemId: 'cape_usee_du_chene_mou', dropRate: 0.03571 },
+        { itemId: 'coiffe_du_chene_mou', dropRate: 0.03571 }
     ]
 }
 
@@ -4064,9 +4064,9 @@ areas.donjonMansot = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'couronne_du_mansot_royal', dropRate: 0.02 },
-        { itemId: 'anneau_du_mansot_royal', dropRate: 0.02 },
-        { itemId: 'cape_du_mansot_royal', dropRate: 0.02 }
+        { itemId: 'couronne_du_mansot_royal', dropRate: 0.08333 },
+        { itemId: 'anneau_du_mansot_royal', dropRate: 0.08333 },
+        { itemId: 'cape_du_mansot_royal', dropRate: 0.08333 }
     ]
 }
 
@@ -4089,8 +4089,8 @@ areas.donjonTynril = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'coiffe_du_tynril', dropRate: 0.03 },
-        { itemId: 'rhizome_du_tynril', dropRate: 0.03 }
+        { itemId: 'coiffe_du_tynril', dropRate: 0.125 },
+        { itemId: 'rhizome_du_tynril', dropRate: 0.125 }
     ]
 }
 
@@ -4112,9 +4112,9 @@ areas.donjonDojoVent = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
-        { itemId: 'nun_charang', dropRate: 0.02 },
-        { itemId: 'caparavent', dropRate: 0.02 },
-        { itemId: 'collier_de_perlouzes', dropRate: 0.02 }
+        { itemId: 'nun_charang', dropRate: 0.08333 },
+        { itemId: 'caparavent', dropRate: 0.08333 },
+        { itemId: 'collier_de_perlouzes', dropRate: 0.08333 }
     ]
 }
 
@@ -4134,9 +4134,9 @@ areas.donjonFouxArtifice = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
-        { itemId: 'alliance_des_firefoux', dropRate: 0.02 },
-        { itemId: 'ceinture_d_artifices', dropRate: 0.02 },
-        { itemId: 'sac_des_firefoux', dropRate: 0.02 }
+        { itemId: 'alliance_des_firefoux', dropRate: 0.08333 },
+        { itemId: 'ceinture_d_artifices', dropRate: 0.08333 },
+        { itemId: 'sac_des_firefoux', dropRate: 0.08333 }
     ]
 }
 
@@ -4159,12 +4159,12 @@ areas.donjonSphincter = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'cape_ceremoniale_du_seigneur_des_rats', dropRate: 0.02 },
-        { itemId: 'anneau_ceremonial_du_seigneur_des_rats', dropRate: 0.02 },
-        { itemId: 'ceinture_ceremoniale_du_seigneur_des_rats', dropRate: 0.02 },
-        { itemId: 'coiffe_ceremoniale_du_seigneur_des_rats', dropRate: 0.02 },
-        { itemId: 'bottes_ceremoniales_du_seigneur_des_rats', dropRate: 0.02 },
-        { itemId: 'collier_ceremonial_du_seigneur_des_rats', dropRate: 0.02 }
+        { itemId: 'cape_ceremoniale_du_seigneur_des_rats', dropRate: 0.04167 },
+        { itemId: 'anneau_ceremonial_du_seigneur_des_rats', dropRate: 0.04167 },
+        { itemId: 'ceinture_ceremoniale_du_seigneur_des_rats', dropRate: 0.04167 },
+        { itemId: 'coiffe_ceremoniale_du_seigneur_des_rats', dropRate: 0.04167 },
+        { itemId: 'bottes_ceremoniales_du_seigneur_des_rats', dropRate: 0.04167 },
+        { itemId: 'collier_ceremonial_du_seigneur_des_rats', dropRate: 0.04167 }
     ]
 }
 
@@ -4183,10 +4183,10 @@ areas.donjonGrolandais = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'sabre_de_ben_le_ripate', dropRate: 0.02 },
-        { itemId: 'chapeau_de_ben_le_ripate', dropRate: 0.02 },
-        { itemId: 'crochet_de_ben_le_ripate', dropRate: 0.02 },
-        { itemId: 'ceinture_de_ben_le_ripate', dropRate: 0.02 }
+        { itemId: 'sabre_de_ben_le_ripate', dropRate: 0.0625 },
+        { itemId: 'chapeau_de_ben_le_ripate', dropRate: 0.0625 },
+        { itemId: 'crochet_de_ben_le_ripate', dropRate: 0.0625 },
+        { itemId: 'ceinture_de_ben_le_ripate', dropRate: 0.0625 }
     ]
 }
 
@@ -4206,9 +4206,9 @@ areas.donjonTertreSommeil = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Emeraude', dropRate: 0.0005 },
-        { itemId: 'alliance_d_hell_mina', dropRate: 0.02 },
-        { itemId: 'cape_d_hell_mina', dropRate: 0.02 },
-        { itemId: 'pertuisane_d_hell_mina', dropRate: 0.02 }
+        { itemId: 'alliance_d_hell_mina', dropRate: 0.08333 },
+        { itemId: 'cape_d_hell_mina', dropRate: 0.08333 },
+        { itemId: 'pertuisane_d_hell_mina', dropRate: 0.08333 }
     ]
 }
 
@@ -4231,11 +4231,11 @@ areas.donjonObsidiantre = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'bague_de_l_obsidiantre', dropRate: 0.02 },
-        { itemId: 'cape_de_l_obsidiantre', dropRate: 0.02 },
-        { itemId: 'amulette_de_l_obsidiantre', dropRate: 0.02 },
-        { itemId: 'casque_de_l_obsidiantre', dropRate: 0.02 },
-        { itemId: 'bottes_de_l_obsidiantre', dropRate: 0.02 }
+        { itemId: 'bague_de_l_obsidiantre', dropRate: 0.05 },
+        { itemId: 'cape_de_l_obsidiantre', dropRate: 0.05 },
+        { itemId: 'amulette_de_l_obsidiantre', dropRate: 0.05 },
+        { itemId: 'casque_de_l_obsidiantre', dropRate: 0.05 },
+        { itemId: 'bottes_de_l_obsidiantre', dropRate: 0.05 }
     ]
 }
 
@@ -4254,8 +4254,8 @@ areas.donjonKimbo = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'sandales_circulaires_du_kimbo', dropRate: 0.03 },
-        { itemId: 'le_kim', dropRate: 0.03 }
+        { itemId: 'sandales_circulaires_du_kimbo', dropRate: 0.125 },
+        { itemId: 'le_kim', dropRate: 0.125 }
     ]
 }
 
@@ -4275,13 +4275,13 @@ areas.donjonMinotot = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Pourpre', dropRate: 0.0005 },
-        { itemId: 'bracelet_du_minotot', dropRate: 0.02 },
-        { itemId: 'ceinture_du_minotot', dropRate: 0.02 },
-        { itemId: 'sceptre_du_minotot', dropRate: 0.02 },
-        { itemId: 'cape_du_minotot', dropRate: 0.02 },
-        { itemId: 'coiffe_du_minotot', dropRate: 0.02 },
-        { itemId: 'collier_du_minotot', dropRate: 0.02 },
-        { itemId: 'sandales_du_minotot', dropRate: 0.02 }
+        { itemId: 'bracelet_du_minotot', dropRate: 0.03571 },
+        { itemId: 'ceinture_du_minotot', dropRate: 0.03571 },
+        { itemId: 'sceptre_du_minotot', dropRate: 0.03571 },
+        { itemId: 'cape_du_minotot', dropRate: 0.03571 },
+        { itemId: 'coiffe_du_minotot', dropRate: 0.03571 },
+        { itemId: 'collier_du_minotot', dropRate: 0.03571 },
+        { itemId: 'sandales_du_minotot', dropRate: 0.03571 }
     ]
 }
 
@@ -4300,12 +4300,12 @@ areas.donjonKanigroula = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ceinture_du_kaniblou', dropRate: 0.01 },
-        { itemId: 'cape_du_kaniblou', dropRate: 0.01 },
-        { itemId: 'anneau_du_kaniblou', dropRate: 0.01 },
-        { itemId: 'amulette_de_l_orfelin', dropRate: 0.01 },
-        { itemId: 'ceinture_de_l_orfelin', dropRate: 0.01 },
-        { itemId: 'coiffe_de_l_orfelin', dropRate: 0.01 }
+        { itemId: 'ceinture_du_kaniblou', dropRate: 0.04167 },
+        { itemId: 'cape_du_kaniblou', dropRate: 0.04167 },
+        { itemId: 'anneau_du_kaniblou', dropRate: 0.04167 },
+        { itemId: 'amulette_de_l_orfelin', dropRate: 0.04167 },
+        { itemId: 'ceinture_de_l_orfelin', dropRate: 0.04167 },
+        { itemId: 'coiffe_de_l_orfelin', dropRate: 0.04167 }
     ]
 }
 
@@ -4325,9 +4325,9 @@ areas.donjonShogunTofugawa = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Dorigami', dropRate: 0.0005 },
-        { itemId: 'bandeau_de_spiritueur', dropRate: 0.02 },
-        { itemId: 'katana_de_spiritueur', dropRate: 0.02 },
-        { itemId: 'fut_d_aspiratueur', dropRate: 0.02 }
+        { itemId: 'bandeau_de_spiritueur', dropRate: 0.08333 },
+        { itemId: 'katana_de_spiritueur', dropRate: 0.08333 },
+        { itemId: 'fut_d_aspiratueur', dropRate: 0.08333 }
     ]
 }
 
@@ -4350,14 +4350,14 @@ areas.donjonGivrefoux = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'bottes_du_tengu_givrefoux', dropRate: 0.02 },
-        { itemId: 'coiffe_de_tengu_givrefoux', dropRate: 0.02 },
-        { itemId: 'cape_de_tengu_givrefoux', dropRate: 0.02 },
-        { itemId: 'ceinture_du_tengu_givrefoux', dropRate: 0.02 },
-        { itemId: 'anneau_de_la_fuji_givrefoux', dropRate: 0.02 },
-        { itemId: 'cape_de_la_fuji_givrefoux', dropRate: 0.02 },
-        { itemId: 'bottes_de_la_fuji_givrefoux', dropRate: 0.02 },
-        { itemId: 'coiffe_de_la_fuji_givrefoux', dropRate: 0.02 }
+        { itemId: 'bottes_du_tengu_givrefoux', dropRate: 0.03125 },
+        { itemId: 'coiffe_de_tengu_givrefoux', dropRate: 0.03125 },
+        { itemId: 'cape_de_tengu_givrefoux', dropRate: 0.03125 },
+        { itemId: 'ceinture_du_tengu_givrefoux', dropRate: 0.03125 },
+        { itemId: 'anneau_de_la_fuji_givrefoux', dropRate: 0.03125 },
+        { itemId: 'cape_de_la_fuji_givrefoux', dropRate: 0.03125 },
+        { itemId: 'bottes_de_la_fuji_givrefoux', dropRate: 0.03125 },
+        { itemId: 'coiffe_de_la_fuji_givrefoux', dropRate: 0.03125 }
     ]
 }
 
@@ -4376,9 +4376,9 @@ areas.donjonPereVer = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'veranneau', dropRate: 0.02 },
-        { itemId: 'capiktenia', dropRate: 0.02 },
-        { itemId: 'chaussquales', dropRate: 0.02 }
+        { itemId: 'veranneau', dropRate: 0.08333 },
+        { itemId: 'capiktenia', dropRate: 0.08333 },
+        { itemId: 'chaussquales', dropRate: 0.08333 }
     ]
 }
 
@@ -4416,14 +4416,14 @@ areas.donjonSupervizoeuf = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'carapace_ailee_du_superviz_uf', dropRate: 0.01 },
-        { itemId: 'poing_du_superviz_uf', dropRate: 0.01 },
-        { itemId: 'casque_du_superviz_uf', dropRate: 0.01 },
-        { itemId: 'dard_du_superviz_uf', dropRate: 0.01 },
-        { itemId: 'blindage_du_superviz_uf', dropRate: 0.01 },
-        { itemId: 'dagues_de_kabombz', dropRate: 0.01 },
-        { itemId: 'pagne_de_kabombz', dropRate: 0.01 },
-        { itemId: 'panier_de_z_ufs', dropRate: 0.01 }
+        { itemId: 'carapace_ailee_du_superviz_uf', dropRate: 0.03125 },
+        { itemId: 'poing_du_superviz_uf', dropRate: 0.03125 },
+        { itemId: 'casque_du_superviz_uf', dropRate: 0.03125 },
+        { itemId: 'dard_du_superviz_uf', dropRate: 0.03125 },
+        { itemId: 'blindage_du_superviz_uf', dropRate: 0.03125 },
+        { itemId: 'dagues_de_kabombz', dropRate: 0.03125 },
+        { itemId: 'pagne_de_kabombz', dropRate: 0.03125 },
+        { itemId: 'panier_de_z_ufs', dropRate: 0.03125 }
     ]
 }
 
@@ -4446,10 +4446,10 @@ areas.donjonBworker = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'anneau_blitere', dropRate: 0.02 },
-        { itemId: 'ceinture_tore', dropRate: 0.02 },
-        { itemId: 'bottes_repane', dropRate: 0.02 },
-        { itemId: 'casque_harnage', dropRate: 0.02 }
+        { itemId: 'anneau_blitere', dropRate: 0.0625 },
+        { itemId: 'ceinture_tore', dropRate: 0.0625 },
+        { itemId: 'bottes_repane', dropRate: 0.0625 },
+        { itemId: 'casque_harnage', dropRate: 0.0625 }
     ]
 }
 
@@ -4468,10 +4468,10 @@ areas.donjonOugah = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ougalurette', dropRate: 0.03 },
-        { itemId: 'ougarteau', dropRate: 0.03 },
-        { itemId: 'ougamulette', dropRate: 0.03 },
-        { itemId: 'ougature', dropRate: 0.03 }
+        { itemId: 'ougalurette', dropRate: 0.0625 },
+        { itemId: 'ougarteau', dropRate: 0.0625 },
+        { itemId: 'ougamulette', dropRate: 0.0625 },
+        { itemId: 'ougature', dropRate: 0.0625 }
     ]
 }
 
@@ -4492,14 +4492,14 @@ areas.donjonKolosso = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ceinture_de_kolosso', dropRate: 0.02 },
-        { itemId: 'anneau_de_kolosso', dropRate: 0.02 },
-        { itemId: 'coiffe_de_kolosso', dropRate: 0.02 },
-        { itemId: 'anneau_du_professeur_xa', dropRate: 0.02 },
-        { itemId: 'pelle_du_professeur_xa', dropRate: 0.02 },
-        { itemId: 'bottes_du_professeur_xa', dropRate: 0.02 },
-        { itemId: 'cape_du_professeur_xa', dropRate: 0.02 },
-        { itemId: 'amulette_du_professeur_xa', dropRate: 0.02 }
+        { itemId: 'ceinture_de_kolosso', dropRate: 0.03125 },
+        { itemId: 'anneau_de_kolosso', dropRate: 0.03125 },
+        { itemId: 'coiffe_de_kolosso', dropRate: 0.03125 },
+        { itemId: 'anneau_du_professeur_xa', dropRate: 0.03125 },
+        { itemId: 'pelle_du_professeur_xa', dropRate: 0.03125 },
+        { itemId: 'bottes_du_professeur_xa', dropRate: 0.03125 },
+        { itemId: 'cape_du_professeur_xa', dropRate: 0.03125 },
+        { itemId: 'amulette_du_professeur_xa', dropRate: 0.03125 }
     ]
 }
 
@@ -4518,14 +4518,14 @@ areas.donjonSakai = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'frimacoiffe', dropRate: 0.01 },
-        { itemId: 'frimamulette', dropRate: 0.01 },
-        { itemId: 'frimanneau', dropRate: 0.01 },
-        { itemId: 'frimature', dropRate: 0.01 },
-        { itemId: 'gresilobottes', dropRate: 0.01 },
-        { itemId: 'gresilosceptre', dropRate: 0.01 },
-        { itemId: 'gresilocape', dropRate: 0.01 },
-        { itemId: 'gresilanneau', dropRate: 0.01 }
+        { itemId: 'frimacoiffe', dropRate: 0.03125 },
+        { itemId: 'frimamulette', dropRate: 0.03125 },
+        { itemId: 'frimanneau', dropRate: 0.03125 },
+        { itemId: 'frimature', dropRate: 0.03125 },
+        { itemId: 'gresilobottes', dropRate: 0.03125 },
+        { itemId: 'gresilosceptre', dropRate: 0.03125 },
+        { itemId: 'gresilocape', dropRate: 0.03125 },
+        { itemId: 'gresilanneau', dropRate: 0.03125 }
     ]
 }
 
@@ -4544,10 +4544,10 @@ areas.donjonKorriandre = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'anneau_du_korriandre', dropRate: 0.02 },
-        { itemId: 'cape_du_korriandre', dropRate: 0.02 },
-        { itemId: 'amulette_du_korriandre', dropRate: 0.02 },
-        { itemId: 'hache_du_korriandre', dropRate: 0.02 }
+        { itemId: 'anneau_du_korriandre', dropRate: 0.0625 },
+        { itemId: 'cape_du_korriandre', dropRate: 0.0625 },
+        { itemId: 'amulette_du_korriandre', dropRate: 0.0625 },
+        { itemId: 'hache_du_korriandre', dropRate: 0.0625 }
     ]
 }
 
@@ -4570,11 +4570,11 @@ areas.donjonGloursons = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'ceinture_du_glourseleste', dropRate: 0.02 },
-        { itemId: 'bottes_du_glourseleste', dropRate: 0.02 },
-        { itemId: 'cape_du_glourseleste', dropRate: 0.02 },
-        { itemId: 'amulette_du_glourseleste', dropRate: 0.02 },
-        { itemId: 'masque_du_glourseleste', dropRate: 0.02 }
+        { itemId: 'ceinture_du_glourseleste', dropRate: 0.05 },
+        { itemId: 'bottes_du_glourseleste', dropRate: 0.05 },
+        { itemId: 'cape_du_glourseleste', dropRate: 0.05 },
+        { itemId: 'amulette_du_glourseleste', dropRate: 0.05 },
+        { itemId: 'masque_du_glourseleste', dropRate: 0.05 }
     ]
 }
 
@@ -4593,9 +4593,9 @@ areas.donjonOmbre = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'casqnoar', dropRate: 0.02 },
-        { itemId: 'anneau_kturne', dropRate: 0.02 },
-        { itemId: 'bottes_refois', dropRate: 0.02 }
+        { itemId: 'casqnoar', dropRate: 0.08333 },
+        { itemId: 'anneau_kturne', dropRate: 0.08333 },
+        { itemId: 'bottes_refois', dropRate: 0.08333 }
     ]
 }
 
@@ -4614,9 +4614,9 @@ areas.donjonRazof = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'chaussons_du_comte_razof', dropRate: 0.02 },
-        { itemId: 'ceinture_du_comte_razof', dropRate: 0.02 },
-        { itemId: 'chapeau_du_comte_razof', dropRate: 0.02 }
+        { itemId: 'chaussons_du_comte_razof', dropRate: 0.08333 },
+        { itemId: 'ceinture_du_comte_razof', dropRate: 0.08333 },
+        { itemId: 'chapeau_du_comte_razof', dropRate: 0.08333 }
     ]
 }
 
@@ -4635,9 +4635,9 @@ areas.donjonBastionMarteaux = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'grelots_de_barberyl', dropRate: 0.02 },
-        { itemId: 'subligar_de_barberyl', dropRate: 0.02 },
-        { itemId: 'tonfas_de_barberyl', dropRate: 0.02 }
+        { itemId: 'grelots_de_barberyl', dropRate: 0.08333 },
+        { itemId: 'subligar_de_barberyl', dropRate: 0.08333 },
+        { itemId: 'tonfas_de_barberyl', dropRate: 0.08333 }
     ]
 }
 
@@ -4661,9 +4661,9 @@ areas.donjonSylargh = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
-        { itemId: 'sangle_de_sylargh', dropRate: 0.02 },
-        { itemId: 'capuche_de_sylargh', dropRate: 0.02 },
-        { itemId: 'cape_de_sylargh', dropRate: 0.02 }
+        { itemId: 'sangle_de_sylargh', dropRate: 0.08333 },
+        { itemId: 'capuche_de_sylargh', dropRate: 0.08333 },
+        { itemId: 'cape_de_sylargh', dropRate: 0.08333 }
     ]
 }
 
@@ -4683,9 +4683,9 @@ areas.donjonKlime = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
-        { itemId: 'masque_de_klime', dropRate: 0.02 },
-        { itemId: 'cape_de_klime', dropRate: 0.02 },
-        { itemId: 'ceinture_de_klime', dropRate: 0.02 }
+        { itemId: 'masque_de_klime', dropRate: 0.08333 },
+        { itemId: 'cape_de_klime', dropRate: 0.08333 },
+        { itemId: 'ceinture_de_klime', dropRate: 0.08333 }
     ]
 }
 
@@ -4705,12 +4705,12 @@ areas.donjonMissizFrizz = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
-        { itemId: 'bottes_de_missiz_frizz', dropRate: 0.02 },
-        { itemId: 'casque_de_missiz_frizz', dropRate: 0.02 },
-        { itemId: 'alliance_de_missiz_frizz', dropRate: 0.02 },
-        { itemId: 'ceinture_glaciale', dropRate: 0.02 },
-        { itemId: 'anneau_glacial', dropRate: 0.02 },
-        { itemId: 'cape_glaciale', dropRate: 0.02 }
+        { itemId: 'bottes_de_missiz_frizz', dropRate: 0.04167 },
+        { itemId: 'casque_de_missiz_frizz', dropRate: 0.04167 },
+        { itemId: 'alliance_de_missiz_frizz', dropRate: 0.04167 },
+        { itemId: 'ceinture_glaciale', dropRate: 0.04167 },
+        { itemId: 'anneau_glacial', dropRate: 0.04167 },
+        { itemId: 'cape_glaciale', dropRate: 0.04167 }
     ]
 }
 
@@ -4730,9 +4730,9 @@ areas.donjonNileza = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
-        { itemId: 'amulette_de_nileza', dropRate: 0.02 },
-        { itemId: 'cape_de_nileza', dropRate: 0.02 },
-        { itemId: 'bottes_de_nileza', dropRate: 0.02 }
+        { itemId: 'amulette_de_nileza', dropRate: 0.08333 },
+        { itemId: 'cape_de_nileza', dropRate: 0.08333 },
+        { itemId: 'bottes_de_nileza', dropRate: 0.08333 }
     ]
 }
 
@@ -4752,12 +4752,12 @@ areas.donjonHarebourg = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
-        { itemId: 'anneau_du_comte_harebourg', dropRate: 0.02 },
-        { itemId: 'bottes_du_comte_harebourg', dropRate: 0.02 },
-        { itemId: 'coiffe_du_comte_harebourg', dropRate: 0.02 },
-        { itemId: 'amulette_seculaire', dropRate: 0.02 },
-        { itemId: 'ceinture_seculaire', dropRate: 0.02 },
-        { itemId: 'coiffe_seculaire', dropRate: 0.02 }
+        { itemId: 'anneau_du_comte_harebourg', dropRate: 0.04167 },
+        { itemId: 'bottes_du_comte_harebourg', dropRate: 0.04167 },
+        { itemId: 'coiffe_du_comte_harebourg', dropRate: 0.04167 },
+        { itemId: 'amulette_seculaire', dropRate: 0.04167 },
+        { itemId: 'ceinture_seculaire', dropRate: 0.04167 },
+        { itemId: 'coiffe_seculaire', dropRate: 0.04167 }
     ]
 }
 
@@ -4777,12 +4777,12 @@ areas.donjonMerkator = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
-        { itemId: 'anneau_tique', dropRate: 0.02 },
-        { itemId: 'dorabysses', dropRate: 0.02 },
-        { itemId: 'talisman_glouti', dropRate: 0.02 },
-        { itemId: 'bracelet_des_fonds_marins', dropRate: 0.02 },
-        { itemId: 'masque_des_fonds_marins', dropRate: 0.02 },
-        { itemId: 'sandales_des_fonds_marins', dropRate: 0.02 }
+        { itemId: 'anneau_tique', dropRate: 0.04167 },
+        { itemId: 'dorabysses', dropRate: 0.04167 },
+        { itemId: 'talisman_glouti', dropRate: 0.04167 },
+        { itemId: 'bracelet_des_fonds_marins', dropRate: 0.04167 },
+        { itemId: 'masque_des_fonds_marins', dropRate: 0.04167 },
+        { itemId: 'sandales_des_fonds_marins', dropRate: 0.04167 }
     ]
 }
 
@@ -4801,11 +4801,11 @@ areas.donjonBaleine = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'baleinabottes', dropRate: 0.02 },
-        { itemId: 'capchalot', dropRate: 0.02 },
-        { itemId: 'ceintace', dropRate: 0.02 },
-        { itemId: 'kidibonnet', dropRate: 0.02 },
-        { itemId: 'masse_etacee', dropRate: 0.02 }
+        { itemId: 'baleinabottes', dropRate: 0.05 },
+        { itemId: 'capchalot', dropRate: 0.05 },
+        { itemId: 'ceintace', dropRate: 0.05 },
+        { itemId: 'kidibonnet', dropRate: 0.05 },
+        { itemId: 'masse_etacee', dropRate: 0.05 }
     ]
 }
 
@@ -4825,9 +4825,9 @@ areas.donjonMeno = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
-        { itemId: 'bottes_de_meno', dropRate: 0.02 },
-        { itemId: 'cape_de_meno', dropRate: 0.02 },
-        { itemId: 'casquette_de_meno', dropRate: 0.02 }
+        { itemId: 'bottes_de_meno', dropRate: 0.08333 },
+        { itemId: 'cape_de_meno', dropRate: 0.08333 },
+        { itemId: 'casquette_de_meno', dropRate: 0.08333 }
     ]
 }
 
@@ -4847,9 +4847,9 @@ areas.donjonKoutoulou = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
-        { itemId: 'amulette_de_l_indicible', dropRate: 0.02 },
-        { itemId: 'bottes_de_l_indicible', dropRate: 0.02 },
-        { itemId: 'ceinture_de_l_indicible', dropRate: 0.02 }
+        { itemId: 'amulette_de_l_indicible', dropRate: 0.08333 },
+        { itemId: 'bottes_de_l_indicible', dropRate: 0.08333 },
+        { itemId: 'ceinture_de_l_indicible', dropRate: 0.08333 }
     ]
 }
 
@@ -4869,9 +4869,9 @@ areas.donjonDantinea = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
-        { itemId: 'ceintouse', dropRate: 0.02 },
-        { itemId: 'chapoulpe', dropRate: 0.02 },
-        { itemId: 'tentassons', dropRate: 0.02 }
+        { itemId: 'ceintouse', dropRate: 0.08333 },
+        { itemId: 'chapoulpe', dropRate: 0.08333 },
+        { itemId: 'tentassons', dropRate: 0.08333 }
     ]
 }
 
@@ -4890,9 +4890,9 @@ areas.donjonKatrepat = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'bouclier_d_anerice', dropRate: 0.02 },
-        { itemId: 'cape_d_anerice', dropRate: 0.02 },
-        { itemId: 'masque_d_anerice', dropRate: 0.02 }
+        { itemId: 'bouclier_d_anerice', dropRate: 0.08333 },
+        { itemId: 'cape_d_anerice', dropRate: 0.08333 },
+        { itemId: 'masque_d_anerice', dropRate: 0.08333 }
     ]
 }
 
@@ -4912,9 +4912,9 @@ areas.donjonIlyzaelle = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Ivoire', dropRate: 0.0005 },
-        { itemId: 'amulette_d_ilyzaelle', dropRate: 0.02 },
-        { itemId: 'bouclier_d_ilyzaelle', dropRate: 0.02 },
-        { itemId: 'casque_d_ilyzaelle', dropRate: 0.02 }
+        { itemId: 'amulette_d_ilyzaelle', dropRate: 0.08333 },
+        { itemId: 'bouclier_d_ilyzaelle', dropRate: 0.08333 },
+        { itemId: 'casque_d_ilyzaelle', dropRate: 0.08333 }
     ]
 }
 
@@ -4935,9 +4935,9 @@ areas.donjonBethel = {
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Ebene', dropRate: 0.0005 },
         { itemId: 'Dofus_Forgelave', dropRate: 0.0005 },
-        { itemId: 'chaussons_de_macrab', dropRate: 0.02 },
-        { itemId: 'culotte_de_bethel', dropRate: 0.02 },
-        { itemId: 'masque_de_funespadon', dropRate: 0.02 }
+        { itemId: 'chaussons_de_macrab', dropRate: 0.08333 },
+        { itemId: 'culotte_de_bethel', dropRate: 0.08333 },
+        { itemId: 'masque_de_funespadon', dropRate: 0.08333 }
     ]
 }
 
@@ -4958,10 +4958,10 @@ areas.donjonSolar = {
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Ebene', dropRate: 0.0005 },
         { itemId: 'Dofus_Forgelave', dropRate: 0.0005 },
-        { itemId: 'amulette_volcanique', dropRate: 0.02 },
-        { itemId: 'bouclier_de_solar', dropRate: 0.02 },
-        { itemId: 'sabots_volcaniques', dropRate: 0.02 },
-        { itemId: 'sac_volcanique', dropRate: 0.02 }
+        { itemId: 'amulette_volcanique', dropRate: 0.0625 },
+        { itemId: 'bouclier_de_solar', dropRate: 0.0625 },
+        { itemId: 'sabots_volcaniques', dropRate: 0.0625 },
+        { itemId: 'sac_volcanique', dropRate: 0.0625 }
     ]
 }
 
@@ -4980,9 +4980,9 @@ areas.donjonDazak = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'amulette_martegel', dropRate: 0.02 },
-        { itemId: 'cape_martegel', dropRate: 0.02 },
-        { itemId: 'masquegel', dropRate: 0.02 }
+        { itemId: 'amulette_martegel', dropRate: 0.08333 },
+        { itemId: 'cape_martegel', dropRate: 0.08333 },
+        { itemId: 'masquegel', dropRate: 0.08333 }
     ]
 }
 
@@ -5001,9 +5001,9 @@ areas.donjonTorkelonia = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'baguette_de_torkelonia', dropRate: 0.02 },
-        { itemId: 'carapace_de_torkelonia', dropRate: 0.02 },
-        { itemId: 'corne_de_torkelonia', dropRate: 0.02 }
+        { itemId: 'baguette_de_torkelonia', dropRate: 0.08333 },
+        { itemId: 'carapace_de_torkelonia', dropRate: 0.08333 },
+        { itemId: 'corne_de_torkelonia', dropRate: 0.08333 }
     ]
 }
 
@@ -5022,9 +5022,9 @@ areas.donjonArbreMort = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'alliance_de_corruption', dropRate: 0.02 },
-        { itemId: 'bague_de_corruption', dropRate: 0.02 },
-        { itemId: 'ceinturonce_de_corruption', dropRate: 0.02 }
+        { itemId: 'alliance_de_corruption', dropRate: 0.08333 },
+        { itemId: 'bague_de_corruption', dropRate: 0.08333 },
+        { itemId: 'ceinturonce_de_corruption', dropRate: 0.08333 }
     ]
 }
 
@@ -5043,9 +5043,9 @@ areas.donjonTyrannie = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'dora_de_servitude', dropRate: 0.02 },
-        { itemId: 'manteau_de_servitude', dropRate: 0.02 },
-        { itemId: 'echarpe_de_servitude', dropRate: 0.02 }
+        { itemId: 'dora_de_servitude', dropRate: 0.08333 },
+        { itemId: 'manteau_de_servitude', dropRate: 0.08333 },
+        { itemId: 'echarpe_de_servitude', dropRate: 0.08333 }
     ]
 }
 
@@ -5064,9 +5064,9 @@ areas.donjonBalance = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'convoitise_de_misere', dropRate: 0.02 },
-        { itemId: 'corset_de_misere', dropRate: 0.02 },
-        { itemId: 'solerets_de_misere', dropRate: 0.02 }
+        { itemId: 'convoitise_de_misere', dropRate: 0.08333 },
+        { itemId: 'corset_de_misere', dropRate: 0.08333 },
+        { itemId: 'solerets_de_misere', dropRate: 0.08333 }
     ]
 }
 
@@ -5085,10 +5085,10 @@ areas.donjonTroneSang = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'ceste_de_guerre', dropRate: 0.02 },
-        { itemId: 'forteresse_de_guerre', dropRate: 0.02 },
-        { itemId: 'heaume_de_guerre', dropRate: 0.02 },
-        { itemId: 'solerets_de_guerre', dropRate: 0.02 }
+        { itemId: 'ceste_de_guerre', dropRate: 0.0625 },
+        { itemId: 'forteresse_de_guerre', dropRate: 0.0625 },
+        { itemId: 'heaume_de_guerre', dropRate: 0.0625 },
+        { itemId: 'solerets_de_guerre', dropRate: 0.0625 }
     ]
 }
 
@@ -5107,9 +5107,9 @@ areas.donjonTalKasha = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'chevelure_de_tal_kasha', dropRate: 0.02 },
-        { itemId: 'nemes_de_tal_kasha', dropRate: 0.02 },
-        { itemId: 'sandales_de_tal_kasha', dropRate: 0.02 }
+        { itemId: 'chevelure_de_tal_kasha', dropRate: 0.08333 },
+        { itemId: 'nemes_de_tal_kasha', dropRate: 0.08333 },
+        { itemId: 'sandales_de_tal_kasha', dropRate: 0.08333 }
     ]
 }
 
@@ -5128,13 +5128,13 @@ areas.donjonKabahal = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'amulette_possedee', dropRate: 0.02 },
-        { itemId: 'anneau_possede', dropRate: 0.02 },
-        { itemId: 'bouclier_possede', dropRate: 0.02 },
-        { itemId: 'ceinture_possedee', dropRate: 0.02 },
-        { itemId: 'alliance_du_pandamonium', dropRate: 0.02 },
-        { itemId: 'amulette_du_pandamonium', dropRate: 0.02 },
-        { itemId: 'baguette_du_pandamonium', dropRate: 0.02 }
+        { itemId: 'amulette_possedee', dropRate: 0.03571 },
+        { itemId: 'anneau_possede', dropRate: 0.03571 },
+        { itemId: 'bouclier_possede', dropRate: 0.03571 },
+        { itemId: 'ceinture_possedee', dropRate: 0.03571 },
+        { itemId: 'alliance_du_pandamonium', dropRate: 0.03571 },
+        { itemId: 'amulette_du_pandamonium', dropRate: 0.03571 },
+        { itemId: 'baguette_du_pandamonium', dropRate: 0.03571 }
     ]
 }
 
@@ -5154,12 +5154,12 @@ areas.donjonAurorePourpre = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_du_Cauchemard', dropRate: 0.0005 },
-        { itemId: 'bois_de_la_liche', dropRate: 0.02 },
-        { itemId: 'chant_du_necromant', dropRate: 0.02 },
-        { itemId: 'ciel_de_foudre_noire', dropRate: 0.02 },
-        { itemId: 'derniere_aube', dropRate: 0.02 },
-        { itemId: 'mort_du_centoror', dropRate: 0.02 },
-        { itemId: 'portes_de_bonta', dropRate: 0.02 }
+        { itemId: 'bois_de_la_liche', dropRate: 0.04167 },
+        { itemId: 'chant_du_necromant', dropRate: 0.04167 },
+        { itemId: 'ciel_de_foudre_noire', dropRate: 0.04167 },
+        { itemId: 'derniere_aube', dropRate: 0.04167 },
+        { itemId: 'mort_du_centoror', dropRate: 0.04167 },
+        { itemId: 'portes_de_bonta', dropRate: 0.04167 }
     ]
 }
 
@@ -5179,12 +5179,12 @@ areas.donjonMalefices = {
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Sylvestre', dropRate: 0.0005 },
-        { itemId: 'amertume_de_belladone', dropRate: 0.02 },
-        { itemId: 'cruaute_de_belladone', dropRate: 0.02 },
-        { itemId: 'mur_de_ronces', dropRate: 0.02 },
-        { itemId: 'pilier_d_ephedrya', dropRate: 0.02 },
-        { itemId: 'potence_d_ephedrya', dropRate: 0.02 },
-        { itemId: 'tendresse_de_belladone', dropRate: 0.02 }
+        { itemId: 'amertume_de_belladone', dropRate: 0.04167 },
+        { itemId: 'cruaute_de_belladone', dropRate: 0.04167 },
+        { itemId: 'mur_de_ronces', dropRate: 0.04167 },
+        { itemId: 'pilier_d_ephedrya', dropRate: 0.04167 },
+        { itemId: 'potence_d_ephedrya', dropRate: 0.04167 },
+        { itemId: 'tendresse_de_belladone', dropRate: 0.04167 }
     ]
 }
 
@@ -5203,14 +5203,14 @@ areas.donjonBreuil = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'arc_du_venerable_endormi', dropRate: 0.01 },
-        { itemId: 'cornes_du_venerable_endormi', dropRate: 0.01 },
-        { itemId: 'malediction_du_venerable_endormi', dropRate: 0.01 },
-        { itemId: 'manteau_du_venerable_endormi', dropRate: 0.01 },
-        { itemId: 'zarbappeau', dropRate: 0.01 },
-        { itemId: 'zarbaudrier', dropRate: 0.01 },
-        { itemId: 'zarbottes', dropRate: 0.01 },
-        { itemId: 'zarbouclier', dropRate: 0.01 }
+        { itemId: 'arc_du_venerable_endormi', dropRate: 0.03125 },
+        { itemId: 'cornes_du_venerable_endormi', dropRate: 0.03125 },
+        { itemId: 'malediction_du_venerable_endormi', dropRate: 0.03125 },
+        { itemId: 'manteau_du_venerable_endormi', dropRate: 0.03125 },
+        { itemId: 'zarbappeau', dropRate: 0.03125 },
+        { itemId: 'zarbaudrier', dropRate: 0.03125 },
+        { itemId: 'zarbottes', dropRate: 0.03125 },
+        { itemId: 'zarbouclier', dropRate: 0.03125 }
     ]
 }
 
@@ -5229,14 +5229,14 @@ areas.donjonDechireuse = {
     ],
     lootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'criniere_de_la_dechireuse', dropRate: 0.015 },
-        { itemId: 'griffes_de_la_dechireuse', dropRate: 0.015 },
-        { itemId: 'hachoir_de_la_dechireuse', dropRate: 0.015 },
-        { itemId: 'trophee_de_la_dechireuse', dropRate: 0.015 },
-        { itemId: 'collier_rhoarim', dropRate: 0.015 },
-        { itemId: 'faux_ve', dropRate: 0.015 },
-        { itemId: 'masse_osseuse', dropRate: 0.015 },
-        { itemId: 'pagne_rhoarim', dropRate: 0.015 }
+        { itemId: 'criniere_de_la_dechireuse', dropRate: 0.03125 },
+        { itemId: 'griffes_de_la_dechireuse', dropRate: 0.03125 },
+        { itemId: 'hachoir_de_la_dechireuse', dropRate: 0.03125 },
+        { itemId: 'trophee_de_la_dechireuse', dropRate: 0.03125 },
+        { itemId: 'collier_rhoarim', dropRate: 0.03125 },
+        { itemId: 'faux_ve', dropRate: 0.03125 },
+        { itemId: 'masse_osseuse', dropRate: 0.03125 },
+        { itemId: 'pagne_rhoarim', dropRate: 0.03125 }
     ]
 }
 
@@ -6085,7 +6085,7 @@ areas.raidGelees = {
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'gelano', dropRate: 0.05 }
+        { itemId: 'gelano', dropRate: 0.35 }
     ]
 }
 
@@ -6174,9 +6174,9 @@ areas.raidTourbeduRoissingue = {
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_souveraine_du_roissingue', dropRate: 0.03 },
-        { itemId: 'capuche_souveraine_du_roissingue', dropRate: 0.03 },
-        { itemId: 'sceau_souverain_du_roissingue', dropRate: 0.03 }
+        { itemId: 'cape_souveraine_du_roissingue', dropRate: 0.11667 },
+        { itemId: 'capuche_souveraine_du_roissingue', dropRate: 0.11667 },
+        { itemId: 'sceau_souverain_du_roissingue', dropRate: 0.11667 }
     ]
 }
 
@@ -6418,10 +6418,10 @@ areas.raidNidas = {
     miniBossLootTable: [
         { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_de_nidas', dropRate: 0.03 },
-        { itemId: 'couronne_de_nidas', dropRate: 0.03 },
-        { itemId: 'tongues_de_nidas', dropRate: 0.03 },
-        { itemId: 'pelle_de_nidas', dropRate: 0.03 }
+        { itemId: 'anneau_de_nidas', dropRate: 0.0875 },
+        { itemId: 'couronne_de_nidas', dropRate: 0.0875 },
+        { itemId: 'tongues_de_nidas', dropRate: 0.0875 },
+        { itemId: 'pelle_de_nidas', dropRate: 0.0875 }
     ]
 }
 
@@ -6456,10 +6456,10 @@ areas.raidCourSombre = {
     miniBossLootTable: [
         { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_de_la_reine_des_voleurs', dropRate: 0.03 },
-        { itemId: 'ceinture_de_la_reine_des_voleurs', dropRate: 0.03 },
-        { itemId: 'coiffe_de_la_reine_des_voleurs', dropRate: 0.03 },
-        { itemId: 'epee_de_la_reine_des_voleurs', dropRate: 0.03 }
+        { itemId: 'bottes_de_la_reine_des_voleurs', dropRate: 0.0875 },
+        { itemId: 'ceinture_de_la_reine_des_voleurs', dropRate: 0.0875 },
+        { itemId: 'coiffe_de_la_reine_des_voleurs', dropRate: 0.0875 },
+        { itemId: 'epee_de_la_reine_des_voleurs', dropRate: 0.0875 }
     ]
 }
 
@@ -6497,9 +6497,9 @@ areas.raidVortex = {
     miniBossLootTable: [
         { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cagoule_de_vortex', dropRate: 0.03 },
-        { itemId: 'ceinture_de_vortex', dropRate: 0.03 },
-        { itemId: 'sabots_de_vortex', dropRate: 0.03 }
+        { itemId: 'cagoule_de_vortex', dropRate: 0.11667 },
+        { itemId: 'ceinture_de_vortex', dropRate: 0.11667 },
+        { itemId: 'sabots_de_vortex', dropRate: 0.11667 }
     ]
 }
 
@@ -6534,9 +6534,9 @@ areas.raidChaloeil = {
     miniBossLootTable: [
         { itemId: 'Dofus_Ivoire', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_du_chal_il', dropRate: 0.03 },
-        { itemId: 'casque_du_chal_il', dropRate: 0.03 },
-        { itemId: 'hache_du_chal_il', dropRate: 0.03 }
+        { itemId: 'bottes_du_chal_il', dropRate: 0.11667 },
+        { itemId: 'casque_du_chal_il', dropRate: 0.11667 },
+        { itemId: 'hache_du_chal_il', dropRate: 0.11667 }
     ]
 }
 
