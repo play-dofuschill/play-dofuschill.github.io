@@ -432,7 +432,9 @@ function showMemberSheet(member) {
             if (!_iid) continue
             const _itm = item[_iid]
             if (!_itm?.stats) continue
-            for (const _s of _itm.stats)
+            const _ilvl = Math.max(1, getItemLevel(_iid))
+            const _computed = getItemStats(_itm, _ilvl, state.inventory[_iid]?.forgedStats || null, state.inventory[_iid]?.transForge || null)
+            for (const _s of _computed)
                 if (_FARM_STATS.has(_s.stat)) _msFarmBonus[_s.stat] = (_msFarmBonus[_s.stat] || 0) + (_s.value || 0)
         }
     }

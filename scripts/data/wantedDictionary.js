@@ -699,8 +699,7 @@ monsters['wanted_sans_visage'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 270000, atk: 300, spd: 30,
-        res: { neutre: 50, feu: 20, eau: 5, air: 10, terre: 15 } },
+    bst: { hp: 270000, atk: 300, spd: 30, res: { neutre: 50, feu: 20, eau: 5, air: 10, terre: 15 } },
     moves: ['wanted_sans_visage_rage_avide', 'wanted_sans_visage_air_electrifiant', 'wanted_sans_visage_rage_foudroyante', 'wanted_sans_visage_invocation_de_bak']
 }
 
@@ -1365,7 +1364,7 @@ const WantedBosses = {
         background: '',
         levelCap:  130,
         bst:       { hp: 160000, atk: 300 },
-        panoplie:  [{ itemId: 'ceinture_des_demoel', dropRate: 0.1 }, { itemId: 'bouclier_des_demoel', dropRate: 0.1 }, { itemId: 'epee_des_demoel', dropRate: 0.1 }, { itemId: 'geta_de_padgref', dropRate: 0.1 }, { itemId: 'anneau_de_padgref', dropRate: 0.1 }, { itemId: 'coiffe_de_padgref', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'ceinture_des_demoel', dropRate: 0.1 }, { itemId: 'bouclier_des_demoel', dropRate: 0.1 }, { itemId: 'epee_des_demoel', dropRate: 0.1 }]
     },
     'wanted_ali_grothor': {
         id:        'wanted_ali_grothor',
@@ -1651,7 +1650,7 @@ const WantedBosses = {
         background: '',
         levelCap:  190,
         bst:       { hp: 270000, atk: 300 },
-        panoplie:  []
+        panoplie:  [{ itemId: 'geta_de_padgref', dropRate: 0.1 }, { itemId: 'anneau_de_padgref', dropRate: 0.1 }, { itemId: 'coiffe_de_padgref', dropRate: 0.1 }]
     },
     'wanted_predagob': {
         id:        'wanted_predagob',

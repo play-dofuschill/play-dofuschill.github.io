@@ -5966,12 +5966,13 @@ move.libation = {
     classId: 'sacrieur',
     cooldownMs: 3500,
     effects: [{ type: 'self_dmg_pct_current', ratio: 0.30 },
-              { type: 'hot', pctMaxHp: 10, duration: 4, target: 'self' }],
+              { type: 'hot', pctMaxHp: 5, duration: 4, target: 'self' },
+              { type: 'buff', stat: 'finalDamagePct', value: 2, duration: 3, target: 'self' }],
     spellProgression: [
         { lvl: 81,  patch: {} },
         { lvl: 147, patch: { effects: [
             { type: 'self_dmg_pct_current', ratio: 0.30 },
-            { type: 'hot', pctMaxHp: 10, duration: 5, target: 'self' }
+            { type: 'hot', pctMaxHp: 5, duration: 5, target: 'self' }
         ]}}
     ],
     description: "Sacrifie 30% de ses PV courants pour se soigner pendant 4 tours."
