@@ -3780,7 +3780,7 @@ monsters.moon = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 3700, atk: 600, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: ['marteau_de_moon', 'choc_sismique', 'face_cachee']
+    moves: ['marteau_de_moon', 'choc_sismique', 'face_cachee','toototem']
 }
 // ═══════════════════════════════════════════════════════
 // GOULET DU RASBOUL (lvl 105+)
@@ -3793,7 +3793,8 @@ monsters.silf_le_rasboul_majeur = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 7000, atk: 430, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
-    moves: ['rasage', 'hololole', 'recrutement']
+    moves: ['rasage', 'hololole', 'recrutement'],
+    onHeal: [{ type: 'random_res_debuff', value: 50, duration: Infinity }]
 }
 // ═══════════════════════════════════════════════════════
 // REPAIRE DU KHARNOZOR (lvl 105+)
@@ -5341,7 +5342,7 @@ monsters.tynril_consterne = {
     image: 'images/monsters/Tynril_Consterné.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 0 } },
+    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 60, terre: 60, feu: 60, eau: 60, air: 0 } },
     moves: ['hiffe', 'helseair', 'forque']
 }
 monsters.tynril_deconcerte = {
@@ -5350,7 +5351,7 @@ monsters.tynril_deconcerte = {
     image: 'images/monsters/Tynril_Déconcerté.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 0, air: 200 } },
+    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 60, terre: 60, feu: 60, eau: 0, air: 60 } },
     moves: ['hiffe_eau', 'helse_eau']
 }
 monsters.tynril_perfide = {
@@ -5359,7 +5360,7 @@ monsters.tynril_perfide = {
     image: 'images/monsters/Tynril_Perfide.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 200, terre: 200, feu: 0, eau: 200, air: 200 } },
+    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 60, terre: 60, feu: 0, eau: 60, air: 60 } },
     moves: ['hiffe_feu', 'helse']
 }
 monsters.tynril_ahuri = {
@@ -5368,7 +5369,7 @@ monsters.tynril_ahuri = {
     image: 'images/monsters/Tynril_Ahuri.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 200, terre: 0, feu: 200, eau: 200, air: 200 } },
+    bst: { hp: 3800, atk: 700, spd: 100, res: { neutre: 60, terre: 0, feu: 60, eau: 60, air: 60 } },
     moves: ['hiffe_terre', 'helse_terre']
 }
 // ═══════════════════════════════════════════════════════
@@ -6354,7 +6355,7 @@ monsters.superviz_uf = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 8800, atk: 1200, spd: 100, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
-    moves: ['invokabombz', 'bzelan', 'carapabz', 'clonabz', 'abzlation', 'bzovolution']
+    moves: ['bzelan', 'carapabz', 'clonabz', 'abzlation', 'bzovolution']
 }
 // ═══════════════════════════════════════════════════════
 // TANIÈRE GIVREFOUX (lvl 175+)
@@ -6714,7 +6715,7 @@ monsters.korriandre = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 9700, atk: 1400, spd: 100, res: { neutre: 45, terre: 9, feu: 15, eau: 5, air: 17 } },
-    moves: ['riraule', 'loute', 'hairpay', 'paixe']
+    moves: ['loute', 'hairpay', 'paixe']
 }
 // ═══════════════════════════════════════════════════════
 // BASTION DES FROIDES LÉGIONS (lvl 185+)
@@ -8760,7 +8761,8 @@ monsters.tonneau_pirate = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 190, atk: 0, spd: 100, res: { neutre: 100, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['motivation_naturelle']
+    moves: ['motivation_naturelle'],
+    onDeath: [{ type: 'random_res_debuff', value: 200, duration: 12 }]
 }
 monsters.coffre_maudit_du_flib = {
     id: 'coffre_maudit_du_flib',
@@ -10661,7 +10663,7 @@ monsters.bombombre_a_eau = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 1500, atk: 368, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['tic_tac', 'badaboum']
 }
 monsters.foufayteur = {
     id: 'foufayteur',
@@ -12014,7 +12016,8 @@ monsters.totem_du_feu = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 100, eau: 0, air: 0 } },
-    moves: []
+    moves: [],
+    onDeath: [{ type: 'fixed_res_debuff', element: 'feu', value: 200, duration: Infinity, stack: false }]
 }
 monsters.totem_de_l_eau = {
     id: 'totem_de_l_eau',
@@ -12023,7 +12026,8 @@ monsters.totem_de_l_eau = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 100, air: 0 } },
-    moves: []
+    moves: [],
+    onDeath: [{ type: 'fixed_res_debuff', element: 'eau', value: 200, duration: Infinity, stack: false }]
 }
 monsters.totem_de_l_air = {
     id: 'totem_de_l_air',
@@ -12032,7 +12036,8 @@ monsters.totem_de_l_air = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 100 } },
-    moves: []
+    moves: [],
+    onDeath: [{ type: 'fixed_res_debuff', element: 'air', value: 200, duration: Infinity, stack: false }]
 }
 monsters.totem_de_la_terre = {
     id: 'totem_de_la_terre',
@@ -12041,7 +12046,8 @@ monsters.totem_de_la_terre = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 500, atk: 0, spd: 100, res: { neutre: 0, terre: 100, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: [],
+    onDeath: [{ type: 'fixed_res_debuff', element: 'terre', value: 200, duration: Infinity, stack: false }]
 }
 monsters.coquille_explosive = {
     id: 'coquille_explosive',
@@ -12311,7 +12317,7 @@ monsters.donatella = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 240, atk: 60, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 30 } },
-    moves: ['kawabunga']
+    moves: ['kawabungaair']
 }
 monsters.raphaela = {
     id: 'raphaela',
@@ -12320,7 +12326,7 @@ monsters.raphaela = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 260, atk: 63, spd: 100, res: { neutre: 50, terre: 0, feu: 0, eau: 30, air: 0 } },
-    moves: []
+    moves: ['kawabungaeau']
 }
 monsters.leonardawa = {
     id: 'leonardawa',
@@ -12329,7 +12335,7 @@ monsters.leonardawa = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 270, atk: 65, spd: 100, res: { neutre: 50, terre: 0, feu: 30, eau: 0, air: 0 } },
-    moves: []
+    moves: ['kawabungafeu']
 }
 monsters.michelangela = {
     id: 'michelangela',
@@ -12338,7 +12344,7 @@ monsters.michelangela = {
     rarity: 'commun',
     tier: 'normal',
     bst: { hp: 310, atk: 128, spd: 100, res: { neutre: 50, terre: 30, feu: 0, eau: 0, air: 0 } },
-    moves: []
+    moves: ['kawabungaterre']
 }
 monsters.pougnette = {
     id: 'pougnette',

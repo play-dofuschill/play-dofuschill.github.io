@@ -3472,8 +3472,35 @@ move.souffle_empoisonne = {
 }
 
 // -------- Donatella ---------------
-move.kawabunga = {
-    id: 'kawabunga',
+move.kawabungaterre = {
+    id: 'kawabungaterre',
+    name: 'Kawabunga',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'debuff', stat: 'res.terre', value: 200, duration: 3, target: 'enemy' },
+        { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
+    ]
+}
+move.kawabungafeu = {
+    id: 'kawabungafeu',
+    name: 'Kawabunga',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'debuff', stat: 'res.feu', value: 200, duration: 3, target: 'enemy' },
+        { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
+    ]
+}
+move.kawabungaeau = {
+    id: 'kawabungaeau',
+    name: 'Kawabunga',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'debuff', stat: 'res.eau', value: 200, duration: 3, target: 'enemy' },
+        { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
+    ]
+}
+move.kawabungaair = {
+    id: 'kawabungaair',
     name: 'Kawabunga',
     cooldownMs: 2000,
     effects: [
@@ -3481,6 +3508,7 @@ move.kawabunga = {
         { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
     ]
 }
+
 
 // -------- Pierre Taillée ---------------
 
@@ -4864,7 +4892,7 @@ move.fremissement = {
     name: 'Frémissement',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['tortue_rouge', 'tortue_bleue', 'tortue_verte', 'tortue_jaune', 'tikoko', 'nodkoko', 'grokoko'], duration: 3, target: 'enemy' }
     ]
 }
 move.aidchotte = {
@@ -16301,6 +16329,7 @@ move.obscure_singerie = {
     name: 'Obscure Singerie',
     cooldownMs: 2000,
     effects: [
+        { type: 'damage', element: 'terre', damage: { min: 41, max: 48 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' }
     ]
@@ -23756,7 +23785,7 @@ move.gotame = {
     name: 'Gotame',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 17, max: 26 }, target: 'enemy' }
     ]
 }
 move.beco_de_batofu = {
@@ -23773,7 +23802,7 @@ move.lancer_de_tofu_fugace = {
     cooldownMs: 2500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
+        { type: 'summon', summonId: 'tofukaz', duration: 3, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
     ]
 }
@@ -23821,7 +23850,7 @@ move.l_enfer_des_zombies = {
     name: 'L\'Enfer des Zombies',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['boostache_prepubere', 'tofu_malefique', 'gargrouille', 'kwoan', 'vampire'], duration: 3, target: 'enemy' }
     ]
 }
 move.le_dentiste = {
@@ -23839,7 +23868,7 @@ move.esprit_empetrant = {
     name: 'Esprit empêtrant',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'ashi_magari', duration: 3, target: 'enemy' }
     ]
 }
 
@@ -23868,11 +23897,7 @@ move.sfvc_r = {
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['cafarcher', 'pyrasite', 'mirgrillon', 'sakarien', 'ceglumen'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -24101,11 +24126,7 @@ move.invocation_de_tonneau = {
     name: 'Invocation de Tonneau',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
+        { type: 'summon', summonId: 'tonneau_pirate', duration: 3, target: 'enemy' },
         { type: 'buff', stat: 'agility', value: 200, duration: 3, target: 'self' }
     ]
 }
@@ -24170,13 +24191,7 @@ move.convocation_gluante = {
     name: 'Convocation gluante',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['larve_bleue', 'larve_verte', 'larve_orange', 'larve_jaune', 'larve_saphir', 'larve_emeraude', 'larve_rubis', 'larve_doree'], duration: 3, target: 'enemy' }
     ]
 }
 move.deglutition = {
@@ -24326,9 +24341,7 @@ move.invocation_montagnarde = {
     name: 'Invocation Montagnarde',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['craqueboule', 'craquelourd', 'craqueleur', 'craqueleur_des_plaines', 'craquelope', 'elementerre'], duration: 3, target: 'enemy' }
     ]
 }
 move.peau_de_topaze = {
@@ -24417,7 +24430,7 @@ move.invocation_royale_de_tofu = {
     name: 'Invocation Royale de Tofu',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['tofuzmo', 'vilain_petit_tofu', 'tofutoflamme', 'tofubine', 'tofu_dodu'], duration: 3, target: 'enemy' }
     ]
 }
 move.beco_du_tofu_royal = {
@@ -24462,7 +24475,6 @@ move.mekattwaction = {
     cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' }
     ]
 }
@@ -24471,7 +24483,7 @@ move.twansmutation = {
     name: 'Twansmutation',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['wobot', 'black_wo_wabbit', 'wobot_kiafin', 'blanc_pa_wabbit', 'tiwobot'], duration: 3, target: 'enemy' }
     ]
 }
 move.mekawapace = {
@@ -24510,7 +24522,7 @@ move.ponte_d_oeuf = {
     name: 'Ponte d\'Oeuf',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['arapex', 'dardalaine', 'nefileuse', 'saltik', 'gargantul'], duration: 3, target: 'enemy' }
     ]
 }
 move.cisaillage = {
@@ -24558,10 +24570,17 @@ move.face_cachee = {
     name: 'Face Cachée',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'darkli_moon', duration: 3, target: 'enemy' },
     ]
 }
-
+move.toototem = {
+    id: 'toototem',
+    name: 'Toototem',
+    cooldownMs: 3500,
+    effects: [
+        { type: 'summon', summonPool: ['totem_du_feu','totem_de_l_eau','totem_de_l_air','totem_de_la_terre'], duration: 10, target: 'enemy' }
+    ]
+}
 // -------- Malléfisk ---------------
 move.ka_dabor = {
     id: 'ka_dabor',
@@ -24597,7 +24616,7 @@ move.hiffe = {
     name: 'Hiffe',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.air', value: 2000, duration: 3, target: 'enemy' }
+        { type: 'debuff', stat: 'res.air', value: 100, duration: 3, target: 'enemy' }
     ]
 }
 move.helseair = {
@@ -24624,7 +24643,7 @@ move.hiffe_eau = {
     name: 'Hiffe',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.eau', value: 2000, duration: 3, target: 'enemy' }
+        { type: 'debuff', stat: 'res.eau', value: 100, duration: 3, target: 'enemy' }
     ]
 }
 move.helse_eau = {
@@ -24641,7 +24660,7 @@ move.hiffe_feu = {
     name: 'Hiffe',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.feu', value: 2000, duration: 3, target: 'enemy' }
+        { type: 'debuff', stat: 'res.feu', value: 100, duration: 3, target: 'enemy' }
     ]
 }
 move.helse = {
@@ -24658,7 +24677,7 @@ move.hiffe_terre = {
     name: 'Hiffe',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.terre', value: 2000, duration: 3, target: 'enemy' }
+        { type: 'debuff', stat: 'res.terre', value: 100, duration: 3, target: 'enemy' }
     ]
 }
 move.helse_terre = {
@@ -24824,7 +24843,7 @@ move.petards_volants = {
     cooldownMs: 3500,
     effects: [
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['lanterne_bombe', 'lanterne_grappe_de_petards'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -24869,7 +24888,7 @@ move.invocation_de_corbac = {
     name: 'Invocation de Corbac',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['renarbo', 'buveur', 'corbac', 'corbac_dresse', 'kapotie_le_buveur', 'horace_le_corbac_apprivoise', 'rono_le_renarbo', 'capsaaloocke'], duration: 3, target: 'enemy' }
     ]
 }
 move.carapace_d_ailes = {
@@ -24970,7 +24989,7 @@ move.invocation_de_bombombre_de_nagate = {
     name: 'Invocation de Bombombre de Nagate',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'bombombre_a_eau', duration: 3, target: 'enemy' }
     ]
 }
 
@@ -24998,10 +25017,7 @@ move.aleamouth = {
     name: 'Aléamouth',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['boufmouth', 'bouftonmouth', 'boufmouth_legendaire', 'boufmouth_de_guerre'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -25050,7 +25066,7 @@ move.bourgeonnement = {
     name: 'Bourgeonnement',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['bambouto', 'floristile', 'bulbuisson', 'bulbiflore', 'grenufar'], duration: 3, target: 'enemy' }
     ]
 }
 move.urticaire = {
@@ -25227,7 +25243,7 @@ move.invocation_de_bouftou_des_cavernes = {
     name: 'Invocation de Bouftou des cavernes',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'bouftou_des_cavernes', duration: 3, target: 'enemy' }
     ]
 }
 move.calumet_de_la_paix = {
@@ -25265,7 +25281,7 @@ move.qikong = {
     name: 'Qìkǒng',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['uchiwang', 'ino_naru', 'kurookin', 'fangshu', 'lichangoro'], duration: 3, target: 'enemy' }
     ]
 }
 move.grande_lame_du_vent = {
@@ -25274,7 +25290,6 @@ move.grande_lame_du_vent = {
     cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 43, max: 50 }, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
         { type: 'recul', target: 'enemy' },
     ]
 }
@@ -25424,10 +25439,7 @@ move.mutagen = {
     name: 'Mutagen',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['donatella', 'raphaela', 'leonardawa', 'michelangela'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -25547,7 +25559,7 @@ move.invocation_du_disciple = {
     name: 'Invocation du Disciple',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'disciple_du_kimbo', duration: 3, target: 'enemy' }
     ]
 }
 move.etat_pair = {
@@ -25626,11 +25638,7 @@ move.recrutement = {
     name: 'Recrutement',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['craqueboule_poli', 'craqueleur_poli', 'bitouf_des_plaines', 'mufafah', 'kilibriss', 'kido'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -25688,7 +25696,8 @@ move.tore_tue = {
     name: 'Tore tue',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 56, max: 65 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
+        { type: 'summon', summonId: 'hamrack', duration: 3, target: 'enemy' }
     ]
 }
 move.frere_de_la_cote = {
@@ -25696,12 +25705,7 @@ move.frere_de_la_cote = {
     name: 'Frère de la côte',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['fantomalamere', 'fantimonier', 'fantomat', 'harpirate', 'fancrome', 'vigie_pirate'], duration: 3, target: 'enemy' }
     ]
 }
 move.mate_l_eau = {
@@ -25710,7 +25714,7 @@ move.mate_l_eau = {
     cooldownMs: 1700,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
 }
 
@@ -25729,7 +25733,7 @@ move.scie_lisse = {
     name: 'Scie lisse',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'pougnette', duration: 3, target: 'enemy' }
     ]
 }
 move.andesite = {
@@ -25737,7 +25741,7 @@ move.andesite = {
     name: 'Andésite',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['crapeur', 'atomystique', 'fumrirolle', 'solfatare', 'mofette'], duration: 3, target: 'enemy' }
     ]
 }
 move.scie_licate = {
@@ -25833,12 +25837,7 @@ move.les_coprins_d_abord = {
     name: 'Les Coprins d\'abord',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['tromperelle', 'champaknyde', 'champodonte', 'champmane', 'champbis', 'champ_a_gnons', 'champ_champ'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -25905,7 +25904,7 @@ move.acolyte = {
     name: 'Acolyte',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['blerauve', 'blerom', 'wolvero', 'croleur', 'fleuro', 'blerice'], duration: 3, target: 'enemy' }
     ]
 }
 move.cerebro = {
@@ -25985,10 +25984,7 @@ move.foux_d_amour = {
     name: 'Foux d\'amour',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['yokai_givrefoux', 'maho_givrefoux', 'soryo_givrefoux', 'yomi_givrefoux', 'kami_givrefoux'], duration: 3, target: 'enemy' }
     ]
 }
 move.malice_glacee = {
@@ -26063,7 +26059,7 @@ move.koumiho_no_kaze = {
     name: 'Koumiho no kaze',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }]
+        { type: 'summon', summonPool: ['madura', 'bakazako', 'kaonashi', 'tsume_bozu', 'onigori'], duration: 3, target: 'enemy' }]
 }
 move.supaku = {
     id: 'supaku',
@@ -26071,7 +26067,6 @@ move.supaku = {
     cooldownMs: 1700,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 10, max: 11 }, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
 }
 move.pougix = {
@@ -26108,23 +26103,13 @@ move.retraite = {
 }
 
 // -------- Supervizœuf ---------------
-move.invokabombz = {
-    id: 'invokabombz',
-    name: 'Invokabombz',
-    cooldownMs: 3500,
-    effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
-    ]
-}
+
 move.bzelan = {
     id: 'bzelan',
     name: 'Bzélan',
     cooldownMs: 2000,
     effects: [
-        { type: 'switch', value: 1, target: 'enemy' },
+        { type: 'best_element_damage', damage: { min: 19, max: 21 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
     ]
 }
@@ -26134,8 +26119,8 @@ move.carapabz = {
     cooldownMs: 2000,
     effects: [
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
+        { type: 'best_element_damage', damage: { min: 19, max: 21 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
-        { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
     ]
 }
 move.clonabz = {
@@ -26143,7 +26128,7 @@ move.clonabz = {
     name: 'Clonabz',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['balebz', 'toubibz', 'kamikabz', 'quadrabz', 'balebz_perturbe', 'toubibz_perturbe', 'kamikabz_perturbe', 'quadrabz_perturbe'], duration: 3, target: 'enemy' }
     ]
 }
 move.abzlation = {
@@ -26230,14 +26215,6 @@ move.invocation_de_jouet_casse = {
 }
 
 // -------- Korriandre ---------------
-move.riraule = {
-    id: 'riraule',
-    name: 'Riraule',
-    cooldownMs: 3500,
-    effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
-    ]
-}
 move.loute = {
     id: 'loute',
     name: 'Loute',
@@ -26262,7 +26239,7 @@ move.paixe = {
     name: 'Paixe',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['dramanite', 'fistulor', 'fongeur', 'abrazif', 'merulette'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -26476,7 +26453,7 @@ move.petit_glours_brun = {
     name: 'Petit Glours Brun',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['aperiglours', 'boulglours', 'gloursaya', 'glourmand', 'glouragan', 'meliglours'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -26515,7 +26492,7 @@ move.cycle = {
     name: 'Cycle',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['gobosteur', 'sapeur', 'ouilleur', 'perku', 'courtilieur'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -26964,7 +26941,7 @@ move.bouche_a_bouche = {
     name: 'Bouche-à-Bouche',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['pikoleur', 'harpo', 'krabouilleur', 'eskoglyphe', 'cyclophandre'], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -28013,8 +27990,7 @@ move.glyphe_de_condamnation = {
     name: 'Glyphe de condamnation',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['soldalia', 'cameliache', 'armuguet', 'coquelicogne', 'statulipe'], duration: 3, target: 'enemy' }
     ]
 }
 move.dechainement_fantasmagorique = {

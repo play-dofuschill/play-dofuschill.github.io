@@ -294,7 +294,8 @@ function spawnEnemy(areaId) {
         moveIndex: 0,
         rarity:    mob.rarity   || 'commun',
         tier:      mob.tier     || 'normal',
-        dropRate:  mob.dropRate
+        dropRate:  mob.dropRate,
+        onHeal:    mob.onHeal   || null
     }
 
     // Chance d'archimonstre selon niveau skull : 1/600, 1/500, 1/450, 1/400
@@ -1608,7 +1609,15 @@ function executeEffect(ctx) {
 
             // Défense effective : stats passées (attaque sur joueur) ou buffs actifs (attaque sur ennemi)
             const defStats = ctx.targetStats || {
-                res: targetEnemy.res || {},
+                res: (() => {
+                    const _r = { ...(targetEnemy.res || {}) }
+                    for (const b of (targetEnemy.buffs || [])) {
+                        if ((b.delay ?? 0) > 0) continue
+                        if (b.stat === 'res_all') { for (const _e in _r) _r[_e] += b.value }
+                        else if (b.stat?.startsWith('res.')) { const _e = b.stat.split('.')[1]; if (_r[_e] !== undefined) _r[_e] += b.value }
+                    }
+                    return _r
+                })(),
                 damageReductionPct: (targetEnemy.buffs || [])
                     .filter(b => b.stat === 'damageReductionPct')
                     .reduce((sum, b) => sum + b.value, 0),
@@ -1666,6 +1675,10 @@ function executeEffect(ctx) {
             let statsForCalc = casterStats
             if (effect.slot1BonusPct && moveId && caster.moves?.slot1 === moveId) {
                 statsForCalc = { ...casterStats, finalDamagePct: (casterStats.finalDamagePct || 0) + effect.slot1BonusPct }
+            }
+            // _bonusFinalDamagePct : bonus ponctuel injecté par l'appelant (ex: cancelRandomHeal_ sur les sorts Écaflip aléatoires)
+            if (effect._bonusFinalDamagePct) {
+                statsForCalc = { ...statsForCalc, finalDamagePct: (statsForCalc.finalDamagePct || 0) + effect._bonusFinalDamagePct }
             }
 
             // Scaling HP : boost temporaire d'une stat choisie, calculé en % relatif au lanceur.
@@ -2206,6 +2219,7 @@ function executeEffect(ctx) {
                 }
                 addLog(`${moveData.name} → soigne ${healBase} PV (équipe)`)
                 _fireEnutrofTraps('heal', null, targetEnemy)
+                _triggerEnemyOnHeal(caster)
                 break
             }
             if (effect.target === 'enemy') {
@@ -2223,6 +2237,7 @@ function executeEffect(ctx) {
             addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV`)
             _fireEnutrofTraps('heal', null, targetEnemy)
             if (healAmt > 0) _checkWatchStates(healTarget, 'heal', { value: healAmt })
+            _triggerEnemyOnHeal(caster)
             break
         }
 
@@ -2236,6 +2251,7 @@ function executeEffect(ctx) {
             if (_hcAmt > 0) _hcTarget.currentHp = Math.min(_hcTarget.maxHp, (_hcTarget.currentHp || 0) + _hcAmt)
             addLog(`${moveData.name} → soigne ${_hcTarget.name || classes[_hcTarget.classId]?.name || '?'} de ${_hcAmt} PV (${_hcPct}% PV actuels)`)
             _fireEnutrofTraps('heal', null, targetEnemy)
+            _triggerEnemyOnHeal(caster)
             break
         }
 
@@ -2251,6 +2267,7 @@ function executeEffect(ctx) {
                 }
                 addLog(`${moveData.name} → soigne ${healPct}% PV max (équipe)`)
                 _fireEnutrofTraps('heal', null, targetEnemy)
+                _triggerEnemyOnHeal(caster)
                 break
             }
             if (effect.target === 'enemy') {
@@ -2266,6 +2283,7 @@ function executeEffect(ctx) {
             const tName = healTarget.name || classes[healTarget.classId]?.name || '?'
             addLog(`${moveData.name} → soigne ${tName} de ${healAmt} PV (${healPct}% PV max)`)
             _fireEnutrofTraps('heal', null, targetEnemy)
+            _triggerEnemyOnHeal(caster)
             break
         }
 
@@ -2280,6 +2298,7 @@ function executeEffect(ctx) {
             }
             addLog(`${moveData.name} → soigne ${healPct}% PV max (équipe)`)
             _fireEnutrofTraps('heal', null, targetEnemy)
+            _triggerEnemyOnHeal(caster)
             break
         }
 
@@ -2295,6 +2314,7 @@ function executeEffect(ctx) {
             }
             addLog(`${moveData.name} → soigne ${healBase} PV (équipe)`)
             _fireEnutrofTraps('heal', null, targetEnemy)
+            _triggerEnemyOnHeal(caster)
             break
         }
 
@@ -3271,6 +3291,7 @@ function executeEffect(ctx) {
                 if (amt > 0) {
                     adj.currentHp = Math.min(adj.maxHp, adj.currentHp + amt)
                     addLog(`${moveData.name} → soin ${adj.name || 'allié'} +${amt} PV`)
+                    _triggerEnemyOnHeal(caster)
                 }
             }
             break
@@ -3278,11 +3299,20 @@ function executeEffect(ctx) {
 
         case 'random': {
             if (!effect.choices?.length) break
-            // Weighted random pick — cumulative sum, fallback to last entry
-            const roll = Math.random()
+            let choices = effect.choices
+            // Écaflip : cancelRandomHeal_<élément> retire les choix "soin ennemi" du même élément (100% offensif, +20% dégâts)
+            const _rndElement = choices.reduce((el, c) => el || c.effects?.find(e => e.type === 'damage' && e.element)?.element, null)
+            const _healCancelActive = !!(_rndElement && (caster.buffs || []).some(b => b.stat === `cancelRandomHeal_${_rndElement}`))
+            if (_healCancelActive) {
+                const _filtered = choices.filter(c => !c.effects?.some(e => e.type === 'heal' && e.target === 'enemy'))
+                if (_filtered.length) choices = _filtered
+            }
+            // Weighted random pick — cumulative sum (renormalisé si des choix ont été retirés), fallback à la dernière entrée
+            const totalWeight = choices.reduce((s, c) => s + (c.chance || 0), 0) || 1
+            const roll = Math.random() * totalWeight
             let cumulative = 0
-            let chosen = effect.choices[effect.choices.length - 1]
-            for (const choice of effect.choices) {
+            let chosen = choices[choices.length - 1]
+            for (const choice of choices) {
                 cumulative += (choice.chance || 0)
                 if (roll < cumulative) { chosen = choice; break }
             }
@@ -3290,9 +3320,13 @@ function executeEffect(ctx) {
             // Execute sub-effects, threading lastDamageDealt for lifesteal chaining
             let subLastDmg = undefined
             for (const subEffect of chosen.effects) {
+                // Dégâts garantis (cancelRandomHeal_ actif) : +5% dégâts finaux en compensation du hasard retiré
+                const _effToRun = (_healCancelActive && subEffect.type === 'damage')
+                    ? { ...subEffect, _bonusFinalDamagePct: 5 }
+                    : subEffect
                 const dmg = executeEffect({
                     ...ctx,
-                    effect: subEffect,
+                    effect: _effToRun,
                     lastDamageDealt: subLastDmg ?? (ctx.lastDamageDealt || 0)
                 })
                 if (typeof dmg === 'number') subLastDmg = dmg
@@ -3907,20 +3941,54 @@ function actCompanion(owner) {
     addLog(`${companion.name} → ${mv.name}`)
 }
 
+// Debuff aléatoire de résistance (élément tiré au hasard) sur un ennemi — cumulable si le même élément ressort.
+function _applyRandomResDebuff(target, value, duration, sourceName) {
+    const _ELEMENTS = ['neutre', 'terre', 'feu', 'eau', 'air']
+    const el = _ELEMENTS[Math.floor(Math.random() * _ELEMENTS.length)]
+    target.buffs = target.buffs || []
+    target.buffs.push({ stat: `res.${el}`, value: -value, duration })
+    const durLabel = duration === Infinity ? 'définitivement' : `${duration} tours`
+    addLog(`${sourceName} → ${target.name || '?'} perd ${value}% de résistance ${el} (${durLabel}) !`)
+}
+
+// Déclenché quand un allié se soigne : certains monstres (mob.onHeal) perdent de la résistance en représailles.
+function _triggerEnemyOnHeal(healer) {
+    if (!combat.enemy?.onHeal) return
+    if (!healer || !state.team.includes(healer)) return
+    for (const eff of combat.enemy.onHeal) {
+        if (eff.type === 'random_res_debuff') {
+            _applyRandomResDebuff(combat.enemy, eff.value, eff.duration, 'Contre-coup du soin')
+        }
+    }
+}
+
 function returnToOwner(died = false) {
     if (!combat.savedEnemy) return
     const dyingSummon = combat.enemy
+    const owner       = combat.savedEnemy
     if (died && dyingSummon?.onDeath) {
-        const target = state.team[combat.activeMemberIndex]
-        if (target && target.currentHp > 0) {
-            const summonStats = {
-                atk: dyingSummon.atk || 0, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0,
-                damageReductionPct: 0, critChance: dyingSummon.critChance ?? 5, critDamagePct: dyingSummon.critDamagePct ?? 50,
-                res: dyingSummon.res || {}
-            }
-            for (const eff of dyingSummon.onDeath) {
+        const player = state.team[combat.activeMemberIndex]
+        const summonStats = {
+            atk: dyingSummon.atk || 0, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0,
+            damageReductionPct: 0, critChance: dyingSummon.critChance ?? 5, critDamagePct: dyingSummon.critDamagePct ?? 50,
+            res: dyingSummon.res || {}
+        }
+        for (const eff of dyingSummon.onDeath) {
+            if (eff.type === 'random_res_debuff') {
+                // Debuff permanent/temporaire sur le boss d'origine (ex : Gourlo perd de la résistance à chaque Tonneau tué)
+                _applyRandomResDebuff(owner, eff.value, eff.duration, dyingSummon.name)
+            } else if (eff.type === 'fixed_res_debuff') {
+                // Debuff fixe non-cumulable par élément sur le boss d'origine (ex : Moon perd la résistance du totem tué)
+                owner.buffs = owner.buffs || []
+                const label = `fixed_res_debuff_${eff.element}`
+                const already = owner.buffs.some(b => b._label === label)
+                if (!(eff.stack === false && already)) {
+                    owner.buffs.push({ stat: `res.${eff.element}`, value: -eff.value, duration: eff.duration ?? Infinity, _label: label })
+                    addLog(`${dyingSummon.name} → ${owner.name || '?'} perd ${eff.value}% de résistance ${eff.element} (définitivement) !`)
+                }
+            } else if (player && player.currentHp > 0) {
                 executeEffect({
-                    caster: dyingSummon, casterStats: summonStats, targetEnemy: target,
+                    caster: dyingSummon, casterStats: summonStats, targetEnemy: player,
                     effect: eff, moveData: { name: dyingSummon.name }, moveId: null
                 })
             }

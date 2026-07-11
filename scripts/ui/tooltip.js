@@ -656,6 +656,11 @@ function _renderCombatStatus(entity) {
             rows.push(`<div class="es-status-row es-status-debuff">Anti-soin (${b.duration} t.)</div>`)
             continue
         }
+        if (b.stat?.startsWith('cancelRandomHeal_')) {
+            const _elName = { terre: 'Terre', feu: 'Feu', eau: 'Eau', air: 'Air' }[b.stat.split('_')[1]] || b.stat.split('_')[1]
+            rows.push(`<div class="es-status-row es-status-buff">100% Offensif (${_elName}) (${b.duration} t.)</div>`)
+            continue
+        }
         const name     = sName(b.stat)
         const durLabel = b.duration === Infinity ? '∞' : `${b.duration} t.`
         if (b.value == null) {

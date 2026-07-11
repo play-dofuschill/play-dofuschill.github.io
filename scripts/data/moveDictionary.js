@@ -3853,13 +3853,14 @@ move.infortune = {
                 {type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy'}
             ]},
             {chance: 0.30, effects: [{type: 'heal', heal: {min: 24, max: 28}, target: 'enemy'}]}
-        ]}
+        ]},
+        {type: 'buff', stat: 'cancelRandomHeal_eau', value: 1, duration: 3, noStack: true, target: 'self'}
     ],
     spellProgression: [
         {lvl: 125, patch: {}},
         {lvl: 192, patch: {cooldownMs: 2400, damage: {min: 30, max: 35}}}
     ],
-    description: "Inflige des dommages Eau et réduit l'attaque de l'ennemi, ou soigne aléatoirement l'adversaire."
+    description: "Inflige des dommages Eau et réduit l'attaque de l'ennemi, ou soigne aléatoirement l'adversaire. Les 3 tours suivants, les sorts Eau à effet aléatoire sont garantis à 100% offensifs."
 }
 // move.predation = {
 //     id: 'predation',
@@ -3882,9 +3883,10 @@ move.toupet = {
         {type: 'random', choices: [
             {chance: 0.70, effects: [{type: 'damage', element: 'air', damage: {min: 26, max: 31}, target: 'enemy'}]},
             {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
-        ]}
+        ]},
+        {type: 'buff', stat: 'cancelRandomHeal_air', value: 1, duration: 3, noStack: true, target: 'self'}
     ],
-    description: "Inflige des dommages Air aux ennemis ou soigne aléatoirement l'adversaire avec une grande puissance."
+    description: "Inflige des dommages Air aux ennemis ou soigne aléatoirement l'adversaire avec une grande puissance. Les 3 tours suivants, les sorts Air à effet aléatoire sont garantis à 100% offensifs."
 }
 // move.bonne_etoile = {
 //     id: 'bonne_etoile',
@@ -3903,9 +3905,10 @@ move.destin_decaflip = {
         {type: 'random', choices: [
             {chance: 0.70, effects: [{type: 'damage', element: 'terre', damage: {min: 26, max: 31}, target: 'enemy'}]},
             {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
-        ]}
+        ]},
+        {type: 'buff', stat: 'cancelRandomHeal_terre', value: 1, duration: 3, noStack: true, target: 'self'}
     ],
-    description: "Inflige des dommages Terre aux ennemis ou soigne aléatoirement l'adversaire. Le destin de l'Écaflip est capricieux."
+    description: "Inflige des dommages Terre aux ennemis ou soigne aléatoirement l'adversaire. Le destin de l'Écaflip est capricieux. Les 3 tours suivants, les sorts Terre à effet aléatoire sont garantis à 100% offensifs."
 }
 // move.tarot_decaflip = {
 //     id: 'tarot_decaflip',
@@ -3924,9 +3927,10 @@ move.peril = {
         {type: 'random', choices: [
             {chance: 0.70, effects: [{type: 'damage', element: 'feu', damage: {min: 26, max: 31}, target: 'enemy'}]},
             {chance: 0.30, effects: [{type: 'heal', heal: {min: 26, max: 31}, target: 'enemy'}]}
-        ]}
+        ]},
+        {type: 'buff', stat: 'cancelRandomHeal_feu', value: 1, duration: 3, noStack: true, target: 'self'}
     ],
-    description: "Inflige des dommages Feu aux ennemis ou soigne aléatoirement l'adversaire au péril du lanceur."
+    description: "Inflige des dommages Feu aux ennemis ou soigne aléatoirement l'adversaire au péril du lanceur. Les 3 tours suivants, les sorts Feu à effet aléatoire sont garantis à 100% offensifs."
 }
 // move.tout_ou_rien = {
 //     id: 'tout_ou_rien',
