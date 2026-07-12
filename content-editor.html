@@ -92,12 +92,13 @@
   <button data-tab="sorts">Sorts monstres</button>
   <button data-tab="sorts_classes">Sorts classes</button>
   <button data-tab="wanted">Wanted</button>
+  <button data-tab="familiers">Familiers</button>
 </div>
 
 <div id="intro" class="intro">
   <h2 style="color:var(--fg)">Mode d'emploi</h2>
-  <p>Cet outil lit et réécrit <code>scripts/data/itemDictionary.js</code>, <code>panoplieDictionary.js</code>
-  et le bloc <code>ZONE_SETS</code> de <code>areaDictionary.js</code>.</p>
+  <p>Cet outil lit et réécrit <code>scripts/data/itemDictionary.js</code>, <code>panoplieDictionary.js</code>,
+  <code>familiarDictionary.js</code> et le bloc <code>ZONE_SETS</code> de <code>areaDictionary.js</code>.</p>
   <ol>
     <li>Sers le dossier du jeu en local (contexte sécurisé requis par l'API d'écriture) :<br>
         <code>cd play-dofuschill.github.io-main &amp;&amp; python3 -m http.server 8000</code></li>
@@ -125,10 +126,15 @@ const RARITIES = ['commun','peu_commun','rare','legendaire']
 const STATS = ['maxHp','atk','spd','flatDamage','finalDamagePct','spellDamagePct','damageReductionPct',
   'critChance','critDamagePct','critResPct','healPct','heal','lifestealPct','dropRate',
   'res.feu','res.eau','res.terre','res.air','res.neutre']
+const FAM_STATS = [...STATS, 'xpGain', 'dropRateElite']
+const FAM_BONUS_TYPES = ['farming','combat','defense']
 
 let dirHandle = null
-let H = { item:null, pano:null, area:null, monster:null, mstrMove:null, classMove:null, wanted:null }   // file handles
+let H = { item:null, pano:null, area:null, monster:null, mstrMove:null, classMove:null, wanted:null, familiar:null }   // file handles
 let ITEM = {}, PANO = {}, ZONESETS = {}, AREAS = {}, MONSTERS = {}
+let FAM_NODES = [], familiarText = ''
+let famUidCounter = 0, famSelUid = null, famDirtyUids = new Set()
+let famF = { q:'', rarity:'' }
 let DIVERS_IDS = new Set()  // IDs des items chargés depuis diversDictionary.js
 let MOVELIST = []                                  // [{id,name}] pour les pickers de sorts
 let itemHeader = '', panoHeader = '', monsterHeader = '', areaText = ''
@@ -313,8 +319,17 @@ async function loadFromHandle(){
     MOVELIST.sort((a,b) => a.name.localeCompare(b.name))
   } catch(e) { console.warn('wantedDictionary non chargé', e) }
 
+  // Load familiars
+  familiarText = ''; FAM_NODES = []; famUidCounter = 0; famSelUid = null; famDirtyUids = new Set()
+  try {
+    H.familiar = await getFile(dirHandle, 'scripts', 'data', 'familiarDictionary.js')
+    familiarText = await (await H.familiar.getFile()).text()
+    FAM_NODES = parseFamiliars(familiarArrayBody(familiarText))
+    FAM_NODES.forEach(n => n._uid = famUidCounter++)
+  } catch(e) { console.warn('familiarDictionary non chargé', e) }
+
   document.getElementById('status').textContent =
-    `${Object.keys(ITEM).length} items · ${Object.keys(PANO).length} panoplies · ${Object.keys(MONSTERS).length} monstres · ${Object.keys(AREAS).length} zones · ${Object.keys(CLASSMOVES).length} sorts classes · ${Object.keys(WANTED_BOSSES).length} wanted`
+    `${Object.keys(ITEM).length} items · ${Object.keys(PANO).length} panoplies · ${Object.keys(MONSTERS).length} monstres · ${Object.keys(AREAS).length} zones · ${Object.keys(CLASSMOVES).length} sorts classes · ${Object.keys(WANTED_BOSSES).length} wanted · ${FAM_NODES.filter(n=>n.data).length} familiers`
   document.getElementById('intro').style.display='none'
   document.getElementById('tabs').style.display='flex'
   document.getElementById('app').style.display='grid'
@@ -497,6 +512,11 @@ async function saveAll(){
       await writeFile(H.wanted, wantedText)
       wantedDirtyIds = new Set(); wantedBossDirtyIds = new Set()
     }
+    if (H.familiar && famDirtyUids.size > 0) {
+      familiarText = buildFamiliarFile()
+      await writeFile(H.familiar, familiarText)
+      famDirtyUids = new Set()
+    }
     setDirty(false)
     toast('Fichiers enregistrés ✓','ok')
   }catch(e){ toast('Erreur : '+e.message,'err'); console.error(e) }
@@ -526,6 +546,7 @@ function render(){
   else if (tab==='sorts') renderMstrMoves()
   else if (tab==='sorts_classes') renderClassMoves()
   else if (tab==='wanted') renderWanted()
+  else if (tab==='familiers') renderFamiliars()
 }
 
 // —— filtres réutilisables ——
@@ -2404,6 +2425,202 @@ function cmSaveMove(wrap){
   setDirty(true)
   toast(`Sort "${name}" ${isNew?'créé':'mis à jour'} ✓`, 'ok')
   renderClassMoves()
+}
+
+// ───────────────────────── Familiers ─────────────────────────
+// familiarDictionary.js expose un tableau `const familiars = [ {...}, {...} ]` (pas un dict par id),
+// avec des commentaires "// ─── Zone ───" servant d'en-têtes de groupe. On parse en conservant
+// l'ordre et les commentaires, chaque entrée recevant un uid interne stable pour la sélection.
+
+function familiarArrayBody(txt){
+  const marker = 'const familiars = ['
+  const start = txt.indexOf(marker)
+  if (start < 0) return ''
+  const openIdx = start + marker.length - 1
+  let depth = 0, j = openIdx
+  for (; j < txt.length; j++){ if(txt[j]==='[')depth++; else if(txt[j]===']'){depth--; if(depth===0)break} }
+  return txt.slice(openIdx+1, j)
+}
+function familiarArrayBounds(txt){
+  const marker = 'const familiars = ['
+  const start = txt.indexOf(marker)
+  if (start < 0) return null
+  const openIdx = start + marker.length - 1
+  let depth = 0, j = openIdx
+  for (; j < txt.length; j++){ if(txt[j]==='[')depth++; else if(txt[j]===']'){depth--; if(depth===0)break} }
+  return { openIdx, closeIdx: j }
+}
+function parseFamiliars(bodyText){
+  const nodes = []
+  let pendingComment = []
+  let i = 0
+  const n = bodyText.length
+  while (i < n){
+    let lineEnd = bodyText.indexOf('\n', i)
+    if (lineEnd < 0) lineEnd = n
+    const line = bodyText.slice(i, lineEnd)
+    const trimmed = line.trim()
+    if (trimmed === '' || trimmed.startsWith('//')){
+      pendingComment.push(line); i = lineEnd + 1; continue
+    }
+    const braceIdx = bodyText.indexOf('{', i)
+    if (braceIdx < 0) break
+    let depth = 0, j = braceIdx
+    for (; j < n; j++){ if(bodyText[j]==='{')depth++; else if(bodyText[j]==='}'){depth--; if(depth===0)break} }
+    const raw = bodyText.slice(braceIdx, j+1)
+    let data = null
+    try { data = new Function('return (' + raw + ')')() } catch(e){ console.warn('parse familier échoué', e) }
+    const commentText = pendingComment.join('\n').replace(/^\n+/, '')
+    nodes.push({ comment: commentText || null, data })
+    pendingComment = []
+    i = j + 1
+    while (i < n && (bodyText[i]===','||bodyText[i]===' '||bodyText[i]==='\t')) i++
+    if (bodyText[i]==='\n') i++
+  }
+  if (pendingComment.length) nodes.push({ comment: pendingComment.join('\n'), data: null })
+  return nodes
+}
+function famNodeByUid(uid){ return FAM_NODES.find(node => node._uid===uid && !node.deleted) }
+function famZoneLabel(comment){
+  if (!comment) return ''
+  const m = comment.match(/───\s*(.+?)\s*\(/)
+  return m ? m[1] : ''
+}
+function famEntryStr(f){
+  const idL   = `        id:       ${q(f.id||'')},`
+  const nameL = `        name:     ${q(f.name||'')},`
+  const imgL  = `        image:    ${q(f.image||'')},`
+  const rarL  = `        rarity:   ${q(f.rarity||'commun')},`
+  const monL  = `        monsters: [${(f.monsters||[]).map(q).join(', ')}],`
+  const bonuses = f.bonuses||[]
+  const bonL = bonuses.length
+    ? `        bonuses: [\n${bonuses.map(b=>`            { bonusType: ${q(b.bonusType||'combat')}, bonusStat: ${q(b.bonusStat||'atk')}, min: ${Number(b.min)||0}, max: ${Number(b.max)||0} }`).join(',\n')}\n        ]`
+    : `        bonuses: []`
+  return `    {\n${idL}\n${nameL}\n${imgL}\n${rarL}\n${monL}\n${bonL}\n    }`
+}
+function buildFamiliarFile(){
+  const b = familiarArrayBounds(familiarText)
+  if (!b) return familiarText
+  const body = FAM_NODES.filter(node => !node.deleted).map(node => {
+    const c = node.comment ? node.comment.replace(/^\n+/, '') : ''
+    const e = node.data ? famEntryStr(node.data) + ',' : ''
+    return (c && e) ? c + '\n' + e : (c || e)
+  }).filter(Boolean).join('\n')
+  return familiarText.slice(0, b.openIdx+1) + '\n' + body + '\n' + familiarText.slice(b.closeIdx)
+}
+
+function matchFam(node){
+  const f = node.data; if (!f) return false
+  if (famF.rarity && f.rarity !== famF.rarity) return false
+  if (famF.q){
+    const s = (f.id+' '+f.name+' '+(f.monsters||[]).join(' ')+' '+famZoneLabel(node.comment)).toLowerCase()
+    if (!s.includes(famF.q.toLowerCase())) return false
+  }
+  return true
+}
+function renderFamiliars(){
+  const F = document.getElementById('filters')
+  F.innerHTML = `
+    <input id="famq" placeholder="Rechercher (nom / id / monstre / zone)…" value="${famF.q}">
+    <div class="row">
+      <select id="famrar"><option value="">toutes raretés</option>${RARITIES.map(r=>`<option ${famF.rarity===r?'selected':''}>${r}</option>`).join('')}</select>
+      <button id="famNew" class="primary">➕ Nouveau</button>
+    </div>`
+  F.querySelector('#famq').oninput = e=>{famF.q=e.target.value;renderFamiliarList()}
+  F.querySelector('#famrar').onchange = e=>{famF.rarity=e.target.value;renderFamiliarList()}
+  F.querySelector('#famNew').onclick = createFamiliar
+  renderFamiliarList()
+  if (famSelUid!=null && famNodeByUid(famSelUid)) renderFamiliarDetail(famSelUid); else detailEmpty()
+}
+function renderFamiliarList(){
+  const nodes = FAM_NODES.filter(node => !node.deleted && node.data && matchFam(node))
+  const body = document.getElementById('listBody')
+  body.innerHTML = nodes.map(node => {
+    const f = node.data
+    const label = f.name || famZoneLabel(node.comment) || '(sans nom)'
+    return `<div class="list-item ${node._uid===famSelUid?'sel':''}" data-uid="${node._uid}">
+      <img loading="lazy" src="${f.image||''}" onerror="this.style.opacity=.15">
+      <div class="nm"><b class="rarity-${f.rarity||'commun'}">${label}</b>
+        <small>${f.id||'(id vide)'} · ${(f.monsters||[]).length} monstre(s) · ${(f.bonuses||[]).length} bonus</small></div>
+    </div>`
+  }).join('') || '<div class="muted" style="padding:10px">Aucun résultat.</div>'
+  body.querySelectorAll('.list-item').forEach(el=>el.onclick=()=>{famSelUid=+el.dataset.uid;renderFamiliars()})
+}
+function createFamiliar(){
+  const uid = famUidCounter++
+  const node = { _uid: uid, comment: null, data: { id:'', name:'', image:'', rarity:'commun', monsters:[], bonuses:[] } }
+  FAM_NODES.push(node)
+  famDirtyUids.add(uid)
+  famSelUid = uid
+  setDirty(true)
+  renderFamiliars()
+}
+function renderFamiliarDetail(uid){
+  const node = famNodeByUid(uid); const f = node.data
+  f.monsters = f.monsters || []; f.bonuses = f.bonuses || []
+  const zoneLabel = famZoneLabel(node.comment)
+  const monNames = f.monsters.map(id => `<span class="badge" style="margin:2px" title="${id}">${MONSTERS[id]?MONSTERS[id].name:id}${MONSTERS[id]?'':' ⚠'}</span>`).join('') || '<span class="muted" style="font-size:12px">aucun monstre</span>'
+  const D = document.getElementById('detail')
+  D.innerHTML = `
+    <div class="preview"><img src="${f.image||''}" onerror="this.style.opacity=.15">
+      <div><h2>${f.name||f.id||'(nouveau familier)'}</h2>
+        ${zoneLabel?`<div class="muted">zone : ${zoneLabel}</div>`:''}</div></div>
+    <div class="grid2">
+      <div><label>ID</label><input id="f_id" value="${(f.id||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>Nom affiché</label><input id="f_name" value="${(f.name||'').replace(/"/g,'&quot;')}"></div>
+    </div>
+    <div class="grid2">
+      <div><label>Image (chemin)</label><input id="f_image" value="${(f.image||'').replace(/"/g,'&quot;')}"></div>
+      <div><label>Rareté</label><select id="f_rarity">${RARITIES.map(r=>`<option ${f.rarity===r?'selected':''}>${r}</option>`).join('')}</select></div>
+    </div>
+    <div class="section"><h3>Monstres associés (ids séparés par des virgules)</h3>
+      <textarea id="f_monsters">${(f.monsters||[]).join(', ')}</textarea>
+      <div style="margin-top:6px">${monNames}</div></div>
+    <div class="section"><h3>Bonus</h3><div id="f_bonuses"></div>
+      <button id="f_addBonus">+ bonus</button></div>
+    <div style="margin-top:16px"><button id="f_del" style="color:var(--err);border-color:var(--err)">🗑️ Supprimer ce familier</button></div>
+  `
+  const md = () => { famDirtyUids.add(uid); setDirty(true) }
+  const bind = (elId,fn) => { const el=D.querySelector('#'+elId); if(el) el.oninput=el.onchange=()=>{fn(el.value);md()} }
+  bind('f_id',    v=>{f.id=v; renderFamiliarList()})
+  bind('f_name',  v=>{f.name=v; renderFamiliarList(); D.querySelector('h2').textContent=v||f.id||'(nouveau familier)'})
+  bind('f_image', v=>{f.image=v; renderFamiliarList()})
+  bind('f_rarity',v=>{f.rarity=v; renderFamiliarList()})
+  D.querySelector('#f_monsters').onchange = e=>{
+    f.monsters = e.target.value.split(',').map(s=>s.trim()).filter(Boolean)
+    renderFamiliarList(); renderFamiliarDetail(uid); md()
+  }
+  renderFamBonuses(f, uid)
+  D.querySelector('#f_addBonus').onclick = () => {
+    f.bonuses.push({bonusType:'combat', bonusStat:'atk', min:1, max:10})
+    renderFamBonuses(f, uid); renderFamiliarList(); md()
+  }
+  D.querySelector('#f_del').onclick = () => {
+    if (!confirm(`Supprimer "${f.name||f.id||'ce familier'}" ?`)) return
+    node.deleted = true
+    famDirtyUids.add(uid)
+    famSelUid = null
+    setDirty(true)
+    renderFamiliars()
+  }
+}
+function renderFamBonuses(f, uid){
+  const wrap = document.getElementById('detail').querySelector('#f_bonuses')
+  f.bonuses = f.bonuses || []
+  wrap.innerHTML = f.bonuses.map((b,i)=>`
+    <div class="statrow">
+      <select data-i="${i}" class="fb_type" style="flex:1">${FAM_BONUS_TYPES.map(t=>`<option ${b.bonusType===t?'selected':''}>${t}</option>`).join('')}</select>
+      <select data-i="${i}" class="fb_stat" style="flex:2">${FAM_STATS.map(s=>`<option ${b.bonusStat===s?'selected':''}>${s}</option>`).join('')}</select>
+      <input data-i="${i}" class="fb_min" type="number" placeholder="min" value="${b.min}">
+      <input data-i="${i}" class="fb_max" type="number" placeholder="max" value="${b.max}">
+      <button data-i="${i}" class="fb_x">✕</button>
+    </div>`).join('') || '<div class="muted">Aucun bonus.</div>'
+  const md = () => { famDirtyUids.add(uid); setDirty(true) }
+  wrap.querySelectorAll('.fb_type').forEach(el=>el.onchange=()=>{f.bonuses[+el.dataset.i].bonusType=el.value; md()})
+  wrap.querySelectorAll('.fb_stat').forEach(el=>el.onchange=()=>{f.bonuses[+el.dataset.i].bonusStat=el.value; md()})
+  wrap.querySelectorAll('.fb_min').forEach(el=>el.oninput=()=>{f.bonuses[+el.dataset.i].min=+el.value||0; md()})
+  wrap.querySelectorAll('.fb_max').forEach(el=>el.oninput=()=>{f.bonuses[+el.dataset.i].max=+el.value||0; md()})
+  wrap.querySelectorAll('.fb_x').forEach(el=>el.onclick=()=>{f.bonuses.splice(+el.dataset.i,1); renderFamBonuses(f,uid); md()})
 }
 
 // ───────────────────────── événements ─────────────────────────

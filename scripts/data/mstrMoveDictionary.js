@@ -28135,7 +28135,7 @@ move.appel_du_venerable = {
     name: 'Appel du Vénérable',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonId: 'abraknyde_venerable', duration: 4, target: 'enemy' }
+        { type: 'summon', summonPool: ['branche_soignante','branche_invocatrice'], duration: 4, target: 'enemy' }
     ]
 }
 
