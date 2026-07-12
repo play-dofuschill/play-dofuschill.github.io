@@ -3063,7 +3063,9 @@ function executeEffect(ctx) {
                 }
                 break
             }
-            // Solo : force le changement de membre actif sur l'équipe du joueur
+            // Solo : un membre de l'équipe qui vise l'ennemi n'a personne d'autre à switcher (un seul ennemi) → no-op
+            if (state.team.includes(caster) && effect.target === 'enemy') break
+            // Solo : force le changement de membre actif sur l'équipe du joueur (ennemi → équipe, ou effet sur soi)
             const living = []
             for (let i = 0; i < state.team.length; i++) {
                 const m = state.team[i]
