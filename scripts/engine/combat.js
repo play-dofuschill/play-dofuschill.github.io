@@ -3663,10 +3663,11 @@ function executeEnemyAction() {
         if (dmg !== undefined) lastDamageDealt = dmg
     }
 
+    if (!combat.enemy) return
     tickBuffs(combat.enemy)
 
     // Pré-sélection du prochain sort ennemi pour l'affichage
-    if (combat.enemy) combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
+    combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 
     // Décompte des actions du familier invoqué
     // _justSpawned : le summon vient d'apparaître dans ce même tick (invoqué par l'ennemi)
