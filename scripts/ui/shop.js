@@ -30,7 +30,7 @@ function updateShopUI() {
 
     const banner = document.createElement('div')
     banner.className = 'shop-rotation-banner'
-    banner.textContent = `Rotation dans ${nextShopRotationLabel()}`
+    banner.textContent = `Rotation dans ${nextShopRotationLabel(shopFilter)}`
     list.appendChild(banner)
 
     const entries = getShopEntries(shopFilter)

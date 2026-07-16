@@ -67,30 +67,53 @@ function _visitedAreaItemSet() {
     return ids
 }
 
+// Clés des donjons liés aux zones sauvages actuellement tirées (pool bi-journalier).
+function _wildLinkedKeyIds() {
+    if (typeof refreshDailyPools === 'function') refreshDailyPools()
+    const dungeonIds = typeof getDailyDungeons === 'function' ? getDailyDungeons() : []
+    const ids = []
+    for (const dungeonId of dungeonIds) {
+        const keyId = areas[dungeonId]?.keyId
+        if (keyId && item[keyId] && !ids.includes(keyId)) ids.push(keyId)
+    }
+    return ids
+}
+
 function refreshShopPool() {
-    const period = _shopPeriod()
+    const period     = _shopPeriod()
     const visitedKey = (state.visitedAreas || []).slice().sort().join(',')
-    if (state.shopPool?.period === period && state.shopPool?.visitedKey === visitedKey) return
+    const keysPeriod = typeof _periodStr === 'function' ? _periodStr() : String(period)
 
-    const seed     = (period * 2654435761) >>> 0
-    const allowed  = _visitedAreaItemSet()
+    const itemsStale = !(state.shopPool?.period === period && state.shopPool?.visitedKey === visitedKey)
+    const keysStale  = state.shopPool?.keysPeriod !== keysPeriod
+    if (!itemsStale && !keysStale) return
 
-    const allItems = Object.values(item).filter(i => i.type === 'equipment' && i.slot !== 'accessoire' && allowed.has(i.id))
-    const allKeys  = Object.values(item).filter(i => i.isKey === true && allowed.has(i.id))
-    const allRunes = Object.values(item).filter(i => i.type === 'rune')
-    const allSkins = Object.values(item).filter(i => i.type === 'cosmetic_skin')
+    if (!state.shopPool) state.shopPool = {}
 
-    state.shopPool = {
-        period,
-        visitedKey,
-        items: _seededShuffle(allItems, seed          ).slice(0, 10).map(i => i.id),
-        keys:  _seededShuffle(allKeys,  seed ^ 0x1111 ).slice(0, 5 ).map(i => i.id),
-        runes: _seededShuffle(allRunes, seed ^ 0x2222 ).slice(0, 5 ).map(i => i.id),
-        skins: _seededShuffle(allSkins, seed ^ 0x3333 ).slice(0, 5 ).map(i => i.id),
+    if (itemsStale) {
+        const seed     = (period * 2654435761) >>> 0
+        const allowed  = _visitedAreaItemSet()
+
+        const allItems = Object.values(item).filter(i => i.type === 'equipment' && i.slot !== 'accessoire' && allowed.has(i.id))
+        const allRunes = Object.values(item).filter(i => i.type === 'rune')
+        const allSkins = Object.values(item).filter(i => i.type === 'cosmetic_skin')
+
+        state.shopPool.period      = period
+        state.shopPool.visitedKey  = visitedKey
+        state.shopPool.items = _seededShuffle(allItems, seed          ).slice(0, 10).map(i => i.id)
+        state.shopPool.runes = _seededShuffle(allRunes, seed ^ 0x2222 ).slice(0, 5 ).map(i => i.id)
+        state.shopPool.skins = _seededShuffle(allSkins, seed ^ 0x3333 ).slice(0, 5 ).map(i => i.id)
+
+        if (!state.shopPurchases || state.shopPurchases.period !== period) {
+            state.shopPurchases = { period, counts: {} }
+        }
     }
-    if (!state.shopPurchases || state.shopPurchases.period !== period) {
-        state.shopPurchases = { period, counts: {} }
+
+    if (keysStale) {
+        state.shopPool.keysPeriod = keysPeriod
+        state.shopPool.keys       = _wildLinkedKeyIds()
     }
+
     saveGame()
 }
 
@@ -124,7 +147,9 @@ function getShopEntries(cat) {
     }
 }
 
-function nextShopRotationLabel() {
+function nextShopRotationLabel(cat) {
+    if (cat === 'consumables' && typeof nextWildRefreshLabel === 'function') return nextWildRefreshLabel()
+
     const nextMs = (_shopPeriod() + 1) * SHOP_ROTATION_DAYS * 86400000
     const secs   = Math.max(0, Math.floor((nextMs - Date.now()) / 1000))
     const h = Math.floor(secs / 3600)

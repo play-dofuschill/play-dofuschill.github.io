@@ -595,6 +595,12 @@ function exitCombat() {
     stopCombat()
     state.currentArea = null
     combat = null
+    // Évite qu'un accumulateur de session (relance auto donjon / pilote auto) laissé
+    // actif se retrouve réutilisé au prochain donjon lancé, mélangeant leurs loots.
+    _dungeonAutoRun = null
+    _autoPilot = null
+    state.offlineAutoPilotRemaining = 0
+    state.autoPilotAccumulated = null
 
     // Remet les HP à fond entre deux sessions (XP/niveau conservés)
     for (const m of state.team) {
