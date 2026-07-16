@@ -1634,7 +1634,9 @@ areas.berceauDAlma = {
         { itemId: 'slip_noze', dropRate: 0.01 },
         { itemId: 'hache_du_fancrome', dropRate: 0.01 },
         { itemId: 'fantomasque', dropRate: 0.01 },
-        { itemId: 'marteau_de_la_vigie_pirate', dropRate: 0.01 }
+        { itemId: 'marteau_de_la_vigie_pirate', dropRate: 0.01 },
+        { itemId: 'lance_du_harpirate', dropRate: 0.01 },
+        { itemId: 'masque_du_harpirate', dropRate: 0.01 }
     ]
 }
 
@@ -3424,7 +3426,8 @@ areas.donjonDraegnerys = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_de_shika', dropRate: 0.08333 },
         { itemId: 'shikacoiffe', dropRate: 0.08333 },
-        { itemId: 'epis_de_shika', dropRate: 0.08333 }
+        { itemId: 'epis_de_shika', dropRate: 0.08333 },
+        { itemId: 'binette_de_shika', dropRate: 0.08333 }
     ]
 }
 
@@ -5491,7 +5494,7 @@ areas.evenementForetAstrub = {
         { itemId: 'bouclier_herisse_du_prespic',        dropRate: 0.005 },
         { itemId: 'pieds_du_sanglier',         dropRate: 0.005 },
         { itemId: 'anneau_du_sanglier',         dropRate: 0.005 },
-        { itemId: 'pieds_du_sanglier',       dropRate: 0.005 },
+        { itemId: 'sanglature',       dropRate: 0.005 },
         { itemId: 'cape_de_l_homme_ours',        dropRate: 0.005 },
         { itemId: 'coiffe_de_l_homme_ours',      dropRate: 0.005 },
         { itemId: 'bottes_de_l_homme_ours',      dropRate: 0.005 },
@@ -6170,7 +6173,8 @@ areas.raidTourbeduRoissingue = {
         { itemId: 'pierreDame', dropRate: 0.35 },
         { itemId: 'cape_de_la_ouassingue', dropRate: 0.01 },
         { itemId: 'capuche_de_la_ouassingue', dropRate: 0.01 },
-        { itemId: 'ouassulette', dropRate: 0.01 }
+        { itemId: 'ouassulette', dropRate: 0.01 },
+        { itemId: 'bottes_horchons', dropRate: 0.01 }
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -6536,6 +6540,7 @@ areas.raidChaloeil = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'bottes_du_chal_il', dropRate: 0.11667 },
         { itemId: 'casque_du_chal_il', dropRate: 0.11667 },
+        { itemId: 'cape_du_chal_il', dropRate: 0.11667 },
         { itemId: 'hache_du_chal_il', dropRate: 0.11667 }
     ]
 }
@@ -7010,7 +7015,7 @@ areas.saisonVulkania_1 = {
     mobMinLevel: 20, mobMaxLevel: 40,
     background: '',
     icon: 'images/monsters/Krokille_Juvénile_Insipide.png',
-    description: "TODO",
+    description: "Sur les pentes encore tièdes du volcan, de jeunes krokilles à peine écloses batifolent parmi les fougères géantes. Elles n'ont pas encore choisi leur élément, mais leurs crocs, eux, sont déjà bien affûtés.",
     spawns: [
         { id: 'krokille_juvenile_insipide',       weight: 20 },
         { id: 'krokille_juvenile_boueuse',         weight: 20 },
@@ -7034,7 +7039,7 @@ areas.saisonVulkania_2 = {
     mobMinLevel: 50, mobMaxLevel: 90,
     background: '',
     icon: 'images/monsters/Krokille_Novice_Insipide.png',
-    description: "TODO",
+    description: "Plus loin sur l'île, les krokilles ont grandi et revendiquent farouchement leur territoire. Leurs écailles ont pris la teinte de leur élément, et leur caractère s'est endurci à la même vitesse que leurs griffes.",
     spawns: [
         { id: 'krokille_novice_insipide',       weight: 20 },
         { id: 'krokille_novice_boueuse',         weight: 20 },
@@ -7062,7 +7067,7 @@ areas.saisonVulkania_3 = {
     mobMinLevel: 100, mobMaxLevel: 130,
     background: '',
     icon: 'images/monsters/Krokille_Mature_Insipide.png',
-    description: "TODO",
+    description: "Les couches de roche volcanique se lisent ici comme les pages d'un livre ancien, et les krokilles matures qui arpentent ces strates semblent tout aussi indéchiffrables. Leur instinct de prédateur n'a plus rien à envier à celui de leurs géniteurs.",
     spawns: [
         { id: 'krokille_mature_insipide',       weight: 20 },
         { id: 'krokille_mature_boueuse',         weight: 20 },
@@ -7088,7 +7093,7 @@ areas.saisonVulkania_4 = {
     mobMinLevel: 140, mobMaxLevel: 190,
     background: '',
     icon: 'images/monsters/Krokille_Vénérable_Insipide.png',
-    description: "TODO",
+    description: "Aux abords du cratère, seules les krokilles les plus endurcies ont survécu jusqu'à l'âge vénérable. Elles montent une garde silencieuse, comme si elles savaient déjà que Grozilla et Grasmera ne tarderaient pas à se réveiller.",
     spawns: [
         { id: 'krokille_venerable_insipide',       weight: 20 },
         { id: 'krokille_venerable_boueuse',         weight: 20 },
@@ -7118,7 +7123,7 @@ areas.donjonVulkania_1 = {
     mobMinLevel: 60, mobMaxLevel: 60,
     background: '',
     icon: 'images/monsters/Grozilla.png',
-    description: "TODO",
+    description: "Au fond du cratère, Grozilla et Grasmera sommeillent encore, bercés par la chaleur du magma. Leur souffle profond fait vibrer la roche environnante, mais rien ne garantit qu'ils resteront assoupis bien longtemps.",
     spawns: [{ id: 'grozilla_somnambule', weight: 50 },
              { id: 'grasmera_somnambule', weight: 50 }],
     lootTable: [
@@ -7137,7 +7142,7 @@ areas.donjonVulkania_2 = {
     mobMinLevel: 110, mobMaxLevel: 110,
     background: '',
     icon: 'images/monsters/Grozilla.png',
-    description: "TODO",
+    description: "Réveillés une première fois, Grozilla et Grasmera peinent à retrouver leur calme. L'épuisement les rend imprévisibles, et leurs krokilles, sentant la tension monter, resserrent les rangs autour d'eux.",
     spawns: [{ id: 'grozilla_epuise', weight: 50 },
              { id: 'grasmera_epuise', weight: 50 }],
     lootTable: [
@@ -7160,7 +7165,7 @@ areas.donjonVulkania_3 = {
     mobMinLevel: 150, mobMaxLevel: 150,
     background: '',
     icon: 'images/monsters/Grozilla.png',
-    description: "TODO",
+    description: "La fatigue accumulée n'a en rien émoussé la rage des deux titans. Chaque assaut repoussé les rend un peu plus déterminés à ensevelir les intrus sous des tonnes de roche et d'écailles.",
     spawns: [{ id: 'grozilla_fatigue', weight: 50 },
              { id: 'grasmera_fatigue', weight: 50 }],
     lootTable: [
@@ -7181,7 +7186,7 @@ areas.donjonVulkania_4 = {
     mobMinLevel: 200, mobMaxLevel: 200,
     background: '',
     icon: 'images/monsters/Grozilla.png',
-    description: "TODO",
+    description: "Au cœur du cratère, dans leur antre le plus reculé, Grozilla et Grasmera veillent sur leurs cinq compagnes dragonnes et leur innombrable descendance de krokilles. Selon la légende, c'est Osamodas lui-même qui leur aurait offert ce sanctuaire volcanique après la perte de leur île natale — un présent qu'ils ne comptent partager avec personne.",
     spawns: [{ id: 'grozilla', weight: 100 },
              { id: 'grasmera', weight: 50 }],
     lootTable: [
