@@ -162,7 +162,7 @@ function _describeMobPassives(mob) {
 
     for (const eff of mob.onHeal || []) {
         if (eff.type === 'random_res_debuff') {
-            lines.push(`Si un membre de l'équipe se soigne : perd ${eff.value}% de résistance (élément aléatoire, ${durLabel(eff.duration)})`)
+            lines.push(`Quand il se soigne : perd ${eff.value}% de résistance (élément aléatoire, ${durLabel(eff.duration)})`)
         }
     }
     for (const eff of mob.onDebuff || []) {

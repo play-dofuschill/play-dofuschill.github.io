@@ -4005,10 +4005,10 @@ function _applyRandomResDebuff(target, value, duration, sourceName) {
     addLog(`${sourceName} → ${target.name || '?'} perd ${value}% de résistance ${el} (${durLabel}) !`)
 }
 
-// Déclenché quand un allié se soigne : certains monstres (mob.onHeal) perdent de la résistance en représailles.
+// Déclenché quand l'ennemi se soigne lui-même : certains monstres (mob.onHeal) perdent de la résistance en contrecoup.
 function _triggerEnemyOnHeal(healer) {
     if (!combat.enemy?.onHeal) return
-    if (!healer || !state.team.includes(healer)) return
+    if (healer !== combat.enemy) return
     for (const eff of combat.enemy.onHeal) {
         if (eff.type === 'random_res_debuff') {
             _applyRandomResDebuff(combat.enemy, eff.value, eff.duration, 'Contre-coup du soin')
@@ -4025,6 +4025,7 @@ function _triggerEnemyOnDebuff(stat) {
             const healAmt = Math.floor((combat.enemy.maxHp || 0) * (eff.value / 100))
             combat.enemy.currentHp = Math.min(combat.enemy.maxHp, (combat.enemy.currentHp || 0) + healAmt)
             addLog(`${combat.enemy.name} riposte → +${healAmt} PV (${eff.value}% PV max) !`)
+            _triggerEnemyOnHeal(combat.enemy)
         } else if (eff.type === 'res_all_debuff') {
             combat.enemy.buffs = combat.enemy.buffs || []
             combat.enemy.buffs.push({ stat: 'res_all', value: -eff.value, duration: eff.duration ?? Infinity })
