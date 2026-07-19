@@ -261,7 +261,7 @@ const state = {
         dropCount: 0,
         startTime: Date.now()
     },
-    Boss_Ultime: null
+    BossUltime: null
 }
 
 // ─── Thème ────────────────────────────────────────────────────────────────────
@@ -580,7 +580,8 @@ function showSessionSummary(type) {
     else if (type === 'dungeon') titleText = 'Donjon terminé !'
     else if (type === 'autopilot') titleText = `Pilote auto — ${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
     else if (type === 'raid')           titleText = `Raid quitté — ${session.killCount} kill${session.killCount > 1 ? 's' : ''}`
-    else if (type === 'wanted_victory') titleText = 'Avis de recherche accompli !'
+    else if (type === 'wanted_victory')    titleText = 'Avis de recherche accompli !'
+    else if (type === 'bossultime_victory') titleText = 'Dragon vaincu !'
     else if (type === 'leave')          titleText = `${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
 
     // ── Sorts appris

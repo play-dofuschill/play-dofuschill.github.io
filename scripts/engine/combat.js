@@ -138,7 +138,15 @@ function _syncCombatToState() {
         const _wsSync = _wantedBossState(combat.isWanted)
         if (_wsSync) _wsSync.currentHp = Math.max(0, combat.enemy.currentHp ?? 0)
     }
-    if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch || combat.isWanted) {
+    // Boss Ultime : même principe — sync les PV/phase en cours tant que le dragon est vivant
+    if (combat?.isBossUltime && combat.enemy && combat.enemy.currentHp > 0) {
+        const _bsSync = _bossUltimeDragonState(combat.isBossUltime)
+        if (_bsSync) {
+            _bsSync.currentHp = Math.max(0, combat.enemy.currentHp ?? 0)
+            _bsSync.phase     = combat.enemy.phase ?? _bsSync.phase
+        }
+    }
+    if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch || combat.isWanted || combat.isBossUltime) {
         state.savedCombatEnemy = null
         state.savedCombatState = null
         return
@@ -325,6 +333,16 @@ function spawnEnemy(areaId) {
 // ─── Démarrage / arrêt ────────────────────────────────────────────────────────
 
 function startCombat(areaId) {
+    // Boss Ultime : verrou 1 combat/jour, appliqué ici pour couvrir tous les points
+    // d'entrée (bouton dédié, mais aussi "Rejouer" en fin de combat via rejoinArea()).
+    if (areas[areaId]?.type === 'bossultime') {
+        const _bid = areaId.replace(/^_bossultime_/, '')
+        if (!bossUltimeCanFight(_bid)) {
+            showNotification('Vous avez déjà affronté ce dragon aujourd\'hui.', 'error')
+            return
+        }
+    }
+
     // Détecte si on reprend un combat sauvegardé (rechargement de page)
     const _isResume = !!(
         state.savedCombatEnemy &&
@@ -363,6 +381,10 @@ function startCombat(areaId) {
         const _wd = WantedBosses[_pendingWantedId]
         if (_wd?.levelCap) _syncedLevel = _wd.levelCap
     }
+
+    // Boss Ultime : pas de cap de niveau, l'équipe combat avec son niveau réel
+    const _pendingBossUltimeId = areas[areaId]?.type === 'bossultime'
+        ? areaId.replace(/^_bossultime_/, '') : null
 
     // Auto-déséquipement sur départ frais uniquement
     if (!_isResume && _syncedLevel !== null) {
@@ -434,6 +456,9 @@ function startCombat(areaId) {
     if (_pendingWantedId) {
         combat.isWanted      = _pendingWantedId
         combat.wantedStartHp = _wantedBossState(_pendingWantedId)?.currentHp ?? 0
+    }
+    if (_pendingBossUltimeId) {
+        combat.isBossUltime = _pendingBossUltimeId
     }
 
     if (_isResume && state.savedCombatState) {
@@ -526,6 +551,21 @@ function startCombat(areaId) {
                     combat.enemy.currentHp  = _ws.currentHp
                     combat.enemy.atk        = Math.floor(_wd.bst.atk * _ws.statMultiplier)
                     combat.enemy._baseMaxHp = _ws.maxHp
+                }
+            }
+            // Boss Ultime : remplace les PV par les valeurs persistées, reprend la phase 2 si besoin
+            if (_pendingBossUltimeId && combat.enemy) {
+                const _ds = _bossUltimeDragonState(_pendingBossUltimeId)
+                const _bd = BossUltimeDragons[_pendingBossUltimeId]
+                combat.enemy.maxHp      = _ds.maxHp
+                combat.enemy.currentHp  = _ds.currentHp
+                combat.enemy._baseMaxHp = _ds.maxHp
+                combat.enemy.phase      = _ds.phase
+                if (_ds.phase === 2 && _bd?.phase2) {
+                    combat.enemy.atk = _bd.phase2.bst.atk ?? combat.enemy.atk
+                    if (_bd.phase2.bst.res) combat.enemy.res = { ..._bd.phase2.bst.res }
+                    if (_bd.phase2.image)   combat.enemy.image = _bd.phase2.image
+                    combat.enemy.moves = resolveMonsterMoves(_bd.phase2.moves)
                 }
             }
         }
@@ -841,6 +881,8 @@ function gameTick() {
         if (m && isNaN(m.currentHp)) m.currentHp = 0
     }
     if (combat.enemy && isNaN(combat.enemy.currentHp)) combat.enemy.currentHp = 0
+
+    if (combat.isBossUltime) _checkBossUltimePhase()
 
     // Avance le timer du membre actif uniquement
     const _spdMult = _afkSeconds > 0 ? 1 : _combatSpeedMult
@@ -1891,14 +1933,10 @@ function executeEffect(ctx) {
                     const _tpDmg = Math.floor(dmg * _tpRatio)
                     _tp.currentHp = Math.max(0, (_tp.currentHp || 0) - _tpDmg)
                     addLog(`Transposition → ${_tp.name || classes[_tp.classId]?.name || '?'} intercepte ! ${_tpDmg} dégâts (${Math.round(_tpRatio * 100)}%)`)
-                    if (!combat?.isBossUltime) setActiveMember(_tpSlot)
+                    setActiveMember(_tpSlot)
                     if (_tp.currentHp <= 0) {
-                        if (combat?.isBossUltime) {
-                            if (typeof _Boss_UltimeHandleMemberDeath === 'function') _Boss_UltimeHandleMemberDeath(_tp)
-                        } else {
-                            _autoSwitchActive()
-                            if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return 0 }
-                        }
+                        _autoSwitchActive()
+                        if (state.team.every(m => !m || m.currentHp <= 0)) { onDefeat(); return 0 }
                     }
                     return 0
                 }
@@ -3042,7 +3080,6 @@ function executeEffect(ctx) {
         }
 
         case 'switch': {
-            if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
             if (!state.team.includes(caster)) {
                 const _trophyM = state.team[combat.activeMemberIndex]
                 if (_trophyM?.equip?.accessoire && item[_trophyM.equip.accessoire]?.trophy) {
@@ -3175,7 +3212,6 @@ function executeEffect(ctx) {
         }
 
         case 'recul': {
-            if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
             if (!state.team.includes(caster)) {
                 const _trophyMR = state.team[combat.activeMemberIndex]
                 if (_trophyMR?.equip?.accessoire && item[_trophyMR.equip.accessoire]?.trophy) {
@@ -3221,7 +3257,6 @@ function executeEffect(ctx) {
         }
 
         case 'avance': {
-            if (combat?.isBossUltime) { addLog(`${moveData?.name ?? '?'} → ignoré en Boss Ultime`); break }
             if (!state.team.includes(caster)) {
                 const _trophyMA = state.team[combat.activeMemberIndex]
                 if (_trophyMA?.equip?.accessoire && item[_trophyMA.equip.accessoire]?.trophy) {
@@ -4178,6 +4213,24 @@ function _onVictoryBody() {
         return
     }
 
+    // Boss Ultime : victoire — récompense + reset PV/phase, 1 seul combat/jour déjà consommé
+    if (combat.isBossUltime) {
+        const _bid = combat.isBossUltime
+        combat.respawnPending = false
+        _onBossUltimeVictory(_bid)
+        stopCombat()
+        state.isRunning = false
+        _afkSeconds = 0
+        if (_autoPilot) {
+            _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
+            combat.sessionLoot = JSON.parse(JSON.stringify(_autoPilot.accumulated))
+            _autoPilot = null
+        }
+        saveGame()
+        showSessionSummary('bossultime_victory')
+        return
+    }
+
     // Donjon : victoire finale — consomme la clé, relance si option active
     if (areas[state.currentArea]?.type === 'dungeon') {
         combat.respawnPending = false
@@ -4231,11 +4284,13 @@ function onDefeat() {
     state.savedCombatState = null
 
     if (_afkSeconds > 0) {
-        const _afkWantedId = combat?.isWanted || null
-        if (_afkWantedId) _onWantedDefeat(_afkWantedId)
+        const _afkWantedId     = combat?.isWanted     || null
+        const _afkBossUltimeId = combat?.isBossUltime || null
+        if (_afkWantedId)     _onWantedDefeat(_afkWantedId)
+        if (_afkBossUltimeId) _onBossUltimeDefeat(_afkBossUltimeId)
         stopCombat()
         if (combat) combat.enemy = null
-        if (_afkWantedId) saveGame()
+        if (_afkWantedId || _afkBossUltimeId) saveGame()
         _offlineHandleDefeat()
         return
     }
@@ -4244,6 +4299,17 @@ function onDefeat() {
         stopCombat()
         if (combat) combat.enemy = null
         showPoutchSummary('defeat')
+        return
+    }
+
+    // Boss Ultime : défaite → persiste PV/phase restants, pas de relance (1 seul combat/jour)
+    if (combat?.isBossUltime) {
+        _onBossUltimeDefeat(combat.isBossUltime)
+        stopCombat()
+        state.isRunning = false
+        combat.enemy = null
+        saveGame()
+        showSessionSummary('defeat')
         return
     }
 

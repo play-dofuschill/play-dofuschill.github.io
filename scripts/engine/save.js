@@ -81,7 +81,7 @@ function saveGame() {
             skullUnequipped:           state.skullUnequipped || null,
             skullRecords:              state.skullRecords || {},
             ownedSkins:                state.ownedSkins || [],
-            Boss_Ultime:                    state.Boss_Ultime    || null,
+            BossUltime:                state.BossUltime     || null,
             wanted:                    state.wanted         || null,
             visitedAreas:              state.visitedAreas   || [],
             version:                   '0.2'
@@ -157,7 +157,7 @@ function loadGame() {
         if (data.skullUnequipped != null)           state.skullUnequipped           = data.skullUnequipped
         if (data.skullRecords)                      state.skullRecords              = data.skullRecords
         if (data.ownedSkins)                        state.ownedSkins                = data.ownedSkins
-        if (data.Boss_Ultime)                            state.Boss_Ultime                    = data.Boss_Ultime
+        if (data.BossUltime || data.Boss_Ultime)     state.BossUltime                = data.BossUltime || data.Boss_Ultime
         if (data.wanted)                                 state.wanted                         = data.wanted
         if (data.visitedAreas)                           state.visitedAreas                   = data.visitedAreas
 
