@@ -276,15 +276,22 @@ function showItemTooltip(itemId, fromClassId) {
         const pano = panoplies[_setId]
         if (!pano) continue
         const owned   = new Set(Object.keys(state.inventory))
+        // Les bonus de panoplie se calculent par personnage : si on connaît le
+        // personnage concerné (fiche perso / choix d'équipement), on ne compte
+        // que ses propres pièces, pas celles équipées par le reste de l'équipe.
+        const scopedMember = fromClassId
+            ? state.team.find(m => m?.classId === fromClassId)
+            : state.team.find(m => m?.equip && Object.values(m.equip).includes(itemId))
+        const relevantMembers = scopedMember ? [scopedMember] : state.team
         const equippedByTeam = new Set(
-            state.team.flatMap(m => {
+            relevantMembers.flatMap(m => {
                 if (!m?.equip) return []
                 return Object.entries(m.equip)
                     .filter(([slot]) => slot !== 'familier')
                     .map(([, id]) => id)
             }).filter(Boolean)
         )
-        const famEquipped = pano.familiar && state.team.some(m => {
+        const famEquipped = pano.familiar && relevantMembers.some(m => {
             if (!m?.equip || m.equip.familier !== pano.familiar) return false
             const memberEquip = new Set(Object.values(m.equip).filter(Boolean))
             return pano.pieces.some(p => memberEquip.has(p))

@@ -38,12 +38,12 @@ const CLASS_UNLOCK_CONDITIONS = {
     zobal: (s) => s.defeatedBosses?.includes('dragonCochon'),
 
     sram: (s) => {
-        const ratNoirItems = [] // TODO: remplir avec les IDs des items de la panoplie rat_noir
-        return ratNoirItems.length > 0 && ratNoirItems.every(id => (s.inventory[id]?.count ?? 0) >= 1)
+        const ratItems = Object.values(item).filter(i => i.set === 'panoplie_du_rat_noir' || i.set === 'panoplie_du_rat_blanc')
+        return ratItems.length > 0 && ratItems.every(i => (s.inventory[i.id]?.count ?? 0) >= 1)
     },
 
     feca: (s) => {
-        const bouftouRoyalItems = Object.values(item).filter(i => Array.isArray(i.set) ? i.set.includes('bouftouRoyal') : i.set === 'bouftouRoyal')
+        const bouftouRoyalItems = Object.values(item).filter(i => i.set === 'panoplie_du_bouftou_royal')
         return bouftouRoyalItems.length > 0 && bouftouRoyalItems.every(i => (s.inventory[i.id]?.level ?? 0) >= i.itemLevelMax)
     },
 
@@ -53,14 +53,11 @@ const CLASS_UNLOCK_CONDITIONS = {
 
     steamer: (s) => s.defeatedBosses?.includes('hyperscampe'),
 
-    pandawa: (s) =>
-        s.defeatedBosses?.includes('kralamourGeant') &&
-        (s.collection['kralamourGeant']?.drops ?? 0) >= 1,
+    pandawa: (s) => s.defeatedBosses?.includes('kralamourGeant'),
 
     forgelance: (s) => {
-        // TODO: remplir avec les IDs des boss niv 170+ une fois implémentés
-        const highLevelBossIds = []
-        return highLevelBossIds.length > 0 && highLevelBossIds.filter(id => s.defeatedBosses?.includes(id)).length >= 4
+        const highLevelBossIds = ['belladone', 'barberyl_clochecuivre']
+        return highLevelBossIds.every(id => s.defeatedBosses?.includes(id))
     },
 
     ecaflip: (s) => s.doubleCritAchieved === true,
