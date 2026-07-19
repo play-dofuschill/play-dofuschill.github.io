@@ -3368,6 +3368,8 @@ move.glyphe_pair = {
     name: 'Glyphe Pair',
     cooldownMs: 2000,
     effects: [
+        { type: 'debuff', stat: 'res.feu', value: 600, duration: 3, target: 'owner' },
+        { type: 'debuff', stat: 'res.air', value: 600, duration: 3, target: 'owner' },
         { type: 'buff', stat: 'agility', value: 900, duration: 3, target: 'self' },
         { type: 'recul', target: 'enemy' },
     ]
@@ -3377,6 +3379,8 @@ move.glyphe_impair = {
     name: 'Glyphe Impair',
     cooldownMs: 2000,
     effects: [
+        { type: 'debuff', stat: 'res.terre', value: 600, duration: 3, target: 'owner' },
+        { type: 'debuff', stat: 'res.eau', value: 600, duration: 3, target: 'owner' },
         { type: 'buff', stat: 'agility', value: 900, duration: 3, target: 'self' },
         { type: 'avance', target: 'enemy' },
     ]
@@ -3477,7 +3481,7 @@ move.kawabungaterre = {
     name: 'Kawabunga',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.terre', value: 200, duration: 3, target: 'enemy' },
+        { type: 'debuff', stat: 'res.terre', value: 200, duration: 3, target: 'owner' },
         { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
     ]
 }
@@ -3486,7 +3490,7 @@ move.kawabungafeu = {
     name: 'Kawabunga',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.feu', value: 200, duration: 3, target: 'enemy' },
+        { type: 'debuff', stat: 'res.feu', value: 200, duration: 3, target: 'owner' },
         { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
     ]
 }
@@ -3495,7 +3499,7 @@ move.kawabungaeau = {
     name: 'Kawabunga',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.eau', value: 200, duration: 3, target: 'enemy' },
+        { type: 'debuff', stat: 'res.eau', value: 200, duration: 3, target: 'owner' },
         { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
     ]
 }
@@ -3504,7 +3508,7 @@ move.kawabungaair = {
     name: 'Kawabunga',
     cooldownMs: 2000,
     effects: [
-        { type: 'debuff', stat: 'res.air', value: 200, duration: 3, target: 'enemy' },
+        { type: 'debuff', stat: 'res.air', value: 200, duration: 3, target: 'owner' },
         { type: 'buff', stat: 'maxHp', value: 600, duration: 3, target: 'self' }
     ]
 }
@@ -25559,7 +25563,7 @@ move.invocation_du_disciple = {
     name: 'Invocation du Disciple',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonId: 'disciple_du_kimbo', duration: 3, target: 'enemy' }
+        { type: 'summon', summonId: 'disciple_du_kimbo', duration: 1, target: 'enemy' }
     ]
 }
 move.etat_pair = {
@@ -25567,7 +25571,8 @@ move.etat_pair = {
     name: 'Etat pair',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'agility', value: 500, duration: 3, target: 'self' }
+        { type: 'damage', element: 'air', damage: { min: 15, max: 31 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 15, max: 31 }, target: 'enemy' },
     ]
 }
 move.etat_impair = {
@@ -25575,7 +25580,8 @@ move.etat_impair = {
     name: 'Etat impair',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'agility', value: 500, duration: 3, target: 'self' }
+        { type: 'damage', element: 'eau', damage: { min: 15, max: 31 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 15, max: 31 }, target: 'enemy' },
     ]
 }
 move.furie_du_kimbo = {
@@ -25584,7 +25590,6 @@ move.furie_du_kimbo = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 31, max: 50 }, target: 'enemy' },
-        { type: 'damage', element: 'air', damage: { min: 11, max: 15 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
         { type: 'recul', target: 'enemy' },
     ]
@@ -25594,6 +25599,7 @@ move.teleportation_du_kimbo = {
     name: 'Téléportation du Kimbo',
     cooldownMs: 2000,
     effects: [
+        { type: 'damage', element: 'feu', damage: { min: 31, max: 50 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
     ]
 }

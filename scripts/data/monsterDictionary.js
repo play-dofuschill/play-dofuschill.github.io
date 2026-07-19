@@ -3794,7 +3794,8 @@ monsters.silf_le_rasboul_majeur = {
     tier: 'boss',
     bst: { hp: 7000, atk: 430, spd: 100, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
     moves: ['rasage', 'hololole', 'recrutement'],
-    onHeal: [{ type: 'random_res_debuff', value: 50, duration: Infinity }]
+    onHeal: [{ type: 'random_res_debuff', value: 50, duration: Infinity }],
+    onDebuff: [{ stat: 'spd', type: 'heal%maxHp', value: 10 }]
 }
 // ═══════════════════════════════════════════════════════
 // REPAIRE DU KHARNOZOR (lvl 105+)
@@ -7942,7 +7943,8 @@ monsters.comte_razof = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 11000, atk: 1520, spd: 100, res: { neutre: 100, terre: 120, feu: 115, eau: 135, air: 105 } },
-    moves: ['pelliste', 'archi_pelle', 'chasse_gardee', 'trophee_de_chasse']
+    moves: ['pelliste', 'archi_pelle', 'chasse_gardee', 'trophee_de_chasse'],
+    onAllySummon: [{ type: 'res_all_debuff', value: 5, duration: Infinity }]
 }
 // ═══════════════════════════════════════════════════════
 // PYRAMIDE D'OMBRE (lvl 195+)
@@ -8033,7 +8035,9 @@ monsters.dazak_martegel = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 18000, atk: 1600, spd: 100, res: { neutre: 110, terre: 140, feu: 120, eau: 105, air: 130 } },
-    moves: ['empalement_royal', 'ninflitration', 'nintrepidite']
+    moves: ['empalement_royal', 'ninflitration', 'nintrepidite'],
+    onDebuff: [{ stat: 'spd', type: 'res_all_debuff', value: 5, duration: Infinity }],
+    onAllyDeath: [{ type: 'res_all_buff', value: 20, duration: Infinity }]
 }
 // ═══════════════════════════════════════════════════════
 // BREUIL DU VÉNÉRABLE (lvl 200+)

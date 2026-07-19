@@ -2538,6 +2538,7 @@ function executeEffect(ctx) {
                     if (!targetEnemy.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) {
                         targetEnemy.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, _label: moveData.name })
                         _fireEnutrofTraps('debuff', effect.stat, targetEnemy)
+                        if (targetEnemy === combat.enemy) _triggerEnemyOnDebuff(effect.stat)
                     }
                 }
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (tous) (${effect.duration} tours)`)
@@ -2555,13 +2556,16 @@ function executeEffect(ctx) {
                 addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} équipe (${effect.duration} tours)`)
                 break
             }
-            const debuffEntity = _ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy
+            const debuffEntity = effect.target === 'owner'
+                ? (combat.savedEnemy || targetEnemy)
+                : (_ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy)
             debuffEntity.buffs = debuffEntity.buffs || []
             const _debuffNewFlag = (!effect.delay && debuffEntity === caster) ? { _new: true } : {}
             debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, ..._debuffNewFlag })
-            if (!_ALLY_TARGETS.has(effect.target)) _fireEnutrofTraps('debuff', effect.stat, debuffEntity)
+            if (!_ALLY_TARGETS.has(effect.target) && effect.target !== 'owner') _fireEnutrofTraps('debuff', effect.stat, debuffEntity)
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
             _checkWatchStates(debuffEntity, 'debuff', { stat: effect.stat })
+            if (debuffEntity === combat.enemy) _triggerEnemyOnDebuff(effect.stat)
             break
         }
 
@@ -3147,16 +3151,22 @@ function executeEffect(ctx) {
         }
 
         case 'summon': {
+            // Capturé avant spawnSummon : une invocation alliée remplace le slot du caster dans
+            // state.team, donc `caster` n'y est plus après coup (includes() renverrait faux).
+            const _isAllySummon = state.team.includes(caster)
             let summonId = effect.summonId
             if (effect.summonPool?.length) {
                 summonId = effect.summonPool[Math.floor(Math.random() * effect.summonPool.length)]
             }
             if (summonId) spawnSummon(caster, { ...effect, summonId })
+            if (_isAllySummon) _triggerEnemyOnAllySummon()
             break
         }
 
         case 'summon_companion': {
+            const _isAllySummon = state.team.includes(caster)
             spawnCompanion(caster, effect)
+            if (_isAllySummon) _triggerEnemyOnAllySummon()
             break
         }
 
@@ -4006,6 +4016,47 @@ function _triggerEnemyOnHeal(healer) {
     }
 }
 
+// Déclenché quand un stat de l'ennemi vient d'être debuff : certains monstres (mob.onDebuff) ripostent (ex: Silf se soigne si on baisse sa vitesse).
+function _triggerEnemyOnDebuff(stat) {
+    if (!combat.enemy?.onDebuff) return
+    for (const eff of combat.enemy.onDebuff) {
+        if (eff.stat !== stat) continue
+        if (eff.type === 'heal%maxHp') {
+            const healAmt = Math.floor((combat.enemy.maxHp || 0) * (eff.value / 100))
+            combat.enemy.currentHp = Math.min(combat.enemy.maxHp, (combat.enemy.currentHp || 0) + healAmt)
+            addLog(`${combat.enemy.name} riposte → +${healAmt} PV (${eff.value}% PV max) !`)
+        } else if (eff.type === 'res_all_debuff') {
+            combat.enemy.buffs = combat.enemy.buffs || []
+            combat.enemy.buffs.push({ stat: 'res_all', value: -eff.value, duration: eff.duration ?? Infinity })
+            addLog(`${combat.enemy.name} s'affaiblit → -${eff.value}% résistances (toutes) !`)
+        }
+    }
+}
+
+// Déclenché quand un allié du joueur meurt : certains monstres (mob.onAllyDeath) se renforcent en représailles.
+function _triggerEnemyOnAllyDeath() {
+    if (!combat.enemy?.onAllyDeath) return
+    for (const eff of combat.enemy.onAllyDeath) {
+        if (eff.type === 'res_all_buff') {
+            combat.enemy.buffs = combat.enemy.buffs || []
+            combat.enemy.buffs.push({ stat: 'res_all', value: eff.value, duration: eff.duration ?? Infinity })
+            addLog(`${combat.enemy.name} se renforce → +${eff.value}% résistances (toutes) !`)
+        }
+    }
+}
+
+// Déclenché quand un allié lance un sort d'invocation : certains monstres (mob.onAllySummon) perdent de la résistance.
+function _triggerEnemyOnAllySummon() {
+    if (!combat.enemy?.onAllySummon) return
+    for (const eff of combat.enemy.onAllySummon) {
+        if (eff.type === 'res_all_debuff') {
+            combat.enemy.buffs = combat.enemy.buffs || []
+            combat.enemy.buffs.push({ stat: 'res_all', value: -eff.value, duration: eff.duration ?? Infinity })
+            addLog(`${combat.enemy.name} s'affaiblit → -${eff.value}% résistances (toutes) !`)
+        }
+    }
+}
+
 function returnToOwner(died = false) {
     if (!combat.savedEnemy) return
     const dyingSummon = combat.enemy
@@ -4775,6 +4826,7 @@ function _autoSwitchActive() {
     // Passif Roublard : explosion à la mort (une seule fois par membre)
     if (cur && !combat.memberDeathHandled?.[curIdx]) {
         combat.memberDeathHandled[curIdx] = true
+        if (combat.enemy?.currentHp > 0) _triggerEnemyOnAllyDeath()
         if (classes[cur.classId]?.passive?.id === 'roublard' && combat.enemy?.currentHp > 0) {
             const dmg = Math.floor((cur.maxHp || 0) * 0.30)
             combat.enemy.currentHp = Math.max(0, combat.enemy.currentHp - dmg)

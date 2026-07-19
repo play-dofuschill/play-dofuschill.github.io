@@ -151,6 +151,94 @@ function updateCollectionUI() {
 
 // ─── Tooltip monstre ──────────────────────────────────────────────────────────
 
+// Décrit en texte lisible les passifs de riposte d'un monstre (onHeal, onDebuff,
+// onAllyDeath, onAllySummon, onDeath) — affichés dans sa fiche détail.
+function _describeMobPassives(mob) {
+    const elemLabel = e => e ? e.charAt(0).toUpperCase() + e.slice(1) : '?'
+    const durLabel  = d => (d === Infinity || d == null) ? 'définitivement' : `${d} tour${d > 1 ? 's' : ''}`
+    const statLabel = s => s === 'spd' ? 'sa vitesse' : s
+
+    const lines = []
+
+    for (const eff of mob.onHeal || []) {
+        if (eff.type === 'random_res_debuff') {
+            lines.push(`Si un membre de l'équipe se soigne : perd ${eff.value}% de résistance (élément aléatoire, ${durLabel(eff.duration)})`)
+        }
+    }
+    for (const eff of mob.onDebuff || []) {
+        if (eff.type === 'heal%maxHp') {
+            lines.push(`Si on debuff ${statLabel(eff.stat)} : se soigne de ${eff.value}% de ses PV max`)
+        } else if (eff.type === 'res_all_debuff') {
+            lines.push(`Si on debuff ${statLabel(eff.stat)} : perd ${eff.value}% de résistance (tous éléments, ${durLabel(eff.duration)})`)
+        }
+    }
+    for (const eff of mob.onAllyDeath || []) {
+        if (eff.type === 'res_all_buff') {
+            lines.push(`Si un membre de l'équipe meurt : gagne ${eff.value}% de résistance (tous éléments, ${durLabel(eff.duration)})`)
+        }
+    }
+    for (const eff of mob.onAllySummon || []) {
+        if (eff.type === 'res_all_debuff') {
+            lines.push(`Si un membre de l'équipe invoque : perd ${eff.value}% de résistance (tous éléments, ${durLabel(eff.duration)})`)
+        }
+    }
+    for (const eff of mob.onDeath || []) {
+        if (eff.type === 'random_res_debuff') {
+            lines.push(`À sa mort : son invocateur perd ${eff.value}% de résistance (élément aléatoire, ${durLabel(eff.duration)})`)
+        } else if (eff.type === 'fixed_res_debuff') {
+            lines.push(`À sa mort : son invocateur perd ${eff.value}% de résistance ${elemLabel(eff.element)} (${durLabel(eff.duration)})`)
+        } else if (eff.type === 'damage') {
+            lines.push(`À sa mort : inflige ${eff.damage?.min ?? 0}-${eff.damage?.max ?? 0} dégâts ${elemLabel(eff.element)}`)
+        }
+    }
+
+    // Vulnérabilité indirecte : ce monstre invoque un add dont les sorts le débuff lui
+    // (target:'owner') — ex: Kimbo/Disciple, Sphincter Cell/tortues.
+    const summonIds = new Set()
+    for (const moveId of _flattenMoveIds(mob.moves)) {
+        for (const eff of move[moveId]?.effects || []) {
+            if (eff.type !== 'summon') continue
+            if (eff.summonId) summonIds.add(eff.summonId)
+            for (const sid of eff.summonPool || []) summonIds.add(sid)
+        }
+    }
+    for (const sid of summonIds) {
+        const summonMob = monsters[sid]
+        if (!summonMob) continue
+        for (const eff of summonMob.onDeath || []) {
+            if (eff.type === 'random_res_debuff') {
+                lines.push(`Invoque ${summonMob.name} ; à sa mort, perd ${eff.value}% de résistance (élément aléatoire, ${durLabel(eff.duration)})`)
+            } else if (eff.type === 'fixed_res_debuff') {
+                lines.push(`Invoque ${summonMob.name} ; à sa mort, perd ${eff.value}% de résistance ${elemLabel(eff.element)} (${durLabel(eff.duration)})`)
+            }
+        }
+        for (const moveId of _flattenMoveIds(summonMob.moves)) {
+            const mv = move[moveId]
+            const ownerDebuffs = (mv?.effects || []).filter(e => e.type === 'debuff' && e.target === 'owner')
+            if (!ownerDebuffs.length) continue
+            const byKey = {}
+            for (const eff of ownerDebuffs) {
+                const key  = `${eff.value}|${eff.duration === Infinity ? 'inf' : eff.duration}`
+                const elem = eff.stat?.startsWith('res.') ? elemLabel(eff.stat.split('.')[1]) : eff.stat
+                ;(byKey[key] ||= []).push(elem)
+            }
+            const parts = Object.entries(byKey).map(([key, elems]) => {
+                const [value, dur] = key.split('|')
+                return `${value}% de résistance ${elems.join('/')} (${durLabel(dur === 'inf' ? Infinity : Number(dur))})`
+            })
+            lines.push(`Invoque ${summonMob.name}, dont ${mv.name} le débuff de ${parts.join(' et ')}`)
+        }
+    }
+
+    return lines
+}
+
+function _flattenMoveIds(movesDef) {
+    if (!movesDef) return []
+    if (Array.isArray(movesDef)) return movesDef
+    return [...(movesDef.pool || []), ...(movesDef.fixed || [])]
+}
+
 function showMonsterTooltip(monsterId) {
     const mob   = monsters[monsterId]
     const entry = state.collection[monsterId]
@@ -169,8 +257,9 @@ function showMonsterTooltip(monsterId) {
 
     const imgStyle = seen ? '' : 'filter:brightness(0);'
 
-    let statsHtml = ''
-    let movesHtml = ''
+    let statsHtml   = ''
+    let movesHtml   = ''
+    let passiveHtml = ''
 
     if (seen) {
         const mobArea  = Object.values(areas).find(a => a.spawns?.some(s => s.id === monsterId))
@@ -213,6 +302,15 @@ function showMonsterTooltip(monsterId) {
         </div>
         <div class="ms-section-title">Résistances</div>
         <div class="ms-stats">${resRows}</div>`
+
+        const passiveLines = _describeMobPassives(mob)
+        if (passiveLines.length > 0) {
+            passiveHtml = `
+            <div class="ms-section-title">Passif</div>
+            <div class="ms-stats ms-passive-list">
+                ${passiveLines.map(l => `<div class="ms-passive-row">${l}</div>`).join('')}
+            </div>`
+        }
 
         if (mob.moves?.length > 0) {
             const TYPE_LABELS = {
@@ -285,6 +383,7 @@ function showMonsterTooltip(monsterId) {
             </div>
         </div>
         ${statsHtml}
+        ${passiveHtml}
         ${movesHtml}
     </div>`
 

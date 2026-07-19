@@ -4569,6 +4569,10 @@ transform: translateY(-1rem);
 .ms-stat-val   { font-size: 0.82rem; font-weight: bold; color: var(--dark1); }
 .ms-bonus      { color: #2D7A2D; font-weight: bold; margin-left: 0.25rem; }
 
+/* Passifs de riposte (onHeal, onDebuff, onAllyDeath, onAllySummon, onDeath) */
+.ms-passive-row { font-size: 0.78rem; line-height: 1.35; color: var(--dark1); padding-left: 0.9rem; position: relative; }
+.ms-passive-row::before { content: '⚡'; position: absolute; left: 0; opacity: 0.6; font-size: 0.7rem; }
+
 /* Titres de section */
 .ms-section-title {
     font-size: 0.72rem; font-weight: bold; text-transform: uppercase;
