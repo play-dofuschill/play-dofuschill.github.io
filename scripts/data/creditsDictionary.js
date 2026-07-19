@@ -66,14 +66,14 @@ const creditsSections = [
                 signaler des bugs ou juste papoter !
             </p>
             <p style="text-align: center; margin: 1.2rem 0;">
-                <a href="https://discord.gg/VnukKfSs3S" target="_blank"
+                <a href="https://discord.gg/wHfufyBS4H" target="_blank"
                    style="display: inline-block; padding: 0.6rem 1.4rem; background: #5865F2;
                           color: white; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
                     Rejoindre le Discord
                 </a>
             </p>
             <p style="font-size: 0.85rem; color: #aaa; text-align: center;">
-                discord.gg/VnukKfSs3S
+                discord.gg/wHfufyBS4H
             </p>
         `
     },
@@ -88,7 +88,7 @@ const creditsSections = [
             </p>
             <ul>
                 <li>🗺️ <strong>Histoire & lore</strong> — une vraie trame narrative ancrée dans le Krosmos, RP personnages/dialogues, où on vit la découverte du monde des douzes depuis le point de vu d'un aventurier (cf les descriptions des</li>
-                <li>⚔️ <strong>Mécaniques de combat avancées</strong> — système de combat enrichi et plus spécifique à l'univers DofusChill</li>
+                <li>⚔️ <strong>Mécaniques de combat avancées</strong> — système de combat enrichi et plus spécifique à l'univers DofusChill, actuellement j'ai essayé de créer des mécaniques complexes pour certains personnages mais je n'ai pas poussé le vice très loin, beaucoup de sorts sont bateaux et d'autres inutiles.</li>
             </ul>
             <p style="font-size: 0.9rem; color: #aaa;">
                 Cette liste sera complétée au fil du temps. Toutes les contributions et discussions sont les bienvenues sur le Discord.
@@ -107,7 +107,7 @@ const creditsSections = [
                 une <strong>pépite</strong> !
             </p>
             <p style="text-align: center; margin: 1.2rem 0;">
-                <a href="https://discord.gg/" target="_blank"
+                <a href="https://discord.gg/wHfufyBS4H" target="_blank"
                    style="display: inline-block; padding: 0.6rem 1.4rem; background: #5865F2;
                           color: white; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
                     Nous rejoindre sur Discord
@@ -125,12 +125,12 @@ const creditsSections = [
             </p>
             <ul>
                 <li>🤖 Environ <strong>70 % du code</strong> a été produit en collaboration avec <strong>Claude Code</strong> (IA d'Anthropic)</li>
-                <li>🗺️ Seules les <strong>premières zones</strong> ont été implémentées pour le moment</li>
-                <li>🔧 Le contenu est encore limité — classes, sorts et équipements restent à étoffer</li>
+                <li>🗺️ Presque toutes les <strong> zones</strong> ont été implémentées mais pour le moment aucune mécanique spéciale ou équilibrage n'a été implémenté</li>
+                <li>🔧 Le contenu et la profondeur de chaque zone est encore limité (beaucoup de génération et équilibrage automatique), j'ai très peu équilibré tout ce qui est classes, sorts équipements</li>
             </ul>
             <p>
-                De prochaines mises à jour viendront alimenter le contenu : nouvelles zones, nouveaux monstres,
-                nouveaux équipements, mécaniques enrichies… Le jeu grandira avec le temps et les contributions de la communauté.
+                De prochaines mises à jour viendront corriger les différents bugs, ajouter des features etc
+                Il va ya avoir de nouveaux équipements, mécaniques enrichies… Le jeu grandira avec le temps et les contributions de la communauté.
             </p>
             <p style="font-size: 0.9rem; color: #aaa;">
                 Merci de votre patience et de votre soutien à ce stade précoce du projet !
