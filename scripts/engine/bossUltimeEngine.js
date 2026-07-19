@@ -11,17 +11,17 @@ function _bossUltimeDragonState(dragonId) {
     if (!state.BossUltime.dragons) state.BossUltime.dragons = {}
     if (!state.BossUltime.dragons[dragonId]) {
         state.BossUltime.dragons[dragonId] = {
-            currentHp:     0,
-            maxHp:         0,
             phase:         1,
             lastFightDate: null,
             firstVictory:  false
         }
     }
     const ds = state.BossUltime.dragons[dragonId]
-    // Auto-réparation : entrée héritée de l'ancien système (ou save corrompue) sans PV valides
+    // Entrée neuve (pas encore de PV) ou héritée de l'ancien système / save corrompue :
+    // (re)calcule maxHp ET currentHp ensemble depuis les PV de base du monstre.
     if (typeof ds.maxHp !== 'number' || !(ds.maxHp > 0)) {
-        ds.maxHp = monsters[dragonId]?.bst.hp ?? 1
+        ds.maxHp     = monsters[dragonId]?.bst.hp ?? 1
+        ds.currentHp = ds.maxHp
     }
     if (typeof ds.currentHp !== 'number' || ds.currentHp < 0) {
         ds.currentHp = ds.maxHp

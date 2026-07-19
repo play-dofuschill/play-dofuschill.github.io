@@ -124,6 +124,16 @@ function updateInventoryUI() {
         entries.push({ itemId, entry, itm })
     }
 
+    // Les cosmetic_skin ne transitent pas par state.inventory : leur possession
+    // est trackée dans state.ownedSkins (achat en boutique / fiche personnage).
+    if (inventoryFilter === 'cosmetic') {
+        for (const skinId of (state.ownedSkins || [])) {
+            const itm = item[skinId]
+            if (!itm || !matchCat(itm)) continue
+            entries.push({ itemId: skinId, entry: { count: 1 }, itm })
+        }
+    }
+
     // Trier (équipement uniquement)
     if (inventoryFilter === 'equipment') {
         const { sort, sortDir } = equipFilters
@@ -153,6 +163,7 @@ function updateInventoryUI() {
     let unownedEntries = []
     for (const [itemId, itm] of Object.entries(item)) {
         if (state.inventory[itemId]) continue
+        if (inventoryFilter === 'cosmetic' && (state.ownedSkins || []).includes(itemId)) continue
         if (itm.hiddenInInventory) continue
         if (!matchCat(itm)) continue
         if (inventoryFilter === 'equipment') {

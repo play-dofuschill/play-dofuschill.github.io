@@ -13103,7 +13103,7 @@ monsters.gobus = {
     image: 'images/monsters/Gobus.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 4700, atk: 550, spd: 100, res: { neutre: 52, terre: 12, feu: 20, eau: 33, air: -9 } },
+    bst: { hp: 1500, atk: 550, spd: 100, res: { neutre: 52, terre: 12, feu: 20, eau: 33, air: -9 } },
     moves: ['gobstruction', 'gobtimisation']
 }
 // invoqué par koalak_indigo (invocation_de_blop_indigo)

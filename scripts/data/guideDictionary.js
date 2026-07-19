@@ -477,7 +477,7 @@ const guideSections = [
             <p><b>🌋 Phases du dragon</b><br>
             Chaque dragon possède <b>2 phases</b>. La transition vers la Phase 2 se déclenche dès que ses PV passent sous <b>30 %</b> : il gagne en puissance, en résistances, et change son répertoire de sorts.</p>
 
-            <p>💡 <b>Conseil</b> : exploitez les faiblesses élémentaires du dragon (Eau contre Ignemikhal) et emmenez une équipe capable d'encaisser sur la durée — le combat peut être long.</p>
+            <p>💡 <b>Conseil</b> : exploitez les faiblesses élémentaires du dragon (Eau contre Ignemikhal, Feu contre Aguabrial, Air contre Terrakourial, Terre contre Aerafal, dégâts neutres contre Dardondakal, Eau contre Tylezia, Feu ou Air contre Rathrosk, Eau contre Draconiros) et emmenez une équipe capable d'encaisser sur la durée — le combat peut être long. Grougalorasalar, le Père des Dragons, résiste bien à tous les éléments : misez sur l'endurance plutôt que sur une faiblesse.</p>
         `
     },
 

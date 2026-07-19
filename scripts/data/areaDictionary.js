@@ -2181,7 +2181,7 @@ areas.bastionFroidesLegions = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonSylargh', dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonMissizFrizz', dropRate: 0.15, isKey: true },
         { itemId: 'arc_du_karkanik', dropRate: 0.01 },
         { itemId: 'bouclier_du_stalak', dropRate: 0.01 },
         { itemId: 'col_du_ventrublion', dropRate: 0.01 },
@@ -2209,7 +2209,7 @@ areas.jardinsHivers = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonKlime', dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonNileza', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_instable', dropRate: 0.01 },
         { itemId: 'anneau_instable', dropRate: 0.01 },
         { itemId: 'bague_instable', dropRate: 0.01 },
@@ -2237,7 +2237,7 @@ areas.rempartsAVent = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonMissizFrizz', dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonSylargh', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_du_kanimate', dropRate: 0.01 },
         { itemId: 'coiffe_du_kanimate', dropRate: 0.01 },
         { itemId: 'cape_du_kanimate', dropRate: 0.01 },
@@ -2264,7 +2264,7 @@ areas.tannerieEcarlate = {
     ],
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
-        { itemId: 'cleDonjonNileza', dropRate: 0.15, isKey: true },
+        { itemId: 'cleDonjonKlime', dropRate: 0.15, isKey: true },
         { itemId: 'bonnet_vicieux', dropRate: 0.01 },
         { itemId: 'bottes_vicieuses', dropRate: 0.01 },
         { itemId: 'anneau_vicieux', dropRate: 0.01 },

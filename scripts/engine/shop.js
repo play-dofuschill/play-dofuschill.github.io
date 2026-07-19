@@ -138,7 +138,7 @@ function getShopEntries(cat) {
 
         case 'trophees':
             return Object.values(item)
-                .filter(i => i.trophy)
+                .filter(i => i.trophy && !(state.ownedTrophees || []).includes(i.id))
                 .sort((a, b) => a.id.localeCompare(b.id))
                 .map(i => ({ itemId: i.id, price: 10 }))
 

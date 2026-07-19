@@ -17,7 +17,7 @@
 const CLASS_UNLOCK_CONDITIONS = {
     enutrof: (s) => s.kamas >= 100,
 
-    xelor: (s) => s.defeatedBosses?.includes('comteHarebourg'),
+    xelor: (s) => s.defeatedBosses?.includes('comte_harebourg'),
 
     huppermage: (s) => {
         const byElement = [
@@ -27,7 +27,7 @@ const CLASS_UNLOCK_CONDITIONS = {
             ['kwakVent',   'kwakereVent',   'scarafeuilleBlanc'],
         ]
         const elementsCovered = byElement.every(group => group.some(id => (s.collection[id]?.drops ?? 0) >= 1))
-        const bossesLeveled   = ['scarabossDoree', 'kwakwa'].every(id => (s.collection[id]?.level ?? 0) >= 10)
+        const bossesLeveled   = ['scarabosse_dore', 'kwakwa'].every(id => (s.collection[id]?.level ?? 0) >= 10)
         return elementsCovered && bossesLeveled
     },
 
@@ -49,11 +49,11 @@ const CLASS_UNLOCK_CONDITIONS = {
 
     ouginak: (s) => s.defeatedBosses?.includes('meulou'),
 
-    sadida: (s) => s.defeatedBosses?.includes('cheneMou'),
+    sadida: (s) => s.defeatedBosses?.includes('chene_mou'),
 
-    steamer: (s) => s.defeatedBosses?.includes('hyperscampe'),
+    steamer: (s) => s.defeatedBosses?.includes('wanted_hyperscampe'),
 
-    pandawa: (s) => s.defeatedBosses?.includes('kralamourGeant'),
+    pandawa: (s) => s.defeatedBosses?.includes('kralamoureGeant'),
 
     forgelance: (s) => {
         const highLevelBossIds = ['belladone', 'barberyl_clochecuivre']

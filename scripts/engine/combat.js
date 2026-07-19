@@ -4579,23 +4579,26 @@ function _triggerSpawnWeaknessTrophies(enemy) {
     if (!enemy || !combat || !state.isRunning || combat.isRaid) return
     const res = enemy.res || {}
     const elements = ['terre', 'feu', 'eau', 'air', 'neutre']
-    const minRes = Math.min(...elements.map(e => res[e] ?? 0))
-    const weakestElems = new Set(elements.filter(e => (res[e] ?? 0) === minRes))
+    // Du plus faible au plus fort : si le porteur du trophée le plus prioritaire
+    // est mort/absent, on retombe sur l'élément faible suivant.
+    const rankedElems = [...elements].sort((a, b) => (res[a] ?? 0) - (res[b] ?? 0))
 
-    for (let i = 0; i < state.team.length; i++) {
-        if (i === combat.activeMemberIndex) continue
-        const m = state.team[i]
-        if (!m || m.currentHp <= 0 || !m.equip) continue
-        const trophyId = m.equip.accessoire
-        if (!trophyId) continue
-        const itm = item[trophyId]
-        if (!itm?.trophy?.trigger) continue
-        const { trigger } = itm.trophy
-        if (trigger.type === 'enemy_spawn_weakness' && weakestElems.has(trigger.element)) {
-            const memberName = m.name || classes[m.classId]?.name || `Slot ${i + 1}`
-            addLog(`${itm.name} → ${memberName} entre en jeu !`)
-            setActiveMember(i)
-            return
+    for (const elem of rankedElems) {
+        for (let i = 0; i < state.team.length; i++) {
+            if (i === combat.activeMemberIndex) continue
+            const m = state.team[i]
+            if (!m || m.currentHp <= 0 || !m.equip) continue
+            const trophyId = m.equip.accessoire
+            if (!trophyId) continue
+            const itm = item[trophyId]
+            if (!itm?.trophy?.trigger) continue
+            const { trigger } = itm.trophy
+            if (trigger.type === 'enemy_spawn_weakness' && trigger.element === elem) {
+                const memberName = m.name || classes[m.classId]?.name || `Slot ${i + 1}`
+                addLog(`${itm.name} → ${memberName} entre en jeu !`)
+                setActiveMember(i)
+                return
+            }
         }
     }
 }
