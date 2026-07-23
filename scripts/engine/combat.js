@@ -149,6 +149,7 @@ function _syncCombatToState() {
     if (!combat || !state.isRunning || combat.isRaid || combat.isPoutch || combat.isWanted || combat.isBossUltime) {
         state.savedCombatEnemy = null
         state.savedCombatState = null
+        state.savedCombatSummonStack = null
         return
     }
     state.savedCombatEnemy = combat.enemy ? {
@@ -176,7 +177,17 @@ function _syncCombatToState() {
         buffs:          JSON.parse(JSON.stringify(combat.enemy.buffs  || [])),
         dots:           JSON.parse(JSON.stringify(combat.enemy.dots   || [])),
         shield:         combat.enemy.shield ? JSON.parse(JSON.stringify(combat.enemy.shield)) : null,
+        // Invocation ennemie (ex: Motte d'Abrazif) : sans ces champs, une reprise de combat
+        // (rechargement de page) transforme le familier temporaire en ennemi permanent et
+        // perd définitivement la pile des ennemis parqués (combat.savedEnemyStack).
+        isSummon:         combat.enemy.isSummon || false,
+        actionsRemaining: Number.isFinite(combat.enemy.actionsRemaining) ? combat.enemy.actionsRemaining : null,
+        onDeath:          combat.enemy.onDeath || null,
+        _baseMaxHp:       combat.enemy._baseMaxHp,
     } : null
+    state.savedCombatSummonStack = combat.savedEnemyStack?.length
+        ? JSON.parse(JSON.stringify(combat.savedEnemyStack))
+        : null
     state.savedCombatState = {
         memberTimers:         [...combat.memberTimers],
         memberMoveIndex:      [...combat.memberMoveIndex],
@@ -432,7 +443,7 @@ function startCombat(areaId) {
         enemyTimer:         0,
         log:                [],
         pendingLoot:        null,
-        savedEnemy:         null,
+        savedEnemyStack:    [],
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
@@ -528,9 +539,19 @@ function startCombat(areaId) {
             combat.enemy = spawnEnemy(areaId)
         } else {
             combat.enemy = JSON.parse(JSON.stringify(state.savedCombatEnemy))
+            // actionsRemaining: Infinity ne survit pas au JSON (→ null) — on le restaure ici.
+            if (combat.enemy.isSummon && combat.enemy.actionsRemaining == null) {
+                combat.enemy.actionsRemaining = Infinity
+            }
+            // Pile des ennemis parqués pendant une invocation (ex: Korriandre → Abrazif → Motte) :
+            // sans ça, ils seraient perdus et le familier temporaire deviendrait un ennemi permanent.
+            if (combat.enemy.isSummon && state.savedCombatSummonStack) {
+                combat.savedEnemyStack = state.savedCombatSummonStack
+            }
         }
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         state.savedCombatEnemy = null
+        state.savedCombatSummonStack = null
     } else if (areas[areaId]?.type === 'raid') {
         _initRaidCombat(areaId)
     } else {
@@ -630,6 +651,7 @@ function exitCombat() {
     const _exitAreaType = areas[state.currentArea]?.type || null
     state.savedCombatEnemy = null
     state.savedCombatState = null
+    state.savedCombatSummonStack = null
     if (typeof musicExitZone === 'function') musicExitZone()
     _afkSeconds = 0
     stopCombat()
@@ -666,6 +688,7 @@ function exitCombat() {
 function leaveCombat() {
     state.savedCombatEnemy = null
     state.savedCombatState = null
+    state.savedCombatSummonStack = null
     if (typeof musicExitZone === 'function') musicExitZone()
     if (combat?.isPoutch) {
         onPoutchEnd()
@@ -774,7 +797,7 @@ function startPoutchCombat(mode) {
         enemyTimer:         0,
         log:                [],
         pendingLoot:        null,
-        savedEnemy:         null,
+        savedEnemyStack:    [],
         memberKillCount:    {},
         memberPassiveState: {},
         memberDeathHandled: {},
@@ -2557,7 +2580,7 @@ function executeEffect(ctx) {
                 break
             }
             const debuffEntity = effect.target === 'owner'
-                ? (combat.savedEnemy || targetEnemy)
+                ? (combat.savedEnemyStack?.[combat.savedEnemyStack.length - 1] || targetEnemy)
                 : (_ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy)
             debuffEntity.buffs = debuffEntity.buffs || []
             const _debuffNewFlag = (!effect.delay && debuffEntity === caster) ? { _new: true } : {}
@@ -3858,7 +3881,10 @@ function spawnSummon(caster, effect) {
         const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
         const scale    = mob.ownerId ? 1 : 1.25
         const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
-        combat.savedEnemy = combat.enemy
+        // Pile plutôt que slot unique : gère les invocations imbriquées (ex: Korriandre
+        // invoque Abrazif, qui invoque lui-même Motte) sans perdre l'ennemi grand-parent.
+        combat.savedEnemyStack = combat.savedEnemyStack || []
+        combat.savedEnemyStack.push(combat.enemy)
         combat.enemy = {
             id:               effect.summonId,
             name:             mob.name,
@@ -4059,9 +4085,9 @@ function _triggerEnemyOnAllySummon() {
 }
 
 function returnToOwner(died = false) {
-    if (!combat.savedEnemy) return
+    if (!combat.savedEnemyStack?.length) return
     const dyingSummon = combat.enemy
-    const owner       = combat.savedEnemy
+    const owner       = combat.savedEnemyStack[combat.savedEnemyStack.length - 1]
     if (died && dyingSummon?.onDeath) {
         const player = state.team[combat.activeMemberIndex]
         const summonStats = {
@@ -4090,9 +4116,8 @@ function returnToOwner(died = false) {
             }
         }
     }
-    addLog(`${combat.savedEnemy.name} reprend le combat !`)
-    combat.enemy           = combat.savedEnemy
-    combat.savedEnemy      = null
+    addLog(`${owner.name} reprend le combat !`)
+    combat.enemy           = combat.savedEnemyStack.pop()
     combat.enemyTimer      = 0
     combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 }
@@ -4237,7 +4262,7 @@ function _onVictoryBody() {
             if (_nb) _nb.isRaidMiniBoss = false
             combat.enemy           = _nb
             combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
-            combat.savedEnemy      = null
+            combat.savedEnemyStack = []
             combat.enemyTimer      = 0
             updateCombatUI()
         }
@@ -4313,7 +4338,7 @@ function _onVictoryBody() {
         combat.respawnPending = false
         combat.enemy           = spawnEnemy(state.currentArea)
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
-        combat.savedEnemy      = null
+        combat.savedEnemyStack = []
         combat.enemyTimer      = 0
         _triggerSpawnWeaknessTrophies(combat.enemy)
         return
@@ -4321,10 +4346,10 @@ function _onVictoryBody() {
     setTimeout(() => {
         combat.respawnPending = false
         if (!state.isRunning || !state.currentArea) return
-        combat.enemy          = spawnEnemy(state.currentArea)
+        combat.enemy           = spawnEnemy(state.currentArea)
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
-        combat.savedEnemy     = null
-        combat.enemyTimer     = 0
+        combat.savedEnemyStack = []
+        combat.enemyTimer      = 0
         _triggerSpawnWeaknessTrophies(combat.enemy)
         updateCombatUI()
     }, 500)
@@ -4334,6 +4359,7 @@ function onDefeat() {
     // Invalide toute reprise éventuelle : après une défaite on repart de zéro
     state.savedCombatEnemy = null
     state.savedCombatState = null
+    state.savedCombatSummonStack = null
 
     if (_afkSeconds > 0) {
         const _afkWantedId     = combat?.isWanted     || null

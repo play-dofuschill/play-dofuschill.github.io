@@ -70,6 +70,7 @@ function saveGame() {
             autoPilotAccumulated:      state.autoPilotAccumulated || null,
             savedCombatEnemy:          state.savedCombatEnemy || null,
             savedCombatState:          state.savedCombatState || null,
+            savedCombatSummonStack:    state.savedCombatSummonStack || null,
             dungeonAutoRestart:        state.dungeonAutoRestart || false,
             lastAlmanaxDate:           state.lastAlmanaxDate || null,
             dailyPool:                 state.dailyPool  || null,
@@ -146,6 +147,7 @@ function loadGame() {
         }
         if (data.savedCombatEnemy)                  state.savedCombatEnemy          = data.savedCombatEnemy
         if (data.savedCombatState)                  state.savedCombatState          = data.savedCombatState
+        if (data.savedCombatSummonStack)             state.savedCombatSummonStack    = data.savedCombatSummonStack
         if (data.dungeonAutoRestart != null)        state.dungeonAutoRestart        = data.dungeonAutoRestart
         if (data.lastAlmanaxDate)                   state.lastAlmanaxDate           = data.lastAlmanaxDate
         if (data.dailyPool)                         state.dailyPool                 = data.dailyPool

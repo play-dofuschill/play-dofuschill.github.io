@@ -245,6 +245,7 @@ const state = {
     lastFrameRecorded: null,
     savedCombatEnemy: null,
     savedCombatState: null,
+    savedCombatSummonStack: null,
     autoPilotAccumulated: null,
     offlineAutoPilotRemaining: 0,
     dungeonAutoRestart: false,
