@@ -22,7 +22,7 @@ function updateBoss_UltimeUI() {
             ? '<span style="color:#ff5252;font-size:0.78em">⚠ Phase 2</span>'
             : ''
         const lockedNotice = !canFight
-            ? `<span class="Boss_Ultime-locked-notice">Déjà affronté aujourd'hui — revient dans ${nextBossUltimeResetLabel()}</span>`
+            ? `<span class="Boss_Ultime-locked-notice">Déjà affronté aujourd'hui — Rejouer pour ${BOSS_ULTIME_RETRY_COST} kamas (gratuit dans ${nextBossUltimeResetLabel()})</span>`
             : ''
 
         const card = document.createElement('div')
@@ -46,7 +46,7 @@ function updateBoss_UltimeUI() {
                 </div>
             </div>`
 
-        if (canFight) card.onclick = () => _launchBossUltime(dragonId)
+        card.onclick = () => _launchBossUltime(dragonId)
         card.addEventListener('contextmenu', e => { e.preventDefault(); _showBossUltimeDetail(dragonId) })
         content.appendChild(card)
     }
@@ -111,10 +111,7 @@ function _launchBossUltime(dragonId) {
         showNotification('Un combat est déjà en cours !', 'error')
         return
     }
-    if (!bossUltimeCanFight(dragonId)) {
-        showNotification('Vous avez déjà affronté ce dragon aujourd\'hui.', 'error')
-        return
-    }
+    if (!bossUltimeChargeRefight(dragonId)) return
 
     const bd = BossUltimeDragons[dragonId]
     if (!bd) return

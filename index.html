@@ -310,11 +310,19 @@
                     <div class="shop-tab"        data-cat="runes"       onclick="setShopFilter('runes')">Runes</div>
                     <div class="shop-tab"        data-cat="cosmetics"   onclick="setShopFilter('cosmetics')">Cosmétiques</div>
                     <div class="shop-tab"        data-cat="trophees"    onclick="setShopFilter('trophees')">Trophées</div>
+                    <div class="shop-tab"        data-cat="ogrines"     onclick="setShopFilter('ogrines')">Ogrines</div>
                 </div>
                 <div class="shop-header-kamas">
-                    <img src="img/icons/total_kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon-header">
-                    <span id="shop-kamas-amount">0</span>
-                    <span>Kamas</span>
+                    <div class="shop-header-currency-row">
+                        <img src="img/icons/total_kamas.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon-header">
+                        <span id="shop-kamas-amount">0</span>
+                        <span>Kamas</span>
+                    </div>
+                    <div class="shop-header-currency-row">
+                        <img src="img/icons/ogrine.png" onerror="this.src='img/icons/icon.png'" class="shop-kamas-icon-header">
+                        <span id="shop-ogrines-amount">0</span>
+                        <span>Ogrines</span>
+                    </div>
                 </div>
             </div>
             <div id="shop-list"></div>

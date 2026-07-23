@@ -2,6 +2,7 @@
 
 const SHOP_KEY_PRICE     = 1
 const SHOP_ROTATION_DAYS = 1
+const OGRINE_ITEM_PRICE  = 1 // prix fixe par défaut, à ajuster plus tard
 
 const SHOP_RUNE_BASE_PRICES = { S: 10, M: 15, L: 25 }
 
@@ -84,9 +85,10 @@ function refreshShopPool() {
     const visitedKey = (state.visitedAreas || []).slice().sort().join(',')
     const keysPeriod = typeof _periodStr === 'function' ? _periodStr() : String(period)
 
-    const itemsStale = !(state.shopPool?.period === period && state.shopPool?.visitedKey === visitedKey)
-    const keysStale  = state.shopPool?.keysPeriod !== keysPeriod
-    if (!itemsStale && !keysStale) return
+    const itemsStale   = !(state.shopPool?.period === period && state.shopPool?.visitedKey === visitedKey)
+    const keysStale    = state.shopPool?.keysPeriod !== keysPeriod
+    const ogrinesStale = state.shopPool?.ogrinePeriod !== keysPeriod
+    if (!itemsStale && !keysStale && !ogrinesStale) return
 
     if (!state.shopPool) state.shopPool = {}
 
@@ -112,6 +114,14 @@ function refreshShopPool() {
     if (keysStale) {
         state.shopPool.keysPeriod = keysPeriod
         state.shopPool.keys       = _wildLinkedKeyIds()
+    }
+
+    // Onglet Ogrines : rotation bi-journalière indépendante (même cadence que
+    // les clés de donjon), sur les équipements "hors panoplie".
+    if (ogrinesStale) {
+        const allSansPanoplie = Object.values(item).filter(i => i.set === 'sans_panoplie')
+        state.shopPool.ogrinePeriod = keysPeriod
+        state.shopPool.ogrineItems  = _seededShuffle(allSansPanoplie, _dateSeed(keysPeriod) ^ 0x5555).slice(0, 10).map(i => i.id)
     }
 
     saveGame()
@@ -142,13 +152,16 @@ function getShopEntries(cat) {
                 .sort((a, b) => a.id.localeCompare(b.id))
                 .map(i => ({ itemId: i.id, price: 10 }))
 
+        case 'ogrines':
+            return (pool.ogrineItems || []).map(id => ({ itemId: id, price: OGRINE_ITEM_PRICE }))
+
         default:
             return []
     }
 }
 
 function nextShopRotationLabel(cat) {
-    if (cat === 'consumables' && typeof nextWildRefreshLabel === 'function') return nextWildRefreshLabel()
+    if ((cat === 'consumables' || cat === 'ogrines') && typeof nextWildRefreshLabel === 'function') return nextWildRefreshLabel()
 
     const nextMs = (_shopPeriod() + 1) * SHOP_ROTATION_DAYS * 86400000
     const secs   = Math.max(0, Math.floor((nextMs - Date.now()) / 1000))
@@ -258,5 +271,34 @@ function buyShopItem(itemId, price, qty = 1) {
     if (el) el.textContent = state.kamas
     updateShopUI()
     const name = itm?.name || itemId
+    showNotification(qty > 1 ? `${qty}× ${name} achetés !` : `${name} acheté !`, 'info')
+}
+
+// ─── Achat en Ogrines (onglet "sans panoplie", prix fixe, pas de stock limité) ─
+
+function buyOgrineShopItem(itemId, price, qty = 1) {
+    const itm = item[itemId]
+    if (!itm) return
+
+    const currentLevel = state.inventory[itemId]?.level || 0
+    const isMaxed       = itm.itemLevelMax && currentLevel >= itm.itemLevelMax
+    if (isMaxed) {
+        showNotification(`${itm.name} est déjà au niveau maximum !`, 'info')
+        return
+    }
+
+    const total = price * qty
+    if ((state.ogrines || 0) < total) {
+        showNotification('Pas assez d\'ogrines !', 'error')
+        return
+    }
+
+    state.ogrines -= total
+    for (let i = 0; i < qty; i++) addToInventory(itemId)
+    saveGame()
+    const el = document.getElementById('shop-ogrines-amount')
+    if (el) el.textContent = state.ogrines
+    updateShopUI()
+    const name = itm.name || itemId
     showNotification(qty > 1 ? `${qty}× ${name} achetés !` : `${name} acheté !`, 'info')
 }

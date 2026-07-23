@@ -40,9 +40,63 @@ function nextBossUltimeResetLabel() {
     return _countdownLabel(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
 }
 
+// ─── Rejeu payant (100 kamas, illimité) ────────────────────────────────────────
+
+const BOSS_ULTIME_RETRY_COST = 100
+
+// Autorise l'entrée en combat : gratuit du jour encore dispo, ou laissez-passer
+// payant déjà armé par bossUltimeChargeRefight() juste avant le lancement.
+function bossUltimeCanEnter(dragonId) {
+    const ds = _bossUltimeDragonState(dragonId)
+    return ds.lastFightDate !== _todayStr() || ds.paidRetryArmed === true
+}
+
+// Point d'entrée unique appelé par l'UI avant de lancer un combat Boss Ultime :
+// ne débite rien si le gratuit du jour est encore disponible, sinon débite
+// BOSS_ULTIME_RETRY_COST kamas et arme le laissez-passer à usage unique.
+function bossUltimeChargeRefight(dragonId) {
+    const ds = _bossUltimeDragonState(dragonId)
+    if (ds.lastFightDate !== _todayStr()) return true
+
+    if ((state.kamas || 0) < BOSS_ULTIME_RETRY_COST) {
+        showNotification(`Pas assez de kamas (${BOSS_ULTIME_RETRY_COST} requis) pour rejouer !`, 'error')
+        return false
+    }
+    state.kamas -= BOSS_ULTIME_RETRY_COST
+    ds.paidRetryArmed = true
+    showNotification(`-${BOSS_ULTIME_RETRY_COST} kamas — combat supplémentaire`, 'info')
+    return true
+}
+
+// ─── Récompense en Ogrines (basée sur les dégâts infligés pendant l'essai) ─────
+
+// n = floor(sqrt(dmg/10000)) ; ogrines = 1 + n(n-1)/2 pour n>0.
+// Colle à 10k→1, 90k→4 (exact) et reste proche de 35k→2, 150k→7 (extrapolation
+// en moindres carrés demandée par l'utilisateur), tout en continuant proprement
+// au-delà (250k→11, 360k→16, ...).
+function _bossUltimeOgrinesForDamage(totalDmg) {
+    if (totalDmg < 10000) return 0
+    const n = Math.floor(Math.sqrt(totalDmg / 10000))
+    return 1 + (n * (n - 1)) / 2
+}
+
+function _awardBossUltimeOgrines() {
+    const memberDamage = combat?.sessionLoot?.memberDamage || {}
+    const totalDmg     = Object.values(memberDamage).reduce((s, v) => s + v, 0)
+    const earned       = _bossUltimeOgrinesForDamage(totalDmg)
+
+    if (earned > 0) {
+        state.ogrines = (state.ogrines || 0) + earned
+        if (combat?.sessionLoot) combat.sessionLoot.ogrinesEarned = earned
+        showNotification(`+${earned} ogrine${earned > 1 ? 's' : ''} (${totalDmg.toLocaleString('fr-FR')} dégâts infligés)`, 'success')
+    }
+    return earned
+}
+
 // ─── Victoire / Défaite ───────────────────────────────────────────────────────
 
 function _onBossUltimeVictory(dragonId) {
+    _awardBossUltimeOgrines()
     const ds = _bossUltimeDragonState(dragonId)
     const bd = BossUltimeDragons[dragonId]
     if (!bd) return
@@ -79,6 +133,7 @@ function _onBossUltimeVictory(dragonId) {
 }
 
 function _onBossUltimeDefeat(dragonId) {
+    _awardBossUltimeOgrines()
     const ds = _bossUltimeDragonState(dragonId)
     ds.maxHp          = Math.max(1, combat.enemy?.maxHp     ?? ds.maxHp)
     ds.currentHp      = Math.max(0, combat.enemy?.currentHp ?? 0)

@@ -51,6 +51,7 @@ function saveGame() {
             collection:         state.collection,
             seenMonsters:       state.seenMonsters,
             kamas:              state.kamas,
+            ogrines:            state.ogrines || 0,
             currentArea:        state.currentArea,
             isRunning:          state.isRunning || false,
             hasChosenStarter:   state.hasChosenStarter,
@@ -123,6 +124,7 @@ function loadGame() {
         if (data.collection)       state.collection       = data.collection
         if (data.seenMonsters)     state.seenMonsters     = data.seenMonsters
         if (data.kamas != null)    state.kamas            = data.kamas
+        if (data.ogrines != null)  state.ogrines          = data.ogrines
         if (data.currentArea)      state.currentArea      = data.currentArea
         if (data.hasChosenStarter)   state.hasChosenStarter   = data.hasChosenStarter
         if (data.theme)              state.theme              = data.theme

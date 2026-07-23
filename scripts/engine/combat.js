@@ -344,14 +344,16 @@ function spawnEnemy(areaId) {
 // ─── Démarrage / arrêt ────────────────────────────────────────────────────────
 
 function startCombat(areaId) {
-    // Boss Ultime : verrou 1 combat/jour, appliqué ici pour couvrir tous les points
+    // Boss Ultime : verrou 1 combat/jour (sauf laissez-passer payant déjà armé
+    // par bossUltimeChargeRefight()), appliqué ici pour couvrir tous les points
     // d'entrée (bouton dédié, mais aussi "Rejouer" en fin de combat via rejoinArea()).
     if (areas[areaId]?.type === 'bossultime') {
         const _bid = areaId.replace(/^_bossultime_/, '')
-        if (!bossUltimeCanFight(_bid)) {
+        if (!bossUltimeCanEnter(_bid)) {
             showNotification('Vous avez déjà affronté ce dragon aujourd\'hui.', 'error')
             return
         }
+        _bossUltimeDragonState(_bid).paidRetryArmed = false
     }
 
     // Détecte si on reprend un combat sauvegardé (rechargement de page)
@@ -720,6 +722,10 @@ function rejoinArea() {
             return
         }
     }
+    if (area?.type === 'bossultime') {
+        const _bid = state.currentArea.replace(/^_bossultime_/, '')
+        if (!bossUltimeChargeRefight(_bid)) return
+    }
     document.getElementById('main-content').style.zIndex = ''
     const areaToRejoin = state.currentArea
     playZaapTransition(() => startCombat(areaToRejoin))
@@ -728,7 +734,7 @@ function rejoinArea() {
 // ─── Pilote automatique ───────────────────────────────────────────────────────
 
 function _emptySessionLoot() {
-    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, dofusDrops: {}, kamasFromDrops: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
+    return { itemDrops: [], familiarDrops: [], caisseCount: 0, keyDrops: {}, dofusDrops: {}, kamasFromDrops: 0, ogrinesEarned: 0, killCount: 0, memberDamage: {}, memberDamageReceived: {}, learnedMoves: [] }
 }
 
 function _mergeSessionLoot(dest, src) {

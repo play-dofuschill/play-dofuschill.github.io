@@ -230,6 +230,7 @@ const state = {
     collection: {},
     seenMonsters: {},
     kamas: 0,
+    ogrines: 0,
     hasChosenStarter: false,
     theme: 'dark',
     tutorial: 'intro',
@@ -614,6 +615,13 @@ function showSessionSummary(type) {
                <img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'">
            </div>`
         : ''
+    const ogrinesEarned = session.ogrinesEarned || 0
+    const ogrineBubble = ogrinesEarned > 0
+        ? `<div class="game-bubble kamas-bubble" title="${ogrinesEarned} ogrine${ogrinesEarned > 1 ? 's' : ''}">
+               <span class="bubble-level">+${ogrinesEarned}</span>
+               <img src="img/icons/ogrine.png" onerror="this.src='img/icons/icon.png'">
+           </div>`
+        : ''
     const _itemGrouped = {}
     for (const drop of itemDrops) {
         if (!_itemGrouped[drop.itemId]) _itemGrouped[drop.itemId] = { ...drop, qty: 0 }
@@ -621,7 +629,7 @@ function showSessionSummary(type) {
         if ((drop.level || 0) > (_itemGrouped[drop.itemId].level || 0))
             _itemGrouped[drop.itemId].level = drop.level
     }
-    const itemsHtml = (itemDrops.length > 0 || kamasFromDrops > 0)
+    const itemsHtml = (itemDrops.length > 0 || kamasFromDrops > 0 || ogrinesEarned > 0)
         ? Object.values(_itemGrouped).map(drop => {
             const itm = item[drop.itemId]
             if (!itm) return ''
@@ -634,7 +642,7 @@ function showSessionSummary(type) {
                 ${badge}
                 <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
             </div>`
-        }).join('') + kamasBubble
+        }).join('') + kamasBubble + ogrineBubble
         : '<span class="no-drop">Rien cette fois...</span>'
 
     // ── Familiers

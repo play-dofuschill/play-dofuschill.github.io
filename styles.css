@@ -1926,17 +1926,6 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     z-index: 1;
 }
 
-.explore-ticket-bg{
-    position: absolute;
-    height: 5rem;
-    width: 5rem;
-    border-radius: 0.3rem;
-        box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 2px 1px;
-    background-image: url(img/bg/forest.png);
-    background-size: cover;
-    background-position: bottom;
-}
-
 
 
 
@@ -4866,7 +4855,7 @@ transform: translateY(-1rem);
 #shop-header {
     height: 10rem;
     width: 100%;
-    background-image: linear-gradient(transparent 30%, rgba(0,0,0,0.5)), url(img/bg/mall.png);
+    background-image: linear-gradient(transparent 30%, rgba(0,0,0,0.5));
     background-size: cover;
     background-position: bottom;
     image-rendering: auto;
@@ -4888,7 +4877,8 @@ transform: translateY(-1rem);
     position: relative;
 }
 .shop-kamas-icon-header { width: 2.8rem; height: 2.8rem; object-fit: contain; }
-.shop-header-kamas { display: flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; font-weight: bold; white-space: nowrap; position: absolute; top: 1.2rem; right: 1.5rem; }
+.shop-header-kamas { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; font-size: 1.1rem; font-weight: bold; white-space: nowrap; position: absolute; top: 1.2rem; right: 1.5rem; }
+.shop-header-currency-row { display: flex; align-items: center; gap: 0.4rem; }
 
 .shop-tabs       { display: flex; gap: 0.4rem; position: absolute; left: 50%; transform: translateX(-50%); }
 .shop-tab        { padding: 0.3rem 0.9rem; border-radius: 0.4rem; background: var(--dark1); cursor: pointer; font-size: 0.82rem; transition: background 0.12s; }
@@ -5479,8 +5469,6 @@ transform: translateY(-1rem);
 /* ── Boss_Ultime menu ──────────────────────────────────────────── */
 #Boss_Ultime-menu-header {
     height: 8rem; width: 100%;
-    background-image: url(img/bg/plaine_scarafeuilles.png);
-    background-size: cover; background-position: center top;
     display: flex; flex-direction: column;
     justify-content: start; align-items: end; text-align: end;
     flex-shrink: 0; gap: 0.5rem;
