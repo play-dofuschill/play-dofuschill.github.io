@@ -613,7 +613,7 @@ monsters['dragon_grougalorasalar'] = {
     rarity:     'legendaire',
     tier:       'boss',
     fixedLevel: 200,
-    bst: { hp: 7000000, atk: 800, spd: 100, res: { neutre: 30, feu: 20, eau: 20, air: 20, terre: 20 } },
+    bst: { hp: 5000000, atk: 800, spd: 100, res: { neutre: 30, feu: 20, eau: 20, air: 20, terre: 20 } },
     moves: ['Boss_Ultime_grougalorasalar_rugissement_ancestral', 'Boss_Ultime_grougalorasalar_morsure_primordiale', 'Boss_Ultime_grougalorasalar_souffle_millenaire', 'Boss_Ultime_grougalorasalar_epoque_oubliee']
 }
 
