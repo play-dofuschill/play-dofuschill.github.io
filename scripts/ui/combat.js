@@ -3,7 +3,9 @@
 let _enemyMoveRenderKey = null
 
 function updateCombatUI() {
-    if (combat?.isRaid) {
+    if (combat?.isAnomalie) {
+        updateEnemyDisplayAnomalie()
+    } else if (combat?.isRaid) {
         updateEnemyDisplayRaid()
     } else {
         updateEnemyDisplay()
@@ -97,6 +99,17 @@ function updateEnemyDisplay() {
             })
         }
     }
+}
+
+// Anomalie : combat raid en interne (équipe 3v1), mais affichage ennemi identique au
+// combat normal (carte simple). On mirrore le slot 0 du tableau raid vers les champs
+// singuliers puis on réutilise updateEnemyDisplay() tel quel — aucune logique dupliquée.
+function updateEnemyDisplayAnomalie() {
+    if (!combat) return
+    combat.enemy           = combat.enemies?.[0] || null
+    combat.enemyTimer      = combat.enemyTimers?.[0] || 0
+    combat.enemyNextMoveId = combat.enemyNextMoveIds?.[0] || null
+    updateEnemyDisplay()
 }
 
 function renderEnemyMoves(container, enemy, timer) {

@@ -824,6 +824,8 @@ function showAreaSheet(areaId) {
     const area = areas[areaId]
     if (!area) return
 
+    if (area.type === 'anomalie') { showAnomalieSheet(areaId); return }
+
     // Spawns avec % de probabilité — silhouette si jamais rencontré
     const totalWeight = area.spawns?.reduce((s, sp) => s + sp.weight, 0) || 1
     const spawnRows = (area.spawns || []).map(sp => {
@@ -884,6 +886,78 @@ function showAreaSheet(areaId) {
         ${lootIcons ? `<div class="ms-section-title">Loot possible</div>
             <div style="display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.4rem 0;">${lootIcons}</div>` : ''}
         ${keyHtml}
+    </div>`
+
+    openTooltip(area.name, body)
+}
+
+// ─── Fiche Anomalie (stats du boss + récompenses du palier sélectionné) ──────
+
+function showAnomalieSheet(areaId) {
+    const area = areas[areaId]
+    if (!area?.boss) return
+
+    const palierIdx = (typeof getAnomalieSelectedPalier === 'function') ? getAnomalieSelectedPalier(areaId) : 0
+    const palier     = area.paliers?.[palierIdx] || area.paliers?.[0]
+    const bossIds    = area.boss.ids || [area.boss.id]
+    const mob        = monsters[bossIds[0]]
+    if (!mob) return
+
+    const statMult = palier?.statMult || 1
+    const hp  = Math.round(mob.bst.hp  * statMult)
+    const atk = Math.round(mob.bst.atk * statMult)
+    const palierLabel = (typeof ANOMALIE_PALIER_LABELS !== 'undefined' && ANOMALIE_PALIER_LABELS[palierIdx]) || (palierIdx + 1)
+
+    const elems   = ['neutre', 'terre', 'feu', 'eau', 'air']
+    const resRows = elems.map(el => {
+        const val   = mob.bst.res?.[el] ?? 0
+        const color = val > 0 ? '#2D7A2D' : val < 0 ? '#d45a43' : ''
+        return `<div class="ms-stat-row">
+            <img src="${ELEM_ICONS[el] || ELEM_ICONS.neutre}" class="ms-stat-icon">
+            <span class="ms-stat-label">${el.charAt(0).toUpperCase() + el.slice(1)}</span>
+            <span class="ms-stat-val"${color ? ` style="color:${color}"` : ''}>${val}%</span>
+        </div>`
+    }).join('')
+
+    const lootIcons = (palier?.lootTable || []).map(e => {
+        const itm = item[e.itemId]
+        if (!itm) return ''
+        const isResource = itm.type === 'resource'
+        const unlocked   = isResource || !!state.inventory?.[e.itemId]
+        const label      = unlocked ? itm.name : '???'
+        const imgStyle   = unlocked ? '' : 'filter:brightness(0);'
+        return `<img src="${itm.image}" title="${label}" onerror="this.src='img/icons/icon.png'"
+                     style="width:2.2rem;height:2.2rem;object-fit:contain;image-rendering:pixelated;cursor:pointer;${imgStyle}"
+                     onclick="showItemSheet('${e.itemId}')"
+                     oncontextmenu="event.preventDefault(); showItemSheet('${e.itemId}')">`
+    }).join('')
+
+    const body = `<div class="member-sheet">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
+            <img src="${area.icon}" onerror="this.src='img/icons/icon.png'"
+                 style="width:4rem;height:4rem;object-fit:contain;image-rendering:pixelated;flex-shrink:0;">
+            <div>
+                <div style="opacity:0.7;font-size:0.85em;">Palier ${palierLabel} &bull; +${Math.round((statMult - 1) * 100)}% stats</div>
+                <div style="font-size:0.9em;margin-top:0.25rem;">${area.description || ''}</div>
+            </div>
+        </div>
+        <div class="ms-section-title">${mob.name}</div>
+        <div class="ms-stats">
+            <div class="ms-stat-row">
+                <img src="${STAT_ICONS.hp}" class="ms-stat-icon" onerror="this.src='img/icons/icon.png'">
+                <span class="ms-stat-label">PV</span>
+                <span class="ms-stat-val">${hp}</span>
+            </div>
+            <div class="ms-stat-row">
+                <img src="${STAT_ICONS.atk}" class="ms-stat-icon" onerror="this.src='img/icons/icon.png'">
+                <span class="ms-stat-label">Puissance</span>
+                <span class="ms-stat-val">${atk}</span>
+            </div>
+        </div>
+        <div class="ms-section-title">Résistances</div>
+        <div class="ms-stats">${resRows}</div>
+        ${lootIcons ? `<div class="ms-section-title">Récompenses (palier ${palierLabel})</div>
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.4rem 0;">${lootIcons}</div>` : ''}
     </div>`
 
     openTooltip(area.name, body)
@@ -998,9 +1072,13 @@ function _mvDmg(atkStats, baseRoll) {
     return Math.max(1, Math.floor(dmg))
 }
 
-function showMoveTooltip(moveId, casterStats) {
-    const mv = move[moveId]
-    if (!mv) return
+function showMoveTooltip(moveId, casterStats, casterLevel) {
+    const baseMv = move[moveId]
+    if (!baseMv) return
+    // Affiche les valeurs du palier de progression actuel (niveau du lanceur), pas celles du palier 1
+    const mv = (casterLevel && typeof applyProgression === 'function')
+        ? applyProgression(baseMv, casterLevel)
+        : baseMv
 
     const TYPE_LABELS = {
         damage: 'Attaque', damage_zone: 'Zone', dot: 'DOT', best_element_damage: 'Attaque (meilleur élément)', worst_element_damage: 'Attaque (pire élément)',

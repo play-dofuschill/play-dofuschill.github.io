@@ -60,10 +60,12 @@ const WILD_SLOTS = [
     { min: 170, max: 200 },   // slot 10
 ]
 
-const DAILY_EVENT_MAX    = 5
-const EVENT_REFRESH_DAYS = 1
-const DAILY_RAID_MAX     = 3
-const RAID_REFRESH_DAYS  = 1
+const DAILY_EVENT_MAX     = 5
+const EVENT_REFRESH_DAYS  = 1
+const DAILY_RAID_MAX      = 3
+const RAID_REFRESH_DAYS   = 1
+const DAILY_ANOMALIE_MAX     = 3
+const ANOMALIE_REFRESH_DAYS  = 1
 
 function _todayStr() {
     return new Date().toISOString().slice(0, 10)
@@ -107,6 +109,7 @@ function isSeasonActive(season) {
 function isZoneAccessible(area) {
     if (area.type === 'event')      return true
     if (area.type === 'raid')       return true
+    if (area.type === 'anomalie')   return true
     if (area.type === 'saisonnier') return isSeasonActive(area.season)
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return true
     for (const tier of UNLOCK_TIERS) {
@@ -120,6 +123,7 @@ function isZoneAccessible(area) {
 function getZoneUnlockHint(area) {
     if (area.type === 'event')      return null
     if (area.type === 'raid')       return null
+    if (area.type === 'anomalie')   return null
     if (area.type === 'saisonnier') return null
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return null
     for (const tier of UNLOCK_TIERS) {
@@ -249,6 +253,20 @@ function refreshDailyPools() {
             zones: _seededShuffle(allRaids, dailySeed ^ 0xc0ffee).slice(0, DAILY_RAID_MAX).map(a => a.id)
         }
     }
+
+    // Anomalies : refresh journalier
+    const anomalieStale = !state.anomaliePool || (() => {
+        const ms = new Date(today) - new Date(state.anomaliePool.date)
+        return ms / 86400000 >= ANOMALIE_REFRESH_DAYS
+    })()
+
+    if (anomalieStale) {
+        const allAnomalies = Object.values(areas).filter(a => a.type === 'anomalie')
+        state.anomaliePool = {
+            date: today,
+            zones: _seededShuffle(allAnomalies, dailySeed ^ 0xa11ce5).slice(0, DAILY_ANOMALIE_MAX).map(a => a.id)
+        }
+    }
 }
 
 // Retourne les IDs des donjons liés aux zones sauvages du pool journalier.
@@ -302,6 +320,11 @@ function nextEventRefreshLabel() {
 }
 
 function nextRaidRefreshLabel() {
+    const now = new Date()
+    return _countdownLabel(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
+}
+
+function nextAnomalieRefreshLabel() {
     const now = new Date()
     return _countdownLabel(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1))
 }

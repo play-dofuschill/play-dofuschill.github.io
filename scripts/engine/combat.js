@@ -554,6 +554,8 @@ function startCombat(areaId) {
         combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
         state.savedCombatEnemy = null
         state.savedCombatSummonStack = null
+    } else if (areas[areaId]?.type === 'anomalie') {
+        _initAnomalieCombat(areaId)
     } else if (areas[areaId]?.type === 'raid') {
         _initRaidCombat(areaId)
     } else {
@@ -603,8 +605,9 @@ function startCombat(areaId) {
     const raidEnemyDisplay  = document.getElementById('raid-enemy-display')
     if (exploreTeam)      exploreTeam.style.display  = ''
     if (exploreLeave)     exploreLeave.style.display = ''
-    if (enemyDisplay)     enemyDisplay.style.display     = combat.isRaid ? 'none' : ''
-    if (raidEnemyDisplay) raidEnemyDisplay.style.display = combat.isRaid ? 'flex' : 'none'
+    const _raidVisual = combat.isRaid && !combat.isAnomalie
+    if (enemyDisplay)     enemyDisplay.style.display     = _raidVisual ? 'none' : ''
+    if (raidEnemyDisplay) raidEnemyDisplay.style.display = _raidVisual ? 'flex' : 'none'
     const menuParent = document.getElementById('menu-button-parent')
     if (menuParent) menuParent.style.display = ''
     setCombatSpeed('play')
@@ -4912,6 +4915,64 @@ function _initRaidCombat(areaId) {
     ]
 }
 
+// ═══════════════════════════════════════════════════════════════
+// MODE ANOMALIE — 3 vs 1 (moteur raid, boss seul en permanence)
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Initialisation spécifique à l'Anomalie ──────────────────
+
+function _initAnomalieCombat(areaId) {
+    combat.isRaid             = true
+    combat.isAnomalie         = true
+    combat.anomaliePalier     = state.pendingAnomaliePalier ?? 0
+    state.pendingAnomaliePalier = null
+
+    combat.enemies            = [null, null, null]
+    combat.enemyTimers        = [0, 0, 0]
+    combat.enemyNextMoveIds   = [null, null, null]
+    combat.raidRespawnPending    = [false, false, false]
+    combat.raidSavedEnemies      = [null, null, null]
+    combat.huppermageLastElement = {}
+    combat.huppermageComboCount  = 0
+    combat.enutrof_air_active    = 0
+    combat.enutrof_terre_active  = 0
+    combat.enutrof_eau_active    = 0
+    combat.enutrof_traps         = []
+    combat.pendingRaidSwap    = null
+    combat.raidKillCount      = 0
+    combat.raidTotalSpawned   = 0
+    combat.raidMiniBossActive = true
+
+    // Les 3 premiers membres vivants deviennent les slots actifs
+    const aliveIdx = []
+    for (let i = 0; i < state.team.length; i++) {
+        if (state.team[i] && state.team[i].currentHp > 0) aliveIdx.push(i)
+    }
+    combat.raidSlots = [
+        aliveIdx[0] !== undefined ? aliveIdx[0] : -1,
+        aliveIdx[1] !== undefined ? aliveIdx[1] : -1,
+        aliveIdx[2] !== undefined ? aliveIdx[2] : -1
+    ]
+
+    _spawnAnomalieBoss(areaId)
+}
+
+// ─── Apparition du boss d'Anomalie (seul au slot 0, en permanence) ───
+
+function _spawnAnomalieBoss(areaId) {
+    const area = areas[areaId]
+    if (!area?.boss) return
+    const palier  = area.paliers?.[combat.anomaliePalier] || area.paliers?.[0]
+    const bossIds = area.boss.ids || [area.boss.id]
+    const bossId  = bossIds[Math.floor(Math.random() * bossIds.length)]
+    const boss    = _spawnEnemyById(bossId, palier?.statMult || 1)
+    if (!boss) return
+
+    combat.enemies[0]          = boss
+    combat.enemyTimers[0]      = 0
+    combat.enemyNextMoveIds[0] = pickNextEnemyMove(boss)
+}
+
 // ─── Spawn d'un monstre spécifique (mini-boss) ───────────────
 
 function _spawnEnemyById(monsterId, statMult = 1) {
@@ -5400,7 +5461,9 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     }
 
     const _raidLootTable = defeatedEnemy?.isRaidMiniBoss
-        ? (areas[state.currentArea]?.miniBossLootTable || null)
+        ? (combat.isAnomalie
+            ? (areas[state.currentArea]?.paliers?.[combat.anomaliePalier]?.lootTable || null)
+            : (areas[state.currentArea]?.miniBossLootTable || null))
         : null
     let loot = { xpResults, familiarDrop: null, itemDrops: [], caisseDropped: false }
     try {
@@ -5465,6 +5528,12 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     // ─── Sélection du comportement post-mort ─────────────────────
     const area       = areas[state.currentArea]
     const isMiniBoss = !!defeatedEnemy?.isRaidMiniBoss
+
+    if (isMiniBoss && combat.isAnomalie) {
+        // Anomalie : le boss vaincu met fin au combat (pas de respawn, pas de phase 3v3)
+        _finishAnomalieVictory()
+        return
+    }
 
     if (isMiniBoss) {
         // Mini-boss vaincu → reset complet + 3 nouveaux ennemis
@@ -5562,6 +5631,21 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
         combat.enemyNextMoveIds[slotIdx] = combat.enemies[slotIdx] ? pickNextEnemyMove(combat.enemies[slotIdx]) : null
         updateCombatUI()
     }
+}
+
+// ─── Fin de combat Anomalie (boss vaincu) ────────────────────
+
+function _finishAnomalieVictory() {
+    stopCombat()
+    state.isRunning = false
+    _afkSeconds = 0
+    if (_autoPilot) {
+        _mergeSessionLoot(_autoPilot.accumulated, combat.sessionLoot)
+        combat.sessionLoot = JSON.parse(JSON.stringify(_autoPilot.accumulated))
+        _autoPilot = null
+    }
+    saveGame()
+    showSessionSummary('anomalie_victory')
 }
 
 // ─── Remplacement d'un membre mort (Raid) ────────────────────

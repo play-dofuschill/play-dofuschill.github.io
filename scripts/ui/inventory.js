@@ -159,6 +159,13 @@ function updateInventoryUI() {
         })
     }
 
+    // Dofus/Trophées : les Dofus passent toujours avant les trophées
+    if (inventoryFilter === 'dofus') {
+        const isDofus = itm => itm.type === 'dofus' || !!itm.id?.startsWith('Dofus_')
+        const dofusSort = (a, b) => (isDofus(b.itm) - isDofus(a.itm)) || a.itm.name.localeCompare(b.itm.name, 'fr')
+        entries.sort(dofusSort)
+    }
+
     // Collecter les items non-possédés (même filtres, sans filtre niveau)
     let unownedEntries = []
     for (const [itemId, itm] of Object.entries(item)) {
@@ -170,6 +177,12 @@ function updateInventoryUI() {
             if (!_itemMatchesEquipFilters(itm, slotFilter, bonusFilter, searchIds)) continue
         }
         unownedEntries.push({ itemId, entry: null, itm })
+    }
+
+    if (inventoryFilter === 'dofus') {
+        const isDofus = itm => itm.type === 'dofus' || !!itm.id?.startsWith('Dofus_')
+        const dofusSort = (a, b) => (isDofus(b.itm) - isDofus(a.itm)) || a.itm.name.localeCompare(b.itm.name, 'fr')
+        unownedEntries.sort(dofusSort)
     }
 
     // Rendre — possédés d'abord, non-possédés ensuite

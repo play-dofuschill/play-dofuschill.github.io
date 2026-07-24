@@ -4,17 +4,18 @@
 // Ajoute le monstre à la collection et retourne les infos pour le résumé.
 // Ne révèle rien pendant le combat — la découverte se fait dans showSessionSummary.
 
-function dropsNeededForLevel(level) {
+function dropsNeededForLevel(level, isSlowFamiliar = false) {
+    if (isSlowFamiliar) return 5
     return Math.max(1, Math.ceil(level / 7))
 }
 
 const FAM_LEVEL_CAP = 200
 
-function _familiarLevelFromDrops(drops) {
+function _familiarLevelFromDrops(drops, isSlowFamiliar = false) {
     let level = 1
     let threshold = 1
     while (level < FAM_LEVEL_CAP) {
-        const next = threshold + dropsNeededForLevel(level)
+        const next = threshold + dropsNeededForLevel(level, isSlowFamiliar)
         if (next > drops) return level
         threshold = next
         level++
@@ -22,7 +23,33 @@ function _familiarLevelFromDrops(drops) {
     return FAM_LEVEL_CAP
 }
 
+// ─── Familiers "lents" : minibosses de raid + boss d'anomalie ────────────────
+// Ces familiers montent d'1 niveau tous les 5 pierres d'âme (≈1000 pour lvl 200),
+// au lieu de la courbe standard.
+
+let _slowFamiliarMonsterIdsCache = null
+
+function _getSlowFamiliarMonsterIds() {
+    if (_slowFamiliarMonsterIdsCache) return _slowFamiliarMonsterIdsCache
+    const ids = new Set()
+    for (const area of Object.values(areas)) {
+        if (area.type === 'raid' && area.miniBoss) {
+            if (area.miniBoss.id) ids.add(area.miniBoss.id)
+            if (Array.isArray(area.miniBoss.ids)) area.miniBoss.ids.forEach(id => ids.add(id))
+        }
+        if (area.type === 'anomalie' && area.boss?.id) ids.add(area.boss.id)
+    }
+    _slowFamiliarMonsterIdsCache = ids
+    return ids
+}
+
+function _isSlowLevelFamiliar(monsterId) {
+    return _getSlowFamiliarMonsterIds().has(monsterId)
+}
+
 function _captureFamiliar(monsterId, isArchi = false) {
+    const isSlow = _isSlowLevelFamiliar(monsterId)
+
     if (!state.collection[monsterId]) {
         state.collection[monsterId] = { drops: 1, level: 1, isArchi }
         return { monsterId, isNew: true, newLevel: 1, isArchi }
@@ -34,7 +61,7 @@ function _captureFamiliar(monsterId, isArchi = false) {
 
     const oldLevel = entry.level
     entry.drops++
-    entry.level = _familiarLevelFromDrops(entry.drops)
+    entry.level = _familiarLevelFromDrops(entry.drops, isSlow)
     if (isArchi) entry.isArchi = true  // une fois archi, toujours archi
     return { monsterId, isNew: false, newLevel: entry.level, leveledUp: entry.level > oldLevel, isArchi }
 }
@@ -119,6 +146,17 @@ function rollItemDrops(areaId, lootTableOverride = null) {
 function addToInventory(itemId) {
     const itm = item[itemId]
     if (!itm) return null
+
+    // Trophées : possession unique, jamais de stack — un doublon se convertit en kamas
+    if (itm.trophy) {
+        if (state.inventory[itemId]) {
+            const kamasGained = _isEnutrofActive() ? 2 : 1
+            state.kamas += kamasGained
+            return { itemId, level: 0, leveledUp: false, convertedToKamas: true, kamas: kamasGained }
+        }
+        state.inventory[itemId] = { count: 1 }
+        return { itemId, level: 0, leveledUp: false, convertedToKamas: false }
+    }
 
     // Items sans levelMax (ressources, clés) : empilement par count uniquement
     if (!itm.itemLevelMax) {

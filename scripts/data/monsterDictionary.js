@@ -9699,15 +9699,6 @@ monsters.bourgeon_de_dathura = {
     bst: { hp: 3, atk: 0, spd: 135, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: []
 }
-monsters.dathura = {
-    id: 'dathura',
-    name: 'Dathura',
-    image: 'images/monsters/Dathura.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 11000, atk: 800, spd: 160, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
-    moves: ['tige_empoisonnee', 'bulbombe', 'pistil_affaiblissant']
-}
 
 // ═══════════════════════════════════════════════════════
 // RAID DE LA TOURBIÈRE DU ROISSINGUE (lvl 100+)
@@ -10173,15 +10164,6 @@ monsters.monolithe = {
     tier: 'normal',
     bst: { hp: 13000, atk: 800, spd: 135, res: { neutre: 50, terre: 20, feu: 20, eau: 20, air: 20 } },
     moves: []
-}
-monsters.percimol = {
-    id: 'percimol',
-    name: 'Percimol',
-    image: 'images/monsters/Percimol.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 13000, atk: 800, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['coup_de_marre_d_eau', 'courage_de_l_epouvantail', 'impatience']
 }
 
 // ═══════════════════════════════════════════════════════
@@ -10736,15 +10718,6 @@ monsters.xlii = {
     bst: { hp: 8800, atk: 1200, spd: 184, res: { neutre: 6, terre: 2, feu: 18, eau: 8, air: 26 } },
     moves: ['coquetterie', 'souffle_demoniaque', 'dereglement']
 }
-monsters.noximilien_l_horloger = {
-    id: 'noximilien_l_horloger',
-    name: 'Noximilien l\'Horloger',
-    image: 'images/monsters/Noximilien_l_Horloger.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9900, atk: 800, spd: 184, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
-    moves: ['temps_de_retard']
-}
 
 // ═══════════════════════════════════════════════════════
 // PLATEAU DE USH (lvl 150+)
@@ -10917,15 +10890,6 @@ monsters.intercepteur = {
 // ═══════════════════════════════════════════════════════
 // TANIÈRE GIVREFOUX (lvl 175+)
 // ═══════════════════════════════════════════════════════
-monsters.fuji_givrefoux_nourriciere = {
-    id: 'fuji_givrefoux_nourriciere',
-    name: 'Fuji Givrefoux Nourricière',
-    image: 'images/monsters/Fuji_Givrefoux_Nourricière.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 11000, atk: 750, spd: 196, res: { neutre: -6, terre: 6, feu: 14, eau: 12, air: -11 } },
-    moves: ['progeniture', 'lait_maternel', 'foufoux']
-}
 monsters.chauffe_soutrille = {
     id: 'chauffe_soutrille',
     name: 'Chauffe-Soutrille',
@@ -11619,15 +11583,6 @@ monsters.sinj = {
     bst: { hp: 8200, atk: 1500, spd: 163, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['sinjerie', 'vague_destructrice_du_singe', 'fulgurang_outan', 'ninjutsinj', 'super_sinj']
 }
-monsters.jorbak = {
-    id: 'jorbak',
-    name: 'Jorbak',
-    image: 'images/monsters/Jorbak.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 6500, atk: 440, spd: 208, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['la_pelle_du_large', 'la_pierre_philosophale']
-}
 
 // ═══════════════════════════════════════════════════════
 // DONJON DU COMTE HAREBOURG — POUTCH (lvl 200+)
@@ -11790,15 +11745,6 @@ monsters.dechireuse_perturbee = {
 // ═══════════════════════════════════════════════════════
 // BATAILLE DE L'AURORE POURPRE (lvl 200+)
 // ═══════════════════════════════════════════════════════
-monsters.julith = {
-    id: 'julith',
-    name: 'Julith',
-    image: 'images/monsters/Julith.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 11000, atk: 800, spd: 220, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
-    moves: ['charge_eclair']
-}
 monsters.pretresse_de_kao = {
     id: 'pretresse_de_kao',
     name: 'Prêtresse de Kao',
@@ -11807,15 +11753,6 @@ monsters.pretresse_de_kao = {
     tier: 'boss',
     bst: { hp: 18000, atk: 901, spd: 220, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
     moves: ['cloches_du_kao', 'equador', 'spatule_tranche_gourmands', 'commerce_inequitable']
-}
-monsters.champion_de_l_aurore_pourpre = {
-    id: 'champion_de_l_aurore_pourpre',
-    name: 'Champion de l\'Aurore Pourpre',
-    image: 'images/monsters/Champion_de_l_Aurore_Pourpre.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 19000, atk: 800, spd: 220, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['embrigadement', 'troolverisation', 'exaction', 'catapultage']
 }
 monsters.eclat_kao = {
     id: 'eclat_kao',
@@ -11848,24 +11785,6 @@ monsters.grokillage = {
 // ═══════════════════════════════════════════════════════
 // TEMPLE DE KOUTOULOU (lvl 200+)
 // ═══════════════════════════════════════════════════════
-monsters.larve_de_rushu = {
-    id: 'larve_de_rushu',
-    name: 'Larve de Rushu',
-    image: 'images/monsters/Larve_de_Rushu.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 12000, atk: 800, spd: 220, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
-    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
-}
-monsters.shuccube = {
-    id: 'shuccube',
-    name: 'Shuccube',
-    image: 'images/monsters/Shuccube.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9900, atk: 800, spd: 220, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
-    moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
-}
 monsters.bras_demoniaque = {
     id: 'bras_demoniaque',
     name: 'Bras démoniaque',
@@ -11888,15 +11807,6 @@ monsters.larve_cauchemardesque = {
 // ═══════════════════════════════════════════════════════
 // QILBY / ELIOTROPES (lvl 200+)
 // ═══════════════════════════════════════════════════════
-monsters.qilby = {
-    id: 'qilby',
-    name: 'Qilby',
-    image: 'images/monsters/Qilby.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 27000, atk: 1000, spd: 220, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
-    moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail']
-}
 monsters.incarnation_du_ch_tyx = {
     id: 'incarnation_du_ch_tyx',
     name: 'Incarnation du Ch\'Tyx',
@@ -12381,24 +12291,6 @@ monsters.kirboule_l_erode = {
     tier: 'normal',
     bst: { hp: 1900, atk: 363, spd: 170, res: { neutre: 6, terre: 6, feu: 20, eau: 50, air: 30 } },
     moves: ['Ecrasement_Handicapant']
-}
-monsters.agonie_la_deterree = {
-    id: 'agonie_la_deterree',
-    name: 'Agonie la Déterrée',
-    image: 'images/monsters/Agonie_la_Déterrée.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 9900, atk: 800, spd: 220, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
-    moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
-}
-monsters.leorictus_le_roi_grimacant = {
-    id: 'leorictus_le_roi_grimacant',
-    name: 'Léorictus le Roi Grimaçant',
-    image: 'images/monsters/Léorictus_le_Roi_Grimaçant.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 12000, atk: 800, spd: 220, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
-    moves: ['mortelage', 'oppression', 'trombe_d_acier', 'martel']
 }
 monsters.crystal_de_stasili = {
     id: 'crystal_de_stasili',
@@ -13095,4 +12987,107 @@ monsters.chienchien_courant = {
     tier: 'normal',
     bst: { hp: 2400, atk: 728, spd: 170, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['accrochage']
+}
+
+// ═══════════════════════════════════════════════════════
+// BOSS NON IMPLÉMENTÉS EN JEU (aucune zone/donjon/miniBoss ne les spawn actuellement)
+// ═══════════════════════════════════════════════════════
+monsters.dathura = {
+    id: 'dathura',
+    name: 'Dathura',
+    image: 'images/monsters/Dathura.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 110000, atk: 800, spd: 160, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    moves: ['tige_empoisonnee', 'bulbombe', 'pistil_affaiblissant']
+}
+monsters.percimol = {
+    id: 'percimol',
+    name: 'Percimol',
+    image: 'images/monsters/Percimol.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 130000, atk: 800, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['coup_de_marre_d_eau', 'courage_de_l_epouvantail', 'impatience']
+}
+monsters.noximilien_l_horloger = {
+    id: 'noximilien_l_horloger',
+    name: 'Noximilien l\'Horloger',
+    image: 'images/monsters/Noximilien_l_Horloger.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 99000, atk: 800, spd: 184, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
+    moves: ['temps_de_retard']
+}
+monsters.jorbak = {
+    id: 'jorbak',
+    name: 'Jorbak',
+    image: 'images/monsters/Jorbak.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 65000, atk: 1440, spd: 208, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['la_pelle_du_large', 'la_pierre_philosophale']
+}
+monsters.julith = {
+    id: 'julith',
+    name: 'Julith',
+    image: 'images/monsters/Julith.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 110000, atk: 800, spd: 220, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
+    moves: ['charge_eclair']
+}
+monsters.champion_de_l_aurore_pourpre = {
+    id: 'champion_de_l_aurore_pourpre',
+    name: 'Champion de l\'Aurore Pourpre',
+    image: 'images/monsters/Champion_de_l_Aurore_Pourpre.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 190000, atk: 800, spd: 220, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
+    moves: ['embrigadement', 'troolverisation', 'exaction', 'catapultage']
+}
+monsters.larve_de_rushu = {
+    id: 'larve_de_rushu',
+    name: 'Larve de Rushu',
+    image: 'images/monsters/Larve_de_Rushu.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 120000, atk: 800, spd: 220, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
+    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
+}
+monsters.shuccube = {
+    id: 'shuccube',
+    name: 'Shuccube',
+    image: 'images/monsters/Shuccube.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 99000, atk: 800, spd: 220, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
+    moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
+}
+monsters.qilby = {
+    id: 'qilby',
+    name: 'Qilby',
+    image: 'images/monsters/Qilby.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 270000, atk: 1000, spd: 220, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
+    moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail']
+}
+monsters.agonie_la_deterree = {
+    id: 'agonie_la_deterree',
+    name: 'Agonie la Déterrée',
+    image: 'images/monsters/Agonie_la_Déterrée.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 99000, atk: 800, spd: 220, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
+    moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
+}
+monsters.leorictus_le_roi_grimacant = {
+    id: 'leorictus_le_roi_grimacant',
+    name: 'Léorictus le Roi Grimaçant',
+    image: 'images/monsters/Léorictus_le_Roi_Grimaçant.png',
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 120000, atk: 800, spd: 220, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
+    moves: ['mortelage', 'oppression', 'trombe_d_acier', 'martel']
 }

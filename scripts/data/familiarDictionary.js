@@ -2830,6 +2830,150 @@ const familiars = [
             { bonusType: 'combat', bonusStat: 'critChance', min: 1, max: 7 }
         ]
     },
+    // ─── ANOMALIES ─────────────────────────────────────────────────────────────
+    {
+        id:       'familierdathura',
+        name:     'Dathura Apprivoisé',
+        image:    'images/monsters/Dathura.png',
+        rarity:   'legendaire',
+        monsters: ['dathura'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
+            { bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 7 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 5, max: 27 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 16, max: 105 }
+        ]
+    },
+    {
+        id:       'familierpercimol',
+        name:     'Percimol Apprivoisé',
+        image:    'images/monsters/Percimol.png',
+        rarity:   'legendaire',
+        monsters: ['percimol'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 7 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 16, max: 105 },
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 10, max: 69 }
+        ]
+    },
+    {
+        id:       'familiernoximilien',
+        name:     'Noximilien l\'Horloger Apprivoisé',
+        image:    'images/monsters/Noximilien_l_Horloger.png',
+        rarity:   'legendaire',
+        monsters: ['noximilien_l_horloger'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 4, max: 13 },
+            { bonusType: 'combat', bonusStat: 'critChance', min: 1, max: 7 },
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 },
+            { bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 7 }
+        ]
+    },
+    {
+        id:       'familierjorbak',
+        name:     'Jorbak Apprivoisé',
+        image:    'images/monsters/Jorbak.png',
+        rarity:   'legendaire',
+        monsters: ['jorbak'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 5, max: 27 },
+            { bonusType: 'defense', bonusStat: 'res.terre', min: 1, max: 7 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 10, max: 69 }
+        ]
+    },
+    {
+        id:       'familierjulith',
+        name:     'Julith Apprivoisé',
+        image:    'images/monsters/Julith.png',
+        rarity:   'legendaire',
+        monsters: ['julith'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 4, max: 13 },
+            { bonusType: 'defense', bonusStat: 'damageReductionPct', min: 1, max: 5 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 10, max: 69 },
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 }
+        ]
+    },
+    {
+        id:       'familierauroreepourpre',
+        name:     'Champion de l\'Aurore Pourpre Apprivoisé',
+        image:    'images/monsters/Champion_de_l_Aurore_Pourpre.png',
+        rarity:   'legendaire',
+        monsters: ['champion_de_l_aurore_pourpre'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'atk', min: 10, max: 69 },
+            { bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7 },
+            { bonusType: 'combat', bonusStat: 'critDamagePct', min: 3, max: 9 },
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+        ]
+    },
+    {
+        id:       'familierlarverushu',
+        name:     'Larve de Rushu Apprivoisée',
+        image:    'images/monsters/Larve_de_Rushu.png',
+        rarity:   'legendaire',
+        monsters: ['larve_de_rushu'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'spd', min: 4, max: 13 },
+            { bonusType: 'combat', bonusStat: 'critDamagePct', min: 3, max: 9 },
+            { bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7 },
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 }
+        ]
+    },
+    {
+        id:       'familiershuccube',
+        name:     'Shuccube Apprivoisée',
+        image:    'images/monsters/Shuccube.png',
+        rarity:   'legendaire',
+        monsters: ['shuccube'],
+        bonuses: [
+            { bonusType: 'combat', bonusStat: 'critChance', min: 1, max: 7 },
+            { bonusType: 'combat', bonusStat: 'critDamagePct', min: 3, max: 9 },
+            { bonusType: 'defense', bonusStat: 'res.eau', min: 1, max: 7 },
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+        ]
+    },
+    {
+        id:       'familierqilby',
+        name:     'Qilby Apprivoisé',
+        image:    'images/monsters/Qilby.png',
+        rarity:   'legendaire',
+        monsters: ['qilby'],
+        bonuses: [
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 },
+            { bonusType: 'combat', bonusStat: 'spellDamagePct', min: 3, max: 9 },
+            { bonusType: 'defense', bonusStat: 'res.air', min: 1, max: 7 },
+            { bonusType: 'combat', bonusStat: 'flatDamage', min: 5, max: 27 }
+        ]
+    },
+    {
+        id:       'familieragonie',
+        name:     'Agonie la Déterrée Apprivoisée',
+        image:    'images/monsters/Agonie_la_Déterrée.png',
+        rarity:   'legendaire',
+        monsters: ['agonie_la_deterree'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 16, max: 105 },
+            { bonusType: 'defense', bonusStat: 'res.neutre', min: 1, max: 7 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 10, max: 69 },
+            { bonusType: 'farming', bonusStat: 'dropRate', min: 1, max: 10 }
+        ]
+    },
+    {
+        id:       'familierleorictus',
+        name:     'Léorictus le Roi Grimaçant Apprivoisé',
+        image:    'images/monsters/Léorictus_le_Roi_Grimaçant.png',
+        rarity:   'legendaire',
+        monsters: ['leorictus_le_roi_grimacant'],
+        bonuses: [
+            { bonusType: 'defense', bonusStat: 'damageReductionPct', min: 1, max: 5 },
+            { bonusType: 'combat', bonusStat: 'atk', min: 10, max: 69 },
+            { bonusType: 'defense', bonusStat: 'maxHp', min: 16, max: 105 },
+            { bonusType: 'farming', bonusStat: 'xpGain', min: 1, max: 10 }
+        ]
+    },
     // // ─── KRALAMOUR ─────────────────────────────────────────────────────────────
     // {
     //     id:       'familierNom',

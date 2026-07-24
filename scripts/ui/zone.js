@@ -287,10 +287,12 @@ function joinArea(areaId) {
 }
 
 function cancelZoneConfirm() {
-    const wasRaid   = areas[_pendingAreaId]?.type === 'raid'
-    const wasWanted = areas[_pendingAreaId]?.type === 'wanted'
-    _pendingAreaId        = null
-    state.pendingWantedId = null
+    const wasRaid     = areas[_pendingAreaId]?.type === 'raid'
+    const wasAnomalie = areas[_pendingAreaId]?.type === 'anomalie'
+    const wasWanted   = areas[_pendingAreaId]?.type === 'wanted'
+    _pendingAreaId              = null
+    state.pendingWantedId       = null
+    state.pendingAnomaliePalier = null
     const bar = document.getElementById('zone-confirm-bar')
     if (bar) bar.style.display = 'none'
     // Remet le bouton à son état par défaut
@@ -304,8 +306,8 @@ function cancelZoneConfirm() {
         switchMenu('poutch')
         return
     }
-    // Retour au menu Raid si c'était un Raid en attente
-    if (wasRaid) {
+    // Retour au menu Raid si c'était un Raid ou une Anomalie en attente
+    if (wasRaid || wasAnomalie) {
         switchMenu('raid')
         return
     }

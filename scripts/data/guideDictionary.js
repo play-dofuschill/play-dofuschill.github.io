@@ -335,6 +335,40 @@ const guideSections = [
     },
 
     {
+        id: 'difficulte-modulee',
+        title: '☠️ Difficulté modulée (Crânes)',
+        content: `
+            <p>La <b>difficulté modulée</b> est un système de crânes (☠) qui permet d'affronter des ennemis renforcés en échange de meilleures récompenses. Le sélecteur est disponible en haut des <b>zones sauvages</b>, <b>donjons</b>, <b>événements</b> et du <b>Raid</b>.</p>
+
+            <p><b>💀 3 paliers</b></p>
+            <ul>
+                <li>Crâne 1 : <b>+100 %</b> difficulté (PV / Puissance des ennemis ×2)</li>
+                <li>Crâne 2 : <b>+200 %</b> difficulté (×3)</li>
+                <li>Crâne 3 : <b>+400 %</b> difficulté (×5)</li>
+            </ul>
+            <p>Un seul palier actif à la fois — recliquer sur le crâne déjà sélectionné revient au mode normal.</p>
+
+            <p><b>📈 Effets sur les ennemis</b></p>
+            <ul>
+                <li>PV et Puissance des ennemis multipliés selon le palier (×2 / ×3 / ×5).</li>
+                <li>Chance de rencontrer un <b>archimonstre</b> augmentée : 1/600 en mode normal → 1/500, 1/450, puis 1/400 au palier max.</li>
+            </ul>
+
+            <p><b>🎁 Effets sur les récompenses</b></p>
+            <ul>
+                <li><b>XP</b> par kill multipliée dans les mêmes proportions (×2 / ×3 / ×5).</li>
+                <li><b>Taux de drop</b> bonus fixe : +10 % / +15 % / +20 %, cumulable avec vos autres bonus de drop.</li>
+            </ul>
+
+            <p><b>⚖️ Cap de niveau</b><br>
+            Dès qu'un crâne est actif (ou automatiquement en <b>Avis de Recherche</b>, même sans crâne), tous les membres de l'équipe sont <b>plafonnés au niveau maximum de la zone</b> pour ce combat, comme s'ils avaient ce niveau. Les équipements dont le niveau requis dépasse ce cap sont <b>automatiquement retirés</b> au lancement du combat (notification affichée).</p>
+
+            <p><b>🏆 Records</b><br>
+            Votre meilleur score par zone et par palier de crâne est enregistré et affiché sur la fiche de la zone : le plus grand nombre de <b>kills</b> en zone sauvage/événement, le plus petit nombre d'<b>attaques</b> pour boucler un donjon.</p>
+        `
+    },
+
+    {
         id: 'raid',
         title: '⚔️ Raid — Combat multiennemis',
         content: `
@@ -345,9 +379,7 @@ const guideSections = [
                 <li>Certaines zones Raid ont un <b>mini-boss</b> qui apparaît tous les X kills.</li>
             </ul>
 
-            <p><b>💀 Niveau de difficulté (Crânes)</b><br>
-            Un sélecteur de crânes (☠) est disponible en haut du Raid et des Avis de Recherche.<br>
-            Augmenter le niveau de crâne rend les ennemis plus puissants (PV, Puissance, résistances) mais améliore les récompenses (drops, kamas).</p>
+            <p>💀 Le Raid dispose aussi d'un sélecteur de crânes — voir la section <b>Difficulté modulée</b> pour le détail des effets.</p>
 
             <p>💡 Les pools de Raid se renouvellent quotidiennement.</p>
         `

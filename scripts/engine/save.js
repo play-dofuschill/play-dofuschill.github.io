@@ -77,6 +77,7 @@ function saveGame() {
             dailyPool:                 state.dailyPool  || null,
             eventPool:                 state.eventPool  || null,
             raidPool:                  state.raidPool   || null,
+            anomaliePool:              state.anomaliePool || null,
             shopPool:                  state.shopPool      || null,
             shopPurchases:             state.shopPurchases || null,
             skullLevel:                state.skullLevel || 0,
@@ -155,6 +156,7 @@ function loadGame() {
         if (data.dailyPool)                         state.dailyPool                 = data.dailyPool
         if (data.eventPool)                         state.eventPool                 = data.eventPool
         if (data.raidPool)                          state.raidPool                  = data.raidPool
+        if (data.anomaliePool)                      state.anomaliePool              = data.anomaliePool
         if (data.shopPool)                          state.shopPool                  = data.shopPool
         if (data.shopPurchases)                     state.shopPurchases              = data.shopPurchases
         if (data.skullLevel != null)                state.skullLevel                = data.skullLevel

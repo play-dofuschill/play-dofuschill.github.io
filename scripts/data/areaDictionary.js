@@ -3323,7 +3323,8 @@ areas.donjonWabbit = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'baton_du_wa_wabbit', dropRate: 0.08333 },
         { itemId: 'cape_du_wa_wabbit', dropRate: 0.08333 },
-        { itemId: 'couronne_du_wa_wabbit', dropRate: 0.08333 }
+        { itemId: 'couronne_du_wa_wabbit', dropRate: 0.08333 },
+        { itemId: 'Dofus_Cawotte', dropRate: 0.001 },
     ]
 }
 
@@ -3388,7 +3389,8 @@ areas.donjonMantiscore = {
         { id: 'mantiscore', weight: 100 }
     ],
     lootTable: [
-        { itemId: 'pierreDameGardien', dropRate: 0.45 }
+        { itemId: 'pierreDameGardien', dropRate: 0.45 },
+        { itemId: 'Dofus_Dolmanax', dropRate: 0.0005 },
     ]
 }
 
@@ -3482,7 +3484,8 @@ areas.donjonTerrierWabbit = {
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'couronne_du_wa_wobot', dropRate: 0.08333 },
         { itemId: 'cape_du_wa_wobot', dropRate: 0.08333 },
-        { itemId: 'ceinture_du_wa_wobot', dropRate: 0.08333 }
+        { itemId: 'ceinture_du_wa_wobot', dropRate: 0.08333 },
+        { itemId: 'Dofus_Cawotte', dropRate: 0.001 },
     ]
 }
 
@@ -3668,7 +3671,8 @@ areas.donjonRasboul = {
     description: "Au cœur des plaines d'Otomaï se trouve le territoire du Rasboul Majeur. Ce gigantesque insecte ou que sais-je règne sur ces plaines et défend agilement son royaume au prix de la vie de ses invocations.",
     spawns: [{ id: 'silf_le_rasboul_majeur', weight: 100 }],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },,
+        { itemId: 'Dofus_Dolmanax', dropRate: 0.0005 },
     ]
 }
 
@@ -3783,7 +3787,8 @@ areas.donjonRatBlanc = {
         { itemId: 'ceinture_du_rat_blanc', dropRate: 0.03571 },
         { itemId: 'collier_du_rat_blanc', dropRate: 0.03571 },
         { itemId: 'couvre_chef_du_rat_blanc', dropRate: 0.03571 },
-        { itemId: 'rapiere_du_rat_blanc', dropRate: 0.03571 }
+        { itemId: 'rapiere_du_rat_blanc', dropRate: 0.03571 },
+        { itemId: 'Dofus_Dolmanax', dropRate: 0.0005 },
     ]
 }
 
@@ -3808,7 +3813,8 @@ areas.donjonRatNoir = {
         { itemId: 'masque_du_rat_noir', dropRate: 0.03571 },
         { itemId: 'collier_du_rat_noir', dropRate: 0.03571 },
         { itemId: 'cape_du_rat_noir', dropRate: 0.03571 },
-        { itemId: 'dagues_du_rat_noir', dropRate: 0.03571 }
+        { itemId: 'dagues_du_rat_noir', dropRate: 0.03571 },
+        { itemId: 'Dofus_Dolmanax', dropRate: 0.0005 },
     ]
 }
 
@@ -3944,6 +3950,7 @@ areas.donjonSkeunk = {
     spawns: [{ id: 'skeunk', weight: 100 }],
     lootTable: [
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
+        { itemId: 'Dofus_Kaliptus', dropRate: 0.001 },
     ]
 }
 
@@ -5199,7 +5206,8 @@ areas.donjonKabahal = {
         { itemId: 'alliance_du_pandamonium', dropRate: 0.03571 },
         { itemId: 'amulette_du_pandamonium', dropRate: 0.03571 },
         { itemId: 'baguette_du_pandamonium', dropRate: 0.03571 },
-        { itemId: 'marteau_possede', dropRate: 0.01 }
+        { itemId: 'marteau_possede', dropRate: 0.01 },
+        { itemId: 'Dofus_du_Cauchemar', dropRate: 0.0005 },
     ]
 }
 
@@ -5226,7 +5234,7 @@ areas.donjonAurorePourpre = {
         { itemId: 'mort_du_centoror', dropRate: 0.04167 },
         { itemId: 'portes_de_bonta', dropRate: 0.04167 },
         { itemId: 'faux_seraphine', dropRate: 0.01 },
-        { itemId: 'epee_diablotine', dropRate: 0.01 }
+        { itemId: 'epee_diablotine', dropRate: 0.01 },
     ]
 }
 
@@ -6074,11 +6082,6 @@ areas.evenementBugElementaire = {
     lootTable: [
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'piloteAutomatique', dropRate: 0.03 },
-        { itemId: 'trophee_de_la_terre', dropRate: 0.001 },
-        { itemId: 'trophee_du_feu', dropRate: 0.001 },
-        { itemId: 'trophee_de_l_eau', dropRate: 0.001 },
-        { itemId: 'trophee_de_l_air', dropRate: 0.001 },
-        { itemId: 'trophee_du_neutre', dropRate: 0.001 },
         { itemId: 'runeHpL', dropRate: 0.01 },
         { itemId: 'runeForceL', dropRate: 0.01 },
         { itemId: 'runeIntelL', dropRate: 0.01 },
@@ -6773,6 +6776,199 @@ areas.raidEliocalypse = {
     miniBossLootTable: []
 }
 // #endregion RAIDS
+
+// #region ANOMALIES ───────────────────────────────────────────────────────────────────────
+// Combat 3 vs 1 façon raid (équipe = 3 actifs + banc) contre un seul monstre surpuissant,
+// affiché comme un combat normal (carte ennemie unique). Débloqué au niveau 200 (cap).
+// 3 paliers de difficulté par Anomalie : statMult croissant + lootTable propre par palier.
+
+areas.anomalieDathura = {
+    id: 'anomalieDathura',
+    name: "Anomalie — Éclosion de Dathura",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Dathura.png",
+    description: "L'anomalie a fait éclore un bulbe de Dathura à une échelle monstrueuse, ses racines gorgées d'une sève toxique suintant à travers la faille.",
+    boss: { id: 'dathura' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomaliePercimol = {
+    id: 'anomaliePercimol',
+    name: "Anomalie — Marée de Percimol",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Percimol.png",
+    description: "Percimol, dupliqué par l'instabilité de la faille, déferle avec la force d'une marée continue, noyant tout sur son passage sous des trombes d'eau démesurées.",
+    boss: { id: 'percimol' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieNoximilien = {
+    id: 'anomalieNoximilien',
+    name: "Anomalie — Rouages de Noximilien",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Noximilien_l_Horloger.png",
+    description: "Noximilien l'Horloger a saisi l'anomalie pour remonter son propre mécanisme à une échelle démesurée, chaque tic-tac résonnant comme un coup de marteau.",
+    boss: { id: 'noximilien_l_horloger' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieJorbak = {
+    id: 'anomalieJorbak',
+    name: "Anomalie — Fossoyage de Jorbak",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Jorbak.png",
+    description: "Jorbak, démultiplié par la faille, creuse sans relâche à la recherche de la pierre philosophale, réduisant en gravats tout ce qui se dresse sur son chemin.",
+    boss: { id: 'jorbak' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieJulith = {
+    id: 'anomalieJulith',
+    name: "Anomalie — Éclair de Julith",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Julith.png",
+    description: "Julith, décuplée par l'anomalie, charge à une vitesse fulgurante, son armure surdimensionnée absorbant les coups les plus dévastateurs sans broncher.",
+    boss: { id: 'julith' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieAurorePourpre = {
+    id: 'anomalieAurorePourpre',
+    name: "Anomalie — Croisade de l'Aurore Pourpre",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Champion_de_l_Aurore_Pourpre.png",
+    description: "Le Champion de l'Aurore Pourpre, gonflé par la faille, mène seul une croisade fanatique, embrigadant l'espace-temps lui-même pour imposer sa vérité.",
+    boss: { id: 'champion_de_l_aurore_pourpre' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieLarveRushu = {
+    id: 'anomalieLarveRushu',
+    name: "Anomalie — Éveil de la Larve de Rushu",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Larve_de_Rushu.png",
+    description: "Une Larve de Rushu, exacerbée par l'anomalie, distord le temps autour d'elle en un cocon corrosif où chaque seconde semble s'étirer à l'infini.",
+    boss: { id: 'larve_de_rushu' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieShuccube = {
+    id: 'anomalieShuccube',
+    name: "Anomalie — Écume de Shuccube",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Shuccube.png",
+    description: "Shuccube, dilaté par la faille, tapisse la zone d'une écume bouillonnante d'où elle surgit sans prévenir, aussi insaisissable que dangereuse.",
+    boss: { id: 'shuccube' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieQilby = {
+    id: 'anomalieQilby',
+    name: "Anomalie — Paradoxe de Qilby",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Qilby.png",
+    description: "Qilby a retourné l'anomalie contre elle-même, ouvrant des portails en cascade d'où résonne, encore et encore, l'écho de ses faux espoirs.",
+    boss: { id: 'qilby' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieAgonie = {
+    id: 'anomalieAgonie',
+    name: "Anomalie — Réveil d'Agonie la Déterrée",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Agonie_la_Déterrée.png",
+    description: "Agonie la Déterrée s'est extirpée de la faille dans une version démesurée d'elle-même, son râle sépulcral fissurant la roche à chaque pas.",
+    boss: { id: 'agonie_la_deterree' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+
+areas.anomalieLeorictus = {
+    id: 'anomalieLeorictus',
+    name: "Anomalie — Grimace de Léorictus",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Léorictus_le_Roi_Grimaçant.png",
+    description: "Léorictus le Roi Grimaçant, amplifié par l'anomalie, règne sur la faille avec un rictus figé, martelant le sol d'une oppression sans fin.",
+    boss: { id: 'leorictus_le_roi_grimacant' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+    ]
+}
+// #endregion ANOMALIES
 
 // #region SAISONNIERS ─────────────────────────────────────────────────────────────────────
 

@@ -584,6 +584,7 @@ function showSessionSummary(type) {
     else if (type === 'raid')           titleText = `Raid quitté — ${session.killCount} kill${session.killCount > 1 ? 's' : ''}`
     else if (type === 'wanted_victory')    titleText = 'Avis de recherche accompli !'
     else if (type === 'bossultime_victory') titleText = 'Dragon vaincu !'
+    else if (type === 'anomalie_victory')   titleText = 'Anomalie vaincue !'
     else if (type === 'leave')          titleText = `${session.killCount} ennemi${session.killCount > 1 ? 's' : ''} vaincu${session.killCount > 1 ? 's' : ''}`
 
     // ── Sorts appris
@@ -936,6 +937,7 @@ function initGame() {
             e.preventDefault()
             const moveId = moveBar.dataset.moveId
             let casterStats = null
+            let casterLevel = null
             if (moveBar.dataset.casterEnemy) {
                 const en = typeof combat !== 'undefined' && combat?.enemy
                 if (en) {
@@ -949,6 +951,7 @@ function initGame() {
                         critChance:     _bv('critChance'),
                         critDamagePct:  50 + _bv('critDamagePct'),
                     }
+                    casterLevel = en.level || 1
                 }
             } else if (moveBar.dataset.casterClass) {
                 const classId = moveBar.dataset.casterClass
@@ -961,8 +964,9 @@ function initGame() {
                 if (member) casterStats = getEffectiveStats(
                     (typeof combat !== 'undefined' && combat && teamMember) ? member : { ...member, buffs: [] }
                 )
+                casterLevel = member?.level || 1
             }
-            showMoveTooltip(moveId, casterStats)
+            showMoveTooltip(moveId, casterStats, casterLevel)
             return
         }
 

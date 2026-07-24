@@ -126,18 +126,53 @@ item.Dofus_Argente = {
     stats: [{ stat: 'atk', value: 20 }, { stat: 'maxHp', value: 33 }],
     description: 'Pondu par Rathrosk le dragon gris, cet œuf est une énigme. Bien que son pouvoir n\'égale pas celui d\'un Dofus Primordial, il semble plus ancien que le temps... Vous feriez bien de le garder précieusement. Après tout, seules les Nordes et le dieu Xélor savent de quoi l\'avenir sera fait.'
 }
-item.Dofus_Ocre = {
-    id: 'Dofus_Ocre',
-    name: 'Dofus Ocre',
-    image: 'img/items/objets_bonus/Dofus_Ocre.png',
+item.Dofus_Cawotte = {
+    id: 'Dofus_Cawotte',
+    name: 'Dofus Cawotte',
+    image: 'img/items/objets_bonus/Dofus_Cawotte.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    stats: [{ stat: 'finalDamagePct', value: 13 }],
-    effects: [{ on_effect: { source: 'enemy', type: 'dot' }, reaction: 'cancel' }],
-    passif: 'Si le porteur doit recevoir des dommages de poison, annule les dommages.',
-    description: 'Pondu par Terrakourial, le Dragon de la Terre, puis avalé par le Kralamour Géant, ce Dofus concentre de grands pouvoirs à ne pas mettre entre toutes les mains... Ni entre tous les pieds d\'ailleurs.'
+    stats: [{ stat: 'xpGain', min: 10, max: 60 }],
+    description: ''
+}
+item.Dofus_Dokoko = {
+    id: 'Dofus_Dokoko',
+    name: 'Dofus Dokoko',
+    image: 'img/items/objets_bonus/Dokoko.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'maxHp', value: 50 }],
+    effects: [{ every: 8, after: 8, type: 'heal%maxHp', heal: 2, target: 'self' }],
+    passif: 'Tous les 8 sorts après le 8ème sort, soigne 2% de ses PV max.',
+    description: ''
+}
+item.Dofus_Kaliptus = {
+    id: 'Dofus_Kaliptus',
+    name: 'Dofus Kaliptus',
+    image: 'img/items/objets_bonus/Dofus_Kaliptus.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'dropRate', min: 6, max: 30 }],
+    description: ''
+}
+item.Dofus_Emeraude = {
+    id: 'Dofus_Emeraude',
+    name: 'Dofus Émeraude',
+    image: 'img/items/objets_bonus/Dofus_Emeraude.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'maxHp', value: 133 }],
+    effects: [{ on_active: true, type: 'shield', value_level_mult: 2, duration: 8 }],
+    passif: 'Dès que le porteur devient actif en combat, gagne un bouclier égal à 2 fois son niveau.',
+    description: ''
 }
 item.Dofus_Pourpre = {
     id: 'Dofus_Pourpre',
@@ -165,6 +200,19 @@ item.Dofus_Turquoise = {
     passif: 'Si le porteur reçois un coup critique, il à 1 chance sur 3 d\'absorber le coups et se soigner de 20% des dommages qu\'il aurait dû recevoir.',
     description: 'Pondu par Aguabrial, Dragon Élémentaire de l\'Eau, par amour pour la poupée Dathura. Cet œuf limpide renferme une puissance d\'une profondeur sans égale... seuls les plus courageux méritent de le porter.'
 }
+item.Dofus_Ocre = {
+    id: 'Dofus_Ocre',
+    name: 'Dofus Ocre',
+    image: 'img/items/objets_bonus/Dofus_Ocre.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'finalDamagePct', value: 13 }],
+    effects: [{ on_effect: { source: 'enemy', type: 'dot' }, reaction: 'cancel' }],
+    passif: 'Si le porteur doit recevoir des dommages de poison, annule les dommages.',
+    description: 'Pondu par Terrakourial, le Dragon de la Terre, puis avalé par le Kralamour Géant, ce Dofus concentre de grands pouvoirs à ne pas mettre entre toutes les mains... Ni entre tous les pieds d\'ailleurs.'
+}
 item.Dofus_Ebene = {
     id: 'Dofus_Ebene',
     name: 'Dofus Ébène',
@@ -189,19 +237,6 @@ item.Dofus_Ivoire = {
     stats: [{ stat: 'res.terre', value: 6 }, { stat: 'res.feu', value: 6 }, { stat: 'res.eau', value: 6 }, { stat: 'res.air', value: 6 }, { stat: 'res.neutre', value: 6 }],
     effects: [{ on_damage_received: { every: 4 }, reaction: 'cancel_next_damage' }],
     passif: 'Toutes les 4 lignes de dommages reçues, annule la prochaine.',
-    description: ''
-}
-item.Dofus_Emeraude = {
-    id: 'Dofus_Emeraude',
-    name: 'Dofus Émeraude',
-    image: 'img/items/objets_bonus/Dofus_Emeraude.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'legendaire',
-    itemLevelMax: 20,
-    stats: [{ stat: 'maxHp', value: 133 }],
-    effects: [{ on_active: true, type: 'shield', value_level_mult: 2, duration: 8 }],
-    passif: 'Dès que le porteur devient actif en combat, gagne un bouclier égal à 2 fois son niveau.',
     description: ''
 }
 item.Dofus_Vulbis = {
@@ -240,18 +275,6 @@ item.Dofus_Nebuleux = {
     passif: 'Tous les 4 sorts, alterne entre un buff de +20% dommages finaux et un debuff de 15% de dommages finaux.',
     description: ''
 }
-item.Dofus_Sylvestre = {
-    id: 'Dofus_Sylvestre',
-    name: 'Dofus Sylvestre',
-    image: 'img/items/objets_bonus/Dofus_Sylvestre.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'legendaire',
-    itemLevelMax: 20,
-    effects: [{ on_kill: { stat: 'atk', per_kill: 15, max_value: 90, swap_reset: true, on_inactive_at_max: { type: 'heal%maxHp', heal: 5 } } }],
-    passif: 'Pour chaque monstres tués, augmente la puissance de 15 (limite de +90 puissance). Si la limite de +90 puissance est atteinte au moment de changer de personnage, soigne le porteur de 5% de ses PV max.',
-    description: ''
-}
 item.Dofus_Abyssal = {
     id: 'Dofus_Abyssal',
     name: 'Dofus Abyssal',
@@ -274,18 +297,6 @@ item.Dofus_Forgelave = {
     itemLevelMax: 20,
     effects: [{ on_effect: { source: 'enemy', type: ['avance', 'recul', 'switch'] }, reaction: 'trigger', type: 'shield', value_from_level: true, duration: 4 }],
     passif: 'Si le porteur subit un des effets suivants : \'avance\', \'recul\', \'switch\', gagne un bouclier égal à son niveau.',
-    description: ''
-}
-item.Dofus_Tachete = {
-    id: 'Dofus_Tachete',
-    name: 'Dofus Tacheté',
-    image: 'img/items/objets_bonus/Dofus_Tachete.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'legendaire',
-    itemLevelMax: 20,
-    effects: [{ condition: 'no_direct_dmg', type: 'stat_bonus', stat: 'flatDamage', value: 30 }, { condition: 'no_buff_debuff', every: 8, after: 4, type: 'random_buff_debuff', stat: 'atk', value: 100, duration: 4 }],
-    passif: 'Si le porteur ne possède aucun sort de dommages directs dans son set de sort, augmente les dommages de 30. Si le porteur ne possède aucun sort de buff ou debuff, applique aléatoirement sur soit ou sur l\'ennemi, respectivement un buff ou un debuff de 100 de puissances pour 2 tours.',
     description: ''
 }
 item.Dofus_Domakuro = {
@@ -312,17 +323,55 @@ item.Dofus_Dorigami = {
     passif: 'Si le porteur ne possède aucun sort de buff ou debuff, applique aléatoirement sur soit ou sur l\'ennemi, respectivement un buff ou un debuff de 100 de puissances pour 2 tours.',
     description: ''
 }
-item.Dofus_Dokoko = {
-    id: 'Dofus_Dokoko',
-    name: 'Dofus Dokoko',
-    image: 'img/items/objets_bonus/Dokoko.png',
+item.Dofus_Tachete = {
+    id: 'Dofus_Tachete',
+    name: 'Dofus Tacheté',
+    image: 'img/items/objets_bonus/Dofus_Tachete.png',
     type: 'equipment',
     slot: 'accessoire',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    stats: [{ stat: 'maxHp', value: 50 }],
-    effects: [{ every: 8, after: 8, type: 'heal%maxHp', heal: 2, target: 'self' }],
-    passif: 'Tous les 8 sorts après le 8ème sort, soigne 2% de ses PV max.',
+    effects: [{ condition: 'no_direct_dmg', type: 'stat_bonus', stat: 'flatDamage', value: 30 }, { condition: 'no_buff_debuff', every: 8, after: 4, type: 'random_buff_debuff', stat: 'atk', value: 100, duration: 4 }],
+    passif: 'Si le porteur ne possède aucun sort de dommages directs dans son set de sort, augmente les dommages de 30. Si le porteur ne possède aucun sort de buff ou debuff, applique aléatoirement sur soit ou sur l\'ennemi, respectivement un buff ou un debuff de 100 de puissances pour 2 tours.',
+    description: ''
+}
+item.Dofus_du_Cauchemar = {
+    id: 'Dofus_du_Cauchemar',
+    name: 'Dofus du Cauchemar',
+    image: 'img/items/objets_bonus/Dofus_du_Cauchemard.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [{ stat: 'spd', min: 10, max: 20 }],
+    description: ''
+}
+item.Dofus_Sylvestre = {
+    id: 'Dofus_Sylvestre',
+    name: 'Dofus Sylvestre',
+    image: 'img/items/objets_bonus/Dofus_Sylvestre.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    effects: [{ on_kill: { stat: 'atk', per_kill: 15, max_value: 90, swap_reset: true, on_inactive_at_max: { type: 'heal%maxHp', heal: 5 } } }],
+    passif: 'Pour chaque monstres tués, augmente la puissance de 15 (limite de +90 puissance). Si la limite de +90 puissance est atteinte au moment de changer de personnage, soigne le porteur de 5% de ses PV max.',
+    description: ''
+}
+item.Dofus_Dolmanax = {
+    id: 'Dofus_Dolmanax',
+    name: 'Dofus Dolmanax',
+    image: 'img/items/objets_bonus/Dolmanax.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    stats: [
+        { stat: 'force', min: 51, max: 100 },
+        { stat: 'intelligence', min: 51, max: 100 },
+        { stat: 'chance', min: 51, max: 100 },
+        { stat: 'agilite', min: 51, max: 100 }
+    ],
     description: ''
 }
 item.bounihimee = {
