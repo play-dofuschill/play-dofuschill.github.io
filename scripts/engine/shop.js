@@ -202,7 +202,9 @@ function getShopEntries(cat) {
                 .map(i => ({ itemId: i.id, price: 10 }))
 
         case 'ogrines':
-            return (pool.ogrineItems || []).map(id => ({ itemId: id, price: item[id]?.ogrinePrice ?? OGRINE_ITEM_PRICE }))
+            return (pool.ogrineItems || [])
+                .map(id => ({ itemId: id, price: item[id]?.ogrinePrice ?? OGRINE_ITEM_PRICE }))
+                .sort((a, b) => a.price - b.price)
 
         default:
             return []
