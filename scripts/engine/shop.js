@@ -2,7 +2,7 @@
 
 const SHOP_KEY_PRICE     = 1
 const SHOP_ROTATION_DAYS = 1
-const OGRINE_ITEM_PRICE  = 1 // prix fixe par défaut, à ajuster plus tard
+const OGRINE_ITEM_PRICE  = 1 // valeur de repli si un item sans_panoplie n'a pas de ogrinePrice défini
 
 const SHOP_RUNE_BASE_PRICES = { S: 10, M: 15, L: 25 }
 
@@ -39,6 +39,12 @@ function _progressiveTotalCost(itemId, qty) {
         total += Math.round(base * Math.pow(1.2, purchased + i))
     }
     return total
+}
+
+// Un trophée est "possédé" dès qu'il est dans l'inventaire, qu'il vienne d'un
+// achat en boutique ou d'un drop en combat (les deux passent par addToInventory).
+function _ownsTrophy(itemId) {
+    return (state.inventory[itemId]?.count || 0) > 0
 }
 
 function _runePrice(runeId) {
@@ -80,6 +86,43 @@ function _wildLinkedKeyIds() {
     return ids
 }
 
+// Nombre d'items tirés par slot et par rotation dans l'onglet Ogrines, pondéré
+// selon la taille du pool de chaque slot (les slots avec beaucoup d'items en
+// récupèrent plus, pour égaliser le pire cas d'attente entre slots).
+const OGRINE_SLOT_ALLOCATION = { arme: 6, bouclier: 3, coiffe: 3, bottes: 2, cape: 2, anneau: 2, ceinture: 1, amulette: 1 }
+
+function _ogrinePoolIdsBySlot() {
+    const bySlot = {}
+    for (const i of Object.values(item)) {
+        if (i.set === 'sans_panoplie' && i.ogrinePrice != null) {
+            (bySlot[i.slot] = bySlot[i.slot] || []).push(i.id)
+        }
+    }
+    return bySlot
+}
+
+// Tire `count` ids dans le sac tournant d'un slot : on parcourt une permutation
+// sans répétition, et on ne reshuffle qu'une fois le sac épuisé. Contrairement à
+// un tirage purement aléatoire à chaque rotation, ça borne le pire cas d'attente
+// pour un item donné à la taille du pool de son slot (pas d'attente infinie par malchance).
+function _drawFromSlotBag(bags, slot, poolIds, count, seedBase) {
+    let bag = bags[slot]
+    if (!bag || bag.order.length !== poolIds.length || !poolIds.every(id => bag.order.includes(id))) {
+        bag = { order: _seededShuffle(poolIds, _dateSeed(seedBase + slot)), index: 0 }
+    }
+    const picked = []
+    for (let n = 0; n < count && bag.order.length > 0; n++) {
+        if (bag.index >= bag.order.length) {
+            bag.order = _seededShuffle(bag.order, _dateSeed(seedBase + slot + bag.index))
+            bag.index = 0
+        }
+        picked.push(bag.order[bag.index])
+        bag.index++
+    }
+    bags[slot] = bag
+    return picked
+}
+
 function refreshShopPool() {
     const period     = _shopPeriod()
     const visitedKey = (state.visitedAreas || []).slice().sort().join(',')
@@ -117,11 +160,17 @@ function refreshShopPool() {
     }
 
     // Onglet Ogrines : rotation bi-journalière indépendante (même cadence que
-    // les clés de donjon), sur les équipements "hors panoplie".
+    // les clés de donjon), sur les équipements "hors panoplie", via un sac
+    // tournant par slot (cf. OGRINE_SLOT_ALLOCATION et _drawFromSlotBag).
     if (ogrinesStale) {
-        const allSansPanoplie = Object.values(item).filter(i => i.set === 'sans_panoplie')
+        const bySlot = _ogrinePoolIdsBySlot()
+        if (!state.shopPool.ogrineBags) state.shopPool.ogrineBags = {}
+        let picked = []
+        for (const [slot, count] of Object.entries(OGRINE_SLOT_ALLOCATION)) {
+            picked = picked.concat(_drawFromSlotBag(state.shopPool.ogrineBags, slot, bySlot[slot] || [], count, keysPeriod))
+        }
         state.shopPool.ogrinePeriod = keysPeriod
-        state.shopPool.ogrineItems  = _seededShuffle(allSansPanoplie, _dateSeed(keysPeriod) ^ 0x5555).slice(0, 10).map(i => i.id)
+        state.shopPool.ogrineItems  = picked
     }
 
     saveGame()
@@ -148,12 +197,12 @@ function getShopEntries(cat) {
 
         case 'trophees':
             return Object.values(item)
-                .filter(i => i.trophy && !(state.ownedTrophees || []).includes(i.id))
+                .filter(i => i.trophy && !_ownsTrophy(i.id))
                 .sort((a, b) => a.id.localeCompare(b.id))
                 .map(i => ({ itemId: i.id, price: 10 }))
 
         case 'ogrines':
-            return (pool.ogrineItems || []).map(id => ({ itemId: id, price: OGRINE_ITEM_PRICE }))
+            return (pool.ogrineItems || []).map(id => ({ itemId: id, price: item[id]?.ogrinePrice ?? OGRINE_ITEM_PRICE }))
 
         default:
             return []
@@ -206,7 +255,7 @@ function buyShopItem(itemId, price, qty = 1) {
     const itm = item[itemId]
 
     if (itm?.trophy) {
-        if ((state.ownedTrophees || []).includes(itemId)) {
+        if (_ownsTrophy(itemId)) {
             showNotification('Vous possédez déjà ce trophée !', 'info')
             return
         }
@@ -215,8 +264,6 @@ function buyShopItem(itemId, price, qty = 1) {
             return
         }
         state.kamas -= price
-        if (!state.ownedTrophees) state.ownedTrophees = []
-        state.ownedTrophees.push(itemId)
         addToInventory(itemId)
         saveGame()
         updateKamasDisplay()

@@ -16,6 +16,10 @@ function setShopFilter(cat) {
     updateShopUI()
 }
 
+function _hasAvailableTrophees() {
+    return Object.values(item).some(i => i.trophy && !_ownsTrophy(i.id))
+}
+
 function updateShopUI() {
     const list      = document.getElementById('shop-list')
     const kamasEl   = document.getElementById('shop-kamas-amount')
@@ -24,6 +28,11 @@ function updateShopUI() {
 
     if (kamasEl)   kamasEl.textContent   = state.kamas
     if (ogrinesEl) ogrinesEl.textContent = state.ogrines || 0
+
+    const trophyTabVisible = _hasAvailableTrophees()
+    const trophyTab = document.querySelector('.shop-tab[data-cat="trophees"]')
+    if (trophyTab) trophyTab.style.display = trophyTabVisible ? '' : 'none'
+    if (shopFilter === 'trophees' && !trophyTabVisible) shopFilter = 'items'
 
     document.querySelectorAll('.shop-tab').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.cat === shopFilter)
@@ -110,7 +119,7 @@ function updateShopUI() {
 
         // ── Trophée : achat unique permanent ──────────────────────────────
         if (itm.trophy) {
-            const owned     = (state.ownedTrophees || []).includes(entry.itemId)
+            const owned     = _ownsTrophy(entry.itemId)
             const canAfford = state.kamas >= entry.price
             const card = document.createElement('div')
             card.className = `shop-card${owned ? ' shop-card-maxed' : (!canAfford ? ' shop-card-disabled' : '')}`

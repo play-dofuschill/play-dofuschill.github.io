@@ -5,7 +5,7 @@
 // Ne révèle rien pendant le combat — la découverte se fait dans showSessionSummary.
 
 function dropsNeededForLevel(level) {
-    return Math.max(1, Math.ceil(level / 5))
+    return Math.max(1, Math.ceil(level / 7))
 }
 
 const FAM_LEVEL_CAP = 200

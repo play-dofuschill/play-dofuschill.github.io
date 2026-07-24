@@ -123,7 +123,7 @@
 // ───────────────────────── état global ─────────────────────────
 const SLOTS = ['cape','coiffe','bottes','ceinture','amulette','anneau','bouclier','arme','accessoire']
 const RARITIES = ['commun','peu_commun','rare','legendaire']
-const STATS = ['maxHp','atk','spd','flatDamage','finalDamagePct','spellDamagePct','damageReductionPct',
+const STATS = ['maxHp','atk','force','intelligence','chance','agilite','spd','flatDamage','finalDamagePct','spellDamagePct','damageReductionPct',
   'critChance','critDamagePct','critResPct','healPct','heal','lifestealPct','dropRate',
   'res.feu','res.eau','res.terre','res.air','res.neutre']
 const FAM_STATS = [...STATS, 'xpGain', 'dropRateElite']
@@ -631,19 +631,28 @@ function renderItemDetail(id){
   bind('e_desc',v=>it.description=v)
   if (it.effects){ const ta=D.querySelector('#e_eff'); ta.onchange=()=>{ try{ it.effects=JSON.parse(ta.value); ta.style.borderColor=''; itemDirtyIds.add(id); setDirty(true)}catch(e){ ta.style.borderColor='var(--err)'} } }
   renderStats(it, id)
-  D.querySelector('#addStat').onclick=()=>{ (it.stats=it.stats||[]).push({stat:'atk',value:0}); renderStats(it, id); itemDirtyIds.add(id); setDirty(true) }
+  D.querySelector('#addStat').onclick=()=>{ (it.stats=it.stats||[]).push({stat:'atk',min:0,max:0}); renderStats(it, id); itemDirtyIds.add(id); setDirty(true) }
 }
 function renderStats(it, itemId){
   const wrap = document.getElementById('detail').querySelector('#stats')
   it.stats = it.stats || []
-  wrap.innerHTML = it.stats.map((s,i)=>`
+  wrap.innerHTML = it.stats.map((s,i)=>{
+    const isRange = s.min !== undefined || s.max !== undefined
+    const valInputs = isRange
+      ? `<input data-i="${i}" class="smin" type="number" title="min" placeholder="min" value="${s.min??0}">
+         <input data-i="${i}" class="smax" type="number" title="max" placeholder="max" value="${s.max??0}">`
+      : `<input data-i="${i}" class="sv" type="number" value="${s.value??0}">`
+    return `
     <div class="statrow">
       <select data-i="${i}" class="ss">${STATS.map(o=>`<option ${s.stat===o?'selected':''}>${o}</option>`).join('')}</select>
-      <input data-i="${i}" class="sv" type="number" value="${s.value}">
+      ${valInputs}
       <button data-i="${i}" class="sx">✕</button>
-    </div>`).join('')
+    </div>`
+  }).join('')
   wrap.querySelectorAll('.ss').forEach(el=>el.onchange=()=>{it.stats[+el.dataset.i].stat=el.value;if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
   wrap.querySelectorAll('.sv').forEach(el=>el.oninput=()=>{it.stats[+el.dataset.i].value=+el.value||0;if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
+  wrap.querySelectorAll('.smin').forEach(el=>el.oninput=()=>{it.stats[+el.dataset.i].min=+el.value||0;if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
+  wrap.querySelectorAll('.smax').forEach(el=>el.oninput=()=>{it.stats[+el.dataset.i].max=+el.value||0;if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
   wrap.querySelectorAll('.sx').forEach(el=>el.onclick=()=>{it.stats.splice(+el.dataset.i,1);renderStats(it,itemId);if(itemId)itemDirtyIds.add(itemId);setDirty(true)})
 }
 

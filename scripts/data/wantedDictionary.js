@@ -9,7 +9,7 @@ monsters['wanted_sam_sagaz'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 20,
-    bst: { hp: 6500, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 6500, atk: 300, spd: 112, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_sam_sagaz_jardinage', 'wanted_sam_sagaz_anneau_de_gaz', 'wanted_sam_sagaz_appel_de_bolesh']
 }
 
@@ -20,7 +20,7 @@ monsters['wanted_fouduglen_l_ecureuil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 20,
-    bst: { hp: 6700, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 6700, atk: 300, spd: 112, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fouduglen_l_ecureuil_casse_noisettes', 'wanted_fouduglen_l_ecureuil_discretion']
 }
 
@@ -31,7 +31,7 @@ monsters['wanted_maitre_boulet'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 12000, atk: 300, spd: 30, res: { neutre: -10, feu: 10, eau: 10, air: 10, terre: 10 } },
+    bst: { hp: 12000, atk: 300, spd: 112, res: { neutre: -10, feu: 10, eau: 10, air: 10, terre: 10 } },
     moves: ['wanted_maitre_boulet_acculement', 'wanted_maitre_boulet_debitage', 'wanted_maitre_boulet_invocation_de_tournesol']
 }
 
@@ -42,7 +42,7 @@ monsters['wanted_frakacia_leukocytine'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 13000, atk: 300, spd: 30, res: { neutre: 15, feu: 5, eau: -10, air: 25, terre: -20 } },
+    bst: { hp: 13000, atk: 300, spd: 112, res: { neutre: 15, feu: 5, eau: -10, air: 25, terre: -20 } },
     moves: ['wanted_frakacia_leukocytine_crochet_fracassant', 'wanted_frakacia_leukocytine_cri_fracassant', 'wanted_frakacia_leukocytine_hyperleukocytine']
 }
 
@@ -53,7 +53,7 @@ monsters['wanted_ambi_guman'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 14000, atk: 200, spd: 20, res: { neutre: 20, feu: 20, eau: 10, air: 20, terre: 10 } },
+    bst: { hp: 14000, atk: 200, spd: 112, res: { neutre: 20, feu: 20, eau: 10, air: 20, terre: 10 } },
     moves: ['wanted_ambi_guman_patate', 'wanted_ambi_guman_roquette', 'wanted_ambi_guman_enfant_de_la_terre']
 }
 
@@ -64,7 +64,7 @@ monsters['wanted_exi_guman'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 11000, atk: 200, spd: 20, res: { neutre: 30, feu: 5, eau: 5, air: -10, terre: 10 } },
+    bst: { hp: 11000, atk: 200, spd: 112, res: { neutre: 30, feu: 5, eau: 5, air: -10, terre: 10 } },
     moves: ['wanted_exi_guman_spatezoignons', 'wanted_exi_guman_chataigne', 'wanted_exi_guman_pousses_ephemeres']
 }
 
@@ -75,7 +75,7 @@ monsters['wanted_roub_ignolles'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 40,
-    bst: { hp: 12000, atk: 300, spd: 30, res: { neutre: 20, feu: 10, eau: 10, air: 10, terre: 0 } },
+    bst: { hp: 12000, atk: 300, spd: 124, res: { neutre: 20, feu: 10, eau: 10, air: 10, terre: 0 } },
     moves: ['wanted_roub_ignolles_vulnerabilite_bombesque', 'wanted_roub_ignolles_pousse_bombe', 'wanted_roub_ignolles_teleportabombe']
 }
 
@@ -86,7 +86,7 @@ monsters['wanted_bouss_baybe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 50,
-    bst: { hp: 31000, atk: 300, spd: 30, res: { neutre: 15, feu: 5, eau: 0, air: 10, terre: 20 } },
+    bst: { hp: 31000, atk: 300, spd: 124, res: { neutre: 15, feu: 5, eau: 0, air: 10, terre: 20 } },
     moves: ['wanted_bouss_baybe_salon', 'wanted_bouss_baybe_econduire', 'wanted_bouss_baybe_porkasserie']
 }
 
@@ -97,7 +97,7 @@ monsters['wanted_ogivol_scalarcin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 50,
-    bst: { hp: 31000, atk: 300, spd: 30, res: { neutre: 10, feu: -15, eau: -20, air: 25, terre: 20 } },
+    bst: { hp: 31000, atk: 300, spd: 124, res: { neutre: 10, feu: -15, eau: -20, air: 25, terre: 20 } },
     moves: ['wanted_ogivol_scalarcin_ogivoltaique', 'wanted_ogivol_scalarcin_ogivolage', 'wanted_ogivol_scalarcin_ogivolatilise', 'wanted_ogivol_scalarcin_ogivologramme', 'wanted_ogivol_scalarcin_ogivolverine']
 }
 
@@ -108,7 +108,7 @@ monsters['wanted_nono_le_wobot'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 41000, atk: 300, spd: 30, res: { neutre: 10, feu: -10, eau: -10, air: 20, terre: 20 } },
+    bst: { hp: 41000, atk: 300, spd: 136, res: { neutre: 10, feu: -10, eau: -10, air: 20, terre: 20 } },
     moves: ['wanted_nono_le_wobot_vewwouillage', 'wanted_nono_le_wobot_wavelot_explosif', 'wanted_nono_le_wobot_massue_matwaquante']
 }
 
@@ -119,7 +119,7 @@ monsters['wanted_brumen_tinctorias'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 43000, atk: 300, spd: 30, res: { neutre: 15, feu: 20, eau: -15, air: 5, terre: -10 } },
+    bst: { hp: 43000, atk: 300, spd: 136, res: { neutre: 15, feu: 20, eau: -15, air: 5, terre: -10 } },
     moves: ['wanted_brumen_tinctorias_elixir_curatif', 'wanted_brumen_tinctorias_elixir_interdit', 'wanted_brumen_tinctorias_elixir_stimulant', 'wanted_brumen_tinctorias_elixir_revitalisant', 'wanted_brumen_tinctorias_elixir_vampirique']
 }
 
@@ -130,7 +130,7 @@ monsters['wanted_marzwel_le_gobelin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 41000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 0 } },
+    bst: { hp: 41000, atk: 300, spd: 136, res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 0 } },
     moves: ['wanted_marzwel_le_gobelin_javeline_creuse', 'wanted_marzwel_le_gobelin_a_pied_d_uvre', 'wanted_marzwel_le_gobelin_fuite_anticipee']
 }
 
@@ -141,7 +141,7 @@ monsters['wanted_gadoo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 44000, atk: 100, spd: 10,
+    bst: { hp: 44000, atk: 100, spd: 136,
         res: { neutre: 100, feu: 10, eau: -30, air: 10, terre: 40 } },
     moves: ['wanted_gadoo_sucon_spongieux', 'wanted_gadoo_vase', 'wanted_gadoo_croute', 'wanted_gadoo_bain_de_boo']
 }
@@ -153,7 +153,7 @@ monsters['wanted_armada_l_invincible'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 70,
-    bst: { hp: 53000, atk: 300, spd: 30,
+    bst: { hp: 53000, atk: 300, spd: 136,
         res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_armada_l_invincible_tankafair', 'wanted_armada_l_invincible_canonnier', 'wanted_armada_l_invincible_manuvre']
 }
@@ -165,7 +165,7 @@ monsters['wanted_qil_bil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 70,
-    bst: { hp: 53000, atk: 300, spd: 30, res: { neutre: 10, feu: 10, eau: -19, air: 0, terre: 12 } },
+    bst: { hp: 53000, atk: 300, spd: 136, res: { neutre: 10, feu: 10, eau: -19, air: 0, terre: 12 } },
     moves: ['wanted_qil_bil_lancer_de_poing', 'wanted_qil_bil_rage_cybernetique', 'wanted_qil_bil_surchauffe']
 }
 
@@ -176,7 +176,7 @@ monsters['wanted_dragodingo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 300, spd: 30,
+    bst: { hp: 66000, atk: 300, spd: 148,
         res: { neutre: 0, feu: 10, eau: 10, air: 15, terre: 15 } },
     moves: ['wanted_dragodingo_dingoboule', 'wanted_dragodingo_dingosouffle', 'wanted_dragodingo_dingoprevention']
 }
@@ -188,7 +188,7 @@ monsters['wanted_aermyne_braco_scalptaras'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 300, spd: 30, res: { neutre: 60, feu: 30, eau: 10, air: 20, terre: -20 } },
+    bst: { hp: 66000, atk: 300, spd: 148, res: { neutre: 60, feu: 30, eau: 10, air: 20, terre: -20 } },
     moves: ['wanted_aermyne_braco_scalptaras_calin', 'wanted_aermyne_braco_scalptaras_malaxage', 'wanted_aermyne_braco_scalptaras_sale_marmot']
 }
 
@@ -199,7 +199,7 @@ monsters['wanted_musha_l_oni'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 300, spd: 30, res: { neutre: 90, feu: 90, eau: 90, air: 90, terre: 90 } },
+    bst: { hp: 66000, atk: 300, spd: 148, res: { neutre: 90, feu: 90, eau: 90, air: 90, terre: 90 } },
     moves: ['wanted_musha_l_oni_onigiri', 'wanted_musha_l_oni_onigaud', 'wanted_musha_l_oni_onivoirien']
 }
 
@@ -210,7 +210,7 @@ monsters['wanted_tyranne_la_terrible'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 350, spd: 20, res: { neutre: 10, feu: 0, eau: 15, air: -10, terre: 15 } },
+    bst: { hp: 66000, atk: 350, spd: 148, res: { neutre: 10, feu: 0, eau: 15, air: -10, terre: 15 } },
     moves: ['wanted_tyranne_la_terrible_hyper_kick', 'wanted_tyranne_la_terrible_1000_poings', 'wanted_tyranne_la_terrible_frappe_devastatrice']
 }
 
@@ -221,7 +221,7 @@ monsters['wanted_tournade'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 62000, atk: 250, spd: 25,
+    bst: { hp: 62000, atk: 250, spd: 148,
         res: { neutre: 5, feu: 7, eau: -12, air: 13, terre: 10 } },
     moves: ['wanted_tournade_aspiration_de_masse', 'wanted_tournade_tourbillon_violent', 'wanted_tournade_tempete_devastatrice']
 }
@@ -233,7 +233,7 @@ monsters['wanted_degolas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 79000, atk: 300, spd: 30,
+    bst: { hp: 79000, atk: 300, spd: 148,
         res: { neutre: 5, feu: 15, eau: 25, air: 0, terre: 5 } },
     moves: ['wanted_degolas_fleche_aveuglante', 'wanted_degolas_masque_aveuglant', 'wanted_degolas_fleche_repoussante']
 }
@@ -245,7 +245,7 @@ monsters['wanted_rok_gnorok'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 79000, atk: 300, spd: 30, res: { neutre: 22, feu: 22, eau: 22, air: 22, terre: 22 } },
+    bst: { hp: 79000, atk: 300, spd: 148, res: { neutre: 22, feu: 22, eau: 22, air: 22, terre: 22 } },
     moves: ['wanted_rok_gnorok_martelage', 'wanted_rok_gnorok_armure_rocailleuse', 'wanted_rok_gnorok_surt']
 }
 
@@ -256,7 +256,7 @@ monsters['wanted_simbadas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 80000, atk: 300, spd: 30, res: { neutre: -15, feu: 28, eau: 14, air: 13, terre: -5 } },
+    bst: { hp: 80000, atk: 300, spd: 148, res: { neutre: -15, feu: 28, eau: 14, air: 13, terre: -5 } },
     moves: ['wanted_simbadas_saut_precipite', 'wanted_simbadas_grosse_papatte']
 }
 
@@ -267,7 +267,7 @@ monsters['wanted_prince_marchand'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 96000, atk: 300, spd: 30, res: { neutre: 50, feu: 15, eau: 10, air: 5, terre: 0 } },
+    bst: { hp: 96000, atk: 300, spd: 160, res: { neutre: 50, feu: 15, eau: 10, air: 5, terre: 0 } },
     moves: ['wanted_prince_marchand_marchandage', 'wanted_prince_marchand_palouf', 'wanted_prince_marchand_charge_heroique']
 }
 
@@ -278,7 +278,7 @@ monsters['wanted_maxi_malle'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 89000, atk: 300, spd: 30,
+    bst: { hp: 89000, atk: 300, spd: 160,
         res: { neutre: -20, feu: -10, eau: 40, air: 20, terre: 10 } },
     moves: ['wanted_maxi_malle_decoffrage_brut', 'wanted_maxi_malle_macro_ondes']
 }
@@ -290,7 +290,7 @@ monsters['wanted_naganita'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 94000, atk: 375, spd: 30, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
+    bst: { hp: 94000, atk: 375, spd: 160, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
     moves: ['wanted_naganita_puissant_balayage', 'wanted_naganita_estoc_fatal']
 }
 
@@ -301,7 +301,7 @@ monsters['wanted_trukipik'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 94000, atk: 375, spd: 30, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
+    bst: { hp: 94000, atk: 375, spd: 160, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
     moves: ['wanted_trukipik_puissant_balayage', 'wanted_trukipik_estoc_fatal']
 }
 
@@ -312,7 +312,7 @@ monsters['wanted_carlita_de_l_aguerfelde'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 94000, atk: 300, spd: 30, res: { neutre: 20, feu: -20, eau: 35, air: -5, terre: 5 } },
+    bst: { hp: 94000, atk: 300, spd: 160, res: { neutre: 20, feu: -20, eau: 35, air: -5, terre: 5 } },
     moves: ['wanted_carlita_de_l_aguerfelde_piege_a_mulou', 'wanted_carlita_de_l_aguerfelde_depecage', 'wanted_carlita_de_l_aguerfelde_carabine_a_gros_gibier']
 }
 
@@ -323,7 +323,7 @@ monsters['wanted_gobrechaun'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 110,
-    bst: { hp: 110000, atk: 300, spd: 30,
+    bst: { hp: 110000, atk: 300, spd: 160,
         res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 15 } },
     moves: ['wanted_gobrechaun_jig', 'wanted_gobrechaun_lance_en_ciel']
 }
@@ -335,7 +335,7 @@ monsters['wanted_bouflouth'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 130000, atk: 300, spd: 30, res: { neutre: 80, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 130000, atk: 300, spd: 172, res: { neutre: 80, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_bouflouth_mammouth', 'wanted_bouflouth_gloutmouth', 'wanted_bouflouth_hypermouth', 'wanted_bouflouth_embrochmouth']
 }
 
@@ -346,7 +346,7 @@ monsters['wanted_vashkiwi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 130000, atk: 300, spd: 30,
+    bst: { hp: 130000, atk: 300, spd: 172,
         res: { neutre: 35, feu: -5, eau: 5, air: 15, terre: 25 } },
     moves: ['wanted_vashkiwi_laitage', 'wanted_vashkiwi_sensations_pures', 'wanted_vashkiwi_fontaine_laiteuse']
 }
@@ -358,7 +358,7 @@ monsters['wanted_morblok'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 120000, atk: 400, spd: 40, res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
+    bst: { hp: 120000, atk: 400, spd: 172, res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
     moves: ['wanted_morblok_chronocharge', 'wanted_morblok_rajeunissement', 'wanted_morblok_saute_heure']
 }
 
@@ -369,7 +369,7 @@ monsters['wanted_nenufor_tilotus'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 130000, atk: 375, spd: 30, res: { neutre: 0, feu: -15, eau: 10, air: -5, terre: 20 } },
+    bst: { hp: 130000, atk: 375, spd: 172, res: { neutre: 0, feu: -15, eau: 10, air: -5, terre: 20 } },
     moves: ['wanted_nenufor_tilotus_spores_de_nympheacee', 'wanted_nenufor_tilotus_invocation_de_nufor', 'wanted_nenufor_tilotus_rhizome_agressif']
 }
 
@@ -380,7 +380,7 @@ monsters['wanted_monsieur_pingouin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 140000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 50, air: 20, terre: 0 } },
+    bst: { hp: 140000, atk: 300, spd: 172, res: { neutre: 0, feu: 0, eau: 50, air: 20, terre: 0 } },
     moves: ['wanted_monsieur_pingouin_parapluie_gadget', 'wanted_monsieur_pingouin_iceberg_saloon', 'wanted_monsieur_pingouin_mascarade_rocambolesque']
 }
 
@@ -391,7 +391,7 @@ monsters['wanted_jerart_dupaindur'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 130000, atk: 300, spd: 30,
+    bst: { hp: 130000, atk: 300, spd: 172,
         res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_jerart_dupaindur_murge', 'wanted_jerart_dupaindur_soif_inextinguible', 'wanted_jerart_dupaindur_tournee_generale']
 }
@@ -403,7 +403,7 @@ monsters['wanted_padgref_demoel'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 160000, atk: 300, spd: 30, res: { neutre: 30, feu: 15, eau: -15, air: -10, terre: -15 } },
+    bst: { hp: 160000, atk: 300, spd: 172, res: { neutre: 30, feu: 15, eau: -15, air: -10, terre: -15 } },
     moves: ['wanted_padgref_demoel_attraction', 'wanted_padgref_demoel_assaut_aerien', 'wanted_padgref_demoel_transposition_aqueuse', 'wanted_padgref_demoel_absorption_brulante', 'wanted_padgref_demoel_sanction']
 }
 
@@ -414,7 +414,7 @@ monsters['wanted_ali_grothor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 140000, atk: 300, spd: 30, res: { neutre: 20, feu: 30, eau: -15, air: 25, terre: 10 } },
+    bst: { hp: 140000, atk: 300, spd: 172, res: { neutre: 20, feu: 30, eau: -15, air: 25, terre: 10 } },
     moves: ['wanted_ali_grothor_ture', 'wanted_ali_grothor_hida', 'wanted_ali_grothor_risation', 'wanted_ali_grothor_rage_electrique']
 }
 
@@ -425,7 +425,7 @@ monsters['wanted_roi_camole'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 160000, atk: 400, spd: 40,
+    bst: { hp: 160000, atk: 400, spd: 172,
         res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_roi_camole_taco_tak', 'wanted_roi_camole_epines_et_mirages', 'wanted_roi_camole_coucalactus', 'wanted_roi_camole_foret_de_cactus']
 }
@@ -437,7 +437,7 @@ monsters['wanted_katigrou'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 150000, atk: 300, spd: 30, res: { neutre: 50, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 150000, atk: 300, spd: 184, res: { neutre: 50, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_katigrou_bond_improbable', 'wanted_katigrou_broukeul', 'wanted_katigrou_grougrou']
 }
 
@@ -448,7 +448,7 @@ monsters['wanted_darma'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 160000, atk: 300, spd: 30,
+    bst: { hp: 160000, atk: 300, spd: 184,
         res: { neutre: 50, feu: 0, eau: 10, air: 20, terre: 30 } },
     moves: ['wanted_darma_vue_en_noir', 'wanted_darma_vivacite_perdue', 'wanted_darma_zhostile']
 }
@@ -460,7 +460,7 @@ monsters['wanted_amy_l_empoisonneuse'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 300000, atk: 300, spd: 30,
+    bst: { hp: 300000, atk: 300, spd: 184,
         res: { neutre: -70, feu: -110, eau: -80, air: -100, terre: -90 } },
     moves: ['wanted_amy_l_empoisonneuse_ronce_animee', 'wanted_amy_l_empoisonneuse_poison_vegetal', 'wanted_amy_l_empoisonneuse_vignes_vampiriques', 'wanted_amy_l_empoisonneuse_stranguronces', 'wanted_amy_l_empoisonneuse_foret_epineuse']
 }
@@ -473,7 +473,7 @@ monsters['wanted_fojumo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 160000, atk: 400, spd: 40, res: { neutre: -15, feu: 5, eau: 15, air: 10, terre: 10 } },
+    bst: { hp: 160000, atk: 400, spd: 184, res: { neutre: -15, feu: 5, eau: 15, air: 10, terre: 10 } },
     moves: ['wanted_fojumo_assassinat_silencieux', 'wanted_fojumo_substitution_furtive', 'wanted_fojumo_dissimulation_nocive']
 }
 
@@ -484,7 +484,7 @@ monsters['wanted_fantomayte'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 180000, atk: 300, spd: 30, res: { neutre: 25, feu: 30, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 180000, atk: 300, spd: 184, res: { neutre: 25, feu: 30, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fantomayte_qui_rit', 'wanted_fantomayte_qui_pete', 'wanted_fantomayte_litterature']
 }
 
@@ -495,7 +495,7 @@ monsters['wanted_mogligli'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 34000, atk: 300, spd: 30,
+    bst: { hp: 34000, atk: 300, spd: 184,
         res: { neutre: 20, feu: 30, eau: 0, air: 20, terre: 10 } },
     moves: ['wanted_mogligli_chienchien_rouge', 'wanted_mogligli_au_kanig', 'wanted_mogligli_la_chasse_de_kaa_kaa']
 }
@@ -507,7 +507,7 @@ monsters['wanted_aigripoil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 180000, atk: 500, spd: 50,
+    bst: { hp: 180000, atk: 500, spd: 184,
         res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
     moves: ['wanted_aigripoil_aigrippement', 'wanted_aigripoil_empalladium']
 }
@@ -519,7 +519,7 @@ monsters['wanted_zatoishwan'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 180000, atk: 300, spd: 30, res: { neutre: 20, feu: 80, eau: 60, air: 40, terre: 100 } },
+    bst: { hp: 180000, atk: 300, spd: 184, res: { neutre: 20, feu: 80, eau: 60, air: 40, terre: 100 } },
     moves: ['wanted_zatoishwan_baton_virevoltant', 'wanted_zatoishwan_fee_verte', 'wanted_zatoishwan_vue_trouble', 'wanted_zatoishwan_flasque_incendiaire', 'wanted_zatoishwan_colere_liquide']
 }
 
@@ -530,7 +530,7 @@ monsters['wanted_vengeuse_masquee'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 200000, atk: 300, spd: 30, res: { neutre: 200, feu: 25, eau: 200, air: 25, terre: 25 } },
+    bst: { hp: 200000, atk: 300, spd: 196, res: { neutre: 200, feu: 25, eau: 200, air: 25, terre: 25 } },
     moves: ['wanted_vengeuse_masquee_coup_de_bulle', 'wanted_vengeuse_masquee_attaque_vengeresse', 'wanted_vengeuse_masquee_esprit_de_vengeance']
 }
 
@@ -541,7 +541,7 @@ monsters['wanted_glandaf_l_aigri'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 200000, atk: 300, spd: 30,
+    bst: { hp: 200000, atk: 300, spd: 196,
         res: { neutre: 10, feu: 60, eau: 40, air: 20, terre: 0 } },
     moves: ['wanted_glandaf_l_aigri_gnirdmalg', 'wanted_glandaf_l_aigri_anneau_de_feu', 'wanted_glandaf_l_aigri_grisaille']
 }
@@ -553,7 +553,7 @@ monsters['wanted_anatak_diskedor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 200000, atk: 450, spd: 60, res: { neutre: 0, feu: -5, eau: 20, air: 15, terre: 15 } },
+    bst: { hp: 200000, atk: 450, spd: 196, res: { neutre: 0, feu: -5, eau: 20, air: 15, terre: 15 } },
     moves: ['wanted_anatak_diskedor_lame_tempete', 'wanted_anatak_diskedor_frappe_purificatrice', 'wanted_anatak_diskedor_coup_de_foudre', 'wanted_anatak_diskedor_coup_de_foudre', 'wanted_anatak_diskedor_frappe_purificatrice', 'wanted_anatak_diskedor_lame_tempete']
 }
 
@@ -564,7 +564,7 @@ monsters['wanted_yech_ti'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 220000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 220000, atk: 300, spd: 196, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_yech_ti_goulaf', 'wanted_yech_ti_che_tout_fraique', 'wanted_yech_ti_ch_est_du_leque_mes_louppes', 'wanted_yech_ti_ti_t_as_bou', 'wanted_yech_ti_ch_est_vraimint_abominap', 'wanted_yech_ti_i_fait_cru', 'wanted_yech_ti_ptio_quinquin', 'wanted_yech_ti_avoir_maux_a_ches_dints', 'wanted_yech_ti_qu_i_est_mieffe_c_ti_la']
 }
 
@@ -575,7 +575,7 @@ monsters['wanted_crasper'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 220000, atk: 300, spd: 30,
+    bst: { hp: 220000, atk: 300, spd: 196,
         res: { neutre: 25, feu: 30, eau: 10, air: 20, terre: 0 } },
     moves: ['wanted_crasper_crasse', 'wanted_crasper_lieu_hante', 'wanted_crasper_amical']
 }
@@ -587,7 +587,7 @@ monsters['wanted_hin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 210000, atk: 700, spd: 70,
+    bst: { hp: 210000, atk: 700, spd: 196,
         res: { neutre: -5, feu: 10, eau: 15, air: -10, terre: 40 } },
     moves: ['wanted_hin_tetropre', 'wanted_hin_pouss_pouss', 'wanted_hin_distanss']
 }
@@ -599,7 +599,7 @@ monsters['wanted_ka_youloud'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 210000, atk: 600, spd: 60,
+    bst: { hp: 210000, atk: 600, spd: 196,
         res: { neutre: 20, feu: 5, eau: 35, air: 15, terre: 25 } },
     moves: ['wanted_ka_youloud_mache_ouille', 'wanted_ka_youloud_liquide_gastrique', 'wanted_ka_youloud_pas_sage', 'wanted_ka_youloud_mache_ouille', 'wanted_ka_youloud_mache_ouille', 'wanted_ka_youloud_pas_sage', 'wanted_ka_youloud_pas_sage']
 }
@@ -611,7 +611,7 @@ monsters['wanted_dremoan'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 240000, atk: 300, spd: 30, res: { neutre: 60, feu: 0, eau: 50, air: 40, terre: 50 } },
+    bst: { hp: 240000, atk: 300, spd: 208, res: { neutre: 60, feu: 0, eau: 50, air: 40, terre: 50 } },
     moves: ['wanted_dremoan_graine_de_dremoan', 'wanted_dremoan_mains_crochues', 'wanted_dremoan_ronce_de_deperissement', 'wanted_dremoan_ronces_de_l_assassin', 'wanted_dremoan_pourrissement_accelere', 'wanted_dremoan_zombification_putride']
 }
 
@@ -622,7 +622,7 @@ monsters['wanted_carter_le_pillard'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 250000, atk: 300, spd: 30, res: { neutre: 50, feu: 30, eau: 10, air: 100, terre: 10 } },
+    bst: { hp: 250000, atk: 300, spd: 208, res: { neutre: 50, feu: 30, eau: 10, air: 100, terre: 10 } },
     moves: ['wanted_carter_le_pillard_dans_les_vapes', 'wanted_carter_le_pillard_ce_qui_est_a_toi_est_a_moi', 'wanted_carter_le_pillard_souffle_embrume']
 }
 
@@ -633,7 +633,7 @@ monsters['wanted_guerrier_du_k_o'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 240000, atk: 650, spd: 60, res: { neutre: 20, feu: 10, eau: 5, air: -20, terre: 15 } },
+    bst: { hp: 240000, atk: 650, spd: 208, res: { neutre: 20, feu: 10, eau: 5, air: -20, terre: 15 } },
     moves: ['wanted_guerrier_du_k_o_tremblement_de_guerre', 'wanted_guerrier_du_k_o_massacre_a_retardement', 'wanted_guerrier_du_k_o_carnageddon']
 }
 
@@ -644,7 +644,7 @@ monsters['wanted_shushu_debruk_sayl'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 250000, atk: 333, spd: 33, res: { neutre: 3, feu: 33, eau: 33, air: 33, terre: 33 } },
+    bst: { hp: 250000, atk: 333, spd: 208, res: { neutre: 3, feu: 33, eau: 33, air: 33, terre: 33 } },
     moves: ['wanted_shushu_debruk_sayl_assimilation_d_energies', 'wanted_shushu_debruk_sayl_mue_demoniaque', 'wanted_shushu_debruk_sayl_malediction_cuisante', 'wanted_shushu_debruk_sayl_poing_des_secousses_deferlantes', 'wanted_shushu_debruk_sayl_poing_des_vents_brulants']
 }
 
@@ -655,7 +655,7 @@ monsters['wanted_flasho'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 240000, atk: 300, spd: 30, res: { neutre: 30, feu: 50, eau: 10, air: 50, terre: 0 } },
+    bst: { hp: 240000, atk: 300, spd: 208, res: { neutre: 30, feu: 50, eau: 10, air: 50, terre: 0 } },
     moves: ['wanted_flasho_courant_d_air', 'wanted_flasho_agitation_moleculaire', 'wanted_flasho_amende', 'wanted_flasho_vibration_moleculaire']
 }
 
@@ -666,7 +666,7 @@ monsters['wanted_viti_glourson'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 290000, atk: 300, spd: 30, res: { neutre: 50, feu: 10, eau: 0, air: 10, terre: 30 } },
+    bst: { hp: 290000, atk: 300, spd: 208, res: { neutre: 50, feu: 10, eau: 0, air: 10, terre: 30 } },
     moves: ['wanted_viti_glourson_miel_cicatrisant', 'wanted_viti_glourson_mielodie', 'wanted_viti_glourson_crepe_au_miel', 'wanted_viti_glourson_gloursonnerie', 'wanted_viti_glourson_statue_de_miel']
 }
 
@@ -677,7 +677,7 @@ monsters['wanted_fuji_givrefoux'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 270000, atk: 300, spd: 30, res: { neutre: -6, feu: 14, eau: 12, air: -11, terre: 6 } },
+    bst: { hp: 270000, atk: 300, spd: 208, res: { neutre: -6, feu: 14, eau: 12, air: -11, terre: 6 } },
     moves: ['wanted_fuji_givrefoux_progeniture', 'wanted_fuji_givrefoux_lait_maternel', 'wanted_fuji_givrefoux_foufoux']
 }
 
@@ -688,7 +688,7 @@ monsters['wanted_docteur_eggob'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 280000, atk: 300, spd: 30, res: { neutre: 200, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 280000, atk: 300, spd: 208, res: { neutre: 200, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_docteur_eggob_gobus_chaotique', 'wanted_docteur_eggob_robotisation', 'wanted_docteur_eggob_rayon_emeraude', 'wanted_docteur_eggob_uf_de_la_mort']
 }
 
@@ -699,7 +699,7 @@ monsters['wanted_sans_visage'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 270000, atk: 300, spd: 30, res: { neutre: 50, feu: 20, eau: 5, air: 10, terre: 15 } },
+    bst: { hp: 270000, atk: 300, spd: 208, res: { neutre: 50, feu: 20, eau: 5, air: 10, terre: 15 } },
     moves: ['wanted_sans_visage_rage_avide', 'wanted_sans_visage_air_electrifiant', 'wanted_sans_visage_rage_foudroyante', 'wanted_sans_visage_invocation_de_bak']
 }
 
@@ -710,7 +710,7 @@ monsters['wanted_predagob'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 260000, atk: 300, spd: 30, res: { neutre: 40, feu: 10, eau: 25, air: 20, terre: 70 } },
+    bst: { hp: 260000, atk: 300, spd: 208, res: { neutre: 40, feu: 10, eau: 25, air: 20, terre: 70 } },
     moves: ['wanted_predagob_moa_chasser_bestioles', 'wanted_predagob_mine_gobliterante', 'wanted_predagob_gobseques']
 }
 
@@ -721,7 +721,7 @@ monsters['wanted_buldalazred'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 80, res: { neutre: 35, feu: 10, eau: 20, air: 5, terre: 25 } },
+    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 35, feu: 10, eau: 20, air: 5, terre: 25 } },
     moves: ['wanted_buldalazred_piege_dimensionnel', 'wanted_buldalazred_uction']
 }
 
@@ -732,7 +732,7 @@ monsters['wanted_takomako'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 80, res: { neutre: 20, feu: 35, eau: 25, air: 5, terre: 10 } },
+    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 20, feu: 35, eau: 25, air: 5, terre: 10 } },
     moves: ['wanted_takomako_takotak', 'wanted_takomako_makomak']
 }
 
@@ -743,7 +743,7 @@ monsters['wanted_homard_medali'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 80, res: { neutre: 15, feu: -5, eau: 10, air: 30, terre: 20 } },
+    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 15, feu: -5, eau: 10, air: 30, terre: 20 } },
     moves: ['wanted_homard_medali_drachetaulque', 'wanted_homard_medali_hypercut', 'wanted_homard_medali_telepunch']
 }
 
@@ -754,7 +754,7 @@ monsters['wanted_glourdorak'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 340000, atk: 300, spd: 30, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 340000, atk: 300, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_glourdorak_gloursofulgur', 'wanted_glourdorak_gloursopoing', 'wanted_glourdorak_dard_des_villes', 'wanted_glourdorak_gloursolaser', 'wanted_glourdorak_ruche_hour', 'wanted_glourdorak_miel_de_jouvence']
 }
 
@@ -765,7 +765,7 @@ monsters['wanted_mekamouth'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 340000, atk: 300, spd: 30, res: { neutre: 25, feu: 50, eau: -15, air: -20, terre: 35 } },
+    bst: { hp: 340000, atk: 300, spd: 220, res: { neutre: 25, feu: 50, eau: -15, air: -20, terre: 35 } },
     moves: ['wanted_mekamouth_glyglyphe', 'wanted_mekamouth_mekabouste', 'wanted_mekamouth_la_defense_c_est_l_attaque', 'wanted_mekamouth_liquide_de_refroidissement', 'wanted_mekamouth_surtension', 'wanted_mekamouth_spahunglif']
 }
 
@@ -776,7 +776,7 @@ monsters['wanted_culbutuf'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 300, spd: 30, res: { neutre: 25, feu: 40, eau: 35, air: -10, terre: -15 } },
+    bst: { hp: 300000, atk: 300, spd: 220, res: { neutre: 25, feu: 40, eau: 35, air: -10, terre: -15 } },
     moves: ['wanted_culbutuf_du_fond_du_cur', 'wanted_culbutuf_roule_ma_boule', 'wanted_culbutuf_sinistro_vole', 'wanted_culbutuf_de_bon_cur', 'wanted_culbutuf_va_te_faire_cuire_un_uf']
 }
 
@@ -787,7 +787,7 @@ monsters['wanted_chevalier_de_glace'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 320000, atk: 300, spd: 30, res: { neutre: 25, feu: -15, eau: -20, air: 35, terre: 50 } },
+    bst: { hp: 320000, atk: 300, spd: 220, res: { neutre: 25, feu: -15, eau: -20, air: 35, terre: 50 } },
     moves: ['wanted_chevalier_de_glace_rafraichissement', 'wanted_chevalier_de_glace_souffler_n_est_pas_jouer', 'wanted_chevalier_de_glace_souffle_amollissant', 'wanted_chevalier_de_glace_la_force_du_faible', 'wanted_chevalier_de_glace_tranchant_absorbant', 'wanted_chevalier_de_glace_saut']
 }
 
@@ -798,7 +798,7 @@ monsters['wanted_psikopompe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 320000, atk: 300, spd: 30, res: { neutre: 25, feu: -25, eau: 50, air: 45, terre: -20 } },
+    bst: { hp: 320000, atk: 300, spd: 220, res: { neutre: 25, feu: -25, eau: 50, air: 45, terre: -20 } },
     moves: ['wanted_psikopompe_coupe_jatte', 'wanted_psikopompe_sentence', 'wanted_psikopompe_bondage', 'wanted_psikopompe_flagellation_stimulante', 'wanted_psikopompe_retour_a_l_envoyeur']
 }
 
@@ -809,7 +809,7 @@ monsters['wanted_le_fantome_braideur'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 300, spd: 30, res: { neutre: 15, feu: 10, eau: 35, air: 35, terre: 15 } },
+    bst: { hp: 300000, atk: 300, spd: 220, res: { neutre: 15, feu: 10, eau: 35, air: 35, terre: 15 } },
     moves: ['wanted_le_fantome_braideur_paleolitige', 'wanted_le_fantome_braideur_carroyage', 'wanted_le_fantome_braideur_mastaba']
 }
 
@@ -820,7 +820,7 @@ monsters['wanted_voldelor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 80, res: { neutre: 20, feu: 35, eau: -5, air: 15, terre: 10 } },
+    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 20, feu: 35, eau: -5, air: 15, terre: 10 } },
     moves: ['wanted_voldelor_sort_scelle', 'wanted_voldelor_magitation', 'wanted_voldelor_armada_cadavra', 'wanted_voldelor_retour_a_la_vie']
 }
 
@@ -831,7 +831,7 @@ monsters['wanted_sicogne'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 575, spd: 90, res: { neutre: 30, feu: -10, eau: 15, air: 35, terre: 20 } },
+    bst: { hp: 290000, atk: 575, spd: 220, res: { neutre: 30, feu: -10, eau: 15, air: 35, terre: 20 } },
     moves: ['wanted_sicogne_charge_destructrice', 'wanted_sicogne_superpuissance', 'wanted_sicogne_annihilation', 'wanted_sicogne_agression']
 }
 
@@ -842,7 +842,7 @@ monsters['wanted_mi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 800, spd: 80, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 300000, atk: 800, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_mi_enveloppage']
 }
 
@@ -853,7 +853,7 @@ monsters['wanted_fou'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 800, spd: 80, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 300000, atk: 800, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fou_coupe']
 }
 
@@ -864,7 +864,7 @@ monsters['wanted_chi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 800, spd: 80, res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
+    bst: { hp: 300000, atk: 800, spd: 220, res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_chi_emoussage']
 }
 
@@ -875,7 +875,7 @@ monsters['wanted_ganos'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 250000, atk: 1000, spd: 100, res: { neutre: 20, feu: -5, eau: 15, air: 15, terre: 15 } },
+    bst: { hp: 250000, atk: 1000, spd: 220, res: { neutre: 20, feu: -5, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_ganos_matatak', 'wanted_ganos_sanglinglin', 'wanted_ganos_sabotage', 'wanted_ganos_taure_ture', 'wanted_ganos_lardage', 'wanted_ganos_sanglissade', 'wanted_ganos_taure_peur', 'wanted_ganos_rugibier', 'wanted_ganos_groincision']
 }
 
@@ -886,7 +886,7 @@ monsters['wanted_hyperscampe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 500, spd: 50, res: { neutre: 40, feu: 30, eau: 15, air: 25, terre: 10 } },
+    bst: { hp: 300000, atk: 500, spd: 220, res: { neutre: 40, feu: 30, eau: 15, air: 25, terre: 10 } },
     moves: ['wanted_hyperscampe_riveteuse', 'wanted_hyperscampe_percussion', 'wanted_hyperscampe_rupture', 'wanted_hyperscampe_forage']
 }
 
@@ -897,7 +897,7 @@ monsters['wanted_grand_kongoku'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 1125, spd: 100, res: { neutre: 15, feu: 15, eau: -10, air: -5, terre: 20 } },
+    bst: { hp: 300000, atk: 1125, spd: 220, res: { neutre: 15, feu: 15, eau: -10, air: -5, terre: 20 } },
     moves: ['wanted_grand_kongoku_puissance_lunaire', 'wanted_grand_kongoku_invocation_de_la_cocolune', 'wanted_grand_kongoku_deplacement_instantane', 'wanted_grand_kongoku_saruharuha', 'wanted_grand_kongoku_uppercut_magistral', 'wanted_grand_kongoku_saruharuha', 'wanted_grand_kongoku_uppercut_magistral', 'wanted_grand_kongoku_deplacement_instantane']
 }
 
@@ -908,7 +908,7 @@ monsters['wanted_khepricorne'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 320000, atk: 300, spd: 30, res: { neutre: 15, feu: 25, eau: 5, air: 10, terre: 20 } },
+    bst: { hp: 320000, atk: 300, spd: 220, res: { neutre: 15, feu: 25, eau: 5, air: 10, terre: 20 } },
     moves: ['wanted_khepricorne_coup_de_bouse', 'wanted_khepricorne_bouse_de_feu', 'wanted_khepricorne_roule_bouse', 'wanted_khepricorne_avoir_les_bouses', 'wanted_khepricorne_bouse_de_la']
 }
 
@@ -919,7 +919,7 @@ monsters['wanted_panteroz'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 60000, atk: 800, spd: 80, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 60000, atk: 800, spd: 184, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_panteroz_grift', 'wanted_panteroz_rayondule']
 }
 
@@ -930,7 +930,7 @@ monsters['wanted_mouchame'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 68000, atk: 600, spd: 60,
+    bst: { hp: 68000, atk: 600, spd: 196,
         res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_mouchame_herd']
 }
@@ -942,7 +942,7 @@ monsters['wanted_gein'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 240000, atk: 1200, spd: 120, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 240000, atk: 1200, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_gein_paralysie', 'wanted_gein_substitution_funebre', 'wanted_gein_eveil_des_ames_perdues']
 }
 
@@ -953,7 +953,7 @@ monsters['wanted_cire_momore'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 700000, atk: 500, spd: 90, res: { neutre: 27, feu: 27, eau: 27, air: 27, terre: 27 } },
+    bst: { hp: 700000, atk: 500, spd: 220, res: { neutre: 27, feu: 27, eau: 27, air: 27, terre: 27 } },
     moves: ['wanted_cire_momore_metal_hurlant', 'wanted_cire_momore_briselame', 'wanted_cire_momore_triste_cire', 'wanted_cire_momore_fatalite']
 }
 
@@ -964,7 +964,7 @@ monsters['wanted_gargandyas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 100000, atk: 300, spd: 0, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 100000, atk: 300, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_gargandyas_sceaux_telluriques', 'wanted_gargandyas_amnesie_animale', 'wanted_gargandyas_cri_primitif', 'wanted_gargandyas_rituel_primordial', 'wanted_gargandyas_gargameha', 'wanted_gargandyas_rafale_bestiale']
 }
 // ─── Avis de Recherche ───────────────────────────────────────────────────────
@@ -1738,7 +1738,7 @@ const WantedBosses = {
         background: '',
         levelCap:  200,
         bst:       { hp: 320000, atk: 300 },
-        panoplie:  [{ itemId: 'ceste_gele_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'lame_givree_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'pavois_frigorifie_du_chevalier_de_glace', dropRate: 0.1 }]
+        panoplie:  [{ itemId: 'ceste_gele_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'lame_givree_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'pavois_frigorifie_du_chevalier_de_glace', dropRate: 0.1 }, { itemId: 'epee_du_chevalier_de_glace', dropRate: 0.1 }]
     },
     'wanted_psikopompe': {
         id:        'wanted_psikopompe',

@@ -114,15 +114,6 @@ function _onBossUltimeVictory(dragonId) {
 
     if (isFirst) {
         ds.firstVictory = true
-        if (dragonId === 'dragon_ignemikhal') {
-            if (!state.unlockedClasses) state.unlockedClasses = []
-            if (!state.unlockedClasses.includes('eliotrope')) {
-                state.unlockedClasses.push('eliotrope')
-                if (!state.newlyUnlockedClasses) state.newlyUnlockedClasses = []
-                state.newlyUnlockedClasses.push('eliotrope')
-                showNotification('Classe débloquée : Éliotrope !', 'success')
-            }
-        }
     }
 
     ds.currentHp      = monsters[dragonId]?.bst.hp ?? ds.maxHp

@@ -61,6 +61,10 @@ const CLASS_UNLOCK_CONDITIONS = {
     },
 
     ecaflip: (s) => s.doubleCritAchieved === true,
+
+    roublard: (s) => s.defeatedBosses?.includes('capitaine_ekarlatte'),
+
+    eliotrope: (s) => Object.keys(BossUltimeDragons).some(id => s.defeatedBosses?.includes(id)),
 }
 
 function checkClassUnlocks() {
