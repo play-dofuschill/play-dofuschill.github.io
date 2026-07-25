@@ -462,7 +462,7 @@ move.flammeche_air = {
     id: 'flammeche_air',
     name: 'Flammèche Air',
     cooldownMs: 3000,
-    effects: [{type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+    effects: [{type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 13 }, target: 'enemy'}]
 }
 // Scarafeuille Vert
 move.spriti_element_vert = {
@@ -475,7 +475,7 @@ move.flammeche_terre = {
     id: 'flammeche_terre',
     name: 'Flammèche Terre',
     cooldownMs: 3000,
-    effects: [{type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+    effects: [{type: 'damage', element: 'terre', damageHpPct: { source: 'casterMaxHp', pct: 13 }, target: 'enemy'}]
 }
 // Scarafeuille Rouge
 move.spriti_element_rouge = {
@@ -488,7 +488,7 @@ move.flammeche_feu = {
     id: 'flammeche_feu',
     name: 'Flammèche Feu',
     cooldownMs: 3000,
-    effects: [{type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+    effects: [{type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 13 }, target: 'enemy'}]
 }
 // Scarafeuille Bleu
 move.spriti_element_bleu = {
@@ -501,7 +501,7 @@ move.flammeche_eau = {
     id: 'flammeche_eau',
     name: 'Flammèche Eau',
     cooldownMs: 3000,
-    effects: [{type: 'damage', element: 'eau', damageHpPct: { source: 'casterMaxHp', pct: 33 }, target: 'enemy'}]
+    effects: [{type: 'damage', element: 'eau', damageHpPct: { source: 'casterMaxHp', pct: 13 }, target: 'enemy'}]
 }
 // Scarafeuille Immature
 move.scarapoison = {
@@ -4591,7 +4591,7 @@ move.badaboum = {
     name: 'Badaboum',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 250 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damageHpPct: { source: 'casterMaxHp', pct: 150 }, target: 'enemy' }
     ]
 }
 
@@ -6445,7 +6445,7 @@ move.rapine = {
     name: 'Rapine',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 15 }, target: 'enemy' }
+        { type: 'damage', element: 'air', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
     ]
 }
 
@@ -13468,7 +13468,7 @@ move.ecorce_putride = {
     name: 'Écorce Putride',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 20 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
     ]
 }
@@ -16488,7 +16488,7 @@ move.foux_de_la_fortune = {
     cooldownMs: 3500,
     effects: [
         { type: 'buff', stat: 'flatDamage', value: 25, duration: 3, target: 'self' },
-        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 20 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
     ]
 }
 move.foux_ou_rien = {
@@ -17150,7 +17150,7 @@ move.graphiose = {
     name: 'Graphiose',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 1 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
     ]
 }
 move.fong_ku = {
@@ -26163,7 +26163,7 @@ move.sanction_bwork = {
     name: 'Sanction Bwork',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 30 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damageHpPct: { source: 'casterMaxHp', pct: 10 }, target: 'enemy' }
     ]
 }
 move.correction_bwork = {

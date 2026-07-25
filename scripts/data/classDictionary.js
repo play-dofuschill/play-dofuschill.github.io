@@ -15,7 +15,7 @@ classes.iop = {
         critChance: 5, critDamagePct: 50,
     },
     growthPerLevel: {
-        hp: 5, atk: 10, spd: 0
+        hp: 5, atk: 7, spd: 0
     },
     startingMove: 'pression',
     learnset: {
@@ -75,7 +75,7 @@ classes.cra = {
         critChance: 5, critDamagePct: 50
     },
     growthPerLevel: {
-        hp: 5, atk: 5, spd: 0.2
+        hp: 5, atk: 4, spd: 0.2
     },
     startingMove: 'fleche_optique',
     learnset: {
@@ -135,7 +135,7 @@ classes.eniripsa = {
         critChance: 5, critDamagePct: 50
     },
     growthPerLevel: {
-        hp: 5, atk: 5, spd: 0
+        hp: 5, atk: 3, spd: 0
     },
     passive: { id: 'eniripsa' },
     startingMove: 'mot_tapageur',
@@ -194,7 +194,7 @@ classes.zobal = {
         hp: 160, atk: 90, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0},
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : tous les 6 sorts, gagne un bouclier = niveau × 2 PV
     passive: { id: 'zobal' },
     startingMove: 'brincadeira',
@@ -253,7 +253,7 @@ classes.sacrieur = {
         hp: 150, atk: 100, spd: 95, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 10, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 10, atk: 3, spd: 0 },
     // Passif : ≤50% PV → +5% dégâts finaux ; ≤15% PV → +10% dégâts finaux ; subit 2× l'érosion
     passive: { id: 'sacrieur', erosionMultiplier: 2 },
     startingMove: 'absorption',
@@ -312,7 +312,7 @@ classes.sram = {
         hp: 140, atk: 100, spd: 105, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 6, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
     // Passif : +1% dégâts finaux par ennemi tué (cap 5%)
     passive: { id: 'sram' },
     startingMove: 'truanderie',
@@ -371,7 +371,7 @@ classes.feca = {
         hp: 160, atk: 90, spd: 100, 
         res: {neutre: 5, terre: 5, feu: 5, eau: 5, air: 5}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 3, spd: 0 },
     // Passif : +2% résistances all par ennemi tué (cap 10%)
     passive: { id: 'feca' },
     startingMove: 'retour_du_baton',
@@ -430,7 +430,7 @@ classes.osamodas = {
         hp: 145, atk: 90, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 3, spd: 0 },
     // Passif : les invocations ont 2× plus de stats (PV et ATK)
     passive: { id: 'osamodas' },
     startingMove: 'cri_du_corbac',
@@ -489,7 +489,7 @@ classes.enutrof = {
         hp: 150, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 3, spd: 0 },
     // Passif : +15% drop d'items, kamas ×2 (quand item au max)
     passive: { id: 'enutrof' },
     startingMove: 'lancer_de_pieces',
@@ -548,7 +548,7 @@ classes.xelor = {
         hp: 140, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 3, spd: 0 },
     // Passif : cycle de 7 sorts (1-2-3-4-3-2-1) au lieu de 1-2-3-4
     passive: { id: 'xelor' },
     startingMove: 'perturbation',
@@ -607,7 +607,7 @@ classes.huppermage = {
         hp: 150, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : +10% dégâts finaux si les 4 sorts équipés ont des éléments tous différents
     passive: { id: 'huppermage' },
     startingMove: 'lance-flamme',
@@ -666,7 +666,7 @@ classes.sadida = {
         hp: 150, atk: 90, spd: 100, 
         res: {neutre: 0, terre: 5, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : tous les 4 sorts, ralentit l'ennemi de -20 vitesse pendant 2 tours
     passive: { id: 'sadida' },
     startingMove: 'ronce',
@@ -725,7 +725,7 @@ classes.roublard = {
         hp: 150, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 6, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : à la mort, inflige 30% de son PV max en dégâts neutres à l'ennemi
     passive: { id: 'roublard' },
     startingMove: 'explobombe',
@@ -784,7 +784,7 @@ classes.ecaflip = {
         hp: 150, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 10, critDamagePct: 50 },
-    growthPerLevel: { hp: 6, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : roulette — à chaque cycle de 4 sorts, gagne un bonus ou malus aléatoire
     passive: { id: 'ecaflip' },
     startingMove: 'pile_ou_face', 
@@ -843,7 +843,7 @@ classes.steamer = {
         hp: 150, atk: 100, spd: 95, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 6, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Sorts de type "turret" disponibles (voir executeEffect / mstrMoveDictionary.js)
     passive: { id: 'steamer' },
     startingMove: 'longue-vue',
@@ -902,7 +902,7 @@ classes.ouginak = {
         hp: 150, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 6, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
     // Passif : +20% dégâts critiques de base
     passive: { id: 'ouginak', baseCritDamagePct: 20 },
     startingMove: 'molosse',
@@ -1020,7 +1020,7 @@ classes.pandawa = {
         hp: 170, atk: 100, spd: 95, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : cycle normal → ivresse (-20% vit, +20% dmg, +10% res all) → gueule de bois (-20% dmg, -10% res all)
     passive: { id: 'pandawa' },
     startingMove: 'gueule_de_bois',
@@ -1079,7 +1079,7 @@ classes.eliotrope = {
         hp: 140, atk: 100, spd: 100, 
         res: {neutre: 0, terre: 0, feu: 0, eau: 0, air: 0}, 
         critChance: 5, critDamagePct: 50 },
-    growthPerLevel: { hp: 5, atk: 5, spd: 0 },
+    growthPerLevel: { hp: 5, atk: 4, spd: 0 },
     // Passif : sorts de type "portal" disponibles (voir executeEffect / mstrMoveDictionary.js)
     passive: { id: 'eliotrope' },
     startingMove: 'affront',
