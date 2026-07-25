@@ -566,9 +566,9 @@ const familiars = [
     },
     // ─── Grenier de Kerubim (grenierDeKerubim) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'tirubim',
+        name:     'Tirubim',
+        image:    'img/familiers/tirubim.png',
         rarity:   'commun',
         monsters: ['cafarcher', 'pyrasite', 'mirgrillon', 'sakarien', 'ceglumen'],
         bonuses: [
@@ -643,9 +643,9 @@ const familiars = [
     },
     // ─── Île des Wabbits (ileDesWabbits) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'tiwabbit_kiafin',
+        name:     'Tiwabbit Kiafin',
+        image:    'img/familiers/tiwabbit_kiafin.png',
         rarity:   'commun',
         monsters: ['tiwabbit_kiafin', 'tiwabbit', 'black_tiwabbit', 'wabbit', 'black_wabbit', 'wo_wabbit', 'grand_pa_wabbit', 'wabbit_squelette', 'black_wabbit_squelette'],
         bonuses: [
@@ -720,9 +720,9 @@ const familiars = [
     },
     // ─── Souterrains Wabbits (souterrainsWabbits) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'black_tiwabbit',
+        name:     'Black Tiwabbit',
+        image:    'img/familiers/black_tiwabbit.png',
         rarity:   'commun',
         monsters: ['wobot', 'black_wo_wabbit', 'wobot_kiafin', 'blanc_pa_wabbit', 'tiwobot'],
         bonuses: [
@@ -731,9 +731,9 @@ const familiars = [
     },
     // ─── Canyon sauvage (canyonSauvage) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'bloalak',
+        name:     'Bloalak',
+        image:    'img/familiers/bloalak.png',
         rarity:   'commun',
         monsters: ['koalak_immature', 'mama_koalak', 'warko_marron', 'dok_alako', 'piralak', 'drakoalak'],
         bonuses: [
@@ -786,9 +786,9 @@ const familiars = [
     },
     // ─── Plaines Herbeuses (plainesHerbeuses) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'toukancre',
+        name:     'Toukancre',
+        image:    'img/familiers/toukancre.png',
         rarity:   'commun',
         monsters: ['craqueboule_poli', 'craqueleur_poli', 'bitouf_des_plaines', 'mufafah', 'kilibriss', 'kido'],
         bonuses: [
@@ -830,9 +830,9 @@ const familiars = [
     },
     // ─── Pénates du corbac (penatesDuCorbac) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'vilain_petit_corbac',
+        name:     'Vilain Petit Corbac',
+        image:    'img/familiers/vilain_petit_corbac.png',
         rarity:   'commun',
         monsters: ['renarbo', 'buveur', 'corbac', 'corbac_dresse', 'kapotie_le_buveur', 'horace_le_corbac_apprivoise', 'rono_le_renarbo', 'capsaaloocke'],
         bonuses: [
@@ -863,9 +863,9 @@ const familiars = [
     },
     // ─── Plantala (plantala) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'Neutro_Vegetal',
+        name:     'Neutro Végétal',
+        image:    'img/familiers/Neutro_Végétal',
         rarity:   'commun',
         monsters: ['bambouto', 'floristile', 'bulbuisson', 'bulbiflore', 'grenufar'],
         bonuses: [
@@ -896,9 +896,9 @@ const familiars = [
     },
     // ─── Champs des Tofus Sauvages (champsDesTofusSauvages) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'tofoudre',
+        name:     'Tofoudre',
+        image:    'img/familiers/tofoudre.png',
         rarity:   'commun',
         monsters: ['tofuzmo', 'vilain_petit_tofu', 'tofutoflamme', 'tofubine', 'tofu_dodu'],
         bonuses: [
@@ -918,9 +918,9 @@ const familiars = [
     },
     // ─── Vallée de la mort Kitu (valleeDeLaMortKitu) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'koalak_sanguin',
+        name:     'Koalak Sanguin',
+        image:    'img/familiers/koalak_sanguin.png',
         rarity:   'commun',
         monsters: ['koalak_sanguin', 'guerrier_koalak', 'koalak_farouche', 'warko_violet', 'fauchalak'],
         bonuses: [
@@ -962,9 +962,9 @@ const familiars = [
     },
     // ─── Akwadala (akwadala) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'Neutro_Aqueux',
+        name:     'Neutro Aqueux',
+        image:    'img/familiers/Neutro_Aqueux.png',
         rarity:   'commun',
         monsters: ['sarkapwane', 'kokom', 'akakwa', 'betto', 'kwamourai'],
         bonuses: [
@@ -973,9 +973,9 @@ const familiars = [
     },
     // ─── Terrdala (terrdala) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'tanuk',
+        name:     'Tanuk',
+        image:    'img/familiers/tanuk;PNG',
         rarity:   'commun',
         monsters: ['shinibaru', 'ishigro_pake', 'tetonuki', 'parashukoui', 'lolojiki'],
         bonuses: [
@@ -1020,9 +1020,9 @@ const familiars = [
     },
     // ─── Aerdala (aerdala) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'Neutro_Volatil',
+        name:     'Neutro Volatil',
+        image:    'img/familiers/Neutro_Volatil.png',
         rarity:   'peu_commun',
         monsters: ['uchiwang', 'ino_naru', 'kurookin', 'fangshu', 'lichangoro'],
         bonuses: [
@@ -1032,9 +1032,9 @@ const familiars = [
     },
     // ─── Feudala (feudala) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'Neutro_Igné',
+        name:     'Neutro Igné',
+        image:    'img/familiers/Neutro_Igné.png',
         rarity:   'peu_commun',
         monsters: ['crachefoux', 'rouquette', 'boumbardier', 'petartifoux', 'founamboul'],
         bonuses: [
@@ -1080,9 +1080,9 @@ const familiars = [
     },
     // ─── Feuillage de l'arbre Hakam (feuillageArbreHakam) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'kokulte',
+        name:     'Kokulte',
+        image:    'img/familiers/kokulte.png',
         rarity:   'peu_commun',
         monsters: ['bitouf_aerien', 'kaskargo', 'poolay', 'abrakleur_clair', 'meupette'],
         bonuses: [
@@ -1104,9 +1104,9 @@ const familiars = [
     },
     // ─── Dents de pierre (dentsDePierre) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'chachyene',
+        name:     'Chachyène',
+        image:    'img/familiers/chachyène.png',
         rarity:   'peu_commun',
         monsters: ['kanihilan', 'felygiene', 'panthegros', 'kaniblou', 'orfelin'],
         bonuses: [
@@ -1320,9 +1320,9 @@ const familiars = [
     },
     // ─── Tour de la Clepsydre (tourDeLaClepsydre) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'Noxine',
+        name:     'Noxine',
+        image:    'img/familiers/Noxine.png',
         rarity:   'peu_commun',
         monsters: ['granduk', 'strigide', 'cycloide', 'sinistrofu', 'nocturlabe'],
         bonuses: [
@@ -1392,9 +1392,9 @@ const familiars = [
     },
     // ─── Caserne du jour sans fin (caserneDuJourSansFin) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'flame',
+        name:     'Flame',
+        image:    'img/familiers/flame.png',
         rarity:   'peu_commun',
         monsters: ['chause', 'ectorche', 'esprigne', 'feutome', 'crame'],
         bonuses: [
@@ -1416,9 +1416,9 @@ const familiars = [
     },
     // ─── Marches magmatiques (marchesMagmatiques) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'souvenir_brulant_de_solar',
+        name:     'Souvenir Brulant De Solar',
+        image:    'img/familiers/souvenir_brulant_de_solar.png',
         rarity:   'peu_commun',
         monsters: ['klemort', 'trepavois', 'hacharne', 'moribombe', 'halbardent'],
         bonuses: [
@@ -1548,9 +1548,9 @@ const familiars = [
     },
     // ─── Ephedrya (ephedrya) ───
     {
-        id:       '',
-        name:     '',
-        image:    'img/familiers/',
+        id:       'graingalet',
+        name:     'Graingalet',
+        image:    'img/familiers/graingalet.png',
         rarity:   'peu_commun',
         monsters: ['soldalia', 'cameliache', 'armuguet', 'coquelicogne', 'statulipe'],
         bonuses: [

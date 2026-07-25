@@ -532,6 +532,11 @@ function startCombat(areaId) {
                 combat.memberPassiveState[i].huppermageBonus =
                     elements.length === 4 && new Set(elements).size === 4
             }
+            // Passif familier Nanogrine : élément de résistance tiré au hasard, fixe pour tout le combat
+            if (state.familiarUpgrades?.[m.equip?.familier]?.passifId === 'Nanogrine') {
+                const _nanoElems = ['feu', 'eau', 'air', 'terre', 'neutre']
+                combat.memberPassiveState[i].nanogrineElement = _nanoElems[Math.floor(Math.random() * _nanoElems.length)]
+            }
         }
     }
 
@@ -848,6 +853,10 @@ function startPoutchCombat(mode) {
             }).filter(Boolean)
             combat.memberPassiveState[i].huppermageBonus =
                 elements.length === 4 && new Set(elements).size === 4
+        }
+        if (state.familiarUpgrades?.[m.equip?.familier]?.passifId === 'Nanogrine') {
+            const _nanoElems = ['feu', 'eau', 'air', 'terre', 'neutre']
+            combat.memberPassiveState[i].nanogrineElement = _nanoElems[Math.floor(Math.random() * _nanoElems.length)]
         }
     }
 
@@ -4213,6 +4222,7 @@ function _onVictoryBody() {
     const killerIdx = combat.activeMemberIndex
     combat.memberKillCount[killerIdx] = (combat.memberKillCount[killerIdx] || 0) + 1
     _handleDofusOnKill(killerIdx)
+    _handleFamiliarPassifOnKill(killerIdx)
 
     // Limite 200 kills/personnage : KO forcé, le suivant prend le relais
     if (combat.memberKillCount[killerIdx] >= 200) {
@@ -4780,6 +4790,37 @@ function _handleDofusOnKill(memberIdx) {
             combat.dofusKillStacks[memberIdx][itemId] = newVal
             addLog(`${m.name || classes[m.classId]?.name || '?'} [${itm.name}] → +${cfg.per_kill} ${cfg.stat} (${newVal}/${cfg.max_value})`)
         }
+    }
+}
+
+// Passifs de familier dont l'effet mute un état persistant (pas une stat recalculée à la volée dans stats.js)
+function _handleFamiliarPassifOnKill(memberIdx) {
+    const m = state.team[memberIdx]
+    if (!m || !combat) return
+    const famId    = m.equip?.familier
+    const passifId = state.familiarUpgrades?.[famId]?.passifId
+    if (!passifId) return
+
+    // Cristal Intemporel : bouclier +1% PV max par ennemi tué, cumulable jusqu'à 10% des PV max
+    if (passifId === 'cristalIntemporel') {
+        const maxHp   = m.maxHp || 0
+        const perKill = Math.floor(maxHp * 0.01)
+        const cap     = Math.floor(maxHp * 0.10)
+        if (perKill <= 0) return
+        const current = (m.shield?.value > 0) ? m.shield.value : 0
+        if (current >= cap) return
+        const newVal = Math.min(current + perKill, cap)
+        m.shield = { value: newVal, duration: 999 }
+        addLog(`${m.name || classes[m.classId]?.name || '?'} [Cristal Intemporel] → bouclier ${newVal}/${cap} PV`)
+    }
+
+    // Cristal Temporel : soin instantané de 1% des PV max à chaque ennemi tué, sans plafond
+    if (passifId === 'cristalTemporel') {
+        const maxHp = m.maxHp || 0
+        const healAmt = Math.floor(maxHp * 0.01)
+        if (healAmt <= 0 || m.currentHp <= 0) return
+        m.currentHp = Math.min(maxHp, (m.currentHp || 0) + healAmt)
+        addLog(`${m.name || classes[m.classId]?.name || '?'} [Cristal Temporel] → soigné de ${healAmt} PV`)
     }
 }
 
@@ -5478,6 +5519,7 @@ function onRaidEnemyDeath(slotIdx, killerMemberIdx) {
     if (killerMemberIdx >= 0) {
         combat.memberKillCount[killerMemberIdx] = (combat.memberKillCount[killerMemberIdx] || 0) + 1
         _handleDofusOnKill(killerMemberIdx)
+        _handleFamiliarPassifOnKill(killerMemberIdx)
 
         // Limite 200 kills/personnage en Raid
         if (combat.memberKillCount[killerMemberIdx] >= 200) {

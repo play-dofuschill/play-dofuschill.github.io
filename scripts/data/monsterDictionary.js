@@ -1049,7 +1049,7 @@ monsters.directeur_grunob = {
     image: 'images/monsters/Directeur_Grunob.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1200, atk: 400, spd: 112, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
+    bst: { hp: 1200, atk: 600, spd: 112, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
     moves: ['sermon_educatif', 'chachagobert', 'cuvee_des_gobs']
 }
 // ═══════════════════════════════════════════════════════
@@ -1062,7 +1062,7 @@ monsters.bouftouRoyal = {
     image: 'images/monsters/Bouftou_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 800, atk: 300, spd: 112, res: { neutre: 35, terre: 20, feu: 20, eau: 25, air: 5 } },
+    bst: { hp: 800, atk: 350, spd: 112, res: { neutre: 35, terre: 20, feu: 20, eau: 25, air: 5 } },
     moves: ['morsure_royale', 'guerison_bouftou', 'morsure_de_guerre', 'cuirasse_laineuse']
 }
 // ═══════════════════════════════════════════════════════
@@ -1631,7 +1631,7 @@ monsters.scarabosse_dore = {
     image: 'images/monsters/Scarabosse_Doré.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1600, atk: 560, spd: 124, res: { neutre: 24, terre: 24, feu: 24, eau: 24, air: 24 } },
+    bst: { hp: 1600, atk: 660, spd: 124, res: { neutre: 24, terre: 24, feu: 24, eau: 24, air: 24 } },
     moves: ['picoti', 'naissance', 'premier_soins', 'expulsion']
 }
 // ═══════════════════════════════════════════════════════
@@ -1992,7 +1992,7 @@ monsters.bworkette = {
     image: 'images/monsters/Bworkette.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1600, atk: 380, spd: 124, res: { neutre: 33, terre: 33, feu: 48, eau: 18, air: 28 } },
+    bst: { hp: 1600, atk: 700, spd: 124, res: { neutre: 33, terre: 33, feu: 48, eau: 18, air: 28 } },
     moves: ['abolissement', 'charge', 'mot_croise', 'reconstitution_bwork']
 }
 // ═══════════════════════════════════════════════════════
@@ -2018,7 +2018,7 @@ monsters.shin_larve = {
     image: 'images/monsters/Shin_Larve.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2000, atk: 560, spd: 124, res: { neutre: 54, terre: 34, feu: 34, eau: -26, air: -26 } },
+    bst: { hp: 2000, atk: 700, spd: 124, res: { neutre: 54, terre: 34, feu: 34, eau: -26, air: -26 } },
     moves: ['enlisement', 'convocation_gluante', 'deglutition']
 }
 // ═══════════════════════════════════════════════════════
@@ -2031,7 +2031,7 @@ monsters.corailleur_magistral = {
     image: 'images/monsters/Corailleur_Magistral.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2000, atk: 280, spd: 124, res: { neutre: 23, terre: -6, feu: 13, eau: 18, air: -7 } },
+    bst: { hp: 2000, atk: 700, spd: 124, res: { neutre: 23, terre: -6, feu: 13, eau: 18, air: -7 } },
     moves: ['coraillement_magistral', 'lancer_de_corail_magistral', 'frappe_de_corail_magistrale']
 }
 // ═══════════════════════════════════════════════════════
@@ -2242,7 +2242,7 @@ monsters.rakoopeur = {
     image: 'images/monsters/Rakoopeur.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1200, atk: 400, spd: 124, res: { neutre: 0, terre: 5, feu: 5, eau: 5, air: 5 } },
+    bst: { hp: 1200, atk: 600, spd: 124, res: { neutre: 0, terre: 5, feu: 5, eau: 5, air: 5 } },
     moves: ['serpette', 'camaraderie']
 }
 // ═══════════════════════════════════════════════════════
@@ -2567,7 +2567,7 @@ monsters.gourlo_le_terrible = {
     image: 'images/monsters/Gourlo_le_Terrible.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1900, atk: 280, spd: 136, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
+    bst: { hp: 1900, atk: 700, spd: 136, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
     moves: ['invocation_de_tonneau', 'un_gros_boulet_sur_un_autre_boulet', 'bombarde_mstr']
 }
 // ═══════════════════════════════════════════════════════
@@ -2593,7 +2593,7 @@ monsters.kanniboul_ebil = {
     image: 'images/monsters/Kanniboul_Ebil.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1600, atk: 300, spd: 136, res: { neutre: -10, terre: 30, feu: 10, eau: 20, air: -10 } },
+    bst: { hp: 1600, atk: 700, spd: 136, res: { neutre: -10, terre: 30, feu: 10, eau: 20, air: -10 } },
     moves: ['inspiration_moonesque', 'bouboule']
 }
 // ═══════════════════════════════════════════════════════
@@ -2744,7 +2744,7 @@ monsters.mantiscore = {
     image: 'images/monsters/Mantiscore.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2600, atk: 400, spd: 136, res: { neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 } },
+    bst: { hp: 2600, atk: 800, spd: 136, res: { neutre: 42, terre: 27, feu: 18, eau: 10, air: 33 } },
     moves: ['darmocles', 'force_Poigne', 'tombeau_du_desert', 'garde_bouclier']
 }
 // ═══════════════════════════════════════════════════════
@@ -2770,7 +2770,7 @@ monsters.craqueleur_legendaire = {
     image: 'images/monsters/Craqueleur_Légendaire.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3100, atk: 470, spd: 136, res: { neutre: 58, terre: -12, feu: 58, eau: 67, air: -17 } },
+    bst: { hp: 3100, atk: 900, spd: 136, res: { neutre: 58, terre: -12, feu: 58, eau: 67, air: -17 } },
     moves: ['peau_de_granite', 'pierre_etourdissante', 'peau_de_silex', 'invocation_montagnarde', 'peau_de_topaze', 'coeur_de_craqueleur', 'frappe_du_craqueleur_legendaire']
 }
 // ═══════════════════════════════════════════════════════
@@ -3001,7 +3001,7 @@ monsters.draegnerys = {
     image: 'images/monsters/Draegnerys.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1400, atk: 440, spd: 148, res: { neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 } },
+    bst: { hp: 1400, atk: 700, spd: 148, res: { neutre: 12, terre: 8, feu: 17, eau: 10, air: 20 } },
     moves: ['Pepiniere', 'Knout', 'Drakaaris']
 }
 // ═══════════════════════════════════════════════════════
@@ -3014,7 +3014,7 @@ monsters.wa_wobot = {
     image: 'images/monsters/Wa_Wobot.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3500, atk: 400, spd: 148, res: { neutre: -10, terre: 16, feu: 8, eau: 25, air: 21 } },
+    bst: { hp: 3500, atk: 900, spd: 148, res: { neutre: -10, terre: 16, feu: 8, eau: 25, air: 21 } },
     moves: ['mekattwaction', 'twansmutation', 'mekawapace', 'wouste', 'substitution']
 }
 // ═══════════════════════════════════════════════════════
@@ -3331,7 +3331,7 @@ monsters.reine_nyee = {
     image: 'images/monsters/Reine_Nyée.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3600, atk: 600, spd: 148, res: { neutre: 20, terre: 30, feu: -5, eau: -20, air: 40 } },
+    bst: { hp: 3600, atk: 1100, spd: 148, res: { neutre: 20, terre: 30, feu: -5, eau: -20, air: 40 } },
     moves: ['ponte_d_oeuf', 'cisaillage', 'mitraille_de_soie']
 }
 // ═══════════════════════════════════════════════════════
@@ -3344,7 +3344,7 @@ monsters.le_chouque = {
     image: 'images/monsters/Le_Chouque.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3100, atk: 600, spd: 148, res: { neutre: 14, terre: 0, feu: -10, eau: 36, air: 0 } },
+    bst: { hp: 3100, atk: 900, spd: 148, res: { neutre: 14, terre: 0, feu: -10, eau: 36, air: 0 } },
     moves: ['coup_de_sabre_maudit', 'malediction_pirate', 'teleportation_spectrale']
 }
 // ═══════════════════════════════════════════════════════
@@ -3357,7 +3357,7 @@ monsters.koulosse = {
     image: 'images/monsters/Koulosse.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5800, atk: 5250, spd: 148, res: { neutre: 78, terre: 28, feu: -12, eau: -12, air: 33 } },
+    bst: { hp: 5800, atk: 900, spd: 148, res: { neutre: 78, terre: 28, feu: -12, eau: -12, air: 33 } },
     moves: ['invocation_de_bouftou_des_cavernes', 'calumet_de_la_paix', 'appel_du_koulosse', 'souffle_du_koulosse']
 }
 // ═══════════════════════════════════════════════════════
@@ -3370,7 +3370,7 @@ monsters.choudini = {
     image: 'images/monsters/Choudini.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2900, atk: 720, spd: 148, res: { neutre: 0, terre: 20, feu: 20, eau: 20, air: 20 } },
+    bst: { hp: 2900, atk: 800, spd: 148, res: { neutre: 0, terre: 20, feu: 20, eau: 20, air: 20 } },
     moves: ['reste_assis', 'vinriktus', 'detriktus']
 }
 // ═══════════════════════════════════════════════════════
@@ -3757,7 +3757,7 @@ monsters.dragonCochon = {
     image: 'images/monsters/Dragon_Cochon.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2100, atk: 1650, spd: 160, res: { neutre: 38, terre: 38, feu: 38, eau: -5, air: -5 } },
+    bst: { hp: 2100, atk: 1500, spd: 160, res: { neutre: 38, terre: 38, feu: 38, eau: -5, air: -5 } },
     moves: { pool: ['Ecrasement_Handicapant', 'Croutage', 'Immobilisation'], fixed: ['etourderie_Mortelle'] }
 }
 // ═══════════════════════════════════════════════════════
@@ -3770,7 +3770,7 @@ monsters.moon = {
     image: 'images/monsters/Moon.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3700, atk: 600, spd: 160, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
+    bst: { hp: 3700, atk: 1200, spd: 160, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
     moves: ['marteau_de_moon', 'choc_sismique', 'face_cachee','toototem']
 }
 // ═══════════════════════════════════════════════════════
@@ -3783,7 +3783,7 @@ monsters.silf_le_rasboul_majeur = {
     image: 'images/monsters/Silf_le_Rasboul_Majeur.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 7000, atk: 430, spd: 160, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
+    bst: { hp: 7000, atk: 1200, spd: 160, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
     moves: ['rasage', 'hololole', 'recrutement'],
     onHeal: [{ type: 'random_res_debuff', value: 50, duration: Infinity }],
     onDebuff: [{ stat: 'spd', type: 'heal%maxHp', value: 10 }]
@@ -3798,7 +3798,7 @@ monsters.kharnozor = {
     image: 'images/monsters/Kharnozor.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5700, atk: 800, spd: 160, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    bst: { hp: 5700, atk: 1200, spd: 160, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
     moves: ['emplafonnement', 'cri_dechirant', 'mort_sure_kharnozor']
 }
 // ═══════════════════════════════════════════════════════
@@ -3811,7 +3811,7 @@ monsters.meulou = {
     image: 'images/monsters/Meulou.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5700, atk: 800, spd: 160, res: { neutre: 20, terre: 30, feu: -5, eau: 40, air: 40 } },
+    bst: { hp: 5700, atk: 1500, spd: 160, res: { neutre: 20, terre: 30, feu: -5, eau: 40, air: 40 } },
     moves: ['etripage', 'rage_reconstituante']
 }
 // ═══════════════════════════════════════════════════════
@@ -3824,7 +3824,7 @@ monsters.maitre_des_pantins = {
     image: 'images/monsters/Maître_des_Pantins.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6000, atk: 400, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 6000, atk: 1400, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['tirer_les_ficelles', 'ensecret']
 }
 // ═══════════════════════════════════════════════════════
@@ -4247,7 +4247,7 @@ monsters.damadrya = {
     image: 'images/monsters/Damadrya.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5000, atk: 760, spd: 160, res: { neutre: 7, terre: 12, feu: 2, eau: 8, air: 10 } },
+    bst: { hp: 5000, atk: 1450, spd: 160, res: { neutre: 7, terre: 12, feu: 2, eau: 8, air: 10 } },
     moves: ['aubepine', 'bourgeonnement', 'urticaire']
 }
 // ═══════════════════════════════════════════════════════
@@ -4260,7 +4260,7 @@ monsters.maitre_corbac = {
     image: 'images/monsters/Maître_Corbac.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4500, atk: 880, spd: 160, res: { neutre: 25, terre: 25, feu: 45, eau: 55, air: 55 } },
+    bst: { hp: 4500, atk: 1500, spd: 160, res: { neutre: 25, terre: 25, feu: 45, eau: 55, air: 55 } },
     moves: ['sanction_tenebreuse', 'lien_volatile', 'invocation_de_corbac', 'carapace_d_ailes']
 }
 // ═══════════════════════════════════════════════════════
@@ -4371,7 +4371,7 @@ monsters.blopCocoRoyal = {
     image: 'images/monsters/Blop_Coco_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2400, atk: 560, spd: 172, res: { neutre: -12, terre: -12, feu: -12, eau: -12, air: 94 } },
+    bst: { hp: 2400, atk: 800, spd: 172, res: { neutre: -12, terre: -12, feu: -12, eau: -12, air: 94 } },
     moves: ['blotravail_Royal', 'blopunition_Royale_air', 'blotection_air']
 }
 monsters.blopGriotteRoyal = {
@@ -4380,7 +4380,7 @@ monsters.blopGriotteRoyal = {
     image: 'images/monsters/Blop_Griotte_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2400, atk: 560, spd: 172, res: { neutre: -12, terre: -12, feu: 94, eau: -12, air: -12 } },
+    bst: { hp: 2400, atk: 800, spd: 172, res: { neutre: -12, terre: -12, feu: 94, eau: -12, air: -12 } },
     moves: ['blotravail_Royal', 'blopunition_Royale_feu', 'blotection_feu']
 }
 monsters.blopIndigoRoyal = {
@@ -4389,7 +4389,7 @@ monsters.blopIndigoRoyal = {
     image: 'images/monsters/Blop_Indigo_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2400, atk: 560, spd: 172, res: { neutre: -12, terre: -12, feu: -12, eau: 94, air: -12 } },
+    bst: { hp: 2400, atk: 800, spd: 172, res: { neutre: -12, terre: -12, feu: -12, eau: 94, air: -12 } },
     moves: ['blotravail_Royal', 'blopunition_Royale_eau', 'blotection_eau']
 }
 monsters.blopReinetteRoyal = {
@@ -4398,7 +4398,7 @@ monsters.blopReinetteRoyal = {
     image: 'images/monsters/Blop_Reinette_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2400, atk: 560, spd: 172, res: { neutre: -12, terre: 94, feu: -12, eau: -12, air: -12 } },
+    bst: { hp: 2400, atk: 800, spd: 172, res: { neutre: -12, terre: 94, feu: -12, eau: -12, air: -12 } },
     moves: ['blotravail_Royal', 'blopunition_Royale_terre', 'blotection_terre']
 }
 // ═══════════════════════════════════════════════════════
@@ -4509,7 +4509,7 @@ monsters.crocabulia = {
     image: 'images/monsters/Crocabulia.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 7000, atk: 1000, spd: 172, res: { neutre: 13, terre: 15, feu: 21, eau: 18, air: 9 } },
+    bst: { hp: 7000, atk: 1400, spd: 172, res: { neutre: 13, terre: 15, feu: 21, eau: 18, air: 9 } },
     moves: ['souffle_du_crocabulia', 'pietinement_du_crocabulia', 'crokenjambe', 'crokabriole']
 }
 // ═══════════════════════════════════════════════════════
@@ -4522,7 +4522,7 @@ monsters.skeunk = {
     image: 'images/monsters/Skeunk.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4700, atk: 326, spd: 172, res: { neutre: 28, terre: 28, feu: -5, eau: -5, air: 38 } },
+    bst: { hp: 4700, atk: 1500, spd: 172, res: { neutre: 28, terre: 28, feu: -5, eau: -5, air: 38 } },
     moves: ['chant_regenerant', 'chant_stimulant', 'chant_de_jouvence', 'chant_immobilisant', 'chant_foudroyant']
 }
 // ═══════════════════════════════════════════════════════
@@ -4535,7 +4535,7 @@ monsters.royalmouth = {
     image: 'images/monsters/Royalmouth.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5000, atk: 1000, spd: 172, res: { neutre: 23, terre: 33, feu: 26, eau: -11, air: 48 } },
+    bst: { hp: 5000, atk: 1400, spd: 172, res: { neutre: 23, terre: 33, feu: 26, eau: -11, air: 48 } },
     moves: ['regroupmouth', 'lichemouth', 'aleamouth']
 }
 // ═══════════════════════════════════════════════════════
@@ -4548,7 +4548,7 @@ monsters.tofu_royal = {
     image: 'images/monsters/Tofu_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3400, atk: 600, spd: 172, res: { neutre: 38, terre: 23, feu: 18, eau: 23, air: 58 } },
+    bst: { hp: 3400, atk: 1600, spd: 172, res: { neutre: 38, terre: 23, feu: 18, eau: 23, air: 58 } },
     moves: ['dechiquetage', 'ecrasement_royal', 'invocation_royale_de_tofu', 'beco_du_tofu_royal']
 }
 // ═══════════════════════════════════════════════════════
@@ -4922,7 +4922,7 @@ monsters.blop_multicolore_royal = {
     image: 'images/monsters/Blop_Multicolore_Royal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3400, atk: 700, spd: 172, res: { neutre: -15, terre: 15, feu: 15, eau: 15, air: 15 } },
+    bst: { hp: 3400, atk: 1700, spd: 172, res: { neutre: -15, terre: 15, feu: 15, eau: 15, air: 15 } },
     moves: ['blopoutrage_royal', 'blopacification']
 }
 // ═══════════════════════════════════════════════════════
@@ -4935,7 +4935,7 @@ monsters.tanukoui_san = {
     image: 'images/monsters/Tanukouï_San.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6100, atk: 920, spd: 172, res: { neutre: 30, terre: 15, feu: -25, eau: -2, air: 15 } },
+    bst: { hp: 6100, atk: 1550, spd: 172, res: { neutre: 30, terre: 15, feu: -25, eau: -2, air: 15 } },
     moves: ['coup_de_boules', 'uchimizu', 'casse_noisettes', 'tibagin', 'boulodrome']
 }
 // ═══════════════════════════════════════════════════════
@@ -4948,7 +4948,7 @@ monsters.el_piko = {
     image: 'images/monsters/El_Piko.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5600, atk: 1040, spd: 172, res: { neutre: 30, terre: 20, feu: 15, eau: 25, air: 20 } },
+    bst: { hp: 5600, atk: 1400, spd: 172, res: { neutre: 30, terre: 20, feu: 15, eau: 25, air: 20 } },
     moves: ['pikak', 'pikepik', 'bamba']
 }
 // ═══════════════════════════════════════════════════════
@@ -4961,7 +4961,7 @@ monsters.nagate = {
     image: 'images/monsters/Nagate.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4900, atk: 920, spd: 172, res: { neutre: 5, terre: 5, feu: -5, eau: 15, air: 10 } },
+    bst: { hp: 4900, atk: 1500, spd: 172, res: { neutre: 5, terre: 5, feu: -5, eau: 15, air: 10 } },
     moves: ['eau_fraiche', 'hatsunamiku', 'colere_bouillonnante', 'hors_de_ma_vue', 'invocation_de_bombombre_de_nagate']
 }
 // ═══════════════════════════════════════════════════════
@@ -5130,7 +5130,7 @@ monsters.rat_blanc = {
     image: 'images/monsters/Rat_Blanc.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4400, atk: 760, spd: 184, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 4400, atk: 1400, spd: 184, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['ravage']
 }
 monsters.rat_noir = {
@@ -5139,7 +5139,7 @@ monsters.rat_noir = {
     image: 'images/monsters/Rat_Noir.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4400, atk: 760, spd: 184, res: { neutre: 5, terre: 50, feu: -20, eau: 20, air: -20 } },
+    bst: { hp: 4400, atk: 1400, spd: 184, res: { neutre: 5, terre: 50, feu: -20, eau: 20, air: -20 } },
     moves: ['rafale_elementaire']
 }
 monsters.ramane = {
@@ -5286,7 +5286,7 @@ monsters.shihan = {
     image: 'images/monsters/Shihan.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5800, atk: 1000, spd: 184, res: { neutre: 15, terre: -15, feu: 10, eau: -20, air: 30 } },
+    bst: { hp: 5800, atk: 1600, spd: 184, res: { neutre: 15, terre: -15, feu: 10, eau: -20, air: 30 } },
     moves: ['qikong', 'grande_lame_du_vent', 'ba_gua_zhang', 'brise_apaisante']
 }
 monsters.hanshi = {
@@ -5295,7 +5295,7 @@ monsters.hanshi = {
     image: 'images/monsters/Hanshi.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5800, atk: 1000, spd: 184, res: { neutre: -20, terre: 10, feu: -15, eau: 20, air: 25 } },
+    bst: { hp: 5800, atk: 1600, spd: 184, res: { neutre: -20, terre: 10, feu: -15, eau: 20, air: 25 } },
     moves: ['source_des_vents', 'jufang', 'da_bang', 'ang_eurfiste']
 }
 // ═══════════════════════════════════════════════════════
@@ -5321,7 +5321,7 @@ monsters.founoroshi = {
     image: 'images/monsters/Founoroshi.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4200, atk: 1000, spd: 184, res: { neutre: 50, terre: 15, feu: 35, eau: 5, air: 10 } },
+    bst: { hp: 4200, atk: 1500, spd: 184, res: { neutre: 50, terre: 15, feu: 35, eau: 5, air: 10 } },
     moves: ['fumee_alourdissante', 'fumee_asphyxiante', 'fumee_aveuglante', 'fumee_brulante', 'petards_volants']
 }
 // ═══════════════════════════════════════════════════════
@@ -5374,7 +5374,7 @@ monsters.minotoror = {
     image: 'images/monsters/Minotoror.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4100, atk: 650, spd: 184, res: { neutre: 40, terre: -20, feu: 50, eau: 60, air: 50 } },
+    bst: { hp: 4100, atk: 1400, spd: 184, res: { neutre: 40, terre: -20, feu: 50, eau: 60, air: 50 } },
     moves: ['lancer_de_tofu', 'graines_magiques', 'sabotage_mstr']
 }
 // ═══════════════════════════════════════════════════════
@@ -5703,7 +5703,7 @@ monsters.sphincter_cell = {
     image: 'images/monsters/Sphincter_Cell.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6400, atk: 710, spd: 184, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
+    bst: { hp: 6400, atk: 1710, spd: 184, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
     moves: ['raccourci', 'rasoir', 'mutagen']
 }
 // ═══════════════════════════════════════════════════════
@@ -5716,7 +5716,7 @@ monsters.hell_mina = {
     image: 'images/monsters/Hell_Mina.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 7200, atk: 1080, spd: 184, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
+    bst: { hp: 7200, atk: 1500, spd: 184, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
     moves: ['bond_malefique', 'fatalite', 'extermination_iopesque', 'prejudice']
 }
 // ═══════════════════════════════════════════════════════
@@ -5925,7 +5925,7 @@ monsters.kimbo = {
     image: 'images/monsters/Kimbo.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6900, atk: 6200, spd: 196, res: { neutre: 400, terre: 400, feu: 400, eau: 400, air: 400 } },
+    bst: { hp: 6900, atk: 1600, spd: 196, res: { neutre: 400, terre: 400, feu: 400, eau: 400, air: 400 } },
     moves: ['boum_boh', 'invocation_du_disciple', 'etat_pair', 'etat_impair', 'furie_du_kimbo', 'teleportation_du_kimbo']
 }
 // ═══════════════════════════════════════════════════════
@@ -7920,7 +7920,7 @@ monsters.barberyl_clochecuivre = {
     image: 'images/monsters/Barbéryl_Clochecuivre.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1132, spd: 208, res: { neutre: -9, terre: 10, feu: 2, eau: 4, air: -7 } },
+    bst: { hp: 18000, atk: 2000, spd: 208, res: { neutre: -9, terre: 10, feu: 2, eau: 4, air: -7 } },
     moves: ['ninfernal', 'nimparabilite', 'ninvasion']
 }
 // ═══════════════════════════════════════════════════════
@@ -7960,7 +7960,7 @@ monsters.merkator = {
     image: 'images/monsters/Merkator.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1400, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
     moves: ['torpillage_de_glace', 'sondage_de_bronze', 'baphe_thysca', 'bouche_a_bouche']
 }
 // ═══════════════════════════════════════════════════════
@@ -7973,7 +7973,7 @@ monsters.corruption = {
     image: 'images/monsters/Corruption.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 21000, atk: 1802, spd: 220, res: { neutre: 22, terre: 16, feu: 5, eau: 11, air: 25 } },
+    bst: { hp: 21000, atk: 2700, spd: 220, res: { neutre: 22, terre: 16, feu: 5, eau: 11, air: 25 } },
     moves: ['beche_corrompue', 'incu_batteur', 'convalescence_prolifique', 'putrefaction', 'bombe_bacteriologique', 'eclosion_germinal']
 }
 // ═══════════════════════════════════════════════════════
@@ -7986,7 +7986,7 @@ monsters.dechireuse = {
     image: 'images/monsters/Déchireuse.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1600, spd: 220, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
     moves: ['hemorasoir', 'brutank', 'atermoiement', 'recentrage', 'proxicaire', 'musculot']
 }
 // ═══════════════════════════════════════════════════════
@@ -7999,7 +7999,7 @@ monsters.l_eternel_conflit = {
     image: 'images/monsters/L_Éternel_Conflit.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 20000, atk: 1600, spd: 220, res: { neutre: 20, terre: 29, feu: 17, eau: 23, air: 31 } },
+    bst: { hp: 20000, atk: 2700, spd: 220, res: { neutre: 20, terre: 29, feu: 17, eau: 23, air: 31 } },
     moves: ['poing_de_la_cite_sombre', 'poing_de_la_cite_blanche', 'cycle_de_la_violence', 'massacre_de_l_aurore_pourpre']
 }
 // ═══════════════════════════════════════════════════════
@@ -8012,7 +8012,7 @@ monsters.ilyzaelle = {
     image: 'images/monsters/Ilyzaelle.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 42000, atk: 1600, spd: 220, res: { neutre: 20, terre: 30, feu: 40, eau: 15, air: 25 } },
+    bst: { hp: 42000, atk: 3000, spd: 220, res: { neutre: 20, terre: 30, feu: 40, eau: 15, air: 25 } },
     moves: ['hantame', 'lance_de_l_effroi']
 }
 // ═══════════════════════════════════════════════════════
@@ -8025,7 +8025,7 @@ monsters.dazak_martegel = {
     image: 'images/monsters/Dazak_Martegel.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1600, spd: 220, res: { neutre: 110, terre: 140, feu: 120, eau: 105, air: 130 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 110, terre: 140, feu: 120, eau: 105, air: 130 } },
     moves: ['empalement_royal', 'ninflitration', 'nintrepidite'],
     onDebuff: [{ stat: 'spd', type: 'res_all_debuff', value: 5, duration: Infinity }],
     onAllyDeath: [{ type: 'res_all_buff', value: 20, duration: Infinity }]
@@ -8040,7 +8040,7 @@ monsters.venerable_endormi = {
     image: 'images/monsters/Vénérable_Endormi.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 27000, atk: 1600, spd: 220, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
+    bst: { hp: 27000, atk: 2800, spd: 220, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
     moves: ['saut_imperieux', 'cri_venerable', 'primattaque', 'primartelement', 'charge_fantastique', 'boulet_fantastique']
 }
 // ═══════════════════════════════════════════════════════
@@ -8053,7 +8053,7 @@ monsters.tal_kasha = {
     image: 'images/monsters/Tal_Kasha.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1600, spd: 220, res: { neutre: 20, terre: 30, feu: 15, eau: 20, air: 10 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 20, terre: 30, feu: 15, eau: 20, air: 10 } },
     moves: ['cheveux_partir_de_la', 'filature', 'transe_perse']
 }
 // ═══════════════════════════════════════════════════════
@@ -8066,7 +8066,7 @@ monsters.belladone = {
     image: 'images/monsters/Belladone.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 29000, atk: 1280, spd: 220, res: { neutre: 22, terre: 18, feu: 8, eau: 24, air: 14 } },
+    bst: { hp: 29000, atk: 2800, spd: 220, res: { neutre: 22, terre: 18, feu: 8, eau: 24, air: 14 } },
     moves: ['enchantement_fatal', 'charme_malefique', 'glyphe_de_condamnation', 'dechainement_fantasmagorique', 'malefice_immobile', 'conjuration_entravante']
 }
 // ═══════════════════════════════════════════════════════
@@ -8128,7 +8128,7 @@ monsters.comte_harebourg = {
     image: 'images/monsters/Comte_Harebourg.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1600, spd: 220, res: { neutre: 14, terre: 17, feu: 16, eau: 29, air: 25 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 14, terre: 17, feu: 16, eau: 29, air: 25 } },
     moves: ['contretemps', 'multicomte', 'jaquemart']
 }
 // ═══════════════════════════════════════════════════════
@@ -8141,7 +8141,7 @@ monsters.servitude = {
     image: 'images/monsters/Servitude.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 26000, atk: 1600, spd: 220, res: { neutre: 20, terre: 15, feu: 30, eau: 25, air: 25 } },
+    bst: { hp: 26000, atk: 2800, spd: 220, res: { neutre: 20, terre: 15, feu: 30, eau: 25, air: 25 } },
     moves: ['trahison', 'asservissement', 'joug_protecteur']
 }
 // ═══════════════════════════════════════════════════════
@@ -8154,7 +8154,7 @@ monsters.missiz_frizz = {
     image: 'images/monsters/Missiz_Frizz.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1400, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 21, air: 25 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 21, air: 25 } },
     moves: ['cristallisation', 'sang_froid', 'glace_trop_physique']
 }
 // ═══════════════════════════════════════════════════════
@@ -8167,7 +8167,7 @@ monsters.nileza = {
     image: 'images/monsters/Nileza.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1400, spd: 220, res: { neutre: 14, terre: 15, feu: 16, eau: 32, air: 25 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 14, terre: 15, feu: 16, eau: 32, air: 25 } },
     moves: ['fraction_de_molaire', 'glace_seche', 'liqueur_de_fee_ling']
 }
 // ═══════════════════════════════════════════════════════
@@ -8180,7 +8180,7 @@ monsters.anerice_la_shushess = {
     image: 'images/monsters/Anerice_la_Shushess.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1600, spd: 220, res: { neutre: 15, terre: 20, feu: 10, eau: 25, air: 30 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 15, terre: 20, feu: 10, eau: 25, air: 30 } },
     moves: ['goulification', 'vampyrisme', 'appetit_sanguinaire']
 }
 // ═══════════════════════════════════════════════════════
@@ -8291,7 +8291,7 @@ monsters.dantinea = {
     image: 'images/monsters/Dantinéa.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1600, spd: 220, res: { neutre: 14, terre: 18, feu: 28, eau: 23, air: 17 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 14, terre: 18, feu: 28, eau: 23, air: 17 } },
     moves: ['siphon_d_ame', 'cooquillation']
 }
 // ═══════════════════════════════════════════════════════
@@ -8353,7 +8353,7 @@ monsters.kabahal = {
     image: 'images/monsters/Kabahal.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 14000, atk: 1600, spd: 220, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
+    bst: { hp: 14000, atk: 2600, spd: 220, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
     moves: ['ratafia_putride', 'offrande_au_chaos', 'paume_incandescente', 'il_du_nocher', 'd_une_main_de_maitre', 'Pentademonium']
 }
 // ═══════════════════════════════════════════════════════
@@ -8366,7 +8366,7 @@ monsters.klime = {
     image: 'images/monsters/Klime.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1400, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 9, air: 25 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 9, air: 25 } },
     moves: ['cuir_a_feu_doux', 'cuir_moustache', 'moustacheron']
 }
 // ═══════════════════════════════════════════════════════
@@ -8379,7 +8379,7 @@ monsters.torkelonia = {
     image: 'images/monsters/Torkélonia.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 14000, atk: 1600, spd: 220, res: { neutre: 12, terre: 14, feu: 22, eau: 24, air: 18 } },
+    bst: { hp: 14000, atk: 2600, spd: 220, res: { neutre: 12, terre: 14, feu: 22, eau: 24, air: 18 } },
     moves: ['faisceau_lunaire', 'carapace_lunaire', 'ricochet_sacre', 'goutte_lunaire']
 }
 // ═══════════════════════════════════════════════════════
@@ -8392,7 +8392,7 @@ monsters.misere = {
     image: 'images/monsters/Misère.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1802, spd: 220, res: { neutre: 9, terre: 32, feu: 19, eau: 12, air: 28 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 9, terre: 32, feu: 19, eau: 12, air: 28 } },
     moves: ['balance_fleau', 'funerailles_celestes', 'grand_urubu', 'dakhma', 'barchan']
 }
 // ═══════════════════════════════════════════════════════
@@ -8454,7 +8454,7 @@ monsters.larve_de_koutoulou = {
     image: 'images/monsters/Larve_de_Koutoulou.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1600, spd: 220, res: { neutre: 16, terre: 22, feu: 17, eau: 17, air: 28 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 16, terre: 22, feu: 17, eau: 17, air: 28 } },
     moves: ['frappe_koutonienne', 'permutation_inquietante']
 }
 // ═══════════════════════════════════════════════════════
@@ -8467,7 +8467,7 @@ monsters.bethel_akarna = {
     image: 'images/monsters/Bethel_Akarna.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6500, atk: 1600, spd: 220, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 13500, atk: 2600, spd: 220, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['pantang', 'etoile_de_mer']
 }
 // ═══════════════════════════════════════════════════════
@@ -8480,7 +8480,7 @@ monsters.solar = {
     image: 'images/monsters/Solar.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1600, spd: 220, res: { neutre: 40, terre: 20, feu: 5, eau: 20, air: 5 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 40, terre: 20, feu: 5, eau: 20, air: 5 } },
     moves: ['aube_saine', 'leve_tot', 'rossee_matinale', 'demon_de_midi', 'coup_de_soleil', 'eruption_solaire', 'coucher_de_soleil', 'cours_du_soir', 'le_grand_soir', 'demons_de_minuit', 'nuit_blanche', 'protecteur_d_emoi']
 }
 // ═══════════════════════════════════════════════════════
@@ -8493,7 +8493,7 @@ monsters.sylargh = {
     image: 'images/monsters/Sylargh.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 1400, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
+    bst: { hp: 13000, atk: 2600, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 22, air: 12 } },
     moves: ['poincon_mstr', 'mortier', 'degage_de_qualite']
 }
 // ═══════════════════════════════════════════════════════
@@ -8555,7 +8555,7 @@ monsters.guerre = {
     image: 'images/monsters/Guerre.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 22000, atk: 1802, spd: 220, res: { neutre: 30, terre: 35, feu: 35, eau: 25, air: 25 } },
+    bst: { hp: 22000, atk: 2700, spd: 220, res: { neutre: 30, terre: 35, feu: 35, eau: 25, air: 25 } },
     moves: ['bravoure', 'impact', 'lynchage', 'magmalefice', 'celerite', 'martyre']
 }
 // ═══════════════════════════════════════════════════════
@@ -8568,7 +8568,7 @@ monsters.capitaine_meno = {
     image: 'images/monsters/Capitaine_Meno.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 40000, atk: 1600, spd: 220, res: { neutre: 11, terre: 33, feu: 26, eau: 13, air: 17 } },
+    bst: { hp: 40000, atk: 2950, spd: 220, res: { neutre: 11, terre: 33, feu: 26, eau: 13, air: 17 } },
     moves: ['crystalisation', 'matiere_volatile']
 }
 // ═══════════════════════════════════════════════════════
@@ -8581,7 +8581,7 @@ monsters.protozorreur = {
     image: 'images/monsters/Protozorreur.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1000, atk: 1600, spd: 220, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 20000, atk: 1600, spd: 220, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['jet_proto', 'electrocution', 'infection']
 }
 
@@ -8934,7 +8934,7 @@ monsters.grozilla = {
     image: 'images/monsters/Grozilla.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 16000, atk: 950, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    bst: { hp: 16000, atk: 2000, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
     moves: ['tyrannisation', 'gravite']
 }
 monsters.grasmera = {
@@ -8943,7 +8943,7 @@ monsters.grasmera = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 16000, atk: 950, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 16000, atk: 2000, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['meteore']
 }
 monsters.grozilla_somnambule = {
@@ -8952,7 +8952,7 @@ monsters.grozilla_somnambule = {
     image: 'images/monsters/Grozilla.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1600, atk: 130, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    bst: { hp: 1600, atk: 600, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
     moves: ['tyrannisation', 'gravite']
 }
 monsters.grasmera_somnambule = {
@@ -8961,7 +8961,7 @@ monsters.grasmera_somnambule = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1600, atk: 130, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 1600, atk: 600, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['meteore']
 }
 monsters.grozilla_epuise = {
@@ -8970,7 +8970,7 @@ monsters.grozilla_epuise = {
     image: 'images/monsters/Grozilla.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4800, atk: 400, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    bst: { hp: 4800, atk: 900, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
     moves: ['tyrannisation', 'gravite']
 }
 monsters.grasmera_epuise = {
@@ -8979,7 +8979,7 @@ monsters.grasmera_epuise = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4800, atk: 400, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 4800, atk: 900, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['meteore']
 }
 monsters.grozilla_fatigue = {
@@ -8988,7 +8988,7 @@ monsters.grozilla_fatigue = {
     image: 'images/monsters/Grozilla.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 10000, atk: 680, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    bst: { hp: 10000, atk: 1500, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
     moves: ['tyrannisation', 'gravite']
 }
 monsters.grasmera_fatigue = {
@@ -8997,7 +8997,7 @@ monsters.grasmera_fatigue = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 10000, atk: 680, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 10000, atk: 1500, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['meteore']
 }
 
@@ -9709,7 +9709,7 @@ monsters.roissingue = {
     image: 'images/monsters/Roissingue.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5500, atk: 1200, spd: 160, res: { neutre: 22, terre: 12, feu: -30, eau: 41, air: 5 } },
+    bst: { hp: 5500, atk: 1500, spd: 160, res: { neutre: 22, terre: 12, feu: -30, eau: 41, air: 5 } },
     moves: ['retour_du_roi', 'depouillage', 'dechaussage']
 }
 
@@ -9722,7 +9722,7 @@ monsters.mallefisk = {
     image: 'images/monsters/Malléfisk.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3700, atk: 600, spd: 160, res: { neutre: 22, terre: 12, feu: 28, eau: 6, air: -5 } },
+    bst: { hp: 3700, atk: 1200, spd: 160, res: { neutre: 22, terre: 12, feu: 28, eau: 6, air: -5 } },
     moves: ['ka_dabor', 'chte_hu', 'nonoube_noharnak']
 }
 
@@ -9735,7 +9735,7 @@ monsters.pounicheur = {
     image: 'images/monsters/Pounicheur.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4400, atk: 600, spd: 160, res: { neutre: 12, terre: 28, feu: -5, eau: 23, air: 12 } },
+    bst: { hp: 4400, atk: 1600, spd: 160, res: { neutre: 12, terre: 28, feu: -5, eau: 23, air: 12 } },
     moves: ['kissifrotsipik', 'poulverisation']
 }
 
@@ -9775,7 +9775,7 @@ monsters.halouine = {
     image: 'images/monsters/Halouine.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 3300, atk: 330, spd: 160, res: { neutre: 13, terre: 15, feu: 0, eau: 18, air: 5 } },
+    bst: { hp: 3300, atk: 1200, spd: 160, res: { neutre: 13, terre: 15, feu: 0, eau: 18, air: 5 } },
     moves: ['rattirance', 'moissonnage', 'plantes_zombies', 'citwouille_explosive']
 }
 monsters.peluche_tofu = {
@@ -9851,7 +9851,7 @@ monsters.pere_fwetar = {
     image: 'images/monsters/Père_Fwetar.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 9600, atk: 320, spd: 160, res: { neutre: -2, terre: -2, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 9600, atk: 1600, spd: 160, res: { neutre: -2, terre: -2, feu: 30, eau: 30, air: 30 } },
     moves: ['fwetage', 'parade_des_vieux_jouets', 'invocation_de_jouet_casse']
 }
 monsters.croc_gland_de_nowel = {
@@ -10140,7 +10140,7 @@ monsters.capitaine_ekarlatte = {
     image: 'images/monsters/Capitaine_Ekarlatte.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5700, atk: 800, spd: 160, res: { neutre: 12, terre: 23, feu: 7, eau: 14, air: 31 } },
+    bst: { hp: 5700, atk: 1400, spd: 160, res: { neutre: 12, terre: 23, feu: 7, eau: 14, air: 31 } },
     moves: ['case_depart', 'tourbilaule', 'dansorcellement', 'enfumage']
 }
 
@@ -10153,7 +10153,7 @@ monsters.fraktale = {
     image: 'images/monsters/Fraktale.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5000, atk: 600, spd: 160, res: { neutre: 26, terre: 12, feu: 21, eau: -8, air: 9 } },
+    bst: { hp: 5000, atk: 1600, spd: 160, res: { neutre: 26, terre: 12, feu: 21, eau: -8, air: 9 } },
     moves: ['instabilite_temporelle', 'chaleur_fugace', 'frakasse']
 }
 monsters.monolithe = {
@@ -10728,7 +10728,7 @@ monsters.ush_galesh = {
     image: 'images/monsters/Ush_Galesh.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 4000, atk: 1000, spd: 184, res: { neutre: 20, terre: 10, feu: 20, eau: 20, air: 10 } },
+    bst: { hp: 4000, atk: 1200, spd: 184, res: { neutre: 20, terre: 10, feu: 20, eau: 20, air: 10 } },
     moves: ['eclair_rouge', 'pulsation_malsaine']
 }
 
@@ -10936,7 +10936,7 @@ monsters.superviz_uf_perturbe = {
     image: 'images/monsters/Supervizœuf_perturbé.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 20000, atk: 1000, spd: 196, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
+    bst: { hp: 20000, atk: 2000, spd: 196, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
     moves: ['bzelan', 'carapabz', 'clonabz', 'abzlation', 'bzovolution']
 }
 monsters.oeuf_de_tregenaire = {
@@ -11660,7 +11660,7 @@ monsters.roi_nidas = {
     image: 'images/monsters/Roi_Nidas.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 1600, spd: 220, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
+    bst: { hp: 15000, atk: 2650, spd: 220, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
     moves: ['confusion', 'attrape_mutin', 'mon_precieux']
 }
 
@@ -11673,7 +11673,7 @@ monsters.roi_imagami = {
     image: 'images/monsters/Roi_Imagami.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 27000, atk: 1600, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
+    bst: { hp: 27000, atk: 2800, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
     moves: ['parchemin_de_traverse', 'papetuerie', 'roque_papier_ciseaux', 'kami_no_jishin']
 }
 
@@ -11686,7 +11686,7 @@ monsters.reine_amirukam = {
     image: 'images/monsters/Reine_Amirukam.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 27000, atk: 1600, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
+    bst: { hp: 27000, atk: 2800, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
     moves: ['toner_deubraiste', 'getsuga_tensho', 'monarchie_des_roses_noires']
 }
 
@@ -11699,7 +11699,7 @@ monsters.venerable_endormi_perturbe = {
     image: 'images/monsters/Vénérable_Endormi_perturbé.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 30000, atk: 1000, spd: 220, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
+    bst: { hp: 30000, atk: 2850, spd: 220, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
     moves: ['saut_imperieux', 'cri_venerable', 'primattaque', 'primartelement', 'charge_fantastique', 'boulet_fantastique']
 }
 
@@ -11712,7 +11712,7 @@ monsters.chal_il = {
     image: 'images/monsters/Chalœil.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 1600, spd: 220, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
+    bst: { hp: 15000, atk: 2650, spd: 220, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
     moves: ['toilette_ecaflip', 'farce_et_attrape', 'gros_yeux']
 }
 
@@ -11725,7 +11725,7 @@ monsters.vortex = {
     image: 'images/monsters/Vortex.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 1600, spd: 220, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
+    bst: { hp: 15000, atk: 2650, spd: 220, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
     moves: ['heuristique', 'morfaille', 'en_temps_et_en_heure']
 }
 
@@ -11738,7 +11738,7 @@ monsters.dechireuse_perturbee = {
     image: 'images/monsters/Déchireuse_perturbée.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 800, spd: 220, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
+    bst: { hp: 18000, atk: 1500, spd: 220, res: { neutre: 25, terre: 20, feu: 15, eau: 15, air: 20 } },
     moves: ['hemorasoir', 'brutank', 'atermoiement', 'recentrage', 'proxicaire', 'musculot']
 }
 
@@ -11751,7 +11751,7 @@ monsters.pretresse_de_kao = {
     image: 'images/monsters/Prêtresse_de_Kao.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 901, spd: 220, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
+    bst: { hp: 18000, atk: 2650, spd: 220, res: { neutre: 34, terre: -8, feu: 17, eau: 15, air: 26 } },
     moves: ['cloches_du_kao', 'equador', 'spatule_tranche_gourmands', 'commerce_inequitable']
 }
 monsters.eclat_kao = {
@@ -12091,7 +12091,7 @@ monsters.sapik = {
     image: 'images/monsters/Sapik.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1300, atk: 144, spd: 220, res: { neutre: -20, terre: 20, feu: 20, eau: 20, air: 20 } },
+    bst: { hp: 1300, atk: 500, spd: 220, res: { neutre: -20, terre: 20, feu: 20, eau: 20, air: 20 } },
     moves: ['enguirlandage', 'calin_kipik', 'kokapik']
 }
 monsters.ballotin_le_bouftou = {
@@ -12118,7 +12118,7 @@ monsters.mawabouaino = {
     image: 'images/monsters/Mawabouaino.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1400, atk: 168, spd: 220, res: { neutre: 35, terre: 25, feu: 15, eau: 15, air: 15 } },
+    bst: { hp: 1400, atk: 700, spd: 220, res: { neutre: 35, terre: 25, feu: 15, eau: 15, air: 15 } },
     moves: ['cacaobstwuant', 'chocohowte', 'eclat', 'chocolave']
 }
 monsters.boubourse = {
@@ -12379,7 +12379,7 @@ monsters.croqueleur = {
     image: 'images/monsters/Croqueleur.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6800, atk: 467, spd: 220, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 6800, atk: 1000, spd: 220, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['attraction_gourmande', 'total_impwakt', 'croustichoc']
 }
 monsters.kreuvete_la_bwork_ingenue = {
@@ -12478,7 +12478,7 @@ monsters.Rathrosk = {
     image: 'images/monsters/Rathrosk.png',
     rarity: 'legendaire',
     tier: 'boss',
-    bst: { hp: 4000, atk: 640, spd: 220, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
+    bst: { hp: 4000, atk: 600, spd: 220, res: { neutre: 25, terre: 25, feu: 25, eau: 25, air: 25 } },
     moves: ['souffle_de_rathrosk', 'queue_du_dragon', 'regain_de_vie']
 }
 
@@ -12998,7 +12998,7 @@ monsters.dathura = {
     image: 'images/monsters/Dathura.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 110000, atk: 800, spd: 160, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
+    bst: { hp: 110000, atk: 2800, spd: 160, res: { neutre: 10, terre: 10, feu: 10, eau: 10, air: 10 } },
     moves: ['tige_empoisonnee', 'bulbombe', 'pistil_affaiblissant']
 }
 monsters.percimol = {
@@ -13007,7 +13007,7 @@ monsters.percimol = {
     image: 'images/monsters/Percimol.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 130000, atk: 800, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 130000, atk: 2800, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['coup_de_marre_d_eau', 'courage_de_l_epouvantail', 'impatience']
 }
 monsters.noximilien_l_horloger = {
@@ -13016,7 +13016,7 @@ monsters.noximilien_l_horloger = {
     image: 'images/monsters/Noximilien_l_Horloger.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 99000, atk: 800, spd: 184, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
+    bst: { hp: 99000, atk: 2800, spd: 184, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
     moves: ['temps_de_retard']
 }
 monsters.jorbak = {
@@ -13025,7 +13025,7 @@ monsters.jorbak = {
     image: 'images/monsters/Jorbak.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 65000, atk: 1440, spd: 208, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 65000, atk: 3440, spd: 208, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['la_pelle_du_large', 'la_pierre_philosophale']
 }
 monsters.julith = {
@@ -13034,7 +13034,7 @@ monsters.julith = {
     image: 'images/monsters/Julith.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 110000, atk: 800, spd: 220, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
+    bst: { hp: 110000, atk: 2800, spd: 220, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
     moves: ['charge_eclair']
 }
 monsters.champion_de_l_aurore_pourpre = {
@@ -13043,7 +13043,7 @@ monsters.champion_de_l_aurore_pourpre = {
     image: 'images/monsters/Champion_de_l_Aurore_Pourpre.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 190000, atk: 800, spd: 220, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 190000, atk: 2800, spd: 220, res: { neutre: 50, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['embrigadement', 'troolverisation', 'exaction', 'catapultage']
 }
 monsters.larve_de_rushu = {
@@ -13052,7 +13052,7 @@ monsters.larve_de_rushu = {
     image: 'images/monsters/Larve_de_Rushu.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 120000, atk: 800, spd: 220, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
+    bst: { hp: 120000, atk: 2800, spd: 220, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
     moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
 }
 monsters.shuccube = {
@@ -13061,7 +13061,7 @@ monsters.shuccube = {
     image: 'images/monsters/Shuccube.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 99000, atk: 800, spd: 220, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
+    bst: { hp: 99000, atk: 2800, spd: 220, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
     moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
 }
 monsters.qilby = {
@@ -13070,7 +13070,7 @@ monsters.qilby = {
     image: 'images/monsters/Qilby.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 270000, atk: 1000, spd: 220, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
+    bst: { hp: 270000, atk: 3000, spd: 220, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
     moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail']
 }
 monsters.agonie_la_deterree = {
@@ -13079,7 +13079,7 @@ monsters.agonie_la_deterree = {
     image: 'images/monsters/Agonie_la_Déterrée.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 99000, atk: 800, spd: 220, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
+    bst: { hp: 99000, atk: 2800, spd: 220, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
     moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
 }
 monsters.leorictus_le_roi_grimacant = {
@@ -13088,6 +13088,6 @@ monsters.leorictus_le_roi_grimacant = {
     image: 'images/monsters/Léorictus_le_Roi_Grimaçant.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 120000, atk: 800, spd: 220, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
+    bst: { hp: 120000, atk: 2800, spd: 220, res: { neutre: 16, terre: 23, feu: 15, eau: 19, air: 10 } },
     moves: ['mortelage', 'oppression', 'trombe_d_acier', 'martel']
 }

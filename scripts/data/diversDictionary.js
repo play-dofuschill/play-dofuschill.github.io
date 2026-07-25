@@ -63,21 +63,85 @@ item.horlogeXelor = {
 //   'doubler' → équivalent rune normale : double min/max d'une stat choisie (plusieurs slots possibles, cf. getFamiliarMaxDoubleSlots)
 //   'passif'  → équivalent rune de Transcendance : un seul actif par familier, effet propre codé au cas par cas
 //               dans engine/stats.js (voir bloc "passifId === '...'"). Coût fixe : 250 kamas.
-item.cristalFamilierDouble = {
-    id: 'cristalFamilierDouble',
-    name: 'Cristal de Familier Améliorant',
-    image: 'img/items/divers/cristalFamilierDouble.png',
+item.FragmentAnomalie = {
+    id: 'FragmentAnomalie',
+    name: "Fragment d'Anomalie",
+    image: 'img/items/divers/FragmentAnomalie.png',
     type: 'familiarUpgrade',
     familiarUpgradeKind: 'doubler',
     description: "Double le potentiel maximal (min et max) d'une des statistiques d'un familier au choix. S'applique depuis le Chenil (coût : 25 kamas)."
 }
-item.cristalFamilierChasse = {
-    id: 'cristalFamilierChasse',
-    name: 'Cristal de Chasse',
-    image: 'img/items/divers/cristalFamilierChasse.png',
+item.cristalFamilierbebemoth = {
+    id: 'cristalFamilierbebemoth',
+    name: 'Fragment de Bébémoth',
+    image: 'img/items/divers/bebemoth.png',
     type: 'familiarUpgrade',
     familiarUpgradeKind: 'passif',
-    description: "Accorde à un familier le passif Chasse : +1% dégâts finaux par ennemi tué en combat, cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+    description: "Accorde à un familier le passif Bébémoth : +1% dégâts finaux par ennemi tué en combat, cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.pixelPerpetuel = {
+    id: 'pixelPerpetuel',
+    name: "Fragment de Pixel Perpetuel",
+    image: 'img/items/divers/pixelPerpetuel.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Pixel Perpetuel : +1% réduction dégâts finaux par ennemi tué en combat, cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.cristalTemporel = {
+    id: 'cristalTemporel',
+    name: "Fragment de Cristal Temporel",
+    image: 'img/items/divers/cristalTemporel.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Cristal Temporel : +1% soin des PV max par ennemi tué en combat. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.cristalIntemporel = {
+    id: 'cristalIntemporel',
+    name: "Fragment de Cristal Intemporel",
+    image: 'img/items/divers/cristalIntemporel.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Cristal Intemporel : +1% shield des PV max par ennemi tué en combat. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.Nanogrine = {
+    id: 'Nanogrine',
+    name: "Fragment de Nanogrine",
+    image: 'img/items/divers/Nanogrine.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Nanogrine : +1% résistance élémentaire aléatoire (en plus de la limite des 50% max habituels), cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.kwakwartichaud = {
+    id: 'kwakwartichaud',
+    name: "Fragment de Kwakwarticho",
+    image: 'img/items/divers/kwakwartichaud.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Kwakwarticho : +1% dégâts sorts par ennemi tué en combat, cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.bakushana = {
+    id: 'bakushana',
+    name: "Fragment de Bakushana",
+    image: 'img/items/divers/bakushana.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Kwakwarticho : +1% dégâts critiques par ennemi tué en combat, cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.Magicrabe = {
+    id: 'Magicrabe',
+    name: "Fragment de Magicrabe",
+    image: 'img/items/divers/Magicrabe.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Kwakwarticho : +10 d'itiniative par ennemi tué en combat, cumulable jusqu'à +100. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
+item.Poukachi = {
+    id: 'Poukachi',
+    name: "Fragment de Poukachi",
+    image: 'img/items/divers/Poukachi.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Kwakwarticho : +10 dommages fixes par ennemi tué en combat, cumulable jusqu'à +100. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
 }
 // #endregion
 

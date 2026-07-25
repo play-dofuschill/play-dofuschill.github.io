@@ -6795,7 +6795,7 @@ areas.anomalieDathura = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'pixelPerpetuel', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6846,7 +6846,7 @@ areas.anomalieJorbak = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'Nanogrine', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6863,7 +6863,7 @@ areas.anomalieJulith = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'kwakwartichaud', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6880,7 +6880,7 @@ areas.anomalieAurorePourpre = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'bakushana', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6897,7 +6897,7 @@ areas.anomalieLarveRushu = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'Magicrabe', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6931,7 +6931,7 @@ areas.anomalieQilby = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'cristalIntemporel', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6948,7 +6948,7 @@ areas.anomalieAgonie = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'cristalTemporel', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6965,7 +6965,7 @@ areas.anomalieLeorictus = {
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
         { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'Poukachi', dropRate: 0.01 } ] }
     ]
 }
 // #endregion ANOMALIES

@@ -63,6 +63,7 @@ function getEffectiveStats(member, syncedLevel = null) {
     let chance             = 0
     let agilite            = 0
     let critResPct         = cls.bst.res?.crit     ?? 0
+    let _nanogrineBonus    = null  // passif familier Nanogrine : { elem, value }, appliqué après le cap 50% des résistances
 
     // scaling résistances
     for (const elem in res) {
@@ -226,17 +227,40 @@ function getEffectiveStats(member, syncedLevel = null) {
 
         // Amélioration familier — passif actif (un seul par familier, cf. applyFamiliarPassif).
         // Chaque cristal 'passif' a son propre effet, codé au cas par cas ci-dessous par id.
+        // cristalIntemporel (bouclier par kill) et cristalTemporel (soin instantané par kill) sont gérés
+        // à part dans combat.js (_handleFamiliarPassifOnKill), car ce sont des mutations ponctuelles
+        // (currentHp / shield) déclenchées à l'instant du kill, pas des stats recalculées à la volée ici.
         const _famPassifId = state.familiarUpgrades?.[famId]?.passifId
-        if (_famPassifId === 'cristalFamilierChasse') {
-            // Passif Chasse : +1% finalDamagePct par ennemi tué (cap 10%)
+        if (_famPassifId && _famPassifId !== 'cristalIntemporel' && _famPassifId !== 'cristalTemporel') {
             const _fuCombat = typeof combat !== 'undefined' ? combat : null
             const _fuIdx    = _fuCombat ? state.team.indexOf(member) : -1
-            if (_fuCombat && _fuIdx !== -1) {
-                const kills = _fuCombat.memberKillCount?.[_fuIdx] || 0
-                finalDamagePct += Math.min(10, kills)
+            const _fuKills  = (_fuCombat && _fuIdx !== -1) ? (_fuCombat.memberKillCount?.[_fuIdx] || 0) : 0
+
+            if (_famPassifId === 'cristalFamilierChasse') {
+                // +1% dégâts finaux par ennemi tué (cap 10%)
+                finalDamagePct += Math.min(10, _fuKills)
+            } else if (_famPassifId === 'pixelPerpetuel') {
+                // +1% réduction de dégâts finaux par ennemi tué (cap 10%)
+                damageReductionPct += Math.min(10, _fuKills)
+            } else if (_famPassifId === 'kwakwartichaud') {
+                // +1% dégâts sorts par ennemi tué (cap 10%)
+                spellDamagePct += Math.min(10, _fuKills)
+            } else if (_famPassifId === 'bakushana') {
+                // +1% dégâts critiques par ennemi tué (cap 10%)
+                critDamagePct += Math.min(10, _fuKills)
+            } else if (_famPassifId === 'Magicrabe') {
+                // +10 initiative par ennemi tué (cap 100)
+                spd += Math.min(100, _fuKills * 10)
+            } else if (_famPassifId === 'Poukachi') {
+                // +10 dommages fixes par ennemi tué (cap 100)
+                flatDamage += Math.min(100, _fuKills * 10)
+            } else if (_famPassifId === 'Nanogrine') {
+                // +1% résistance élémentaire aléatoire par ennemi tué (cap 10%), au-delà du cap normal de 50%
+                // (élément tiré une fois par combat, cf. combat.memberPassiveState[i].nanogrineElement)
+                const _elem = _fuCombat?.memberPassiveState?.[_fuIdx]?.nanogrineElement
+                if (_elem) _nanogrineBonus = { elem: _elem, value: Math.min(10, _fuKills) }
             }
         }
-        // else if (_famPassifId === 'cristalFamilierXxx') { ... nouveau passif ... }
     }
 
     // ─── Passifs de classe ─────────────────────────────────────────────────────
@@ -363,6 +387,11 @@ function getEffectiveStats(member, syncedLevel = null) {
 
     // résistances élémentaires max = 50%
     for (const elem in res) {res[elem] = Math.min(res[elem], 50)}
+
+    // Passif familier Nanogrine : dépasse volontairement le cap de 50% ci-dessus, sur l'élément tiré
+    if (_nanogrineBonus && res[_nanogrineBonus.elem] !== undefined) {
+        res[_nanogrineBonus.elem] += _nanogrineBonus.value
+    }
 
     // réduction dégâts max = 50%
     damageReductionPct = Math.min(damageReductionPct,50)
