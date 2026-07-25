@@ -23053,3 +23053,15 @@ item.yaularc = {
     ogrinePrice: 6,
     stats: [{ stat: 'maxHp', min: 251, max: 300 }, { stat: 'force', min: 51, max: 70 }, { stat: 'intelligence', min: 51, max: 70 }, { stat: 'critChance', min: 3, max: 5 }, { stat: 'spd', min: 5, max: 5 }, { stat: 'dropRate', min: 16, max: 20 }, { stat: 'res.neutre', min: 3, max: 5 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'critDamagePct', min: 9, max: 12 }, { stat: 'flatDamage', min: 25, max: 30 }]
 }
+item.Dofusteuse = {
+    id: 'Dofusteuse',
+    name: 'Dofusteuse',
+    image: 'images/items/Dofusteuse.png',
+    type: 'equipment',
+    slot: 'cape',
+    rarity: 'legendaire',
+    itemLevelMax: 20,
+    set: 'seul',
+    requiredLevel: 200,
+    stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'force', min: 100, max: 400 }, { stat: 'intelligence', min: 100, max: 400 }, { stat: 'chance', min: 100, max: 400 }, { stat: 'agilite', min: 100, max: 400 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'flatDamage', min: 5, max: 15 }, { stat: 'res.neutre', min: 3, max: 5 }, { stat: 'res.terre', min: 5, max: 7 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'res.eau', min: 5, max: 7 }, { stat: 'res.air', min: 5, max: 7 }]
+}

@@ -6793,9 +6793,9 @@ areas.anomalieDathura = {
     description: "L'anomalie a fait éclore un bulbe de Dathura à une échelle monstrueuse, ses racines gorgées d'une sève toxique suintant à travers la faille.",
     boss: { id: 'dathura' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6810,9 +6810,9 @@ areas.anomaliePercimol = {
     description: "Percimol, dupliqué par l'instabilité de la faille, déferle avec la force d'une marée continue, noyant tout sur son passage sous des trombes d'eau démesurées.",
     boss: { id: 'percimol' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6827,9 +6827,9 @@ areas.anomalieNoximilien = {
     description: "Noximilien l'Horloger a saisi l'anomalie pour remonter son propre mécanisme à une échelle démesurée, chaque tic-tac résonnant comme un coup de marteau.",
     boss: { id: 'noximilien_l_horloger' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6844,9 +6844,9 @@ areas.anomalieJorbak = {
     description: "Jorbak, démultiplié par la faille, creuse sans relâche à la recherche de la pierre philosophale, réduisant en gravats tout ce qui se dresse sur son chemin.",
     boss: { id: 'jorbak' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6861,9 +6861,9 @@ areas.anomalieJulith = {
     description: "Julith, décuplée par l'anomalie, charge à une vitesse fulgurante, son armure surdimensionnée absorbant les coups les plus dévastateurs sans broncher.",
     boss: { id: 'julith' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6878,9 +6878,9 @@ areas.anomalieAurorePourpre = {
     description: "Le Champion de l'Aurore Pourpre, gonflé par la faille, mène seul une croisade fanatique, embrigadant l'espace-temps lui-même pour imposer sa vérité.",
     boss: { id: 'champion_de_l_aurore_pourpre' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6895,9 +6895,9 @@ areas.anomalieLarveRushu = {
     description: "Une Larve de Rushu, exacerbée par l'anomalie, distord le temps autour d'elle en un cocon corrosif où chaque seconde semble s'étirer à l'infini.",
     boss: { id: 'larve_de_rushu' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6912,9 +6912,9 @@ areas.anomalieShuccube = {
     description: "Shuccube, dilaté par la faille, tapisse la zone d'une écume bouillonnante d'où elle surgit sans prévenir, aussi insaisissable que dangereuse.",
     boss: { id: 'shuccube' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6929,9 +6929,9 @@ areas.anomalieQilby = {
     description: "Qilby a retourné l'anomalie contre elle-même, ouvrant des portails en cascade d'où résonne, encore et encore, l'écho de ses faux espoirs.",
     boss: { id: 'qilby' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6946,9 +6946,9 @@ areas.anomalieAgonie = {
     description: "Agonie la Déterrée s'est extirpée de la faille dans une version démesurée d'elle-même, son râle sépulcral fissurant la roche à chaque pas.",
     boss: { id: 'agonie_la_deterree' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 
@@ -6963,9 +6963,9 @@ areas.anomalieLeorictus = {
     description: "Léorictus le Roi Grimaçant, amplifié par l'anomalie, règne sur la faille avec un rictus figé, martelant le sol d'une oppression sans fin.",
     boss: { id: 'leorictus_le_roi_grimacant' },
     paliers: [
-        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.8 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 } ] }
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
     ]
 }
 // #endregion ANOMALIES

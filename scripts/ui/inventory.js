@@ -19,9 +19,9 @@ function _getEquipFuse() {
 const BAG_CATEGORIES = {
     equipment:  itm => itm.type === 'equipment' && !itm.id?.startsWith('Dofus_') && !itm.trophy,
     dofus:      itm => itm.type === 'dofus' || (itm.type === 'equipment' && (itm.id?.startsWith('Dofus_') || !!itm.trophy)),
-    consumable: itm => itm.type === 'consumable' || itm.type === 'rune',
+    consumable: itm => itm.type === 'consumable' || itm.type === 'rune' || itm.type === 'familiarUpgrade',
     cosmetic:   itm => itm.type === 'cosmetic' || itm.type === 'cosmetic_skin',
-    divers:     itm => itm.type !== 'equipment' && itm.type !== 'dofus' && itm.type !== 'consumable' && itm.type !== 'cosmetic' && itm.type !== 'rune' && itm.type !== 'cosmetic_skin' && !itm.hiddenInInventory
+    divers:     itm => itm.type !== 'equipment' && itm.type !== 'dofus' && itm.type !== 'consumable' && itm.type !== 'cosmetic' && itm.type !== 'rune' && itm.type !== 'cosmetic_skin' && itm.type !== 'familiarUpgrade' && !itm.hiddenInInventory
 }
 
 // ─── Filtres équipement ───────────────────────────────────────────────────────

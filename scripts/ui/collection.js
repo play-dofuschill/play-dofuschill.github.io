@@ -500,18 +500,46 @@ function showFamiliarTooltip(familiarId) {
     const isPercent = stat =>
         stat === 'dropRate' || stat === 'xpGain' || stat.endsWith('Pct') || stat.startsWith('res.')
 
+    // ─── Améliorations (cristaux, appliquées depuis le Chenil) — lecture seule ──
+    const doubledStats       = state.familiarUpgrades?.[familiarId]?.doubledStats || []
+    const maxDoubleSlots     = getFamiliarMaxDoubleSlots(fam)
+    const usedDoubleSlots    = doubledStats.length
+    const activePassifId     = state.familiarUpgrades?.[familiarId]?.passifId || null
+
     // bonuses (computed) n'a pas min/max → on lit fam.bonuses pour le max théorique
     const bonusRows = fam.bonuses.map((bDef, i) => {
-        const b      = bonuses[i]
-        const label  = STAT_L[bDef.bonusStat] || bDef.bonusStat
-        const unit   = isPercent(bDef.bonusStat) ? '%' : ''
-        const maxVal = Math.floor(getFamiliarStatValue(200, bDef.min, bDef.max, fam.rarity) * archiMult)
-        const curVal = b?.value ?? 0
+        const b        = bonuses[i]
+        const label    = STAT_L[bDef.bonusStat] || bDef.bonusStat
+        const unit     = isPercent(bDef.bonusStat) ? '%' : ''
+        const isDoubled = doubledStats.includes(bDef.bonusStat)
+        const effMin   = isDoubled ? bDef.min * 2 : bDef.min
+        const effMax   = isDoubled ? bDef.max * 2 : bDef.max
+        const maxVal   = Math.floor(getFamiliarStatValue(200, effMin, effMax, fam.rarity) * archiMult)
+        const curVal   = b?.value ?? 0
+        const badge    = isDoubled ? `<span style="color:#ffd700;font-size:0.75em;margin-left:0.4rem;">★ Doublé</span>` : ''
+
         return `<div class="ms-stat-row">
             <span class="ms-stat-label">${formatBonusType(bDef.bonusType)} ${label}</span>
-            <span class="ms-stat-val">+${curVal}${unit} <span style="opacity:0.5;font-size:0.75em">(max +${maxVal}${unit})</span></span>
+            <span class="ms-stat-val">+${curVal}${unit} <span style="opacity:0.5;font-size:0.75em">(max +${maxVal}${unit})</span>${badge}</span>
         </div>`
     }).join('')
+
+    const doubleSlotsRow = fam.bonuses.length
+        ? `<div class="ms-stat-row" style="opacity:0.7;font-size:0.78rem;">
+               <span class="ms-stat-label">Emplacements doubleur</span>
+               <span class="ms-stat-val">${usedDoubleSlots}/${maxDoubleSlots}</span>
+           </div>`
+        : ''
+
+    const killerSection = activePassifId
+        ? `<div class="ms-stat-row">
+               <span class="ms-stat-label" style="color:#ffd700">★ ${item[activePassifId]?.name || activePassifId}</span>
+               <span class="ms-stat-val" style="font-size:0.78em;">Actif</span>
+           </div>`
+        : `<div class="ms-stat-row" style="opacity:0.5;">
+               <span class="ms-stat-label">Passif</span>
+               <span class="ms-stat-val" style="font-size:0.78em;">Disponible au Chenil</span>
+           </div>`
 
     const mobRows = fam.monsters.map(id => {
         const mob     = monsters[id]
@@ -549,7 +577,9 @@ function showFamiliarTooltip(familiarId) {
             </div>
         </div>
         <div class="ms-section-title" style="margin-top:0.5rem;">Bonus</div>
-        <div class="ms-stats">${bonusRows || '<span style="opacity:0.4;font-size:0.8rem">Aucun bonus</span>'}${archiNote}</div>
+        <div class="ms-stats">${bonusRows || '<span style="opacity:0.4;font-size:0.8rem">Aucun bonus</span>'}${archiNote}${doubleSlotsRow}</div>
+        <div class="ms-section-title" style="margin-top:0.5rem;">Amélioration</div>
+        <div class="ms-stats">${killerSection}</div>
         <div class="ms-section-title" style="margin-top:0.5rem;">Monstres assignés</div>
         <div class="ms-stats">${mobRows}</div>
     </div>`

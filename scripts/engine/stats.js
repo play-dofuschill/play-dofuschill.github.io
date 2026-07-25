@@ -223,6 +223,20 @@ function getEffectiveStats(member, syncedLevel = null) {
                 if (res[elem] !== undefined) res[elem] += value
             }
         }
+
+        // Amélioration familier — passif actif (un seul par familier, cf. applyFamiliarPassif).
+        // Chaque cristal 'passif' a son propre effet, codé au cas par cas ci-dessous par id.
+        const _famPassifId = state.familiarUpgrades?.[famId]?.passifId
+        if (_famPassifId === 'cristalFamilierChasse') {
+            // Passif Chasse : +1% finalDamagePct par ennemi tué (cap 10%)
+            const _fuCombat = typeof combat !== 'undefined' ? combat : null
+            const _fuIdx    = _fuCombat ? state.team.indexOf(member) : -1
+            if (_fuCombat && _fuIdx !== -1) {
+                const kills = _fuCombat.memberKillCount?.[_fuIdx] || 0
+                finalDamagePct += Math.min(10, kills)
+            }
+        }
+        // else if (_famPassifId === 'cristalFamilierXxx') { ... nouveau passif ... }
     }
 
     // ─── Passifs de classe ─────────────────────────────────────────────────────

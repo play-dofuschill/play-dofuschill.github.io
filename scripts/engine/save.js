@@ -48,6 +48,7 @@ function saveGame() {
         saveData = {
             team:               state.team,
             inventory:          state.inventory,
+            familiarUpgrades:   state.familiarUpgrades || {},
             collection:         state.collection,
             seenMonsters:       state.seenMonsters,
             kamas:              state.kamas,
@@ -122,6 +123,7 @@ function loadGame() {
         if (data.inventory)        state.inventory        = data.inventory
         // Migration : caisse d'équipement ne doit pas persister en inventaire
         delete state.inventory['caisseEquipement']
+        if (data.familiarUpgrades) state.familiarUpgrades = data.familiarUpgrades
         if (data.collection)       state.collection       = data.collection
         if (data.seenMonsters)     state.seenMonsters     = data.seenMonsters
         if (data.kamas != null)    state.kamas            = data.kamas
@@ -183,6 +185,16 @@ function loadGame() {
                 if (!member?.equip) continue
                 const famId = member.equip.familier
                 if (famId && !familiarById[famId]) member.equip.familier = null
+            }
+        }
+
+        // Migration : nettoyer les améliorations de familiers qui ne sont plus des familiers valides
+        // + convertir l'ancien flag booléen hasKillerPassive (prototype) en passifId générique
+        if (state.familiarUpgrades) {
+            for (const [famId, upg] of Object.entries(state.familiarUpgrades)) {
+                if (!familiarById[famId]) { delete state.familiarUpgrades[famId]; continue }
+                if (upg.hasKillerPassive && !upg.passifId) upg.passifId = 'cristalFamilierChasse'
+                delete upg.hasKillerPassive
             }
         }
 

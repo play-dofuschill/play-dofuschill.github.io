@@ -373,6 +373,28 @@
         <div id="forge-content"></div>
     </div>
 
+    <!-- Menu Chenil (améliorations de familiers) -->
+    <div id="chenil-menu" style="display: none;" class="season-background">
+        <div id="chenil-menu-header">
+            <div class="forge-header-toprow">
+                <div class="forge-header-badge">
+                    <span>🐾 Chenil</span>
+                </div>
+            </div>
+            <div id="chenil-header-nav" style="display:none">
+                <div id="chenil-back-btn" onclick="chenilBackAction()">← Retour</div>
+            </div>
+            <div id="chenil-filters">
+                <div class="equip-filter-row">
+                    <input type="text" id="chenil-search" placeholder="Rechercher…" oninput="onChenilSearch(this.value)">
+                    <button id="chenil-sort-level" class="sort-btn active" onclick="toggleChenilSort('level')">Niv. ↓</button>
+                    <button id="chenil-sort-name"  class="sort-btn"        onclick="toggleChenilSort('name')">Nom ↕</button>
+                </div>
+            </div>
+        </div>
+        <div id="chenil-content"></div>
+    </div>
+
     <!-- Menu Poutch / Entraînement -->
     <div id="poutch-menu" style="display: none;" class="season-background">
 
@@ -696,6 +718,11 @@
             <span>Forge</span>
         </div>
 
+        <div class="menu-item" id="menu-item-chenil" onClick="switchMenu('chenil')">
+            <img src="img/icons/chenil.png" onerror="this.src='img/icons/icon.png'">
+            <span>Chenil</span>
+        </div>
+
         <div class="menu-item" id="menu-item-team" onClick="switchMenu('team')">
             <img src="img/icons/team.png" onerror="this.src='img/icons/icon.png'">
             <span>Team</span>
@@ -822,6 +849,7 @@
     <script defer src="scripts/engine/combat.js"></script>
     <script defer src="scripts/engine/shop.js"></script>
     <script defer src="scripts/engine/forge.js"></script>
+    <script defer src="scripts/engine/familiarUpgrade.js"></script>
 
     <!-- UI (dépend du moteur) -->
     <script defer src="scripts/ui/combat.js"></script>
@@ -834,6 +862,7 @@
     <script defer src="scripts/ui/almanax.js"></script>
     <script defer src="scripts/ui/poutch.js"></script>
     <script defer src="scripts/ui/forge.js"></script>
+    <script defer src="scripts/ui/chenil.js"></script>
     <script defer src="scripts/ui/raid.js"></script>
     <script defer src="scripts/ui/bossUltime.js"></script>
     <script defer src="scripts/ui/wanted.js"></script>

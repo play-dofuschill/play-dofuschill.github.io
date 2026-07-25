@@ -58,6 +58,27 @@ item.horlogeXelor = {
     offlineMinutes: 180,
     description: "Une horloge mystique façonnée par le dieu du Temps. Utiliser cet objet accorde 3 heures de progression accélérée."
 }
+// type: 'familiarUpgrade' — cristaux d'amélioration de familier, appliqués depuis le Chenil (ui/chenil.js).
+// familiarUpgradeKind:
+//   'doubler' → équivalent rune normale : double min/max d'une stat choisie (plusieurs slots possibles, cf. getFamiliarMaxDoubleSlots)
+//   'passif'  → équivalent rune de Transcendance : un seul actif par familier, effet propre codé au cas par cas
+//               dans engine/stats.js (voir bloc "passifId === '...'"). Coût fixe : 250 kamas.
+item.cristalFamilierDouble = {
+    id: 'cristalFamilierDouble',
+    name: 'Cristal de Familier Améliorant',
+    image: 'img/items/divers/cristalFamilierDouble.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'doubler',
+    description: "Double le potentiel maximal (min et max) d'une des statistiques d'un familier au choix. S'applique depuis le Chenil (coût : 25 kamas)."
+}
+item.cristalFamilierChasse = {
+    id: 'cristalFamilierChasse',
+    name: 'Cristal de Chasse',
+    image: 'img/items/divers/cristalFamilierChasse.png',
+    type: 'familiarUpgrade',
+    familiarUpgradeKind: 'passif',
+    description: "Accorde à un familier le passif Chasse : +1% dégâts finaux par ennemi tué en combat, cumulable jusqu'à +10%. Un seul passif actif par familier. S'applique depuis le Chenil (coût : 250 kamas)."
+}
 // #endregion
 
 // ───────────────────────────────────────────────────────

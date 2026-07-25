@@ -227,6 +227,7 @@ const state = {
     currentArea: null,
     isRunning: false,
     inventory: {},
+    familiarUpgrades: {},
     collection: {},
     seenMonsters: {},
     kamas: 0,
@@ -284,6 +285,7 @@ const MENU_MAP = {
     archives:     'archives-menu',
     poutch:       'poutch-menu',
     forge:        'forge-menu',
+    chenil:       'chenil-menu',
     raid:         'raid-menu',
     Boss_Ultime:       'Boss_Ultime-menu',
     wanted:       'wanted-menu',
@@ -319,6 +321,7 @@ const MENU_ITEM_MAP = {
     'menu-item-archives': 'archives',
     'menu-item-poutch':   'poutch',
     'menu-item-forge':    'forge',
+    'menu-item-chenil':   'chenil',
     'menu-item-raid':     'raid',
     'menu-item-Boss_Ultime':   'Boss_Ultime',
     'menu-item-wanted':   'wanted',
@@ -404,6 +407,7 @@ function switchMenu(menuName) {
     if (menuName === 'archives') updateArchivesUI()
     if (menuName === 'poutch') updatePoutchUI()
     if (menuName === 'forge')  updateForgeUI()
+    if (menuName === 'chenil') updateChenilUI()
     if (menuName === 'raid')    updateRaidUI()
     if (menuName === 'Boss_Ultime')  updateBoss_UltimeUI()
     if (menuName === 'wanted') updateWantedUI()

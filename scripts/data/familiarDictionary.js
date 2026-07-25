@@ -90,11 +90,25 @@ function getFamiliarBonusesComputed(familiarId) {
     if (!fam?.bonuses?.length) return []
     const level     = getFamiliarLevel(fam)
     const archiMult = _getFamiliarArchiMult(fam)
-    return fam.bonuses.map(b => ({
-        bonusType: b.bonusType,
-        bonusStat: b.bonusStat,
-        value: Math.floor(getFamiliarStatValue(level, b.min, b.max, fam.rarity) * archiMult)
-    }))
+    const doubled   = state.familiarUpgrades?.[familiarId]?.doubledStats || []
+    return fam.bonuses.map(b => {
+        const isDoubled = doubled.includes(b.bonusStat)
+        const min = isDoubled ? b.min * 2 : b.min
+        const max = isDoubled ? b.max * 2 : b.max
+        return {
+            bonusType: b.bonusType,
+            bonusStat: b.bonusStat,
+            value: Math.floor(getFamiliarStatValue(level, min, max, fam.rarity) * archiMult),
+            isDoubled
+        }
+    })
+}
+
+// ─── Nombre max de stats "doublées" (upgrade) applicables sur un familier ─────
+// Même formule que getMaxForgeSlots (itemLogic.js) : ceil(n/2).
+
+function getFamiliarMaxDoubleSlots(fam) {
+    return Math.ceil((fam?.bonuses?.length || 0) / 2)
 }
 
 // ─── Agrégat de tous les bonus familiers équipés (farming + combat + defense) ─
