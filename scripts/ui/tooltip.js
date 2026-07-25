@@ -477,6 +477,11 @@ function showMemberSheet(member) {
                         style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
                                background:var(--dark2);color:#fff;">⚡ Passif</button>` : ''}
                 </div>
+                <div style="display:flex;justify-content:center;margin-top:0.25rem;">
+                    <button onclick="openAutoEquipPicker('${member.classId}')"
+                        style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
+                               background:var(--dark2);color:#fff;">🎯 Auto-équip</button>
+                </div>
                 ${cls.passive ? `<div id="ms-passive-${member.classId}" style="display:none;margin-top:0.3rem;
                     padding:0.4rem 0.6rem;background:rgba(255,255,255,0.07);border-radius:4px;
                     font-size:0.75rem;text-align:center;color:#000;line-height:1.4;">
