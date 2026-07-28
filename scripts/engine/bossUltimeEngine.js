@@ -9,11 +9,17 @@
 function _bossUltimeDragonState(dragonId) {
     if (!state.BossUltime) state.BossUltime = { dragons: {} }
     if (!state.BossUltime.dragons) state.BossUltime.dragons = {}
+    // Verrou 1 combat/jour commun à tous les dragons (migration depuis l'ancien
+    // verrou par dragon : le combat le plus récent parmi les anciennes entrées fait foi).
+    if (typeof state.BossUltime.lastFightDate === 'undefined') {
+        const _oldDates = Object.values(state.BossUltime.dragons).map(d => d.lastFightDate).filter(Boolean)
+        state.BossUltime.lastFightDate = _oldDates.length ? _oldDates.sort().pop() : null
+    }
+    if (typeof state.BossUltime.paidRetryArmed === 'undefined') state.BossUltime.paidRetryArmed = false
     if (!state.BossUltime.dragons[dragonId]) {
         state.BossUltime.dragons[dragonId] = {
-            phase:         1,
-            lastFightDate: null,
-            firstVictory:  false
+            phase:        1,
+            firstVictory: false
         }
     }
     const ds = state.BossUltime.dragons[dragonId]
@@ -31,8 +37,8 @@ function _bossUltimeDragonState(dragonId) {
 }
 
 function bossUltimeCanFight(dragonId) {
-    const ds = _bossUltimeDragonState(dragonId)
-    return ds.lastFightDate !== _todayStr()
+    _bossUltimeDragonState(dragonId)
+    return state.BossUltime.lastFightDate !== _todayStr()
 }
 
 function nextBossUltimeResetLabel() {
@@ -44,26 +50,28 @@ function nextBossUltimeResetLabel() {
 
 const BOSS_ULTIME_RETRY_COST = 100
 
-// Autorise l'entrée en combat : gratuit du jour encore dispo, ou laissez-passer
-// payant déjà armé par bossUltimeChargeRefight() juste avant le lancement.
+// Autorise l'entrée en combat : gratuit du jour encore dispo (commun à tous les
+// dragons), ou laissez-passer payant déjà armé par bossUltimeChargeRefight()
+// juste avant le lancement.
 function bossUltimeCanEnter(dragonId) {
-    const ds = _bossUltimeDragonState(dragonId)
-    return ds.lastFightDate !== _todayStr() || ds.paidRetryArmed === true
+    _bossUltimeDragonState(dragonId)
+    return state.BossUltime.lastFightDate !== _todayStr() || state.BossUltime.paidRetryArmed === true
 }
 
 // Point d'entrée unique appelé par l'UI avant de lancer un combat Boss Ultime :
-// ne débite rien si le gratuit du jour est encore disponible, sinon débite
-// BOSS_ULTIME_RETRY_COST kamas et arme le laissez-passer à usage unique.
+// ne débite rien si le gratuit du jour est encore disponible (tous dragons
+// confondus), sinon débite BOSS_ULTIME_RETRY_COST kamas et arme le
+// laissez-passer à usage unique.
 function bossUltimeChargeRefight(dragonId) {
-    const ds = _bossUltimeDragonState(dragonId)
-    if (ds.lastFightDate !== _todayStr()) return true
+    _bossUltimeDragonState(dragonId)
+    if (state.BossUltime.lastFightDate !== _todayStr()) return true
 
     if ((state.kamas || 0) < BOSS_ULTIME_RETRY_COST) {
         showNotification(`Pas assez de kamas (${BOSS_ULTIME_RETRY_COST} requis) pour rejouer !`, 'error')
         return false
     }
     state.kamas -= BOSS_ULTIME_RETRY_COST
-    ds.paidRetryArmed = true
+    state.BossUltime.paidRetryArmed = true
     showNotification(`-${BOSS_ULTIME_RETRY_COST} kamas — combat supplémentaire`, 'info')
     return true
 }
@@ -119,7 +127,7 @@ function _onBossUltimeVictory(dragonId) {
     ds.currentHp      = monsters[dragonId]?.bst.hp ?? ds.maxHp
     ds.maxHp          = monsters[dragonId]?.bst.hp ?? ds.maxHp
     ds.phase          = 1
-    ds.lastFightDate  = _todayStr()
+    state.BossUltime.lastFightDate = _todayStr()
     // saveGame() est appelé par combat.js APRÈS stopCombat()
 }
 
@@ -129,7 +137,7 @@ function _onBossUltimeDefeat(dragonId) {
     ds.maxHp          = Math.max(1, combat.enemy?.maxHp     ?? ds.maxHp)
     ds.currentHp      = Math.max(0, combat.enemy?.currentHp ?? 0)
     ds.phase          = combat.enemy?.phase ?? ds.phase
-    ds.lastFightDate  = _todayStr()
+    state.BossUltime.lastFightDate = _todayStr()
     // saveGame() est appelé par combat.js APRÈS stopCombat()
 }
 

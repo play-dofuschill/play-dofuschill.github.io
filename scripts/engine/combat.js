@@ -346,16 +346,17 @@ function spawnEnemy(areaId) {
 // ─── Démarrage / arrêt ────────────────────────────────────────────────────────
 
 function startCombat(areaId) {
-    // Boss Ultime : verrou 1 combat/jour (sauf laissez-passer payant déjà armé
-    // par bossUltimeChargeRefight()), appliqué ici pour couvrir tous les points
-    // d'entrée (bouton dédié, mais aussi "Rejouer" en fin de combat via rejoinArea()).
+    // Boss Ultime : verrou 1 combat/jour commun à tous les dragons (sauf laissez-passer
+    // payant déjà armé par bossUltimeChargeRefight()), appliqué ici pour couvrir tous les
+    // points d'entrée (bouton dédié, mais aussi "Rejouer" en fin de combat via rejoinArea()).
     if (areas[areaId]?.type === 'bossultime') {
         const _bid = areaId.replace(/^_bossultime_/, '')
         if (!bossUltimeCanEnter(_bid)) {
-            showNotification('Vous avez déjà affronté ce dragon aujourd\'hui.', 'error')
+            showNotification('Vous avez déjà affronté un boss ultime aujourd\'hui.', 'error')
             return
         }
-        _bossUltimeDragonState(_bid).paidRetryArmed = false
+        _bossUltimeDragonState(_bid)
+        state.BossUltime.paidRetryArmed = false
     }
 
     // Détecte si on reprend un combat sauvegardé (rechargement de page)
