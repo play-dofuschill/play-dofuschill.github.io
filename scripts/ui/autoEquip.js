@@ -13,11 +13,17 @@ function openAutoEquipPicker(classId) {
     openTooltip('Auto-équipement', _renderAutoEquipPicker())
 }
 
+const AUTO_EQUIP_RANK_LABELS = ['1er', '2e', '3e']
+
 function _renderAutoEquipPicker() {
     const btns = AUTO_EQUIP_STATS.map(([stat, label]) => {
-        const active = _autoEquipSelectedStats.includes(stat)
+        const rankIdx = _autoEquipSelectedStats.indexOf(stat)
+        const active  = rankIdx !== -1
+        const badge   = active
+            ? `<span class="auto-equip-rank-badge">${AUTO_EQUIP_RANK_LABELS[rankIdx]}</span>`
+            : ''
         return `<button class="equip-filter-btn${active ? ' active' : ''}"
-            onclick="_toggleAutoEquipStat('${stat}')">${label}</button>`
+            onclick="_toggleAutoEquipStat('${stat}')">${label}${badge}</button>`
     }).join('')
 
     const count  = _autoEquipSelectedStats.length
@@ -25,9 +31,10 @@ function _renderAutoEquipPicker() {
 
     return `<div class="equip-selector auto-equip-picker">
         <p style="font-size:0.8rem;opacity:0.75;margin:0 0 0.6rem;line-height:1.4;">
-            Choisis jusqu'à 3 stats à prioriser (${count}/3). L'auto-équipement choisit,
-            parmi les objets non utilisés par un autre personnage, la meilleure combinaison
-            possible — forgemagie et bonus de panoplie inclus. Le familier n'est pas touché.
+            Choisis jusqu'à 3 stats à prioriser (${count}/3), par ordre d'importance — la 1ère
+            compte plus que la 2e, qui compte plus que la 3e. L'auto-équipement choisit, parmi
+            les objets non utilisés par un autre personnage, la meilleure combinaison possible —
+            forgemagie et bonus de panoplie inclus. Le familier n'est pas touché.
         </p>
         <div class="equip-filter-bar" style="flex-wrap:wrap;">${btns}</div>
         <div style="margin-top:0.8rem;display:flex;justify-content:flex-end;">

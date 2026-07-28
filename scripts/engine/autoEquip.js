@@ -136,9 +136,18 @@ function _autoEquipBuildNorm(selectedStats, candidatesBySlot) {
     return norm
 }
 
-function _autoEquipItemScore(statMap, selectedStats, norm) {
+// Priorité par ordre de sélection (1ère stat cliquée = poids le plus fort)
+const AUTO_EQUIP_PRIORITY_WEIGHTS = [3, 2, 1]
+
+function _autoEquipWeights(selectedStats) {
+    const weights = {}
+    selectedStats.forEach((s, i) => { weights[s] = AUTO_EQUIP_PRIORITY_WEIGHTS[i] || 1 })
+    return weights
+}
+
+function _autoEquipItemScore(statMap, selectedStats, norm, weights) {
     let total = 0
-    for (const s of selectedStats) total += (statMap[s] || 0) / norm[s]
+    for (const s of selectedStats) total += ((statMap[s] || 0) / norm[s]) * weights[s]
     return total
 }
 
@@ -158,7 +167,7 @@ function _autoEquipPanoplyBonusStats(setCounts) {
     return out
 }
 
-function _autoEquipScoreAssignment(member, assignment, selectedStats, norm, itemScoreCache) {
+function _autoEquipScoreAssignment(member, assignment, selectedStats, norm, itemScoreCache, weights) {
     let total = 0
     for (const slot of AUTO_EQUIP_SLOTS) {
         const itemId = assignment[slot]
@@ -167,7 +176,7 @@ function _autoEquipScoreAssignment(member, assignment, selectedStats, norm, item
     const tempEquip = { ...member.equip, ...assignment }
     const setCounts = countSetPieces(tempEquip)
     const panoBonus = _autoEquipPanoplyBonusStats(setCounts)
-    for (const s of selectedStats) total += (panoBonus[s] || 0) / norm[s]
+    for (const s of selectedStats) total += ((panoBonus[s] || 0) / norm[s]) * weights[s]
     return total
 }
 
@@ -195,14 +204,15 @@ function computeAutoEquip(classId, selectedStats) {
     const candidatesBySlot = {}
     for (const slot of AUTO_EQUIP_SLOTS) candidatesBySlot[slot] = _autoEquipCandidatesForSlot(slot, lvlCap, taken)
 
-    const norm = _autoEquipBuildNorm(stats, candidatesBySlot)
+    const norm    = _autoEquipBuildNorm(stats, candidatesBySlot)
+    const weights = _autoEquipWeights(stats)
 
     const itemScoreCache = {}
     const scoredBySlot = {}
     for (const slot of AUTO_EQUIP_SLOTS) {
         scoredBySlot[slot] = candidatesBySlot[slot]
             .map(c => {
-                const score = _autoEquipItemScore(c.statMap, stats, norm)
+                const score = _autoEquipItemScore(c.statMap, stats, norm, weights)
                 itemScoreCache[c.id] = score
                 return { ...c, score }
             })
@@ -251,12 +261,12 @@ function computeAutoEquip(classId, selectedStats) {
     }
 
     let bestAssignment = _autoEquipDedupeRings(baseline, scoredBySlot)
-    let bestScore = _autoEquipScoreAssignment(member, bestAssignment, stats, norm, itemScoreCache)
+    let bestScore = _autoEquipScoreAssignment(member, bestAssignment, stats, norm, itemScoreCache, weights)
 
     // Scénario "tout sur une panoplie" pour chaque set candidat
     for (const setId of allSets) {
         const asg = buildSetAssignment([setId], baseline)
-        const sc = _autoEquipScoreAssignment(member, asg, stats, norm, itemScoreCache)
+        const sc = _autoEquipScoreAssignment(member, asg, stats, norm, itemScoreCache, weights)
         if (sc > bestScore) { bestScore = sc; bestAssignment = asg }
     }
 
@@ -267,7 +277,7 @@ function computeAutoEquip(classId, selectedStats) {
         for (let j = 0; j < setList.length; j++) {
             if (i === j) continue
             const asg = buildSetAssignment([setList[i], setList[j]], baseline)
-            const sc = _autoEquipScoreAssignment(member, asg, stats, norm, itemScoreCache)
+            const sc = _autoEquipScoreAssignment(member, asg, stats, norm, itemScoreCache, weights)
             if (sc > bestScore) { bestScore = sc; bestAssignment = asg }
         }
     }
@@ -282,7 +292,7 @@ function computeAutoEquip(classId, selectedStats) {
             for (const c of poolBySlot[slot]) {
                 if (bestAssignment[slot] === c.id) continue
                 const asg = _autoEquipDedupeRings({ ...bestAssignment, [slot]: c.id }, scoredBySlot)
-                const sc = _autoEquipScoreAssignment(member, asg, stats, norm, itemScoreCache)
+                const sc = _autoEquipScoreAssignment(member, asg, stats, norm, itemScoreCache, weights)
                 if (sc > bestScore + 1e-9) { bestScore = sc; bestAssignment = asg; improved = true }
             }
         }
