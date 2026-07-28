@@ -299,12 +299,24 @@ function applyAutoEquip(classId, selectedStats) {
     const member = state.team.find(m => m && m.classId === classId)
     if (!member) return null
 
+    const lvlCap = _autoEquipLevelCap(member)
+
     let changed = 0
     for (const slot of AUTO_EQUIP_SLOTS) {
         const itemId = result.assignment[slot] || null
         if (itemId && member.equip[slot] !== itemId) {
             member.equip[slot] = itemId
             changed++
+        } else if (!itemId) {
+            // Aucun candidat valide trouvé pour ce slot : si l'objet actuellement équipé
+            // dépasse le niveau autorisé (perso/zone), on le retire plutôt que de le laisser
+            // en place — sinon l'auto-équipement ne corrige jamais un équipement trop haut niveau.
+            const current = member.equip[slot]
+            const itm = current ? item[current] : null
+            if (itm?.requiredLevel && itm.requiredLevel > lvlCap) {
+                member.equip[slot] = null
+                changed++
+            }
         }
     }
 

@@ -25,22 +25,23 @@ function saveGame() {
     }
 
     // Sync de l'équipe active dans previewTeams avant la sauvegarde,
-    // et classEquip.level/exp depuis tous les previewTeams
-    // (les membres qui sont dans une équipe et qui ont levélé up ne mettent pas à jour classEquip en temps réel)
+    // et classEquip.level/exp depuis l'équipe active UNIQUEMENT.
+    // IMPORTANT : ne jamais boucler sur tous les previewTeams ici — un membre d'un preset
+    // inactif (Team 2, 3...) est un snapshot figé qui ne bouge plus une fois qu'on l'a quitté ;
+    // le relire à chaque autosave écraserait le niveau à jour d'un perso par une vieille
+    // valeur dès qu'il n'est plus dans l'équipe active (cause du bug de niveau qui régresse).
     try {
         state.previewTeams[state.currentPreviewTeam] = state.team
         if (!state.classEquip) state.classEquip = {}
-        for (const teamArr of Object.values(state.previewTeams)) {
-            for (const m of (teamArr || [])) {
-                if (!m?.classId) continue
-                if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
-                state.classEquip[m.classId].level = m.level
-                state.classEquip[m.classId].exp   = m.exp ?? 0
-                state.classEquip[m.classId].equip = { ...m.equip }
-            }
+        for (const m of state.team) {
+            if (!m?.classId) continue
+            if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
+            state.classEquip[m.classId].level = m.level
+            state.classEquip[m.classId].exp   = m.exp ?? 0
+            state.classEquip[m.classId].equip = { ...m.equip }
         }
     } catch (e) {
-        console.error('[saveGame] sync previewTeams/classEquip a échoué :', e)
+        console.error('[saveGame] sync team active/classEquip a échoué :', e)
     }
 
     let saveData

@@ -105,6 +105,19 @@ function isSeasonActive(season) {
         : today >= start || today <= end
 }
 
+// Retourne le maxLevel le plus haut débloqué par les boss déjà battus.
+// Cumulatif : avoir vaincu un boss d'un palier supérieur débloque aussi tous les paliers inférieurs
+// (ex: un boss lvl 195 battu ne doit pas laisser une zone 150-170 verrouillée).
+function _highestUnlockedMaxLevel() {
+    const defeated = state.defeatedBosses || []
+    let highest = 20
+    for (const tier of UNLOCK_TIERS) {
+        if (tier.anyBossOf.some(id => defeated.includes(id)) && tier.unlocksMaxLevel > highest)
+            highest = tier.unlocksMaxLevel
+    }
+    return highest
+}
+
 // Retourne true si la zone est accessible d'après les boss battus.
 function isZoneAccessible(area) {
     if (area.type === 'event')      return true
@@ -112,11 +125,7 @@ function isZoneAccessible(area) {
     if (area.type === 'anomalie')   return true
     if (area.type === 'saisonnier') return isSeasonActive(area.season)
     if (area.maxLevel <= 20 || area.id.toLowerCase().includes('incarnam')) return true
-    for (const tier of UNLOCK_TIERS) {
-        if (area.maxLevel <= tier.unlocksMaxLevel)
-            return tier.anyBossOf.some(id => (state.defeatedBosses || []).includes(id))
-    }
-    return false
+    return area.maxLevel <= _highestUnlockedMaxLevel()
 }
 
 // Retourne le texte d'indication pour l'overlay de verrouillage, ou null si toujours accessible.

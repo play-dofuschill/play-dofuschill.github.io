@@ -319,6 +319,16 @@ function addToTeam(classId, slotIndex) {
     member.name   = saved?.name   || null
     if (saved?.equip) Object.assign(member.equip, saved.equip)
 
+    // Sécurité : classEquip peut avoir été sauvegardé à un niveau différent (ou corrompu) —
+    // ne jamais réintroduire dans l'équipe un équipement dont le niveau requis dépasse
+    // le niveau réel du personnage.
+    for (const slot of EQUIP_SLOT_ORDER) {
+        if (slot === 'familier') continue
+        const itemId = member.equip[slot]
+        const itm = itemId ? item[itemId] : null
+        if (itm?.requiredLevel && itm.requiredLevel > member.level) member.equip[slot] = null
+    }
+
     const stats = getEffectiveStats(member)
     if (stats) member.maxHp = stats.hp
 

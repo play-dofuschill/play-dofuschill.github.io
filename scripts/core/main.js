@@ -886,14 +886,18 @@ function initGame() {
                 return
             }
             // Synchronise classEquip pour chaque membre avant de changer de team
-            // (garantit que les niveaux sont préservés même si previewTeams est corrompu)
+            // (garantit que les niveaux sont préservés même si previewTeams est corrompu).
+            // Ne remplace jamais l'entrée entière : ça effacerait equip/gender/name déjà
+            // stockés (par exemple par removeFromTeam) pour cette classe.
             if (!state.classEquip) state.classEquip = {}
             for (const m of state.team) {
                 if (!m) continue
-                state.classEquip[m.classId] = {
-                    level: m.level,
-                    exp:   m.exp
-                }
+                if (!state.classEquip[m.classId]) state.classEquip[m.classId] = {}
+                state.classEquip[m.classId].level  = m.level
+                state.classEquip[m.classId].exp    = m.exp
+                state.classEquip[m.classId].equip  = { ...m.equip }
+                state.classEquip[m.classId].gender = m.gender || 'male'
+                state.classEquip[m.classId].name   = m.name   || null
             }
             // Sauvegarde l'équipe courante dans previewTeams avant de changer
             state.previewTeams[state.currentPreviewTeam] = state.team
@@ -906,11 +910,22 @@ function initGame() {
             state.team = Array.isArray(saved) && saved.length > 0
                 ? saved.filter(Boolean).map(m => {
                     const ce = state.classEquip?.[m.classId]
+                    const newLevel = ce?.level ?? m.level
+                    const equip = { ...m.equip }
+                    // Sécurité : un snapshot de preset peut dater d'une époque où le perso
+                    // était à un niveau différent — ne jamais restaurer un équipement dont
+                    // le niveau requis dépasse le niveau réel (à jour) du personnage.
+                    for (const slot of EQUIP_SLOT_ORDER) {
+                        if (slot === 'familier') continue
+                        const itemId = equip[slot]
+                        const itm = itemId ? item[itemId] : null
+                        if (itm?.requiredLevel && itm.requiredLevel > newLevel) equip[slot] = null
+                    }
                     return {
                         ...m,
-                        level: ce?.level ?? m.level,
+                        level: newLevel,
                         exp:   ce?.exp   ?? m.exp,
-                        equip: { ...m.equip },
+                        equip,
                         moves: { ...m.moves },
                         buffs: []
                     }
