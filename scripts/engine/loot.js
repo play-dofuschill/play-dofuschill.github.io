@@ -103,8 +103,7 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
-    const skullBonus   = [0, 0.10, 0.15, 0.20][state.skullLevel] || 0
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + enutrofBonus + skullBonus
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + enutrofBonus
 
     // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
     const baseEntries      = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
@@ -125,7 +124,9 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     })
 
     const levelMult   = _getLevelDropPenaltyMult(areaId)
-    const totalChance = Math.min(0.95, (itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus) * levelMult)
+    // Difficulté modulée : multiplicateur de loot skull (niveau 1 = pas de bonus)
+    const lootMult    = [1, 1, 2, 4][state.skullLevel] || 1
+    const totalChance = Math.min(0.95, (itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus) * levelMult * lootMult)
 
     if (Math.random() >= totalChance) return []
 
@@ -232,8 +233,7 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
 
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
-    const skullBonusPV = [0, 0.10, 0.15, 0.20][state.skullLevel] || 0
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + (combat?.dropBonusCombat || 0) / 100 + skullBonusPV
+    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + (combat?.dropBonusCombat || 0) / 100
 
     if (enemy.isArchi) {
         // Archimonstre / Archiboss : capture garantie à 100%
@@ -244,7 +244,9 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
             ? soulStoneEntry.dropRate
             : (monsters[enemy.id]?.dropRate ?? 0)
         const levelMult  = _getLevelDropPenaltyMult(state.currentArea)
-        const dropChance = Math.min(0.95, (baseChance + dropBonus) * levelMult)
+        // Difficulté modulée : multiplicateur de loot skull (niveau 1 = pas de bonus)
+        const lootMult   = [1, 1, 2, 4][state.skullLevel] || 1
+        const dropChance = Math.min(0.95, (baseChance + dropBonus) * levelMult * lootMult)
 
         if (Math.random() < dropChance) {
             familiarDrop = _captureFamiliar(enemy.id)

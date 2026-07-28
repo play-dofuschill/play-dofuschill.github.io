@@ -27,15 +27,15 @@ function setZoneTab(type) {
 
 function _buildSkullSelector(refreshFn) {
     const sl = state.skullLevel || 0
-    const skullLabels = ['', '+100% difficulté', '+200% difficulté', '+400% difficulté']
+    const skullLabels = ['', 'Cap de niveau uniquement', 'Difficulté x2, loot x2', 'Difficulté x3, loot x4']
     const wrapper = document.createElement('div')
     wrapper.className = 'skull-selector'
     wrapper.title = sl > 0 ? skullLabels[sl] : 'Mode normal'
     wrapper.innerHTML = `
         <strong style="font-size:0.8rem; white-space:nowrap;">Difficulté modulée :</strong>
-        <span class="skull-btn${sl >= 1 ? ' skull-active' : ''}" data-level="1" title="+100% difficulté"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>
-        <span class="skull-btn${sl >= 2 ? ' skull-active' : ''}" data-level="2" title="+200% difficulté"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>
-        <span class="skull-btn${sl >= 3 ? ' skull-active' : ''}" data-level="3" title="+400% difficulté"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>`
+        <span class="skull-btn${sl >= 1 ? ' skull-active' : ''}" data-level="1" title="Cap de niveau uniquement"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>
+        <span class="skull-btn${sl >= 2 ? ' skull-active' : ''}" data-level="2" title="Difficulté x2, loot x2"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>
+        <span class="skull-btn${sl >= 3 ? ' skull-active' : ''}" data-level="3" title="Difficulté x3, loot x4"><img src="img/icons/Tete_de_mort.png" class="skull-img"></span>`
     wrapper.querySelectorAll('.skull-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation()

@@ -246,7 +246,8 @@ function calculateXPReward(enemy, member) {
 
     const levelPenalty = getLevelPenalty(member.level, enemy.level)
 
-    const SKULL_MULT = [1, 2, 3, 5]
+    // XP alignée sur le multiplicateur de difficulté (niveau 1 = pas de bonus)
+    const SKULL_MULT = [1, 1, 2, 3]
     const skullMult = SKULL_MULT[state.skullLevel] || 1
 
     return Math.floor(baseXP * rarityMult * tierMult * levelPenalty * skullMult)
@@ -329,7 +330,8 @@ function spawnEnemy(areaId) {
     }
 
     // Difficulté modulée : multiplicateur skull appliqué après l'archi
-    const SKULL_MULT = [1, 2, 3, 5]
+    // Niveau 1 = cap de niveau seul (pas de difficulté), niveau 2 = x2, niveau 3 = x3
+    const SKULL_MULT = [1, 1, 2, 3]
     const skullMult  = SKULL_MULT[state.skullLevel] || 1
     if (skullMult > 1) {
         enemy.maxHp     = Math.floor(enemy.maxHp * skullMult)
@@ -5064,7 +5066,7 @@ function _spawnEnemyById(monsterId, statMult = 1) {
     }
 
     // Difficulté modulée skull (appliqué après statMult)
-    const SKULL_MULT = [1, 2, 3, 5]
+    const SKULL_MULT = [1, 1, 2, 3]
     const skullMult  = SKULL_MULT[state.skullLevel] || 1
     if (skullMult > 1) {
         enemy.maxHp     = Math.floor(enemy.maxHp * skullMult)
