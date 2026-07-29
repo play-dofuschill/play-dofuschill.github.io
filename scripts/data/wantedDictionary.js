@@ -9,7 +9,7 @@ monsters['wanted_sam_sagaz'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 20,
-    bst: { hp: 6500, atk: 300, spd: 112, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 6500, atk: 170, spd: 112, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_sam_sagaz_jardinage', 'wanted_sam_sagaz_anneau_de_gaz', 'wanted_sam_sagaz_appel_de_bolesh']
 }
 
@@ -20,7 +20,7 @@ monsters['wanted_fouduglen_l_ecureuil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 20,
-    bst: { hp: 6700, atk: 300, spd: 112, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 6700, atk: 230, spd: 112, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fouduglen_l_ecureuil_casse_noisettes', 'wanted_fouduglen_l_ecureuil_discretion']
 }
 
@@ -31,7 +31,7 @@ monsters['wanted_maitre_boulet'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 12000, atk: 300, spd: 112, res: { neutre: -10, feu: 10, eau: 10, air: 10, terre: 10 } },
+    bst: { hp: 12000, atk: 294, spd: 112, res: { neutre: -10, feu: 10, eau: 10, air: 10, terre: 10 } },
     moves: ['wanted_maitre_boulet_acculement', 'wanted_maitre_boulet_debitage', 'wanted_maitre_boulet_invocation_de_tournesol']
 }
 
@@ -42,7 +42,7 @@ monsters['wanted_frakacia_leukocytine'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 13000, atk: 300, spd: 112, res: { neutre: 15, feu: 5, eau: -10, air: 25, terre: -20 } },
+    bst: { hp: 13000, atk: 345, spd: 112, res: { neutre: 15, feu: 5, eau: -10, air: 25, terre: -20 } },
     moves: ['wanted_frakacia_leukocytine_crochet_fracassant', 'wanted_frakacia_leukocytine_cri_fracassant', 'wanted_frakacia_leukocytine_hyperleukocytine']
 }
 
@@ -53,7 +53,7 @@ monsters['wanted_ambi_guman'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 14000, atk: 200, spd: 112, res: { neutre: 20, feu: 20, eau: 10, air: 20, terre: 10 } },
+    bst: { hp: 14000, atk: 255, spd: 112, res: { neutre: 20, feu: 20, eau: 10, air: 20, terre: 10 } },
     moves: ['wanted_ambi_guman_patate', 'wanted_ambi_guman_roquette', 'wanted_ambi_guman_enfant_de_la_terre']
 }
 
@@ -64,7 +64,7 @@ monsters['wanted_exi_guman'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 30,
-    bst: { hp: 11000, atk: 200, spd: 112, res: { neutre: 30, feu: 5, eau: 5, air: -10, terre: 10 } },
+    bst: { hp: 11000, atk: 267, spd: 112, res: { neutre: 30, feu: 5, eau: 5, air: -10, terre: 10 } },
     moves: ['wanted_exi_guman_spatezoignons', 'wanted_exi_guman_chataigne', 'wanted_exi_guman_pousses_ephemeres']
 }
 
@@ -75,7 +75,7 @@ monsters['wanted_roub_ignolles'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 40,
-    bst: { hp: 12000, atk: 300, spd: 124, res: { neutre: 20, feu: 10, eau: 10, air: 10, terre: 0 } },
+    bst: { hp: 12000, atk: 400, spd: 124, res: { neutre: 20, feu: 10, eau: 10, air: 10, terre: 0 } },
     moves: ['wanted_roub_ignolles_vulnerabilite_bombesque', 'wanted_roub_ignolles_pousse_bombe', 'wanted_roub_ignolles_teleportabombe']
 }
 
@@ -86,7 +86,7 @@ monsters['wanted_bouss_baybe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 50,
-    bst: { hp: 31000, atk: 300, spd: 124, res: { neutre: 15, feu: 5, eau: 0, air: 10, terre: 20 } },
+    bst: { hp: 31000, atk: 575, spd: 124, res: { neutre: 15, feu: 5, eau: 0, air: 10, terre: 20 } },
     moves: ['wanted_bouss_baybe_salon', 'wanted_bouss_baybe_econduire', 'wanted_bouss_baybe_porkasserie']
 }
 
@@ -97,7 +97,7 @@ monsters['wanted_ogivol_scalarcin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 50,
-    bst: { hp: 31000, atk: 300, spd: 124, res: { neutre: 10, feu: -15, eau: -20, air: 25, terre: 20 } },
+    bst: { hp: 31000, atk: 425, spd: 124, res: { neutre: 10, feu: -15, eau: -20, air: 25, terre: 20 } },
     moves: ['wanted_ogivol_scalarcin_ogivoltaique', 'wanted_ogivol_scalarcin_ogivolage', 'wanted_ogivol_scalarcin_ogivolatilise', 'wanted_ogivol_scalarcin_ogivologramme', 'wanted_ogivol_scalarcin_ogivolverine']
 }
 
@@ -108,7 +108,7 @@ monsters['wanted_nono_le_wobot'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 41000, atk: 300, spd: 136, res: { neutre: 10, feu: -10, eau: -10, air: 20, terre: 20 } },
+    bst: { hp: 41000, atk: 563, spd: 136, res: { neutre: 10, feu: -10, eau: -10, air: 20, terre: 20 } },
     moves: ['wanted_nono_le_wobot_vewwouillage', 'wanted_nono_le_wobot_wavelot_explosif', 'wanted_nono_le_wobot_massue_matwaquante']
 }
 
@@ -119,7 +119,7 @@ monsters['wanted_brumen_tinctorias'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 43000, atk: 300, spd: 136, res: { neutre: 15, feu: 20, eau: -15, air: 5, terre: -10 } },
+    bst: { hp: 43000, atk: 520, spd: 136, res: { neutre: 15, feu: 20, eau: -15, air: 5, terre: -10 } },
     moves: ['wanted_brumen_tinctorias_elixir_curatif', 'wanted_brumen_tinctorias_elixir_interdit', 'wanted_brumen_tinctorias_elixir_stimulant', 'wanted_brumen_tinctorias_elixir_revitalisant', 'wanted_brumen_tinctorias_elixir_vampirique']
 }
 
@@ -130,7 +130,7 @@ monsters['wanted_marzwel_le_gobelin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 41000, atk: 300, spd: 136, res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 0 } },
+    bst: { hp: 41000, atk: 533, spd: 136, res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 0 } },
     moves: ['wanted_marzwel_le_gobelin_javeline_creuse', 'wanted_marzwel_le_gobelin_a_pied_d_uvre', 'wanted_marzwel_le_gobelin_fuite_anticipee']
 }
 
@@ -141,7 +141,7 @@ monsters['wanted_gadoo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 60,
-    bst: { hp: 44000, atk: 100, spd: 136,
+    bst: { hp: 44000, atk: 510, spd: 136,
         res: { neutre: 100, feu: 10, eau: -30, air: 10, terre: 40 } },
     moves: ['wanted_gadoo_sucon_spongieux', 'wanted_gadoo_vase', 'wanted_gadoo_croute', 'wanted_gadoo_bain_de_boo']
 }
@@ -153,7 +153,7 @@ monsters['wanted_armada_l_invincible'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 70,
-    bst: { hp: 53000, atk: 300, spd: 136,
+    bst: { hp: 53000, atk: 805, spd: 136,
         res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_armada_l_invincible_tankafair', 'wanted_armada_l_invincible_canonnier', 'wanted_armada_l_invincible_manuvre']
 }
@@ -165,7 +165,7 @@ monsters['wanted_qil_bil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 70,
-    bst: { hp: 53000, atk: 300, spd: 136, res: { neutre: 10, feu: 10, eau: -19, air: 0, terre: 12 } },
+    bst: { hp: 53000, atk: 595, spd: 136, res: { neutre: 10, feu: 10, eau: -19, air: 0, terre: 12 } },
     moves: ['wanted_qil_bil_lancer_de_poing', 'wanted_qil_bil_rage_cybernetique', 'wanted_qil_bil_surchauffe']
 }
 
@@ -176,7 +176,7 @@ monsters['wanted_dragodingo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 300, spd: 148,
+    bst: { hp: 66000, atk: 680, spd: 148,
         res: { neutre: 0, feu: 10, eau: 10, air: 15, terre: 15 } },
     moves: ['wanted_dragodingo_dingoboule', 'wanted_dragodingo_dingosouffle', 'wanted_dragodingo_dingoprevention']
 }
@@ -188,7 +188,7 @@ monsters['wanted_aermyne_braco_scalptaras'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 300, spd: 148, res: { neutre: 60, feu: 30, eau: 10, air: 20, terre: -20 } },
+    bst: { hp: 66000, atk: 765, spd: 148, res: { neutre: 60, feu: 30, eau: 10, air: 20, terre: -20 } },
     moves: ['wanted_aermyne_braco_scalptaras_calin', 'wanted_aermyne_braco_scalptaras_malaxage', 'wanted_aermyne_braco_scalptaras_sale_marmot']
 }
 
@@ -199,7 +199,7 @@ monsters['wanted_musha_l_oni'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 300, spd: 148, res: { neutre: 90, feu: 90, eau: 90, air: 90, terre: 90 } },
+    bst: { hp: 66000, atk: 691, spd: 148, res: { neutre: 90, feu: 90, eau: 90, air: 90, terre: 90 } },
     moves: ['wanted_musha_l_oni_onigiri', 'wanted_musha_l_oni_onigaud', 'wanted_musha_l_oni_onivoirien']
 }
 
@@ -210,7 +210,7 @@ monsters['wanted_tyranne_la_terrible'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 66000, atk: 350, spd: 148, res: { neutre: 10, feu: 0, eau: 15, air: -10, terre: 15 } },
+    bst: { hp: 66000, atk: 920, spd: 148, res: { neutre: 10, feu: 0, eau: 15, air: -10, terre: 15 } },
     moves: ['wanted_tyranne_la_terrible_hyper_kick', 'wanted_tyranne_la_terrible_1000_poings', 'wanted_tyranne_la_terrible_frappe_devastatrice']
 }
 
@@ -221,7 +221,7 @@ monsters['wanted_tournade'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 80,
-    bst: { hp: 62000, atk: 250, spd: 148,
+    bst: { hp: 62000, atk: 796, spd: 148,
         res: { neutre: 5, feu: 7, eau: -12, air: 13, terre: 10 } },
     moves: ['wanted_tournade_aspiration_de_masse', 'wanted_tournade_tourbillon_violent', 'wanted_tournade_tempete_devastatrice']
 }
@@ -233,7 +233,7 @@ monsters['wanted_degolas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 79000, atk: 300, spd: 148,
+    bst: { hp: 79000, atk: 1035, spd: 148,
         res: { neutre: 5, feu: 15, eau: 25, air: 0, terre: 5 } },
     moves: ['wanted_degolas_fleche_aveuglante', 'wanted_degolas_masque_aveuglant', 'wanted_degolas_fleche_repoussante']
 }
@@ -245,7 +245,7 @@ monsters['wanted_rok_gnorok'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 79000, atk: 300, spd: 148, res: { neutre: 22, feu: 22, eau: 22, air: 22, terre: 22 } },
+    bst: { hp: 79000, atk: 765, spd: 148, res: { neutre: 22, feu: 22, eau: 22, air: 22, terre: 22 } },
     moves: ['wanted_rok_gnorok_martelage', 'wanted_rok_gnorok_armure_rocailleuse', 'wanted_rok_gnorok_surt']
 }
 
@@ -256,7 +256,7 @@ monsters['wanted_simbadas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 90,
-    bst: { hp: 80000, atk: 300, spd: 148, res: { neutre: -15, feu: 28, eau: 14, air: 13, terre: -5 } },
+    bst: { hp: 80000, atk: 993, spd: 148, res: { neutre: -15, feu: 28, eau: 14, air: 13, terre: -5 } },
     moves: ['wanted_simbadas_saut_precipite', 'wanted_simbadas_grosse_papatte']
 }
 
@@ -267,7 +267,7 @@ monsters['wanted_prince_marchand'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 96000, atk: 300, spd: 160, res: { neutre: 50, feu: 15, eau: 10, air: 5, terre: 0 } },
+    bst: { hp: 96000, atk: 939, spd: 160, res: { neutre: 50, feu: 15, eau: 10, air: 5, terre: 0 } },
     moves: ['wanted_prince_marchand_marchandage', 'wanted_prince_marchand_palouf', 'wanted_prince_marchand_charge_heroique']
 }
 
@@ -278,7 +278,7 @@ monsters['wanted_maxi_malle'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 89000, atk: 300, spd: 160,
+    bst: { hp: 89000, atk: 1042, spd: 160,
         res: { neutre: -20, feu: -10, eau: 40, air: 20, terre: 10 } },
     moves: ['wanted_maxi_malle_decoffrage_brut', 'wanted_maxi_malle_macro_ondes']
 }
@@ -290,7 +290,7 @@ monsters['wanted_naganita'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 94000, atk: 375, spd: 160, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
+    bst: { hp: 94000, atk: 1124, spd: 160, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
     moves: ['wanted_naganita_puissant_balayage', 'wanted_naganita_estoc_fatal']
 }
 
@@ -301,7 +301,7 @@ monsters['wanted_trukipik'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 94000, atk: 375, spd: 160, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
+    bst: { hp: 94000, atk: 1124, spd: 160, res: { neutre: -5, feu: -20, eau: 10, air: 20, terre: 15 } },
     moves: ['wanted_trukipik_puissant_balayage', 'wanted_trukipik_estoc_fatal']
 }
 
@@ -312,7 +312,7 @@ monsters['wanted_carlita_de_l_aguerfelde'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 100,
-    bst: { hp: 94000, atk: 300, spd: 160, res: { neutre: 20, feu: -20, eau: 35, air: -5, terre: 5 } },
+    bst: { hp: 94000, atk: 850, spd: 160, res: { neutre: 20, feu: -20, eau: 35, air: -5, terre: 5 } },
     moves: ['wanted_carlita_de_l_aguerfelde_piege_a_mulou', 'wanted_carlita_de_l_aguerfelde_depecage', 'wanted_carlita_de_l_aguerfelde_carabine_a_gros_gibier']
 }
 
@@ -323,7 +323,7 @@ monsters['wanted_gobrechaun'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 110,
-    bst: { hp: 110000, atk: 300, spd: 160,
+    bst: { hp: 110000, atk: 1200, spd: 160,
         res: { neutre: 0, feu: 0, eau: 20, air: 0, terre: 15 } },
     moves: ['wanted_gobrechaun_jig', 'wanted_gobrechaun_lance_en_ciel']
 }
@@ -335,7 +335,7 @@ monsters['wanted_bouflouth'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 130000, atk: 300, spd: 172, res: { neutre: 80, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 130000, atk: 1063, spd: 172, res: { neutre: 80, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_bouflouth_mammouth', 'wanted_bouflouth_gloutmouth', 'wanted_bouflouth_hypermouth', 'wanted_bouflouth_embrochmouth']
 }
 
@@ -358,7 +358,7 @@ monsters['wanted_morblok'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 120000, atk: 400, spd: 172, res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
+    bst: { hp: 120000, atk: 1020, spd: 172, res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
     moves: ['wanted_morblok_chronocharge', 'wanted_morblok_rajeunissement', 'wanted_morblok_saute_heure']
 }
 
@@ -369,7 +369,7 @@ monsters['wanted_nenufor_tilotus'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 120,
-    bst: { hp: 130000, atk: 375, spd: 172, res: { neutre: 0, feu: -15, eau: 10, air: -5, terre: 20 } },
+    bst: { hp: 130000, atk: 1033, spd: 172, res: { neutre: 0, feu: -15, eau: 10, air: -5, terre: 20 } },
     moves: ['wanted_nenufor_tilotus_spores_de_nympheacee', 'wanted_nenufor_tilotus_invocation_de_nufor', 'wanted_nenufor_tilotus_rhizome_agressif']
 }
 
@@ -380,7 +380,7 @@ monsters['wanted_monsieur_pingouin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 140000, atk: 300, spd: 172, res: { neutre: 0, feu: 0, eau: 50, air: 20, terre: 0 } },
+    bst: { hp: 140000, atk: 1323, spd: 172, res: { neutre: 0, feu: 0, eau: 50, air: 20, terre: 0 } },
     moves: ['wanted_monsieur_pingouin_parapluie_gadget', 'wanted_monsieur_pingouin_iceberg_saloon', 'wanted_monsieur_pingouin_mascarade_rocambolesque']
 }
 
@@ -391,7 +391,7 @@ monsters['wanted_jerart_dupaindur'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 130000, atk: 300, spd: 172,
+    bst: { hp: 130000, atk: 1447, spd: 172,
         res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_jerart_dupaindur_murge', 'wanted_jerart_dupaindur_soif_inextinguible', 'wanted_jerart_dupaindur_tournee_generale']
 }
@@ -403,7 +403,7 @@ monsters['wanted_padgref_demoel'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 160000, atk: 300, spd: 172, res: { neutre: 30, feu: 15, eau: -15, air: -10, terre: -15 } },
+    bst: { hp: 160000, atk: 1495, spd: 172, res: { neutre: 30, feu: 15, eau: -15, air: -10, terre: -15 } },
     moves: ['wanted_padgref_demoel_attraction', 'wanted_padgref_demoel_assaut_aerien', 'wanted_padgref_demoel_transposition_aqueuse', 'wanted_padgref_demoel_absorption_brulante', 'wanted_padgref_demoel_sanction']
 }
 
@@ -414,7 +414,7 @@ monsters['wanted_ali_grothor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 140000, atk: 300, spd: 172, res: { neutre: 20, feu: 30, eau: -15, air: 25, terre: 10 } },
+    bst: { hp: 140000, atk: 1105, spd: 172, res: { neutre: 20, feu: 30, eau: -15, air: 25, terre: 10 } },
     moves: ['wanted_ali_grothor_ture', 'wanted_ali_grothor_hida', 'wanted_ali_grothor_risation', 'wanted_ali_grothor_rage_electrique']
 }
 
@@ -425,7 +425,7 @@ monsters['wanted_roi_camole'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 130,
-    bst: { hp: 160000, atk: 400, spd: 172,
+    bst: { hp: 160000, atk: 1410, spd: 172,
         res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_roi_camole_taco_tak', 'wanted_roi_camole_epines_et_mirages', 'wanted_roi_camole_coucalactus', 'wanted_roi_camole_foret_de_cactus']
 }
@@ -437,7 +437,7 @@ monsters['wanted_katigrou'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 150000, atk: 300, spd: 184, res: { neutre: 50, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 150000, atk: 1209, spd: 184, res: { neutre: 50, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_katigrou_bond_improbable', 'wanted_katigrou_broukeul', 'wanted_katigrou_grougrou']
 }
 
@@ -448,7 +448,7 @@ monsters['wanted_darma'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 160000, atk: 300, spd: 184,
+    bst: { hp: 160000, atk: 1212, spd: 184,
         res: { neutre: 50, feu: 0, eau: 10, air: 20, terre: 30 } },
     moves: ['wanted_darma_vue_en_noir', 'wanted_darma_vivacite_perdue', 'wanted_darma_zhostile']
 }
@@ -460,7 +460,7 @@ monsters['wanted_amy_l_empoisonneuse'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 300000, atk: 300, spd: 184,
+    bst: { hp: 300000, atk: 1190, spd: 184,
         res: { neutre: -70, feu: -110, eau: -80, air: -100, terre: -90 } },
     moves: ['wanted_amy_l_empoisonneuse_ronce_animee', 'wanted_amy_l_empoisonneuse_poison_vegetal', 'wanted_amy_l_empoisonneuse_vignes_vampiriques', 'wanted_amy_l_empoisonneuse_stranguronces', 'wanted_amy_l_empoisonneuse_foret_epineuse']
 }
@@ -473,7 +473,7 @@ monsters['wanted_fojumo'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 140,
-    bst: { hp: 160000, atk: 400, spd: 184, res: { neutre: -15, feu: 5, eau: 15, air: 10, terre: 10 } },
+    bst: { hp: 160000, atk: 1245, spd: 184, res: { neutre: -15, feu: 5, eau: 15, air: 10, terre: 10 } },
     moves: ['wanted_fojumo_assassinat_silencieux', 'wanted_fojumo_substitution_furtive', 'wanted_fojumo_dissimulation_nocive']
 }
 
@@ -484,7 +484,7 @@ monsters['wanted_fantomayte'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 180000, atk: 300, spd: 184, res: { neutre: 25, feu: 30, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 180000, atk: 1282, spd: 184, res: { neutre: 25, feu: 30, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fantomayte_qui_rit', 'wanted_fantomayte_qui_pete', 'wanted_fantomayte_litterature']
 }
 
@@ -495,7 +495,7 @@ monsters['wanted_mogligli'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 34000, atk: 300, spd: 184,
+    bst: { hp: 34000, atk: 1287, spd: 184,
         res: { neutre: 20, feu: 30, eau: 0, air: 20, terre: 10 } },
     moves: ['wanted_mogligli_chienchien_rouge', 'wanted_mogligli_au_kanig', 'wanted_mogligli_la_chasse_de_kaa_kaa']
 }
@@ -507,7 +507,7 @@ monsters['wanted_aigripoil'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 180000, atk: 500, spd: 184,
+    bst: { hp: 180000, atk: 1314, spd: 184,
         res: { neutre: 20, feu: -5, eau: 5, air: 30, terre: 15 } },
     moves: ['wanted_aigripoil_aigrippement', 'wanted_aigripoil_empalladium']
 }
@@ -519,7 +519,7 @@ monsters['wanted_zatoishwan'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 180000, atk: 300, spd: 184, res: { neutre: 20, feu: 80, eau: 60, air: 40, terre: 100 } },
+    bst: { hp: 180000, atk: 1275, spd: 184, res: { neutre: 20, feu: 80, eau: 60, air: 40, terre: 100 } },
     moves: ['wanted_zatoishwan_baton_virevoltant', 'wanted_zatoishwan_fee_verte', 'wanted_zatoishwan_vue_trouble', 'wanted_zatoishwan_flasque_incendiaire', 'wanted_zatoishwan_colere_liquide']
 }
 
@@ -530,7 +530,7 @@ monsters['wanted_vengeuse_masquee'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 200000, atk: 300, spd: 196, res: { neutre: 200, feu: 25, eau: 200, air: 25, terre: 25 } },
+    bst: { hp: 200000, atk: 1388, spd: 196, res: { neutre: 200, feu: 25, eau: 200, air: 25, terre: 25 } },
     moves: ['wanted_vengeuse_masquee_coup_de_bulle', 'wanted_vengeuse_masquee_attaque_vengeresse', 'wanted_vengeuse_masquee_esprit_de_vengeance']
 }
 
@@ -541,7 +541,7 @@ monsters['wanted_glandaf_l_aigri'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 200000, atk: 300, spd: 196,
+    bst: { hp: 200000, atk: 1360, spd: 196,
         res: { neutre: 10, feu: 60, eau: 40, air: 20, terre: 0 } },
     moves: ['wanted_glandaf_l_aigri_gnirdmalg', 'wanted_glandaf_l_aigri_anneau_de_feu', 'wanted_glandaf_l_aigri_grisaille']
 }
@@ -553,7 +553,7 @@ monsters['wanted_anatak_diskedor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 200000, atk: 450, spd: 196, res: { neutre: 0, feu: -5, eau: 20, air: 15, terre: 15 } },
+    bst: { hp: 200000, atk: 1488, spd: 196, res: { neutre: 0, feu: -5, eau: 20, air: 15, terre: 15 } },
     moves: ['wanted_anatak_diskedor_lame_tempete', 'wanted_anatak_diskedor_frappe_purificatrice', 'wanted_anatak_diskedor_coup_de_foudre', 'wanted_anatak_diskedor_coup_de_foudre', 'wanted_anatak_diskedor_frappe_purificatrice', 'wanted_anatak_diskedor_lame_tempete']
 }
 
@@ -564,7 +564,7 @@ monsters['wanted_yech_ti'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 220000, atk: 300, spd: 196, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 220000, atk: 1445, spd: 196, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_yech_ti_goulaf', 'wanted_yech_ti_che_tout_fraique', 'wanted_yech_ti_ch_est_du_leque_mes_louppes', 'wanted_yech_ti_ti_t_as_bou', 'wanted_yech_ti_ch_est_vraimint_abominap', 'wanted_yech_ti_i_fait_cru', 'wanted_yech_ti_ptio_quinquin', 'wanted_yech_ti_avoir_maux_a_ches_dints', 'wanted_yech_ti_qu_i_est_mieffe_c_ti_la']
 }
 
@@ -575,7 +575,7 @@ monsters['wanted_crasper'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 220000, atk: 300, spd: 196,
+    bst: { hp: 220000, atk: 1465, spd: 196,
         res: { neutre: 25, feu: 30, eau: 10, air: 20, terre: 0 } },
     moves: ['wanted_crasper_crasse', 'wanted_crasper_lieu_hante', 'wanted_crasper_amical']
 }
@@ -587,7 +587,7 @@ monsters['wanted_hin'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 210000, atk: 700, spd: 196,
+    bst: { hp: 210000, atk: 1955, spd: 196,
         res: { neutre: -5, feu: 10, eau: 15, air: -10, terre: 40 } },
     moves: ['wanted_hin_tetropre', 'wanted_hin_pouss_pouss', 'wanted_hin_distanss']
 }
@@ -599,7 +599,7 @@ monsters['wanted_ka_youloud'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 170,
-    bst: { hp: 210000, atk: 600, spd: 196,
+    bst: { hp: 210000, atk: 1595, spd: 196,
         res: { neutre: 20, feu: 5, eau: 35, air: 15, terre: 25 } },
     moves: ['wanted_ka_youloud_mache_ouille', 'wanted_ka_youloud_liquide_gastrique', 'wanted_ka_youloud_pas_sage', 'wanted_ka_youloud_mache_ouille', 'wanted_ka_youloud_mache_ouille', 'wanted_ka_youloud_pas_sage', 'wanted_ka_youloud_pas_sage']
 }
@@ -611,7 +611,7 @@ monsters['wanted_dremoan'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 240000, atk: 300, spd: 208, res: { neutre: 60, feu: 0, eau: 50, air: 40, terre: 50 } },
+    bst: { hp: 240000, atk: 1530, spd: 208, res: { neutre: 60, feu: 0, eau: 50, air: 40, terre: 50 } },
     moves: ['wanted_dremoan_graine_de_dremoan', 'wanted_dremoan_mains_crochues', 'wanted_dremoan_ronce_de_deperissement', 'wanted_dremoan_ronces_de_l_assassin', 'wanted_dremoan_pourrissement_accelere', 'wanted_dremoan_zombification_putride']
 }
 
@@ -622,7 +622,7 @@ monsters['wanted_carter_le_pillard'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 250000, atk: 300, spd: 208, res: { neutre: 50, feu: 30, eau: 10, air: 100, terre: 10 } },
+    bst: { hp: 250000, atk: 1775, spd: 208, res: { neutre: 50, feu: 30, eau: 10, air: 100, terre: 10 } },
     moves: ['wanted_carter_le_pillard_dans_les_vapes', 'wanted_carter_le_pillard_ce_qui_est_a_toi_est_a_moi', 'wanted_carter_le_pillard_souffle_embrume']
 }
 
@@ -633,7 +633,7 @@ monsters['wanted_guerrier_du_k_o'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 240000, atk: 650, spd: 208, res: { neutre: 20, feu: 10, eau: 5, air: -20, terre: 15 } },
+    bst: { hp: 240000, atk: 2070, spd: 208, res: { neutre: 20, feu: 10, eau: 5, air: -20, terre: 15 } },
     moves: ['wanted_guerrier_du_k_o_tremblement_de_guerre', 'wanted_guerrier_du_k_o_massacre_a_retardement', 'wanted_guerrier_du_k_o_carnageddon']
 }
 
@@ -644,7 +644,7 @@ monsters['wanted_shushu_debruk_sayl'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 180,
-    bst: { hp: 250000, atk: 333, spd: 208, res: { neutre: 3, feu: 33, eau: 33, air: 33, terre: 33 } },
+    bst: { hp: 250000, atk: 1650, spd: 208, res: { neutre: 3, feu: 33, eau: 33, air: 33, terre: 33 } },
     moves: ['wanted_shushu_debruk_sayl_assimilation_d_energies', 'wanted_shushu_debruk_sayl_mue_demoniaque', 'wanted_shushu_debruk_sayl_malediction_cuisante', 'wanted_shushu_debruk_sayl_poing_des_secousses_deferlantes', 'wanted_shushu_debruk_sayl_poing_des_vents_brulants']
 }
 
@@ -655,7 +655,7 @@ monsters['wanted_flasho'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 240000, atk: 300, spd: 208, res: { neutre: 30, feu: 50, eau: 10, air: 50, terre: 0 } },
+    bst: { hp: 240000, atk: 505, spd: 208, res: { neutre: 30, feu: 50, eau: 10, air: 50, terre: 0 } },
     moves: ['wanted_flasho_courant_d_air', 'wanted_flasho_agitation_moleculaire', 'wanted_flasho_amende', 'wanted_flasho_vibration_moleculaire']
 }
 
@@ -666,7 +666,7 @@ monsters['wanted_viti_glourson'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 290000, atk: 300, spd: 208, res: { neutre: 50, feu: 10, eau: 0, air: 10, terre: 30 } },
+    bst: { hp: 290000, atk: 435, spd: 208, res: { neutre: 50, feu: 10, eau: 0, air: 10, terre: 30 } },
     moves: ['wanted_viti_glourson_miel_cicatrisant', 'wanted_viti_glourson_mielodie', 'wanted_viti_glourson_crepe_au_miel', 'wanted_viti_glourson_gloursonnerie', 'wanted_viti_glourson_statue_de_miel']
 }
 
@@ -677,7 +677,7 @@ monsters['wanted_fuji_givrefoux'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 270000, atk: 300, spd: 208, res: { neutre: -6, feu: 14, eau: 12, air: -11, terre: 6 } },
+    bst: { hp: 270000, atk: 1282, spd: 208, res: { neutre: -6, feu: 14, eau: 12, air: -11, terre: 6 } },
     moves: ['wanted_fuji_givrefoux_progeniture', 'wanted_fuji_givrefoux_lait_maternel', 'wanted_fuji_givrefoux_foufoux']
 }
 
@@ -688,7 +688,7 @@ monsters['wanted_docteur_eggob'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 280000, atk: 300, spd: 208, res: { neutre: 200, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 280000, atk: 1055, spd: 208, res: { neutre: 200, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_docteur_eggob_gobus_chaotique', 'wanted_docteur_eggob_robotisation', 'wanted_docteur_eggob_rayon_emeraude', 'wanted_docteur_eggob_uf_de_la_mort']
 }
 
@@ -699,7 +699,7 @@ monsters['wanted_sans_visage'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 270000, atk: 300, spd: 208, res: { neutre: 50, feu: 20, eau: 5, air: 10, terre: 15 } },
+    bst: { hp: 270000, atk: 1430, spd: 208, res: { neutre: 50, feu: 20, eau: 5, air: 10, terre: 15 } },
     moves: ['wanted_sans_visage_rage_avide', 'wanted_sans_visage_air_electrifiant', 'wanted_sans_visage_rage_foudroyante', 'wanted_sans_visage_invocation_de_bak']
 }
 
@@ -710,7 +710,7 @@ monsters['wanted_predagob'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 190,
-    bst: { hp: 260000, atk: 300, spd: 208, res: { neutre: 40, feu: 10, eau: 25, air: 20, terre: 70 } },
+    bst: { hp: 260000, atk: 567, spd: 208, res: { neutre: 40, feu: 10, eau: 25, air: 20, terre: 70 } },
     moves: ['wanted_predagob_moa_chasser_bestioles', 'wanted_predagob_mine_gobliterante', 'wanted_predagob_gobseques']
 }
 
@@ -721,7 +721,7 @@ monsters['wanted_buldalazred'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 35, feu: 10, eau: 20, air: 5, terre: 25 } },
+    bst: { hp: 290000, atk: 2060, spd: 220, res: { neutre: 35, feu: 10, eau: 20, air: 5, terre: 25 } },
     moves: ['wanted_buldalazred_piege_dimensionnel', 'wanted_buldalazred_uction']
 }
 
@@ -732,7 +732,7 @@ monsters['wanted_takomako'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 20, feu: 35, eau: 25, air: 5, terre: 10 } },
+    bst: { hp: 290000, atk: 4233, spd: 220, res: { neutre: 20, feu: 35, eau: 25, air: 5, terre: 10 } },
     moves: ['wanted_takomako_takotak', 'wanted_takomako_makomak']
 }
 
@@ -743,7 +743,7 @@ monsters['wanted_homard_medali'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 15, feu: -5, eau: 10, air: 30, terre: 20 } },
+    bst: { hp: 290000, atk: 2152, spd: 220, res: { neutre: 15, feu: -5, eau: 10, air: 30, terre: 20 } },
     moves: ['wanted_homard_medali_drachetaulque', 'wanted_homard_medali_hypercut', 'wanted_homard_medali_telepunch']
 }
 
@@ -754,7 +754,7 @@ monsters['wanted_glourdorak'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 340000, atk: 300, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 340000, atk: 1042, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_glourdorak_gloursofulgur', 'wanted_glourdorak_gloursopoing', 'wanted_glourdorak_dard_des_villes', 'wanted_glourdorak_gloursolaser', 'wanted_glourdorak_ruche_hour', 'wanted_glourdorak_miel_de_jouvence']
 }
 
@@ -765,7 +765,7 @@ monsters['wanted_mekamouth'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 340000, atk: 300, spd: 220, res: { neutre: 25, feu: 50, eau: -15, air: -20, terre: 35 } },
+    bst: { hp: 340000, atk: 1837, spd: 220, res: { neutre: 25, feu: 50, eau: -15, air: -20, terre: 35 } },
     moves: ['wanted_mekamouth_glyglyphe', 'wanted_mekamouth_mekabouste', 'wanted_mekamouth_la_defense_c_est_l_attaque', 'wanted_mekamouth_liquide_de_refroidissement', 'wanted_mekamouth_surtension', 'wanted_mekamouth_spahunglif']
 }
 
@@ -776,7 +776,7 @@ monsters['wanted_culbutuf'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 300, spd: 220, res: { neutre: 25, feu: 40, eau: 35, air: -10, terre: -15 } },
+    bst: { hp: 300000, atk: 448, spd: 220, res: { neutre: 25, feu: 40, eau: 35, air: -10, terre: -15 } },
     moves: ['wanted_culbutuf_du_fond_du_cur', 'wanted_culbutuf_roule_ma_boule', 'wanted_culbutuf_sinistro_vole', 'wanted_culbutuf_de_bon_cur', 'wanted_culbutuf_va_te_faire_cuire_un_uf']
 }
 
@@ -787,7 +787,7 @@ monsters['wanted_chevalier_de_glace'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 320000, atk: 300, spd: 220, res: { neutre: 25, feu: -15, eau: -20, air: 35, terre: 50 } },
+    bst: { hp: 320000, atk: 1167, spd: 220, res: { neutre: 25, feu: -15, eau: -20, air: 35, terre: 50 } },
     moves: ['wanted_chevalier_de_glace_rafraichissement', 'wanted_chevalier_de_glace_souffler_n_est_pas_jouer', 'wanted_chevalier_de_glace_souffle_amollissant', 'wanted_chevalier_de_glace_la_force_du_faible', 'wanted_chevalier_de_glace_tranchant_absorbant', 'wanted_chevalier_de_glace_saut']
 }
 
@@ -798,7 +798,7 @@ monsters['wanted_psikopompe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 320000, atk: 300, spd: 220, res: { neutre: 25, feu: -25, eau: 50, air: 45, terre: -20 } },
+    bst: { hp: 320000, atk: 1001, spd: 220, res: { neutre: 25, feu: -25, eau: 50, air: 45, terre: -20 } },
     moves: ['wanted_psikopompe_coupe_jatte', 'wanted_psikopompe_sentence', 'wanted_psikopompe_bondage', 'wanted_psikopompe_flagellation_stimulante', 'wanted_psikopompe_retour_a_l_envoyeur']
 }
 
@@ -809,7 +809,7 @@ monsters['wanted_le_fantome_braideur'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 300, spd: 220, res: { neutre: 15, feu: 10, eau: 35, air: 35, terre: 15 } },
+    bst: { hp: 300000, atk: 2154, spd: 220, res: { neutre: 15, feu: 10, eau: 35, air: 35, terre: 15 } },
     moves: ['wanted_le_fantome_braideur_paleolitige', 'wanted_le_fantome_braideur_carroyage', 'wanted_le_fantome_braideur_mastaba']
 }
 
@@ -820,7 +820,7 @@ monsters['wanted_voldelor'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 800, spd: 220, res: { neutre: 20, feu: 35, eau: -5, air: 15, terre: 10 } },
+    bst: { hp: 290000, atk: 1766, spd: 220, res: { neutre: 20, feu: 35, eau: -5, air: 15, terre: 10 } },
     moves: ['wanted_voldelor_sort_scelle', 'wanted_voldelor_magitation', 'wanted_voldelor_armada_cadavra', 'wanted_voldelor_retour_a_la_vie']
 }
 
@@ -831,7 +831,7 @@ monsters['wanted_sicogne'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 290000, atk: 575, spd: 220, res: { neutre: 30, feu: -10, eau: 15, air: 35, terre: 20 } },
+    bst: { hp: 290000, atk: 2382, spd: 220, res: { neutre: 30, feu: -10, eau: 15, air: 35, terre: 20 } },
     moves: ['wanted_sicogne_charge_destructrice', 'wanted_sicogne_superpuissance', 'wanted_sicogne_annihilation', 'wanted_sicogne_agression']
 }
 
@@ -842,7 +842,7 @@ monsters['wanted_mi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 800, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 300000, atk: 5123, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_mi_enveloppage']
 }
 
@@ -853,7 +853,7 @@ monsters['wanted_fou'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 800, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 300000, atk: 8165, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_fou_coupe']
 }
 
@@ -864,7 +864,7 @@ monsters['wanted_chi'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 800, spd: 220, res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
+    bst: { hp: 300000, atk: 2321, spd: 220, res: { neutre: 15, feu: 15, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_chi_emoussage']
 }
 
@@ -875,7 +875,7 @@ monsters['wanted_ganos'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 250000, atk: 1000, spd: 220, res: { neutre: 20, feu: -5, eau: 15, air: 15, terre: 15 } },
+    bst: { hp: 250000, atk: 2229, spd: 220, res: { neutre: 20, feu: -5, eau: 15, air: 15, terre: 15 } },
     moves: ['wanted_ganos_matatak', 'wanted_ganos_sanglinglin', 'wanted_ganos_sabotage', 'wanted_ganos_taure_ture', 'wanted_ganos_lardage', 'wanted_ganos_sanglissade', 'wanted_ganos_taure_peur', 'wanted_ganos_rugibier', 'wanted_ganos_groincision']
 }
 
@@ -886,7 +886,7 @@ monsters['wanted_hyperscampe'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 500, spd: 220, res: { neutre: 40, feu: 30, eau: 15, air: 25, terre: 10 } },
+    bst: { hp: 300000, atk: 1201, spd: 220, res: { neutre: 40, feu: 30, eau: 15, air: 25, terre: 10 } },
     moves: ['wanted_hyperscampe_riveteuse', 'wanted_hyperscampe_percussion', 'wanted_hyperscampe_rupture', 'wanted_hyperscampe_forage']
 }
 
@@ -897,7 +897,7 @@ monsters['wanted_grand_kongoku'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 300000, atk: 1125, spd: 220, res: { neutre: 15, feu: 15, eau: -10, air: -5, terre: 20 } },
+    bst: { hp: 300000, atk: 5241, spd: 220, res: { neutre: 15, feu: 15, eau: -10, air: -5, terre: 20 } },
     moves: ['wanted_grand_kongoku_puissance_lunaire', 'wanted_grand_kongoku_invocation_de_la_cocolune', 'wanted_grand_kongoku_deplacement_instantane', 'wanted_grand_kongoku_saruharuha', 'wanted_grand_kongoku_uppercut_magistral', 'wanted_grand_kongoku_saruharuha', 'wanted_grand_kongoku_uppercut_magistral', 'wanted_grand_kongoku_deplacement_instantane']
 }
 
@@ -908,7 +908,7 @@ monsters['wanted_khepricorne'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 320000, atk: 300, spd: 220, res: { neutre: 15, feu: 25, eau: 5, air: 10, terre: 20 } },
+    bst: { hp: 320000, atk: 1506, spd: 220, res: { neutre: 15, feu: 25, eau: 5, air: 10, terre: 20 } },
     moves: ['wanted_khepricorne_coup_de_bouse', 'wanted_khepricorne_bouse_de_feu', 'wanted_khepricorne_roule_bouse', 'wanted_khepricorne_avoir_les_bouses', 'wanted_khepricorne_bouse_de_la']
 }
 
@@ -919,7 +919,7 @@ monsters['wanted_panteroz'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 150,
-    bst: { hp: 60000, atk: 800, spd: 184, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 60000, atk: 1294, spd: 184, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_panteroz_grift', 'wanted_panteroz_rayondule']
 }
 
@@ -930,7 +930,7 @@ monsters['wanted_mouchame'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 160,
-    bst: { hp: 68000, atk: 600, spd: 196,
+    bst: { hp: 68000, atk: 1840, spd: 196,
         res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_mouchame_herd']
 }
@@ -942,7 +942,7 @@ monsters['wanted_gein'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 240000, atk: 1200, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 240000, atk: 22400, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_gein_paralysie', 'wanted_gein_substitution_funebre', 'wanted_gein_eveil_des_ames_perdues']
 }
 
@@ -953,7 +953,7 @@ monsters['wanted_cire_momore'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 700000, atk: 500, spd: 220, res: { neutre: 27, feu: 27, eau: 27, air: 27, terre: 27 } },
+    bst: { hp: 700000, atk: 1474, spd: 220, res: { neutre: 27, feu: 27, eau: 27, air: 27, terre: 27 } },
     moves: ['wanted_cire_momore_metal_hurlant', 'wanted_cire_momore_briselame', 'wanted_cire_momore_triste_cire', 'wanted_cire_momore_fatalite']
 }
 
@@ -964,7 +964,7 @@ monsters['wanted_gargandyas'] = {
     rarity: 'legendaire',
     tier: 'boss',
     fixedLevel: 200,
-    bst: { hp: 100000, atk: 300, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
+    bst: { hp: 100000, atk: 1418, spd: 220, res: { neutre: 0, feu: 0, eau: 0, air: 0, terre: 0 } },
     moves: ['wanted_gargandyas_sceaux_telluriques', 'wanted_gargandyas_amnesie_animale', 'wanted_gargandyas_cri_primitif', 'wanted_gargandyas_rituel_primordial', 'wanted_gargandyas_gargameha', 'wanted_gargandyas_rafale_bestiale']
 }
 // ─── Avis de Recherche ───────────────────────────────────────────────────────
@@ -2013,7 +2013,7 @@ move['wanted_bouflouth_mammouth'] = {
     name: 'Mammouth',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 60, max: 114 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2023,7 +2023,7 @@ move['wanted_bouflouth_gloutmouth'] = {
     name: 'Gloutmouth',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 17, max: 33 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 49, max: 94 }, target: 'enemy' },
         { type: 'heal', heal: { min: 20, max: 35 }, target: 'self' }
     ]
 }
@@ -2042,7 +2042,7 @@ move['wanted_bouflouth_embrochmouth'] = {
     name: 'Embrochmouth',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 17, max: 33 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 49, max: 94 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2052,8 +2052,8 @@ move['wanted_monsieur_pingouin_parapluie_gadget'] = {
     name: 'Parapluie Gadget',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 60 }, target: 'enemy' },
-        { type: 'damage', element: 'eau', damage: { min: 39, max: 53 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 32, max: 63 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 41, max: 55 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2063,7 +2063,7 @@ move['wanted_monsieur_pingouin_iceberg_saloon'] = {
     name: 'Iceberg Saloon',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 101, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 105, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -2081,7 +2081,7 @@ move['wanted_katigrou_bond_improbable'] = {
     name: 'Bond Improbable',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 81, max: 113 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 89, max: 124 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2091,7 +2091,7 @@ move['wanted_katigrou_broukeul'] = {
     name: 'Broukeul',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 61, max: 95 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 67, max: 104 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2101,7 +2101,7 @@ move['wanted_katigrou_grougrou'] = {
     name: 'Grougrou',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 36, max: 57 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 39, max: 63 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2111,7 +2111,7 @@ move['wanted_fantomayte_qui_rit'] = {
     name: 'Qui rit',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 71, max: 140 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 60, max: 118 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2121,7 +2121,7 @@ move['wanted_fantomayte_qui_pete'] = {
     name: 'Qui pète',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'neutre', value: 90, duration: 2, target: 'enemy' }
+        { type: 'dot', element: 'neutre', value: 76, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -2139,7 +2139,7 @@ move['wanted_vengeuse_masquee_coup_de_bulle'] = {
     name: 'Coup de bulle',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 91, max: 180 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 83, max: 165 }, target: 'enemy' }
     ]
 }
 
@@ -2148,7 +2148,7 @@ move['wanted_vengeuse_masquee_attaque_vengeresse'] = {
     name: 'Attaque Vengeresse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 91, max: 180 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 83, max: 165 }, target: 'enemy' }
     ]
 }
 
@@ -2167,7 +2167,7 @@ move['wanted_yech_ti_goulaf'] = {
     name: 'Goulaf\'',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 200, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 112, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -2176,8 +2176,8 @@ move['wanted_yech_ti_che_tout_fraique'] = {
     name: 'Che tout fraîque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 76, max: 150 }, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 41, max: 75 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 43, max: 84 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 23, max: 42 }, target: 'enemy' }
     ]
 }
 
@@ -2195,9 +2195,9 @@ move['wanted_yech_ti_ti_t_as_bou'] = {
     name: 'Ti t\'as bou',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 151, max: 225 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 85, max: 126 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 76, max: 120 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 43, max: 67 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2207,8 +2207,8 @@ move['wanted_yech_ti_ch_est_vraimint_abominap'] = {
     name: 'Ch\'est vraimint abominap\'',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 61, max: 120 }, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 60 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 34, max: 67 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 17, max: 34 }, target: 'enemy' }
     ]
 }
 
@@ -2217,8 +2217,8 @@ move['wanted_yech_ti_i_fait_cru'] = {
     name: 'I fait cru',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 151, max: 300 }, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 16, max: 30 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 85, max: 168 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 9, max: 17 }, target: 'enemy' }
     ]
 }
 
@@ -2236,7 +2236,7 @@ move['wanted_yech_ti_avoir_maux_a_ches_dints'] = {
     name: 'Avoir maux à ches dints',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 76, max: 150 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 43, max: 84 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2246,7 +2246,7 @@ move['wanted_yech_ti_qu_i_est_mieffe_c_ti_la'] = {
     name: 'Qu\'i est mieffe c\'ti-là',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 76, max: 150 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 43, max: 84 }, target: 'enemy' }
     ]
 }
 
@@ -2255,7 +2255,7 @@ move['wanted_dremoan_graine_de_dremoan'] = {
     name: 'Graine de Dremoan',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'terre', value: 100, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 28, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -2264,7 +2264,7 @@ move['wanted_dremoan_mains_crochues'] = {
     name: 'Mains crochues',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 71, max: 105 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 20, max: 29 }, target: 'enemy' }
     ]
 }
 
@@ -2273,7 +2273,7 @@ move['wanted_dremoan_ronce_de_deperissement'] = {
     name: 'Ronce de dépérissement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 71, max: 90 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 20, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2283,8 +2283,8 @@ move['wanted_dremoan_ronces_de_l_assassin'] = {
     name: 'Ronces de l\'assassin',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 176, max: 350 }, target: 'enemy' },
-        { type: 'dot', element: 'air', value: 251, duration: 2, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 49, max: 97 }, target: 'enemy' },
+        { type: 'dot', element: 'air', value: 70, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -2293,7 +2293,7 @@ move['wanted_dremoan_pourrissement_accelere'] = {
     name: 'Pourrissement accéléré',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 90, max: 0 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 25, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2303,7 +2303,7 @@ move['wanted_dremoan_zombification_putride'] = {
     name: 'Zombification putride',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 50, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 14, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -2738,7 +2738,7 @@ move['wanted_sam_sagaz_jardinage'] = {
     name: 'Jardinage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 16, max: 21 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2748,15 +2748,15 @@ move['wanted_sam_sagaz_anneau_de_gaz'] = {
     name: 'Anneau de gaz',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 16, max: 21 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 13, max: 17 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 18, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 17, max: 21 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 24, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 13, max: 17 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 18, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 16, max: 21 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2767,7 +2767,7 @@ move['wanted_sam_sagaz_appel_de_bolesh'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'buff', stat: 'atk', value: 20, duration: 3, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 8, max: 14 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 11, max: 20 }, target: 'enemy' }
     ]
 }
 
@@ -2776,7 +2776,7 @@ move['wanted_maitre_boulet_acculement'] = {
     name: 'Acculement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 35, max: 48 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2786,9 +2786,9 @@ move['wanted_maitre_boulet_debitage'] = {
     name: 'Débitage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 68, max: 97 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 6, max: 10 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 19, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2817,7 +2817,7 @@ move['wanted_roub_ignolles_pousse_bombe'] = {
     name: 'Pousse bombe',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 36, max: 55 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 64, max: 98 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
     ]
 }
@@ -2828,7 +2828,7 @@ move['wanted_roub_ignolles_teleportabombe'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'avance', target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 41, max: 60 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 73, max: 106 }, target: 'enemy' }
     ]
 }
 
@@ -2837,7 +2837,7 @@ move['wanted_bouss_baybe_salon'] = {
     name: 'Salon',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 64, max: 91 }, target: 'enemy' }
     ]
 }
 
@@ -2846,7 +2846,7 @@ move['wanted_bouss_baybe_econduire'] = {
     name: 'Éconduire',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 16, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 49, max: 76 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
     ]
 }
@@ -2874,7 +2874,7 @@ move['wanted_nono_le_wobot_wavelot_explosif'] = {
     name: 'Wavelot explosif',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 90, max: 129 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2884,7 +2884,7 @@ move['wanted_nono_le_wobot_massue_matwaquante'] = {
     name: 'Massue matwaquante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 11, max: 20 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 47, max: 86 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2903,11 +2903,11 @@ move['wanted_armada_l_invincible_canonnier'] = {
     name: 'Canonnier',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 57, max: 81 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 57, max: 81 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 57, max: 81 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2926,12 +2926,12 @@ move['wanted_dragodingo_dingoboule'] = {
     name: 'Dingoboule',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 25, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 25, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 25, max: 32 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 25, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2941,12 +2941,12 @@ move['wanted_dragodingo_dingosouffle'] = {
     name: 'Dingosouffle',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 17, max: 24 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 17, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 17, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 17, max: 24 }, target: 'enemy' }
     ]
 }
 
@@ -2955,8 +2955,8 @@ move['wanted_dragodingo_dingoprevention'] = {
     name: 'Dingoprévention',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 50, duration: 1, target: 'enemy' },
-        { type: 'dot', element: 'air', value: 50, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 41, duration: 1, target: 'enemy' },
+        { type: 'dot', element: 'air', value: 41, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -2965,7 +2965,7 @@ move['wanted_degolas_fleche_aveuglante'] = {
     name: 'Flèche Aveuglante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 39, max: 56 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -2975,7 +2975,7 @@ move['wanted_degolas_masque_aveuglant'] = {
     name: 'Masque Aveuglant',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 39, max: 56 }, target: 'enemy' }
     ]
 }
 
@@ -2984,7 +2984,7 @@ move['wanted_degolas_fleche_repoussante'] = {
     name: 'Flèche Repoussante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 58, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3004,7 +3004,7 @@ move['wanted_prince_marchand_palouf'] = {
     name: 'Palouf',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 77, max: 106 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3015,7 +3015,7 @@ move['wanted_prince_marchand_charge_heroique'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'avance', target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 61, max: 90 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 92, max: 136 }, target: 'enemy' }
     ]
 }
 
@@ -3024,7 +3024,7 @@ move['wanted_jerart_dupaindur_murge'] = {
     name: 'Murge',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 65, max: 77 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3034,7 +3034,7 @@ move['wanted_jerart_dupaindur_soif_inextinguible'] = {
     name: 'Soif inextinguible',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 31, max: 45 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 40, max: 57 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1.0, target: 'self' }
     ]
 }
@@ -3044,7 +3044,7 @@ move['wanted_jerart_dupaindur_tournee_generale'] = {
     name: 'Tournée générale',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 52, max: 64 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3094,7 +3094,7 @@ move['wanted_gobrechaun_lance_en_ciel'] = {
     name: 'Lance-en-Ciel',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 17, max: 20 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 161, max: 189 }, target: 'enemy' }
     ]
 }
 
@@ -3130,7 +3130,7 @@ move['wanted_darma_vue_en_noir'] = {
     name: 'Vue en Noir',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 91, max: 105 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 107, max: 124 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3149,7 +3149,7 @@ move['wanted_darma_zhostile'] = {
     name: 'Zhostile',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 96, max: 115 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 113, max: 136 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3159,7 +3159,7 @@ move['wanted_mogligli_chienchien_rouge'] = {
     name: 'Chienchien Rouge',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 81, max: 90 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 83, max: 92 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3169,7 +3169,7 @@ move['wanted_mogligli_au_kanig'] = {
     name: 'Au Kanig !',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 61, max: 70 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 62, max: 71 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3179,7 +3179,7 @@ move['wanted_mogligli_la_chasse_de_kaa_kaa'] = {
     name: 'La Chasse de Kaa-Kaa',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 71, max: 85 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 72, max: 87 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3189,7 +3189,7 @@ move['wanted_glandaf_l_aigri_gnirdmalg'] = {
     name: 'Gnirdmalg',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 81, max: 100 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 59, max: 73 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3199,7 +3199,7 @@ move['wanted_glandaf_l_aigri_anneau_de_feu'] = {
     name: 'Anneau de Feu',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'feu', value: 90, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'feu', value: 66, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3217,7 +3217,7 @@ move['wanted_crasper_crasse'] = {
     name: 'Crasse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 52, max: 64 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3227,7 +3227,7 @@ move['wanted_crasper_lieu_hante'] = {
     name: 'Lieu Hanté',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'feu', value: 120, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'feu', value: 77, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3245,7 +3245,7 @@ move['wanted_carter_le_pillard_dans_les_vapes'] = {
     name: 'Dans les vapes',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 121, max: 150 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 129, max: 160 }, target: 'enemy' }
     ]
 }
 
@@ -3263,7 +3263,7 @@ move['wanted_carter_le_pillard_souffle_embrume'] = {
     name: 'Souffle embrumé',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 54, max: 64 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3347,7 +3347,7 @@ move['wanted_aigripoil_aigrippement'] = {
     name: 'Aigrippement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 79, max: 96 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3357,7 +3357,7 @@ move['wanted_aigripoil_empalladium'] = {
     name: 'Empalladium',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 61, max: 80 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 118, max: 154 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3367,7 +3367,7 @@ move['wanted_maxi_malle_decoffrage_brut'] = {
     name: 'Décoffrage Brut',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 50, max: 0 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 128, max: 128 }, target: 'enemy' }
     ]
 }
 
@@ -3376,7 +3376,7 @@ move['wanted_maxi_malle_macro_ondes'] = {
     name: 'Macro-Ondes',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 105, max: 128 }, target: 'enemy' }
     ]
 }
 
@@ -3385,7 +3385,7 @@ move['wanted_mouchame_herd'] = {
     name: 'Herd',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 160, max: 188 }, target: 'enemy' }
     ]
 }
 
@@ -3422,7 +3422,7 @@ move['wanted_panteroz_grift'] = {
     name: 'Grift',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 101, max: 110 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 127, max: 138 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3432,7 +3432,7 @@ move['wanted_panteroz_rayondule'] = {
     name: 'Rayondulé',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 91, max: 105 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 114, max: 132 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3442,7 +3442,7 @@ move['wanted_morblok_chronocharge'] = {
     name: 'Chronocharge',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 51, max: 55 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 112, max: 121 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3452,9 +3452,9 @@ move['wanted_morblok_rajeunissement'] = {
     name: 'Rajeunissement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 31, max: 35 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 68, max: 77 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'dot', element: 'air', value: 31, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 68, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -3463,7 +3463,7 @@ move['wanted_morblok_saute_heure'] = {
     name: 'Saute-heure',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 16, max: 25 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 35, max: 55 }, target: 'enemy' }
     ]
 }
 
@@ -3472,7 +3472,7 @@ move['wanted_hin_tetropre'] = {
     name: 'Tétropré',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 46, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 97, max: 105 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3482,7 +3482,7 @@ move['wanted_hin_pouss_pouss'] = {
     name: 'Pouss pouss',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 65, max: 84 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
     ]
 }
@@ -3668,7 +3668,7 @@ move['wanted_aermyne_braco_scalptaras_calin'] = {
     name: 'Câlin',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 31, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 44, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -3677,7 +3677,7 @@ move['wanted_aermyne_braco_scalptaras_malaxage'] = {
     name: 'Malaxage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 73, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3687,9 +3687,9 @@ move['wanted_aermyne_braco_scalptaras_sale_marmot'] = {
     name: 'Sale marmot',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 50, max: 0 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 71, max: 71 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 50, max: 0 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 71, max: 71 }, target: 'enemy' }
     ]
 }
 
@@ -3707,8 +3707,8 @@ move['wanted_padgref_demoel_assaut_aerien'] = {
     name: 'Assaut aérien',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 9, max: 10 }, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 14, max: 16 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 12, max: 14 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 19, max: 22 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3718,7 +3718,7 @@ move['wanted_padgref_demoel_transposition_aqueuse'] = {
     name: 'Transposition aqueuse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 51, max: 60 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 69, max: 81 }, target: 'enemy' }
     ]
 }
 
@@ -3727,7 +3727,7 @@ move['wanted_padgref_demoel_absorption_brulante'] = {
     name: 'Absorption brûlante',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 27, max: 31 }, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 37, max: 42 }, target: 'enemy' }
     ]
 }
 
@@ -3736,7 +3736,7 @@ move['wanted_padgref_demoel_sanction'] = {
     name: 'Sanction',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 41, max: 55 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 56, max: 75 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy' }
     ]
 }
@@ -3746,7 +3746,7 @@ move['wanted_frakacia_leukocytine_crochet_fracassant'] = {
     name: 'Crochet fracassant',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 48, max: 65 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3756,7 +3756,7 @@ move['wanted_frakacia_leukocytine_cri_fracassant'] = {
     name: 'Cri fracassant',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 48, max: 65 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3775,7 +3775,7 @@ move['wanted_ogivol_scalarcin_ogivoltaique'] = {
     name: 'Ogivoltaïque',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 16, max: 17 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 28, max: 30 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3785,9 +3785,9 @@ move['wanted_ogivol_scalarcin_ogivolage'] = {
     name: 'Ogivolage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 25, max: 29 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 45, max: 52 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 25, max: 29 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 45, max: 52 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3797,7 +3797,7 @@ move['wanted_ogivol_scalarcin_ogivolatilise'] = {
     name: 'Ogivolatilisé',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'feu', value: 20, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'feu', value: 36, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -3815,7 +3815,7 @@ move['wanted_ogivol_scalarcin_ogivolverine'] = {
     name: 'Ogivolverine',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 38, max: 43 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 68, max: 77 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3825,7 +3825,7 @@ move['wanted_fouduglen_l_ecureuil_casse_noisettes'] = {
     name: 'Casse-noisettes',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 11, max: 15 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 72, max: 98 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3844,8 +3844,8 @@ move['wanted_brumen_tinctorias_elixir_curatif'] = {
     name: 'Élixir Curatif',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 30, duration: 1, target: 'enemy' },
-        { type: 'dot', element: 'air', value: 10, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 48, duration: 1, target: 'enemy' },
+        { type: 'dot', element: 'air', value: 16, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -3854,9 +3854,9 @@ move['wanted_brumen_tinctorias_elixir_interdit'] = {
     name: 'Élixir Interdit',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 25, max: 29 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 40, max: 46 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 15, max: 0 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 24, max: 24 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3875,8 +3875,8 @@ move['wanted_brumen_tinctorias_elixir_revitalisant'] = {
     name: 'Élixir Revitalisant',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'air', value: 12, duration: 1, target: 'enemy' },
-        { type: 'dot', element: 'air', value: 5, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'air', value: 19, duration: 1, target: 'enemy' },
+        { type: 'dot', element: 'air', value: 8, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -3885,8 +3885,8 @@ move['wanted_brumen_tinctorias_elixir_vampirique'] = {
     name: 'Élixir Vampirique',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 55, max: 62 }, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 20, max: 0 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 88, max: 99 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 32, max: 32 }, target: 'enemy' }
     ]
 }
 
@@ -3895,7 +3895,7 @@ move['wanted_qil_bil_lancer_de_poing'] = {
     name: 'Lancer de poing',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 102, max: 131 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3914,7 +3914,7 @@ move['wanted_qil_bil_surchauffe'] = {
     name: 'Surchauffe',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 69, max: 98 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3924,7 +3924,7 @@ move['wanted_rok_gnorok_martelage'] = {
     name: 'Martelage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 23, max: 44 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3943,17 +3943,17 @@ move['wanted_rok_gnorok_surt'] = {
     name: 'Surt',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 26, max: 35 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 29, max: 39 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 23, max: 33 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 16, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 18, max: 28 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 57, max: 78 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 41, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 45, max: 66 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 31, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 34, max: 55 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3963,7 +3963,7 @@ move['wanted_musha_l_oni_onigiri'] = {
     name: 'Onigiri',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 26, max: 50 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 23, max: 45 }, target: 'enemy' }
     ]
 }
 
@@ -3972,7 +3972,7 @@ move['wanted_musha_l_oni_onigaud'] = {
     name: 'Onigaud',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 61, max: 90 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 55, max: 81 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3982,14 +3982,14 @@ move['wanted_musha_l_oni_onivoirien'] = {
     name: 'Onivoirien',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 28, max: 36 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
-        { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 28, max: 36 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 28, max: 36 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 28, max: 36 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 28, max: 36 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -3999,7 +3999,7 @@ move['wanted_marzwel_le_gobelin_javeline_creuse'] = {
     name: 'Javeline creuse',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 75, max: 97 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4009,7 +4009,7 @@ move['wanted_marzwel_le_gobelin_a_pied_d_uvre'] = {
     name: 'À pied d\'œuvre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 41, max: 45 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 100, max: 110 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4029,7 +4029,7 @@ move['wanted_zatoishwan_baton_virevoltant'] = {
     name: 'Bâton virevoltant',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 225, max: 0 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 135, max: 135 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4039,7 +4039,7 @@ move['wanted_zatoishwan_fee_verte'] = {
     name: 'Fée verte',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 91, max: 110 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 54, max: 66 }, target: 'enemy' }
     ]
 }
 
@@ -4048,7 +4048,7 @@ move['wanted_zatoishwan_vue_trouble'] = {
     name: 'Vue trouble',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 91, max: 110 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 54, max: 66 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4058,9 +4058,9 @@ move['wanted_zatoishwan_flasque_incendiaire'] = {
     name: 'Flasque incendiaire',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 81, max: 90 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 48, max: 54 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 31, max: 36 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4070,7 +4070,7 @@ move['wanted_zatoishwan_colere_liquide'] = {
     name: 'Colère liquide',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'terre', value: 40, duration: 2, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 24, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4079,9 +4079,9 @@ move['wanted_ali_grothor_ture'] = {
     name: 'Ture',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 121, max: 135 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 62, max: 69 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'neutre', damage: { min: 181, max: 195 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 93, max: 100 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4091,9 +4091,9 @@ move['wanted_ali_grothor_hida'] = {
     name: 'Hida',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 76, max: 90 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 39, max: 46 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 46, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 24, max: 31 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4103,7 +4103,7 @@ move['wanted_ali_grothor_risation'] = {
     name: 'Risation',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 31, max: 45 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 16, max: 23 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4113,7 +4113,7 @@ move['wanted_ali_grothor_rage_electrique'] = {
     name: 'Rage Électrique',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 91, max: 120 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 47, max: 61 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 25, duration: 2, target: 'self' }
     ]
 }
@@ -4123,7 +4123,7 @@ move['wanted_ambi_guman_patate'] = {
     name: 'Patate',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 26, max: 35 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 56, max: 75 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4133,7 +4133,7 @@ move['wanted_ambi_guman_roquette'] = {
     name: 'Roquette',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 45, max: 54 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4143,7 +4143,7 @@ move['wanted_ambi_guman_enfant_de_la_terre'] = {
     name: 'Enfant de la terre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 67, max: 86 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4153,7 +4153,7 @@ move['wanted_exi_guman_spatezoignons'] = {
     name: 'Spatézoignons',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 52, max: 62 }, target: 'enemy' },
         { type: 'debuff', stat: 'atk', value: 15, duration: 2, target: 'enemy' }
     ]
 }
@@ -4163,7 +4163,7 @@ move['wanted_exi_guman_chataigne'] = {
     name: 'Châtaigne',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 52, max: 62 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4173,7 +4173,7 @@ move['wanted_exi_guman_pousses_ephemeres'] = {
     name: 'Pousses éphémères',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'terre', value: 20, duration: 1, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 50, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -4182,7 +4182,7 @@ move['wanted_gadoo_sucon_spongieux'] = {
     name: 'Suçon spongieux',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 54, max: 62 }, target: 'enemy' }
     ]
 }
 
@@ -4191,7 +4191,7 @@ move['wanted_gadoo_vase'] = {
     name: 'Vase',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 51, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 45, max: 53 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4210,7 +4210,7 @@ move['wanted_gadoo_bain_de_boo'] = {
     name: 'Bain de Boo',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'terre', value: 55, duration: 2, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 49, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4219,7 +4219,7 @@ move['wanted_amy_l_empoisonneuse_ronce_animee'] = {
     name: 'Ronce animée',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 51, max: 65 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 30, max: 39 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4229,7 +4229,7 @@ move['wanted_amy_l_empoisonneuse_poison_vegetal'] = {
     name: 'Poison végétal',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'terre', value: 70, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 42, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4238,8 +4238,8 @@ move['wanted_amy_l_empoisonneuse_vignes_vampiriques'] = {
     name: 'Vignes vampiriques',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' },
-        { type: 'dot', element: 'air', value: 61, duration: 1, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 36, max: 42 }, target: 'enemy' },
+        { type: 'dot', element: 'air', value: 36, duration: 1, target: 'enemy' }
     ]
 }
 
@@ -4248,7 +4248,7 @@ move['wanted_amy_l_empoisonneuse_stranguronces'] = {
     name: 'Stranguronces',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 81, max: 90 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 48, max: 54 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4259,7 +4259,7 @@ move['wanted_amy_l_empoisonneuse_foret_epineuse'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'debuff', stat: 'atk', value: 30, duration: 3, target: 'enemy' },
-        { type: 'dot', element: 'terre', value: 50, duration: 2, target: 'enemy' }
+        { type: 'dot', element: 'terre', value: 30, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4317,7 +4317,7 @@ move['wanted_tyranne_la_terrible_hyper_kick'] = {
     name: 'Hyper Kick',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 48, max: 57 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4327,7 +4327,7 @@ move['wanted_tyranne_la_terrible_1000_poings'] = {
     name: '1000 Poings',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 48, max: 57 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4337,7 +4337,7 @@ move['wanted_tyranne_la_terrible_frappe_devastatrice'] = {
     name: 'Frappe dévastatrice',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 48, max: 57 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4347,9 +4347,9 @@ move['wanted_fojumo_assassinat_silencieux'] = {
     name: 'Assassinat silencieux',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 36, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 74, max: 82 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 70, max: 0 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 143, max: 143 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4370,7 +4370,7 @@ move['wanted_fojumo_dissimulation_nocive'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'debuff', stat: 'atk', value: 25, duration: 2, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 45 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 63, max: 92 }, target: 'enemy' }
     ]
 }
 
@@ -4379,7 +4379,7 @@ move['wanted_guerrier_du_k_o_tremblement_de_guerre'] = {
     name: 'Tremblement de guerre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 35 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 55, max: 62 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4389,7 +4389,7 @@ move['wanted_guerrier_du_k_o_massacre_a_retardement'] = {
     name: 'Massacre à retardement',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 41, max: 45 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 73, max: 80 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4399,7 +4399,7 @@ move['wanted_guerrier_du_k_o_carnageddon'] = {
     name: 'Carnageddon',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 37, max: 45 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4409,7 +4409,7 @@ move['wanted_anatak_diskedor_lame_tempete'] = {
     name: 'Lame-tempête',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 47, max: 53 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4419,7 +4419,7 @@ move['wanted_anatak_diskedor_frappe_purificatrice'] = {
     name: 'Frappe purificatrice',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 26, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 39, max: 45 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4429,7 +4429,7 @@ move['wanted_anatak_diskedor_coup_de_foudre'] = {
     name: 'Coup de Foudre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 36, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 55, max: 61 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4439,7 +4439,7 @@ move['wanted_anatak_diskedor_coup_de_foudre'] = {
     name: 'Coup de Foudre',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 46, max: 55 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 66, max: 79 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4449,7 +4449,7 @@ move['wanted_anatak_diskedor_frappe_purificatrice'] = {
     name: 'Frappe purificatrice',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 26, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 37, max: 43 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4459,7 +4459,7 @@ move['wanted_anatak_diskedor_lame_tempete'] = {
     name: 'Lame-tempête',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 35 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 44, max: 50 }, target: 'enemy' }
     ]
 }
 
@@ -4468,7 +4468,7 @@ move['wanted_naganita_puissant_balayage'] = {
     name: 'Puissant balayage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 86, max: 99 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4478,7 +4478,7 @@ move['wanted_naganita_estoc_fatal'] = {
     name: 'Estoc fatal',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 69, max: 82 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4565,7 +4565,7 @@ move['wanted_nenufor_tilotus_spores_de_nympheacee'] = {
     name: 'Spores de Nymphéacée',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'eau', value: 25, duration: 2, target: 'enemy' }
+        { type: 'dot', element: 'eau', value: 60, duration: 2, target: 'enemy' }
     ]
 }
 
@@ -4574,7 +4574,7 @@ move['wanted_nenufor_tilotus_invocation_de_nufor'] = {
     name: 'Invocation de Nufor',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 75, max: 96 }, target: 'enemy' },
         { type: 'buff', stat: 'atk', value: 15, duration: 2, target: 'self' }
     ]
 }
@@ -4584,7 +4584,7 @@ move['wanted_nenufor_tilotus_rhizome_agressif'] = {
     name: 'Rhizome agressif',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 26, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 63, max: 72 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4594,7 +4594,7 @@ move['wanted_trukipik_puissant_balayage'] = {
     name: 'Puissant balayage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 26, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 86, max: 99 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4604,7 +4604,7 @@ move['wanted_trukipik_estoc_fatal'] = {
     name: 'Estoc fatal',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 69, max: 82 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4615,7 +4615,7 @@ move['wanted_tournade_aspiration_de_masse'] = {
     cooldownMs: 2000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'air', damage: { min: 26, max: 35 }, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 42, max: 57 }, target: 'enemy' }
     ]
 }
 
@@ -4624,7 +4624,7 @@ move['wanted_tournade_tourbillon_violent'] = {
     name: 'Tourbillon violent',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 36, max: 45 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 58, max: 73 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4634,7 +4634,7 @@ move['wanted_tournade_tempete_devastatrice'] = {
     name: 'Tempête Dévastatrice',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 41, max: 45 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 67, max: 73 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4644,7 +4644,7 @@ move['wanted_roi_camole_taco_tak'] = {
     name: 'Taco Tak',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 36, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 44, max: 48 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4654,7 +4654,7 @@ move['wanted_roi_camole_epines_et_mirages'] = {
     name: 'Épines et Mirages',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 31, max: 34 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 38, max: 41 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4664,7 +4664,7 @@ move['wanted_roi_camole_coucalactus'] = {
     name: 'Coucalactus',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 31, max: 35 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 38, max: 42 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4674,7 +4674,7 @@ move['wanted_roi_camole_foret_de_cactus'] = {
     name: 'Forêt de Cactus',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 51, max: 55 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 62, max: 67 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4732,7 +4732,7 @@ move['wanted_ka_youloud_mache_ouille'] = {
     name: 'Mâche Ouille',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 51, max: 60 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 57, max: 66 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4742,7 +4742,7 @@ move['wanted_ka_youloud_liquide_gastrique'] = {
     name: 'Liquide gastrique',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'eau', value: 45, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'eau', value: 50, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4751,7 +4751,7 @@ move['wanted_ka_youloud_pas_sage'] = {
     name: 'Pas-sage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 34, max: 44 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4801,7 +4801,7 @@ move['wanted_simbadas_saut_precipite'] = {
     name: 'Saut précipité',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 37, max: 53 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4811,8 +4811,8 @@ move['wanted_simbadas_grosse_papatte'] = {
     name: 'Grosse papatte',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 36, max: 55 }, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 64, max: 97 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 37, max: 53 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4831,7 +4831,7 @@ move['wanted_carlita_de_l_aguerfelde_depecage'] = {
     name: 'Dépeçage',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 601, max: 800 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 240, max: 320 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
@@ -4841,7 +4841,7 @@ move['wanted_carlita_de_l_aguerfelde_carabine_a_gros_gibier'] = {
     name: 'Carabine à gros gibier',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 21, max: 40 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 8, max: 16 }, target: 'enemy' }
     ]
 }
 
@@ -4850,7 +4850,7 @@ move['wanted_shushu_debruk_sayl_assimilation_d_energies'] = {
     name: 'Assimilation d\'énergies',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 41, max: 55 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 28, max: 38 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1.0, target: 'self' }
     ]
 }
@@ -4869,7 +4869,7 @@ move['wanted_shushu_debruk_sayl_malediction_cuisante'] = {
     name: 'Malédiction cuisante',
     cooldownMs: 2000,
     effects: [
-        { type: 'dot', element: 'feu', value: 60, duration: 3, target: 'enemy' }
+        { type: 'dot', element: 'feu', value: 41, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -4878,9 +4878,9 @@ move['wanted_shushu_debruk_sayl_poing_des_secousses_deferlantes'] = {
     name: 'Poing des secousses déferlantes',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 36, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 25, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'terre', damage: { min: 36, max: 50 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 25, max: 35 }, target: 'enemy' }
     ]
 }
 
@@ -4889,9 +4889,9 @@ move['wanted_shushu_debruk_sayl_poing_des_vents_brulants'] = {
     name: 'Poing des vents brûlants',
     cooldownMs: 2000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 36, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 25, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' },
-        { type: 'damage', element: 'feu', damage: { min: 36, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 25, max: 35 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
