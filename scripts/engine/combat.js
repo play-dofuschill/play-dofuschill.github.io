@@ -935,7 +935,7 @@ function gameTick() {
     const activeM   = state.team[activeIdx]
     if (activeM && activeM.currentHp > 0) {
         if (!combat.respawnPending) {
-            const stats = getEffectiveStats(activeM)
+            const stats = getEffectiveStats(activeM) ?? activeM._stats
             const _mCd  = _peekNextCastCooldown(activeM, activeIdx)
             const rate  = (100 / (_mCd / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100) * _spdMult
             combat.memberTimers[activeIdx] = (combat.memberTimers[activeIdx] || 0) + rate
@@ -3857,15 +3857,30 @@ function spawnSummon(caster, effect) {
 
     if (slotIdx !== -1) {
         // ── Invocation alliée : remplace le membre dans son slot ─────────────
-        let maxHp, atk
+        // Passif Osamodas : les invocations ont 2× plus de PV et d'ATK.
+        const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
+        let summonStats
         if (effect.scale != null) {
+            // scale : l'invocation hérite de TOUTES les stats effectives du caster (pas seulement l'ATK),
+            // au prorata de effect.scale.
             const _cs = getEffectiveStats(caster) || {}
-            maxHp = Math.floor((_cs.hp  || caster.maxHp || 1) * effect.scale)
-            atk   = Math.floor((_cs.atk || 0) * effect.scale)
+            summonStats = {
+                atk:                Math.floor((_cs.atk || 0) * effect.scale * statMult),
+                spd:                mob.bst?.spd ?? 100,
+                hp:                 Math.floor((_cs.hp  || caster.maxHp || 1) * effect.scale * statMult),
+                flatDamage:         Math.floor((_cs.flatDamage || 0) * effect.scale),
+                finalDamagePct:     (_cs.finalDamagePct || 0) * effect.scale,
+                spellDamagePct:     (_cs.spellDamagePct || 0) * effect.scale,
+                damageReductionPct: (_cs.damageReductionPct || 0) * effect.scale,
+                critChance:         (_cs.critChance || 0) * effect.scale,
+                critDamagePct:      _cs.critDamagePct ?? 50,
+                res:                { ...(mob.bst?.res || {}) },
+                healPct:            (_cs.healPct || 0) * effect.scale
+            }
         } else {
-            maxHp = mob.bst?.hp  || 0
-            atk   = mob.bst?.atk || 0
+            summonStats = { atk: Math.floor((mob.bst?.atk || 0) * statMult), spd: mob.bst?.spd ?? 100, hp: Math.floor((mob.bst?.hp || 0) * statMult), flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 }
         }
+        const maxHp = summonStats.hp
         const mvSlots = { slot1: null, slot2: null, slot3: null, slot4: null }
         resolveMonsterMoves(mob.moves).forEach((id, i) => { if (i < 4) mvSlots[`slot${i + 1}`] = id })
         combat.savedMembers          = combat.savedMembers || {}
@@ -3877,7 +3892,7 @@ function spawnSummon(caster, effect) {
             name:             mob.name,
             image:            mob.image,
             classId:          null,
-            _stats:           { atk, spd: mob.bst?.spd ?? 100, hp: maxHp, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 },
+            _stats:           summonStats,
             level:            rawLevel,
             currentHp:        maxHp,
             maxHp,
@@ -3901,7 +3916,6 @@ function spawnSummon(caster, effect) {
         }
         const level    = mob.ownerId ? rawLevel : Math.min(rawLevel, Math.max(1, rawLevel - 10))
         const scale    = mob.ownerId ? 1 : 1.25
-        const statMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
         // Pile plutôt que slot unique : gère les invocations imbriquées (ex: Korriandre
         // invoque Abrazif, qui invoque lui-même Motte) sans perdre l'ennemi grand-parent.
         combat.savedEnemyStack = combat.savedEnemyStack || []
@@ -3911,9 +3925,9 @@ function spawnSummon(caster, effect) {
             name:             mob.name,
             level,
             image:            mob.image,
-            maxHp:            Math.floor(mob.bst.hp  * scale * statMult),
-            currentHp:        Math.floor(mob.bst.hp  * scale * statMult),
-            atk:              Math.floor(mob.bst.atk * scale * statMult),
+            maxHp:            Math.floor(mob.bst.hp  * scale),
+            currentHp:        Math.floor(mob.bst.hp  * scale),
+            atk:              Math.floor(mob.bst.atk * scale),
             spd:              mob.bst.spd,
             res:              { ...(mob.bst.res || {}) },
             finalDamagePct:   0,
@@ -3978,21 +3992,34 @@ function spawnCompanion(caster, effect) {
     const slotIdx = state.team.indexOf(caster)
     if (slotIdx === -1) return
 
-    let maxHp, atk
+    let companionStats
     if (effect.scale != null) {
+        // scale : le compagnon hérite de TOUTES les stats effectives du caster (pas seulement l'ATK),
+        // au prorata de effect.scale.
         const cs = getEffectiveStats(caster) || {}
-        maxHp = Math.floor((cs.hp  || caster.maxHp || 1) * effect.scale)
-        atk   = Math.floor((cs.atk || 0) * effect.scale)
+        companionStats = {
+            atk:                Math.floor((cs.atk || 0) * effect.scale),
+            spd:                mob.bst?.spd ?? 100,
+            hp:                 Math.floor((cs.hp  || caster.maxHp || 1) * effect.scale),
+            flatDamage:         Math.floor((cs.flatDamage || 0) * effect.scale),
+            finalDamagePct:     (cs.finalDamagePct || 0) * effect.scale,
+            spellDamagePct:     (cs.spellDamagePct || 0) * effect.scale,
+            damageReductionPct: (cs.damageReductionPct || 0) * effect.scale,
+            critChance:         (cs.critChance || 0) * effect.scale,
+            critDamagePct:      cs.critDamagePct ?? 50,
+            res:                { ...(mob.bst?.res || {}) },
+            healPct:            (cs.healPct || 0) * effect.scale
+        }
     } else {
-        maxHp = mob.bst?.hp  || 0
-        atk   = mob.bst?.atk || 0
+        companionStats = { atk: mob.bst?.atk || 0, spd: mob.bst?.spd ?? 100, hp: mob.bst?.hp || 0, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 }
     }
+    const maxHp = companionStats.hp
 
     caster.companion = {
         id:               mob.id,
         name:             mob.name,
         image:            mob.image,
-        _stats:           { atk, spd: mob.bst?.spd ?? 100, hp: maxHp, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 },
+        _stats:           companionStats,
         currentHp:        maxHp,
         maxHp,
         moves:            mob.moves || [],
@@ -5165,9 +5192,9 @@ function raidGameTick() {
         const targetSlot = _getRaidTargetSlot(slotIdx)
         if (targetSlot === -1) continue
 
-        const stats = getEffectiveStats(member)
+        const stats = getEffectiveStats(member) ?? member._stats
         const _rMCd = _peekNextCastCooldown(member, memberIdx)
-        const rate  = (100 / (_rMCd / TICK_MS)) * ((stats.spd || 100) / 100) * (_afkSeconds > 0 ? 1 : _combatSpeedMult)
+        const rate  = (100 / (_rMCd / TICK_MS)) * ((stats?.spd || 100) / 100) * (_afkSeconds > 0 ? 1 : _combatSpeedMult)
         combat.memberTimers[memberIdx] = (combat.memberTimers[memberIdx] || 0) + rate
 
         if (combat.memberTimers[memberIdx] >= 100) {
@@ -5286,7 +5313,7 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     combat.raidCurrentTargetSlot = targetSlotIdx
     const targetEnemy = combat.enemies[targetSlotIdx]
 
-    const stats = getEffectiveStats(member)
+    const stats = getEffectiveStats(member) ?? member._stats
     const slots = ['slot1', 'slot2', 'slot3', 'slot4']
     const nonNull = slots.filter(s => {
         if (!member.moves[s]) return false
