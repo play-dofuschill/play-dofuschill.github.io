@@ -31,7 +31,7 @@ const FORGE_ERROR_MSGS = {
 const forgeFilters = {
     search:    '',
     sort:      'level',
-    sortDir:   'desc',
+    sortDir:   'asc',
     forgeable: 'all',
     slots:     'all'
 }
@@ -143,9 +143,12 @@ function _renderForgeList(content) {
         if (searchIds && !searchIds.has(itemId)) continue
 
         const forgeable   = _isItemForgeable(itm, entry)
+        if (!forgeable) continue  // items pas encore niv. max (non forgemageables) : masqués
+
         const forgedStats = _getForgedStatsArr(entry)
         const forgedCount = forgedStats.length
         const maxSlots    = getMaxForgeSlots(itm.stats?.length || 0)
+        const isMaxed     = forgedCount >= maxSlots && !!entry.transForge
 
         if (filterForgeable !== 'all') {
             if (filterForgeable === 'forgeable' && !forgeable) continue
@@ -155,12 +158,13 @@ function _renderForgeList(content) {
 
         if (filterSlots !== 'all' && forgedCount !== Number(filterSlots)) continue
 
-        entries.push({ itemId, entry, itm, forgeable, forgedCount, maxSlots })
+        entries.push({ itemId, entry, itm, forgeable, forgedCount, maxSlots, isMaxed })
     }
 
     const mul = forgeFilters.sortDir === 'asc' ? 1 : -1
     entries.sort((a, b) => {
-        if (forgeFilters.sort === 'level') return ((a.entry.level || 0) - (b.entry.level || 0)) * mul
+        if (a.isMaxed !== b.isMaxed) return a.isMaxed ? 1 : -1  // items maxés (runes + transcendance) toujours en bas
+        if (forgeFilters.sort === 'level') return ((a.itm.requiredLevel || 0) - (b.itm.requiredLevel || 0)) * mul
         return a.itm.name.localeCompare(b.itm.name, 'fr') * mul
     })
 
@@ -535,14 +539,17 @@ function forgeBackAction() {
     }
 }
 
-function onForgeSearch(val) { forgeFilters.search = val.trim(); _forgeFuse = null; updateForgeUI() }
+// L'index Fuse ne dépend que de la liste d'items forgeables (statique), pas du texte
+// recherché — pas besoin de le reconstruire à chaque frappe.
+const _debouncedUpdateForgeUI = _debounce(updateForgeUI, 150)
+function onForgeSearch(val) { forgeFilters.search = val.trim(); _debouncedUpdateForgeUI() }
 
 function toggleForgeSort(field) {
     if (forgeFilters.sort === field) {
         forgeFilters.sortDir = forgeFilters.sortDir === 'asc' ? 'desc' : 'asc'
     } else {
         forgeFilters.sort    = field
-        forgeFilters.sortDir = field === 'level' ? 'desc' : 'asc'
+        forgeFilters.sortDir = 'asc'
     }
     _updateForgeSortButtons()
     updateForgeUI()

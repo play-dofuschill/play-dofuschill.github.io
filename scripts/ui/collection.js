@@ -57,13 +57,15 @@ function onCollectionSearch(val) {
 }
 
 // Routeur de recherche partagé (barre unique pour les deux pages)
+const _debouncedUpdateCollectionUI    = _debounce(updateCollectionUI, 150)
+const _debouncedUpdateFamiliarListUI  = _debounce(updateFamiliarListUI, 150)
 function onEncyclopediaSearch(val) {
     if (_encyclopediaPage === 'monstres') {
         collectionFilters.search = val.trim()
-        updateCollectionUI()
+        _debouncedUpdateCollectionUI()
     } else {
         familiarFilters.search = val.trim()
-        updateFamiliarListUI()
+        _debouncedUpdateFamiliarListUI()
     }
 }
 

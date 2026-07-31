@@ -20042,6 +20042,61 @@ item.masque_de_kao = {
     requiredLevel: 185,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'chance', min: 41, max: 60 }, { stat: 'agilite', min: 41, max: 60 }, { stat: 'spd', min: 12, max: 13 }, { stat: 'res.terre', min: 4, max: 7 }, { stat: 'res.feu', min: 4, max: 7 }, { stat: 'critDamagePct', min: -20, max: -20 }, { stat: 'flatDamage', min: 9, max: 12 }]
 }
+
+// ─── Trophées de Faiblesse Élémentaire ───────────────────────────────────────
+// Se déclenchent au spawn d'un ennemi : si l'élément le plus faible de l'ennemi
+// correspond à l'élément du trophée, ce membre prend la place du membre actif.
+
+item.trophee_de_la_terre = {
+    id: 'trophee_de_la_terre',
+    name: 'Trophée de la Terre',
+    image: 'img/items/objets_bonus/trophee_de_la_terre.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'rare',
+    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'terre' } },
+    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Terre.'
+}
+item.trophee_du_feu = {
+    id: 'trophee_du_feu',
+    name: 'Trophée du Feu',
+    image: 'img/items/objets_bonus/trophee_du_feu.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'rare',
+    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'feu' } },
+    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Feu.'
+}
+item.trophee_de_l_eau = {
+    id: 'trophee_de_l_eau',
+    name: 'Trophée de l\'Eau',
+    image: 'img/items/objets_bonus/trophee_de_l_eau.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'rare',
+    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'eau' } },
+    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Eau.'
+}
+item.trophee_de_l_air = {
+    id: 'trophee_de_l_air',
+    name: 'Trophée de l\'Air',
+    image: 'img/items/objets_bonus/trophee_de_l_air.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'rare',
+    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'air' } },
+    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Air.'
+}
+item.trophee_du_neutre = {
+    id: 'trophee_du_neutre',
+    name: 'Trophée du Neutre',
+    image: 'img/items/objets_bonus/trophee_du_neutre.png',
+    type: 'equipment',
+    slot: 'accessoire',
+    rarity: 'rare',
+    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'neutre' } },
+    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Neutre.'
+}
 item.trophee_de_la_cadence = {
     id: 'trophee_de_la_cadence',
     name: 'Trophée de la Cadence',
@@ -20603,60 +20658,6 @@ item.trophee_slot6_x8 = {
     description: 'Après 8 sorts lancés, revient au membre en slot 6.'
 }
 
-// ─── Trophées de Faiblesse Élémentaire ───────────────────────────────────────
-// Se déclenchent au spawn d'un ennemi : si l'élément le plus faible de l'ennemi
-// correspond à l'élément du trophée, ce membre prend la place du membre actif.
-
-item.trophee_de_la_terre = {
-    id: 'trophee_de_la_terre',
-    name: 'Trophée de la Terre',
-    image: 'img/items/objets_bonus/trophee_de_la_terre.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'rare',
-    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'terre' } },
-    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Terre.'
-}
-item.trophee_du_feu = {
-    id: 'trophee_du_feu',
-    name: 'Trophée du Feu',
-    image: 'img/items/objets_bonus/trophee_du_feu.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'rare',
-    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'feu' } },
-    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Feu.'
-}
-item.trophee_de_l_eau = {
-    id: 'trophee_de_l_eau',
-    name: 'Trophée de l\'Eau',
-    image: 'img/items/objets_bonus/trophee_de_l_eau.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'rare',
-    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'eau' } },
-    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Eau.'
-}
-item.trophee_de_l_air = {
-    id: 'trophee_de_l_air',
-    name: 'Trophée de l\'Air',
-    image: 'img/items/objets_bonus/trophee_de_l_air.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'rare',
-    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'air' } },
-    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Air.'
-}
-item.trophee_du_neutre = {
-    id: 'trophee_du_neutre',
-    name: 'Trophée du Neutre',
-    image: 'img/items/objets_bonus/trophee_du_neutre.png',
-    type: 'equipment',
-    slot: 'accessoire',
-    rarity: 'rare',
-    trophy: { trigger: { type: 'enemy_spawn_weakness', element: 'neutre' } },
-    description: 'Prend la place du membre actif si l\'ennemi qui spawn est le plus faible en Neutre.'
-}
 
 // ────────────────────────────────────────────────────────────────────────
 // Items sans panoplie achetables aux Ogrines — triés par niveau requis croissant

@@ -4,6 +4,10 @@ const SAVE_KEY = 'dofuschill_v01'
 
 let _clearingData    = false
 let _lastSaveFailNotified = false
+// Dernier JSON effectivement écrit — permet à saveGame() de sauter l'écriture localStorage
+// (I/O synchrone, coûteuse) quand l'état n'a pas changé depuis le dernier autosave (toutes
+// les 5s, y compris quand le joueur est inactif dans un menu).
+let _lastSaveJSON = null
 // loadGame() ne tourne qu'à l'évènement 'load' (initGame), qui peut être retardé de plusieurs
 // secondes par le chargement des images/musiques. Tant qu'il n'a pas tourné, `state` contient
 // encore ses valeurs par défaut (vierges) — il ne faut surtout pas les sauvegarder, sinon
@@ -96,8 +100,18 @@ function saveGame() {
         return
     }
 
+    let json
     try {
-        localStorage.setItem(SAVE_KEY, JSON.stringify(saveData))
+        json = JSON.stringify(saveData)
+    } catch (e) {
+        console.error('[saveGame] JSON.stringify a échoué — sauvegarde annulée :', e)
+        return
+    }
+    if (json === _lastSaveJSON) return // rien n'a changé depuis la dernière sauvegarde
+
+    try {
+        localStorage.setItem(SAVE_KEY, json)
+        _lastSaveJSON = json
         _lastSaveFailNotified = false
     } catch(e) {
         console.warn('Impossible de sauvegarder :', e)

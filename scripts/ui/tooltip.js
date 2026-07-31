@@ -1334,9 +1334,10 @@ function showMoveTooltip(moveId, casterStats, casterLevel) {
             if (eff.trigger) {
                 const _tType = eff.trigger.type
                 const _TRIG  = { buff: 'Buff', debuff: 'Débuff', heal: 'Soin', damage: 'Attaque' }
+                const _TRIG_TARGET = { buff: "sur un allié", heal: "reçu par un allié", debuff: "sur l'ennemi", damage: "sur l'ennemi" }
                 let _trigLabel = _TRIG[_tType] || _tType
                 if (eff.trigger.stat) _trigLabel += ` (${STAT_LABELS[eff.trigger.stat] || eff.trigger.stat})`
-                rows += `<div class="mt-row"><span class="mt-label">Déclencheur</span><span class="mt-val">${_trigLabel} sur l'ennemi</span></div>`
+                rows += `<div class="mt-row"><span class="mt-label">Déclencheur</span><span class="mt-val">${_trigLabel} ${_TRIG_TARGET[_tType] || "sur l'ennemi"}</span></div>`
             }
             if (eff.duration != null) rows += `<div class="mt-row"><span class="mt-label">Durée</span><span class="mt-val">${eff.duration} tours</span></div>`
         }

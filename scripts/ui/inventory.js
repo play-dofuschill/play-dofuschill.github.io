@@ -26,10 +26,13 @@ const BAG_CATEGORIES = {
 
 // ─── Filtres équipement ───────────────────────────────────────────────────────
 
+// L'index Fuse ne dépend que de la liste d'items équipables (statique), pas du texte
+// recherché — inutile de le reconstruire à chaque frappe. Le rendu de la liste, lui,
+// est debounce pour éviter un rebuild complet à chaque caractère tapé.
+const _debouncedUpdateInventoryUI = _debounce(updateInventoryUI, 150)
 function onEquipSearch(val) {
     equipFilters.search = val.trim()
-    _equipFuse = null
-    updateInventoryUI()
+    _debouncedUpdateInventoryUI()
 }
 
 function toggleEquipSort(field) {

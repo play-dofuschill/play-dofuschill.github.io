@@ -2,6 +2,67 @@
 
 let _enemyMoveRenderKey = null
 
+// ─── Constantes des chips de buff (hoistées hors de _renderMemberBuffChips pour éviter
+// de les réallouer à chaque appel, potentiellement 60x/s pendant un combat) ──────────
+const _CBC_PCT  = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
+                      'critChance','critDamagePct','res_all','erosionBonus'])
+const _CBC_SILENT_STATS = new Set([
+    'dropRate','healOnCast','hpCostPerTurnPct','spdInvert',
+    'amplifie_incoming','huppermage_amplify','pendingLifesteal',
+    'repulsion_guard','feu_eau_debuff','eau_air_debuff','_selfHpRestore',
+])
+const _CBC_ICON = {
+    atk:               STAT_ICONS.atk,
+    spd:               STAT_ICONS.spd,
+    maxHp:             STAT_ICONS.soin,
+    flatDamage:        STAT_ICONS.flatDamage,
+    finalDamagePct:    STAT_ICONS.flatDamage,
+    spellDamagePct:    STAT_ICONS.flatDamage,
+    damageReductionPct:'img/icons/protection.png',
+    critChance:        'img/icons/critique.png',
+    critDamagePct:     'img/icons/critique.png',
+    critResPct:        'img/icons/protection.png',
+    healPct:           STAT_ICONS.soin,
+    healTeamPct:       STAT_ICONS.soin,
+    lifestealPct:      STAT_ICONS.volVie,
+    res_all:           ELEM_ICONS.all_elements,
+    antiHeal:          STAT_ICONS.soin,
+    erosionBonus:      ELEM_ICONS.sagesse,
+    esquive:           ELEM_ICONS.sagesse,
+    force:             ELEM_ICONS.terre,
+    chance:            ELEM_ICONS.eau,
+    agilite:           ELEM_ICONS.air,
+    heal:              STAT_ICONS.soin,
+}
+const _CBC_LABEL = {
+    atk: 'Puissance', spd: 'Initiative', maxHp: 'PV max',
+    flatDamage: 'Do', finalDamagePct: '%Do',
+    spellDamagePct: '%DoSort', damageReductionPct: '%Res Do',
+    critChance: '%Crit', critDamagePct: '%doCrit', critResPct: '%Res Crit',
+    healPct: 'Soins', healTeamPct: 'Soins éq.',
+    lifestealPct: 'Vol vie', res_all: 'Res.',
+    erosionBonus: '%Érosion', esquive: 'Esquive',
+    force: 'Force', chance: 'Chance', agilite: 'Agilité',
+    heal: 'Buff',
+}
+const _CBC_DOT_LABELS = { feu: 'Brûlure', eau: 'Noyade', air: 'Saignement', terre: 'Poison', neutre: 'Blessure' }
+
+const _cbcIconFor  = s => s?.startsWith('res.') ? (ELEM_ICONS[s.split('.')[1]] || ELEM_ICONS.neutre) : (_CBC_ICON[s] || STAT_ICONS.buff)
+const _cbcUnitFor  = s => (s?.startsWith('res.') || s === 'res_all') ? '%' : ''
+const _cbcLabelFor = (s, val) => s?.startsWith('res.') ? 'Res.' : (_CBC_LABEL[s] || (val >= 0 ? 'Buff' : 'Debuff'))
+const _cbcImgTag    = src => `<img src="${src}" class="cbc-icon" onerror="this.src='img/icons/icon.png'">`
+
+// Signature légère (sans construire de HTML) pour savoir si les chips d'un membre
+// doivent être reconstruites — évite un innerHTML complet à chaque tick de simulation.
+function _memberBuffSignature(member) {
+    if (!member) return ''
+    let sig = ''
+    for (const b of (member.buffs || [])) sig += `b${b.stat}:${b.value}:${b.duration};`
+    for (const d of (member.dots  || [])) sig += `d${d.element}:${d.value}:${d.duration};`
+    for (const h of (member.hots  || [])) sig += `h${h.value}:${h.duration};`
+    return sig
+}
+
 function updateCombatUI() {
     if (combat?.isAnomalie) {
         updateEnemyDisplayAnomalie()
@@ -133,53 +194,6 @@ function _renderMemberBuffChips(member) {
     if (!member) return ''
     const chips = []
 
-    const PCT  = new Set(['finalDamagePct','spellDamagePct','damageReductionPct',
-                          'critChance','critDamagePct','res_all','erosionBonus'])
-    const SILENT_STATS = new Set([
-        'dropRate','healOnCast','hpCostPerTurnPct','spdInvert',
-        'amplifie_incoming','huppermage_amplify','pendingLifesteal',
-        'repulsion_guard','feu_eau_debuff','eau_air_debuff','_selfHpRestore',
-    ])
-    const ICON = {
-        atk:               STAT_ICONS.atk,
-        spd:               STAT_ICONS.spd,
-        maxHp:             STAT_ICONS.soin,
-        flatDamage:        STAT_ICONS.flatDamage,
-        finalDamagePct:    STAT_ICONS.flatDamage,
-        spellDamagePct:    STAT_ICONS.flatDamage,
-        damageReductionPct:'img/icons/protection.png',
-        critChance:        'img/icons/critique.png',
-        critDamagePct:     'img/icons/critique.png',
-        critResPct:        'img/icons/protection.png',
-        healPct:           STAT_ICONS.soin,
-        healTeamPct:       STAT_ICONS.soin,
-        lifestealPct:      STAT_ICONS.volVie,
-        res_all:           ELEM_ICONS.all_elements,
-        antiHeal:          STAT_ICONS.soin,
-        erosionBonus:      ELEM_ICONS.sagesse,
-        esquive:           ELEM_ICONS.sagesse,
-        force:             ELEM_ICONS.terre,
-        chance:            ELEM_ICONS.eau,
-        agilite:           ELEM_ICONS.air,
-        heal:              STAT_ICONS.soin,
-    }
-    const LABEL = {
-        atk: 'Puissance', spd: 'Initiative', maxHp: 'PV max',
-        flatDamage: 'Do', finalDamagePct: '%Do',
-        spellDamagePct: '%DoSort', damageReductionPct: '%Res Do',
-        critChance: '%Crit', critDamagePct: '%doCrit', critResPct: '%Res Crit',
-        healPct: 'Soins', healTeamPct: 'Soins éq.',
-        lifestealPct: 'Vol vie', res_all: 'Res.',
-        erosionBonus: '%Érosion', esquive: 'Esquive',
-        force: 'Force', chance: 'Chance', agilite: 'Agilité',
-        heal: 'Buff',
-    }
-    const iconFor  = s => s?.startsWith('res.') ? (ELEM_ICONS[s.split('.')[1]] || ELEM_ICONS.neutre) : (ICON[s] || STAT_ICONS.buff)
-    // % only appended for res stats — other PCT stats already carry % in their label
-    const unitFor  = s => (s?.startsWith('res.') || s === 'res_all') ? '%' : ''
-    const labelFor = (s, val) => s?.startsWith('res.') ? 'Res.' : (LABEL[s] || (val >= 0 ? 'Buff' : 'Debuff'))
-    const img      = src => `<img src="${src}" class="cbc-icon" onerror="this.src='img/icons/icon.png'">`
-
     // Merge buffs/debuffs by stat (sum values, max duration)
     const buffsByStat = {}
     for (const b of (member.buffs || [])) {
@@ -188,19 +202,18 @@ function _renderMemberBuffChips(member) {
         buffsByStat[b.stat].duration  = Math.max(buffsByStat[b.stat].duration, b.duration)
     }
     for (const [stat, { value, duration }] of Object.entries(buffsByStat)) {
-        if (SILENT_STATS.has(stat)) continue
+        if (_CBC_SILENT_STATS.has(stat)) continue
         if (stat === 'antiHeal') {
-            chips.push(`<span class="cbc cbc-debuff">Anti-soin ${img(STAT_ICONS.soin)} ${duration}t</span>`)
+            chips.push(`<span class="cbc cbc-debuff">Anti-soin ${_cbcImgTag(STAT_ICONS.soin)} ${duration}t</span>`)
             continue
         }
         const sign  = value > 0 ? '+' : ''
-        const label = labelFor(stat, value)
+        const label = _cbcLabelFor(stat, value)
         const cls   = value >= 0 ? 'cbc-buff' : 'cbc-debuff'
-        chips.push(`<span class="cbc ${cls}">${sign}${Math.round(value)}${unitFor(stat)} ${label} ${img(iconFor(stat))} ${duration}t</span>`)
+        chips.push(`<span class="cbc ${cls}">${sign}${Math.round(value)}${_cbcUnitFor(stat)} ${label} ${_cbcImgTag(_cbcIconFor(stat))} ${duration}t</span>`)
     }
 
     // Merge DOTs by element (sum values, max duration)
-    const DOT_LABELS = { feu: 'Brûlure', eau: 'Noyade', air: 'Saignement', terre: 'Poison', neutre: 'Blessure' }
     const dotsByElem = {}
     for (const d of (member.dots || [])) {
         const elem = d.element || 'neutre'
@@ -209,12 +222,12 @@ function _renderMemberBuffChips(member) {
         dotsByElem[elem].duration  = Math.max(dotsByElem[elem].duration, d.duration)
     }
     for (const [elem, { value, duration }] of Object.entries(dotsByElem)) {
-        const dotLabel = DOT_LABELS[elem] || 'Brûlure'
-        chips.push(`<span class="cbc cbc-dot">-${value} ${dotLabel} ${img(ELEM_ICONS[elem] || ELEM_ICONS.neutre)} ${duration}t</span>`)
+        const dotLabel = _CBC_DOT_LABELS[elem] || 'Brûlure'
+        chips.push(`<span class="cbc cbc-dot">-${value} ${dotLabel} ${_cbcImgTag(ELEM_ICONS[elem] || ELEM_ICONS.neutre)} ${duration}t</span>`)
     }
 
     for (const h of (member.hots || []))
-        chips.push(`<span class="cbc cbc-hot">+${h.value} PV ${img(STAT_ICONS.volVie)} ${h.duration}t</span>`)
+        chips.push(`<span class="cbc cbc-hot">+${h.value} PV ${_cbcImgTag(STAT_ICONS.volVie)} ${h.duration}t</span>`)
 
     return chips.join('')
 }
@@ -282,7 +295,13 @@ function updateMemberBars() {
         card.classList.toggle('combat-active', isActive)
 
         const cbcRow = card.querySelector('.cbc-row')
-        if (cbcRow) cbcRow.innerHTML = _renderMemberBuffChips(m)
+        if (cbcRow) {
+            const buffSig = _memberBuffSignature(m)
+            if (cbcRow.dataset.cbcSig !== buffSig) {
+                cbcRow.innerHTML = _renderMemberBuffChips(m)
+                cbcRow.dataset.cbcSig = buffSig
+            }
+        }
     })
 }
 
@@ -382,9 +401,17 @@ function updateResourceBubbles() {
     const anyDofus    = Object.values(dofusDrops).some(c => c > 0)
 
     if (!state.isRunning || (pierreCount === 0 && gardienCount === 0 && archiCount === 0 && caisseCount === 0 && !anyKey && !anyDofus)) {
-        container.innerHTML = ''
+        if (container.dataset.resSig !== '') { container.innerHTML = ''; container.dataset.resSig = '' }
         return
     }
+
+    // Signature légère des compteurs affichés — évite de reconstruire le HTML à chaque
+    // tick de simulation quand le loot de session n'a pas changé depuis le dernier rendu.
+    const resSig = `p${pierreCount}g${gardienCount}a${archiCount}c${caisseCount}` +
+        `|${Object.entries(keyDrops).map(([k, c]) => `${k}:${c}`).join(',')}` +
+        `|${Object.entries(dofusDrops).map(([k, c]) => `${k}:${c}`).join(',')}`
+    if (container.dataset.resSig === resSig) return
+    container.dataset.resSig = resSig
 
     const pierreItm  = item['pierreDame']
     const gardienItm = item['pierreDameGardien']

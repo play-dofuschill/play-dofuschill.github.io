@@ -27,6 +27,18 @@ const STAT_ICONS = {
     volVie:  'img/icons/Vol_Vie.png',
     buff:    'img/icons/boost.png'
 }
+// ─── Utilitaires génériques ───────────────────────────────────────────────────
+
+// Retarde l'exécution de fn jusqu'à ce que delayMs se soient écoulés sans nouvel appel
+// (ex. champs de recherche : évite de reconstruire une liste complète à chaque frappe).
+function _debounce(fn, delayMs) {
+    let timeoutId = null
+    return (...args) => {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => fn(...args), delayMs)
+    }
+}
+
 function voidAnimation(id, animation) {
     const el = document.getElementById(id)
     if (!el) return
