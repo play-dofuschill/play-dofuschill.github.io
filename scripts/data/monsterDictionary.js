@@ -1049,7 +1049,7 @@ monsters.directeur_grunob = {
     image: 'images/monsters/Directeur_Grunob.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 1200, atk: 402, spd: 112, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
+    bst: { hp: 1200, atk: 332, spd: 112, res: { neutre: 6, terre: -8, feu: -8, eau: 15, air: 15 } },
     moves: ['sermon_educatif', 'chachagobert', 'cuvee_des_gobs']
 }
 // ═══════════════════════════════════════════════════════
@@ -3370,7 +3370,7 @@ monsters.choudini = {
     image: 'images/monsters/Choudini.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 2900, atk: 864, spd: 148, res: { neutre: 0, terre: 20, feu: 20, eau: 20, air: 20 } },
+    bst: { hp: 2900, atk: 783, spd: 148, res: { neutre: 0, terre: 20, feu: 20, eau: 20, air: 20 } },
     moves: ['reste_assis', 'vinriktus', 'detriktus']
 }
 // ═══════════════════════════════════════════════════════
@@ -3824,7 +3824,7 @@ monsters.maitre_des_pantins = {
     image: 'images/monsters/Maître_des_Pantins.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 6000, atk: 1400, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 6000, atk: 2396, spd: 160, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['tirer_les_ficelles', 'ensecret']
 }
 // ═══════════════════════════════════════════════════════
@@ -4974,7 +4974,7 @@ monsters.haute_truche = {
     image: 'images/monsters/Haute_Truche.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 5200, atk: 1333, spd: 172, res: { neutre: -15, terre: 10, feu: 10, eau: 30, air: 25 } },
+    bst: { hp: 5200, atk: 1203, spd: 172, res: { neutre: -15, terre: 10, feu: 10, eau: 30, air: 25 } },
     moves: ['prendre_son_pied', 'flatulences_buccales', 'degazage', 'tete_dans_le_sable']
 }
 // ═══════════════════════════════════════════════════════
@@ -5716,7 +5716,7 @@ monsters.hell_mina = {
     image: 'images/monsters/Hell_Mina.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 7200, atk: 1535, spd: 184, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
+    bst: { hp: 7200, atk: 1390, spd: 184, res: { neutre: -17, terre: 12, feu: 31, eau: -9, air: -7 } },
     moves: ['bond_malefique', 'fatalite', 'extermination_iopesque', 'prejudice']
 }
 // ═══════════════════════════════════════════════════════
@@ -6346,7 +6346,7 @@ monsters.superviz_uf = {
     image: 'images/monsters/Supervizœuf.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 8800, atk: 2004, spd: 196, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
+    bst: { hp: 8800, atk: 1549, spd: 196, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
     moves: ['bzelan', 'carapabz', 'clonabz', 'abzlation', 'bzovolution']
 }
 // ═══════════════════════════════════════════════════════
@@ -7747,7 +7747,7 @@ monsters.ougah = {
     image: 'images/monsters/Ougah.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 8400, atk: 4419, spd: 208, res: { neutre: 18, terre: 13, feu: 15, eau: 20, air: 20 } },
+    bst: { hp: 8400, atk: 3780, spd: 208, res: { neutre: 18, terre: 13, feu: 15, eau: 20, air: 20 } },
     moves: ['bizarrerie', 'opiniatrete', 'sirop_spore', 'spore_hanchambre', 'les_coprins_d_abord']
 }
 // ═══════════════════════════════════════════════════════
@@ -8154,7 +8154,7 @@ monsters.missiz_frizz = {
     image: 'images/monsters/Missiz_Frizz.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 2239, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 21, air: 25 } },
+    bst: { hp: 13000, atk: 2086, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 21, air: 25 } },
     moves: ['cristallisation', 'sang_froid', 'glace_trop_physique']
 }
 // ═══════════════════════════════════════════════════════
@@ -8555,7 +8555,7 @@ monsters.guerre = {
     image: 'images/monsters/Guerre.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 22000, atk: 2936, spd: 220, res: { neutre: 30, terre: 35, feu: 35, eau: 25, air: 25 } },
+    bst: { hp: 22000, atk: 2744, spd: 220, res: { neutre: 30, terre: 35, feu: 35, eau: 25, air: 25 } },
     moves: ['bravoure', 'impact', 'lynchage', 'magmalefice', 'celerite', 'martyre']
 }
 // ═══════════════════════════════════════════════════════
@@ -8921,7 +8921,7 @@ monsters.reine_des_voleurs = {
     image: 'images/monsters/Reine_des_Voleurs.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 1600, spd: 124, res: { neutre: 31, terre: 26, feu: 42, eau: 13, air: 18 } },
+    bst: { hp: 15000, atk: 3319, spd: 124, res: { neutre: 31, terre: 26, feu: 42, eau: 13, air: 18 } },
     moves: ['mort_en_sursis', 'coup_critique']
 }
 
@@ -10936,7 +10936,7 @@ monsters.superviz_uf_perturbe = {
     image: 'images/monsters/Supervizœuf_perturbé.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 20000, atk: 2012, spd: 196, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
+    bst: { hp: 20000, atk: 1556, spd: 196, res: { neutre: -11, terre: 5, feu: 2, eau: 1, air: 3 } },
     moves: ['bzelan', 'carapabz', 'clonabz', 'abzlation', 'bzovolution']
 }
 monsters.oeuf_de_tregenaire = {
@@ -11660,7 +11660,7 @@ monsters.roi_nidas = {
     image: 'images/monsters/Roi_Nidas.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 2650, spd: 220, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
+    bst: { hp: 15000, atk: 487, spd: 220, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
     moves: ['confusion', 'attrape_mutin', 'mon_precieux']
 }
 
@@ -11673,7 +11673,7 @@ monsters.roi_imagami = {
     image: 'images/monsters/Roi_Imagami.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 27000, atk: 2800, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
+    bst: { hp: 27000, atk: 3058, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
     moves: ['parchemin_de_traverse', 'papetuerie', 'roque_papier_ciseaux', 'kami_no_jishin']
 }
 
@@ -11686,7 +11686,7 @@ monsters.reine_amirukam = {
     image: 'images/monsters/Reine_Amirukam.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 27000, atk: 2800, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
+    bst: { hp: 27000, atk: 3458, spd: 220, res: { neutre: 22, terre: 18, feu: -11, eau: -8, air: -21 } },
     moves: ['toner_deubraiste', 'getsuga_tensho', 'monarchie_des_roses_noires']
 }
 
@@ -11712,7 +11712,7 @@ monsters.chal_il = {
     image: 'images/monsters/Chalœil.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 2650, spd: 220, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
+    bst: { hp: 15000, atk: 2575, spd: 220, res: { neutre: 21, terre: 21, feu: 11, eau: 31, air: 16 } },
     moves: ['toilette_ecaflip', 'farce_et_attrape', 'gros_yeux']
 }
 
@@ -11725,7 +11725,7 @@ monsters.vortex = {
     image: 'images/monsters/Vortex.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 2650, spd: 220, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
+    bst: { hp: 15000, atk: 6274, spd: 220, res: { neutre: 6, terre: 33, feu: 12, eau: 21, air: 28 } },
     moves: ['heuristique', 'morfaille', 'en_temps_et_en_heure']
 }
 
