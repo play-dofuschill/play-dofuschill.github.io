@@ -43,13 +43,19 @@ const AUTO_EQUIP_STAT_LABELS = Object.fromEntries(AUTO_EQUIP_STATS)
 
 // ─── Contexte du personnage ────────────────────────────────────────────────
 
+// Le niveau requis d'un objet ne doit jamais dépasser le niveau réel du personnage.
+// La synchro (modulation skull / avis de recherche) ne sert qu'à abaisser le plafond
+// pour un perso surlevé par rapport à la zone — jamais à équiper au-dessus de son
+// propre niveau.
 function _autoEquipLevelCap(member) {
-    if (typeof combat !== 'undefined' && combat?.syncedLevel) return combat.syncedLevel
-    if (typeof _pendingAreaId !== 'undefined' && _pendingAreaId) {
+    let cap = member.level || 0
+    if (typeof combat !== 'undefined' && combat?.syncedLevel) {
+        cap = Math.min(cap, combat.syncedLevel)
+    } else if (typeof _pendingAreaId !== 'undefined' && _pendingAreaId) {
         const pa = areas[_pendingAreaId]
-        if (pa?.maxLevel && (state.skullLevel > 0 || pa.type === 'wanted')) return pa.maxLevel
+        if (pa?.maxLevel && (state.skullLevel > 0 || pa.type === 'wanted')) cap = Math.min(cap, pa.maxLevel)
     }
-    return member.level || 0
+    return cap
 }
 
 // Items déjà portés par un AUTRE personnage (en équipe active, ou en réserve via classEquip)

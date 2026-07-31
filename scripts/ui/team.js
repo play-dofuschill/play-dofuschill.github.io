@@ -426,7 +426,7 @@ function renderEquipPickGrid() {
     if (isFamiliar) filtered = filtered.filter(e => !isFamLocked(e))
 
     const _effectiveLvlCap = !isFamiliar
-        ? (skullMaxLevel !== null ? skullMaxLevel : (memberLevel || null))
+        ? (skullMaxLevel !== null ? Math.min(memberLevel || Infinity, skullMaxLevel) : (memberLevel || null))
         : null
     const isLevelLocked = e => _effectiveLvlCap !== null && e.requiredLevel && e.requiredLevel > _effectiveLvlCap
 
@@ -612,7 +612,7 @@ function equipItem(memberIndex, equipSlot, itemId) {
     if (itemId) {
         const itm = item[itemId]
         const _syncedLvl = (typeof combat !== 'undefined' && combat?.syncedLevel) || null
-        const _lvlCap = _syncedLvl ?? (member.level || 0)
+        const _lvlCap = _syncedLvl != null ? Math.min(member.level || 0, _syncedLvl) : (member.level || 0)
         if (itm?.requiredLevel && itm.requiredLevel > _lvlCap) return
     }
     member.equip[equipSlot] = itemId
