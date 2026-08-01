@@ -10286,7 +10286,7 @@ monsters.troollogram = {
     image: 'images/monsters/Troollogram.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 448, spd: 142, res: { neutre: 16, terre: 26, feu: -19, eau: 26, air: -9 } },
+    bst: { hp: 2200, atk: 280, spd: 142, res: { neutre: 16, terre: 26, feu: -19, eau: 26, air: -9 } },
     moves: ['troollz', 'pettrooll']
 }
 monsters.troolligark = {
@@ -10295,7 +10295,7 @@ monsters.troolligark = {
     image: 'images/monsters/Troolligark.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 2100, atk: 448, spd: 142, res: { neutre: -9, terre: -19, feu: 16, eau: 26, air: 26 } },
+    bst: { hp: 2200, atk: 280, spd: 142, res: { neutre: -9, terre: -19, feu: 16, eau: 26, air: 26 } },
     moves: ['controoll', 'troollage']
 }
 monsters.troolleole = {
@@ -10304,7 +10304,7 @@ monsters.troolleole = {
     image: 'images/monsters/Troolléolé.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 2100, atk: 448, spd: 142, res: { neutre: -19, terre: 16, feu: 26, eau: -9, air: 26 } },
+    bst: { hp: 2200, atk: 280, spd: 142, res: { neutre: -19, terre: 16, feu: 26, eau: -9, air: 26 } },
     moves: ['troollahonte', 'troollfesse']
 }
 monsters.artroolleur = {
@@ -10313,7 +10313,7 @@ monsters.artroolleur = {
     image: 'images/monsters/Artroolleur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 19000, atk: 750, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 2400, atk: 300, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['tir_d_artroollerie', 'mortrooll']
 }
 monsters.nitrooll = {
@@ -10322,7 +10322,7 @@ monsters.nitrooll = {
     image: 'images/monsters/Nitrooll.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 22000, atk: 875, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 2400, atk: 310, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['double_trooll', 'trooll_de_magie', 'troollement_de_tambour', 'coup_de_trooll']
 }
 monsters.troollibre = {
@@ -10331,16 +10331,16 @@ monsters.troollibre = {
     image: 'images/monsters/Troollibre.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 25000, atk: 1000, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    bst: { hp: 2500, atk: 320, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['troollpoline', 'aspiratrooll', 'patroolleur']
 }
 monsters.mama_troollette = {
     id: 'mama_troollette',
     name: 'Mama Troollette',
     image: 'images/monsters/Mama_Troollette.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 150000, atk: 1125, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 140000, atk: 2800, spd: 142, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
     moves: ['troollooportation', 'uppertrooll', 'mitroollette_de_poings', 'catastrooll']
 }
 
@@ -10661,7 +10661,7 @@ monsters.batail_heure = {
     image: 'images/monsters/Batail_heure.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 149, res: { neutre: 20, terre: 25, feu: 15, eau: 10, air: 5 } },
+    bst: { hp: 1300, atk: 200, spd: 149, res: { neutre: 20, terre: 25, feu: 15, eau: 10, air: 5 } },
     moves: ['estoc', 'entaille_mstr', 'heroisme', 'providence', 'condamnation', 'bond_mstr']
 }
 monsters.tir_heure = {
@@ -10670,8 +10670,8 @@ monsters.tir_heure = {
     image: 'images/monsters/Tir_heure.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 149, res: { neutre: 25, terre: 20, feu: 15, eau: 10, air: 5 } },
-    moves: ['punition']
+    bst: { hp: 1300, atk: 200, spd: 149, res: { neutre: 25, terre: 20, feu: 15, eau: 10, air: 5 } },
+    moves: ['punition__tir_heure']
 }
 monsters.gueris_heure = {
     id: 'gueris_heure',
@@ -10679,7 +10679,7 @@ monsters.gueris_heure = {
     image: 'images/monsters/Guéris_heure.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 149, res: { neutre: 5, terre: 10, feu: 15, eau: 25, air: 20 } },
+    bst: { hp: 1300, atk: 200, spd: 149, res: { neutre: 5, terre: 10, feu: 15, eau: 25, air: 20 } },
     moves: ['jouvence']
 }
 monsters.eclair_heure = {
@@ -10688,7 +10688,7 @@ monsters.eclair_heure = {
     image: 'images/monsters/Éclair_heure.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 149, res: { neutre: 15, terre: 20, feu: 5, eau: 10, air: 25 } },
+    bst: { hp: 1300, atk: 200, spd: 149, res: { neutre: 15, terre: 20, feu: 5, eau: 10, air: 25 } },
     moves: ['compas_monstre', 'entourloupe_monstre', 'magnetisme', 'recel_mstr', 'pulsar_mstr', 'botte_monstre', 'aimantation_monstre']
 }
 monsters.protect_heure = {
@@ -10697,7 +10697,7 @@ monsters.protect_heure = {
     image: 'images/monsters/Protect_heure.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 149, res: { neutre: 20, terre: 25, feu: 15, eau: 5, air: 10 } },
+    bst: { hp: 1300, atk: 200, spd: 149, res: { neutre: 20, terre: 25, feu: 15, eau: 5, air: 10 } },
     moves: ['somnolence_mstr', 'rempart_mstr', 'renfort_mstr', 'barriere_mstr']
 }
 monsters.berserk_heure = {
@@ -10706,8 +10706,8 @@ monsters.berserk_heure = {
     image: 'images/monsters/Berserk_heure.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 6000, atk: 300, spd: 149, res: { neutre: 20, terre: 5, feu: 25, eau: 15, air: 10 } },
-    moves: ['assaut', 'attirance']
+    bst: { hp: 1300, atk: 200, spd: 149, res: { neutre: 20, terre: 5, feu: 25, eau: 15, air: 10 } },
+    moves: ['assaut__berserk_heure', 'attirance']
 }
 monsters.xlii = {
     id: 'xlii',
@@ -10741,7 +10741,7 @@ monsters.emeraude = {
     image: 'images/monsters/Émeraude.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 3200, atk: 100, spd: 149, res: { neutre: 98, terre: -15, feu: -15, eau: -15, air: 98 } },
+    bst: { hp: 2900, atk: 300, spd: 149, res: { neutre: 98, terre: -15, feu: -15, eau: -15, air: 98 } },
     moves: ['transposition_amicale', 'transposition_destructrice', 'bouh_m_rang_emeraude', 'tripotee']
 }
 monsters.saphira = {
@@ -10750,7 +10750,7 @@ monsters.saphira = {
     image: 'images/monsters/Saphira.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 3200, atk: 118, spd: 149, res: { neutre: 98, terre: -15, feu: -15, eau: 98, air: -15 } },
+    bst: { hp: 2900, atk: 330, spd: 149, res: { neutre: 98, terre: -15, feu: -15, eau: 98, air: -15 } },
     moves: ['bouh_m_rang_saphir', 'camouflage_saphiresque']
 }
 monsters.rubise = {
@@ -10759,7 +10759,7 @@ monsters.rubise = {
     image: 'images/monsters/Rubise.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 3200, atk: 100, spd: 149, res: { neutre: 98, terre: -15, feu: 98, eau: -15, air: -15 } },
+    bst: { hp: 2900, atk: 300, spd: 149, res: { neutre: 98, terre: -15, feu: 98, eau: -15, air: -15 } },
     moves: ['bouh_m_rang_rubis', 'invocation_de_totem_motivant', 'invocation_de_totem_explosif', 'bottage_de_fesses', 'invocation_de_totem_soignant', 'totemisation', 'bond_rubisant']
 }
 monsters.diamantine = {
@@ -10768,7 +10768,7 @@ monsters.diamantine = {
     image: 'images/monsters/Diamantine.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 3200, atk: 59, spd: 149, res: { neutre: 98, terre: 98, feu: -15, eau: -15, air: -15 } },
+    bst: { hp: 2900, atk: 250, spd: 149, res: { neutre: 98, terre: 98, feu: -15, eau: -15, air: -15 } },
     moves: ['lourdeur', 'bouh_m_rang_diamant', 'invocation_de_poupee_mortelle', 'bond_etincelant']
 }
 
@@ -10829,7 +10829,7 @@ monsters.gliglibido = {
     image: 'images/monsters/Gliglibido.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 2800, atk: 333, spd: 156, res: { neutre: 32, terre: -9, feu: 27, eau: 11, air: -23 } },
+    bst: { hp: 2900, atk: 330, spd: 156, res: { neutre: 32, terre: -9, feu: 27, eau: 11, air: -23 } },
     moves: ['gland_d_ouil', 'remontant', 'fluide_brulant']
 }
 monsters.gliglitch = {
@@ -10838,7 +10838,7 @@ monsters.gliglitch = {
     image: 'images/monsters/Gliglitch.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 2800, atk: 333, spd: 156, res: { neutre: 5, terre: 17, feu: 7, eau: -5, air: -17 } },
+    bst: { hp: 2900, atk: 330, spd: 156, res: { neutre: 5, terre: 17, feu: 7, eau: -5, air: -17 } },
     moves: ['gliglag', 'gligliplication', 'embrochement_dephase']
 }
 monsters.gliglicerin = {
@@ -10847,7 +10847,7 @@ monsters.gliglicerin = {
     image: 'images/monsters/Gliglicérin.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 3000, atk: 350, spd: 156, res: { neutre: 5, terre: 11, feu: -25, eau: 1, air: 22 } },
+    bst: { hp: 2900, atk: 340, spd: 156, res: { neutre: 5, terre: 11, feu: -25, eau: 1, air: 22 } },
     moves: ['attirance_du_gligli', 'fauchage_de_glands', 'raffut_bestial']
 }
 monsters.gliglidoudur = {
@@ -10856,7 +10856,7 @@ monsters.gliglidoudur = {
     image: 'images/monsters/Gliglidoudur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 3600, atk: 333, spd: 156, res: { neutre: -11, terre: 30, feu: -9, eau: 26, air: 11 } },
+    bst: { hp: 3100, atk: 300, spd: 156, res: { neutre: -11, terre: 30, feu: -9, eau: 26, air: 11 } },
     moves: ['charge_emotive', 'contraction', 'rejet']
 }
 monsters.devhorreur = {
@@ -11164,7 +11164,7 @@ monsters.bribe_de_zobal = {
     image: 'images/monsters/Bribe_de_Zobal.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 558, spd: 163, res: { neutre: 25, terre: 29, feu: 14, eau: 14, air: 39 } },
+    bst: { hp: 3700, atk: 400, spd: 163, res: { neutre: 25, terre: 29, feu: 14, eau: 14, air: 39 } },
     moves: ['agular_mstr', 'furia_mstr', 'appui_mstr', 'plastron_mstr', 'apathie_mstr', 'cabriole_mstr', 'reuche_mstr', 'tortoruga_mstr', 'catalepsie_mstr', 'cavalcade_mstr', 'boliche_mstr', 'l_arc_ifanss']
 }
 monsters.bribe_de_steamer = {
@@ -11173,7 +11173,7 @@ monsters.bribe_de_steamer = {
     image: 'images/monsters/Bribe_de_Steamer.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 460, spd: 163, res: { neutre: 15, terre: 41, feu: 33, eau: 18, air: 18 } },
+    bst: { hp: 3700, atk: 330, spd: 163, res: { neutre: 15, terre: 41, feu: 33, eau: 18, air: 18 } },
     moves: ['exclamaton', 'longue_vue', 'torpille_mstr', 'maree_mstr', 'scaphandre_mstr', 'periscope_mstr', 'flibuste_mstr', 'ecume_mstr', 'embuscade_mstr', 'harmattan_mstr']
 }
 monsters.bribe_de_cra = {
@@ -11182,8 +11182,8 @@ monsters.bribe_de_cra = {
     image: 'images/monsters/Bribe_de_Crâ.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 649, spd: 163, res: { neutre: 0, terre: 16, feu: 31, eau: 26, air: 32 } },
-    moves: ['fleche_détonante']
+    bst: { hp: 3700, atk: 460, spd: 163, res: { neutre: 0, terre: 16, feu: 31, eau: 26, air: 32 } },
+    moves: ['fleche_détonante__bribe_de_cra']
 }
 monsters.bribe_d_enutrof = {
     id: 'bribe_d_enutrof',
@@ -11191,8 +11191,8 @@ monsters.bribe_d_enutrof = {
     image: 'images/monsters/Bribe_d_Enutrof.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 487, spd: 163, res: { neutre: 0, terre: 39, feu: 15, eau: 38, air: 32 } },
-    moves: ['lancer_de_pieces', 'sac_anime', 'ruee_vers_l_or', 'boite_de_pandore']
+    bst: { hp: 3700, atk: 350, spd: 163, res: { neutre: 0, terre: 39, feu: 15, eau: 38, air: 32 } },
+    moves: ['lancer_de_pieces__bribe_d_enutrof', 'sac_anime', 'ruee_vers_l_or', 'boite_de_pandore']
 }
 monsters.bribe_de_iop = {
     id: 'bribe_de_iop',
@@ -11200,8 +11200,8 @@ monsters.bribe_de_iop = {
     image: 'images/monsters/Bribe_de_Iop.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 495, spd: 163, res: { neutre: 8, terre: 18, feu: 11, eau: 16, air: 26 } },
-    moves: ['pression', 'concentration', 'puissance', 'epee_de_iop']
+    bst: { hp: 3700, atk: 350, spd: 163, res: { neutre: 8, terre: 18, feu: 11, eau: 16, air: 26 } },
+    moves: ['pression__bribe_de_iop', 'concentration__bribe_de_iop', 'puissance', 'epee_de_iop__bribe_de_iop']
 }
 monsters.bribe_de_pandawa = {
     id: 'bribe_de_pandawa',
@@ -11209,7 +11209,7 @@ monsters.bribe_de_pandawa = {
     image: 'images/monsters/Bribe_de_Pandawa.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 139, spd: 163, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
+    bst: { hp: 3700, atk: 100, spd: 163, res: { neutre: 50, terre: 50, feu: 50, eau: 50, air: 50 } },
     moves: ['picole_monstre', 'consolation_monstre', 'brassage_monstre', 'fermentation_mstr', 'pandjiu_mstr', 'ribote_mstr', 'pandanlku_mstr']
 }
 monsters.bribe_d_eniripsa = {
@@ -11218,8 +11218,8 @@ monsters.bribe_d_eniripsa = {
     image: 'images/monsters/Bribe_d_Eniripsa.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 615, spd: 163, res: { neutre: 8, terre: 27, feu: 19, eau: 35, air: 24 } },
-    moves: ['mot_tapageur', 'mot_damitie', 'mot_stimulant', 'mot_de_frayeur']
+    bst: { hp: 3700, atk: 440, spd: 163, res: { neutre: 8, terre: 27, feu: 19, eau: 35, air: 24 } },
+    moves: ['mot_tapageur__bribe_d_eniripsa', 'mot_damitie', 'mot_stimulant', 'mot_de_frayeur']
 }
 monsters.bribe_d_ecaflip = {
     id: 'bribe_d_ecaflip',
@@ -11227,8 +11227,8 @@ monsters.bribe_d_ecaflip = {
     image: 'images/monsters/Bribe_d_Ecaflip.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 654, spd: 163, res: { neutre: 25, terre: 28, feu: 38, eau: 35, air: 28 } },
-    moves: ['reflexes', 'yams', 'topkaj', 'pile_ou_face']
+    bst: { hp: 3700, atk: 465, spd: 163, res: { neutre: 25, terre: 28, feu: 38, eau: 35, air: 28 } },
+    moves: ['reflexes__bribe_d_ecaflip', 'yams__bribe_d_ecaflip', 'topkaj__bribe_d_ecaflip', 'pile_ou_face__bribe_d_ecaflip']
 }
 monsters.bribe_d_huppermage = {
     id: 'bribe_d_huppermage',
@@ -11236,7 +11236,7 @@ monsters.bribe_d_huppermage = {
     image: 'images/monsters/Bribe_d_Huppermage.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 604, spd: 163, res: { neutre: 31, terre: 24, feu: 29, eau: 24, air: 26 } },
+    bst: { hp: 3700, atk: 430, spd: 163, res: { neutre: 31, terre: 24, feu: 29, eau: 24, air: 26 } },
     moves: ['lances_telluriques_mstr', 'cataracte_mstr', 'onde_celeste_mstr', 'tison_mstr', 'drain_elementaire_mstr', 'orage_mstr', 'rafale_elementaire', 'trait_ardent_mstr', 'volcan_mstr', 'traversee_mstr', 'torrent_arcanique_mstr', 'bouclier_elementaire_mstr']
 }
 monsters.bribe_d_ouginak = {
@@ -11245,7 +11245,7 @@ monsters.bribe_d_ouginak = {
     image: 'images/monsters/Bribe_d_Ouginak.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 454, spd: 163, res: { neutre: 14, terre: 20, feu: 20, eau: 34, air: 27 } },
+    bst: { hp: 3700, atk: 320, spd: 163, res: { neutre: 14, terre: 20, feu: 20, eau: 34, air: 27 } },
     moves: ['gibier_monstre', 'charogne_mstr', 'depecage_mstr', 'carcasse_mstr', 'depouille_mstr', 'limier_mstr', 'apaisement_monstre', 'arcanin_mstr']
 }
 monsters.bribe_de_sadida = {
@@ -11254,7 +11254,7 @@ monsters.bribe_de_sadida = {
     image: 'images/monsters/Bribe_de_Sadida.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 465, spd: 163, res: { neutre: 6, terre: 16, feu: 9, eau: 6, air: 19 } },
+    bst: { hp: 3700, atk: 330, spd: 163, res: { neutre: 6, terre: 16, feu: 9, eau: 6, air: 19 } },
     moves: ['ronce_mstr', 'ronces_agressives_mstr', 'foret_hantee_mstr', 'seve_paralysante_mstr', 'tremblement_mstr', 'vent_empoisonne_mstr']
 }
 monsters.bribe_d_eliotrope = {
@@ -11263,7 +11263,7 @@ monsters.bribe_d_eliotrope = {
     image: 'images/monsters/Bribe_d_Eliotrope.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 408, spd: 163, res: { neutre: 43, terre: 41, feu: 50, eau: 50, air: 37 } },
+    bst: { hp: 3700, atk: 290, spd: 163, res: { neutre: 43, terre: 41, feu: 50, eau: 50, air: 37 } },
     moves: ['mepris_mstr', 'sinecure_mstr', 'brimade_mstr', 'raillerie_mstr', 'sermon_mstr', 'cicatrisation_monstre', 'distribution_monstre']
 }
 monsters.bribe_de_xelor = {
@@ -11272,16 +11272,16 @@ monsters.bribe_de_xelor = {
     image: 'images/monsters/Bribe_de_Xélor.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 1100, atk: 413, spd: 163, res: { neutre: 20, terre: 21, feu: 31, eau: 40, air: 28 } },
+    bst: { hp: 3700, atk: 300, spd: 163, res: { neutre: 20, terre: 21, feu: 31, eau: 40, air: 28 } },
     moves: ['poussiere_mstr', 'frappe_de_xelor_mstr', 'horloge_mstr', 'astrolabe_monstre', 'rouage_mstr', 'glas_mstr', 'refraction_mstr', 'sablier_de_xelor_mstr']
 }
 monsters.bribes_de_gardien = {
     id: 'bribes_de_gardien',
     name: 'Bribes de gardien',
     image: 'images/monsters/Bribes_de_gardien.png',
-    rarity: 'commun',
-    tier: 'normal',
-    bst: { hp: 22000, atk: 2000, spd: 163, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
+    rarity: 'rare',
+    tier: 'boss',
+    bst: { hp: 105000, atk: 2800, spd: 163, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: []
 }
 
@@ -11437,7 +11437,7 @@ monsters.gromo_envahissant = {
     image: 'images/monsters/Gromo_Envahissant.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 16000, atk: 800, spd: 163, res: { neutre: 17, terre: 15, feu: 2, eau: -12, air: -18 } },
+    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 17, terre: 15, feu: 2, eau: -12, air: -18 } },
     moves: ['talonnade', 'carcan']
 }
 monsters.gromo_ecrasant = {
@@ -11446,7 +11446,7 @@ monsters.gromo_ecrasant = {
     image: 'images/monsters/Gromo_Écrasant.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 16000, atk: 800, spd: 163, res: { neutre: -16, terre: 20, feu: 11, eau: 8, air: -2 } },
+    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: -16, terre: 20, feu: 11, eau: 8, air: -2 } },
     moves: ['paralysie', 'anabolisme']
 }
 monsters.gromo_endurant = {
@@ -11455,7 +11455,7 @@ monsters.gromo_endurant = {
     image: 'images/monsters/Gromo_Endurant.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 16000, atk: 800, spd: 163, res: { neutre: -5, terre: -15, feu: 24, eau: 11, air: 7 } },
+    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: -5, terre: -15, feu: 24, eau: 11, air: 7 } },
     moves: ['ingurgitation', 'jonction']
 }
 monsters.gromo_intercepteur = {
@@ -11464,7 +11464,7 @@ monsters.gromo_intercepteur = {
     image: 'images/monsters/Gromo_Intercepteur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 16000, atk: 800, spd: 163, res: { neutre: 7, terre: -8, feu: -16, eau: 25, air: 12 } },
+    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 7, terre: -8, feu: -16, eau: 25, air: 12 } },
     moves: ['chrono_interception', 'chrono_trig_heure', 'exclusion']
 }
 monsters.gromo_protecteur = {
@@ -11473,7 +11473,7 @@ monsters.gromo_protecteur = {
     image: 'images/monsters/Gromo_Protecteur.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 16000, atk: 800, spd: 163, res: { neutre: 13, terre: 7, feu: -4, eau: -13, air: 23 } },
+    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 13, terre: 7, feu: -4, eau: -13, air: 23 } },
     moves: ['chronoclier', 'liquefaction']
 }
 

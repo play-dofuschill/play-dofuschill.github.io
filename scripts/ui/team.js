@@ -371,7 +371,7 @@ const EQUIP_STAT_LABELS = {
     flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %',
     spellDamagePct: 'Sorts %', critChance: 'Crit.',
     critDamagePct: 'Dég. crit.', damageReductionPct: 'Réduction',
-    healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
+    heal: 'Soin', healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
     'res.feu': 'Rés. Feu', 'res.eau': 'Rés. Eau',
     'res.terre': 'Rés. Terre', 'res.air': 'Rés. Air',
     'res.neutre': 'Rés. Neutre',

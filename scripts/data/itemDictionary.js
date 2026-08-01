@@ -552,7 +552,7 @@ item.animulette = {
     itemLevelMax: 20,
     set: 'panoplie_des_ames',
     requiredLevel: 1,
-    stats: [{ stat: 'critChance', min: -5, max: -5 }]
+    stats: [{ stat: 'critChance', min: 1, max: 5 }]
 }
 item.cape_syche = {
     id: 'cape_syche',

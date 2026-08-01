@@ -16,9 +16,13 @@ function getMaxForgeSlots(statCount) {
 
 // Interpole linéairement entre s.min (level 1) et s.max (level itemLevelMax).
 // Si l'item n'a qu'une valeur fixe (ancien format), utilise s.value pour les deux bornes.
-function getItemStats(itm, level, forgedStats = null, transForge = null) {
+// astralLevel (0-20) applique +1% à toutes les stats (dont transForge) via amélioration
+// astrale (engine/forge.js: applyAstralUpgrade) — exposé séparément en `astralBonus` pour
+// que l'UI puisse l'afficher à part, tout en restant fondu dans `value` pour le combat.
+function getItemStats(itm, level, forgedStats = null, transForge = null, astralLevel = 0) {
     const maxLevel = itm.itemLevelMax || 20
     const t = maxLevel > 1 ? (level - 1) / (maxLevel - 1) : 1
+    const astralMult = 1 + (astralLevel || 0) * 0.01
 
     const arr = Array.isArray(forgedStats) ? forgedStats : (forgedStats ? [forgedStats] : [])
     const map = {}
@@ -29,17 +33,37 @@ function getItemStats(itm, level, forgedStats = null, transForge = null) {
         const hi   = s.max ?? s.value ?? 0
         const base = Math.round(lo + (hi - lo) * t)
         const forged = map[i]
+
+        let stat, preAstral, isForged = false, forgeBonus
         if (forged) {
+            isForged = true
             if (forged.stat !== s.stat) {
-                return { stat: forged.stat, value: forged.value, isForged: true, isTranscendance: false }
+                stat = forged.stat
+                preAstral = forged.value
+            } else {
+                stat = s.stat
+                preAstral = base + forged.value
+                forgeBonus = forged.value
             }
-            return { stat: s.stat, value: base + forged.value, isForged: true, forgeBonus: forged.value }
+        } else {
+            stat = s.stat
+            preAstral = base
         }
-        return { stat: s.stat, value: base, isForged: false }
+
+        const value = Math.round(preAstral * astralMult)
+        const astralBonus = value - preAstral
+        const entry = { stat, value, isForged, isTranscendance: false }
+        if (forgeBonus !== undefined) entry.forgeBonus = forgeBonus
+        if (astralBonus) entry.astralBonus = astralBonus
+        return entry
     })
 
     if (transForge) {
-        result.push({ stat: transForge.stat, value: transForge.value, isForged: true, isTranscendance: true, forgeBonus: transForge.value })
+        const value = Math.round(transForge.value * astralMult)
+        const astralBonus = value - transForge.value
+        const entry = { stat: transForge.stat, value, isForged: true, isTranscendance: true, forgeBonus: transForge.value }
+        if (astralBonus) entry.astralBonus = astralBonus
+        result.push(entry)
     }
 
     return result

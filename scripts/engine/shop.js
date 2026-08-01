@@ -64,16 +64,6 @@ function _shopPeriod() {
     return Math.floor(Math.floor(Date.now() / 86400000) / SHOP_ROTATION_DAYS)
 }
 
-function _visitedAreaItemSet() {
-    const ids = new Set()
-    for (const areaId of (state.visitedAreas || [])) {
-        const area = areas[areaId]
-        if (!area?.lootTable) continue
-        for (const entry of area.lootTable) ids.add(entry.itemId)
-    }
-    return ids
-}
-
 // Clés des donjons liés aux zones sauvages actuellement tirées (pool bi-journalier).
 function _wildLinkedKeyIds() {
     if (typeof refreshDailyPools === 'function') refreshDailyPools()
@@ -84,6 +74,62 @@ function _wildLinkedKeyIds() {
         if (keyId && item[keyId] && !ids.includes(keyId)) ids.push(keyId)
     }
     return ids
+}
+
+// ─── Catalogue "Items" groupé par zone du jour ───────────────────────────────
+// Zones sauvages tirées aujourd'hui + leur donjon associé + les raids normaux
+// du jour. Un même item n'apparaît qu'une fois (dans la première zone où il
+// est croisé), même s'il est droppable à plusieurs endroits.
+
+function _equipmentDropsOf(area, seen) {
+    if (!area?.lootTable) return []
+    const ids = []
+    for (const entry of area.lootTable) {
+        if (!entry) continue
+        const itm = item[entry.itemId]
+        if (!itm || itm.type !== 'equipment' || itm.slot === 'accessoire') continue
+        if (seen.has(entry.itemId)) continue
+        seen.add(entry.itemId)
+        ids.push(entry.itemId)
+    }
+    return ids
+}
+
+// Le donjon associé à une zone sauvage est celui dont la clé est droppée par cette zone.
+function _dungeonForZone(zone) {
+    const keyDrop = (zone.lootTable || []).find(e => e?.isKey)
+    if (!keyDrop) return null
+    return Object.values(areas).find(a => (a.type === 'dungeon' || a.type === 'saisonnier') && a.keyId === keyDrop.itemId) || null
+}
+
+function getShopItemGroups() {
+    if (typeof refreshDailyPools === 'function') refreshDailyPools()
+
+    const groups = []
+    const seen   = new Set()
+
+    for (const zoneId of (state.dailyPool?.zones || [])) {
+        const zone = areas[zoneId]
+        if (!zone) continue
+
+        const zoneItems = _equipmentDropsOf(zone, seen)
+        if (zoneItems.length) groups.push({ zoneId: zone.id, label: zone.name, itemIds: zoneItems })
+
+        const dungeon = _dungeonForZone(zone)
+        if (dungeon) {
+            const dungeonItems = _equipmentDropsOf(dungeon, seen)
+            if (dungeonItems.length) groups.push({ zoneId: dungeon.id, label: dungeon.name, itemIds: dungeonItems })
+        }
+    }
+
+    for (const raidId of (state.raidPool?.zones || [])) {
+        const raid = areas[raidId]
+        if (!raid) continue
+        const raidItems = _equipmentDropsOf(raid, seen)
+        if (raidItems.length) groups.push({ zoneId: raid.id, label: raid.name, itemIds: raidItems })
+    }
+
+    return groups
 }
 
 // Nombre d'items tirés par slot et par rotation dans l'onglet Ogrines, pondéré
@@ -125,10 +171,9 @@ function _drawFromSlotBag(bags, slot, poolIds, count, seedBase) {
 
 function refreshShopPool() {
     const period     = _shopPeriod()
-    const visitedKey = (state.visitedAreas || []).slice().sort().join(',')
     const keysPeriod = typeof _periodStr === 'function' ? _periodStr() : String(period)
 
-    const itemsStale   = !(state.shopPool?.period === period && state.shopPool?.visitedKey === visitedKey)
+    const itemsStale   = state.shopPool?.period !== period
     const keysStale    = state.shopPool?.keysPeriod !== keysPeriod
     const ogrinesStale = state.shopPool?.ogrinePeriod !== keysPeriod
     if (!itemsStale && !keysStale && !ogrinesStale) return
@@ -137,15 +182,11 @@ function refreshShopPool() {
 
     if (itemsStale) {
         const seed     = (period * 2654435761) >>> 0
-        const allowed  = _visitedAreaItemSet()
 
-        const allItems = Object.values(item).filter(i => i.type === 'equipment' && i.slot !== 'accessoire' && allowed.has(i.id))
         const allRunes = Object.values(item).filter(i => i.type === 'rune')
         const allSkins = Object.values(item).filter(i => i.type === 'cosmetic_skin')
 
-        state.shopPool.period      = period
-        state.shopPool.visitedKey  = visitedKey
-        state.shopPool.items = _seededShuffle(allItems, seed          ).slice(0, 10).map(i => i.id)
+        state.shopPool.period = period
         state.shopPool.runes = _seededShuffle(allRunes, seed ^ 0x2222 ).slice(0, 5 ).map(i => i.id)
         state.shopPool.skins = _seededShuffle(allSkins, seed ^ 0x3333 ).slice(0, 5 ).map(i => i.id)
 
@@ -182,7 +223,7 @@ function getShopEntries(cat) {
 
     switch (cat) {
         case 'items':
-            return pool.items.map(id => ({ itemId: id, price: shopCurrentPrice(id) }))
+            return getShopItemGroups().flatMap(g => g.itemIds).map(id => ({ itemId: id, price: shopCurrentPrice(id) }))
 
         case 'consumables': {
             const keys = pool.keys.map(id => ({ itemId: id, price: SHOP_KEY_PRICE }))
@@ -212,7 +253,7 @@ function getShopEntries(cat) {
 }
 
 function nextShopRotationLabel(cat) {
-    if ((cat === 'consumables' || cat === 'ogrines') && typeof nextWildRefreshLabel === 'function') return nextWildRefreshLabel()
+    if ((cat === 'items' || cat === 'consumables' || cat === 'ogrines') && typeof nextWildRefreshLabel === 'function') return nextWildRefreshLabel()
 
     const nextMs = (_shopPeriod() + 1) * SHOP_ROTATION_DAYS * 86400000
     const secs   = Math.max(0, Math.floor((nextMs - Date.now()) / 1000))

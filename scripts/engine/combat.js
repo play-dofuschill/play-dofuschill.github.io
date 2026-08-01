@@ -63,7 +63,7 @@ function _peekNextCastCooldown(member, memberIndex) {
     const rawIdx = combat?.memberMoveIndex?.[memberIndex] ?? 0
     const idx = isXelor ? XELOR_PATTERN[rawIdx % 7] : rawIdx % nonNull.length
     const rawSpell = move[member.moves[nonNull[idx]]]
-    const cd = rawSpell ? applyProgression(rawSpell, effectiveLvl).cooldownMs : undefined
+    const cd = rawSpell ? peekSpellCooldown(rawSpell, effectiveLvl) : undefined
     return cd ?? BASE_TIME
 }
 
@@ -73,7 +73,7 @@ function _peekEnemyCastCooldown(enemy) {
     const nextMoveId = enemy.moves[enemy.moveIndex % enemy.moves.length]
     if (!nextMoveId) return BASE_TIME
     const rawSpell = move[nextMoveId]
-    return rawSpell ? (applyProgression(rawSpell, enemy.level || 1).cooldownMs ?? BASE_TIME) : BASE_TIME
+    return rawSpell ? (peekSpellCooldown(rawSpell, enemy.level || 1) ?? BASE_TIME) : BASE_TIME
 }
 
 

@@ -17,3 +17,6 @@ Thumbs.db
 .vscode/
 .editorconfig
 *.swp
+
+# Claude Code (config locale, worktrees d'agents)
+.claude/

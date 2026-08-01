@@ -26,6 +26,7 @@ areas.cimetiereincarnam = {
         { id: 'sergentChafer', weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'bottes_de_l_aventurier', dropRate: 0.01 },
         { itemId: 'cape_de_l_aventurier', dropRate: 0.01 },
@@ -53,6 +54,8 @@ areas.champsAstrub = {
         { id: 'gardienneChampetre',   weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
+        { itemId: 'runeAstral40', dropRate: 0.005 },
         { itemId: 'pierreDame',       dropRate: 0.45 },
         { itemId: 'sac_du_paysan',       dropRate: 0.01 },
         { itemId: 'bob_du_paysan',   dropRate: 0.01 },
@@ -82,6 +85,8 @@ areas.plageAstrub = {
         { id: 'pichonKloune',        weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
+        { itemId: 'runeAstral40', dropRate: 0.005 },
         { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'cape_en_mousse',       dropRate: 0.01 },
         { itemId: 'coiffe_en_mousse',     dropRate: 0.01 },
@@ -111,6 +116,8 @@ areas.tainela = {
         { id: 'Chef_de_Guerre_Bouftou', weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
+        { itemId: 'runeAstral40', dropRate: 0.005 },
         { itemId: 'pierreDame',      dropRate: 0.45 },
         { itemId: 'cape_bouffante',     dropRate: 0.01 },
         { itemId: 'coiffe_du_bouftou',   dropRate: 0.01 },
@@ -139,6 +146,8 @@ areas.campementDesGobs = {
         { id: 'gobichon', weight: 10 }, 
         { id: 'gobaladee', weight: 5 }],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
+        { itemId: 'runeAstral40', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'amulette_de_gobeuf', dropRate: 0.01 }, 
         { itemId: 'ceinture_de_gobeuf', dropRate: 0.01 }, 
@@ -164,6 +173,8 @@ areas.attractionFantome = {
         { id: 'vampire', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
+        { itemId: 'runeAstral40', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBoostache', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_de_grouillot', dropRate: 0.01 },
@@ -194,6 +205,8 @@ areas.scarafeuilles = {
         { id: 'scarafeuilleNoir',  weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame',      dropRate: 0.45 },
         { itemId: 'scaracape_blanche',   dropRate: 0.01 },
         { itemId: 'scaracoiffe_blanche', dropRate: 0.01 },
@@ -236,6 +249,8 @@ areas.crypteDuCimetiere = {
         { id: 'chafer_primitif', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSquelettes', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_de_kocksis', dropRate: 0.01 },
@@ -264,6 +279,8 @@ areas.grenierDeKerubim = {
         { id: 'ceglumen', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'anneau_bille', dropRate: 0.01 },
         { itemId: 'amulette_perle', dropRate: 0.01 },
@@ -290,6 +307,8 @@ areas.champsDesIngalsse = {
         { id: 'tofu_mutant', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTofus', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_du_tofu', dropRate: 0.01 },
@@ -321,6 +340,8 @@ areas.Kwaks = {
         { id: 'kwakereTerre',   weight: 8 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame',            dropRate: 0.45 },
         { itemId: 'kwape_de_vent',          dropRate: 0.005 },
         { itemId: 'kwakoiffe_de_vent',      dropRate: 0.005 },
@@ -369,6 +390,8 @@ areas.campementBwork = {
         { id: 'troollaraj', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBworks', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_de_grut', dropRate: 0.01 },
@@ -393,6 +416,8 @@ areas.territoireDesBandits = {
         { id: 'bandit_manchot', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonForgerons', dropRate: 0.15, isKey: true },
         { itemId: 'dagues_du_bandit', dropRate: 0.01 },
@@ -425,6 +450,8 @@ areas.coteDeCorail = {
         { id: 'palmifleur_morito', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonHesque', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_de_tracon', dropRate: 0.01 },
@@ -452,6 +479,8 @@ areas.prairiesAstrub = {
         { id: 'larve_doree', weight: 2 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonLarves', dropRate: 0.15, isKey: true },
         { itemId: 'larvamulette', dropRate: 0.01 },
@@ -480,6 +509,8 @@ areas.futaieEnneigee = {
         { id: 'trankilou', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonRefugeSylvestre', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_des_rebelles', dropRate: 0.01 },
@@ -511,6 +542,8 @@ areas.blops = {
         { id: 'gloutoBlop',   weight: 4 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame',    dropRate: 0.45 },
         { itemId: 'bloptes_reinette',    dropRate: 0.01 },
         { itemId: 'blopanneau_reinette', dropRate: 0.01 },
@@ -552,6 +585,8 @@ areas.ileDesWabbits = {
         { id: 'black_wabbit_squelette', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonWabbit', dropRate: 0.15, isKey: true },
         { itemId: 'slip_kangouwou_du_wabbit_gm', dropRate: 0.01 },
@@ -581,6 +616,8 @@ areas.foretDesMasques = {
         { id: 'kanniboul_tam', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKanniboul', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_de_laikteur', dropRate: 0.01 },
@@ -606,6 +643,8 @@ areas.tourbieresSansFond = {
         { id: 'canondorf', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonOtomaj', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_d_hichete', dropRate: 0.01 },
@@ -634,6 +673,8 @@ areas.plateauMantiscore = {
         { id: 'boulepique',   weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame',          dropRate: 0.45 },
         { itemId: 'cape_ouroboulos',   dropRate: 0.01 },
         { itemId: 'cape_du_desert',   dropRate: 0.01 },
@@ -662,6 +703,8 @@ areas.montagneDesCraqueleurs = {
         { id: 'elementerre', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonCraqueleurs', dropRate: 0.15, isKey: true },
         { itemId: 'craquamulette', dropRate: 0.01 },
@@ -690,6 +733,8 @@ areas.desolationDeSidimote = {
         { id: 'macien', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBrumen', dropRate: 0.15, isKey: true },
         { itemId: 'casque_du_scorbute', dropRate: 0.01 },
@@ -719,6 +764,8 @@ areas.nidsDragaeufs = {
         { id: 'dragoeufAlbatre', weight: 12 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'sabots_de_shika', dropRate: 0.01 },
         { itemId: 'bracelet_magique_de_shika', dropRate: 0.01 },
@@ -744,6 +791,8 @@ areas.souterrainsWabbits = {
         { id: 'tiwobot', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTerrierWabbit', dropRate: 0.15, isKey: true },
         { itemId: 'casque_du_blanc_pa_wabbit', dropRate: 0.01 },
@@ -767,6 +816,8 @@ areas.foretAbraknydes = {
         { id: 'abraknyde', weight: 20 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonAbraknydeAncestral', dropRate: 0.15, isKey: true },
         { itemId: 'abrarc', dropRate: 0.01 },
@@ -802,6 +853,8 @@ areas.canyonSauvage = {
         { id: 'drakoalak', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKoulosse', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_du_koalak', dropRate: 0.01 },
@@ -838,6 +891,8 @@ areas.boisDesArakhai = {
         { id: 'gargantul', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonReineNyee', dropRate: 0.15, isKey: true },
         { itemId: 'coiffe_de_la_nefileuse', dropRate: 0.01 },
@@ -862,6 +917,8 @@ areas.cheminDuCrane = {
         { id: 'ivremor', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonChouque', dropRate: 0.15, isKey: true },
         { itemId: 'bouclier_du_chouque', dropRate: 0.01 },
@@ -887,6 +944,8 @@ areas.routeDesRoulottes = {
         { id: 'graboule', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMagikRiktus', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_riktus', dropRate: 0.01 },
@@ -914,6 +973,8 @@ areas.fermeDragonCochon = {
         { id: 'gorgouille', weight: 4 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDragonCochon', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_du_gorgouille', dropRate: 0.01 },
@@ -939,6 +1000,8 @@ areas.hautDesHurlements = {
         { id: 'muloubard', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMeulou', dropRate: 0.15, isKey: true },
         { itemId: 'string_du_mulou', dropRate: 0.01 },
@@ -971,6 +1034,8 @@ areas.plainesHerbeuses = {
         { id: 'kido', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonRasboul', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_poli', dropRate: 0.01 },
@@ -1002,6 +1067,8 @@ areas.ileDeKartonpath = {
         { id: 'dramak', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDramak', dropRate: 0.15, isKey: true },
         { itemId: 'brighellaniere', dropRate: 0.01 },
@@ -1026,6 +1093,8 @@ areas.jungleInterdite = {
         { id: 'domoizelle', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMoon', dropRate: 0.15, isKey: true },
         { itemId: 'fourbacoiffe', dropRate: 0.01 },
@@ -1054,6 +1123,8 @@ areas.villageDragoeufs = {
         { id: 'dragoss_proteiforme', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKharnozor', dropRate: 0.15, isKey: true },
         { itemId: 'pagne_de_daigoro', dropRate: 0.01 },
@@ -1082,6 +1153,8 @@ areas.penatesDuCorbac = {
         { id: 'capsaaloocke', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonCorbac', dropRate: 0.15, isKey: true },
         { itemId: 'corbottes', dropRate: 0.01 },
@@ -1107,6 +1180,8 @@ areas.egoutsDeBonta = {
         { id: 'aloevee_rate', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonRatBlanc', dropRate: 0.15, isKey: true },
         { itemId: 'bottes_du_rat_blanc', dropRate: 0.01 },
@@ -1135,6 +1210,8 @@ areas.egoutsDeBrakmar = {
         { id: 'rate_iboisee', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonRatNoir', dropRate: 0.15, isKey: true },
         { itemId: 'gant_du_rat_noir', dropRate: 0.01 },
@@ -1163,6 +1240,8 @@ areas.plantala = {
         { id: 'grenufar', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDamadrya', dropRate: 0.15, isKey: true },
         { itemId: 'cape_terrdala', dropRate: 0.01 },
@@ -1195,6 +1274,8 @@ areas.ileDuMinotoror = {
         { id: 'deminoboule', weight: 3 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMinotoror', dropRate: 0.15, isKey: true },
         { itemId: 'bottes_du_mominotor', dropRate: 0.01 },
@@ -1223,6 +1304,8 @@ areas.souterrainsDragoeufs = {
         { id: 'dragmatique', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonCrocabulia', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_du_dragoeuf', dropRate: 0.01 },
@@ -1251,6 +1334,8 @@ areas.champsDesTofusSauvages = {
         { id: 'tofu_dodu', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTofuRoyal', dropRate: 0.15, isKey: true }
     ]
@@ -1271,6 +1356,8 @@ areas.champsDeGlace = {
         { id: 'boufmouth_de_guerre', weight: 7 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBoufmouthRoyal', dropRate: 0.15, isKey: true },
         { itemId: 'bague_moutheuze', dropRate: 0.01 },
@@ -1298,6 +1385,8 @@ areas.valleeDeLaMortKitu = {
         { id: 'fauchalak', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSkeunk', dropRate: 0.15, isKey: true }
     ]
@@ -1318,6 +1407,8 @@ areas.lacDeCaniaProfond = {
         { id: 'blopReinetteRoyal', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBlopMulticolore', dropRate: 0.15, isKey: true },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
@@ -1356,6 +1447,8 @@ areas.cirqueDeCania = {
         { id: 'truchon', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'cleDonjonHauteTruche', dropRate: 0.15, isKey: true },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'gruchaussures', dropRate: 0.01 },
@@ -1380,6 +1473,8 @@ areas.territoireCacterre = {
         { id: 'levito', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonElPiko', dropRate: 0.15, isKey: true },
         { itemId: 'capterre', dropRate: 0.01 },
@@ -1404,6 +1499,8 @@ areas.akwadala = {
         { id: 'kwamourai', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDameEaux', dropRate: 0.15, isKey: true },
         { itemId: 'geta_akwadala', dropRate: 0.01 },
@@ -1433,6 +1530,8 @@ areas.terrdala = {
         { id: 'lolojiki', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTanukoi', dropRate: 0.15, isKey: true },
         { itemId: 'cape_terrdala', dropRate: 0.01 },
@@ -1462,6 +1561,8 @@ areas.foretSombre = {
         { id: 'abraknyde_sombre_irascible', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonCheneMou', dropRate: 0.15, isKey: true },
         { itemId: 'cape_d_elya_wood', dropRate: 0.01 },
@@ -1487,6 +1588,8 @@ areas.lacGele = {
         { id: 'fu_mansot', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMansotRoyal', dropRate: 0.15, isKey: true },
         { itemId: 'nageanneau', dropRate: 0.01 },
@@ -1519,6 +1622,8 @@ areas.jungleObscure = {
         { id: 'abrakleur_sombre', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTynril', dropRate: 0.15, isKey: true },
         { itemId: 'masque_de_l_abrakleur_sombre', dropRate: 0.01 },
@@ -1544,6 +1649,8 @@ areas.aerdala = {
         { id: 'lichangoro', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDojoVent', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_aerdala', dropRate: 0.01 },
@@ -1573,6 +1680,8 @@ areas.feudala = {
         { id: 'founamboul', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonFouxArtifice', dropRate: 0.15, isKey: true },
         { itemId: 'geta_feudala', dropRate: 0.01 },
@@ -1607,6 +1716,8 @@ areas.egoutsDuChateauAmakna = {
         { id: 'rat_blanc', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSphincter', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_du_frelon_noir', dropRate: 0.01 },
@@ -1631,6 +1742,8 @@ areas.berceauDAlma = {
         { id: 'vigie_pirate', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonGrolandais', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_de_cantile', dropRate: 0.01 },
@@ -1668,6 +1781,8 @@ areas.dedaleDuDarkVlad = {
         { id: 'malterego_de_malalfa', weight: 2 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTertreSommeil', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_poli_de_malter', dropRate: 0.01 },
@@ -1692,6 +1807,8 @@ areas.larmesDOuronigride = {
         { id: 'mofette', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonObsidiantre', dropRate: 0.15, isKey: true },
         { itemId: 'slip_hie', dropRate: 0.01 },
@@ -1718,6 +1835,8 @@ areas.feuillageArbreHakam = {
         { id: 'meupette', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKimbo', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_claire_en_abrakleur', dropRate: 0.01 },
@@ -1748,6 +1867,8 @@ areas.centreDuLabyrintheMinotoror = {
         { id: 'minotoror', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMinotot', dropRate: 0.15, isKey: true },
         { itemId: 'bottes_du_mominotor', dropRate: 0.01 },
@@ -1783,6 +1904,8 @@ areas.dentsDePierre = {
         { id: 'orfelin', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKanigroula', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_de_l_orfelin', dropRate: 0.01 },
@@ -1810,6 +1933,8 @@ areas.cimetiereDeGrobe = {
         { id: 'kabushido', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonShogunTofugawa', dropRate: 0.15, isKey: true },
         { itemId: 'sac_mortuaire_de_jiangshi_nobi', dropRate: 0.01 },
@@ -1838,6 +1963,8 @@ areas.crevassePerge = {
         { id: 'kami_givrefoux', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonGivrefoux', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_de_guten_tak', dropRate: 0.01 },
@@ -1864,6 +1991,8 @@ areas.gorgeDesVentsHurlants = {
         { id: 'cycloporth', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonPereVer', dropRate: 0.15, isKey: true },
         { itemId: 'crolier', dropRate: 0.01 },
@@ -1888,6 +2017,8 @@ areas.montDesTombeaux = {
         { id: 'onigori', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDemeureEsprits', dropRate: 0.15, isKey: true },
         { itemId: 'pupille_de_madura', dropRate: 0.01 },
@@ -1922,6 +2053,8 @@ areas.gisgoul = {
         { id: 'cybwork', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBworker', dropRate: 0.15, isKey: true },
         { itemId: 'bracelet_ventre', dropRate: 0.01 },
@@ -1952,6 +2085,8 @@ areas.domaineDesFungus = {
         { id: 'champ_champ', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonOugah', dropRate: 0.15, isKey: true },
         { itemId: 'hache_a_lamelles', dropRate: 0.01 },
@@ -1991,6 +2126,8 @@ areas.crocsDeVerre = {
         { id: 'blerice', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKolosso', dropRate: 0.15, isKey: true },
         { itemId: 'bague_de_boreale', dropRate: 0.01 },
@@ -2019,6 +2156,8 @@ areas.ileDeSakai = {
         { id: 'courtilieur', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSakai', dropRate: 0.15, isKey: true },
         { itemId: 'frimacoiffe', dropRate: 0.01 },
@@ -2049,6 +2188,8 @@ areas.foretPetrifiee = {
         { id: 'merulette', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKorriandre', dropRate: 0.15, isKey: true },
         { itemId: 'cape_peupret', dropRate: 0.01 },
@@ -2078,6 +2219,8 @@ areas.montTorrideau = {
         { id: 'meliglours', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonGloursons', dropRate: 0.15, isKey: true },
         { itemId: 'bague_gloursonne', dropRate: 0.01 },
@@ -2108,6 +2251,8 @@ areas.citeOubliee = {
         { id: 'somblero', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonOmbre', dropRate: 0.15, isKey: true },
         { itemId: 'obscture', dropRate: 0.01 },
@@ -2140,6 +2285,8 @@ areas.nimotopia = {
         { id: 'viandargh', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonRazof', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_hale', dropRate: 0.01 },
@@ -2168,6 +2315,8 @@ areas.ereboria = {
         { id: 'sanglirok', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBastionMarteaux', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_clochecuivre', dropRate: 0.01 },
@@ -2196,6 +2345,7 @@ areas.bastionFroidesLegions = {
         { id: 'frimar', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMissizFrizz', dropRate: 0.15, isKey: true },
         { itemId: 'arc_du_karkanik', dropRate: 0.01 },
@@ -2224,6 +2374,7 @@ areas.jardinsHivers = {
         { id: 'termystique', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonNileza', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_instable', dropRate: 0.01 },
@@ -2252,6 +2403,7 @@ areas.rempartsAVent = {
         { id: 'merulor', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSylargh', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_du_kanimate', dropRate: 0.01 },
@@ -2280,6 +2432,7 @@ areas.tannerieEcarlate = {
         { id: 'peunch', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKlime', dropRate: 0.15, isKey: true },
         { itemId: 'bonnet_vicieux', dropRate: 0.01 },
@@ -2307,6 +2460,7 @@ areas.tourDeLaClepsydre = {
         { id: 'nocturlabe', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonHarebourg', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_du_granduk', dropRate: 0.01 },
@@ -2347,6 +2501,7 @@ areas.abyssesDeSufokia = {
         { id: 'cyclophandre', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMerkator', dropRate: 0.15, isKey: true },
         { itemId: 'pikano', dropRate: 0.01 },
@@ -2374,6 +2529,7 @@ areas.rocDesSalbatroce = {
         { id: 'verminocule', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBaleine', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_de_pol_ouatnos', dropRate: 0.01 },
@@ -2401,6 +2557,7 @@ areas.domaineDesTrithons = {
         { id: 'diondin', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDantinea', dropRate: 0.15, isKey: true },
         { itemId: 'bague_trithon', dropRate: 0.01 },
@@ -2431,6 +2588,7 @@ areas.villeSubmergee = {
         { id: 'tilamproie', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMeno', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_luminescente', dropRate: 0.01 },
@@ -2455,6 +2613,7 @@ areas.plateauRlyugluglu = {
         { id: 'klutiste', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'anneau_rifique', dropRate: 0.01 },
         { itemId: 'casque_cyclopeen', dropRate: 0.01 },
@@ -2480,6 +2639,7 @@ areas.caserneDuJourSansFin = {
         { id: 'crame', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonIlyzaelle', dropRate: 0.15, isKey: true },
         { itemId: 'sac_mortuaire_de_jiangshi_nobi', dropRate: 0.01 },
@@ -2509,6 +2669,7 @@ areas.epaveSilencieuse = {
         { id: 'macrab', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBethel', dropRate: 0.15, isKey: true },
         { itemId: 'cape_de_cranonier', dropRate: 0.01 },
@@ -2538,6 +2699,7 @@ areas.marchesMagmatiques = {
         { id: 'halbardent', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonSolar', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_gence', dropRate: 0.01 },
@@ -2567,6 +2729,7 @@ areas.royaumeDesMartegel = {
         { id: 'vatenbiere', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonDazak', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_en_grithril', dropRate: 0.01 },
@@ -2597,6 +2760,7 @@ areas.terresDesacrees = {
         { id: 'pipisteuse', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKatrepat', dropRate: 0.15, isKey: true },
         { itemId: 'goulano', dropRate: 0.01 },
@@ -2626,6 +2790,7 @@ areas.crocuzko = {
         { id: 'cronnibal', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTorkelonia', dropRate: 0.15, isKey: true },
         { itemId: 'anneau_lunaire', dropRate: 0.01 },
@@ -2653,6 +2818,7 @@ areas.royaumeCorrompu = {
         { id: 'gangredogue', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonArbreMort', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_de_corruption', dropRate: 0.01 },
@@ -2682,6 +2848,7 @@ areas.galereDeServitude = {
         { id: 'ecaptif', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTyrannie', dropRate: 0.15, isKey: true },
         { itemId: 'dora_de_servitude', dropRate: 0.01 },
@@ -2711,6 +2878,7 @@ areas.desertDeMisere = {
         { id: 'dawaj', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonBalance', dropRate: 0.15, isKey: true },
         { itemId: 'convoitise_de_misere', dropRate: 0.01 },
@@ -2739,6 +2907,7 @@ areas.blessureDeGuerre = {
         { id: 'trancharnier', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTroneSang', dropRate: 0.15, isKey: true },
         { itemId: 'ceste_de_guerre', dropRate: 0.01 },
@@ -2768,6 +2937,7 @@ areas.pyramideMaudite = {
         { id: 'griffotep', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonTalKasha', dropRate: 0.15, isKey: true },
         { itemId: 'baguistik', dropRate: 0.01 },
@@ -2799,6 +2969,7 @@ areas.pandamonium = {
         { id: 'eninferno', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonKabahal', dropRate: 0.15, isKey: true },
         { itemId: 'alliance_du_pandamonium', dropRate: 0.01 },
@@ -2829,6 +3000,7 @@ areas.cauchemarDesRavageurs = {
         { id: 'malephisto', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonAurorePourpre', dropRate: 0.15, isKey: true },
         { itemId: 'ceste_de_ravageur', dropRate: 0.01 },
@@ -2860,6 +3032,7 @@ areas.ephedrya = {
         { id: 'statulipe', weight: 5 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'cleDonjonMalefices', dropRate: 0.15, isKey: true },
         { itemId: 'amertume_de_belladone', dropRate: 0.01 },
@@ -2893,6 +3066,7 @@ areas.donjonIncarnam = {
         { id: 'kardorim', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'casque_de_kardorim', dropRate: 0.08333 },
         { itemId: 'bracelet_de_kardorim', dropRate: 0.08333 },
@@ -2918,6 +3092,7 @@ areas.donjonMousse = {
         { id: 'mobLeponge', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_en_mousse', dropRate: 0.03125 },
         { itemId: 'coiffe_en_mousse', dropRate: 0.03125 },
@@ -2944,6 +3119,7 @@ areas.donjonChamps = {
         { id: 'tournesolAffame', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'vegamu', dropRate: 0.025 },
         { itemId: 'vegacoiffe', dropRate: 0.025 },
@@ -2976,6 +3152,7 @@ areas.donjonBouftou = {
         { id: 'bouftouRoyal', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_bouffante_royale', dropRate: 0.03125 },
         { itemId: 'boufcoiffe_royale', dropRate: 0.03125 },
@@ -3002,6 +3179,7 @@ areas.donjonAcademieGobs = {
         { id: 'directeur_grunob', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'ceinture_du_directeur_grunob', dropRate: 0.0625 },
         { itemId: 'faux_du_directeur_grunob', dropRate: 0.0625 },
@@ -3026,6 +3204,7 @@ areas.donjonMaisonFantome = {
         { id: 'boostache', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral40', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_du_boostache', dropRate: 0.0625 },
         { itemId: 'anneau_du_boostache', dropRate: 0.0625 },
@@ -3052,6 +3231,7 @@ areas.donjonScarafeuille = {
         { id: 'scarabosse_dore', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'scaracape_doree', dropRate: 0.03571 },
         { itemId: 'scaracoiffe_doree', dropRate: 0.03571 },
@@ -3077,6 +3257,7 @@ areas.donjonSquelettes = {
         { id: 'chafer_ronin', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'bottes_du_chafer_primitif', dropRate: 0.0625 },
         { itemId: 'marteau_du_chafer_draugr', dropRate: 0.0625 },
@@ -3099,6 +3280,7 @@ areas.donjonTofus = {
         { id: 'batofu', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'anneau_du_tofu', dropRate: 0.03571 },
         { itemId: 'amulette_du_tofu', dropRate: 0.03571 },
@@ -3124,6 +3306,7 @@ areas.donjonKankreblath = {
         { id: 'kankreblath', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'anneau_bille', dropRate: 0.0625 },
         { itemId: 'amulette_perle', dropRate: 0.0625 },
@@ -3150,6 +3333,7 @@ areas.donjonKwakwa = {
         { id: 'kwakwa', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'kwakwaffe', dropRate: 0.0625 },
         { itemId: 'kwakwalliance', dropRate: 0.0625 },
@@ -3172,6 +3356,7 @@ areas.donjonBworks = {
         { id: 'bworkette', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'ceinture_de_grut', dropRate: 0.08333 },
         { itemId: 'amulette_de_grut', dropRate: 0.08333 },
@@ -3193,6 +3378,7 @@ areas.donjonForgerons = {
         { id: 'coffre_des_forgerons', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'ceinture_de_coffrete', dropRate: 0.0625 },
         { itemId: 'boffes_cottre', dropRate: 0.0625 },
@@ -3213,6 +3399,7 @@ areas.donjonHesque = {
     description: "Sous les côtes d'Asse se cache un réseau de cavernes coralliennes où prospèrent d'étranges créatures marines. Les Corailleurs y règnent en maîtres, façonnant lentement la roche au gré des marées.",
     spawns: [{ id: 'corailleur_magistral', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien',         dropRate: 0.45 },
     ]
 }
@@ -3231,6 +3418,7 @@ areas.donjonLarves = {
         { id: 'shin_larve', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'larvamulette', dropRate: 0.05 },
         { itemId: 'larvasac', dropRate: 0.05 },
@@ -3254,6 +3442,7 @@ areas.donjonRefugeSylvestre = {
         { id: 'rakoopeur', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'lance_de_guerrier_albueran', dropRate: 0.04167 },
         { itemId: 'anneau_de_guerrier_albueran', dropRate: 0.04167 },
@@ -3286,6 +3475,7 @@ areas.donjonBlop = {
         { id: 'blopReinetteRoyal', weight: 25 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien',          dropRate: 0.45 },
         { itemId: 'bloptes_reinette_royales',    dropRate: 0.01563 },
         { itemId: 'blopanneau_reinette_royal',   dropRate: 0.01563 },
@@ -3320,6 +3510,7 @@ areas.donjonWabbit = {
         { id: 'wa_wabbit', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'baton_du_wa_wabbit', dropRate: 0.08333 },
         { itemId: 'cape_du_wa_wabbit', dropRate: 0.08333 },
@@ -3342,6 +3533,7 @@ areas.donjonKanniboul = {
         { id: 'kanniboul_ebil', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'bottes_du_kanniboul_ebil', dropRate: 0.0625 },
         { itemId: 'alliance_du_kanniboul_ebil', dropRate: 0.0625 },
@@ -3364,6 +3556,7 @@ areas.donjonOtomaj = {
         { id: 'gourlo_le_terrible', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'alliance_d_hichete', dropRate: 0.08333 },
         { itemId: 'ceinture_d_hichete', dropRate: 0.08333 },
@@ -3389,6 +3582,7 @@ areas.donjonMantiscore = {
         { id: 'mantiscore', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'Dofus_Dolmanax', dropRate: 0.0005 },
     ]
@@ -3408,6 +3602,7 @@ areas.donjonCraqueleurs = {
         { id: 'craqueleur_legendaire', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'craquanneau_legendaire', dropRate: 0.03571 },
         { itemId: 'ceinture_du_craqueleur_legendaire', dropRate: 0.03571 },
@@ -3433,6 +3628,7 @@ areas.donjonBrumen = {
         { id: 'nelween', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_de_nelween', dropRate: 0.0625 },
         { itemId: 'amulette_de_nelween', dropRate: 0.0625 },
@@ -3459,6 +3655,7 @@ areas.donjonDraegnerys = {
         { id: 'draegnerys', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_de_shika', dropRate: 0.08333 },
         { itemId: 'shikacoiffe', dropRate: 0.08333 },
@@ -3481,6 +3678,7 @@ areas.donjonTerrierWabbit = {
         { id: 'wa_wobot', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'couronne_du_wa_wobot', dropRate: 0.08333 },
         { itemId: 'cape_du_wa_wobot', dropRate: 0.08333 },
@@ -3507,6 +3705,7 @@ areas.donjonAbraknydeAncestral = {
         { id: 'abraknydeAncestral', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'abracapa_ancestrale', dropRate: 0.04167 },
         { itemId: 'abracaska_ancestral', dropRate: 0.04167 },
@@ -3531,6 +3730,7 @@ areas.donjonKoulosse = {
         { id: 'koulosse', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'sac_du_koulosse', dropRate: 0.0625 },
         { itemId: 'bottes_du_koulosse', dropRate: 0.0625 },
@@ -3553,6 +3753,7 @@ areas.donjonReineNyee = {
         { id: 'reine_nyee', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'gaine_nyee', dropRate: 0.08333 },
         { itemId: 'amulette_des_huit_yeux', dropRate: 0.08333 },
@@ -3574,6 +3775,7 @@ areas.donjonChouque = {
         { id: 'le_chouque', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'bouclier_du_chouque', dropRate: 0.0625 },
         { itemId: 'cape_du_capitaine_pirate', dropRate: 0.0625 },
@@ -3596,6 +3798,7 @@ areas.donjonMagikRiktus = {
         { id: 'choudini', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'anneau_riktus', dropRate: 0.08333 },
         { itemId: 'cape_riktus', dropRate: 0.08333 },
@@ -3621,6 +3824,7 @@ areas.donjonDragonCochon = {
         { id: 'dragonCochon', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Turquoise', dropRate: 0.0005 },
         { itemId: 'mules_du_dragon_cochon', dropRate: 0.03571 },
@@ -3647,6 +3851,7 @@ areas.donjonMeulou = {
         { id: 'meulou', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Emeraude', dropRate: 0.0005 },
         { itemId: 'ceinture_du_meulou', dropRate: 0.04167 },
@@ -3671,8 +3876,12 @@ areas.donjonRasboul = {
     description: "Au cœur des plaines d'Otomaï se trouve le territoire du Rasboul Majeur. Ce gigantesque insecte ou que sais-je règne sur ces plaines et défend agilement son royaume au prix de la vie de ses invocations.",
     spawns: [{ id: 'silf_le_rasboul_majeur', weight: 100 }],
     lootTable: [
-        { itemId: 'pierreDameGardien',         dropRate: 0.40 },,
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'pierreDameGardien',         dropRate: 0.40 },
         { itemId: 'Dofus_Dolmanax', dropRate: 0.0005 },
+        { itemId: 'runeSpellDmgM', dropRate: 0.02 },
+        { itemId: 'runeFinalDmgM', dropRate: 0.02 },
+        { itemId: 'runeDamRedM', dropRate: 0.02 },
     ]
 }
 
@@ -3690,6 +3899,7 @@ areas.donjonDramak = {
         { id: 'maitre_des_pantins', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'ceinture_hetorique', dropRate: 0.08333 },
         { itemId: 'masque_iproquo', dropRate: 0.08333 },
@@ -3711,6 +3921,7 @@ areas.donjonMoon = {
         { id: 'moon', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'amulette_de_moon', dropRate: 0.08333 },
         { itemId: 'cape_de_moon', dropRate: 0.08333 },
@@ -3733,6 +3944,7 @@ areas.donjonKharnozor = {
         { id: 'kharnozor', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'cape_houte', dropRate: 0.125 },
         { itemId: 'holoune', dropRate: 0.125 }
@@ -3757,6 +3969,7 @@ areas.donjonCorbac = {
         { id: 'maitre_corbac', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Pourpre', dropRate: 0.0005 },
         { itemId: 'corbottes', dropRate: 0.0625 },
@@ -3780,6 +3993,7 @@ areas.donjonRatBlanc = {
         { id: 'rat_blanc', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'bottes_du_rat_blanc', dropRate: 0.03571 },
         { itemId: 'gant_du_rat_blanc', dropRate: 0.03571 },
@@ -3806,6 +4020,7 @@ areas.donjonRatNoir = {
         { id: 'rat_noir', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'gant_du_rat_noir', dropRate: 0.03571 },
         { itemId: 'bottes_du_rat_noir', dropRate: 0.03571 },
@@ -3832,6 +4047,7 @@ areas.donjonDamadrya = {
         { id: 'damadrya', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
         { itemId: 'boutures', dropRate: 0.0625 },
@@ -3859,6 +4075,7 @@ areas.donjonMinotoror = {
         { id: 'minotoror', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'cape_du_minotoror', dropRate: 0.03571 },
         { itemId: 'ceinture_du_minotoror', dropRate: 0.03571 },
@@ -3884,6 +4101,7 @@ areas.donjonCrocabulia = {
         { id: 'crocabulia', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Vulbis', dropRate: 0.0005 },
         { itemId: 'marteau_du_dragoeuf', dropRate: 0.03125 },
@@ -3909,8 +4127,12 @@ areas.donjonTofulaillerRoyal = {
     description: "Des milliers de Tofus s'agitent dans ce gigantesque nid dirigé par leur souverain. Malgré son apparence inoffensive et plutot mignonne, le Tofu Royal défend farouchement sa couvée.",
     spawns: [{ id: 'tofu_royal', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
-        { itemId: 'couronne_du_tofu_royal', dropRate: 0.01 }
+        { itemId: 'couronne_du_tofu_royal', dropRate: 0.01 },
+        { itemId: 'runeSpellDmgM', dropRate: 0.02 },
+        { itemId: 'runeFinalDmgM', dropRate: 0.02 },
+        { itemId: 'runeDamRedM', dropRate: 0.02 },
     ]
 }
 
@@ -3928,6 +4150,7 @@ areas.donjonRoyalmouth = {
         { id: 'royalmouth', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'bottes_du_royalmouth', dropRate: 0.0625 },
         { itemId: 'coiffe_du_royalmouth', dropRate: 0.0625 },
@@ -3949,8 +4172,12 @@ areas.donjonSkeunk = {
     description: "Ancien disciple du dieu Sadida, Skeunk s'est isolé dans les profondeurs de la forêt avec ses poupées. Les aventuriers qui s'approchent de son domaine découvrent rapidement que sa folie n'a d'égale que sa puissance.",
     spawns: [{ id: 'skeunk', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien',         dropRate: 0.40 },
         { itemId: 'Dofus_Kaliptus', dropRate: 0.001 },
+        { itemId: 'runeSpellDmgM', dropRate: 0.02 },
+        { itemId: 'runeFinalDmgM', dropRate: 0.02 },
+        { itemId: 'runeDamRedM', dropRate: 0.02 },
     ]
 }
 
@@ -3972,6 +4199,7 @@ areas.donjonBlopMulticolore = {
         { id: 'blop_multicolore_royal', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'blopture_multicolore_royale', dropRate: 0.0625 },
         { itemId: 'amublop_multicolore_royale', dropRate: 0.0625 },
@@ -3996,6 +4224,7 @@ areas.donjonHauteTruche = {
         { id: 'haute_truche', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'ceintruche', dropRate: 0.08333 },
         { itemId: 'anneau_truche', dropRate: 0.08333 },
@@ -4017,6 +4246,7 @@ areas.donjonElPiko = {
         { id: 'el_piko', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'sombrero_d_el_piko', dropRate: 0.08333 },
         { itemId: 'anneau_d_el_piko', dropRate: 0.08333 },
@@ -4038,6 +4268,7 @@ areas.donjonDameEaux = {
         { id: 'nagate', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
         { itemId: 'kwarapace', dropRate: 0.08333 },
@@ -4061,6 +4292,7 @@ areas.donjonTanukoi = {
         { id: 'tanukoui_san', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
         { itemId: 'les_casse_noisettes', dropRate: 0.08333 },
@@ -4088,6 +4320,7 @@ areas.donjonCheneMou = {
         { id: 'chene_mou', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Turquoise', dropRate: 0.0005 },
         { itemId: 'tongues_du_dimanche_du_chene_mou', dropRate: 0.03571 },
@@ -4115,6 +4348,7 @@ areas.donjonMansot = {
         { id: 'mansot_royal', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'couronne_du_mansot_royal', dropRate: 0.08333 },
         { itemId: 'anneau_du_mansot_royal', dropRate: 0.08333 },
@@ -4140,6 +4374,7 @@ areas.donjonTynril = {
         { id: 'tynril_ahuri', weight: 25 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'coiffe_du_tynril', dropRate: 0.125 },
         { itemId: 'rhizome_du_tynril', dropRate: 0.125 }
@@ -4162,6 +4397,7 @@ areas.donjonDojoVent = {
         { id: 'hanshi', weight: 50 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
         { itemId: 'nun_charang', dropRate: 0.08333 },
@@ -4186,6 +4422,7 @@ areas.donjonFouxArtifice = {
         { id: 'founoroshi', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Domakuro', dropRate: 0.0005 },
         { itemId: 'alliance_des_firefoux', dropRate: 0.08333 },
@@ -4213,6 +4450,7 @@ areas.donjonSphincter = {
         { id: 'sphincter_cell', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'cape_ceremoniale_du_seigneur_des_rats', dropRate: 0.04167 },
         { itemId: 'anneau_ceremonial_du_seigneur_des_rats', dropRate: 0.04167 },
@@ -4237,6 +4475,7 @@ areas.donjonGrolandais = {
         { id: 'ben_le_ripate', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'sabre_de_ben_le_ripate', dropRate: 0.0625 },
         { itemId: 'chapeau_de_ben_le_ripate', dropRate: 0.0625 },
@@ -4259,6 +4498,7 @@ areas.donjonTertreSommeil = {
         { id: 'hell_mina', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Emeraude', dropRate: 0.0005 },
         { itemId: 'alliance_d_hell_mina', dropRate: 0.08333 },
@@ -4285,6 +4525,7 @@ areas.donjonObsidiantre = {
         { id: 'obsidiantre', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'bague_de_l_obsidiantre', dropRate: 0.05 },
         { itemId: 'cape_de_l_obsidiantre', dropRate: 0.05 },
@@ -4309,9 +4550,13 @@ areas.donjonKimbo = {
         { id: 'kimbo', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'sandales_circulaires_du_kimbo', dropRate: 0.125 },
-        { itemId: 'le_kim', dropRate: 0.125 }
+        { itemId: 'le_kim', dropRate: 0.125 },
+        { itemId: 'runeSpellDmgM', dropRate: 0.02 },
+        { itemId: 'runeFinalDmgM', dropRate: 0.02 },
+        { itemId: 'runeDamRedM', dropRate: 0.02 },
     ]
 }
 
@@ -4329,6 +4574,7 @@ areas.donjonMinotot = {
         { id: 'minotot', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Pourpre', dropRate: 0.0005 },
         { itemId: 'bracelet_du_minotot', dropRate: 0.03571 },
@@ -4355,6 +4601,7 @@ areas.donjonKanigroula = {
         { id: 'kanigroula', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'ceinture_du_kaniblou', dropRate: 0.04167 },
         { itemId: 'cape_du_kaniblou', dropRate: 0.04167 },
@@ -4379,6 +4626,7 @@ areas.donjonShogunTofugawa = {
         { id: 'shogun_tofugawa', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'Dofus_Dorigami', dropRate: 0.0005 },
         { itemId: 'bandeau_de_spiritueur', dropRate: 0.08333 },
@@ -4405,6 +4653,7 @@ areas.donjonGivrefoux = {
         { id: 'tengu_givrefoux', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'bottes_du_tengu_givrefoux', dropRate: 0.03125 },
         { itemId: 'coiffe_de_tengu_givrefoux', dropRate: 0.03125 },
@@ -4431,6 +4680,7 @@ areas.donjonPereVer = {
         { id: 'pere_ver', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'veranneau', dropRate: 0.08333 },
         { itemId: 'capiktenia', dropRate: 0.08333 },
@@ -4452,8 +4702,12 @@ areas.donjonDemeureEsprits = {
         { id: 'koumiho', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
-        { itemId: 'Dofus_Dorigami', dropRate: 0.0005 }
+        { itemId: 'Dofus_Dorigami', dropRate: 0.0005 },
+        { itemId: 'runeSpellDmgM', dropRate: 0.02 },
+        { itemId: 'runeFinalDmgM', dropRate: 0.02 },
+        { itemId: 'runeDamRedM', dropRate: 0.02 },
     ]
 }
 
@@ -4472,6 +4726,7 @@ areas.donjonSupervizoeuf = {
         { id: 'superviz_uf_perturbe', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'carapace_ailee_du_superviz_uf', dropRate: 0.03125 },
         { itemId: 'poing_du_superviz_uf', dropRate: 0.03125 },
@@ -4502,6 +4757,7 @@ areas.donjonBworker = {
         { id: 'bworker', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'anneau_blitere', dropRate: 0.0625 },
         { itemId: 'ceinture_tore', dropRate: 0.0625 },
@@ -4524,6 +4780,7 @@ areas.donjonOugah = {
         { id: 'ougah', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'ougalurette', dropRate: 0.0625 },
         { itemId: 'ougarteau', dropRate: 0.0625 },
@@ -4548,6 +4805,7 @@ areas.donjonKolosso = {
         { id: 'professeur_xa', weight: 50 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'ceinture_de_kolosso', dropRate: 0.03125 },
         { itemId: 'anneau_de_kolosso', dropRate: 0.03125 },
@@ -4574,6 +4832,7 @@ areas.donjonSakai = {
         { id: 'grolloum', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'frimacoiffe', dropRate: 0.03125 },
         { itemId: 'frimamulette', dropRate: 0.03125 },
@@ -4600,6 +4859,7 @@ areas.donjonKorriandre = {
         { id: 'korriandre', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'anneau_du_korriandre', dropRate: 0.0625 },
         { itemId: 'cape_du_korriandre', dropRate: 0.0625 },
@@ -4626,6 +4886,7 @@ areas.donjonGloursons = {
         { id: 'glourseleste', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'ceinture_du_glourseleste', dropRate: 0.05 },
         { itemId: 'bottes_du_glourseleste', dropRate: 0.05 },
@@ -4650,6 +4911,7 @@ areas.donjonOmbre = {
         { id: 'ombre', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'casqnoar', dropRate: 0.08333 },
         { itemId: 'anneau_kturne', dropRate: 0.08333 },
@@ -4671,6 +4933,7 @@ areas.donjonRazof = {
         { id: 'comte_razof', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'chaussons_du_comte_razof', dropRate: 0.08333 },
         { itemId: 'ceinture_du_comte_razof', dropRate: 0.08333 },
@@ -4692,6 +4955,7 @@ areas.donjonBastionMarteaux = {
         { id: 'barberyl_clochecuivre', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.4 },
         { itemId: 'grelots_de_barberyl', dropRate: 0.08333 },
         { itemId: 'subligar_de_barberyl', dropRate: 0.08333 },
@@ -4717,6 +4981,7 @@ areas.donjonSylargh = {
         { id: 'sylargh', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
         { itemId: 'sangle_de_sylargh', dropRate: 0.08333 },
@@ -4739,6 +5004,7 @@ areas.donjonKlime = {
         { id: 'klime', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
         { itemId: 'masque_de_klime', dropRate: 0.08333 },
@@ -4761,6 +5027,7 @@ areas.donjonMissizFrizz = {
         { id: 'missiz_frizz', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
         { itemId: 'bottes_de_missiz_frizz', dropRate: 0.04167 },
@@ -4786,6 +5053,7 @@ areas.donjonNileza = {
         { id: 'nileza', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
         { itemId: 'amulette_de_nileza', dropRate: 0.08333 },
@@ -4808,6 +5076,7 @@ areas.donjonHarebourg = {
         { id: 'comte_harebourg', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_des_Glaces', dropRate: 0.0005 },
         { itemId: 'anneau_du_comte_harebourg', dropRate: 0.04167 },
@@ -4833,6 +5102,7 @@ areas.donjonMerkator = {
         { id: 'merkator', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
         { itemId: 'anneau_tique', dropRate: 0.04167 },
@@ -4858,6 +5128,7 @@ areas.donjonBaleine = {
         { id: 'protozorreur', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'baleinabottes', dropRate: 0.05 },
         { itemId: 'capchalot', dropRate: 0.05 },
@@ -4881,6 +5152,7 @@ areas.donjonMeno = {
         { id: 'capitaine_meno', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
         { itemId: 'bottes_de_meno', dropRate: 0.08333 },
@@ -4904,6 +5176,7 @@ areas.donjonKoutoulou = {
         { id: 'larve_de_koutoulou', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
         { itemId: 'amulette_de_l_indicible', dropRate: 0.08333 },
@@ -4929,6 +5202,7 @@ areas.donjonDantinea = {
         { id: 'dantinea', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Abyssal', dropRate: 0.0005 },
         { itemId: 'ceintouse', dropRate: 0.08333 },
@@ -4951,6 +5225,7 @@ areas.donjonKatrepat = {
         { id: 'anerice_la_shushess', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'bouclier_d_anerice', dropRate: 0.08333 },
         { itemId: 'cape_d_anerice', dropRate: 0.08333 },
@@ -4973,6 +5248,7 @@ areas.donjonIlyzaelle = {
         { id: 'ilyzaelle', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Ivoire', dropRate: 0.0005 },
         { itemId: 'amulette_d_ilyzaelle', dropRate: 0.08333 },
@@ -4998,6 +5274,7 @@ areas.donjonBethel = {
         { id: 'bethel_akarna', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Ebene', dropRate: 0.0005 },
         { itemId: 'Dofus_Forgelave', dropRate: 0.0005 },
@@ -5021,6 +5298,7 @@ areas.donjonSolar = {
         { id: 'solar', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Ebene', dropRate: 0.0005 },
         { itemId: 'Dofus_Forgelave', dropRate: 0.0005 },
@@ -5045,6 +5323,7 @@ areas.donjonDazak = {
         { id: 'dazak_martegel', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'amulette_martegel', dropRate: 0.08333 },
         { itemId: 'cape_martegel', dropRate: 0.08333 },
@@ -5066,6 +5345,7 @@ areas.donjonTorkelonia = {
         { id: 'torkelonia', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'baguette_de_torkelonia', dropRate: 0.08333 },
         { itemId: 'carapace_de_torkelonia', dropRate: 0.08333 },
@@ -5087,6 +5367,7 @@ areas.donjonArbreMort = {
         { id: 'corruption', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'alliance_de_corruption', dropRate: 0.08333 },
         { itemId: 'bague_de_corruption', dropRate: 0.08333 },
@@ -5110,6 +5391,7 @@ areas.donjonTyrannie = {
         { id: 'servitude', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'dora_de_servitude', dropRate: 0.08333 },
         { itemId: 'manteau_de_servitude', dropRate: 0.08333 },
@@ -5132,6 +5414,7 @@ areas.donjonBalance = {
         { id: 'misere', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'convoitise_de_misere', dropRate: 0.08333 },
         { itemId: 'corset_de_misere', dropRate: 0.08333 },
@@ -5154,6 +5437,7 @@ areas.donjonTroneSang = {
         { id: 'guerre', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'ceste_de_guerre', dropRate: 0.0625 },
         { itemId: 'forteresse_de_guerre', dropRate: 0.0625 },
@@ -5177,6 +5461,7 @@ areas.donjonTalKasha = {
         { id: 'tal_kasha', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'chevelure_de_tal_kasha', dropRate: 0.08333 },
         { itemId: 'nemes_de_tal_kasha', dropRate: 0.08333 },
@@ -5198,6 +5483,7 @@ areas.donjonKabahal = {
         { id: 'kabahal', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'amulette_possedee', dropRate: 0.03571 },
         { itemId: 'anneau_possede', dropRate: 0.03571 },
@@ -5225,6 +5511,7 @@ areas.donjonAurorePourpre = {
         { id: 'l_eternel_conflit', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_du_Cauchemard', dropRate: 0.0005 },
         { itemId: 'bois_de_la_liche', dropRate: 0.04167 },
@@ -5252,6 +5539,7 @@ areas.donjonMalefices = {
         { id: 'belladone', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'Dofus_Sylvestre', dropRate: 0.0005 },
         { itemId: 'amertume_de_belladone', dropRate: 0.04167 },
@@ -5278,6 +5566,7 @@ areas.donjonBreuil = {
         { id: 'venerable_endormi_perturbe', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'arc_du_venerable_endormi', dropRate: 0.03125 },
         { itemId: 'cornes_du_venerable_endormi', dropRate: 0.03125 },
@@ -5305,6 +5594,7 @@ areas.donjonDechireuse = {
         { id: 'dechireuse_perturbee', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'criniere_de_la_dechireuse', dropRate: 0.03125 },
         { itemId: 'griffes_de_la_dechireuse', dropRate: 0.03125 },
@@ -5481,7 +5771,8 @@ areas.evenementIncanam = {
         { itemId: 'le_floude', dropRate: 0.01 },
         { itemId: 'le_plussain', dropRate: 0.01 },
         { itemId: 'le_s_mesme', dropRate: 0.01 },
-        { itemId: 'les_incrustes', dropRate: 0.01 }
+        { itemId: 'les_incrustes', dropRate: 0.01 },
+        { itemId: 'runeHealS', dropRate: 0.01 }
     ]
 }
 
@@ -5618,6 +5909,7 @@ areas.evenementGrouillantsDAstrub = {
         { itemId: 'araknoton', dropRate: 0.01 },
         { itemId: 'araknoture', dropRate: 0.01 },
         { itemId: 'la_trancheuse_d_arakne', dropRate: 0.01 },
+        { itemId: 'runeHealS', dropRate: 0.01 },
     ]
 }
 
@@ -5901,7 +6193,8 @@ areas.evenementTnLacoste = {
     lootTable: [
         { itemId: 'pierreDame',        dropRate: 0.45 },
         { itemId: 'piloteAutomatique', dropRate: 0.03 },{ itemId: 'ceinture_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'pantoufles_crochues_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'amulette_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bouclier_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'bracelet_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'coiffe_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'lame_du_chef_crocodaille', dropRate: 0.01 }, { itemId: 'petit_sac_d_ecolier_du_chef_crocodaille', dropRate: 0.01 },
-        { itemId: 'chapeau_de_crocodaille_dandi', dropRate: 0.01 }
+        { itemId: 'chapeau_de_crocodaille_dandi', dropRate: 0.01 },
+        { itemId: 'runeHealS', dropRate: 0.01 }
 ]
 }
 
@@ -6123,6 +6416,218 @@ areas.evenementChasseAuxVolkornes = {
         { itemId: 'runeDropRateL',        dropRate: 0.01 },]
 }
 
+// TODO: id + name à définir
+areas.evenementHeure = {
+    id: 'evenementHeure',
+    name: "Il est l'heure mon seigneur",
+    type: 'event',
+    minLevel: 100, maxLevel: 120,
+    mobMinLevel: 100, mobMaxLevel: 110,
+    background: '',
+    icon: 'images/monsters/Batail_heure.png',
+    description: '',
+    spawns: [
+        { id: 'batail_heure', weight: 10 },
+        { id: 'tir_heure', weight: 10 },
+        { id: 'gueris_heure', weight: 10 },
+        { id: 'eclair_heure', weight: 10 },
+        { id: 'protect_heure', weight: 10 },
+        { id: 'berserk_heure', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
+        { itemId: 'runeHpM', dropRate: 0.01 },
+        { itemId: 'runeForceM', dropRate: 0.01 },
+        { itemId: 'runeIntelM', dropRate: 0.01 },
+        { itemId: 'runeChanceM', dropRate: 0.01 },
+        { itemId: 'runeAgiM', dropRate: 0.01 },
+        { itemId: 'runeAtkM', dropRate: 0.01 },
+        { itemId: 'runeSpdM', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM', dropRate: 0.01 },
+        { itemId: 'runeCritM', dropRate: 0.01 },
+        { itemId: 'runeCritDmgM', dropRate: 0.01 },
+        { itemId: 'runeDropRateM', dropRate: 0.01 },
+        { itemId: 'runeHealM', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementChahutChezLesTrolls = {
+    id: 'evenementChahutChezLesTrolls',
+    name: 'Chahut chez les trolls',
+    type: 'event',
+    minLevel: 120, maxLevel: 140,
+    mobMinLevel: 120, mobMaxLevel: 130,
+    background: '',
+    icon: 'images/monsters/Troollogram.png',
+    description: "Une bande de trolls facétieux a envahi la lisière, entre farces sonores et artillerie de fortune. Les voyageurs qui s'aventurent trop près en ressortent rarement indemnes... ni de bonne humeur.",
+    spawns: [
+        { id: 'troollogram', weight: 15 },
+        { id: 'troolligark', weight: 15 },
+        { id: 'troolleole', weight: 15 },
+        { id: 'artroolleur', weight: 10 },
+        { id: 'nitrooll', weight: 10 },
+        { id: 'troollibre', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
+        { itemId: 'runeHpM', dropRate: 0.01 },
+        { itemId: 'runeForceM', dropRate: 0.01 },
+        { itemId: 'runeIntelM', dropRate: 0.01 },
+        { itemId: 'runeChanceM', dropRate: 0.01 },
+        { itemId: 'runeAgiM', dropRate: 0.01 },
+        { itemId: 'runeAtkM', dropRate: 0.01 },
+        { itemId: 'runeSpdM', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM', dropRate: 0.01 },
+        { itemId: 'runeCritM', dropRate: 0.01 },
+        { itemId: 'runeCritDmgM', dropRate: 0.01 },
+        { itemId: 'runeDropRateM', dropRate: 0.01 },
+        { itemId: 'runeHealM', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementPluieDeGemmes = {
+    id: 'evenementPluieDeGemmes',
+    name: 'Une pluie de gemmes',
+    type: 'event',
+    minLevel: 140, maxLevel: 160,
+    mobMinLevel: 140, mobMaxLevel: 150,
+    background: '',
+    icon: 'images/monsters/Émeraude.png',
+    description: "Les larmes cristallisées d'Ouronigride se sont mises à pleuvoir bien au-delà de leur berceau habituel, éparpillant des éclats de gemmes vivantes aux quatre coins de la région.",
+    spawns: [
+        { id: 'emeraude', weight: 10 },
+        { id: 'saphira', weight: 10 },
+        { id: 'rubise', weight: 10 },
+        { id: 'diamantine', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
+        { itemId: 'runeHpM', dropRate: 0.01 },
+        { itemId: 'runeForceM', dropRate: 0.01 },
+        { itemId: 'runeIntelM', dropRate: 0.01 },
+        { itemId: 'runeChanceM', dropRate: 0.01 },
+        { itemId: 'runeAgiM', dropRate: 0.01 },
+        { itemId: 'runeAtkM', dropRate: 0.01 },
+        { itemId: 'runeSpdM', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM', dropRate: 0.01 },
+        { itemId: 'runeCritM', dropRate: 0.01 },
+        { itemId: 'runeCritDmgM', dropRate: 0.01 },
+        { itemId: 'runeDropRateM', dropRate: 0.01 },
+        { itemId: 'runeHealM', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementDebordementGligli = {
+    id: 'evenementDebordementGligli',
+    name: 'Débordement de Gliglis',
+    type: 'event',
+    minLevel: 140, maxLevel: 160,
+    mobMinLevel: 140, mobMaxLevel: 150,
+    background: '',
+    icon: 'images/monsters/Gliglibido.png',
+    description: "Un enclos mal entretenu a laissé s'échapper une colonie de Gliglis increvables qui se multiplient à vue d'œil dans la nature environnante.",
+    spawns: [
+        { id: 'gliglibido', weight: 10 },
+        { id: 'gliglitch', weight: 10 },
+        { id: 'gliglicerin', weight: 10 },
+        { id: 'gliglidoudur', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
+        { itemId: 'runeHpM', dropRate: 0.01 },
+        { itemId: 'runeForceM', dropRate: 0.01 },
+        { itemId: 'runeIntelM', dropRate: 0.01 },
+        { itemId: 'runeChanceM', dropRate: 0.01 },
+        { itemId: 'runeAgiM', dropRate: 0.01 },
+        { itemId: 'runeAtkM', dropRate: 0.01 },
+        { itemId: 'runeSpdM', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgM', dropRate: 0.01 },
+        { itemId: 'runeCritM', dropRate: 0.01 },
+        { itemId: 'runeCritDmgM', dropRate: 0.01 },
+        { itemId: 'runeDropRateM', dropRate: 0.01 },
+        { itemId: 'runeHealM', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementFragmentsEpars = {
+    id: 'evenementFragmentsEpars',
+    name: 'Fragments épars',
+    type: 'event',
+    minLevel: 160, maxLevel: 180,
+    mobMinLevel: 160, mobMaxLevel: 170,
+    background: '',
+    icon: 'images/monsters/Bribe_de_Iop.png',
+    description: "Des échos incomplets des douze classes se matérialisent par bribes, silhouettes tremblantes qui peinent à retenir une forme stable. Leur incohérence ne les rend pas moins dangereux au combat.",
+    spawns: [
+        { id: 'bribe_de_zobal', weight: 8 },
+        { id: 'bribe_de_steamer', weight: 8 },
+        { id: 'bribe_de_cra', weight: 8 },
+        { id: 'bribe_d_enutrof', weight: 8 },
+        { id: 'bribe_de_iop', weight: 8 },
+        { id: 'bribe_de_pandawa', weight: 8 },
+        { id: 'bribe_d_eniripsa', weight: 8 },
+        { id: 'bribe_d_ecaflip', weight: 8 },
+        { id: 'bribe_d_huppermage', weight: 8 },
+        { id: 'bribe_d_ouginak', weight: 8 },
+        { id: 'bribe_de_sadida', weight: 8 },
+        { id: 'bribe_d_eliotrope', weight: 8 },
+        { id: 'bribe_de_xelor', weight: 8 }
+    ],
+    lootTable: [
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
+        { itemId: 'runeHpL', dropRate: 0.01 },
+        { itemId: 'runeForceL', dropRate: 0.01 },
+        { itemId: 'runeIntelL', dropRate: 0.01 },
+        { itemId: 'runeChanceL', dropRate: 0.01 },
+        { itemId: 'runeAgiL', dropRate: 0.01 },
+        { itemId: 'runeAtkL', dropRate: 0.01 },
+        { itemId: 'runeSpdL', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgL', dropRate: 0.01 },
+        { itemId: 'runeCritL', dropRate: 0.01 },
+        { itemId: 'runeCritDmgL', dropRate: 0.01 },
+        { itemId: 'runeDropRateL', dropRate: 0.01 },
+        { itemId: 'runeHealL', dropRate: 0.01 }
+    ]
+}
+
+areas.evenementProliferationDeGromos = {
+    id: 'evenementProliferationDeGromos',
+    name: 'Prolifération de Gromos',
+    type: 'event',
+    minLevel: 180, maxLevel: 200,
+    mobMinLevel: 180, mobMaxLevel: 190,
+    background: '',
+    icon: 'images/monsters/Gromo_Envahissant.png',
+    description: "Des constructs Gromos, échappés d'une expérimentation chronomancienne, se répliquent sans relâche. Envahissants, écrasants, endurants : chaque variante semble taillée pour un rôle bien précis sur le champ de bataille.",
+    spawns: [
+        { id: 'gromo_envahissant', weight: 10 },
+        { id: 'gromo_ecrasant', weight: 10 },
+        { id: 'gromo_endurant', weight: 10 },
+        { id: 'gromo_intercepteur', weight: 10 },
+        { id: 'gromo_protecteur', weight: 10 }
+    ],
+    lootTable: [
+        { itemId: 'pierreDame', dropRate: 0.45 },
+        { itemId: 'piloteAutomatique', dropRate: 0.03 },
+        { itemId: 'runeHpL', dropRate: 0.01 },
+        { itemId: 'runeForceL', dropRate: 0.01 },
+        { itemId: 'runeIntelL', dropRate: 0.01 },
+        { itemId: 'runeChanceL', dropRate: 0.01 },
+        { itemId: 'runeAgiL', dropRate: 0.01 },
+        { itemId: 'runeAtkL', dropRate: 0.01 },
+        { itemId: 'runeSpdL', dropRate: 0.01 },
+        { itemId: 'runeFlatDmgL', dropRate: 0.01 },
+        { itemId: 'runeCritL', dropRate: 0.01 },
+        { itemId: 'runeCritDmgL', dropRate: 0.01 },
+        { itemId: 'runeDropRateL', dropRate: 0.01 },
+        { itemId: 'runeHealL', dropRate: 0.01 }
+    ]
+}
+
 // #region RAIDS ────────────────────────────────────────────────────────────────────────────
 
 areas.raidDofusArgenté = {
@@ -6184,6 +6689,8 @@ areas.raidGelees = {
     ],
     miniBoss: { ids: ['gelee_fraise_royale', 'gelee_menthe_royale', 'gelee_bleuet_royale', 'gelee_citron_royale'], everyKills: 4, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.35 },
         { itemId: 'gelocape', dropRate: 0.03 },
         { itemId: 'gelocoiffe', dropRate: 0.03 },
@@ -6216,6 +6723,8 @@ areas.raidMallefisk = {
     ],
     miniBoss: { id: 'mallefisk', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'ceinture_du_berserkoffre', dropRate: 0.01 },
         { itemId: 'bottes_du_berserkoffre', dropRate: 0.01 },
@@ -6248,6 +6757,8 @@ areas.raidPounicheur = {
     ],
     miniBoss: { id: 'pounicheur', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'ceinture_du_pounicheur', dropRate: 0.01 },
         { itemId: 'scalp_du_pounicheur', dropRate: 0.01 },
         { itemId: 'bottes_du_pounicheur', dropRate: 0.01 },
@@ -6277,6 +6788,8 @@ areas.raidTourbeduRoissingue = {
     ],
     miniBoss: { id: 'roissingue', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.35 },
         { itemId: 'cape_de_la_ouassingue', dropRate: 0.01 },
         { itemId: 'capuche_de_la_ouassingue', dropRate: 0.01 },
@@ -6309,6 +6822,8 @@ areas.raidFraktale = {
     ],
     miniBoss: { id: 'fraktale', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'anneau_de_fraktale', dropRate: 0.01 },
         { itemId: 'ceinture_de_fraktale', dropRate: 0.01 },
         { itemId: 'coiffe_de_fraktale', dropRate: 0.01 },
@@ -6339,6 +6854,8 @@ areas.raidEkarlatte = {
     ],
     miniBoss: { id: 'capitaine_ekarlatte', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'ceinture_du_capitaine_ekarlatte', dropRate: 0.01 },
         { itemId: 'bottes_du_capitaine_ekarlatte', dropRate: 0.01 },
         { itemId: 'gant_du_capitaine_ekarlatte', dropRate: 0.01 }
@@ -6366,6 +6883,8 @@ areas.raidPhossile = {
     ],
     miniBoss: { id: 'phossile', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral160', dropRate: 0.005 },
         { itemId: 'ceinture_phossile', dropRate: 0.01 },
         { itemId: 'cape_phossile', dropRate: 0.01 },
         { itemId: 'bottes_phossiles', dropRate: 0.01 },
@@ -6397,6 +6916,8 @@ areas.raidUsh = {
     ],
     miniBoss: { id: 'ush_galesh', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'bottes_de_ush', dropRate: 0.01 },
         { itemId: 'col_de_ush', dropRate: 0.01 },
         { itemId: 'epee_de_ush', dropRate: 0.01 },
@@ -6427,6 +6948,8 @@ areas.raidXLII = {
     ],
     miniBoss: { id: 'xlii', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'ceinture_de_xlii', dropRate: 0.01 },
         { itemId: 'anneau_de_xlii', dropRate: 0.01 },
         { itemId: 'bottes_de_xlii', dropRate: 0.01 },
@@ -6457,6 +6980,8 @@ areas.raidToxoliath = {
     ],
     miniBoss: { id: 'toxoliath', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'bottes_necrotiques', dropRate: 0.01 },
         { itemId: 'amulette_necrotique', dropRate: 0.01 },
         { itemId: 'cape_necrotique', dropRate: 0.01 },
@@ -6486,6 +7011,8 @@ areas.raidKralamoureGeant = {
         { id: 'tentaculeQuartenaire',    weight: 25 }],
     miniBoss: {id: 'kralamoureGeant', everyKills: 12, statMult: 1},
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame',          dropRate: 0.35 },
         { itemId: 'kralamansion',        dropRate: 0.01 },
         { itemId: 'kralano',             dropRate: 0.01 },
@@ -6515,6 +7042,7 @@ areas.raidNidas = {
     ],
     miniBoss: { id: 'roi_nidas', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'amulette_du_piloztere', dropRate: 0.01 },
         { itemId: 'bracelet_du_piloztere', dropRate: 0.01 },
         { itemId: 'pantoufles_du_piloztere', dropRate: 0.01 },
@@ -6556,6 +7084,7 @@ areas.raidCourSombre = {
     ],
     miniBoss: { id: 'reine_des_voleurs', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'bottes_de_la_cour_sombre', dropRate: 0.01 },
         { itemId: 'cape_de_la_cour_sombre', dropRate: 0.01 },
         { itemId: 'ceinture_de_la_cour_sombre', dropRate: 0.01 },
@@ -6596,6 +7125,7 @@ areas.raidVortex = {
     ],
     miniBoss: { id: 'vortex', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'bottarpille', dropRate: 0.01 },
         { itemId: 'capille', dropRate: 0.01 },
         { itemId: 'harpendentif', dropRate: 0.01 },
@@ -6639,6 +7169,7 @@ areas.raidChaloeil = {
     ],
     miniBoss: { id: 'chal_il', everyKills: 12, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'bottes_du_roi_joueur', dropRate: 0.01 },
         { itemId: 'chevaliere_du_roi_joueur', dropRate: 0.01 },
         { itemId: 'couronne_du_roi_joueur', dropRate: 0.01 },
@@ -6679,6 +7210,7 @@ areas.raidOrukam = {
     ],
     miniBoss: { id: 'roi_imagami', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'bouclier_ponyme', dropRate: 0.01 },
         { itemId: 'cape_ostrophe', dropRate: 0.01 },
         { itemId: 'casque_onsonne', dropRate: 0.01 },
@@ -6717,6 +7249,7 @@ areas.raidImagiro = {
     ],
     miniBoss: { id: 'reine_amirukam', everyKills: 9, statMult: 1 },
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'amulette_rinne', dropRate: 0.01 },
         { itemId: 'carapace_onance', dropRate: 0.01 },
         { itemId: 'sangle_icisme', dropRate: 0.01 },
@@ -6753,6 +7286,7 @@ areas.raidEliocalypse = {
         { id: 'corruption', weight: 34 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'convoitise_de_misere', dropRate: 0.03 },
         { itemId: 'corset_de_misere', dropRate: 0.03 },
@@ -6794,8 +7328,8 @@ areas.anomalieDathura = {
     boss: { id: 'dathura' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'pixelPerpetuel', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'pixelPerpetuel', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6811,8 +7345,8 @@ areas.anomaliePercimol = {
     boss: { id: 'percimol' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 } ] }
     ]
 }
 
@@ -6828,8 +7362,8 @@ areas.anomalieNoximilien = {
     boss: { id: 'noximilien_l_horloger' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 } ] }
     ]
 }
 
@@ -6845,8 +7379,8 @@ areas.anomalieJorbak = {
     boss: { id: 'jorbak' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'Nanogrine', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'Nanogrine', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6862,8 +7396,8 @@ areas.anomalieJulith = {
     boss: { id: 'julith' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'kwakwartichaud', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'kwakwartichaud', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6879,8 +7413,8 @@ areas.anomalieAurorePourpre = {
     boss: { id: 'champion_de_l_aurore_pourpre' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'bakushana', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'bakushana', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6896,8 +7430,8 @@ areas.anomalieLarveRushu = {
     boss: { id: 'larve_de_rushu' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'Magicrabe', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'Magicrabe', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6913,8 +7447,8 @@ areas.anomalieShuccube = {
     boss: { id: 'shuccube' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 } ] }
     ]
 }
 
@@ -6930,8 +7464,8 @@ areas.anomalieQilby = {
     boss: { id: 'qilby' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'cristalIntemporel', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'cristalIntemporel', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6947,8 +7481,8 @@ areas.anomalieAgonie = {
     boss: { id: 'agonie_la_deterree' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'cristalTemporel', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'cristalTemporel', dropRate: 0.01 } ] }
     ]
 }
 
@@ -6964,8 +7498,42 @@ areas.anomalieLeorictus = {
     boss: { id: 'leorictus_le_roi_grimacant' },
     paliers: [
         { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 } ] },
-        { statMult: 1, lootTable: [ { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'Poukachi', dropRate: 0.01 } ] }
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 }, { itemId: 'Poukachi', dropRate: 0.01 } ] }
+    ]
+}
+
+areas.anomalieMamaTroollette = {
+    id: 'anomalieMamaTroollette',
+    name: "Anomalie — Furie de Mama Troollette",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Mama_Troollette.png",
+    description: "Démultipliée par la faille, Mama Troollette rameute toute sa progéniture en un seul corps titanesque, décidée à défendre son territoire jusqu'au dernier coup de poing.",
+    boss: { id: 'mama_troollette' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 } ] }
+    ]
+}
+
+areas.anomalieBribesDeGardien = {
+    id: 'anomalieBribesDeGardien',
+    name: "Anomalie — Réveil des Bribes du Gardien",
+    type: 'anomalie',
+    minLevel: 200, maxLevel: 200,
+    mobMinLevel: 1000, mobMaxLevel: 1000,
+    background: "",
+    icon: "images/monsters/Bribes_de_gardien.png",
+    description: "Toutes les bribes de classes dispersées par la faille se sont soudées en un seul gardien composite, brouillon instable de chacune de ses parties mais d'une puissance bien réelle.",
+    boss: { id: 'bribes_de_gardien' },
+    paliers: [
+        { statMult: 0.3,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
+        { statMult: 0.6,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
+        { statMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 } ] }
     ]
 }
 // #endregion ANOMALIES
@@ -6997,6 +7565,8 @@ areas.saisonHalouine = {
 
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonHalouine', dropRate: 0.15, isKey: true },
         { itemId: 'capitrouille', dropRate: 0.01 },
@@ -7019,6 +7589,7 @@ areas.donjonHalouine = {
     description: "Dans ce potager maudit où les citrouilles poussent sous la lueur sanglante de la Lune des Crânes, Halouine règne sans partage sur la nuit la plus sombre de l'année. Les aventuriers venus chercher des friandises finissent bien trop souvent à décorer son jardin enchanté... de manière permanente.",
     spawns: [{ id: 'halouine', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'capitrouille', dropRate: 0.01 },
         { itemId: 'ratrouille', dropRate: 0.01 },
@@ -7052,6 +7623,7 @@ areas.saisonNowelVillage = {
         { id: 'tofu_enneige', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonNowel', dropRate: 0.15, isKey: true },
         { itemId: 'givrabottes', dropRate: 0.01 },
@@ -7080,6 +7652,7 @@ areas.donjonNowel = {
     description: "Derrière les guirlandes scintillantes et les montagnes de cadeaux se cache une réalité bien moins festive. Les Sapiks, lutins autrefois dévoués au Papa Nowel, ont pris le contrôle du donjon et n'accorderont à personne le droit de passer.",
     spawns: [{ id: 'sapik', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_du_papa_nowel', dropRate: 0.01 },
         { itemId: 'chapeau_du_papa_nowel', dropRate: 0.01 },
@@ -7109,6 +7682,8 @@ areas.saisonNowelToundra = {
         { id: 'croc_gland_de_nowel',           weight: 10 },
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral120', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonCaverneNowel', dropRate: 0.15, isKey: true },
         { itemId: '', dropRate: 0.01 },
@@ -7128,6 +7703,7 @@ areas.donjonCaverneNowel = {
     description: "Le Papa Nowel est un être pour qui rien ne compte plus que la joie des enfants... et la saveur de leurs entrailles. Cet ogre impitoyable déguisé en vieillard bedonnant attend dans les profondeurs glacées de sa caverne ceux qui ont encore la naïveté de croire aux cadeaux.",
     spawns: [{ id: 'papa_nowel', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: '', dropRate: 0.01 },
     ]
@@ -7152,6 +7728,8 @@ areas.saisonNowelDomaine = {
         { id: 'peluche_wabbit', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonPapaNowel', dropRate: 0.15, isKey: true },
         { itemId: 'bottes_du_nowel_cauchemardesque', dropRate: 0.01 },
@@ -7174,6 +7752,7 @@ areas.donjonPapaNowel = {
     description: "Tandis que le Papa Nowel distribue ses présents aux enfants sages, le Père Fwetar s'occupe des autres — et il ne fait preuve d'aucune clémence. Sa demeure en apparence chaleureuse dissimule les rituels les plus obscurs de la nuit de Nowel.",
     spawns: [{ id: 'pere_fwetar', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'bottes_du_pere_fwetar', dropRate: 0.01 },
         { itemId: 'ceinture_du_pere_fwetar', dropRate: 0.01 },
@@ -7204,6 +7783,8 @@ areas.saisonChocolatRuelles = {
         { id: 'wadulant', weight: 50 }
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral80', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonWaddicts', dropRate: 0.15, isKey: true },
         { itemId: 'ceinture_amincissante', dropRate: 0.01 },
@@ -7230,6 +7811,7 @@ areas.donjonWaddicts = {
     description: "Dans les entrailles de la Fonderie des Waddicts, les convoyeurs de chocolat fondu ne s'arrêtent jamais. Les Waddicts, ouvriers fanatiques dévoués corps et âme à leur production, ont élu le Mawabouaino comme gardien suprême de leurs réserves et n'ont aucune tolérance pour les intrus qui s'y aventurent.",
     spawns: [{ id: 'mawabouaino', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral80', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'ceinture_amincissante', dropRate: 0.01 },
         { itemId: 'rondelle_de_waddict', dropRate: 0.01 },
@@ -7255,6 +7837,8 @@ areas.saisonChocolatConfiserie = {
         { id: 'chocoskargo',  weight: 15 },
     ],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonCroquanterie', dropRate: 0.15, isKey: true },
         { itemId: '', dropRate: 0.01 },
@@ -7274,6 +7858,7 @@ areas.donjonCroquanterie = {
     description: "À la Croquanterie, tout croque, grince et se brise — y compris les aventuriers qui s'y aventurent sans prudence. Le Croqueleur, créature monstrueuse née d'une recette de confiserie qui a terriblement mal tourné, veille sur ses réserves de sucreries avec une férocité que nul gourmand ne soupçonnerait.",
     spawns: [{ id: 'croqueleur', weight: 100 }],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'bottes_croquantes', dropRate: 0.01 },
         { itemId: 'croquasque', dropRate: 0.01 },
@@ -7299,6 +7884,7 @@ areas.saisonChocolatTemple = {
         { id: 'cabosseur', weight: 10 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cleDonjonKao', dropRate: 0.15, isKey: true },
         { itemId: 'amulette_des_chocomanciens', dropRate: 0.01 },
@@ -7323,6 +7909,7 @@ areas.donjonKao = {
         { id: 'pretresse_de_kao', weight: 100 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'amulette_des_chocomanciens', dropRate: 0.01 },
         { itemId: 'bouclier_des_chocomanciens', dropRate: 0.01 },
@@ -7354,6 +7941,8 @@ areas.saisonVulkania_1 = {
         { id: 'krokille_juvenile_seche',           weight: 20 },
     ],
     lootTable: [
+        { itemId: 'runeAstral20', dropRate: 0.01 },
+        { itemId: 'runeAstral60', dropRate: 0.005 },
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
         { itemId: 'cleDonjonVulkania1',    dropRate: 0.15, isKey: true },
         { itemId: '',                     dropRate: 0.01 },
@@ -7378,6 +7967,8 @@ areas.saisonVulkania_2 = {
         { id: 'krokille_novice_seche',           weight: 20 },
     ],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
+        { itemId: 'runeAstral100', dropRate: 0.005 },
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
         { itemId: 'cleDonjonVulkania2',    dropRate: 0.15, isKey: true },
         { itemId: 'sac_de_voyage_du_parfait_petit_vulkain', dropRate: 0.01 },
@@ -7406,6 +7997,8 @@ areas.saisonVulkania_3 = {
         { id: 'krokille_mature_seche',           weight: 20 },
     ],
     lootTable: [
+        { itemId: 'runeAstral100', dropRate: 0.01 },
+        { itemId: 'runeAstral140', dropRate: 0.005 },
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
         { itemId: 'cleDonjonVulkania3',    dropRate: 0.15, isKey: true },
         { itemId: 'cape_du_krokilleur',   dropRate: 0.01 },
@@ -7432,6 +8025,8 @@ areas.saisonVulkania_4 = {
         { id: 'krokille_venerable_seche',           weight: 20 },
     ],
     lootTable: [
+        { itemId: 'runeAstral140', dropRate: 0.01 },
+        { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDameGardien',    dropRate: 0.45 },
         { itemId: 'cleDonjonVulkania4',    dropRate: 0.15, isKey: true },
         { itemId: 'binocle_airvoyant',    dropRate: 0.01 },
@@ -7457,6 +8052,7 @@ areas.donjonVulkania_1 = {
     spawns: [{ id: 'grozilla_somnambule', weight: 50 },
              { id: 'grasmera_somnambule', weight: 50 }],
     lootTable: [
+        { itemId: 'runeAstral60', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: '',                  dropRate: 0.01 },
     ]
@@ -7476,6 +8072,7 @@ areas.donjonVulkania_2 = {
     spawns: [{ id: 'grozilla_epuise', weight: 50 },
              { id: 'grasmera_epuise', weight: 50 }],
     lootTable: [
+        { itemId: 'runeAstral120', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'sac_de_voyage_du_parfait_petit_vulkain', dropRate: 0.01 },
         { itemId: 'chapeau_du_vulkain',   dropRate: 0.01 },
@@ -7499,6 +8096,7 @@ areas.donjonVulkania_3 = {
     spawns: [{ id: 'grozilla_fatigue', weight: 50 },
              { id: 'grasmera_fatigue', weight: 50 }],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'cape_du_krokilleur',    dropRate: 0.01 },
         { itemId: 'ceinture_du_krokilleur', dropRate: 0.01 },
@@ -7522,6 +8120,7 @@ areas.donjonVulkania_4 = {
         { id: 'grasmera', weight: 50 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
         { itemId: 'binocle_airvoyant', dropRate: 0.01 },
         { itemId: 'pendentif_oton', dropRate: 0.01 },
@@ -7561,6 +8160,8 @@ areas.toorbzBoorzzbz = {
         { id: 'quadrabz_perturbe', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral160', dropRate: 0.01 },
+        { itemId: 'runeAstral180', dropRate: 0.005 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'dagues_de_kabombz', dropRate: 0.01 },
         { itemId: 'pagne_de_kabombz', dropRate: 0.01 },
@@ -7587,12 +8188,15 @@ areas.reserveTouffue = {
         { id: 'brutapir', weight: 10 },
         { id: 'gropotam', weight: 10 },
         { id: 'amphibouc', weight: 10 },
+        { id: 'gyrafor', weight: 10 },
         { id: 'lapilope_perturbe', weight: 1 },
         { id: 'brutapir_perturbe', weight: 1 },
         { id: 'gropotam_perturbe', weight: 1 },
-        { id: 'amphibouc_perturbe', weight: 1 }
+        { id: 'amphibouc_perturbe', weight: 1 },
+        { id: 'gyrafor_perturbe', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'zarbappeau', dropRate: 0.01 },
         { itemId: 'zarbaudrier', dropRate: 0.01 },
@@ -7624,6 +8228,7 @@ areas.villageRhoarim = {
         { id: 'ebourifauve_perturbee', weight: 1 }
     ],
     lootTable: [
+        { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDame', dropRate: 0.45 },
         { itemId: 'collier_rhoarim', dropRate: 0.01 },
         { itemId: 'faux_ve', dropRate: 0.01 },

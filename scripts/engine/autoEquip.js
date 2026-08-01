@@ -87,7 +87,7 @@ function _autoEquipItemStatMap(itemId) {
     const itm = item[itemId]
     if (!itm?.stats) return {}
     const lvl = Math.max(1, getItemLevel(itemId))
-    const computed = getItemStats(itm, lvl, state.inventory[itemId]?.forgedStats || null, state.inventory[itemId]?.transForge || null)
+    const computed = getItemStats(itm, lvl, state.inventory[itemId]?.forgedStats || null, state.inventory[itemId]?.transForge || null, state.inventory[itemId]?.astralLevel || 0)
     const map = {}
     for (const { stat, value } of computed) map[stat] = (map[stat] || 0) + value
     return map

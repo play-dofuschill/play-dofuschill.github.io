@@ -147,6 +147,23 @@ function distributeXP(xpGain, activeMemberIndex) {
 }
 
 // ─── Progression des sorts ────────────────────────────────────────────────────
+
+// Ne lit que le cooldown effectif d'un sort selon son palier de progression, sans cloner
+// tout le sort (contrairement à applyProgression) — le cooldownMs ne dépend jamais du
+// patch d'effets. Utilisé sur le chemin chaud du tick de combat (_peekNextCastCooldown /
+// _peekEnemyCastCooldown), appelé jusqu'à 60x/s par acteur : un structuredClone() du sort
+// entier (effets, paliers...) juste pour lire un nombre y était du gaspillage pur.
+function peekSpellCooldown(spell, lvl) {
+    if (!spell) return undefined
+    const prog = spell.spellProgression
+    if (!prog) return spell.cooldownMs
+    let active = prog[0]
+    for (const p of prog) {
+        if (lvl >= p.lvl) active = p
+    }
+    return active?.patch?.cooldownMs !== undefined ? active.patch.cooldownMs : spell.cooldownMs
+}
+
 // Applique les paliers de spellProgression d'un sort selon le niveau du lanceur.
 // Retourne une copie du sort avec les effets du palier actif.
 

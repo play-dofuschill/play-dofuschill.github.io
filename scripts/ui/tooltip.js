@@ -129,6 +129,7 @@ const PATCH_STAT_LABELS = {
     damageReductionPct: 'Réduction de dégâts',
     critChance:         'Chance critique',
     critDamagePct:      'Dégâts critiques',
+    heal:               'Soin',
     healPct:            'Soins %',
     healTeamPct:        'Soins équipe %',
     healMaxHpPct:       'Soins PV max %',
@@ -392,7 +393,9 @@ function showMemberSheet(member) {
         if (eff0?.type === 'debuff' || eff0?.type === 'debuff_team') detail = eff0.stat ? `${eff0.value} ${statLbl(eff0.stat)}` : 'débuff'
 
         const unlock  = unlockLevel[moveId] || 1
-        const locked  = lvl < unlock
+        // Un sort appris ne s'oublie pas en modulation : le déblocage suit le niveau RÉEL du
+        // perso, pas le niveau plafonné (lvl) utilisé pour l'affichage des stats modulées.
+        const locked  = (member.level || 1) < unlock
         const eqClass = !locked && equippedSet.has(moveId) ? ' ms-move-equipped' : ''
         const lockedClass = locked ? ' ms-move-locked' : ''
         const canAssign = !locked && _selectedMoveSlot?.classId === member.classId
@@ -433,7 +436,7 @@ function showMemberSheet(member) {
             const _itm = item[_iid]
             if (!_itm?.stats) continue
             const _ilvl = Math.max(1, getItemLevel(_iid))
-            const _computed = getItemStats(_itm, _ilvl, state.inventory[_iid]?.forgedStats || null, state.inventory[_iid]?.transForge || null)
+            const _computed = getItemStats(_itm, _ilvl, state.inventory[_iid]?.forgedStats || null, state.inventory[_iid]?.transForge || null, state.inventory[_iid]?.astralLevel || 0)
             for (const _s of _computed)
                 if (_FARM_STATS.has(_s.stat)) _msFarmBonus[_s.stat] = (_msFarmBonus[_s.stat] || 0) + (_s.value || 0)
         }
@@ -477,10 +480,13 @@ function showMemberSheet(member) {
                         style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
                                background:var(--dark2);color:#fff;">⚡ Passif</button>` : ''}
                 </div>
-                <div style="display:flex;justify-content:center;margin-top:0.25rem;">
+                <div style="display:flex;gap:0.3rem;justify-content:center;margin-top:0.25rem;">
                     <button onclick="openAutoEquipPicker('${member.classId}')"
                         style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
                                background:var(--dark2);color:#fff;">🎯 Auto-équip</button>
+                    <button onclick="runAutoKitFromSheet('${member.classId}')"
+                        style="padding:0.15rem 0.5rem;border:none;border-radius:4px;cursor:pointer;font-size:0.7rem;
+                               background:var(--dark2);color:#fff;">⚡ Auto Kit</button>
                 </div>
                 ${cls.passive ? `<div id="ms-passive-${member.classId}" style="display:none;margin-top:0.3rem;
                     padding:0.4rem 0.6rem;background:rgba(255,255,255,0.07);border-radius:4px;
@@ -850,8 +856,9 @@ function showAreaSheet(areaId) {
         </div>`
     }).join('')
 
-    // Loot : icônes des items droppables — silhouette si jamais obtenu (sauf ressources)
-    const lootIcons = (area.lootTable || []).map(e => {
+    // Loot : icônes des items droppables — silhouette si jamais obtenu (sauf ressources).
+    // Runes astrales masquées tant que la difficulté modulée 3/3 n'est pas active (cf. rollItemDrops).
+    const lootIcons = (area.lootTable || []).filter(e => item[e.itemId]?.type !== 'runeAstrale' || state.skullLevel >= 3).map(e => {
         const itm      = item[e.itemId]
         if (!itm) return ''
         const isResource = itm.type === 'resource'
@@ -924,7 +931,7 @@ function showAnomalieSheet(areaId) {
         </div>`
     }).join('')
 
-    const lootIcons = (palier?.lootTable || []).map(e => {
+    const lootIcons = (palier?.lootTable || []).filter(e => item[e.itemId]?.type !== 'runeAstrale' || state.skullLevel >= 3).map(e => {
         const itm = item[e.itemId]
         if (!itm) return ''
         const isResource = itm.type === 'resource'

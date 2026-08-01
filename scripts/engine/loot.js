@@ -4,18 +4,52 @@
 // Ajoute le monstre à la collection et retourne les infos pour le résumé.
 // Ne révèle rien pendant le combat — la découverte se fait dans showSessionSummary.
 
-function dropsNeededForLevel(level, isSlowFamiliar = false) {
+const BASE_DROP_DIVISOR = 7
+
+// ─── Compensation de dilution de spawn ────────────────────────────────────────
+// Dans une zone à plusieurs mobs (famille), chaque combat ne cible qu'un seul
+// monstre tiré au sort selon son poids (spawnEnemy, combat.js). Un mob sous-
+// représenté (ex. elite à poids réduit) serait donc bien plus long à monter
+// que les autres si on gardait un coût fixe par pierre. On compense en rendant
+// le coût par pierre inversement proportionnel à la probabilité de spawn du
+// monstre : ratio=1 (mob seul dans sa zone, ex. boss) → coût inchangé.
+
+let _monsterSpawnRatioCache = null
+
+function _getMonsterSpawnRatio(monsterId) {
+    if (!_monsterSpawnRatioCache) {
+        _monsterSpawnRatioCache = new Map()
+        for (const area of Object.values(areas)) {
+            if (!area.spawns || area.spawns.length < 2) continue
+            const total = area.spawns.reduce((sum, sp) => sum + sp.weight, 0)
+            for (const sp of area.spawns) {
+                _monsterSpawnRatioCache.set(sp.id, sp.weight / total)
+            }
+        }
+    }
+    return _monsterSpawnRatioCache.get(monsterId) ?? 1
+}
+
+// Compensation partielle (exposant 0.45) : pleine compensation (1/ratio) ramènerait
+// une famille de 5 quasiment au coût d'un boss solo, ce qui est jugé trop radical.
+// À 0.45, une famille type (mob dilué à 12-22%) demande environ 10 000 combats
+// de zone pour être maxée, contre ~25 700 sans compensation et ~3 900 en full.
+const SPAWN_COMPENSATION_EXPONENT = 0.45
+
+function dropsNeededForLevel(level, monsterId = null, isSlowFamiliar = false) {
     if (isSlowFamiliar) return 5
-    return Math.max(1, Math.ceil(level / 7))
+    const ratio   = monsterId ? _getMonsterSpawnRatio(monsterId) : 1
+    const divisor = BASE_DROP_DIVISOR / Math.pow(ratio, SPAWN_COMPENSATION_EXPONENT)
+    return Math.max(1, Math.ceil(level / divisor))
 }
 
 const FAM_LEVEL_CAP = 200
 
-function _familiarLevelFromDrops(drops, isSlowFamiliar = false) {
+function _familiarLevelFromDrops(drops, monsterId = null, isSlowFamiliar = false) {
     let level = 1
     let threshold = 1
     while (level < FAM_LEVEL_CAP) {
-        const next = threshold + dropsNeededForLevel(level, isSlowFamiliar)
+        const next = threshold + dropsNeededForLevel(level, monsterId, isSlowFamiliar)
         if (next > drops) return level
         threshold = next
         level++
@@ -61,7 +95,7 @@ function _captureFamiliar(monsterId, isArchi = false) {
 
     const oldLevel = entry.level
     entry.drops++
-    entry.level = _familiarLevelFromDrops(entry.drops, isSlow)
+    entry.level = _familiarLevelFromDrops(entry.drops, monsterId, isSlow)
     if (isArchi) entry.isArchi = true  // une fois archi, toujours archi
     return { monsterId, isNew: false, newLevel: entry.level, leveledUp: entry.level > oldLevel, isArchi }
 }
@@ -105,8 +139,13 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
     const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + enutrofBonus
 
-    // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon)
-    const baseEntries      = lootTable.filter(e => e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey)
+    // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon).
+    // Les runes astrales ne sont accessibles qu'en difficulté modulée maximale (3/3) —
+    // exclues du pool sinon, pour ne pas trivialiser le farm en modulation normale.
+    const baseEntries      = lootTable.filter(e =>
+        e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey &&
+        (item[e.itemId]?.type !== 'runeAstrale' || state.skullLevel >= 3)
+    )
     const levelableEntries = baseEntries.filter(e => item[e.itemId]?.itemLevelMax)
     const maxedCount       = levelableEntries.filter(e => {
         const inv = state.inventory[e.itemId]

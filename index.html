@@ -90,6 +90,10 @@
                 Retour
                 </div>
 
+                <div class="team-header-button" onclick="openAutoTeamPicker()" title="Optimise les sorts actifs de toute l'équipe contre cette cible">
+                ⚡ Auto Team
+                </div>
+
                 <div id="zone-confirm-start-btn" class="team-header-button" onclick="confirmStartCombat()" style="background:#2d7a4f;">
                 <div style="display:flex; flex-direction:column; align-items:flex-start;">
                     <span id="zone-confirm-btn-text">Commencer</span>
@@ -341,6 +345,7 @@
             <div id="forge-tab-bar">
                 <button id="forge-tab-forge"  class="forge-tab-btn forge-tab-active" onclick="switchForgeTab('forge')">⚒ Forgemagie</button>
                 <button id="forge-tab-fusion" class="forge-tab-btn"                  onclick="switchForgeTab('fusion')">⚗ Fusion</button>
+                <button id="forge-tab-astral" class="forge-tab-btn"                  onclick="switchForgeTab('astral')">🌌 Astral</button>
             </div>
             <div id="forge-header-nav" style="display:none">
                 <div id="forge-back-btn" onclick="forgeBackAction()">← Retour</div>
@@ -857,6 +862,8 @@
     <script defer src="scripts/ui/team.js"></script>
     <script defer src="scripts/engine/autoEquip.js"></script>
     <script defer src="scripts/ui/autoEquip.js"></script>
+    <script defer src="scripts/engine/autoTeam.js"></script>
+    <script defer src="scripts/ui/autoTeam.js"></script>
     <script defer src="scripts/ui/collection.js"></script>
     <script defer src="scripts/ui/inventory.js"></script>
     <script defer src="scripts/ui/tooltip.js"></script>

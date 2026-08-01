@@ -97,6 +97,44 @@ function applyFusion(regularRuneId) {
     return { transRuneId, transRune }
 }
 
+// Amélioration astrale : consomme une rune astrale pour tenter de faire progresser
+// le niveau astral (0-20) d'un item déjà au niveau de forge max. La rune est toujours
+// consommée, succès ou échec. Chance de réussite : 100% au 1er palier, décroissance
+// linéaire jusqu'à 10% au 20ème palier.
+function applyAstralUpgrade(itemId, runeItemId) {
+    const itm = item[itemId]
+    if (!itm || itm.type !== 'equipment' || !itm.stats?.length) return { error: 'ITEM_INVALID' }
+
+    const entry = state.inventory[itemId]
+    if (!entry) return { error: 'ITEM_INVALID' }
+
+    const maxLevel = itm.itemLevelMax || 20
+    if (entry.level < maxLevel) return { error: 'ITEM_NOT_MAXED' }
+
+    const rune = item[runeItemId]
+    if (!rune || rune.type !== 'runeAstrale') return { error: 'RUNE_INVALID' }
+
+    const runeEntry = state.inventory[runeItemId]
+    if (!runeEntry || (runeEntry.count ?? 1) < 1) return { error: 'RUNE_UNAVAILABLE' }
+
+    const itemReqLevel = itm.requiredLevel ?? 1
+    if (itemReqLevel > rune.maxRequiredLevel) return { error: 'RUNE_TIER_MISMATCH' }
+
+    const currentAstral = entry.astralLevel ?? 0
+    if (currentAstral >= 20) return { error: 'ASTRAL_MAXED' }
+
+    runeEntry.count = (runeEntry.count ?? 1) - 1
+    if (runeEntry.count <= 0) delete state.inventory[runeItemId]
+
+    const step       = currentAstral + 1
+    const successPct = 100 - (step - 1) * (90 / 19)
+    const success     = Math.random() * 100 < successPct
+    if (success) entry.astralLevel = step
+
+    saveGame()
+    return { success, newAstralLevel: entry.astralLevel ?? 0, successPct }
+}
+
 // Déplace une forgemagie d'un slot de stat vers un autre
 function applyConcassageSwap(itemId, sourceStatIdx, targetStatIdx) {
     const itm   = item[itemId]

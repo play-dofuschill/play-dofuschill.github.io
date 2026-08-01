@@ -1,6 +1,6 @@
 // ui/forge.js — Interface de forgemagie DofusChill
 
-let _forgeTab             = 'forge'  // 'forge' | 'fusion'
+let _forgeTab             = 'forge'  // 'forge' | 'fusion' | 'astral'
 let _forgeSelectedItem    = null
 let _forgeSelectedStatIdx = null
 let _forgeSelectedRune    = null     // runeItemId sélectionnée
@@ -14,7 +14,7 @@ const FORGE_STAT_LABELS = {
     flatDamage: 'Dégâts fixes', finalDamagePct: 'Dégâts finaux %',
     spellDamagePct: 'Dégâts sorts %', damageReductionPct: 'Réd. dégâts %',
     critChance: 'Chance crit %', critDamagePct: 'Dégâts crit %',
-    healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
+    heal: 'Soin', healPct: 'Soins %', healTeamPct: 'Soins équipe %', healMaxHpPct: 'Soins PV max %', lifestealPct: 'Vol de vie %',
     'res.feu': 'Rés. Feu', 'res.eau': 'Rés. Eau',
     'res.terre': 'Rés. Terre', 'res.air': 'Rés. Air', 'res.neutre': 'Rés. Neutre'
 }
@@ -26,6 +26,15 @@ const FORGE_ERROR_MSGS = {
     SLOTS_FULL:             ()  => `Plus de slots de forge disponibles sur cet item.`,
     RUNE_UNAVAILABLE:       ()  => `Rune introuvable dans l'inventaire.`,
     TRANS_ALREADY_APPLIED:  ()  => `Une rune de Transcendance est déjà appliquée sur cet item. Retirez-la en concassage d'abord.`,
+}
+
+const ASTRAL_ERROR_MSGS = {
+    ITEM_INVALID:        () => `Item invalide.`,
+    ITEM_NOT_MAXED:       () => `Cet item doit d'abord être forgé à son niveau maximum.`,
+    RUNE_INVALID:         () => `Rune astrale invalide.`,
+    RUNE_UNAVAILABLE:     () => `Rune astrale introuvable dans l'inventaire.`,
+    RUNE_TIER_MISMATCH:   () => `Cette rune ne couvre pas le niveau requis de l'item.`,
+    ASTRAL_MAXED:         () => `Cet item est déjà au niveau astral maximum (20/20).`,
 }
 
 const forgeFilters = {
@@ -69,6 +78,15 @@ function _getPlayerRunes() {
         .filter(({ count }) => count > 0)
 }
 
+// itemReqLevel omis → toutes les runes astrales possédées, sans filtre de compatibilité
+function _getPlayerAstralRunes(itemReqLevel) {
+    return Object.entries(state.inventory)
+        .filter(([id]) => item[id]?.type === 'runeAstrale')
+        .map(([id, entry]) => ({ runeId: id, rune: item[id], count: entry.count ?? 1 }))
+        .filter(({ count }) => count > 0)
+        .filter(({ rune }) => itemReqLevel === undefined || itemReqLevel <= rune.maxRequiredLevel)
+}
+
 function _attachHeroBubble(header, itemId, itm) {
     header.querySelector('.forge-hero-anchor')?.remove()
     const anchor = document.createElement('div')
@@ -86,9 +104,16 @@ function updateForgeUI() {
     // Sync tab buttons
     document.getElementById('forge-tab-forge')?.classList.toggle('forge-tab-active', _forgeTab === 'forge')
     document.getElementById('forge-tab-fusion')?.classList.toggle('forge-tab-active', _forgeTab === 'fusion')
+    document.getElementById('forge-tab-astral')?.classList.toggle('forge-tab-active', _forgeTab === 'astral')
 
     if (_forgeTab === 'fusion') {
         _renderFusionTab(content)
+        return
+    }
+
+    if (_forgeTab === 'astral') {
+        if (!_forgeSelectedItem) _renderAstralList(content)
+        else                     _renderAstralPanel(content)
         return
     }
 
@@ -417,6 +442,130 @@ function _renderFusionTab(content) {
         </div>`
 }
 
+// ─── Onglet Astral ─────────────────────────────────────────────────────────────
+
+function _renderAstralList(content) {
+    const filtersEl = document.getElementById('forge-filters')
+    const navEl     = document.getElementById('forge-header-nav')
+    const header    = document.getElementById('forge-menu-header')
+    if (filtersEl) filtersEl.style.display = 'none'
+    if (navEl)     navEl.style.display     = ''
+    if (header)    header.querySelector('.forge-hero-anchor')?.remove()
+    content.style.paddingTop = ''
+
+    const entries = []
+    for (const [itemId, entry] of Object.entries(state.inventory)) {
+        const itm = item[itemId]
+        if (!_isItemForgeable(itm, entry)) continue  // seuls les items déjà au niveau de forge max sont éligibles
+        entries.push({ itemId, entry, itm })
+    }
+
+    entries.sort((a, b) => {
+        const aMaxed = (a.entry.astralLevel ?? 0) >= 20
+        const bMaxed = (b.entry.astralLevel ?? 0) >= 20
+        if (aMaxed !== bMaxed) return aMaxed ? 1 : -1  // items astral-maxés toujours en bas
+        return (a.itm.requiredLevel || 0) - (b.itm.requiredLevel || 0)
+    })
+
+    if (entries.length === 0) {
+        content.innerHTML = `<div class="forge-empty">Aucun équipement au niveau de forge max.<br>Forgez d'abord vos items au maximum pour débloquer l'amélioration astrale.</div>`
+        return
+    }
+
+    let html = `<div class="forge-bubble-list">`
+    for (const { itemId, entry, itm } of entries) {
+        const astralLvl = entry.astralLevel ?? 0
+        const badge = astralLvl > 0
+            ? `<span class="forge-bubble-badge">★${astralLvl}/20</span>`
+            : `<span class="forge-bubble-ready">🌌</span>`
+        const title = `${itm.name} — Niveau astral ${astralLvl}/20`
+        html += `<div class="game-bubble" title="${title}" onclick="selectForgeItem('${itemId}')" oncontextmenu="event.preventDefault();showItemTooltip('${itemId}')">
+            ${badge}
+            <img src="${itm.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'">
+        </div>`
+    }
+    html += `</div>`
+    content.innerHTML = html
+}
+
+function _renderAstralPanel(content) {
+    const navEl   = document.getElementById('forge-header-nav')
+    const concBtn = document.getElementById('forge-concassage-btn')
+    const header  = document.getElementById('forge-menu-header')
+    if (navEl)   navEl.style.display   = ''
+    if (concBtn) concBtn.style.display = 'none'
+
+    const itemId = _forgeSelectedItem
+    const itm    = item[itemId]
+    const entry  = state.inventory[itemId]
+    if (!itm || !entry) { _forgeSelectedItem = null; updateForgeUI(); return }
+
+    if (header) _attachHeroBubble(header, itemId, itm)
+    content.style.paddingTop = '7rem'
+
+    const astralLvl  = entry.astralLevel ?? 0
+    const isMaxed    = astralLvl >= 20
+    const nextStep   = astralLvl + 1
+    const successPct = 100 - astralLvl * (90 / 19)
+
+    const barHtml = `<div class="forge-slots-indicator">
+        <span class="forge-slots-label">Niveau astral :</span>
+        <span class="forge-slots-count">${astralLvl} / 20</span>
+    </div>`
+
+    const itemReqLevel    = itm.requiredLevel ?? 1
+    const compatibleRunes = _getPlayerAstralRunes(itemReqLevel)
+    const allAstralRunes  = _getPlayerAstralRunes()
+
+    const makeRuneCard = ({ runeId, rune, count }) => {
+        const active = _forgeSelectedRune === runeId
+        return `<div class="forge-rune-card${active ? ' forge-rune-active' : ''}" onclick="selectForgeRune('${runeId}')" oncontextmenu="event.preventDefault();event.stopPropagation();showItemTooltip('${runeId}')" title="${rune.description || ''}">
+            <img src="${rune.image || 'img/icons/icon.png'}" onerror="this.src='img/icons/icon.png'" class="forge-rune-img">
+            <div class="forge-rune-stat">${rune.name}</div>
+            <div class="forge-rune-meta">Niv. req. ≤ ${rune.maxRequiredLevel} · ×${count}</div>
+        </div>`
+    }
+
+    let runeHtml
+    if (isMaxed) {
+        runeHtml = `<div class="forge-no-runes">Cet item est déjà au niveau astral maximum.</div>`
+    } else if (compatibleRunes.length > 0) {
+        runeHtml = `<div class="forge-rune-grid">${compatibleRunes.map(makeRuneCard).join('')}</div>`
+    } else if (allAstralRunes.length > 0) {
+        runeHtml = `<div class="forge-no-runes">Vos runes astrales sont de palier trop bas pour cet item (niveau requis ${itemReqLevel}).</div>`
+    } else {
+        runeHtml = `<div class="forge-no-runes">Aucune rune astrale dans l'inventaire.</div>`
+    }
+
+    const selectedRuneValid = _forgeSelectedRune && item[_forgeSelectedRune]?.type === 'runeAstrale'
+    const previewHtml = (!isMaxed && selectedRuneValid)
+        ? `<div class="forge-preview">
+            <span class="forge-preview-label">Résultat :</span>
+            <div class="forge-preview-opts">
+                <span class="forge-preview-opt">Palier ${astralLvl} → ${nextStep} (+1% de toutes les stats)</span>
+                <span class="forge-preview-opt forge-preview-warn">Chance de réussite : ${successPct.toFixed(0)}%</span>
+            </div>
+        </div>`
+        : ''
+
+    const canUpgrade = !isMaxed && selectedRuneValid
+    const actionHtml = isMaxed ? '' : `<div class="forge-action">
+        <button class="forge-btn${canUpgrade ? '' : ' forge-btn-off'}" ${canUpgrade ? `onclick="confirmAstralUpgrade('${itemId}', '${_forgeSelectedRune}')"` : 'disabled'}>
+            Améliorer
+        </button>
+        <span class="forge-warn">La rune est consommée, même en cas d'échec</span>
+    </div>`
+
+    content.innerHTML = `
+        <div class="forge-panel">
+            ${barHtml}
+            <div class="forge-section">Choisir une rune astrale :</div>
+            ${runeHtml}
+            ${previewHtml}
+            ${actionHtml}
+        </div>`
+}
+
 // ─── Panel Concassage ──────────────────────────────────────────────────────────
 
 function _renderConcassagePanel(content) {
@@ -609,6 +758,22 @@ function confirmFusion(regularRuneId) {
     if (!result) { showNotification('Fusion impossible.', 'error'); return }
     const lbl = FORGE_STAT_LABELS[result.transRune.stat] || result.transRune.stat
     showNotification(`Fusion réussie ! +${result.transRune.value} ${lbl} [Trans] obtenu.`, 'success')
+    updateForgeUI()
+}
+
+function confirmAstralUpgrade(itemId, runeItemId) {
+    const result = applyAstralUpgrade(itemId, runeItemId)
+    if (!result || result.error) {
+        const msgFn = result?.error ? ASTRAL_ERROR_MSGS[result.error] : null
+        showNotification(msgFn ? msgFn() : 'Amélioration astrale impossible.', 'error')
+        return
+    }
+    if (result.success) {
+        showNotification(`Amélioration astrale réussie ! Niveau astral ${result.newAstralLevel}/20.`, 'success')
+    } else {
+        showNotification(`Rune consommée — l'amélioration a échoué (${result.successPct.toFixed(0)}% de réussite).`, 'level')
+    }
+    _forgeSelectedRune = null
     updateForgeUI()
 }
 

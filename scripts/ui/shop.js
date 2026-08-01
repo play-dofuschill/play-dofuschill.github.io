@@ -45,6 +45,11 @@ function updateShopUI() {
     banner.textContent = `Rotation dans ${nextShopRotationLabel(shopFilter)}`
     list.appendChild(banner)
 
+    if (shopFilter === 'items') {
+        renderShopItemGroups(list)
+        return
+    }
+
     const entries = getShopEntries(shopFilter)
 
     if (entries.length === 0) {
@@ -184,49 +189,122 @@ function updateShopUI() {
     }
 }
 
-function showShopBuyPicker(entry, itm) {
+// ── Onglet Items : catalogue en bulles, groupé par zone du jour ────────────
+// (zones sauvages du moment + leur donjon associé + les raids normaux du jour)
+
+function renderShopItemGroups(list) {
+    const groups = getShopItemGroups()
+
+    if (groups.length === 0) {
+        const empty = document.createElement('div')
+        empty.className = 'shop-empty'
+        const hasVisited = (state.visitedAreas || []).length > 0
+        empty.innerHTML = hasVisited
+            ? 'Aucun article disponible.<br>Revenez bientôt !'
+            : 'Combattez dans des zones pour débloquer des articles !'
+        list.appendChild(empty)
+        return
+    }
+
+    for (const group of groups) {
+        const section = document.createElement('div')
+        section.className = 'shop-zone-group'
+
+        const title = document.createElement('div')
+        title.className = 'shop-zone-title'
+        title.textContent = group.label
+        section.appendChild(title)
+
+        const bubbles = document.createElement('div')
+        bubbles.className = 'shop-zone-bubbles'
+        for (const itemId of group.itemIds) bubbles.appendChild(_buildShopItemBubble(itemId))
+        section.appendChild(bubbles)
+
+        list.appendChild(section)
+    }
+}
+
+function _buildShopItemBubble(itemId) {
+    const itm = item[itemId]
+
+    const price     = shopCurrentPrice(itemId)
+    const limit     = _shopItemLimit(itemId)
+    const remaining = shopRemaining(itemId)
+    const hasLimit  = limit !== Infinity
+    const soldOut   = hasLimit && remaining === 0
+
+    const currentLevel = state.inventory[itemId]?.level || 0
+    const isMaxed       = itm.itemLevelMax && currentLevel >= itm.itemLevelMax
+    const canAfford      = state.kamas >= price
+    const isDisabled     = soldOut || isMaxed || !canAfford
+
+    const topBadge = soldOut
+        ? `<span class="bubble-level shop-bubble-empty">Épuisé</span>`
+        : isMaxed
+            ? `<span class="bubble-level shop-bubble-maxed">MAX</span>`
+            : hasLimit ? `<span class="bubble-level">${remaining}/${limit}</span>` : ''
+
+    const bubble = document.createElement('div')
+    bubble.className = `game-bubble shop-item-bubble${isDisabled ? ' shop-bubble-disabled' : ''}`
+    bubble.title     = itm.name
+    bubble.innerHTML = `
+        ${topBadge}
+        <img src="${itm.image || 'img/icons/icon.png'}" loading="lazy" onerror="this.src='img/icons/icon.png'">
+        <span class="shop-bubble-price"><img src="img/icons/kamas.png" onerror="this.src='img/icons/icon.png'">${price}</span>`
+
+    if (!isDisabled) bubble.addEventListener('click', () => showShopBuyPicker({ itemId, price }, itm))
+    bubble.addEventListener('contextmenu', e => { e.preventDefault(); e.stopPropagation(); showItemTooltip(itemId) })
+    return bubble
+}
+
+// Contexte du picker d'achat "kamas" actuellement ouvert (permet aux boutons de
+// quantité de rafraîchir le popup en place au lieu de le fermer à chaque clic).
+let _shopPickerCtx = null
+
+function _shopBuyPickerState(ctx) {
+    const itm = item[ctx.itemId]
+    if (!itm) return null
     const isProgressive = itm.type === 'equipment'
+    const price = isProgressive ? shopCurrentPrice(ctx.itemId) : ctx.price
 
     let maxAffordable
     if (isProgressive) {
         maxAffordable = 0
-        while (_progressiveTotalCost(entry.itemId, maxAffordable + 1) <= state.kamas) {
+        while (_progressiveTotalCost(ctx.itemId, maxAffordable + 1) <= state.kamas) {
             maxAffordable++
             if (maxAffordable >= 100) break
         }
     } else {
-        maxAffordable = Math.floor(state.kamas / entry.price)
+        maxAffordable = Math.floor(state.kamas / price)
     }
 
-    if (maxAffordable === 0) {
-        showNotification('Pas assez de kamas !', 'error')
-        return
-    }
-
-    const currentLevel = state.inventory[entry.itemId]?.level || 0
-    const maxUseful    = itm.itemLevelMax ? Math.max(0, itm.itemLevelMax - currentLevel) : maxAffordable
-    const remaining    = shopRemaining(entry.itemId)
-    const maxQty       = Math.min(
+    const currentLevel = state.inventory[ctx.itemId]?.level || 0
+    const maxUseful     = itm.itemLevelMax ? Math.max(0, itm.itemLevelMax - currentLevel) : maxAffordable
+    const remaining     = shopRemaining(ctx.itemId)
+    const maxQty        = Math.min(
         maxAffordable,
         maxUseful,
         remaining === Infinity ? maxAffordable : remaining
     )
 
-    if (maxQty <= 0) {
-        showNotification('Pas assez de kamas !', 'error')
-        return
-    }
+    if (maxQty <= 0) return null
 
-    const fixedQtys = [1, 2, 5, 10].filter(q => q < maxQty)
+    const maxTotal = isProgressive ? _progressiveTotalCost(ctx.itemId, maxQty) : maxQty * price
+    return { itm, isProgressive, price, maxQty, maxTotal }
+}
+
+function _shopBuyPickerBody(ctx, st) {
+    const { itm, isProgressive, price, maxQty, maxTotal } = st
+
+    const fixedQtys = [1, 2, 5, 10, 100].filter(q => q < maxQty)
 
     const btnLabel = q => isProgressive
-        ? `${q}<br><small>${_progressiveTotalCost(entry.itemId, q)}k</small>`
+        ? `${q}<br><small>${_progressiveTotalCost(ctx.itemId, q)}k</small>`
         : `${q}`
 
-    const maxTotal   = isProgressive ? _progressiveTotalCost(entry.itemId, maxQty) : maxQty * entry.price
-    const priceNote  = isProgressive
-        ? `${entry.price} kamas (prix actuel, +20% par achat)`
-        : `${entry.price} kamas / unité`
+    const priceNote = isProgressive
+        ? `${price} kamas (prix actuel, +20% par achat)`
+        : `${price} kamas / unité`
 
     const body = `<div class="shop-buy-picker">
         <div class="shop-buy-picker-item">
@@ -234,8 +312,8 @@ function showShopBuyPicker(entry, itm) {
             <span>${itm.name}</span>
         </div>
         <div class="shop-buy-qty-row">
-            ${fixedQtys.map(q => `<button class="shop-buy-qty-btn" onclick="closeTooltip(); buyShopItem('${entry.itemId}', ${entry.price}, ${q})">${btnLabel(q)}</button>`).join('')}
-            <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="closeTooltip(); buyShopItem('${entry.itemId}', ${entry.price}, ${maxQty})">
+            ${fixedQtys.map(q => `<button class="shop-buy-qty-btn" onclick="_shopBuyQty(${q})">${btnLabel(q)}</button>`).join('')}
+            <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="_confirmShopBuyMax()">
                 Max<br><small>${maxQty}×&nbsp;(${maxTotal}k)</small>
             </button>
         </div>
@@ -245,27 +323,73 @@ function showShopBuyPicker(entry, itm) {
         </div>
     </div>`
 
-    openTooltip(`Acheter — ${itm.name}`, body)
+    return { title: `Acheter — ${itm.name}`, body }
 }
 
-function showOgrineShopBuyPicker(entry, itm) {
-    const maxAffordable = Math.floor((state.ogrines || 0) / entry.price)
-    if (maxAffordable === 0) {
-        showNotification('Pas assez d\'ogrines !', 'error')
+function showShopBuyPicker(entry, itm) {
+    _shopPickerCtx = { itemId: entry.itemId, price: entry.price }
+    const st = _shopBuyPickerState(_shopPickerCtx)
+    if (!st) {
+        showNotification('Pas assez de kamas !', 'error')
+        _shopPickerCtx = null
         return
     }
+    const { title, body } = _shopBuyPickerBody(_shopPickerCtx, st)
+    openTooltip(title, body)
+}
 
-    const currentLevel = state.inventory[entry.itemId]?.level || 0
-    const maxUseful     = itm.itemLevelMax ? Math.max(0, itm.itemLevelMax - currentLevel) : maxAffordable
-    const maxQty        = Math.min(maxAffordable, maxUseful)
+// Reconstruit le popup d'achat en place (sans empiler un nouveau niveau de
+// tooltip) après un achat, pour que le popup reste ouvert entre deux clics.
+function _refreshShopBuyPicker() {
+    if (!_shopPickerCtx) return
+    const st = _shopBuyPickerState(_shopPickerCtx)
+    if (!st) { closeTooltip(); _shopPickerCtx = null; return }
+    const { title, body } = _shopBuyPickerBody(_shopPickerCtx, st)
+    const ttl = document.getElementById('tooltipTitle')
+    const bot = document.getElementById('tooltipBottom')
+    if (ttl) ttl.innerHTML = title
+    if (bot) bot.innerHTML = body
+    if (tooltipStack.length > 0) tooltipStack[tooltipStack.length - 1] = { title, body }
+}
 
-    if (maxQty <= 0) {
-        showNotification('Pas assez d\'ogrines !', 'error')
-        return
-    }
+function _shopBuyQty(qty) {
+    if (!_shopPickerCtx) return
+    buyShopItem(_shopPickerCtx.itemId, _shopPickerCtx.price, qty)
+    _refreshShopBuyPicker()
+}
 
-    const fixedQtys = [1, 2, 5, 10].filter(q => q < maxQty)
-    const maxTotal  = maxQty * entry.price
+function _confirmShopBuyMax() {
+    if (!_shopPickerCtx) return
+    const st = _shopBuyPickerState(_shopPickerCtx)
+    if (!st) return
+    const body = `<div class="shop-buy-picker shop-confirm-picker">
+        <p class="shop-confirm-text">Acheter <strong>${st.maxQty}× ${st.itm.name}</strong> pour <strong>${st.maxTotal} kamas</strong> ?</p>
+        <div class="shop-buy-qty-row">
+            <button class="shop-buy-qty-btn" onclick="closeTooltip()">Annuler</button>
+            <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="closeTooltip(); _shopBuyQty(${st.maxQty})">Confirmer</button>
+        </div>
+    </div>`
+    openTooltip(`Confirmation — ${st.itm.name}`, body)
+}
+
+// Contexte du picker d'achat "ogrines" actuellement ouvert, même logique que
+// _shopPickerCtx ci-dessus mais pour la monnaie ogrines.
+let _ogrineShopPickerCtx = null
+
+function _ogrineShopBuyPickerState(ctx) {
+    const itm = item[ctx.itemId]
+    if (!itm) return null
+    const maxAffordable = Math.floor((state.ogrines || 0) / ctx.price)
+    const currentLevel  = state.inventory[ctx.itemId]?.level || 0
+    const maxUseful      = itm.itemLevelMax ? Math.max(0, itm.itemLevelMax - currentLevel) : maxAffordable
+    const maxQty         = Math.min(maxAffordable, maxUseful)
+    if (maxQty <= 0) return null
+    return { itm, maxQty, maxTotal: maxQty * ctx.price }
+}
+
+function _ogrineShopBuyPickerBody(ctx, st) {
+    const { itm, maxQty, maxTotal } = st
+    const fixedQtys = [1, 2, 5, 10, 100].filter(q => q < maxQty)
 
     const body = `<div class="shop-buy-picker">
         <div class="shop-buy-picker-item">
@@ -273,16 +397,60 @@ function showOgrineShopBuyPicker(entry, itm) {
             <span>${itm.name}</span>
         </div>
         <div class="shop-buy-qty-row">
-            ${fixedQtys.map(q => `<button class="shop-buy-qty-btn" onclick="closeTooltip(); buyOgrineShopItem('${entry.itemId}', ${entry.price}, ${q})">${q}</button>`).join('')}
-            <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="closeTooltip(); buyOgrineShopItem('${entry.itemId}', ${entry.price}, ${maxQty})">
+            ${fixedQtys.map(q => `<button class="shop-buy-qty-btn" onclick="_ogrineShopBuyQty(${q})">${q}</button>`).join('')}
+            <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="_confirmOgrineShopBuyMax()">
                 Max<br><small>${maxQty}×&nbsp;(${maxTotal})</small>
             </button>
         </div>
         <div class="shop-buy-picker-price">
             <img src="img/icons/ogrine.png" onerror="this.src='img/icons/icon.png'">
-            ${entry.price} ogrine${entry.price > 1 ? 's' : ''} / unité &nbsp;·&nbsp; ${state.ogrines || 0} disponibles
+            ${ctx.price} ogrine${ctx.price > 1 ? 's' : ''} / unité &nbsp;·&nbsp; ${state.ogrines || 0} disponibles
         </div>
     </div>`
 
-    openTooltip(`Acheter — ${itm.name}`, body)
+    return { title: `Acheter — ${itm.name}`, body }
+}
+
+function showOgrineShopBuyPicker(entry, itm) {
+    _ogrineShopPickerCtx = { itemId: entry.itemId, price: entry.price }
+    const st = _ogrineShopBuyPickerState(_ogrineShopPickerCtx)
+    if (!st) {
+        showNotification('Pas assez d\'ogrines !', 'error')
+        _ogrineShopPickerCtx = null
+        return
+    }
+    const { title, body } = _ogrineShopBuyPickerBody(_ogrineShopPickerCtx, st)
+    openTooltip(title, body)
+}
+
+function _refreshOgrineShopBuyPicker() {
+    if (!_ogrineShopPickerCtx) return
+    const st = _ogrineShopBuyPickerState(_ogrineShopPickerCtx)
+    if (!st) { closeTooltip(); _ogrineShopPickerCtx = null; return }
+    const { title, body } = _ogrineShopBuyPickerBody(_ogrineShopPickerCtx, st)
+    const ttl = document.getElementById('tooltipTitle')
+    const bot = document.getElementById('tooltipBottom')
+    if (ttl) ttl.innerHTML = title
+    if (bot) bot.innerHTML = body
+    if (tooltipStack.length > 0) tooltipStack[tooltipStack.length - 1] = { title, body }
+}
+
+function _ogrineShopBuyQty(qty) {
+    if (!_ogrineShopPickerCtx) return
+    buyOgrineShopItem(_ogrineShopPickerCtx.itemId, _ogrineShopPickerCtx.price, qty)
+    _refreshOgrineShopBuyPicker()
+}
+
+function _confirmOgrineShopBuyMax() {
+    if (!_ogrineShopPickerCtx) return
+    const st = _ogrineShopBuyPickerState(_ogrineShopPickerCtx)
+    if (!st) return
+    const body = `<div class="shop-buy-picker shop-confirm-picker">
+        <p class="shop-confirm-text">Acheter <strong>${st.maxQty}× ${st.itm.name}</strong> pour <strong>${st.maxTotal} ogrine${st.maxTotal > 1 ? 's' : ''}</strong> ?</p>
+        <div class="shop-buy-qty-row">
+            <button class="shop-buy-qty-btn" onclick="closeTooltip()">Annuler</button>
+            <button class="shop-buy-qty-btn shop-buy-qty-max" onclick="closeTooltip(); _ogrineShopBuyQty(${st.maxQty})">Confirmer</button>
+        </div>
+    </div>`
+    openTooltip(`Confirmation — ${st.itm.name}`, body)
 }

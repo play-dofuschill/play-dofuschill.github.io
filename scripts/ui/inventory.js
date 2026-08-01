@@ -2,6 +2,10 @@
 
 let inventoryFilter = 'equipment'
 
+// Couleur du bonus de niveau astral (distincte du bleu forge #4a9bdb, violet transcendance
+// #a855f7, vert positif #2D7A2D et rouge négatif #d45a43 déjà utilisés dans les tooltips).
+const ASTRAL_BONUS_COLOR = '#ff3b6b'
+
 const equipFilters = { slot: 'all', bonus: 'all', level: 'all', sort: 'level', sortDir: 'desc', search: '' }
 let _equipFuse = null
 
@@ -19,9 +23,9 @@ function _getEquipFuse() {
 const BAG_CATEGORIES = {
     equipment:  itm => itm.type === 'equipment' && !itm.id?.startsWith('Dofus_') && !itm.trophy,
     dofus:      itm => itm.type === 'dofus' || (itm.type === 'equipment' && (itm.id?.startsWith('Dofus_') || !!itm.trophy)),
-    consumable: itm => itm.type === 'consumable' || itm.type === 'rune' || itm.type === 'familiarUpgrade',
+    consumable: itm => itm.type === 'consumable' || itm.type === 'rune' || itm.type === 'runeAstrale' || itm.type === 'familiarUpgrade',
     cosmetic:   itm => itm.type === 'cosmetic' || itm.type === 'cosmetic_skin',
-    divers:     itm => itm.type !== 'equipment' && itm.type !== 'dofus' && itm.type !== 'consumable' && itm.type !== 'cosmetic' && itm.type !== 'rune' && itm.type !== 'cosmetic_skin' && itm.type !== 'familiarUpgrade' && !itm.hiddenInInventory
+    divers:     itm => itm.type !== 'equipment' && itm.type !== 'dofus' && itm.type !== 'consumable' && itm.type !== 'cosmetic' && itm.type !== 'rune' && itm.type !== 'runeAstrale' && itm.type !== 'cosmetic_skin' && itm.type !== 'familiarUpgrade' && !itm.hiddenInInventory
 }
 
 // ─── Filtres équipement ───────────────────────────────────────────────────────
@@ -248,7 +252,7 @@ function showItemTooltip(itemId, fromClassId) {
         flatDamage: STAT_ICONS.flatDamage, finalDamagePct: STAT_ICONS.atk,
         spellDamagePct: STAT_ICONS.atk, damageReductionPct: STAT_ICONS.buff,
         critChance: STAT_ICONS.atk, critDamagePct: STAT_ICONS.atk,
-        healPct: STAT_ICONS.soin, healTeamPct: STAT_ICONS.soin, healMaxHpPct: STAT_ICONS.soin, lifestealPct: STAT_ICONS.volVie,
+        heal: STAT_ICONS.soin, healPct: STAT_ICONS.soin, healTeamPct: STAT_ICONS.soin, healMaxHpPct: STAT_ICONS.soin, lifestealPct: STAT_ICONS.volVie,
         'res.feu': ELEM_ICONS.feu, 'res.eau': ELEM_ICONS.eau,
         'res.terre': ELEM_ICONS.terre, 'res.air': ELEM_ICONS.air,
         'res.neutre': ELEM_ICONS.neutre,
@@ -257,14 +261,16 @@ function showItemTooltip(itemId, fromClassId) {
     // Stats calculées au niveau actuel
     let statsHtml = ''
     if (itm.stats && itm.stats.length > 0) {
-        const computed = getItemStats(itm, Math.max(1, lvl), entry?.forgedStats || null, entry?.transForge || null)
-        for (const { stat, value, isForged, isTranscendance } of computed) {
+        const computed = getItemStats(itm, Math.max(1, lvl), entry?.forgedStats || null, entry?.transForge || null, entry?.astralLevel || 0)
+        for (const { stat, value, isForged, isTranscendance, astralBonus } of computed) {
             const label = STAT_LABELS[stat] || stat
             const icon  = STAT_ICON_MAP[stat] || ''
-            const color = isTranscendance ? '#a855f7' : isForged ? '#4a9bdb' : (value > 0 ? '#2D7A2D' : value < 0 ? '#d45a43' : '')
+            const preAstral = value - (astralBonus || 0)
+            const color = isTranscendance ? '#a855f7' : isForged ? '#4a9bdb' : (preAstral > 0 ? '#2D7A2D' : preAstral < 0 ? '#d45a43' : '')
+            const astralHtml = astralBonus ? ` <span style="color:${ASTRAL_BONUS_COLOR}">+${astralBonus}</span>` : ''
             statsHtml += `<div class="item-stat-row">
                 ${icon ? `<img src="${icon}" class="item-stat-icon">` : ''}
-                <span style="${color ? `color:${color}` : ''}">${value > 0 ? '+' : ''}${value} ${label}${isForged ? ' ✦' : ''}</span>
+                <span style="${color ? `color:${color}` : ''}">${preAstral > 0 ? '+' : ''}${preAstral} ${label}${isForged ? ' ✦' : ''}</span>${astralHtml}
             </div>`
         }
     }
@@ -292,6 +298,13 @@ function showItemTooltip(itemId, fromClassId) {
             <div>Coût : <strong>−${itm.levelCost ?? 5} niveaux</strong> à la forge</div>
             ${reqLine}
             ${fusionLine}
+            ${qty > 0 ? `<div>En stock : <strong>×${qty}</strong></div>` : ''}
+        </div>`
+    } else if (itm.type === 'runeAstrale') {
+        const qty = entry?.count ?? 0
+        runeStatHtml = `<div class="item-passif-block" style="margin:0.3rem 0;padding:0.35rem 0.5rem;border-left:3px solid ${ASTRAL_BONUS_COLOR};font-size:0.78rem;line-height:1.7;opacity:0.9;">
+            <div>Applicable aux items requis niveau ≤ <strong>${itm.maxRequiredLevel}</strong></div>
+            <div>Fait progresser le niveau astral de l'item de +1 (item déjà au niveau de forge max requis)</div>
             ${qty > 0 ? `<div>En stock : <strong>×${qty}</strong></div>` : ''}
         </div>`
     }
@@ -355,7 +368,7 @@ function showItemTooltip(itemId, fromClassId) {
             const bubbleCls = isCurrent ? ' set-piece-current' : (!isOwned ? ' set-piece-missing' : '')
             const equipDot  = isEquip ? '<span class="set-piece-dot"></span>' : ''
             piecesHtml += `<div class="set-piece-bubble${bubbleCls}" title="${p.name}"
-                ${isCurrent ? '' : `onclick="closeTooltip(); showItemTooltip('${pieceId}')"`}>
+                ${isCurrent ? '' : `onclick="if(tooltipStack.length>0)tooltipStack.pop(); showItemTooltip('${pieceId}')"`}>
                 <img src="${p.image}" onerror="this.src='img/icons/icon.png'">
                 ${equipDot}
             </div>`
@@ -368,7 +381,7 @@ function showItemTooltip(itemId, fromClassId) {
                 const equipDot = famEquipped ? '<span class="set-piece-dot"></span>' : ''
                 piecesHtml += `<div class="set-piece-bubble"
                     title="${fam.name} (Familier)"
-                    onclick="closeTooltip(); showFamiliarTooltip('${pano.familiar}')">
+                    onclick="if(tooltipStack.length>0)tooltipStack.pop(); showFamiliarTooltip('${pano.familiar}')">
                     <img src="${fam.image}" onerror="this.src='img/icons/icon.png'">
                     ${equipDot}
                 </div>`
@@ -397,9 +410,10 @@ function showItemTooltip(itemId, fromClassId) {
     const slotLabel = itm.type === 'rune'
         ? (itm.transcendance ? 'Rune de Transcendance' : 'Rune de forge')
         : ((typeof MS_SLOT_LABELS !== 'undefined' && MS_SLOT_LABELS[itm.slot]) || itm.slot || '')
+    const astralLvl = entry?.astralLevel || 0
     const lvlBar = itm.itemLevelMax ? `<div class="item-sheet-level-row">
         <div class="item-level-bar"><div class="item-level-fill" style="width:${lvl && itm.itemLevelMax ? (lvl/itm.itemLevelMax)*100 : 0}%"></div></div>
-        <span class="item-sheet-level">Niv. ${lvl} / ${itm.itemLevelMax}</span>
+        <span class="item-sheet-level">Niv. ${lvl} / ${itm.itemLevelMax}${astralLvl > 0 ? ` <span style="color:${ASTRAL_BONUS_COLOR}">+ ${astralLvl}</span>` : ''}</span>
     </div>` : ''
 
     const rarityHtml  = itm.rarity ? `<span class="rarity-${itm.rarity}" style="font-size:0.72rem;">${itm.rarity.replace('_', ' ')}</span>` : ''

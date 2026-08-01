@@ -4935,6 +4935,33 @@ transform: translateY(-1rem);
 .shop-stock-badge    { font-size: 0.7rem; font-weight: bold; color: #a8d8a8; opacity: 0.85; margin-right: 0.35rem; white-space: nowrap; }
 .shop-stock-badge.shop-stock-empty { color: #e07070; opacity: 0.7; }
 
+/* ── Shop — onglet Items : catalogue en bulles groupé par zone du jour ────── */
+.shop-zone-group  { padding: 0.5rem 0.9rem 0.2rem; }
+.shop-zone-title  {
+    font-size: 0.8rem; font-weight: bold; opacity: 0.7;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    padding-bottom: 0.35rem; margin-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.shop-zone-bubbles { display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 0 0.2rem 0.8rem; }
+
+.shop-item-bubble .shop-bubble-price {
+    position: absolute; bottom: -0.85rem;
+    display: flex; align-items: center; gap: 0.15rem;
+    padding: 0 0.35rem; background: var(--dark2); border-radius: 0.3rem;
+    color: var(--light1); font-size: 0.62rem; font-weight: bold; white-space: nowrap; z-index: 2;
+    transition: 0.1s;
+}
+.shop-item-bubble .shop-bubble-price img { width: 0.7rem; height: 0.7rem; object-fit: contain; }
+.shop-item-bubble:hover .shop-bubble-price { background: var(--light1); color: var(--dark2); }
+
+.bubble-level.shop-bubble-empty { color: #e07070; }
+.bubble-level.shop-bubble-maxed { color: #ffe15e; }
+
+.shop-bubble-disabled { opacity: 0.4; cursor: not-allowed; }
+.shop-bubble-disabled:hover { background: var(--dark2) !important; }
+.shop-bubble-disabled:hover img { animation: none !important; }
+
 /* ── Shop buy picker ─────────────────────────────────────── */
 .shop-buy-picker         { display: flex; flex-direction: column; gap: 0.8rem; }
 .shop-buy-picker-item    { display: flex; align-items: center; gap: 0.6rem; }
@@ -4947,6 +4974,7 @@ transform: translateY(-1rem);
 .shop-buy-qty-max:hover  { background: rgba(255,225,94,0.15); }
 .shop-buy-picker-price   { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; opacity: 0.65; }
 .shop-buy-picker-price img { width: 1rem; height: 1rem; object-fit: contain; }
+.shop-confirm-text       { text-align: center; font-size: 0.9rem; margin: 0; }
 
 /* ── Item sheet (tooltip) ────────────────────────────────── */
 .item-sheet                  { display: flex; flex-direction: column; gap: 0.8rem; }
