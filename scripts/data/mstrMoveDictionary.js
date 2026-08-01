@@ -24180,7 +24180,7 @@ move.gravite = {
     cooldownMs: 2000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        // TODO: Minimise les effets aléatoires de la cible
+        { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' },
     ]
 }
 
