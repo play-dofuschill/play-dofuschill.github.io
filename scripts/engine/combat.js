@@ -457,6 +457,9 @@ function startCombat(areaId) {
         spellStacks:           {},
         huppermageLastElement: {},
         huppermageComboCount:  0,
+        sadidaArbreCounter:        0,
+        sadidaArbreFeuilluCounter: 0,
+        treveTurnsRemaining:       0,
         enutrof_air_active:    0,
         enutrof_terre_active:  0,
         enutrof_eau_active:    0,
@@ -823,6 +826,9 @@ function startPoutchCombat(mode) {
         spellStacks:           {},
         huppermageLastElement: {},
         huppermageComboCount:  0,
+        sadidaArbreCounter:        0,
+        sadidaArbreFeuilluCounter: 0,
+        treveTurnsRemaining:       0,
         enutrof_air_active:    0,
         enutrof_terre_active:  0,
         enutrof_eau_active:    0,
@@ -1087,7 +1093,10 @@ function executeMemberAction(memberIndex) {
         const isCritRoll = Math.random() * 100 < (stats?.critChance || 0)
         let lastDamageDealt = 0
         let sessionDmg = 0
-        for (const effect of mv.effects) {
+        // Harmonie (Sadida) : tant qu'active, les sorts ciblant 'enemy' frappent 'all_enemies'
+        const _harmonieActive = (member.buffs || []).some(b => b.stat === 'harmonieRetarget' && !(b.delay ?? 0))
+        for (const rawEffect of mv.effects) {
+            const effect = (_harmonieActive && rawEffect.target === 'enemy') ? { ...rawEffect, target: 'all_enemies' } : rawEffect
             const dmg = executeEffect({
                 caster: member, casterStats: stats, targetEnemy: combat.enemy,
                 effect, moveData: mv, prevMv, lastDamageDealt, moveId,
@@ -1612,6 +1621,11 @@ function executeEffect(ctx) {
     switch (effect.type) {
 
         case 'damage': {
+            // Trêve : annule tous les dégâts directs (alliés ET ennemis) pendant sa durée
+            if (combat?.treveTurnsRemaining > 0) {
+                addLog(`${moveData.name} → dégâts annulés (Trêve) !`)
+                return 0
+            }
             // cible alliée (auto-dégâts) : redirige avec les stats défensives de l'allié
             {
                 const _ALLY_TARGETS = new Set(['self', 'ally_random', 'ally_min_hp'])
@@ -3805,6 +3819,62 @@ function executeEffect(ctx) {
             break
         }
 
+        // Compteur permanent (Arbre / Arbre Feuillu — Sadida) : incrémente un compteur de combat
+        // (plafonné à max) et pose sur le lanceur un buff dont la valeur = compteur × pctPerStack.
+        // Non-cumulable/additif : le buff est remplacé (pas empilé) à chaque lancer. duration: Infinity
+        // → ne décrémente jamais (tickBuffs), seule la fin du combat le remet à zéro (reset de combat.*).
+        case 'growing_stack_buff': {
+            if (!combat) break
+            const _gsbKey   = effect.counterKey
+            const _gsbStat  = effect.stat || 'finalDamagePct'
+            combat[_gsbKey] = Math.min((combat[_gsbKey] || 0) + 1, effect.max)
+            const _gsbCount = combat[_gsbKey]
+            const _gsbVal   = _gsbCount * effect.pctPerStack
+            caster.buffs = (caster.buffs || []).filter(b => b._source !== moveId)
+            caster.buffs.push({ stat: _gsbStat, value: _gsbVal, duration: Infinity, _source: moveId, _label: moveData.name })
+            addLog(`${moveData.name} → compteur ${_gsbCount}/${effect.max} (+${_gsbVal}% ${_gsbStat}, permanent)`)
+            break
+        }
+
+        // Consommation des compteurs Arbre/Arbre Feuillu (Rempotage / Altruisme Végétal — Sadida) :
+        // soigne target en % PV max = ratio × (somme des %dégâts finaux procurés par les compteurs actifs),
+        // puis remet les compteurs (et les buffs associés) à zéro.
+        case 'consume_tree_stacks': {
+            if (!combat) break
+            const _ctsArbre   = combat.sadidaArbreCounter        || 0
+            const _ctsFeuillu = combat.sadidaArbreFeuilluCounter || 0
+            const _ctsDmgPct  = _ctsArbre * 2.5 + _ctsFeuillu * 5
+            if (_ctsDmgPct <= 0) {
+                addLog(`${moveData.name} → aucun compteur Arbre actif`)
+                break
+            }
+            combat.sadidaArbreCounter        = 0
+            combat.sadidaArbreFeuilluCounter = 0
+            caster.buffs = (caster.buffs || []).filter(b => b._source !== 'arbre' && b._source !== 'arbre_feuillu')
+            const _ctsTarget = effect.target === 'ally_min_hp' ? _resolveAllyTarget(effect, caster) : caster
+            if (!_ctsTarget || _ctsTarget.currentHp <= 0) break
+            const _ctsCritMult   = ctx.isCrit ? (1 + Math.max(0, casterStats?.critDamagePct ?? 50) / 100) : 1
+            const _ctsHealBonus  = (1 + (casterStats?.healMaxHpPct || 0) / 100) * _ctsCritMult
+            const _ctsHealPct    = _ctsDmgPct * (effect.ratio || 1)
+            const _ctsHealAmt    = Math.floor((_ctsTarget.maxHp || 0) * (_ctsHealPct / 100) * _ctsHealBonus * _getAntiHealFactor(_ctsTarget))
+            _ctsTarget.currentHp = Math.min(_ctsTarget.maxHp, (_ctsTarget.currentHp || 0) + _ctsHealAmt)
+            const _ctsName = _ctsTarget.name || classes[_ctsTarget.classId]?.name || '?'
+            addLog(`${moveData.name} → consomme ${_ctsDmgPct.toFixed(1)}% dégâts finaux, soigne ${_ctsName} de ${_ctsHealAmt} PV (${_ctsHealPct.toFixed(1)}% PV max)`)
+            _fireEnutrofTraps('heal', null, targetEnemy)
+            _triggerEnemyOnHeal(caster)
+            break
+        }
+
+        // Trêve (Féca) : annule tous les dégâts directs et brûlures (alliés ET ennemis) pendant N tours
+        // ennemis. Vérifié au sommet des cases 'damage' et dans tickDots. Décrémenté à chaque action
+        // ennemie (executeEnemyAction / executeEnemyActionRaid).
+        case 'treve': {
+            if (!combat) break
+            combat.treveTurnsRemaining = effect.duration || 2
+            addLog(`${moveData.name} → tous les dégâts sont annulés pendant ${combat.treveTurnsRemaining} tours ennemis !`)
+            break
+        }
+
     }
 }
 
@@ -3907,6 +3977,12 @@ function executeEnemyAction() {
     if (!combat.enemy) return
     tickBuffs(combat.enemy)
 
+    // Trêve : décompte par tour ennemi
+    if (combat.treveTurnsRemaining > 0) {
+        combat.treveTurnsRemaining--
+        if (combat.treveTurnsRemaining === 0) addLog(`Trêve → dissipée`)
+    }
+
     // Pré-sélection du prochain sort ennemi pour l'affichage
     combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 
@@ -3964,6 +4040,11 @@ function tickDots(entity, onKill) {
                 addLog(`${entity.name || classes[entity.classId]?.name || '?'} [Dofus Ivoire] → brûlure annulée !`)
                 continue
             }
+        }
+        // Trêve : annule les dégâts de brûlure pendant sa durée (le DOT continue de tiquer/décompter)
+        if (combat?.treveTurnsRemaining > 0) {
+            addLog(`${dot.label || 'Brûlure'} → annulée (Trêve)`)
+            continue
         }
         // Résistance élémentaire + réduction de dégâts, évaluées à chaque tique (état défensif courant)
         const { res: _dotRes, damageReductionPct: _dotDrPct } = _getDotDefenseStats(entity)
@@ -5143,6 +5224,9 @@ function _initRaidCombat(areaId) {
     combat.raidSavedEnemies      = [null, null, null]
     combat.huppermageLastElement = {}
     combat.huppermageComboCount  = 0
+    combat.sadidaArbreCounter        = 0
+    combat.sadidaArbreFeuilluCounter = 0
+    combat.treveTurnsRemaining       = 0
     combat.enutrof_air_active    = 0
     combat.enutrof_terre_active  = 0
     combat.enutrof_eau_active    = 0
@@ -5183,6 +5267,9 @@ function _initAnomalieCombat(areaId) {
     combat.raidSavedEnemies      = [null, null, null]
     combat.huppermageLastElement = {}
     combat.huppermageComboCount  = 0
+    combat.sadidaArbreCounter        = 0
+    combat.sadidaArbreFeuilluCounter = 0
+    combat.treveTurnsRemaining       = 0
     combat.enutrof_air_active    = 0
     combat.enutrof_terre_active  = 0
     combat.enutrof_eau_active    = 0
@@ -5540,7 +5627,10 @@ function executeMemberActionRaid(memberIdx, slotIdx) {
     if (!_skipSummonCompanionRaid) {
         let lastDamageDealt = 0
         let sessionDmg = 0
-        for (const effect of mv.effects) {
+        // Harmonie (Sadida) : tant qu'active, les sorts ciblant 'enemy' frappent 'all_enemies'
+        const _harmonieActiveRaid = (member.buffs || []).some(b => b.stat === 'harmonieRetarget' && !(b.delay ?? 0))
+        for (const rawEffect of mv.effects) {
+            const effect = (_harmonieActiveRaid && rawEffect.target === 'enemy') ? { ...rawEffect, target: 'all_enemies' } : rawEffect
             const dmg = executeEffect({
                 caster: member, casterStats: stats, targetEnemy,
                 effect, moveData: mv, prevMv, lastDamageDealt, moveId,
@@ -5676,6 +5766,13 @@ function executeEnemyActionRaid(slotIdx) {
     }
 
     tickBuffs(e)
+
+    // Trêve : décompte par tour ennemi
+    if (combat.treveTurnsRemaining > 0) {
+        combat.treveTurnsRemaining--
+        if (combat.treveTurnsRemaining === 0) addLog(`Trêve → dissipée`)
+    }
+
     if (combat.enemies[slotIdx]) {
         combat.enemyNextMoveIds[slotIdx] = pickNextEnemyMove(combat.enemies[slotIdx])
     }

@@ -4817,13 +4817,13 @@ move.renfort = {
     classId: 'feca',
     cooldownMs: 2000,
     effects: [
-        {type: 'buff', stat: 'spd', value: 20, duration: 1, target: 'ally_1'},
+        {type: 'buff', stat: 'spd', value: 20, duration: 4, target: 'ally_1'},
         {type: 'activate_slot', slot: 1}
     ],
     spellProgression: [
         {lvl: 69, patch: {}},
-        {lvl: 131, patch: {buff: {value: 25, duration: 1}}},
-        {lvl: 198, patch: {buff: {value: 30, duration: 1}}}
+        {lvl: 131, patch: {buff: {value: 25, duration: 4}}},
+        {lvl: 198, patch: {buff: {value: 30, duration: 4}}}
     ],
     description: "Booste la vitesse du membre en slot 1 et le rend actif."
 }
@@ -4863,12 +4863,12 @@ move.bergerie = {
     classId: 'feca',
     cooldownMs: 2000,
     effects: [
-        {type: 'buff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'self'},
+        {type: 'buff', stat: 'damageReductionPct', value: 5, duration: 2, target: 'all_allies'},
         {type: 'purify', target: 'all_allies'}
     ],
     spellProgression: [
         {lvl: 81, patch: {}},
-        {lvl: 147, patch: {buff: {value: 20, duration: 2}}}
+        {lvl: 147, patch: {buff: {value: 10, duration: 3}}}
     ],
     description: "Réduit les dommages reçus par le lanceur et purge les débuffs de toute l'équipe."
 }
@@ -4896,11 +4896,11 @@ move.bouclier_feca = {
     classId: 'feca',
     cooldownMs: 2000,
     effects: [
-        {type: 'buff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'self'}
+        {type: 'buff', stat: 'damageReductionPct', value: 15, duration: 2, target: 'all_allies'}
     ],
     spellProgression: [
         {lvl: 90, patch: {}},
-        {lvl: 157, patch: {buff: {value: 20, duration: 2}}}
+        {lvl: 157, patch: {buff: {value: 20, duration: 3}}}
     ],
     description: "Réduit les dommages reçus par le lanceur."
 }
@@ -5015,7 +5015,7 @@ move.regroupement = {
     cooldownMs: 2700,
     effects: [
         {type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'enemy'},
-        {type: 'buff', stat: 'damageReductionPct', value: 20, duration: 2, target: 'self'}
+        {type: 'buff', stat: 'damageReductionPct', value: 10, duration: 2, target: 'self'}
     ],
     spellProgression: [
         {lvl: 130, patch: {}},
@@ -5023,14 +5023,14 @@ move.regroupement = {
     ],
     description: "Occasionne des dommages Terre aux ennemis et renforce les défenses du lanceur en le regroupant."
 }
-// move.treve = {
-//     id: 'treve',
-//     name: 'Trêve',
-//     classId: 'feca',
-//     cooldownMs: 2000,
-//     effects: [],
-//     description: ""
-// }
+move.treve = {
+    id: 'treve',
+    name: 'Trêve',
+    classId: 'feca',
+    cooldownMs: 4000,
+    effects: [{type: 'treve', duration: 2}],
+    description: "Annule tous les dégâts (directs et brûlures) infligés par les alliés et les ennemis pendant 2 tours ennemis."
+}
 move.giboulee = {
     id: 'giboulee',
     name: 'Giboulée',
@@ -6847,7 +6847,8 @@ move.larme_de_sadida = {
     name: 'Larme de Sadida',
     classId: 'sadida',
     cooldownMs: 2500,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 17}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 8,
                         patch: {}},
                        {lvl: 67,
@@ -6861,7 +6862,9 @@ move.buisson_ardent = {
     name: 'Buisson Ardent',
     classId: 'sadida',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'},
+              {type: 'dot', element: 'feu', value: 5, duration: 3, target: 'enemy'}
+    ],
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
@@ -6884,20 +6887,20 @@ move.cigue = {
                         patch: {damage: {min: 25, max: 27}}}],
     description: "Frappe dans l'élément air."
 }
-// move.arbre = {
-//     id: 'arbre',
-//     name: 'Arbre',
-//     classId: 'sadida',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
+move.arbre = {
+    id: 'arbre',
+    name: 'Arbre',
+    classId: 'sadida',
+    cooldownMs: 2000,
+    effects: [{type: 'growing_stack_buff', counterKey: 'sadidaArbreCounter', max: 10, pctPerStack: 2.5, stat: 'finalDamagePct', target: 'self'}],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: {}},
+                       {lvl: 139,
+                        patch: {}}],
+    description: "Fait pousser un Arbre : incrémente un compteur permanent (max 10) qui augmente les dégâts finaux du lanceur de 2.5% par cran, jamais remis à zéro avant la fin du combat."
+}
 move.la_folle = {
     id: 'la_folle',
     name: 'La Folle',
@@ -6940,20 +6943,21 @@ move.contagion = {
                         patch: {dot: {value: 33}}}],
     description: "Empoisonne tous les ennemis dans l'élément air."
 }
-// move.ronce_apaisante = {
-//     id: 'ronce_apaisante',
-//     name: 'Ronce Apaisante',
-//     classId: 'sadida',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 37,
-//                         patch: {}},
-//                        {lvl: 92,
-//                         patch: {}},
-//                        {lvl: 159,
-//                         patch: {}}],
-//     description: " "
-// }
+move.ronce_apaisante = {
+    id: 'ronce_apaisante',
+    name: 'Ronce Apaisante',
+    classId: 'sadida',
+    cooldownMs: 3000,
+    effects: [{type: 'heal%maxHp_team', heal: 8},
+              {type: 'purify', target: 'all_allies'}],
+    spellProgression: [{lvl: 37,
+                        patch: {}},
+                       {lvl: 92,
+                        patch: {effects: [{type: 'heal%maxHp_team', heal: 12}, {type: 'purify', target: 'all_allies'}]}},
+                       {lvl: 159,
+                        patch: {effects: [{type: 'heal%maxHp_team', heal: 16}, {type: 'purify', target: 'all_allies'}]}}],
+    description: "Soigne toute l'équipe en pourcentage des PV max et purge les débuffs de tous les alliés."
+}
 move.la_bloqueuse = {
     id: 'la_bloqueuse',
     name: 'La Bloqueuse',
@@ -7029,7 +7033,8 @@ move.herbes_folles = {
     name: 'Herbes Folles',
     classId: 'sadida',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 23}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 23}, target: 'enemy'},
+              {type: 'dot', element: 'feu', value: 5, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
@@ -7155,7 +7160,8 @@ move.feu_de_brousse = {
     name: 'Feu de Brousse',
     classId: 'sadida',
     cooldownMs: 2500,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 32, max: 36}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 32, max: 36}, target: 'enemy'},
+              {type: 'dot', element: 'feu', value: 5, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
@@ -7174,18 +7180,18 @@ move.vent_empoisonne = {
                         patch: {dot: {value: 28}}}],
     description: "Empoisonne l'ennemi dans l'élément air."
 }
-// move.arbre_feuillu = {
-//     id: 'arbre_feuillu',
-//     name: 'Arbre Feuillu',
-//     classId: 'sadida',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 115,
-//                         patch: {}},
-//                        {lvl: 182,
-//                         patch: {}}],
-//     description: ""
-// }
+move.arbre_feuillu = {
+    id: 'arbre_feuillu',
+    name: 'Arbre Feuillu',
+    classId: 'sadida',
+    cooldownMs: 2000,
+    effects: [{type: 'growing_stack_buff', counterKey: 'sadidaArbreFeuilluCounter', max: 5, pctPerStack: 5, stat: 'finalDamagePct', target: 'self'}],
+    spellProgression: [{lvl: 115,
+                        patch: {}},
+                       {lvl: 182,
+                        patch: {}}],
+    description: "Fait pousser un Arbre Feuillu : incrémente un compteur permanent (max 5) qui augmente les dégâts finaux du lanceur de 5% par cran, jamais remis à zéro avant la fin du combat."
+}
 move.la_folle_transmutee = {
     id: 'la_folle_transmutee',
     name: 'La Folle Transmutée',
@@ -7222,14 +7228,14 @@ move.mangrove = {
                         patch: {damage: {min: 50, max: 56}}}],
     description: "Frappe puissamment dans l'élément eau."
 }
-// move.rempotage = {
-//     id: 'rempotage',
-//     name: 'Rempotage',
-//     classId: 'sadida',
-//     cooldownMs: 2000,
-//     effects: [],
-//     description: ""
-// }
+move.rempotage = {
+    id: 'rempotage',
+    name: 'Rempotage',
+    classId: 'sadida',
+    cooldownMs: 3000,
+    effects: [{type: 'consume_tree_stacks', ratio: 2.5, target: 'self'}],
+    description: "Consomme les compteurs Arbre et Arbre Feuillu pour soigner le lanceur en PV max, à hauteur de 2.5 fois le bonus de dégâts finaux qu'ils procuraient. Les compteurs repassent à zéro."
+}
 move.la_bloqueuse_transmutee = {
     id: 'la_bloqueuse_transmutee',
     name: 'La Bloqueuse Transmutée',
@@ -7286,14 +7292,14 @@ move.chardons_ardents = {
     effects: [{type: 'damage', element: 'feu', damage: {min: 50, max: 56}, target: 'enemy'}],
     description: "Frappe puissamment dans l'élément feu."
 }
-// move.altruisme_vegetal = {
-//     id: 'altruisme_vegetal',
-//     name: 'Altruisme Végétal',
-//     classId: 'sadida',
-//     cooldownMs: 2000,
-//     effects: [],
-//     description: ""
-// }
+move.altruisme_vegetal = {
+    id: 'altruisme_vegetal',
+    name: 'Altruisme Végétal',
+    classId: 'sadida',
+    cooldownMs: 3000,
+    effects: [{type: 'consume_tree_stacks', ratio: 2.5, target: 'ally_min_hp'}],
+    description: "Consomme les compteurs Arbre et Arbre Feuillu pour soigner l'allié le moins en vie, à hauteur de 2.5 fois le bonus de dégâts finaux qu'ils procuraient. Les compteurs repassent à zéro."
+}
 move.la_gonflable_transmutee = {
     id: 'la_gonflable_transmutee',
     name: 'La Gonflable Transmutée',
@@ -7318,14 +7324,14 @@ move.force_de_la_nature = {
     effects: [{type: 'damage', element: 'terre', damage: {min: 55, max: 62}, target: 'enemy'}],
     description: "Frappe puissamment dans l'élément terre."
 }
-// move.harmonie = {
-//     id: 'harmonie',
-//     name: 'Harmonie',
-//     classId: 'sadida',
-//     cooldownMs: 2000,
-//     effects: [],
-//     description: ""
-// }
+move.harmonie = {
+    id: 'harmonie',
+    name: 'Harmonie',
+    classId: 'sadida',
+    cooldownMs: 3000,
+    effects: [{type: 'buff', stat: 'harmonieRetarget', value: 1, duration: 2, target: 'self', noStack: true}],
+    description: "Pendant 2 tours, tous les sorts du lanceur ciblant un seul ennemi frappent tous les ennemis à la place."
+}
 move.la_surpuissante_transmutee = {
     id: 'la_surpuissante_transmutee',
     name: 'La Surpuissante Transmutée',
