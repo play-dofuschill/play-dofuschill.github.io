@@ -133,7 +133,7 @@ function _renderChenilList(content) {
             ? `${fam.name} — Niv. ${level}${doubledCount > 0 ? ` (${doubledCount}/${maxDoubleSlots} doublé)` : ''}${passifId ? ` — Passif actif : ${passifName}` : ''}`
             : `${fam.name} — non débloqué`
         const imgStyle = unlocked ? '' : 'filter:brightness(0);'
-        html += `<div class="game-bubble${lockedCls}" title="${title}" ${clickAttr}>
+        html += `<div class="game-bubble${lockedCls}" title="${title}" ${clickAttr} oncontextmenu="event.preventDefault();showFamiliarTooltip('${fam.id}')">
             ${levelBadge}${upgradeBadge}${killerBadge}
             <img src="${fam.image || 'img/icons/icon.png'}" style="${imgStyle}" onerror="this.src='img/icons/icon.png'">
         </div>`

@@ -1440,7 +1440,7 @@ move.fleche_dexpiation = {
                         patch: {}},
                        {lvl: 142,
                         patch: {damage: {min: 35, max: 37}}}],
-    description: ""
+    description: "Tape dans l'eau. Les dégâts augmentent à chaque lancer (limite de 3)."
 }
 move.fleche_explosive = {
     id: 'fleche_explosive',
@@ -1466,7 +1466,7 @@ move.fleche_persecutrice = {
                         patch: {}},
                        {lvl: 152,
                         patch: {damage: {min: 13, max: 15}}}],
-    description: ""
+    description: "Frappe l'ennemi successivement dans les éléments Terre et Eau."
 }
 move.vendetta = {
     id: 'vendetta',
@@ -1480,7 +1480,7 @@ move.vendetta = {
                         patch: {}},
                        {lvl: 157,
                         patch: {buff: { value: 20 }}}],
-    description: ""
+    description: "Augmente les chances de coup critique du lanceur et réduit celles de l'ennemi."
 }
 move.pluie_de_fleches = {
     id: 'pluie_de_fleches',
@@ -1492,7 +1492,7 @@ move.pluie_de_fleches = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 23, max: 25}}}],
-    description: ""
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.fleche_ralentissante = {
     id: 'fleche_ralentissante',
@@ -1505,7 +1505,7 @@ move.fleche_ralentissante = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 24, max: 26}, buff: { value: 30 }}}],
-    description: ""
+    description: "Frappe dans l'élément Eau et réduit la Vitesse de l'ennemi."
 }
 move.fleches_enflammees = {
     id: 'fleches_enflammees',
@@ -1518,7 +1518,7 @@ move.fleches_enflammees = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 30, max: 33}}}],
-    description: ""
+    description: "Frappe dans l'élément Feu et fait reculer l'ennemi."
 }
 move.tir_de_couverture = {
     id: 'tir_de_couverture',
@@ -1530,7 +1530,7 @@ move.tir_de_couverture = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 30, max: 33}}}],
-    description: ""
+    description: "Frappe dans l'élément Terre."
 }
 move.represailles = {
     id: 'represailles',
@@ -1567,7 +1567,7 @@ move.acuite_absolue = {
                         patch: {}},
                        {lvl: 187,
                         patch: {buff :[{stat: 'spd', value: 25}, {stat: 'critChance', value: 20}]}}],
-    description: ""
+    description: "Augmente la Vitesse et les chances de coup critique du lanceur."
 }
 move.fleche_assaillante = {
     id: 'fleche_assaillante',
@@ -1580,7 +1580,7 @@ move.fleche_assaillante = {
                         patch: {}},
                        {lvl: 192,
                         patch: {damage: {min: 31, max: 35}}}],
-    description: ""
+    description: "Frappe dans l'élément Feu et augmente la Puissance du lanceur."
 }
 move.tir_de_barrage = {
     id: 'tir_de_barrage',
@@ -1593,7 +1593,7 @@ move.tir_de_barrage = {
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 26, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément Terre et fait reculer l'ennemi."
 }
 move.balise_de_rappel = {
     id: 'balise_de_rappel',
@@ -1612,7 +1612,7 @@ move.fleche_de_tourment = {
     effects: [{type: 'damage', element: 'air', damage: {min: 25, max: 27}, target: 'enemy'},
               {type: 'lifesteal', ratio: 0.25, target: 'self'},
               { type: 'antiHeal', value: 50, duration: 3, target: 'self' }],
-    description: ""
+    description: "Frappe dans l'élément Air, vole de la vie, mais empêche le lanceur de se soigner pendant 3 tours."
 }
 move.fleche_paralysante = {
     id: 'fleche_paralysante',
@@ -1621,7 +1621,7 @@ move.fleche_paralysante = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 27, max: 29}, target: 'enemy'},
               {type: 'debuff', stat: 'finalDamagePct', value: 15, duration: 1, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément Eau et réduit les dégâts infligés par l'ennemi."
 }
 move.tirs_percants = {
     id: 'tirs_percants',
@@ -1629,7 +1629,7 @@ move.tirs_percants = {
     classId: 'cra',
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self'}],
-    description: ""
+    description: "Augmente les dégâts fixes infligés par le lanceur."
 }
 move.carreaux_destructeurs = {
     id: 'carreaux_destructeurs',
@@ -1638,7 +1638,7 @@ move.carreaux_destructeurs = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 31, max: 33}, target: 'enemy'},
               {type: 'debuff', stat: 'flatDamage', value: 50, duration: 2, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément Terre et réduit les dégâts fixes infligés par l'ennemi."
 }
 move.fleche_ecrasante = {
     id: 'fleche_ecrasante',
@@ -1647,7 +1647,7 @@ move.fleche_ecrasante = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 34}, target: 'enemy'},
               {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'all_enemies'}],
-    description: ""
+    description: "Frappe dans l'élément Feu et réduit la Vitesse de tous les ennemis."
 }
 move.fleches_de_repli = {
     id: 'fleches_de_repli',
@@ -1655,7 +1655,7 @@ move.fleches_de_repli = {
     classId: 'cra',
     cooldownMs: 2000,
     effects: [{type: 'recul', target: 'self'}],
-    description: ""
+    description: "Fait reculer le lanceur lui-même pour se mettre à distance."
 }
 move.fleche_devorante = {
     id: 'fleche_devorante',
@@ -1673,7 +1673,7 @@ move.fleche_du_jugement = {
     effects: [{type: 'damage', element: 'terre', damage: {min: 25, max: 30}, target: 'enemy'},
               {type: 'damage', element: 'terre', damage: {min: 11, max: 13}, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.1, target: 'self'}],
-    description: ""
+    description: "Frappe deux fois dans l'élément Terre et vole de la vie."
 }
 move.miroir_aux_alouettes = {
     id: 'miroir_aux_alouettes',
@@ -1689,7 +1689,7 @@ move.fleche_de_redemption = {
     classId: 'cra',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', stackedDamage: [{min:11,max:13},{min:23,max:25},{min:30,max:32},{min:31,max:33}], target: 'enemy'}],
-    description: ""
+    description: "Augmente les dégâts à chaque lancer (limite de 4)."
 }
 move.fleche_fulminante = {
     id: 'fleche_fulminante',
@@ -1710,7 +1710,7 @@ move.fleche_tyrannique = {
               {type: 'damage', element: 'air', damage: {min: 13, max: 15}, target: 'enemy'},
               {type: 'burnMark', element: 'feu', damage: { min: 7, max: 8 }},
               {type: 'burnMark', element: 'feu', damage: { min: 7, max: 8 }}],
-    description: ""
+    description: "Frappe dans les éléments Feu et Air, et pose deux brûlures différées qui se déclenchent au prochain sort du lanceur."
 }
 move.sentinelle = {
     id: 'sentinelle',
@@ -1719,7 +1719,7 @@ move.sentinelle = {
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'finalDamagePct', value: 25, duration: 4, target: 'self'},
               {type: 'debuff', stat: 'spd', value: 50, duration: 3, target: 'enemy'}],
-    description: ""
+    description: "Augmente les dégâts finaux du lanceur et réduit fortement la Vitesse de l'ennemi."
 }
 // #endregion
 
@@ -2015,7 +2015,7 @@ move.pinceau_tribal = {
                         patch: {}},
                        {lvl: 147,
                         patch: {cooldownMs: 2200, damage: {min: 9,max: 11},heal:{min: 10,max: 13},buff: {value : 50}}}],
-    description: ""
+    description: "Frappe dans l'élément Terre, soigne l'allié le moins en vie et renforce les dégâts fixes d'un allié aléatoire."
 }
 move.cryotherapie = {
     id: 'cryotherapie',
@@ -2028,7 +2028,7 @@ move.cryotherapie = {
                         patch: {}},
                        {lvl: 152,
                         patch: {damage: {min: 12, max: 14}}}],
-    description: ""
+    description: "Frappe dans l'élément Eau et pose un bouclier sur le lanceur."
 }
 move.mot_de_reconstitution = {
     id: 'mot_de_reconstitution',
@@ -2049,7 +2049,7 @@ move.mot_malicieux = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 17, max: 21},buff: {value : 75}}}],
-    description: ""
+    description: "Frappe dans l'élément Air et réduit la Puissance de l'ennemi."
 }
 move.cri_assourdissant = {
     id: 'cri_assourdissant',
@@ -2062,7 +2062,7 @@ move.cri_assourdissant = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 17, max: 21},buff: {value : 50}}}],
-    description: ""
+    description: "Frappe dans l'élément Feu et réduit les dégâts fixes infligés par l'ennemi."
 }
 move.sanglots = {
     id: 'sanglots',
@@ -2075,7 +2075,7 @@ move.sanglots = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 17, max: 11},buff: {value : 20}}}],
-    description: ""
+    description: "Frappe dans l'élément Eau et réduit la Vitesse de l'ennemi."
 }
 move.onguent_ancestral = {
     id: 'onguent_ancestral',
@@ -2088,7 +2088,7 @@ move.onguent_ancestral = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 17, max: 21}}}],
-    description: ""
+    description: "Frappe dans l'élément Terre et empêche l'ennemi de se soigner pendant 3 tours."
 }
 // move.mot_alchimique = {
 //     id: 'mot_alchimique',
@@ -2127,7 +2127,7 @@ move.scalpel = {
                         patch: {}},
                        {lvl: 192,
                         patch: {damage: {min: 21, max: 25}}}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible, vole de la vie et purge les débuffs du lanceur."
 }
 move.vacarme = {
     id: 'vacarme',
@@ -2140,7 +2140,7 @@ move.vacarme = {
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 16, max: 18}}}],
-    description: ""
+    description: "Frappe dans l'élément Feu et soigne un allié aléatoire."
 }
 move.mot_furieux = {
     id: 'mot_furieux',
@@ -2149,7 +2149,7 @@ move.mot_furieux = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 16, max: 19}, target: 'enemy'},
               {type: 'recul', target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément Terre et fait reculer l'ennemi."
 }
 // move.mot_galvanisant = {
 //     id: 'mot_galvanisant',
@@ -2166,7 +2166,7 @@ move.mot_defendu = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 19}, target: 'enemy'},
               {type: 'avance', target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément Eau et fait avancer l'ennemi d'un rang."
 }
 move.mot_secret = {
     id: 'mot_secret',
@@ -2175,7 +2175,7 @@ move.mot_secret = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 19}, target: 'enemy'},
               { type: 'swap_enemies', target: 'enemy' }],
-    description: ""
+    description: "Frappe dans l'élément Air et échange les positions des ennemis secondaire et tertiaire (raid uniquement)."
 }
 // move.mot_déprimant = {
 //     id: 'mot_déprimant',
@@ -2192,7 +2192,7 @@ move.mot_rituel = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 18}, target: 'enemy'},
         {type: 'buff', stat: 'spellDamagePct', value: 10, duration: 2, target: 'random_ally'}],
-    description: ""
+    description: "Frappe dans l'élément Terre et augmente les dégâts de sort d'un allié aléatoire."
 }
 move.mot_exsangue = {
     id: 'mot_exsangue',
@@ -2201,7 +2201,7 @@ move.mot_exsangue = {
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 15, max: 18}, target: 'enemy'},
         {type: 'debuff', stat: 'finalDamagePct', value: 10, duration: 2, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément Eau et réduit les dégâts infligés par l'ennemi."
 }
 // move.mot_décourageant = {
 //     id: 'mot_décourageant',
@@ -2227,7 +2227,7 @@ move.bosquet_enchante = {
     cooldownMs: 4000,
     effects: [{type: 'damage', element: 'air', damage: {min: 12, max: 16}, target: 'enemy'},
               {type: 'heal_adjacent%maxHp', heal: 3, target: 'self'}],
-    description: ""
+    description: "Frappe dans l'élément Air et soigne les alliés adjacents au lanceur."
 }
 move.fontaine_de_jouvence = {
     id: 'fontaine_de_jouvence',
@@ -2243,7 +2243,7 @@ move.choeur_strident = {
     classId: 'eniripsa',
     cooldownMs: 4000,
     effects: [{type: 'damage', element: 'feu', stackedDamage: [{min:11,max:13},{min:16,max:18},{min:20,max:22},{min:25,max:28}], target: 'enemy'}],
-    description: ""
+    description: "Augmente les dégâts à chaque lancer (limite de 4)."
 }
 move.murmure = {
     id: 'murmure',
@@ -2253,7 +2253,7 @@ move.murmure = {
     effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'},
         {type: 'debuff', stat: 'spd', value: 15, duration: 2, target: 'enemy'},
         {type: 'buff', stat: 'spd', value: 15, duration: 2, target: 'self'}],
-    description: ""
+    description: "Frappe dans l'élément Air, réduit la Vitesse de l'ennemi et augmente celle du lanceur."
 }
 move.mot_de_solidarité = {
     id: 'mot_de_solidarité',
@@ -2537,7 +2537,7 @@ move.peremption = {
                         patch: {}},
                        {lvl: 142,
                         patch: {damage: {min: 21, max: 24}, summonMultiplier: 3}}],
-    description: ""
+    description: "Tape l'ennemi dans l'élément feu. Les dégâts sont fortement multipliés sur les invocations."
 }
 move.corruption = {
     id: 'corruption',
@@ -2558,7 +2558,7 @@ move.retraite_anticipee = {
                         patch: {}},
                        {lvl: 152,
                         patch: {buff: {value : 40}}}],
-    description: ""
+    description: "Réduit la vitesse de tous les ennemis."
 }
 move.coffre_anime = {
     id: 'coffre_anime',
@@ -2570,7 +2570,7 @@ move.coffre_anime = {
                         patch: {}},
                        {lvl: 157,
                         patch: { summon: { scale: 0.40 } }}],
-    description: ""
+    description: "Invoque un coffre animé qui combat aux côtés du lanceur."
 }
 move.eboulement = {
     id: 'eboulement',
@@ -2642,7 +2642,7 @@ move.musette_animee = {
                         patch: {}},
                        {lvl: 182,
                         patch: { summon: { scale: 0.50 } }}],
-    description: ""
+    description: "Invoque une musette animée qui combat aux côtés du lanceur."
 }
 move.deambulation = {
     id: 'deambulation',
@@ -2650,7 +2650,7 @@ move.deambulation = {
     classId: 'enutrof',
     cooldownMs: 2000,
     effects: [{type: 'purify', duration: 3, target: 'self'}],
-    description: ""
+    description: "Purge les débuffs du lanceur."
 }
 move.boite_a_outils = {
     id: 'boite_a_outils',
@@ -2664,7 +2664,7 @@ move.boite_a_outils = {
                         patch: {}},
                        {lvl: 192,
                         patch: {buff :[{stat: 'finalDamagePct', value: 20}, {stat: 'spd', value: 20}, {stat: 'flatDamage', value: 20}]}}],
-    description: ""
+    description: "Renforce les dégâts finaux, la Vitesse et les dégâts fixes du membre en slot 2."
 }
 move.feu_de_mine = {
     id: 'feu_de_mine',
@@ -2677,7 +2677,7 @@ move.feu_de_mine = {
                         patch: {}},
                        {lvl: 197,
                         patch: {cooldownMs: 2700, damage: {min: 24, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et soigne l'allié le moins en vie."
 }
 move.clef_de_bras = {
     id: 'clef_de_bras',
@@ -2686,7 +2686,7 @@ move.clef_de_bras = {
     cooldownMs: 2500,
     effects: [{ type: 'heal', heal: { min: 40, max: 60 }, target: 'self' },
               { type: 'debuff', stat: 'atk', value: 200, duration: 2, target: 'self' }],
-    description: ""
+    description: "Soigne fortement le lanceur mais réduit sa propre Puissance pendant 2 tours."
 }
 move.obsolescence = {
     id: 'obsolescence',
@@ -2695,7 +2695,7 @@ move.obsolescence = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 16, max: 20}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 50, duration: 1, target: 'enemy' }],
-    description: ""
+    description: "Frappe dans l'élément eau et réduit la Puissance de l'ennemi."
 }
 move.beche_animee = {
     id: 'beche_animee',
@@ -2703,7 +2703,7 @@ move.beche_animee = {
     classId: 'enutrof',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'beche_animee', scale: 0.35, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque une bêche animée qui combat aux côtés du lanceur."
 }
 move.decadence = {
     id: 'decadence',
@@ -2712,7 +2712,7 @@ move.decadence = {
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'finalDamagePct', value: 10, slot: 2, duration: 1}, 
               {type: 'debuff', stat: 'finalDamagePct', value: 10, duration: 2, target: 'enemy'}],
-    description: ""
+    description: "Augmente les dégâts finaux du membre en slot 2 et réduit ceux de l'ennemi."
 }
 move.tourbiere = {
     id: 'tourbiere',
@@ -2730,7 +2730,7 @@ move.age_d_or = {
     classId: 'enutrof',
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'atk', value: 300, duration: 1, target: 'self'}],
-    description: ""
+    description: "Augmente fortement la Puissance du lanceur pour 1 tour."
 }
 move.dernier_recours = {
     id: 'dernier_recours',
@@ -2739,7 +2739,7 @@ move.dernier_recours = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 22}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy' }],
-    description: ""
+    description: "Frappe dans l'élément air et réduit la Vitesse de l'ennemi."
 }
 move.lancer_de_pelle = {
     id: 'lancer_de_pelle',
@@ -2748,7 +2748,7 @@ move.lancer_de_pelle = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 24, max: 27}, target: 'enemy'},
               { type: 'buff', stat: 'atk', value: 60, duration: 1, target: 'self' }],
-    description: ""
+    description: "Frappe dans l'élément terre et augmente la Puissance du lanceur."
 }
 move.beche_des_anciens = {
     id: 'beche_des_anciens',
@@ -2757,7 +2757,7 @@ move.beche_des_anciens = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 22, max: 26}, target: 'enemy'},
               { type: 'debuff', stat: 'spd', value: 10, duration: 1, target: 'enemy' }],
-    description: ""
+    description: "Frappe dans l'élément air et réduit la Vitesse de l'ennemi."
 }
 move.gisement = {
     id: 'gisement',
@@ -2766,7 +2766,7 @@ move.gisement = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: {min: 19, max: 22}, target: 'enemy'},
               { type: 'heal', heal: { min: 29, max: 32 }, target: 'ally_min_hp' }],
-    description: ""
+    description: "Frappe dans l'élément feu et soigne l'allié le moins en vie."
 }
 move.tamisage = {
     id: 'tamisage',
@@ -2775,7 +2775,7 @@ move.tamisage = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 18, max: 24}, target: 'enemy'},
               { type: 'debuff', stat: 'atk', value: 100, duration: 1, target: 'enemy' }],
-    description: ""
+    description: "Frappe dans l'élément eau et réduit fortement la Puissance de l'ennemi."
 }
 move.tunnel_de_fortune = {
     id: 'tunnel_de_fortune',
@@ -2793,7 +2793,7 @@ move.pelle_de_fortune = {
     classId: 'enutrof',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'pelle_de_fortune', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque une pelle de fortune qui combat aux côtés du lanceur."
 }
 move.malle_animee = {
     id: 'malle_animee',
@@ -2801,7 +2801,7 @@ move.malle_animee = {
     classId: 'enutrof',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'malle_animee', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque une malle animée qui combat aux côtés du lanceur."
 }
 // #endregion
 
@@ -3072,7 +3072,7 @@ move.polarite = {
                     feu:   { type: 'recul', target: 'enemy'},
                     eau:   { type: 'avance', target: 'enemy'},
                     air:   { type: 'avance', target: 'enemy'}}}],
-    description: ""
+    description: "Consomme l'élément actif : Terre ou Feu fait reculer l'ennemi, Eau ou Air le fait avancer."
 }
 move.surcharge_runique = {
     id: 'surcharge_runique',
@@ -3132,7 +3132,7 @@ move.lances_telluriques = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 12, max: 14}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et vole de la vie."
 }
 move.onde_celeste = {
     id: 'onde_celeste',
@@ -3145,7 +3145,7 @@ move.onde_celeste = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 12, max: 14}}}],
-    description: ""
+    description: "Frappe dans l'élément air et vole de la vie."
 }
 move.tison = {
     id: 'tison',
@@ -3158,7 +3158,7 @@ move.tison = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 12, max: 14}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et vole de la vie."
 }
 move.cataracte = {
     id: 'cataracte',
@@ -3171,7 +3171,7 @@ move.cataracte = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 12, max: 14}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.manifestation = {
     id: 'manifestation',
@@ -3184,7 +3184,7 @@ move.manifestation = {
                         patch: {}},
                        {lvl: 182,
                         patch: {damage: {min: 12, max: 14}}}],
-    description: ""
+    description: "Frappe dans l'élément posé sur l'ennemi, le consomme, et vole de la vie."
 }
 move.tribut = {
     id: 'tribut',
@@ -3196,7 +3196,7 @@ move.tribut = {
                     feu:   { shield: true, levelPct: 2,      duration: 2 },
                     eau:   { stat: 'atk',        value: 150, duration: 2 },
                     air:   { stat: 'flatDamage', value: 50,  duration: 2 }}}],
-    description: ""
+    description: "Consomme l'élément posé et applique un buff en fonction de l'élément consommé."
 }
 move.avalanche = {
     id: 'avalanche',
@@ -3208,7 +3208,7 @@ move.avalanche = {
                         patch: {}},
                        {lvl: 192,
                         patch: {cooldownMs: 2200, damage: {min: 28, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.deflagration = {
     id: 'deflagration',
@@ -3220,7 +3220,7 @@ move.deflagration = {
                         patch: {}},
                        {lvl: 197,
                         patch: {cooldownMs: 2200, damage: {min: 27, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.courant_quadramental = {
     id: 'courant_quadramental',
@@ -3236,7 +3236,7 @@ move.comete = {
     classId: 'huppermage',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 30}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.asteroide = {
     id: 'asteroide',
@@ -3244,7 +3244,7 @@ move.asteroide = {
     classId: 'huppermage',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 28, max: 31}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.repulsion_runique = {
     id: 'repulsion_runique',
@@ -3252,7 +3252,7 @@ move.repulsion_runique = {
     classId: 'huppermage',
     cooldownMs: 2000,
     effects: [{type: 'recul', target: 'enemy'}],
-    description: ""
+    description: "Fait reculer l'ennemi sans lui infliger de dégâts."
 }
 move.empreinte = {
     id: 'empreinte',
@@ -3260,7 +3260,7 @@ move.empreinte = {
     classId: 'huppermage',
     cooldownMs: 2200,
     effects: [{ type: 'absorbElementDmg', damage: { min: 12, max: 14 }, target: 'all_enemies' }],
-    description: ""
+    description: "Frappe tous les ennemis dans l'élément qu'ils portent et le consomme (raid uniquement)."
 }
 move.stalactite = {
     id: 'stalactite',
@@ -3269,7 +3269,7 @@ move.stalactite = {
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 21}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.2, target: 'self' }],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.volcan = {
     id: 'volcan',
@@ -3278,7 +3278,7 @@ move.volcan = {
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 19, max: 21}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.2, target: 'self' }],
-    description: ""
+    description: "Frappe dans l'élément feu et vole de la vie."
 }
 move.breche = {
     id: 'breche',
@@ -3287,7 +3287,7 @@ move.breche = {
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 19, max: 21}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.2, target: 'self' }],
-    description: ""
+    description: "Frappe dans l'élément terre et vole de la vie."
 }
 move.ouragan = {
     id: 'ouragan',
@@ -3296,7 +3296,7 @@ move.ouragan = {
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'air', damage: {min: 19, max: 21}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.2, target: 'self' }],
-    description: ""
+    description: "Frappe dans l'élément air et vole de la vie."
 }
 move.gardien_elementaire = {
     id: 'gardien_elementaire',
@@ -3304,7 +3304,7 @@ move.gardien_elementaire = {
     classId: 'huppermage',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'gardien_elementaire_huppermage', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Gardien Élémentaire qui combat aux côtés du lanceur."
 }
 move.convection = {
     id: 'convection',
@@ -3658,7 +3658,7 @@ move.esprit_felin = {
         {lvl: 131, patch: {damage: {min: 26, max: 29}}},
         {lvl: 198, patch: {cooldownMs: 2200, damage: {min: 31, max: 34}}}
     ],
-    description: "Téléporte aléatoirement et symétriquement la cible par rapport au lanceur ou le lanceur par rapport à la cible, occasionne des dommages Terre aux ennemis et augmente les Résistances Critiques du lanceur."
+    description: "70% de chances d'infliger des dégâts Terre, 30% de chances de soigner l'ennemi, et augmente la réduction de dégâts du lanceur."
 }
 // move.odorat = {
 //     id: 'odorat',
@@ -3692,7 +3692,7 @@ move.coussinets = {
         {lvl: 77, patch: {}},
         {lvl: 142, patch: {cooldownMs: 2700, damage: {min: 35, max: 38}}}
     ],
-    description: "Éloigne le lanceur de la cible, repousse la cible et occasionne des dommages Air aux ennemis. Pioche un Roi de Pique."
+    description: "70% de chances d'infliger des dégâts Air et de repousser l'ennemi, 30% de chances de le soigner."
 }
 // move.seconde_chance = {
 //     id: 'seconde_chance',
@@ -3726,7 +3726,7 @@ move.felintion = {
         {lvl: 85, patch: {}},
         {lvl: 152, patch: {cooldownMs: 2700, damage: {min: 33, max: 36}}}
     ],
-    description: "Rapproche le lanceur vers la cible, attire la cible et occasionne des dommages Eau aux ennemis. Pioche un Roi de Trèfle."
+    description: "70% de chances d'infliger des dégâts Eau et de faire avancer l'ennemi, 30% de chances de le soigner."
 }
 move.bluff = {
     id: 'bluff',
@@ -3745,7 +3745,7 @@ move.bluff = {
         {lvl: 90, patch: {}},
         {lvl: 157, patch: {cooldownMs: 2700, damage: {min: 12, max: 32}}}
     ],
-    description: "Occasionne des dommages dans un ou plusieurs éléments selon les Cartes dans la Main et joue la Main. Les dommages du sort dans un élément sont augmentés selon les Cartes. Pioche 4 Cartes aléatoires avant d'appliquer les effets si la Main est vide."
+    description: "Inflige des dégâts dans un élément aléatoire (Terre, Feu, Eau ou Air)."
 }
 move.lapement = {
     id: 'lapement',
@@ -4061,7 +4061,7 @@ move.cri_du_corbac = {
                         patch: {damage: {min: 11, max: 13}}},
                        {lvl: 132,
                         patch: {damage: {min: 13, max: 16}}}],
-    description: ""
+    description: "Frappe dans l'élément air et vole de la vie."
 }
 move.pics_du_prespic = {
     id: 'pics_du_prespic',
@@ -4075,7 +4075,7 @@ move.pics_du_prespic = {
                         patch: {damage: {min: 11, max: 13}}},
                        {lvl: 133,
                         patch: {damage: {min: 14, max: 17}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et vole de la vie."
 }
 move.dents_du_piranya = {
     id: 'dents_du_piranya',
@@ -4089,7 +4089,7 @@ move.dents_du_piranya = {
                         patch: {damage: {min: 15, max: 17}}},
                        {lvl: 136,
                         patch: {damage: {min: 19, max: 22}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.cri_de_lours = {
     id: 'cri_de_lours',
@@ -4103,7 +4103,7 @@ move.cri_de_lours = {
                         patch: {damage: {min: 18, max: 20}}},
                        {lvl: 134,
                         patch: {damage: {min: 23, max: 26}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et vole de la vie."
 }
 // move.fouet = {
 //     id: 'fouet',
@@ -4131,7 +4131,7 @@ move.tofu = {
                         patch: {}},
                        {lvl: 144,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Tofu qui combat aux côtés du lanceur."
 }
 move.bouftou = {
     id: 'bouftou',
@@ -4145,7 +4145,7 @@ move.bouftou = {
                         patch: {}},
                        {lvl: 149,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Bouftou qui combat aux côtés du lanceur."
 }
 move.crapipou = {
     id: 'crapipou',
@@ -4159,7 +4159,7 @@ move.crapipou = {
                         patch: {}},
                        {lvl: 154,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Crapipou qui combat aux côtés du lanceur."
 }
 move.dragoune = {
     id: 'dragoune',
@@ -4173,7 +4173,7 @@ move.dragoune = {
                         patch: {}},
                        {lvl: 159,
                         patch: {}}],
-    description: ""
+    description: "Invoque une Dragoune qui combat aux côtés du lanceur."
 }
 move.cortege_sauvage = {
     id: 'cortege_sauvage',
@@ -4187,7 +4187,7 @@ move.cortege_sauvage = {
                         patch: {}},
                        {lvl: 164,
                         patch: {}}],
-    description: ""
+    description: "Augmente la Puissance du lanceur."
 }
 move.piqure_motivante = {
     id: 'piqure_motivante',
@@ -4201,7 +4201,7 @@ move.piqure_motivante = {
                         patch: {}},
                        {lvl: 169,
                         patch: {}}],
-    description: ""
+    description: "Augmente la Vitesse et la Puissance du lanceur."
 }
 move.saute_granouille = {
     id: 'saute_granouille',
@@ -4215,7 +4215,7 @@ move.saute_granouille = {
                         patch: {damage: {min: 21, max: 23}}},
                        {lvl: 174,
                         patch: {damage: {min: 26, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.souffle_draconique = {
     id: 'souffle_draconique',
@@ -4229,7 +4229,7 @@ move.souffle_draconique = {
                         patch: {damage: {min: 19, max: 22}}},
                        {lvl: 179,
                         patch: {damage: {min: 23, max: 26}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.charge_bestiale = {
     id: 'charge_bestiale',
@@ -4243,7 +4243,7 @@ move.charge_bestiale = {
                         patch: {damage: {min: 22, max: 25}}},
                        {lvl: 184,
                         patch: {damage: {min: 26, max: 29}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.aeropique = {
     id: 'aeropique',
@@ -4257,7 +4257,7 @@ move.aeropique = {
                         patch: {damage: {min: 21, max: 24}}},
                        {lvl: 189,
                         patch: {damage: {min: 24, max: 27}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.discipline = {
     id: 'discipline',
@@ -4271,7 +4271,7 @@ move.discipline = {
                         patch: {damage: {min: 17, max: 20}}},
                        {lvl: 194,
                         patch: {damage: {min: 21, max: 24}}}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible."
 }
 // move.laisse_spirituelle = {
 //     id: 'laisse_spirituelle',
@@ -4297,7 +4297,7 @@ move.ventritofu = {
                         patch: {}},
                        {lvl: 137,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Ventritofu qui combat aux côtés du lanceur."
 }
 move.bouflourd = {
     id: 'bouflourd',
@@ -4309,7 +4309,7 @@ move.bouflourd = {
                         patch: {}},
                        {lvl: 142,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Bouflourd qui combat aux côtés du lanceur."
 }
 move.crapipaud = {
     id: 'crapipaud',
@@ -4321,7 +4321,7 @@ move.crapipaud = {
                         patch: {}},
                        {lvl: 147,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Crapipaud qui combat aux côtés du lanceur."
 }
 move.dragonnet = {
     id: 'dragonnet',
@@ -4333,7 +4333,7 @@ move.dragonnet = {
                         patch: {}},
                        {lvl: 152,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Dragonnet qui combat aux côtés du lanceur."
 }
 move.esprit_glouton = {
     id: 'esprit_glouton',
@@ -4345,7 +4345,7 @@ move.esprit_glouton = {
                         patch: {}},
                        {lvl: 157,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Esprit Glouton qui combat aux côtés du lanceur."
 }
 move.crocs_du_mulou = {
     id: 'crocs_du_mulou',
@@ -4357,7 +4357,7 @@ move.crocs_du_mulou = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 39, max: 43}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 move.deplumage = {
     id: 'deplumage',
@@ -4369,7 +4369,7 @@ move.deplumage = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 37, max: 40}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément air."
 }
 move.coeur_sauvage = {
     id: 'coeur_sauvage',
@@ -4381,7 +4381,7 @@ move.coeur_sauvage = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 39, max: 43}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 move.bave_du_crapaud = {
     id: 'bave_du_crapaud',
@@ -4393,7 +4393,7 @@ move.bave_du_crapaud = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 37, max: 40}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 move.cravache = {
     id: 'cravache',
@@ -4405,7 +4405,7 @@ move.cravache = {
                         patch: {}},
                        {lvl: 182,
                         patch: {damage: {min: 25, max: 29}}}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible."
 }
 move.griffes_du_chtigre = {
     id: 'griffes_du_chtigre',
@@ -4417,7 +4417,7 @@ move.griffes_du_chtigre = {
                         patch: {}},
                        {lvl: 187,
                         patch: {damage: {min: 26, max: 29}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.serres_du_vautour = {
     id: 'serres_du_vautour',
@@ -4429,7 +4429,7 @@ move.serres_du_vautour = {
                         patch: {}},
                        {lvl: 192,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.toison_dor = {
     id: 'toison_dor',
@@ -4441,7 +4441,7 @@ move.toison_dor = {
                         patch: {}},
                        {lvl: 197,
                         patch: {}}],
-    description: ""
+    description: "Pose un bouclier sur le lanceur."
 }
 move.morsure_du_serpent = {
     id: 'morsure_du_serpent',
@@ -4449,7 +4449,7 @@ move.morsure_du_serpent = {
     classId: 'osamodas',
     cooldownMs: 2500,
     effects: [{type: 'debuff', stat: 'atk', value: 20, duration: 2, target: 'enemy'}, {type: 'dot', element: 'eau', value: 12, duration: 3, target: 'enemy'}],
-    description: ""
+    description: "Réduit la Puissance de l'ennemi et l'empoisonne dans l'élément eau."
 }
 move.pacte_bestial = {
     id: 'pacte_bestial',
@@ -4457,7 +4457,7 @@ move.pacte_bestial = {
     classId: 'osamodas',
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'finalDamagePct', value: 20, duration: 3, target: 'self'}],
-    description: ""
+    description: "Augmente les dégâts finaux du lanceur."
 }
 // move.communion_animale = {
 //     id: 'communion_animale',
@@ -4473,7 +4473,7 @@ move.tornade_de_plumes = {
     classId: 'osamodas',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 25, max: 29}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.frappe_du_craqueleur = {
     id: 'frappe_du_craqueleur',
@@ -4481,7 +4481,7 @@ move.frappe_du_craqueleur = {
     classId: 'osamodas',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 31, max: 35}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.chant_du_phenix = {
     id: 'chant_du_phenix',
@@ -4489,7 +4489,7 @@ move.chant_du_phenix = {
     classId: 'osamodas',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 34}, target: 'enemy'}, {type: 'heal', heal: {min: 15, max: 20}, target: 'ally_min_hp'}],
-    description: ""
+    description: "Frappe dans l'élément feu et soigne l'allié le moins en vie."
 }
 move.tourbillon = {
     id: 'tourbillon',
@@ -4497,7 +4497,7 @@ move.tourbillon = {
     classId: 'osamodas',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 24, max: 28}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.martinet = {
     id: 'martinet',
@@ -4505,7 +4505,7 @@ move.martinet = {
     classId: 'osamodas',
     cooldownMs: 2000,
     effects: [{type: 'best_element_damage', damage: {min: 22, max: 26}, target: 'enemy'}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible."
 }
 // move.relais_spirituel = {
 //     id: 'relais_spirituel',
@@ -4521,7 +4521,7 @@ move.craquolosse = {
     classId: 'osamodas',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'craquolosse_osamodas', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Craquolosse qui combat aux côtés du lanceur."
 }
 move.crocolereux = {
     id: 'crocolereux',
@@ -4529,7 +4529,7 @@ move.crocolereux = {
     classId: 'osamodas',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'crocolereux_osamodas', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Crocoléreux qui combat aux côtés du lanceur."
 }
 move.sulfenix = {
     id: 'sulfenix',
@@ -4537,7 +4537,7 @@ move.sulfenix = {
     classId: 'osamodas',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'sulfenix_osamodas', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Sulfénix qui combat aux côtés du lanceur."
 }
 move.scarafoudre = {
     id: 'scarafoudre',
@@ -4545,7 +4545,7 @@ move.scarafoudre = {
     classId: 'osamodas',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'scarafoudre_osamodas', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Scarafoudre qui combat aux côtés du lanceur."
 }
 move.esprit_facetieux = {
     id: 'esprit_facetieux',
@@ -4553,7 +4553,7 @@ move.esprit_facetieux = {
     classId: 'osamodas',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'esprit_facetieux_osamodas', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Esprit Facétieux qui combat aux côtés du lanceur."
 }
 // #endregion
 
@@ -4573,7 +4573,7 @@ move.retour_du_baton = {
         {lvl: 66, patch: {damage: {min: 23, max: 26}}},
         {lvl: 132, patch: {cooldownMs: 2700, damage: {min: 29, max: 33}}}
     ],
-    description: "Retire de la Force et de la Fuite et occasionne des dommages Terre."
+    description: "Inflige des dégâts Terre, réduit la Force de l'ennemi et renforce celle du lanceur."
 }
 move.langueur = {
     id: 'langueur',
@@ -4606,7 +4606,7 @@ move.nimbus = {
         {lvl: 69, patch: {damage: {min: 18, max: 20}}},
         {lvl: 136, patch: {cooldownMs: 2200, damage: {min: 23, max: 25}}}
     ],
-    description: "Retire de la Chance et du Tacle et occasionne des dommages Eau aux ennemis en zone."
+    description: "Inflige des dégâts Eau et réduit la Chance de l'ennemi."
 }
 move.typhon = {
     id: 'typhon',
@@ -4622,7 +4622,7 @@ move.typhon = {
         {lvl: 68, patch: {damage: {min: 20, max: 22}}},
         {lvl: 134, patch: {cooldownMs: 2400, damage: {min: 25, max: 27}}}
     ],
-    description: "Retire de l'Agilité et des Dommages et occasionne des dommages Air aux ennemis en zone."
+    description: "Inflige des dégâts Air et réduit l'Agilité de l'ennemi."
 }
 move.rempart = {
     id: 'rempart',
@@ -4637,7 +4637,7 @@ move.rempart = {
         {lvl: 72, patch: {buff: {value: 20, duration: 3}}},
         {lvl: 139, patch: {buff: {value: 30, duration: 3}}}
     ],
-    description: "Réduit les dommages reçus par le lanceur et ses alliés en zone."
+    description: "Réduit les dommages reçus par le lanceur."
 }
 move.barricade = {
     id: 'barricade',
@@ -4652,7 +4652,7 @@ move.barricade = {
         {lvl: 77, patch: {buff: {value: 20, duration: 3}}},
         {lvl: 144, patch: {buff: {value: 30, duration: 3}}}
     ],
-    description: "Rend l'allié ciblé invulnérable en mêlée. Augmente ses PM s'il est attaqué à distance. Peut invoquer un bouclier statique qui protège les alliés en zone."
+    description: "Réduit les dommages reçus par un allié aléatoire."
 }
 move.somnolence = {
     id: 'somnolence',
@@ -4668,7 +4668,7 @@ move.somnolence = {
         {lvl: 82, patch: {damage: {min: 22, max: 24}}},
         {lvl: 149, patch: {cooldownMs: 2700, damage: {min: 27, max: 30}}}
     ],
-    description: "Occasionne des dommages Terre et retire des PA aux ennemis en zone."
+    description: "Inflige des dégâts Terre et réduit la Vitesse de l'ennemi."
 }
 move.lethargie = {
     id: 'lethargie',
@@ -4684,7 +4684,7 @@ move.lethargie = {
         {lvl: 87, patch: {damage: {min: 23, max: 25}}},
         {lvl: 154, patch: {cooldownMs: 2700, damage: {min: 28, max: 31}}}
     ],
-    description: "Occasionne des dommages Feu et retire des PM."
+    description: "Inflige des dégâts Feu et réduit la Vitesse de l'ennemi."
 }
 // move.bastion = {
 //     id: 'bastion',
@@ -4714,7 +4714,7 @@ move.frisson = {
         {lvl: 97, patch: {damage: {min: 21, max: 23}}},
         {lvl: 164, patch: {cooldownMs: 2400, damage: {min: 26, max: 29}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis et attire les cibles vers la case ciblée en zone."
+    description: "Inflige des dégâts Air à l'ennemi et le fait avancer d'un rang."
 }
 move.bulle = {
     id: 'bulle',
@@ -4730,7 +4730,7 @@ move.bulle = {
         {lvl: 102, patch: {damage: {min: 13, max: 15}}},
         {lvl: 169, patch: {damage: {min: 17, max: 19}}}
     ],
-    description: "Occasionne des dommages Eau et retire de la Portée."
+    description: "Inflige des dégâts Eau et réduit la Puissance de l'ennemi."
 }
 move.transhumance = {
     id: 'transhumance',
@@ -4745,7 +4745,7 @@ move.transhumance = {
         {lvl: 107, patch: {buff: {value: 20, duration: 2}}},
         {lvl: 174, patch: {buff: {value: 25, duration: 2}}}
     ],
-    description: "Téléporte le lanceur et déclenche ses glyphes élémentaires sur la case ciblée. Applique l'Étoile du Berger sur les alliés présents dans les glyphes déclenchés."
+    description: "Augmente la Vitesse du lanceur."
 }
 move.prairie = {
     id: 'prairie',
@@ -4761,7 +4761,7 @@ move.prairie = {
         {lvl: 112, patch: {dot: {value: 20}}},
         {lvl: 179, patch: {cooldownMs: 2400, dot: {value: 25}}}
     ],
-    description: "Pose un glyphe de début de tour qui occasionne des dommages Air aux ennemis. Réduit les dommages finaux des ennemis présents ou entrant dans le glyphe."
+    description: "Empoisonne tous les ennemis dans l'élément air et réduit leurs dégâts finaux."
 }
 move.vallee = {
     id: 'vallee',
@@ -4777,7 +4777,7 @@ move.vallee = {
         {lvl: 117, patch: {dot: {value: 20}}},
         {lvl: 184, patch: {cooldownMs: 2400, dot: {value: 25}}}
     ],
-    description: "Pose un glyphe de début de tour qui occasionne des dommages Eau aux ennemis. Retire de la Portée aux ennemis présents ou entrant dans le glyphe."
+    description: "Empoisonne tous les ennemis dans l'élément eau et réduit leur Puissance."
 }
 move.terre_battue = {
     id: 'terre_battue',
@@ -4793,7 +4793,7 @@ move.terre_battue = {
         {lvl: 122, patch: {dot: {value: 20}}},
         {lvl: 189, patch: {cooldownMs: 2400, dot: {value: 25}}}
     ],
-    description: "Pose un glyphe de début de tour qui occasionne des dommages Terre aux ennemis. Retire des PA aux ennemis présents ou entrant dans le glyphe."
+    description: "Empoisonne tous les ennemis dans l'élément terre et réduit leur Vitesse."
 }
 move.terre_brulee = {
     id: 'terre_brulee',
@@ -4809,7 +4809,7 @@ move.terre_brulee = {
         {lvl: 127, patch: {dot: {value: 20}}},
         {lvl: 194, patch: {cooldownMs: 2400, dot: {value: 25}}}
     ],
-    description: "Pose un glyphe de début de tour qui occasionne des dommages Feu aux ennemis. Retire des PM aux ennemis présents ou entrant dans le glyphe."
+    description: "Empoisonne tous les ennemis dans l'élément feu et réduit leur Vitesse."
 }
 move.renfort = {
     id: 'renfort',
@@ -4840,7 +4840,7 @@ move.silbo = {
         {lvl: 73, patch: {}},
         {lvl: 137, patch: {damage: {min: 17, max: 19}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis et repousse les cibles depuis le centre en zone."
+    description: "Inflige des dégâts Air à l'ennemi et le fait reculer."
 }
 move.torpeur = {
     id: 'torpeur',
@@ -4870,7 +4870,7 @@ move.bergerie = {
         {lvl: 81, patch: {}},
         {lvl: 147, patch: {buff: {value: 20, duration: 2}}}
     ],
-    description: "Pose un glyphe-aura qui applique les états Inébranlable et Pesanteur sur les entités. Applique l'Étoile du Berger sur les alliés présents ou entrant dans le glyphe."
+    description: "Réduit les dommages reçus par le lanceur et purge les débuffs de toute l'équipe."
 }
 move.defiance = {
     id: 'defiance',
@@ -4888,7 +4888,7 @@ move.defiance = {
         {lvl: 85, patch: {}},
         {lvl: 152, patch: {damage: {min: 8, max: 10}}}
     ],
-    description: "Augmente le Tacle de l'allié ciblé pour chaque ennemi à son contact et pose un glyphe de fin de tour qui occasionne des dommages Terre, Feu, Eau et Air aux ennemis. Augmente les résistances en mêlée des alliés présents dans le glyphe."
+    description: "Inflige des dégâts dans les 4 éléments à l'ennemi et réduit les dégâts reçus par le lanceur."
 }
 move.bouclier_feca = {
     id: 'bouclier_feca',
@@ -4902,7 +4902,7 @@ move.bouclier_feca = {
         {lvl: 90, patch: {}},
         {lvl: 157, patch: {buff: {value: 20, duration: 2}}}
     ],
-    description: "Réduit les dommages subis par l'allié ciblé. Applique l'Étoile du Berger sur l'allié ciblé et tous les alliés dans un glyphe élémentaire allié."
+    description: "Réduit les dommages reçus par le lanceur."
 }
 move.tetanie = {
     id: 'tetanie',
@@ -5175,14 +5175,16 @@ move.truanderie = {
     name: 'Truanderie',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 15, max: 17}, target: 'enemy'},
+              {type: 'debuff', stat: 'atk', value: 50, duration: 2, target: 'enemy'},
+              {type: 'buff', stat: 'atk', value: 50, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 1,
                         patch: {}},
                        {lvl: 66,
-                        patch: {damage: {min: 20, max: 23}}},
+                        patch: {damage: {min: 20, max: 23}, buff: {value: 70}}},
                        {lvl: 132,
-                        patch: {damage: {min: 26, max: 29}}}],
-    description: ""
+                        patch: {damage: {min: 26, max: 29}, buff: {value: 100, duration: 3}}}],
+    description: "Frappe dans l'élément Terre, réduit la Puissance de l'ennemi et renforce celle du lanceur."
 }
 move.sournoiserie = {
     id: 'sournoiserie',
@@ -5196,7 +5198,7 @@ move.sournoiserie = {
                         patch: {damage: {min: 22, max: 24}}},
                        {lvl: 133,
                         patch: {damage: {min: 28, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément Feu et repousse l'ennemi."
 }
 move.arsenic = {
     id: 'arsenic',
@@ -5207,39 +5209,40 @@ move.arsenic = {
     spellProgression: [{lvl: 12,
                         patch: {}},
                        {lvl: 69,
-                        patch: {dot: {value: 12}}},
+                        patch: {dot: {value: 12, duration: 3}}},
                        {lvl: 136,
-                        patch: {dot: {value: 16}}}],
-    description: ""
+                        patch: {dot: {value: 16, duration: 4}}}],
+    description: "Empoisonne l'ennemi dans l'élément Air ; la durée du poison augmente avec le niveau."
 }
 move.cruaute = {
     id: 'cruaute',
     name: 'Cruauté',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'},
+              {type: 'antiHeal', value: 100, duration: 3, target: 'enemy'}],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
                         patch: {damage: {min: 18, max: 20}}},
                        {lvl: 134,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Empêche l'ennemi de se soigner (vol de vie ou régénération) pendant 3 tours."
 }
-// move.invisibilite = {
-//     id: 'invisibilite',
-//     name: 'Invisibilité',
-//     classId: 'sram',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 20,
-//                         patch: {}},
-//                        {lvl: 72,
-//                         patch: {}},
-//                        {lvl: 139,
-//                         patch: {}}],
-//     description: " "
-// }
+move.invisibilite = {
+    id: 'invisibilite',
+    name: 'Invisibilité',
+    classId: 'sram',
+    cooldownMs: 2000,
+    effects: [{type: 'esquive', chancePct: 40, reductionPct: 100, duration: 2, target: 'self'}],
+    spellProgression: [{lvl: 20,
+                        patch: {}},
+                       {lvl: 72,
+                        patch: {esquive: {chancePct: 50}}},
+                       {lvl: 139,
+                        patch: {esquive: {chancePct: 60}}}],
+    description: "Rend le lanceur difficile à toucher : chance d'esquiver totalement les dégâts reçus."
+}
 // move.double = {
 //     id: 'double',
 //     name: 'Double',
@@ -5266,7 +5269,7 @@ move.piege_sournois = {
                         patch: {damage: {min: 13, max: 15}}},
                        {lvl: 149,
                         patch: {damage: {min: 17, max: 19}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.piege_fangeux = {
     id: 'piege_fangeux',
@@ -5280,7 +5283,7 @@ move.piege_fangeux = {
                         patch: {damage: {min: 27, max: 31}}},
                        {lvl: 154,
                         patch: {damage: {min: 33, max: 37}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.piege_funeste = {
     id: 'piege_funeste',
@@ -5294,7 +5297,7 @@ move.piege_funeste = {
                         patch: {damage: {min: 23, max: 26}}},
                        {lvl: 159,
                         patch: {damage: {min: 23, max: 26}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.piege_repulsif = {
     id: 'piege_repulsif',
@@ -5308,7 +5311,7 @@ move.piege_repulsif = {
                         patch: {damage: {min: 11, max: 14}}},
                        {lvl: 164,
                         patch: {damage: {min: 14, max: 17}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.piege_dimmobilisation = {
     id: 'piege_dimmobilisation',
@@ -5322,63 +5325,71 @@ move.piege_dimmobilisation = {
                         patch: {}},
                        {lvl: 169,
                         patch: {}}],
-    description: ""
+    description: "Réduit la Vitesse de l'ennemi, ralentissant sa prochaine action."
 }
 move.extorsion = {
     id: 'extorsion',
     name: 'Extorsion',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 17, max: 19}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 17, max: 19}, target: 'enemy'},
+              {type: 'debuff', stat: 'force', value: 50, duration: 2, target: 'enemy'},
+              {type: 'buff', stat: 'force', value: 50, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
-                        patch: {damage: {min: 22, max: 24}}},
+                        patch: {damage: {min: 22, max: 24}, buff: {value: 100}}},
                        {lvl: 174,
-                        patch: {damage: {min: 27, max: 30}}}],
-    description: ""
+                        patch: {damage: {min: 27, max: 30}, buff: {value: 150, duration: 3}}}],
+    description: "Frappe dans l'élément Terre, réduit la Force de l'ennemi et renforce celle du lanceur."
 }
 move.arnaque = {
     id: 'arnaque',
     name: 'Arnaque',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 16, max: 18}, target: 'enemy'},
+              {type: 'debuff', stat: 'agilite', value: 50, duration: 2, target: 'enemy'},
+              {type: 'buff', stat: 'agilite', value: 50, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 53,
                         patch: {}},
                        {lvl: 112,
-                        patch: {damage: {min: 21, max: 23}}},
+                        patch: {damage: {min: 21, max: 23}, buff: {value: 100}}},
                        {lvl: 179,
-                        patch: {damage: {min: 25, max: 28}}}],
-    description: ""
+                        patch: {damage: {min: 25, max: 28}, buff: {value: 150, duration: 3}}}],
+    description: "Frappe dans l'élément Air, réduit l'Agilité de l'ennemi et renforce celle du lanceur."
 }
 move.pillage = {
     id: 'pillage',
     name: 'Pillage',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 17, max: 19}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 17, max: 19}, target: 'enemy'},
+              {type: 'debuff', stat: 'chance', value: 50, duration: 2, target: 'enemy'},
+              {type: 'buff', stat: 'chance', value: 50, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 57,
                         patch: {}},
                        {lvl: 117,
-                        patch: {damage: {min: 22, max: 25}}},
+                        patch: {damage: {min: 22, max: 25}, buff: {value: 100}}},
                        {lvl: 184,
-                        patch: {damage: {min: 26, max: 29}}}],
-    description: ""
+                        patch: {damage: {min: 26, max: 29}, buff: {value: 150, duration: 3}}}],
+    description: "Frappe dans l'élément Eau, réduit la Chance de l'ennemi et renforce celle du lanceur."
 }
 move.fourberie = {
     id: 'fourberie',
     name: 'Fourberie',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 18, max: 20}, target: 'enemy'},
+              {type: 'debuff', stat: 'intelligence', value: 50, duration: 2, target: 'enemy'},
+              {type: 'buff', stat: 'intelligence', value: 50, duration: 2, target: 'self'}],
     spellProgression: [{lvl: 61,
                         patch: {}},
                        {lvl: 122,
-                        patch: {damage: {min: 24, max: 27}}},
+                        patch: {damage: {min: 24, max: 27}, buff: {value: 100}}},
                        {lvl: 189,
-                        patch: {damage: {min: 27, max: 31}}}],
-    description: ""
+                        patch: {damage: {min: 27, max: 31}, buff: {value: 150, duration: 3}}}],
+    description: "Frappe dans l'élément Feu, réduit l'Intelligence de l'ennemi et renforce celle du lanceur."
 }
 move.peur = {
     id: 'peur',
@@ -5392,7 +5403,7 @@ move.peur = {
                         patch: {}},
                        {lvl: 194,
                         patch: {}}],
-    description: ""
+    description: "Repousse l'ennemi sans lui infliger de dégâts."
 }
 move.piege_de_derive = {
     id: 'piege_de_derive',
@@ -5406,7 +5417,7 @@ move.piege_de_derive = {
                         patch: {damage: {min: 15, max: 17}}},
                        {lvl: 198,
                         patch: {damage: {min: 17, max: 19}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.piege_scelerat = {
     id: 'piege_scelerat',
@@ -5418,20 +5429,20 @@ move.piege_scelerat = {
                         patch: {}},
                        {lvl: 137,
                         patch: {damage: {min: 17, max: 19}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
-// move.concentration_de_chakra = {
-//     id: 'concentration_de_chakra',
-//     name: 'Concentration de Chakra',
-//     classId: 'sram',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 77,
-//                         patch: {}},
-//                        {lvl: 142,
-//                         patch: {}}],
-//     description: ""
-// }
+move.concentration_de_chakra = {
+    id: 'concentration_de_chakra',
+    name: 'Concentration de Chakra',
+    classId: 'sram',
+    cooldownMs: 2000,
+    effects: [{type: 'chakraBoost', target: 'self'}],
+    spellProgression: [{lvl: 77,
+                        patch: {}},
+                       {lvl: 142,
+                        patch: {}}],
+    description: "Double les dégâts des pièges au déclenchement pour le reste du combat. Effet unique : une fois activé, relancer ce sort n'a aucun effet supplémentaire."
+}
 move.piege_mortel = {
     id: 'piege_mortel',
     name: 'Piège Mortel',
@@ -5442,92 +5453,91 @@ move.piege_mortel = {
                         patch: {}},
                        {lvl: 147,
                         patch: {damage: {min: 39, max: 43}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.fourvoiement = {
     id: 'fourvoiement',
     name: 'Fourvoiement',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 31}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 31}, target: 'enemy', erosionRate: 0.30}],
     spellProgression: [{lvl: 85,
                         patch: {}},
                        {lvl: 152,
                         patch: {damage: {min: 32, max: 36}}}],
-    description: ""
+    description: "Érode 30% des dégâts occasionnés au lieu des 5% habituels."
 }
-// move.derobade = {
-//     id: 'derobade',
-//     name: 'Dérobade',
-//     classId: 'sram',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 90,
-//                         patch: {}},
-//                        {lvl: 157,
-//                         patch: {}}],
-//     description: ""
-// }
+move.derobade = {
+    id: 'derobade',
+    name: 'Dérobade',
+    classId: 'sram',
+    cooldownMs: 2000,
+    effects: [{type: 'buff', stat: 'derobade', value: 1, duration: 3, target: 'self'}],
+    spellProgression: [{lvl: 90,
+                        patch: {}},
+                       {lvl: 157,
+                        patch: {}}],
+    description: "Pendant 3 tours, si le lanceur est touché par un sort offensif, il échange sa place avec l'allié suivant encore en vie et annule les dégâts qu'il aurait dû subir."
+}
 move.chausse_trappe = {
     id: 'chausse_trappe',
     name: 'Chausse-trappe',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy', trapCountBonusPct: 15}],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 28, max: 32}}}],
-    description: ""
+    description: "Inflige +15% de dégâts par piège posé par le lanceur et non encore déclenché."
 }
 move.coupe_gorge = {
     id: 'coupe_gorge',
     name: 'Coupe-gorge',
     classId: 'sram',
     cooldownMs: 2500,
-    effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 33}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 33}, target: 'enemy'},
+              {type: 'dot', element: 'feu', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 34, max: 38}}}],
-    description: ""
+    description: "Frappe dans l'élément Feu et inflige une brûlure supplémentaire sur la durée."
 }
 move.toxines = {
     id: 'toxines',
     name: 'Toxines',
     classId: 'sram',
     cooldownMs: 2500,
-    effects: [{type: 'dot', element: 'air', value: 5, duration: 3, target: 'enemy'}],
+    effects: [{type: 'dot', element: 'air', value: 5, duration: 20, target: 'enemy'}],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
                         patch: {dot: {value: 7}}}],
-    description: ""
+    description: "Les brûlures infligées par Toxines se cumulent : chaque lancer ajoute une nouvelle brûlure sans remplacer les précédentes."
 }
 move.poisse = {
     id: 'poisse',
     name: 'Poisse',
     classId: 'sram',
+    restriction: 'coeur',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 29, max: 32}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 29, max: 32}, target: 'enemy'},
+              {type: 'lifesteal', ratio: 0.20, target: 'self'}],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 34, max: 38}}}],
-    description: ""
+    description: "Frappe dans l'élément Eau et vole une partie des dégâts infligés sous forme de PV."
 }
-// move.brume = {
-//     id: 'brume',
-//     name: 'Brume',
-//     classId: 'sram',
-//     cooldownMs: 2000,
-//     effects: [],
-//     spellProgression: [{lvl: 115,
-//                         patch: {}},
-//                        {lvl: 182,
-//                         patch: {}}],
-//     description: ""
-// }
+move.brume = {
+    id: 'brume',
+    name: 'Brume',
+    classId: 'sram',
+    cooldownMs: 2000,
+    effects: [{type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'all_allies'}],
+    description: "Enveloppe toute l'équipe d'une brume qui octroie 40% de chance d'esquiver totalement les dégâts pendant 3 tours."
+}
 move.comploteur = {
     id: 'comploteur',
     name: 'Comploteur',
@@ -5538,31 +5548,32 @@ move.comploteur = {
                         patch: {}},
                        {lvl: 187,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Comploteur qui combat aux côtés du lanceur pendant 2 tours."
 }
 move.guet_apens = {
     id: 'guet_apens',
     name: 'Guet-apens',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 22}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 22}, target: 'enemy'},
+              {type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy'}],
     spellProgression: [{lvl: 125,
                         patch: {}},
                        {lvl: 192,
-                        patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+                        patch: {damage: {min: 22, max: 25}, buff: {value: 15}}}],
+    description: "Frappe dans l'élément Eau et réduit la Vitesse de l'ennemi."
 }
 move.epidemie = {
     id: 'epidemie',
     name: 'Épidémie',
     classId: 'sram',
     cooldownMs: 3000,
-    effects: [{type: 'dot', element: 'air', value: 32, duration: 2, target: 'all_enemies'}],
+    effects: [{type: 'dot', element: 'air', value: 32, duration: 3, target: 'all_enemies'}],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
                         patch: {dot: {value: 36}}}],
-    description: ""
+    description: "Propage un poison Air sur la durée à tous les ennemis."
 }
 move.effraction = {
     id: 'effraction',
@@ -5570,7 +5581,7 @@ move.effraction = {
     classId: 'sram',
     cooldownMs: 1700,
     effects: [{type: 'damage', element: 'feu', damage: {min: 15, max: 17}, target: 'enemy'}],
-    description: ""
+    description: "Frappe rapidement dans l'élément Feu."
 }
 move.piege_effroyable = {
     id: 'piege_effroyable',
@@ -5578,23 +5589,23 @@ move.piege_effroyable = {
     classId: 'sram',
     cooldownMs: 2000,
     effects: [{type: 'trap', threshold: 3, element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
-// move.fosse_commune = {
-//     id: 'fosse_commune',
-//     name: 'Fosse Commune',
-//     classId: 'sram',
-//     cooldownMs: 2000,
-//     effects: [],
-//     description: ""
-// }
+move.fosse_commune = {
+    id: 'fosse_commune',
+    name: 'Fosse Commune',
+    classId: 'sram',
+    cooldownMs: 2000,
+    effects: [{type: 'debuff', stat: 'spd', value: 50, duration: 1, target: 'all_enemies'}],
+    description: "Retire 50 de Vitesse à tous les ennemis pendant 1 tour."
+}
 move.perquisition = {
     id: 'perquisition',
     name: 'Perquisition',
     classId: 'sram',
     cooldownMs: 1700,
     effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
-    description: ""
+    description: "Frappe rapidement dans l'élément Feu."
 }
 move.larcin = {
     id: 'larcin',
@@ -5602,23 +5613,23 @@ move.larcin = {
     classId: 'sram',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 34, max: 38}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément Eau."
 }
 move.attaque_mortelle = {
     id: 'attaque_mortelle',
     name: 'Attaque Mortelle',
     classId: 'sram',
     cooldownMs: 3000,
-    effects: [{type: 'damage', element: 'terre', damage: {min: 43, max: 48}, target: 'enemy'}],
-    description: ""
+    effects: [{type: 'damage', element: 'terre', damage: {min: 43, max: 48}, target: 'enemy', hpBonusPct: 50, hpBonusThreshold: 50}],
+    description: "Inflige +50% de dégâts si la cible a moins de 50% de ses PV max."
 }
 move.injection_toxique = {
     id: 'injection_toxique',
     name: 'Injection Toxique',
     classId: 'sram',
     cooldownMs: 3000,
-    effects: [{type: 'dot', element: 'air', value: 28, duration: 3, target: 'enemy'}],
-    description: ""
+    effects: [{type: 'dot', element: 'air', value: 28, duration: 3, target: 'enemy', hpBonusPct: 50, hpBonusThreshold: 50}],
+    description: "Inflige +50% de dégâts si la cible a moins de 50% de ses PV max."
 }
 // move.meprise = {
 //     id: 'meprise',
@@ -5634,23 +5645,23 @@ move.piege_insidieux = {
     classId: 'sram',
     cooldownMs: 2000,
     effects: [{type: 'trap', threshold: 3, element: 'air', damage: {min: 9, max: 11}, target: 'enemy'}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.piege_a_fragmentation = {
     id: 'piege_a_fragmentation',
     name: 'Piège à Fragmentation',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'trap', threshold: 3, element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}],
-    description: ""
+    effects: [{type: 'trap', threshold: 3, element: 'feu', damage: {min: 10, max: 12}, target: 'all_enemies'}],
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées sur tous les ennemis : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.manigance = {
     id: 'manigance',
     name: 'Manigance',
     classId: 'sram',
     cooldownMs: 2000,
-    effects: [{type: 'buff', stat: 'flatDamages', value: 20, duration: 2, target: 'self'}],
-    description: ""
+    effects: [{type: 'buff', stat: 'flatDamage', value: 50, duration: 4, target: 'self'}],
+    description: "Augmente les dégâts fixes infligés par le lanceur pendant 4 tours."
 }
 move.calamite = {
     id: 'calamite',
@@ -5658,7 +5669,7 @@ move.calamite = {
     classId: 'sram',
     cooldownMs: 2000,
     effects: [{type: 'trap', threshold: 3, element: 'eau', damage: {min: 13, max: 15}, target: 'enemy'}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.perfidie = {
     id: 'perfidie',
@@ -5666,16 +5677,16 @@ move.perfidie = {
     classId: 'sram',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 56, max: 60}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément Terre."
 }
-// move.marque_mortuaire = {
-//     id: 'marque_mortuaire',
-//     name: 'Marque Mortuaire',
-//     classId: 'sram',
-//     cooldownMs: 2000,
-//     effects: [],
-//     description: ""
-// }
+move.marque_mortuaire = {
+    id: 'marque_mortuaire',
+    name: 'Marque Mortuaire',
+    classId: 'sram',
+    cooldownMs: 2000,
+    effects: [{type: 'buff', stat: 'nextTrapFullErosion', value: 1, duration: Infinity, target: 'self'}],
+    description: "Le prochain piège du lanceur qui se déclenche inflige 100% d'érosion sur les dégâts occasionnés."
+}
 // #endregion
 
 // #region sacrieur SORTS TERMINÉS MANQUE DESCRIPTIONS ─────────────
@@ -5742,7 +5753,8 @@ move.stase = {
     classId: 'sacrieur',
     cooldownMs: 2200,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 12, max: 14 }, target: 'enemy' },
-              { type: 'debuff', stat: 'critChance', value: 10, duration: 1, target: 'enemy' }],
+              { type: 'debuff', stat: 'critChance', value: 10, duration: 1, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 16,
                         patch: {}},
                        {lvl: 68,
@@ -5799,7 +5811,8 @@ move.ravage = {
     name: 'Ravage',
     classId: 'sacrieur',
     cooldownMs: 2000,
-    effects: [{ type: 'damage', element: 'terre', damage: { min: 17, max: 20 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'terre', damage: { min: 17, max: 20 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 33,
                         patch: {}},
                        {lvl: 87,
@@ -5813,7 +5826,8 @@ move.assaut = {
     name: 'Assaut',
     classId: 'sacrieur',
     cooldownMs: 1700,
-    effects: [{ type: 'damage', element: 'air', damage: { min: 16, max: 19 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'air', damage: { min: 16, max: 19 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 37,
                         patch: {}},
                        {lvl: 92,
@@ -5836,7 +5850,8 @@ move.condensation = {
     classId: 'sacrieur',
     cooldownMs: 1700,
     effects: [{ type: 'damage', element: 'eau', damage: { min: 13, max: 16 }, target: 'all_enemies' },
-              { type: 'switch', value: 1, target: 'enemy' }],
+              { type: 'switch', value: 1, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 45,
                         patch: {}},
                        {lvl: 102,
@@ -5850,7 +5865,8 @@ move.hostilite = {
     name: 'Hostilité',
     classId: 'sacrieur',
     cooldownMs: 1700,
-    effects: [{ type: 'damage', element: 'feu', damage: { min: 16, max: 19 }, target: 'enemy' }],
+    effects: [{ type: 'damage', element: 'feu', damage: { min: 16, max: 19 }, target: 'enemy' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 49,
                         patch: {}},
                        {lvl: 107,
@@ -5943,7 +5959,7 @@ move.bain_de_sang = {
     restriction: 'coeur',
     cooldownMs: 3000,
     effects: [{ type: 'damage', element: 'terre', damage: { min: 21, max: 24 }, target: 'all_enemies' },
-              { type: 'lifesteal', ratio: 0.3, target: 'self' }],
+              { type: 'lifesteal', ratio: 0.35, target: 'self' }],
     spellProgression: [{lvl: 73,
                         patch: {}},
                        {lvl: 137,
@@ -6005,7 +6021,8 @@ move.punition = {
     classId: 'sacrieur',
     cooldownMs: 2000,
     effects: [
-        { type: 'best_element_damage', damage: { min: 25, max: 28 }, target: 'enemy', erodedHpScaleTarget: { stat: 'finalDamagePct', ratio: 1.0 } }
+        { type: 'best_element_damage', damage: { min: 25, max: 28 }, target: 'enemy', erodedHpScaleTarget: { stat: 'finalDamagePct', ratio: 1.0 } },
+              { type: 'lifesteal', ratio: 0.2, target: 'self' }
     ],
     spellProgression: [
         { lvl: 90,  patch: {} },
@@ -6021,12 +6038,13 @@ move.furie = {
     classId: 'sacrieur',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 25, max: 27}, target: 'enemy'},
-              { type: 'buff', stat: 'finalDamagePct', value: 2, duration: 2, target: 'self' }],
+              { type: 'buff', stat: 'finalDamagePct', value: 2, duration: 2, target: 'self' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 95,
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 31, max: 34}, buff: {value: 3}, cooldownMs: 2700}}],
-    description: ""
+    description: "Frappe dans l'élément air et augmente légèrement les dégâts finaux du lanceur."
 }
 move.decimation = {
     id: 'decimation',
@@ -6034,12 +6052,13 @@ move.decimation = {
     classId: 'sacrieur',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'},
-              { type: 'debuff', stat: 'damageReductionPct', value: 2, duration: 2, target: 'self' }],
+              { type: 'debuff', stat: 'damageReductionPct', value: 2, duration: 2, target: 'self' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 100,
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 29, max: 32}, buff: {value: 2}, cooldownMs: 2700}}],
-    description: ""
+    description: "Frappe dans l'élément terre mais réduit légèrement la réduction de dégâts du lanceur."
 }
 move.nervosite = {
     id: 'nervosite',
@@ -6047,12 +6066,13 @@ move.nervosite = {
     classId: 'sacrieur',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 24, max: 26}, target: 'enemy'},
-              { type: 'buff', stat: 'critChance', value: 5, duration: 3, target: 'self' }],
+              { type: 'buff', stat: 'critChance', value: 5, duration: 3, target: 'self' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 105,
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 28, max: 31}, buff: {value: 7}, cooldownMs: 2700}}],
-    description: ""
+    description: "Frappe dans l'élément eau et augmente les chances de coup critique du lanceur."
 }
 move.douleur_cuisante = {
     id: 'douleur_cuisante',
@@ -6060,12 +6080,13 @@ move.douleur_cuisante = {
     classId: 'sacrieur',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: {min: 21, max: 24}, target: 'enemy'},
-              { type: 'buff', stat: 'atk', value: 45, duration: 3, target: 'self' }],
+              { type: 'buff', stat: 'atk', value: 45, duration: 3, target: 'self' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 110,
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 27, max: 30}, buff: {value: 60}, cooldownMs: 2700}}],
-    description: ""
+    description: "Frappe dans l'élément feu et augmente la Puissance du lanceur."
 }
 move.perfusion = {
     id: 'perfusion',
@@ -6080,7 +6101,7 @@ move.perfusion = {
                         patch: { effects: [
             { type: 'self_dmg_pct_current', ratio: 0.40 },
             { type: 'heal%maxHp', heal: 20, target: 'ally_min_hp' }]}}],
-    description: ""
+    description: "Sacrifie une partie de ses PV courants pour soigner l'allié le moins en vie."
 }
 move.pacte_de_sang = {
     id: 'pacte_de_sang',
@@ -6094,7 +6115,7 @@ move.pacte_de_sang = {
                        {lvl: 187,  
                         patch: {effects: [{ type: 'self_dmg_pct_current', ratio: 0.25 },
                  { type: 'buff', stat: 'atk', value: 120, duration: 3, target: 'self' }]}}],
-    description: ""
+    description: "Sacrifie une partie de ses PV courants pour augmenter fortement sa propre Puissance."
 }
 move.epee_dansante = {
     id: 'epee_dansante',
@@ -6106,7 +6127,7 @@ move.epee_dansante = {
                         patch: {}},
                        {lvl: 192,
                         patch: {summon: {scale: 0.30}}}],
-    description: ""
+    description: "Invoque une Épée Dansante maîtrisable qui combat aux côtés du lanceur."
 }
 move.fulgurance = {
     id: 'fulgurance',
@@ -6114,12 +6135,13 @@ move.fulgurance = {
     classId: 'sacrieur',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 20, max: 23}, target: 'enemy'},
-              { type: 'buff', stat: 'spd', value: 10, duration: 2, target: 'self' }],
+              { type: 'buff', stat: 'spd', value: 10, duration: 2, target: 'self' },
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
     spellProgression: [{lvl: 130,
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 22, max: 26}}}],
-    description: ""
+    description: "Frappe dans l'élément air et augmente la Vitesse du lanceur."
 }
 move.aversion = {
     id: 'aversion',
@@ -6127,8 +6149,9 @@ move.aversion = {
     classId: 'sacrieur',
     cooldownMs: 1700,
     effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 15}, target: 'enemy'},
-              {type: 'recul', target: 'enemy'}],
-    description: ""
+              {type: 'recul', target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
+    description: "Frappe dans l'élément feu et fait reculer l'ennemi."
 }
 // move.fluctuation = {
 //     id: 'fluctuation',
@@ -6144,8 +6167,9 @@ move.afflux = {
     classId: 'sacrieur',
     cooldownMs: 1700,
     effects: [{type: 'damage', element: 'terre', damage: {min: 12, max: 15}, target: 'enemy'},
-              {type: 'avance', target: 'enemy'}],
-    description: ""
+              {type: 'avance', target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
+    description: "Frappe dans l'élément terre et fait avancer l'ennemi d'un rang."
 }
 move.projection = {
     id: 'projection',
@@ -6153,8 +6177,9 @@ move.projection = {
     classId: 'sacrieur',
     cooldownMs: 1700,
     effects: [{type: 'damage', element: 'eau', damage: {min: 14, max: 17}, target: 'enemy'},
-              {type: 'switch', target: 'enemy'}],
-    description: ""
+              {type: 'switch', target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.03, target: 'self' }],
+    description: "Frappe dans l'élément eau et force le changement de membre actif."
 }
 move.pilori = {
     id: 'pilori',
@@ -6179,8 +6204,9 @@ move.carnage = {
     classId: 'sacrieur',
     cooldownMs: 3000,
     effects: [{ type: 'self_dmg_pct_current', ratio: 0.10 },
-              {type: 'damage', element: 'air', damage: {min: 44, max: 48}, target: 'enemy'}],
-    description: ""
+              {type: 'damage', element: 'air', damage: {min: 44, max: 48}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.10, target: 'self' }],
+    description: "Sacrifie une partie de ses PV courants pour frapper puissamment dans l'élément air."
 }
 move.dechainement = {
     id: 'dechainement',
@@ -6188,8 +6214,9 @@ move.dechainement = {
     classId: 'sacrieur',
     cooldownMs: 3000,
     effects: [{ type: 'self_dmg_pct_current', ratio: 0.10 },
-              {type: 'damage', element: 'eau', damage: {min: 39, max: 43}, target: 'enemy'}],
-    description: ""
+              {type: 'damage', element: 'eau', damage: {min: 39, max: 43}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.10, target: 'self' }],
+    description: "Sacrifie une partie de ses PV courants pour frapper puissamment dans l'élément eau."
 }
 move.penitence = {
     id: 'penitence',
@@ -6197,7 +6224,7 @@ move.penitence = {
     classId: 'sacrieur',
     cooldownMs: 2000,
     effects: [{type: 'blood_link', slot: 4, duration: 4}],
-    description: ""
+    description: "Cible l'allié en position 4 et se lie à lui pendant 4 tours : les dégâts qu'il subira seront divisés entre lui et le sacrieur."
 }
 move.immolation = {
     id: 'immolation',
@@ -6205,8 +6232,9 @@ move.immolation = {
     classId: 'sacrieur',
     cooldownMs: 3000,
     effects: [{ type: 'self_dmg_pct_current', ratio: 0.10 },
-              {type: 'damage', element: 'feu', damage: {min: 40, max: 44}, target: 'enemy'}],
-    description: ""
+              {type: 'damage', element: 'feu', damage: {min: 40, max: 44}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.10, target: 'self' }],
+    description: "Sacrifie une partie de ses PV courants pour frapper puissamment dans l'élément feu."
 }
 move.entaille = {
     id: 'entaille',
@@ -6214,15 +6242,17 @@ move.entaille = {
     classId: 'sacrieur',
     cooldownMs: 3000,
     effects: [{ type: 'self_dmg_pct_current', ratio: 0.10 },
-              {type: 'damage', element: 'terre', damage: {min: 47, max: 51}, target: 'enemy'}],
-    description: ""
+              {type: 'damage', element: 'terre', damage: {min: 47, max: 51}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.10, target: 'self' }],
+    description: "Sacrifie une partie de ses PV courants pour frapper puissamment dans l'élément terre."
 }
 move.chatiment = {
     id: 'chatiment',
     name: 'Châtiment',
     classId: 'sacrieur',
     cooldownMs: 3000,
-    effects: [{type: 'damage', element: 'neutre', damageHpPct: {source: 'casterCurrentHp', pct: 15}, target: 'enemy'}],
+    effects: [{type: 'damage', element: 'neutre', damageHpPct: {source: 'casterCurrentHp', pct: 15}, target: 'enemy'},
+              { type: 'lifesteal', ratio: 0.10, target: 'self' }],
     description: "Inflige des dommages neutre égaux a 15% des PV actuels du lanceur."
 }
 // move.rituel_de_jashin = {
@@ -6242,7 +6272,7 @@ move.folie_sanguinaire = {
     effects: [{ type: 'self_dmg_pct_current', ratio: 0.15 },
               {type: 'best_element_damage', damage: {min: 24, max: 28}, target: 'enemy'},
               { type: 'lifesteal', ratio: 0.5, target: 'self' }],
-    description: ""
+    description: "Sacrifie une partie de ses PV courants pour frapper dans le meilleur élément et voler une grande partie des dégâts infligés."
 }
 // #endregion
 
@@ -6259,7 +6289,7 @@ move.brincadeira = {
                         patch: {damage: {min: 10, max: 12}, cooldownMs: 1700}},
                        {lvl: 132,
                         patch: {damage: {min: 13, max: 15}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément feu."
 }
 move.catalepsie = {
     id: 'catalepsie',
@@ -6273,7 +6303,7 @@ move.catalepsie = {
                         patch: {damage: {min: 18, max: 20}, cooldownMs: 1900}},
                        {lvl: 133,
                         patch: {damage: {min: 23, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.parafuso = {
     id: 'parafuso',
@@ -6288,7 +6318,7 @@ move.parafuso = {
                         patch: {damage: {min: 17, max: 19}}},
                        {lvl: 136,
                         patch: {damage: {min: 21, max: 24}, cooldownMs: 1900}}],
-    description: ""
+    description: "Frappe dans l'élément eau et fait avancer l'ennemi d'un rang."
 }
 move.cavalcade = {
     id: 'cavalcade',
@@ -6302,7 +6332,7 @@ move.cavalcade = {
                         patch: {damage: {min: 30, max: 33}, cooldownMs: 2200}},
                        {lvl: 134,
                         patch: {damage: {min: 38, max: 42}, cooldownMs: 2400}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.masque_de_lintrepide = {
     id: 'masque_de_lintrepide',
@@ -6352,7 +6382,7 @@ move.appui = {
                         patch: {damage: {min: 7, max: 8}, cooldownMs: 2200}},
                        {lvl: 149,
                         patch: {damage: {min: 8, max: 9}}}],
-    description: ""
+    description: "Frappe dans les 4 éléments et force son propre changement de membre actif."
 }
 move.masque_du_pleutre = {
     id: 'masque_du_pleutre',
@@ -6385,7 +6415,7 @@ move.ponteira = {
                         patch: {damage: {min: 19, max: 21}, buff: { value: 35 }, cooldownMs: 2400}},
                        {lvl: 159,
                         patch: {damage: {min: 23, max: 26}, buff: { value: 50 }}}],
-    description: ""
+    description: "Frappe dans l'élément eau et réduit les dégâts fixes infligés par l'ennemi."
 }
 move.masque_du_psychopathe = {
     id: 'masque_du_psychopathe',
@@ -6417,7 +6447,7 @@ move.furia = {
                         patch: {damage: {min: 28, max: 31}, buff: { value: 30 }, cooldownMs: 2700}},
                        {lvl: 169,
                         patch: {damage: {min: 35, max: 39}, buff: { value: 40 }}}],
-    description: ""
+    description: "Frappe dans l'élément terre et augmente les dégâts fixes du lanceur."
 }
 move.tortoruga = {
     id: 'tortoruga',
@@ -6431,7 +6461,7 @@ move.tortoruga = {
                         patch: {shield: { levelPct: 1.75}}},
                        {lvl: 174,
                         patch: {shield: { levelPct: 2}}}],
-    description: ""
+    description: "Pose un bouclier sur un allié aléatoire."
 }
 move.cabriole = {
     id: 'cabriole',
@@ -6445,7 +6475,7 @@ move.cabriole = {
                         patch: {damage: {min: 26, max: 29}}},
                        {lvl: 179,
                         patch: {damage: {min: 31, max: 35}, cooldownMs: 2200}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.debandade = {
     id: 'debandade',
@@ -6453,7 +6483,7 @@ move.debandade = {
     classId: 'zobal',
     cooldownMs: 2000,
     effects: [{type: 'recul', target: 'self'}],
-    description: ""
+    description: "Fait reculer le lanceur lui-même pour se mettre à distance."
 }
 move.inferno = {
     id: 'inferno',
@@ -6468,7 +6498,7 @@ move.inferno = {
                         patch: {damage: {min: 36, max: 39}, buff: { value: 150 }, cooldownMs: 2700}},
                        {lvl: 189,
                         patch: {damage: {min: 41, max: 45}, buff: { value: 200 }, cooldownMs: 2900}}],
-    description: ""
+    description: "Frappe dans l'élément feu et augmente fortement la Puissance du lanceur."
 }
 move.reuche = {
     id: 'reuche',
@@ -6497,7 +6527,7 @@ move.apathie = {
                         patch: {damage: {min: 28, max: 31}, buff: { value: 15 }, cooldownMs: 2700}},
                        {lvl: 198,
                         patch: {damage: {min: 31, max: 35}, buff: { value: 20 }}}],
-    description: ""
+    description: "Frappe dans l'élément terre mais réduit sa propre Vitesse."
 }
 move.boliche = {
     id: 'boliche',
@@ -6510,7 +6540,7 @@ move.boliche = {
                         patch: {}},
                        {lvl: 137,
                         patch: {damage: {min: 29, max: 32}, cooldownMs: 2200}}],
-    description: ""
+    description: "Frappe dans l'élément eau et fait reculer l'ennemi."
 }
 move.fougue = {
     id: 'fougue',
@@ -6546,7 +6576,7 @@ move.grimace = {
                         patch: {summon: { scale: 0.35 }}},
                        {lvl: 152,
                         patch: {summon: { scale: 0.40 }}}],
-    description: ""
+    description: "Invoque un compagnon Grimace qui combat aux côtés du lanceur."
 }
 move.carnavalo = {
     id: 'carnavalo',
@@ -6559,7 +6589,7 @@ move.carnavalo = {
                         patch: {}},
                        {lvl: 157,
                         patch: {damage: {min: 24, max: 28}}}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible et pose un bouclier sur le lanceur."
 }
 move.picada = {
     id: 'picada',
@@ -6571,7 +6601,7 @@ move.picada = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 25, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.apostasie = {
     id: 'apostasie',
@@ -6584,7 +6614,7 @@ move.apostasie = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 27, max: 30}, cooldownMs: 2200}}],
-    description: ""
+    description: "Frappe dans l'élément feu et fait reculer l'ennemi."
 }
 move.martelo = {
     id: 'martelo',
@@ -6597,7 +6627,7 @@ move.martelo = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 22, max: 24}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et réduit la Vitesse de l'ennemi."
 }
 move.appeau = {
     id: 'appeau',
@@ -6610,7 +6640,7 @@ move.appeau = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 24, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et vole de la vie."
 }
 move.masque_de_linfatigable = {
     id: 'masque_de_linfatigable',
@@ -6626,7 +6656,7 @@ move.masque_de_linfatigable = {
                         patch: {shield: {levelPct: 2}}},
                        {lvl: 182,  
                         patch: {shield: {levelPct: 2.5}}}],
-    description: "Change de masque afin de gagner l'effet suivant pour lui et les alliers adjacents : les sorts lancés gagnent un bonus de gain de bouclier équivalent à 100% du niveaux du joueur pour les 3 prochains lancés de sort."
+    description: "Change de masque afin de gagner l'effet suivant pour lui et les alliers adjacents : les 3 prochains sorts lancés posent un bouclier proportionnel au niveau du lanceur."
 }
 // move.ginga = {
 //     id: 'ginga',
@@ -6694,7 +6724,7 @@ move.bocciara = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 22}, target: 'enemy'},
               {type: 'debuff', stat: 'damageReductionPct', value: 10, duration: 1}],
-    description: ""
+    description: "Frappe dans l'élément eau et réduit la réduction de dégâts de l'ennemi."
 }
 move.armadur = {
     id: 'armadur',
@@ -6702,7 +6732,7 @@ move.armadur = {
     classId: 'zobal',
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'damageReductionPct', value: 10, duration: 3, target: 'self'}],
-    description: ""
+    description: "Augmente la réduction de dégâts du lanceur."
 }
 move.purgatorio = {
     id: 'purgatorio',
@@ -6728,7 +6758,7 @@ move.distance = {
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 28, max: 30}, target: 'enemy'},
               {type: 'recul', value: 2, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément eau et repousse fortement l'ennemi."
 }
 move.scudo = {
     id: 'scudo',
@@ -6737,7 +6767,7 @@ move.scudo = {
     cooldownMs: 2500,
    effects: [{type: 'random', choices: [{ chance: 0.70, effects: [{type: 'shield', levelPct: 1, duration: 3, target: 'self'}] },
                                      { chance: 0.30, effects: [{type: 'shield', levelPct: 1, duration: 3, target: 'ally_random'}]}]}],
-    description: ""
+    description: "Pose aléatoirement un bouclier sur le lanceur ou sur un allié aléatoire."
 }
 move.retention = {
     id: 'retention',
@@ -6746,7 +6776,7 @@ move.retention = {
     cooldownMs: 3500,
     effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 31}, target: 'enemy'},
               {type: 'lifesteal', ratio: 0.2, target: 'self'}],
-    description: ""
+    description: "Frappe dans l'élément air et vole de la vie."
 }
 move.ronda = {
     id: 'ronda',
@@ -6755,7 +6785,7 @@ move.ronda = {
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 38, max: 42}, target: 'enemy'},
               {type: 'avance', value: 1, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre et fait avancer l'ennemi d'un rang."
 }
 move.mascarade = {
     id: 'mascarade',
@@ -6771,7 +6801,7 @@ move.nevrose = {
     classId: 'zobal',
     cooldownMs: 2000,
     effects: [{type: 'buff', stat: 'atk', value: 250, duration: 2, target: 'self'}],
-    description: ""
+    description: "Augmente très fortement la Puissance du lanceur."
 }
 move.diffraction = {
     id: 'diffraction',
@@ -6810,7 +6840,7 @@ move.ronce = {
                         patch: {damage: {min: 19, max: 21}}},
                        {lvl: 132,
                         patch: {damage: {min: 24, max: 27}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.larme_de_sadida = {
     id: 'larme_de_sadida',
@@ -6824,7 +6854,7 @@ move.larme_de_sadida = {
                         patch: {damage: {min: 20, max: 22}}},
                        {lvl: 133,
                         patch: {damage: {min: 25, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.buisson_ardent = {
     id: 'buisson_ardent',
@@ -6838,7 +6868,7 @@ move.buisson_ardent = {
                         patch: {damage: {min: 18, max: 20}}},
                        {lvl: 136,
                         patch: {damage: {min: 20, max: 22}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.cigue = {
     id: 'cigue',
@@ -6852,7 +6882,7 @@ move.cigue = {
                         patch: {damage: {min: 21, max: 23}}},
                        {lvl: 134,
                         patch: {damage: {min: 25, max: 27}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.arbre = {
 //     id: 'arbre',
@@ -6880,7 +6910,7 @@ move.la_folle = {
                         patch: {}},
                        {lvl: 144,
                         patch: {}}],
-    description: ""
+    description: "Invoque La Folle qui combat aux côtés du lanceur."
 }
 move.seve_paralysante = {
     id: 'seve_paralysante',
@@ -6894,7 +6924,7 @@ move.seve_paralysante = {
                         patch: {}},
                        {lvl: 149,
                         patch: {}}],
-    description: ""
+    description: "Empoisonne l'ennemi dans l'élément feu et réduit sa Vitesse."
 }
 move.contagion = {
     id: 'contagion',
@@ -6908,7 +6938,7 @@ move.contagion = {
                         patch: {dot: {value: 28}}},
                        {lvl: 154,
                         patch: {dot: {value: 33}}}],
-    description: ""
+    description: "Empoisonne tous les ennemis dans l'élément air."
 }
 // move.ronce_apaisante = {
 //     id: 'ronce_apaisante',
@@ -6936,7 +6966,7 @@ move.la_bloqueuse = {
                         patch: {}},
                        {lvl: 164,
                         patch: {}}],
-    description: ""
+    description: "Invoque La Bloqueuse qui combat aux côtés du lanceur."
 }
 move.ronces_agressives = {
     id: 'ronces_agressives',
@@ -6950,7 +6980,7 @@ move.ronces_agressives = {
                         patch: {damage: {min: 31, max: 34}}},
                        {lvl: 169,
                         patch: {damage: {min: 38, max: 42}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 move.fleau = {
     id: 'fleau',
@@ -6964,7 +6994,7 @@ move.fleau = {
                         patch: {damage: {min: 21, max: 23}}},
                        {lvl: 174,
                         patch: {damage: {min: 25, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.puissance_sylvestre = {
     id: 'puissance_sylvestre',
@@ -6978,7 +7008,7 @@ move.puissance_sylvestre = {
                         patch: {}},
                        {lvl: 179,
                         patch: {}}],
-    description: ""
+    description: "Invoque la Puissance Sylvestre qui combat aux côtés du lanceur."
 }
 move.la_sacrifiee = {
     id: 'la_sacrifiee',
@@ -6992,7 +7022,7 @@ move.la_sacrifiee = {
                         patch: {}},
                        {lvl: 184,
                         patch: {}}],
-    description: ""
+    description: "Invoque La Sacrifiée qui combat aux côtés du lanceur."
 }
 move.herbes_folles = {
     id: 'herbes_folles',
@@ -7006,7 +7036,7 @@ move.herbes_folles = {
                         patch: {damage: {min: 24, max: 27}}},
                        {lvl: 189,
                         patch: {damage: {min: 28, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.sacrifice_vaudou = {
     id: 'sacrifice_vaudou',
@@ -7020,7 +7050,7 @@ move.sacrifice_vaudou = {
                         patch: {damage: {min: 26, max: 30}}},
                        {lvl: 194,
                         patch: {damage: {min: 30, max: 34}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.arbre_de_vie = {
     id: 'arbre_de_vie',
@@ -7034,7 +7064,7 @@ move.arbre_de_vie = {
                         patch: {}},
                        {lvl: 198,
                         patch: {}}],
-    description: ""
+    description: "Invoque l'Arbre de Vie qui combat aux côtés du lanceur."
 }
 move.la_gonflable = {
     id: 'la_gonflable',
@@ -7046,7 +7076,7 @@ move.la_gonflable = {
                         patch: {}},
                        {lvl: 137,
                         patch: {}}],
-    description: ""
+    description: "Invoque La Gonflable qui combat aux côtés du lanceur."
 }
 move.tremblement = {
     id: 'tremblement',
@@ -7058,7 +7088,7 @@ move.tremblement = {
                         patch: {}},
                        {lvl: 142,
                         patch: {damage: {min: 29, max: 33}}}],
-    description: ""
+    description: "Frappe tous les ennemis dans l'élément terre."
 }
 move.inoculation = {
     id: 'inoculation',
@@ -7070,7 +7100,7 @@ move.inoculation = {
                         patch: {}},
                        {lvl: 147,
                         patch: {damage: {min: 39, max: 43}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément air."
 }
 // move.don_naturel = {
 //     id: 'don_naturel',
@@ -7094,7 +7124,7 @@ move.la_surpuissante = {
                         patch: {}},
                        {lvl: 157,
                         patch: {}}],
-    description: ""
+    description: "Invoque La Surpuissante qui combat aux côtés du lanceur."
 }
 move.ronce_insolente = {
     id: 'ronce_insolente',
@@ -7106,7 +7136,7 @@ move.ronce_insolente = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 38, max: 42}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 move.montee_de_seve = {
     id: 'montee_de_seve',
@@ -7118,7 +7148,7 @@ move.montee_de_seve = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 35, max: 39}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 move.feu_de_brousse = {
     id: 'feu_de_brousse',
@@ -7130,7 +7160,7 @@ move.feu_de_brousse = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 40, max: 45}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 move.vent_empoisonne = {
     id: 'vent_empoisonne',
@@ -7142,7 +7172,7 @@ move.vent_empoisonne = {
                         patch: {}},
                        {lvl: 172,
                         patch: {dot: {value: 28}}}],
-    description: ""
+    description: "Empoisonne l'ennemi dans l'élément air."
 }
 // move.arbre_feuillu = {
 //     id: 'arbre_feuillu',
@@ -7166,7 +7196,7 @@ move.la_folle_transmutee = {
                         patch: {}},
                        {lvl: 187,
                         patch: {}}],
-    description: ""
+    description: "Invoque La Folle Transmutée, un compagnon maîtrisable qui combat aux côtés du lanceur."
 }
 move.miasmes = {
     id: 'miasmes',
@@ -7178,7 +7208,7 @@ move.miasmes = {
                         patch: {}},
                        {lvl: 192,
                         patch: {damage: {min: 44, max: 49}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément air."
 }
 move.mangrove = {
     id: 'mangrove',
@@ -7190,7 +7220,7 @@ move.mangrove = {
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 50, max: 56}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 // move.rempotage = {
 //     id: 'rempotage',
@@ -7206,7 +7236,7 @@ move.la_bloqueuse_transmutee = {
     classId: 'sadida',
     cooldownMs: 3500,
     effects: [{type: 'summon_companion', summonId: 'la_bloqueuse_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque La Bloqueuse Transmutée, un compagnon maîtrisable qui combat aux côtés du lanceur."
 }
 move.fetiches_calcines = {
     id: 'fetiches_calcines',
@@ -7214,7 +7244,7 @@ move.fetiches_calcines = {
     classId: 'sadida',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: {min: 42, max: 47}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 move.foret_hantee = {
     id: 'foret_hantee',
@@ -7222,7 +7252,7 @@ move.foret_hantee = {
     classId: 'sadida',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 45, max: 50}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 move.influence_vegetale = {
     id: 'influence_vegetale',
@@ -7230,7 +7260,7 @@ move.influence_vegetale = {
     classId: 'sadida',
     cooldownMs: 3500,
     effects: [{type: 'summon_companion', summonId: 'influence_vegetale_sadida', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un compagnon végétal maîtrisable qui combat aux côtés du lanceur."
 }
 move.la_sacrifiee_transmutee = {
     id: 'la_sacrifiee_transmutee',
@@ -7238,7 +7268,7 @@ move.la_sacrifiee_transmutee = {
     classId: 'sadida',
     cooldownMs: 3500,
     effects: [{type: 'summon_companion', summonId: 'la_sacrifiee_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque La Sacrifiée Transmutée, un compagnon maîtrisable qui combat aux côtés du lanceur."
 }
 move.malediction_vaudou = {
     id: 'malediction_vaudou',
@@ -7246,7 +7276,7 @@ move.malediction_vaudou = {
     classId: 'sadida',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 48, max: 54}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 move.chardons_ardents = {
     id: 'chardons_ardents',
@@ -7254,7 +7284,7 @@ move.chardons_ardents = {
     classId: 'sadida',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 50, max: 56}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 // move.altruisme_vegetal = {
 //     id: 'altruisme_vegetal',
@@ -7270,7 +7300,7 @@ move.la_gonflable_transmutee = {
     classId: 'sadida',
     cooldownMs: 3500,
     effects: [{type: 'summon_companion', summonId: 'la_gonflable_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque La Gonflable Transmutée, un compagnon maîtrisable qui combat aux côtés du lanceur."
 }
 move.mandragore = {
     id: 'mandragore',
@@ -7278,7 +7308,7 @@ move.mandragore = {
     classId: 'sadida',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'air', damage: {min: 52, max: 58}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément air."
 }
 move.force_de_la_nature = {
     id: 'force_de_la_nature',
@@ -7286,7 +7316,7 @@ move.force_de_la_nature = {
     classId: 'sadida',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 55, max: 62}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 // move.harmonie = {
 //     id: 'harmonie',
@@ -7302,7 +7332,7 @@ move.la_surpuissante_transmutee = {
     classId: 'sadida',
     cooldownMs: 3500,
     effects: [{type: 'summon_companion', summonId: 'la_surpuissante_transmutee_sadida', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque La Surpuissante Transmutée, un compagnon maîtrisable qui combat aux côtés du lanceur."
 }
 // #endregion
 
@@ -7319,7 +7349,7 @@ move.explobombe = {
                         patch: {damage: {min: 22, max: 24}}},
                        {lvl: 132,
                         patch: {damage: {min: 27, max: 29}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.tornabombe = {
     id: 'tornabombe',
@@ -7333,7 +7363,7 @@ move.tornabombe = {
                         patch: {damage: {min: 20, max: 22}}},
                        {lvl: 133,
                         patch: {damage: {min: 25, max: 27}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.bombe_a_eau = {
     id: 'bombe_a_eau',
@@ -7347,7 +7377,7 @@ move.bombe_a_eau = {
                         patch: {damage: {min: 23, max: 25}}},
                        {lvl: 136,
                         patch: {damage: {min: 28, max: 30}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.sismobombe = {
     id: 'sismobombe',
@@ -7361,7 +7391,7 @@ move.sismobombe = {
                         patch: {damage: {min: 21, max: 23}}},
                        {lvl: 134,
                         patch: {damage: {min: 26, max: 28}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 3 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 // move.detonateur = {
 //     id: 'detonateur',
@@ -7389,7 +7419,7 @@ move.pulsar = {
                         patch: {damage: {min: 22, max: 24}}},
                        {lvl: 144,
                         patch: {damage: {min: 27, max: 29}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et fait reculer l'ennemi."
 }
 move.espingole = {
     id: 'espingole',
@@ -7403,7 +7433,7 @@ move.espingole = {
                         patch: {damage: {min: 20, max: 22}}},
                        {lvl: 149,
                         patch: {damage: {min: 25, max: 27}}}],
-    description: ""
+    description: "Frappe dans l'élément air et fait reculer l'ennemi."
 }
 // move.botte = {
 //     id: 'botte',
@@ -7431,7 +7461,7 @@ move.recel = {
                         patch: {damage: {min: 23, max: 25}}},
                        {lvl: 159,
                         patch: {damage: {min: 28, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et avance vers l'ennemi."
 }
 move.bombarde = {
     id: 'bombarde',
@@ -7445,7 +7475,7 @@ move.bombarde = {
                         patch: {damage: {min: 21, max: 23}}},
                        {lvl: 164,
                         patch: {damage: {min: 26, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et fait reculer l'ennemi."
 }
 // move.aimantation = {
 //     id: 'aimantation',
@@ -7501,7 +7531,7 @@ move.dagues_boomerang = {
                         patch: {damage: {min: 14, max: 16}}},
                        {lvl: 184,
                         patch: {damage: {min: 16, max: 18}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.roublardise = {
 //     id: 'roublardise',
@@ -7529,7 +7559,7 @@ move.extraction = {
                         patch: {damage: {min: 22, max: 24}}},
                        {lvl: 194,
                         patch: {damage: {min: 28, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et vole de la vie."
 }
 // move.remission = {
 //     id: 'remission',
@@ -7555,7 +7585,7 @@ move.mousquet = {
                         patch: {}},
                        {lvl: 137,
                         patch: {damage: {min: 19, max: 21}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 // move.poudre = {
 //     id: 'poudre',
@@ -7579,7 +7609,7 @@ move.resquille = {
                         patch: {}},
                        {lvl: 147,
                         patch: {damage: {min: 33, max: 37}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 // move.dernier_souffle = {
 //     id: 'dernier_souffle',
@@ -7615,7 +7645,7 @@ move.explobombe_resiliente = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 18, max: 21}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 2 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.tornabombe_resiliente = {
     id: 'tornabombe_resiliente',
@@ -7627,7 +7657,7 @@ move.tornabombe_resiliente = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 16, max: 19}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 2 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.bombe_a_eau_resiliente = {
     id: 'bombe_a_eau_resiliente',
@@ -7639,7 +7669,7 @@ move.bombe_a_eau_resiliente = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 18, max: 21}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 2 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 move.sismobombe_resiliente = {
     id: 'sismobombe_resiliente',
@@ -7651,7 +7681,7 @@ move.sismobombe_resiliente = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 17, max: 20}}}],
-    description: ""
+    description: "Pose une charge de piège (silencieuse). Après 2 charges non déclenchées, le lancer suivant fait exploser toutes les charges accumulées : les dégâts du piège sont infligés une fois par charge posée, puis le compteur est réinitialisé. Si le lanceur quitte la position active avant l'explosion (changement de personnage, mort...), les charges explosent immédiatement."
 }
 // move.etoupille = {
 //     id: 'etoupille',
@@ -7675,7 +7705,7 @@ move.shrapnel = {
                         patch: {}},
                        {lvl: 187,
                         patch: {damage: {min: 33, max: 37}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 move.obliteration = {
     id: 'obliteration',
@@ -7687,7 +7717,7 @@ move.obliteration = {
                         patch: {}},
                        {lvl: 192,
                         patch: {damage: {min: 39, max: 43}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 // move.ruse = {
 //     id: 'ruse',
@@ -7707,7 +7737,7 @@ move.plombage = {
     classId: 'roublard',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.mitraille = {
     id: 'mitraille',
@@ -7715,7 +7745,7 @@ move.mitraille = {
     classId: 'roublard',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 20, max: 23}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.croisement = {
 //     id: 'croisement',
@@ -7747,7 +7777,7 @@ move.tromblon = {
     classId: 'roublard',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 24, max: 27}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 // move.stratageme = {
 //     id: 'stratageme',
@@ -7763,7 +7793,7 @@ move.cadence = {
     classId: 'roublard',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 26, max: 30}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément air."
 }
 // move.casemate = {
 //     id: 'casemate',
@@ -7779,7 +7809,7 @@ move.grenaille = {
     classId: 'roublard',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 28, max: 32}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 move.bombe_collante = {
     id: 'bombe_collante',
@@ -7787,7 +7817,7 @@ move.bombe_collante = {
     classId: 'roublard',
     cooldownMs: 2500,
     effects: [{type: 'best_element_damage', damage: {min: 20, max: 24}, target: 'enemy'}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible."
 }
 move.arquebuse = {
     id: 'arquebuse',
@@ -7795,7 +7825,7 @@ move.arquebuse = {
     classId: 'roublard',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 30, max: 34}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 // move.piege_magnetique = {
 //     id: 'piege_magnetique',
@@ -7828,7 +7858,7 @@ move.perturbation = {
                         patch: {damage: {min: 18, max: 20}}},
                        {lvl: 132,
                         patch: {damage: {min: 23, max: 26}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément feu."
 }
 move.gelure = {
     id: 'gelure',
@@ -7842,7 +7872,7 @@ move.gelure = {
                         patch: {damage: {min: 8, max: 10}}},
                        {lvl: 133,
                         patch: {damage: {min: 10, max: 12}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément eau."
 }
 move.souvenir = {
     id: 'souvenir',
@@ -7856,7 +7886,7 @@ move.souvenir = {
                         patch: {damage: {min: 8, max: 10}}},
                        {lvl: 136,
                         patch: {damage: {min: 10, max: 12}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément air."
 }
 move.frappe_de_xelor = {
     id: 'frappe_de_xelor',
@@ -7870,7 +7900,7 @@ move.frappe_de_xelor = {
                         patch: {damage: {min: 17, max: 20}}},
                        {lvl: 134,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément terre."
 }
 move.complice = {
     id: 'complice',
@@ -7884,7 +7914,7 @@ move.complice = {
                         patch: {}},
                        {lvl: 139,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Complice maîtrisable qui combat aux côtés du lanceur."
 }
 move.teleportation = {
     id: 'teleportation',
@@ -7898,7 +7928,7 @@ move.teleportation = {
                         patch: {}},
                        {lvl: 144,
                         patch: {}}],
-    description: ""
+    description: "Augmente la Vitesse du lanceur."
 }
 move.fletrissement = {
     id: 'fletrissement',
@@ -7912,7 +7942,7 @@ move.fletrissement = {
                         patch: {damage: {min: 20, max: 23}}},
                        {lvl: 149,
                         patch: {damage: {min: 25, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.engrenage = {
     id: 'engrenage',
@@ -7926,7 +7956,7 @@ move.engrenage = {
                         patch: {damage: {min: 18, max: 20}}},
                        {lvl: 154,
                         patch: {damage: {min: 22, max: 24}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément terre."
 }
 // move.fuite_du_temps = {
 //     id: 'fuite_du_temps',
@@ -7954,7 +7984,7 @@ move.rayon_obscur = {
                         patch: {damage: {min: 27, max: 30}}},
                        {lvl: 164,
                         patch: {damage: {min: 31, max: 34}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.ralentissement = {
     id: 'ralentissement',
@@ -7968,7 +7998,7 @@ move.ralentissement = {
                         patch: {damage: {min: 12, max: 14}}},
                        {lvl: 169,
                         patch: {damage: {min: 15, max: 17}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et réduit la Vitesse de l'ennemi."
 }
 // move.flou_temporel = {
 //     id: 'flou_temporel',
@@ -8010,7 +8040,7 @@ move.horloge = {
                         patch: {damage: {min: 19, max: 21}}},
                        {lvl: 184,
                         patch: {damage: {min: 23, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et réduit la Vitesse de l'ennemi."
 }
 move.refraction = {
     id: 'refraction',
@@ -8024,7 +8054,7 @@ move.refraction = {
                         patch: {damage: {min: 13, max: 15}}},
                        {lvl: 189,
                         patch: {damage: {min: 16, max: 18}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément feu."
 }
 // move.rembobinage = {
 //     id: 'rembobinage',
@@ -8064,7 +8094,7 @@ move.petrification = {
                         patch: {}},
                        {lvl: 137,
                         patch: {damage: {min: 27, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et réduit la Vitesse de l'ennemi."
 }
 move.distorsion = {
     id: 'distorsion',
@@ -8076,7 +8106,7 @@ move.distorsion = {
                         patch: {}},
                        {lvl: 142,
                         patch: {damage: {min: 29, max: 32}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.desynchronisation = {
 //     id: 'desynchronisation',
@@ -8112,7 +8142,7 @@ move.synchro = {
                         patch: {}},
                        {lvl: 157,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Synchro maîtrisable qui combat aux côtés du lanceur."
 }
 move.rouage = {
     id: 'rouage',
@@ -8124,7 +8154,7 @@ move.rouage = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 29, max: 32}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.poussiere = {
     id: 'poussiere',
@@ -8136,7 +8166,7 @@ move.poussiere = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 17, max: 19}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément feu."
 }
 move.permutation = {
     id: 'permutation',
@@ -8148,7 +8178,7 @@ move.permutation = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 27, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.pendule = {
     id: 'pendule',
@@ -8160,7 +8190,7 @@ move.pendule = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 29, max: 32}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.cadran_de_xelor = {
     id: 'cadran_de_xelor',
@@ -8172,7 +8202,7 @@ move.cadran_de_xelor = {
                         patch: {}},
                        {lvl: 182,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Cadran de Xélor maîtrisable qui combat aux côtés du lanceur."
 }
 // move.astrolabe = {
 //     id: 'astrolabe',
@@ -8196,7 +8226,7 @@ move.aiguille = {
                         patch: {}},
                        {lvl: 192,
                         patch: {damage: {min: 29, max: 32}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.compte_goutte = {
     id: 'compte_goutte',
@@ -8208,7 +8238,7 @@ move.compte_goutte = {
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 27, max: 30}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 // move.premonition = {
 //     id: 'premonition',
@@ -8224,7 +8254,7 @@ move.dessechement = {
     classId: 'xelor',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 26}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.sablier_de_xelor = {
     id: 'sablier_de_xelor',
@@ -8232,7 +8262,7 @@ move.sablier_de_xelor = {
     classId: 'xelor',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 // move.conservation = {
 //     id: 'conservation',
@@ -8256,7 +8286,7 @@ move.clepsydre = {
     classId: 'xelor',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 21, max: 23}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.regulateur = {
     id: 'regulateur',
@@ -8264,7 +8294,7 @@ move.regulateur = {
     classId: 'xelor',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 23, max: 26}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 // move.remanence = {
 //     id: 'remanence',
@@ -8288,7 +8318,7 @@ move.gousset = {
     classId: 'xelor',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 23, max: 26}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.sables_du_temps = {
     id: 'sables_du_temps',
@@ -8296,7 +8326,7 @@ move.sables_du_temps = {
     classId: 'xelor',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 13, max: 15}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 // move.espace_temps = {
 //     id: 'espace_temps',
@@ -8320,7 +8350,7 @@ move.glas = {
     classId: 'xelor',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 10, max: 12}, target: 'enemy'}],
-    description: ""
+    description: "Frappe l'ennemi dans les 4 éléments."
 }
 // #endregion
 
@@ -8337,7 +8367,7 @@ move['longue-vue'] = {
                         patch: {damage: {min: 20, max: 23}}},
                        {lvl: 132,
                         patch: {damage: {min: 25, max: 29}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.amarrage = {
     id: 'amarrage',
@@ -8351,7 +8381,7 @@ move.amarrage = {
                         patch: {damage: {min: 14, max: 16}}},
                        {lvl: 133,
                         patch: {damage: {min: 16, max: 18}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et avance vers l'ennemi."
 }
 move.torpille = {
     id: 'torpille',
@@ -8365,7 +8395,7 @@ move.torpille = {
                         patch: {damage: {min: 20, max: 23}}},
                        {lvl: 136,
                         patch: {damage: {min: 25, max: 29}}}],
-    description: ""
+    description: "Frappe dans l'élément air et fait reculer l'ennemi."
 }
 move.sabotage = {
     id: 'sabotage',
@@ -8379,7 +8409,7 @@ move.sabotage = {
                         patch: {damage: {min: 18, max: 21}}},
                        {lvl: 134,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et réduit la Puissance de l'ennemi."
 }
 move.harponneuse = {
     id: 'harponneuse',
@@ -8393,7 +8423,7 @@ move.harponneuse = {
                         patch: {}},
                        {lvl: 139,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Harponneuse maîtrisable qui combat aux côtés du lanceur."
 }
 // move.evolution = {
 //     id: 'evolution',
@@ -8421,7 +8451,7 @@ move.gardienne = {
                         patch: {}},
                        {lvl: 149,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Gardienne maîtrisable qui combat aux côtés du lanceur."
 }
 // move.aspiration = {
 //     id: 'aspiration',
@@ -8449,7 +8479,7 @@ move.maree = {
                         patch: {damage: {min: 27, max: 31}}},
                        {lvl: 159,
                         patch: {damage: {min: 34, max: 38}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.turbine = {
     id: 'turbine',
@@ -8463,7 +8493,7 @@ move.turbine = {
                         patch: {damage: {min: 22, max: 25}}},
                        {lvl: 164,
                         patch: {damage: {min: 27, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément feu et avance vers l'ennemi."
 }
 move.tactirelle = {
     id: 'tactirelle',
@@ -8477,7 +8507,7 @@ move.tactirelle = {
                         patch: {}},
                        {lvl: 169,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Tactirelle maîtrisable qui combat aux côtés du lanceur."
 }
 move.scaphandre = {
     id: 'scaphandre',
@@ -8491,7 +8521,7 @@ move.scaphandre = {
                         patch: {value: 150}},
                        {lvl: 174,
                         patch: {value: 200}}],
-    description: ""
+    description: "Pose un bouclier sur le lanceur."
 }
 move.foene = {
     id: 'foene',
@@ -8505,7 +8535,7 @@ move.foene = {
                         patch: {damage: {min: 23, max: 26}}},
                        {lvl: 179,
                         patch: {damage: {min: 28, max: 32}}}],
-    description: ""
+    description: "Frappe dans l'élément air et fait reculer l'ennemi."
 }
 move.ressac = {
     id: 'ressac',
@@ -8519,7 +8549,7 @@ move.ressac = {
                         patch: {damage: {min: 20, max: 23}}},
                        {lvl: 184,
                         patch: {damage: {min: 23, max: 27}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et fait reculer l'ennemi."
 }
 move.sonar = {
     id: 'sonar',
@@ -8533,7 +8563,7 @@ move.sonar = {
                         patch: {damage: {min: 8, max: 10}}},
                        {lvl: 189,
                         patch: {damage: {min: 11, max: 13}}}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible."
 }
 move.courant = {
     id: 'courant',
@@ -8547,7 +8577,7 @@ move.courant = {
                         patch: {damage: {min: 27, max: 30}}},
                        {lvl: 194,
                         patch: {damage: {min: 30, max: 34}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 // move.secourisme = {
 //     id: 'secourisme',
@@ -8573,7 +8603,7 @@ move.ancrage = {
                         patch: {}},
                        {lvl: 137,
                         patch: {damage: {min: 33, max: 36}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et réduit légèrement la Vitesse de l'ennemi."
 }
 // move.plongee = {
 //     id: 'plongee',
@@ -8633,7 +8663,7 @@ move.corrosion = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 22, max: 26}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.soupape = {
     id: 'soupape',
@@ -8645,7 +8675,7 @@ move.soupape = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.gouvernail = {
     id: 'gouvernail',
@@ -8657,7 +8687,7 @@ move.gouvernail = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.periscope = {
     id: 'periscope',
@@ -8669,7 +8699,7 @@ move.periscope = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 22, max: 25}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.chalutier = {
     id: 'chalutier',
@@ -8681,7 +8711,7 @@ move.chalutier = {
                         patch: {}},
                        {lvl: 182,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Chalutier maîtrisable qui combat aux côtés du lanceur."
 }
 // move.surtension = {
 //     id: 'surtension',
@@ -8705,7 +8735,7 @@ move.foreuse = {
                         patch: {}},
                        {lvl: 192,
                         patch: {}}],
-    description: ""
+    description: "Invoque un compagnon Foreuse maîtrisable qui combat aux côtés du lanceur."
 }
 // move.piston = {
 //     id: 'piston',
@@ -8725,7 +8755,7 @@ move.vapor = {
     classId: 'steamer',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.flibuste = {
     id: 'flibuste',
@@ -8733,7 +8763,7 @@ move.flibuste = {
     classId: 'steamer',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.bathyscaphe = {
     id: 'bathyscaphe',
@@ -8741,7 +8771,7 @@ move.bathyscaphe = {
     classId: 'steamer',
     cooldownMs: 3500,
     effects: [{type: 'summon_companion', summonId: 'bathyscaphe_steamer', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un compagnon Bathyscaphe maîtrisable qui combat aux côtés du lanceur."
 }
 // move.blindage = {
 //     id: 'blindage',
@@ -8757,7 +8787,7 @@ move.cabestan = {
     classId: 'steamer',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.ecume = {
     id: 'ecume',
@@ -8765,7 +8795,7 @@ move.ecume = {
     classId: 'steamer',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.embuscade = {
     id: 'embuscade',
@@ -8773,7 +8803,7 @@ move.embuscade = {
     classId: 'steamer',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'feu', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'eau', damage: {min: 10, max: 12}, target: 'enemy'}, {type: 'damage', element: 'air', damage: {min: 10, max: 12}, target: 'enemy'}],
-    description: ""
+    description: "Frappe l'ennemi dans les 4 éléments."
 }
 move.harmattan = {
     id: 'harmattan',
@@ -8781,7 +8811,7 @@ move.harmattan = {
     classId: 'steamer',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.sauvetage = {
 //     id: 'sauvetage',
@@ -8797,7 +8827,7 @@ move.court_circuit = {
     classId: 'steamer',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 // move.submersion = {
 //     id: 'submersion',
@@ -8846,7 +8876,7 @@ move.molosse = {
                         patch: {damage: {min: 24, max: 27}}},
                        {lvl: 132,
                         patch: {damage: {min: 31, max: 34}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.os_a_moelle = {
     id: 'os_a_moelle',
@@ -8860,7 +8890,7 @@ move.os_a_moelle = {
                         patch: {damage: {min: 16, max: 19}}},
                        {lvl: 133,
                         patch: {damage: {min: 21, max: 24}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.charogne = {
     id: 'charogne',
@@ -8874,7 +8904,7 @@ move.charogne = {
                         patch: {damage: {min: 25, max: 27}}},
                        {lvl: 136,
                         patch: {damage: {min: 32, max: 35}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.traque = {
     id: 'traque',
@@ -8888,7 +8918,7 @@ move.traque = {
                         patch: {damage: {min: 23, max: 25}}},
                        {lvl: 134,
                         patch: {damage: {min: 29, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 // move.proie = {
 //     id: 'proie',
@@ -8930,7 +8960,7 @@ move.lance_roquet = {
                         patch: {}},
                        {lvl: 149,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Lance-roquet qui combat aux côtés du lanceur."
 }
 move.amarok = {
     id: 'amarok',
@@ -8944,7 +8974,7 @@ move.amarok = {
                         patch: {damage: {min: 23, max: 25}}},
                        {lvl: 154,
                         patch: {damage: {min: 28, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.cubitus = {
     id: 'cubitus',
@@ -8958,7 +8988,7 @@ move.cubitus = {
                         patch: {damage: {min: 14, max: 16}}},
                        {lvl: 159,
                         patch: {damage: {min: 16, max: 18}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.arcanin = {
     id: 'arcanin',
@@ -8972,7 +9002,7 @@ move.arcanin = {
                         patch: {}},
                        {lvl: 164,
                         patch: {}}],
-    description: ""
+    description: "Augmente la Puissance du lanceur."
 }
 move.rabattage = {
     id: 'rabattage',
@@ -8986,7 +9016,7 @@ move.rabattage = {
                         patch: {damage: {min: 33, max: 37}}},
                        {lvl: 169,
                         patch: {damage: {min: 39, max: 44}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.carcasse = {
     id: 'carcasse',
@@ -9000,7 +9030,7 @@ move.carcasse = {
                         patch: {damage: {min: 7, max: 9}}},
                        {lvl: 174,
                         patch: {damage: {min: 9, max: 11}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément air."
 }
 // move.pelage_protecteur = {
 //     id: 'pelage_protecteur',
@@ -9028,7 +9058,7 @@ move.chasse = {
                         patch: {damage: {min: 33, max: 37}}},
                        {lvl: 184,
                         patch: {damage: {min: 39, max: 44}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.tibia = {
     id: 'tibia',
@@ -9042,7 +9072,7 @@ move.tibia = {
                         patch: {damage: {min: 32, max: 36}}},
                        {lvl: 189,
                         patch: {damage: {min: 40, max: 45}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 // move.apaisement = {
 //     id: 'apaisement',
@@ -9070,7 +9100,7 @@ move.dogue = {
                         patch: {damage: {min: 13, max: 15}}},
                        {lvl: 198,
                         patch: {damage: {min: 17, max: 19}}}],
-    description: ""
+    description: "Frappe dans l'élément terre et vole de la vie."
 }
 move.panique = {
     id: 'panique',
@@ -9082,7 +9112,7 @@ move.panique = {
                         patch: {}},
                        {lvl: 137,
                         patch: {}}],
-    description: ""
+    description: "Fait reculer l'ennemi et réduit sa Vitesse."
 }
 move.aboiement = {
     id: 'aboiement',
@@ -9094,7 +9124,7 @@ move.aboiement = {
                         patch: {}},
                        {lvl: 142,
                         patch: {}}],
-    description: ""
+    description: "Augmente la Vitesse du lanceur."
 }
 move.limier = {
     id: 'limier',
@@ -9106,7 +9136,7 @@ move.limier = {
                         patch: {}},
                        {lvl: 147,
                         patch: {damage: {min: 28, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.flair = {
     id: 'flair',
@@ -9118,7 +9148,7 @@ move.flair = {
                         patch: {}},
                        {lvl: 152,
                         patch: {}}],
-    description: ""
+    description: "Fait avancer le lanceur d'un rang."
 }
 move.appel_de_la_meute = {
     id: 'appel_de_la_meute',
@@ -9130,7 +9160,7 @@ move.appel_de_la_meute = {
                         patch: {}},
                        {lvl: 157,
                         patch: {}}],
-    description: ""
+    description: "Augmente l'érosion infligée par toute l'équipe."
 }
 move.machoire = {
     id: 'machoire',
@@ -9142,7 +9172,7 @@ move.machoire = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 20, max: 22}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.museliere = {
     id: 'museliere',
@@ -9154,7 +9184,7 @@ move.museliere = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 37, max: 41}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 move.radius = {
     id: 'radius',
@@ -9166,7 +9196,7 @@ move.radius = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 32, max: 36}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.depecage = {
     id: 'depecage',
@@ -9178,7 +9208,7 @@ move.depecage = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 7, max: 9}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément air."
 }
 // move.gibier = {
 //     id: 'gibier',
@@ -9214,7 +9244,7 @@ move.gangrene = {
                         patch: {}},
                        {lvl: 192,
                         patch: {}}],
-    description: ""
+    description: "Augmente l'érosion infligée par le lanceur."
 }
 move.cerbere = {
     id: 'cerbere',
@@ -9226,7 +9256,7 @@ move.cerbere = {
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 46, max: 52}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 move.calcaneus = {
     id: 'calcaneus',
@@ -9234,7 +9264,7 @@ move.calcaneus = {
     classId: 'ouginak',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'eau', damage: {min: 19, max: 21}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.12, target: 'self'}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 // move.caninos = {
 //     id: 'caninos',
@@ -9250,7 +9280,7 @@ move.aboi = {
     classId: 'ouginak',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: {min: 20, max: 22}, target: 'enemy'}, {type: 'lifesteal', ratio: 0.12, target: 'self'}],
-    description: ""
+    description: "Frappe dans l'élément feu et vole de la vie."
 }
 move.battue = {
     id: 'battue',
@@ -9258,7 +9288,7 @@ move.battue = {
     classId: 'ouginak',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 27, max: 30}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.ferocite = {
 //     id: 'ferocite',
@@ -9274,7 +9304,7 @@ move.vertebre = {
     classId: 'ouginak',
     cooldownMs: 2500,
     effects: [{type: 'dot', element: 'eau', value: 15, duration: 3, target: 'enemy'}],
-    description: ""
+    description: "Empoisonne l'ennemi dans l'élément eau."
 }
 move.humerus = {
     id: 'humerus',
@@ -9282,7 +9312,7 @@ move.humerus = {
     classId: 'ouginak',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 41, max: 46}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément terre."
 }
 // move.affection = {
 //     id: 'affection',
@@ -9298,7 +9328,7 @@ move.depouille = {
     classId: 'ouginak',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'air', damage: {min: 35, max: 39}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément air."
 }
 // move.poursuite = {
 //     id: 'poursuite',
@@ -9322,7 +9352,7 @@ move.tetanisation = {
     classId: 'ouginak',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 41, max: 46}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 // move.acharnement = {
 //     id: 'acharnement',
@@ -9354,7 +9384,7 @@ move.trident_de_la_mer = {
         {lvl: 66, patch: {damage: {min: 17, max: 19}}},
         {lvl: 132, patch: {damage: {min: 21, max: 24}}}
     ],
-    description: "Occasionne des dommages Eau aux ennemis et attire les cibles vers la case ciblée en zone."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 move.effondrement = {
     id: 'effondrement',
@@ -9367,7 +9397,7 @@ move.effondrement = {
         {lvl: 67, patch: {damage: {min: 16, max: 18}}},
         {lvl: 133, patch: {damage: {min: 20, max: 22}}}
     ],
-    description: "Occasionne des dommages Terre aux ennemis et attire les cibles jusqu'au centre en zone. Les dommages de zone ne sont pas dégressifs. N'affecte pas le lanceur."
+    description: "Inflige des dégâts Terre à tous les ennemis."
 }
 move.estoc_brulant = {
     id: 'estoc_brulant',
@@ -9380,7 +9410,7 @@ move.estoc_brulant = {
         {lvl: 69, patch: {damage: {min: 22, max: 25}}},
         {lvl: 136, patch: {damage: {min: 28, max: 32}}}
     ],
-    description: "Occasionne des dommages Feu aux ennemis et repousse les cibles depuis le lanceur en zone."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 move.volee_dairain = {
     id: 'volee_dairain',
@@ -9393,7 +9423,7 @@ move.volee_dairain = {
         {lvl: 68, patch: {damage: {min: 18, max: 20}}},
         {lvl: 134, patch: {damage: {min: 22, max: 25}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis et repousse les cibles en zone."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.epilogue = {
     id: 'epilogue',
@@ -9406,7 +9436,7 @@ move.epilogue = {
         {lvl: 72, patch: {}},
         {lvl: 139, patch: {}}
     ],
-    description: "Invoque ou rappelle la Lance. La ligne de vue du sort est désactivée si le lanceur est Désarmé."
+    description: "Fait reculer le lanceur lui-même."
 }
 move.charge_heroique = {
     id: 'charge_heroique',
@@ -9422,7 +9452,7 @@ move.charge_heroique = {
         {lvl: 77, patch: {damage: {min: 23, max: 27}}},
         {lvl: 144, patch: {damage: {min: 29, max: 33}}}
     ],
-    description: "Rappelle la Lance, rapproche le lanceur vers la cible et occasionne des dommages dans son meilleur élément aux ennemis. Repousse également la cible si le lanceur termine à son contact."
+    description: "Frappe l'ennemi dans son meilleur élément et le fait reculer."
 }
 move.lance_du_lac = {
     id: 'lance_du_lac',
@@ -9435,7 +9465,7 @@ move.lance_du_lac = {
         {lvl: 82, patch: {damage: {min: 17, max: 20}}},
         {lvl: 149, patch: {damage: {min: 22, max: 25}}}
     ],
-    description: "Occasionne des dommages Eau aux ennemis en zone et invoque la Lance."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 move.lance_pierre = {
     id: 'lance_pierre',
@@ -9448,7 +9478,7 @@ move.lance_pierre = {
         {lvl: 87, patch: {damage: {min: 19, max: 21}}},
         {lvl: 154, patch: {damage: {min: 25, max: 28}}}
     ],
-    description: "Occasionne des dommages Terre aux ennemis en zone et invoque la Lance. Les dommages de zone ne sont pas dégressifs."
+    description: "Inflige des dégâts Terre à tous les ennemis."
 }
 // move.phalange = {
 //     id: 'phalange',
@@ -9475,7 +9505,7 @@ move.lance_a_incendie = {
         {lvl: 97, patch: {damage: {min: 14, max: 17}}},
         {lvl: 164, patch: {damage: {min: 18, max: 21}}}
     ],
-    description: "Occasionne des dommages Feu aux ennemis en zone. Invoque la Lance si la case est ou devient libre. Les dommages du sort sont augmentés après chaque lancer."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 move.javeline_de_myr = {
     id: 'javeline_de_myr',
@@ -9488,7 +9518,7 @@ move.javeline_de_myr = {
         {lvl: 102, patch: {damage: {min: 21, max: 24}}},
         {lvl: 169, patch: {damage: {min: 26, max: 30}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis et repousse la cible. Invoque la Lance si la case est ou devient libre."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.balestra = {
     id: 'balestra',
@@ -9501,7 +9531,7 @@ move.balestra = {
         {lvl: 107, patch: {damage: {min: 23, max: 25}}},
         {lvl: 174, patch: {damage: {min: 28, max: 31}}}
     ],
-    description: "Téléporte le lanceur jusqu'à la cible et occasionne des dommages Eau aux ennemis en zone."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 move.talon_dargile = {
     id: 'talon_dargile',
@@ -9514,7 +9544,7 @@ move.talon_dargile = {
         {lvl: 112, patch: {damage: {min: 11, max: 13}}},
         {lvl: 179, patch: {damage: {min: 14, max: 16}}}
     ],
-    description: "Rappelle la Lance, rapproche le lanceur vers la cible et occasionne des dommages Terre aux ennemis en zone."
+    description: "Inflige des dégâts Terre à tous les ennemis."
 }
 move.kyrja = {
     id: 'kyrja',
@@ -9530,7 +9560,7 @@ move.kyrja = {
         {lvl: 117, patch: {damage: {min: 24, max: 27}}},
         {lvl: 184, patch: {damage: {min: 28, max: 32}}}
     ],
-    description: "Rappelle la Lance, téléporte le lanceur sur la case ciblée et vole de la Fuite et de la vie dans le meilleur élément du lanceur aux ennemis en zone."
+    description: "Frappe dans son meilleur élément et vole de la vie."
 }
 move.muspel = {
     id: 'muspel',
@@ -9543,7 +9573,7 @@ move.muspel = {
         {lvl: 122, patch: {damage: {min: 24, max: 28}}},
         {lvl: 189, patch: {damage: {min: 28, max: 32}}}
     ],
-    description: "Augmente les dommages du sort pour chaque ennemi en zone et occasionne des dommages Feu aux ennemis."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 move.prelude_au_fer = {
     id: 'prelude_au_fer',
@@ -9556,7 +9586,7 @@ move.prelude_au_fer = {
         {lvl: 127, patch: {}},
         {lvl: 194, patch: {}}
     ],
-    description: "Réduit la durée des effets sur les ennemis et augmente la Puissance des alliés en zone."
+    description: "Augmente la Puissance du lanceur."
 }
 move.terre_du_milieu = {
     id: 'terre_du_milieu',
@@ -9569,7 +9599,7 @@ move.terre_du_milieu = {
         {lvl: 131, patch: {damage: {min: 30, max: 34}}},
         {lvl: 198, patch: {damage: {min: 30, max: 34}}}
     ],
-    description: "Augmente la Puissance du lanceur pour chaque ennemi dans la zone d'effet et occasionne des dommages Terre aux ennemis."
+    description: "Inflige des dégâts Terre à tous les ennemis."
 }
 move.chevalerie = {
     id: 'chevalerie',
@@ -9584,7 +9614,7 @@ move.chevalerie = {
         {lvl: 73, patch: {}},
         {lvl: 137, patch: {}}
     ],
-    description: "Soigne et augmente les PM des alliés en zone. Rappelle également la Lance si le lanceur est Désarmé."
+    description: "Soigne l'allié le moins en vie et augmente la Vitesse du lanceur."
 }
 move.jormun = {
     id: 'jormun',
@@ -9596,7 +9626,7 @@ move.jormun = {
         {lvl: 77, patch: {}},
         {lvl: 142, patch: {damage: {min: 30, max: 34}}}
     ],
-    description: "Occasionne des dommages Eau aux ennemis en zone jusqu'à la Lance."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 move.poincon = {
     id: 'poincon',
@@ -9608,7 +9638,7 @@ move.poincon = {
         {lvl: 81, patch: {}},
         {lvl: 147, patch: {}}
     ],
-    description: "Rappelle et invoque la Lance dans l'état Poinçon : réduit la vitesse des ennemis au contact."
+    description: "Réduit la Vitesse de l'ennemi."
 }
 move.noa = {
     id: 'noa',
@@ -9620,7 +9650,7 @@ move.noa = {
         {lvl: 85, patch: {}},
         {lvl: 152, patch: {damage: {min: 23, max: 26}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis et leur applique l'état Noa : amplifie les dommages reçus."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.eclipse = {
     id: 'eclipse',
@@ -9635,7 +9665,7 @@ move.eclipse = {
         {lvl: 90, patch: {}},
         {lvl: 157, patch: {}}
     ],
-    description: "Rappelle la Lance, applique un bouclier sur le lanceur et ses alliés en zone et retire de la Portée à tout le monde."
+    description: "Pose un bouclier sur le lanceur et réduit la Vitesse de tous les ennemis."
 }
 move.maelstrom = {
     id: 'maelstrom',
@@ -9647,7 +9677,7 @@ move.maelstrom = {
         {lvl: 95, patch: {}},
         {lvl: 162, patch: {damage: {min: 32, max: 36}}}
     ],
-    description: "Échange de position avec la cible et occasionne des dommages Feu aux ennemis en zone."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 move.lance_cyclone = {
     id: 'lance_cyclone',
@@ -9659,7 +9689,7 @@ move.lance_cyclone = {
         {lvl: 100, patch: {}},
         {lvl: 167, patch: {damage: {min: 31, max: 33}}}
     ],
-    description: "Invoque la Lance, rapproche le lanceur vers elle, occasionne des dommages Air aux ennemis et repousse les cibles en zone."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.octave = {
     id: 'octave',
@@ -9671,7 +9701,7 @@ move.octave = {
         {lvl: 105, patch: {}},
         {lvl: 177, patch: {damage: {min: 16, max: 18}}}
     ],
-    description: "Éloigne le lanceur de la cible et occasionne des dommages Eau aux ennemis."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 move.soulevement = {
     id: 'soulevement',
@@ -9683,7 +9713,7 @@ move.soulevement = {
         {lvl: 110, patch: {}},
         {lvl: 172, patch: {damage: {min: 29, max: 33}}}
     ],
-    description: "Téléporte les cibles symétriquement par rapport au lanceur et occasionne des dommages Terre aux ennemis en zone. Les dommages de zone ne sont pas dégressifs."
+    description: "Inflige des dégâts Terre à tous les ennemis."
 }
 // move.parade = {
 //     id: 'parade',
@@ -9719,7 +9749,7 @@ move.epieu_sismique = {
         {lvl: 125, patch: {}},
         {lvl: 192, patch: {damage: {min: 37, max: 42}}}
     ],
-    description: "Occasionne des dommages Terre puissants aux ennemis en zone et invoque la Lance."
+    description: "Inflige des dégâts Terre puissants à tous les ennemis."
 }
 move.javelot_foudre = {
     id: 'javelot_foudre',
@@ -9731,7 +9761,7 @@ move.javelot_foudre = {
         {lvl: 130, patch: {}},
         {lvl: 197, patch: {damage: {min: 28, max: 32}}}
     ],
-    description: "Invoque la Lance et occasionne des dommages Eau aux ennemis en zone. Rebondit sur l'ennemi le plus proche n'étant pas dans la zone d'effet."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 // move.oriflamme = {
 //     id: 'oriflamme',
@@ -9747,7 +9777,7 @@ move.pluie_dairain = {
     classId: 'forgelance',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 19, max: 21}, target: 'all_enemies'}],
-    description: "Occasionne des dommages Air aux ennemis et réduit leurs Résistances Poussée en zone. Les dommages de zone ne sont pas dégressifs."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.moulin_rouge = {
     id: 'moulin_rouge',
@@ -9755,7 +9785,7 @@ move.moulin_rouge = {
     classId: 'forgelance',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 24, max: 28}, target: 'all_enemies'}],
-    description: "Occasionne des dommages Feu aux ennemis et attire les cibles jusqu'au centre en zone. Les dommages de zone ne sont pas dégressifs."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 move.moulin_a_vent = {
     id: 'moulin_a_vent',
@@ -9763,7 +9793,7 @@ move.moulin_a_vent = {
     classId: 'forgelance',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 29, max: 33}, target: 'all_enemies'}],
-    description: "Téléporte les cibles symétriquement par rapport au centre et occasionne des dommages Air aux ennemis en zone. N'affecte pas directement le lanceur."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 move.fente = {
     id: 'fente',
@@ -9771,7 +9801,7 @@ move.fente = {
     classId: 'forgelance',
     cooldownMs: 1700,
     effects: [{type: 'damage', element: 'feu', damage: {min: 12, max: 14}, target: 'all_enemies'}],
-    description: "Rappelle la Lance, téléporte le lanceur sur la case ciblée et occasionne des dommages Feu aux ennemis en zone."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 move.vajra = {
     id: 'vajra',
@@ -9782,7 +9812,7 @@ move.vajra = {
         {type: 'best_element_damage', damage: {min: 39, max: 44}, target: 'enemy'},
         {type: 'lifesteal', ratio: 0.04, target: 'self'}
     ],
-    description: "Rappelle la Lance, téléporte le lanceur sur la case ciblée et vole de la Fuite et de la vie dans le meilleur élément du lanceur aux ennemis en zone."
+    description: "Frappe dans son meilleur élément et vole de la vie."
 }
 move.ydra = {
     id: 'ydra',
@@ -9790,7 +9820,7 @@ move.ydra = {
     classId: 'forgelance',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 44, max: 50}, target: 'all_enemies'}],
-    description: "Réduit les dommages reçus par le lanceur pour chaque ennemi dans la zone d'effet et leur occasionne des dommages Terre en zone. Les dommages de zone ne sont pas dégressifs."
+    description: "Inflige des dégâts Terre à tous les ennemis."
 }
 // move.crepuscule = {
 //     id: 'crepuscule',
@@ -9806,7 +9836,7 @@ move.degagement = {
     classId: 'forgelance',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 29, max: 32}, target: 'all_enemies'}],
-    description: "Occasionne des dommages Air aux ennemis et repousse les cibles depuis le centre en zone. N'affecte pas le lanceur."
+    description: "Inflige des dégâts Air à tous les ennemis."
 }
 // move.renommee = {
 //     id: 'renommee',
@@ -9822,7 +9852,7 @@ move.fer_rouge = {
     classId: 'forgelance',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'feu', damage: {min: 30, max: 34}, target: 'all_enemies'}],
-    description: "Occasionne des dommages Feu aux ennemis et augmente les dommages qu'ils subissent en zone. Invoque la Lance si la case est ou devient libre."
+    description: "Inflige des dégâts Feu à tous les ennemis."
 }
 // move.etreinte_de_valkyr = {
 //     id: 'etreinte_de_valkyr',
@@ -9838,7 +9868,7 @@ move.elding = {
     classId: 'forgelance',
     cooldownMs: 3000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 36, max: 40}, target: 'all_enemies'}],
-    description: "Invoque la Lance, attire les cibles vers le centre et occasionne des dommages Eau aux ennemis en zone. N'affecte pas le lanceur."
+    description: "Inflige des dégâts Eau à tous les ennemis."
 }
 // move.holmgang = {
 //     id: 'holmgang',
@@ -9863,7 +9893,7 @@ move.gueule_de_bois = {
                         patch: {damage: {min: 19, max: 22}}},
                        {lvl: 132,
                         patch: {damage: {min: 24, max: 27}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.paume_explosive = {
     id: 'paume_explosive',
@@ -9877,7 +9907,7 @@ move.paume_explosive = {
                         patch: {damage: {min: 15, max: 17}}},
                        {lvl: 133,
                         patch: {damage: {min: 18, max: 20}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.schnaps = {
     id: 'schnaps',
@@ -9891,7 +9921,7 @@ move.schnaps = {
                         patch: {damage: {min: 17, max: 19}}},
                        {lvl: 136,
                         patch: {damage: {min: 21, max: 24}}}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 move.ethylo = {
     id: 'ethylo',
@@ -9905,7 +9935,7 @@ move.ethylo = {
                         patch: {damage: {min: 20, max: 23}}},
                        {lvl: 134,
                         patch: {damage: {min: 25, max: 28}}}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 // move.bombance = {
 //     id: 'bombance',
@@ -9947,7 +9977,7 @@ move.epouvante = {
                         patch: {}},
                        {lvl: 149,
                         patch: {}}],
-    description: ""
+    description: "Fait reculer l'ennemi sans lui infliger de dégâts."
 }
 move.brancard = {
     id: 'brancard',
@@ -9961,7 +9991,7 @@ move.brancard = {
                         patch: {damage: {min: 23, max: 26}}},
                        {lvl: 154,
                         patch: {damage: {min: 28, max: 32}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.pandikulation = {
     id: 'pandikulation',
@@ -9975,7 +10005,7 @@ move.pandikulation = {
                         patch: {damage: {min: 23, max: 25}}},
                        {lvl: 159,
                         patch: {damage: {min: 28, max: 31}}}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 // move.ebriete = {
 //     id: 'ebriete',
@@ -10017,7 +10047,7 @@ move.propulsion = {
                         patch: {damage: {min: 27, max: 30}}},
                        {lvl: 174,
                         patch: {damage: {min: 33, max: 37}}}],
-    description: ""
+    description: "Frappe dans l'élément air et vole de la vie."
 }
 move.eau_de_vie = {
     id: 'eau_de_vie',
@@ -10031,7 +10061,7 @@ move.eau_de_vie = {
                         patch: {damage: {min: 22, max: 24}}},
                        {lvl: 179,
                         patch: {damage: {min: 26, max: 29}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.souillure = {
     id: 'souillure',
@@ -10045,7 +10075,7 @@ move.souillure = {
                         patch: {}},
                        {lvl: 184,
                         patch: {}}],
-    description: ""
+    description: "Réduit la Vitesse et la Puissance de l'ennemi."
 }
 move.fermentation = {
     id: 'fermentation',
@@ -10059,7 +10089,7 @@ move.fermentation = {
                         patch: {value: 100}},
                        {lvl: 189,
                         patch: {value: 150}}],
-    description: ""
+    description: "Pose un bouclier sur le lanceur."
 }
 move.eviction = {
     id: 'eviction',
@@ -10073,7 +10103,7 @@ move.eviction = {
                         patch: {damage: {min: 13, max: 15}}},
                        {lvl: 194,
                         patch: {damage: {min: 15, max: 17}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément terre."
 }
 move.flasque_explosive = {
     id: 'flasque_explosive',
@@ -10087,7 +10117,7 @@ move.flasque_explosive = {
                         patch: {damage: {min: 16, max: 18}}},
                        {lvl: 198,
                         patch: {damage: {min: 18, max: 20}}}],
-    description: ""
+    description: "Frappe dans l'élément feu tous les ennemis."
 }
 // move.lait_de_bambou = {
 //     id: 'lait_de_bambou',
@@ -10111,7 +10141,7 @@ move.nausee = {
                         patch: {}},
                        {lvl: 142,
                         patch: {damage: {min: 15, max: 17}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément air."
 }
 move.vague_a_lame = {
     id: 'vague_a_lame',
@@ -10123,7 +10153,7 @@ move.vague_a_lame = {
                         patch: {}},
                        {lvl: 147,
                         patch: {damage: {min: 36, max: 40}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau."
 }
 move.lien_spiritueux = {
     id: 'lien_spiritueux',
@@ -10135,7 +10165,7 @@ move.lien_spiritueux = {
                         patch: {}},
                        {lvl: 152,
                         patch: {}}],
-    description: ""
+    description: "Invoque un Lien Spiritueux qui combat aux côtés du lanceur."
 }
 move.pandanlku = {
     id: 'pandanlku',
@@ -10147,7 +10177,7 @@ move.pandanlku = {
                         patch: {}},
                        {lvl: 157,
                         patch: {}}],
-    description: ""
+    description: "Augmente la Vitesse du lanceur."
 }
 move.souffle_enflamme = {
     id: 'souffle_enflamme',
@@ -10159,7 +10189,7 @@ move.souffle_enflamme = {
                         patch: {}},
                        {lvl: 162,
                         patch: {damage: {min: 16, max: 18}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément feu."
 }
 move.distillation = {
     id: 'distillation',
@@ -10171,7 +10201,7 @@ move.distillation = {
                         patch: {}},
                        {lvl: 167,
                         patch: {damage: {min: 22, max: 24}}}],
-    description: ""
+    description: "Frappe dans l'élément eau et vole de la vie."
 }
 move.ribote = {
     id: 'ribote',
@@ -10183,7 +10213,7 @@ move.ribote = {
                         patch: {}},
                        {lvl: 177,
                         patch: {damage: {min: 19, max: 21}}}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 move.engourdissement = {
     id: 'engourdissement',
@@ -10195,7 +10225,7 @@ move.engourdissement = {
                         patch: {}},
                        {lvl: 172,
                         patch: {damage: {min: 15, max: 17}}}],
-    description: ""
+    description: "Frappe rapidement dans l'élément air."
 }
 // move.picole = {
 //     id: 'picole',
@@ -10243,7 +10273,7 @@ move.alcoshu = {
                         patch: {}},
                        {lvl: 197,
                         patch: {damage: {min: 44, max: 48}}}],
-    description: ""
+    description: "Frappe puissamment dans l'élément eau et vole de la vie."
 }
 move.liqueur = {
     id: 'liqueur',
@@ -10251,7 +10281,7 @@ move.liqueur = {
     classId: 'pandawa',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'air', damage: {min: 20, max: 23}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément air."
 }
 // move.ivresse = {
 //     id: 'ivresse',
@@ -10275,7 +10305,7 @@ move.absinthe = {
     classId: 'pandawa',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 22, max: 25}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément feu."
 }
 move.bistouille = {
     id: 'bistouille',
@@ -10283,7 +10313,7 @@ move.bistouille = {
     classId: 'pandawa',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'terre', damage: {min: 24, max: 27}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément terre."
 }
 // move.brassage = {
 //     id: 'brassage',
@@ -10307,7 +10337,7 @@ move.souffle_alcoolise = {
     classId: 'pandawa',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'air', damage: {min: 18, max: 21}, target: 'all_enemies'}],
-    description: ""
+    description: "Frappe tous les ennemis dans l'élément air."
 }
 move.pandatak = {
     id: 'pandatak',
@@ -10315,7 +10345,7 @@ move.pandatak = {
     classId: 'pandawa',
     cooldownMs: 2500,
     effects: [{type: 'damage', element: 'terre', damage: {min: 26, max: 30}, target: 'all_enemies'}],
-    description: ""
+    description: "Frappe tous les ennemis dans l'élément terre."
 }
 // move.prohibition = {
 //     id: 'prohibition',
@@ -10331,7 +10361,7 @@ move.cascade = {
     classId: 'pandawa',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'eau', damage: {min: 20, max: 23}, target: 'enemy'}],
-    description: ""
+    description: "Frappe dans l'élément eau."
 }
 move.pandjiu = {
     id: 'pandjiu',
@@ -10339,7 +10369,7 @@ move.pandjiu = {
     classId: 'pandawa',
     cooldownMs: 2000,
     effects: [{type: 'damage', element: 'feu', damage: {min: 28, max: 32}, target: 'enemy'}],
-    description: ""
+    description: "Frappe puissamment dans l'élément feu."
 }
 move.bambou = {
     id: 'bambou',
@@ -10347,7 +10377,7 @@ move.bambou = {
     classId: 'pandawa',
     cooldownMs: 3500,
     effects: [{type: 'summon', summonId: 'bambou_pandawa', scale: 0.30, duration: 2, target: 'self'}],
-    description: ""
+    description: "Invoque un Bambou qui combat aux côtés du lanceur."
 }
 move.main_de_pandawa = {
     id: 'main_de_pandawa',
@@ -10355,7 +10385,7 @@ move.main_de_pandawa = {
     classId: 'pandawa',
     cooldownMs: 2500,
     effects: [{type: 'best_element_damage', damage: {min: 25, max: 28}, target: 'enemy'}],
-    description: ""
+    description: "Frappe l'ennemi dans son élément le plus faible."
 }
 // #endregion
 
@@ -10374,7 +10404,7 @@ move.affront = {
         {lvl: 66, patch: {damage: {min: 20, max: 22}}},
         {lvl: 132, patch: {cooldownMs: 2400, damage: {min: 26, max: 28}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis et repousse les cibles en zone. La poussée n'est pas appliquée si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Air à l'ennemi et le fait reculer."
 }
 move.audace = {
     id: 'audace',
@@ -10390,7 +10420,7 @@ move.audace = {
         {lvl: 67, patch: {damage: {min: 20, max: 23}}},
         {lvl: 133, patch: {cooldownMs: 2400, damage: {min: 26, max: 29}}}
     ],
-    description: "Rapproche le lanceur de la cible et occasionne des dommages Eau aux ennemis. Le rapprochement n'est pas appliqué si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Eau à l'ennemi et le fait avancer d'un rang."
 }
 move.commotion = {
     id: 'commotion',
@@ -10406,7 +10436,7 @@ move.commotion = {
         {lvl: 69, patch: {damage: {min: 18, max: 20}}},
         {lvl: 136, patch: {cooldownMs: 2200, damage: {min: 23, max: 26}}}
     ],
-    description: "Occasionne des dommages Terre aux ennemis et attire les cibles vers le centre en zone. L'attirance affecte le lanceur uniquement si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Terre à l'ennemi et le fait avancer d'un rang."
 }
 move.rayon_de_wakfu = {
     id: 'rayon_de_wakfu',
@@ -10422,7 +10452,7 @@ move.rayon_de_wakfu = {
         {lvl: 68, patch: {damage: {min: 21, max: 23}, heal: {min: 14, max: 18}}},
         {lvl: 134, patch: {cooldownMs: 2400, damage: {min: 26, max: 28}, heal: {min: 18, max: 22}}}
     ],
-    description: "Soigne les alliés et occasionne des dommages Feu aux ennemis en zone."
+    description: "Inflige des dégâts Feu à l'ennemi et soigne le lanceur."
 }
 // move.portail = {
 //     id: 'portail',
@@ -10466,7 +10496,7 @@ move.persiflage = {
         {lvl: 82, patch: {damage: {min: 20, max: 23}}},
         {lvl: 149, patch: {cooldownMs: 2400, damage: {min: 25, max: 29}}}
     ],
-    description: "Retire de la Portée et occasionne des dommages Terre. Le retrait devient un vol si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Terre à l'ennemi et réduit sa Puissance."
 }
 // move.cicatrisation = {
 //     id: 'cicatrisation',
@@ -10495,7 +10525,7 @@ move.outrage = {
         {lvl: 92, patch: {damage: {min: 19, max: 23}}},
         {lvl: 159, patch: {cooldownMs: 2200, damage: {min: 24, max: 29}}}
     ],
-    description: "Occasionne des dommages Feu. Augmente également la Portée du lanceur si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Feu à l'ennemi."
 }
 move.odyssee = {
     id: 'odyssee',
@@ -10510,7 +10540,7 @@ move.odyssee = {
         {lvl: 97, patch: {buff: {value: 20, duration: 2}}},
         {lvl: 164, patch: {buff: {value: 25, duration: 2}}}
     ],
-    description: "Sur un ennemi : éloigne le lanceur de la cible et attire la cible. Sur un allié : repousse la cible et rapproche le lanceur vers elle."
+    description: "Augmente la Vitesse du lanceur."
 }
 move.insolence = {
     id: 'insolence',
@@ -10526,7 +10556,7 @@ move.insolence = {
         {lvl: 102, patch: {damage: {min: 20, max: 23}}},
         {lvl: 169, patch: {cooldownMs: 2400, damage: {min: 25, max: 28}}}
     ],
-    description: "Éloigne le lanceur de la cible et occasionne des dommages Eau aux ennemis. Le recul n'est pas appliqué si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Eau à l'ennemi et le fait reculer."
 }
 // move.cabale = {
 //     id: 'cabale',
@@ -10556,7 +10586,7 @@ move.brimade = {
         {lvl: 112, patch: {damage: {min: 18, max: 20}}},
         {lvl: 179, patch: {cooldownMs: 2400, damage: {min: 23, max: 25}}}
     ],
-    description: "Occasionne des dommages Air aux ennemis en zone et repousse les cibles depuis le centre de la zone. La poussée affecte le lanceur uniquement si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Air à l'ennemi et le fait reculer."
 }
 // move.sillage = {
 //     id: 'sillage',
@@ -10586,7 +10616,7 @@ move.therapie = {
         {lvl: 122, patch: {damage: {min: 20, max: 22}, heal: {min: 14, max: 18}}},
         {lvl: 189, patch: {cooldownMs: 2400, damage: {min: 23, max: 26}, heal: {min: 17, max: 21}}}
     ],
-    description: "Vole de la vie dans l'élément Terre aux ennemis ou soigne l'allié ciblé et attire la cible."
+    description: "Inflige des dégâts Terre à l'ennemi et soigne le lanceur."
 }
 // move.distribution = {
 //     id: 'distribution',
@@ -10616,7 +10646,7 @@ move.affliction = {
         {lvl: 131, patch: {damage: {min: 18, max: 21}, heal: {min: 13, max: 16}}},
         {lvl: 198, patch: {cooldownMs: 2400, damage: {min: 23, max: 26}, heal: {min: 17, max: 20}}}
     ],
-    description: "Vole de la vie dans l'élément Eau aux ennemis ou soigne l'allié ciblé. Applique également un poison Eau de début de tour si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Eau à l'ennemi et soigne le lanceur."
 }
 // move.transcendance = {
 //     id: 'transcendance',
@@ -10643,7 +10673,7 @@ move.raillerie = {
         {lvl: 77, patch: {}},
         {lvl: 142, patch: {cooldownMs: 2700, damage: {min: 32, max: 36}}}
     ],
-    description: "Occasionne des dommages Air. Retire également des PM si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Air et réduit la Vitesse de l'ennemi."
 }
 // move.resonance = {
 //     id: 'resonance',
@@ -10669,7 +10699,7 @@ move.extinction = {
         {lvl: 85, patch: {}},
         {lvl: 152, patch: {cooldownMs: 2700, damage: {min: 32, max: 35}}}
     ],
-    description: "Occasionne des dommages Feu. Applique également un poison Feu de fin de tour sur la cible si le sort est projeté dans un portail."
+    description: "Inflige des dégâts Feu à l'ennemi."
 }
 // move.entraide = {
 //     id: 'entraide',
@@ -10740,7 +10770,7 @@ move.faisceau = {
         {lvl: 110, patch: {}},
         {lvl: 172, patch: {cooldownMs: 2900, damage: {min: 35, max: 40}}}
     ],
-    description: "Occasionne des dommages Feu puissants aux ennemis en faisceau."
+    description: "Inflige des dégâts Feu puissants à l'ennemi."
 }
 // move.errance = {
 //     id: 'errance',
@@ -10801,7 +10831,7 @@ move.aplomb = {
     effects: [
         {type: 'damage', element: 'eau', damage: {min: 32, max: 38}, target: 'enemy'}
     ],
-    description: "Occasionne des dommages Eau très puissants aux ennemis."
+    description: "Inflige des dégâts Eau très puissants à l'ennemi."
 }
 // move.exode = {
 //     id: 'exode',
@@ -10838,7 +10868,7 @@ move.cataclysme = {
     effects: [
         {type: 'damage', element: 'feu', damage: {min: 32, max: 38}, target: 'enemy'}
     ],
-    description: "Déclenche un cataclysme de feu dévastateur aux ennemis."
+    description: "Inflige des dégâts Feu dévastateurs à l'ennemi."
 }
 // move.stupeur = {
 //     id: 'stupeur',
@@ -10905,7 +10935,7 @@ move.vestige = {
     effects: [
         {type: 'summon_companion', summonId: 'vestige_eliotrope', scale: 0.30, duration: 2, target: 'self'}
     ],
-    description: "Invoque un Vestige capable de frapper dans plusieurs éléments et de se téléporter via les portails."
+    description: "Invoque un Vestige qui combat aux côtés du lanceur."
 }
 move.sermon = {
     id: 'sermon',

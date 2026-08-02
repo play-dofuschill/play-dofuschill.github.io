@@ -19690,8 +19690,9 @@ item.hachebarde_de_guerre = {
     slot: 'arme',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    set: 'panoplie_de_guerre',
+    set: 'sans_panoplie',
     requiredLevel: 200,
+    ogrinePrice: 10,
     stats: [{ stat: 'maxHp', min: 401, max: 450 }, { stat: 'intelligence', min: 81, max: 120 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'spd', min: -6, max: -5 }, { stat: 'heal', min: -40, max: -40 }, { stat: 'res.feu', min: 7, max: 10 }, { stat: 'flatDamage', min: 46, max: 55 }]
 }
 item.kanji_jirark = {

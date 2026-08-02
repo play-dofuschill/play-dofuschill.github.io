@@ -1402,6 +1402,24 @@ function _getAntiHealFactor(entity) {
 // Supporte : 'self'/défaut → caster, 'ally_random', 'ally_min_hp',
 //            'owner' → propriétaire du companion (si caster est un companion),
 //            'companion' → le companion du caster (ou null si absent/mort)
+// Applique un modificateur temporaire de maxHp (buff ou debuff) : ne touche jamais aux PV courants
+// à l'application (le plafond change, pas la vie réelle) — seule une revalorisation à la hausse du
+// plafond (fin de debuff) ou une baisse (fin de buff) peut, via le clamp de tickBuffs, réduire les PV
+// courants si ceux-ci dépassaient déjà le nouveau plafond. Un recast avant expiration rafraîchit la
+// durée au lieu d'empiler un second modificateur (empêche tout cumul de type "régénération").
+function _applyMaxHpModifier(entity, label, value, duration, extraFlags = {}) {
+    entity.buffs = entity.buffs || []
+    const existing = entity.buffs.find(b => b._label === label && b.stat === 'maxHp')
+    if (existing) {
+        existing.duration = duration
+        return
+    }
+    const oldMax = entity.maxHp || 0
+    const newMax = Math.max(1, oldMax + value)
+    entity.maxHp = newMax
+    entity.buffs.push({ stat: 'maxHp', value: newMax - oldMax, duration, directApplied: true, _label: label, ...extraFlags })
+}
+
 function _resolveAllyTarget(effect, caster) {
     if (effect.target === 'owner') {
         if (caster.ownerSlot !== undefined) return state.team[caster.ownerSlot] || caster
@@ -1428,6 +1446,11 @@ function _resolveAllyTarget(effect, caster) {
     const _allySlotM = effect.target?.match(/^ally_(\d)$/)
     if (_allySlotM) {
         const t = state.team[parseInt(_allySlotM[1], 10) - 1]
+        return (t && t.currentHp > 0) ? t : null
+    }
+    // slot absolu sans target explicite (ex: Boîte à Outils, Décadence) — cible le membre du slot, pas le lanceur
+    if (!effect.target && effect.slot != null) {
+        const t = state.team[effect.slot - 1]
         return (t && t.currentHp > 0) ? t : null
     }
     return caster
@@ -1772,6 +1795,23 @@ function executeEffect(ctx) {
             if (effect._bonusFinalDamagePct) {
                 statsForCalc = { ...statsForCalc, finalDamagePct: (statsForCalc.finalDamagePct || 0) + effect._bonusFinalDamagePct }
             }
+            // hpBonusPct : bonus de dégâts finaux si la cible est sous hpBonusThreshold% de ses PV max (défaut 50%)
+            if (effect.hpBonusPct && targetEnemy.maxHp) {
+                const _tHpPct = ((targetEnemy.currentHp || 0) / targetEnemy.maxHp) * 100
+                if (_tHpPct < (effect.hpBonusThreshold ?? 50)) {
+                    statsForCalc = { ...statsForCalc, finalDamagePct: (statsForCalc.finalDamagePct || 0) + effect.hpBonusPct }
+                }
+            }
+            // trapCountBonusPct : bonus de dégâts finaux par piège Sram posé et non déclenché par le lanceur
+            if (effect.trapCountBonusPct && combat) {
+                const _casterIdx = state.team.indexOf(caster)
+                const _pendingTraps = Object.entries(combat.trapOwners || {})
+                    .filter(([, owner]) => owner === _casterIdx)
+                    .reduce((sum, [key]) => sum + (combat.trapStacks[key] || 0), 0)
+                if (_pendingTraps > 0) {
+                    statsForCalc = { ...statsForCalc, finalDamagePct: (statsForCalc.finalDamagePct || 0) + _pendingTraps * effect.trapCountBonusPct }
+                }
+            }
 
             // Scaling HP : boost temporaire d'une stat choisie, calculé en % relatif au lanceur.
             // Chaque scale = { stat: 'finalDamagePct'|'flatDamage'|'atk'|..., ratio: 1.0 }
@@ -2076,6 +2116,25 @@ function executeEffect(ctx) {
                 }
             }
 
+            // Dérobade (Sram) : si touché par un sort offensif, échange sa place avec l'allié suivant et annule les dégâts
+            if (dmg > 0 && state.team.includes(targetEnemy) && !state.team.includes(caster)) {
+                const _derobadeBuff = (targetEnemy.buffs || []).find(b => b.stat === 'derobade')
+                if (_derobadeBuff) {
+                    const _living = []
+                    for (let i = 0; i < state.team.length; i++) {
+                        const m = state.team[i]
+                        if (m && m.currentHp > 0) _living.push(i)
+                    }
+                    const _curPos = _living.indexOf(combat.activeMemberIndex)
+                    if (_living.length > 1 && _curPos !== -1) {
+                        const _nextIdx = _living[(_curPos + 1) % _living.length]
+                        addLog(`Dérobade → ${targetEnemy.name || classes[targetEnemy.classId]?.name || '?'} échange sa place et annule les dégâts !`)
+                        setActiveMember(_nextIdx)
+                        return 0
+                    }
+                }
+            }
+
             // Dofus Ivoire : damage_block — annule le prochain coup reçu (one-shot)
             if (dmg > 0 && state.team.includes(targetEnemy) && !state.team.includes(caster)) {
                 const _blockIdx = (targetEnemy.buffs || []).findIndex(b => b.stat === 'damage_block')
@@ -2243,8 +2302,18 @@ function executeEffect(ctx) {
                 return executeEffect({ ...ctx, targetEnemy: dotTarget, effect: { ...effect, target: 'enemy' } })
             }
             const dotBase    = _resolveEffectValue(effect.value)
-            const dotScaled  = Math.max(0, Math.floor(
+            let dotScaled  = Math.max(0, Math.floor(
                 dotBase * (1 + (casterStats?.atk || 0) / 100) + (casterStats?.flatDamage || 0)
+            ))
+            // finalDamagePct (+ hpBonusPct conditionnel, cumulé dans le même palier que pour les dégâts directs)
+            // et spellDamagePct : harmonise le calcul avec calcDamage (stats.js) côté attaquant.
+            let _dotFinalPct = casterStats?.finalDamagePct || 0
+            if (effect.hpBonusPct && targetEnemy.maxHp) {
+                const _tHpPct = ((targetEnemy.currentHp || 0) / targetEnemy.maxHp) * 100
+                if (_tHpPct < (effect.hpBonusThreshold ?? 50)) _dotFinalPct += effect.hpBonusPct
+            }
+            dotScaled = Math.max(0, Math.floor(
+                dotScaled * (1 + _dotFinalPct / 100) * (1 + (casterStats?.spellDamagePct || 0) / 100)
             ))
             const _lsRatio = effect.lifestealRatio ?? null
             const _dotEntry = (val) => ({
@@ -2466,15 +2535,13 @@ function executeEffect(ctx) {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
                     m.buffs = m.buffs || []
-                    if (m.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) continue
                     const _newFlag = (!effect.delay && m === caster) ? { _new: true } : {}
                     if (effect.stat === 'maxHp') {
-                        m.maxHp = (m.maxHp || 0) + buffVal
-                        m.currentHp = (m.currentHp || 0) + buffVal
-                        m.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true, _label: moveData.name, ..._newFlag })
-                    } else {
-                        m.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, _label: moveData.name, ...(effect.delay ? { delay: effect.delay } : {}), ..._newFlag })
+                        _applyMaxHpModifier(m, moveData.name, buffVal, effect.duration, _newFlag)
+                        continue
                     }
+                    if (m.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) continue
+                    m.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, _label: moveData.name, ...(effect.delay ? { delay: effect.delay } : {}), ..._newFlag })
                 }
                 addLog(`${moveData.name} → +${buffVal} ${effect.stat} équipe (${effect.duration} tours)`)
                 _fireEnutrofTraps('buff', effect.stat, targetEnemy)
@@ -2505,10 +2572,8 @@ function executeEffect(ctx) {
             }
             const _selfNewFlag = (!effect.delay && buffTarget === caster) ? { _new: true } : {}
             if (effect.stat === 'maxHp') {
-                buffTarget.maxHp = (buffTarget.maxHp || 0) + buffVal
-                buffTarget.currentHp = (buffTarget.currentHp || 0) + buffVal
-                buffTarget.buffs.push({ stat: 'maxHp', value: buffVal, duration: effect.duration, directApplied: true, ..._selfNewFlag })
-                addLog(`${moveData.name} → +${buffVal} PV max et courants (${effect.duration} tours)`)
+                _applyMaxHpModifier(buffTarget, moveData.name, buffVal, effect.duration, _selfNewFlag)
+                addLog(`${moveData.name} → +${buffVal} PV max (${effect.duration} tours)`)
             } else {
                 const _noStackTag = (effect.noStack && moveId) ? { _source: moveId } : {}
                 buffTarget.buffs.push({ stat: effect.stat, value: buffVal, duration: effect.duration, ...(effect.delay ? { delay: effect.delay } : {}), ..._selfNewFlag, ..._noStackTag })
@@ -2565,6 +2630,11 @@ function executeEffect(ctx) {
                     for (const m of state.team) {
                         if (!m || m.currentHp <= 0) continue
                         m.buffs = m.buffs || []
+                        if (effect.stat === 'maxHp') {
+                            _applyMaxHpModifier(m, moveData.name, -debuffVal, effect.duration)
+                            _checkWatchStates(m, 'debuff', { stat: effect.stat })
+                            continue
+                        }
                         if (m.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) continue
                         m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, _label: moveData.name })
                         _checkWatchStates(m, 'debuff', { stat: effect.stat })
@@ -2573,13 +2643,22 @@ function executeEffect(ctx) {
                     for (const e of combat.enemies) {
                         if (!e || e.currentHp <= 0) continue
                         e.buffs = e.buffs || []
+                        if (effect.stat === 'maxHp') {
+                            _applyMaxHpModifier(e, moveData.name, -debuffVal, effect.duration)
+                            _fireEnutrofTraps('debuff', effect.stat, e)
+                            continue
+                        }
                         if (e.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) continue
                         e.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, _label: moveData.name })
                         _fireEnutrofTraps('debuff', effect.stat, e)
                     }
                 } else {
                     targetEnemy.buffs = targetEnemy.buffs || []
-                    if (!targetEnemy.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) {
+                    if (effect.stat === 'maxHp') {
+                        _applyMaxHpModifier(targetEnemy, moveData.name, -debuffVal, effect.duration)
+                        _fireEnutrofTraps('debuff', effect.stat, targetEnemy)
+                        if (targetEnemy === combat.enemy) _triggerEnemyOnDebuff(effect.stat)
+                    } else if (!targetEnemy.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) {
                         targetEnemy.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, _label: moveData.name })
                         _fireEnutrofTraps('debuff', effect.stat, targetEnemy)
                         if (targetEnemy === combat.enemy) _triggerEnemyOnDebuff(effect.stat)
@@ -2592,8 +2671,13 @@ function executeEffect(ctx) {
                 for (const m of state.team) {
                     if (!m || m.currentHp <= 0) continue
                     m.buffs = m.buffs || []
-                    if (m.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) continue
                     const _debuffTeamNewFlag = (!effect.delay && m === caster) ? { _new: true } : {}
+                    if (effect.stat === 'maxHp') {
+                        _applyMaxHpModifier(m, moveData.name, -debuffVal, effect.duration, _debuffTeamNewFlag)
+                        _checkWatchStates(m, 'debuff', { stat: effect.stat })
+                        continue
+                    }
+                    if (m.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) continue
                     m.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, _label: moveData.name, ..._debuffTeamNewFlag })
                     _checkWatchStates(m, 'debuff', { stat: effect.stat })
                 }
@@ -2605,7 +2689,12 @@ function executeEffect(ctx) {
                 : (_ALLY_TARGETS.has(effect.target) ? _resolveAllyTarget(effect, caster) : targetEnemy)
             debuffEntity.buffs = debuffEntity.buffs || []
             const _debuffNewFlag = (!effect.delay && debuffEntity === caster) ? { _new: true } : {}
-            debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, ..._debuffNewFlag })
+            if (effect.stat === 'maxHp') {
+                _applyMaxHpModifier(debuffEntity, moveData.name, -debuffVal, effect.duration, _debuffNewFlag)
+            } else {
+                if (debuffEntity.buffs.some(b => b._label === moveData.name && b.stat === effect.stat)) break
+                debuffEntity.buffs.push({ stat: effect.stat, value: -debuffVal, duration: effect.duration, _label: moveData.name, ..._debuffNewFlag })
+            }
             if (!_ALLY_TARGETS.has(effect.target) && effect.target !== 'owner') _fireEnutrofTraps('debuff', effect.stat, debuffEntity)
             addLog(`${ctx.logPrefix || ''}${moveData.name} → -${debuffVal} ${effect.stat} (${effect.duration} tours)`)
             _checkWatchStates(debuffEntity, 'debuff', { stat: effect.stat })
@@ -2907,6 +2996,15 @@ function executeEffect(ctx) {
         }
 
         case 'esquive': {
+            if (effect.target === 'all_allies') {
+                for (const m of state.team) {
+                    if (!m || m.currentHp <= 0) continue
+                    m.buffs = m.buffs || []
+                    m.buffs.push({ stat: 'esquive', value: effect.chancePct, reductionPct: effect.reductionPct ?? 100, duration: effect.duration })
+                }
+                addLog(`${moveData.name} → esquive ${effect.chancePct}% équipe (${effect.duration} tours)`)
+                break
+            }
             const esquiveTarget = _resolveAllyTarget(effect, caster)
             esquiveTarget.buffs = esquiveTarget.buffs || []
             esquiveTarget.buffs.push({ stat: 'esquive', value: effect.chancePct, reductionPct: effect.reductionPct ?? 100, duration: effect.duration })
@@ -3432,12 +3530,33 @@ function executeEffect(ctx) {
         }
 
         case 'best_element_damage': {
+            // "Meilleur élément" = celui qui inflige le plus de dégâts estimés, pas juste la résistance la plus basse.
+            // On compare (atk + stat élémentaire du lanceur) et la résistance de la cible pour chaque élément.
             const _ELEMENTS = ['neutre', 'terre', 'feu', 'eau', 'air']
-            const _res = targetEnemy.res || {}
-            let bestEl = 'neutre', lowestRes = Infinity
+            const _elemStatMap = { terre: 'force', feu: 'intelligence', eau: 'chance', air: 'agilite' }
+            const _res = { ...(targetEnemy.res || {}) }
+            for (const b of (targetEnemy.buffs || [])) {
+                if ((b.delay ?? 0) > 0) continue
+                if (b.stat === 'res_all') { for (const _e in _res) _res[_e] += b.value }
+                else if (b.stat?.startsWith('res.')) { const _e = b.stat.split('.')[1]; if (_res[_e] !== undefined) _res[_e] += b.value }
+            }
+            // Base de dégâts utilisée pour l'estimation (supporte stackedDamage/comboCount comme Surcharge Runique)
+            let _dmgRange = effect.damage
+            if (!_dmgRange && effect.stackedDamage) {
+                const _tier = effect.stackSource === 'comboCount'
+                    ? Math.min(combat?.huppermageComboCount || 0, effect.stackedDamage.length - 1)
+                    : 0
+                _dmgRange = effect.stackedDamage[_tier]
+            }
+            const _avgBase    = _dmgRange ? (_dmgRange.min + _dmgRange.max) / 2 : 0
+            const _flatDamage = casterStats?.flatDamage || 0
+            let bestEl = 'neutre', bestScore = -Infinity
             for (const el of _ELEMENTS) {
-                const r = _res[el] ?? 0
-                if (r < lowestRes) { lowestRes = r; bestEl = el }
+                const _elemBonus = _elemStatMap[el] ? (casterStats?.[_elemStatMap[el]] || 0) : 0
+                const _atkPower  = (casterStats?.atk || 0) + _elemBonus
+                const _resPct    = _res[el] ?? 0
+                const _score = (_avgBase * (1 + _atkPower / 100) + _flatDamage) * (1 - _resPct / 100)
+                if (_score > bestScore) { bestScore = _score; bestEl = el }
             }
             return executeEffect({ ...ctx, effect: { ...effect, type: 'damage', element: bestEl } })
         }
@@ -3588,8 +3707,23 @@ function executeEffect(ctx) {
             const _newCount = (combat.trapStacks[_trapKey] || 0) + 1
             if (_newCount > (effect.threshold || 3)) {
                 addLog(`${moveData.name} → EXPLOSION ! ${_newCount} pièges déclenchés !`)
+                // Concentration de Chakra : double les dégâts de chaque charge au déclenchement
+                const _trapDouble = (caster.buffs || []).some(b => b.stat === 'trapDamageDouble')
                 for (let _ti = 0; _ti < _newCount; _ti++) {
-                    executeEffect({ ...ctx, effect: { ...effect, type: 'damage' }, moveId: _trapKey + '_blast' })
+                    let _blastEffect = { ...effect, type: 'damage' }
+                    if (_trapDouble && _blastEffect.damage) {
+                        _blastEffect.damage = { min: _blastEffect.damage.min * 2, max: _blastEffect.damage.max * 2 }
+                    }
+                    // Marque Mortuaire : consomme le buff pour faire déclencher 100% d'érosion sur la 1ère charge
+                    if (_ti === 0) {
+                        const _fullEroIdx = (caster.buffs || []).findIndex(b => b.stat === 'nextTrapFullErosion')
+                        if (_fullEroIdx !== -1) {
+                            caster.buffs.splice(_fullEroIdx, 1)
+                            _blastEffect.erosionRate = 1.0
+                            addLog(`Marque Mortuaire → érosion totale sur ce déclenchement !`)
+                        }
+                    }
+                    executeEffect({ ...ctx, effect: _blastEffect, moveId: _trapKey + '_blast' })
                 }
                 combat.trapStacks[_trapKey] = 0
             } else {
@@ -3644,6 +3778,18 @@ function executeEffect(ctx) {
                 else        { _cpt.buffs.push({ stat: 'cast_proc', procEffect: effect.procEffect, turnsRemaining: effect.duration || 3, _source: moveId }) }
             }
             addLog(`${moveData.name} → passif posé (${effect.duration || 3} prochains sorts)`)
+            break
+        }
+
+        case 'chakraBoost': {
+            // Concentration de Chakra (Sram) : double les dégâts des pièges au déclenchement, une seule fois par combat
+            caster.buffs = caster.buffs || []
+            if (caster.buffs.some(b => b.stat === 'trapDamageDouble')) {
+                addLog(`${moveData.name} → déjà actif`)
+                break
+            }
+            caster.buffs.push({ stat: 'trapDamageDouble', duration: Infinity })
+            addLog(`${moveData.name} → dégâts des pièges doublés au déclenchement pour le reste du combat !`)
             break
         }
 
@@ -3786,6 +3932,25 @@ function pickNextEnemyMove(enemy) {
 
 // ─── DOTs ────────────────────────────────────────────────────────────────────
 
+// Résistance élémentaire + réduction de dégâts actuelles d'une entité (perso ou monstre/invocation),
+// utilisées pour mitiger chaque tick de DOT — harmonisé avec calcDamage (stats.js) côté défenseur.
+function _getDotDefenseStats(entity) {
+    if (state.team.includes(entity)) {
+        const eff = getEffectiveStats(entity) || {}
+        return { res: eff.res || {}, damageReductionPct: eff.damageReductionPct || 0 }
+    }
+    const res = { ...(entity.res || {}) }
+    for (const b of (entity.buffs || [])) {
+        if ((b.delay ?? 0) > 0) continue
+        if (b.stat === 'res_all') { for (const e in res) res[e] += b.value }
+        else if (b.stat?.startsWith('res.')) { const e = b.stat.split('.')[1]; if (res[e] !== undefined) res[e] += b.value }
+    }
+    const damageReductionPct = (entity.buffs || [])
+        .filter(b => b.stat === 'damageReductionPct')
+        .reduce((sum, b) => sum + b.value, 0)
+    return { res, damageReductionPct }
+}
+
 function tickDots(entity, onKill) {
     if (!entity.dots?.length) return
     let dotTotalDmg = 0
@@ -3800,11 +3965,15 @@ function tickDots(entity, onKill) {
                 continue
             }
         }
-        entity.currentHp = Math.max(0, entity.currentHp - dot.value)
-        addLog(`${dot.label || 'Brûlure'} → ${dot.value} dégâts`)
-        dotTotalDmg += dot.value
+        // Résistance élémentaire + réduction de dégâts, évaluées à chaque tique (état défensif courant)
+        const { res: _dotRes, damageReductionPct: _dotDrPct } = _getDotDefenseStats(entity)
+        const _dotResPct = _dotRes[dot.element] ?? 0
+        const _dotDealt  = Math.max(0, Math.floor(dot.value * (1 - _dotResPct / 100) * (1 - _dotDrPct / 100)))
+        entity.currentHp = Math.max(0, entity.currentHp - _dotDealt)
+        addLog(`${dot.label || 'Brûlure'} → ${_dotDealt} dégâts`)
+        dotTotalDmg += _dotDealt
         if (dot.lifestealRatio && dot.casterRef && dot.casterRef.currentHp > 0) {
-            const _lsHeal = Math.floor(dot.value * dot.lifestealRatio * _getAntiHealFactor(dot.casterRef))
+            const _lsHeal = Math.floor(_dotDealt * dot.lifestealRatio * _getAntiHealFactor(dot.casterRef))
             if (_lsHeal > 0) {
                 dot.casterRef.currentHp = Math.min(dot.casterRef.maxHp, dot.casterRef.currentHp + _lsHeal)
                 addLog(`Vol de vie (brûlure) → +${_lsHeal} PV`)
@@ -3868,14 +4037,18 @@ function spawnSummon(caster, effect) {
                 atk:                Math.floor((_cs.atk || 0) * effect.scale * statMult),
                 spd:                mob.bst?.spd ?? 100,
                 hp:                 Math.floor((_cs.hp  || caster.maxHp || 1) * effect.scale * statMult),
-                flatDamage:         Math.floor((_cs.flatDamage || 0) * effect.scale),
-                finalDamagePct:     (_cs.finalDamagePct || 0) * effect.scale,
-                spellDamagePct:     (_cs.spellDamagePct || 0) * effect.scale,
-                damageReductionPct: (_cs.damageReductionPct || 0) * effect.scale,
-                critChance:         (_cs.critChance || 0) * effect.scale,
+                flatDamage:         Math.floor((_cs.flatDamage || 0) * effect.scale * statMult),
+                finalDamagePct:     (_cs.finalDamagePct || 0) * effect.scale * statMult,
+                spellDamagePct:     (_cs.spellDamagePct || 0) * effect.scale * statMult,
+                damageReductionPct: (_cs.damageReductionPct || 0) * effect.scale * statMult,
+                critChance:         (_cs.critChance || 0) * effect.scale * statMult,
                 critDamagePct:      _cs.critDamagePct ?? 50,
+                force:              (_cs.force        || 0) * effect.scale * statMult,
+                intelligence:       (_cs.intelligence || 0) * effect.scale * statMult,
+                chance:             (_cs.chance       || 0) * effect.scale * statMult,
+                agilite:            (_cs.agilite      || 0) * effect.scale * statMult,
                 res:                { ...(mob.bst?.res || {}) },
-                healPct:            (_cs.healPct || 0) * effect.scale
+                healPct:            (_cs.healPct || 0) * effect.scale * statMult
             }
         } else {
             summonStats = { atk: Math.floor((mob.bst?.atk || 0) * statMult), spd: mob.bst?.spd ?? 100, hp: Math.floor((mob.bst?.hp || 0) * statMult), flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 }
@@ -3997,18 +4170,23 @@ function spawnCompanion(caster, effect) {
         // scale : le compagnon hérite de TOUTES les stats effectives du caster (pas seulement l'ATK),
         // au prorata de effect.scale.
         const cs = getEffectiveStats(caster) || {}
+        const _companionStatMult = classes[caster.classId]?.passive?.id === 'osamodas' ? 2 : 1
         companionStats = {
-            atk:                Math.floor((cs.atk || 0) * effect.scale),
+            atk:                Math.floor((cs.atk || 0) * effect.scale * _companionStatMult),
             spd:                mob.bst?.spd ?? 100,
-            hp:                 Math.floor((cs.hp  || caster.maxHp || 1) * effect.scale),
-            flatDamage:         Math.floor((cs.flatDamage || 0) * effect.scale),
-            finalDamagePct:     (cs.finalDamagePct || 0) * effect.scale,
-            spellDamagePct:     (cs.spellDamagePct || 0) * effect.scale,
-            damageReductionPct: (cs.damageReductionPct || 0) * effect.scale,
-            critChance:         (cs.critChance || 0) * effect.scale,
+            hp:                 Math.floor((cs.hp  || caster.maxHp || 1) * effect.scale * _companionStatMult),
+            flatDamage:         Math.floor((cs.flatDamage || 0) * effect.scale * _companionStatMult),
+            finalDamagePct:     (cs.finalDamagePct || 0) * effect.scale * _companionStatMult,
+            spellDamagePct:     (cs.spellDamagePct || 0) * effect.scale * _companionStatMult,
+            damageReductionPct: (cs.damageReductionPct || 0) * effect.scale * _companionStatMult,
+            critChance:         (cs.critChance || 0) * effect.scale * _companionStatMult,
             critDamagePct:      cs.critDamagePct ?? 50,
+            force:              (cs.force        || 0) * effect.scale * _companionStatMult,
+            intelligence:       (cs.intelligence || 0) * effect.scale * _companionStatMult,
+            chance:             (cs.chance       || 0) * effect.scale * _companionStatMult,
+            agilite:            (cs.agilite      || 0) * effect.scale * _companionStatMult,
             res:                { ...(mob.bst?.res || {}) },
-            healPct:            (cs.healPct || 0) * effect.scale
+            healPct:            (cs.healPct || 0) * effect.scale * _companionStatMult
         }
     } else {
         companionStats = { atk: mob.bst?.atk || 0, spd: mob.bst?.spd ?? 100, hp: mob.bst?.hp || 0, flatDamage: 0, finalDamagePct: 0, spellDamagePct: 0, damageReductionPct: 0, critChance: 0, critDamagePct: 50, res: { ...(mob.bst?.res || {}) }, healPct: 0 }

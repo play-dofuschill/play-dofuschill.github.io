@@ -2916,8 +2916,7 @@ areas.blessureDeGuerre = {
         { itemId: 'solerets_de_guerre', dropRate: 0.01 },
         { itemId: 'amulette_de_l_il_attentif', dropRate: 0.01 },
         { itemId: 'cape_de_l_il_attentif', dropRate: 0.01 },
-        { itemId: 'capuche_de_l_il_attentif', dropRate: 0.01 },
-        { itemId: 'hachebarde_de_guerre', dropRate: 0.01 }
+        { itemId: 'capuche_de_l_il_attentif', dropRate: 0.01 }
     ]
 }
 
@@ -5442,8 +5441,7 @@ areas.donjonTroneSang = {
         { itemId: 'ceste_de_guerre', dropRate: 0.0625 },
         { itemId: 'forteresse_de_guerre', dropRate: 0.0625 },
         { itemId: 'heaume_de_guerre', dropRate: 0.0625 },
-        { itemId: 'solerets_de_guerre', dropRate: 0.0625 },
-        { itemId: 'hachebarde_de_guerre', dropRate: 0.0625 }
+        { itemId: 'solerets_de_guerre', dropRate: 0.0625 }
     ]
 }
 
