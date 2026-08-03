@@ -958,7 +958,7 @@ function gameTick() {
         if (!combat.respawnPending) {
             const stats = getEffectiveStats(activeM) ?? activeM._stats
             const _mCd  = _peekNextCastCooldown(activeM, activeIdx)
-            const rate  = (100 / (_mCd / TICK_MS)) * ((stats?.spd ?? activeM.spd ?? 100) / 100) * _spdMult
+            const rate  = (100 / (_mCd / TICK_MS)) * ((stats?.spd || activeM.spd || 100) / 100) * _spdMult
             combat.memberTimers[activeIdx] = (combat.memberTimers[activeIdx] || 0) + rate
 
             if (combat.memberTimers[activeIdx] >= 100) {
@@ -3905,13 +3905,13 @@ function executeEnemyAction() {
     if (!combat.enemy || combat.enemy.currentHp <= 0) return
 
     const e          = combat.enemy
-    if (!e.moves?.length) return
+    if (!e.moves?.length) { _tickEnemySummonDuration(e); return }
     const curMoveIdx = e.moveIndex % e.moves.length
     const moveId     = e.moves[curMoveIdx]
     e.moveIndex++
-    if (!moveId) return
+    if (!moveId) { _tickEnemySummonDuration(e); return }
     const mv = move[moveId]
-    if (!mv?.effects) return
+    if (!mv?.effects) { _tickEnemySummonDuration(e); return }
     const prevMoveIdx = (curMoveIdx - 1 + e.moves.length) % e.moves.length
     const prevMv      = e.moves[prevMoveIdx] ? (move[e.moves[prevMoveIdx]] || null) : null
 
@@ -4002,18 +4002,25 @@ function executeEnemyAction() {
     combat.enemyNextMoveId = pickNextEnemyMove(combat.enemy)
 
     // Décompte des actions du familier invoqué
-    // _justSpawned : le summon vient d'apparaître dans ce même tick (invoqué par l'ennemi)
-    // → on ne décompte pas cette "action" qui était en réalité l'action de l'invocateur
-    if (combat.enemy?.isSummon) {
-        if (combat.enemy._justSpawned) {
-            delete combat.enemy._justSpawned
-        } else {
-            combat.enemy.actionsRemaining--
-            if (combat.enemy.actionsRemaining <= 0) returnToOwner()
-        }
-    }
+    _tickEnemySummonDuration(combat.enemy)
 
     combat.enemyTimer = 0
+}
+
+// Décompte la durée d'une invocation ennemie et la renvoie à son propriétaire une fois
+// épuisée. Doit être appelé à chaque tour de l'ennemi, y compris quand celui-ci n'a
+// aucun sort jouable (ex: Mur de pelles, moves: []) — sinon une invocation sans sort
+// reste bloquée comme combat.enemy pour toujours et gèle le combat.
+// _justSpawned : le summon vient d'apparaître dans ce même tick (invoqué par l'ennemi)
+// → on ne décompte pas cette "action" qui était en réalité l'action de l'invocateur
+function _tickEnemySummonDuration(e) {
+    if (!e?.isSummon) return
+    if (e._justSpawned) {
+        delete e._justSpawned
+        return
+    }
+    e.actionsRemaining--
+    if (e.actionsRemaining <= 0) returnToOwner()
 }
 
 function pickNextEnemyMove(enemy) {
