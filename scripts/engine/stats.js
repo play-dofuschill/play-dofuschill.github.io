@@ -535,6 +535,23 @@ function getItemLevel(itemId) {
     return Math.min(entry.level || 0, item[itemId]?.itemLevelMax || 20)
 }
 
+// Index familierId -> [setId, ...] construit une seule fois (panoplies est statique) au
+// lieu de scanner tout Object.entries(panoplies) (~400 entrées) à chaque appel — countSetPieces
+// est appelé par getEffectiveStats, lui-même appelé à chaque tick de combat (60x/s, bien plus
+// en avance rapide), ce scan répété était de très loin le plus gros coût CPU mesuré en jeu.
+let _familiarToSets = null
+function _getFamiliarToSets() {
+    if (!_familiarToSets) {
+        _familiarToSets = {}
+        for (const [setId, pano] of Object.entries(panoplies)) {
+            if (!pano.familiar) continue
+            if (!_familiarToSets[pano.familiar]) _familiarToSets[pano.familiar] = []
+            _familiarToSets[pano.familiar].push(setId)
+        }
+    }
+    return _familiarToSets
+}
+
 // ─── Comptage des pièces de panoplie équipées ─────────────────────────────────
 // Retourne { setId: count } pour chaque set représenté dans l'équip
 
@@ -545,8 +562,8 @@ function countSetPieces(equip) {
         const itemId = equip[slotId]
         if (!itemId) continue
         if (slotId === 'familier') {
-            for (const [setId, pano] of Object.entries(panoplies)) {
-                if (pano.familiar === itemId) counts[setId] = (counts[setId] || 0) + 1
+            for (const setId of (_getFamiliarToSets()[itemId] || [])) {
+                counts[setId] = (counts[setId] || 0) + 1
             }
             continue
         }

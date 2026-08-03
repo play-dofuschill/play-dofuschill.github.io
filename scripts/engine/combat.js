@@ -42,6 +42,21 @@ function resolveMonsterMoves(movesDef) {
     return [...pool.slice(0, randomCount), ...fixed]
 }
 
+// Index moveId -> niveau d'apprentissage, construit une seule fois par classe (le learnset
+// est statique) au lieu de refaire Object.entries(learnset).find(...) à chaque appel — cette
+// fonction tourne à chaque tick de combat en zone/donjon synchronisé en niveau.
+const _learnsetUnlockLvlCache = {}
+function _getLearnsetUnlockLvl(classId) {
+    if (!_learnsetUnlockLvlCache[classId]) {
+        const map = {}
+        for (const [lvl, moveId] of Object.entries(classes[classId]?.learnset || {})) {
+            map[moveId] = parseInt(lvl)
+        }
+        _learnsetUnlockLvlCache[classId] = map
+    }
+    return _learnsetUnlockLvlCache[classId]
+}
+
 // Retourne le cooldown (ms) du prochain sort qu'un membre va lancer.
 // Utilisé pour calibrer le taux de remplissage de la barre : barre = cooldownMs / (spd/100).
 function _peekNextCastCooldown(member, memberIndex) {
@@ -54,8 +69,8 @@ function _peekNextCastCooldown(member, memberIndex) {
         const cls = classes[member.classId]
         const moveId = member.moves[s]
         if (moveId === cls?.startingMove) return true
-        const unlockLvl = Object.entries(cls?.learnset || {}).find(([, v]) => v === moveId)?.[0]
-        return !unlockLvl || parseInt(unlockLvl) <= combat.syncedLevel
+        const unlockLvl = _getLearnsetUnlockLvl(member.classId)[moveId]
+        return unlockLvl === undefined || unlockLvl <= combat.syncedLevel
     })
     if (!nonNull.length) return BASE_TIME
     const XELOR_PATTERN = [0, 1, 2, 3, 2, 1, 0]

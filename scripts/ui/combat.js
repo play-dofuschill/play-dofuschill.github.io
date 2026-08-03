@@ -123,11 +123,16 @@ function updateEnemyDisplay() {
     }
     container.style.display = 'flex'
 
-    // Background de scène selon la zone (kanojedo pour le Poutch)
+    // Background de scène selon la zone (kanojedo pour le Poutch) — ne change jamais en
+    // cours de combat, donc on évite de réécrire style.backgroundImage à chaque tick
+    // (60x/s) : ça force un recalcul de style/repaint d'un fond plein écran pour rien.
     const bgName = combat?.isPoutch ? 'kanojedo' : (areas[state.currentArea]?.background || null)
-    container.style.backgroundImage = bgName
-        ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url(img/bg/${bgName}.png)`
-        : 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))'
+    if (container.dataset.bgName !== (bgName || '')) {
+        container.dataset.bgName = bgName || ''
+        container.style.backgroundImage = bgName
+            ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url(img/bg/${bgName}.png)`
+            : 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))'
+    }
 
     const e      = combat.enemy
     const hpPct  = Math.max(0, Math.floor((e.currentHp / e.maxHp) * 100))
@@ -474,6 +479,10 @@ function updateKamasDisplay() {
 // ─── Popup dégâts sur l'ennemi ────────────────────────────────────────────────
 
 function showDamageNumber(damage, isCrit = false) {
+    // En rattrapage AFK, personne ne voit ces popups — mais getBoundingClientRect() force
+    // un layout synchrone et un nœud DOM est créé par coup : sur des centaines de coups
+    // enchaînés en boucle serrée, ça devient un vrai coût CPU pour rien.
+    if (_afkSeconds > 0) return
     let spriteEl
     if (combat?.isRaid) {
         const slot   = combat.raidCurrentTargetSlot ?? 0
@@ -499,6 +508,7 @@ function showDamageNumber(damage, isCrit = false) {
 }
 
 function showCritShimmer(memberIdx) {
+    if (_afkSeconds > 0) return // rattrapage AFK : invisible pour le joueur, coûte un reflow forcé
     const slotEl = document.querySelector(`.explore-team-member[data-team-idx="${memberIdx}"]`)
     const wrap   = slotEl?.querySelector('.member-sprite-wrap')
     if (!wrap) return
