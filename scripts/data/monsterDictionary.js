@@ -8934,7 +8934,7 @@ monsters.grozilla = {
     image: 'images/monsters/Grozilla.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 16000, atk: 2717, spd: 124, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    bst: { hp: 16000, atk: 1200, spd: 200, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
     moves: ['tyrannisation', 'gravite']
 }
 monsters.grasmera = {
@@ -8943,7 +8943,7 @@ monsters.grasmera = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 16000, atk: 12520, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 16000, atk: 1200, spd: 200, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['meteore']
 }
 monsters.grozilla_somnambule = {
@@ -8997,7 +8997,7 @@ monsters.grasmera_fatigue = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 10000, atk: 813, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    bst: { hp: 10000, atk: 613, spd: 124, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
     moves: ['meteore']
 }
 
