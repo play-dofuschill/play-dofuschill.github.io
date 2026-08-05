@@ -26850,7 +26850,7 @@ move.moustacheron = {
         { type: 'damage', element: 'neutre', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 21, max: 30 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 21, max: 30 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 

@@ -8366,7 +8366,7 @@ monsters.klime = {
     image: 'images/monsters/Klime.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 13000, atk: 2791, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 9, air: 25 } },
+    bst: { hp: 13000, atk: 1291, spd: 220, res: { neutre: 14, terre: 27, feu: 16, eau: 9, air: 25 } },
     moves: ['cuir_a_feu_doux', 'cuir_moustache', 'moustacheron']
 }
 // ═══════════════════════════════════════════════════════
