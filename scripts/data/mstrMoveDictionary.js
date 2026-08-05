@@ -25559,8 +25559,7 @@ move.etoile_de_mer = {
     cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+//        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
 }
 
@@ -26830,7 +26829,7 @@ move.cuir_a_feu_doux = {
     cooldownMs: 2500,
     effects: [
         { type: 'recul', target: 'enemy' },
-        { type: 'buff', stat: 'flatDamage', value: 300, duration: 3, target: 'self' },
+        { type: 'buff', stat: 'flatDamage', value: 150, duration: 2, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
 }
@@ -26871,7 +26870,7 @@ move.sang_froid = {
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 91, max: 110 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.glace_trop_physique = {
@@ -26903,7 +26902,7 @@ move.glace_seche = {
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 71, max: 90 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.liqueur_de_fee_ling = {
@@ -26911,8 +26910,8 @@ move.liqueur_de_fee_ling = {
     name: 'Liqueur de Fée Ling',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'self' },
-        { type: 'buff', stat: 'flatDamage', value: 300, duration: 3, target: 'self' }
+        { type: 'heal%maxHp', value: 2.5, target: 'self' },
+        { type: 'buff', stat: 'flatDamage', value: 150, duration: 1, target: 'self' }
     ]
 }
 
@@ -26923,7 +26922,7 @@ move.poincon_mstr = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 101, max: 140 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.3, target: 'self' },
         { type: 'buffDrain', value: 2, target: 'enemy' },
     ]
 }
@@ -26941,7 +26940,7 @@ move.degage_de_qualite = {
     name: 'Dégage de qualité',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'flatDamage', value: 500, duration: 3, target: 'self' },
+        { type: 'buff', stat: 'flatDamage', value: 200, duration: 1, target: 'self' },
         { type: 'recul', target: 'enemy' }
     ]
 }
@@ -26971,7 +26970,7 @@ move.jaquemart = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 71, max: 90 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -26997,7 +26996,7 @@ move.baphe_thysca = {
     name: 'Baphe Thysca',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
+        { type: 'buff', stat: 'flatDamage', value: 200, duration: 1, target: 'self' },
     ]
 }
 move.bouche_a_bouche = {
@@ -27051,8 +27050,7 @@ move.coup_de_soleil = {
     name: 'Coup de Soleil',
     cooldownMs: 3500,
     effects: [
-        // TODO: Maximise les effets aléatoires sur la cible
-        { type: 'damage', element: 'terre', damage: { min: 121, max: 140 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 11, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'terre', damage: { min: 151, max: 170 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
     ]
@@ -27062,7 +27060,7 @@ move.eruption_solaire = {
     name: 'Éruption Solaire',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 81, max: 100 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 11, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 121, max: 140 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -27257,7 +27255,7 @@ move.offrande_au_chaos = {
     cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 34, max: 39 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 34, max: 39 }, target: 'enemy' },
         { type: 'heal', heal: 50, target: 'self' }
     ]
@@ -27278,7 +27276,7 @@ move.il_du_nocher = {
     cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', value: 3, target: 'self' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' }
     ]
 }
@@ -27416,7 +27414,7 @@ move.siphon_d_ame = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 107, max: 111 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.cooquillation = {
@@ -27452,6 +27450,7 @@ move.cheveux_partir_de_la = {
     name: 'Cheveux partir de là',
     cooldownMs: 2000,
     effects: [
+        { type: 'damage', element: 'air', damage: { min: 51, max: 60 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
     ]
 }
@@ -27469,7 +27468,7 @@ move.transe_perse = {
     name: 'Transe-Perse',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 200, max: 200 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 100, max: 200 }, target: 'enemy' }
     ]
 }
 
@@ -27489,7 +27488,7 @@ move.vampyrisme = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 101, max: 120 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.appetit_sanguinaire = {
@@ -27497,8 +27496,8 @@ move.appetit_sanguinaire = {
     name: 'Appétit sanguinaire',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'finalDamagePct', value: 50, duration: 3, target: 'self' },
-        { type: 'buff', stat: 'finalDamagePct', value: 50, duration: 3, target: 'self' }
+        { type: 'buff', stat: 'finalDamagePct', value: 5, duration: 3, target: 'self' },
+        { type: 'debuff', stat: 'finalDamagePct', value: 5, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -27850,6 +27849,7 @@ move.trahison = {
     name: 'Trahison',
     cooldownMs: 2000,
     effects: [
+        { type: 'damage', element: 'air', damage: { min: 76, max: 85 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
     ]
 }
@@ -27858,6 +27858,7 @@ move.asservissement = {
     name: 'Asservissement',
     cooldownMs: 2000,
     effects: [
+        { type: 'damage', element: 'terre', damage: { min: 46, max: 85 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
     ]
 }
@@ -27953,7 +27954,7 @@ move.cri_venerable = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 61, max: 70 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'recul', target: 'enemy' },
     ]
 }
@@ -28028,9 +28029,6 @@ move.enchantement_fatal = {
     name: 'Enchantement fatal',
     cooldownMs: 2000,
     effects: [
-        { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
-        { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
-        { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
     ]
 }
@@ -28039,14 +28037,8 @@ move.charme_malefique = {
     name: 'Charme maléfique',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', value: 5, target: 'self' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 12, target: 'self' },
-        { type: 'buff', stat: 'finalDamagePct', value: 13, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 14, target: 'self' },
-        { type: 'buff', stat: 'finalDamagePct', value: 16, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 18, target: 'self' },
-        { type: 'buff', stat: 'finalDamagePct', value: 22, duration: 3, target: 'self' }
     ]
 }
 move.glyphe_de_condamnation = {
@@ -28063,9 +28055,7 @@ move.dechainement_fantasmagorique = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 42, max: 48 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
-        { type: 'damage', element: 'eau', damage: { min: 42, max: 48 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.malefice_immobile = {
@@ -28084,7 +28074,7 @@ move.conjuration_entravante = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 60, max: 70 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -28147,7 +28137,7 @@ move.triste_cire = {
 move.hantame = {
     id: 'hantame',
     name: 'Hantâme',
-    cooldownMs: 3500,
+    cooldownMs: 4500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 151, max: 170 }, target: 'enemy' },
@@ -28157,7 +28147,7 @@ move.hantame = {
 move.lance_de_l_effroi = {
     id: 'lance_de_l_effroi',
     name: 'Lance de l\'effroi',
-    cooldownMs: 3000,
+    cooldownMs: 4500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 151, max: 170 }, target: 'enemy' }
     ]
