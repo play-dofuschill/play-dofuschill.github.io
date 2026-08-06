@@ -7907,7 +7907,7 @@ monsters.glourseleste = {
     image: 'images/monsters/Glourséleste.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 11000, atk: 2270, spd: 208, res: { neutre: 25, terre: 21, feu: 16, eau: 24, air: 23 } },
+    bst: { hp: 11000, atk: 1270, spd: 208, res: { neutre: 25, terre: 21, feu: 16, eau: 24, air: 23 } },
     moves: ['gloursondulation', 'gloursombre', 'petit_glours_brun']
 }
 // ═══════════════════════════════════════════════════════

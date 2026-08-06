@@ -24166,16 +24166,16 @@ move.bouboule = {
 move.tyrannisation = {
     id: 'tyrannisation',
     name: 'Tyrannisation',
-    cooldownMs: 3000,
+    cooldownMs: 4000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 31, max: 50 }, target: 'enemy' },
-        { type: 'damage', element: 'neutre', damage: { min: 50, max: 50 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 31, max: 41 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 31, max: 41 }, currentHpScale: { stat: 'finalDamagePct', ratio: 0.5 }, target: 'enemy' }
     ]
 }
 move.gravite = {
     id: 'gravite',
     name: 'Gravité',
-    cooldownMs: 2000,
+    cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'damage', element: 'neutre', damage: { min: 21, max: 40 }, target: 'enemy' },
@@ -24863,7 +24863,7 @@ move.fumee_alourdissante = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 19, max: 25 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 52, max: 68 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
@@ -24874,7 +24874,7 @@ move.fumee_asphyxiante = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 19, max: 25 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 52, max: 68 }, target: 'enemy' }
     ]
 }
@@ -24884,7 +24884,7 @@ move.fumee_aveuglante = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 19, max: 25 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 52, max: 68 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
     ]
@@ -24895,7 +24895,7 @@ move.fumee_brulante = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 19, max: 25 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'damage', element: 'feu', damage: { min: 52, max: 68 }, target: 'enemy' }
     ]
 }
@@ -25016,10 +25016,7 @@ move.eau_fraiche = {
     name: 'Eau fraîche',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 25, target: 'self' },
-        { type: 'heal%maxHp', value: 38, target: 'self' },
-        { type: 'heal%maxHp', value: 50, target: 'self' },
-        { type: 'heal%maxHp', value: 63, target: 'self' },
+        { type: 'heal%maxHp', value: 25, target: 'self' }
     ]
 }
 move.hatsunamiku = {
@@ -25027,7 +25024,7 @@ move.hatsunamiku = {
     name: 'Hatsunamiku',
     cooldownMs: 2500,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 51, max: 59 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 41, max: 49 }, target: 'enemy' }
     ]
 }
 move.colere_bouillonnante = {
@@ -25035,7 +25032,7 @@ move.colere_bouillonnante = {
     name: 'Colère bouillonnante',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 101, max: 117 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 41, max: 57 }, target: 'enemy' }
     ]
 }
 move.hors_de_ma_vue = {
@@ -25043,7 +25040,7 @@ move.hors_de_ma_vue = {
     name: 'Hors de ma vue',
     cooldownMs: 2500,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 53, max: 62 }, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 43, max: 45 }, target: 'enemy' }
     ]
 }
 move.invocation_de_bombombre_de_nagate = {
@@ -25750,8 +25747,8 @@ move.mousse_haillon = {
     name: 'Mousse Haillon',
     cooldownMs: 4000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 95, max: 110 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'damage', element: 'eau', damage: { min: 45, max: 55 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.tore_tue = {
@@ -25759,7 +25756,7 @@ move.tore_tue = {
     name: 'Tore tue',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'air', damage: { min: 95, max: 110 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
+        { type: 'damage', element: 'air', damage: { min: 45, max: 55 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
         { type: 'summon', summonId: 'hamrack', duration: 3, target: 'enemy' }
     ]
 }
@@ -25872,8 +25869,8 @@ move.opiniatrete = {
         { type: 'damage', element: 'air', damage: { min: 16, max: 25 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
         { type: 'debuff', stat: 'res.air', value: 20, duration: 3, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 41, max: 60 }, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 41, max: 60 }, target: 'enemy' }
+        { type: 'damage', element: 'feu', damage: { min: 16, max: 25 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 16, max: 25 }, target: 'enemy' }
     ]
 }
 move.sirop_spore = {
@@ -25887,11 +25884,9 @@ move.sirop_spore = {
 move.spore_hanchambre = {
     id: 'spore_hanchambre',
     name: 'Spore Hanchambre',
-    cooldownMs: 2500,
+    cooldownMs: 5000,
     effects: [
         { type: 'buff', stat: 'critChance', value: 50, duration: 3, target: 'self' },
-        { type: 'heal', heal: 5000, target: 'self' },
-        { type: 'heal', heal: 5000, target: 'self' },
         { type: 'heal', heal: 5000, target: 'self' }
     ]
 }
@@ -25910,8 +25905,8 @@ move.chachyene_cinglante = {
     name: 'Chachyène cinglante',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 147, max: 168 }, target: 'enemy' },
-        { type: 'debuff', stat: 'res.eau', value: 20, duration: 3, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 107, max: 118 }, target: 'enemy' },
+        { type: 'debuff', stat: 'res.eau', value: 20, duration: 6, target: 'enemy' }
     ]
 }
 move.rugissement_matriarcal = {
@@ -26499,7 +26494,7 @@ move.gloursondulation = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 91, max: 100 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'switch', value: 1, target: 'enemy' }
     ]
 }
@@ -26508,7 +26503,7 @@ move.gloursombre = {
     name: 'Gloursombre',
     cooldownMs: 1700,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 10, max: 10 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 35, max: 46 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
 }
 move.petit_glours_brun = {
@@ -26516,7 +26511,7 @@ move.petit_glours_brun = {
     name: 'Petit Glours Brun',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: ['aperiglours', 'boulglours', 'gloursaya', 'glourmand', 'glouragan', 'meliglours'], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['aperiglours', 'boulglours', 'gloursaya', 'glourmand', 'glouragan', 'meliglours'], duration: 2, target: 'enemy' }
     ]
 }
 
@@ -26702,8 +26697,8 @@ move.paternalisme = {
     cooldownMs: 4000,
     effects: [
         { type: 'heal%maxHp', value: 10, target: 'self' },
-        { type: 'damage', element: 'air', damage: { min: 95, max: 116 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'damage', element: 'air', damage: { min: 45, max: 56 }, target: 'enemy' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 move.coup_d_il = {
@@ -26711,7 +26706,7 @@ move.coup_d_il = {
     name: 'Coup d\'Œil',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 72, max: 93 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 42, max: 53 }, target: 'enemy' }
     ]
 }
 move.bien_vu_l_aveugle = {
@@ -27171,7 +27166,7 @@ move.atermoiement = {
     name: 'Atermoiement',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 93, max: 108 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 73, max: 88 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
     ]
 }
@@ -27180,7 +27175,7 @@ move.recentrage = {
     name: 'Recentrage',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 56, max: 65 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 46, max: 55 }, target: 'enemy' },
         { type: 'buff', stat: 'erosionBonus', value: 10, duration: 3, target: 'self' }
     ]
 }
@@ -27190,7 +27185,7 @@ move.proxicaire = {
     cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'eau', damage: { min: 83, max: 97 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 63, max: 77 }, target: 'enemy' }
     ]
 }
 move.musculot = {
@@ -27198,8 +27193,8 @@ move.musculot = {
     name: 'Musculot',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 47, max: 54 }, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 47, max: 54 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 37, max: 44 }, target: 'enemy' },
+        { type: 'damage', element: 'feu', damage: { min: 37, max: 44 }, target: 'enemy' }
     ]
 }
 
