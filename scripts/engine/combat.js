@@ -330,7 +330,8 @@ function spawnEnemy(areaId) {
         rarity:    mob.rarity   || 'commun',
         tier:      mob.tier     || 'normal',
         dropRate:  mob.dropRate,
-        onHeal:    mob.onHeal   || null
+        onHeal:       mob.onHeal       || null,
+        onElementHit: mob.onElementHit || null
     }
 
     // Chance d'archimonstre selon niveau skull : 1/600, 1/500, 1/450, 1/400
@@ -2212,6 +2213,7 @@ function executeEffect(ctx) {
             addLog(`${ctx.logPrefix || ''}${moveData.name} → ${result.damage} dégâts${absNote}`)
             if (result.isCrit) addLog(`💥 Coup critique !`)
             if (dmg > 0) _checkWatchStates(targetEnemy, 'damage', { element: effect.element, value: dmg })
+            if (dmg > 0 && memberHitIdx === -1) _triggerEnemyOnElementHit(targetEnemy, effect.element)
             // Repulsion Guard : si le membre touché a le buff actif, recule l'ennemi attaquant (raid uniquement)
             if (dmg > 0 && !state.team.includes(caster) && state.team.includes(targetEnemy)) {
                 const _repGuard = (targetEnemy.buffs || []).find(b => b.stat === 'repulsion_guard')
@@ -4368,6 +4370,24 @@ function _triggerEnemyOnHeal(healer) {
         if (eff.type === 'random_res_debuff') {
             _applyRandomResDebuff(combat.enemy, eff.value, eff.duration, 'Contre-coup du soin')
         }
+    }
+}
+
+// Déclenché quand l'ennemi encaisse un coup direct d'un élément donné : certains monstres (mob.onElementHit)
+// se referment sur l'élément subi pour forcer le joueur à rester mono-élément (ex: Silf le Rasboul Majeur).
+function _triggerEnemyOnElementHit(target, element) {
+    if (!target?.onElementHit?.length) return
+    const _ELEMENTS = ['neutre', 'terre', 'feu', 'eau', 'air']
+    const el = element || 'neutre'
+    for (const eff of target.onElementHit) {
+        if (eff.type !== 'element_lock') continue
+        target.buffs = target.buffs || []
+        target.buffs.push({ stat: `res.${el}`, value: -eff.selfDebuff, duration: eff.duration ?? Infinity })
+        for (const other of _ELEMENTS) {
+            if (other === el) continue
+            target.buffs.push({ stat: `res.${other}`, value: eff.othersBuff, duration: eff.duration ?? Infinity })
+        }
+        addLog(`${target.name || '?'} se referme sur l'élément ${el} → -${eff.selfDebuff}% res ${el}, +${eff.othersBuff}% autres résistances !`)
     }
 }
 

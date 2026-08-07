@@ -3785,7 +3785,7 @@ monsters.silf_le_rasboul_majeur = {
     tier: 'boss',
     bst: { hp: 7000, atk: 1200, spd: 160, res: { neutre: 200, terre: 200, feu: 200, eau: 200, air: 200 } },
     moves: ['rasage', 'hololole', 'recrutement'],
-    onHeal: [{ type: 'random_res_debuff', value: 50, duration: Infinity }],
+    onElementHit: [{ type: 'element_lock', selfDebuff: 50, othersBuff: 50 }],
     onDebuff: [{ stat: 'spd', type: 'heal%maxHp', value: 10 }]
 }
 // ═══════════════════════════════════════════════════════
@@ -8066,7 +8066,7 @@ monsters.belladone = {
     image: 'images/monsters/Belladone.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 29000, atk: 1609, spd: 220, res: { neutre: 22, terre: 18, feu: 8, eau: 24, air: 14 } },
+    bst: { hp: 22000, atk: 1609, spd: 220, res: { neutre: 22, terre: 18, feu: 8, eau: 24, air: 14 } },
     moves: ['enchantement_fatal', 'charme_malefique', 'glyphe_de_condamnation', 'dechainement_fantasmagorique', 'malefice_immobile', 'conjuration_entravante']
 }
 // ═══════════════════════════════════════════════════════
@@ -8934,7 +8934,7 @@ monsters.grozilla = {
     image: 'images/monsters/Grozilla.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 16000, atk: 1200, spd: 200, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
+    bst: { hp: 14000, atk: 1200, spd: 200, res: { neutre: 20, terre: 20, feu: 50, eau: 20, air: 20 } },
     moves: ['tyrannisation', 'gravite']
 }
 monsters.grasmera = {
@@ -8943,8 +8943,8 @@ monsters.grasmera = {
     image: 'images/monsters/Grasmera.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 16000, atk: 1200, spd: 200, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: ['meteore']
+    bst: { hp: 14000, atk: 1200, spd: 200, res: { neutre: 50, terre: 30, feu: 30, eau: 30, air: 30 } },
+    moves: ['meteore_grasmera']
 }
 monsters.grozilla_somnambule = {
     id: 'grozilla_somnambule',

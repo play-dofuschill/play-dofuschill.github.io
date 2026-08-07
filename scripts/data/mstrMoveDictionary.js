@@ -24182,6 +24182,15 @@ move.gravite = {
     ]
 }
 
+move.meteore_grasmera = {
+    id: 'meteore_grasmera',
+    name: 'Gravité',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 21, max: 30 }, target: 'enemy' },
+        { type: 'recul', target: 'enemy' }
+    ]
+}
 // -------- Gourlo le Terrible ---------------
 move.invocation_de_tonneau = {
     id: 'invocation_de_tonneau',
@@ -25394,7 +25403,7 @@ move.da_bang = {
     name: 'Da Bàng',
     cooldownMs: 2500,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 85, max: 100 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 65, max: 80 }, target: 'enemy' },
         { type: 'avance', target: 'enemy' },
     ]
 }
@@ -26221,7 +26230,7 @@ move.sanction_bwork = {
 move.correction_bwork = {
     id: 'correction_bwork',
     name: 'Correction Bwork',
-    cooldownMs: 2500,
+    cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 30, max: 30 }, missingHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
@@ -26229,7 +26238,7 @@ move.correction_bwork = {
 move.fauchoir = {
     id: 'fauchoir',
     name: 'Fauchoir',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'recul', target: 'enemy' }
@@ -26595,16 +26604,16 @@ move.liaison = {
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'neutre', damage: { min: 51, max: 70 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'buff', stat: 'flatDamage', value: 20, duration: 4, target: 'self' },
     ]
 }
 move.distorsion_mstr = {
     id: 'distorsion_mstr',
     name: 'Distorsion',
-    cooldownMs: 3000,
+    cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 100, max: 100 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 70, max: 80 }, target: 'enemy' }
     ]
 }
 move.penombre = {
@@ -28032,7 +28041,7 @@ move.charme_malefique = {
     name: 'Charme maléfique',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', value: 2.5, target: 'self' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' },
     ]
 }
@@ -28041,7 +28050,7 @@ move.glyphe_de_condamnation = {
     name: 'Glyphe de condamnation',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: ['soldalia', 'cameliache', 'armuguet', 'coquelicogne', 'statulipe'], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['soldalia', 'cameliache', 'armuguet', 'coquelicogne', 'statulipe'], duration: 2, target: 'enemy' }
     ]
 }
 move.dechainement_fantasmagorique = {
@@ -28060,7 +28069,7 @@ move.malefice_immobile = {
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 93, max: 108 }, target: 'enemy' }
+        { type: 'damage', element: 'terre', damage: { min: 73, max: 88 }, target: 'enemy' }
     ]
 }
 move.conjuration_entravante = {
@@ -28068,7 +28077,7 @@ move.conjuration_entravante = {
     name: 'Conjuration entravante',
     cooldownMs: 4000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 60, max: 70 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 40, max: 60 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
