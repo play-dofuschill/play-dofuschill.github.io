@@ -617,7 +617,7 @@ function _buildRaidEnemySlotHTML(enemy, slotIdx) {
     const moveBars = [0, 1, 2, 3].map(idx => {
         const moveId = moveIds[idx]
         const mv     = moveId ? move[moveId] : null
-        return buildMoveBarHTML(mv, { attrs: mv ? `data-move-id="${moveId}" data-caster-enemy="1"` : '' })
+        return buildMoveBarHTML(mv, { attrs: mv ? `data-move-id="${moveId}" data-caster-enemy="1" data-caster-enemy-idx="${slotIdx}"` : '' })
     }).join('')
 
     const hpPct = Math.max(0, Math.floor((enemy.currentHp / enemy.maxHp) * 100))

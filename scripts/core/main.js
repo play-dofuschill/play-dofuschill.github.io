@@ -970,7 +970,10 @@ function initGame() {
             let casterStats = null
             let casterLevel = null
             if (moveBar.dataset.casterEnemy) {
-                const en = typeof combat !== 'undefined' && combat?.enemy
+                const enemyIdx = moveBar.dataset.casterEnemyIdx
+                const en = typeof combat !== 'undefined' && (
+                    enemyIdx !== undefined ? combat?.enemies?.[enemyIdx] : combat?.enemy
+                )
                 if (en) {
                     const _eb = en.buffs || []
                     const _bv = stat => _eb.filter(b => b.stat === stat).reduce((s, b) => s + b.value, 0)
