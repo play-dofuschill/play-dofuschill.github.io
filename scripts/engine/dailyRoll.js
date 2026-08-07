@@ -81,15 +81,57 @@ function _dateSeed(str) {
     return str.split('').reduce((a, c) => ((a * 31 + c.charCodeAt(0)) | 0), 0)
 }
 
+// PRNG déterministe (mulberry32). Remplace l'ancien LCG à un seul pas par échange, dont les
+// bits de poids faible étaient trop corrélés : sur un Fisher-Yates avec modulos décroissants,
+// ça biaisait fortement les dernières zones tirées (donc le slice(0, N) qui suit), certaines
+// zones sortant jusqu'à 4x moins souvent que d'autres sur le long terme.
+function _mulberry32(seed) {
+    let s = seed >>> 0
+    return function () {
+        s |= 0; s = (s + 0x6D2B79F5) | 0
+        let t = Math.imul(s ^ (s >>> 15), 1 | s)
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+    }
+}
+
 function _seededShuffle(arr, seed) {
-    const a = [...arr]
-    let s   = seed >>> 0
+    const a    = [...arr]
+    const rand = _mulberry32(seed)
     for (let i = a.length - 1; i > 0; i--) {
-        s = (Math.imul(s, 1664525) + 1013904223) >>> 0
-        const j = s % (i + 1);
+        const j = Math.floor(rand() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]]
     }
     return a
+}
+
+// Poids appliqué à une zone déjà sortie au tirage précédent : réduit fortement (sans l'exclure,
+// au cas où ce serait la seule candidate possible) ses chances de revenir immédiatement après.
+const REPEAT_PENALTY_WEIGHT = 0.15
+
+// Tire `count` éléments de `items` sans remise, pondérés par `weightFn(item)`. `rand` doit être
+// un générateur déterministe (ex. _mulberry32(seed)) pour que le tirage reste reproductible.
+function _weightedSample(rand, items, weightFn, count) {
+    const pool   = [...items]
+    const picked = []
+    while (pool.length > 0 && picked.length < count) {
+        const weights = pool.map(weightFn)
+        const total   = weights.reduce((a, b) => a + b, 0)
+        let r   = rand() * total
+        let idx = pool.length - 1
+        for (let k = 0; k < pool.length; k++) {
+            r -= weights[k]
+            if (r <= 0) { idx = k; break }
+        }
+        picked.push(pool[idx])
+        pool.splice(idx, 1)
+    }
+    return picked
+}
+
+// Choix pondéré d'un seul élément parmi `items`.
+function _weightedChoice(rand, items, weightFn) {
+    return _weightedSample(rand, items, weightFn, 1)[0]
 }
 
 // Retourne true si la saison d'une zone saisonnière est active.
@@ -178,9 +220,8 @@ function refreshDailyPools() {
                 a.minLevel <= max && a.maxLevel >= min
             )
             if (candidates.length === 0) continue
-            let s = (wildSeed + i * 2654435761) >>> 0
-            s = (Math.imul(s, 1664525) + 1013904223) >>> 0
-            const choice = candidates[s % candidates.length]
+            const rand   = _mulberry32((wildSeed + i * 2654435761) >>> 0)
+            const choice = _weightedChoice(rand, candidates, () => 1)
             poolSet.add(choice.id)
             poolRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             state.dailyPool.zones.push(choice.id)
@@ -188,6 +229,9 @@ function refreshDailyPools() {
     }
 
     if (wildStale) {
+        // Zones du pool sortant (période précédente) : moins de chances de ressortir tout de suite après.
+        const previousWildZones = new Set(state.dailyPool?.zones || [])
+
         const accessible = Object.values(areas).filter(a =>
             (a.type || 'wild') === 'wild' && isZoneAccessible(a)
         )
@@ -212,9 +256,8 @@ function refreshDailyPools() {
             )
             if (candidates.length === 0) continue
             // Seed différente par slot pour éviter de toujours choisir le même index
-            let s = (wildSeed + i * 2654435761) >>> 0
-            s = (Math.imul(s, 1664525) + 1013904223) >>> 0
-            const choice = candidates[s % candidates.length]
+            const rand   = _mulberry32((wildSeed + i * 2654435761) >>> 0)
+            const choice = _weightedChoice(rand, candidates, a => previousWildZones.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1)
             picked.add(choice.id)
             pickedRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             zones.push(choice.id)
@@ -242,10 +285,12 @@ function refreshDailyPools() {
     })()
 
     if (eventStale) {
-        const allEvents = Object.values(areas).filter(a => a.type === 'event')
+        const previousEvents = new Set(state.eventPool?.zones || [])
+        const allEvents      = Object.values(areas).filter(a => a.type === 'event')
+        const rand           = _mulberry32(dailySeed ^ 0xdeadbeef)
         state.eventPool = {
             date: today,
-            zones: _seededShuffle(allEvents, dailySeed ^ 0xdeadbeef).slice(0, DAILY_EVENT_MAX).map(a => a.id)
+            zones: _weightedSample(rand, allEvents, a => previousEvents.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1, DAILY_EVENT_MAX).map(a => a.id)
         }
     }
 
@@ -256,10 +301,12 @@ function refreshDailyPools() {
     })()
 
     if (raidStale) {
-        const allRaids = Object.values(areas).filter(a => a.type === 'raid')
+        const previousRaids = new Set(state.raidPool?.zones || [])
+        const allRaids      = Object.values(areas).filter(a => a.type === 'raid')
+        const rand          = _mulberry32(dailySeed ^ 0xc0ffee)
         state.raidPool = {
             date: today,
-            zones: _seededShuffle(allRaids, dailySeed ^ 0xc0ffee).slice(0, DAILY_RAID_MAX).map(a => a.id)
+            zones: _weightedSample(rand, allRaids, a => previousRaids.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1, DAILY_RAID_MAX).map(a => a.id)
         }
     }
 
@@ -270,10 +317,12 @@ function refreshDailyPools() {
     })()
 
     if (anomalieStale) {
-        const allAnomalies = Object.values(areas).filter(a => a.type === 'anomalie')
+        const previousAnomalies = new Set(state.anomaliePool?.zones || [])
+        const allAnomalies      = Object.values(areas).filter(a => a.type === 'anomalie')
+        const rand              = _mulberry32(dailySeed ^ 0xa11ce5)
         state.anomaliePool = {
             date: today,
-            zones: _seededShuffle(allAnomalies, dailySeed ^ 0xa11ce5).slice(0, DAILY_ANOMALIE_MAX).map(a => a.id)
+            zones: _weightedSample(rand, allAnomalies, a => previousAnomalies.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1, DAILY_ANOMALIE_MAX).map(a => a.id)
         }
     }
 }
