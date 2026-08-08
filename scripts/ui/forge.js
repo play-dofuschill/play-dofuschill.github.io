@@ -4,6 +4,7 @@ let _forgeTab             = 'forge'  // 'forge' | 'fusion' | 'astral'
 let _forgeSelectedItem    = null
 let _forgeSelectedStatIdx = null
 let _forgeSelectedRune    = null     // runeItemId sélectionnée
+let _forgeTransExpanded   = false    // section runes de transcendance repliée par défaut
 
 let _concassageActive    = false
 let _concassageAction    = null      // 'swap' | 'remove'
@@ -313,8 +314,9 @@ function _renderForgePanel(content) {
         runeHtml += `<div class="forge-section forge-rune-subsection">Runes normales :</div>${normalHtml}`
     }
 
-    // Section runes de transcendance — toujours visibles, bloquées si déjà appliquée
+    // Section runes de transcendance — repliable, bloquée si déjà appliquée
     const allTransPlayer = allPlayerRunes.filter(({ rune }) => rune.transcendance)
+    const transExpanded  = _forgeTransExpanded || isTransRuneSelected
     let transHtml
     if (entry.transForge) {
         transHtml = `<div class="forge-no-runes forge-no-runes-warn">Une rune de Transcendance est déjà appliquée. Retirez-la en concassage pour en appliquer une autre.</div>`
@@ -325,7 +327,11 @@ function _renderForgePanel(content) {
     } else {
         transHtml = `<div class="forge-no-runes">Aucune rune de Transcendance dans l'inventaire.</div>`
     }
-    runeHtml += `<div class="forge-section forge-rune-subsection">Rune de Transcendance (nouveau slot bonus) :</div>${transHtml}`
+    const transCountBadge = transRunes.length > 0 ? ` <span class="forge-trans-count">(${transRunes.length})</span>` : ''
+    runeHtml += `<div class="forge-section forge-rune-subsection forge-collapsible-header" onclick="toggleForgeTransSection()">
+        <span class="forge-collapse-arrow${transExpanded ? ' forge-collapse-arrow-open' : ''}">▾</span>
+        Rune de Transcendance (nouveau slot bonus)${transCountBadge}
+    </div>${transExpanded ? transHtml : ''}`
 
     // Preview
     let previewHtml = ''
@@ -710,9 +716,15 @@ function selectForgeItem(itemId) {
     _forgeSelectedItem    = itemId
     _forgeSelectedStatIdx = null
     _forgeSelectedRune    = null
+    _forgeTransExpanded   = false
     _concassageActive     = false
     _concassageAction     = null
     _concassageSourceIdx  = null
+    updateForgeUI()
+}
+
+function toggleForgeTransSection() {
+    _forgeTransExpanded = !_forgeTransExpanded
     updateForgeUI()
 }
 

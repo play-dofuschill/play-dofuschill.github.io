@@ -5437,6 +5437,11 @@ transform: translateY(-1rem);
 
 .forge-section { font-size: 0.78rem; color: white; font-weight: bold; text-transform: uppercase; letter-spacing: 0.04em; padding-top: 0.2rem; }
 .forge-rune-subsection { font-size: 0.72rem; color: #aaa; font-weight: 600; text-transform: none; letter-spacing: 0; padding-top: 0.5rem; }
+.forge-collapsible-header { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; }
+.forge-collapsible-header:hover { color: #ddd; }
+.forge-collapse-arrow { display: inline-block; font-size: 0.7rem; transition: transform 0.15s; transform: rotate(-90deg); }
+.forge-collapse-arrow-open { transform: rotate(0deg); }
+.forge-trans-count { opacity: 0.6; font-weight: 400; }
 .forge-stats   { display: flex; flex-direction: column; gap: 0.3rem; }
 .forge-stat-row {
     display: flex; align-items: center; gap: 0.6rem;
