@@ -8141,7 +8141,7 @@ monsters.servitude = {
     image: 'images/monsters/Servitude.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 26000, atk: 3005, spd: 220, res: { neutre: 20, terre: 15, feu: 30, eau: 25, air: 25 } },
+    bst: { hp: 26000, atk: 1205, spd: 220, res: { neutre: 20, terre: 15, feu: 30, eau: 25, air: 25 } },
     moves: ['trahison', 'asservissement', 'joug_protecteur']
 }
 // ═══════════════════════════════════════════════════════

@@ -26549,9 +26549,9 @@ move.banquise = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 51, max: 70 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
-        { type: 'heal', heal: 101, target: 'self' }
+        { type: 'heal', heal: 71, target: 'self' }
     ]
 }
 move.cycle = {
@@ -26559,7 +26559,7 @@ move.cycle = {
     name: 'Cycle',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: ['gobosteur', 'sapeur', 'ouilleur', 'perku', 'courtilieur'], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPool: ['gobosteur', 'sapeur', 'ouilleur', 'perku', 'courtilieur'], duration: 2, target: 'enemy' }
     ]
 }
 
@@ -27316,7 +27316,7 @@ move.attrape_mutin = {
     cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'damage', element: 'neutre', damage: { min: 61, max: 80 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' }
     ]
 }
@@ -27326,7 +27326,7 @@ move.mon_precieux = {
     cooldownMs: 3500,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 1000, max: 1000 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 100, max: 110 }, target: 'enemy' },
         { type: 'debuff', stat: 'finalDamagePct', value: 50, duration: 3, target: 'enemy' }
     ]
 }
@@ -27335,11 +27335,11 @@ move.mon_precieux = {
 move.mort_en_sursis = {
     id: 'mort_en_sursis',
     name: 'Mort en Sursis',
-    cooldownMs: 2000,
+    cooldownMs: 2500,
     effects: [
         { type: 'avance', target: 'enemy' },
         { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'damage', element: 'air', damage: { min: 20, max: 20 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
+        { type: 'damage', element: 'air', damage: { min: 40, max: 80 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
 }
 move.coup_critique = {
@@ -27347,7 +27347,7 @@ move.coup_critique = {
     name: 'Coup critique',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 150, max: 150 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 100, max: 120 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' }
     ]
 }
 
