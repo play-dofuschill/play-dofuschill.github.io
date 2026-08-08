@@ -908,6 +908,7 @@ function initGame() {
                 state.classEquip[m.classId].level  = m.level
                 state.classEquip[m.classId].exp    = m.exp
                 state.classEquip[m.classId].equip  = { ...m.equip }
+                state.classEquip[m.classId].moves  = { ...m.moves }
                 state.classEquip[m.classId].gender = m.gender || 'male'
                 state.classEquip[m.classId].name   = m.name   || null
             }

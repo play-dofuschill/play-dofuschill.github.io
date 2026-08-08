@@ -318,6 +318,7 @@ function addToTeam(classId, slotIndex) {
     member.gender = saved?.gender || 'male'
     member.name   = saved?.name   || null
     if (saved?.equip) Object.assign(member.equip, saved.equip)
+    if (saved?.moves) member.moves = { ...saved.moves }
 
     // Sécurité : classEquip peut avoir été sauvegardé à un niveau différent (ou corrompu) —
     // ne jamais réintroduire dans l'équipe un équipement dont le niveau requis dépasse
@@ -327,6 +328,19 @@ function addToTeam(classId, slotIndex) {
         const itemId = member.equip[slot]
         const itm = itemId ? item[itemId] : null
         if (itm?.requiredLevel && itm.requiredLevel > member.level) member.equip[slot] = null
+    }
+
+    // Sécurité : un objet réservé par ce perso a pu être ré-équipé sur un autre membre de
+    // l'équipe active pendant qu'il était sur le banc — ne jamais réintroduire un doublon.
+    const _equippedElsewhere = new Set()
+    for (const m of state.team) {
+        if (!m) continue
+        for (const [slot, itemId] of Object.entries(m.equip || {})) {
+            if (itemId) _equippedElsewhere.add(itemId)
+        }
+    }
+    for (const slot of EQUIP_SLOT_ORDER) {
+        if (member.equip[slot] && _equippedElsewhere.has(member.equip[slot])) member.equip[slot] = null
     }
 
     const stats = getEffectiveStats(member)
@@ -353,7 +367,8 @@ function removeFromTeam(slotIndex) {
             exp:    member.exp,
             gender: member.gender || 'male',
             name:   member.name   || null,
-            equip:  { ...member.equip }
+            equip:  { ...member.equip },
+            moves:  { ...member.moves }
         }
     }
     state.team[slotIndex] = null
@@ -506,6 +521,33 @@ function _buildEquipSelectorShell(removeLabel, filterStats, isFamiliar) {
     </div>`
 }
 
+// Objets/familiers réservés par les personnages actuellement HORS de l'équipe (banc), via
+// state.classEquip. Sans ce balayage, un objet réservé par un perso retiré de l'équipe peut
+// être équipé sur un autre perso, puis dupliqué quand le premier réintègre l'équipe (son
+// équipement réservé est restauré tel quel par addToTeam).
+function _equipReservedByBenched(excludeClassId) {
+    const taken = new Set()
+    const activeClasses = new Set(state.team.filter(Boolean).map(m => m.classId))
+    for (const [classId, saved] of Object.entries(state.classEquip || {})) {
+        if (classId === excludeClassId || activeClasses.has(classId)) continue
+        for (const [slot, itemId] of Object.entries(saved?.equip || {})) {
+            if (slot === 'familier' || !itemId) continue
+            taken.add(itemId)
+        }
+    }
+    return taken
+}
+
+function _familierReservedByBenched(excludeClassId) {
+    const taken = new Set()
+    const activeClasses = new Set(state.team.filter(Boolean).map(m => m.classId))
+    for (const [classId, saved] of Object.entries(state.classEquip || {})) {
+        if (classId === excludeClassId || activeClasses.has(classId)) continue
+        if (saved?.equip?.familier) taken.add(saved.equip.familier)
+    }
+    return taken
+}
+
 function openFamiliarSelector(memberIndex, fromSheet = false) {
     const member = state.team[memberIndex]
     if (!member) return
@@ -515,6 +557,7 @@ function openFamiliarSelector(memberIndex, fromSheet = false) {
         if (!other || idx === memberIndex) continue
         if (other.equip?.familier) takenByOther.add(other.equip.familier)
     }
+    for (const id of _familierReservedByBenched(member.classId)) takenByOther.add(id)
 
     const famItems = familiars.map(fam => {
         const bonuses  = getFamiliarBonusesComputed(fam.id)
@@ -568,6 +611,7 @@ function openEquipSelector(memberIndex, equipSlot) {
             if (itemId) takenByOther.add(itemId)
         }
     }
+    for (const id of _equipReservedByBenched(member.classId)) takenByOther.add(id)
 
     const targetSlot = equipSlot === 'anneau2' ? 'anneau' : equipSlot
     const compatible = Object.values(item).filter(itm =>

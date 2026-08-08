@@ -566,6 +566,7 @@ function openEquipFromSheet(classId, slotId) {
             if (itemId) takenByOther.add(itemId)
         }
     }
+    for (const id of _equipReservedByBenched(classId)) takenByOther.add(id)
 
     const targetSlot = slotId === 'anneau2' ? 'anneau' : slotId
     const compatible = Object.values(item).filter(itm =>

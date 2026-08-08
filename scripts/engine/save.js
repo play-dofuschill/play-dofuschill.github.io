@@ -43,6 +43,7 @@ function saveGame() {
             state.classEquip[m.classId].level = m.level
             state.classEquip[m.classId].exp   = m.exp ?? 0
             state.classEquip[m.classId].equip = { ...m.equip }
+            state.classEquip[m.classId].moves = { ...m.moves }
         }
     } catch (e) {
         console.error('[saveGame] sync team active/classEquip a échoué :', e)
