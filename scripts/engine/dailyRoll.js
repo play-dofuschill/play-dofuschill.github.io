@@ -105,34 +105,34 @@ function _seededShuffle(arr, seed) {
     return a
 }
 
-// Poids appliqué à une zone déjà sortie au tirage précédent : réduit fortement (sans l'exclure,
-// au cas où ce serait la seule candidate possible) ses chances de revenir immédiatement après.
-const REPEAT_PENALTY_WEIGHT = 0.15
-
-// Tire `count` éléments de `items` sans remise, pondérés par `weightFn(item)`. `rand` doit être
-// un générateur déterministe (ex. _mulberry32(seed)) pour que le tirage reste reproductible.
-function _weightedSample(rand, items, weightFn, count) {
+// Tire `count` éléments de `items` sans remise (poids uniforme). `rand` doit être un générateur
+// déterministe (ex. _mulberry32(seed)) pour que le tirage reste reproductible.
+function _sample(rand, items, count) {
     const pool   = [...items]
     const picked = []
     while (pool.length > 0 && picked.length < count) {
-        const weights = pool.map(weightFn)
-        const total   = weights.reduce((a, b) => a + b, 0)
-        let r   = rand() * total
-        let idx = pool.length - 1
-        for (let k = 0; k < pool.length; k++) {
-            r -= weights[k]
-            if (r <= 0) { idx = k; break }
-        }
+        const idx = Math.floor(rand() * pool.length)
         picked.push(pool[idx])
         pool.splice(idx, 1)
     }
     return picked
 }
 
-// Choix pondéré d'un seul élément parmi `items`.
-function _weightedChoice(rand, items, weightFn) {
-    return _weightedSample(rand, items, weightFn, 1)[0]
+// Tire `count` éléments de `items` en excluant si possible les ids présents dans `avoidIds`
+// (tirages récents) : garantit la non-répétition sur plusieurs tirages successifs, contrairement
+// à une simple pondération qui ne réduisait que la chance de revenir immédiatement après. Si trop
+// peu de candidats "neufs" subsistent (ex: palier de niveau avec très peu de zones possibles), on
+// complète avec les zones récentes plutôt que de laisser un slot vide.
+function _pickAvoidingRecent(rand, items, avoidIds, count) {
+    const fresh = items.filter(a => !avoidIds.has(a.id))
+    if (fresh.length >= count) return _sample(rand, fresh, count)
+    const stale = items.filter(a => avoidIds.has(a.id))
+    return [...fresh, ..._sample(rand, stale, count - fresh.length)]
 }
+
+// Nombre de tirages précédents (en plus de celui qu'on remplace) dont on évite la réapparition.
+const WILD_HISTORY_DEPTH  = 5 // demi-journées → couvre ~3 jours glissants
+const DAILY_HISTORY_DEPTH = 2 // jours → couvre 3 jours glissants (aujourd'hui + les 2 précédents évités)
 
 // Retourne true si la saison d'une zone saisonnière est active.
 // Gère le chevauchement d'année (ex: déc → jan) quand start > end.
@@ -221,7 +221,7 @@ function refreshDailyPools() {
             )
             if (candidates.length === 0) continue
             const rand   = _mulberry32((wildSeed + i * 2654435761) >>> 0)
-            const choice = _weightedChoice(rand, candidates, () => 1)
+            const choice = _sample(rand, candidates, 1)[0]
             poolSet.add(choice.id)
             poolRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             state.dailyPool.zones.push(choice.id)
@@ -229,8 +229,12 @@ function refreshDailyPools() {
     }
 
     if (wildStale) {
-        // Zones du pool sortant (période précédente) : moins de chances de ressortir tout de suite après.
-        const previousWildZones = new Set(state.dailyPool?.zones || [])
+        // Zones sorties lors des dernières demi-journées : évitées si possible pour ce tirage
+        // (garantit la non-répétition sur ~3 jours glissants, pas juste le tirage précédent).
+        const outgoingWildZones = state.dailyPool?.zones   || []
+        const wildHistory       = state.dailyPool?.history || []
+        const avoidWildIds      = new Set([...outgoingWildZones, ...wildHistory.flat()])
+        const newWildHistory    = [outgoingWildZones, ...wildHistory].slice(0, WILD_HISTORY_DEPTH)
 
         const accessible = Object.values(areas).filter(a =>
             (a.type || 'wild') === 'wild' && isZoneAccessible(a)
@@ -257,12 +261,12 @@ function refreshDailyPools() {
             if (candidates.length === 0) continue
             // Seed différente par slot pour éviter de toujours choisir le même index
             const rand   = _mulberry32((wildSeed + i * 2654435761) >>> 0)
-            const choice = _weightedChoice(rand, candidates, a => previousWildZones.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1)
+            const choice = _pickAvoidingRecent(rand, candidates, avoidWildIds, 1)[0]
             picked.add(choice.id)
             pickedRanges.add(`${choice.minLevel}-${choice.maxLevel}`)
             zones.push(choice.id)
         }
-        state.dailyPool = { period, zones }
+        state.dailyPool = { period, zones, history: newWildHistory }
     }
 
     // Zones saisonnières : injectées dans le pool wild si leur saison est active.
@@ -285,12 +289,15 @@ function refreshDailyPools() {
     })()
 
     if (eventStale) {
-        const previousEvents = new Set(state.eventPool?.zones || [])
+        const outgoingEvents = state.eventPool?.zones   || []
+        const eventHistory   = state.eventPool?.history || []
+        const avoidEventIds  = new Set([...outgoingEvents, ...eventHistory.flat()])
         const allEvents      = Object.values(areas).filter(a => a.type === 'event')
         const rand           = _mulberry32(dailySeed ^ 0xdeadbeef)
         state.eventPool = {
             date: today,
-            zones: _weightedSample(rand, allEvents, a => previousEvents.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1, DAILY_EVENT_MAX).map(a => a.id)
+            zones: _pickAvoidingRecent(rand, allEvents, avoidEventIds, DAILY_EVENT_MAX).map(a => a.id),
+            history: [outgoingEvents, ...eventHistory].slice(0, DAILY_HISTORY_DEPTH)
         }
     }
 
@@ -301,12 +308,15 @@ function refreshDailyPools() {
     })()
 
     if (raidStale) {
-        const previousRaids = new Set(state.raidPool?.zones || [])
+        const outgoingRaids = state.raidPool?.zones   || []
+        const raidHistory   = state.raidPool?.history || []
+        const avoidRaidIds  = new Set([...outgoingRaids, ...raidHistory.flat()])
         const allRaids      = Object.values(areas).filter(a => a.type === 'raid')
         const rand          = _mulberry32(dailySeed ^ 0xc0ffee)
         state.raidPool = {
             date: today,
-            zones: _weightedSample(rand, allRaids, a => previousRaids.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1, DAILY_RAID_MAX).map(a => a.id)
+            zones: _pickAvoidingRecent(rand, allRaids, avoidRaidIds, DAILY_RAID_MAX).map(a => a.id),
+            history: [outgoingRaids, ...raidHistory].slice(0, DAILY_HISTORY_DEPTH)
         }
     }
 
@@ -317,12 +327,15 @@ function refreshDailyPools() {
     })()
 
     if (anomalieStale) {
-        const previousAnomalies = new Set(state.anomaliePool?.zones || [])
+        const outgoingAnomalies = state.anomaliePool?.zones   || []
+        const anomalieHistory   = state.anomaliePool?.history || []
+        const avoidAnomalieIds  = new Set([...outgoingAnomalies, ...anomalieHistory.flat()])
         const allAnomalies      = Object.values(areas).filter(a => a.type === 'anomalie')
         const rand              = _mulberry32(dailySeed ^ 0xa11ce5)
         state.anomaliePool = {
             date: today,
-            zones: _weightedSample(rand, allAnomalies, a => previousAnomalies.has(a.id) ? REPEAT_PENALTY_WEIGHT : 1, DAILY_ANOMALIE_MAX).map(a => a.id)
+            zones: _pickAvoidingRecent(rand, allAnomalies, avoidAnomalieIds, DAILY_ANOMALIE_MAX).map(a => a.id),
+            history: [outgoingAnomalies, ...anomalieHistory].slice(0, DAILY_HISTORY_DEPTH)
         }
     }
 }
