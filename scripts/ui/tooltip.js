@@ -916,9 +916,10 @@ function showAnomalieSheet(areaId) {
     const mob        = monsters[bossIds[0]]
     if (!mob) return
 
-    const statMult = palier?.statMult || 1
-    const hp  = Math.round(mob.bst.hp  * statMult)
-    const atk = Math.round(mob.bst.atk * statMult)
+    const hpMult  = palier?.hpMult  ?? 1
+    const atkMult = palier?.atkMult ?? 1
+    const hp  = Math.round(mob.bst.hp  * hpMult)
+    const atk = Math.round(mob.bst.atk * atkMult)
     const palierLabel = (typeof ANOMALIE_PALIER_LABELS !== 'undefined' && ANOMALIE_PALIER_LABELS[palierIdx]) || (palierIdx + 1)
 
     const elems   = ['neutre', 'terre', 'feu', 'eau', 'air']
@@ -950,7 +951,7 @@ function showAnomalieSheet(areaId) {
             <img src="${area.icon}" onerror="this.src='img/icons/icon.png'"
                  style="width:4rem;height:4rem;object-fit:contain;image-rendering:pixelated;flex-shrink:0;">
             <div>
-                <div style="opacity:0.7;font-size:0.85em;">Palier ${palierLabel} &bull; +${Math.round((statMult - 1) * 100)}% stats</div>
+                <div style="opacity:0.7;font-size:0.85em;">Palier ${palierLabel} &bull; PV ${Math.round((hpMult - 1) * 100)}% &bull; ATK ${Math.round((atkMult - 1) * 100)}%</div>
                 <div style="font-size:0.9em;margin-top:0.25rem;">${area.description || ''}</div>
             </div>
         </div>

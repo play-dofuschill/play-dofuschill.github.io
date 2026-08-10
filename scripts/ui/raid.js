@@ -132,7 +132,7 @@ function updateAnomalieList(list) {
         ;(area.paliers || []).forEach((palier, idx) => {
             const btn = document.createElement('span')
             btn.className   = 'anomalie-palier-btn' + (idx === selectedIdx ? ' anomalie-palier-selected' : '')
-            btn.title       = `Palier ${ANOMALIE_PALIER_LABELS[idx] || (idx + 1)} — +${Math.round((palier.statMult - 1) * 100)}% stats`
+            btn.title       = `Palier ${ANOMALIE_PALIER_LABELS[idx] || (idx + 1)} — PV ${Math.round((palier.hpMult - 1) * 100)}% • ATK ${Math.round((palier.atkMult - 1) * 100)}%`
             btn.textContent = ANOMALIE_PALIER_LABELS[idx] || (idx + 1)
             btn.onclick = e => {
                 e.stopPropagation()

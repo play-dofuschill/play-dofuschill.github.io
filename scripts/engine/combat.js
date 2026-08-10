@@ -5343,7 +5343,7 @@ function _spawnAnomalieBoss(areaId) {
     const palier  = area.paliers?.[combat.anomaliePalier] || area.paliers?.[0]
     const bossIds = area.boss.ids || [area.boss.id]
     const bossId  = bossIds[Math.floor(Math.random() * bossIds.length)]
-    const boss    = _spawnEnemyById(bossId, palier?.statMult || 1)
+    const boss    = _spawnEnemyById(bossId, palier?.hpMult ?? 1, palier?.atkMult ?? 1)
     if (!boss) return
 
     combat.enemies[0]          = boss
@@ -5353,7 +5353,7 @@ function _spawnAnomalieBoss(areaId) {
 
 // ─── Spawn d'un monstre spécifique (mini-boss) ───────────────
 
-function _spawnEnemyById(monsterId, statMult = 1) {
+function _spawnEnemyById(monsterId, hpMult = 1, atkMult = hpMult) {
     const area = areas[state.currentArea]
     const mob  = monsters[monsterId]
     if (!area || !mob) return null
@@ -5393,11 +5393,13 @@ function _spawnEnemyById(monsterId, statMult = 1) {
         isRaidMiniBoss: true
     }
 
-    // Multiplicateur de difficulté défini dans areaDictionary (ex. miniBoss.statMult: 3)
-    if (statMult > 1) {
-        enemy.maxHp     = Math.floor(enemy.maxHp * statMult)
+    // Multiplicateur de difficulté défini dans areaDictionary (ex. miniBoss.statMult: 3, ou paliers d'Anomalie hpMult/atkMult < 1)
+    if (hpMult !== 1) {
+        enemy.maxHp     = Math.floor(enemy.maxHp * hpMult)
         enemy.currentHp = enemy.maxHp
-        enemy.atk       = Math.floor(enemy.atk   * statMult)
+    }
+    if (atkMult !== 1) {
+        enemy.atk       = Math.floor(enemy.atk   * atkMult)
     }
 
     // Difficulté modulée skull (appliqué après statMult)
