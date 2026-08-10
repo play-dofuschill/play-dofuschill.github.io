@@ -153,7 +153,7 @@ function updateCollectionUI() {
 
 // ─── Tooltip monstre ──────────────────────────────────────────────────────────
 
-// Décrit en texte lisible les passifs de riposte d'un monstre (onHeal, onDebuff,
+// Décrit en texte lisible les passifs de riposte d'un monstre (onHeal, onElementHit, onDebuff,
 // onAllyDeath, onAllySummon, onDeath) — affichés dans sa fiche détail.
 function _describeMobPassives(mob) {
     const elemLabel = e => e ? e.charAt(0).toUpperCase() + e.slice(1) : '?'
@@ -165,6 +165,11 @@ function _describeMobPassives(mob) {
     for (const eff of mob.onHeal || []) {
         if (eff.type === 'random_res_debuff') {
             lines.push(`Quand il se soigne : perd ${eff.value}% de résistance (élément aléatoire, ${durLabel(eff.duration)})`)
+        }
+    }
+    for (const eff of mob.onElementHit || []) {
+        if (eff.type === 'element_lock') {
+            lines.push(`Si touché par un élément : -${eff.selfDebuff}% de résistance à cet élément, +${eff.othersBuff}% aux autres (${durLabel(eff.duration)})`)
         }
     }
     for (const eff of mob.onDebuff || []) {
