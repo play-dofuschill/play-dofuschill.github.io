@@ -19246,8 +19246,8 @@ item.pestilence_de_corruption = {
     slot: 'cape',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    set: 'panoplie_de_corruption',
-    requiredLevel: 150,
+    set: 'seul',
+    requiredLevel: 200,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'atk', min: 61, max: 70 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'res.neutre', min: 3, max: 5 }, { stat: 'res.terre', min: 3, max: 5 }, { stat: 'res.eau', min: 3, max: 5 }, { stat: 'res.air', min: 3, max: 5 }, { stat: 'damageReductionPct', min: 3, max: 5 }, { stat: 'flatDamage', min: 16, max: 20 }]
 }
 item.poulpagne = {
@@ -19259,7 +19259,7 @@ item.poulpagne = {
     rarity: 'rare',
     itemLevelMax: 20,
     set: 'seul',
-    requiredLevel: 185,
+    requiredLevel: 200,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'chance', min: 51, max: 70 }, { stat: 'critChance', min: 2, max: 2 }, { stat: 'atk', min: 30, max: 30 }, { stat: 'dropRate', min: 11, max: 15 }, { stat: 'res.neutre', min: 5, max: 7 }, { stat: 'res.feu', min: 5, max: 7 }, { stat: 'flatDamage', min: 11, max: 15 }]
 }
 item.slip_iholo = {

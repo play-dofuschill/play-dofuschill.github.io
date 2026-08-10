@@ -2827,7 +2827,6 @@ areas.royaumeCorrompu = {
         { itemId: 'amulette_de_l_il_putride', dropRate: 0.01 },
         { itemId: 'cape_de_l_il_putride', dropRate: 0.01 },
         { itemId: 'capuche_de_l_il_putride', dropRate: 0.01 },
-        { itemId: 'pestilence_de_corruption', dropRate: 0.01 },
         { itemId: 'beche_de_corruption', dropRate: 0.01 }
     ]
 }
