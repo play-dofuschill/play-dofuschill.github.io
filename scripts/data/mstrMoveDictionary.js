@@ -7031,8 +7031,8 @@ move.volkardeur = {
     cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 44, max: 63 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' },
-        { type: 'heal', heal: 50, target: 'self' },
+        { type: 'lifesteal', ratio: 0.5, target: 'self' },
+        { type: 'heal', heal: 20, target: 'self' },
         { type: 'buffDrain', value: 2, target: 'enemy' }
     ]
 }
@@ -7042,7 +7042,7 @@ move.volkolere = {
     cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 44, max: 63 }, target: 'enemy' },
-        { type: 'lifesteal', ratio: 1, target: 'self' }
+        { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
 }
 
@@ -7091,7 +7091,7 @@ move.volkalme = {
     name: 'Volkalme',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 103, max: 120 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 73, max: 80 }, target: 'enemy' },
         { type: 'debuff', stat: 'force', value: 200, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'chance', value: 200, duration: 3, target: 'enemy' },
         { type: 'debuff', stat: 'intelligence', value: 200, duration: 3, target: 'enemy' },
@@ -26631,8 +26631,8 @@ move.pelliste = {
     name: 'Pelliste',
     cooldownMs: 3500,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 61, max: 70 }, target: 'enemy' },
-        { type: 'damage', element: 'terre', damage: { min: 71, max: 80 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 41, max: 50 }, target: 'enemy' },
+        { type: 'damage', element: 'terre', damage: { min: 31, max: 40 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
 }
@@ -26641,8 +26641,8 @@ move.archi_pelle = {
     name: 'Archi-Pelle',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'eau', damage: { min: 41, max: 50 }, target: 'enemy' },
-        { type: 'damage', element: 'eau', damage: { min: 51, max: 60 }, target: 'enemy' }
+        { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'eau', damage: { min: 31, max: 40 }, target: 'enemy' }
     ]
 }
 move.chasse_gardee = {

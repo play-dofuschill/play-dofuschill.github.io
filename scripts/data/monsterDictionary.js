@@ -6372,7 +6372,7 @@ monsters.volkorne_orchidee_sauvage = {
     image: 'images/monsters/Volkorne_orchidée_sauvage.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 20, terre: 20, feu: 0, eau: 20, air: 0 } },
+    bst: { hp: 4000, atk: 400, spd: 163, res: { neutre: 20, terre: 20, feu: 0, eau: 20, air: 0 } },
     moves: ['volkardeur', 'volkolere']
 }
 monsters.volkorne_indigo_sauvage = {
@@ -6381,7 +6381,7 @@ monsters.volkorne_indigo_sauvage = {
     image: 'images/monsters/Volkorne_indigo_sauvage.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 20, terre: 0, feu: 20, eau: 0, air: 20 } },
+    bst: { hp: 4000, atk: 400, spd: 163, res: { neutre: 20, terre: 0, feu: 20, eau: 0, air: 20 } },
     moves: ['volkohue', 'volkonde']
 }
 monsters.volkorne_ebene_sauvage = {
@@ -6390,7 +6390,7 @@ monsters.volkorne_ebene_sauvage = {
     image: 'images/monsters/Volkorne_ébène_sauvage.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 20, terre: 0, feu: 20, eau: 20, air: 0 } },
+    bst: { hp: 4000, atk: 400, spd: 163, res: { neutre: 20, terre: 0, feu: 20, eau: 20, air: 0 } },
     moves: ['volkair', 'volkattirance']
 }
 monsters.volkorne_pourpre_sauvage = {
@@ -6399,7 +6399,7 @@ monsters.volkorne_pourpre_sauvage = {
     image: 'images/monsters/Volkorne_pourpre_sauvage.png',
     rarity: 'commun',
     tier: 'normal',
-    bst: { hp: 4500, atk: 400, spd: 163, res: { neutre: 20, terre: 20, feu: 0, eau: 0, air: 20 } },
+    bst: { hp: 4000, atk: 400, spd: 163, res: { neutre: 20, terre: 20, feu: 0, eau: 0, air: 20 } },
     moves: ['volkalme', 'volkeclat']
 }
 // ═══════════════════════════════════════════════════════
@@ -8180,7 +8180,7 @@ monsters.anerice_la_shushess = {
     image: 'images/monsters/Anerice_la_Shushess.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 1218, spd: 220, res: { neutre: 15, terre: 20, feu: 10, eau: 25, air: 30 } },
+    bst: { hp: 18000, atk: 918, spd: 220, res: { neutre: 15, terre: 20, feu: 10, eau: 25, air: 30 } },
     moves: ['goulification', 'vampyrisme', 'appetit_sanguinaire']
 }
 // ═══════════════════════════════════════════════════════
@@ -13070,7 +13070,7 @@ monsters.qilby = {
     image: 'images/monsters/Qilby.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 270000, atk: 3000, spd: 220, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
+    bst: { hp: 270000, atk: 2000, spd: 220, res: { neutre: 31, terre: 27, feu: 25, eau: 39, air: 20 } },
     moves: ['faux_espoirs', 'resonance_sempiternelle', 'portail_monstre']
 }
 monsters.agonie_la_deterree = {
@@ -13079,7 +13079,7 @@ monsters.agonie_la_deterree = {
     image: 'images/monsters/Agonie_la_Déterrée.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 99000, atk: 2800, spd: 220, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
+    bst: { hp: 99000, atk: 2000, spd: 220, res: { neutre: 18, terre: 34, feu: 13, eau: 15, air: 26 } },
     moves: ['frappe_cristalline', 'rale_d_agonie', 'geomancie']
 }
 monsters.leorictus_le_roi_grimacant = {
