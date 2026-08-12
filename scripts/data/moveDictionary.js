@@ -3504,7 +3504,7 @@ move.perception = {
     classId: 'ecaflip',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'all_allies' },
+        { type: 'heal%maxHp', heal: 5, target: 'all_allies' },
         { type: 'buff', stat: 'damageReductionPct', value: 30, duration: 1, target: 'self' }
     ],
     spellProgression: [
@@ -5897,17 +5897,17 @@ move.transfusion = {
     cooldownMs: 3000,
     effects: [
         { type: 'self_dmg_pct_current', ratio: 0.20 },
-        { type: 'heal%maxHp', value: 15, target: 'ally_min_hp' }
+        { type: 'heal%maxHp', heal: 15, target: 'ally_min_hp' }
     ],
     spellProgression: [
         { lvl: 57,  patch: {} },
         { lvl: 117, patch: { effects: [
             { type: 'self_dmg_pct_current', ratio: 0.25 },
-            { type: 'heal%maxHp', value: 20, target: 'ally_min_hp' }
+            { type: 'heal%maxHp', heal: 20, target: 'ally_min_hp' }
         ]}},
         { lvl: 184, patch: { effects: [
             { type: 'self_dmg_pct_current', ratio: 0.30 },
-            { type: 'heal%maxHp', value: 25, target: 'ally_min_hp' }
+            { type: 'heal%maxHp', heal: 25, target: 'ally_min_hp' }
         ]}}
     ],
     description: "Sacrifie 20% de ses PV courants pour soigner l'allié avec le moins de points de vie."

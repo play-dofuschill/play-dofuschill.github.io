@@ -2129,7 +2129,7 @@ move.double_tranchant = {
     cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'heal%maxHp', value: 25, target: 'self' },
+        { type: 'heal%maxHp', heal: 25, target: 'self' },
     ]
 }
 
@@ -2217,7 +2217,7 @@ move.tu_pousses_le_bouchon_un_peu_trop_loin_joris = {
     name: 'Tu pousses le bouchon un peu trop loin Joris !',
     cooldownMs: 4000,
     effects: [
-        { type: 'heal%maxHp', value: 100, target: 'self' },
+        { type: 'heal%maxHp', heal: 100, target: 'self' },
         { type: 'buff', stat: 'atk', value: 300, duration: 3, target: 'self' },
         { type: 'damage', element: 'terre', damage: { min: 101, max: 120 }, target: 'enemy' },
         { type: 'shield', value: 2000, duration: 3, target: 'self' }
@@ -2505,7 +2505,7 @@ move.reconstitution_celeste = {
     name: 'Reconstitution Céleste',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 100, target: 'self' },
+        { type: 'heal%maxHp', heal: 100, target: 'self' },
     ]
 }
 move.lancer_de_feu_vif = {
@@ -3605,7 +3605,7 @@ move.fougue_tofuesque = {
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 
@@ -3634,7 +3634,7 @@ move.regeneration_printaniere = {
     name: 'Régénération printanière',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 20, target: 'self' },
     ]
 }
 
@@ -3715,7 +3715,7 @@ move.mot_de_jeunesse = {
     cooldownMs: 3000,
     effects: [
         { type: 'buffDrain', value: 2, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 
@@ -4311,7 +4311,7 @@ move.dindosoin = {
     name: 'Dindosoin',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 move.frappodindo = {
@@ -4666,7 +4666,7 @@ move.kitsouqueue = {
     cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 25, max: 29 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 move.kitsnition_frissonante = {
@@ -5322,7 +5322,7 @@ move.farandole_de_cawottes = {
     cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 20, target: 'self' },
     ]
 }
 
@@ -5695,7 +5695,7 @@ move.bizz = {
     cooldownMs: 3000,
     effects: [
         { type: 'buff', stat: 'atk', value: 30, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 move.buzz = {
@@ -6680,7 +6680,7 @@ move.croquanibalisme = {
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
         { type: 'debuff', stat: 'atk', value: 50, duration: 3, target: 'enemy' },
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 move.guimimauve = {
@@ -7995,7 +7995,7 @@ move.consolation_monstre = {
     cooldownMs: 3000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 move.brassage_monstre = {
@@ -8241,7 +8241,7 @@ move.apaisement_monstre = {
     name: 'Apaisement',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 11, target: 'self' },
+        { type: 'heal%maxHp', heal: 11, target: 'self' },
     ]
 }
 move.arcanin_mstr = {
@@ -8360,7 +8360,7 @@ move.cicatrisation_monstre = {
     name: 'Cicatrisation',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 6, target: 'self' },
+        { type: 'heal%maxHp', heal: 6, target: 'self' },
     ]
 }
 move.distribution_monstre = {
@@ -9182,7 +9182,7 @@ move.cadeau_soignant = {
     name: 'Cadeau soignant',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 
@@ -9489,7 +9489,7 @@ move.neige_soignante = {
     name: 'Neige soignante',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
     ]
 }
@@ -9768,7 +9768,7 @@ move.gobage = {
     name: 'Gobage',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 100, target: 'self' },
+        { type: 'heal%maxHp', heal: 100, target: 'self' },
     ]
 }
 
@@ -9955,7 +9955,7 @@ move.renflouage = {
     name: 'Renflouage',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 move.ponderation = {
@@ -9964,7 +9964,7 @@ move.ponderation = {
     cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 29, max: 33 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 7, target: 'self' },
+        { type: 'heal%maxHp', heal: 7, target: 'self' },
     ]
 }
 
@@ -10428,7 +10428,7 @@ move.soignerat = {
     name: 'Soignerat',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 20, target: 'self' },
     ]
 }
 move.drainerat = {
@@ -10914,7 +10914,7 @@ move.photosynthese = {
     name: 'Photosynthèse',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 move.presse_tige = {
@@ -11381,7 +11381,7 @@ move.genewosite_cawottique = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 31, max: 37 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'buff', stat: 'erosionBonus', value: 20, duration: 3, target: 'self' }
     ]
 }
@@ -11391,7 +11391,7 @@ move.theowie_de_la_cawotte = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 37, max: 37 }, erodedHpScale: { stat: 'flatDamage', ratio: 0.5 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 
@@ -11978,7 +11978,7 @@ move.pluixel = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'neutre', damage: { min: 31, max: 40 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 
@@ -12100,7 +12100,7 @@ move.bactrasoin = {
     name: 'Bactrasoin',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 20, target: 'self' },
     ]
 }
 move.amphibaffe = {
@@ -13061,7 +13061,7 @@ move.enrobage = {
     name: 'Enrobage',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 move.glycemie = {
@@ -14518,7 +14518,7 @@ move.trop_percu = {
     name: 'Trop-perçu',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 move.subvention = {
@@ -14536,7 +14536,7 @@ move.fin_de_l_abondance = {
     name: 'Fin de l\'Abondance',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 15, target: 'self' },
+        { type: 'heal%maxHp', heal: 15, target: 'self' },
         { type: 'heal', heal: 30, target: 'self' }
     ]
 }
@@ -14545,7 +14545,7 @@ move.maitre_etalon = {
     name: 'Maître-étalon',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'buff', stat: 'atk', value: 150, duration: 3, target: 'self' }
     ]
 }
@@ -16211,7 +16211,7 @@ move.ranga_cho = {
     cooldownMs: 4000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'heal%maxHp', value: 7, target: 'self' },
+        { type: 'heal%maxHp', heal: 7, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 9, max: 12 }, target: 'enemy' },
         { type: 'damage', element: 'air', damage: { min: 5, max: 5 }, target: 'enemy' }
     ]
@@ -18490,7 +18490,7 @@ move.negai_o_kanaeru = {
     name: 'Negai o kanaeru',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 12, target: 'self' },
+        { type: 'heal%maxHp', heal: 12, target: 'self' },
     ]
 }
 
@@ -18673,7 +18673,7 @@ move.tapirateur = {
     cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'heal%maxHp', value: 8, target: 'self' },
+        { type: 'heal%maxHp', heal: 8, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 41, max: 50 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
@@ -19587,7 +19587,7 @@ move.germintaide = {
     cooldownMs: 3500,
     effects: [
         { type: 'damage', element: 'air', damage: { min: 51, max: 67 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
         { type: 'buff', stat: 'atk', value: 100, duration: 3, target: 'self' }
     ]
 }
@@ -20622,7 +20622,7 @@ move.craneantissement = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 46, max: 55 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 15, target: 'self' },
+        { type: 'heal%maxHp', heal: 15, target: 'self' },
     ]
 }
 move.crames = {
@@ -20867,7 +20867,7 @@ move.siphonage = {
     cooldownMs: 3000,
     effects: [
         { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'heal%maxHp', value: 13, target: 'self' },
+        { type: 'heal%maxHp', heal: 13, target: 'self' },
     ]
 }
 move.tourbillonement = {
@@ -21946,7 +21946,7 @@ move.regeneration_sacrificielle = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 60, max: 83 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 move.accumulation_critique = {
@@ -22129,7 +22129,7 @@ move.tir_purulent = {
     name: 'Tir Purulent',
     cooldownMs: 3500,
     effects: [
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
         { type: 'damage', element: 'eau', damage: { min: 43, max: 55 }, target: 'enemy' }
     ]
 }
@@ -22211,7 +22211,7 @@ move.rumeur_inquietante = {
     effects: [
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 20, target: 'self' },
     ]
 }
 move.sermon_effroyable = {
@@ -22582,7 +22582,7 @@ move.stimulation = {
     name: 'Stimulation',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 12, target: 'self' },
+        { type: 'heal%maxHp', heal: 12, target: 'self' },
         { type: 'buff', stat: 'atk', value: 50, duration: 3, target: 'self' }
     ]
 }
@@ -22657,7 +22657,7 @@ move.liane_adaptive = {
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 71, max: 83 }, target: 'enemy' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 7, target: 'self' },
+        { type: 'heal%maxHp', heal: 7, target: 'self' },
     ]
 }
 move.liane_entravante = {
@@ -23035,8 +23035,8 @@ move.stase_regenerante = {
     name: 'Stase Régénérante',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
     ]
 }
 move.solidarite_chronique = {
@@ -23045,7 +23045,7 @@ move.solidarite_chronique = {
     cooldownMs: 4000,
     effects: [
         { type: 'damage', element: 'feu', damage: { min: 100, max: 116 }, target: 'enemy' },
-        { type: 'heal%maxHp', value: 5, target: 'self' },
+        { type: 'heal%maxHp', heal: 5, target: 'self' },
     ]
 }
 
@@ -24140,7 +24140,7 @@ move.reconstitution_bwork = {
     name: 'Reconstitution Bwork',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 50, target: 'self' },
+        { type: 'heal%maxHp', heal: 50, target: 'self' },
     ]
 }
 
@@ -25025,7 +25025,7 @@ move.eau_fraiche = {
     name: 'Eau fraîche',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 25, target: 'self' }
+        { type: 'heal%maxHp', heal: 25, target: 'self' }
     ]
 }
 move.hatsunamiku = {
@@ -25375,7 +25375,7 @@ move.brise_apaisante = {
     name: 'Brise apaisante',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' }
     ]
 }
@@ -26106,7 +26106,7 @@ move.hoshi_no_tama = {
     name: 'Hoshi no tama',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 20, target: 'self' },
     ]
 }
 move.no_raj = {
@@ -26171,7 +26171,7 @@ move.retraite = {
     cooldownMs: 3000,
     effects: [
         { type: 'esquive', chancePct: 40, reductionPct: 100, duration: 3, target: 'self' },
-        { type: 'heal%maxHp', value: 15, target: 'self' },
+        { type: 'heal%maxHp', heal: 15, target: 'self' },
         { type: 'shield', levelPct: 1.5, duration: 3, target: 'self' },
         { type: 'buff', stat: 'atk', value: 250, duration: 3, target: 'self' }
     ]
@@ -26738,7 +26738,7 @@ move.paternalisme = {
     name: 'Paternalisme',
     cooldownMs: 4000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 45, max: 56 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 0.5, target: 'self' }
     ]
@@ -26928,7 +26928,7 @@ move.liqueur_de_fee_ling = {
     name: 'Liqueur de Fée Ling',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 2.5, target: 'self' },
+        { type: 'heal%maxHp', heal: 2.5, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 150, duration: 1, target: 'self' }
     ]
 }
@@ -27289,7 +27289,7 @@ move.il_du_nocher = {
     cooldownMs: 3000,
     effects: [
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
-        { type: 'heal%maxHp', value: 3, target: 'self' },
+        { type: 'heal%maxHp', heal: 3, target: 'self' },
         { type: 'buff', stat: 'atk', value: 200, duration: 3, target: 'self' }
     ]
 }
@@ -27413,7 +27413,7 @@ move.gros_yeux = {
     name: 'Gros Yeux',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 20, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'buff', stat: 'atk', value: 600, duration: 3, target: 'self' }
     ]
 }
@@ -27559,7 +27559,7 @@ move.equador = {
     name: 'Equador',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 10, target: 'self' },
+        { type: 'heal%maxHp', heal: 10, target: 'self' },
         { type: 'buff', stat: 'flatDamage', value: 50, duration: 3, target: 'self' }
     ]
 }
@@ -28049,7 +28049,7 @@ move.charme_malefique = {
     name: 'Charme maléfique',
     cooldownMs: 3000,
     effects: [
-        { type: 'heal%maxHp', value: 2.5, target: 'self' },
+        { type: 'heal%maxHp', heal: 2.5, target: 'self' },
         { type: 'buff', stat: 'finalDamagePct', value: 10, duration: 3, target: 'self' },
     ]
 }
@@ -29489,7 +29489,7 @@ move.tapirateur__brutapir = {
     cooldownMs: 4000,
     effects: [
         { type: 'avance', target: 'enemy' },
-        { type: 'heal%maxHp', value: 8, target: 'self' },
+        { type: 'heal%maxHp', heal: 8, target: 'self' },
         { type: 'damage', element: 'air', damage: { min: 27, max: 32 }, target: 'enemy' },
         { type: 'lifesteal', ratio: 1, target: 'self' },
         { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
