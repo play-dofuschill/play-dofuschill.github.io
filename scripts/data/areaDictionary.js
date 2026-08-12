@@ -5507,7 +5507,7 @@ areas.donjonAurorePourpre = {
     lootTable: [
         { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
-        { itemId: 'Dofus_du_Cauchemard', dropRate: 0.0005 },
+        { itemId: 'Dofus_du_Cauchemar', dropRate: 0.0005 },
         { itemId: 'bois_de_la_liche', dropRate: 0.04167 },
         { itemId: 'chant_du_necromant', dropRate: 0.04167 },
         { itemId: 'ciel_de_foudre_noire', dropRate: 0.04167 },
@@ -6677,9 +6677,9 @@ areas.raidTourbeduRoissingue = {
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cape_souveraine_du_roissingue', dropRate: 0.11667 },
-        { itemId: 'capuche_souveraine_du_roissingue', dropRate: 0.11667 },
-        { itemId: 'sceau_souverain_du_roissingue', dropRate: 0.11667 }
+        { itemId: 'cape_souveraine_du_roissingue', dropRate: 0.05 },
+        { itemId: 'capuche_souveraine_du_roissingue', dropRate: 0.05 },
+        { itemId: 'sceau_souverain_du_roissingue', dropRate: 0.05 }
     ]
 }
 
@@ -6893,13 +6893,13 @@ areas.raidKralamoureGeant = {
         { itemId: 'runeAstral180', dropRate: 0.01 },
         { itemId: 'runeAstral200', dropRate: 0.005 },
         { itemId: 'pierreDame',          dropRate: 0.35 },
-        { itemId: 'kralamansion',        dropRate: 0.01 },
-        { itemId: 'kralano',             dropRate: 0.01 },
-        { itemId: 'annolamour',          dropRate: 0.01 }
+        { itemId: 'kralamansion',        dropRate: 0.05 },
+        { itemId: 'kralano',             dropRate: 0.05 },
+        { itemId: 'annolamour',          dropRate: 0.05 }
     ],
     miniBossLootTable: [
         { itemId: 'pierreDameGardien',   dropRate: 0.45 },
-        { itemId: 'Dofus_Ocre',           dropRate: 0.01 }
+        { itemId: 'Dofus_Ocre',           dropRate: 0.005 }
     ]
 }
 
@@ -6922,26 +6922,26 @@ areas.raidNidas = {
     miniBoss: { id: 'roi_nidas', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'runeAstral200', dropRate: 0.01 },
-        { itemId: 'amulette_du_piloztere', dropRate: 0.01 },
-        { itemId: 'bracelet_du_piloztere', dropRate: 0.01 },
-        { itemId: 'pantoufles_du_piloztere', dropRate: 0.01 },
-        { itemId: 'alliance_du_levitrof', dropRate: 0.01 },
-        { itemId: 'bottes_du_levitrof', dropRate: 0.01 },
-        { itemId: 'coiffe_du_levitrof', dropRate: 0.01 },
-        { itemId: 'amulette_du_kamasterisk', dropRate: 0.01 },
-        { itemId: 'bottes_du_kamasterisk', dropRate: 0.01 },
-        { itemId: 'cape_du_kamasterisk', dropRate: 0.01 },
-        { itemId: 'cape_du_barbetoal', dropRate: 0.01 },
-        { itemId: 'ceinture_du_barbetoal', dropRate: 0.01 },
-        { itemId: 'masque_du_barbetoal', dropRate: 0.01 }
+        { itemId: 'amulette_du_piloztere', dropRate: 0.005 },
+        { itemId: 'bracelet_du_piloztere', dropRate: 0.005 },
+        { itemId: 'pantoufles_du_piloztere', dropRate: 0.005 },
+        { itemId: 'alliance_du_levitrof', dropRate: 0.005 },
+        { itemId: 'bottes_du_levitrof', dropRate: 0.005 },
+        { itemId: 'coiffe_du_levitrof', dropRate: 0.005 },
+        { itemId: 'amulette_du_kamasterisk', dropRate: 0.005 },
+        { itemId: 'bottes_du_kamasterisk', dropRate: 0.005 },
+        { itemId: 'cape_du_kamasterisk', dropRate: 0.005 },
+        { itemId: 'cape_du_barbetoal', dropRate: 0.005 },
+        { itemId: 'ceinture_du_barbetoal', dropRate: 0.005 },
+        { itemId: 'masque_du_barbetoal', dropRate: 0.005 }
     ],
     miniBossLootTable: [
-        { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
+        { itemId: 'Dofus_Nebuleux', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'anneau_de_nidas', dropRate: 0.0875 },
-        { itemId: 'couronne_de_nidas', dropRate: 0.0875 },
-        { itemId: 'tongues_de_nidas', dropRate: 0.0875 },
-        { itemId: 'pelle_de_nidas', dropRate: 0.0875 }
+        { itemId: 'anneau_de_nidas', dropRate: 0.05 },
+        { itemId: 'couronne_de_nidas', dropRate: 0.05 },
+        { itemId: 'tongues_de_nidas', dropRate: 0.05 },
+        { itemId: 'pelle_de_nidas', dropRate: 0.05 }
     ]
 }
 
@@ -6964,25 +6964,25 @@ areas.raidCourSombre = {
     miniBoss: { id: 'reine_des_voleurs', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'runeAstral200', dropRate: 0.01 },
-        { itemId: 'bottes_de_la_cour_sombre', dropRate: 0.01 },
-        { itemId: 'cape_de_la_cour_sombre', dropRate: 0.01 },
-        { itemId: 'ceinture_de_la_cour_sombre', dropRate: 0.01 },
-        { itemId: 'bottes_des_malveilleurs', dropRate: 0.01 },
-        { itemId: 'cape_des_malveilleurs', dropRate: 0.01 },
-        { itemId: 'chapeau_des_malveilleurs', dropRate: 0.01 },
-        { itemId: 'anneau_du_katcheur', dropRate: 0.01 },
-        { itemId: 'bottes_du_katcheur', dropRate: 0.01 },
-        { itemId: 'masque_du_katcheur', dropRate: 0.01 },
-        { itemId: 'pelle_de_la_cour_sombre', dropRate: 0.01 },
-        { itemId: 'dagues_de_srambad', dropRate: 0.01 }
+        { itemId: 'bottes_de_la_cour_sombre', dropRate: 0.005 },
+        { itemId: 'cape_de_la_cour_sombre', dropRate: 0.005 },
+        { itemId: 'ceinture_de_la_cour_sombre', dropRate: 0.005 },
+        { itemId: 'bottes_des_malveilleurs', dropRate: 0.005 },
+        { itemId: 'cape_des_malveilleurs', dropRate: 0.005 },
+        { itemId: 'chapeau_des_malveilleurs', dropRate: 0.005 },
+        { itemId: 'anneau_du_katcheur', dropRate: 0.005 },
+        { itemId: 'bottes_du_katcheur', dropRate: 0.005 },
+        { itemId: 'masque_du_katcheur', dropRate: 0.005 },
+        { itemId: 'pelle_de_la_cour_sombre', dropRate: 0.005 },
+        { itemId: 'dagues_de_srambad', dropRate: 0.005 }
     ],
     miniBossLootTable: [
-        { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
+        { itemId: 'Dofus_Nebuleux', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_de_la_reine_des_voleurs', dropRate: 0.0875 },
-        { itemId: 'ceinture_de_la_reine_des_voleurs', dropRate: 0.0875 },
-        { itemId: 'coiffe_de_la_reine_des_voleurs', dropRate: 0.0875 },
-        { itemId: 'epee_de_la_reine_des_voleurs', dropRate: 0.0875 }
+        { itemId: 'bottes_de_la_reine_des_voleurs', dropRate: 0.05 },
+        { itemId: 'ceinture_de_la_reine_des_voleurs', dropRate: 0.05 },
+        { itemId: 'coiffe_de_la_reine_des_voleurs', dropRate: 0.05 },
+        { itemId: 'epee_de_la_reine_des_voleurs', dropRate: 0.05 }
     ]
 }
 
@@ -7005,28 +7005,28 @@ areas.raidVortex = {
     miniBoss: { id: 'vortex', everyKills: 12, statMult: 1 },
     lootTable: [
         { itemId: 'runeAstral200', dropRate: 0.01 },
-        { itemId: 'bottarpille', dropRate: 0.01 },
-        { itemId: 'capille', dropRate: 0.01 },
-        { itemId: 'harpendentif', dropRate: 0.01 },
-        { itemId: 'anneau_des_egares', dropRate: 0.01 },
-        { itemId: 'bottes_des_egares', dropRate: 0.01 },
-        { itemId: 'casque_des_egares', dropRate: 0.01 },
-        { itemId: 'amibou', dropRate: 0.01 },
-        { itemId: 'capibou', dropRate: 0.01 },
-        { itemId: 'chapibou', dropRate: 0.01 },
-        { itemId: 'bottes_owesli', dropRate: 0.01 },
-        { itemId: 'ceintrigue', dropRate: 0.01 },
-        { itemId: 'talisman_igans', dropRate: 0.01 },
-        { itemId: 'baguette_des_egares', dropRate: 0.01 },
-        { itemId: 'marteau_des_egares', dropRate: 0.01 },
-        { itemId: 'plumeau_bil', dropRate: 0.01 }
+        { itemId: 'bottarpille', dropRate: 0.005 },
+        { itemId: 'capille', dropRate: 0.005 },
+        { itemId: 'harpendentif', dropRate: 0.005 },
+        { itemId: 'anneau_des_egares', dropRate: 0.005 },
+        { itemId: 'bottes_des_egares', dropRate: 0.005 },
+        { itemId: 'casque_des_egares', dropRate: 0.005 },
+        { itemId: 'amibou', dropRate: 0.005 },
+        { itemId: 'capibou', dropRate: 0.005 },
+        { itemId: 'chapibou', dropRate: 0.005 },
+        { itemId: 'bottes_owesli', dropRate: 0.005 },
+        { itemId: 'ceintrigue', dropRate: 0.005 },
+        { itemId: 'talisman_igans', dropRate: 0.005 },
+        { itemId: 'baguette_des_egares', dropRate: 0.005 },
+        { itemId: 'marteau_des_egares', dropRate: 0.005 },
+        { itemId: 'plumeau_bil', dropRate: 0.005 }
     ],
     miniBossLootTable: [
-        { itemId: 'Dofus_Nebuleux', dropRate: 0.01 },
+        { itemId: 'Dofus_Nebuleux', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'cagoule_de_vortex', dropRate: 0.11667 },
-        { itemId: 'ceinture_de_vortex', dropRate: 0.11667 },
-        { itemId: 'sabots_de_vortex', dropRate: 0.11667 }
+        { itemId: 'cagoule_de_vortex', dropRate: 0.05 },
+        { itemId: 'ceinture_de_vortex', dropRate: 0.05 },
+        { itemId: 'sabots_de_vortex', dropRate: 0.05 }
     ]
 }
 
@@ -7048,26 +7048,26 @@ areas.raidChaloeil = {
     ],
     miniBoss: { id: 'chal_il', everyKills: 12, statMult: 1 },
     lootTable: [
-        { itemId: 'runeAstral200', dropRate: 0.01 },
-        { itemId: 'bottes_du_roi_joueur', dropRate: 0.01 },
-        { itemId: 'chevaliere_du_roi_joueur', dropRate: 0.01 },
-        { itemId: 'couronne_du_roi_joueur', dropRate: 0.01 },
-        { itemId: 'bottes_de_la_dame_du_hasard', dropRate: 0.01 },
-        { itemId: 'cape_de_la_dame_du_hasard', dropRate: 0.01 },
-        { itemId: 'collier_de_la_dame_du_hasard', dropRate: 0.01 },
-        { itemId: 'cape_du_valet_veinard', dropRate: 0.01 },
-        { itemId: 'collier_du_valet_veinard', dropRate: 0.01 },
-        { itemId: 'gant_du_valet_veinard', dropRate: 0.01 },
-        { itemId: 'sceptre_du_roi_joueur', dropRate: 0.01 }
+        { itemId: 'runeAstral200', dropRate: 0.007 },
+        { itemId: 'bottes_du_roi_joueur', dropRate: 0.007 },
+        { itemId: 'chevaliere_du_roi_joueur', dropRate: 0.007 },
+        { itemId: 'couronne_du_roi_joueur', dropRate: 0.007 },
+        { itemId: 'bottes_de_la_dame_du_hasard', dropRate: 0.007 },
+        { itemId: 'cape_de_la_dame_du_hasard', dropRate: 0.007 },
+        { itemId: 'collier_de_la_dame_du_hasard', dropRate: 0.007 },
+        { itemId: 'cape_du_valet_veinard', dropRate: 0.007 },
+        { itemId: 'collier_du_valet_veinard', dropRate: 0.007 },
+        { itemId: 'gant_du_valet_veinard', dropRate: 0.007 },
+        { itemId: 'sceptre_du_roi_joueur', dropRate: 0.007 }
     ],
     miniBossLootTable: [
-        { itemId: 'Dofus_Ivoire', dropRate: 0.01 },
+        { itemId: 'Dofus_Ivoire', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'bottes_du_chal_il', dropRate: 0.11667 },
-        { itemId: 'casque_du_chal_il', dropRate: 0.11667 },
-        { itemId: 'cape_du_chal_il', dropRate: 0.11667 },
-        { itemId: 'hache_du_chal_il', dropRate: 0.11667 },
-        { itemId: 'arc_du_chal_il', dropRate: 0.11667 }
+        { itemId: 'bottes_du_chal_il', dropRate: 0.05 },
+        { itemId: 'casque_du_chal_il', dropRate: 0.05 },
+        { itemId: 'cape_du_chal_il', dropRate: 0.05 },
+        { itemId: 'hache_du_chal_il', dropRate: 0.05 },
+        { itemId: 'arc_du_chal_il', dropRate: 0.05 }
     ]
 }
 
@@ -7089,23 +7089,23 @@ areas.raidOrukam = {
     ],
     miniBoss: { id: 'roi_imagami', everyKills: 9, statMult: 1 },
     lootTable: [
-        { itemId: 'runeAstral200', dropRate: 0.01 },
-        { itemId: 'bouclier_ponyme', dropRate: 0.01 },
-        { itemId: 'cape_ostrophe', dropRate: 0.01 },
-        { itemId: 'casque_onsonne', dropRate: 0.01 },
-        { itemId: 'faux_neme', dropRate: 0.01 },
-        { itemId: 'amulette_de_wulan', dropRate: 0.01 },
-        { itemId: 'arc_de_wulan', dropRate: 0.01 },
-        { itemId: 'diademe_de_wulan', dropRate: 0.01 },
-        { itemId: 'maillet_pitaf', dropRate: 0.01 },
-        { itemId: 'faux_netik', dropRate: 0.01 },
-        { itemId: 'anneau_menclatur', dropRate: 0.01 },
-        { itemId: 'anneau_rtograf', dropRate: 0.01 },
-        { itemId: 'kanji_jirark', dropRate: 0.01 },
-        { itemId: 'baguette_imologie', dropRate: 0.01 }
+        { itemId: 'runeAstral200', dropRate: 0.005 },
+        { itemId: 'bouclier_ponyme', dropRate: 0.005 },
+        { itemId: 'cape_ostrophe', dropRate: 0.005 },
+        { itemId: 'casque_onsonne', dropRate: 0.005 },
+        { itemId: 'faux_neme', dropRate: 0.005 },
+        { itemId: 'amulette_de_wulan', dropRate: 0.005 },
+        { itemId: 'arc_de_wulan', dropRate: 0.005 },
+        { itemId: 'diademe_de_wulan', dropRate: 0.005 },
+        { itemId: 'maillet_pitaf', dropRate: 0.005 },
+        { itemId: 'faux_netik', dropRate: 0.005 },
+        { itemId: 'anneau_menclatur', dropRate: 0.005 },
+        { itemId: 'anneau_rtograf', dropRate: 0.005 },
+        { itemId: 'kanji_jirark', dropRate: 0.005 },
+        { itemId: 'baguette_imologie', dropRate: 0.005 }
     ],
     miniBossLootTable: [
-        { itemId: 'Dofus_Tachete', dropRate: 0.01 },
+        { itemId: 'Dofus_Tachete', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
@@ -7130,21 +7130,21 @@ areas.raidImagiro = {
     lootTable: [
         { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'amulette_rinne', dropRate: 0.01 },
-        { itemId: 'carapace_onance', dropRate: 0.01 },
-        { itemId: 'sangle_icisme', dropRate: 0.01 },
-        { itemId: 'solerets_kritur', dropRate: 0.01 },
-        { itemId: 'amulette_de_wulan', dropRate: 0.01 },
-        { itemId: 'arc_de_wulan', dropRate: 0.01 },
-        { itemId: 'diademe_de_wulan', dropRate: 0.01 },
-        { itemId: 'maillet_pitaf', dropRate: 0.01 },
-        { itemId: 'faux_netik', dropRate: 0.01 },
-        { itemId: 'anneau_menclatur', dropRate: 0.01 },
-        { itemId: 'anneau_rtograf', dropRate: 0.01 },
-        { itemId: 'kanji_jirark', dropRate: 0.01 },
-        { itemId: 'baguette_imologie', dropRate: 0.01 }
+        { itemId: 'carapace_onance', dropRate: 0.005 },
+        { itemId: 'sangle_icisme', dropRate: 0.005 },
+        { itemId: 'solerets_kritur', dropRate: 0.005 },
+        { itemId: 'amulette_de_wulan', dropRate: 0.005 },
+        { itemId: 'arc_de_wulan', dropRate: 0.005 },
+        { itemId: 'diademe_de_wulan', dropRate: 0.005 },
+        { itemId: 'maillet_pitaf', dropRate: 0.005 },
+        { itemId: 'faux_netik', dropRate: 0.005 },
+        { itemId: 'anneau_menclatur', dropRate: 0.005 },
+        { itemId: 'anneau_rtograf', dropRate: 0.005 },
+        { itemId: 'kanji_jirark', dropRate: 0.005 },
+        { itemId: 'baguette_imologie', dropRate: 0.005 }
     ],
     miniBossLootTable: [
-        { itemId: 'Dofus_Tachete', dropRate: 0.01 },
+        { itemId: 'Dofus_Tachete', dropRate: 0.005 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 }
     ]
 }
@@ -7167,22 +7167,22 @@ areas.raidEliocalypse = {
     lootTable: [
         { itemId: 'runeAstral200', dropRate: 0.01 },
         { itemId: 'pierreDameGardien', dropRate: 0.45 },
-        { itemId: 'convoitise_de_misere', dropRate: 0.03 },
-        { itemId: 'corset_de_misere', dropRate: 0.03 },
-        { itemId: 'solerets_de_misere', dropRate: 0.03 },
-        { itemId: 'ceste_de_guerre', dropRate: 0.03 },
-        { itemId: 'forteresse_de_guerre', dropRate: 0.03 },
-        { itemId: 'heaume_de_guerre', dropRate: 0.03 },
-        { itemId: 'solerets_de_guerre', dropRate: 0.03 },
-        { itemId: 'dora_de_servitude', dropRate: 0.03 },
-        { itemId: 'manteau_de_servitude', dropRate: 0.03 },
-        { itemId: 'echarpe_de_servitude', dropRate: 0.03 },
-        { itemId: 'alliance_de_corruption', dropRate: 0.03 },
-        { itemId: 'bague_de_corruption', dropRate: 0.03 },
-        { itemId: 'ceinturonce_de_corruption', dropRate: 0.03 },
-        { itemId: 'etreinte_de_servitude', dropRate: 0.03 },
-        { itemId: 'beche_de_corruption', dropRate: 0.03 },
-        { itemId: 'hachebarde_de_guerre', dropRate: 0.03 }
+        { itemId: 'convoitise_de_misere', dropRate: 0.01 },
+        { itemId: 'corset_de_misere', dropRate: 0.01 },
+        { itemId: 'solerets_de_misere', dropRate: 0.01 },
+        { itemId: 'ceste_de_guerre', dropRate: 0.01 },
+        { itemId: 'forteresse_de_guerre', dropRate: 0.01 },
+        { itemId: 'heaume_de_guerre', dropRate: 0.01 },
+        { itemId: 'solerets_de_guerre', dropRate: 0.01 },
+        { itemId: 'dora_de_servitude', dropRate: 0.01 },
+        { itemId: 'manteau_de_servitude', dropRate: 0.01 },
+        { itemId: 'echarpe_de_servitude', dropRate: 0.01 },
+        { itemId: 'alliance_de_corruption', dropRate: 0.01 },
+        { itemId: 'bague_de_corruption', dropRate: 0.01 },
+        { itemId: 'ceinturonce_de_corruption', dropRate: 0.01 },
+        { itemId: 'etreinte_de_servitude', dropRate: 0.01 },
+        { itemId: 'beche_de_corruption', dropRate: 0.01 },
+        { itemId: 'hachebarde_de_guerre', dropRate: 0.01 }
     ],
     miniBossLootTable: []
 }

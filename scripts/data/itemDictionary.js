@@ -117,6 +117,7 @@ const item = {}
 
 item.Dofus_Argente = {
     id: 'Dofus_Argente',
+    isDofus: true,
     name: 'Dofus Argenté',
     image: 'img/items/objets_bonus/Dofus_Argente.png',
     type: 'equipment',
@@ -128,6 +129,7 @@ item.Dofus_Argente = {
 }
 item.Dofus_Cawotte = {
     id: 'Dofus_Cawotte',
+    isDofus: true,
     name: 'Dofus Cawotte',
     image: 'img/items/objets_bonus/Dofus_Cawotte.png',
     type: 'equipment',
@@ -139,6 +141,7 @@ item.Dofus_Cawotte = {
 }
 item.Dofus_Dokoko = {
     id: 'Dofus_Dokoko',
+    isDofus: true,
     name: 'Dofus Dokoko',
     image: 'img/items/objets_bonus/Dokoko.png',
     type: 'equipment',
@@ -152,6 +155,7 @@ item.Dofus_Dokoko = {
 }
 item.Dofus_Kaliptus = {
     id: 'Dofus_Kaliptus',
+    isDofus: true,
     name: 'Dofus Kaliptus',
     image: 'img/items/objets_bonus/Dofus_Kaliptus.png',
     type: 'equipment',
@@ -163,6 +167,7 @@ item.Dofus_Kaliptus = {
 }
 item.Dofus_Emeraude = {
     id: 'Dofus_Emeraude',
+    isDofus: true,
     name: 'Dofus Émeraude',
     image: 'img/items/objets_bonus/Dofus_Emeraude.png',
     type: 'equipment',
@@ -176,6 +181,7 @@ item.Dofus_Emeraude = {
 }
 item.Dofus_Pourpre = {
     id: 'Dofus_Pourpre',
+    isDofus: true,
     name: 'Dofus Pourpre',
     image: 'img/items/objets_bonus/Dofus_Pourpre.png',
     type: 'equipment',
@@ -189,6 +195,7 @@ item.Dofus_Pourpre = {
 }
 item.Dofus_Turquoise = {
     id: 'Dofus_Turquoise',
+    isDofus: true,
     name: 'Dofus Turquoise',
     image: 'img/items/objets_bonus/Dofus_Turquoise.png',
     type: 'equipment',
@@ -202,6 +209,7 @@ item.Dofus_Turquoise = {
 }
 item.Dofus_Ocre = {
     id: 'Dofus_Ocre',
+    isDofus: true,
     name: 'Dofus Ocre',
     image: 'img/items/objets_bonus/Dofus_Ocre.png',
     type: 'equipment',
@@ -215,6 +223,7 @@ item.Dofus_Ocre = {
 }
 item.Dofus_Ebene = {
     id: 'Dofus_Ebene',
+    isDofus: true,
     name: 'Dofus Ébène',
     image: 'img/items/objets_bonus/Dofus_Ebene.png',
     type: 'equipment',
@@ -228,6 +237,7 @@ item.Dofus_Ebene = {
 }
 item.Dofus_Ivoire = {
     id: 'Dofus_Ivoire',
+    isDofus: true,
     name: 'Dofus Ivoire',
     image: 'img/items/objets_bonus/Dofus_Ivoire.png',
     type: 'equipment',
@@ -241,6 +251,7 @@ item.Dofus_Ivoire = {
 }
 item.Dofus_Vulbis = {
     id: 'Dofus_Vulbis',
+    isDofus: true,
     name: 'Dofus Vulbis',
     image: 'img/items/objets_bonus/Dofus_Vulbis.png',
     type: 'equipment',
@@ -254,6 +265,7 @@ item.Dofus_Vulbis = {
 }
 item.Dofus_des_Glaces = {
     id: 'Dofus_des_Glaces',
+    isDofus: true,
     name: 'Dofus des Glaces',
     image: 'img/items/objets_bonus/Dofus_des_Glaces.png',
     type: 'equipment',
@@ -265,6 +277,7 @@ item.Dofus_des_Glaces = {
 }
 item.Dofus_Nebuleux = {
     id: 'Dofus_Nebuleux',
+    isDofus: true,
     name: 'Dofus Nébuleux',
     image: 'img/items/objets_bonus/Dofus_Nebuleux.png',
     type: 'equipment',
@@ -277,6 +290,7 @@ item.Dofus_Nebuleux = {
 }
 item.Dofus_Abyssal = {
     id: 'Dofus_Abyssal',
+    isDofus: true,
     name: 'Dofus Abyssal',
     image: 'img/items/objets_bonus/Dofus_Abyssal.png',
     type: 'equipment',
@@ -289,6 +303,7 @@ item.Dofus_Abyssal = {
 }
 item.Dofus_Forgelave = {
     id: 'Dofus_Forgelave',
+    isDofus: true,
     name: 'Dofus Forgelave',
     image: 'img/items/objets_bonus/Dofus_Forgelave.png',
     type: 'equipment',
@@ -301,6 +316,7 @@ item.Dofus_Forgelave = {
 }
 item.Dofus_Domakuro = {
     id: 'Dofus_Domakuro',
+    isDofus: true,
     name: 'Dofus Domakuro',
     image: 'img/items/objets_bonus/Domakuro.png',
     type: 'equipment',
@@ -313,6 +329,7 @@ item.Dofus_Domakuro = {
 }
 item.Dofus_Dorigami = {
     id: 'Dofus_Dorigami',
+    isDofus: true,
     name: 'Dofus Dorigami',
     image: 'img/items/objets_bonus/Dorigami.png',
     type: 'equipment',
@@ -325,6 +342,7 @@ item.Dofus_Dorigami = {
 }
 item.Dofus_Tachete = {
     id: 'Dofus_Tachete',
+    isDofus: true,
     name: 'Dofus Tacheté',
     image: 'img/items/objets_bonus/Dofus_Tachete.png',
     type: 'equipment',
@@ -337,6 +355,7 @@ item.Dofus_Tachete = {
 }
 item.Dofus_du_Cauchemar = {
     id: 'Dofus_du_Cauchemar',
+    isDofus: true,
     name: 'Dofus du Cauchemar',
     image: 'img/items/objets_bonus/Dofus_du_Cauchemard.png',
     type: 'equipment',
@@ -348,6 +367,7 @@ item.Dofus_du_Cauchemar = {
 }
 item.Dofus_Sylvestre = {
     id: 'Dofus_Sylvestre',
+    isDofus: true,
     name: 'Dofus Sylvestre',
     image: 'img/items/objets_bonus/Dofus_Sylvestre.png',
     type: 'equipment',
@@ -360,6 +380,7 @@ item.Dofus_Sylvestre = {
 }
 item.Dofus_Dolmanax = {
     id: 'Dofus_Dolmanax',
+    isDofus: true,
     name: 'Dofus Dolmanax',
     image: 'img/items/objets_bonus/Dolmanax.png',
     type: 'equipment',

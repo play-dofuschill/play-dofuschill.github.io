@@ -127,7 +127,9 @@ function _getLevelDropPenaltyMult(areaId) {
 }
 
 // ─── Drop d'items depuis la loot table d'une zone ────────────────────────────
-// La pierreDame est exclue ici — elle est traitée dans processVictoryLoot.
+// La pierreDame et les Dofus sont exclus ici — traités séparément (processVictoryLoot
+// / rollDofusDrops) pour ne pas être dilués par le reste du pool ni boostés par le
+// bonus de taux de drop ou la modulation.
 
 function rollItemDrops(areaId, lootTableOverride = null) {
     const area      = areas[areaId]
@@ -136,14 +138,18 @@ function rollItemDrops(areaId, lootTableOverride = null) {
 
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
-    const enutrofBonus = _isEnutrofActive() ? 0.15 : 0
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + enutrofBonus
+    const enutrofBonus = _isEnutrofActive() ? 15 : 0
+    // Bonus multiplicatif : un item à 1% avec 350% de dropRate cumulé donne
+    // 1% × (1 + 350/100) = 4,5%, au lieu de 1% + 350% (qui exploserait le taux).
+    const dropBonusPct = (famBonuses.dropRate || 0) + (equipBonuses.dropRate || 0) + enutrofBonus
+    const dropMult      = 1 + dropBonusPct / 100
 
-    // Calcule la chance globale de drop (hors pierres d'âme et clés de donjon).
+    // Calcule la chance globale de drop (hors pierres d'âme, clés de donjon et Dofus).
     // Les runes astrales ne sont accessibles qu'en difficulté modulée maximale (3/3) —
     // exclues du pool sinon, pour ne pas trivialiser le farm en modulation normale.
     const baseEntries      = lootTable.filter(e =>
         e.itemId !== 'pierreDame' && e.itemId !== 'pierreDameGardien' && !e.isKey &&
+        !item[e.itemId]?.isDofus &&
         (item[e.itemId]?.type !== 'runeAstrale' || state.skullLevel >= 3)
     )
     const levelableEntries = baseEntries.filter(e => item[e.itemId]?.itemLevelMax)
@@ -165,7 +171,7 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const levelMult   = _getLevelDropPenaltyMult(areaId)
     // Difficulté modulée : multiplicateur de loot skull (niveau 1 = pas de bonus)
     const lootMult    = [1, 1, 2, 4][state.skullLevel] || 1
-    const totalChance = Math.min(0.95, (itemEntries.reduce((sum, e) => sum + e.dropRate, 0) + dropBonus) * levelMult * lootMult)
+    const totalChance = Math.min(0.95, itemEntries.reduce((sum, e) => sum + e.dropRate, 0) * dropMult * levelMult * lootMult)
 
     if (Math.random() >= totalChance) return []
 
@@ -239,6 +245,30 @@ function rollKeyDrop(areaId) {
     return null
 }
 
+// ─── Dofus : tirage indépendant ──────────────────────────────────────────────
+// Comme la pierre d'âme, un Dofus a son propre tirage — pas dilué par le reste
+// de la table, et jamais affecté par le bonus de taux de drop ni la modulation
+// (skull) : un Dofus doit rester exceptionnel quel que soit le stuff farming.
+// Seule la pénalité de delta de niveau (_getLevelDropPenaltyMult) s'applique
+// encore, pour éviter de trivialiser un vieux raid avec une équipe surlevée.
+
+function rollDofusDrops(areaId, lootTableOverride = null) {
+    const area      = areas[areaId]
+    const lootTable = lootTableOverride || area?.lootTable
+    if (!lootTable) return []
+
+    const levelMult = _getLevelDropPenaltyMult(areaId)
+    const drops = []
+    for (const entry of lootTable) {
+        if (!item[entry.itemId]?.isDofus) continue
+        if (Math.random() < entry.dropRate * levelMult) {
+            const result = addToInventory(entry.itemId)
+            drops.push({ itemId: entry.itemId, ...result })
+        }
+    }
+    return drops
+}
+
 function consumeDungeonKey(areaId) {
     const area = areas[areaId]
     if (!area?.keyId) return
@@ -272,7 +302,9 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
 
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
-    const dropBonus    = (famBonuses.dropRate || 0) / 100 + (equipBonuses.dropRate || 0) / 100 + (combat?.dropBonusCombat || 0) / 100
+    // Bonus multiplicatif (cf. rollItemDrops) : ex. 1% × (1 + 350/100) = 4,5%
+    const dropBonusPct = (famBonuses.dropRate || 0) + (equipBonuses.dropRate || 0) + (combat?.dropBonusCombat || 0)
+    const dropMult      = 1 + dropBonusPct / 100
 
     if (enemy.isArchi) {
         // Archimonstre / Archiboss : capture garantie à 100%
@@ -285,7 +317,7 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
         const levelMult  = _getLevelDropPenaltyMult(state.currentArea)
         // Difficulté modulée : multiplicateur de loot skull (niveau 1 = pas de bonus)
         const lootMult   = [1, 1, 2, 4][state.skullLevel] || 1
-        const dropChance = Math.min(0.95, (baseChance + dropBonus) * levelMult * lootMult)
+        const dropChance = Math.min(0.95, baseChance * dropMult * levelMult * lootMult)
 
         if (Math.random() < dropChance) {
             familiarDrop = _captureFamiliar(enemy.id)
@@ -296,8 +328,11 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
         }
     }
 
-    // Items ordinaires (pierres d'âme et clés exclues du pool principal)
+    // Items ordinaires (pierres d'âme, clés et Dofus exclus du pool principal)
     const itemDrops = rollItemDrops(state.currentArea, lootTableOverride)
+
+    // Dofus : tirage indépendant, non dilué et non boosté (cf. rollDofusDrops)
+    itemDrops.push(...rollDofusDrops(state.currentArea, lootTableOverride))
 
     // Archimonstre : ajoute silencieusement la pierre archi à l'inventaire (pas dans le résumé)
     if (enemy.isArchi && familiarDrop) {
