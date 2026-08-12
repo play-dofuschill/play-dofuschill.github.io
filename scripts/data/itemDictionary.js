@@ -19246,8 +19246,9 @@ item.pestilence_de_corruption = {
     slot: 'cape',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    set: 'seul',
+    set: 'sans_panoplie',
     requiredLevel: 200,
+    ogrinePrice: 10,
     stats: [{ stat: 'maxHp', min: 351, max: 400 }, { stat: 'atk', min: 61, max: 70 }, { stat: 'critChance', min: -10, max: -10 }, { stat: 'res.neutre', min: 3, max: 5 }, { stat: 'res.terre', min: 3, max: 5 }, { stat: 'res.eau', min: 3, max: 5 }, { stat: 'res.air', min: 3, max: 5 }, { stat: 'damageReductionPct', min: 3, max: 5 }, { stat: 'flatDamage', min: 16, max: 20 }]
 }
 item.poulpagne = {
@@ -19462,8 +19463,9 @@ item.balance_fleau_de_misere = {
     slot: 'arme',
     rarity: 'legendaire',
     itemLevelMax: 20,
-    set: 'panoplie_de_misere',
+    set: 'sans_panoplie',
     requiredLevel: 200,
+    ogrinePrice: 10,
     stats: [{ stat: 'maxHp', min: 301, max: 350 }, { stat: 'atk', min: 81, max: 100 }, { stat: 'critChance', min: 4, max: 5 }, { stat: 'spd', min: -8, max: -8 }, { stat: 'res.terre', min: 7, max: 10 }, { stat: 'critDamagePct', min: 7, max: 10 }]
 }
 item.lance_corrompue = {

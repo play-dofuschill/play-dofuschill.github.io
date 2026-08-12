@@ -2885,8 +2885,7 @@ areas.desertDeMisere = {
         { itemId: 'solerets_de_misere', dropRate: 0.01 },
         { itemId: 'amulette_du_c_ur_saignant', dropRate: 0.01 },
         { itemId: 'bottes_du_c_ur_saignant', dropRate: 0.01 },
-        { itemId: 'cape_du_c_ur_saignant', dropRate: 0.01 },
-        { itemId: 'balance_fleau_de_misere', dropRate: 0.01 }
+        { itemId: 'cape_du_c_ur_saignant', dropRate: 0.01 }
     ]
 }
 
@@ -5370,7 +5369,6 @@ areas.donjonArbreMort = {
         { itemId: 'alliance_de_corruption', dropRate: 0.08333 },
         { itemId: 'bague_de_corruption', dropRate: 0.08333 },
         { itemId: 'ceinturonce_de_corruption', dropRate: 0.08333 },
-        { itemId: 'pestilence_de_corruption', dropRate: 0.08333 },
         { itemId: 'beche_de_corruption', dropRate: 0.08333 }
     ]
 }
@@ -5416,8 +5414,7 @@ areas.donjonBalance = {
         { itemId: 'pierreDameGardien', dropRate: 0.35 },
         { itemId: 'convoitise_de_misere', dropRate: 0.08333 },
         { itemId: 'corset_de_misere', dropRate: 0.08333 },
-        { itemId: 'solerets_de_misere', dropRate: 0.08333 },
-        { itemId: 'balance_fleau_de_misere', dropRate: 0.08333 }
+        { itemId: 'solerets_de_misere', dropRate: 0.08333 }
     ]
 }
 
@@ -7184,8 +7181,6 @@ areas.raidEliocalypse = {
         { itemId: 'bague_de_corruption', dropRate: 0.03 },
         { itemId: 'ceinturonce_de_corruption', dropRate: 0.03 },
         { itemId: 'etreinte_de_servitude', dropRate: 0.03 },
-        { itemId: 'pestilence_de_corruption', dropRate: 0.03 },
-        { itemId: 'balance_fleau_de_misere', dropRate: 0.03 },
         { itemId: 'beche_de_corruption', dropRate: 0.03 },
         { itemId: 'hachebarde_de_guerre', dropRate: 0.03 }
     ],
