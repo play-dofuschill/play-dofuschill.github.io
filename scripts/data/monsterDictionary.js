@@ -7920,7 +7920,7 @@ monsters.barberyl_clochecuivre = {
     image: 'images/monsters/Barbéryl_Clochecuivre.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 18000, atk: 3522, spd: 208, res: { neutre: -9, terre: 10, feu: 2, eau: 4, air: -7 } },
+    bst: { hp: 18000, atk: 2522, spd: 208, res: { neutre: -9, terre: 10, feu: 2, eau: 4, air: -7 } },
     moves: ['ninfernal', 'nimparabilite', 'ninvasion']
 }
 // ═══════════════════════════════════════════════════════
@@ -11651,7 +11651,7 @@ monsters.roi_nidas = {
     image: 'images/monsters/Roi_Nidas.png',
     rarity: 'rare',
     tier: 'boss',
-    bst: { hp: 15000, atk: 194, spd: 220, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
+    bst: { hp: 15000, atk: 1294, spd: 220, res: { neutre: 16, terre: 42, feu: 25, eau: 20, air: 12 } },
     moves: ['confusion', 'attrape_mutin', 'mon_precieux']
 }
 
@@ -13008,7 +13008,7 @@ monsters.noximilien_l_horloger = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 99000, atk: 2800, spd: 184, res: { neutre: 9, terre: 17, feu: 34, eau: 22, air: 13 } },
-    moves: ['temps_de_retard']
+    moves: ['temps_de_retard', 'rouage_tranchant', 'rouille_du_temps', 'emprise_de_l_eliacube']
 }
 monsters.jorbak = {
     id: 'jorbak',
@@ -13017,7 +13017,7 @@ monsters.jorbak = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 65000, atk: 3440, spd: 208, res: { neutre: 0, terre: 0, feu: 0, eau: 0, air: 0 } },
-    moves: ['la_pelle_du_large', 'la_pierre_philosophale']
+    moves: ['la_pelle_du_large', 'la_pierre_philosophale', 'vol_d_ame']
 }
 monsters.julith = {
     id: 'julith',
@@ -13026,7 +13026,7 @@ monsters.julith = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 110000, atk: 2800, spd: 220, res: { neutre: 100, terre: 100, feu: 100, eau: 100, air: 100 } },
-    moves: ['charge_eclair']
+    moves: ['charge_eclair', 'tranche_de_la_bouchere', 'ebene_vengeresse', 'furie_brakmarienne']
 }
 monsters.champion_de_l_aurore_pourpre = {
     id: 'champion_de_l_aurore_pourpre',
@@ -13044,7 +13044,7 @@ monsters.larve_de_rushu = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 120000, atk: 2800, spd: 220, res: { neutre: 19, terre: -10, feu: 26, eau: 14, air: -7 } },
-    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'alentissement', 'contraction_temporelle', 'inexorabilis', 'chronostase']
+    moves: ['temps_mort', 'combustion_lente', 'catachronie', 'contraction_temporelle', 'inexorabilis']
 }
 monsters.shuccube = {
     id: 'shuccube',
@@ -13053,7 +13053,7 @@ monsters.shuccube = {
     rarity: 'rare',
     tier: 'boss',
     bst: { hp: 99000, atk: 2800, spd: 220, res: { neutre: 7, terre: -5, feu: 23, eau: 18, air: 12 } },
-    moves: ['bouillonnement', 'subreptice', 'ason_inshu', 'shurprise', 'shuculbute', 'piege_a_remous', 'affouillement']
+    moves: ['bouillonnement', 'shurprise', 'shuculbute', 'affouillement']
 }
 monsters.qilby = {
     id: 'qilby',

@@ -3328,7 +3328,10 @@ function executeEffect(ctx) {
             // state.team, donc `caster` n'y est plus après coup (includes() renverrait faux).
             const _isAllySummon = state.team.includes(caster)
             let summonId = effect.summonId
-            if (effect.summonPool?.length) {
+            if (effect.summonPoolTier) {
+                const _tierPool = Object.values(monsters).filter(m => m.tier === effect.summonPoolTier).map(m => m.id)
+                if (_tierPool.length) summonId = _tierPool[Math.floor(Math.random() * _tierPool.length)]
+            } else if (effect.summonPool?.length) {
                 summonId = effect.summonPool[Math.floor(Math.random() * effect.summonPool.length)]
             }
             if (summonId) spawnSummon(caster, { ...effect, summonId })

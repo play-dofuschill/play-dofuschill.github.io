@@ -23808,7 +23808,7 @@ move.mitroollette_de_poings = {
     name: 'Mitroollette de Poings',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'neutre', damage: { min: 93, max: 108 }, target: 'enemy' }
+        { type: 'damage', element: 'neutre', damage: { min: 73, max: 88 }, target: 'enemy' }
     ]
 }
 move.catastrooll = {
@@ -25523,9 +25523,17 @@ move.la_pelle_du_large = {
 move.la_pierre_philosophale = {
     id: 'la_pierre_philosophale',
     name: 'La pierre philosophale',
+    cooldownMs: 4000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 81, max: 100 }, target: 'enemy' }
+    ]
+}
+move.vol_d_ame = {
+    id: 'vol_d_ame',
+    name: 'Vol d\'Âme',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'terre', damage: { min: 251, max: 260 }, target: 'enemy' }
+        { type: 'debuff', stat: 'atk', value: 25, duration: 3, target: 'enemy' }
     ]
 }
 
@@ -26385,22 +26393,6 @@ move.bouillonnement = {
         { type: 'damage', element: 'feu', damage: { min: 43, max: 49 }, target: 'enemy' }
     ]
 }
-move.subreptice = {
-    id: 'subreptice',
-    name: 'Subreptice',
-    cooldownMs: 3500,
-    effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
-    ]
-}
-move.ason_inshu = {
-    id: 'ason_inshu',
-    name: 'Ason Inshu',
-    cooldownMs: 3500,
-    effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
-    ]
-}
 move.shurprise = {
     id: 'shurprise',
     name: 'Shurprise',
@@ -26416,14 +26408,6 @@ move.shuculbute = {
     effects: [
         { type: 'recul', target: 'enemy' },
         { type: 'damage', element: 'eau', damage: { min: 17, max: 19 }, target: 'enemy' }
-    ]
-}
-move.piege_a_remous = {
-    id: 'piege_a_remous',
-    name: 'Piège à remous',
-    cooldownMs: 3500,
-    effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
 }
 move.affouillement = {
@@ -26445,6 +26429,30 @@ move.temps_de_retard = {
         { type: 'damage', element: 'eau', damage: { min: 47, max: 55 }, target: 'enemy' },
         { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' },
         { type: 'avance', target: 'enemy' }
+    ]
+}
+move.rouage_tranchant = {
+    id: 'rouage_tranchant',
+    name: 'Rouage Tranchant',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'air', damage: { min: 58, max: 66 }, target: 'enemy' }
+    ]
+}
+move.rouille_du_temps = {
+    id: 'rouille_du_temps',
+    name: 'Rouille du Temps',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'debuff', stat: 'atk', value: 25, duration: 3, target: 'enemy' }
+    ]
+}
+move.emprise_de_l_eliacube = {
+    id: 'emprise_de_l_eliacube',
+    name: 'Emprise de l\'Eliacube',
+    cooldownMs: 2000,
+    effects: [
+        { type: 'buff', stat: 'finalDamagePct', value: 20, duration: 3, target: 'self' }
     ]
 }
 
@@ -26671,6 +26679,31 @@ move.charge_eclair = {
         { type: 'switch', value: 1, target: 'enemy' }
     ]
 }
+move.tranche_de_la_bouchere = {
+    id: 'tranche_de_la_bouchere',
+    name: 'Tranche de la Bouchère',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'terre', damage: { min: 58, max: 66 }, target: 'enemy' }
+    ]
+}
+move.ebene_vengeresse = {
+    id: 'ebene_vengeresse',
+    name: 'Ébène Vengeresse',
+    cooldownMs: 3500,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 70, max: 80 }, target: 'enemy' }
+    ]
+}
+move.furie_brakmarienne = {
+    id: 'furie_brakmarienne',
+    name: 'Furie Brâkmarienne',
+    cooldownMs: 3000,
+    effects: [
+        { type: 'damage', element: 'neutre', damage: { min: 35, max: 40 }, target: 'enemy' },
+        { type: 'damage', element: 'neutre', damage: { min: 35, max: 40 }, target: 'enemy' }
+    ]
+}
 
 // -------- Dathura ---------------
 move.tige_empoisonnee = {
@@ -26753,22 +26786,13 @@ move.catachronie = {
         { type: 'damage', element: 'terre', damage: { min: 42, max: 48 }, target: 'enemy' }
     ]
 }
-move.alentissement = {
-    id: 'alentissement',
-    name: 'Alentissement',
-    cooldownMs: 2500,
-    effects: [
-        { type: 'avance', target: 'enemy' },
-        { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
-    ]
-}
 move.contraction_temporelle = {
     id: 'contraction_temporelle',
     name: 'Contraction temporelle',
     cooldownMs: 2500,
     effects: [
-        { type: 'switch', value: 1, target: 'enemy' },
-        { type: 'debuff', stat: 'spd', value: 10, duration: 2, target: 'enemy' }
+        { type: 'avance', target: 'enemy' },
+        { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
     ]
 }
 move.inexorabilis = {
@@ -26776,15 +26800,7 @@ move.inexorabilis = {
     name: 'Inexorabilis',
     cooldownMs: 2500,
     effects: [
-        { type: 'debuff', stat: 'spd', value: 20, duration: 3, target: 'enemy' }
-    ]
-}
-move.chronostase = {
-    id: 'chronostase',
-    name: 'Chronostase',
-    cooldownMs: 3500,
-    effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'buff', stat: 'spd', value: 20, duration: 3, target: 'self' }
     ]
 }
 
@@ -26820,9 +26836,7 @@ move.martel = {
     name: 'Martel',
     cooldownMs: 3000,
     effects: [
-        { type: 'damage', element: 'feu', damage: { min: 44, max: 52 }, target: 'enemy' },
         { type: 'damage', element: 'feu', damage: { min: 63, max: 73 }, target: 'enemy' },
-        { type: 'damage', element: 'feu', damage: { min: 91, max: 105 }, target: 'enemy' }
     ]
 }
 
@@ -27128,19 +27142,14 @@ move.coup_de_marre_d_eau = {
     cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'eau', damage: { min: 50, max: 58 }, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
-    ]
+        ]
 }
 move.courage_de_l_epouvantail = {
     id: 'courage_de_l_epouvantail',
     name: 'Courage de l\'Épouvantail',
     cooldownMs: 2000,
     effects: [
-        { type: 'buff', stat: 'finalDamagePct', value: 25, duration: 3, target: 'self' },
-        { type: 'buff', stat: 'finalDamagePct', value: 15, duration: 3, target: 'self' },
-        { type: 'buff', stat: 'finalDamagePct', value: 7, duration: 3, target: 'self' }
+        { type: 'debuff', stat: 'finalDamagePct', value: 25, duration: 3, target: 'enemy' },
     ]
 }
 move.impatience = {
@@ -28007,7 +28016,6 @@ move.faux_espoirs = {
     cooldownMs: 3000,
     effects: [
         { type: 'damage', element: 'terre', damage: { min: 61, max: 69 }, target: 'enemy' },
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
     ]
 }
 move.resonance_sempiternelle = {
@@ -28023,7 +28031,7 @@ move.portail_monstre = {
     name: 'Portail',
     cooldownMs: 3500,
     effects: [
-        { type: 'summon', summonPool: [], duration: 3, target: 'enemy' }
+        { type: 'summon', summonPoolTier: 'elite', duration: 3, target: 'enemy' }
     ]
 }
 
