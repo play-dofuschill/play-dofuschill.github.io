@@ -11275,15 +11275,6 @@ monsters.bribe_de_xelor = {
     bst: { hp: 3700, atk: 300, spd: 163, res: { neutre: 20, terre: 21, feu: 31, eau: 40, air: 28 } },
     moves: ['poussiere_mstr', 'frappe_de_xelor_mstr', 'horloge_mstr', 'astrolabe_monstre', 'rouage_mstr', 'glas_mstr', 'refraction_mstr', 'sablier_de_xelor_mstr']
 }
-monsters.bribes_de_gardien = {
-    id: 'bribes_de_gardien',
-    name: 'Bribes de gardien',
-    image: 'images/monsters/Bribes_de_gardien.png',
-    rarity: 'rare',
-    tier: 'boss',
-    bst: { hp: 105000, atk: 2800, spd: 163, res: { neutre: 30, terre: 30, feu: 30, eau: 30, air: 30 } },
-    moves: []
-}
 
 // ═══════════════════════════════════════════════════════
 // ABYSSES DE SUFOKIA (lvl 185+)

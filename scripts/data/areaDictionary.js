@@ -7402,22 +7402,6 @@ areas.anomalieMamaTroollette = {
     ]
 }
 
-areas.anomalieBribesDeGardien = {
-    id: 'anomalieBribesDeGardien',
-    name: "Anomalie — Réveil des Bribes du Gardien",
-    type: 'anomalie',
-    minLevel: 200, maxLevel: 200,
-    mobMinLevel: 1000, mobMaxLevel: 1000,
-    background: "",
-    icon: "images/monsters/Bribes_de_gardien.png",
-    description: "Toutes les bribes de classes dispersées par la faille se sont soudées en un seul gardien composite, brouillon instable de chacune de ses parties mais d'une puissance bien réelle.",
-    boss: { id: 'bribes_de_gardien' },
-    paliers: [
-        { hpMult: 0.3, atkMult: 0.7,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.3 }, { itemId: 'sablierXelor', dropRate: 0.01 }, { itemId: 'horlogeXelor', dropRate: 0.005 } ] },
-        { hpMult: 0.6, atkMult: 0.85,  lootTable: [ { itemId: 'pierreDameGardien', dropRate: 0.6 }, { itemId: 'cristalFamilierDouble', dropRate: 0.01 }, { itemId: 'sablierXelor', dropRate: 0.1 }, { itemId: 'horlogeXelor', dropRate: 0.05 }, { itemId: 'runeSpellDmgL', dropRate: 0.01 }, { itemId: 'runeFinalDmgL', dropRate: 0.01 }, { itemId: 'runeDamRedL', dropRate: 0.01 } ] },
-        { hpMult: 1, atkMult: 1, lootTable: [ { itemId: 'runeAstral200', dropRate: 0.01 }, { itemId: 'pierreDameGardien', dropRate: 1.0 }, { itemId: 'cristalFamilierDouble', dropRate: 0.025 }, { itemId: 'Dofusteuse', dropRate: 0.03 }, { itemId: 'sablierXelor', dropRate: 0.15 }, { itemId: 'horlogeXelor', dropRate: 0.1 }, { itemId: 'runeSpellDmgL', dropRate: 0.03 }, { itemId: 'runeFinalDmgL', dropRate: 0.03 }, { itemId: 'runeDamRedL', dropRate: 0.03 } ] }
-    ]
-}
 // #endregion ANOMALIES
 
 // #region SAISONNIERS ─────────────────────────────────────────────────────────────────────
