@@ -6,6 +6,10 @@
 
 const BASE_DROP_DIVISOR = 7
 
+// Amplificateur du bonus de taux de drop (familiers/panoplies/items/Énutrof).
+// final = base * (1 + (dropBonusPct/100) * DROP_BONUS_AMPLIFIER) * levelMult * lootMult
+const DROP_BONUS_AMPLIFIER = 3
+
 // ─── Compensation de dilution de spawn ────────────────────────────────────────
 // Dans une zone à plusieurs mobs (famille), chaque combat ne cible qu'un seul
 // monstre tiré au sort selon son poids (spawnEnemy, combat.js). Un mob sous-
@@ -139,10 +143,10 @@ function rollItemDrops(areaId, lootTableOverride = null) {
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
     const enutrofBonus = _isEnutrofActive() ? 15 : 0
-    // Bonus multiplicatif : un item à 1% avec 350% de dropRate cumulé donne
-    // 1% × (1 + 350/100) = 4,5%, au lieu de 1% + 350% (qui exploserait le taux).
+    // Bonus multiplicatif amplifié : un item à 1% avec 350% de dropRate cumulé donne
+    // 1% × (1 + 350/100 × 3) = 11,5%.
     const dropBonusPct = (famBonuses.dropRate || 0) + (equipBonuses.dropRate || 0) + enutrofBonus
-    const dropMult      = 1 + dropBonusPct / 100
+    const dropMult      = 1 + (dropBonusPct / 100) * DROP_BONUS_AMPLIFIER
 
     // Calcule la chance globale de drop (hors pierres d'âme, clés de donjon et Dofus).
     // Les runes astrales ne sont accessibles qu'en difficulté modulée maximale (3/3) —
@@ -302,9 +306,9 @@ function processVictoryLoot(enemy, lootTableOverride = null) {
 
     const famBonuses   = getAllTeamFarmingBonuses()
     const equipBonuses = getActiveMemberEquipFarmingBonuses()
-    // Bonus multiplicatif (cf. rollItemDrops) : ex. 1% × (1 + 350/100) = 4,5%
+    // Bonus multiplicatif amplifié (cf. rollItemDrops) : ex. 1% × (1 + 350/100 × 3) = 11,5%
     const dropBonusPct = (famBonuses.dropRate || 0) + (equipBonuses.dropRate || 0) + (combat?.dropBonusCombat || 0)
-    const dropMult      = 1 + dropBonusPct / 100
+    const dropMult      = 1 + (dropBonusPct / 100) * DROP_BONUS_AMPLIFIER
 
     if (enemy.isArchi) {
         // Archimonstre / Archiboss : capture garantie à 100%
